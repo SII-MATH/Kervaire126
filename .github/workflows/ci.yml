@@ -71,6 +71,21 @@ jobs:
           # Include tracked paths and blob hashes, so renames and deletions invalidate too.
           source_hash=$(git ls-files --stage -z -- '*.lean' lakefile.toml | sha256sum | cut -d ' ' -f 1)
           echo "hash=$source_hash" >> "$GITHUB_OUTPUT"
+      - name: Start Blueprint environment setup
+        run: |
+          (
+            set -euo pipefail
+            finish_setup() {
+              echo "$?" > "$RUNNER_TEMP/blueprint-setup.exit.tmp"
+              mv "$RUNNER_TEMP/blueprint-setup.exit.tmp" "$RUNNER_TEMP/blueprint-setup.exit"
+            }
+            trap finish_setup EXIT
+            sudo apt-get -o Acquire::Retries=3 update
+            sudo apt-get -o Acquire::Retries=3 install --yes --no-install-recommends \
+              graphviz libgraphviz-dev pkg-config texlive-binaries
+            python3 -m venv "$RUNNER_TEMP/blueprint-venv"
+            "$RUNNER_TEMP/blueprint-venv/bin/pip" install -r requirements-blueprint.txt
+          ) > "$RUNNER_TEMP/blueprint-setup.log" 2>&1 < /dev/null &
       - name: Restore compiled Lean dependencies and project
         id: lake-cache
         uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5
@@ -79,6 +94,21 @@ jobs:
           path: ./.lake
           key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-sources-v1-${{ steps.lean-inputs.outputs.hash }}
           restore-keys: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-
+      - name: Finish Blueprint environment setup
+        run: |
+          for attempt in {1..300}; do
+            if test -f "$RUNNER_TEMP/blueprint-setup.exit"; then
+              cat "$RUNNER_TEMP/blueprint-setup.log"
+              status=$(cat "$RUNNER_TEMP/blueprint-setup.exit")
+              if (( status != 0 )); then exit "$status"; fi
+              echo "$RUNNER_TEMP/blueprint-venv/bin" >> "$GITHUB_PATH"
+              exit 0
+            fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/blueprint-setup.log"
+          echo 'Blueprint environment setup did not finish within five minutes.' >&2
+          exit 1
       - name: Build the complete Lean library, regression modules and declaration checker
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
         with:
@@ -89,14 +119,6 @@ jobs:
           # Every matching cache contains a successful build with these dependencies.
           use-mathlib-cache: ${{ steps.lake-cache.outputs.cache-matched-key == '' }}
           use-github-cache: false
-      - name: Install Blueprint dependencies
-        run: |
-          sudo apt-get -o Acquire::Retries=3 update
-          sudo apt-get -o Acquire::Retries=3 install --yes --no-install-recommends \
-            graphviz libgraphviz-dev pkg-config texlive-binaries
-          python3 -m venv "$RUNNER_TEMP/blueprint-venv"
-          "$RUNNER_TEMP/blueprint-venv/bin/pip" install -r requirements-blueprint.txt
-          echo "$RUNNER_TEMP/blueprint-venv/bin" >> "$GITHUB_PATH"
       - name: Render Blueprint and check linked Lean declarations
         env:
           # The minimal TeX installation has no texlive-base search-path defaults.
@@ -131,6 +153,8 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: lean-resources
-          path: ${{ runner.temp }}/lean-resources.log
+          path: |
+            ${{ runner.temp }}/lean-resources.log
+            ${{ runner.temp }}/blueprint-setup.log
           retention-days: 7
           if-no-files-found: ignore

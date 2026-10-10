@@ -59,5 +59,6 @@ Blueprint 尚未配置远程网站/API 链接。
 - 依赖缓存隔离后，10 项依赖版本、37 个独立文件样本、缓存链接及 Lean 搜索路径核对通过。
 - 隔离后 `lake build --no-build KIP126` 确认 4311 项构建任务均为最新状态；没有全量重编译。
 
-远程 CI 通过 GitHub Actions 运行，构建缓存由 Lean action 管理；详见 [CI.md](CI.md)。
+远程 CI 通过 GitHub Actions 运行，Lean action 执行构建，GitHub cache action 按源码内容
+复用编译缓存；详见 [CI.md](CI.md)。
 网站/API 发布地址尚未配置。

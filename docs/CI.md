@@ -47,6 +47,8 @@ Blueprint 网页使用 MathJax，安装 Graphviz、Python 渲染依赖及提供 
 `texlive-binaries`。`kpsewhich` 用于找到嵌套的 TeX 源文件；CI 不安装 LaTeX 格式包、
 Ghostscript 或 PDF 转换工具。渲染步骤显式设置 `TEXINPUTS=.:`，使精简环境也能找到
 当前目录下的主文件和嵌套章节，不依赖完整 TeX 安装提供的搜索路径默认值。
+Blueprint 环境安装与 Lean 缓存恢复并行；安装结果在开始 Lean 编译前核对，
+安装失败仍使任务失败，日志保留在对应步骤中。
 Lean 任务上限为 120 分钟，以容纳首次或缓存被清理后的完整冷构建。
 首次公仓试运行确认 16 GB 内存充足，但先前沿用的单线程配置在 90 分钟上限前
 只完成 1331 个 KIP126 模块；7 个平方检测证书批次串行编译共约 24 分钟。
