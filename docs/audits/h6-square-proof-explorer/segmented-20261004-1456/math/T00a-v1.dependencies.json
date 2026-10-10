@@ -1,6 +1,0 @@
-{
-  "task_id": "T00a",
-  "version": "v1",
-  "dependencies": [],
-  "reason": "仅使用已审定T00-v2的次数和本段预先明确的Ext定义基础，不使用新的外部命题。"
-}

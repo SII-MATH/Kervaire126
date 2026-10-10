@@ -1,6 +1,0 @@
-{
-  "finding": "Actual screenshot showed full formal_status object in the default panel.",
-  "change": "Render Checker-authored formal_status.summary verbatim; retain entire object inside closed Lean evidence.",
-  "mathematical_text_changed": false,
-  "validation": "Existing browser check extended to assert this field selection."
-}

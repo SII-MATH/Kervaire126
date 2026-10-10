@@ -262,8 +262,7 @@ The project is complete only when all of the following hold:
 - all canonical KIP126 source outside the intentional Challenge statement
   track contains no `sorry` or `admit`, and canonical KIP126 declares no project
   `axiom`; Challenge statements retain their required `by sorry` bodies and
-  are excluded from proof-completion evidence, while the isolated historical
-  KIPBase component remains subject to its separate migration audit;
+  are excluded from proof-completion evidence;
 - the single temporary development axiom has been eliminated;
 - every external input is an explicit Lean mathematical hypothesis with a
   corresponding declaration and locator entry in `docs/external-inputs.json`;

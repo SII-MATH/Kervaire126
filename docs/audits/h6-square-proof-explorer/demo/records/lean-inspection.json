@@ -1,7 +1,0 @@
-{
-  "command": "lake env lean docs/audits/h6-square-proof-explorer/demo/records/LeanInspect.lean",
-  "mode": "outside_sandbox, auto-review approved",
-  "exit_code": 1,
-  "output": "records/LeanInspect.lean:1:0: error: object file '.lake/build/lib/lean/KIP126/Def/StableHomotopy/Implementation/Data.olean' of module KIP126.Def.StableHomotopy.Implementation.Data does not exist",
-  "interpretation": "导入阶段失败，文件内 #check / #print axioms 未运行成功。未触发全库重编译；语义核查以当前源码为据，传递性公理审计未完成。"
-}

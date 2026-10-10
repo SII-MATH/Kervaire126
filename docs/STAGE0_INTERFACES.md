@@ -30,7 +30,7 @@ Challenge2 顶层恰有 `literature` 和 `computation` 两项。`LiteratureInter
 
 计算的逐条 Blueprint 清单位于 `blueprint/src/chapters/computed_inputs.tex`，采用与文献清单相同的平面索引：29 条结果声明、4 条绑定比较条件，各自有独立数学节点和实际 Lean 投影链接。该章只保留这 33 条编号陈述；共享定义和示例在 `computation_schema.tex`，Main 内部推导计划在 `near126.tex`，附录转录和输出覆盖审计在 `coverage.tex`。唯一 JSON 清单在七个结果字段下登记具体 statement，在 `computation_binding_statements` 中登记四条比较；校验同时核对实际 Lean 结构的展开、独立节点和所属字段。人工 HTML 清单读取这些记录逐条展示，不再用七个包装字段代表定理条数。原始表中的每行不是额外的独立定理项，普通合取和参数化命题族仍按一条计算。全部节点保留未完成的交付状态；这次对齐不证明实际谱模型上的计算正确性。
 
-附录的 401 条记录和 9 个空带目前是论文转录。实际数据库审计确认：375 条球谱表范围记录由完整 staircase 覆盖，26 条 Cν 表范围记录由选定路线覆盖，九个空带的全部 35 个双次数在完整 E₂ 数据中为空。但这不是 401 条纸面表达式和状态的逐条语义对应：选定切片只包含其中 376 条记录所在的双次数，且程序的有限页到达、未知目标和反证记录仍需表达式识别、线性代数及 Main 的永久存活证明。不能把纸面状态再作为独立外部输入。[本次核查](audits/linprogram-appendix-20261006.md)记录直接输出与内部推论的界线。
+附录的 401 条记录和 9 个空带目前是论文转录。实际数据库审计确认：375 条球谱表范围记录由完整 staircase 覆盖，26 条 Cν 表范围记录由选定路线覆盖，九个空带的全部 35 个双次数在完整 E₂ 数据中为空。但这不是 401 条纸面表达式和状态的逐条语义对应：选定切片只包含其中 376 条记录所在的双次数，且程序的有限页到达、未知目标和反证记录仍需表达式识别、线性代数及 Main 的永久存活证明。不能把纸面状态再作为独立外部输入。
 
 唯一临时阶段公理直接给出 `Main.Axiom.challenge2 : KIP126.Challenge2`；Main 不再经过 `Nonempty` 或 witness choice。生产者不得使用这一消费公理。完整 Challenge2 的构造须让计算包依赖同一文献来源与 Def 固定模型，不能分别选择不相干的模型或来源。固定球谱适用性与分离性是独立的 Def 证明责任。BHS 完成适用性、完成比较和 realization 比较由 `literature.bindings.route` 明确交付；Main 仍须证明一般 Moss 到局部 sphere 结论的特化、全 synthetic weight shift 自然性、Toda 二级运算比较与 ν 来源结论，再同已有来源陈述组装 `routeApplication`。这些未完成证明不能当作文献结果或程序输出。
 
@@ -52,7 +52,7 @@ Challenge2 顶层恰有 `literature` 和 `computation` 两项。`LiteratureInter
 | 有限至无限 | level9000解释为到E1000。非零永久存活还需有限页非零、入微分排除及实际球塔消失线；滤过尾部还需经典分离性。 |
 | 认证 | `CertifiedRealization` 七项是数学证明目标；接收七项证明的组装、从未完成总目标取字段、原始日志存在都不是认证实现。 |
 
-论文主定理§7的逐段需求映射、原始行定位及覆盖状态见[主定理计算依赖对照](audits/main-paper-computation-inventory-20261003.md)，不纳入引言推论或教学示例。`Main/Solution/Computation/Route/Consequences.lean` 与 `Route.lean` 区分基础 C 和内部派生目标。原 `e5_high125_other` 已删除；AF15 与 AF18 的两个非零 d₅ 现有独立精确声明，保留为 Main 证明责任。`Computation/High125.lean` 改用实际 `π_(125,130)`：F15=F25、F26=0、λ¹⁰ 可除性及 λ²⁰G 的两元素穷尽，保留 BHS 比较、来源得到的 G 永久性和分离性前提。相关 Massey、不定性、crossing、候选穷尽和 quotient-lift 条件不能凭表名省略。
+计算覆盖范围限于论文主定理§7，不纳入引言推论或教学示例。`Main/Solution/Computation/Route/Consequences.lean` 与 `Route.lean` 区分基础 C 和内部派生目标。原 `e5_high125_other` 已删除；AF15 与 AF18 的两个非零 d₅ 现有独立精确声明，保留为 Main 证明责任。`Computation/High125.lean` 改用实际 `π_(125,130)`：F15=F25、F26=0、λ¹⁰ 可除性及 λ²⁰G 的两元素穷尽，保留 BHS 比较、来源得到的 G 永久性和分离性前提。相关 Massey、不定性、crossing、候选穷尽和 quotient-lift 条件不能凭表名省略。
 
 ## 来源适用性与内部推导
 

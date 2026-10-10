@@ -36,9 +36,9 @@ lake build KIP126
 bash scripts/check.sh
 ```
 
-默认 `lake build` 和 CI 构建 KIP126。KIPBase 的目录、构建目标及专用工具
-与远程仓库保持一致，不再纳入当前源码树；本地历史提交仍保留其原有进展。
-通用历史报告及旧工具继续保留，旧工作流归档后不在新仓运行。
+默认 `lake build` 和 CI 构建 KIP126。`develop` 遵循 `main` 的剥离范围：
+KIPBase、旧审计与迁移档案、Euler/Multica 配置及旧工作流和工具留在旧仓库，
+后续同步不重新引入。已有代码的来源标注继续保留。
 
 原始数据库和 CSV 使用 Git LFS，约 618 MiB。普通 Git 文件中的指针不能代替原始输入；
 生成 Lean 数据保留在仓库中，重新翻译原始输入需要实际 LFS 文件。

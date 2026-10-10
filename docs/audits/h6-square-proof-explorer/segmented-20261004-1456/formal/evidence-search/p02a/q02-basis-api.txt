@@ -1,8 +1,0 @@
-KIP126/LinProgram/Certificates/SquareDimension/Generators/Proofs.lean:7:archived additive catalogue is a basis or a reduction algorithm is complete. -/
-KIP126/LinProgram/Certificates/SquareDetection.lean:105:is kernel-verified. No full basis theorem or Gröbner completeness is needed. -/
-KIP126/Interface/Solution/LinProgram/SphereBasis.lean:13:    Nonempty (KIP126.Challenge2.SphereBasisInterface P) := by
-KIP126/Main/Solution/Computation/Route.lean:135:prove their equations and local basis completeness before deriving this.
-KIP126/Interface/Challenge/Challenge2.lean:887:structure SphereBasisInterface (P : LinE2Presentation) where
-KIP126/Interface/Challenge/Challenge2.lean:1275:  sphereBasis : SphereBasisInterface presentation
-KIP126/Interface/Challenge/Challenge2.lean:1333:def sphereBasis (input : KIP126.Challenge2) : SphereBasisInterface input.presentation :=
-KIP126/LinProgram/Interpretation/Branch/Data.lean:58:as in `deduce.cpp:412–415,461–464`; no basis independence is assumed here. -/

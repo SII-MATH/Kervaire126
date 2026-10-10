@@ -1,1 +1,0 @@
-KIP126/Def/Steenrod/MilnorModule/Comparison/Multiplication/Proofs.lean:22:    (he : PreservesDualCobarRepresentatives R e) : PreservesYoneda e := by

@@ -12,16 +12,16 @@ Blueprint 尚未配置远程网站/API 链接。
 ## develop 本地进展整合（2026-10-10）
 
 - 合并旧仓本地开发历史与 Kervaire126 更新，保留本地 KIP126 证明进展。
-- KIPBase 按远程 `develop` 状态处理：移除 `KIPBase/`、`KIPBase.lean`、
-  专用脚本、测试、进展清单及 `docs/migration/kip-base/` 迁移档案；
-  不恢复 `KIPBase` 和 `kipbaseAudit` 构建目标。相关本地进展仍保留在合并前提交中。
-- 保留通用 `docs/archive/`、`docs/audits/`、其余迁移文档和旧工具作为开发历史。
-  历史报告、测试与旧仓配置不代表本仓当前 CI 或已完成证明。
-- 采用新仓精简 `ci.yml`，增加 `develop` 推送触发；
-  旧仓的 10 个其他工作流原样移至 [archive/workflows/](archive/workflows/)，
-  不再作为 GitHub Actions 工作流执行，不恢复旧自动合并、外部审查或网站发布。
-- 旧工作流测试仍保留其原路径假设，供历史参考，不纳入 `scripts/check.sh`。
-  当前验证入口为本仓的来源、接口、Blueprint 检查和各库的显式构建。
+- `develop` 与 `main` 使用同一剥离范围。清除合并重新带回的旧审计档案、
+  归档工作流、Euler/Multica 配置及旧 CI、审查、合并、状态、缓存、性能和发布工具；
+  不在当前源码树中保留这些设施的历史副本或专用测试。
+- `KIPBase/`、`KIPBase.lean`、专用脚本与进展清单、`docs/migration/kip-base/`，
+  以及 `KIPBase` 和 `kipbaseAudit` 构建目标继续保持剥离。
+- 移除依赖未迁入的 `Prover-all` 和本地工作流的工具入口与配置。
+- 保留 KIP126 数学源码、Blueprint 更新、原始来源制品与已有来源标注。
+  旧提交仍存在于 Git 历史中；当前文件树遵循下面的迁入边界。
+- 同步最新 `main` 的精简 CI 与编译缓存优化，保留 `develop` 推送触发。
+  当前验证入口为来源、接口、Blueprint 检查及完整 KIP126 构建。
 
 ## 初始迁入：保留
 
@@ -76,5 +76,6 @@ Blueprint 尚未配置远程网站/API 链接。
 - 依赖缓存隔离后，10 项依赖版本、37 个独立文件样本、缓存链接及 Lean 搜索路径核对通过。
 - 隔离后 `lake build --no-build KIP126` 确认 4311 项构建任务均为最新状态；没有全量重编译。
 
-远程 CI 通过 GitHub Actions 运行，构建缓存由 Lean action 管理；详见 [CI.md](CI.md)。
+远程 CI 通过 GitHub Actions 运行，Lean action 安装工具链，Lake 执行完整构建，
+GitHub cache action 按源码内容复用编译缓存；详见 [CI.md](CI.md)。
 网站/API 发布地址尚未配置。
