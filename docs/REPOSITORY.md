@@ -37,8 +37,10 @@ Kervaire126 从旧仓库 `SII-MATH/KIP126` 的 main 提取，起点提交：
 工作目录中为可读取的实际 DB/CSV；提交中仍使用 LFS 指针，实体存入本仓库 `.git/lfs/objects/`。
 每个文件均按旧指针记录的 SHA-256 和长度核对。
 
-本地核对复用了相同依赖版本的编译缓存；`.lake/packages` 是指向旧仓库依赖缓存的本地链接，
-`.lake/` 整体忽略，不属于 Git 快照。新克隆按 manifest 获取依赖即可。
+本地核对复用了相同依赖版本的编译缓存。依赖目录 `.lake/packages` 与项目编译目录
+`.lake/build` 现在均为独立副本，没有通过共享链接或跨仓库硬链接连接旧缓存。
+新库的依赖更新、缓存获取和重新构建使用自己的目录。`.lake/` 整体忽略，
+不属于 Git 快照；新克隆按 manifest 获取依赖即可。
 
 核对时先阅读根目录 README、PROJECT_BOUNDARY、AGENTS 和本文件；
 运行 `bash scripts/check.sh`、`lake build KIP126`、
@@ -53,5 +55,7 @@ Kervaire126 从旧仓库 `SII-MATH/KIP126` 的 main 提取，起点提交：
 - 新配置下 `lake build KIP126` 通过（4311 项构建任务，复用本地缓存）。
 - `leanblueprint web` 及 1715 行声明清单的 checkdecls 核对通过。
 - 精简 CI 通过 actionlint；新仓库 7 个原始输入的 Git LFS fsck 通过。
+- 依赖缓存隔离后，10 项依赖版本、37 个独立文件样本、缓存链接及 Lean 搜索路径核对通过。
+- 隔离后 `lake build --no-build KIP126` 确认 4311 项构建任务均为最新状态；没有全量重编译。
 
 远程 CI 尚未运行，网站/API 发布地址尚未配置；本次只建立本地可核对的仓库。
