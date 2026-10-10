@@ -42,11 +42,15 @@ jobs:
         with:
           persist-credentials: false
           lfs: true
-      - name: Record runner resources
+      - name: Free space from unused runner tools
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android
+      - name: Record and monitor runner resources
         run: |
           nproc
           free -m
           df -h .
+          python3 -u scripts/monitor-ci-resources.py > "$RUNNER_TEMP/lean-resources.log" 2>&1 < /dev/null &
+          echo "$!" > "$RUNNER_TEMP/lean-resources.pid"
       - name: Check pinned LFS objects
         run: git lfs fsck
       - name: Restore caches and build the complete Lean library and its regression modules
@@ -76,3 +80,20 @@ jobs:
             blueprint/web/
             blueprint/lean_decls
           if-no-files-found: error
+      - name: Stop resource monitor and show final samples
+        if: always()
+        run: |
+          if test -f "$RUNNER_TEMP/lean-resources.pid"; then
+            kill "$(cat "$RUNNER_TEMP/lean-resources.pid")" 2>/dev/null || true
+          fi
+          if test -f "$RUNNER_TEMP/lean-resources.log"; then
+            tail -n 12 "$RUNNER_TEMP/lean-resources.log"
+          fi
+      - name: Upload resource diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: lean-resources
+          path: ${{ runner.temp }}/lean-resources.log
+          retention-days: 7
+          if-no-files-found: ignore
