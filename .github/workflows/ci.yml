@@ -35,9 +35,9 @@ jobs:
   lean:
     name: Lean and Blueprint
     runs-on: ubuntu-24.04
-    timeout-minutes: 90
+    timeout-minutes: 120
     env:
-      LEAN_NUM_THREADS: '1'
+      LEAN_NUM_THREADS: '2'
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
