@@ -60,7 +60,8 @@ to `Lin-program/program/`; the destination paths are relative to this directory.
 | `NamedElementCertificates/{Basic,Evaluation,ModuleEvaluation}.lean` | `Certificates/NamedElements/` | Verify relation witnesses and interpret the resulting polynomial or module equalities. |
 | The 15 selected `MilnorCertificates/` modules | `Certificates/Milnor/` | Certify the finite Milnor computations used by the secondary calculation support. |
 
-Only import paths change during adoption. Public declaration names, including
+Only import paths and one inherited trailing space change during adoption.
+Public declaration names, including
 `LinProgramCertificates`, `NamedElementCertificates` and `MilnorCertificates`
 namespaces, are retained; they do not denote a dependency on the old project.
 The original source tree is unchanged. Later changes in that tree do not

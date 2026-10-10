@@ -33,7 +33,7 @@ theorem tripleEncoding_injective (a b : TripleMonomial)
     (h : tripleEncoding a = tripleEncoding b) : a = b := by
   have hc (slot : Fin 3) (j : Nat) := congrArg (fun e : (Fin 3 × Nat) →₀ Nat => e (slot,j)) h
   have hfirst : a.1 = b.1 := by
-    apply List.ext_getElem? 
+    apply List.ext_getElem?
     intro j
     have hh := hc 0 j
     simp only [tripleEncoding,Finsupp.add_apply,exponentEncoding_apply,
