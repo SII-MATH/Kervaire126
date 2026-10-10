@@ -1,0 +1,403 @@
+\section{Extension spectral sequences}
+\label{chap:extension-ss}
+
+This section develops the general extension-spectral-sequence construction and its internal formal properties.  Any cited factorization theorem is kept as a separate external result.
+
+\subsection{Construction and elementwise notation}
+
+% SOURCE: MainPaper/main.tex:253-271, Definition def:ess.
+\begin{definition}[Filtered two-term complex]
+  \label{def:filtered-two-term-complex}
+  \uses{def:admissible-spectrum,def:adams-filtration,def:mathlib-chain-complex}
+  \notready
+  For a filtration-preserving map $f:A_1\to A_2$, let $C(f)$ be the
+  two-term chain complex
+  \[
+    0\longrightarrow A_1\xrightarrow{f}A_2
+      \longrightarrow0,
+  \]
+  with $A_1$ in complex degree $1$ and $A_2$ in degree $0$, and with the two
+  given filtrations in those degrees.  Its differential squares to zero and
+  the filtered-complex structure records the fact that $f$ preserves the
+  filtration.  For a stable map $X\to Y$, the intended Adams application is
+  obtained by taking $A_1=\pi_*X$, $A_2=\pi_*Y$, and $f=\pi_*f$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:264-271, Definition def:ess.
+\begin{definition}[$f$-extension spectral sequence]
+  \label{def:f-extension-ss}
+  \uses{def:filtered-two-term-complex,def:core-filtered-chain-complex,def:ess-complex-shape,thm:filtered-complex-to-spectral-sequence,def:ss-einfty-presentation,def:ss-convergence-detection-witness}
+  \notready
+  The $f$-extension spectral sequence, or $f$-ESS, is the spectral sequence of
+  the filtered two-term complex attached to a morphism of converging spectral
+  sequences.  Its initial page is built directly from the two original
+  $E_\infty$ objects, and its differential has degree
+  $d_n^f:{}^fE_n^{s,k}\to{}^fE_n^{s+n,k-1}$.  In the paper's regrading this is
+  the stated $(n,n)$ shift: the external stem parameter is fixed, while $k$
+  is the source/target column of the two-term complex and is not the second
+  Adams coordinate of either input spectral sequence.  In the bounded
+  package, the $d_0$ map is identified with the map induced by $f$ on
+  associated graded objects.  Under the bounded hypotheses the construction has the
+  canonical weak-convergence witness; in the unbounded version the available
+  convergence theorem assumes bounded-below and Mittag--Leffler conditions.
+  In the Adams application the resulting comparison has the form
+  \[
+    {}^fE_0^{s,t}\cong E_\infty^{s,t}(X)\oplus
+      E_\infty^{s,t}(Y)
+    \Longrightarrow
+    \ker(\pi_*f)\oplus\operatorname{coker}(\pi_*f),
+  \]
+  where the last line uses the separately proved two-term homology
+  calculation rather than identifying convergence with that calculation by
+  definition.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:253-271; project-specific comparison required by
+% the Section 2 ESS arguments.  The source and target convergence witnesses
+% are explicit inputs rather than a generic filtered-complex theorem.
+\begin{theorem}[$f$-ESS initial page and abutment comparison]
+  \label{thm:fess-e0-abutment-comparison}
+  \uses{def:ss-convergence-detection-witness,def:filtered-two-term-complex}
+  \notready
+  Let $f:A_1\to A_2$ be a filtration-preserving map presented as a morphism
+  of converging spectral sequences.  The two nonzero columns of the zeroth
+  extension page are canonically the associated-graded objects of $A_1$ and
+  $A_2$ and, through the input convergence isomorphisms, their original
+  $E_\infty$ terms.  Thus their biproduct gives
+  \[
+    {}^fE_0^{s,t}\cong E_{1,\infty}^{s,t}\oplus E_{2,\infty}^{s,t},
+  \]
+  and its abutment is naturally
+  \[
+    H_*C(f)\cong\ker(f)\oplus\operatorname{coker}(f).
+  \]
+  For the Adams specialization these become the $E_\infty$ terms of $X,Y$
+  and the kernel and cokernel of $\pi_*f$.  In the bounded package the $d_0$
+  map is the induced associated-graded map.  The kernel/cokernel identification
+  is an unconditional calculation of the homology of the two-term complex.
+  Combining it with ESS convergence is packaged in the bounded case; no
+  general strong-convergence theorem for arbitrary filtered complexes is
+  asserted here.
+\end{theorem}
+
+\begin{proof}
+  Apply the two convergence isomorphisms to identify the associated-graded
+  terms of $A_1,A_2$ with the two algebraic $E_\infty$ pages.  Compute the
+  homology of the two-term complex directly as kernel plus cokernel.  In the
+  bounded package, unfold the zeroth differential to identify it with the
+  induced associated-graded map.
+\end{proof}
+
+\subsection{Naturality, composition, and exactness}
+
+% SOURCE: MainPaper/main.tex:461-501, Theorem thm:4114f70c.
+\begin{theorem}[Commutative-square propagation]
+  \label{thm:fess-commutative-square}
+  \uses{prop:no-crossing-iff-uniform-detection}
+  \notready
+  Let
+  \[
+  \begin{array}{ccc}
+    X&\xrightarrow{f}&Y\\
+    \mathord{p}\downarrow&&\downarrow\mathord{q}\\
+    Z&\xrightarrow{g}&W
+  \end{array}
+  \qquad(qf=gp)
+  \]
+  be homotopy commutative.  Fix $m,n,l\ge0$ and
+  $0<k\le m+l-n$, and classes
+  \[
+  \begin{aligned}
+    x&\in E_\infty^{s,t}(X),&
+    y&\in E_\infty^{s+n,t+n}(Y),\\
+    z&\in E_\infty^{s+m,t+m}(Z),&
+    w&\in E_\infty^{s+m+l,t+m+l}(W).
+  \end{aligned}
+  \]
+  Suppose $d_n^f(x)=y$, $d_m^p(x)=z$, at least one of these two extensions
+  has no crossing, and $d_l^g(z)=w$ has no crossing in filtrations at least
+  $s+n+k$.  If the zero extension $d_{k-1}^q(y)=0$ has no crossing, then
+  \[
+    d_{m+l-n}^q(y)=w.
+  \]
+\end{theorem}
+
+\begin{proof}
+  Use no-crossing on one of the two source extensions to choose a single
+  representative $[x]$ realizing both $y$ and $z$.  The zero $q$-extension
+  forces $qf[x]$ into filtration at least $s+n+k$.  Commutativity identifies
+  it with $gp[x]$, and no-crossing for the $g$-extension identifies its leading
+  term with $w$.  Apply the representative characterization once more to get
+  the asserted $q$-extension.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:555-574, Corollary cor:0012nik.
+\begin{corollary}[Unrestricted square propagation]
+  \label{cor:fess-square-naturality}
+  \uses{thm:fess-commutative-square}
+  \notready
+  In the same square, if $d_n^f(x)=y$, $d_m^p(x)=z$, one of these has no
+  crossing, and $d_l^g(z)=w$ has no crossing, then
+  $d_{m+l-n}^q(y)=w$ whenever the displayed length is nonnegative.
+\end{corollary}
+
+\begin{proof}
+  Apply Theorem~\ref{thm:fess-commutative-square} at the first filtration where
+  a nonzero $q$-extension could occur.  Complete no-crossing for the
+  $g$-extension supplies every lower-bound hypothesis.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:576-595, Corollary cor:166dc180.
+\begin{corollary}[Triangle-shaped shift]
+  \label{cor:fess-triangle-shift}
+  \uses{cor:fess-square-naturality}
+  \notready
+  If $p=qf$, $d_n^f(x)=y$, and $d_m^p(x)=z$, and at least one of these
+  extensions has no crossing, then $d_{m-n}^q(y)=z$ whenever $m\ge n$.
+\end{corollary}
+
+\begin{proof}
+  Use the unrestricted square theorem with the bottom map the identity and
+  its length-zero extension.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:597-615, Corollary cor:290d35ce.
+% VERIFIED-IN: main.tex:604 has z in E_infty(Y); the diagram requires E_infty(Z).
+\begin{corollary}[Composition of successive extensions]
+  \label{cor:fess-composition}
+  \uses{cor:fess-square-naturality}
+  \notready
+  If $q=gp$, $d_m^p(x)=z$ with
+  $z\in E_\infty^{s+m,t+m}(Z)$, and $d_l^g(z)=w$ has no crossing, then
+  $d_{m+l}^q(x)=w$.  The target spectrum of $z$ is $Z$; the occurrence of
+  $E_\infty(Y)$ in \texttt{MainPaper/main.tex:604} is a corrected source typo.
+\end{corollary}
+
+\begin{proof}
+  Apply square naturality with the top map the identity and its length-zero
+  extension.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:617-630, Corollary cor:e7b20ae2.
+\begin{corollary}[Stable-page maps between extension spectral sequences]
+  \label{cor:fess-map-of-stable-pages}
+  \uses{cor:fess-square-naturality,def:reindexed-ss-morphism}
+  \notready
+  For a commutative square $qf=gp$, suppose the $p$- and $q$-ESS have no
+  differential before page $r$.  Then $(d_r^p,d_r^q)$ induces compatible page
+  maps from the $f$-ESS to the $g$-ESS, commuting with every later extension
+  differential with the required reindexing.
+\end{corollary}
+
+\begin{proof}
+  Initial-page stability gives no-crossing for $d_r^p$ and $d_r^q$.  Apply
+  square naturality first to $d_0^f$ and $d_0^g$, then induct over ESS pages.
+  At each stage the commuting differential square descends to homology and
+  constructs the next page map.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:632-646, Corollary cor:aed3d1a4.
+\begin{corollary}[A zero composite makes the target permanent]
+  \label{cor:fess-zero-composite-permanent}
+  \uses{prop:fextension-iff-detected,cor:fess-square-naturality}
+  \notready
+  If $gf=0$ and $d_n^f(x)=y$, then $y$ is a permanent cycle in the $g$-ESS:
+  $d_m^g(y)=0$ for every $m\ge0$.
+\end{corollary}
+
+\begin{proof}
+  Choose $[x]$ with $f[x]$ detected by $y$.  Its image under $g$ is zero, so
+  no nonzero leading term can occur in the $g$-ESS.  Equivalently, apply square
+  naturality to the square with zero bottom and left maps.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:648-664, Proposition prop:cfe810af.
+% VERIFIED-IN: only exactness at the middle abutment object in the fixed degree tau is used.
+\begin{proposition}[Exactness at the middle makes every permanent cycle a boundary]
+  \label{prop:fess-exact-middle-boundary}
+  \uses{def:f-extension-ss,prop:fextension-iff-detected,cor:fess-zero-composite-permanent}
+  \notready
+  Let $V_1\xrightarrow{f}V_2\xrightarrow{g}V_3$ be two composable morphisms of
+  converging spectral sequences, and fix one abutment degree $\tau$.  Suppose
+  that
+  \[
+    V_1.A(\tau)\xrightarrow{f_A}V_2.A(\tau)
+      \xrightarrow{g_A}V_3.A(\tau)
+  \]
+  is exact at the middle term.  Assume at this same degree that the source
+  filtration has a layer equal to the whole abutment object, and that the
+  target filtration is Hausdorff, i.e.
+  $\bigcap_v F^vV_3.A(\tau)=0$.  Then every projective generalized element of
+  $E_\infty(V_2)$ represented by a fixed class whose image lies in every
+  target filtration layer (a compatible permanent cycle in the $g$-ESS) is
+  hit by an $f$-ESS differential.  No exactness in any other abutment degree,
+  injectivity of $f_A$, surjectivity of $g_A$, or finite zero filtration layer
+  is assumed.
+\end{proposition}
+
+\begin{proof}
+  Let $[y]$ be the fixed representative.  The image subobject of $g_A[y]$ is
+  contained in every target filtration layer, hence Hausdorffness makes that
+  image subobject zero and therefore $g_A[y]=0$.  Exactness at the fixed degree
+  $\tau$ supplies an abutment preimage $[x]$ with $f_A[x]=[y]$.  The full
+  source filtration layer contains $[x]$; comparing its filtration with that
+  of $y$ gives a nonnegative length.  Projectivity lifts through the
+  categorical image of $f_A$, and the representative characterization
+  produces the required $f$-ESS differential.  The argument never refers to
+  another abutment degree.
+\end{proof}
+
+\subsection{Representatives, essentiality, and crossings}
+
+% SOURCE: MainPaper/main.tex:277-295, Notation nota:6fb333a2.
+\begin{definition}[$f$-ESS cycles and boundaries]
+  \label{def:fess-cycles-boundaries}
+  \uses{def:f-extension-ss}
+  \notready
+  Define ${}^fZ_n^{s,t}(X)\subseteq E_\infty^{s,t}(X)$ to consist of classes
+  on which $d_0^f,\ldots,d_n^f$ vanish, and let
+  ${}^fB_n^{s,t}(Y)$ be the subgroup generated by their images.  Put
+  ${}^fZ_{-1}=E_\infty(X)$ and ${}^fB_{-1}=0$.  Then
+  \[
+    {}^fE_n^{s,t}\cong{}^fZ_{n-1}^{s,t}(X)\oplus
+      E_\infty^{s,t}(Y)/{}^fB_{n-1}^{s,t}(Y),
+  \]
+  and $d_n^f(x)=y$ means equality with the coset of $y$ modulo
+  ${}^fB_{n-1}$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:297-304, Definition def:768fba8a and following notation.
+\begin{definition}[$f$-extension and essentiality]
+  \label{def:f-extension-essential}
+  \uses{def:fess-cycles-boundaries}
+  \notready
+  An $f$-extension of length $n$ from
+  $x\in E_\infty^{s,t}(X)$ to
+  $y\in E_\infty^{s+n,t+n}(Y)$ is the assertion $d_n^f(x)=y$.
+  It is essential exactly when
+  $y\notin{}^fB_{n-1}^{s+n,t+n}(Y)$; otherwise it is inessential.  For a
+  permanent class $x$, the notation $\{x\}$ denotes the set of homotopy
+  classes detected by $x$, and $[x]$ denotes an explicitly chosen member of
+  that set.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:307-325, Proposition prop:8154e6f1(1).
+\begin{proposition}[Extension iff a representative maps to a representative]
+  \label{prop:fextension-iff-detected}
+  \uses{def:f-extension-essential,def:adams-detection}
+  \notready
+  There is an $f$-extension $d_n^f(x)=y$ if and only if some
+  $[x]\in\{x\}$ satisfies $f[x]\in\{y\}$, where the target filtration is
+  $s+n$ and equality is understood modulo ${}^fB_{n-1}$.
+\end{proposition}
+
+\begin{proof}
+  In the filtered two-term complex, choose a lift of $x$ in filtration $s$.
+  Its image has first nonzero associated-graded term in filtration $s+n$
+  exactly when the $n$th ESS differential is the coset of $y$.  Conversely,
+  a detected target representative determines such a filtered lift.  Verify
+  that changing either lift changes the target only by a shorter ESS boundary.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:307-325, Proposition prop:8154e6f1(2)-(3).
+\begin{proposition}[Inessential extensions and competing targets]
+  \label{prop:fextension-inessential-iff-higher}
+  \uses{prop:fextension-iff-detected,def:fess-cycles-boundaries}
+  \notready
+  Let $d_n^f(x)=y$.  It is inessential if and only if there are
+  $0<a\le n$ and $x'\in E_\infty^{s+a,t+a}(X)$ with an essential extension
+  $d_{n-a}^f(x')=y$.  If the same source $x$ has targets $y$ and $y'$ of the
+  same filtration, then $y-y'\in{}^fB_{n-1}$; when $y-y'\ne0$, it is the
+  target of a shorter essential extension from some higher-filtration source.
+  If $y=y'$, only the boundary-membership conclusion is asserted.  If the
+  filtration of $y'$ is strictly larger than that of $y$, the extension to
+  $y$ is inessential.
+\end{proposition}
+
+\begin{proof}
+  Expand membership in ${}^fB_{n-1}$ as a finite sum of shorter differential
+  images and take the summand of smallest source filtration.  Conversely, any
+  shorter essential image belongs to ${}^fB_{n-1}$.  For competing targets,
+  subtract the two representative equations and apply the same leading-term
+  argument; over $\mathbb F_2$ subtraction is addition, but the statement is
+  kept additive.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:344-352, Definition def:98skj23.
+\begin{definition}[Crossing and no-crossing range]
+  \label{def:fess-crossing}
+  \uses{def:f-extension-essential}
+  \notready
+  A crossing of $d_n^f(x)=y$, with $x$ in filtration $s$, is an extension
+  $d_m^f(x')=y'\ne0$ whose source has filtration $s+a$ for $a>0$ and whose
+  target filtration lies between a specified lower bound $p$ and
+  $\operatorname{AF}(y)=s+n$.  The original extension has no crossing in
+  filtrations at least $p$ when no such extension exists; it has no crossing
+  without qualification when $p=s+1$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:403-405, Remark 2.9.
+\begin{lemma}[Every crossing contains an essential crossing]
+  \label{lem:crossing-has-essential-crossing}
+  \uses{def:fess-crossing,prop:fextension-inessential-iff-higher}
+  \notready
+  If an extension has a crossing in a fixed filtration interval, then it has
+  an essential crossing, possibly of smaller length, whose target remains in
+  the same interval.
+\end{lemma}
+
+\begin{proof}
+  If the given crossing is inessential, replace it using
+  Proposition~\ref{prop:fextension-inessential-iff-higher}.  The replacement
+  has larger source filtration and the same target.  Length strictly
+  decreases, so finite descent terminates at an essential crossing without
+  leaving the target-filtration interval.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:408-427, Proposition prop:i8r47oe.
+\begin{proposition}[No crossing iff uniform detection]
+  \label{prop:no-crossing-iff-uniform-detection}
+  \uses{def:fess-crossing,prop:fextension-iff-detected,prop:fextension-inessential-iff-higher,lem:crossing-has-essential-crossing}
+  \notready
+  An extension from $x$ to $y$ has no crossing in filtrations at least $p$ if
+  and only if every $[x]\in\{x\}$ satisfying
+  $\operatorname{AF}(f[x])\ge p$ has $f[x]\in\{y\}$.  In particular:
+  \begin{enumerate}
+    \item ordinary no-crossing is equivalent to this conclusion for every
+      representative of $x$;
+    \item $d_n^f(x)=0$ has no crossing exactly when every representative image
+      has filtration strictly greater than $\operatorname{AF}(x)+n$;
+    \item if $\operatorname{AF}(f)=n$, every $d_n^f$ has no crossing.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  If a representative has a different leading target, compare it with a
+  representative producing $y$ and use the competing-target proposition to
+  obtain a shorter crossing.  Conversely, add to $[x]$ a higher-filtration
+  representative producing the crossing target; its image has a different
+  leading term, contradicting uniform detection.  The three special cases
+  follow by choosing $p=s+1$, taking the zero coset, and using the degree bound
+  for a map of exact filtration $n$.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:430-456, Example 2.11; underlying values cited to IWX.
+\begin{proposition}[$\eta$-ESS regression in stem $46$]
+  \label{prop:eta-ess-regression}
+  \uses{def:f-extension-essential,def:fess-crossing}
+  \lean{KIP126.Classical.Regression.etaEss}
+  \notready
+  With explicit IWX computation evidence, the four essential
+  $\eta$-extensions in Example 2.11, the inessential extension
+  $d_2^\eta(h_0h_3^2h_5)=h_1h_5d_0$, and the stated crossing of
+  $d_4^\eta(h_3^2h_5)=Mh_1$ are reproduced.  The regression also checks that
+  the length-one extension from $h_5d_0$ has no crossing.
+\end{proposition}
+
+\begin{proof}
+  Load each typed class, bidegree, and extension from the source-bearing
+  computation record.  Evaluate Definitions~\ref{def:f-extension-essential}
+  and~\ref{def:fess-crossing}; the shorter length-one extension witnesses both
+  inessentiality and the crossing, while the map-filtration criterion proves
+  the final no-crossing assertion.
+\end{proof}

@@ -1,0 +1,366 @@
+\usepackage{verbatim}
+\usepackage[textsize=scriptsize]{todonotes}
+\usepackage{tikz-cd}
+\usepackage{etoolbox}
+\usepackage{etex}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage[T1]{fontenc}
+
+%\hypersetup{
+%    colorlinks,
+%    linkcolor={red!30!black},
+%    citecolor={blue!50!black},
+%    urlcolor={blue!80!black}
+%}
+
+\usepackage{chemarr}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{comment}
+\usepackage{spectralsequences}
+%\usepackage[draft]{spectralsequences}
+\usepackage{cleveref}
+\usepackage{mathtools}
+\usepackage{rotating}
+\usepackage{wrapfig}
+\usepackage{outlines}
+\usepackage{graphicx}
+\usepackage{scalerel}
+\def\DevnagVersion{2.17}
+\usepackage{devanagari}
+\usepackage{bbm}
+\usepackage{multicol}
+
+%For IPA symbols
+\usepackage{tipa}
+
+%----------------------------------------------------------------------%
+
+
+\theoremstyle{definition}
+\newtheorem{nul}{}[section]
+\newtheorem{dfn}[nul]{Definition}
+\newtheorem{axm}[nul]{Axiom}
+\newtheorem{rmk}[nul]{Remark}
+\newtheorem{term}[nul]{Terminology}
+\newtheorem{cnstr}[nul]{Construction}
+\newtheorem{cnv}[nul]{Convention}
+\newtheorem{ntn}[nul]{Notation}
+\newtheorem{exm}[nul]{Example}
+\newtheorem{obs}[nul]{Observation}
+\newtheorem{ctrexm}[nul]{Counterexample}
+\newtheorem{rec}[nul]{Recollection}
+\newtheorem{exr}[nul]{Exercise}
+\newtheorem{wrn}[nul]{Warning}
+\newtheorem{qst}[nul]{Question}
+\newtheorem{prb}[nul]{Problem}
+\newtheorem{ass}[nul]{Assumption}
+\newtheorem*{dfn*}{Definition}
+\newtheorem*{axm*}{Axiom}
+\newtheorem*{ntn*}{Notation}
+\newtheorem*{exm*}{Example}
+\newtheorem*{exr*}{Exercise}
+\newtheorem*{int*}{Intuition}
+\newtheorem*{qst*}{Question}
+\newtheorem*{rmk*}{Remark}
+\newtheorem*{comp1}{Computation 1:}
+
+\theoremstyle{plain}
+\newtheorem{sch}[nul]{Scholium}
+\newtheorem{claim}[nul]{Claim}
+\newtheorem{thm}[nul]{Theorem}
+\newtheorem{prop}[nul]{Proposition}
+\newtheorem{summary}[nul]{Summary}
+\newtheorem{lem}[nul]{Lemma}
+\newtheorem{var}[nul]{Variant}
+\newtheorem{sublem}{Lemma}[nul]
+\newtheorem{por}[nul]{Porism}
+\newtheorem{cnj}[nul]{Conjecture}
+\newtheorem{cor}[nul]{Corollary}
+\newtheorem{fact}[nul]{Fact}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{prop*}{Proposition}
+\newtheorem*{cor*}{Corollary}
+\newtheorem*{lem*}{Lemma}
+\newtheorem*{cnj*}{Conjecture}
+\newtheorem{innercustomthm}{Theorem}
+\newenvironment{customthm}[1]
+  {\renewcommand\theinnercustomthm{#1}\innercustomthm}
+  {\endinnercustomthm}
+
+%%% Make widetilde work in spectral sequences.
+
+\let\oldwidetilde\widetilde
+\protected\def\widetilde{\oldwidetilde}
+
+
+%----------------------------------------------------------------------%
+
+\DeclareMathOperator{\Aut}{\mathrm{Aut}}
+\DeclareMathOperator{\Tr}{\mathrm{Tr}}
+\DeclareMathOperator{\Res}{\mathrm{Res}}
+\DeclareMathOperator{\im}{\mathrm{im}}
+\DeclareMathOperator*{\colim}{\mathrm{colim}}
+\DeclareMathOperator{\Map}{\mathrm{Map}}
+\DeclareMathOperator{\cofiber}{\mathrm{cofiber}}
+\DeclareMathOperator{\fiber}{\mathrm{fiber}}
+\DeclareMathOperator{\gr}{\mathrm{gr}}
+\DeclareMathOperator{\fib}{\mathrm{fib}}
+\DeclareMathOperator{\sBar}{\mathrm{Bar}}
+
+\DeclareMathOperator{\Hom}{\mathrm{Hom}} 
+\DeclareMathOperator{\End}{\mathrm{End}} 
+\DeclareMathOperator{\Skel}{\mathrm{Skel}}
+\DeclareMathOperator*{\hocolim}{\mathrm{hocolim}}
+\DeclareMathOperator*{\holim}{\mathrm{holim}}
+\DeclareMathOperator{\smsh}{\wedge}
+\DeclareMathOperator{\coker}{\mathrm{coker}}
+
+
+
+\DeclareMathOperator{\Ss}{\mathbb{S}}
+\DeclareMathOperator{\FF}{\mathbb{F}}
+\DeclareMathOperator{\F}{\mathbb{F}}
+%\DeclareMathOperator{\ZZ}{\mathbb{Z}}
+\DeclareMathOperator{\QQ}{\mathbb{Q}}
+\DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\A}{\mathcal{A}}
+%\DeclareMathOperator{\C}{\mathcal{C}}
+\DeclareMathOperator{\D}{\mathcal{D}}
+\DeclareMathOperator{\CP}{\mathbb{CP}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\sE}{\mathrm{E}}
+\DeclareMathOperator{\mE}{\mathcal{E}}
+\DeclareMathOperator{\MO}{\mathrm{MO}}
+\DeclareMathOperator{\MOfn}{\mathrm{MO \langle 4m \rangle}}
+\DeclareMathOperator{\MOn}{\mathrm{MO \langle n \rangle}}
+\DeclareMathOperator{\MU}{\mathrm{MU}}
+\DeclareMathOperator{\MUfn}{\mathrm{MU \langle 4n \rangle}}
+%\DeclareMathOperator{\Of}{O \langle 4n-1\rangle}
+%\DeclareMathOperator{\Uf}{U \langle 4n-1\rangle}
+%\DeclareMathOperator{\spOf}{\Sigma^{\infty}_+ O \langle 4n-1\rangle}
+%\DeclareMathOperator{\sOf}{\Sigma^{\infty} O \langle 4n-1\rangle}
+%\DeclareMathOperator{\Of}{\mathrm{O} \langle 4n-1\rangle}
+\DeclareMathOperator{\cS}{\mathcal{S}}
+\DeclareMathOperator{\bS}{\mathbb{S}}
+%\DeclareMathOperator{\Z}{\mathbb{Z}}
+\DeclareMathOperator{\Ring}{\textbf{Ring}}
+\DeclareMathOperator{\Aff}{\textbf{Aff}}
+\DeclareMathOperator{\Ran}{\mathrm{Ran}}
+\DeclareMathOperator{\Spec}{\mathrm{Spec}}
+\DeclareMathOperator{\Poly}{\text{Poly}}
+\DeclareMathOperator{\pic}{\mathrm{pic}}
+\DeclareMathOperator{\Pic}{\mathrm{Pic}}
+\DeclareMathOperator{\Fin}{\mathrm{Fin}}
+\DeclareMathOperator{\Ext}{\mathrm{Ext}}
+\DeclareMathOperator{\Gra}{\mathrm{Gr}}
+\DeclareMathOperator{\nil}{\text{nil}}
+\DeclareMathOperator{\ac}{\tilde{c}}
+\DeclareMathOperator{\fin}{\text{fin}}
+\DeclareMathOperator{\Gr}{\mathbf{Gr}}
+\DeclareMathOperator{\Fil}{\mathbf{Fil}}
+\DeclareMathOperator{\Fun}{\mathrm{Fun}}
+\DeclareMathOperator{\Alg}{\mathrm{Alg}}
+\DeclareMathOperator{\Sp}{\mathrm{Sp}}
+\DeclareMathOperator{\Spaces}{\mathcal{S}}
+\DeclareMathOperator{\J}{\mathcal{J}}
+\DeclareMathOperator{\Cofil}{\mathbf{Cofil}}
+\DeclareMathOperator{\GL}{\mathrm{GL}}
+\DeclareMathOperator{\cofib}{\mathrm{cofib}}
+\DeclareMathOperator{\cof}{\mathrm{cof}}
+\DeclareMathOperator{\DD}{\mathbb{cofib}}
+\DeclareMathOperator{\Sq}{\mathrm{Sq}}
+
+\newcommand{\Of}{\mathrm{O \langle 4n-1\rangle}}
+\newcommand{\Uf}{\mathrm{U \langle 4n-1\rangle}}
+\newcommand{\spOf}{\Sigma^{\infty}_+ \mathrm{O \langle 4n-1\rangle}}
+\newcommand{\spUf}{\Sigma^{\infty}_+ \mathrm{U \langle 4n-1\rangle}}
+\newcommand{\sOf}{\Sigma^{\infty} \mathrm{O \langle 4m-1\rangle}}
+\newcommand{\sUf}{\Sigma^{\infty} \mathrm{U \langle 4n-1\rangle}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\BOn}{\mathrm{BO \langle n \rangle}}
+\newcommand{\BOm}{\mathrm{BO \langle m \rangle}}
+\newcommand{\BO}{\mathrm{BO}}
+\newcommand{\Om}{\mathrm{O \langle m -1 \rangle}}
+\newcommand{\Oo}{\mathrm{O}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\BP}{\mathrm{BP}}
+\newcommand{\Syn}{\mathrm{Syn}}
+\newcommand{\HZ}{\mathrm{H}\mathbb{Z}}
+\newcommand{\HF}{\mathbb{F}}
+\newcommand{\HFp}{\mathbb{F}_p}
+\newcommand{\Qoppa}{\kappa}
+\newcommand{\qoppa}{\kappa}
+\newcommand{\sampi}{\lambda}
+\newcommand{\tor}{\mathrm{tor}}
+\newcommand{\tf}{\mathrm{tf}}
+\newcommand{\Tot}{\mathrm{Tot}}
+\newcommand{\kappabar}{\overline{\kappa}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\BSO}{\mathrm{BSO}}
+\newcommand{\Str}{\mathrm{String}}
+\newcommand{\MStr}{\mathrm{MString}}
+\newcommand{\MOtw}{\mathrm{MO}\langle 12 \rangle}
+\newcommand{\BStr}{\mathrm{BString}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\MSpin}{\mathrm{MSpin}}
+\newcommand{\ord}{\mathrm{ord}}
+\newcommand{\MF}{\mathrm{MF}}
+\newcommand{\tmf}{\mathrm{tmf}}
+\newcommand{\Ah}{\widehat{A}}
+%\newcommand{\CC}{\mathbb{C}}
+\newcommand{\num}{\mathrm{num}}
+\newcommand{\denom}{\mathrm{denom}}
+\newcommand{\sig}{\mathrm{sig}}
+\newcommand{\bp}{\mathrm{bP}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dtau}{\text{\scriptsize {\dn tO}}}
+\newcommand{\ta}{\text{\footnotesize {\dn t}}}
+\newcommand{\SHR}{\mathcal{SH}(\mathbb{R})}
+\newcommand{\SHC}{\mathcal{SH}(\mathbb{C})}
+\newcommand{\SH}{\mathcal{SH}}
+\newcommand{\SHgc}{\mathcal{SH}(\mathbb{R})^{\scaleto{\mathrm{\bf \hspace{-1.5pt}A\hspace{-1.8pt}T}}{3.75pt}}_{i2}}
+\newcommand{\Orb}{\mathrm{Orb}}
+\newcommand{\Ft}{\mathbb{F}_2}
+\newcommand{\Zt}{\mathbb{Z}_2}
+\newcommand{\HFt}{\mathrm{M}\mathbb{F}_2}
+\newcommand{\MFp}{\mathrm{M}\mathbb{F}_p}
+\newcommand{\uFt}{\underline{\mathbb{F}}_2}
+\newcommand{\HZt}{\mathrm{M}\mathbb{Z}_{2}}
+\newcommand{\uZt}{\underline{\mathbb{Z}}_{2}}
+\newcommand{\uZ}{\underline{\mathbb{Z}}}
+\newcommand{\MGL}{\mathrm{MGL}}
+\newcommand{\MUR}{\mathrm{MU}_{\mathbb{R}}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\Triv}{\mathrm{Triv}}
+\newcommand{\piu}{\underline{\pi}}
+\newcommand{\En}{\mathbb{E}_n}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\CCdef}{\mathcal{C}_{\mathrm{def}}}
+\newcommand{\Comod}{\mathrm{Comod}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Ab}{\mathrm{Ab}}
+\newcommand{\Abh}{\mathrm{Ab}^{\heartsuit}}
+\newcommand{\uA}{\underline{\mathrm{A}}}
+\newcommand{\uAb}{\underline{\mathrm{Ab}}}
+\newcommand{\uAbh}{\underline{\mathrm{Ab}}^{\heartsuit}}
+\newcommand{\ExtBP}{C^*_{\BP_{*}\BP}(\BP_{*})}
+\newcommand{\ExtBPt}{C^*_{\BP_{2*}\BP}(\BP_{2*})}
+\newcommand{\ExtBPtu}{\underline{C^*_{\BP_{2*}\BP}(\BP_{2*})}}
+
+\def\Groth{\mathrm{Groth}}
+\def\MUR{\mathrm{MU}_{\mathbb{R}}}
+\def\MURu{\underline{\mathrm{MU}_{\mathbb{R}}}}
+\def\MURpr{\mathrm{MU}_{\mathbb{R}}\mathrm{-proj}}
+\def\MURev{\mathrm{MU}_{\mathbb{R},2}\mathrm{-even}}
+\def\BPR{\mathrm{BP}_{\mathbb{R}}}
+\def\BPRu{\underline{\mathrm{BP}_{\mathbb{R}}}}
+\def\BPRpr{\mathrm{BP}_{\mathbb{R}}\mathrm{-proj}}
+\def\BPRev{\mathrm{BP}_{\mathbb{R}}\mathrm{-even}}
+\def\even{\mathrm{even}}
+\def\twist{\mathrm{tw}}
+\def\Mfg{\mathcal{M}_{\mathrm{fg}}}
+\def\aut{\mathrm{Aut}}
+\def\Ind{\mathrm{Ind}}
+\def\QCoh{\mathrm{QCoh}}
+\def\IndCoh{\mathrm{IndCoh}}
+\def\spa{\mathrm{space}}
+
+\def\SHCa{\mathcal{SH}(\mathbb{C})^{\scaleto{\mathrm{\bf \hspace{-1.5pt}A}}{3.75pt}}}
+\def\SHCat{\mathcal{SH}(\mathbb{C})^{\scaleto{\mathrm{\bf \hspace{-1.5pt}A\hspace{-1.8pt}T}}{3.75pt}}_{ip}}
+
+\def\SHk{\mathcal{SH}(k)}
+\def\SHka{\mathcal{SH}(k)^{\scaleto{\mathrm{\bf \hspace{-1.5pt}A}}{3.75pt}}}
+\def\SHkt{\mathcal{SH}(k)^{\scaleto{\mathrm{\bf \hspace{-1.5pt}T}}{3.75pt}}}
+\def\SHkat{\mathcal{SH}(k)^{\scaleto{\mathrm{\bf \hspace{-1.5pt}A\hspace{-1.8pt}T}}{3.75pt}}}
+
+\def\SHRa{\mathcal{SH}(\mathbb{R})^{\scaleto{\mathrm{\bf \hspace{-1.5pt}A}}{3.75pt}}}
+\def\SHRt{\mathcal{SH}(\mathbb{R})^{\scaleto{\mathrm{\bf \hspace{-1.5pt}T}}{3.75pt}}}
+\def\SHRat{\mathcal{SH}(\mathbb{R})^{\scaleto{\mathrm{\bf \hspace{-1.5pt}A\hspace{-1.8pt}T}}{3.75pt}}_{i2}}
+\def\SHRatch{\mathcal{SH}(\mathbb{R})^{\scaleto{\mathrm{\bf \hspace{-1.5pt}A\hspace{-1.8pt}T}}{3.75pt}, \mathrm{C}-\heartsuit}_{i2}}
+
+\def\slice{\mathrm{slice}}
+\def\cb{\mathrm{cb}}
+\def\diag{\mathrm{Diag}}
+\def\Q{\mathbb{Q}}
+\def\RP{\mathbb{RP}}
+\def\KO{\mathrm{KO}}
+\def\KQ{\mathrm{KQ}}
+\def\KGL{\mathrm{KGL}}
+\def\DM{\mathrm{DM}}
+\def\nuc{\nu_{\mathbb{C}}}
+\def\nur{\nu_{\mathbb{R}}}
+\def\TMF{\mathrm{TMF}}
+\def\uHom{\underline{\mathrm{Hom}}}
+\def\th{\otimes-\heartsuit}
+\def\ch{\mathrm{C}-\heartsuit}
+\def\cn{\mathrm{C}}
+\def\at{\scaleto{\mathrm{\bf \hspace{-1.5pt}A\hspace{-1.8pt}T}}{3.75pt}}
+\def\att{\scaleto{\mathrm{\bf A\hspace{-1.8pt}T}}{3.75pt}}
+\def\gceff{\scaleto{\mathrm{\bf A\hspace{-1.8pt}T}}{3.75pt}\mathrm{-eff}}
+\def\eff{\mathrm{eff}}
+\def\Sm{\textbf{Sm}}
+\def\cell{\mathrm{cell}}
+\def\ko{\mathrm{ko}}
+\def\ku{\mathrm{ku}}
+\def\res{\mathrm{res}}
+\def\triv{\mathrm{triv}}
+\def\kq{\mathrm{kq}}
+\def\kgl{\mathrm{kgl}}
+\def\CAlg{\mathrm{CAlg}}
+\def\o{\mathbbm{1}}
+\def\Re{\mathrm{Re}}
+\def\MR{\mathrm{Mot}_{\mathbb{R}}}
+\def\MC{\mathrm{Mot}_{\mathbb{C}}}
+\def\b{\mathrm{Be}}
+\def\H{\mathrm{H}}
+\def\sp{S^{\wedge}_{p}}
+\def\P{\mathbb{P}}
+\def\AA{\mathbb{A}}
+%\DeclareSymbolFont{extraitalic}      {U}{zavm}{m}{it}
+%\DeclareMathSymbol{\Qoppa}{\mathord}{extraitalic}{161}
+%\DeclareMathSymbol{\qoppa}{\mathord}{extraitalic}{161}
+%\DeclareMathSymbol{\sampi}{\mathord}{extraitalic}{166}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+%%% Code from Hood to fix a positioning error with his spectralsequences package.
+%% \usepackage{etoolbox}
+%% \makeatletter
+%% \patchcmd\endsseqpage{\path (0,-\sseq@yoffset) node}{\node}{}{\failed}
+%% \makeatother
+
+
+%----------------------------------------------------------------------%
+
+\usepackage{tikz}
+\usetikzlibrary{matrix,arrows,decorations}
+\usepackage{tikz-cd}
+
+\usepackage{adjustbox}
+
+\let\oldtocsection=\tocsection
+ 
+\let\oldtocsubsection=\tocsubsection
+ 
+\let\oldtocsubsubsection=\tocsubsubsection
+ 
+\renewcommand{\tocsection}[2]{\hspace{0em}\oldtocsection{#1}{#2}}
+\renewcommand{\tocsubsection}[2]{\hspace{1em}\oldtocsubsection{#1}{#2}}
+\renewcommand{\tocsubsubsection}[2]{\hspace{2em}\oldtocsubsubsection{#1}{#2}}
+
+%----------------------------------------------------------------------%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Main"
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

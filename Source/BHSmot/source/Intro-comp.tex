@@ -1,0 +1,241 @@
+The two simplest ways to interrogate a category are to study specific objects % of note inside the category
+and to study the network of functors which relate it to other categories.
+While the previous subsection provided preperatory background on specific objects, this subsection sets up the suite of functors which we will use to produce and study more general objects.
+In the specific case of $\R$ this means studying the various ways we can move between $\SHR$, $\SHC$, $\Sp_{C_2}$ and $\Sp$.
+
+%% Though parts of this subsection may appear unmotivated, it provides the background necessary to begin seriously discussing the structure of $\SHRat$ in the following subsection.
+
+%% We begin the subsection by reviewing the functors provided by the six functor formalism.
+%% Next, we discuss Betti realization over $\C$ and $\R$.
+%% One of the surprising features of these realization functors that doesn't extend to more general fields is that they admit a symmetric monoidal section.
+%% DISCUSS NU
+%% DISCUSS NORMS
+
+\begin{rec} \label{rec:fields}
+  Given a finite extension of fields $i : k \to \ell$, there are two pairs of adjunctions and one extra functor coming from the six functor formalism
+  \[ i^* : \SHk \rightleftarrows \SH(\ell) : i_*, \qquad i_! : \SH(\ell) \rightleftarrows \SHk : i^! \quad \mathrm{ and } \quad i_{\sharp} : \SH(\ell) \to \SHk \]
+  where $i^*$ is symmetric monoidal.
+  Since $i$ is smooth, proper and unramified we have equivalences $i_! \simeq i_* \simeq i_{\sharp}$ and $i^! \simeq i^*$ \cite[Theorems 6.9 and 6.18]{hoyois}.
+  These equivalences tell us that
+  \begin{enumerate}
+  \item $i^*$ and $i_*$ both commute with all limits and colimits.
+  \item If $X$ is a smooth $\ell$-scheme, then $i_*X \simeq X$, where the second copy of $X$ is considered as a $k$-scheme.
+  \end{enumerate}
+  \todo{Restrictions ?}
+\end{rec}
+
+In \Cref{app:boilerplate}, as an example of the techniques showcased there, we show that for fields of characteristic zero
+there is an equivalence of presentably symmetric monoidal categories
+\[ \SH(\ell) \simeq \Mod ( \SHk ; \Spec(\ell) ), \]
+and $i_*i^*(-) \simeq \Spec(\ell) \otimes -$.
+This equivalence tells us that no new information enters the picture when we pass to a field extension.
+Specializing to the case of $\C/\R$ the above equivalence becomes
+\[ \SHC \simeq  \Mod ( \SHR ; \Spec(\C) ). \]
+
+Using the descriptions of $i_*$ and $i_*i^*$ we can conclude that both $i^*$ and $i_*$ restrict to the full subcategory of Artin--Tate objects. Thus we obtain a similar description of the Artin--Tate category of a field extension:
+\[ \SH(\ell)^{\at} \simeq \Mod ( \SHkat ; \Spec(\ell) ). \]
+Specializing to the case of $\C/\R$ we will sometimes denote $\Spec(\C)$ by $Ca$ since it is (by the definition of $a$) the cofiber of the map $a: \Ss^{0,-1,0} \to \Ss^{0,0,0}$.
+The above equivalence becomes
+\[ \SHC^{\at} \simeq \Mod ( \SHR^{\at} ; Ca ). \]
+
+At this point we turn to studying the case of $\R$ more closely.
+Though some of the things we do after this point have obvious analogs in other cases,
+many of our key maneuvers implicitly rely on the fact that $\R$ has a finite (and well-understood) absolute Galois group.
+In particular, we will now assume that the reader is familiar with $C_2$-equivariant homotopy theory as in \cite{HHR}.
+Equivariant homotopy theory first enters the picture through the Betti realization functors of \cite[Section 3.3]{MorelVoevodsky}.
+
+\begin{rec}
+
+  There is a commutative diagram of symmetric monoidal left adjoints:
+  %% \begin{center}
+  %%   \begin{tikzcd}[column sep=tiny, row sep=tiny]
+  %%     \Ss^{p,q,w} \ar[rrrrrrr,mapsto] \ar[ddddddd,mapsto] & & & & & & & \Ss^{p+q,w} \ar[ddddddd,mapsto] \\
+  %%     & \SHR \ar[rrrrr,"(-)_\C"] \ar[ddddd,"\b"] & & & & & \SHC \ar[ddddd,"\b"] & \\
+  %%     & & & & & & & \\
+  %%     & & & & & & & \\
+  %%     & & & & & & & \\
+  %%     & & & & & & & \\
+  %%     & \Sp_{C_2} \ar[rrrrr,"\Phi^e"] & & & & & \Sp & \\
+  %%     \Ss^{p+q\sigma} \ar[rrrrrrr,mapsto] & & & & & & & \Ss^{p+q}.
+  %%   \end{tikzcd}
+  %% \end{center}
+
+  \begin{center}
+    \begin{tikzcd}[column sep=tiny, row sep=tiny]
+      
+      \SHR \ar[rrrrrrr,"(-)_\C"] \ar[ddddddd,"\b"] & & & & & & & \SHC \ar[ddddddd,"\b"] \\
+      & \Ss^{p,q,w} \ar[rrrrr,mapsto] \ar[ddddd,mapsto] & & & & & \Ss^{p+q,w} \ar[ddddd,mapsto] \\
+      & & & & & & & \\
+      & & & & & & & \\
+      & & & & & & & \\
+      & & & & & & & \\
+      & \Ss^{p+q\sigma} \ar[rrrrr,mapsto] & & & & & \Ss^{p+q} \\
+      \Sp_{C_2} \ar[rrrrrrr,"\Phi^e"] & & & & & & & \Sp.
+
+    \end{tikzcd}
+  \end{center}
+  
+  %% \begin{center}
+  %%   \begin{tikzcd}
+  %%   \SHR \ar[rrr,"(-)_\C"] \ar[ddd,"\b"] & & & \SHC \ar[ddd,"\b"] \\  
+  %%   & \Ss^{p,q,w} \ar[r, mapsto] \ar[d, mapsto] & \Ss^{p+q,w} \ar[d, mapsto] \\
+  %%   &  \Ss^{p+q\sigma} \ar[r, mapsto] &\Ss^{p+q} \\
+  %%   \Sp_{C_2} \ar[rrr,"\Phi^e"] & & & \Sp     
+  %%   \end{tikzcd}
+  %% \end{center}
+
+  In the above diagram, $(-)_\C$ is the base change functor, $\Phi^e$ is the underlying functor and $\b$ are the Betti realization functors, induced by the assigment $X \mapsto X(\C)$.
+  The inner square describing these functors on Picard objects can be verified by considering $Q$, $\G_m$ and $S^1$ directly \footnote{The observation that spurred the authors to begin this project was that upon restricting to categories of Tate objects the induced square on Picard groups is not a pullback, but with Artin--Tate objects it is in fact a pullback.}.
+\end{rec}
+
+\begin{rmk}
+  Since the Betti realization of $\Ss^{p,q,w}$ is $\Ss^{p+q\sigma}$, we think of $w$ as recording the motivic weight and $p,q$ as providing a copy of $RO(C_2)$ in each weight.
+  %% We also see that $\abs{\ta} = (0,0,-1)$, so that $\ta$ shifts only the weight grading, whereas $\abs{\tau} = (1,-1,-1)$ also shifts the $RO(C_2)$-grading.
+  The Tate spheres are those of the form $\Ss^{p,q,q}$, so in the bigraded world the number of $\sigma$'s in the $RO(C_2)$-grading must equal the motivic weight.
+  This restriction blinds one to the existence of a weight shifting element $\ta$ in $RO(C_2)$ grading $0$, which is the true analog of the $\C$-motivic $\tau$.
+\end{rmk}
+
+Having discussed Betti realization, we now introduce the less well-known functors $c$ and $c_{\C/\R}$ which provide sections of Betti realization.
+
+%% functors out of $\SHR$ we now discuss the various functors which allow us to produce objects in $\SHR$. This begins with the symmetric monoidal left adjoints $c$ and $c_{\C/\R}$ which provide sections of the Betti realization functors. Then, we discuss the more exotic operations given by the functor $\nu$ and the norm functors of [CITE], neither of which are exact. It is the functor $\nu$ which is most useful for producing motivic analogs of topological objects and whose construction is most delicate.
+
+\begin{rec} \label{rec:c}
+  There are symmetric monoidal left adjoints $c$ and $c_{\C/\R}$,
+  which fit into the commutative diagram
+  \begin{center}
+    \begin{tikzcd}[sep=huge]
+      \Ss^{p+q\sigma} \ar[r, mapsto] & \Ss^{p,q,0} \ar[r, mapsto] & \Ss^{p+q\sigma} \\
+      \Sp_{C_2} \ar[rr, "\mathrm{id}_{\Sp_{C_2}}", bend left=20] \ar[r, "c_{\C/\R}"] \ar[d,"\Phi^e"] & \SHR \ar[r, "\b"] \ar[d,"(-)_\C"] & \Sp_{C_2} \ar[d,"\Phi^e"] \\
+      \Sp \ar[rr, "\mathrm{id}_{\Sp}"', bend right=20] \ar[r, "c"] & \SHC \ar[r, "\b"] & \Sp \\
+      \Ss^{p} \ar[r, mapsto] & \Ss^{p,0} \ar[r, mapsto] & \Ss^p .
+    \end{tikzcd}
+  \end{center}
+
+  The functor $c$ is the unique symmetric monoidal left adjoint coming from the fact that $\Sp$ is the unit of $Pr^{L, \mathrm{stab}}$ (see \Cref{exm:Sp-unit}).
+  The functor $c_{\C/\R}$ is constructed in \cite{HellerOrmsby}, by beginning with the functor
+  \[ \left\{ \mathrm{finite} \ \ \  C_2\mathrm{-sets} \right\} \to \SHR \]
+  from \Cref{exm:galois-corr} and then extending it to all of $\Sp_{C_2}$.
+  %% which captures the $C_2$-Galois extension $\C/\R$, sending $C_2/e$ to $\Spec \C$ and $C_2/C_2$ to $\Spec \R$. NAME then shows that this extends to the functor $c_{\C/\R} : \Sp_{C_2} \to \SHR$.
+\end{rec}
+
+Since they are symmetric monoidal left adjoints, it is easy to see that the composites $\b \circ c : \Sp \to \Sp$ and $\b \circ c_{\C/\R} : \Sp_{C_2} \to \Sp_{C_2}$ are equivalent to the identity. In fact, upon restricting to the appropriate target category we uncover something more interesting:
+
+\begin{thm}[{\cite{LevineComparison,HellerOrmsby,HellerOrmsbyII}}] \label{thm:c-ff}
+  The symmetric monoidal functors $c$ and $c_{\C/\R}$ factor through the respective categories of Artin objects and provide equivalences,
+  \[ c : \Sp \xrightarrow{\simeq} \SHCa \qquad \text{ and } \qquad c_{\C/\R} : \Sp_{C_2} \xrightarrow{\simeq} \SHRa. \]
+\end{thm}
+
+\begin{cor} \label{cor:betti-iso}
+  The induced maps,
+  \[ \pi_p\Ss \xrightarrow{c} \pi^\C _{p,0}\Ss \xrightarrow{\b} \pi_p\Ss  \qquad \text{and} \qquad \pi^{C_2}_{p+q\sigma}\Ss \xrightarrow{c_{\C/\R}} \pi^\R _{p,q,0}\Ss \xrightarrow{\b} \pi^{C_2} _{p+q\sigma}\Ss \]
+  are isomorphisms for all $p$ and $q$.
+\end{cor}
+
+\begin{rmk}
+  This corollary provides an identification of $\pi_{0,0,0}^{\R}\Ss$ with the Burnside ring of $C_2$.
+  It is isomorphic to $\Z \oplus \Z$, with generators $1$ and $[C_2]$ and the relation $[C_2]^2 = 2[C_2]$.
+
+  Morel's identification of $\pi_{n,n}\o_k$ in terms of Milnor--Witt K-theory provides another way of assigning names to elements of $\pi^\R_{0,0,0}\Ss$ \cite{Morelpizero}.
+  In these terms $\pi_{0,0,0}^\R\Ss$ is generated by $1$ and $\eta [-1]$, subject to the relation $(\eta [-1])^2 = -2 \eta [-1]$. We denote by $\rho$ the element $-[-1]$.
+  The translation between the two bases described above is given by $\eta \rho = 2 - [C_2]$.
+\end{rmk}
+
+%% It is easy to see from the definitions that the functors $c$ and $c_{\C/\R}$ land in the subcategories $\SHC^{cell}$ and $\SHgc$. Indeed, their essential images are the full subcategories generated under colimits by the weight $0$ spheres $\Ss^{p,0}$ and $\Ss^{p,q,0}$, respectively.
+
+%% \begin{rmk}
+%%   \todo{revise}
+%%   Although the category of Tate objects has been considered by various authors, we believe that it is the category of Artin objects which is more tractible to understand as a first step towards understanding the Artin--Tate category. In particular, the first major step in understand both the $\C$ and $\R$ cases is the identification of the category of Artin objects via the functors $c$ and $c_{\C/\R}$.
+%% \end{rmk}
+%% \todo{There's a remark I commented here about how this says you should think about Artin before Tate.}
+
+\begin{rmk}
+  When working over a general field one might think to replace the Betti realization by some variant of etale localization (see \cite{EldenJay}). The analog of this theorem would be that the category of Artin objects is already etale local.
+  However, in many examples (such as finite fields) one consequence of the Morel connectivity theorem \cite{MorelConn} is that this is not true. An important precursor to answering \Cref{qst:main} will be producing the variant of equivariant homotopy theory which appears as the category of Artin objects.
+\end{rmk}
+  
+\begin{rmk}
+  Using the functors $c$ and $c_{\C/\R}$ the mapping spaces in $\SHC$ and $\SHR$ can be upgraded into mapping spectra and mapping $C_2$-spectra respectively. % See [notatins] for details.
+\end{rmk}
+
+%% Summarizing the contents of this section, we have diagrams
+
+%% \begin{center}
+%%   \begin{tikzcd}
+%%     \SHC \ar[d, "\b"] & \SHR \ar[r, "{(-)[a^{-1}]}"] \ar[l, "(-)_\C"] \ar[d,"\b"] &  \Mod ( \SHR ; \Ss[a^{-1}] ) \ar[d,"\b"] & \SHC \ar[r, "\mathrm{Nm}_{\C/\R}"] \ar[d, "\b"] & \SHR \ar[d, "\b"] \\
+%%     \Sp & \Sp_{C_2} \ar[l,"\Phi^e"] \ar[r, "\Phi^{C_2}"] & \Sp & \Sp \ar[r, "\mathrm{Nm}_e^{C_2}"] & \Sp_{C_2}
+%%   \end{tikzcd}
+%%   \begin{tikzcd}    
+%%     \Sp_{C_2} \ar[rr, "\mathrm{id}_{\Sp_{C_2}}", bend left=20] \ar[r, "c_{\C/\R}"'] \ar[d,"\Phi^e"] & \SHR \ar[r, "\b"'] \ar[d,"(-)_\C"] & \Sp_{C_2} \ar[d,"\Phi^e"] &  \Sp_{C_2} \ar[rr, "\mathrm{id}_{\Sp_{C_2}}", bend left=20] \ar[r, "\nu"'] \ar[d,"\Phi^e"] & \SHR \ar[r, "\b"'] \ar[d,"(-)_\C"] & \Sp_{C_2} \ar[d,"\Phi^e"] \\
+%%     \Sp \ar[rr, "\mathrm{id}_{\Sp}"', bend right=20] \ar[r, "c"] & \SHC \ar[r, "\b"] & \Sp & \Sp \ar[rr, "\mathrm{id}_{\Sp}"', bend right=20] \ar[r, "\nu"] & \SHC \ar[r, "\b"] & \Sp
+%%   \end{tikzcd}
+%% \end{center}
+
+\begin{summary}\label{prop:comp}
+  There are commuting diagrams
+  \begin{center}
+  \begin{tikzcd}
+    \SHR \ar[r, "(-)_\C"] \ar[d,"\b"] &
+    \SHC \ar[d, "\b"] &
+    \Sp_{C_2} \ar[rr, "\mathrm{id}_{\Sp_{C_2}}", bend left=20] \ar[r, "c_{\C/\R}"'] \ar[d,"\Phi^e"] &
+    \SHR \ar[r, "\b"'] \ar[d,"(-)_\C"] &
+    \Sp_{C_2} \ar[d,"\Phi^e"] \\
+    \Sp_{C_2} \ar[r,"\Phi^e"] &
+    \Sp &
+    \Sp \ar[rr, "\mathrm{id}_{\Sp}"', bend right=20] \ar[r, "c"] &
+    \SHC \ar[r, "\b"] &
+    \Sp ,
+  \end{tikzcd}
+  \end{center}
+  
+  and various functors considered in this section enjoy the following properties:
+  \begin{enumerate}
+  \item Each of $(-)_{\C}$, $\b$, $\Phi^e$, $c$ and $c_{\C/\R}$ is a symmetric monoidal left adjoint.
+  \item Both $(-)_{\C}$ and $\Phi^e$ are right adjoints as well.
+  %% \item Both $\nu$ functors are lax symmetric monoidal and commute with filtered colimits.
+  %% \item Both norm functors are symmetric monoidal and commute with sifted colimits.
+  \item All of the functors restrict to the categories of Artin--Tate objects and retain the properties listed in (1) and (2). In later sections we will almost exclusively deal with these restrictions so we will not use distinct notation for them.
+  \item On Picard elements the functors in the digrams above behave as follows:
+  \end{enumerate}  
+  %% \nu(\Ss^{2n+1}) &\cong \o_\C^{2n+1,n}  \\        
+  \begin{center}
+    \begin{tabular}{llll}
+      $ \b(\o_\R^{p,q,w}) \cong \o_{C_2}^{p+q\sigma} $ &
+      $ \b(\o_\C^{s,w}) \cong \Ss^s$ &
+      $ c_{\C/\R}(\o_{C_2}^{p+q\sigma}) \cong \o_\R^{p,q,0}$ \\
+      $ c(\Ss^s) \cong \o_\C^{s,0}$  &
+      $ (\o_\R^{p,q,w})_\C \cong \o_\C^{p+q,w}$ &
+      $ \Phi^e(\o_{C_2}^{p+q\sigma}) \cong \Ss^{p+q}$ &
+      %$ \Phi^{C_2}(\o_{C_2}^{p+q\sigma}) \cong \Ss^{p}$ 
+    \end{tabular}                  
+  \end{center}
+\end{summary}
+
+
+  %% \begin{center}
+  %%   \begin{tabular}{llll}
+  %%     $ \b(\o_\R^{p,q,w}) \cong \o_{C_2}^{p+q\sigma} $ &
+  %%     $ \b(\o_\C^{s,w}) \cong \Ss^s$ &
+  %%     $ c_{\C/\R}(\o_{C_2}^{p+q\sigma}) \cong \o_\R^{p,q,0}$ &
+  %%     $ c(\Ss^s) \cong \o_\C^{s,0}$ \\      
+  %%     $ (\o_\R^{p,q,w})_\C \cong \o_\C^{p+q,w}$ &
+  %%     $ \Phi^e(\o_{C_2}^{p+q\sigma}) \cong \Ss^{p+q}$ &
+  %%     $ \o_\R^{p,q,w}[a^{-1}] \cong \o_\R^{p,0,w}[a^{-1}]$ &         
+  %%     $ \Phi^{C_2}(\o_{C_2}^{p+q\sigma}) \cong \Ss^{p}$ \\
+  %%     $ \nu(\o_{C_2}^{n\rho}) \cong \o_\R^{n,n,n}$ &
+  %%     $ \nu(\Ss^{2n}) \cong \o_\C^{2n,n} $ &
+  %%     $ \mathrm{Nm}_\C^\R(\o_\C^{s,w}) \cong \o_\R^{s,s,2w}  $ &
+  %%     $ \mathrm{Nm}_e^{C_2}(\Ss^{n}) \cong \o_{C_2}^{n,n}$ 
+  %%   \end{tabular}                  
+  %% \end{center}
+
+
+\begin{proof}
+  %% We have already discussed all aspects of (1) except the functor $(-)[a^{-1}]$ whose behavior falls under \cite[Proposition 4.3.17]{ECII}.
+  The only one of these which we have not already discussed is (2).
+  The functor $(-)_\C$ can be described as tensoring up to $Ca$.
+	Since $Ca$ is dualizable this functor commutes with all limits and colimits. Similarly, we may conclude that $\Phi^e$ commutes with all limits and colimits.
+  %% Part (3) and the other statements about the functor $\nu_\R$ will be proved in \Cref{sec:nu}.
+  %% Part (4) is a restatement of \cite[Proposition 4.5]{norms}.
+  %% The only part of (5) which is not immediate is the claim about norm functors.
+  %% This follow from the fact that $\mathrm{Nm}_{\C}^\R$ sends the bigraded spehres to trigraded spheres and the cross effect functor takes Artin--Tate objects to Artin--Tate objects. Finally, (6) is a collation of identifications we have already justified.
+\end{proof}

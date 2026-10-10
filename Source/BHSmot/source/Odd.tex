@@ -1,0 +1,122 @@
+In this section we show that, when working at an odd prime $p$, the category $\SHR^{\at}_{ip}$ admits a simple description in terms of $\SHCat$. The corresponding result for Tate spectra is discussed in \cite[p.23-24]{BehrensShah}, following results of \cite{RealEtale}.
+
+\begin{prop}\label{prop:odd}
+  There is an equivalence of categories
+  \[ \SHR^{\at}_{ip} \simeq \Sp_{ip} \times \SHCat \times \SHCat. \]
+\end{prop}
+
+We begin with a well-known decomposition of $\SHR^{\at} _{ip}$ into its $+$ and $-$ components. Our treatment of this is heavily inspired by \cite[pp.23-25]{BehrensShah}
+
+\begin{dfn}
+  Let $\SHR_{ip}^{\at,+}$ denote the category $\Mod ( \SHR^{\at} ; \Ss_{p,\eta} )$. 
+\end{dfn}
+
+\begin{lem}
+  There is an equivalence of categories
+  \[\SHR^{\at} _{ip} \simeq \SHR^{\at,+} _{ip} \times \Sp_{ip}.\]
+\end{lem}
+
+\begin{proof}
+  Let $\epsilon = -\eta \rho - 1 \in \pi_{0,0,0} ^{\R} \Ss$, which is known to be equal to the swap map
+  \[\epsilon = s_{\Ss^{1,1,1}} : \Ss^{1,1,1} \otimes \Ss^{1,1,1} \xrightarrow{\sim} \Ss^{1,1,1} \otimes \Ss^{1,1,1}. \]
+  It is clear from this description that $\epsilon^2 = 1$, so that after inverting $2$ we have a decomposition of the unit into $\pm 1$-eigenspaces
+  \[\Ss [1/2] \simeq \Ss [1/2]^+ \times \Ss[1/2]^-.\]
+  Now, $\epsilon = +1$ implies that $\eta\rho = -2$, so that $\eta$ and $\rho$ must be units in $\pi_{*,*,*} ^{\R} \Ss[1/2]^+$.
+  On the other hand, the fact that $\epsilon = s_{\Ss^{1,1,1}}$ implies that the graded ring
+  $\pi_{a,a,a}^{\R} \Ss[1/2]^{-}$
+  must obey the Koszul sign rule, so that $2 \eta^2 = 2 \rho^2 = 0$.
+
+  As a consequence, we find that $\Ss[1/2]^{+} \simeq \Ss[1/2,1/\eta] \simeq \Ss[1/2,1/\rho]$ and that $\Ss[1/2]^- \simeq \Ss[1/2]_\eta \simeq \Ss[1/2]_\rho$.
+  To conclude, we base change from $\Ss[1/2]$ to $\Ss_p$ and use the equivalence $\SHR[1/\rho] \simeq \Sp$ of Bachmann \cite{RealEtale}.
+\end{proof}
+%
+%We begin by decomposing $\SHR^{\at}_{ip}$ into its plus and minus parts, following \cite{RealEtale}.
+%An idempotent in $\pi_0\o$ produces a product decomposition of the category.
+%After inverting 2 we have $\left( 2^{-1} [C_2] \right)^2 = 2^{-1} [C_2]$ in $\pi_0^{C_2}\Ss[2^{-1}] \cong \pi_{0,0,0}^\R\Ss[2^{-1}]$.
+%This splits the category $\SHR[2^{-1}]$ into two pieces.
+%In one summand we have $[C_2]=0$ and $\rho$ is invertible.
+%In the other summand $[C_2]$ is invertible.
+%In \cite{RealEtale}, Bachmann shows that $\SHR[2^{-1}, \rho^{-1}] \simeq \Sp$.
+%
+%The contribution of this section will be an identification of the plus part (after restriction to the Artin--Tate category).
+%Following \cite[Proposition 6.7]{BehrensShah} we can identify the unit in the plus part with $\Ss_{p,\eta}$.
+%
+%\begin{dfn}
+%  Let $\SHR_{ip}^{\at,+}$ denote the category $\Mod ( \SHR^{\at} ; \Ss_{p,\eta} )$. 
+%\end{dfn}
+
+\Cref{prop:odd} will now follow from showing that $\SHR_{ip}^{\at,+}$ splits as a product of two copies of $\SHCat$. This splitting will come from a decomposition of the category into two blocks (in the sense of representation theory). We begin with the following pair of lemmas.
+
+\begin{lem} \label{lem:odd-split}
+  In $\SHR_{ip}^{\at,+}$, there is a splitting $\Spec(\C) \simeq \Ss_{p,\eta}^{0,0,0} \oplus \Ss_{p,\eta}^{1,-1,0}$.
+\end{lem}
+
+\begin{proof}
+  It suffices to show that $a : \Ss_{p,\eta}^{0,-1,0} \to \Ss_{p,\eta}$ is zero.
+  This follows from the facts that $c_{\C/\R}$ is fully-faithful (see \cite{HellerOrmsbyII}) and that $a_{\sigma}=0$ in the $C_2$-equivariant category after inverting $2$ and $\eta$-completing (indeed, $a_{\sigma} \eta = 2$).
+%%
+  %% We identify the category where $2$ and $[C_2]$ are invertible as follows.
+%%
+  %% Using the fact that $c_{\C/\R}$ is fully faithful we can use some standard equivariant tricks.
+  %% The object $\Spec(\C)$ which corresponds to $C_{2+}$ is self-dual and if let $p : \Spec(\C) \to \Spec(\R)$ be the standard projection map, then the map $[C_2]$ can be factored as the composition
+  %% \[ \Ss \xrightarrow{\mathbb{D}p} \Spec(\C) \xrightarrow{p} \Ss. \]
+  %% From equivaraint homotopy theory we know that $\mathbb{D}p \circ p = 2$.
+  %% Thus, we have an equivalence $\Ss[2^{-1}, [C_2]^{-1}] \simeq \Spec(\C)[2^{-1}]$.
+  %% Note that $[C_2]=2$ as an endomorphism of $\Spec(\C)$ so inverting $[C_2]$ has no further effect once we've inverted $2$.
+  %% Using the equivalence between $\Mod ( \SHR ; \Spec(\C))$ and $\SHC$ discussed in the previous subsection we obtain the desired indentification.
+\end{proof}
+
+\begin{lem} \label{lem:odd-vanishing}
+  The groups $\pi_{s,q,w}^\R \Ss_{p,\eta}$ are zero for $q$ odd.
+\end{lem}
+
+The proof of this lemma will take us farther afield, so we defer it for the moment.
+
+\begin{proof}[Proof of \Cref{prop:odd}.]
+  We need to show that
+  \[ \SHR_{ip}^{\at,+} \simeq \SHCat \times \SHCat. \]
+  Let $\A_{\mathrm{even}}$ (resp. $\A_{\mathrm{odd}}$) denote the stable full subcategory of $\SHR_{ip}^{\at,+}$ generated under colimits by the objects $\Ss_{p,\eta}^{s,q,w}$ for $s,w \in \Z$ and $q$ even  (resp. odd).
+  
+  We begin by showing that if $A \in \A_{\mathrm{even}}$ and $B \in \A_{\mathrm{odd}}$, then there are no nontrivial maps between $A$ and $B$. It suffices to show this for compact generators, where it follows from \Cref{lem:odd-vanishing}. From this we may conclude that $\SHR_{ip}^{\at,+} \simeq \A_{\mathrm{even}} \times \A_{\mathrm{odd}}$.
+
+  Since tensoring with $\Ss^{0,1,0}$ provides an equivalence between $\A_{\mathrm{even}}$ and $\A_{\mathrm{odd}}$ it will now suffice to show that the composite
+  \[ \A_{\mathrm{even}} \to \SHR^{\at,+}_{ip} \to \SHCat \]
+  is an equivalence. Since $\Ss^{s,0,w}$ is sent to $\Ss^{s,w}$ we know this map hits a family of compact generators, so it will suffice to show that it is fully faithful. By the usual argument it will suffice to have fully-faithfulness on compact generators. Thus, we are reduced to showing that the map
+  \[ \pi_{s,q,w}^\R\Ss_{p,\eta} \to \pi_{s+q,w}^\C\Ss_{p,\eta}. \]
+  is an isomorphism for $q$ even. Using \Cref{lem:odd-split} this map factors as
+  \[ \pi_{s,q,w}^\R\Ss_{p,\eta} \hookrightarrow \pi_{s,q,w}^\R( \Ss_{p,\eta}^{0,0,0} \oplus \Ss_{p,\eta}^{1,-1,0} ) \xrightarrow{\cong} \pi_{s+q,w}^\C\Ss_{p,\eta}, \]
+  where the first map is the inclusion of the left summand.
+  We conclude by noting that the relevant homotopy group of the right summand vanishes by \Cref{lem:odd-vanishing}.
+\end{proof}
+
+We now return to proving \Cref{lem:odd-vanishing}.
+The proof will be via an Adams spectral sequence argument, so we begin by computing the homology of a point. Note that $\MFp$ is $\eta$-complete, and so inside of $\SHR_{ip}^{\at,+}$.
+
+\begin{lem}\label{lem:odd-pt}
+  The tri-graded homotopy of $\MFp$ is given by
+  \[ \pi_{s,q,w}^\R \MFp \cong \F_p[u_{2\sigma}^{\pm}, \ta], \]
+  where $|u_{2\sigma}| = (2,-2,0)$.
+\end{lem}
+
+\begin{proof}
+  From the computation of the homology of a point over $\C$ in \cite{Voe03} we may conclude that $\pi_{s,q,w}^\R(\Spec(\C) \otimes \MFp) \cong \F_p[u_\sigma^{\pm}, \ta]$. Using the splitting of $\Spec(\C)$ we may conclude that the homology of a point over $\R$ is an index 2 subalgebra which contains $\ta$ (since $\ta$ is defined in the sphere). There is a unique such subalgebra.
+\end{proof}
+
+\begin{lem}\label{lem:odd-dual-enough}
+  The tensor product $\MFp \otimes \MFp$ splits as a sum of tri-graded suspensions of copies of $\MFp$ whose $q$-components are even.
+\end{lem}
+
+\begin{proof}
+  From \cite[Theorem 1.1 (3)]{HoyoisSteenrod} (which follows from work of Voevodsky \cite{Voe03, Voe10} in case of $\R$ where we work) we know that $\MFp \otimes \MFp$ decomposes as a sum of copies of $\Sigma^{a,b,b} \MFp $. More specifically, the copies of $\MFp$ are indexed by monomials in the $\xi_i$ and $\tau_i$ which live in degrees,
+  \[ |\xi_i| = (p^i - 1, p^i - 1, p^i - 1) \qquad \text{ and } \qquad |\tau_i| = (p^i, p^i - 1, p^i - 1). \]
+  Since $p$ is odd the $q$-component of every such monomial is even.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{lem:odd-vanishing}.]
+  Since the motivic Adams spectral sequence for the sphere converges strongly to $\Ss_{p,\eta}$ by \cite{MAdamsConv},
+  it will suffice to show the desired vanishing result on the $\mathrm{E}_1$-page.  
+  This spectral sequence takes the form,
+  \[ E_1^{s,t} = \pi_{t,q,w}(\HFt^{\otimes {s+1}}) \implies \pi_{t-s,q,w} \Ss_{p,\eta}. \]
+  Using \Cref{lem:odd-pt} and \Cref{lem:odd-dual-enough} we may conclude that the spectral sequence is zero at the $\mathrm{E}_1$ page for $q$ odd.
+\end{proof}
+      

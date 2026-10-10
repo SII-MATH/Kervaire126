@@ -1,0 +1,552 @@
+                                                 THE STRONG KERVAIRE INVARIANT PROBLEM IN
+                                                               DIMENSION 62
+arXiv:1410.6199v1 [math.AT] 22 Oct 2014
+
+
+
+
+                                                                                   ZHOULI XU
+
+
+
+
+                                                  Abstract. Using a Toda bracket computation hθ4 , 2, σ2 i due to Daniel C.
+                                                  Isaksen [12], we investigate the 45-stem more thoroughly. We prove that θ42 = 0
+                                                  using a 4-fold Toda bracket. By [2], this implies that θ5 exists and there exists
+                                                  a θ5 such that 2θ5 = 0. Based on θ42 = 0, we simplify significantly the 9-cell
+                                                  complex construction in [1] to a 4-cell complex, which leads to another proof
+                                                  that θ5 exists.
+
+                                                                  1. Introduction and main results
+                                             The Kervaire invariant problem is one of the most interesting problems that
+                                          relates geometric topology and stable homotopy theory. One way of formulating it,
+                                          due to Browder [5], is in terms of the classical Adams spectral sequence (ASS) at
+                                          the prime 2:
+                                                                                                n+1
+                                                    For each n, the element h2n ∈ Ext2,2              −2
+                                                                                                           survives in the ASS.
+
+                                          If h2n survives, we denote the corresponding detecting elements in homotopy by
+                                          θn ∈ π2n+1 −2 S 0 and we say that θn exists. The strong Kervaire invariant problem
+                                          for n is the following.
+
+                                                           θn exists, and there exists a θn such that 2θn = 0.
+
+                                          It is well-known that the first three Kervaire invariant elements θ1 , θ2 and θ3 can be
+                                          chosen to be η 2 , ν 2 and σ 2 . And they all have order 2. Mahowald and Tangora [17]
+                                          showed that θ4 exists and 2θ4 = 0 by an ASS computation. In [1], Barratt, Jones
+                                          and Mahowald showed that θ5 exists by constructing a 9-cell complex and using
+                                          the Peterson-Stein formula. Recently, using equivariant homotopy technology, Hill,
+                                          Hopkins and Ravenel [10] in their marvelous paper showed that θn does not exist
+                                          for all n ≥ 7, which left the existence of θ6 as the only open case.
+
+                                             In [2], Barratt, Jones and Mahowald gave the following inductive approach to
+                                          the strong Kervaire invariant problem:
+                                          Theorem 1.1. Suppose that there exists an element θn such that 2θn = 0 and
+                                          θn2 = 0. Then there exists an element θn+1 with 2θn+1 = 0.
+                                            In this paper, we prove the following:
+                                          Theorem 1.2. θ42 = 0.
+                                            Since θ4 is unique and 2θ4 = 0, we have the following corollary:
+                                                                                         1
+2                                       ZHOULI XU
+
+
+Corollary 1.3. θ5 exists and there exists a θ5 such that 2θ5 = 0.
+Remark 1.4. In [19], R. J. Milgram claims to show that under the same condition
+as in Theorem 1.1, one has θn+2 exists. If this were true, then we would have that
+θ6 exists. However, Milgram’s argument fails because of a computational mistake
+[8].
+Remark 1.5. Note that if one can further prove that the same θ5 has the property
+θ52 = 0, then Theorem 1.1 will imply the open case θ6 exists and that there exists
+a θ6 such that 2θ6 = 0.
+
+   For the case θ5 , Lin [16] shows that there exists a θ5 such that 2θ5 = 0 based on
+a computation of the Toda bracket hθ4 , 2, σ 2 i. Based on the same Toda bracket but
+a different computational result, Kochman [13] also shows that θ42 = 0 and hence
+that there exists a θ5 such that 2θ5 = 0. Recently, Isaksen [12] computed this Toda
+bracket using more straightforward arguments. His result contradicts the results of
+both Lin and Kochman. For more details about where Lin and Kochman’s argu-
+ments fails, see Remark 3.4. Our proof uses Isaksen’s computation. Since Isaksen’s
+computation of hθ4 , 2, σ 2 i gives a more complicated answer than the earlier claims,
+we must study several other Toda brackets to prove θ42 = 0.
+
+    Knowing θ42 = 0, we give a second proof of the existence of θ5 . In [1], Barratt,
+Jones and Mahowald constructed a 9-cell complex X ′ , and maps f ′ : S 62 → X ′ ,
+g ′ : X ′ → S 0 , such that the composite g ′ ◦ f ′ : S 62 → S 0 realizes a θ5 . We simplify
+this 9-cell complex X ′ into a 4-cell complex X, and construct maps f : S 62 → X,
+g : X → S 0 as indicated in the following cell diagram. We follow Barratt, Jones
+and Mahowald’s notation of cell diagrams.
+
+                0123
+                7654             2                    // 7654
+                                                         0123
+                 62 ◆◆◆                                   62✶
+                       ◆◆◆                                   ✶✶
+                            ◆◆◆                                ✶✶
+                           η   ◆◆◆                               ✶✶
+                                   ◆''
+                                    7654
+                                    0123
+                                       61✶
+                                                                   ✶✶θ4
+                                          ✶✶                         ✶✶
+                                            ✶✶                         ✶✶
+                                              ✶✶                         ✶✶
+                                                ✶✶                        7654
+                                                                          0123
+                                            θ4 ✶
+                                                   ✶✶                  ⑤⑤31
+                                                     ✶✶             ⑤⑤
+                                                          ✶ ⑤⑤⑤ 2
+                                                             ⑤                 θ4
+                                                         7654
+                                                         0123
+                                                          30                      // '&%$
+                                                                                      !"#
+                                                                                      0
+   Here each circle represents a cell. The number in each circle represents the
+dimension of that cell. The middle 4 cells represent the cell structure of X, where
+the three lines without arrow heads represent attaching maps of X. The map g
+is an extension of θ4 , and the map f is a co-extension of η ∨ 2. In other words,
+if we restrict the map g on the bottom cell of X: g|S 30 : S 30 → S 0 , we have θ4 .
+If we pinch down the 31-skeleton of X: p : X → S 61 ∨ S 62 , then the composite
+p ◦ f : S 62 → S 61 ∨ S 62 is η ∨ 2. For more details about cell diagrams, see [1].
+Theorem 1.6. The composite of maps g ◦ f : S 62 → S 0 realizes a θ5 .
+Proof. We first show that we can form this cell diagram. For primary obstructions,
+we have 2θ4 = 0 and θ42 = 0. For secondary obstructions, we have ηθ4 ∈ h2, θ4 , 2i
+           THE STRONG KERVAIRE INVARIANT PROBLEM IN DIMENSION 62                      3
+
+
+and 0 ∈ hθ4 , 2, θ4 i. The latter is shown in [1]. It is straightforward to check that
+the following two facts are true: for i ≤ 4 the functional cohomology operations
+                                  i                  i
+                              Sqg2 : H 0 S 0 −→ H 2 −1 X
+are all zero, while Sqg32 : H 0 S 0 → H 31 X is nonzero; the functional cohomology
+operation Sqf32 is nonzero on Sqg32 H 0 S 0 = H 31 X. Note that all cohomology is
+understood to have mod 2 coefficients. As used in [1], it follows from the Peterson-
+Stein formula ([20],[22]) that the composite g ◦ f is detected by the secondary
+cohomology operation φ5,5 . Therefore g ◦ f realizes a θ5 .                       
+
+   We present the proof of Theorem 1.2 in Section 2. The proof uses several theo-
+rems and lemmas whose proofs we postpone. We include Isaksen’s computation of
+hθ4 , 2, σ 2 i in Section 3 for completeness. In Section 4, we discuss two more Toda
+brackets in the 45-stem, namely hθ4 , 2, κi and hθ4 , 2, σ 2 + κi. The proof of the main
+theorem depends on the computation of the latter bracket. We give a modified 4-
+fold Toda bracket for θ4 in Section 5. We complete our proof of the main theorem
+by proving several lemmas in Section 6.
+
+   Acknowledgement: The author would like to thank Dan Isaksen for discussing
+and sharing lots of his computations. The author would like to thank Dan Isaksen
+and Peter May for careful reading of several drafts of this paper. The author would
+also like to thank Bob Bruner for explaining the gap in Milgram’s result. This
+paper is also just a tiny mark of our gratitude to Mark Mahowald for his tenacious
+exploration of the stable stems and his generosity towards us. The author would like
+to dedicate this paper to him, with special thanks for his inspiring weekly careful
+instruction and his guidance the year before his untimely death.
+
+                      2. The proof of the main theorem
+  We will use the following Toda brackets to prove Theorem 1.2.
+Theorem 2.1. hθ4 , 2, σ 2 + κi contains 0 with indeterminacy {0, ρ15 θ4 }.
+Theorem 2.2. θ4 = h2, σ 2 + κ, 2σ, σi with zero indeterminacy.
+Lemma 2.3. σπ53 = 0.
+Lemma 2.4. hρ15 θ4 , 2σ, σi = 0 with zero indeterminacy.
+  We postpone the proof of Theorem 2.1 to Section 4, the proof of Theorem 2.2 to
+Section 5 and the proofs of Lemma 2.3 and 2.4 to Section 6. Now we present the
+proof of Theorem 1.2.
+
+Proof. Following Theorems 2.1 and 2.2, we have
+
+                   θ42 = θ4 h2, σ 2 + κ, 2σ, σi
+                      ⊆ hhθ4 , 2, σ 2 + κi, 2σ, σi
+                      = the union of h0, 2σ, σi and hρ15 θ4 , 2σ, σi
+   By Lemma 2.3 and Lemma 2.4 above, both brackets contain a single element
+zero. Therefore, we have that θ42 = 0.                                   
+4                                                   ZHOULI XU
+
+
+  If a is a surviving cycle in ASS, we use {a} to denote the set of elements in the
+homotopy group that are detected by a. For elements in the E∞ -page of the ASS,
+we include part of Isaksen’s chart [12].
+
+
+
+         7
+    14
+
+
+
+                                             Pu
+                                                                                                   d0 u
+
+
+         6
+    12                                            d0 e20
+                                                                                                           e20 g
+
+
+                                                                                       e0 m
+                           d0 l
+
+
+         5
+    10                                 e0 r                                                        x′
+
+
+
+                   w                                                              gn
+                                                                                                          h0 h5 i
+
+
+         4                        P h5 c 0
+    8                                                                                  d1 g
+                           N
+
+
+
+                           B1                              B2
+
+
+         3
+    6
+                                                                 C
+
+
+
+              h5 d 0                                                      h3 g2
+
+
+         2
+    4    g2                                                     h5 c 1
+
+
+
+                  h23 h5
+
+         1
+    2
+
+
+
+
+         0
+    0
+             22                 23                         24        25                       26              27
+
+         44                 46                         48        50                       52                54
+            THE STRONG KERVAIRE INVARIANT PROBLEM IN DIMENSION 62                          5
+
+
+   We do not include elements in filtration higher than 14. Those elements are
+detected by the K(1)-local sphere, and are not relevant to our proof. Here we use
+colored lines to denote nontrivial extensions. For example, the line between P u
+and e0 r indicates that 2{e0 r} is nontrivial and is detected by P u. The 2, η and ν-
+extensions are completely known in this range except for a possible 2-extension from
+h0 h3 g2 to gn and a possible ν-extension from h2 h5 d0 to gn. We use dashed lines to
+denote them. In fact, Isaksen [11] showed that these two possible extensions either
+both occur or neither occur. But these extensions are irrelevant to our purpose.
+
+                            3. A Toda bracket hθ4 , 2, σ 2 i
+  The following theorem is due to Isaksen [11]. For completeness, we include the
+proof.
+Theorem 3.1. hθ4 , 2, σ 2 i contains an element of order 2 that can be detected by
+h0 h34 .
+Remark 3.2. Before presenting the proof, we mention that the indeterminacy of
+this Toda bracket is well-known. Namely, it is the set {0, ρ15 θ4 }, where ρ15 is
+the generator of ImJ in π15 , and is detected by h30 h4 . Furthermore, ρ15 θ4 6= 0 is
+detected by h20 h5 d0 . This is shown by Tangora in [23].
+Proof. In the Adams E3 -page, we have hh24 , h0 , h23 i = h24 h4 +h5 h23 = 0 in the Adams
+filtration 3. Therefore, by the Moss Theorem [21], there is an element in hθ4 , 2, σ 2 i
+that is detected by some element of filtration at least 4. Since the nontrivial element
+in the indeterminacy has filtration 7, any element in hθ4 , 2, σ 2 i has filtration at least
+4. We have
+                       2hθ4 , 2, σ 2 i = h2, θ4 , 2iσ 2 = ηθ4 σ 2 = 0.
+Note that the indeterminacy of h2, θ4 , 2iσ 2 is 2σ 2 π31 = 0. Therefore, any element
+in hθ4 , 2, σ 2 i has order 2.
+   Now consider the product ν4 θ4 .
+                      ν4 θ4 = hσ, ν, σiθ4 ⊆ hσ, ν, σθ4 i ⊆ hσ, ν, {x}i.
+Here, since 2θ4 = 0, we can ignore the difference between ν4 , which is by definition
+hν, σ, 2σi, and hσ, ν, σi = 7ν4 . In the Adams E2 -page, we have h2 h5 d0 = hh3 , h2 , xi
+with zero indeterminacy. In fact, this follows from
+                     h2 hh3 , h2 , xi = hh2 , h3 , h2 ix = h23 x = h22 h5 d0 .
+Therefore, ν4 θ4 is contained in hσ, ν, {x}i ⊆ {h2 h5 d0 }.
+   On the other side, ν4 θ4 is contained in θ4 h2, σ 2 , νi = hθ4 , 2, σ 2 iν. For the inde-
+terminacy, note that ρ15 θ4 ν = 0. Therefore, we actually have
+                                     ν4 θ4 = hθ4 , 2, σ 2 iν.
+Combining this with the fact that ν4 θ4 is also contained in {h2 h5 d0 }, we deduce
+that there exists an element in hθ4 , 2, σ 2 i such that ν times it is detected by h2 h5 d0 ,
+which has filtration 6. Therefore, hθ4 , 2, σ 2 i contains an element with filtration at
+most 5. Furthermore, it cannot be detected by h1 g2 , which has filtration 5, since
+otherwise the ν multiple won’t be detected by h2 h5 d0 . Therefore, the statement of
+the theorem is the only possibility left.                                                 
+6                                       ZHOULI XU
+
+
+Remark 3.3. Another way to describe the statement of this theorem is the fol-
+lowing:
+            hθ4 , 2, σ 2 i contains an order 2 element of the form 2α + β,
+where α is detected by h23 h5 and β is detected by h5 d0 . Note that the nontrivial
+2-extension in the 45-stem means that there exist elements α and γ, which are
+detected by h23 h5 and h5 d0 respectively, such that 4α = 2γ. Since γ has order 8,
+one can choose β to be −γ = 7γ, so that 2α + β has order 2.
+Remark 3.4. In [16], Lin showed that this bracket contains 0. The step that rules
+out the element Isaksen got is invalid. In [13], Kochman showed that this bracket
+contains η{g2 } or 0. His argument failed because essentially of the inconsistency of
+the ν−extension on {h2 h5 d0 } and the σ−extension on {h20 g2 }, which allowed him
+to eliminate the right element. The inconsistency is discussed in [11].
+
+                            4. More about the 45-stem
+    We first consider the Toda bracket hθ4 , 2, κi in π45 .
+Lemma 4.1. hθ4 , 2, κi contains an element of order 2 that can be detected by h0 h34 .
+Proof. The Adams differential d3 (h0 h4 ) = h0 d0 implies that in the Adams E4 -
+page, hh24 , h0 , d0 i = h0 h34 in the Adams filtration 4. Then by the Moss convergence
+theorem [21], there is an element in hθ4 , 2, κi that is detected by h0 h34 . From
+                          2hθ4 , 2, κi = h2, θ4 , 2iκ = ηθ4 κ = 0,
+we know that any element in hθ4 , 2, κi has order 2. The indeterminacy of h2, θ4 , 2iκ
+is 2κπ31 = 0. Here we also used that κθ4 = 0, which is known for filtration reasons.
+In fact, since d0 h24 = 0 in Ext6 , κθ4 must be detected by an element of filtration at
+least 7. However, in the 44-stem of the E∞ -page, there are no elements of filtration
+7 or higher. Therefore hθ4 , 2, κi contains an element of order 2 that can be detected
+by h0 h34 .                                                                          
+Remark 4.2. The indeterminacy of this bracket is the same as that of hθ4 , 2, σ 2 i,
+i.e., {0, ρ15 θ4 }. In fact, π31 is generated by ηθ4 , {n} and ρ31 , where ρ31 is the
+generator of ImJ in π31 , and is detected by h10  0 h5 . Since κθ4 = 0, ηκθ4 = 0. Again
+for filtration reasons, κ{n} = 0 and κρ31 = 0. Therefore κπ31 = 0. This shows that
+the indeterminacy of hθ4 , 2, κi is {0, ρ15 θ4 }.
+   Although both hθ4 , 2, κi and hθ4 , 2, σ 2 i contain an element of order 2 that can be
+detected by h0 h34 , we do not necessarily know if they have an element in common.
+The following theorem confirms that they do.
+   Now we restate Theorem 2.1.
+Theorem 4.3. hθ4 , 2, σ 2 + κi contains 0 with indeterminacy {0, ρ15 θ4 }.
+    We need the following lemma to prove the theorem.
+Lemma 4.4. σ 2 π33 = 0.
+Proof. We know that π33 is generated by ηη5 , νθ4 , η{q}, η 2 ρ31 and {P 4 h1 }. Since
+ησ 2 = 0 and νσ 2 = 0, we only need to show that {P 4 h1 }σ 2 =0. In fact, we have
+                                 {P 4 h1 }σ 2 = ηρ39 σ = 0
+for filtration reasons. Here ρ39 is the generator of ImJ in π39 , and is detected by
+P 2 h20 i. Therefore, σ 2 π33 = 0.                                                 
+             THE STRONG KERVAIRE INVARIANT PROBLEM IN DIMENSION 62                     7
+
+
+  Now we present the proof of Theorem 4.3.
+Proof. The indeterminacy is straightforward, as in Remark 4.2.
+   Since all elements in hθ4 , 2, κi and hθ4 , 2, σ 2 i have order 2 and can be detected
+by h0 h34 in the Adams filtration 4, elements in hθ4 , 2, σ 2 + κi must be detected by
+elements of filtration at least 5 and have order 2. To prove the theorem, we need
+to rule out both {w} and η{g2 }.
+   For {w}, by Lemma 4.4, we have that
+                      η 2 hθ4 , 2, σ 2 i = hη 2 , θ4 , 2iσ 2 ∈ π33 σ 2 = 0.
+Next we have that
+                               η 2 hθ4 , 2, κi = θ4 h2, κ, η 2 i.
+    In the Adams E4 -page, we have that hh0 , d0 , h21 i = h0 h4 h21 = 0 in the Adams
+filtration 4. Then the Moss Theorem tells us that h2, κ, η 2 i might contain a non-
+trivial element of higher filtration, namely a combination of νκ, η 2 ρ15 and {P 2 h1 }.
+Note that we have that νκθ4 = 0 and by Lemma 6.1 we have that η 2 ρ15 θ4 = 0. To
+show that {P 2 h1 }θ4 = 0, we first show that {P h1 }θ4 = 0.
+
+   In fact, {P h1 }θ4 ∈ hη, 8σ, 2iθ4 = ηh8σ, 2, θ4 i, which contains 0. This holds
+since ηh8σ, 2, θ4 i intersects η{h30 h3 h5 }, which contains a single element zero. The
+indeterminacy is ηπ8 θ4 = 0. This gives that {P h1 }θ4 = 0. Then we have
+
+         {P 2 h1 }θ4 ∈ θ4 h{P h1 }, 2, 8σi = hθ4 , {P h1 }, 2i8σ ⊆ π40 8σ = 0.
+  Therefore, no matter what h2, κ, η 2 i equals, we always have that
+                         η 2 hθ4 , 2, κi = h2, κ, η 2 iθ4 contains 0.
+  The indeterminacy of η 2 hθ4 , 2, κi is zero since η 2 θ4 = 0 and η 2 κ = 0. Then
+                                      η 2 hθ4 , 2, κi = 0.
+Therefore,
+                                      η 2 hθ4 , 2, σ 2 + κi = 0.
+Then the fact that η 2 {w} 6= 0 rules out {w}, since otherwise we would have that
+η 2 hθ4 , 2, σ 2 + κi = η 2 {w} 6= 0.
+
+  For η{g2 }, first note that ση{g2 } 6= 0 is detected by h1 h3 g2 . We have that
+                         hθ4 , 2, κiσ = θ4 h2, κ, σi ⊆ θ4 π22 = 0.
+In fact, π22 is generated by νσ and η 2 κ. We have that η 2 κθ4 = 0 and νσθ4 = 0
+for filtration reasons. As a remark, we can actually prove that h2, κ, σi = νσ by
+studying the cofiber of 2, but we don’t need this fact here.
+   On the other side, as explained in Remark 3.3, hθ4 , 2, σ 2 i contains 2α + β. There-
+fore,
+                                hθ4 , 2, σ 2 iσ contains 2ασ + βσ.
+   We have that 2ασ ∈ 2π52 = 0. In the Adams E3 -page, we compute directly that
+hh0 , h24 , d0 i = h5 d0 . Then Moss’s Theorem shows that h2, θ4 , κi contains an element
+that equals to β plus possibly higher filtration terms. Note that σ{w} = 0 by using
+tmf. In fact, if σ{w} 6= 0, the only possibility is that σ{w} is detected by {e0 m}.
+This implies that ησ{w} = κ{u} because of the two nontrivial η-extensions. Since
+both η{w} and κ{u} are detected by tmf and σ = 0 in π∗ tmf , mapping this relation
+8                                            ZHOULI XU
+
+
+into tmf gives a contradiction. Besides, from tmf, we know that {d0 l} detects κ{q},
+then the contradiction also follows from κσ = 0. See [4],[9] for example.
+   Then we have that
+                        βσ ∈ h2, θ4 , κiσ = 2hθ4 , κ, σi ⊆ 2π52 = 0.
+                    2
+Therefore, hθ4 , 2, σ iσ contains 2ασ + βσ = 0. Note that ρ15 θ4 σ ∈ θ4 π22 = 0, the
+indeterminacy is hence zero. Then we have that
+                                         hθ4 , 2, σ 2 iσ = 0.
+    Therefore,
+                                      hθ4 , 2, σ 2 + κiσ = 0.
+Combined with the fact that η{g2 }σ 6= 0, this rules out η{g2 }.
+
+    This completes the proof.
+                                                                                           
+
+Remark 4.5. σ 2 + κ is another element in π14 that deserves to be called θ3 .
+Remark 4.6. We can actually show that the bracket h2, θ4 , η 2 i contains ηη5 + νθ4
+with indeterminacy {0, η 2 ρ31 }.
+
+                  5. A modified 4-fold Toda bracket for θ4
+   We have the following well-known 4-fold Toda brackets for θ4 . See [3],[13],[14]
+for example.
+                                        θ4 = h2, σ 2 , 2, σ 2 i
+                                            = h2, σ 2 , σ 2 , 2i
+                                            = h2σ, σ, 2σ, σi
+                                            = h2, σ 2 , 2σ, σi
+  All of them have zero indeterminacy. This is partially discussed in [3],[13],[14].
+For completeness, we include a proof here.
+Lemma 5.1. All four Toda brackets above have zero indeterminacy.
+Proof. In general, suppose a 4-fold Toda bracket hα1 , α2 , α3 , α4 i is defined, where
+αi ∈ πni . Then its indeterminacy is contained in the union of three types of 3-fold
+Toda brackets:
+           hα1 , α2 , πn3 +n4 +1 i, hα1 , πn2 +n3 +1 , α4 i and hπn1 +n2 +1 , α3 , α4 i.
+In our case, the indeterminacy for all of them is contained in the union of the
+following eight brackets:
+                     hπ15 , 2, σ 2 i, h2, π15 , σ 2 i, h2, σ 2 , π15 i, h2, π29 , 2i,
+
+                   hπ15 , 2σ, σi, h2σ, π15 , σi, h2σ, σ, π15 i, h2, π22 , σi.
+We will show that they are all zero. Note that π30 ∼         = Z/2 and is generated by θ4 ,
+which is indecomposable. So for each of them, we only need to show that it does
+not contain θ4 . They all follow for filtration reasons.
+            THE STRONG KERVAIRE INVARIANT PROBLEM IN DIMENSION 62                               9
+
+
+   For hπ15 , 2, σ 2 i, h2, σ 2 , π15 i, hπ15 , 2σ, σi and h2σ, σ, π15 i, the corresponding Massey
+products are all well-defined on the Adams E3 -page. Since π15 is generated by el-
+ements of filtration at least 4, the Massey products all take values in filtration at
+least 5. Therefore, by the Moss Theorem, all of them are all zero.
+   For h2, π15 , σ 2 i and h2σ, π15 , σi, the corresponding Massey products are all well-
+defined on the Adams E2 -page. Since π15 is generated by elements of filtration at
+least 4, the Massey products all take values in filtration at least 6. Therefore, by
+the Moss Theorem, all of them are all zero.
+   For h2, π22 , σi, there are essentially two Toda brackets to check: h2, νσ, σi and
+h2, η 2 κ, σi, where νσ is detected by h2 c1 . Both brackets have zero indeterminacy.
+We have that
+                              h2, νσ, σi = h2, σ, νσi = h2, σ, 0i = 0,
+and that
+                            h2, η 2 κ, σi = h2, η 2 , κσi = h2, η 2 , 0i = 0.
+Here we used the fact that 2σ = 0 and κσ = 0.
+   At last, h2, π29 , 2i = 0, since π29 = 0. This completes the proof.                          
+  Now we prove a modified 4-fold Toda bracket based on the last one. Again, note
+that π30 ∼
+         = Z/2 and is generated by θ4 .
+Theorem 5.2. θ4 = h2, σ 2 + κ, 2σ, σi with zero indeterminacy.
+Proof. We have hσ 2 + κ, 2σ, σi ⊆ π29 = 0. And
+                   h2, σ 2 + κ, 2σi ⊇ h2, σ 2 + κ, 2iσ ∋ η(σ 2 + κ)σ = 0.
+The indeterminacy of the bracket h2, σ 2 + κ, 2σi is 2π22 + 2σπ15 = 0, and we have
+h2, σ 2 + κ, 2σi = 0. Therefore, this 4-fold Toda bracket is strictly defined, and the
+indeterminacy is
+                        h2, σ 2 + κ, π15 i + h2, π22 , σi + hπ15 , 2σ, σi.
+Note that h2, σ 2 +κ, π15 i = 0 for filtration reasons as in the proof of Lemma 5.1. The
+other two parts of the indeterminacy follow from the indeterminacy of h2, σ 2 , 2σ, σi,
+which we know is zero. Then the theorem follows from the next lemma and the
+fact that θ4 = h2, σ 2 , 2σ, σi.                                                      
+Lemma 5.3. h2, κ, 2σ, σi = 0 with zero indeterminacy.
+Proof. Again, hκ, 2σ, σi ⊆ π29 = 0. And
+                             h2, κ, 2σi ⊇ h2, κ, 2iσ ∋ ηκσ = 0.
+The indeterminacy of h2, κ, 2σi is zero. Therefore, this 4-fold Toda bracket is strictly
+defined. Again, h2, κ, π15 i = 0 for filtration reasons. And the other two parts of the
+indeterminacy are zero, which follows from the indeterminacy of h2, σ 2 , 2σ, σi.
+   To see this bracket contains zero, we multiply by ν.
+                       h2, κ, 2σ, σiν ⊆ h2, κ, h2σ, σ, νii = h2, κ, ν4 i.
+Since in the Adams E4 -page hh0 , d0 , h2 h4 i = 0 in the Adams filtration 4, there is an
+element in h2, κ, ν4 i that is detected by an element in filtration strictly higher than
+4. The indeterminacy of this bracket is 2π33 + ν4 π15 = ν4 π15 , which also contains
+elements in filtration strictly higher than 4. On the other side, νθ4 is detected by
+p in Ext4 . Therefore h2, κ, ν4 i does not contain νθ4 . Then the lemma follows from
+the fact that π30 ∼= Z/2 and is generated by θ4 .                                       
+10                                      ZHOULI XU
+
+
+Remark 5.4. We can show directly that h2, κ, ν4 i = 0 with zero indeterminacy.
+
+                                   6. A few proofs
+     We first prove Lemma 2.3 which states that σπ53 = 0.
+Proof. As shown in [11], π53 ∼= Z/2 ⊕ Z/2 ⊕ Z/2 ⊕ Z/2. One set of generators can be
+chosen to be elements in ν{h5 c1 }, ν{C}, ǫ{h23h5 } and κ{u} respectively. Note that
+x′ detects ǫ{h23 h5 }. Then the lemma follows from νσ = 0, ǫσ = 0 and κσ = 0. 
+   The following lemma is shown by Tangora in [23]. We first sketch his proof, then
+give a more direct proof.
+Lemma 6.1. ρ15 θ4 = 2σ{h20 h3 h5 }.
+Proof. Tangora first showed that ρ15 θ4 6= 0 and is detected by h20 h5 d0 . We have
+                      ρ15 θ4 = ρ15 hσ, 2σ, σ, 2σi = hρ15 , σ, 2σ, σi2σ.
+Then the only possibility is that hρ15 , σ, 2σ, σi is detected by h20 h3 h5 .
+
+  We present another proof. In the Adams E3 -page, we have hh3 , h0 h3 , h30 i = h30 h4 .
+Therefore, ρ15 is contained in hσ, 2σ, 8i. Then we have
+                                  ρ15 θ4 = hσ, 2σ, 8iθ4
+                                         = σh2σ, 8, θ4 i
+                                         = σh8σ, 2, θ4 i
+                                         = σ{h30 h3 h5 }
+                                         = 2σ{h20 h3 h5 }.
+For the first equation, hσ, 2σ, 8iθ4 has no indeterminacy, hence the equality. For the
+last equation, the difference between {h30 h3 h5 } and 2{h20 h3 h5 } contains elements of
+higher filtration, namely ησθ4 in this case. The equality holds since ησ 2 θ4 = 0. 
+  Now we prove Lemma 2.4 which states that hρ15 θ4 , 2σ, σi = 0 with zero indeter-
+minacy.
+Proof. The indeterminacy is ρ15 θ4 π15 + σπ53 = ρ15 θ4 π15 . π15 is generated by ηκ
+and ρ15 . We have ρ215 = 0 and κθ4 = 0 both for filtration reasons. Therefore the
+indeterminacy is equal to ρ15 θ4 π15 = 0.
+   By Lemma 6.1, hρ15 θ4 , 2σ, σi = h2σ{h20 h3 h5 }, 2σ, σi contains σh2{h20 h3 h5 }, 2σ, σi.
+Note that h2{h20 h3 h5 }, 2σ, σi ⊆ π53 and σπ53 = 0. This completes the proof.             
+
+                                      References
+ [1] M.G. Barratt, J.D.S. Jones and M.E. Mahowald. Relations amongst Toda brackets and the
+     Kervaire invariant in dimension 62. J. London Math. Soc. 30(1984), 533–550.
+ [2] M.G. Barratt, J.D.S. Jones and M.E. Mahowald. The Kervaire invariant problem. Proceeding
+     of the Northwestern Homotopy Theory Conference (Providence, Rhode Island) (H.R.Miller
+     and S.B.Priddy, eds.) Contemporary Mathematics, vol.19, AMS, 1983, pp 9-22.
+ [3] M.G. Barratt, M.E. Mahowald and M.C.Tangora. Some differentials in the Adams spectral
+     sequence. II Topology. 9(1970), 309–316.
+ [4] Tilman Bauer. Computation of the homotopy of the spectrum tmf. arXiv:math/0311328
+ [5] W. Browder. The Kervaire invariant of framed manifolds and its generalization. Annals of
+     Mathematics 90(1969), 157-186.
+            THE STRONG KERVAIRE INVARIANT PROBLEM IN DIMENSION 62                              11
+
+
+ [6] Robert Bruner. A new differential in the Adams spectral sequence. Topology 23(1984), 271-
+     276.
+ [7] Robert Bruner. The cohomology of the mod 2 Steenrod algebra: a computer calculation.
+     http://www.math.wayne.edu/∼rrb/papers/cohom.pdf
+ [8] Robert Bruner. Private communication. 2014.
+ [9] Andre Henriques. The homotopy groups of tmf and of its localizations.
+     http://math.mit.edu/conferences/talbot/2007/tmfproc/Chapter16/TmfHomotopy.pdf
+[10] Michael A. Hill, Michael J. Hopkins and Douglas C. Ravenel. On the non-existence of elements
+     of Kervaire invariant one. arXiv:0908.3724
+[11] Daniel C. Isaksen. Stable stems. arXiv:1407.8418.
+[12] Daniel C. Isaksen. Classical and motivic Adams charts. arXiv:1401.4983.
+[13] Stanley O. Kochman. Stable homotopy groups of spheres, a computer-assisted approach.
+     Lecture Notes in Mathematics 1423, Springer-Verlag, 1990.
+[14] Stanley O. Kochman. Bordism, Stable Homotopy and Adams Spectral Sequences. Fields
+     Institute Monographs, 7, American Mathematical Society, Fields Institute, 1996.
+[15] Stanley O. Kochman and Mark E. Mahowald. On the computation of stable stems. The
+     Cech centennial (Boston, MA, 1993), 299-316, Contemp. Math., 181, Amer. Math. Soc.,
+     Providence, RI, 1995.
+[16] Wen-Hsiung Lin. A proof of the strong Kervaire invariant in dimension 62. First International
+     Congress of Chinese Mathematicians (Beijing, 1998), 351-358, AMS/IP Stud. Adv. Math.,
+     20, Amer. Math. Soc., Providence, RI, 2001.
+[17] Mark Mahowald and Martin Tangora. Some differentials in the Adams spectral sequence.
+     Topology 6 (1967) 349-369.
+[18] J.Peter May. Matric Massey products. J. Algebra 12(1969), 533-568.
+[19] R. J. Milgram. Symmetries and operations in homotopy theory. Amer. Math. Soc. Proc.
+     Symposia Pure Math., 22(1971), 203-211.
+[20] R.E. Mosher and M.C. Tangora. Cohomology operations and applications in homotopy the-
+     orey. Harper and Row, New York, 1968.
+[21] R.M.F. Moss. Secondary compositions and the Adams spectral sequence. Math. Z. 115(1970),
+     283-310.
+[22] F.P. Peterson and N. Stein. Secondary cohomology operations: two formulas. Amer. J. Math.,
+     81(1959), 281-305.
+[23] Martin Tangora. Some extension problems in the Adams spectral sequence. Aarhus Univ.,
+     Aarhus, 1970. Mat. Inst.,Aarhus Univ., Aarhus, 1970, pp. 578-587. Various Publ. Ser., No.
+     13.
+
+   Department of Mathematics, The University of Chicago, Chicago, IL 60637
+   E-mail address: xu@math.uchicago.edu
+

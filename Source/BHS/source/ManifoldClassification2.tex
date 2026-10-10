@@ -1,0 +1,212 @@
+Recall our convention that all manifolds are smooth and oriented, and all diffeomorphisms are orientation-preserving.
+Interest in the boundaries of highly connected manifolds may be traced back to the late 1950s and early 1960s, due to relations with the following question:
+
+\begin{qst} \label{qst:Classification}
+Let $n \ge 3$ be an integer.
+Is it possible to classify, or enumerate, all $(n-1)$-connected, closed $(2n)$-manifolds up to diffeomorphism?
+\end{qst}
+
+In \cite{MilnorTalk}, Milnor explains how his study of Question \ref{qst:Classification} led to the discovery of exotic spheres.  Major strides toward the classification were provided by C.T.C. Wall in \cite{Wall62}, who used Smale's $h$-cobordism theorem to classify $(n-1)$-connected, almost closed $(2n)$-manifolds.  We recall some of that work below.
+
+\begin{rec} \label{rec:manifoldinvariants}
+Suppose that $M$ is an $(n-1)$-connected, closed $(2n)$-manifold.
+By Poincar\'e duality, the middle homology group 
+$$H=H_n(M;\mathbb{Z})$$
+must be free abelian of finite rank.
+Associated to this middle homology group is a canonical bilinear, unimodular form, the intersection pairing
+$$H \otimes H \to \mathbb{Z}.$$
+The pairing is symmetric if $n$ is even and skew-symmetric if $n$ is odd---in general, one says that the pairing is \emph{$n$-symmetric}.
+
+A slightly more delicate invariant, which depends on the smooth structure of $M$, is the \emph{normal bundle data}
+$$\alpha:H \to \pi_{n-1}SO(n).$$
+Following Wall \cite{Wall62}, we define this function $\alpha$ via a theorem of Haefliger \cite{Haefliger}.
+If $n=3$, then $\pi_2 SO(3)$ is trivial, so there is nothing to define. In general, the Hurewicz theorem gives a canonical isomorphism $H \cong \pi_n(M)$.
+For $n \ge 4$,  Haefliger's theorem implies that an element $x \in \pi_n(M)$ may be represented, uniquely up to isotopy, by an embedded sphere $x:S^n \to M$.
+The normal bundle of this embedding is then $n$-dimensional, and so classified by an element $\alpha(x):S^n \to BSO(n)$.
+\end{rec}
+
+\begin{rec} \label{rec:Wallrelations}
+Wall proved universal relationships between the intersection pairing $H \otimes H \to \mathbb{Z}$ and the function $\alpha$.
+To describe them, let 
+$$HJ:\pi_{n-1} SO(n) \to \mathbb{Z}$$ 
+denote the composite of the unstable $J$-homomorphism $\pi_{n-1} SO(n) \to \pi_{2n-1} S^{n}$ and the Hopf invariant $\pi_{2n-1} S^{n} \to \mathbb{Z}$ (this composite may alternatively be described as $\pi_{n-1}$ applied to the projection $SO(n) \to S^{n-1}$).
+Furthermore, let $\tau_{S^n} \in \pi_{n-1} SO(n) \cong \pi_n BSO(n)$ denote the map classifying the tangent bundle to the $n$-sphere.
+Finally, for $x,y \in H$, let $xy$ denote the intersection pairing of $x$ with $y$, and let $x^2$ denote the intersection pairing of $x$ with itself.  
+
+For all $x,y \in H$, Wall proved \cite[Lemma 2]{Wall62} the following relations:
+\begin{equation} \label{eqn:Wallalpha2}
+x^2 = HJ(\alpha(x)), \text{ and}
+\end{equation}
+\begin{equation} \label{eqn:Wallalpha}
+\alpha(x+y) = \alpha(x)+\alpha(y) + (xy)(\tau_{S^n}).
+\end{equation}
+\end{rec}
+
+\begin{dfn} \label{dfn:nspace}
+Following \cite[p. 169]{Wall62}, we call a triple
+$$I=(H,H \otimes H \to \mathbb{Z}, \alpha)$$
+an \emph{$n$-space} whenever $H$ is a free, finite rank abelian group, $H \otimes H \to \mathbb{Z}$ is a unimodular, $n$-symmetric bilinear form, $\alpha$ is a map of pointed sets, and the triple $I$ satisfies the relations $(\ref{eqn:Wallalpha2})$ and $(\ref{eqn:Wallalpha})$ of \Cref{rec:Wallrelations}.
+\end{dfn}
+
+\begin{dfn}
+Recollections \ref{rec:manifoldinvariants} and \ref{rec:Wallrelations} allow us to define a map of sets
+$$
+\begin{tikzcd}
+\left\{ \begin{matrix} (n-1)\text{-connected,} \\ \text{closed }2n\text{-manifolds} \end{matrix} \right\}\hspace{-1.2ex}\raisebox{-1.5ex}{\bigg/}
+\hspace{-.8ex}\raisebox{-2ex}{\text{diffeomorphism}}
+\arrow{r}{\Psi} &  
+\left\{\begin{matrix} n\text{-spaces} \\ \end{matrix} \right\}\hspace{-1.2ex}\raisebox{-1.5ex}{\bigg/}
+\hspace{-.8ex}\raisebox{-2ex}{\text{isomorphism.}}
+\end{tikzcd}
+$$
+%
+%$$
+%\begin{tikzcd}
+%\left\{ \begin{matrix} (n-1)\text{-connected,} \\ \text{closed }2n\text{-manifolds} \end{matrix} \right\}\hspace{-1.2ex}\raisebox{-1.5ex}{\bigg/}
+%\hspace{-.8ex}\raisebox{-2ex}{\text{diffeomorphism}}
+%\arrow{r}{\Psi} &  
+%\left\{\begin{matrix} H,\hspace{0.5ex} H \otimes H \to \mathbb{Z}, \\ \alpha:H \to \pi_{n-1} SO(n) \end{matrix} \right\}\hspace{-1.2ex}\raisebox{-1.5ex}{\bigg/}
+%\hspace{-.8ex}\raisebox{-2ex}{\text{isomorphism,}}
+%\end{tikzcd}
+%$$
+%where the codomain consists of isomorphism classes of $n$-spaces.
+An isomorphism of $n$-spaces is just an isomorphism of the underlying abelian group $H$ that respects both the bilinear form $H \otimes H \to \mathbb{Z}$ and the function $\alpha$.
+\end{dfn}
+
+The theorem below was first proved in \cite[p.170]{Wall62}.
+
+\begin{thm}[Wall]
+Suppose that $M$ and $N$ are two $(n-1)$-connected, closed $(2n)$-manifolds such that $\Psi(M)=\Psi(N)$.  Then there exists a homotopy sphere $\Sigma \in \Theta_{2n}$ such that $M \sharp \Sigma$ is diffeomorphic to $N$.
+\end{thm}
+
+\begin{rmk} \label{rmk:inertia}
+Suppose that $M$ is an $(n-1)$-connected $2n$-manifold and that $\Sigma \in \Theta_{2n}$ is a homotopy sphere not diffeomorphic to $S^{2n}$.  One may ask whether the diffeomorphism types of $M$ and $M \sharp \Sigma$ differ.  Wall proved this to be the case whenever $n \not \equiv 0,1,4$ mod $8$ \cite[p.289]{Wall67} (in other words, when $n \not \equiv 0,1,4$ mod $8$, Wall proved that the inertia group of $M$ is trivial).
+Building on work of Kosi\'{n}ski \cite{Kosinski}, Stolz expanded this to show  that, if $n \ge 106$ and $n \equiv 0$ mod $4$, then the diffeomorphism types of $M$ and $M \sharp \Sigma$ differ \cite[Theorem D]{StolzBook}.
+
+Our theorems settle, at least in large dimensions, the remaining case $n \equiv 1$ mod $8$.
+Indeed, work of Wall \cite[Theorem 10]{Wall67} proves that, if $M$ and $M \sharp \Sigma$ have the same diffeomorphism type, then $\Sigma$ is the boundary of an $(n-1)$-connected $(2n+1)$-manifold.
+Using Theorem \ref{thm:mainboundary}, we may conclude in dimensions $2n+1 > 465$ that $\Sigma$ bounds a parallelizable manifold.
+However, any $\Sigma \in \Theta_{2n}$ that bounds a parallelizable manifold must be standard, by \cite[Theorem 5.1]{KervaireMilnor}. In sufficiently large dimensions, it follows that the preimage under $\Psi$ of any triple is either empty, or consists of exactly $|\Theta_{2n}|$ different diffeomorphism types.
+\end{rmk}
+
+In light of the above theorem and remark, the complete enumeration of $(n-1)$-connected $(2n)$-manifolds is reduced, in sufficiently large dimensions, to the following question:
+
+\begin{qst} \label{qst:image-of-psi}
+What is the image of the map $\Psi$?  In other words, what combinations of middle homology group, intersection pairing, and normal bundle data arise from $(n-1)$-connected, closed $(2n)$-manifolds?
+\end{qst}
+
+\begin{rmk}
+Wall solved Question \ref{qst:image-of-psi} for all $n \equiv 6$ mod $8$ \cite[Case 4]{Wall62}. More specifically, the solution may be read off from \cite[Proposition 5]{Wall62} together with the fact that $\pi_{n-1} SO =0$ for $n \equiv 6$ mod $8$ (so $\chi=0$, always).  Schultz \cite[Corollary 3.2]{Schultz} solved Question \ref{qst:image-of-psi} in the case $n \equiv 2$ mod $8$ (c.f. the discussion immediately subsequent to  \cite[Corollary 3.2]{Schultz}, about the work of Frank). Stolz \cite[Theorems B \& C]{StolzBook} settled the case $n \equiv 1$ mod $8$ when $n \ge 113$.
+\end{rmk}
+
+\begin{exm}
+Suppose that $n>7$ is $\equiv 3,5,$ or $7$ modulo $8$.  In these cases, the function
+%the relation $(\ref{eqn:Wallalpha})$ of \Cref{rec:Wallrelations} expresses \cite[Case 6]{Wall62} the fact that
+$$\alpha:H \to \pi_{n-1} SO(n) \cong \mathbb{Z}/2\mathbb{Z}$$
+satisfies the formula
+$$\alpha(x+y) = \alpha(x) + \alpha(y) + (xy \text{ mod }2).$$
+In other words, $\alpha$ is a quadratic refinement of the intersection pairing, and so one can associate an Arf--Kervaire invariant
+$$\Phi(\alpha) \in \mathbb{Z}/2\mathbb{Z}.$$
+Thus, if one is able to settle Question \ref{qst:image-of-psi}, then one is in particular able to answer the following question:
+\end{exm}
+
+\begin{qst} \label{qst:kervaire}
+Suppose $n \equiv 3,5,$ or $7$ mod $8$.  Does there exist an $(n-1)$-connected, closed $(2n)$-manifold of Kervaire invariant $1$?
+\end{qst}
+
+\begin{rmk}
+Barratt, Jones, and Mahowald constructed a $62$-dimensional manifold of Kervaire Invariant $1$ \cite{BJMKervaire} (cf. \cite{XuKervaire}).  Such manifolds are also known to exist in dimensions $2,6,14,$ and $30$.  On the other hand, deep work of Hill-- Hopkins--Ravenel \cite{HHR} proves that there is no manifold of Kervaire Invariant $1$ of dimension larger than $126$.
+\end{rmk}
+
+\begin{rmk}
+When $n \equiv 3,5,$ or $7$ mod $8$, Wall completely reduced \cite[Lemma 5]{Wall62} Question \ref{qst:image-of-psi} to Question \ref{qst:kervaire}.  Question \ref{qst:kervaire} was settled by Brown and Peterson for $n \equiv 5$ mod $8$ \cite{BPKervaire}, by Browder for $n \equiv 3$ mod $8$ \cite{BrowderKervaire}, and by Hill--Hopkins--Ravenel for $n \equiv 7$ mod $8$ and $n>63$ \cite{HHR}.
+\end{rmk}
+
+For $n \ge 113$, the above work leaves Question \ref{qst:image-of-psi} open only when $n \equiv 0$ modulo $4$, and so we focus on this case now.
+
+\begin{rec} \label{rec:chi}
+Suppose $n \ge 12$, $n \equiv 0$ mod $4$, and $M$ is an $(n-1)$-connected, closed $(2n)$-manifold with middle homology group $H$ (the case $n=8$ has slightly different features, because of the existence of Hopf invariant $1$ elements and the octonionic projective plane).  Since the intersection pairing
+$$H \otimes H \to \mathbb{Z}$$
+is unimodular, it provides a canonical isomorphism between $H$ and its dual $\mathrm{Hom}(H,\mathbb{Z})$.
+Wall notes \cite[Case 1]{Wall62} that the composite
+$$H \stackrel{\alpha}{\longrightarrow} \pi_{n-1} SO(n) \longrightarrow \pi_{n-1} SO \cong \mathbb{Z}$$
+is a homomorphism of abelian groups (by relation (2) in \Cref{rec:Wallrelations} together with the fact that spheres are stably parallelizable), and so via the intersection pairing determines a class $\chi(\alpha) \in H$.
+In fact, the function $\alpha$ is entirely determined by the relations $(\ref{eqn:Wallalpha2})$ and $(\ref{eqn:Wallalpha})$ and the class $\chi(\alpha)$ \cite[p. 174]{Wall62}.
+\end{rec}
+
+\begin{cnstr}(\cite{Wall62}) \label{cnstr:Wall}
+Let $n \ge 3$ denote any integer, and let 
+$$I = (H,H \otimes H \to \mathbb{Z},\alpha)$$
+denote an $n$-space.  From this data Wall constructs an $(n-1)$-connected, almost closed $(2n)$-manifold $N_I$ \cite[p.170]{Wall62}.
+Wall further notes that there is an $(n-1)$-connected, closed $(2n)$-manifold $M$, with $\Psi(M)=I$, if and only if $\partial N_I$ is diffeomorphic to $S^{2n-1}$ \cite[p.177]{Wall62}.
+\end{cnstr}
+
+Suppose now that $n \ge 12$ is a multiple of $4$.
+Given an $n$-space $I$, it remains to understand the boundary $\partial N_I \in \Theta_{2n-1}$.
+%Some partial results about this boundary were proved as \cite[Lemma 4]{Wall62}, \cite[Theorem 3]{Wall62}, and \cite[Propositions 5 \& 6]{Wall62} (cf. \cite{Anderson}).
+
+By work of Brumfiel \cite{Brumfiel}, when $n \equiv 0$ mod $4$ the Kervaire--Milnor exact sequence splits to give a direct sum decomposition
+$$\Theta_{2n-1} \cong \mathrm{bP}_{2n} \oplus \mathrm{coker}(J)_{2n-1}.$$
+It thus suffices to analyze separately the images of $\partial N_I$ within $\mathrm{bP}_{2n}$ and $\mathrm{coker}(J)_{2n-1}$.
+By applying a formula of Stolz \cite{StolzbP} and elaborating on work of Lampe \cite{Lampe}, Krannich and Reinhold \cite[Lemma 2.7]{KrannichCharacteristic} determined when the image of $\partial N_I$ vanishes in $\mathrm{bP}_{2n}$:
+
+\begin{dfn} \label{dfn:manynumbers}
+Let $m>2$ denote a positive integer.  Following \cite{KrannichCharacteristic}, we let 
+\begin{itemize}
+\item $B_{2m}$ denote the $(2m)^{\mathrm{th}}$ Bernoulli number.
+\item $j_{m}$ denote $$j_{m}=\mathrm{denom}\left(\frac{\abs{B_{2m}}}{4m}\right),$$ the denominator of the absolute value of $\frac{B_{2m}}{4m}$ when written in lowest terms.
+\item $a_m$ denote $1$ if $m$ is even and $2$ if $m$ is odd.
+\item $\sigma_m$ denote the integer $$\sigma_m=a_m 2^{2m+1}(2^{2m-1}-1)\mathrm{num}\left(\frac{\abs{B_{2m}}}{4m}\right).$$
+\item $c_m$ and $d_m$ denote integers such that
+$$c_m \mathrm{num}\left(\frac{\abs{B_{2m}}}{4m}\right) + d_m \mathrm{denom}\left(\frac{\abs{B_{2m}}}{4m}\right) = 1.$$
+\end{itemize}
+If $m=2k>4$ is an even integer, we additionally follow \cite[Lemma 2.7]{KrannichCharacteristic} and let $s(Q)_{2k}$ denote the integer
+$$s(Q)_{2k} = \frac{-1}{8 j^2_{k}}
+\left( \sigma_k^2 + a_k^2 \sigma_{2k}\mathrm{num}\left(\frac{\abs{B_{2k}}}{4k}\right)\right)
+\left( c_{2k} \mathrm{num}\left(\frac{\abs{B_{2k}}}{4k}\right) + 2(-1)^{k} d_{2k} j_k \right).
+$$
+\end{dfn}
+
+\begin{thm}[Lampe, Krannich--Reinhold] Suppose $n \ge 12$ is a multiple of $4$, and let $I$ denote an $n$-space.  Then the boundary $\partial N_I$ has trivial image in $\mathrm{bP}_{2n}$ if and only if
+$$\frac{\mathrm{sig}}{8}+\frac{\chi(\alpha)^2}{2}s(Q)_{n/2} \equiv 0 \text{ modulo } \frac{\sigma_{n/2}}{8}.$$
+Here, $\mathrm{sig}$ denotes the \emph{signature} of the intersection form, and $\chi(\alpha)^2$ refers to the product of $\chi(\alpha)$ with itself via the intersection form.
+\end{thm}
+
+\begin{proof}
+See \cite[Section 2]{KrannichCharacteristic} and \cite[Section 3.2.2]{KrannichMappingClass}.
+\end{proof}
+
+We thus obtain, as a consequence of our work in this paper, the following result:
+
+\begin{thm} \label{thm:classification}
+Suppose $n>124$ is divisible by $4$.  Then there exists an $(n-1)$-connected, closed $(2n)$-manifold with middle homology group $H$, intersection pairing $H \otimes H \to \mathbb{Z}$, and normal bundle data $\alpha:H \to \pi_{n-1}SO(n)$ if and only if the following conditions both hold:
+\begin{enumerate}
+\item The collection $(H, H \otimes H \to \mathbb{Z},\alpha)$ forms an $n$-space in the sense of \Cref{dfn:nspace}.
+\item The relation 
+$$\frac{\mathrm{sig}}{8}+\frac{\chi(\alpha)^2}{2}s(Q)_{n/2} \equiv 0 \text{ modulo } \frac{\sigma_{n/2}}{8}$$
+ is satisfied, where $\mathrm{sig}$ denotes the signature of the intersection pairing and $\chi(\alpha)$ is defined as in \Cref{rec:chi}.
+\end{enumerate}
+If the conditions hold, so that a manifold exists, then the number of choices of such up to diffeomorphism is exactly $|\Theta_{2n}| = |\mathrm{coker}(J)_{2n}|,$ and they form a free orbit under the $\Theta_{2n}$ action by connected sum.
+\end{thm}
+
+\begin{proof}
+The last sentence of the theorem follows, as in Remark \ref{rmk:inertia}, from Stolz's theorem \cite[Theorem D]{StolzBook}.  The remainder of the result follows by combining the above discussion with Theorem \ref{thm:strongmainboundary}.
+\end{proof}
+
+
+\begin{rmk}
+  Our results also have implications for the classification of $(n-1)$-connected, closed $(2n+1)$-manifolds.  For $n \ge 8$, Wall classified all $(n-1)$-connected, almost closed $(2n+1)$-manifolds \cite{Wall67}.  Since $bP_{2n+1}$ is trivial, our Theorem \ref{thm:mainboundary} proves that the boundaries of Wall's almost closed manifolds are diffeomorphic to $S^{2n}$ whenever $n>232$.  This was previously unknown for $n \equiv 1$ modulo $8$ \cite[Theorem B]{StolzBook}.  There follows a classification of $(n-1)$-connected, closed $(2n+1)$-manifolds up to connected sum with a homotopy sphere.
+
+  The problem of determining the inertia groups is somewhat subtle,
+  but tractable \cite[Theorem D]{StolzBook}.
+  In later work which builds on the methods developed in this paper the authors have analyzed boundary spheres and inertia groups substantially deeper into the metastable range \cite{burklund2020inertia}.
+  % It would be very interesting to see the methods of this paper applied to classification problems deeper in the metastable range.
+\end{rmk}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Main"
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

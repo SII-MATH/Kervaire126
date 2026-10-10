@@ -1,0 +1,435 @@
+In this subsection we refine the statement of \Cref{thm:main} into a sequence of precise claims which we will verify across the remainder of the paper. We summarized both \Cref{thm:C-main} and \Cref{thm:main} by saying that the category of Artin--Tate motivic spectra is a 1-parameter deformation of a purely topological category. To start, we clarify this, first over $\C$ and then over $\R$.
+
+\begin{enumerate}
+\item There is a distinguished element of the $p$-complete homotopy groups over $\C$,
+  $\tau \in \pi_{0,-1}\Ss_p$, which maps to $1$ under Betti realization \footnote{The Betti realization map $\pi^{\C}_{0,-1}\Ss_p \to \pi_0\Ss_p$ is an isomorphism so the latter property uniquely identifies $\tau$.}. \cite[Lemma 23]{HKO}
+\item The Betti realization functor factors through the category of $\tau$-local objects and provides a symmetric monoidal equivalence
+  \[ \Mod ( \SHCat ; \Ss_p[\tau^{-1}] ) \simeq \Sp_{ip}. \]
+  The idea for this goes back to \cite[Section 2.6]{DI}, but was first proven in \cite{Pstragowski}.  
+\item The category $\SHCat$ can be equipped with the structure of a $\Sp_{ip}^{\Fil}$-algebra.
+  More explicitly, this means we have a symmetric monoidal left adjoint
+  \[ i^* : \Sp_{ip}^{\Fil} \to \SHCat, \]
+  which sends the shift map in $\Sp_{ip}^{\Fil}$ to $\tau$. As a consequence of this $C\tau$ acquires the structure of a commutative algebra, a fact originally proven by Gheorghe \cite{Ctau}.
+\item The category of modules over $C\tau$ is equivalent to a renormalization of the derived category of even $\BP_*\BP$-comodules. More specifically we have
+  \[ \Mod ( \SHCat ; C\tau ) \simeq \IndCoh ( \Mfg )_{ip}. \]
+  This equivalence sends $C\ta \otimes \Ss^{s,w}$ to $\Sigma^{s-2w} \omega_{\mathbb{G}/\Mfg} ^{\otimes w}$, 
+  and on the level of homotopy groups it induces an equivalence
+    \[ \pi_{s,w}^\C(C\tau) \cong \Ext_{\BP_*\BP}^{2w-s,w}(\BP_*, \BP_*). \] \todo{There is a small $p$-completion issue here...}
+    The equivalence of categories is due to Gheorghe--Wang--Xu \cite{ctauactalol}, though the above isomorphism of groups was first proven by Isaksen \cite[Proposition 6.2.5]{StableStems} and then upgraded to an isomorphism of rings with all higher structure by Gheorghe \cite{Ctau}.
+  \item There is an equivalence of symmetric monoidal categories between $\SHCat$ and $\Syn_{\MU, ip}^{\even}$, where the latter is the category of \emph{even} $\MU$-\emph{synthetic spectra} constructed in \cite{Pstragowski}. Notably, Pstr\k{a}gowski's construction uses no algebraic geometry, and requires only knowledge of the homotopy commutative ring object $\MU$ in $\Sp$. The comparison between these two categories proceeds via the close relationship between $\MGL$ and $\MU$. %first worked out by Levine. \todo{Was it?}
+\item The adjunction $i$ is affine in the sense that there is a commutative algebra $R^{\C}_\bullet$ in $\Sp_{ip}^{\Fil}$ and an equivalence of symmetric monoidal categories under $\Sp_{ip}^{\Fil}$
+  \[  \SHCat \simeq \Mod ( \Sp_{ip}^{\Fil} ; R^{\C}_\bullet ). \]
+  Moreover, the commutative algebra $R^\C_\bullet$ admits an explicit construction which uses no algebraic geometry. It is given by
+  \[ R_\bullet^{\C} \coloneqq \mathrm{Tot}^* \left( \tau_{\geq 2\bullet} \MU_p^{\otimes * + 1} \right). \]
+    This construction uses only the commutative algebra $\MU$ in $\Sp$, and again the comparison proceeds via the close relationship between $\MGL$ and $\MU$. This approach is due to Gheorghe--Isaksen--Krause--Ricka \cite{cmmf}.
+\end{enumerate}
+
+%The key to understanding why we view $\SHCat$ as a 1-parameter deformation is point (2).
+%Geometrically, a $1$-parameter deformation is a family over $\AA^1$.
+%At the level of categories this means having a $\QCoh(\AA^1)$-algebra structure.
+%Certain $1$-parameter deformations come with the extra structure of compatible isomorphisms relating the fiber over $\lambda$ and the fiber over $a\lambda$ for $a$ invertible.
+%In the language of stacks we may describe this as having a family over $\AA^1/\G_m$.
+%At the level of categories this means having a $\QCoh(\AA^1/\G_m)$-algebra structure.
+%Finally, we recall that in spectral algebraic geometry there is an equivalence,
+%$\QCoh(\AA^1/\G_m) \simeq \Sp^{\Fil}$ \footnote{By base-change a similar results holds over any base.}.
+%Tracking through the various maps one further finds that the coordinate on $\AA^1$ corresponds to the shift map on filtered objects.
+
+%In practice deformations typically come in two flavors.
+%The first is where we examine how a central fiber of interest can deform (often over a formal base).%
+%Visually one might image a central object spreading outwards.
+%An example of this is the picture suggested by the Bogomolov--Tian--Todorov theorem on the unobstructedness of deformations of Calabi-Yau varieties over $\C$.
+%The second is where we see a family of objects of interest degenerating inward to some special fiber. An example of this is the picture suggested by an elliptic fibration, with a family of elliptic curves degenerating towards a special point where we get a singular curve.
+%Our situation of interest is firmly of the second type.
+%Thus, if we wish to be more specific $\SHCat$ provides a degeneration of $\Sp_{ip}$ inward to an algebraic special fiber. More than just algebraic, the special fiber is algorithmic, i.e. any specific question about finite objects can be answered by a computer in finite time.
+
+In fact, every aspect of the picture over $\C$ extends to $\R$ in the simplest reasonable way.
+The reader who has previously studied $\R$-motivic spectra may find this rather surprising (as the authors did), and we suggest that this highlights the primacy of the Artin--Tate category over the Tate category.
+
+\begin{enumerate}
+\item There is a distinguished element of the $p$-complete homotopy groups over $\R$,
+  $\ta \in \pi_{0,0,-1}\Ss_p$, which maps to $1$ under Betti realization \footnote{As above, the Betti realization map $\pi^{\R}_{0,0,-1}\Ss_p \to \pi^{C_2}_0\Ss_p$ is an isomorphism so $\ta$ is uniquely identified.}. We will construct $\ta$ in \Cref{sec:ta}.
+\item The Betti realization functor factors through the category of $\ta$-local objects, and provides a symmetric monoidal equivalence
+  \[ \Mod ( \SHRat ; \Ss_2[\ta^{-1}] ) \simeq \Sp_{C_2,i2}. \]
+  This will be proven as the main theorem of \Cref{sec:homology}.  
+\item The category $\SHRat$ can be equipped with the structure of a $\Sp_{i2}^{\Fil}$-algebra.
+  More explicitly, this means we have a symmetric monoidal left adjoint
+  \[ i^* : \Sp_{i2}^{\Fil} \to \SHRat \]
+  which sends the shift map in $\Sp_{i2}^{\Fil}$ to $\ta$.
+  As a consequence of this $C\ta$ acquires the structure of a commutative algebra.
+  We may also regard $\SHRat$ as a $\Sp_{C_2}$-algebra via the functor $c_{\C/\R}$.
+  Tensoring these two functors together we obtain a symmetric monoidal left adjoint
+  \[ i^* : \Sp_{C_2, i2}^{\Fil} \to \SHRat. \]
+    These statements will be proven in \Cref{sec:top} as part of \Cref{prop:top-diagram}.
+\item The category of modules over $C\ta$ is equivalent to a renormalization of the derived category of an abelian category of equivariant $\BP_*\BP$-comodules. More precisely, we have an equivalence of presentably symmetric monoidal categories
+  \[ \Mod ( \SHRat ; C\ta ) \simeq \Mod(\Sp_{C_2} ; \uZt) \otimes_{\Z} \IndCoh ( \Mfg ). \]
+  This equivalence sends $C\ta \otimes \Ss^{p,q,w}$ to $\Sigma^{(p-w)+(q-w)\sigma} \uZt \otimes \omega_{\mathbb{G}/\Mfg} ^{\otimes w}$ and on the level of tri-graded rings of homotopy groups it induces an isomorphism \footnote{If one wants the tensor product can be moved outside the Ext, but then it must be taken in a derived sense.}
+  \[ \pi_{p,q,w}^\R C\ta \cong \bigoplus_{w+a-s = p} \Ext_{\BP_*\BP}^{s,2w}(\BP_*, \BP_* \otimes \pi_{a + (q-w) \sigma}^{C_2} \uZt). \]
+  This will be proven as the main theorem of \Cref{sec:cta}.
+\item The adjunction $i$ is affine in the sense that there is a commutative algebra
+  $R^{\R}_\bullet$ in $\Sp_{C_2,i2}^{\Fil}$ and an equivalence of presentably symmetric monoidal categories under $\Sp_{C_2,i2}^{\Fil}$
+  \[ \SHRat \simeq \Mod ( \Sp_{C_2,i2}^{\Fil} ; R^{\R}_\bullet ). \]
+  Moreover, the commutative algebra $R^\R_\bullet$ admits an explicit construction which uses no algebraic geometry. It is given by
+  \[ R_\bullet^{\R} \coloneqq \mathrm{Tot}^* \left( P_{2\bullet} \MU_{\R,2}^{\otimes * + 1} \right), \]
+  where $P_{n}$ is the functor which takes the $n^{\mathrm{th}}$ slice cover of a $C_2$ spectrum.
+    This construction uses only the commutative algebra $\MU_\R$ in $\Sp_{C_2}$ introduced by Landweber \cite{LandweberI, LandweberII}. %\todo{This seems to be the original cite... or did you want something more modern?}
+  The comparison proceeds via understanding the close relationship between $\MGL$ and $\MU_\R$ over $\R$.
+  This will be proven as the main theorem of \Cref{sec:top}.
+\end{enumerate}
+
+
+%% \begin{prop}
+%%   There is an equivalence of categories,
+%%   \[ \SHR[2^{-1}] \simeq \Sp[2^{-1}] \times \SHC[2^{-1}]. \]
+%% \end{prop}
+
+%% \begin{proof}
+%%   An idempotent in $\pi_0\o$ produces a product decomposition of the category.
+%%   After inverting 2 we have $\left( \frac{[C_2]}{2} \right)^2 = \frac{[C_2]}{2}$.
+%%   This splits the category $\SHR[2^{-1}]$ into two pieces.
+%%   In one summand we have $[C_2]=0$ and $\rho$ is invertible.
+%%   In the other summand $[C_2]$ is invertible.
+%%   In \cite{Tom?}, Bachmann shows that $\SHR[2^{-1}, \rho^{-1}] \simeq \Sp$.
+
+%%   We identify the category where $2$ and $[C_2]$ are invertible as follows.
+%%   Using the fact that $c_{\C/\R}$ is fully faithful we can use some standard equivariant tricks.
+%%   The object $\Spec(\C)$ which corresponds to $C_{2+}$ is self-dual and if let $p : \Spec(\C) \to \Spec(\R)$ be the standard projection map, then the map $[C_2]$ can be factored as the composition
+%%   \[ \Ss \xrightarrow{\mathbb{D}p} \Spec(\C) \xrightarrow{p} \Ss. \]
+%%   From equivaraint homotopy theory we know that $\mathbb{D}p \circ p = 2$.
+%%   Thus, we have an equivalence $\Ss[2^{-1}, [C_2]^{-1}] \simeq \Spec(\C)[2^{-1}]$.
+%%   Note that $[C_2]=2$ as an endomorphism of $\Spec(\C)$ so inverting $[C_2]$ has no further effect once we've inverted $2$.
+%%   Using the equivalence between $\Mod ( \SHR ; \Spec(\C))$ and $\SHC$ discussed in the previous subsection we obtain the desired indentification.
+%% \end{proof}
+
+
+
+Using the second special element of the tri-graded homotopy groups of the sphere, $a \in \pi_{0,-1,0}^\R \Ss$, we can delve further into the structure of $\SHRat$. In order to do this we begin with a digression on the element $a_{\sigma}$ in $C_2$-equivariant homotopy theory.
+
+\begin{prop}
+  The category $\Sp_{C_2}$ can be viewed as a 1-parameter family with coordinate $a_\sigma$, special fiber $\Sp$ and generic fiber $\Sp$ in the sense that:
+  \begin{itemize}
+  \item The category of $a$-local objects can be identified with spectra, i.e.
+    there is an equivalence of presentably symmetric monoidal categories
+    \[ \Mod ( \Sp_{C_2} ; \Ss[ a_{\sigma}^{-1} ] ) \simeq \Sp. \]
+  \item The cofiber of $a_\sigma$, which we will denote $Ca_\sigma$, can be endowed with a commutative algebra structure and there is an equivalence of presentably symmetric monoidal categories
+    \[ \Mod ( \Sp_{C_2} ; Ca_{\sigma} ) \simeq \Sp. \]
+    \item There is a monoidal left adjoint
+      \[ i^* : \Sp^{\Gr} \to \Sp_{C_2}, \]
+      which sends $\o(1)$ to $\Ss^{\sigma}$ \footnote{The authors will return to the question of whether this functor can be upgraded to a monoidal functor in from filtered spectra in a future work.}. Moreover, this adjunction is affine in the sense that we have an equivalence of categories
+      \[ \Sp_{C_2} \simeq \Mod ( \Sp^{\Gr} ; R_\bullet^{C_2}), \]
+      where $R_n^{C_2} \simeq \Sigma\R \mathrm{P}^{-n-1}_{-\infty}$.
+  \end{itemize}  
+\end{prop}
+
+This result is certainly well known to experts. %\todo{Cite who?} \todo{X to doubt.}
+We give a proof in \Cref{app:boilerplate} as Examples \ref{exm:c2-underlying} and \ref{exm:c2-graded}.
+Since therein the pair of functors $\Phi^e$ and $\Phi^{C_2}$ out of $\Sp_{C_2}$ become identified with modding out by $a_\sigma$ and inverting $a_\sigma$ respectively, this proposition produces a diagram of symmetric monoidal left adjoints
+\begin{center}
+  \begin{tikzcd}
+    \Sp & & \Sp_{C_2} \ar[ll, "\Phi^{C_2}"']  \ar[dl, "{(-)[a_\sigma^{-1}]}"] \ar[dr, "Ca \otimes -"'] \ar[rr, "\Phi^e"] & & \Sp \\
+     & \Mod ( \Sp_{C_2} ; \Ss[a_\sigma^{-1}] ) \ar[ul, "\simeq"'] & & \Mod ( \Sp_{C_2} ; Ca ) \ar[ur, "\simeq"] . & 
+  \end{tikzcd}
+\end{center}
+
+We are now free to use the functor $c_{\C/\R}$ to push our description of $\Sp_{C_2}$ as a 1-parameter deformation into $\SHRat$ and obtain a description of that category as a 2-parameter deformation of $\Sp_{i2}$ with coordinates $\ta$ and $a$. For example, we can give $Ca$ the structure of a commutative algebra since $c_{\C/\R}(a_\sigma) = a$. Note that by \Cref{prop:comp} the commutative algebra structure obtained in this way is the same as the one coming from the equivalence $Ca \simeq \Spec(\C)$. 
+
+While the 1-parameter deformations considered up to now had only a special and a generic fiber, when considered as a 2-parameter deformation $\SHRat$ has various ``limiting behavoirs'' which we presently study. Since each parameter can be set to either $0$ or $1$,
+or left unspecified, there are 9 total categories of interest.
+We summarize what we know in the following table:
+
+{\renewcommand{\arraystretch}{1.4}
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|} \hline
+    & unspecified & $\ta = 0$ & $\ta = 1$ \\\hline
+    unspecified & $\SHRat$ & $\Mod(\Sp_{C_2, i2} ; \uZt) \otimes_{\Z} \IndCoh ( \Mfg )$ & $\Sp_{C_2,i2}$ \\\hline
+    $a = 0$ & $\SHC^{\at}_{i2}$ & $\IndCoh ( \Mfg )_{i2}$ & $\Sp_{i2}$ \\\hline
+    $a = 1$ & ? & $\Mod(\Sp ; \F_2[u_{2\sigma}]) \otimes_\Z \IndCoh ( \Mfg )$ & $\Sp_{i2}$ \\\hline
+  \end{tabular}
+\end{center}
+}
+
+%% \begin{center}
+%%   \begin{tabular}{|c|c|c|c|c|} \hline
+%%     & unspecified & $\ta = 0$ & $\ta = 1$ \\\hline
+%%     un & $\SHRat$ & $\uZ_p$-module $\BP_*\BP$-comodules & $\Sp_{C_2}$ \\\hline
+%%     $a = 0$ & $\SHCat$ & $\BP_*\BP$-comodules & $\Sp$ \\\hline
+%%     $a = 1$ & ? & $\F_2[u^2]$-module $\BP_*\BP$-comodules & $\Sp$ \\\hline
+%%   \end{tabular}
+%% \end{center}
+
+The only identification in this table which we have not yet discussed is the one in the bottom middle.
+However, one can easily obtain this from the identification of $C\ta$-modules and \Cref{lem:tensor-mod}:
+\begin{align*}
+  \Mod( \SHRat ; C\ta[a^{-1}] ) &\simeq \Sp_{i2} \otimes_{\Sp_{C_2,i2}} \Mod( \SHRat ; C\ta ) \\
+  &\simeq \Sp_{i2} \otimes_{\Sp_{C_2,i2}} \Mod(\Sp_{C_2,i2} ; \uZt) \otimes_{\Z} \IndCoh ( \Mfg ) \\
+  &\simeq \Mod(\Sp_{i2} ; \Phi^{C_2} \uZt) \otimes_{\Z} \IndCoh ( \Mfg ) \\
+  &\simeq \Mod(\Sp ; \F_2[u_{2\sigma}]) \otimes_{\Z} \IndCoh ( \Mfg ) ,
+\end{align*}
+where the final step is just the identification of $\Phi^{C_2}\uZ$ with $\F_2[u_{2\sigma}]$ where $u_{2\sigma}$ is a polynomial generator in degree 2. As a corollary, we can give a description of the tri-graded homotopy groups of several objects in $\SHRat$ in terms of better understood categories.
+
+\begin{cor}
+  There are isomorphisms of rings:
+  \begin{enumerate}
+  \item $\pi_{p,q,w}^\R(Ca) \cong \pi_{p+q,w}^\C\Ss $,
+  \item $\pi_{p,q,w}^\R(Ca \otimes C\ta) \cong \Ext_{\BP_*\BP}^{2w-p-q,w}(\BP_*, \BP_*) $,
+  \item $\pi_{p,q,w}^\R(Ca[\ta^{-1}]_p) \cong \pi_{p+q}\Ss_p $,
+  \item $\pi_{p,q,w}^\R(C\ta) \cong \bigoplus_{w+a-s = p} \Ext_{\BP_*\BP}^{s,2w}(\BP_*, \BP_* \otimes \pi_{a + (q-w) \sigma}^{C_2} \uZt)$,
+  \item $\pi_{p,q,w}^\R(C\ta[a^{-1}]) \cong \bigoplus_{w+2a-s = p} \left( \F_2\{u^{2a}\} \otimes_{\F_2} \Ext_{\BP_*\BP}^{s,2w}(\BP_*, \BP_*/2)\right) $,    
+  \item $\pi_{p,q,w}^\R(\Ss_2[\ta^{-1}]) \cong \pi_{p,q}^{C_2}\Ss_2$,
+  \item $\pi_{p,q,w}(\Ss_2[a^{-1}, \ta^{-1}]) \cong \pi_{p}\Ss_2$.
+  \end{enumerate}  
+\end{cor}
+
+We now turn to the category of $a$-local objects, only labelled ``?'' in the table above. It is one of the most mysterious actors in the story told in this paper and we shall devote \Cref{sec:a-local} to its study. As we shall see, it records a deformation of the category of spectra sitting between that which corresponds to the Adams--Novikov spectral sequence and that which corresponds to the classical Adams spectral sequence. The role it plays in mediating between these two spectral sequences remains to be understood.
+
+Since $a = c_{\C/\R}(a_\sigma)$ and $a_\sigma = \b (a) $, we can construct a diagram of symmetric monoidal left adjoints
+\begin{center} \begin{tikzcd}
+    \SHR \ar[r, "{(-)[a^{-1}]}"] \ar[d,"\b"] &
+    \Mod ( \SHR ; \Ss[a^{-1}] ) \ar[d,"\b"] \\    
+    \Sp_{C_2} \ar[r, "\Phi^{C_2}"] &
+    \Sp .
+\end{tikzcd} \end{center}
+%% where the only functors we have yet to discuss are $a$-localization and geometric fixed points.
+%% Since geometric fixed points for $C_2$ can be described as localization at $a_\sigma$ and $\b(a) = a_\sigma$ we obtain the desired square of functors.
+%% As far as the authors are aware this is an entirely new catgory which  We will devote \Cref{sec:a-local} to gaining a rough understanding of this category. 
+%% In $C_2$-equivariant homotopy theory, inverting the class $a_\sigma \in \pi_{-\sigma} ^{C_2} \Ss$ corresponds to applying the the geometric fixed points functor $\Phi^{C_2} : \Sp_{C_2} \to \Sp$.
+As the diagram shows, the category $\Mod(\SHR; \Ss_2 [a^{-1}])$ can be viewed as the target category of an ``$\R$-motivic geometric fixed points'' functor.
+Since $\Phi^{C_2} (\MU_\R) \simeq \MO$, one might guess that $\Mod(\SHRat; \Ss_2 [a^{-1}])$ is related to Pstragowski's synthetic category $\Syn_{\MO}$ \footnote{The spectrum $\MO$ is a sum of copies of $\F_2$, and as we shall see this implies $\Syn_{\MO} \simeq \Syn_{\F_2}$.}. Indeed, we construct a comparison functor.
+
+\begin{prop}
+  There is a symmetric monoidal left adjoint
+  \[\Re_{\F_2} : \Mod(\SHRat; \Ss_2 [a^{-1}]) \to \Syn_{\F_2}\]
+  which sends $\Ss^{p,q,w}$ to $\Ss^{p,w}$.
+\end{prop}
+
+%% This category may be viewed as a $1$-parameter deformation of $\Sp_{i2}$ with parameter $\ta$. 
+On the other side, an interesting functor into $\Mod(\SHRat; \Ss_2 [a^{-1}])$ may be constructed using the Bachmann--Hoyois motivic norm functors.
+
+\begin{rec} \label{rec:norms}
+  In \cite{norms}, Bachmann and Hoyois construct symmetric monoidal norm functors along finite \'etale maps.
+  These norm functors may be thought of as an indexed tensor product and in the case of $\R$ they fit into the following diagram showing compatability with the Hill--Hopkins--Ravenel norm functors in equivariant homotopy theory \cite[Section 11]{norms}:
+  \begin{center}
+  \begin{tikzcd}
+  \SHC \ar[r, "\mathrm{Nm}_{\C}^\R"] \ar[d, "\b"] & \SHR \ar[d, "\b"] \\
+  \Sp \ar[r, "\mathrm{Nm}_e^{C_2}"] & \Sp_{C_2}.
+  \end{tikzcd}
+  \end{center}
+  From \cite[{Example 3.5, Lemma 4.4, Example 4.10}]{norms} we can conclude that on bigraded spheres $\mathrm{Nm}_\C^{\R}(\Ss_\C^{s,w}) \simeq \Ss^{s,s,2w}$. The functor $\mathrm{Nm}_{\C}^\R$ is polynomial of degree 2 and when applied to a direct sum we have a formula \cite[Corollary 5.13]{norms}
+  \[ \mathrm{Nm}_{\C}^\R(X \oplus Y) \simeq \mathrm{Nm}_{\C}^\R(X) \oplus i_*(X \otimes Y) \oplus \mathrm{Nm}_{\C}^\R(Y). \]
+  Since $\mathrm{Nm}_{\C}^\R$ commutes with sifted colimits, it follows from the above that it restricts to a functor on the categories of Artin--Tate objects
+  \[\mathrm{Nm}_{\C}^\R : \SHR^{\at} \to \SHC^{\at}.\]
+\end{rec}
+
+While the norm functor $\mathrm{Nm}_{\C}^\R$ is not exact, it becomes exact after $a$ is inverted.
+
+\begin{prop}
+  The composite
+  \[ \SHC_{i2}^{\at} \xrightarrow{\mathrm{Nm}_\C^\R} \SHRat \xrightarrow{(-)[a^{-1}]} \Mod ( \SHRat ; \Ss_2[a^{-1}] ) \]
+  is a symmetric monoidal left adjoint.
+  On Picard elements this composite sends $\Ss_2^{s,w}$ to $\Ss_2^{s,*,2w}[a^{-1}]$.
+  The map $\tau$ is sent to $\ta^2$.
+\end{prop}
+
+In conclusion, we have a pair of functors 
+\[\SHC^{\at}_{i2} \xrightarrow{\mathrm{Nm}_\C^\R(-)[a^{-1}]} \Mod( \SHRat; \Ss_2 [a^{-1}]) \xrightarrow{\Re_{\F_2}} \Syn_{\F_2},\]
+which are each the identity on spectra after inverting $\ta$ and $\tau$.
+%% After inverting $\ta$ and $\tau$, both functors are identified with the identity on $\Sp_{i2}$.
+%% In conclusion, we see that the category $\Mod(\SHRat; \Ss_2 [a^{-1}])$
+%% encodes information intermediate between the classical Adams and Adams-Novikov spectral sequences.
+It would be very interesting to obtain a better computational understanding of the $a$-local category and the behavior of these two functors. More ambitiously, we ask:
+%% $\Mod(\SHRat; \Ss_2 [a^{-1}])$.
+
+\begin{qst}
+  Is there a good description of the full subcategory of $a$-local objects in $\SHRat$?
+  What geometric information does the $a$-localization of a smooth projective variety $X$ remember?
+\end{qst}
+
+%% AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+The careful reader will have noticed that we switched from $p$-completing when discussing $\C$ to $2$-completing when discussing $\R$. The reason for this is that at an odd prime the category $\SHR^{\at}_{ip}$ admits the following simple description in terms of $\SHCat$.
+%% the following simple description of the category of $\R$ motivic spectra after inverting 2.
+
+\begin{prop}
+  There is an equivalence of categories
+  \[ \SHR^{\at}_{ip} \simeq \Sp_{ip} \times \SHCat \times \SHCat. \]
+\end{prop}
+
+This will be proven in \Cref{sec:odd}.
+%% We now return to studying the $i2$-complete category and will make no further mention of odd primes outside of  where we prove this proposition.
+
+
+
+
+%% It is an important that the $p$-complete cellular $\C$-motivic category can be viewed as a deformation of $p$-complete spectra along the $p$-complete complex cobordism spectrum $\MU$ \cite{Pstragowski, cmmf, ctauactalol}. One of the key inputs to this result is the identification of a class $\tau \in \pi_{0,-1} ^{\C} \Ss_p$ with certain key properties recalled below.
+%% \todo{This paragraph should probably appear elsewhere.}
+
+%% %% \begin{rec} \label{rec:tau}
+%% %%   For all primes $p$, there is a class $\tau \in \pi_{0,-1} ^\C \Ss_p$ with the following properties:
+%% %%   \begin{enumerate}
+%% %%     \item Under Betti realization, $\tau$ goes to $1 \in \pi_{0} \Ss_p$.
+%% %%     \item The induced functor $\SHC^{cell} _{ip} [\tau^{-1}] \to \Sp_{ip}$ is an equivalence of categories.
+%% %%     \item The cofiber of $\tau$, $C\tau$, admits a unique $\mathbb{E}_\infty$-structure and $\MGL$-homology induces an equivalence of categories $\Mod_{C\tau} \simeq \Comod_{\MU_* \MU}$.
+%% %%   \end{enumerate}
+%% %% \end{rec}
+%% %% \todo{Who to cite for this?}
+
+%% %% The remainder of this section will be dedicated to \Cref{thm:ta} below, which constructs the real motivic analogue of $\tau$ and proves the analogue of (1) above.
+%% %% We will address item (2) in \Cref{thm:comparison-invert-ta} and item (3) in \Cref{thm:cta}.
+
+%% %
+%% %\begin{dfn}
+%% %  Let $a \in \pi_{0,-1,0}^\R$ denote the image of the stabilization of the $C_2$-equivariant map $a_\sigma : S^0 \to S^{\sigma}$ under the functor $c_{\C/\R}$.
+%% %\end{dfn}
+%% %
+%% %\begin{cor}
+%% %  There is a relation $\ta a = \rho$ in $\pi_{0,-1,-1} ^\R$.
+%% %\end{cor}
+%% %
+%% %\begin{proof}
+%% %  We have $\pi_{0,-1,-1} ^\R = \Z/2\{\rho\}$ by CITE, so it suffices to show that $\ta a \neq 0$. But $\b (\ta a) = a_\sigma \neq 0$, so this holds.
+%% %\end{proof}
+%% %\todo{Move this section.}
+
+%% %% Our final major result is an explicit homotopy theoretic description of $\SHR^{gc}$, divorced from any algebro-geometric origin.
+
+%% %% \begin{thm} \label{thm:filtered-model}
+%% %% There is a filtered, $C_2$-equivariant $\mathbb{E}_\infty$-algebra $R_\bullet$ such that the category of filtered modules over $R_\bullet$ is equivalent to $\SHR^{gc}$.  Explicitly, the $n$th filtered piece $R_n$ of this ring is calculated as a totalization of a cosimplicial object with $k$th layer $P_{2n} \left((\MUR)^{\otimes k+1}\right)$.  Here, $P_{2n}$ refers to the $2n$th slice cover in $C_2$-equivariant homotopy theory, and $\MUR$ to the $C_2$-spectrum of Real bordism.
+%% %% \end{thm}
+
+
+%% This section is the beginning of the second part of this paper.
+%% In the first part our main concern was providing a closed-form description of the galois-cellular category. In particular, we saw $\SHgc$ as a 2-parameter deformation of the category of spectra with coordinates $\ta$ and $a$. The second part of this paper we will be devoted to closely studying the structure of this category.
+%% We begin by studying the limiting behaviors of this 2-parameter deformation.
+%% Next, we investigate several $t$-structures on this category and their associated spectral sequences.
+%% Finally, we will clarify the implications this has on the structure of the category $\SHgc$.
+%% Throughout this section we pay particular attention to trigraded homotopy groups, using them as a yardstick for our understanding of various aspects of Artin--Tate $\R$-motivic spectra.
+
+%% At certain points the proofs will become involved and when this happens we will defer a more complete discussion to its own section. The remaining NUMBER sections of the body of this paper are each of this type. For this reason, after reading this section the remaining sections of this paper can be read independently of one another.
+
+
+%% In the previous subsection we saw $\SHRat$ as a 2-parameter deformation of the category of spectra with coordinates $\ta$ and $a$. In this section we study the ``limiting behavoirs'' of this deformation.
+%% Throughout this section we pay particular attention to trigraded homotopy groups, using them as a yardstick for our understanding.
+
+%% Before proceeding we must make the sense in which we use ``deformation'' precise.
+%% In [CITE] we showed that $\SHgc$ is a 1-parameter deformation of $\Sp_{C_2}$ in a strong sense (the parameter $\ta$ arises via an action of $\Sp^{\Fil}$ on $\SHgc$). In [???], the authors show that $\Sp_{C_2}$ is a 1-parameter deformation of $\Sp$ with parameter $a$, albeit in a weaker sense. Given this mis-match of strucutre we spell out what we actually use in the following lemma.
+
+%% \begin{lem}
+%%   $\SHgc$ is a 2-parameter deformation of $\Sp$ with parameters $\ta$ and $a$ in the following sense.
+%%   \begin{itemize}
+%%   \item There are elements $\ta \in \pi_{0,0,-1}^\R$ and $a \in \pi_{0,-1,0}^\R$.
+%%   \item Both $C\ta$ and $Ca$ naturally acquire the structure of commutative algebras.
+%%   \item The category of modules over $\o [\ta^{-1}, a^{-1}]$ is equivalent to the category of spectra.
+%%   \end{itemize}  
+%% \end{lem}
+
+%% \begin{proof}
+%%   The elements $\ta$ and $a$ where constructed in [location].
+%%   The commutative algebra structure on $C\ta$ was provided earlier in [location].
+%%   In [location] we noted that $Ca \cong \Spec(\C)$. Since $\Spec(\C)$ is self-dual the diagonal provides it with the structure of a commutive algebra.
+%%   In [location] we proved that $\o [\ta^{-1}]$-modules are equivalent to $C_2$-spectra. Now, it suffices to note that inverting $a$ in $C_2$-spectra gives ordinary spectra.
+%% \end{proof}
+
+%% Using this lemma,
+%% each parameter can be set to either $0$ or $1$,
+%% %\footnote{The value $\epsilon$ is supposed to be infinitesimal and correspond to the formal neighborhood of $0$.}
+%% which together with ``unspecified'' gives 9 total commutative algebras whose category of modules we would like to study. These constitute the ``limiting behaviors'' of this 2-parameter deformation.
+%% We summarize what we know in the following, rather cryptic, table.
+
+%% \begin{center}
+%%   \begin{tabular}{|c|c|c|c|c|} \hline
+%%     & unspecified & $\ta = 0$ & $\ta = 1$ \\\hline
+%%     un & $\SHgc$ & $\uZt$-module $\BP_*\BP$-comodules & $\Sp_{C_2}$ \\\hline
+%%     %% $a$-cplt & ?\footnote{From the second column one can see that $C\ta$ is not $a$-complete. This implies that $\Ss$ is also not $a$-complete which stands in contrast to the $C_2$-equivariant setting.} & $\Z_2[a]$-module $\BP_*\BP$-comodules & $Fun(BC_2, \Sp)$ \\\hline 
+%%     $a = 0$ & $\SH(\C)$ & $\BP_*\BP$-comodules & $\Sp$ \\\hline
+%%     $a = 1$ & ?\footnote{This category is totally novel as far as we can tell.} & $\F_2[u^2]$-module $\BP_*\BP$-comodules & $\Sp$ \\\hline
+%%   \end{tabular}
+%% \end{center}
+
+%% Leveraging the work from the first part of the paper most of what we have to say will follow rather formally from the results of the first part of the paper. However, the analysis of the category of $\Ss[a^{-1}]$-modules is more difficult and we will defer the proofs in this subsection to their own separate section. 
+
+%% %% will be sufficiently complicated that it will require its own seperate section. This part is the analysis of the category of $\Ss[a^{-1}]$-modules. In the end we find that this category has various similarities to the $\F_2$-synthetic category of Pstragowski \cite{Pstragowski}. Moreover, a suitable enrichment of the Betti realization functor in fact lands in this category of $\F_2$-synthetic spectra. However, as part of the computations carried out in [appendic C] we will find that this comparison map does not admit a section. 
+
+%% %% The first is the analysis of category of modules over $C\ta$.
+%% %% As in the $\C$-motivic case we find that this category is algebraic in the sense that it is the derived category of an explicit abelian category which we will call ``Mackey functor $\BP_*\BP$-comodules''.
+
+%% %% The second 
+
+%% \begin{prop}
+%%   Seven of the limiting behaviors from the table above admit direct descriptions.
+%%   \begin{enumerate}
+%%   \item The category of modules over $Ca$ is equivalent to
+%%     $\SH(\C)$.
+%%     Under this equivalence $\ta$ maps to $\tau$ and $Ca \otimes \o^{p,q,w}$ is sent to $\o^{p+q,w}$.
+%%   \item The category of modules over $Ca \otimes C\ta$ is equivalent to
+%%     $\mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}})$.
+%%     Under this equivalence $Ca \otimes C\ta \otimes \o^{p,q,w}$ is sent to a copy of $\BP_*$ placed in
+%%     topological degree $p+q$ and homological degree $2w - p - q$.    
+%%   \item The category of modules over $Ca[\ta^{-1}]$ is equivalent to
+%%     $\Sp$.
+%%     Under this equivalence $Ca[\ta^{-1}] \otimes \o^{p,q,w}$ is sent to $\Ss^{p+q}$.
+%%   \item The category of modules over $C\ta$ is equivalent to
+%%     \[ \Mod ( \Sp_{C_2, i2}; \uZt) \otimes_{\Z} \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}}). \]
+%%     Under this equivalence $C\ta \o^{p,q,w}$ is sent to $(\Sigma^{(p-w)+(q-w)\sigma}\uZt) \otimes \BP_*$ where the copy of $\BP_*$ is placed in the heart and has internal degree $2w$.
+%%   \item The category of modules over $C\ta[a^{-1}]$ is equivalent to
+%%     \[ \Mod ( Vect_{\F_2}; \F_2[x] ) \otimes_{\Z} \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}}) \]
+%%     where $|x| = 2$.
+%%     Under this equivalence $C\ta[a^{-1}] \otimes \o^{p,q,w}$ is sent to $\F_2[x] \otimes \BP_*$ where the copy of $\BP_*$ is placed in topological degree $p$ and homological degree $2w-p$.
+%%   \item The category of modules over $\Ss[\ta^{-1}]$ is equivalent to
+%%     $\Sp_{C_2}$.
+%%     Under this equivalence $\o^{p,q,w}[\ta^{-1}]$ is sent to $\Ss^{p+q\sigma}$.
+%%   \item The category of modules over $\Ss[\ta^{-1}, a^{-1}]$ is equivalent to
+%%     $\Sp$.
+%%     Under this equivalence $\o^{p,q,w}[\ta^{-1}, a^{-1}]$ is sent to $\Ss^{p}$.
+%%   \end{enumerate}
+%%   In each of the bullet points above ``equivalence'' is meant in the category of presentably symmetric monoidal categories. 
+%% \end{prop}
+
+%% Before proceeding to the proof of this proposition we extract information about the homotopy groups of the unit in each of these categories as a corollary.
+
+%% \begin{cor}
+%%   There are natural isomorphisms of rings,
+%%   \begin{enumerate}
+%%   \item $\pi_{p,q,w}^\R(Ca) \cong \pi_{p+q,w}^\C $,
+%%   \item $\pi_{p,q,w}^\R(Ca \otimes C\ta) \cong \Ext_{\BP_*\BP}^{2w-s,w}(\BP_*, \BP_*) $,
+%%   \item $\pi_{p,q,w}^\R(Ca[\ta^{-1}]) \cong \pi_{p+q} $,
+%%   \item $\pi_{p,q,w}^\R(C\ta) \cong \bigoplus_{w+a-s = p} \Ext_{\BP_*\BP}^{s,2w}(\BP_*, \BP_* \otimes \pi_{a + (q-w) \sigma}^{C_2} \uZt)$,
+%%   \item $\pi_{p,q,w}^\R(C\ta[a^{-1}]) \cong \left( \F_2[x] \otimes_{\F_2} \Ext_{\BP_*\BP}^{?,?}(\BP_*, \BP_*/2)\right)_{a,b} $,    
+%%   \item $\pi_{p,q,w}^\R(\Ss[\ta^{-1}]) \cong \pi_{p,q}^{C_2}$,
+%%   \item $\pi_{p,q,w}(\Ss[a^{-1}, \ta^{-1}]) \cong \pi_{p}$.
+%%   \end{enumerate}  
+%% \end{cor}
+
+%% \begin{proof}[Proof (of \Cref{??}).]\ 
+  
+%%   (1) Since the commutative algebra structure on $Ca$ comes from the equivalence $Ca \cong \Spec(\C)$ we obtain the following proposition as a corollary of [cite].
+%%     Since $a$ is in the image of $c$ the first equivalence follows from the fact that $c(C_2+) = \Spec(\C)_+$. The equivalence of $\Spec(\C)$-mod with $\SH(\C)$ follows from ???
+%%   \todo{ Add 0-affineness of SH(l) / SH(k) into the appendix. }
+
+%%   (2) is a corollary of (1) and [ctau paper].
+
+%%   (3) is a corollary of (1) and [invert tau cite].
+
+%%   (4) is just a restatement of the main results of \Cref{sec:cta}.
+
+%%   (5) is obtained by substituting the equivalence
+%%   \[ \Mod ( \Sp_{C_2, i2}; \uZt[a^{-1}]) \cong \Mod ( \Sp_{i2} ; \F_2[x] ) \cong \Mod( Vect_{\F_2} ; \F_2[x] ) \]
+%%   where $|x| = 2$ into \Cref{thm:Cta}.
+
+%%   (6) is just a restatement of \Cref{sec3 thing}.
+
+%%   (7) is a corollary of (?). 
+%%   In [location] we showed that the category of $\Ss[\ta^{-1}]$-modules is equivalent as a presentably symmetric monoidal category to $\Sp_{C_2}$. In [location], it is shown that the category of $\Ss[a^{-1}]$-modules in $\Sp_{C_2}$ is equivalent as a presentably symmetric monoidal category to $\Sp$.
+%% From this we can derive the following corollary.
+
+  
+%% \end{proof}
+
+
+%% \begin{qst}
+%%   What is a good description of the full subcategory of $a$-local objects $\SHRat$.
+%% \end{qst}
+
+
+%% %% \begin{thm}
+%% %%   As trigraded commutative rings, there are isomorphisms\footnote{If one wants the tensor product can be moved outside the Ext, but then it must be taken in a derived sense.}
+%% %%   \[ \pi_{p,q,w}^\R(C\ta) \cong \bigoplus_{w+a-s = p} \Ext_{\BP_*\BP}^{s,2w}(\BP_*, \BP_* \otimes \pi_{a + (q-w) \sigma}^{C_2} \uZt). \]
+%% %% \end{thm}

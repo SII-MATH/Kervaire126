@@ -1,0 +1,194 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{BHHM20}
+
+\bibitem[Ada66]{Adams}
+J.~F. Adams, \emph{On the groups {$J(X)$}. {IV}}, Topology \textbf{5} (1966),
+  21--71. \MR{198470}
+
+\bibitem[Bau08]{Bau08}
+Tilman Bauer, \emph{Computation of the homotopy of the spectrum {\tt tmf}},
+  Groups, homotopy and configuration spaces, Geom. Topol. Monogr., vol.~13,
+  Geom. Topol. Publ., Coventry, 2008, pp.~11--40. \MR{2508200}
+
+\bibitem[BBB{\etalchar{+}}20]{boass}
+A.~Beaudry, M.~Behrens, P.~Bhattacharya, D.~Culver, and Z.~Xu, \emph{On the
+  ${E_2}$-term of the bo-adams spectral sequence}, J. Topol. \textbf{13}
+  (2020), no.~1, 356--415.
+
+\bibitem[BBT21]{BBT}
+Prasit Bhattacharya, Irina Bobkova, and Brian Thomas, \emph{The ${P^1_2}$
+  {M}argolis homology of connective topological modular forms}, To appear in
+  Homology Homotopy Appl., 2021.
+
+\bibitem[Beh12]{goodehp}
+Mark Behrens, \emph{The {G}oodwillie tower and the {EHP} sequence}, Mem. Amer.
+  Math. Soc. \textbf{218} (2012), no.~1026, xii+90. \MR{2976788}
+
+\bibitem[BHHM08]{BHHM}
+M.~Behrens, M.~Hill, M.~J. Hopkins, and M.~Mahowald, \emph{On the existence of
+  a {$v^{32}_2$}-self map on {$M(1,4)$} at the prime 2}, Homology Homotopy
+  Appl. \textbf{10} (2008), no.~3, 45--84. \MR{2475617}
+
+\bibitem[BHHM20]{BHHM2}
+\bysame, \emph{Detecting exotic spheres in low dimensions using coker {J}}, J.
+  Lond. Math. Soc. (2) \textbf{101} (2020), no.~3, 1173--1218.
+
+\bibitem[BJM84]{BJM}
+M.~G. Barratt, J.~D.~S. Jones, and M.~E. Mahowald, \emph{Relations amongst
+  {T}oda brackets and the {K}ervaire invariant in dimension {$62$}}, J. London
+  Math. Soc. (2) \textbf{30} (1984), no.~3, 533--550. \MR{810962}
+
+\bibitem[BOSS19]{BOSS}
+M.~Behrens, K.~Ormsby, N.~Stapleton, and V.~Stojanoska, \emph{On the ring of
+  cooperations for 2-primary connective topological modular forms}, J. Topol.
+  \textbf{12} (2019), no.~2, 577--657.
+
+\bibitem[Bot59]{Bott}
+Raoul Bott, \emph{The stable homotopy of the classical groups}, Ann. of Math.
+  (2) \textbf{70} (1959), 313--337. \MR{110104}
+
+\bibitem[BR21]{BrunerRognes}
+Robert~R. Bruner and John Rognes, \emph{The {A}dams spectral sequence for
+  topological modular forms}, Mathematical Surveys and Monographs, vol. 253,
+  American Mathematical Society, Providence, RI, 2021.
+
+\bibitem[Bro69]{Browder}
+William Browder, \emph{The {K}ervaire invariant of framed manifolds and its
+  generalization}, Ann. of Math. (2) \textbf{90} (1969), 157--186. \MR{251736}
+
+\bibitem[Bru]{Bruner}
+Robert~R. Bruner, \emph{The cohomology of the mod 2 {S}teenrod algebra: a
+  computer computation}, http://www.rrb.wayne.edu/papers/cohom.pdf.
+
+\bibitem[BS21]{BelmontShimomura}
+Eva Belmont and Katsumi Shimomura, \emph{Beta families arising from a $v_2^9$
+  self map on ${S}/(3,v_1^8)$}, arXiv:2109.01059, 2021.
+
+\bibitem[DFHH14]{tmf}
+Christopher~L. Douglas, John Francis, Andr\'e~G. Henriques, and Michael~A. Hill
+  (eds.), \emph{Topological modular forms}, Mathematical Surveys and
+  Monographs, vol. 201, American Mathematical Society, Providence, RI, 2014.
+  \MR{3223024}
+
+\bibitem[DM81]{DavisMahowaldv1v2}
+Donald~M. Davis and Mark Mahowald, \emph{{$v_{1}$}- and {$v_{2}$}-periodicity
+  in stable homotopy theory}, Amer. J. Math. \textbf{103} (1981), no.~4,
+  615--659. \MR{623131}
+
+\bibitem[DM10]{DavisMahowald}
+\bysame, \emph{Connective versions of {$TMF(3)$}}, Int. J. Mod. Math.
+  \textbf{5} (2010), no.~3, 223--252. \MR{2779050}
+
+\bibitem[GJM86]{GoerssJonesMahowald}
+Paul~G. Goerss, John D.~S. Jones, and Mark~E. Mahowald, \emph{Some generalized
+  {B}rown-{G}itler spectra}, Trans. Amer. Math. Soc. \textbf{294} (1986),
+  no.~1, 113--132. \MR{819938}
+
+\bibitem[HHR16]{HHR}
+M.~A. Hill, M.~J. Hopkins, and D.~C. Ravenel, \emph{On the nonexistence of
+  elements of {K}ervaire invariant one}, Ann. of Math. (2) \textbf{184} (2016),
+  no.~1, 1--262. \MR{3505179}
+
+\bibitem[Hov04]{Hovey}
+Mark Hovey, \emph{Homotopy theory of comodules over a {H}opf algebroid},
+  Homotopy theory: relations with algebraic geometry, group cohomology, and
+  algebraic {$K$}-theory, Contemp. Math., vol. 346, Amer. Math. Soc.,
+  Providence, RI, 2004, pp.~261--304. \MR{2066503}
+
+\bibitem[HS98]{HopkinsSmith}
+Michael~J. Hopkins and Jeffrey~H. Smith, \emph{Nilpotence and stable homotopy
+  theory. {II}}, Ann. of Math. (2) \textbf{148} (1998), no.~1, 1--49.
+  \MR{1652975}
+
+\bibitem[Hu99]{Hu}
+Po~Hu, \emph{Transfinite spectral sequences}, Homotopy invariant algebraic
+  structures ({B}altimore, {MD}, 1998), Contemp. Math., vol. 239, Amer. Math.
+  Soc., Providence, RI, 1999, pp.~197--216. \MR{1718081}
+
+\bibitem[Isa19]{Isaksen}
+Daniel~C. Isaksen, \emph{Stable stems}, Mem. Amer. Math. Soc. \textbf{262}
+  (2019), no.~1269, viii+159. \MR{4046815}
+
+\bibitem[Isa20]{IsaksenMO}
+\bysame, \emph{The {M}ahowald operator in the cohomology of the {S}teenrod
+  algebra}, arXiv:2001.01758, 2020.
+
+\bibitem[IWX20a]{IsaksenChart}
+Daniel~C. Isaksen, Guozhen Wang, and Zhouli Xu, \emph{Classical and
+  ${C}$-motivic {A}dams charts}, v5.1,
+  https://s.wayne.edu/isaksen/adams-charts/, 2020.
+
+\bibitem[IWX20b]{IWX2}
+\bysame, \emph{More stable stems}, arXiv:2001.04511, 2020.
+
+\bibitem[IWX20c]{IWX}
+\bysame, \emph{Stable homotopy groups of spheres}, arXiv:2001.04247, 2020.
+
+\bibitem[KM63]{KervaireMilnor}
+Michel~A. Kervaire and John~W. Milnor, \emph{Groups of homotopy spheres. {I}},
+  Ann. of Math. (2) \textbf{77} (1963), 504--537. \MR{148075}
+
+\bibitem[Lau04]{Laures}
+Gerd Laures, \emph{{$K(1)$}-local topological modular forms}, Invent. Math.
+  \textbf{157} (2004), no.~2, 371--403. \MR{2076927}
+
+\bibitem[LM87]{LellmannMahowald}
+Wolfgang Lellmann and Mark Mahowald, \emph{The {$b{\rm o}$}-{A}dams spectral
+  sequence}, Trans. Amer. Math. Soc. \textbf{300} (1987), no.~2, 593--623.
+
+\bibitem[LSWX19]{LSWX}
+Guchuan Li, XiaoLin~Danny Shi, Guozhen Wang, and Zhouli Xu, \emph{Hurewicz
+  images of real bordism theory and real {J}ohnson-{W}ilson theories}, Adv.
+  Math. \textbf{342} (2019), 67--115. \MR{3877362}
+
+\bibitem[Mah81]{Mahowaldbo}
+Mark Mahowald, \emph{{$b{\rm o}$}-resolutions}, Pacific J. Math. \textbf{92}
+  (1981), no.~2, 365--383. \MR{618072}
+
+\bibitem[Mat16]{Mathew}
+Akhil Mathew, \emph{The homology of tmf}, Homology Homotopy Appl. \textbf{18}
+  (2016), no.~2, 1--29. \MR{3515195}
+
+\bibitem[Moi52]{Moise}
+Edwin~E. Moise, \emph{Affine structures in {$3$}-manifolds. {V}. {T}he
+  triangulation theorem and {H}auptvermutung}, Ann. of Math. (2) \textbf{56}
+  (1952), 96--114. \MR{48805}
+
+\bibitem[MPT70]{MargolisPriddyTangora}
+Harvey Margolis, Stewart Priddy, and Martin Tangora, \emph{Another systematic
+  phenomenon in the cohomology of the {S}teenrod algebra}, Topology \textbf{10}
+  (1970), 43--46. \MR{300272}
+
+\bibitem[MR09]{MahowaldRezk}
+Mark Mahowald and Charles Rezk, \emph{Topological modular forms of level 3},
+  Pure Appl. Math. Q. \textbf{5} (2009), no.~2, Special Issue: In honor of
+  Friedrich Hirzebruch. Part 1, 853--872. \MR{2508904}
+
+\bibitem[MT68]{MahowaldTangora}
+Mark Mahowald and Martin Tangora, \emph{An infinite subalgebra of {${\rm
+  Ext}_{A}\,(Z_{2},\,Z_{2})$}}, Trans. Amer. Math. Soc. \textbf{132} (1968),
+  263--274. \MR{222887}
+
+\bibitem[Rav86]{Ravenel}
+Douglas~C. Ravenel, \emph{Complex cobordism and stable homotopy groups of
+  spheres}, Pure and Applied Mathematics, vol. 121, Academic Press, Inc.,
+  Orlando, FL, 1986. \MR{860042}
+
+\bibitem[Shi]{Shimomura}
+Katsumi Shimomura, \emph{The existence of $\beta_{9t+3}$ in stable homotopy of
+  spheres at the prime three}, preprint,
+  http://www.math.kochi-u.ac.jp/katsumi/.
+
+\bibitem[WX17]{WangXu}
+Guozhen Wang and Zhouli Xu, \emph{The triviality of the 61-stem in the stable
+  homotopy groups of spheres}, Ann. of Math. (2) \textbf{186} (2017), no.~2,
+  501--580. \MR{3702672}
+
+\end{thebibliography}

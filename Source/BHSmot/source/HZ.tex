@@ -1,0 +1,376 @@
+In this section, we show that Betti realization identifies the category of $\ta$-local Artin-Tate $\R$-motivic spectra with the category of $C_2$-spectra. Indeed, we know from \Cref{thm:ta} that $\b(\ta) = 1$, so that $\b$ factors through the category of $\ta$-local objects. The main theorem of this section is that the induced functor is an equivalence.
+
+\begin{dfn} \label{dfn:ta-inverted-betti}
+  Let $\Ss_2[\ta^{-1}]$ denote the commutative algebra given by
+  \[ \Ss_2 [\ta^{-1}] \coloneqq \colim\left( \Ss_2^{0,0,0} \stackrel{\ta}{\to} \Ss_2^{0,0,1} \stackrel{\ta}{\to} \Ss_2^{0,0,2} \stackrel{\ta}{\to} \cdots \right). \]
+  The category of modules over $\Ss_2 [\ta^{-1}]$ in $\SHgc$ is equivalent to the catgoery of $\ta$-local objects in $\SHgc$.\footnote{Here we use the fact that one may invert an element in the Picard-graded homotopy of a commutative algebra and the associated description of the module category as a localization from the proof of \cite[Proposition 4.3.17]{ECII}.}
+  Since the Betti realization of $\ta$ is $1$, Betti realization factors through $\ta$-localization providing a symmetric monoidal functor
+  \[ \b : \Mod ( \SHgc ; \Ss_2 [\ta^{-1}] ) \to \Sp_{C_2, i2}. \]
+  %Note that we abuse notation by using the same symbol $\b$ to refer to the Betti realization functors out of $\SHR, \SHgc$, and the category of $\Ss[\ta^{-1}]$-modules in $\SHgc$.
+\end{dfn}
+
+\begin{thm} \label{thm:comparison-invert-ta}
+  Betti realization induces an equivalence of symmetric monoidal categories
+  \[ \b : \Mod ( \SHgc ; \Ss_2 [\ta^{-1}] ) \xrightarrow{\simeq} \Sp_{C_2, i2} \]
+  with inverse equivalence given by $Y(-) \coloneqq c_{\C/\R}(-)[\ta^{-1}]$.
+  Simply put, inverting $\ta$ in $\SHgc$ recovers $\Sp_{C_2, i2}$. 
+\end{thm}
+
+The main step in our proof of this theorem is showing that $Y$ is fully-faithful.
+Since $c_{\C/\R}$ is fully-faithful, as proved by Heller and Ormsby (see \Cref{thm:c-ff}), this reduces to studying the interaction of $\ta$ and $c_{\C/\R}$. Our method of proof is to prove the appropriate statement at the level of $\HFt$ by direct computation, extend to dualizable objects by descent, then extend to all objects by colimits. This stategy requires knowledge of the tri-graded homology of a point and the strucutre of the tri-graded dual Steenrod algebra as an input. Since this is of independent interest we have separated it out as its own subsection. 
+
+\subsection{The homology of a point}\ 
+
+In this subsection we compute the tri-graded homology of a point and the structure of the dual Steenrod algebra. Although we only use coarse information extracted from these computations in this paper, we hope that they are useful to readers more interested in computations. The reader who has heard that $\R$-motivic computations are simplified by the absence of the ``negative cone'' may be surprised to learn that it is present in the tri-graded picture.
+
+\begin{prop} \label{thm:pthomology}
+As tri-graded commutative rings, with $|\ta|=(0,0,-1)$, there are isomorphisms
+\[ \pi^{\R}_{p,q,w} \HZt \cong \left(\pi^{C_2}_{p+q\sigma}\uZt\right)[\ta] \quad \text{ and } \quad \pi^{\R}_{p,q,w} \HFt \cong \left(\pi^{C_2}_{p+q\sigma}\uFt\right)[\ta], \] 
+where $\pi_{p+q\sigma} ^{C_2} \uZt$ and $\pi_{p+q\sigma} ^{C_2} \uFt$ are each placed in tri-degree $(p,q,0)$.
+\end{prop}
+
+Before we move on to the proof of \Cref{thm:pthomology},
+we remind the reader of the structure of $\pi_{p+q\sigma} ^{C_2} \uZt$ and $\pi_{p+q\sigma} ^{C_2} \uFt$.
+We also explain how to translate between the older names of elements in the bi-graded homology of a point and the names arising from this proposition.
+
+\begin{rec} \label{thm:eqpthom} \todo{This needs a citation}
+  The bi-graded homotopy groups of $\uFt$ are given by
+  \[\pi_{p+q\sigma} ^{C_2} \uFt \cong \F_2 [a_\sigma, u_{\sigma}] \oplus \F_2 \left\{ \frac{\theta}{a_\sigma ^k u_{\sigma} ^{n}} \vert k,n \geq 0 \right\},\]
+  where $|a_\sigma| = -\sigma$, $|u_{\sigma}| = 1-\sigma$, and $|\theta| = 2\sigma - 2$.
+   The multiplicative structure is that of a trivial square-zero extension over $\F_2 [a_\sigma, u_\sigma]$: more informally, it is given by $\theta^2 = 0$.
+  This is pictured in \Cref{F2-fig}.
+  
+  The bi-graded homotopy groups of $\uZt$ are given by
+  \[\pi_{p+q\sigma} ^{C_2} \uZt \cong \Z_2 [a_\sigma,u_{2\sigma}]/(2a_\sigma) \oplus \Z_2 \left\{ \frac{2}{u_{2\sigma} ^{n}} \vert n \geq 1 \right\} \oplus \F_2 \left\{ \frac{\theta}{a_\sigma ^k u_{2\sigma} ^{n}} \vert k,n \geq 0 \right\}\]
+  where $|a_\sigma| = -\sigma$, $|u_{2\sigma}| = 2-2\sigma$, and $|\theta| = 3\sigma - 3$.
+  Again, the term involving $\theta$ sits in a trivial square-zero extension with rest of the ring.
+  This is pictured in \Cref{uZ-fig}.
+\end{rec}
+
+\begin{figure}[t]
+  \centering
+  The $C_2$-equivariant $\F_2$-homology of a point \\\vspace{6pt}
+  \begin{sseqpage}[ xscale=0.8, yscale=0.8, x range = {-5}{3}, y range = {-3}{5}, tick step = 2, major tick step=2, minor tick step= 1, class labels = {left}, classes = fill, grid = chess, axes type = frame ]
+    \class["1" above](0,0)
+    \class["a_\sigma"](0,-1) \structline
+    \class(0,-2) \structline
+    \class(0,-3) \structline
+    \class(0,-4) \structline
+    
+    \class["u_\sigma" right](1,-1) \structline(0,0)
+    \class(1,-2) \structline \structline(0,-1)
+    \class(1,-3) \structline \structline(0,-2)
+    \class(1,-4) \structline \structline(0,-3)
+    
+    \class(2,-2) \structline(1,-1)
+    \class(2,-3) \structline \structline(1,-2)
+    \class(2,-4) \structline \structline(1,-3)
+    
+    \class(3,-3) \structline(2,-2)
+    \class(3,-4) \structline \structline(2,-3)
+    
+    \class(4,-4) \structline(3,-3)
+    
+    \class["\theta" below](-2,2)
+    \class(-2,3) \structline
+    \class(-2,4) \structline
+    \class(-2,5) \structline
+    \class(-2,6) \structline
+    
+    \class(-3,3) \structline(-2,2)
+    \class(-3,4) \structline \structline(-2,3)
+    \class(-3,5) \structline \structline(-2,4)
+    \class(-3,6) \structline \structline(-2,5)
+    
+    \class(-4,4) \structline(-3,3)
+    \class(-4,5) \structline \structline(-3,4)
+    \class(-4,6) \structline \structline(-3,5)
+    
+    \class(-5,5) \structline(-4,4)
+    \class(-5,6) \structline \structline(-4,5)
+    
+    \class(-6,6) \structline(-5,5)
+    
+  \end{sseqpage}
+  \caption{ {\footnotesize
+      The bigraded homotopy groups of $\underline{\F}_2$ depicted on a $(p,q)$ coordinate system.
+      Vertical lines going down denote multiplication by $a_\sigma$.
+      Diagonal lines going down-right denote multiplication by $u_{\sigma}$.}}
+  \label{F2-fig}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  The $C_2$-equivariant integral homology of a point \\\vspace{6pt}
+  \begin{sseqpage}[ xscale=0.8, yscale=0.8, x range = {-7}{4}, y range = {-4}{7}, tick step = 2, major tick step=2, minor tick step= 1, class labels = {left}, classes = fill, grid = chess, axes type = frame ]
+    \class["1" above, rectangle](0,0)
+    \class["a_\sigma"](0,-1) \structline
+    \class(0,-2) \structline
+    \class(0,-3) \structline
+    \class(0,-4) \structline
+    \class(0,-5) \structline
+    
+    \class["u_{2\sigma}" right, rectangle](2,-2) \structline[bend left = 40](0,0)(2,-2)
+    \class(2,-3) \structline 
+    \class(2,-4) \structline 
+    \class(2,-5) \structline 
+
+    \class[rectangle](4,-4) \structline[bend left = 40](4,-4)(2,-2)
+    \class(4,-5) \structline
+    \class[rectangle](6,-6) \structline(6,-6)(4,-4)
+
+    \class["\frac{2}{u_{2\sigma}}" right, rectangle](-2,2) \structline[red](0,0)
+    \class[rectangle](-4,4) \structline[bend right = 40](-4,4)(-2,2)
+    \class[rectangle](-6,6) \structline[bend right = 40](-4,4)(-6,6)
+    \class[rectangle](-8,8) \structline[bend right = 40](-8,8)(-6,6)
+    
+    \class["\theta" right](-3,3) 
+    \class(-3,4) \structline 
+    \class(-3,5) \structline 
+    \class(-3,6) \structline
+    \class(-3,7) \structline
+    \class(-3,8) \structline 
+    
+    \class(-5,5) \structline[bend left = 40](-3,3)
+    \class(-5,6) \structline
+    \class(-5,7) \structline
+    \class(-5,8) \structline 
+    
+    \class(-7,7) \structline[bend left = 40](-5,5)
+    \class(-7,8) \structline
+    
+    \class(-9,9) \structline[bend left = 40](-7,7)  
+    
+  \end{sseqpage}
+  \caption{ {\footnotesize
+      The bigraded homotopy groups of $\uZt$ depicted on a $(p,q)$ coordinate system.
+      Squares denote copies of $\Z_2$ and circles denotes copies of $\F_2$.
+      Vertical lines going down denote multiplication by $a_\sigma$.
+      Diagonal lines going down-right denote multiplication by $u_{2\sigma}$. 
+      The red line indicates a $u_{2\sigma}$ multiplication that hits twice a generator.
+      Not all $u_{2\sigma}$ multiplications are shown.}}
+  \label{uZ-fig}
+\end{figure}
+
+
+
+\begin{rec} \label{rec:elements}
+  Under Betti realization, $\HZt$ and $\HFt$ are sent to $\uZt$ and $\uFt$ \cite{HellerOrmsby}.
+  The following are some commonly encountered homotopy elements and their Betti realizations:
+  \begin{itemize}
+  \item Stabilizing the inclusion of the fixed points $S^0 \to S^{\sigma}$, we obtain $a_\sigma \in \pi_{-\sigma} ^{C_2} \Ss$. This class maps to the corresponding class in $\uZt$ and $\uFt$. %Let $a \in \pi_{0,-1,0} ^{\R} \Ss$ denote the image of $a_\sigma$ under $c_{\C/\R}$.
+  \item We let $u \in \pi_{1,-1,0} ^\R \HFt$ denote the element corresponding to $u_\sigma \in \pi_{1-\sigma} ^{C_2} \uFt$ under the isomorphism of \Cref{thm:pthomology}.
+  \item The class $\rho \in \pi_{0,-1,-1} ^{\R} \Ss$ is defined to be the stabilization of the inclusion $\{\pm 1\} \hookrightarrow \G_m$. Under Betti realization, $\rho$ goes to $a_\sigma$.
+  \item The element $\tau \in \pi_{1,-1,-1}^\R \HFt$ corresponds to $-1$ under the % Beilinson-Lichtenbaum
+    isomorphism $\pi_{1,-1,-1} ^\R \HFt \cong \mu_2 (\R)$. \todo{Is B-L needed for this one, or is this an easy case?} Under Betti realization, $\tau$ goes to $u_\sigma$.
+  \end{itemize}
+\end{rec}
+
+\begin{cor}\label{cor:rels}
+  There are relations $\rho = \ta \cdot a$ in $\pi_{0,-1,-1} ^\R \Ss_2$ and $\tau = \ta \cdot u \in \pi_{1,-1,-1} ^{\R} \HFt$.
+\end{cor}
+
+\begin{proof}
+  In \Cref{prop:weak-one-sided}, we will show that Betti realization induces an isomorphism
+  $\pi_{0,-1,-1} ^\R \Ss_2 \to \pi_{-\sigma}^{C_2} \Ss_2$,
+  therefore for the first relation it suffices to note that $\b (\rho) = 1 \cdot a_\sigma = \b ( \ta \cdot a)$. Similarly, by \Cref{thm:pthomology} and \Cref{thm:eqpthom}, we know that $\pi_{1,-1,-1} ^\R \HFt \cong \F_2 \{\ta \cdot u\}$. Since $\b (\tau) = u_\sigma \neq 0$, the second relation follows.
+\end{proof}
+
+Assuming the tri-graded homology of a point, the tri-graded dual Steenrod algebra can easily by deduced from results of Voevodsky.
+
+\begin{thm} \label{thm:Steenrod}
+The tri-graded $\R$-motivic dual Steenrod algebra $\pi^{\R}_{*,*,*} \left(\HFt \otimes \HFt\right)$ is isomorphic to
+$$\left(\HFt\right)_{*,*,*} [\tau_0,\tau_1,\cdots,\xi_1,\xi_2,\cdots]/(\tau_i^2 = \ta a \tau_{i+1} + \ta u \xi_{i+1} + \ta a \tau_0 \xi_{i+1}),$$
+where $\abs{\tau_i}=(2^i,2^{i}-1,2^{i}-1)$ and $\abs{\xi_{i}}=(2^i-1,2^i-1,2^i-1)$.
+\end{thm}
+
+\begin{proof}
+%Since $\HFt \otimes \HFt$ splits as a sum of suspensions of $\HFt$, \Cref{thm:pthomology} shows that the tri-graded homotopy ring
+%$\pi^{\R}_{*,*,*} (\HFt \otimes \HFt)$
+%is $\ta$-torsion free, and in particular injects into $\pi^{\R}_{*,*,*} (\HFt \otimes \HFt)[\ta^{-1}]$.  Since $\HFt$ is cellular, it is Galois cellular, and so by \Cref{thm:comparison-invert-ta} we may read off $\pi^{\R}_{p,q,*} (\HFt \otimes \HFt)[\ta^{-1}]$ from its Betti realization 
+%$\pi^{C_2}_{p+q\sigma} (\uFt \otimes \uFt)$.
+%
+  We will deduce this from the classical bigraded computation of the $\R$-motivic Steenrod algebra. The key input is the fact that $\HFt \otimes \HFt$ decomposes as a direct sum of $\R$-motivic spectra of the form $\Sigma^{p,q,q} \HFt$. This is stated as \cite[Theorem 1.1 (3)]{HoyoisSteenrod}, which in the case of a characteristic zero base field such as $\R$ follows from work of Voevodsky \cite{Voe03, Voe10}.
+
+  The decomposition of $\HFt \otimes \HFt$ given in \cite[Theorem 1.1]{HoyoisSteenrod} shows that, as a $\left(\HFt\right)_{*,*,*}$-module, $\pi_{*,*,*} ^{\R} (\HFt \otimes \HFt)$ is freely generated by monomials in the $\xi_i$ and $\tau_i$.  Since each $\tau_i$ and $\xi_i$ is represented by a map of the form $\Ss^{a} \otimes \G_m^{b} \to \HFt \otimes \HFt$ (with no copies of $\Ss^{\C}$ in the domain), we may read off the formulas for products of $\tau_i$ and $\xi_i$ from the standard bigraded computations \cite[Theorem 12.6]{Voe03}.
+  To translate the formulas into tri-graded notation, we need only make use of the relations $\rho = \ta \cdot a$ and $\tau = \ta \cdot u$ of \Cref{cor:rels}.
+\end{proof}
+
+We now proceed to the proof of \Cref{thm:pthomology}.
+The main steps of the proof are split across the next several lemmas, the key input being our knowledge of the bigraded $2$-complete motivic cohomology of both $\R$ and $\C$. 
+
+\begin{lem} \label{lem:HomologyPointC}
+  For integers $p,w \in \Z$, there are isomorphisms
+  \[ \pi_{p,w,w}^{\R} \HZt \cong \Z_2[\tau^2, \rho] / (2\rho). \]
+  For integers $p,q,w \in \Z$, there are isomorphisms
+  \[ \pi^{\R}_{p,q,w} \left( \Spec(\C) \otimes \HZt \right) \cong \pi^{\C}_{p+q,w}(\HZt) \]
+  and
+  \[\pi^{\C} _{p,w} \HZt \cong \Z_2 [\tau].\]
+\end{lem}
+
+\begin{proof}
+  The base change isomorphism is a corollary of the six functor formalism. \todo{Cite something from the intro here?}
+  The computations of motivic cohomology are a corollary of Voevodsky's solution of the Bloch--Kato and Beilinson--Lichtenbaum conjectures \cite{Voe03b}. 
+  %
+  %% It is a consequence of Voevodsky's solution of the Beilinson-Lichtenbaum conjectures \cite{Voe03b} that, over a perfect field $k$, given any $\ell$ coprime to the characteristic of $k$ there is an isomorphism
+  %% \[\pi_{*,*} \mathrm{H}\mathbb{F}_{\ell} \cong \left( K^M _* (k)/\ell \right) [\tau],\]
+  %% where $\abs{\tau} = (0,-1)$ and $K^M _n (k)$, the $n$th Milnor K-theory of $k$, lives in bidgree $(-n,-n)$.
+%
+  %% The Milnor $K$-theory of an algebraically closed field is isomorphic to $\Z$ in degree $0$, so the mod $2$ version of the result follows.
+  %% To obtain the integral version, we run the Bockstein spectral sequence, whose behavior is forced by the fact that we know $\tau$ is a permanent cycle by \Cref{rec:tau}.
+\end{proof}
+
+\begin{lem} \label{lem:Z-positive-w}
+  The groups $\pi_{p,q,w}^{\R} \HZt$ and $\pi_{p,q,w}^{\R} \HFt$ are zero for $w > 0$.
+\end{lem}
+
+\begin{proof}
+  Considering the cofiber sequence $\HZt \xrightarrow{2} \HZt \to \HFt$, we reduce to the case of $\HZt$.
+  Using \Cref{lem:HomologyPointC}, we see that this lemma is true for tri-degrees of the form $(p,w,w)$.
+  For each integer $n$, consider the cofiber sequence
+$$\Spec(\C) \otimes (\bS^{\C})^{\otimes n-1} \to (\bS^{\C})^{\otimes n-1} \to (\bS^{\C})^{\otimes n}.$$
+Tensoring this with $\HZt$ and applying $\pi_{p,w,w}$, we obtain a long exact sequence
+$$\pi^{\C}_{p+w-n+1,w}  \HZt \to \pi^{\R}_{p,w-n+1,w} \HZt \to \pi^{\R}_{p,w-n,w} \HZt \to \pi^{\C}_{p+w-n,w} \HZt.$$
+
+When $w>0$, \Cref{lem:HomologyPointC} thus ensures an isomorphism between $\pi^{\R}_{p,w-n+1,w} \HZt$ and $\pi^{\R}_{p,w-n,w} \HZt$.  As $n$ varies, using the base case $n=0$, we conclude that these groups always vanish.
+\end{proof}
+
+\begin{lem} \label{lem:Zcalc}
+  When $w \le 0$, the Betti realization maps
+  $ \pi^{\R}_{p,q,w} \HZt \to \pi^{C_2}_{p+q\sigma} \uZt $
+  and 
+  $ \pi^{\R}_{p,q,w} \HFt \to \pi^{C_2}_{p+q\sigma} \uFt $
+  are isomorphisms.
+\end{lem}
+
+\begin{proof}
+    Considering the cofiber sequence $\HZt \xrightarrow{2} \HZt \to \HFt$, we reduce to the case of $\HZt$. We first check that this true when $w=q$.
+  %%   To do so, we note that
+  %% $$\pi_{p,w,w} \HZt \cong \pi_0\Hom_{\SH(\R)}((\bS^1)^{\otimes p} \otimes (\mathbb{G}_m)^{\otimes w}, \HZt).$$
+  %% According to CITE, this is the degree $(p,w)$ piece of the bigraded ring $\Zt[\tau^2,\rho]/(2\rho)$, where $|\tau^2|=(0,-2)$ and $|\rho|=(-1,-1)$.
+  %% In particular, this vanishes when $w=q>0$.
+  \Cref{thm:eqpthom}, \Cref{rec:elements} and \Cref{lem:HomologyPointC} imply that the Betti realization map is an isomorphism for degrees of the form $(p,w,w)$ with $ w \leq 0$.
+  %% identifies this with $\pi^{C_2}_{p+q\sigma} \uZt$ under Betti realization.
+  %Next, we prove that this is true whenever $q-w \ge 0$.  To do so, we assume by induction that the statement is already known when $c-b=n-1 \ge 0$, and prove it for $c-b=n$:
+  As in the previous lemma we tensor the cofiber sequence
+  \[ \Spec(\C) \otimes (\bS^{\C})^{\otimes n-1} \to (\bS^{\C})^{\otimes n-1} \to (\bS^{\C})^{\otimes n} \]
+  with $\HZt$ and take homotopy groups in order to spread out to other cases. 
+  Using $\beta$ as notation for Betti realization we obtain maps of of exact sequences of abelian groups
+  \begin{center}
+    \begin{tikzcd}
+      \pi^{\C}_{p+w-n+1,w}  \HZt \arrow{r} \arrow{d}{\cong} & \pi^{\R}_{p,w-n+1,w} \HZt \arrow{r} \arrow{d}{\beta_{p,n-1}} & \pi^{\R}_{p,w-n,w} \HZt \arrow{r} \arrow{d}{\beta_{p,n}} & \pi^{\C}_{p+w-n,w} \HZt \arrow{d}{\cong} \\
+    \pi_{p+w-n+1} \Zt \arrow{r} & \pi^{C_2}_{p+(w-n+1)\sigma} \uZt \arrow{r} & \pi^{C_2}_{p+(w-n)\sigma} \uZt \arrow{r} & \pi_{p+w-n} \Zt,
+    \end{tikzcd}
+  \end{center}
+  with our goal being to prove that the Betti realization maps $\beta_{p,n}$ are isomorphisms for all $p,n \in \Z$.
+
+  Using the 5-lemma we conclude that ($\beta_{p,n-1}$ is iso) + ($\beta_{p-1,n-1}$ is iso) implies ($\beta_{p,n}$ is iso). Similarly, the 5-lemma also implies that ($\beta_{p,n}$ is iso) + ($\beta_{p+1,n}$ is iso) implies ($\beta_{p,n-1}$ is iso). As noted above, we have already learned that $\beta_{p,0}$ is an isomorphism for all $p$, so we may now induct outwards from this case to conclude.
+%
+%% Note that we have already shown $\beta_{p,0}$ to be an isomorphism for all $p \in \Z$.  We may leverage this to show, by induction on $n$, that $\beta_{p,n}$ is an isomorphism for all $p \in \Z$ and $n \ge 0$.  To do so it is helpful to consider the extended diagram
+%% \begin{center} {\footnotesize
+%% \begin{tikzcd}[sep=small]
+%% \pi^{\C}_{p+w-n+1,w}  \HZt \arrow{r} \arrow{d}{\cong} & \pi^{\R}_{p,w-n+1,w} \HZt \arrow{r} \arrow{d}{\beta_{p,n-1}} & \pi^{\R}_{p,w-n,w} \HZt \arrow{r} \arrow{d}{\beta_{p,n}} & \pi^{\C}_{p+w-n,w} \HZt \arrow{d}{\cong} \arrow{r} &  \pi^{\R}_{p-1,w-n+1,w} \HZt \arrow{d}{\beta_{p-1,n-1}} \\
+%% \pi_{p+w-n+1} \Zt \arrow{r} & \pi^{C_2}_{p+(w-n+1)\sigma} \uZt \arrow{r} & \pi^{C_2}_{p+(w-n)\sigma} \uZt \arrow{r} & \pi_{p+w-n} \Zt \arrow{r} & \pi^{C_2}_{p-1+(w-n+1)\sigma} \uZt.
+%% \end{tikzcd}}
+%% \end{center}
+%% The five lemma then ensures that $\beta_{p,n}$ is an isomorphism under the inductive assumptions that $\beta_{p,n-1}$ and $\beta_{p-1,n-1}$ are.
+%
+%% It remains to discuss the case $n<0$.  For this, consider the extended diagram
+%% \[
+%% \begin{tikzcd}
+%% \pi^{\R}_{p+1,w-n,w} \HZt \arrow{d}{\beta_{p+1,n}} \arrow{r} & \pi^{\C}_{p+w-n+1,w}  \HZt \arrow{r} \arrow{d}{\cong} & \pi^{\R}_{p,w-n+1,w} \HZt \arrow{r} \arrow{d}{\beta_{p,n-1}} & \pi^{\R}_{p,w-n,w} \HZt \arrow{r} \arrow{d}{\beta_{p,n}} & \pi^{\C}_{p+w-n,w} \HZt \arrow{d}{\cong} \\
+%% \pi^{C_2}_{p+1+(w-n)\sigma} \uZt \arrow{r} & \pi_{p+w-n+1} \Zt \arrow{r} & \pi^{C_2}_{p+(w-n+1)\sigma} \uZt \arrow{r} & \pi^{C_2}_{p+(w-n)\sigma} \uZt \arrow{r} & \pi_{p+w-n} \Zt.
+%% \end{tikzcd}
+%% \]
+%% The result then follows from the five lemma by backwards induction on $n$.  For example, that $\beta_{p,-1}$ is an isomorphism is a consequence of the results for $\beta_{p,0}$ and $\beta_{p+1,0}$.
+\end{proof}
+
+%% \begin{cor} \label{lem:FtCor}
+%% Fix integers $p,q,w \in \Z$.  The $\mathbb{F}_2$-module
+%% $$\pi_{p,q,w} \HFt$$
+%%   is trivial if $w<0$, whereas if $w \geq 0$ Betti realization induces an isomorphism $\pi^\R _{p,q,w} \HFt \to \pi^{C_2}_{p+q\sigma} \uFt$.
+%% \end{cor}
+
+%% \begin{proof}
+%% This follows from the \Cref{lem:Zcalc} together with the long exact sequences induced by the cofiber sequences
+%% $\HZt \stackrel{2}{\longrightarrow} \HZt \longrightarrow \HFt \text{ and } \uZt \stackrel{2}{\longrightarrow} \uZt \longrightarrow \uFt.$
+%% \end{proof}
+
+\begin{proof}[Proof of \Cref{thm:pthomology}]
+By \Cref{lem:Zcalc}, the map
+\[\pi^\R _{p,q,0} \HZt \to \pi^{C_2}_{p+q\sigma}\uZt,\]
+induced by Betti realization is an isomorphism.
+Taking the inverse, we obtain a ring map
+\[\pi^{C_2}_{p+q\sigma}\uZt \to \pi^\R _{p,q,0} \HZt.\]
+This extends to a ring map
+\[\left(\pi^{C_2}_{p+q\sigma} \uZt \right) [\ta] \to \pi_{p,q,*} \HZt.\]
+  It follows from \Cref{thm:ta} and Lemmas \ref{lem:Z-positive-w} and \ref{lem:Zcalc} that this map is an isomorphism.
+The same proof works for $\HFt$.
+%
+%obtained via the $c_{\C/\R}$ functor.  This map is an injection because the composite of $c$ with Betti realization is the identity.
+%We may formally extend this to a map of rings
+%$$f:\pi^{C_2}_{p+q\sigma} \uZt[\ta] \to \pi_{a,b,*} \HZt,$$
+%using the fact that $\ta$ acts on $\pi_{p,q,*} \HZt$.
+%
+%That $f$ is injective is a consequence of the fact that the Betti realization of $\ta$ is the identity.  Indeed, any nonzero class in trigrading $(p,q,w)$ of the domain of $f$ is of the form $\tau^{-w}x$, where $0 \ne x \in \pi^{C_2}_{p+q\sigma} \uZt$.  Applying $f$ and then Betti realization sends $\tau^{-c}x$ to $x$, and so $f$ cannot send $\tau^{-c} x$ to $0$.
+%
+%Similarly, there is an injective map of rings
+%$$g:\pi^{C_2}_{p+q\sigma} \uFt[\ta] \to \pi^{\R}_{p,q,w} \uFt$$
+%
+%It remains to prove that $f$ and $g$ are surjective.  That $g$ is surjective is a consequence of \Cref{lem:FtCor}, which states that in each tridgree both the domain and codomain of $g$ are finite-dimensional $\Ft$ vector spaces of the same rank.  That $f$ is surjective can be checked after mod $2$ reduction, by Nakayama's lemma, and so the surjectivity of $f$ follows from the surjectivity of $g$.
+\end{proof}
+
+\subsection{The proof of \Cref{thm:comparison-invert-ta}} \label{subsec:ccr}\ 
+
+Recall that we are proving that $\b$ is an equivalence on the $\ta$-local category with inverse $Y$.
+We will check directly that $Y$ is an equivalence of categories by showing that it is fully faithful and essentially surjective. That $\b$ is the inverse of $Y$ follows from the fact that $\b \circ Y = \b \circ c_{\C/\R}$ is the identity on $\Sp_{C_2,i2}$. Before we can make progress on this goal we will need a pair of lemmas.
+
+\begin{lem} \label{lem:Cta-neg-w}
+  The tri-graded homotopy of $C\ta$ is zero in negative weights.
+\end{lem}
+
+\begin{proof}
+  Our method of proof will be to apply the motivic Adams spectral sequence to $C\ta$.
+  Since this spectral sequence converges strongly for $\Ss_2$ by \cite{MAdamsConv}, it also converges strongly for $C\ta$. This spectral sequence takes the form
+  $$E_1^{s,t} = \pi_{t,q,w}(C\ta \otimes \HFt^{\otimes {s+1}}) \implies \pi_{t-s,q,w} C\ta.$$
+  %% The convergence of this spectral sequence is a consequence of the fact that we have implicity $2$-completed CITE.
+  It suffices therefore to check at the level of the $E_1$-page that $\pi_{t,q,w} \HFt^{\otimes {s+1}} = 0$ for $w<0$.
+	
+  For this, we use the known \cite{Voe03,Voe10,HoyoisSteenrod} description of $\HFt \otimes \HFt$ in $\SHR$.  One has that $\HFt \otimes \HFt \simeq \oplus_{(x_i,y_i,y_i)} \Sigma^{x_i,y_i,y_i} \HFt$, where the $x_i$ and $y_i$ range over non-negative integers.  The result now follows immediately from \Cref{thm:pthomology}.
+\end{proof}
+
+\begin{lem} \label{prop:weak-one-sided}
+  Let $n$ denote a non-negative integer.  Given a pair of $C_2$-spectra $X, Y \in \Sp_{C_2, i2}$, the natural map induced by $\ta^n$
+  \[ \Map_{\SHRat}(c_{\C/\R} X, c_{\C/\R} Y) \to \Map_{\SHRat}(c_{\C/\R} X, \Ss_2^{0,0,n} \otimes c_{\C/\R} Y) \]
+  is an equivalence.
+\end{lem}
+
+\begin{proof}
+  Since $c_{\C/\R} $ commutes with colimits it will suffice to prove the proposition as $X$ ranges through a family of compact generators of $\Sp_{C_2, i2}$. In particular, it will suffice to assume $X \simeq \Ss_2^{p+q\sigma}$ is a representation sphere.  Since $c_{\C/\R} X \simeq \Ss^{p,q,0} _2$ is compact, it furthermore suffices to prove the proposition as $Y$ ranges through a family of compact generators. In particular, it suffices to assume that $Y \simeq \Ss^{a+b\sigma}_2$ is also a representation sphere. 
+	
+  At this point, the proposition reduces to a claim about 
+  $$\Map_{\SHRat}(c_{\C/\R} \Ss_2^{p+q\sigma}, \Ss_2^{0,0,n} \otimes c_{\C/\R} \Ss_2^{a+b\sigma}) \simeq \Map_{\SHRat}(\Ss_2^{p-a,q-b,-n},\Ss_2),$$
+  or in other words a claim about the tri-graded stable stems $\pi^{\R}_{*,*,*} \Ss_2$.  We must show that multiplication by $\ta^n$ is an isomorphism $\pi^{\R}_{*,*,0} \Ss_2 \to \pi^{\R}_{*,*,-n} \Ss_2$.  Equivalently, we must check that $\ta:\pi^{\R}_{*,*,-n} \Ss_2 \to \pi^{\R}_{*,*,-n-1} \Ss_2$ is an isomorphism for each $n \ge 0$.  Examining the cofiber sequence
+  \[\Sigma^{-1,0,0} C\ta \to \Ss_2^{0,0,-1} \stackrel{\ta}{\to} \Ss_2 \to C\ta, \]
+  we may use \Cref{lem:Cta-neg-w} to conclude.
+  %% it suffices to prove that $\pi^{\R}_{*,*,w} C\ta \cong 0$ whenever $w < 0$.	
+\end{proof}
+
+%% We close the section by providing a proof for \Cref{thm:comparison-invert-ta}.
+
+%% \begin{proof}[Proof (of \Cref{thm:comparison-invert-ta}).]
+We are now ready to complete the proof of \Cref{thm:comparison-invert-ta}.
+
+  To check that $Y$ is fully faithful, we must prove that for any pair $A, B \in \Sp_{C_2,i2}$ the composite
+\[ \Map_{\Sp_{C_2,i2}}(A,B) \to \Map_{\SHRat}(c_{\C/\R}A, c_{\C/\R}B) \to \Map_{\SHRat}(c_{\C/\R}A [\ta^{-1}], c_{\C/\R}B [\ta^{-1}]) \]
+is an equivalence. The first map is an equivalence as a consequence of the fully-faithfulness of $c_{\C/\R}$ as proven by Heller-Ormsby, see \Cref{thm:c-ff}. The second map factors as
+\begin{align*}
+  \Map_{\SHRat}(c_{\C/\R}A, c_{\C/\R}B)
+  &\xrightarrow{\simeq} \Map_{\SHRat}(c_{\C/\R}A, c_{\C/\R}B [\ta^{-1}]) \\
+  &\xrightarrow{\simeq} \Map_{\SHRat}(c_{\C/\R}A [\ta^{-1}], c_{\C/\R}B [\ta^{-1}])
+\end{align*}
+where first map is an equivalence as a consequence of \Cref{prop:weak-one-sided}
+and the second map is an equivalence since inverting $\ta$ is a localization.
+
+Since $Y$ is now fully-faithful and colimit preserving, to check that it is essentially surjective it suffices to check that its image contains a family of compact generators. One such family consists of the objects $\Ss^{p,q,w}_2[\ta^{-1}]$ as $p,q,w$ range over the integers, since $\Ss_2^{p,q,w}[\ta^{-1}] \simeq \Ss_2^{p,q,0}[\ta^{-1}] \simeq Y(\Ss_2^{p+q\sigma})$.
+%% \end{proof}

@@ -1,0 +1,282 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{BKWX20}
+
+\bibitem[Ada95]{adams1995stable}
+John~Frank Adams, \emph{Stable homotopy and generalised homology}, University
+  of Chicago press, 1995.
+
+\bibitem[Ber06]{bergner_rigidification_of_algebras}
+Julia~E. Bergner, \emph{Rigidification of algebras over multi-sorted theories},
+  Algebr. Geom. Topol. \textbf{6} (2006), 1925--1955. \MR{2263055
+  (2007f:18005)}
+
+\bibitem[BH17]{barthel2017algebraic}
+Tobias Barthel and Drew Heard, \emph{Algebraic chromatic homotopy theory for
+  {$BP_{*}BP$}-comodules}, arXiv preprint arXiv:1708.09261 (2017).
+
+\bibitem[BHS19]{burklund2019boundaries}
+Robert Burklund, Jeremy Hahn, and Andrew Senger, \emph{On the boundaries of
+  highly connected, almost closed manifolds}, arXiv preprint arXiv:1910.14116
+  (2019).
+
+\bibitem[BHS20a]{burklund2020galois}
+\bysame, \emph{Galois reconstruction of artin-tate $\mathbb{R}$-motivic
+  spectra}, arXiv preprint arXiv:2010.10325 (2020).
+
+\bibitem[BHS20b]{burklund2020inertia}
+\bysame, \emph{Inertia groups in the metastable range}, arXiv preprint
+  arXiv:2010.09869 (2020).
+
+\bibitem[BHV15]{barthel2015local}
+Tobias Barthel, Drew Heard, and Gabriel Valenzuela, \emph{Local duality in
+  algebra and topology}, arXiv preprint arXiv:1511.03526 (2015).
+
+\bibitem[BK72]{bousfield1972homotopy}
+Aldridge~Knight Bousfield and Daniel~Marinus Kan, \emph{Homotopy limits,
+  completions and localizations}, vol. 304, Springer Science \& Business Media,
+  1972.
+
+\bibitem[BKWX20]{bachmann2020chow}
+Tom Bachmann, Hana~Jia Kong, Guozhen Wang, and Zhouli Xu, \emph{The chow $ t
+  $-structure on the $\infty$-category of motivic spectra}, arXiv preprint
+  arXiv:2012.02687 (2020).
+
+\bibitem[Bra14]{brandenburg2014tensor}
+Martin Brandenburg, \emph{Tensor categorical foundations of algebraic
+  geometry}, arXiv preprint arXiv:1410.1716 (2014).
+
+\bibitem[BS20]{burklund2020high}
+Robert Burklund and Andrew Senger, \emph{On the high-dimensional geography
+  problem}, arXiv preprint arXiv:2007.05127 (2020).
+
+\bibitem[B{\"u}h10]{buhler2010exact}
+Theo B{\"u}hler, \emph{Exact categories}, Expositiones Mathematicae \textbf{28}
+  (2010), no.~1, 1--69.
+
+\bibitem[Bur21]{burklund2021extension}
+Robert Burklund, \emph{An extension in the adams spectral sequence in dimension
+  54}, Bulletin of the London Mathematical Society \textbf{53} (2021), no.~2,
+  404--407.
+
+\bibitem[Cha20]{chang_banded_vanishing_line}
+Kevin Chang, \emph{A $v_1$-banded vanishing line for the mod 2 moore spectrum},
+  arXiv preprint arXiv:2009.02834 (2020).
+
+\bibitem[CS69]{conner1969complex}
+Pierre~E Conner and Larry Smith, \emph{On the complex bordism of finite
+  complexes}, Publications math{\'e}matiques de l'IH{\'E}S \textbf{37} (1969),
+  no.~1, 117--221.
+
+\bibitem[Del71]{deligne1971theorie}
+Pierre Deligne, \emph{Th{\'e}orie de {Hodge}, {II}}, Publications
+  Math{\'e}matiques de l'Institut des Hautes {\'E}tudes Scientifiques
+  \textbf{40} (1971), no.~1, 5--57.
+
+\bibitem[Dev97]{dev_morava}
+Ethan~S. Devinatz, \emph{Morava modules and {B}rown-{C}omenetz duality}, Amer.
+  J. Math. \textbf{119} (1997), no.~4, 741--770. \MR{1465068 (98i:55008)}
+
+\bibitem[DHK97]{dwyer1997model}
+William~G Dwyer, Philip Hirschhorn, and Daniel Kan, \emph{Model categories and
+  more general abstract homotopy theory: a work in what we like to think of as
+  progress}.
+
+\bibitem[DI05]{dugger2005motivic}
+Daniel Dugger and Daniel~C Isaksen, \emph{Motivic cell structures}, Algebraic
+  \& Geometric Topology \textbf{5} (2005), no.~2, 615--652.
+
+\bibitem[DI10]{dugger2010motivic}
+\bysame, \emph{The motivic {Adams} spectral sequence}, Geometry \& Topology
+  \textbf{14} (2010), no.~2, 967--1014.
+
+\bibitem[GH]{moduli_problems_for_structured_ring_spectra}
+P.~G. Goerss and M.~J. Hopkins, \emph{Moduli problems for structured ring
+  spectra},
+  \url{http://www.math.northwestern.edu/~pgoerss/spectra/obstruct.pdf}.
+
+\bibitem[GH04]{moduli_spaces_of_commutative_ring_spectra}
+P.~G. Goerss and M.~J. Hopkins, \emph{Moduli spaces of commutative ring
+  spectra}, Structured ring spectra, London Math. Soc. Lecture Note Ser., vol.
+  315, Cambridge Univ. Press, Cambridge, 2004, pp.~151--200. \MR{2125040
+  (2006b:55010)}
+
+\bibitem[GI17]{gheorghe2017structure}
+Bogdan Gheorghe and Daniel~C Isaksen, \emph{The structure of motivic homotopy
+  groups}, Bolet{\'\i}n de la Sociedad Matem{\'a}tica Mexicana \textbf{23}
+  (2017), no.~1, 389--397.
+
+\bibitem[Gre21]{gregoric2021moduli}
+Rok Gregoric, \emph{Moduli stack of oriented formal groups and cellular motivic
+  spectra over $\mathbb{C}$}, arXiv preprint arXiv:2111.15212 (2021).
+
+\bibitem[GWX21]{gheorghe2018special}
+Bogdan Gheorghe, Guozhen Wang, and Zhouli Xu, \emph{The special fiber of the
+  motivic deformation of the stable homotopy category is algebraic}, Acta
+  Mathematica \textbf{226} (2021), no.~2, 319--407.
+
+\bibitem[HKO11a]{hu2011convergence}
+Po~Hu, Igor Kriz, and Kyle Ormsby, \emph{Convergence of the motivic {Adams}
+  spectral sequence}, Journal of K-theory \textbf{7} (2011), no.~3, 573--596.
+
+\bibitem[HKO11b]{hu2011remarks}
+\bysame, \emph{Remarks on motivic homotopy theory over algebraically closed
+  fields}, Journal of K-Theory \textbf{7} (2011), no.~1, 55--89.
+
+\bibitem[Hov]{hovey2003homotopy}
+Mark Hovey, \emph{Homotopy theory of comodules over a {Hopf} algebroid,
+  homotopy theory: relations with algebraic geometry, group cohomology, and
+  algebraic {K}-theory, 261--304}, Contemp. Math \textbf{346}.
+
+\bibitem[Hoy]{hoyois_mathoverflow_question}
+Marc Hoyois, \emph{The vanishing of ${MGL^{2n+i, n}(X)}$},
+  \url{https://mathoverflow.net/questions/111849/the-vanishing-of-mgl2ni-nx-do-spectra-of-smooth-projective-varieties-ge}.
+
+\bibitem[Hoy15]{hoyois2015algebraic}
+\bysame, \emph{From algebraic cobordism to motivic cohomology}, Journal f{\"u}r
+  die reine und angewandte Mathematik (Crelles Journal) \textbf{2015} (2015),
+  no.~702, 173--226.
+
+\bibitem[Isa19]{isaksen_stable_stems}
+Daniel Isaksen, \emph{Stable stems}, vol. 262, American mathematical society,
+  2019.
+
+\bibitem[IWX20]{more_stable_stems}
+Daniel~C Isaksen, Guozhen Wang, and Zhouli Xu, \emph{More stable stems}, arXiv
+  preprint arXiv:2001.04511 (2020).
+
+\bibitem[Joa15]{joachimi2015thick}
+Ruth Joachimi, \emph{Thick ideals in equivariant and motivic stable homotopy
+  categories}, arXiv preprint arXiv:1503.08456 (2015).
+
+\bibitem[JW12]{jeanneret2012cohomology}
+Alain Jeanneret and S~W{\"u}thrich, \emph{On the cohomology of certain
+  quotients of the spectrum {BP}}, Glasgow mathematical journal \textbf{54}
+  (2012), no.~1, 61--66.
+
+\bibitem[L{\etalchar{+}}15]{levine2015adams}
+Marc Levine et~al., \emph{The {Adams-Novikov} spectral sequence and
+  {Voevodsky}'s slice tower}, Geometry \& Topology \textbf{19} (2015), no.~5,
+  2691--2740.
+
+\bibitem[Laz03]{lazarev2003towers}
+Andrey Lazarev, \emph{Towers of {MU}-algebras and the generalized
+  {Hopkins-Miller} theorem}, Proceedings of the London Mathematical Society
+  \textbf{87} (2003), no.~2, 498--522.
+
+\bibitem[Lev14]{levine2014comparison}
+Marc Levine, \emph{A comparison of motivic and classical stable homotopy
+  theories}, Journal of Topology \textbf{7} (2014), no.~2, 327--362.
+
+\bibitem[LH]{lurie_hopkins_brauer_group}
+Jacob Lurie and Michael Hopkins, \emph{On {Brauer} groups of {Lubin-Tate}
+  spectra {I}}, http://www.math.harvard.edu/~lurie/papers/Brauer.pdf.
+
+\bibitem[Lura]{higher_algebra}
+Jacob Lurie, \emph{Higher algebra},
+  \url{http://www.math.harvard.edu/~lurie/papers/HA.pdf}.
+
+\bibitem[Lurb]{lurie_spectral_algebraic_geometry}
+\bysame, \emph{Spectral algebraic geometry},
+  \url{http://www.math.harvard.edu/~lurie/papers/SAG-rootfile.pdf}.
+
+\bibitem[Lur09]{lurie_higher_topos_theory}
+\bysame, \emph{Higher topos theory}, Annals of Mathematics Studies, vol. 170,
+  Princeton University Press, Princeton, NJ, 2009. \MR{2522659 (2010j:18001)}
+
+\bibitem[Mar22]{marek2022h}
+Peter Marek, \emph{{$H\mathbb{F}_{2}$}-synthetic homotopy groups of topological
+  modular forms}, arXiv preprint arXiv:2202.11305 (2022).
+
+\bibitem[MM12]{maclane2012sheaves}
+Saunders MacLane and Ieke Moerdijk, \emph{Sheaves in geometry and logic: A
+  first introduction to topos theory}, Springer Science \& Business Media,
+  2012.
+
+\bibitem[MNN17]{mathew2017nilpotence}
+Akhil Mathew, Niko Naumann, and Justin Noel, \emph{Nilpotence and descent in
+  equivariant stable homotopy theory}, Advances in Mathematics \textbf{305}
+  (2017), 994--1084.
+
+\bibitem[MV99]{morel19991}
+Fabien Morel and Vladimir Voevodsky, \emph{$\mathbb{A}^{1}$-homotopy theory of
+  schemes}, Publications Math{\'e}matiques de l'Institut des Hautes {\'E}tudes
+  Scientifiques \textbf{90} (1999), no.~1, 45--143.
+
+\bibitem[NS{\O}09]{naumann2009motivic}
+Niko Naumann, Markus Spitzweck, and Paul~Arne {\O}stv{\ae}r, \emph{Motivic
+  {Landweber} exactness}, Doc. Math \textbf{14} (2009), no.~551-593, 6--7.
+
+\bibitem[PP21]{patchkoria2021adams}
+Irakli Patchkoria and Piotr Pstr{\k{a}}gowski, \emph{Adams spectral sequences
+  and franke's algebraicity conjecture}, arXiv preprint arXiv:2110.03669
+  (2021).
+
+\bibitem[Pst17]{pstrkagowski2017moduli}
+Piotr Pstr{\k{a}}gowski, \emph{Moduli of {$\Pi$}-algebras}, arXiv preprint
+  arXiv:1705.05761 (2017).
+
+\bibitem[PV21]{pstrkagowski2021abstract}
+Piotr Pstr{\k{a}}gowski and Paul VanKoughnett, \emph{Abstract goerss-hopkins
+  theory}, Advances in Mathematics (2021), 108098.
+
+\bibitem[PV22]{pstrkagowski2022abstract}
+\bysame, \emph{Abstract goerss-hopkins theory}, Advances in Mathematics
+  \textbf{395} (2022), 108098.
+
+\bibitem[Rav86]{ravenel_complex_cobordism}
+Douglas~C. Ravenel, \emph{Complex cobordism and stable homotopy groups of
+  spheres}, Pure and Applied Mathematics, vol. 121, Academic Press, Inc.,
+  Orlando, FL, 1986. \MR{860042 (87j:55003)}
+
+\bibitem[S{\etalchar{+}}10]{spitzweck2010relations}
+Markus Spitzweck et~al., \emph{Relations between slices and quotients of the
+  algebraic cobordism spectrum}, Homology, Homotopy and Applications
+  \textbf{12} (2010), no.~2, 335--351.
+
+\bibitem[Sch20a]{schappi2020flat}
+Daniel Sch{\"a}ppi, \emph{Flat replacements of homology theories}, arXiv
+  preprint arXiv:2011.12106 (2020).
+
+\bibitem[Sch20b]{schappi2020graded}
+\bysame, \emph{Graded-tannakian categories of motives}, arXiv preprint
+  arXiv:2001.08567 (2020).
+
+\bibitem[Spa88]{spaltenstein1988resolutions}
+Nicolas Spaltenstein, \emph{Resolutions of unbounded complexes}, Compositio
+  Mathematica \textbf{65} (1988), no.~2, 121--154.
+
+\bibitem[Sta16]{stahn2016motivic}
+Sven-Torben Stahn, \emph{The motivic {Adams-Novikov} spectral sequence at odd
+  primes over $\mathbb{C}$ and $\mathbb{R}$}, arXiv preprint arXiv:1606.06085
+  (2016).
+
+\bibitem[Sus83]{suslin1983thek}
+Andrei Suslin, \emph{On the $k$-theory of algebraically closed fields},
+  Inventiones mathematicae \textbf{73} (1983), no.~2, 241--245.
+
+\bibitem[Voe03]{voevodsky2003motivic}
+Vladimir Voevodsky, \emph{Motivic cohomology with {$\mathbb{Z} /
+  2$}-coefficients}, Publications Math{\'e}matiques de l'Institut des Hautes
+  {\'E}tudes Scientifiques \textbf{98} (2003), no.~1, 59--104.
+
+\bibitem[Voe10a]{voevodsky2010motivic}
+\bysame, \emph{Motivic {Eilenberg-MacLane} spaces}, Publications
+  math{\'e}matiques de l'IH{\'E}S \textbf{112} (2010), no.~1, 1--99.
+
+\bibitem[Voe10b]{voevodsky2010simplicial}
+\bysame, \emph{Simplicial radditive functors}, Journal of K-theory \textbf{5}
+  (2010), no.~2, 201--244.
+
+\bibitem[W{\"u}r91]{wurgler1991morava}
+Urs W{\"u}rgler, \emph{Morava {$K$}-theories: a survey}, Algebraic topology
+  {P}ozna\'{n} 1989, Lecture Notes in Math., vol. 1474, Springer, Berlin, 1991,
+  pp.~111--138. \MR{1133896}
+
+\end{thebibliography}

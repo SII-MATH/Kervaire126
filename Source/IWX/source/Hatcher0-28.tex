@@ -1,0 +1,162 @@
+
+		\begin{tikzpicture}
+		[scale=0.43,
+		>=stealth,
+		every path/.style={line width = 0.645pt},
+		dot/.style={circle,
+			inner sep=0,
+			minimum size=0.11cm},
+		height0/.style={
+			draw={red},
+			fill={red}},
+		height1/.style={
+			draw={darkblue},
+			fill={darkblue}},
+		height2/.style={
+			draw={darkgreen},
+			fill={darkgreen}},
+		height3/.style={
+			draw={midgray},
+			fill={midgray}},
+		tower/.style={->}]
+			% Draw grid and axes
+			\draw[step=2cm, black!20, thin] (0,0) grid (28,10);
+			\foreach \x in {0,2,...,28}
+				\draw (\x, -1) node{\x};
+			% Begin data
+			\draw[, height1] (0,0) -- (0,1);
+			\draw[, height1] (0,0) -- (1,1);
+			\draw[, height1] (0,0) -- (3,1);
+			\node[dot, height1] at (0,0) {};
+			\draw[, height1] (7,1) -- (7,2);
+			\draw[, height1] (7,1) -- (8,2);
+			\node[dot, height1] at (7,1) {};
+			\draw[, height1] (9,1) -- (10,2);
+			\node[dot, height1] at (9,1) {};
+			\draw[, height2] (14,6) -- (15,7);
+			\draw[, height2] (14,6) -- (17,6);
+			\node[dot, height2] at (14,6) {};
+			\node[dot, height3] at (14,7) {};
+			\draw[, height1] (15,1) -- (15,2);
+			\draw[, height1] (15,1) -- (16,2);
+			\node[dot, height1] at (15,1) {};
+			\draw[, height3] (16,7) -- (17,8);
+			\node[dot, height3] at (16,7) {};
+			\draw[, height1] (17,1) -- (18,2);
+			\node[dot, height1] at (17,1) {};
+			\draw[, height3] (19,8) -- (22,8);
+			\node[dot, height3] at (19,8) {};
+			\draw[, height1] (23,1) -- (23,2);
+			\draw[, height1] (23,1) -- (24,2);
+			\node[dot, height1] at (23,1) {};
+			\draw[, height3] (23,8) -- (24,9);
+			\node[dot, height3] at (23,8) {};
+			\draw[, height1] (25,1) -- (26,2);
+			\node[dot, height1] at (25,1) {};
+			\node[dot, height2] at (28,5) {};
+			\draw[tower, height1] (0,3) -- +(0,1);
+			\node[dot, height1] at (0,3) {};
+			\draw[, height1] (0,1) -- (0,2);
+			\draw[, height1] (0,1) -- (3,2);
+			\node[dot, height1] at (0,1) {};
+			\draw[, height1] (0,2) -- (0,3);
+			\draw[, height1] (0,2) -- (3,3);
+			\node[dot, height1] at (0,2) {};
+			\draw[, height1] (1,1) -- (2,2);
+			\node[dot, height1] at (1,1) {};
+			\draw[, height1] (2,2) -- (3,3);
+			\node[dot, height1] at (2,2) {};
+			\draw[, height1] (3,1) -- (3,2);
+			\draw[, height2] (3,1) -- (6,5);
+			\node[dot, height1] at (3,1) {};
+			\draw[, height1] (3,2) -- (3,3);
+			\node[dot, height1] at (3,2) {};
+			\node[dot, height1] at (3,3) {};
+			\draw[, height2] (6,5) -- (9,5);
+			\node[dot, height2] at (6,5) {};
+			\draw[, height1] (7,2) -- (7,3);
+			\node[dot, height1] at (7,2) {};
+			\draw[, height1] (7,3) -- (7,4);
+			\node[dot, height1] at (7,3) {};
+			\node[dot, height1] at (7,4) {};
+			\draw[, height1] (8,2) -- (9,3);
+			\node[dot, height1] at (8,2) {};
+			\draw[, height2] (8,4) -- (9,5);
+			\node[dot, height2] at (8,4) {};
+			\node[dot, height1] at (9,3) {};
+			\node[dot, height2] at (9,5) {};
+			\draw[, height1] (10,2) -- (11,3);
+			\node[dot, height1] at (10,2) {};
+			\draw[, height1] (11,1) -- (11,2);
+			\node[dot, height1] at (11,1) {};
+			\draw[, height1] (11,2) -- (11,3);
+			\node[dot, height1] at (11,2) {};
+			\node[dot, height1] at (11,3) {};
+			\draw[, height1] (15,2) -- (15,3);
+			\node[dot, height1] at (15,2) {};
+			\draw[, height1] (15,3) -- (15,4);
+			\node[dot, height1] at (15,3) {};
+			\draw[, height1] (15,4) -- (15,5);
+			\node[dot, height1] at (15,4) {};
+			\node[dot, height1] at (15,5) {};
+			\node[dot, height2] at (15,7) {};
+			\draw[, height1] (16,2) -- (17,3);
+			\node[dot, height1] at (16,2) {};
+			\node[dot, height1] at (17,3) {};
+			\draw[, height2] (17,6) -- (20,6);
+			\node[dot, height2] at (17,6) {};
+			\draw[, height3] (17,8) -- (18,9);
+			\node[dot, height3] at (17,8) {};
+			\draw[, height1] (18,2) -- (19,3);
+			\node[dot, height1] at (18,2) {};
+			\draw[, height3] (18,7) -- (18,8);
+			\draw[, height3] (18,7) -- (21,7);
+			\node[dot, height3] at (18,7) {};
+			\draw[, height3] (18,8) -- (18,9);
+			\node[dot, height3] at (18,8) {};
+			\node[dot, height3] at (18,9) {};
+			\draw[, height1] (19,1) -- (19,2);
+			\node[dot, height1] at (19,1) {};
+			\draw[, height1] (19,2) -- (19,3);
+			\node[dot, height1] at (19,2) {};
+			\node[dot, height1] at (19,3) {};
+			\draw[, height2] (20,4) -- (20,5);
+			\draw[, height2] (20,4) -- (21,5);
+			\draw[, height2] (20,4) -- (23,5);
+			\node[dot, height2] at (20,4) {};
+			\draw[, height2] (20,5) -- (20,6);
+			\draw[, height2] (20,5) -- (23,6);
+			\node[dot, height2] at (20,5) {};
+			\draw[, height2] (20,6) -- (23,7);
+			\node[dot, height2] at (20,6) {};
+			\draw[, height2] (21,5) -- (22,6);
+			\node[dot, height2] at (21,5) {};
+			\node[dot, height3] at (21,7) {};
+			\draw[, height2] (22,6) -- (23,7);
+			\node[dot, height2] at (22,6) {};
+			\node[dot, height3] at (22,8) {};
+			\draw[, height1] (23,2) -- (23,3);
+			\node[dot, height1] at (23,2) {};
+			\draw[, height1] (23,3) -- (23,4);
+			\node[dot, height1] at (23,3) {};
+			\node[dot, height1] at (23,4) {};
+			\draw[, height2] (23,5) -- (23,6);
+			\draw[, height2] (23,5) -- (26,5);
+			\node[dot, height2] at (23,5) {};
+			\draw[, height2] (23,6) -- (23,7);
+			\node[dot, height2] at (23,6) {};
+			\node[dot, height2] at (23,7) {};
+			\draw[, height1] (24,2) -- (25,3);
+			\node[dot, height1] at (24,2) {};
+			\node[dot, height3] at (24,9) {};
+			\node[dot, height1] at (25,3) {};
+			\draw[, height1] (26,2) -- (27,3);
+			\node[dot, height1] at (26,2) {};
+			\node[dot, height2] at (26,5) {};
+			\draw[, height1] (27,1) -- (27,2);
+			\node[dot, height1] at (27,1) {};
+			\draw[, height1] (27,2) -- (27,3);
+			\node[dot, height1] at (27,2) {};
+			\node[dot, height1] at (27,3) {};
+		% End data
+		\end{tikzpicture}

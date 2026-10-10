@@ -1,0 +1,348 @@
+\chapter{The algebraic Novikov spectral sequence}
+\label{ch:AANSS}
+
+Consider the cofiber sequence
+\[
+\xymatrix@1{
+S^{0,-1} \ar[r]^\tau & S^{0,0} \ar[r]^i & C\tau \ar[r]^-p & S^{1,-1},
+}
+\]
+where $C\tau$ is the cofiber of $\tau$.
+The inclusion $i$ of the bottom cell and projection $p$ to the top cell
+are tools for comparing the $\C$-motivic Adams spectral sequence
+for $S^{0,0}$ to the $\C$-motivic Adams spectral sequence for
+$C\tau$.
+In \cite{Isaksen14c}, the first author analyzed both spectral sequences simultaneously,
+playing the structure of each against the other in order to obtain
+more detailed information about both.
+Then the structure of the homotopy of $C\tau$ was used
+to reverse-engineer the structure of the classical Adams-Novikov spectral
+sequence.
+
+In this manuscript, we use $C\tau$ in a different, much more powerful
+way, because we have a deeper understanding of the connection
+between the homotopy of $C\tau$ and the structure of the
+classical Adams-Novikov spectral sequence.
+Namely, the $\C$-motivic spectrum $C\tau$ is an $E_\infty$-ring spectrum
+\cite{Gheorghe18}.
+\revv{
+Here we are referring to the classical $E_\infty$-operad that 
+parametrizes homotopy-coherent commutative multiplications.}
+
+Moreover, 
+the homotopy category of $C\tau$-modules is equivalent
+to \revv{Hovey's stable derived category} of $BP_*BP$-comodules  \cite{GWX18} \cite{Krause18}.
+By considering endomorphisms of unit objects, this comparison
+of homotopy categories gives a structured explanation for the
+identification of the homotopy of $C\tau$ and the
+classical Adams-Novikov $E_2$-page.
+
+From a computational perspective, there is an even better connection.
+Namely, the algebraic Novikov spectral sequence for computing
+the Adams-Novikov $E_2$-page 
+\cite{Novikov67} \cite{Miller75} 
+is identical to the $\C$-motivic Adams
+spectral sequence for computing the homotopy of $C\tau$ \cite{GWX18}.
+This rather shocking, and incredibly powerful, 
+identification of spectral sequences allows us to transform
+purely algebraic computations directly into information about
+Adams differentials for $C\tau$.
+Finally, naturality along the inclusion $i$ of the bottom cell
+and along the projection $p$ to the top cell allows us to
+deduce information about Adams differentials for $S^{0,0}$.
+
+Due to the large quantity of data, we do not explicitly 
+describe the structure of the Adams spectral sequence
+for $C\tau$ in this manuscript.  We refer the interested
+reader to the charts in \cite{IWX19}, which provide details
+in a graphical form.
+
+\section{Naming conventions}
+\label{sctn:Ctau-naming}
+
+Our naming convention for elements of the algebraic Novikov
+spectral sequence (and for elements of the Adams-Novikov
+spectral sequence) differs from previous approaches.
+Our names are chosen to respect the inclusion $i$ of the
+bottom cell and the projection $p$ to the top cell.
+Specifically, if $x$ is an element of the
+$\C$-motivic Adams $E_2$-page for $S^{0,0}$, then we use the same
+letter $x$ to indicate its image 
+$i_*(x)$ in the Adams $E_2$-page for $C\tau$.
+It is certainly possible that $i_*(x)$ is zero, but
+we will only use this convention in cases where 
+$i_*(x)$ is non-zero, i.e., when $x$ is not a multiple of $\tau$.
+
+On the other hand, if $x$ is an element of the $\C$-motivic
+Adams $E_2$-page for $S^{0,0}$ such that $\tau x$ is zero,
+then we use the symbol $\overline{x}$ to indicate an element
+of $p_*^{-1} (x)$ in the Adams $E_2$-page for $C\tau$.
+There is often more than one possible choice for $\overline{x}$,
+and the indeterminacy in this choice equals the image of
+$i_*$ in the appropriate degree.  We will not usually be explicit
+about these choices.  However, potential confusion can arise
+in this context.  For example, it may be the case that
+one choice of $\overline{x}$ supports an $h_1$ extension,
+while another choice of $\overline{x}$ supports an $h_2$ extension,
+but there is no possible choice of $\overline{x}$ that simultaneously
+supports both extensions.  (The authors dwell on this point
+because this precise issue has generated confusion about specific
+computations.)
+
+\section{Machine computations}
+\label{sctn:AANNSS-machine}
+
+We have analyzed the algebraic Novikov spectral sequence
+by computer in a large range.  Roughly speaking, our algorithm
+computes a Curtis table for a minimal resolution. 
+Significant effort went into optimizing the linear algebra
+algorithms to complete the computation in a reasonable amount of time.
+The data is available at \cite{IWX19}.
+See \cite{Wang20} for a discussion of the implementation.
+
+Our machine computations give us a full description of the
+additive structure of the algebraic Novikov $E_2$-page, together
+with all $d_r$ differentials for $r \geq 2$.  
+It thus yields a full description of the additive structure
+of the algebraic Novikov $E_\infty$-page.
+
+Moreover, the data also gives full information about
+multiplication by $2$, $h_1$, and $h_2$ in the 
+Adams-Novikov $E_2$-page for the classical sphere spectrum,
+which we denote by $H^*(S; BP)$.
+
+We have also conducted machine computations of the
+Adams-Novikov $E_2$-page for the classical cofiber of $2$, which
+we denote by $H^*(S/2; BP)$.
+Note that $H^*(S; BP)$ is the homology of a differential
+graded algebra (i.e., the cobar complex) that is free as a $\Z_2$-module.
+Therefore, $H^*(S/2; BP)$ 
+is the homology of this differential graded algebra modulo $2$.
+We have computed this homology by machine, including full information
+about multiplication by $h_1$, $h_2$, and $h_3$.
+These computations are related by a long exact sequence 
+\[
+\xymatrix@1{
+\cdots \ar[r] & H^*(S; BP) \ar[r]^j & H^*(S/2; BP) \ar[r]^q &
+H^*(S; BP) \ar[r] & \cdots 
+}
+\]
+
+
+Because $h_2^2$, $h_3^2$, $h_4^2$, and $h_5^2$ are annihilated by
+$2$ in $H^*(S; BP)$, there are classes
+$\widetilde{h_2^2}$, $\widetilde{h_3^2}$, $\widetilde{h_4^2}$, and 
+$\widetilde{h_5^2}$ in $H^*(S/2; BP)$ such that
+$q(\widetilde{h_i^2})$ equals $h_i^2$ for $2 \leq i \leq 5$.
+We also have full information about multiplication by
+$\widetilde{h_2^2}$, $\widetilde{h_3^2}$, $\widetilde{h_4^2}$, and 
+$\widetilde{h_5^2}$ in $H^*(S/2; BP)$
+
+This multiplicative information allows use to determine some of the
+Massey product structure in the Adams-Novikov $E_2$-page for the
+sphere spectrum.  There are several cases to consider.
+
+First, let $x$ and $y$ be elements of $H^*(S;BP)$.
+If the product $j(x) j(y)$ is non-zero in $H^*(S/2;BP)$, then 
+$x y$ must also be non-zero in $H^*(S; BP)$.
+
+In the second case, let $x$ be an element of $H^*(S; BP)$, and let
+$\widetilde{y}$ be an element of $H^*(S/2; BP)$ such that
+$q(\widetilde{y}) = y$.
+If the product $x \cdot \widetilde{y}$ is non-zero in
+$H^*(S/2; BP)$ and equals $j(z)$ for some $z$ in
+$H^*(S; BP)$, then $z$ belongs to the Massey product
+$\langle 2, y, x \rangle$.  This follows immediately from the
+relationship between Massey products and the multiplicative
+structure of a cofiber, as discussed in \cite{Isaksen14c}*{Section 3.1.1}.
+
+Third, let $\widetilde{x}$ and $\widetilde{y}$ be elements of
+$H^*(S/2; BP)$ such that 
+$q(\widetilde{x}) = x$, $q(\widetilde{y}) = y$, and
+$q(\widetilde{x} \cdot \widetilde{y}) = z$.
+Then $z$ belongs to the Massey product
+$\langle x, 2, y \rangle$ in $H^*(S; BP)$.  This follows
+immediately from the multiplicative snake lemma \ref{lem:mult-snake}.
+
+\begin{ex}
+Computer data shows that 
+the product $\widetilde{h_4^2} \cdot \widetilde{h_5^2}$ does not equal
+zero in $H^*(S/2;BP)$.  This implies that the
+Massey product $\langle h_4^2, 2, h_5^2 \rangle$ does not contain zero in
+$H^*(S; BP)$, which in turn implies that
+the Toda bracket $\langle \theta_4, 2, \theta_5 \rangle$
+does not contain zero in $\pi_{93,48}$.
+\end{ex}
+
+\begin{remark}
+let $\widetilde{x}$ and $\widetilde{y}$ be elements of
+$H^*(S/2; BP)$ such that 
+$q(\widetilde{x})$ and $q(\widetilde{y})$ equal $x$ and $y$, and
+such that
+$\widetilde{x} \cdot \widetilde{y}$
+equals $j(z)$ for some $z$ in $H^*(S; BP)$.
+It appears that $z$ has some relationship to the fourfold Massey
+product $\langle 2, x, 2, y \rangle$, but we have not made this precise.
+\end{remark}
+
+\begin{lemma}[Multiplicative Snake Lemma]
+\label{lem:mult-snake}
+Let $A$ be a differential graded algebra that has no $2$-torsion, 
+and let $H(A)$ be its homology.  Also let $H(A/2)$ be the homology
+of $A/2$, and let $\delta: H(A/2) \map H(A)$ be the boundary
+map associated to the short exact sequence
+\[
+\xymatrix@1{
+0 \ar[r] & A \ar[r]^2 & A \ar[r] & A/2 \ar[r] & 0.
+}
+\]
+Suppose that $a$ and $b$ are elements of $H(A/2)$ such that 
+$2 \delta(a) = 0$ and $2 \delta(b) = 0$ in $H(A)$.
+Then the Massey product $\langle \delta(a), 2, \delta(b) \rangle$
+in $H(A)$
+contains $\delta(a b)$.
+\end{lemma}
+
+\begin{proof}
+We carry out a diagram chase in the spirit of the snake lemma.
+Write $\partial$ for the boundary operators in $A$ and $A/2$.
+
+Let $x$ and $y$ be cycles in $A/2$ that represent $a$ and $b$
+respectively.
+Let $x'$ and $y'$ be elements in $A$ that reduce to $x$ and $y$.
+Then $\partial x'$ and $\partial y'$ reduce to zero in $A/2$
+because $x$ and $y$ are cycles.
+Therefore, $\partial x' = 2 \widetilde{x}$ and
+$\partial y' = 2 \widetilde{y}$ 
+for some $\widetilde{x}$ and $\widetilde{y}$ in $A$.
+
+By definition of the boundary map,
+$\delta(a)$ and $\delta(b)$ are represented by $\widetilde{x}$
+and $\widetilde{y}$.  By the definition of Massey products,
+the cycle
+$\widetilde{x} y' + x' \widetilde{y}$ is contained in 
+$\langle \delta(a), 2, \delta(b) \rangle$.
+
+Now we compute $\delta(a b)$.
+Note that $x' y'$ is an element of $A$ that reduces to $a b$.
+Then 
+\[
+\partial (x' y') = \partial(x') y' + x' \partial(y') =
+2 (\widetilde{x} y' + x' \widetilde{y}).
+\]
+This shows that $\delta(a b)$ is represented by
+$\widetilde{x} y' + x' \widetilde{y}$.
+\end{proof}
+
+
+\section{$h_1$-Bockstein spectral sequence}
+\label{sctn:h1-Bockstein}
+
+The charts in \cite{IWX19} show graphically 
+the algebraic Novikov spectral sequence,
+i.e., the Adams spectral sequence for $C\tau$.  Essentially all of
+the information in the charts can be read off from machine-generated data.
+This includes hidden extensions in the $E_\infty$-page.
+
+One aspect of these charts requires further explanation.
+The $\C$-motivic Adams $E_2$-page for $C\tau$ contains a large
+number of $h_1$-periodic elements, i.e.,
+elements that support infinitely many $h_1$ multiplications.
+The behavior of these elements is entirely understood
+\cite{GI15}, at least up to many multiplications by $h_1$,
+i.e., in an $h_1$-periodic sense.
+
+On the other hand, it takes some work to \revv{``delocalize"}
+this information.  For example, we can immediately deduce from
+\cite{GI15} that $d_2(h_1^k e_0) = h_1^{k+2} d_0$ for large
+values of $k$, but that does not necessarily determine
+the behavior of Adams differentials for small values of $k$.
+
+The behavior of these elements is a bit subtle in another sense, 
+as illustrated
+by Example \ref{ex:_c0e0}.
+
+\begin{ex}
+\label{ex:_c0e0}
+Consider the $h_1$-periodic element $\ol{c_0 e_0}$
+\revv{in the algebraic Novikov spectral sequence}.
+Machine computations tell us that this element supports a 
+$d_2$ differential, but there is more than one possible value
+for $d_2(\ol{c_0 e_0})$ because of the presence of
+both $h_1^2 \ol{c_0 d_0}$ and $P e_0$.
+
+In fact, $d_2(\ol{c_0 d_0})$ equals $P d_0$, and
+$d_2(P e_0)$ equals $P h_1^2 d_0$.  Therefore,
+$P e_0 + h_1^2 \ol{c_0 d_0}$ is the only non-zero $d_2$ cycle,
+and it follows that 
+$d_2(\ol{c_0 e_0})$ must equal $P e_0 + h_1^2 \ol{c_0 d_0}$.
+
+\revv{
+The careful reader will note that $d_2(\ol{c_0 e_0})$ is
+not shown on the algebraic Novikov chart in \cite{IWX19}.
+As discussed in \cite{IWX19}*{Section 4}, the $h_1$-periodic
+differentials are not shown for legibility.
+Instead, the differential is shown in the $h_1$-Bockstein
+spectral sequence chart of \cite{IWX19}, up to higher
+powers of $h_1$.
+}
+\end{ex}
+
+
+In higher stems, it becomes more and more difficult to determine
+the exact values of the Adams $d_2$ differentials
+on $h_1$-periodic classes.  Eventually, these complications
+become unmanageable because they involve sums of many monomials.
+
+Fortunately, we only need concern ourselves with the Adams
+$d_2$ differential in this context.
+The $h_1$-periodic $E_3$-page equals the $h_1$-periodic
+$E_\infty$-page, and the only non-zero classes are well-understood
+$v_1$-periodic families running along the top of the Adams chart.
+
+Our solution to this problem, as usual, is to introduce a filtration
+that hides the \revv{higher order terms}.
+In this case, we filter by powers of $h_1$.  The effect is that
+terms involving higher powers of $h_1$ are ignored, and the
+formulas become much more manageable.
+
+This $h_1$-Bockstein spectral sequence starts with an $E_0$-page,
+because there are some differentials that do not increase
+$h_1$ divisibility.  For example, we have
+Bockstein differentials $d_0(\ol{h_1^2 e_0}) = \ol{h_1^4 d_0}$
+and $d_0(\ol{c_0 d_0}) = P d_0$, reflecting the Adams
+differentials $d_2(\ol{h_1^2 e_0}) = \ol{h_1^4 d_0}$
+and $d_2(\ol{c_0 d_0}) = P d_0$.
+
+There are also plenty of higher $h_1$-Bockstein differentials,
+such as $d_2(e_0) = h_1^2 d_0$, and
+$d_7(e_0^2 g) = M h_1^8$.
+
+\begin{remark}
+Beware that filtering by powers of $h_1$ changes the multiplicative
+structure in perhaps unexpected ways.
+For example, $P h_1$ and $d_0$ are not $h_1$-multiples, so their
+$h_1$-Bockstein filtration is zero.  One might expect their
+product to be $P h_1 d_0$, but the 
+$h_1$-Bockstein filtration of this element is $1$.
+Therefore, $P h_1 \cdot d_0$ equals $0$ in the
+$h_1$-Bockstein spectral sequence.
+
+But not all $P h_1$ multiplications are trivial in the
+$h_1$-Bockstein spectral sequence.  For example, we have
+$P h_1 \cdot \ol{c_0 d_0} = \ol{P h_1 c_0 d_0}$ because
+the $h_1$-Bockstein filtrations of all three elements are zero.
+\end{remark}
+
+In Example \ref{ex:_c0e0}, we explained that there is an
+Adams differential $d_2(\ol{c_0 e_0}) = P e_0 + h_1^2 \ol{c_0 d_0}$.
+When we throw out higher powers of $h_1$, we obtain
+the $h_1$-Bockstein differential $d_0(\ol{c_0 e_0}) = P e_0$.
+We also have an $h_1$-Bockstein differential
+$d_0(\ol{c_0 d_0}) = P d_0$.
+
+The first four charts in \cite{IWX19} show graphically how this 
+$h_1$-Bockstein spectral sequence plays out in practice.
+The main point is that the $h_1$-Bockstein
+$E_\infty$-page reveals which (formerly) $h_1$-periodic classes
+contribute to the Adams $E_3$-page for $C\tau$.

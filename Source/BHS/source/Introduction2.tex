@@ -1,0 +1,207 @@
+For each integer $m \ge 5$, the Kervaire--Milnor \cite{KervaireMilnor} group of homotopy spheres $\Theta_{m}$ is the group under connected sum of $h$-cobordism classes of closed, smooth, oriented manifolds $\Sigma$ that are homotopy equivalent to the $m$-sphere $S^{m}$.  The Kervaire--Milnor exact sequence
+$$0 \to \mathrm{bP}_{m+1} \to \Theta_{m} \to \mathrm{coker}(J)_{m},$$
+expresses $\Theta_{m}$ in terms of the finite cyclic group $\mathrm{bP}_{m+1}$ and the mysterious, but amenable to methods of homotopy theory, finite group $\mathrm{coker}(J)_{m}$.  The subgroup $\mathrm{bP}_{m+1} \subset \Theta_{m}$ consists of all homotopy spheres that are the boundaries of parallelizable $(m+1)$-manifolds.  When $m$ is even, $\mathrm{bP}_{m+1}$ is trivial \cite[Theorem 5.1]{KervaireMilnor}.
+
+A not-necessarily parallelizable, compact, oriented, smooth manifold $M$ is said to be \emph{almost closed} if its boundary $\partial M$ is a homotopy sphere.  The main theorem of our work is as follows:
+
+\begin{thm} \label{thm:mainboundary}
+Let $k>232$ and $0 \le d \le 3$ be integers.  Suppose that $M$ is a $(k-1)$-connected, almost closed $(2k+d)$-manifold.  Then the boundary 
+$\partial M \in \Theta_{2k+d-1}$ has trivial image $$0=[\partial M] \in \mathrm{coker}(J)_{2k+d-1}.$$  In particular, $\partial M$ bounds a parallelizable manifold.
+\end{thm}
+
+\begin{rmk}
+The bounds $k>232$ and $d \le 3$ can likely be improved (cf. \Cref{sec:open-problems} and \Cref{rmk:open-questions}).  However, there are examples (due to Frank \cite[Example 1]{Frank} and Stolz \cite[Satz 12.1]{StolzBook}, respectively) of:
+\begin{itemize}
+ \item A $3$-connected, almost closed $9$-manifold with boundary non-trivial in $\mathrm{coker}(J)_8$.
+ \item A $7$-connected, almost closed $17$-manifold with boundary non-trivial in $\mathrm{coker}(J)_{16}$.
+\end{itemize}
+Theorem \ref{thm:mainboundary} demonstrates that these examples exhibit fundamentally low-dimensional phenomena.
+\end{rmk}
+
+\begin{rmk}
+Many special cases of Theorem \ref{thm:mainboundary} were known antecedent to this work. 
+Theorem B of \cite{StolzBook} summarizes the prior state of the art, and our work can be viewed as the completion of a program by Stolz to answer questions raised by Wall in \cite{Wall62,Wall67}.  Our theorem is new when $d=0$ and $k \equiv 0$ mod $4$, when $d=1$ and $k \equiv 1$ mod $8$, when $d=2$ and $k \equiv 3$ mod $4$, and when $d=3$ and $k \equiv 0$ mod $4$.
+\end{rmk}
+
+Theorem \ref{thm:mainboundary} is most interesting in the case $d=0$, where it was previously unknown for $k \equiv 0$ modulo $4$.
+Work of Stolz \cite[Lemma 12.5]{StolzBook} reduces this case of our main theorem to the following result:
+
+\begin{thm}[Conjecture of Galatius and Randal-Williams] \label{thm:intro-main}
+Let $\MO \langle 4n \rangle$ denote the Thom spectrum of the canonical map
+$$\tau_{\ge 4n} \mathrm{BO} \to \mathrm{BO},$$
+where $\tau_{\ge 4n} \mathrm{BO}$ denotes the $(4n-1)$-connected cover of $\mathrm{BO}$.
+For all $n>31$, the unit map
+$$\pi_{8n-1} \bS \to \pi_{8n-1} \MO\langle 4n \rangle$$
+is surjective, with kernel exactly the image of the $J$-homomorphism
+$$\pi_{8n-1} \mathrm{O} \to \pi_{8n-1} \bS.$$
+\end{thm}
+
+We label Theorem \ref{thm:intro-main} a conjecture of Galatius and Randal-Williams since it is, when $n>31$, equivalent to Conjectures A and B of their work \cite{GRAbelianQuotients}.
+%We label this theorem a conjecture of Galatius and Randal-Williams since Conjectures A and B of their work \cite{GRAbelianQuotients} are equivalent to this theorem but with the condition $n > 31$ replaced by $n \geq 1$.
+Theorem \ref{thm:intro-main} allows us to improve the bound $k>232$ in the $d=0$ case of Theorem \ref{thm:mainboundary}.  For details, see \Cref{thm:strongmainboundary}.
+
+\begin{rmk} \label{rmk:Qdef}
+Much of Theorem \ref{thm:intro-main} is classical: the surjectivity statement follows from surgery as in \cite[Theorem 6.6]{KervaireMilnor}, while the Pontryagin-Thom correspondence guarantees that the image of the $J$-homomorphism is contained in the kernel of the unit map $\pi_{8n-1} \bS \to \pi_{8n-1} \MO\langle 4n\rangle$.  The difficult point is to prove that the kernel of this unit map contains \emph{only} the image of $J$.
+
+A priori, there could be additional elements in this kernel, and the concern has a geometric interpretation.  Let $\Sigma_Q \in \Theta_{8n-1}$ denote the boundary of the manifold obtained by plumbing together two copies of the $4n$-dimensional linear disk bundle over $S^{4n}$ that generates the image of $\pi_{4n} \mathrm{BSO}(4n-1)$ in $\pi_{4n}\mathrm{BSO}(4n)$. Theorem \ref{thm:intro-main} is equivalent to the claim that, for $n>31$, the class $[\Sigma_Q] \in \mathrm{coker}(J)_{8n-1}$ is trivial \cite[Lemma 10.3]{StolzBook}.
+\end{rmk}
+
+Our proof of Theorem \ref{thm:intro-main} follows a general strategy due to Stolz \cite{StolzBook}, which he applied to prove some cases of Theorem \ref{thm:mainboundary}.  For each prime number $p$ we compute a lower bound on the $\mathrm{H}\mathbb{F}_p$-Adams filtrations of classes in the kernel of the unit map
+$$\pi_{8n-1} \bS \to \pi_{8n-1} \MO \langle 4n \rangle.$$
+Our lower bound is given in \Cref{thm:AdamsBound}, and it is one of the main technical achievements of this paper.  It is approximately double the bound obtained by Stolz in \cite[Satz 12.7]{StolzBook}, and we devote Sections \ref{sec:Goodwillie}-\ref{sec:Toda} and Sections \ref{sec:SyntheticReview}-\ref{sec:SyntheticToda} to its proof.
+
+\begin{rmk}
+A key portion of the argument for \Cref{thm:AdamsBound} takes place in Pstr\k{a}gowski's category of \emph{synthetic spectra} \cite{Pstragowski} (c.f. \cite{GIKR} for an alternative construction of $\mathrm{BP}$-synthetic spectra).  Other users of this category may be interested in our omnibus \Cref{thm:synthetic-Adams}, which relates Adams spectral sequences to synthetic homotopy groups.
+
+Let us comment briefly on how synthetic technology allows us to prove stronger results than we could otherwise.  Many of our results, such as \Cref{thm:AdamsBound} and \Cref{prop:band-in-cofiber-seqs}, can be stated without reference to synthetic language.  While it should in principle be possible to prove such statements without synthetic technology, in practice we suspect such proofs would be technically demanding, difficult to verify, and vastly expand the length of the paper.
+
+% The most delicate point in the paper is \Cref{cnstr:synth-toda-diagram} which bounds the Adams filtration of the class $w$ constructed in \Cref{lem:toda-main}.
+% This construction requires us overcome two difficulties.
+% The first is that we must choose a certain nullhomotopy to be of sufficiently high Adams filtration.
+% In the synthetic category it is both simple and natural maintain control over the Adams filtration of a homotopy. 
+% The second is that we must reason about how $\mathbb{E}_\infty$ ring structures interact with Adams filtration.
+% For this, the existence of a symmetric monoidal structure on Pstr\k{a}gowski's category and a symmetric monoidal realization functor to spectra allow us to make a concise, rigorous argument.
+
+The most delicate point in the paper is \Cref{cnstr:synth-toda-diagram}, which bounds the Adams filtration of the class $w$ constructed in \Cref{lem:toda-main}. To make this construction requires a \emph{simultaneous} solution to two difficulties. The first is that we must choose a certain nullhomotopy to be of sufficiently high Adams filtration. In the synthetic category it is both simple and natural to maintain control over the Adams filtration of a homotopy. The second is that we must reason about how $\mathbb{E}_\infty$ ring structures interact with Adams filtration, which we cleanly accomplish using the symmetric monoidal structure on Pstr\k{a}gowski's category. The authors found it challenging to rigorously address both of these points, and their interaction, without the synthetic category. 
+% streamlines reasoning about how $\mathbb{E}_\infty$ ring structure interacts with Adams filtration.
+% One key point, used crucially in , is that 
+
+% Indeed, bound up in the existence of \Cref{cnstr:synth-toda-diagram} is a delicate statement about how a Toda bracket, defined by mixing $\mathbb{E}_\infty$ ring structure with the geometry of the $J$-homomorphism, respects the Adams filtrations of elements in the stable homotopy groups of spheres.
+\end{rmk}
+
+To make effective use of \Cref{thm:AdamsBound}, and also to prove the remaining cases of Theorem \ref{thm:mainboundary}, we need to explicitly understand all elements of $\pi_*(\mathbb{S}^{\wedge}_{p})$ of large $\mathrm{H}\mathbb{F}_p$-Adams filtration.  This is a problem of significant independent interest in pure homotopy theory, so we summarize our new results as \Cref{thm:Burklund} and \Cref{thm:intro-mod-8} below. For the definition of the $\mu$-family, see \cite{AdamsJIV}, and note that we write $\mathbb{S}_p^{\wedge}$ to denote the $p$-completion of the sphere spectrum.
+
+\begin{thm}[Burklund, proved as Theorem \ref{thm:app-main}] \label{thm:Burklund}
+  For each prime number $p>2$ and each integer $k>0$, let $\Gamma_p(k)$ denote the largest Adams filtration attained by a class in $\pi_{k} \mathbb{S}^{\wedge}_p$ that is not in the image of $J$.
+  Similarly, let $\Gamma_2(k)$ denote the largest Adams filtration attained by a class in $\pi_k \mathbb{S}^{\wedge}_2$ that is not in the subgroup generated by the image of $J$ and the $\mu$-family.
+  \begin{enumerate}
+  \item For any prime $p$, 
+    $$ \Gamma_p(k) \leq \frac{(2p-1)k}{(2p-2)(2p^2-2)} + o(k),$$
+    where $o(k)$ denotes a sublinear error term. 
+    % error term such that $$\displaystyle \mathrm{lim}_{k \to \infty} \frac{o(k)}{k} = 0.$$
+  \item If $k>0$ is any integer, then
+    $$ \Gamma_3(k) \leq \frac{25}{184}k + 20 + \ell(k),$$
+    where $\ell(k)$ is $0$ unless $k+2 \equiv 0$ modulo $4$, in which case $\ell(k)$ is the $3$-adic valuation of $k+2$.
+  \end{enumerate}
+\end{thm}
+
+This theorem is due solely to the first author, and is proved in Appendix \ref{sec:Appendix} at the end of the work.  Part (2) of Burklund's theorem, at the prime $p=3$, is essential to our proof of Theorem \ref{thm:intro-main}.  Sections \ref{sec:AppendixVL} and \ref{sec:ANvl} of the main paper develop the tools necessary to deduce part (2) of the theorem from a more precise version of part (1).
+Experts in Adams spectral sequences will want to examine the introduction to Appendix \ref{sec:Appendix} for additional and more precise results, including a solution to a question of Mathew about vanishing curves in $\mathrm{BP} \langle n \rangle$-based Adams spectral sequences.
+
+\begin{rmk}
+Previous upper bounds for $\Gamma_p(k)$ were proved by Davis and Mahowald when $p=2$ \cite{DM3}, and by Gonz\'alez \cite{Gonzalez} for $p>3$.
+We make much use of their bounds in this paper, which complement our own.
+In particular, while Burklund proves better asymptotic behavior of $\Gamma_p(k)$ than implied by any previous work, the explicit constants of Davis, Mahowald and Gonz\'alez are more useful for our geometric applications.
+At $p=3$, the best prior known bound for $\Gamma_3(k)$ is due to Andrews \cite{Andrews}, who in his thesis computed the entire $3$-primary Adams spectral sequence above a line of slope $1/5$.
+Part $(2)$ of Burklund's theorem contains stronger information about the $3$-primary $\mathrm{E}_{\infty}$-page, at the cost of having nothing to say about earlier pages.
+\end{rmk}
+
+Our other major result, Theorem \ref{thm:intro-mod-8} below, applies only to $8$-torsion classes in $\pi_*(\bS)$.  When it applies, it is stronger than \Cref{thm:Burklund}.
+\begin{thm}[Proved as Theorem \ref{thm:mod8-main-thm} in the main text] \label{thm:intro-mod-8}
+    Let $C(8)$ denote the mod $8$ Moore spectrum, and let $F^s \pi_k (C(8)) \subseteq \pi_k (C(8))$ denote the subgroup of elements of $\HFt$-Adams filtration at least $s$.
+Then, for $k \geq 126$, the image of the Bockstein map
+    \[F^{\frac{1}{5} k + 15} \pi_k (C(8)) \to \pi_{k-1} (\Ss)\]
+is contained in the subgroup of $\pi_{k-1} (\Ss)$ generated by the image of $J$ and the $\mu$-family.
+\end{thm}
+We devote Sections \ref{sec:BandVan}-\ref{sec:mod8} to the proof of Theorem \ref{thm:intro-mod-8}.
+
+\begin{rmk}
+At key points in the arguments for \cite[Theorems B \& D]{StolzBook}, Stolz applies an analog, for the mod $2$ Moore spectrum, of our Theorem \ref{thm:intro-mod-8}.
+This analog is due to Mahowald.
+While Mahowald announced the result in \cite{MahBull}, and it is also claimed in \cite{MahTokyo} and \cite[p.41]{DM3}, to the best of our knowledge no proof has appeared in print.  In \Cref{sec:mod8} we prove a version of Mahowald's result in order to close this gap in the literature.  We then study in turn the mod $4$ and mod $8$ Moore spectra in order to prove Theorem \ref{thm:intro-mod-8}, the full strength of which is necessary to conclude Theorem \ref{thm:mainboundary}.
+
+These Moore spectra results are closely related to Mahowald and Miller's proofs \cite{Miller, MahJEHP} of the height $1$ telescope conjecture, and we record a quick proof of the height $1$ telescope conjecture at $p=2$ as Corollary \ref{cor:telescope}.
+\end{rmk}
+
+Before launching into our arguments, we use Sections \ref{sec:classification}-\ref{sec:Applications} to give four applications of the above theorems.  In brief, these applications consist of:
+\begin{enumerate}
+\item For $n>31$, a classification of smooth, $(4n-1)$-connected, closed $(8n)$-manifolds up to diffeomorphism.  This completes, away from finitely many exceptional dimensions, the classification of $(n-1)$-connected $(2n)$-manifolds sought after in Wall's 1962 paper \cite{Wall62}.
+
+\item In dimensions larger than $247$, a classification of all Stein fillable homotopy spheres.  Away from finitely many exceptional dimensions, this answers a question raised by Eliashberg \cite[3.8]{ContactWorkshop} and proves a conjecture of Bowden, Crowley, and Stipsicz \cite[Conjecture 5.9]{SteinFillable}.
+
+\item For $\ell>31$ and $g \ge 1$, a computation of the mapping class group of the manifold
+$$\sharp^{g} \left(S^{4\ell-1} \times S^{4\ell-1} \right).$$
+The computation follows from inputting our result into theorems of Kreck and Krannich \cite{Kreck,KrannichMappingClass}.  With additional input, due to Galatius--Randal-Williams and Krannich--Reinhold \cite{GRAbelianQuotients,KrannichCharacteristic}, we make further comments about the classifying space
+$$\mathrm{BDiff}^+\left(\sharp^{g} \left(S^{4\ell-1} \times S^{4\ell-1} \right) \right).$$
+
+\item The best known upper bounds for the exponents of the stable stems $\pi_{*}(\Ss_{(p)})$.
+\end{enumerate}
+
+\subsection{An outline of the paper}
+\label{subsec:sketch}\ 
+
+The proofs of our main theorems begin in Section \ref{sec:Goodwillie}.  We outline our strategy below:
+
+\vspace{1ex}
+\noindent \textbf{Sections \ref{sec:Goodwillie}-\ref{sec:Toda}:}
+For $n \ge 3$ an integer, we begin our analysis of $\pi_{8n-1}(\MO \langle 4n \rangle)$.  Our main tool in these sections is the relative bar construction
+$$\MO \langle 4n \rangle \simeq \bS \otimes_{\spOf} \bS.$$
+The bar construction allows us to reduce our study of the Thom spectrum $\MO \langle 4n \rangle$ to a study of the suspension spectrum $\spOf$.  In Section \ref{sec:Goodwillie}, we study $\spOf$ by means of the Goodwillie tower of the identity in augmented $\mathbb{E}_\infty$-algebras.  The idea of applying the Goodwillie calculus is due to Tyler Lawson, and it neatly resolves the `Problem' that Stolz identifies in \cite[p. XIII]{StolzBook}.  In Section \ref{sec:ThomPushout} we describe a variant of the bar construction that is equivalent in the metastable range.  Finally, in Section \ref{sec:Toda}, we reduce the calculation of the unit map $\pi_{8n-1} \bS \to \pi_{8n-1}(\MO \langle 4n \rangle)$ to the calculation of a certain Toda bracket $w$.  We postpone further analysis of this Toda bracket to Section \ref{sec:SyntheticToda}.
+
+\vspace{1ex}
+\noindent \textbf{Sections \ref{sec:Finale}-\ref{sec:FinishingStolz}:} We prove Theorems \ref{thm:mainboundary} and \ref{thm:intro-main} in these two sections, using three results from later in the paper as black boxes.  In Section \ref{sec:Finale}, we prove Theorem \ref{thm:intro-main} using Theorems \ref{thm:Burklund} and \ref{thm:AdamsBound}.  Theorem \ref{thm:AdamsBound} is the main result of Section \ref{sec:SyntheticToda}, and it consists of a lower bound on the $\mathrm{H}\mathbb{F}_p$-Adams filtrations of the Toda bracket $w$.  In Section \ref{sec:FinishingStolz}, we give the proof of Theorem \ref{thm:mainboundary} assuming Theorem \ref{thm:intro-mod-8} as well as some results from Stolz's book \cite{StolzBook}.  The arguments in both Sections \ref{sec:Finale} and \ref{sec:FinishingStolz} are straightforward analogs of arguments from Stolz's book, and we are able to go farther than Stolz only because our three black box theorems are stronger than the results he references.
+
+\vspace{1ex}
+\noindent \textbf{Sections \ref{sec:SyntheticReview}-\ref{sec:SyntheticToda}:} In these sections we undertake an analysis of the Toda bracket $w$.
+The definition of $w$ critically hinges on the following fact: given an element $x \in \pi_{4n-1} \bS$, there is a canonical nullhomotopy of $2x^2$ (since $\bS$ is $\mathbb{E}_\infty$ there is a canonical witness to the Koszul sign rule, or a homotopy between $x^2$ and $-x^2$, or a nullhomotopy of $2x^2$).
+The interaction of this nullhomotopy with Adams spectral sequences has some history, going back to work of Kahn, Milgram, M\"{a}kinen, and Bruner \cite[VI]{BMMS} on $\cup_1$ operations in the Adams spectral sequence.
+We do not know how to apply Bruner's work directly to our (somewhat more complicated) situation, but it is morally related.
+Instead of relying on results of Bruner, we analyze the situation from scratch: here enters for the first time a major tool in our work, the recently developed category of \emph{synthetic spectra}.
+
+Synthetic spectra were developed by Piotr Pstr\k{a}gowski in \cite{Pstragowski}.
+They constitute a homotopy theory, or symmetric monoidal stable $\infty$-category, of formal Adams spectral sequences.
+Lax symmetric monoidal functors $\nu$ and $\tau^{-1}$ to and from the $\infty$-category $\Sp$ of spectra allow for a particularly clear analysis of the interaction between Adams spectral sequences and $\mathbb{E}_\infty$-ring structures.
+
+In Section \ref{sec:SyntheticReview} we recall Pstr\k{a}gowski's work and develop a few additional properties of synthetic spectra that we require.  In Section \ref{sec:SyntheticToda} we apply all of the theory thus far to bound the $\mathrm{H}\mathbb{F}_p$-Adams filtrations of $w$ for all primes $p$. 
+
+\vspace{1ex}
+\noindent \textbf{Sections \ref{sec:AppendixVL}-\ref{sec:ANvl}:} We begin the latter half of the paper, which aims to prove Theorems \ref{thm:Burklund} and \ref{thm:intro-mod-8}.
+In Section \ref{sec:AppendixVL}, we give a general discussion of vanishing lines in $E$-based Adams spectral sequences.  We study the behavior of vanishing lines under extensions, and recover results of Hopkins--Palmieri--Smith \cite{HPS} in the language of synthetic spectra.
+In Section \ref{sec:ANvl}, we combine the general theory of Section \ref{sec:AppendixVL} with concrete computations of Belmont \cite{Eva} and  Ravenel \cite{GreenBook} to deduce vanishing lines in Adams--Novikov spectral sequences.
+
+\vspace{1ex}
+\noindent \textbf{Section \ref{sec:BandVan}-\ref{sec:mod8}:} In Section \ref{sec:BandVan}, we introduce the notion of a \emph{$v_1$-banded vanishing line}.  While Adams spectral sequences are not zero above $v_1$-banded vanishing lines, elements above such lines are essentially $K(1)$-local and hence related to the image of $J$.  We show variants of the results of Section \ref{sec:AppendixVL}, in particular demonstrating that $v_1$-banded vanishing lines are preserved under extensions and cofibers of synthetic spectra.  In Section \ref{sec:Y}, we apply machinery of Haynes Miller \cite{Miller} to prove a $v_1$-banded vanishing line in the $\mathrm{H}\mathbb{F}_2$-based Adams spectral sequence for the spectrum $Y = C(2) \otimes C(\eta)$.  In more classical language this result is known to experts, and follows from combining Miller's tools with computational results of Davis and Mahowald \cite{v1ExtDavisMahowald}.  In Section \ref{sec:mod8}, we establish a $v_1$-banded vanishing line in the modified $\mathrm{H}\mathbb{F}_2$-Adams spectral sequence for the Moore spectrum $C(8)$ and conclude, in particular, Theorem \ref{thm:intro-mod-8}. 
+%
+%\vspace{1ex}
+%\noindent \textbf{Section \ref{sec:open-problems}:} We give a brief discussion of remaining open problems, and suggest possible extensions of our main results.
+
+\vspace{1ex}
+\noindent \textbf{Appendix \ref{sec:synthetic-appendix}:} The first part of this appendix is devoted to a technical proof of \Cref{thm:synthetic-Adams}. The theorem provides the means to translate statements about $E$-based Adams spectral sequences into statements about $E$-based synthetic spectra, and vice-versa. The proofs in this section are mostly a matter of careful bookkeeping. 
+
+The second part of the appendix contains a computation of the $\mathrm{H}\mathbb{F}_2$-synthetic homotopy groups of the $2$-complete sphere through the Toda range.  We find that this computation illustrates many of the subtleties of \Cref{thm:synthetic-Adams} and effectively demonstrates the process of moving between Adams spectral sequence information and synthetic information.
+
+\vspace{1ex}
+\noindent \textbf{Appendix \ref{sec:Appendix}:} This appendix, due solely to the first author, proves Theorem \ref{thm:Burklund} and settles Question 3.33 of \cite{Akhil}.
+Classically, results similar to Theorem \ref{thm:Burklund} are proved in two independent steps via the study of $bo$-resolutions \cite{DM3, Gonzalez}. The first step establishes vanishing curves in $bo$-based Adams spectral sequences. The second (and more technically difficult) step relates the canonical $bo$- and $\HFp$-resolutions of the sphere. This appendix provides an improvement on the vanishing curve of the first step.
+% Note that, at odd primes, $bo$-resolutions are essentially the same as $\BP \langle 1 \rangle$-resolutions.
+
+The main idea is a new, and surprisingly elementary, method of analyzing vanishing curves in $\BP \langle 1 \rangle$-based Adams spectral sequences.  More generally, using only the fact that $\tau_{<|v_{n+1}|} \BP \langle n \rangle \simeq \tau_{<|v_{n+1}|} \BP$, Burklund relates $\BP \langle n \rangle$-based Adams spectral sequences to $\BP$-based Adams spectral sequences.
+Vanishing curves in $\BP$-based Adams spectral sequences are understood through a strong form of the Nilpotence Theorem of Devinatz, Hopkins, and Smith \cite{DHS}, which provides the key input necessary to prove \Cref{thm:Burklund}(1). At the prime $3$, the main result of Section \ref{sec:ANvl} provides the precise numerical control needed to deduce Theorem \ref{thm:Burklund}(2).
+
+\subsection{Conventions}\
+
+Beginning in Section \ref{sec:ThomPushout}, we fix an integer $n \ge 3$.  We use $\mathbb{S}$ to denote the sphere spectrum, $\mathbb{S}^n$ to denote the stable $n$-sphere, and $S^{n}$ to denote the unstable $n$-sphere.  For integers $k>0$, we use $\mathcal{J}_{k}$ to denote the image of $J$ subgroup of $\pi_{k} \mathbb{S}$.  All manifolds are smooth and oriented, and all diffeomorphisms are orientation-preserving.  Throughout the work, we freely use the language of $\infty$-categories as set out in \cite{HA,HTT}. In particular, all limits and colimits are taken in the homotopy invariant sense of \cite{HTT}.
+
+\subsection{Acknowledgments}\
+
+We thank Manuel Krannich for giving an inspiring lecture in the MIT Topology Seminar in March $2019$, as well as for comments on a draft of the paper.  It is because of Manuel's encouragement that we became aware of, and began to work on, the problems we solve here.
+We thank Mike Hopkins for conversations regarding the Toda bracket manipulations of Section \ref{sec:Toda}. 
+Mike is the PhD advisor of the first author, was the advisor of the middle author, and is always an invaluable resource.
+We thank Haynes Miller for his help and encouragement as the PhD advisor of the third author and postdoctoral mentor of the middle author.
+We thank Mark Behrens for discussions regarding Section \ref{sec:Y}, Dexter Chua for identifying the sign in Theorem \ref{thm:synthetic-Adams}(1c), and Stephan Stolz for a useful conversation about bordism of almost closed manifolds.
+We thank Araminta Amabel, Shaul Barkan, Diarmuid Crowley, Sander Kupers, Oscar Randal--Williams, John Rognes, Zhouli Xu, and Adela YiYu Zhang for helpful comments.
+
+We thank the anonymous referees for their detailed comments.
+
+The authors offer their greatest thanks to Tyler Lawson, who suggested the use of Goodwillie calculus in Section \ref{sec:Goodwillie} and offered detailed comments on a draft of the work.
+While Tyler declined to be a coauthor, his influence on this paper is substantial. Tyler has been a personal mentor to the latter two authors for many years now---we would not be algebraic topologists without him.
+We hope that his guidance, kindness, and keen mathematical vision raise up generations of homotopy theorists to come.
+
+During the course of the work, the second author was supported by NSF Grant DMS-1803273, and the third author was supported by an NSF GRFP fellowship under Grant No. 1745302.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Main"
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End

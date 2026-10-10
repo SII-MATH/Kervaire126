@@ -1,0 +1,1302 @@
+\section{Spectral-sequence machinery}
+\label{chap:spectral-sequence-machinery}
+
+Nested cycle and boundary subobjects determine the internal pages,
+differentials, and page passage. The constructions below also associate
+spectral objects and spectral sequences to filtered complexes. Identifying
+two such constructions requires compatible comparison maps; existence of
+one construction does not automatically provide the comparisons used in
+the Adams and synthetic arguments.
+
+\subsection{Canonical internal pages and morphisms}
+
+\begin{definition}[Internal nested-subobject spectral sequence]
+  \label{def:internal-nested-spectral-sequence}
+  \lean{KIP126.Core.SpectralSequence.SSData,KIP126.Core.SpectralSequence.PreSS,KIP126.Core.SpectralSequence}
+  \uses{def:mathlib-abelian}
+  \leanok
+  At each degree, an ambient object carries decreasing cycles $Z_r$,
+  increasing boundaries $B_r\subseteq Z_r$, and their infinite levels.
+  The page is the specified quotient $Z_r/B_r$. A spectral sequence adds
+  the starting page and differential degree, actual quotient differentials,
+  their square-zero law, and the successor kernel/image identifications.
+\end{definition}
+
+\begin{definition}[Internal morphism and its induced page maps]
+  \label{def:internal-canonical-page-map}
+  \lean{KIP126.Core.SpectralSequence.SSDataMorphism,KIP126.Core.SpectralSequence.SSDataMorphism.cycleMap,KIP126.Core.SpectralSequence.SSDataMorphism.pageMap,KIP126.Core.SpectralSequence.PreSSMorphism,KIP126.Core.SpectralSequence.SpectralSequenceMorphism}
+  \uses{def:internal-nested-spectral-sequence}
+  \leanok
+  A map of ambient objects preserving cycles and boundaries induces its
+  unique map on every quotient, including $E_\infty$. An ordinary morphism
+  uses equal starting pages and differential degrees and requires these
+  induced maps to commute with the differential. Independently chosen page
+  maps cannot witness the differential condition.
+\end{definition}
+
+\begin{proposition}[Representative criterion for an internal morphism]
+  \label{prop:internal-representative-morphism-criterion}
+  \lean{KIP126.Core.SpectralSequence.DifferentialMorphismCriterion,KIP126.Core.SpectralSequence.DifferentialMorphismCriterion.toSSDataMorphism,KIP126.Core.SpectralSequence.DifferentialMorphismCriterion.toMorphism,KIP126.Core.SpectralSequence.DifferentialMorphismCriterion.exists_morphism}
+  \uses{def:internal-canonical-page-map}
+  \leanok
+  An ambient map preserving cycle representatives determines boundary
+  preservation when representatives of zero map to zero on the target page.
+  If the resulting quotient maps satisfy the representative differential
+  equation, they assemble into a morphism of the internal spectral sequences.
+  The induced page maps are the canonical cokernel maps already fixed by the
+  internal morphism interface.
+\end{proposition}
+\begin{proof}
+  Use exactness of the target page cokernel to lift the image of each source
+  boundary.  To compare differentials, pull back the two source page
+  projections and apply the representative equation to the universal pair of
+  lifts; epimorphism cancellation then gives commutation of the canonical
+  quotient maps with the page differential.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Derived internal page and representative calculus]
+  \label{prop:internal-page-calculus}
+  \lean{KIP126.Challenge2.PageCalculus,KIP126.Challenge2.RepresentativeCalculus,KIP126.Def.Comparison.StageInterfaces.pageCalculus,KIP126.Def.Comparison.StageInterfaces.representativeCalculus}
+  \uses{def:internal-nested-spectral-sequence}
+  \leanok
+  The next page is the homology of the current page differential. Boundaries
+  are cycles, and an $E_2$ common representative identifies the same class.
+  A specified nonzero differential forces both named $E_2$ classes to have
+  nonzero representatives on that page. An arbitrary differential equality
+  supplies no nonvanishing conclusion.
+\end{proposition}
+\begin{proof}
+  Use the canonical quotient homology isomorphism, square-zero, and the same
+  cycle representatives in the defining internal relations.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Finite-page representatives and complete bases]
+  \label{prop:internal-finite-page-calculus}
+  \lean{KIP126.Core.SpectralSequence.FinitePageCalculus.represents_unique,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_d_zero_of_later,KIP126.Core.SpectralSequence.FinitePageCalculus.next_projection_zero_iff_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.page_generated_from_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_before,KIP126.Core.SpectralSequence.FinitePageCalculus.next_page_two_of_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_later_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_add_tail,KIP126.Core.SpectralSequence.FinitePageCalculus.sixth_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_frame_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_zero_of_all_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.frame_after_second,KIP126.Core.SpectralSequence.FinitePageCalculus.third_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_d_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.vx_nonzero_no_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.pq_rep3zero_boundary,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_sub_tail,KIP126.Core.SpectralSequence.FinitePageCalculus.page_has_representative,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_from_support,KIP126.Core.SpectralSequence.FinitePageCalculus.d_zero_of_second_kernel_extends,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_before,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_frame_of_three_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_single_basis_zero_page,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_next_zero_of_single_frame_nonzero_differential,KIP126.Core.SpectralSequence.FinitePageCalculus.d_zero_of_complete_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.page_eq_sum_of_complete_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.same_boundaries_projection_eq,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_add,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_if,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_rep2,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_earlier,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_sub,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_cycle,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_two_self,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_later_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.page_has_initial_representative,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_transport_eq,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_bit,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_two_direct,KIP126.Core.SpectralSequence.FinitePageCalculus.f2_expand,KIP126.Core.SpectralSequence.FinitePageCalculus.generated_one,KIP126.Core.SpectralSequence.FinitePageCalculus.generated_two,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_zero_of_three_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.next_page_zero_of_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.finite_basis_expansion,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_frame_of_four_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_two_cases,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_zero_at,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_two_cases_at,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_frame_of_four_basis_at,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_not_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_not_incoming_at,KIP126.Core.SpectralSequence.FinitePageCalculus.basis_vector_ne_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.basis_pair_sum_ne_zero}
+  \uses{def:internal-nested-spectral-sequence,prop:internal-page-calculus}
+  \leanok
+  Common initial-page representatives determine a unique class on each later
+  page. A complete finite basis generates those classes, including their
+  sums and differences. Explicit differential equations and the actual
+  incoming boundary subobjects determine kernels, nonvanishing, and page
+  vanishing. These are general deductions for the given spectral sequence;
+  they assume no selected computation delivery.
+\end{proposition}
+\begin{proof}
+  Use the specified quotient projections, finite basis expansion over
+  $\mathbb F_2$, and the canonical successor homology isomorphism. Each
+  nonvanishing deduction retains its incoming-boundary hypotheses.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Naturality of internal pages and representatives]
+  \label{prop:internal-page-naturality}
+  \lean{KIP126.Core.SpectralSequence.SSDataMorphism.pageMap_unique,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.representsOnPage,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.hasDifferential,KIP126.Challenge2.MorphismCalculus,KIP126.Def.Comparison.StageInterfaces.internalNaturality}
+  \uses{def:internal-canonical-page-map,prop:internal-page-calculus}
+  \leanok
+  The induced finite and infinite page maps preserve identity and composition.
+  They carry common representatives and differential equalities to those of
+  the target sequence. Preservation of nonzero classes requires an additional
+  hypothesis and is not asserted here.
+\end{proposition}
+\begin{proof}
+  Uniqueness of restriction to the cycle subobject and the cokernel universal
+  property prove the functorial laws. The same representative squares and the
+  actual differential commutation prove the elementwise statements.
+  \leanok
+\end{proof}
+
+\subsection{Spectral objects and their spectral sequences}
+
+\begin{definition}[Spectral sequence in an abelian category]
+  \label{def:mathlib-spectral-sequence}
+  \lean{CategoryTheory.SpectralSequence}
+  \mathlibok
+  \uses{def:mathlib-abelian,def:mathlib-homological-complex}
+  Let $\mathcal C$ be an abelian category, let $\kappa$ be an index type, let
+  $c : \mathbb Z \to \operatorname{ComplexShape}(\kappa)$ specify the shape
+  of the differential on each page, and fix a starting page $r_0\in\mathbb Z$.
+  A spectral sequence consists of a homological complex $E_r$ of shape $c(r)$
+  for every $r\ge r_0$, together with, for every $p\in\kappa$, an isomorphism
+  \[
+    H(E_r)_p \cong (E_{r+1})_p.
+  \]
+  This is Mathlib's definition \texttt{CategoryTheory.SpectralSequence} in
+  the pinned revision.  It is used by the retained optional adapter layer. The stage-boundary
+  statements use Definition~\ref{def:internal-nested-spectral-sequence}.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/SpectralSequence/Basic.lean, declaration CategoryTheory.SpectralSequence.Hom.
+\begin{definition}[Mathlib spectral-sequence morphism]
+  \label{def:mathlib-spectral-sequence-hom}
+  \lean{CategoryTheory.SpectralSequence.Hom}
+  \mathlibok
+  A Mathlib morphism between spectral sequences has pagewise chain maps
+  compatible with passage to homology, but both sequences must have the same
+  index type, complex shape, and starting page.  It therefore cannot express
+  the classical--synthetic reindexing required later.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:49, declaration CategoryTheory.Triangulated.SpectralObject.
+\begin{definition}[Mathlib triangulated spectral object]
+  \label{def:mathlib-triangulated-spectral-object}
+  \lean{CategoryTheory.Triangulated.SpectralObject}
+  \mathlibok
+  \uses{def:mathlib-shift,def:mathlib-triangle,def:mathlib-pretriangulated}
+  For a pretriangulated category $\mathcal C$ and an index category $I$, a
+  triangulated spectral object consists of a functor from length-one composable
+  arrows in $I$ to $\mathcal C$ and a functorial distinguished triangle for
+  every composable pair $i\to j\to k$.  It is an object of
+  \texttt{CategoryTheory.Triangulated.SpectralObject}; it is not the abelian
+  spectral object in the next node.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:103, declaration CategoryTheory.Triangulated.SpectralObject.precomp.
+\begin{definition}[Precomposition of a triangulated spectral object]
+  \label{def:mathlib-triangulated-spectral-object-precomp}
+  \lean{CategoryTheory.Triangulated.SpectralObject.precomp}
+  \mathlibok
+  \uses{def:mathlib-triangulated-spectral-object}
+  For a triangulated spectral object $T$ indexed by $I$ and a functor
+  $G:I'\to I$, Mathlib constructs the triangulated spectral object
+  $T\circ G$ indexed by $I'$.  Its functorial distinguished triangles are
+  obtained by applying $G$ to composable pairs in $I'$.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/SpectralObject/Basic.lean, declaration CategoryTheory.Abelian.SpectralObject.
+\begin{definition}[Mathlib abelian spectral object]
+  \label{def:mathlib-spectral-object}
+  \lean{CategoryTheory.Abelian.SpectralObject}
+  \mathlibok
+  A Mathlib spectral object in an abelian category is an indexed family of
+  homology functors equipped with functorial connecting maps and the three
+  exactness conditions forming its long exact sequences.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/SpectralObject/HasSpectralSequence.lean:67, declaration CategoryTheory.Abelian.SpectralObject.SpectralSequenceDataCore.
+\begin{definition}[Mathlib spectral-sequence recipe]
+  \label{def:mathlib-spectral-sequence-data-core}
+  \lean{CategoryTheory.Abelian.SpectralObject.SpectralSequenceDataCore}
+  \mathlibok
+  \uses{def:mathlib-spectral-object,def:mathlib-complex-shape-up}
+  A spectral-sequence data core records the grading degree and four monotone
+  spectral-object indices that produce each page object and its differential
+  shape.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/SpectralObject/HasSpectralSequence.lean:303, declaration CategoryTheory.Abelian.SpectralObject.HasSpectralSequence.
+\begin{definition}[Mathlib spectral-object admissibility]
+  \label{def:mathlib-has-spectral-sequence}
+  \lean{CategoryTheory.Abelian.SpectralObject.HasSpectralSequence}
+  \mathlibok
+  \uses{def:mathlib-spectral-object,def:mathlib-spectral-sequence-data-core}
+  For a spectral object and a page recipe, Mathlib's
+  \texttt{HasSpectralSequence} class contains the endpoint vanishing needed to
+  identify page homology with the successor page.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/SpectralObject/SpectralSequence.lean:481, declaration CategoryTheory.Abelian.SpectralObject.spectralSequence.
+\begin{definition}[Mathlib spectral sequence of a spectral object]
+  \label{def:mathlib-spectral-object-spectral-sequence}
+  \lean{CategoryTheory.Abelian.SpectralObject.spectralSequence}
+  \mathlibok
+  \uses{def:mathlib-spectral-object,def:mathlib-spectral-sequence-data-core,def:mathlib-has-spectral-sequence,def:mathlib-spectral-sequence}
+  Given a spectral object, a data core, and the endpoint-vanishing instance,
+  Mathlib constructs a \texttt{CategoryTheory.SpectralSequence} with the
+  prescribed page shapes.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/SpectralObject/SpectralSequence.lean:650, declaration CategoryTheory.Abelian.SpectralObject.E₂SpectralSequence.
+\begin{definition}[Mathlib $E_2$ spectral sequence]
+  \label{def:mathlib-e2-spectral-sequence}
+  \lean{CategoryTheory.Abelian.SpectralObject.E₂SpectralSequence}
+  \mathlibok
+  \uses{def:mathlib-spectral-object-spectral-sequence}
+  A spectral object indexed by extended integers has Mathlib's canonical
+  cohomological $E_2$ spectral sequence on $\mathbb Z\times\mathbb Z$.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/SpectralObject/FirstPage.lean:78--84, declaration CategoryTheory.Abelian.SpectralObject.spectralSequenceFirstPageXIso.
+\begin{definition}[Mathlib first-page computation]
+  \label{def:mathlib-spectral-sequence-first-page}
+  \lean{CategoryTheory.Abelian.SpectralObject.spectralSequenceFirstPageXIso}
+  \mathlibok
+  \uses{def:mathlib-spectral-object-spectral-sequence,def:mathlib-spectral-sequence-data-core,def:mathlib-has-spectral-sequence}
+  If a spectral object has the required spectral-sequence instance and its
+  data core has the first-page equalities required for Mathlib's computation,
+  then the object at a bidegree of its initial page is canonically isomorphic
+  to the corresponding value of the underlying spectral object's homology
+  functor on the selected interval.  This computes the initial page object; it
+  does not identify it with an associated-graded object of a filtered complex.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/SpectralObject/Cycles.lean:58, declaration CategoryTheory.Abelian.SpectralObject.cycles.
+\begin{definition}[Mathlib spectral-object cycles]
+  \label{def:mathlib-spectral-object-cycles}
+  \lean{CategoryTheory.Abelian.SpectralObject.cycles}
+  \mathlibok
+  \uses{def:mathlib-spectral-object}
+  Mathlib's cycle object for a spectral-object interval is the appropriate
+  kernel of its connecting morphism.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/SpectralObject/Cycles.lean:62, declaration CategoryTheory.Abelian.SpectralObject.opcycles.
+\begin{definition}[Mathlib spectral-object opcycles]
+  \label{def:mathlib-spectral-object-opcycles}
+  \lean{CategoryTheory.Abelian.SpectralObject.opcycles}
+  \mathlibok
+  \uses{def:mathlib-spectral-object}
+  Mathlib's opposite-cycle object is the corresponding cokernel.  It is
+  categorical infrastructure, not yet the paper's chosen element subgroup
+  $B_r$.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean:47, declaration HomotopyCategory.spectralObjectMappingCone.
+\begin{definition}[Mapping-cone spectral object]
+  \label{def:mathlib-mapping-cone-spectral-object}
+  \lean{HomotopyCategory.spectralObjectMappingCone}
+  \mathlibok
+  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-cochain-complex}
+  For a preadditive category $\mathcal C$ with a zero object and binary
+  biproducts, Mathlib's declaration has type
+  \[
+    \operatorname{Triangulated.SpectralObject}
+      \bigl(\operatorname{HomotopyCategory}_{\operatorname{up}(\mathbb Z)}
+      (\mathcal C),\operatorname{CochainComplex}(\mathcal C,\mathbb Z)\bigr).
+  \]
+  Thus it is a triangulated spectral object valued in the homotopy category of
+  cochain complexes.  It neither consumes a chain complex nor produces an
+  abelian spectral object; those two conversions are project obligations below.
+\end{definition}
+
+\subsection{Pages, convergence, and comparison}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:20-24 records this bridge as TODO;
+% Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:217-240 supplies the three exactness lemmas.
+\begin{theorem}[Exactness of a homological image]
+  \label{thm:homological-spectral-object-exactness}
+  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence,def:mathlib-homology-sequence-connecting,thm:mathlib-homology-sequence-exact-one,thm:mathlib-homology-sequence-exact-two,thm:mathlib-homology-sequence-exact-three}
+  \lean{KIP126.Core.SpectralSequence.homologicalImage_exactness}
+  \leanok
+  Let $T$ be a triangulated spectral object in a pretriangulated category
+  $\mathcal C$, indexed by $I$, and let $F:\mathcal C\to\mathcal A$ be a
+  homological functor to an abelian category, equipped with a $\mathbb Z$-shift
+  sequence $(F_n)$.  For every composable pair $i\to j\to k$ in $I$, applying
+  $(F_n)$ to the distinguished triangle of $T$ gives three exact short
+  complexes: exactness at the middle term, exactness at the third term followed
+  by the connecting map to $F_{n+1}$, and exactness at the shifted first term.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  In the construction, use Mathlib's homology-sequence connecting morphism on
+  the distinguished triangle attached to $i\to j\to k$, then apply the mapped
+  middle-exactness, connecting-map exactness, and shifted exactness theorems;
+  the latter two declarations implement the required rotation and inverse
+  rotation.  The Lean theorem projects the three exactness fields together.
+\end{proof}
+
+\begin{theorem}[Naturality of the homological-image connecting maps]
+  \label{thm:homological-image-delta-naturality}
+  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence,thm:mathlib-homology-sequence-connecting-naturality}
+  \lean{KIP126.Core.SpectralSequence.homologicalImage_delta_naturality}
+  \leanok
+  For every shift step $n_0+1=n_1$, the connecting transformation in the
+  homological image is natural in morphisms of composable pairs in the index
+  category.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  This is the naturality field of the connecting natural transformation,
+  obtained from Mathlib's connecting-map naturality theorem after applying the
+  shift sequence to the functorial distinguished triangles.
+\end{proof}
+
+% SOURCE: project bridge required by Mathlib/CategoryTheory/Triangulated/SpectralObject.lean:20-24.
+\begin{definition}[Homological image as an abelian spectral object]
+  \label{def:homological-image-abelian-spectral-object}
+  \uses{def:mathlib-triangulated-spectral-object,def:mathlib-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence,def:mathlib-homology-sequence-connecting,thm:mathlib-homology-sequence-connecting-naturality,thm:homological-spectral-object-exactness,thm:homological-image-delta-naturality}
+  \lean{KIP126.Core.SpectralSequence.homologicalImage}
+  \lean{KIP126.Core.SpectralSequence.homologicalImage_H}
+  \lean{KIP126.Core.SpectralSequence.homologicalImage_delta_app}
+  \leanok
+  For $T$, $F$, and $(F_n)$ as above, define an abelian spectral object
+  $\operatorname{HImage}(T,F)$ by
+  \[
+    H^n_T(i\to j):=F_n\bigl(T(i\to j)\bigr).
+  \]
+  Its connecting morphisms are the homology-sequence connecting maps of the
+  functorial distinguished triangles of $T$, and its three exactness fields are
+  the three obligations in
+  Theorem~\ref{thm:homological-spectral-object-exactness}.  The connecting-map
+  naturality and all three exactness fields are now implemented by the
+  project-owned construction \texttt{homologicalImage}.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/HomologicalImage.lean:158-194, homological-image morphism and functor.
+\begin{definition}[Functoriality of the homological image]
+  \label{def:homological-image-functoriality}
+  \uses{def:homological-image-abelian-spectral-object,def:mathlib-triangulated-spectral-object,def:mathlib-homological-functor,def:mathlib-homological-shift-sequence}
+  \lean{KIP126.Core.SpectralSequence.homologicalImageHom}
+  \lean{KIP126.Core.SpectralSequence.homologicalImageFunctor}
+  \leanok
+  A morphism of triangulated spectral objects is sent, after applying a fixed
+  homological functor and its shift sequence, to a morphism of abelian spectral
+  objects.  Naturality of the connecting maps proves the commutative square;
+  identities and composition are preserved, so the bridge is functorial.
+\end{definition}
+
+\begin{definition}[Mapping-cone homological image]
+  \label{def:mapping-cone-homological-image}
+  \uses{def:mathlib-mapping-cone-spectral-object,def:homological-image-abelian-spectral-object}
+  \lean{KIP126.Core.SpectralSequence.mappingConeHomologicalImage}
+  \lean{KIP126.Core.SpectralSequence.mappingConeHomologicalImage_H}
+  \lean{KIP126.Core.SpectralSequence.mappingConeHomologicalImage_exactness}
+  \leanok
+  For a preadditive category with a zero object and binary biproducts, and a
+  homological functor with its integer shift sequence, specialize the preceding
+  bridge to Mathlib's mapping-cone spectral object.  The result is an abelian
+  spectral object indexed by cochain complexes, with exactness inherited from
+  the distinguished mapping-cone triangles.
+\end{definition}
+
+% SOURCE: KIP126/Core/Algebra/Completion.lean, quotient-tower and completion-witness interface.
+\begin{definition}[Degreewise completion witness]
+  \label{def:core-filtration-completion-witness}
+  \uses{def:core-filtration,def:core-eventually-zero-filtration,def:core-bounded-above-filtration,def:mathlib-abelian}
+  \lean{KIP126.Core.Algebra.Filtration.quotientAt}
+  \lean{KIP126.Core.Algebra.Filtration.quotientProjection}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTransition}
+  \lean{KIP126.Core.Algebra.Filtration.quotientProjection_transition}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTransition_comp}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTransition_id}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTower}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTowerCone}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.hasLimit}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.completionIso}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.completionIso_hom_comp_limit_π}
+  \lean{KIP126.Core.Algebra.Filtration.eq_bot_of_le_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientProjection_isIso_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTransition_isIso_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTower_isEventuallyConstantTo_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.quotientTowerCone_isLimit_of_eq_bot}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.of_isEventuallyZero}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.of_isBoundedAbove}
+  \leanok
+  For a filtered graded object $A$ and a grading degree $i$, the quotient
+  tower has value $A_i/F^sA_i$ at $s$ and transition
+  $A_i/F^sA_i\to A_i/F^tA_i$ when $t\le s$.  Its canonical cone has point
+  $A_i$ and legs the quotient projections.  A degreewise completion witness
+  is precisely a proof that this canonical cone is limiting, and it supplies
+  existence of the corresponding limit.  With that limit chosen, it gives the
+  canonical isomorphism
+  \[
+    A_i\ \cong\ \varprojlim_s A_i/F^sA_i,
+  \]
+  characterized by its composites with every quotient projection.  The
+  witness is explicit data: this definition does not prove that arbitrary
+  filtrations are complete, separated, exhaustive, or convergent.  It does
+  prove that a degreewise eventually-zero filtration, and in particular a
+  degreewise bounded-above filtration, supplies this completion witness.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:253-271 and 827-862; convergence is a concrete
+% witness for the admissible sequences, not a generic Core construction.
+\begin{definition}[Complete and separated decreasing filtration]
+  \label{def:complete-separated-filtration}
+  \uses{def:core-filtration,def:core-filtration-completion-witness}
+  \lean{KIP126.Core.SpectralSequence.Filtration.IsExhaustive}
+  \lean{KIP126.Core.SpectralSequence.Filtration.IsHausdorff}
+  \lean{KIP126.Classical.Adams.IsAdamsFiltrationSeparated}
+  \leanok
+  Let $F$ be a decreasing filtration by subobjects of a graded object $A$.
+  Degreewise ordinary exhaustiveness and separatedness mean, respectively,
+  \[
+    \bigvee_{s\in\mathbb Z}F^sA_n=\top
+    \qquad\text{and}\qquad
+    \bigwedge_{s\in\mathbb Z}F^sA_n=\bot
+  \]
+  for every degree $n$.  For graded abelian groups these are the familiar
+  union and intersection conditions.  Degreewise completeness means that the
+  canonical map
+  \[
+    A_n\longrightarrow\varprojlim_s A_n/F^sA_n
+  \]
+  is an isomorphism for every $n$.  KIP126 records these three obligations
+  separately: completeness uses the explicit truncation-tower universal
+  property, while exhaustiveness and Hausdorffness are predicates on the
+  filtration.  This separation keeps a concrete convergence theorem from
+  acquiring any of the three conditions by construction.  These interfaces
+  do not identify ordinary
+  exhaustiveness with the stronger condition that $F^sA_n=\top$ for all
+  sufficiently small $s$, nor separatedness with the stronger condition that
+  $F^sA_n=\bot$ for all sufficiently large $s$.  Those stronger eventual
+  conditions are recorded separately by the bounded-below and bounded-above
+  predicates.  Any later convergence theorem must
+  state explicitly whether it assumes the ordinary conditions, these stronger
+  eventual conditions, or degreewise boundedness.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:134-150, 264-295, 799-823, and 1277-1317.
+\begin{definition}[Spectral-sequence page-level convention]
+  \label{def:ss-page-level}
+  \lean{KIP126.Core.SpectralSequence.PageLevelConvention}
+  \leanok
+  A page-level convention consists of a first displayed page, a map from its
+  natural-number display index to Mathlib's integer page index, a
+  cycle/boundary level, and, when synthetic quotients are involved, a quotient
+  exponent.  It must preserve successors and record the lower bounds that make
+  every page admissible.  In the AIM Adams convention, for every $r\ge2$,
+  these functions have values
+  \[
+    \operatorname{page}(r)=r,\qquad
+    \operatorname{cycleLevel}(r)=r-1,\qquad
+    \operatorname{quotientExponent}(r)=r-1.
+  \]
+  Thus the displayed page is $E_r\cong Z_{r-1}/B_{r-1}$ and the associated
+  synthetic quotient is $\nu X/\lambda^{r-1}$.  Equality of the last two
+  numerical values is a proved convention law, not a definitional
+  identification of cycles with a synthetic quotient.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:134-150 and 799-807, Adams differential degree.
+% VERIFIED-IN: KIP126/Classical/Adams/Basic.lean, declarations Bidegree,
+% classicalAdamsShift, classicalAdamsTarget, classicalAdamsShape, and
+% classicalAdamsShape_two_rel.
+\begin{definition}[The classical Adams $E_2\to E_3$ page passage]
+  \label{def:classical-adams-e2-e3-shape-slice}
+  \uses{def:mathlib-spectral-sequence,def:mathlib-complex-shape-up,def:core-f2-module-category,thm:mathlib-module-category-abelian}
+  \lean{KIP126.Classical.Adams.ClassicalAdamsSpectralSequence}
+  \lean{KIP126.Classical.Adams.classicalAdamsShape_two_rel}
+  \lean{KIP126.Classical.Adams.ClassicalAdamsSS.e₂ToE₃}
+  \leanok
+  In the cohomological Adams convention, a spectral sequence of
+  $\mathbb F_2$-modules indexed by $\mathbb Z\times\mathbb Z$ and displayed
+  from $E_2$ has differentials
+  \[
+    d_r:E_r^{s,t}\longrightarrow E_r^{s+r,t+r-1}.
+  \]
+  In particular, $d_2$ sends $(s,t)$ to $(s+2,t+1)$, and passage to the
+  next page gives the isomorphism
+  \[
+    E_3^{s,t}\cong
+      \ker(d_2:E_2^{s,t}\to E_2^{s+2,t+1})\big/
+      \operatorname{im}(d_2:E_2^{s-2,t-1}\to E_2^{s,t}).
+  \]
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:134-150 and 799-807, Adams differential degree.
+\begin{definition}[Classical and synthetic Adams complex shape]
+  \label{def:adams-complex-shape}
+  \uses{def:mathlib-complex-shape-up,def:ss-page-level}
+  \lean{KIP126.Classical.Adams.classicalAdamsShape}
+  \lean{KIP126.Classical.Adams.classicalAdamsPageLevel}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShape}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsPageLevel}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShape_rel}
+  \leanok
+  For every integer page $r\ge2$, the classical shape on
+  $\mathbb Z\times\mathbb Z$ is $\operatorname{up}'(r,r-1)$, and the
+  synthetic shape on $\mathbb Z\times\mathbb Z\times\mathbb Z$ is
+  $\operatorname{up}'(r,r-1,0)$.  Consequently a nonzero component can only
+  run from $(s,t)$ to $(s+r,t+r-1)$, or from $(s,t,w)$ to
+  $(s+r,t+r-1,w)$, respectively.  The classical and synthetic shape functions
+  are each packaged with their own page-level convention, including the first
+  page, admissible internal page, successor laws, cycle level, and quotient
+  exponent.  The synthetic relation theorem verifies the displayed target for
+  every natural-number page.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:264-295 and 999-1007, extension differential degree.
+\begin{definition}[Extension spectral-sequence complex shape]
+  \label{def:ess-complex-shape}
+  \uses{def:mathlib-complex-shape-up,def:ss-page-level}
+  \lean{KIP126.Classical.ExtensionSS.etaESSShape}
+  \lean{KIP126.Classical.ExtensionSS.etaESSShape_rel}
+  \lean{KIP126.Classical.ExtensionSS.etaESSPageLevel}
+  \lean{KIP126.Classical.ExtensionSS.differentialDegree}
+  \leanok
+  The first displayed extension page is $n=0$.  On the paper's $(s,t)$
+  indexing, its page-$n$ differential has additive degree $(n,n)$ and is
+  represented by $\operatorname{up}'(n,n)$.  Any summand tag distinguishing
+  the source and target spectra, and any synthetic weight, is an additional
+  index whose transition must be stated separately; it is not encoded by the
+  pair $(n,n)$.  The classical $\eta$-ESS packages this shape with a page-level
+  convention starting at page zero.  The general internal ESS uses indices
+  $(s,k)$, starts at page zero, and has differential degree $(n,-1)$: the
+  second entry is the two-term-complex column transition, while the fixed
+  external stem recovers the paper's second Adams coordinate.  These are two
+  descriptions of the same grading convention and must not be conflated with
+  the page degrees of either input spectral sequence.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:134-150 and 253-295.
+\begin{definition}[Adams bidegree convention]
+  \label{def:adams-bidegree}
+  \lean{KIP126.Core.SpectralSequence.AdamsPage}
+  \lean{KIP126.Core.SpectralSequence.ExtensionLength}
+  \lean{KIP126.Core.SpectralSequence.AdamsPage.ofNat}
+  \lean{KIP126.Core.SpectralSequence.AdamsPage.ofInt}
+  \lean{KIP126.Core.SpectralSequence.AdamsPage.toExtensionLength}
+  \lean{KIP126.Core.SpectralSequence.ExtensionLength.toAdamsPage}
+  \lean{KIP126.Classical.Adams.Bidegree}
+  \lean{KIP126.Classical.Adams.classicalAdamsShift}
+  \lean{KIP126.Classical.Adams.classicalAdamsTarget}
+  \lean{KIP126.Classical.Adams.classicalAdamsShapeAt}
+  \lean{KIP126.Classical.ExtensionSS.differentialDegree}
+  \lean{KIP126.Classical.ExtensionSS.etaESSShapeAt}
+  \lean{KIP126.Classical.Adams.adamsStem}
+  \leanok
+  The two coordinates in a classical Adams bidegree $(s,t)$ are Adams
+  filtration and internal degree; its topological stem is $t-s$.  A
+  page-$r$ classical differential has
+  \[
+    d_r:E_r^{s,t}\longrightarrow E_r^{s+r,t+r-1},
+  \]
+  so it raises filtration by $r$ and lowers the stem by one.  A page-$n$
+  extension differential has shift $(n,n)$ and therefore preserves the stem.
+  The bidegree, stem, and target functions are implemented with two distinct
+  nominal parameter types: \texttt{AdamsPage} contains a natural-number page
+  together with the proof that it is at least two, whereas
+  \texttt{ExtensionLength} contains an arbitrary natural-number length.
+  Adams and ESS degree functions accept only their respective parameter
+  types.  There is no coercion between them.  The named conversions
+  \texttt{AdamsPage.toExtensionLength} and
+  \texttt{ExtensionLength.toAdamsPage} are explicit; the latter additionally
+  requires a proof that the length is at least two.  Raw integer pages remain
+  only at the Mathlib adapter boundary and are converted explicitly.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:690-739, 799-823, and 1138-1150.
+\begin{definition}[Synthetic tridegree and page-level conversion]
+  \label{def:synthetic-tridegree}
+  \uses{def:adams-bidegree}
+  \lean{KIP126.Synthetic.SpectralSequence.Tridegree}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShift}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsTarget}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsPageLevel}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShape}
+  \lean{KIP126.Synthetic.SpectralSequence.syntheticAdamsShape_rel}
+  \lean{KIP126.Synthetic.SpectralSequence.nuDegree}
+  \lean{KIP126.Synthetic.SpectralSequence.forgetWeight}
+  \lean{KIP126.Synthetic.SpectralSequence.forgetWeight_nuDegree}
+  \lean{KIP126.Synthetic.SpectralSequence.forgetWeight_add_shift}
+  \lean{KIP126.Synthetic.SpectralSequence.lambdaDegree}
+  \lean{KIP126.Synthetic.SpectralSequence.lambdaTarget}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.e₂ToE₃}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS.d₂}
+  \leanok
+  A synthetic Adams class is indexed by $(s,t,w)$, where $s$ is Adams
+  filtration, $t-s$ is the topological stem, and $w$ is synthetic weight.  A
+  synthetic $d_r$ has degree $(r,r-1,0)$.  Multiplication by $\lambda$ has
+  degree $(0,0,-1)$.  Under the AIM regrading used in this paper, the degree
+  embedding views a classical $E_2$ class of bidegree $(s,t)$ as having
+  tridegree $(s,t,t)$.  These grading operations and the internal
+  cycle/boundary definition of the synthetic pages are implemented.  The
+  $E_2$-homology identification with $E_3$ uses the internal successor-page
+  theorem.  They do not by themselves assert that a classical page is a homotopy group of a
+  synthetic quotient: the later rigidity input supplies the isomorphism with
+  $S/\lambda^{r-1}$, and every use must retain that witness and its source.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:827-862, definitions of Z_r and B_r.
+\begin{definition}[Finite-page elementwise presentation]
+  \label{def:ss-elementwise-page-presentation}
+  \uses{def:mathlib-spectral-sequence,def:adams-bidegree,def:ss-page-level,def:adams-complex-shape}
+  \notready
+  An elementwise presentation includes its displayed-page reindexing.  In the
+  AIM Adams convention it chooses nested subgroups of the initial page
+  $E_2$, with $Z_1=E_2$, $B_1=0$ and
+  \[
+    B_{r-1}^{s,t}\subseteq B_r^{s,t}\subseteq Z_r^{s,t}
+      \subseteq Z_{r-1}^{s,t}\subseteq E_2^{s,t}.
+  \]
+  For every $r\ge2$ it supplies isomorphisms
+  \[
+    E_r^{s,t}\cong Z_{r-1}^{s,t}/B_{r-1}^{s,t}.
+  \]
+  These isomorphisms commute with page passage.  Before quotienting, the
+  displayed differential is represented by a homomorphism
+  \[
+    \widetilde d_r:Z_{r-1}^{s,t}\longrightarrow
+    E_2^{s+r,t+r-1}/B_{r-1}^{s+r,t+r-1};
+  \]
+  it vanishes on $B_{r-1}$ and therefore induces the categorical page
+  differential.  Its kernel inside $Z_{r-1}$ is $Z_r$.  The subgroup $B_r$
+  is the inverse image in $E_2$ of the image of the incoming differential in
+  $E_2/B_{r-1}$, namely the image of
+  \[
+    \widetilde d_r:Z_{r-1}^{s-r,t-r+1}
+      \longrightarrow E_2^{s,t}/B_{r-1}^{s,t}.
+  \]
+  This proves $B_{r-1}\subseteq B_r\subseteq Z_r$.
+  A filtered spectral sequence initialized at $E_0$ must first apply its
+  stored page reindexing before using these Adams symbols.  This node records
+  only finite pages; it makes no assertion about an abutment or about all
+  future pages.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:134-151, 827-862, and throughout the appendix.
+\begin{definition}[Algebraic $E_\infty$ presentation]
+  \label{def:ss-einfty-presentation}
+  \uses{def:ss-elementwise-page-presentation}
+  \lean{KIP126.Core.SpectralSequence.SSData.eInfty}
+  \leanok
+  Given compatible finite-page data, define
+  $Z_\infty=\bigcap_{r\ge1}Z_r$ and
+  $B_\infty=\bigcup_{r\ge1}B_r$ in the chosen graded abelian category, and
+  define the algebraic limit page by $E_\infty=Z_\infty/B_\infty$.
+  This quotient is not an abutment or an associated graded object; every such
+  identification is supplied by a separate convergence witness.
+\end{definition}
+
+\begin{definition}[Finite survival and permanent classes]
+  \label{def:ss-cycle-boundary-survival}
+  \uses{def:ss-elementwise-page-presentation}
+  \notready
+  A representative in the initial $E_2$ page is an $r$-cycle when it lies in
+  $Z_r$ and an $r$-boundary when it lies in $B_r$.  An $E_r$ class survives
+  through page $R$ when it has a representative in $Z_R$ modulo
+  $B_{R-1}$.  This finite survival statement makes no claim about pages after
+  $R$ and cannot by itself be upgraded to permanence.
+\end{definition}
+
+\begin{definition}[Permanent representative and nonzero $E_\infty$ class]
+  \label{def:ss-permanent-einfty-class}
+  \uses{def:ss-einfty-presentation,def:ss-cycle-boundary-survival}
+  \notready
+  A representative is permanent when it lies in $Z_\infty$; its limiting
+  class is its coset in $E_\infty=Z_\infty/B_\infty$.  That class is nonzero
+  exactly when the representative is not in $B_\infty$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:253-263, PROJECT_BOUNDARY.md external-input boundary.
+\begin{definition}[Convergence and detection witness]
+  \label{def:ss-convergence-detection-witness}
+  \uses{def:core-filtration,def:ss-einfty-presentation}
+  \lean{KIP126.Core.SpectralSequence.Convergence}
+  \lean{KIP126.Core.SpectralSequence.Detects}
+  \lean{KIP126.Core.SpectralSequence.detect_zero}
+  \lean{KIP126.Core.SpectralSequence.detect_difference}
+  \leanok
+  A convergence-and-detection witness for a concrete spectral sequence consists
+  of a graded abutment $A_*$, a decreasing filtration $F^sA_n$, a comparison
+  $E_\infty\cong\operatorname{gr}^F A$, and a detection relation between
+  nonzero $E_\infty$ classes and filtered elements of $A_*$.  It records the
+  naturality and representative ambiguity. Existence of such a witness
+  for the chosen sequence must be established separately; it does
+  not assert a general Boardman theorem, vanishing of a $\lim^1$ obstruction,
+  or automatic convergence of arbitrary unbounded filtrations.
+\end{definition}
+
+\begin{lemma}[Projection equation for a restricted differential]
+  \label{lem:filtered-associated-graded-differential-projection}
+  \uses{def:core-associated-graded-differential,def:core-filtered-chain-complex,def:core-to-associated-graded}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.toAssociatedGraded_comp_associatedGradedDifferential}
+  \leanok
+  The quotient projection from $F^sC_k$ to
+  $\operatorname{gr}^s_F(C_k)$ followed by the associated-graded differential
+  equals the chosen restriction of $d_k$ followed by the quotient projection at
+  degree $k-1$.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  Apply the cokernel universal property to the defining factorisation of the
+  restricted differential.
+\end{proof}
+
+% SOURCE: KIP126/Def/SpectralSequence/Representatives/Proofs.lean:31-64;
+% adapted from KIP-infra/SpectralSequence/FilteredComplex.lean at commit 65de864.
+\begin{theorem}[Associated-graded differential and filtered representatives]
+  \label{thm:filtered-associated-graded-differential-representative}
+  \uses{def:core-filtered-chain-complex,def:core-associated-graded-differential,def:core-to-associated-graded,lem:filtered-associated-graded-differential-projection}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedDifferential_iff_representative}
+  \leanok
+  Let $T$ be a projective object and let
+  $a:T\to\operatorname{gr}^s_F(C_k)$ and
+  $b:T\to\operatorname{gr}^s_F(C_{k-1})$ be generalized elements.  Then
+  $a$ followed by the associated-graded differential equals $b$ if and only
+  if there are a filtration-level representative $x:T\to F^sC_k$ and a
+  filtration-level map $dx:T\to F^sC_{k-1}$ such that $x$ projects to $a$,
+  $dx$ is the differential of $x$ after inclusion into the underlying
+  complex, and $dx$ projects to $b$.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Projectivity lifts $a$ through the quotient map.  The filtered differential
+  supplies the restricted map $F^sC_k\to F^sC_{k-1}$, and the projection
+  equation identifies its quotient with the associated-graded differential.
+  Conversely, cancel the monomorphism $F^sC_{k-1}\hookrightarrow C_{k-1}$
+  to identify any stated $dx$ with the restricted differential of $x$, then
+  use the projection equation.
+\end{proof}
+
+% SOURCE: KIP126/Def/SpectralSequence/Representatives/Proofs.lean:86-109;
+% adapted from KIP-infra/SpectralSequence/FilteredComplex.lean at commit 65de864.
+\begin{theorem}[Cycle criterion by a higher-filtration differential lift]
+  \label{thm:filtered-associated-graded-cycle-representative}
+  \uses{thm:filtered-associated-graded-differential-representative,def:core-filtered-chain-complex,def:core-to-associated-graded}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedDifferential_eq_zero_iff_representative}
+  \leanok
+  For a projective generalized element $a:T\to\operatorname{gr}^s_F(C_k)$,
+  its associated-graded differential is zero if and only if $a$ has a
+  representative $x:T\to F^sC_k$ whose differential lifts to
+  $F^{s+1}C_{k-1}$.  Thus the vanishing condition is expressed by a
+  filtration-level cycle lift, not by choosing a representative in the
+  quotient without further data.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Apply the preceding representative equivalence with the zero generalized
+  element.  The zero projection condition is equivalent, by the cokernel
+  universal property, to lifting the differential through the next filtration
+  inclusion.
+\end{proof}
+
+% SOURCE: KIP126/Def/SpectralSequence/Representatives/Proofs.lean:126-164;
+% adapted from KIP-infra/SpectralSequence/FilteredComplex.lean at commit 65de864.
+\begin{theorem}[Naturality of filtered differential representatives]
+  \label{thm:filtered-differential-representative-naturality}
+  \uses{def:filtered-chain-map,thm:filtered-chain-map-restricted-differential}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.differentialRepresentative_naturality}
+  \leanok
+  Let $u:(C,F)\to(D,G)$ be a filtered chain map.  If a map $dx$ at target
+  filtration level $t$ represents the differential of $x$ at source level
+  $s$, then applying the filtration restrictions of $u$ to $x$ and $dx$
+  gives a map at the same respective levels representing the differential of
+  the image of $x$.  The source and target levels are arbitrary; choosing
+  $t=s+r$ gives the cycle lift and choosing $s=t-r+1$ gives the boundary lift
+  used in page comparisons.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Postcompose the representative equation with the chain-map component of
+  $u$.  The chain-map square and the two filtration-preservation
+  factorisations rewrite the result as the target representative equation.
+\end{proof}
+
+\begin{definition}[Associated-graded chain complex]
+  \label{def:filtered-associated-graded-complex}
+  \uses{def:core-associated-graded-object,def:core-associated-graded-differential,thm:core-associated-graded-differential-sq}
+  \leanok
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedComplex}
+  For a filtered chain complex $(C,F)$ and fixed filtration degree $s$, the
+  associated-graded chain complex has degree-$k$ object
+  $\operatorname{gr}^s_F(C_k)$ and differential the compiled
+  associated-graded differential.  In the displayed consecutive component the
+  differential is followed by the canonical index transport induced by
+  $(k+1)-1=k$.  The square-zero theorem supplies the chain-complex
+  relation; this node packages those existing components as a Mathlib chain
+  complex rather than introducing a second differential.
+\end{definition}
+
+\begin{theorem}[Displayed differential of the associated-graded complex]
+  \label{thm:filtered-associated-graded-complex-d}
+  \uses{def:filtered-associated-graded-complex,def:core-associated-graded-differential}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedComplex_d}
+  \leanok
+  In consecutive chain degrees, the differential of the associated-graded
+  complex is the induced differential followed by the canonical transport
+  along $(k+1)-1=k$.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Unfold the chain-complex constructor and simplify its allowed differential
+  component.
+\end{proof}
+
+% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean:641-764, associated-graded maps and functoriality.
+\begin{definition}[Associated-graded map of a filtered chain map]
+  \label{def:filtered-associated-graded-map}
+  \uses{def:filtered-chain-map,def:core-associated-graded-map}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedMap}
+  \leanok
+  At each filtration and chain degree, a filtered chain map induces the
+  associated-graded map obtained from its filtration-level factorisation.
+\end{definition}
+
+\begin{theorem}[Naturality of the associated-graded differential]
+  \label{thm:filtered-associated-graded-map-comm}
+  \uses{def:filtered-chain-map,def:filtered-associated-graded-map,def:core-associated-graded-map,def:core-associated-graded-differential,thm:filtered-chain-map-restricted-differential,lem:core-associated-graded-map-projection,lem:filtered-associated-graded-differential-projection}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedMap_comm}
+  \leanok
+  For every filtration degree $s$ and chain degree $k$, the map induced by a
+  filtered chain map $u$ satisfies
+  \[
+    \operatorname{gr}^s(u)_k\,;\,d^{\operatorname{gr},G}_{s,k}
+      =d^{\operatorname{gr},F}_{s,k}\,;\,\operatorname{gr}^s(u)_{k-1}.
+  \]
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Precompose with the quotient epimorphism from $F^sC_k$.  The universal
+  property of the two cokernels replaces the two associated-graded maps by
+  their filtration-level factorisations, and the preceding restriction
+  theorem identifies the middle composites.  The corresponding projection
+  equation for the source differential then finishes by cancellation.
+\end{proof}
+
+\begin{definition}[Associated-graded chain map]
+  \label{def:filtered-associated-graded-chain-map}
+  \uses{def:filtered-chain-map,def:filtered-associated-graded-complex,def:filtered-associated-graded-map,def:core-associated-graded-map}
+  \leanok
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedChainMap}
+  A filtered chain map $u:(C,F)\to(D,G)$ induces a chain map on every fixed
+  filtration grade.  Its component in chain degree $k$ is the map
+  \[
+    \operatorname{gr}^s_F(C_k)\longrightarrow\operatorname{gr}^s_G(D_k),
+  \]
+  and the chain-map equation is compatibility with the compiled
+  associated-graded differentials.
+\end{definition}
+
+\begin{definition}[Functorial associated-graded chain maps]
+  \label{def:filtered-associated-graded-functoriality}
+  \uses{def:filtered-associated-graded-chain-map,def:filtered-associated-graded-map,def:core-filtered-morphism-functoriality}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedMap_id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedMap_comp}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedChainMap_id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.associatedGradedChainMap_comp}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedFunctor}
+  \leanok
+  The associated-graded construction is functorial in filtered chain maps:
+  identities induce identity maps, composites induce composites, and the
+  fixed-filtration chain maps assemble into
+  \texttt{associatedGradedFunctor}.  These equations are part of the compiled
+  interface and are used by the later spectral-object adapter.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, explicit selected-page/abutment comparison witness.
+\begin{definition}[Pointwise selected-page comparison with a bounded complete endpoint abutment]
+  \label{def:page-abutment-comparison-witness}
+  \uses{def:filtered-complex-endpoint-e2-spectral-sequence,def:core-filtration-completion-witness,def:core-bounded-filtration,def:core-associated-graded,lem:core-bounded-below-exhaustive,lem:core-bounded-above-eventually-zero}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.completion}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.exhaustive}
+  \lean{KIP126.Core.SpectralSequence.PageAbutmentComparisonWitness.eventuallyZero}
+  \leanok
+  For one endpoint extension and one chosen homological functor, this witness
+  records its endpoint boundary data, a graded abutment explicitly isomorphic
+  to the shifted homological image of the upper endpoint, a decreasing
+  filtration on that abutment, and degreewise boundedness.  It derives a
+  canonical completion witness in every grading degree from the bounded-above
+  component.  It also chooses, for every bidegree $(p,q)$, a page at least $2$
+  and an isomorphism from that page object to the indicated associated-graded
+  piece of the endpoint abutment.  The boundedness field yields proofs
+  of the strong degreewise eventual-top predicate named
+  \texttt{IsExhaustive} and of degreewise eventual-bottom.  These imply
+  ordinary exhaustiveness and separatedness, but are not definitions of those
+  weaker notions.
+
+  This is intentionally a selected-page comparison, not a strong-convergence
+  theorem: it supplies neither coherence of comparisons under page passage nor
+  a canonical $E_\infty$ object, and it does not identify the abutment with
+  filtered homology of the original filtered complex.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:461-631 and 1218-1235, maps with shifted degrees.
+\begin{definition}[Reindexed spectral-sequence morphism]
+  \label{def:reindexed-ss-morphism}
+  \uses{def:adams-bidegree,def:synthetic-tridegree}
+  \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap}
+  \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap.differential_comm}
+  \lean{KIP126.Synthetic.SpectralSequence.fixedWeightPage}
+  \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeight_differential_degree}
+  \notready
+  For every fixed synthetic weight, the internal classical--synthetic
+  comparison supplies a map of ambient objects preserving the nested cycle
+  and boundary subobjects.  The maps on finite pages and $E_\infty$ are
+  induced from this same map, and the comparison requires those determined
+  page maps to commute with the actual differentials.  It does not choose
+  independent page-passage isomorphisms.  The degree projection is
+  $(s,t,w)\mapsto(s,t)$; binding a comparison to the actual Adams tower and
+  the selected synthetic family remains a construction obligation.
+
+  This fixed-weight construction uses the displayed degree projection.
+  General affine reindexings require additional grading comparisons.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:138-150, 159-162, 1606-1753.
+\begin{definition}[Multiplicative spectral sequence]
+  \label{def:multiplicative-ss}
+  \uses{def:ss-elementwise-page-presentation}
+  \notready
+  A pairing of spectral sequences specifies, on every displayed page,
+  products $E_{1,r}^i\otimes E_{2,r}^j\to E_{3,r}^{i+j}$.  A multiplicative
+  spectral sequence is, by definition, the self-pairing obtained by taking
+  all three spectral sequences to be the same one.  Associativity,
+  commutativity, and unitality are additional properties rather than fields
+  silently built into this definition.  Passage to the next page is
+  multiplicative, and the
+  page-$r$ differential is a derivation
+  \[
+    d_r(xy)=d_r(x)y+(-1)^{|x|}x d_r(y)
+  \]
+  for an explicitly chosen additive parity function, including for
+  multi-index gradings; over $\mathbb F_2$ the sign disappears but the degree
+  shift does not.  A pairing of converging spectral sequences additionally
+  records the product on $E_\infty$, a filtered abutment product
+  $F^sA\,F^{s'}A\subseteq F^{s+s'}A$, the induced associated-graded product,
+  and their compatibility under the convergence isomorphism.  Module
+  spectral sequences use the analogous action laws and must not be promoted
+  to internally multiplicative objects.  This interface is required before
+  expressions such as $h_j^2$ or $h_0x$ are meaningful.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:253-263 and all later elementwise arguments.
+\begin{proposition}[Categorical and elementwise presentations agree]
+  \label{prop:categorical-elementwise-comparison}
+  \uses{def:mathlib-spectral-sequence,def:mathlib-short-complex-exact,thm:mathlib-exact-iff-image-kernel,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:ss-elementwise-page-presentation}
+  \notready
+  Let a concrete Mathlib spectral sequence in graded $\mathbb F_2$-vector
+  spaces have its cycles and opcycles induced by one spectral object.  After
+  the stored page reindexing, these categorical kernels and cokernels induce
+  the finite-page subgroups $Z_r,B_r$ and natural isomorphisms
+  $E_r\cong Z_{r-1}/B_{r-1}$.  They commute with adjacent page passage and
+  identify the Mathlib differential with the representative map
+  $\widetilde d_r:Z_{r-1}\to E_2/B_{r-1}$.  This is an internal algebraic
+  comparison only; it does not include an abutment, filtered homology, or a
+  convergence assertion.
+\end{proposition}
+
+\begin{proof}
+  Unfold Mathlib's `cycles` and `opcycles` as kernels and cokernels, use
+  exactness to identify their elements with the representative kernels and
+  incoming images, and construct the $E_2$ quotient isomorphism.  Induct over
+  finite page passage; naturality of the spectral-object maps gives the
+  adjacent-page coherence.  No filtered-complex construction is used in this
+  comparison, so the dependency points only from the Mathlib object to the
+  finite presentation.
+\end{proof}
+
+\subsection{Filtered-complex realization}
+
+% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean: filtered-complex morphism declarations; Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean.
+\begin{definition}[Filtered chain map]
+  \label{def:filtered-chain-map}
+  \uses{def:mathlib-chain-complex,def:core-filtered-chain-complex,def:core-filtered-morphism}
+  \leanok
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.toFilteredMorphism}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.comp}
+  For filtered chain complexes $(C,F)$ and $(D,G)$, a filtered chain map is a
+  Mathlib chain-complex morphism $u:C\to D$ whose underlying graded morphism is
+  filtration preserving.  Equivalently, for every $(s,k)$ it includes the
+  restriction $F^sC_k\to G^sD_k$ commuting with the two subobject inclusions;
+  the chain-map square makes these restrictions commute with the restricted
+  differentials.  Identities and composites retain this data.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/FilteredComplex.lean:193-344, fixed-level complexes and filtration inclusion chain maps.
+\begin{definition}[Fixed-level filtered complexes and inclusions]
+  \label{def:filtered-chain-level-complex-and-inclusions}
+  \uses{def:core-filtered-chain-complex,def:core-filtration-inclusions}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex_X}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplex_d}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtration_inclusion_comp_differential}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_f}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filtrationInclusionChainMap_comp}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.instCategory}
+  \leanok
+  At a fixed filtration level, the restricted objects and differentials form a
+  genuine chain complex.  Every order relation $t\le s$ gives a chain map
+  $F^sC\to F^tC$; its component is the canonical filtration inclusion, and
+  these maps satisfy identity and composition laws.  The explicit
+  differential-compatibility lemma records why the inclusions are chain maps.
+\end{definition}
+
+\begin{definition}[Fixed-level filtered-complex functor]
+  \label{def:filtered-chain-level-functor}
+  \uses{def:filtered-chain-map,def:core-filtered-chain-complex,def:filtered-chain-level-complex-and-inclusions}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap_id}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainMap_comp}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainComplexFunctor}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredChainDiagramNatTrans}
+  \leanok
+  Restricting a filtered chain map to a fixed filtration degree gives a chain
+  map between the two restricted complexes.  These restrictions preserve
+  identities and composition, and assemble into a natural transformation of
+  the decreasing filtration diagrams.
+\end{definition}
+
+\begin{theorem}[Compatibility of filtered restrictions]
+  \label{thm:filtered-chain-map-restricted-differential}
+  \uses{def:filtered-chain-map,def:core-filtered-chain-complex}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.preserves_differential}
+  \leanok
+  For a filtered chain map $u:(C,F)\to(D,G)$, write
+  $\phi^u_{s,k}:F^sC_k\to G^sD_k$ for its chosen restriction and write
+  $\delta^F_{s,k}$ and $\delta^G_{s,k}$ for the restricted differentials.
+  Then the restriction squares commute:
+  \[
+    \phi^u_{s,k}\,;\,\delta^G_{s,k}
+      =\delta^F_{s,k}\,;\,\phi^u_{s,k-1}.
+  \]
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Postcompose both sides with the target filtration inclusion.  The two
+  factorisation equations and the chain-map square identify the resulting
+  composites; cancellation of the monomorphism given by that inclusion gives
+  the displayed equality.
+\end{proof}
+
+\begin{definition}[Filtered complex as a cochain diagram]
+  \label{def:filtered-complex-cochain-diagram}
+  \uses{def:mathlib-chain-complex,def:mathlib-cochain-complex,def:core-filtered-chain-complex,def:core-filtration-inclusions,def:filtered-chain-level-complex-and-inclusions,def:filtered-chain-level-functor}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainDiagram}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredCochainComplex}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredCochainDiagram}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Morphism.filteredCochainDiagramNatTrans}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredChainDiagramFunctor}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.filteredCochainDiagramFunctor}
+  \leanok
+  Let $\mathbb Z_{\mathrm{dec}}$ be the filtration category with a unique arrow
+  $s\to t$ exactly when $t\le s$.  A filtered chain complex $(C,F)$ determines
+  a functor
+  \[
+    D_F:\mathbb Z_{\mathrm{dec}}\longrightarrow
+      \operatorname{CochainComplex}(\mathcal C,\mathbb Z),
+    \qquad D_F(s)^n=F^sC_{-n},
+  \]
+  where $\mathcal C$ is the ambient abelian category.
+  The differential is the restriction of $d_{-n}:C_{-n}\to C_{-n-1}$, and an
+  arrow $s\to t$ is sent to the inclusion $F^sC\hookrightarrow F^tC$.  This
+  records the reversal $k=-n$ and the decreasing-order convention explicitly;
+  the implementation uses Mathlib's canonical chain/cochain equivalence rather
+  than silently identifying the two abbreviations.  A filtered chain map
+  induces a natural transformation of both the chain and cochain diagrams.
+\end{definition}
+
+\begin{definition}[Filtered-complex triangulated spectral-object adapter]
+  \label{def:filtered-complex-triangulated-spectral-object}
+  \uses{def:filtered-complex-cochain-diagram,def:mathlib-mapping-cone-spectral-object,def:mathlib-triangulated-spectral-object-precomp}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramTriangulatedSpectralObject}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexTriangulatedSpectralObject}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexTriangulatedSpectralObject_ω₁}
+  \leanok
+  Precomposing Mathlib's mapping-cone triangulated spectral object with the
+  cochain diagram of a filtered complex gives a triangulated spectral object
+  indexed by the decreasing filtration category.  This adapter records the
+  mapping-cone construction and the filtration-to-cochain index map without
+  asserting any endpoint or convergence property.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/SpectralObjectAdapter.lean:26-342, precomposition morphism and filtered triangulated adapter functor.
+\begin{definition}[Morphisms and functor of the triangulated adapter]
+  \label{def:filtered-complex-triangulated-spectral-object-morphism}
+  \uses{def:filtered-complex-cochain-diagram,def:mathlib-mapping-cone-spectral-object,def:mathlib-triangulated-spectral-object-precomp}
+  \lean{KIP126.Core.SpectralSequence.spectralObjectMapComposableArrows}
+  \lean{KIP126.Core.SpectralSequence.spectralObjectArrowMap}
+  \lean{KIP126.Core.SpectralSequence.spectralObjectMapComposableArrows_one_app}
+  \lean{KIP126.Core.SpectralSequence.spectralObjectPrecompHom}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramTriangulatedSpectralObjectHom}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramTriangulatedSpectralObjectFunctor}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexTriangulatedSpectralObjectHom}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexTriangulatedSpectralObjectFunctor}
+  \leanok
+  A natural transformation between cochain diagrams induces a morphism of
+  the precomposed triangulated spectral objects.  Naturality of the mapping-cone
+  structure supplies the commutative square, and identity/composition laws
+  make the construction a functor from cochain diagrams, hence from filtered
+  complexes through their filtered cochain-diagram functor.
+\end{definition}
+
+\begin{definition}[Filtered-complex abelian spectral-object adapter]
+  \label{def:filtered-complex-abelian-spectral-object}
+  \uses{def:filtered-complex-triangulated-spectral-object,def:homological-image-abelian-spectral-object}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramHomologicalImage}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexAbelianSpectralObject}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramHomologicalImage_H}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexAbelianSpectralObject_H}
+  \leanok
+  Applying a homological functor with its shift sequence to the preceding
+  triangulated adapter yields an abelian spectral object.  The functor and its
+  shift sequence remain explicit parameters; the construction does not infer
+  convergence or identify formal endpoint objects with integer filtration
+  levels.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/SpectralObjectAdapter.lean:359-394, homological-image adapter morphisms and functor.
+\begin{definition}[Morphisms and functor of the abelian adapter]
+  \label{def:filtered-complex-abelian-spectral-object-morphism}
+  \uses{def:filtered-complex-triangulated-spectral-object-morphism,def:homological-image-abelian-spectral-object,def:homological-image-functoriality}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramHomologicalImageHom}
+  \lean{KIP126.Core.SpectralSequence.cochainDiagramHomologicalImageFunctor}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexAbelianSpectralObjectHom}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexAbelianSpectralObjectFunctor}
+  \leanok
+  Applying the homological-image bridge to the preceding morphisms gives
+  morphisms of abelian spectral objects.  The resulting identity and
+  composition equations are packaged as a functor, with the homological
+  functor and its shift sequence remaining explicit parameters.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, endpoint-extension and boundary-witness interface.
+\begin{definition}[Endpoint extension of a filtered-complex diagram]
+  \label{def:filtered-complex-endpoint-extension}
+  \uses{def:filtered-complex-cochain-diagram,def:mathlib-cochain-complex}
+  \lean{KIP126.Core.SpectralSequence.decreasingFiltrationEmbedding}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.finiteDiagram}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.bottomCone}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.topCocone}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.BoundaryWitness}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.finiteBottomCone}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.finiteTopCocone}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.finiteBottomIsLimit}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.finiteTopIsColimit}
+  \leanok
+  For the decreasing filtration diagram $D_F$, write
+  $\iota:\mathbb Z_{\mathrm{dec}}\to\operatorname{EInt}$ for
+  $s\mapsto-s$.  An endpoint extension is an
+  $\operatorname{EInt}$-indexed cochain-complex diagram $D$ together with a
+  natural isomorphism $D_F\cong D\circ\iota$.  Thus the two formal endpoint
+  objects are kept distinct from every finite filtration level.
+
+  The construction supplies the canonical cone from $D(\bot)$ and cocone to
+  $D(\top)$ over the finite restriction.  A boundary witness is additional
+  data saying that this cone is limiting and zero, that this cocone is
+  colimiting, and that $D(\top)$ is isomorphic to a designated cochain
+  complex.  The two universal properties are also transported across the
+  finite comparison isomorphism to $D_F$.  This interface neither constructs
+  an endpoint extension for every filtered complex nor asserts completeness,
+  separatedness, or convergence of filtered homology.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, endpoint-extended spectral-object and first-page construction.
+\begin{definition}[Canonical $E_2$ sequence of an endpoint extension]
+  \label{def:filtered-complex-endpoint-e2-spectral-sequence}
+  \uses{def:filtered-complex-endpoint-extension,def:filtered-complex-triangulated-spectral-object,def:homological-image-abelian-spectral-object,def:mathlib-e2-spectral-sequence,def:mathlib-spectral-sequence-first-page}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.triangulatedSpectralObject}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.abelianSpectralObject}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.endpointAbutment}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.spectralSequence}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.firstPageXIso}
+  \leanok
+  Given an endpoint extension $D$ and a homological functor from the homotopy
+  category of cochain complexes, equipped with its integer shift sequence,
+  the mapping-cone and homological-image constructions yield an abelian
+  spectral object indexed by $\operatorname{EInt}$.  Mathlib then supplies
+  its canonical cohomological $E_2$ spectral sequence on
+  $\mathbb Z\times\mathbb Z$.  At $(p,q)$, the first-page
+  isomorphism identifies the $E_2$ object with the degree-$(p+q)$ homology
+  functor evaluated on the interval from $q$ to $q+1$ in that spectral object.
+  It does not identify this page with the associated graded of filtered
+  homology or establish stabilization.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/Convergence.lean, endpoint-extension morphisms and induced spectral-object morphisms.
+\begin{definition}[Functoriality of endpoint extensions]
+  \label{def:filtered-complex-endpoint-extension-morphism}
+  \uses{def:filtered-complex-endpoint-extension,def:filtered-complex-endpoint-e2-spectral-sequence,def:filtered-complex-triangulated-spectral-object-morphism,def:homological-image-functoriality}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.Hom}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.Hom.id}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.Hom.comp}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.Hom.triangulatedSpectralObjectHom}
+  \lean{KIP126.Core.SpectralSequence.EndpointExtension.Hom.abelianSpectralObjectHom}
+  \leanok
+  Over a filtered chain map, a morphism of endpoint extensions is a natural
+  transformation of the extended diagrams whose finite restriction agrees
+  with the filtered cochain-diagram map through the two comparison
+  isomorphisms.  Such morphisms have specified identities and composites.
+  They induce morphisms of the associated triangulated spectral objects and,
+  after a fixed homological functor is applied, of the resulting abelian
+  spectral objects.  The present interface deliberately stops there: it does
+  not require preservation of separately chosen boundary or page/abutment
+  witnesses, and it does not claim a packaged Mathlib spectral-sequence
+  morphism or pagewise naturality for the canonical $E_2$ sequences.
+\end{definition}
+
+% SOURCE: KIP126/Core/SpectralSequence/SpectralObjectAdapter.lean: project adapter declarations;
+% Mathlib/Algebra/Homology/HomotopyCategory/SpectralObject.lean;
+% Mathlib/CategoryTheory/Triangulated/SpectralObject.lean;
+% Mathlib/Algebra/Homology/HomotopyCategory/HomologicalFunctor.lean;
+% Mathlib/Algebra/Homology/HomotopyCategory/ShiftSequence.lean.
+\begin{definition}[Filtered-complex to spectral-object adapter]
+  \label{def:filtered-complex-spectral-object-adapter}
+  \uses{def:filtered-complex-cochain-diagram,def:filtered-complex-triangulated-spectral-object,def:filtered-complex-triangulated-spectral-object-morphism,def:filtered-complex-abelian-spectral-object,def:filtered-complex-abelian-spectral-object-morphism,def:filtered-complex-endpoint-extension,def:filtered-complex-endpoint-e2-spectral-sequence,def:filtered-complex-endpoint-extension-morphism,def:mathlib-mapping-cone-spectral-object,def:mathlib-triangulated-spectral-object-precomp,def:homological-image-abelian-spectral-object}
+  \notready
+  The core precomposition and homological-image steps are implemented by
+  Definitions~\ref{def:filtered-complex-triangulated-spectral-object} and
+  \ref{def:filtered-complex-abelian-spectral-object}; the conditional
+  endpoint-extension and $E_2$ constructions are implemented by
+  Definitions~\ref{def:filtered-complex-endpoint-extension} and
+  \ref{def:filtered-complex-endpoint-e2-spectral-sequence}.  The phrase
+  ``full adapter'' denotes the following integration contract, not an
+  unconditional construction from an arbitrary filtered complex.  Its input
+  is a filtered complex, an $\operatorname{EInt}$ extension of its cochain
+  diagram, lower-limit and upper-colimit boundary witnesses, a homological
+  functor with shift sequence, a Mathlib page recipe with a
+  \texttt{HasSpectralSequence} witness, and any requested page/abutment
+  comparison.  Neither endpoint is identified with an integer filtration
+  level.  Its output is the corresponding abelian spectral object, Mathlib
+  spectral sequence, initial-page comparison, and functorial maps for
+  morphisms preserving all chosen input data.  Apply Mathlib's
+  triangulated-spectral-object precomposition construction to the mapping-cone
+  spectral object and the extended diagram, producing a \emph{triangulated}
+  spectral object.  Apply
+  Definition~\ref{def:homological-image-abelian-spectral-object} to a chosen
+  homological functor on the homotopy category of cochain complexes together
+  with its shift sequence, to obtain the required \emph{abelian} spectral
+  object.  A degree-zero homology specialization is a later explicit
+  instance, not part of this generic adapter.  A
+  The current implementation reaches functorial morphisms of triangulated and
+  abelian spectral objects.  It does not package convergence, an abutment, or
+  an elementwise $Z/B$ presentation: those are separate witnesses and the
+  finite comparison node.  A caller that needs $E_\infty$ or detection must
+  provide an explicit witness for the concrete sequence.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:253-271, Definition def:ess; standard filtered-complex construction used implicitly.
+\begin{theorem}[Filtered complex produces a spectral sequence]
+  \label{thm:filtered-complex-to-spectral-sequence}
+  \uses{def:filtered-complex-spectral-object-adapter,def:filtered-complex-triangulated-spectral-object-morphism,def:filtered-complex-abelian-spectral-object-morphism,def:filtered-chain-map,def:filtered-associated-graded-chain-map,def:filtered-associated-graded-functoriality,def:core-associated-graded-object,def:core-associated-graded-differential,thm:core-associated-graded-differential-sq,def:mathlib-spectral-sequence-data-core,def:mathlib-has-spectral-sequence,def:mathlib-spectral-object-spectral-sequence,def:mathlib-spectral-object-cycles,def:mathlib-spectral-object-opcycles,def:ss-page-level}
+  \notready
+  Let a decreasingly filtered chain complex of $\mathbb F_2$-vector spaces
+  have a filtration-preserving differential.  Assume the adapter input of
+  Definition~\ref{def:filtered-complex-spectral-object-adapter} and an
+  initial-page comparison identifying the recipe's first displayed page with
+  the associated-graded complex.  Then the adapter produces the stated
+  Mathlib spectral sequence and its functorial spectral-object maps.  If a
+  caller supplies the finite categorical--elementwise comparison, the stored
+  display reindexing gives $E_r\cong Z_{r-1}/B_{r-1}$ for every finite page.
+  Any abutment, filtered-homology comparison, $E_\infty$ identification, or
+  detection statement is an additional witness and is not inferred here.
+
+  For functoriality, a filtered chain map must be accompanied by compatible
+  maps of the endpoint extensions and page recipes.  It induces the
+  corresponding functorial spectral-object maps; no convergence or abutment
+  data are inferred automatically.
+\end{theorem}
+
+\begin{proof}
+  Apply the adapter and use the associated-graded differential and its
+  square-zero theorem to identify the initial page as a complex.  Use the
+  supplied page recipe and discharge Mathlib's endpoint-vanishing
+  \texttt{HasSpectralSequence} fields from the stated boundary hypotheses;
+  regularity alone does not manufacture an endpoint extension.  Invoke
+  Mathlib's spectral-object construction rather than defining a second
+  spectral sequence.  The finite categorical--elementwise comparison then
+  identifies its cycles and opcycles with $Z_{r-1}$ and $B_{r-1}$ on each
+  displayed finite page.  For a filtered chain map with the compatibility data
+  above, apply functoriality of the cochain diagram, mapping-cone construction,
+  and homological-image bridge; no abutment or convergence comparison is
+  manufactured by this theorem.
+\end{proof}

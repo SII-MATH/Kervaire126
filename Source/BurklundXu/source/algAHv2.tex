@@ -1,0 +1,1154 @@
+
+
+%% We use the Cartan-Eilenberg spectral sequence, which converges to the classical Adams $E_2$-page. We further study an algebraic Atiyah-Hirzebruch spectral sequence, which converges to the Cartan-Eilenberg $E_2$-page. We have the following diagram of spectral sequences.
+
+
+
+Our goal in the next pair of sections is to prove \Cref{E2 descriptions}.
+In this section we prove a weak form of \Cref{E2 descriptions}(3).
+In fact, as explained in \Cref{tridegree} the $E_2$-page of the motivic Adams sseq for $S^{0,0}/\tau$ is isomorphic to the $E_2$-page of the $\textsl{classical}$ Cartan--Eilenberg sseq, therefore the main object of this section is the Cartan--Eilenberg $E_2$-page.
+In order to gain access to this $E_2$-page we construct an algebraic Atiyah--Hirzebruch sseq, converging to the Cartan-Eilenberg $E_2$-page.
+Then, in \Cref{sec:cess} we study the differentials in the Cartan--Eilenberg sseq and use this information to complete the proof of \Cref{E2 descriptions}.
+
+In order to motivate our strategy,  let us focus on a particular claim from \Cref{E2 descriptions}(1):
+the class $h_0^3g_{n+1}$ on the Adams $7$-line is non-trivial for $n \geq 3$.
+On the $E_2$-page of the Cartan--Eilenberg sseq this class is detected by $q_0^3 \cdot g_n$ (see \Cref{ntn:frob names} below for the index shifting from $g_{n+1}$ to $g_n$) and therefore it suffices for us to do two things (1) show that $q_0^3 \cdot g_n$ is non-trivial on the Cartan--Eilenberg $E_2$-page and (2) show that $q_0^3 \cdot g_n$ is not the target of a Cartan--Eilenberg differential.
+The class $q_0^3 \cdot q_n$ is detected by a non-trivial class of the same name on the algebraic Atiyah--Hirzebruch $E_1$-page and we prove (1) by showing that this class is not the target of an algebraic Atiyah--Hirzebruch differential. We depict this strategy in the diagram of spectral sequences below.
+
+$$\xymatrix{
+q_0^3 \cdot g_n \in & \Ext_{\P}^{*,*}(\F_2, \F_2) \otimes \F_2[q_0, q_1, \cdots] \ar@{=>}[d]^{\textup{algebraic Atiyah-Hirzebruch SS}} \\
+q_0^3 \cdot g_n \in & \Ext^{*,*}_{\P}(\F_2, \F_2[q_0, q_1, \cdots]) \ar@{=>}[d]^{\textup{Cartan-Eilenberg SS}} \\
+h_0^3 g_{n+1} \in & \Ext_{\A}^{*,*}(\F_2, \F_2)
+}$$
+
+
+
+\begin{ntn} \label{ntn:frob names}
+  In order to give names to elements on the $E_2$-page we use the injective map
+  \[ \Ext_{\P}^{*,*}(\F_2, \F_2) \to \Ext_{\P}^{*,*}(\F_2, \F_2[q_0,q_1,\dots]) \]
+  together with the Frobenius isomorphism $\P \cong \A$ so that we can use the familiar names from $\Ext_{\A}$.
+  Note that this use of the Frobenius in naming classes means that the class $a$ on Cartan--Eilenberg $E_2$-page will detect the class $\Sq^0(a)$ in $\Ext_{\A}$.
+  In particular, this means that the class $h_j^3$ on the motivic Adams $E_2$-page corresponds to the class $h_{j-1}^3$ on the Cartan--Eilenberg $E_2$-page.
+\end{ntn}
+
+The following \Cref{prop:weak CE E2} is the main result of this section.
+
+\begin{prop} \label{prop:weak CE E2}
+  Let $j \geq 5$. 
+  The $E_2$-page of the Cartan--Eilenberg spectral sequence
+  takes the following form near $h_{j}^3$:
+    \begin{center}{\renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{|lll|c|c|}\hline
+          $(s,$ & $k,$ & $t)$ & $\Ext^{s,\,t}_{\P}(\mathbb{F}_2,\, \Ext_{\mathcal{Q}}^k(\F_2,\F_2))$ & $\textup{proof}$ \\\hline\hline
+          $(4,$ & $1,$ & $ 3 \cdot 2^{j+1} + 1)$ & contains $\F_2\{q_0g_{j-2}\} $ & \Cref{lem:q03g-nonzero} \\\hline
+          $(4,$ & $2,$ & $ 3 \cdot 2^{j+1} + 2)$ & contains $\F_2\{q_0^2g_{j-2}\} $ & \Cref{lem:q03g-nonzero} \\\hline
+          $(4,$ & $3,$ & $ 3 \cdot 2^{j+1} + 3)$ & contains $\F_2\{q_0^3g_{j-2}\} $ & \Cref{lem:q03g-nonzero} \\\hline
+          $(1,$ & $2,$ & $ 3 \cdot 2^{j+1})$ & $0$ & \Cref{lem:skt120} \\\hline
+          $(1,$ & $3,$ & $ 3 \cdot 2^{j+1} + 1)$ & $0$ & \Cref{lem:skt131}\\\hline
+          $(1,$ & $4,$ & $ 3 \cdot 2^{j+1} + 2)$ & $0$ & \Cref{lem:skt142} \\\hline
+          $(1,$ & $5,$ & $ 3 \cdot 2^{j+1} + 3)$ & $0$ & \Cref{lem:skt153} \\\hline                    
+          $(3,$ & $1,$ & $ 3 \cdot 2^{j+1} + 1)$ & $\F_2\{q_0h_j^3\}$ or $0$ & \Cref{lem:q01hj3} \\\hline
+          $(3,$ & $2,$ & $ 3 \cdot 2^{j+1} + 2)$ & $\F_2\{q_0^2h_j^3\}$ or $0$ & \Cref{lem:q02hj3} \\\hline
+          $(3,$ & $3,$ & $ 3 \cdot 2^{j+1} + 3)$ & $\F_2\{q_0^3h_j^3\}$ or $0$ & \Cref{lem:q03g-nonzero} \\\hline
+      \end{tabular}}
+    \end{center}
+\end{prop}
+
+\begin{proof}%[Proof (of \Cref{prop:weak CE E2}).]
+This proposition follows from various lemmas in this subsection. Note that the proposition is stated for $j \geq 5$ around $t$-degree $3\cdot 2^{j+1}$, and the lemmas are stated for $n \geq 3$ around $t$-degree $3\cdot 2^{n+3}$ so they are compatible.
+\end{proof}
+
+As discussed in \Cref{sec:review} we have an isomorphism
+$\Ext_{\mathcal{Q}}(\F_2,\F_2) \cong \F_2[q_0,q_1,\dots]$
+where the polynomial generator $q_i$ has degree $(k,t) = (1,2^{i+1}-1)$.
+The $\P$-comodule structure on this polynomial algebra is given by 
+\begin{equation}
+\psi: \F_2[q_0, q_1, \cdots] \to \P \otimes \F_2[q_0, q_1, \cdots] 
+\end{equation}
+$$ \psi(q_n) = \sum_{i=0}^n \xi_{n-i}^{2^{i+1}} \otimes q_{i}, \ \text{where} \ \xi_0 = 1.$$
+(see \cite[Theorem~4.3.3]{RavenelGreenBook}).
+For further discussion of the Cartan--Eilenberg sseq see \cite{AndrewsMiller, MillerSquare, RavenelGreenBook}.
+
+%% We recall the Cartan-Eilenberg spectral sequence ($\textbf{CESS}$), which converges to the $E_2$-page of the classical Adams spectral sequence, in this subsection. We also explain our grading convention in this subsection. See also  for a discussion of this spectral sequence.
+
+%% Recall that the mod $2$ dual Steenrod algebra $A$ is
+%% $$A \cong \F_2[\xi_1, \xi_2, \cdots], \ |\xi_i| = 2^i-1.$$
+%% %Let $\xi_i = \xi_i^2$,
+%% %\newcommand{\bxi}{\bar{\xi}}
+%% %and $\bar{\xi}_i$ be the conjugate of $\xi_i$. 
+%% Let $P$ be the following sub-Hopf algebra of $A$
+%% $$P \cong \F_2[\xi_1^2, \xi_2^2, \cdots],$$
+%% and $Q$ be the quotient
+%% $$P \to A \to Q,$$
+%% so $Q \cong A \otimes_P \F_2 \cong \Lambda_{\F_2}[\xi_1, \xi_2, \cdots]$. The Cartan-Eilenberg spectral sequence comes from this exact sequence of Hopf algebras. We have the $E_2$-page of CESS
+%% $$E_2^{s,k,t} = \Ext^s_P(\F_2, \Ext_Q^{k,t}(\F_2, \F_2)) \Longrightarrow \Ext_A^{s+k,t}(\F_2, \F_2),$$
+%% with differentials $d_r: E_r^{s,k,t} \to E_r^{s+r, k-r+1, t}$. Here $s$ and $k$ are the homological degrees and $t$ is the internal degree. In particular, all Cartan-Eilenberg differentials look like Adams $d_1$-differentials in the Adams grading.
+
+%% Since the underlying algebra structure of $Q$ is an exterior algebra, we have
+%% $$\Ext_Q^{*,*}(\F_2, \F_2) \cong \F_2[q_0, q_1, \cdots],$$
+%% where $q_i$ corresponds to $\xi_{i+1}$ and has $(k,t)$ bidegrees $(1, 2^{i+1}-1)$.
+
+
+%% As a consequence, we have a splitting of $\F_2[q_0, q_1, \cdots]$ as P-comodule
+%% $$\F_2[q_0, q_1, \cdots] \cong \F_2 \oplus \bigoplus_i \F_2\{q_i\} \oplus \bigoplus_{i,j} \F_2\{q_iq_j\} \oplus \bigoplus_{i,j,k}\F_2\{q_iq_jq_k\} \cdots.$$
+%% This gives us a splitting of the $E_2$-page of CESS
+%% \begin{align*}
+%% \Ext^*_P(\F_2, \Ext_Q^{*,*}(\F_2, \F_2)) & \cong \Ext_P^{*,*}(\F_2, \F_2) \oplus \Ext_P^{*,*}(\F_2, \bigoplus_{i}\F_2\{q_i\})\\
+%% & \ \ \ \oplus \Ext_P^{*,*}(\F_2, \bigoplus_{i,j}\F_2\{q_iq_j\}) \oplus \Ext_P^{*,*}(\F_2, \bigoplus_{i,j,k}\F_2\{q_iq_jq_k\}) \oplus \cdots
+%% \end{align*}
+ 
+\subsection{An algebraic Atiyah-Hirzebruch spectral sequence} \label{sec algAHSS}\hfill
+
+In this subsection we construct an algebraic Atiyah--Hirzebruch spectral sequence which converges to the Cartan--Eilenberg $E_2$-page.
+The algAH sseq is the main tool we use in our proof of \Cref{prop:weak CE E2}.
+
+\begin{cnstr} \label{cnstr:algAH}
+  The $\P$-comodule $\F_2[q_0,\dots]$ can be described as the free polynomial algebra on the $\P$-comodule $\F_2\{q_i\}_{i \geq 0}$. We place an increasing filtration on $\F_2\{q_i\}_{i \geq 0}$ where $q_i$ is in filtration $i$. Passing to polynomial algebras we obtain a filtered commutative algebra in $\P$-comodules whose underlying object is $\F_2[q_0,\dots]$. Associated to this filtration is a multiplicative spectral sequence computing $\Ext_{\P}(\F_2, \F_2[q_0,\dots])$ which we will call the algebraic Atiyah--Hirzebruch spectral sequence.
+\end{cnstr}
+
+\begin{lem} \label{lem:algAH E1}
+  The associated graded of the filtration on $\F_2[q_0,q_1,\cdots]$ from \Cref{cnstr:algAH} is given by the graded $\P$-comodule algebra $\F_2[q_0,q_1, \cdots]$ with trivial $\P$-comodule structure where the monomial $q_{i_1}q_{i_2}\cdots q_{i_k}$ lives in filtration $i_1 + i_2 + \cdots + i_k$.
+\end{lem}
+
+\begin{proof}
+  The associated graded of a polynomial algebra on a filtered $P$-comodule $M$ is the polynomial algebra on the associated graded of $M$. Therefore, it suffices for us to observe that since we used the cellular filtration on $\F_2\{q_i\}_{i \geq 0}$ the associated graded has trivial $P$-comodule structure.
+\end{proof}
+
+As a consequence of \Cref{lem:algAH E1}
+the algAH sseq of \Cref{cnstr:algAH} has the form
+\begin{align*}
+  \Ext_{\P}(\F_2, \F_2) \otimes \F_2[q_0, q_1, \cdots] \cong E_1
+  &\Longrightarrow \Ext_{\P}(\F_2, \F_2[q_0, q_1, \cdots]) \\
+  d_r : E_r^{s,k,t,i} \to E_r^{s+1,k,t,i-r}
+\end{align*}
+where we give classes in $\Ext_{\P}^{s,t}(\F_2, \F_2)$ degree $(s,k,t,i) = (s,0,t,0)$
+and $q_n$ has degree $(s,k,t,i) = (0, 1, 2^{n+1}-1, n)$. 
+
+\begin{rmk}
+  The multiplicative structure on the algAH sseq coming from its construction via a filtered commutative algebra includes compatibility of the product structure on the $E_1$-page with products in $\Ext_\P(\F_2, \F_2[q_0,q_1,\dots])$ and a Liebniz rule for differentials.
+\end{rmk}
+
+% For each monomial $q_{i_1}q_{i_2}\cdots q_{i_k}$ in the polynomial $\F_2[q_0, q_1, \cdots]$, we define the Atiyah-Hirzebruch filtration to be $i_1 + i_2 + \cdots + i_k$ for elements in the $\Ext$ group 
+% $$\Ext_P^{*,*}(\F_2, \F_2\{q_{i_1}q_{i_2}\cdots q_{i_k}\}).$$
+% One checks that this increasing filtration is compatible with the $P$-comodule structure map $\psi$ on $\F_2[q_0, q_1, \cdots]$.
+%we say its topological degree is
+%
+%Then the algebraic Atiyah-Hirzebruch spectral sequence ($\textbf{algAHSS}$) comes from this ``cellular skeleton" filtration of these monomials and 
+% This algebraic Atiyah-Hirzebruch spectral sequence has an $E_1$-page of the form
+% $$E_1 = \Ext_P^{*,*}(\F_2, \F_2) \otimes \F_2[q_0, q_1, \cdots] \Longrightarrow \Ext_P^{*,*}(\F_2, \F_2[q_0, q_1, \cdots]).$$
+
+%% Any element in the $E_1$-page can be named of the form $q_{i_1}q_{i_2}\cdots q_{i_k} \cdot a$, where $a\in \Ext_P^{*,*}(\F_2, \F_2)$.
+%%   A differential in this algAHSS has the form
+%% $$q_{i_1}q_{i_2}\cdots q_{i_k} \cdot a \rightarrow q_{j_1}q_{j_2}\cdots q_{j_k} \cdot b,$$
+%% where $a \in \Ext_P^{s_1,t_1}(\F_2, \F_2), b \in \Ext_P^{s_2,t_2}(\F_2, \F_2)$. Then we must have
+%% \begin{itemize}
+%% \item (it looks like an Adams $d_1$-differential)  $s_1 + 1 = s_2$,
+%% \item (it preserves the $t$-degree) $$(2^{i_1+1} - 1) + \cdots + (2^{i_k+1} - 1) + t_1 = (2^{j_1+1} - 1) + \cdots + (2^{j_k+1} - 1) + t_2.$$
+%% \end{itemize}
+%% The length of the above differential is $\Sigma_{l=1}^k i_l - \Sigma_{l=1}^k j_l$. We may also define the topological degree of the element $q_{i_1}q_{i_2}\cdots q_{i_k} \cdot a$ to be 
+%% $$(2^{i_1+1} - 2) + (2^{i_2+1} - 2) + \cdots +  (2^{i_k+1} - 2) + t_1 - s_1 = \sum_{l=1}^k 2^{i_l+1} - 2k + t_1 - s_1.$$
+%% This grading is compatible with its grading in the Adams spectral sequence. Then the above two conditions guarantee that the topological degrees of the target and source are differed by one. 
+%% %For the purpose of the proof of 
+
+\begin{rmk}
+  The $E_1$-page of the algAH sseq has a basis of elements of the form
+  $q_{i_1}q_{i_2}\cdots q_{i_k} \cdot a$, where $a\in \Ext_{\P}^{*,*}(\F_2, \F_2)$.
+  Furthermore, since the $k$-degree just records the number of $q$'s,
+  algAH differentials preserve the number of $q$'s.
+\end{rmk}
+
+%% For the Ext groups $\Ext_P^{*,*}(\F_2, \F_2)$, since $P$ is a ``double up" of $A$, we have 
+%% \begin{align*}
+%%  \Ext_P^{s,2t}(\F_2, \F_2) & \cong \Ext_A^{s,t}(\F_2, \F_2),\\
+%%  \Ext_P^{s,2t+1}(\F_2, \F_2) & = 0.
+%%  \end{align*}
+%% For an element  $a \in \Ext_A^{s,t}(\F_2, \F_2)$, we abuse the notation and use the same name $a$ to denote the element in $\Ext_P^{s,2t}(\F_2, \F_2)$ under this isomorphism, when there are no ambiguities in the context.
+
+%% Finally, for an element in the $E_2$-page of CESS, we use the element in the $E_1$-page of algAHSS detecting it to denote it. So every element in the $E_2$-page of CESS has a name of the form
+%% $$q_{i_1}q_{i_2}\cdots q_{i_k} \cdot a,$$
+%% where $a \in \Ext_A^{s,t}(\F_2, \F_2) \cong \Ext_P^{s,2t}(\F_2, \F_2)$.
+
+
+In general, the differentials in algAH sseq can be computed by embedding into the cobar complex that computes the $E_2$-page of Cartan--Eilenberg sseq. So in particular, the primary algAH differentials can be computed by using the $\P$-comodule structure map $\psi$.
+
+\begin{exm}
+  We have 
+  $$\psi(q_1) = \xi_1^2 \otimes q_0 + 1 \otimes q_1.$$
+  Since $\xi_1$ detects $h_0$ in $\Ext_{\A}^{1,1}(\F_2, \F_2)$,
+  we have $\xi_1^2$ detects $h_0$ in  $\Ext_{\P}^{1,2}(\F_2, \F_2)$ (in the naming convention of \Cref{ntn:frob names}). This gives us algAH differentials
+  $$d_1 (q_1\cdot a) =  q_0 \cdot h_0 a,$$
+  for $a \in \Ext_{\P}^{*,*}(\F_2, \F_2)$.
+\end{exm}
+
+\begin{exm}
+  We have
+  $$\psi(q_2) = \xi_2^2 \otimes q_0 + \xi_1^4 \otimes q_1 + 1 \otimes q_0.$$
+  Examining the top AH filtration terms we obtain
+  $$d_1 (q_2 \cdot a) =  q_1 \cdot h_1 a.$$
+  If $h_1 a = 0$ in $\Ext_{\P}^{*,*}(\F_2, \F_2)$, then we have $d_1 (q_2\cdot a) = 0$.
+  In this case, we have 
+  $$d_2 (q_2\cdot a) = q_0 \cdot \langle h_0, h_1, a \rangle.$$
+  This is due to the fact that in cobar complex for $\Ext_{\A}^{*,*}(\F_2, \F_2)$, the nullhomotopy of $h_0h_1$ is $\xi_2$. Note that the indeterminacy of the set $q_0 \cdot \langle h_0, h_1, a \rangle$ is killed by $d_1$-differentials.
+\end{exm}
+
+\begin{exm}
+  $$\psi(q_1^2) = \psi(q_1)^2 = \xi_1^4 \otimes q_0^2 + 1 \otimes q_1^2,$$
+  therefore we have
+  $$d_2 (q_1^2\cdot a) =  q_0^2 \cdot h_1 a.$$
+\end{exm}
+
+Generalizing these examples we have the following lemma.
+
+\begin{lem} \label{lem AH diff}
+We have the following differentials in $\textup{algAHSS}$ for $n \geq 0$.
+\begin{enumerate}
+\item $d_1 (q_{n+1} \cdot a) = q_n \cdot h_n a$.
+\item $d_2 (q_{n+1}^2 \cdot a) = q_n^2 \cdot h_{n+1} a$.
+\item $d_2 (q_{n+2} \cdot a) = q_{n} \cdot  \langle h_n, h_{n+1}, a \rangle$, if $h_{n+1}a = 0$.
+\item $d_4 (q_{n+2}^2 \cdot a) = q_{n}^2 \cdot  \langle h_{n+1}, h_{n+2}, a \rangle$, if $h_{n+2}a = 0$.
+\item $d_3 (q_{n+3} \cdot a) = q_{n} \cdot  \langle h_n, h_{n+1}, h_{n+2}, a \rangle$, if $h_{n+2}a = 0$ and $0\in\langle h_{n+1}, h_{n+2}, a \rangle$.
+\item $d_6 (q_{n+3}^2 \cdot a) = q_{n}^2 \cdot  \langle h_{n+1}, h_{n+2}, h_{n+3}, a \rangle$, if $h_{n+3}a = 0$ and $0\in\langle h_{n+2}, h_{n+3}, a \rangle$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+The differentials in $(1)$ and $(2)$ follow from the comodule structure map $\psi$ modulo elements in lower AH filtration
+$$\psi(q_{n+1}) \equiv \xi_1^{2^{n+1}} \otimes q_n + 1 \otimes q_{n+1},$$
+$$\psi(q_{n+1}^2) = \psi(q_{n+1})^2 \equiv \xi_1^{2^{n+2}} \otimes q_n^2 + 1 \otimes q_{n+1}^2,$$
+and the facts that $ \xi_1^{2^{n+1}}$ and $ \xi_1^{2^{n+2}}$ detects $h_n$ and $h_{n+1}$ in the cobar complex that computes $\Ext_{\P}^{*,*}(\F_2, \F_2)$.
+
+The differentials in $(3)$ and $(4)$ follow from the comodule structure map $\psi$ modulo elements in lower AH filtration
+$$\psi(q_{n+2}) \equiv \xi_2^{2^{n+1}} \otimes q_{n} + \xi_1^{2^{n+2}} \otimes q_{n+1} + 1 \otimes q_{n+2},$$
+$$\psi(q_{n+2}^2) = \psi(q_{n+2})^2 \equiv  \xi_2^{2^{n+2}} \otimes q_{n}^2 + \xi_1^{2^{n+3}} \otimes q_{n+1}^2 + 1 \otimes q_{n+2}^2,$$
+and the facts that $\xi_2^{2^{n+1}}$ and $ \xi_2^{2^{n+2}}$ detects the nullhomotopy of $h_nh_{n+1}$ and $h_{n+1}h_{n+2}$ in the cobar complex that computes $\Ext_{\P}^{*,*}(\F_2, \F_2)$.
+
+Similarly, the elements $\xi_3^{2^{n+1}}$ and $ \xi_3^{2^{n+2}}$ detects the null homotopy of the Massey products $\langle h_n, h_{n+1}, h_{n+2} \rangle$ and  $\langle h_{n+1}, h_{n+2}, h_{n+3} \rangle$, and the differentials in $(5)$ and $(6)$ follow.
+
+Note that indeterminacies of the expressions $q_{n} \cdot  \langle h_n, h_{n+1}, a \rangle$, $q_{n}^2 \cdot  \langle h_{n+1}, h_{n+2}, a \rangle$,\\  $q_{n} \cdot  \langle h_n, h_{n+1}, h_{n+2}, a \rangle$, and $q_{n}^2 \cdot  \langle h_{n+1}, h_{n+2}, h_{n+3}, a \rangle$ are killed by shorter differentials.
+\end{proof}
+
+\subsection{The algebraic Atiyah--Hirzebruch $E_1$-page}
+\label{subsec q03gn algAHSS}\hfill
+
+In this subsection we compute the $E_1$-page of the algAH sseq in the degrees we will need for proving \Cref{prop:weak CE E2}.
+
+\begin{rec}
+  Recall that we have the following generators in the cohomology of the Steenrod algebra
+  \begin{align*}
+    h_n & \in \Ext_{\A}^{1, 2^n}(\F_2, \F_2) \cong \Ext_{\P}^{1,2^{n+1}}(\F_2, \F_2) \cong \F_2, \\ 
+    c_n & \in \Ext_{\A}^{3, 11\cdot 2^n}(\F_2, \F_2) \cong \Ext_{\P}^{3, 11 \cdot 2^{n+1}}(\F_2, \F_2) \cong \F_2, \\
+    g_n & \in \Ext_{\A}^{4, 3\cdot 2^{n+2}}(\F_2, \F_2) \cong \Ext_{\P}^{4, 3 \cdot 2^{n+3}}(\F_2, \F_2) \cong \F_2.
+  \end{align*}
+\end{rec}
+  
+\begin{lem} \label{candidates algAHSS}
+  In degree $(s,k,t) = (3,3,3 \cdot 2^{n+3}+3)$ the $E_1$-page of the algAH sseq consists of the following classes for $n \geq 3$,
+  % For degree reasons, the following list consists of all elements in the $E_1$-page of algAHSS that could kill $q_0^3 \cdot g_n$ for $n \geq 4$.
+\begin{multicols}{2}
+\begin{enumerate}
+\setcounter{enumi}{-1}
+\item $q_3q_4q_6 \cdot c_0$ for $n=3$,
+\item $q_0q_1q_n \cdot c_n$,
+\item $q_0^3 \cdot h_{n+1}^2h_{n+3} = q_0^3 \cdot h_{n+2}^3$,
+\item $q_0^2q_{n+1} \cdot h_0h_{n+1}h_{n+3}$,
+\item $q_0^2q_{n+3} \cdot h_0h_{n+1}^2$,
+\item $q_0q_{n+1}^2 \cdot h_0^2h_{n+3}$,
+\item $q_0q_{n+1}q_{n+3} \cdot h_0^2h_{n+1}$,
+\item $q_{n+1}^2q_{n+3} \cdot h_0^3$,
+\item $q_0^2q_{n+2} \cdot h_0h_{n+2}^2$,
+\item $q_0q_{n+2}^2 \cdot h_0^2h_{n+2}$,
+\item $q_{n+2}^3 \cdot h_0^3$,
+\item $q_0q_1q_{n+1} \cdot h_{n}^2h_{n+3}$,
+\item $q_0q_{n}^2 \cdot h_1h_{n+1}h_{n+3}$,
+\item $q_0q_nq_{n+1} \cdot h_1h_{n}h_{n+3}$,
+\item $q_0q_{n+1}q_{n+3} \cdot h_1h_{n}^2$,
+\item $q_1q_{n}^2 \cdot h_0h_{n+1}h_{n+3}$,
+\item $q_1q_nq_{n+1} \cdot h_0h_{n}h_{n+3}$,
+\item $q_1q_{n+1}q_{n+3} \cdot h_0h_{n}^2$,
+\item $q_0q_{n+1}^2 \cdot h_1h_{n+2}^2$,
+\item $q_0q_{n+2}^2 \cdot h_1h_{n+1}^2$,
+\item $q_1q_{n+1}^2 \cdot h_0h_{n+2}^2$,
+\item $q_1q_{n+2}^2 \cdot h_0h_{n+1}^2$.
+\end{enumerate}
+\end{multicols}
+\end{lem}
+
+\begin{proof}
+  As discussed in subsection~\ref{sec algAHSS},
+  the $E_1$-page of the algAH sseq in degree $(s,k,t) = (3,3,3 \cdot 2^{n+3}+3)$
+  has a basis of elements of the form $q_iq_jq_k \cdot a$, where
+  $$a \in \Ext_{\P}^{3, 2*}(\F_2, \F_2) \cong \Ext_{\A}^{3, *}(\F_2, \F_2).$$ 
+  The classical Adams $3$-line $\Ext^{3,*}_{\A}$ is generated by the elements $c_{\ell}$ and $h_ah_bh_c$. So the candidates are of the following two forms
+  \begin{itemize}
+  \item $q_iq_jq_k \cdot c_{\ell}$,
+  \item $q_iq_jq_k \cdot h_ah_bh_c$.
+  \end{itemize}
+We may also assume that $i \leq j \leq k$ and $a \leq b \leq c$.
+
+%% The $t$-degree of $q_0^3 \cdot g_n$ is $3 + 3 \cdot 2^{n+3}$.
+
+We start by considering classes of the form $q_iq_jq_k \cdot c_{\ell}$.
+The class $q_iq_jq_k \cdot c_{\ell}$ has $t$-degree
+$$ (2^{i+1} - 1) + (2^{j+1} - 1) + (2^{k+1} - 1) + 11 \cdot 2^{\ell+1} $$
+from this we obtain the equation
+$$3 + 3 \cdot 2^{n+3} = (2^{i+1} - 1) + (2^{j+1} - 1) + (2^{k+1} - 1) + 11 \cdot 2^{\ell+1},$$
+which can be simplified to the equation
+\begin{equation}
+1 + 2 + 2^{n+2} + 2^{n+3} = 2^i + 2^j + 2^k + 2^l + 2^{l+1} + 2^{l+3}. \tag{$*$}
+\end{equation}
+Since we are considering $n \geq 3$, the right hand side of $(*)$ is 3 mod 32, and is at least 99.
+
+
+
+When $\ell=0$, the equation $(*)$ becomes
+$$2^{n+2} + 2^{n+3} = 2^i + 2^j + 2^k + 8,$$
+so we must have $(i,j,k) = (3,4,6)$ and $n=3$. This is case $(0): q_3q_4q_6 \cdot c_0$ for $n=3$.
+Not possible for $n \geq 4$.
+
+When $\ell=1$, we must have $i=0$, then equation $(*)$ becomes
+$$2^{n+2} + 2^{n+3} = 2^j + 2^k + 4 + 16.$$ 
+Not possible for $n \geq 3$.
+
+When $\ell=2$, we must have $i=0, j=1$, then equation $(*)$ becomes
+$$2^{n+2} + 2^{n+3} = 2^k + 4 + 8 + 32.$$ 
+Not possible for $n \geq 3$.
+
+When $\ell \geq 3$, we must have $i=0, j=1$, then equation $(*)$ becomes
+$$2^{n+2} + 2^{n+3} = 2^k + 2^{\ell} + 2^{\ell+1} + 2^{\ell+3}.$$ 
+We must have $k=\ell=n$, which is at least 3. This is case $(1): q_0q_1q_n \cdot c_n$.
+
+% This completes the discussion of elements of the form $q_iq_jq_k \cdot c_{\ell}$.
+
+Next we consider classes of the form $q_iq_jq_k \cdot h_ah_bh_c$.
+The class $q_iq_jq_k \cdot h_ah_bh_c$ has $t$-degree
+$$(2^{i+1} - 1) + (2^{j+1} - 1) + (2^{k+1} - 1) + 2^{a+1} + 2^{b+1} +2^{c+1}.$$
+from this we obtain the equation
+$$3 + 3 \cdot 2^{n+3} = (2^{i+1} - 1) + (2^{j+1} - 1) + (2^{k+1} - 1) + 2^{a+1} + 2^{b+1} +2^{c+1},$$
+which can be simplified to the equation
+\begin{equation}
+1 + 2 + 2^{n+2} + 2^{n+3} = 2^i + 2^j + 2^k + 2^a + 2^b + 2^c. \tag{$**$}
+\end{equation}
+Either two or three terms on the right hand side of $(**)$ contribute to $1+2$. So we only have the following 4 possibilities for the unordered set $\{2^i, \ 2^j, \ 2^k, \ 2^a, \ 2^b, \ 2^c\}$.
+\begin{itemize}
+\item $\{1, \ 1, \ 1, \ 2^{n+1}, \ 2^{n+1}, \ 2^{n+3}\}$,
+\item $\{1, \ 1, \ 1, \ 2^{n+2}, \ 2^{n+2}, \ 2^{n+2}\}$,
+\item $\{1, \ 2, \ 2^n, \ 2^{n}, \ 2^{n+1}, \ 2^{n+3}\}$,
+\item $\{1, \ 2, \ 2^{n+1}, \ 2^{n+1}, \ 2^{n+2}, \ 2^{n+2}\}$.
+\end{itemize}
+For the set $\{1, \ 1, \ 1, \ 2^{n+1}, \ 2^{n+1}, \ 2^{n+3}\}$, we have candidates 
+$$q_0^3 \cdot h_{n+1}^2h_{n+3}, \ q_0^2q_{n+1} \cdot h_0h_{n+1}h_{n+3}, \ q_0^2q_{n+3} \cdot h_0h_{n+1}^2,$$
+$$q_0q_{n+1}^2 \cdot h_0^2h_{n+3} , \ q_0q_{n+1}q_{n+3} \cdot h_0^2h_{n+1}, \ q_{n+1}^2q_{n+3} \cdot h_0^3.$$
+These are the cases $(2)-(7)$.
+
+For the set $\{1, \ 1, \ 1, \ 2^{n+2}, \ 2^{n+2}, \ 2^{n+2}\}$, we have candidates
+$$q_0^3 \cdot h_{n+2}^3, \ q_0^2q_{n+2} \cdot h_0h_{n+2}^2, \ q_0q_{n+2}^2 \cdot h_0^2h_{n+2}, \ q_{n+2}^3 \cdot h_0^3.$$
+Note that we have a relation $h_{n+2}^3 = h_{n+1}^2h_{n+3}$ in $\Ext_{\A}^{3,*}$ and hence in $\Ext_{\P}^{3,2*}$. These are the cases $(2)$ and $(8)-(10)$.
+
+For the set $\{1, \ 2, \ 2^n, \ 2^{n}, \ 2^{n+1}, \ 2^{n+3}\}$, we have candidates
+$$q_0q_1q_{n+1} \cdot h_{n}^2h_{n+3}, \ q_0q_{n}^2 \cdot h_1h_{n+1}h_{n+3}, \ q_0q_nq_{n+1} \cdot h_1h_{n}h_{n+3}, \ q_0q_{n+1}q_{n+3} \cdot h_1h_{n}^2,$$
+$$q_1q_{n}^2 \cdot h_0h_{n+1}h_{n+3}, \ q_1q_nq_{n+1} \cdot h_0h_{n}h_{n+3}, \ q_1q_{n+1}q_{n+3} \cdot h_0h_{n}^2.$$
+Note that we have a relation $h_{n} h_{n+1}=0$ in $\Ext_{\A}^{2,*}$ and hence in $\Ext_{\P}^{2,2*}$. So certain candidates are already zero (e.g. $q_0q_1q_{n} \cdot h_{n}h_{n+1}h_{n+3}$).  These are the cases $(11)-(17)$.
+
+For the set $\{1, \ 2, \ 2^{n+1}, \ 2^{n+1}, \ 2^{n+2}, \ 2^{n+2}\}$, we have candidates
+$$q_0q_{n+1}^2 \cdot h_1h_{n+2}^2, \ q_0q_{n+2}^2 \cdot h_1h_{n+1}^2, \ q_1q_{n+1}^2 \cdot h_0h_{n+2}^2, \ q_1q_{n+2}^2 \cdot h_0h_{n+1}^2.$$
+Again, due the relation $h_{n} h_{n+1}=0$, certain candidates are already zero so we don't list them. These are the cases $(18)-(21)$.
+
+This completes the discussion of elements of the form $q_iq_jq_k \cdot h_ah_bh_c$ and therefore the proof of this lemma.
+\end{proof}
+
+\begin{lem} \label{candidates CESS}
+  In degree $(s,k,t) = (1,5,3 \cdot 2^{n+3}+3)$ the $E_1$-page of the algAHSS consists of the following classes for $n \geq 3$,  
+% For degree reasons, the following list consists of all elements in the $E_1$-page of algAHSS that, if survive in algAHSS, could support a nonzero differential that kills $q_0^3 \cdot g_n$ for $n \geq 4$ in CESS.
+\begin{multicols}{2}
+\begin{enumerate}
+\item $q_0^3q_{n+2}q_{n+3} \cdot h_0$,
+\item $q_0^4q_{n+3} \cdot h_{n+2}$,
+\item $q_0^4q_{n+2} \cdot h_{n+3}$,
+\item $q_0q_1q_{n+1}^2q_{n+3} \cdot h_0$,
+\item $q_0^2q_{n+1}^2q_{n+3} \cdot h_1$,
+\item $q_0^2q_1q_{n+1}q_{n+3} \cdot h_{n+1}$,
+\item $q_0^2q_1q_{n+1}^2 \cdot h_{n+3}$,
+\item $q_0q_1q_{n+2}^3 \cdot h_{0}$,
+\item $q_0^2q_{n+2}^3 \cdot h_{1}$,
+\item $q_0^2q_1q_{n+2}^2 \cdot h_{n+2}$,
+\item $q_1q_n^2q_{n+1}q_{n+3} \cdot h_{1}$,
+\item $q_1^2q_nq_{n+1}q_{n+3} \cdot h_{n}$,
+\item $q_1^2q_n^2q_{n+3} \cdot h_{n+1}$,
+\item $q_1^2q_n^2q_{n+1} \cdot h_{n+3}$,
+\item $q_1q_{n+1}^2q_{n+2}^2 \cdot h_{1}$,
+\item $q_1^2q_{n+1}q_{n+2}^2 \cdot h_{n+1}$,
+\item $q_1^2q_{n+1}^2q_{n+2} \cdot h_{n+2}$,
+\item $q_{n-1}^2q_nq_{n+1}q_{n+3} \cdot h_{2}$,
+\item $q_{2}q_{n-1}q_nq_{n+1}q_{n+3} \cdot h_{n-1}$,
+\item $q_{2}q_{n-1}^2q_{n+1}q_{n+3} \cdot h_{n}$,
+\item $q_2q_{n-1}^2q_nq_{n+3} \cdot h_{n+1}$,
+\item $q_2q_{n-1}^2q_nq_{n+1} \cdot h_{n+3}$,
+\item $q_{n}^4q_{n+3} \cdot h_{2}$,
+\item $q_2q_{n}^3q_{n+3} \cdot h_{n}$,
+\item $q_2q_{n}^4 \cdot h_{n+3}$,
+\item $q_{n}^2q_{n+1}q_{n+2}^2 \cdot h_{2}$,
+\item $q_2q_nq_{n+1}q_{n+2}^2 \cdot h_{n}$,
+\item $q_2q_{n}^2q_{n+2}^2 \cdot h_{n+1}$,
+\item $q_2q_{n}^2q_{n+1}q_{n+2} \cdot h_{n+2}$,
+\item $q_{n+1}^4q_{n+2} \cdot h_{2}$,
+\item $q_2q_{n+1}^3q_{n+2} \cdot h_{n+1}$,
+\item $q_2q_{n+1}^4 \cdot h_{n+2}$.
+\end{enumerate}
+\end{multicols}
+For $n=3$, the cases $(18)$ and $(19)$ are identical, and for $n \geq 4$ all cases are different. 
+\end{lem}
+
+\begin{proof}
+  The $E_1$-page of the algAH sseq in degree $(s,k,t) = (1,5,3 \cdot 2^{n+3}+3)$
+  has a basis of elements of the form
+  $$ q_{i_1}q_{i_2}q_{i_3}q_{i_4}q_{i_5} \cdot h_m $$
+  where $i_1\leq i_2\leq i_3\leq i_4\leq i_5$.
+
+  Considering the $t$-degrees, we have an equation
+  $$3 + 3 \cdot 2^{n+3} = 2^{m+1} + (2^{i_1+1} - 1) + (2^{i_2+1} - 1) + (2^{i_3+1} - 1) + (2^{i_4+1} - 1) + (2^{i_5+1} - 1),$$
+  which can be simplified to the equation
+  $$ 4 + 2^{n+2} + 2^{n+3} = 2^m + 2^{i_1} + 2^{i_2} + 2^{i_3} + 2^{i_4} + 2^{i_5}. $$
+  Up to four terms on the right hand side contribute to $4$. So we have the following 9 possibilities for the unordered set $\{2^m, \ 2^{i_1}, \ 2^{i_2}, \ 2^{i_3}, \ 2^{i_4}, \ 2^{i_5}\}$.
+  \begin{multicols}{2}
+    \begin{itemize}
+    \item $\{1, \ 1, \ 1, \ 1, \ 2^{n+2}, \ 2^{n+3}\}$,
+    \item $\{1, \ 1, \ 2, \ 2^{n+1}, \ 2^{n+1}, \ 2^{n+3}\}$,
+    \item $\{1, \ 1, \ 2, \ 2^{n+2}, \ 2^{n+2}, \ 2^{n+2}\}$,
+    \item $\{2, \ 2, \ 2^n, \ 2^{n}, \ 2^{n+1}, \ 2^{n+3}\}$,
+    \item $\{2, \ 2, \ 2^{n+1}, \ 2^{n+1}, \ 2^{n+2}, \ 2^{n+2}\}$,
+    \item $\{4, \ 2^{n-1}, \ 2^{n-1}, \ 2^{n}, \ 2^{n+1}, \ 2^{n+3}\}$,
+    \item $\{4, \ 2^{n}, \ 2^{n}, \ 2^{n}, \ 2^{n}, \ 2^{n+3}\}$,
+    \item $\{4, \ 2^{n}, \ 2^{n}, \ 2^{n+1}, \ 2^{n+2}, \ 2^{n+2}\}$,
+    \item $\{4, \ 2^{n+1}, \ 2^{n+1}, \ 2^{n+1}, \ 2^{n+1}, \ 2^{n+2}\}$.
+    \end{itemize}
+  \end{multicols}
+  The rest of proof works similarly to the proof of Lemma~\ref{candidates algAHSS}.
+\end{proof}
+
+\begin{rmk} \label{rmk:q0 remove}
+  Note that since $q_0$ acts injectively on the algAH $E_1$-page we can read off
+  the collection of elements on the $E_1$-page in degree
+  $(s,k,t) = (3,2,3 \cdot 2^{n+3} + 2)$
+  by extracting the subset of elements divisible by $q_0$ from \Cref{candidates algAHSS}, and elements in degree $(s,k,t) = (1,4,3 \cdot 2^{n+3} + 2)$ from \Cref{candidates CESS}, etc.
+\end{rmk}
+
+
+\subsection{algebraic Atiyah--Hirzebruch differentials}\hfill
+
+In this subsection we complete the proof of \Cref{prop:weak CE E2} by computing the 
+relevant degrees of the algAH sseq.
+Our computation of the algAH differentials uses multiplicative and Massey product structures in $\Ext_{\P}$ together with descriptions of differentials in the algAH sseq from \Cref{lem AH diff}.
+
+
+%% We prove Proposition~\ref{q03gn algAHSS} in the subsection that the element $q_0^3 \cdot g_n$ for $n \geq 4$ survives the algebraic Atiyah-Hirzebruch spectral sequence. 
+
+%% First of all, it is clear that this element $q_0^3 \cdot g_n$ is a permanent cycle. In fact, since there is a splitting of algAHSS's, this element $q_0^3 \cdot g_n$ lives in the $E_1$-page of algAHSS 
+%% $$\Ext_P^{*,*}(\F_2, \F_2) \otimes \bigoplus_{i,j,k}\F_2\{q_iq_jq_k\} \Longrightarrow \Ext_P^{*,*}(\F_2, \bigoplus_{i,j,k}\F_2\{q_iq_jq_k\}).$$ 
+%% The inclusion of $P$-comodules $\F_2\{q_0^3\} \rightarrow \bigoplus_{i,j,k} \F_2\{q_iq_jq_k\}$ induces a map of $\Ext$ groups
+%% $$\Ext_P^{*,*}(\F_2, \F_2\{q_0^3\}) \longrightarrow \Ext_P^{*,*}(\F_2, \bigoplus_{i,j,k}\F_2\{q_iq_jq_k\}),$$
+%% making all elements $q_0^3 \cdot a$ in $\Ext_P^{*,*}(\F_2, \F_2)\{q_0^3\}$ permanent cycles in algAHSS.
+
+%% So it remains to show that in algAHSS the element $q_0^3 \cdot g_n$ is not killed by other elements. The strategy of the proof is the following. We first use the constraints on degrees that were discussed in subsection~\ref{sec algAHSS} to list all possible candidates that could kill $q_0^3 \cdot g_n$. We then rule them out one by one, by proving that they either support or are the targets of shorter differentials. The proofs use multiplicative and Massey product structures in $\Ext_A^{*,*}(\F_2, \F_2) \cong \Ext_P^{*,2*}(\F_2, \F_2)$ and the descriptions of differentials in algAHSS in subsection~\ref{sec algAHSS}.
+
+
+We begin with the following lemma which we will need in order to conclude that the targets of various algAH differentials are non-trivial.
+
+\begin{lem} \label{fact on Ext4}
+The following elements are nonzero in $\Ext_{\A}^{4,*}(\F_2, \F_2)$.
+\begin{multicols}{2}
+\begin{itemize}
+\item $h_0c_n$, \ for \ $n \geq 2$,
+\item $h_0^3 h_n$, \ for \ $n \geq 3$,
+\item $h_0h_n^2h_{n+3}$, \ for \ $n \geq 3$,
+\item $h_1h_n^2h_{n+3}$, \ for \ $n \geq 4$,
+\item $h_1h_n^3$, \ for \ $n \geq 5$,
+\item $h_0^2h_{n+1}h_{n+3}$, \ for \ $n \geq 1$,
+\item $h_0^2h_nh_{n+3}$, \ for \ $n \geq 2$,
+\item $h_0^2 h_n^2$, \ for \ $n \geq 4$,
+\item $h_1c_n$, \ for \ $n \geq 3$,
+\item $h_5c_0$.
+\end{itemize}
+\end{multicols}
+\end{lem}
+
+\begin{proof}
+The complete description of $\Ext_{\A}^{\leq 4,*}(\F_2, \F_2)$ is given as Theorems~1.2 and 1.3 in \cite{LinExt}. In particular, all relations that are satisfied among the elements $h_n$ and $c_n$ up to the Adams filtration 4 are the following:
+$$h_nh_{n+1} = 0, \ h_n h_{n+2}^2 = 0, \ h_n^2 h_{n+2} = h_{n+1}^3, \ h_n^2 h_{n+3}^2 = 0,$$
+$$h_j c_n = 0 \ \text{for} \ j = n-1, n, n+2 \ \text{and} \ n+3.$$
+One checks that this lemma is true.
+\end{proof}
+
+% (18): \ \ \ & d_2(q_0q_{n+2}^2 \cdot h_{1}h_{n+2})  = q_0q_{n+1}^2 \cdot h_1h_{n+2}^2. 
+
+\begin{figure}[t]
+\begin{center}
+  {\renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|c||c|c|c|}\hline
+      & $s=2$ & $s=3$ & $s=4$ \\\hline\hline
+    $3n+6$ & & $q_{n+2}^3 \cdot h_0^3$ \tikzmark{As10} & \\\hline
+    $3n+5$ & & $q_{n+1}^2q_{n+3} \cdot h_0^3$ \tikzmark{As7} & \tikzmark{At10} $q_{n+1}q_{n+2}^2 \cdot h_0^3h_{n+1}$ \\\hline
+    $3n+4$ & &  & \tikzmark{At7} $q_{n+1}^2q_{n+2} \cdot h_0^3h_{n+2}$ \\\hline
+    $\cdots$ & & & \\\hline
+    $2n+5$ & $q_1q_{n+1}q_{n+3} \cdot h_0h_{n+1}$ \tikzmark{As6} & $q_1q_{n+2}^2 \cdot h_0h_{n+1}^2$ \tikzmark{As21} & \\
+    & $q_1q_{n+2}^2 \cdot h_0h_{n+2}$ \tikzmark{As9} & $q_1q_{n+1}q_{n+3} \cdot h_0h_{n}^2$ \tikzmark{As17a}\tikzmark{As17b}\tikzmark{As17c} & \\\hline
+    $2n+4$ & & \tikzmark{At6} $q_0q_{n+1}q_{n+3} \cdot h_0^2h_{n+1}$ & \tikzmark{At21} $q_{0}q_{n+2}^2 \cdot h_0^2h_{n+1}^2$ \\
+           & & \tikzmark{At9} $q_0q_{n+2}^2 \cdot h_0^2h_{n+2}$ & \tikzmark{At17b} $q_{1}q_{n}q_{n+3} \cdot h_0h_{n}^3$ \\
+           & $ q_0q_{n+2}^2 \cdot h_{1}h_{n+2}$ \tikzmark{As18} & $q_0q_{n+1}q_{n+3} \cdot h_1h_{n}^2$ \tikzmark{As14a}\tikzmark{As14b} & \tikzmark{At17a} $q_{0}q_{n+1}q_{n+3} \cdot h_0^2h_{n}^2$ \\
+    & & $ q_0q_{n+2}^2 \cdot h_1h_{n+1}^2$ \tikzmark{As19} & \tikzmark{At17c} $q_{1}q_{n+1}q_{n+2} \cdot h_0h_{n}^2h_{n+2}$ \\\hline
+    $2n+3$ & $q_1q_{n+1}^2 \cdot h_0h_{n+3}$ \tikzmark{As5} & $q_1q_{n+1}^2 \cdot h_0h_{n+2}^2$ \tikzmark{As20} & \tikzmark{At14a} $q_{0}q_{n}q_{n+3} \cdot h_1h_n^3$ \\
+           & & & \tikzmark{At14b} $q_{0}q_{n+1}q_{n+2} \cdot h_1h_n^2h_{n+2}$ \\\hline
+    $2n+2$ & & \tikzmark{At18} $ q_0q_{n+1}^2 \cdot h_1h_{n+2}^2$ & \\
+           & $ q_0q_{n+1}^2 \cdot h_1h_{n+3}$ \tikzmark{As12} & \tikzmark{At5} $q_0q_{n+1}^2 \cdot h_0^2h_{n+3}$ & \tikzmark{At20} $q_{0}q_{n+1}^2 \cdot h_0^2h_{n+2}^2$ \\
+    & & $q_1q_{n}q_{n+1} \cdot h_0h_{n}h_{n+3}$ \tikzmark{As16a}\tikzmark{As16b} & \\\hline
+    $2n+1$ & & $q_0q_nq_{n+1} \cdot h_1h_{n}h_{n+3}$ \tikzmark{As13} & \tikzmark{At16a} $q_{0}q_{n}q_{n+1} \cdot h_0^2h_{n}h_{n+3}$ \\
+    & & $q_1q_{n}^2 \cdot h_0h_{n+1}h_{n+3}$ \tikzmark{As15} & \tikzmark{At16b} $q_1q_n^2 \cdot h_0h_n^2h_{n+3}$ \\\hline
+    $2n$ & & \tikzmark{At12} $ q_0q_n^2 \cdot h_1h_{n+1}h_{n+3}$ & \tikzmark{At13} $q_{0}q_{n}^2 \cdot h_1h_n^2h_{n+3}$ \\
+    & & & \tikzmark{At15} $q_{0}q_{n}^2 \cdot h_0^2h_{n+1}h_{n+3}$ \\\hline
+    $2n-1$ & & & \\\hline
+    $2n-2$ & & & \tikzmark{At19} $ q_0q_{n-1}^2 \cdot h_1c_n$ \\\hline
+    $\cdots$ & & & \\\hline
+    $n+4$ & $q_0q_1q_{n+3} \cdot h_{n+1}^2$ \tikzmark{As4} & & \\\hline
+    $n+3$ & $q_0q_1q_{n+2} \cdot h_{n+2}^2$ \tikzmark{As8} & \tikzmark{At4} $q_0^2q_{n+3} \cdot h_0h_{n+1}^2$ & \\\hline
+    $n+2$ & $q_0q_1q_{n+1} \cdot h_{n+1}h_{n+3}$ \tikzmark{As3} & \tikzmark{At8} $q_0^2q_{n+2} \cdot h_0h_{n+2}^2$ & \\
+    & & $q_0q_1q_{n+1} \cdot h_{n}^2h_{n+3}$ \tikzmark{As11a}\tikzmark{As11b} & \\\hline
+    $n+1$ & & $q_0q_1q_n \cdot c_n$ \tikzmark{As1} & \tikzmark{At11a} $q_{0}^2q_{n+1} \cdot h_0h_n^2h_{n+3}$ \\
+    & & \tikzmark{At3} $q_0^2q_{n+1} \cdot h_0h_{n+1}h_{n+3}$ & \tikzmark{At11b} $q_0q_1q_n \cdot h_{n}^3h_{n+3}$ \\\hline
+    $n$ & & & \tikzmark{At1} $q_0^2 q_n \cdot h_0c_n$ \\\hline
+    $n-1$ & & & \\\hline
+    $\cdots$ & & & \\\hline
+    $0$ & & $q_0^3 \cdot h_{n+2}^3$ & $q_0^3 \cdot g_n$ \\\hline
+  \end{tabular}
+  \begin{tikzpicture}[overlay, remember picture, shorten >=.5pt, shorten <=.5pt, transform canvas={yshift=.25\baselineskip}]
+    \draw [->] ({pic cs:As1}) [red] to ({pic cs:At1});
+    % 2 is added
+    \draw [->] ({pic cs:As3}) [red] to ({pic cs:At3});
+    \draw [->] ({pic cs:As4}) [red] to ({pic cs:At4});
+    \draw [->] ({pic cs:As5}) [red] to ({pic cs:At5});
+    \draw [->] ({pic cs:As6}) [red] to ({pic cs:At6});
+    \draw [->] ({pic cs:As7}) [red] to ({pic cs:At7});
+    \draw [->] ({pic cs:As8}) [red] to ({pic cs:At8});
+    \draw [->] ({pic cs:As9}) [red] to ({pic cs:At9});
+    \draw [->] ({pic cs:As10}) [red] to ({pic cs:At10});
+    \draw [->] ({pic cs:As11a}) [red] to ({pic cs:At11a});
+    \draw [->] ({pic cs:As11b}) [red] to ({pic cs:At11b});
+    \draw [->] ({pic cs:As12}) [blue] to ({pic cs:At12});
+    \draw [->] ({pic cs:As13}) [red] to ({pic cs:At13});
+    \draw [->] ({pic cs:As14a}) [bend right, red] to ({pic cs:At14a});
+    \draw [->] ({pic cs:As14b}) [red] to ({pic cs:At14b});
+    \draw [->] ({pic cs:As15}) [red] to ({pic cs:At15});
+    \draw [->] ({pic cs:As16a}) [red] to ({pic cs:At16a});
+    \draw [->] ({pic cs:As16b}) [red] to ({pic cs:At16b});
+    \draw [->] ({pic cs:As17a}) [red] to ({pic cs:At17a});
+    \draw [->] ({pic cs:As17b}) [red] to ({pic cs:At17b});    
+    \draw [->] ({pic cs:As17c}) [red] to ({pic cs:At17c});
+    \draw [->] ({pic cs:As18}) [blue] to ({pic cs:At18});
+    \draw [->] ({pic cs:As19}) [bend right=7, green!70!black] to ({pic cs:At19});
+    \draw [->] ({pic cs:As20}) [red] to ({pic cs:At20});
+    \draw [->] ({pic cs:As21}) [red] to ({pic cs:At21});
+  \end{tikzpicture}}
+\end{center}
+\caption{ The algebraic Atiyah--Hirzebruch spectral sequence in degree $(s,k,t) = (3,3, 3\cdot 2^{n+3}+3)$ for \Cref{lem:q03g-nonzero}. In this chart the vertical axis is the algebraic Atiyah--Hirzebruch filtration and the horizontal axis is the $s$-degree. $d_1$-differentials are red, $d_2$-differentials are blue and $d_6$-differentials are green.}
+\label{fig:algA 1}
+\end{figure}
+
+\begin{lem} \label{lem:q03g-nonzero}%\hfill
+For $n \geq 3$,
+  \begin{itemize}
+  \item $\Ext^{3,\ 3\cdot 2^{n+3} + 3}_{\P}(\F_2, \Ext_{\mathcal{Q}}^3(\F_2, \F_2))$ is either $\F_2\{q_0^3 \cdot h_{n+2}^3\}$ or $0$.
+  \item $\Ext^{4,\ 3\cdot 2^{n+3} + 3}_{\P}(\F_2, \Ext_{\mathcal{Q}}^3(\F_2, \F_2))$ contains $q_0^3 \cdot g_{n} \neq 0$.
+  \item $\Ext^{4,\ 3\cdot 2^{n+3} + 2}_{\P}(\F_2, \Ext_{\mathcal{Q}}^2(\F_2, \F_2))$ contains $q_0^2 \cdot g_{n} \neq 0$.
+  \item $\Ext^{4,\ 3\cdot 2^{n+3} + 1}_{\P}(\F_2, \Ext_{\mathcal{Q}}^1(\F_2, \F_2))$ contains $q_0 \cdot g_{n} \neq 0$.
+  \end{itemize}  
+\end{lem}
+
+\begin{proof}
+  We begin by noting that $q_0^3 \cdot g_n$, $q_0^2 \cdot g_n$ and $q_0^1 \cdot g_n$ are permanent cycles in the algAH sseq (since they are each a product of permanent cycles).
+  In order to prove the second bullet point, we will show that $q_0^3 \cdot g_n$ is not hit by an algAH differential.
+  Note that if $q_0^3 \cdot g_n$ is non-zero on the $E_\infty$-page of the algAH sseq, then so are
+  $q_0^2 \cdot g_n$ and $q_0 \cdot g_n$. 
+  Therefore, the third and fourth bullet points will follow.
+  We prove the first bullet point by showing that in the algAH sseq this degree has only $q_0^3 \cdot h_{n+2}^3$ by the $E_7$-page.
+
+  %% In fact, since there is a splitting of algAHSS's, this element $q_0^3 \cdot g_n$ lives in the $E_1$-page of algAHSS 
+%% $$\Ext_{\P}^{*,*}(\F_2, \F_2) \otimes \bigoplus_{i,j,k}\F_2\{q_iq_jq_k\} \Longrightarrow \Ext_{\P}^{*,*}(\F_2, \bigoplus_{i,j,k}\F_2\{q_iq_jq_k\}).$$ 
+%% The inclusion of $P$-comodules $\F_2\{q_0^3\} \rightarrow \bigoplus_{i,j,k} \F_2\{q_iq_jq_k\}$ induces a map of $\Ext$ groups
+%% $$\Ext_{\P}^{*,*}(\F_2, \F_2\{q_0^3\}) \longrightarrow \Ext_{\P}^{*,*}(\F_2, \bigoplus_{i,j,k}\F_2\{q_iq_jq_k\}),$$
+%% making all elements $q_0^3 \cdot a$ in $\Ext_{\P}^{*,*}(\F_2, \F_2)\{q_0^3\}$ permanent cycles in algAHSS.
+
+  In \Cref{candidates algAHSS} we determined the $E_1$-page of the algAH sseq in degree 
+  $ (s, \ k, \ t)=(3, \ 3, \ 3\cdot 2^{n+3} + 3) $.
+  What we must do now is show that 
+  for all 21 elements (22 elements for $n=3$) in \Cref{candidates algAHSS}, other than case $(2)$, each element either supports or is killed by a short algAH differential, so none of them can kill $q_0^3 \cdot g_n$. %(In particular, we also check that in the cases that some of them supports nonzero Atiyah-Hirzebruch differential, the targets are all linearly independent, so they all disappear in the Cartan--Eilenberg $E_2$-page.)
+
+It is clear that being an element in $\Ext_{\P}^{*,*}(\F_2, \F_2)\{q_0^3\}$, $q_0^3 \cdot h_{n+2}^3$ is a permanent cycle so it cannot kill $q_0^3 \cdot g_n$. This accounts for the case $(2)$.
+
+For the case $(0)$, by \Cref{lem AH diff}(1) and \Cref{fact on Ext4}, we have a nonzero algAH $d_1$-differential.
+$$(0): \ \ \ d_1(q_3q_4q_6\cdot c_0) = q_3q_4q_5 \cdot h_5c_0.$$
+
+For $n \geq 4$, using \Cref{lem AH diff}(1) and the Leibniz rule, we obtain the algAH $d_1$-differentials displayed in \Cref{fig:algA 1}.
+
+For the cases $(1), (7), (10), (11), (13)-(17), (20), (21)$, by \Cref{fact on Ext4}, the targets are all nonzero for $n \geq 4$. Note that in the case $(14)$ for $n=4$, the first term of the target $q_{0}q_{4}q_{7} \cdot h_1h_4^3$ is zero, while the second term $q_{0}q_{5}q_{6} \cdot h_1h_4^2h_{6}$ is nonzero. For $n \geq 5$, both terms are nonzero. 
+
+Using \Cref{lem AH diff}(2) and the Liebniz rule, we have the following algAH $d_2$-differentials.
+\begin{align*}
+(12): \ \ \ & d_2(q_0q_{n+1}^2 \cdot h_1h_{n+3})  = q_0q_n^2 \cdot h_1h_{n+1}h_{n+3}, \\
+(18): \ \ \ & d_2(q_0q_{n+2}^2 \cdot h_{1}h_{n+2})  = q_0q_{n+1}^2 \cdot h_1h_{n+2}^2. 
+\end{align*}
+One observes that the sources and targets of the above two $d_2$-differentials survives to the $E_2$-page of the algAH sseq. In fact, for the case $(18)$, we have a $d_1$-differential.
+$$d_1(q_0q_{n+2}q_{n+3} \cdot h_1) = q_0q_{n+2}^2 \cdot h_1h_{n+2} + q_0q_{n+1}q_{n+3} \cdot h_1h_{n+1}.$$
+So in the $E_2$-page, we have a relation that $q_0q_{n+2}^2 \cdot h_1h_{n+2} = q_0q_{n+1}q_{n+3} \cdot h_1h_{n+1}$. One may also use \Cref{lem AH diff}(3) to prove a $d_2$-differential 
+\begin{align*}
+(18): \ \ \ d_2(q_0q_{n+1}q_{n+3} \cdot h_1h_{n+1}) & = q_0q_{n+1}^2 \cdot h_1 \langle h_{n+1}, h_{n+2}, h_{n+1} \rangle \\
+& = q_0q_{n+1}^2 \cdot h_1h_{n+2}^2,
+\end{align*}
+which is equivalent to the above one.
+
+Using \Cref{lem AH diff}(6), we have the following algAH $d_6$-differential
+\begin{align*}
+(19): \ \ \ d_6(q_0q_{n+2}^2 \cdot h_1h_{n+1}^2) & = q_0q_{n-1}^2 \cdot h_1 \langle h_n, h_{n+1}, h_{n+2}, h_{n+1}^2 \rangle \\
+& = q_0q_{n-1}^2 \cdot h_1c_n.
+\end{align*}
+
+One observes that all targets of the above algAH differentials are linearly independent.
+Since most of the targets only have one term, this is not hard to check. This completes the proof.
+\end{proof}
+
+
+\begin{lem} \label{lem:q02hj3}
+ For $n \geq 3$, $\Ext^{3,\ 3\cdot 2^{n+3} + 2}_{\P}(\F_2, \Ext_{\mathcal{Q}}^2(\F_2, \F_2))$ is either $\F_2\{q_0^2 \cdot h_{n+2}^3\}$ or $0$.
+\end{lem}  
+
+\begin{figure}[h]
+\begin{center}
+  {\renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|c||c|c|c|}\hline
+      & $s=2$ & $s=3$ & $s=4$ \\\hline\hline
+      $2n+5$ & $q_{n+2}q_{n+3} \cdot h_0^2 $ \tikzmark{BsQ}\tikzmark{Bsa} & & \\\hline
+      $2n+4$ & & $q_{n+1}q_{n+3} \cdot h_1h_{n}^2$ \tikzmark{Bs14a}\tikzmark{Bs14b} &  \\           
+             & & \tikzmark{Bta} $q_{n+1}q_{n+3} \cdot h_0^2h_{n+1}$ \tikzmark{BsP} & \\
+             & & \tikzmark{BtQ} $q_{n+2}^2 \cdot h_0^2h_{n+2}$ \tikzmark{Bsc} & \\
+             & $ q_{n+2}^2 \cdot h_{1}h_{n+2}$ \tikzmark{Bs18} & $ q_{n+2}^2 \cdot h_1h_{n+1}^2$ \tikzmark{Bs19} & \\\hline
+      $2n+3$ &  &  &  $q_{n}{\tikzmark{Bt14a}}q_{n+3} \cdot h_1h_n^3$ \\
+             & & &  $q_{n+1}{\tikzmark{Bt14b}}q_{n+2} \cdot h_1h_n^2h_{n+2}$ \\\hline
+      $2n+2$ & & \tikzmark{Bt18} $ q_{n+1}^2 \cdot h_1h_{n+2}^2$ & \\
+           & $ q_{n+1}^2 \cdot h_1h_{n+3}$ \tikzmark{Bs12} & $q_{n+1}^2 \cdot h_0^2h_{n+3}$ \tikzmark{Bsb} & \tikzmark{Btc} \tikzmark{BtP} $q_{n+1}^2 \cdot h_0^2h_{n+2}^2$ \\\hline
+    $2n+1$ & & $q_nq_{n+1} \cdot h_1h_{n}h_{n+3}$ \tikzmark{Bs13} & $q_{n}q_{n+1} \cdot h_0^2h_{n}h_{n+3}$ \\\hline
+    $2n$ & & \tikzmark{Bt12} $ q_n^2 \cdot h_1h_{n+1}h_{n+3}$ & \tikzmark{Btb} $q_{n}^2 \cdot h_0^2h_{n+1}h_{n+3}$ \\
+    & & & \tikzmark{Bt13} $q_{n}^2 \cdot h_1h_n^2h_{n+3}$ \\\hline
+    $2n-1$ & & & \\\hline
+    $2n-2$ & & & \tikzmark{Bt19} $ q_{n-1}^2 \cdot h_1c_n$ \\\hline
+    $\cdots$ & & & \\\hline
+    $n+4$ & $q_1q_{n+3} \cdot h_{n+1}^2$ \tikzmark{Bs4} & & \\\hline
+    $n+3$ & $q_1q_{n+2} \cdot h_{n+2}^2$ \tikzmark{Bs8} & \tikzmark{Bt4} $q_0q_{n+3} \cdot h_0h_{n+1}^2$ & \\\hline
+    $n+2$ & $q_1q_{n+1} \cdot  h_{n+1} \tikzmark{Bs3} h_{n+3}$  & \tikzmark{Bt8} $q_0q_{n+2} \cdot h_0h_{n+2}^2$ & \\
+    & & $q_1q_{n+1} \cdot h_{n}^2h_{n+3}$ \tikzmark{Bs11a}\tikzmark{Bs11b} & \\\hline
+    $n+1$ & & $q_1q_n \cdot c_n$ \tikzmark{Bs1} & \tikzmark{Bt11a} $q_{0}q_{n+1} \cdot h_0h_n^2h_{n+3}$ \\
+    & & \tikzmark{Bt3} $q_0q_{n+1} \cdot h_0h_{n+1}h_{n+3}$ & \tikzmark{Bt11b} $q_1q_n \cdot h_{n}^3h_{n+3}$ \\\hline
+    $n$ & & & \tikzmark{Bt1} $q_0 q_n \cdot h_0c_n$ \\\hline
+    $n-1$ & & & \\\hline
+    $\cdots$ & & & \\\hline
+    $0$ & & $q_0^2 \cdot h_{n+2}^3$ & $q_0^2 \cdot g_n$ \\\hline
+  \end{tabular}
+  \begin{tikzpicture}[overlay, remember picture, shorten >=.5pt, shorten <=.5pt, transform canvas={yshift=.25\baselineskip}]
+    \draw [->] ({pic cs:Bsa}) [red] to ({pic cs:Bta});
+    \draw [->] ({pic cs:BsQ}) [red, bend right=15] to ({pic cs:BtQ});
+    \draw [->] ({pic cs:BsP}) [blue, bend right=20] to ({pic cs:BtP});
+    \draw [->] ({pic cs:Bs12}) [blue] to ({pic cs:Bt12});
+    \draw [->] ({pic cs:Bsb}) [blue] to ({pic cs:Btb});
+    \draw [->] ({pic cs:Bsc}) [blue, bend right=15] to ({pic cs:Btc});
+    \draw [->] ({pic cs:Bs14a}) [red] to ({pic cs:Bt14a});
+    \draw [->] ({pic cs:Bs14b}) [red, bend left=5] to ({pic cs:Bt14b});
+    \draw [->] ({pic cs:Bs18}) [blue] to ({pic cs:Bt18});
+    \draw [->] ({pic cs:Bs13}) [red] to ({pic cs:Bt13});
+    \draw [->] ({pic cs:Bs19}) [bend right=7, green!70!black] to ({pic cs:Bt19});
+    \draw [->] ({pic cs:Bs8}) [red] to ({pic cs:Bt8});
+    \draw [->] ({pic cs:Bs4}) [red] to ({pic cs:Bt4});    
+    \draw [->] ({pic cs:Bs1}) [red] to ({pic cs:Bt1});
+    \draw [->] ({pic cs:Bs11a}) [red] to ({pic cs:Bt11a});
+    \draw [->] ({pic cs:Bs11b}) [red] to ({pic cs:Bt11b});
+    \draw [->] ({pic cs:Bs3}) [red, shorten <=0.23cm] to ({pic cs:Bt3});
+  \end{tikzpicture}}
+\end{center}
+\caption{The algebraic Atiyah--Hirzebruch spectral sequence in degree $(s,k,t) = (3,2, 3\cdot 2^{n+3}+2)$ for \Cref{lem:q02hj3}. In this chart the vertical axis is the algAH filtration and the horizontal axis is the $s$-degree. $d_1$-differentials are red, $d_2$-differentials are blue and $d_6$-differentials are green.}
+\label{fig:algA 3}
+\end{figure}
+
+\begin{proof}
+  We consider all elements in the $E_1$-page of algAH sseq in degree 
+  $ (s, \ k, \ t)=(3, \ 2, \ 3\cdot 2^{n+3} + 2) $.
+  In \Cref{rmk:q0 remove} we described how each such element can be obtained by dividing one of the elements from \Cref{candidates algAHSS} by $q_0$.
+  From this we obtain the following list of classes in degree $ (s, \ k, \ t)=(3, \ 2, \ 3\cdot 2^{n+3} + 2) $.
+%%   Let $x$ be such an element, then $q_0 \cdot x$ is in tri-degree 
+%%   $(s, \ k, \ t)=(3, \ 3, \ 3\cdot 2^j + 3)$.
+%%   Let $n=j-2$, this is the same tri-degree as the one in Lemma~\ref{candidates algAHSS} (the candidates in algAHSS that could kill $q_0^3 \cdot g_n$ in CESS). 
+
+%% Removing the ones not of the form $q_0 \cdot x$ in the statement of Lemma~\ref{candidates algAHSS}, we have the following candidates for $x$ (with the same index):
+\begin{multicols}{2}
+\begin{enumerate}
+\item $q_1q_n \cdot c_n$,
+\item $q_0^2 \cdot h_{n+1}^2h_{n+3} = q_0^2 \cdot h_{n+2}^3$,
+\item $q_0q_{n+1} \cdot h_0h_{n+1}h_{n+3}$,
+\item $q_0q_{n+3} \cdot h_0h_{n+1}^2$,
+\item $q_{n+1}^2 \cdot h_0^2h_{n+3}$,
+\item $q_{n+1}q_{n+3} \cdot h_0^2h_{n+1}$,
+\stepcounter{enumi}%\item $q_{n+1}^2q_{n+3} \cdot h_0^3$,
+\item $q_0q_{n+2} \cdot h_0h_{n+2}^2$,
+\item $q_{n+2}^2 \cdot h_0^2h_{n+2}$,
+\stepcounter{enumi}%\item $q_{n+2}^3 \cdot h_0^3$,
+\item $q_1q_{n+1} \cdot h_{n}^2h_{n+3}$,
+\item $q_{n}^2 \cdot h_1h_{n+1}h_{n+3}$,
+\item $q_nq_{n+1} \cdot h_1h_{n}h_{n+3}$,
+\item $q_{n+1}q_{n+3} \cdot h_1h_{n}^2$,
+\stepcounter{enumi}%\item $q_1q_{n}^2 \cdot h_0h_{n+1}h_{n+3}$,
+\stepcounter{enumi}%\item $q_1q_nq_{n+1} \cdot h_0h_{n}h_{n+3}$,
+\stepcounter{enumi}%\item $q_1q_{n+1}q_{n+3} \cdot h_0h_{n}^2$,
+\item $q_{n+1}^2 \cdot h_1h_{n+2}^2$,
+\item $q_{n+2}^2 \cdot h_1h_{n+1}^2$.
+\stepcounter{enumi}%\item $q_1q_{n+1}^2 \cdot h_0h_{n+2}^2$,
+\stepcounter{enumi}%\item $q_1q_{n+2}^2 \cdot h_0h_{n+1}^2$.
+\end{enumerate}
+\end{multicols}
+Other than the cases $(2)$, $(5)$, $(6)$ and $(9)$, the differentials in the proof of \Cref{lem:q03g-nonzero} are $q_0$-divisible, therefore these candidates do not survive the algAH sseq. 
+For the cases $(6)$ and $(9)$, we have an algAH $d_1$-differential
+\[ (6,9): \ \ \ d_1(q_{n+2}q_{n+3} \cdot h_0^2) = q_{n+1}q_{n+3} \cdot h_0^2h_{n+1} + q_{n+2}^2 \cdot h_0^2h_{n+2} \]
+and by \Cref{lem AH diff}(2), we have the following algAH $d_2$-differential.
+$$(9): \ \ \ d_2(q_{n+2}^2 \cdot h_0^2h_{n+2})  = q_{n+1}^2 \cdot h_0^2h_{n+2}^2.$$
+For case $(5)$, we have the following algAH $d_2$-differential by \Cref{lem AH diff}(2),
+\[ (5): \ \ \ d_2(q_{n+1}^2 \cdot h_0^2h_{n+3}) = q_{n}^2 \cdot h_0^2h_{n+1}h_{n+3}. \]
+This completes the proof.
+\end{proof}
+
+\begin{lem} \label{lem:q01hj3}
+  For $n\geq 3$, $\Ext^{3,\ 3\cdot 2^{n+3} + 1}_{\P}(\F_2, \Ext_{\mathcal{Q}}^1(\F_2, \F_2))$ is either $\F_2\{q_0 \cdot h_{n+2}^3\}$ or $0$.
+\end{lem} 
+
+\begin{figure}[h]
+\begin{center}
+  {\renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|c||c|c|c|}\hline
+      & $s=2$ & $s=3$ & $s=4$ \\\hline\hline
+      $n+3$ & $q_{n+3} \cdot h_0h_{n+2}$ \tikzmark{Cs2} &  $q_{n+3} \cdot h_0h_{n+1}^2$ \tikzmark{Cs3} & \\\hline
+      $n+2$ & $q_{n+2} \cdot h_0h_{n+3}$ \tikzmark{Cs1}  & \tikzmark{Ct2} $q_{n+2} \cdot h_0h_{n+2}^2$ & \\\hline
+      $n+1$ & & \tikzmark{Ct1} $q_{n+1} \cdot h_0h_{n+1}h_{n+3}$ & \\\hline
+      $n$ & & &  \tikzmark{Ct3} $ q_n \cdot h_0c_n$ \\\hline
+      $\cdots$ & & & \\\hline
+      $0$ & & $q_0 \cdot h_{n+2}^3$ & $q_0 \cdot g_n$ \\\hline
+  \end{tabular}
+  \begin{tikzpicture}[overlay, remember picture, shorten >=.5pt, shorten <=.5pt, transform canvas={yshift=.25\baselineskip}]
+    \draw [->] ({pic cs:Cs1}) [red] to ({pic cs:Ct1});
+    \draw [->] ({pic cs:Cs2}) [red] to ({pic cs:Ct2});
+    \draw [->] ({pic cs:Cs3}) [green!70!black] to ({pic cs:Ct3});
+    % \draw [->] ({pic cs:Cs12}) [blue] to ({pic cs:Ct12});
+    % \draw [->] ({pic cs:Csb}) [blue] to ({pic cs:Ctb});
+    % \draw [->] ({pic cs:Csc}) [blue, bend right=15] to ({pic cs:Ctc});
+    % \draw [->] ({pic cs:Cs14a}) [bend right=15, red] to ({pic cs:Ct14a});
+    % \draw [->] ({pic cs:Cs14b}) [red] to ({pic cs:Ct14b});
+    % \draw [->] ({pic cs:Cs18}) [blue] to ({pic cs:Ct18});
+    % \draw [->] ({pic cs:Cs13}) [red] to ({pic cs:Ct13});
+    % \draw [->] ({pic cs:Cs19}) [bend right=7, green!70!black] to ({pic cs:Ct19});
+    % \draw [->] ({pic cs:Cs8}) [red] to ({pic cs:Ct8});
+    % \draw [->] ({pic cs:Cs4}) [red] to ({pic cs:Ct4});    
+    % \draw [->] ({pic cs:Cs1}) [red] to ({pic cs:Ct1});
+    % \draw [->] ({pic cs:Cs11a}) [red] to ({pic cs:Ct11a});
+    % \draw [->] ({pic cs:Cs11b}) [red] to ({pic cs:Ct11b});
+    % \draw [->] ({pic cs:Cs3}) [red, shorten <=0.23cm] to ({pic cs:Ct3});
+  \end{tikzpicture}}
+\end{center}
+\caption{The algebraic Atiyah--Hirzebruch spectral sequence in degree $(s,k,t) = (3,1, 3\cdot 2^{n+3}+1)$ for \Cref{lem:q01hj3}. In this chart the vertical axis is the algAH filtration and the horizontal axis is the $s$-degree. $d_1$-differentials are red and $d_3$-differentials are green.}
+\label{fig:algA 3b}
+\end{figure}
+
+\begin{proof}
+  We consider all elements in the $E_1$-page of algAH sseq in degree 
+  $ (s, \ k, \ t)=(3, \ 1, \ 3\cdot 2^{n+3} + 2) $.
+  As in \Cref{rmk:q0 remove} we can determine all such elements by beginning with the list from \Cref{candidates algAHSS} and dividing by $q_0^2$.
+    
+%% We consider all elements in the $E_1$-page of algAHSS that converges to the $E_2$-page of CESS in the tridegree 
+%% $$(s, \ k, \ t)=(3, \ 1, \ 3\cdot 2^j + 1).$$ 
+%% Call any of such an element $y$, then $q_0^2 \cdot y$ is in tri-degree 
+%% $$(s, \ k, \ t)=(3, \ 3, \ 3\cdot 2^j + 3).$$
+%% Let $n=j-2$, this is the same tri-degree as the one in Lemma~\ref{candidates algAHSS} (the candidates in algAHSS that could kill $q_0^3 \cdot g_n$ in CESS). 
+
+%% Removing the ones not of the form $q_0^2 \cdot y$ in the statement of Lemma~\ref{candidates algAHSS}, we have the following candidates for $y$ (with the same index):
+\begin{multicols}{2}
+\begin{enumerate}
+\stepcounter{enumi}%\item $q_1q_n \cdot c_n$,
+\item $q_0 \cdot h_{n+1}^2h_{n+3} = q_0 \cdot h_{n+2}^3$,
+\item $q_{n+1} \cdot h_0h_{n+1}h_{n+3}$,
+\item $q_{n+3} \cdot h_0h_{n+1}^2$,
+\stepcounter{enumi}%\item $q_{n+1}^2 \cdot h_0^2h_{n+3}$,
+\stepcounter{enumi}%\item $q_{n+1}q_{n+3} \cdot h_0^2h_{n+1}$,
+\stepcounter{enumi}%\item $q_{n+1}^2q_{n+3} \cdot h_0^3$,
+\item $q_{n+2} \cdot h_0h_{n+2}^2$,
+\stepcounter{enumi}%\item $q_{n+2}^2 \cdot h_0^2h_{n+2}$,
+\stepcounter{enumi}%\item $q_{n+2}^3 \cdot h_0^3$,
+\stepcounter{enumi}%\item $q_1q_{n+1} \cdot h_{n}^2h_{n+3}$,
+\stepcounter{enumi}%\item $q_{n}^2 \cdot h_1h_{n+1}h_{n+3}$,
+\stepcounter{enumi}%\item $q_nq_{n+1} \cdot h_1h_{n}h_{n+3}$,
+\stepcounter{enumi}%\item $q_{n+1}q_{n+3} \cdot h_1h_{n}^2$,
+\stepcounter{enumi}%\item $q_1q_{n}^2 \cdot h_0h_{n+1}h_{n+3}$,
+\stepcounter{enumi}%\item $q_1q_nq_{n+1} \cdot h_0h_{n}h_{n+3}$,
+\stepcounter{enumi}%\item $q_1q_{n+1}q_{n+3} \cdot h_0h_{n}^2$,
+\stepcounter{enumi}%\item $q_{n+1}^2 \cdot h_1h_{n+2}^2$,
+\stepcounter{enumi}%\item $q_{n+2}^2 \cdot h_1h_{n+1}^2$.
+\stepcounter{enumi}%\item $q_1q_{n+1}^2 \cdot h_0h_{n+2}^2$,
+\stepcounter{enumi}%\item $q_1q_{n+2}^2 \cdot h_0h_{n+1}^2$.
+\end{enumerate}
+\end{multicols}
+For the cases $(3)$ and $(8)$, we have the following Atiyah-Hirzebruch $d_1$-differentials:
+ \begin{align*}
+(3): \ \ \ & d_1(q_{n+2} \cdot h_0h_{n+3})  = q_{n+1} \cdot h_0h_{n+1}h_{n+3}, \\
+(8): \ \ \ & d_1(q_{n+3} \cdot h_0h_{n+2})  = q_{n+2} \cdot h_0h_{n+2}^2.
+\end{align*}
+For the case $(4)$, by \Cref{lem AH diff}(5), we have the following algAH $d_3$-differential
+\begin{align*}
+(4): \ \ \ d_3(q_{n+3} \cdot h_0h_{n+1}^2) & = q_{n} \cdot h_0 \langle h_n, h_{n+1}, h_{n+2}, h_{n+1}^2 \rangle \\
+& = q_n \cdot h_0c_n.
+\end{align*}
+This completes the proof.
+\end{proof}
+
+\begin{lem}  \label{lem:skt153}
+For $n\geq 3$,  $\Ext^{1,\ 3\cdot 2^{n+3} + 3}_{\P}(\F_2, \Ext_{\mathcal{Q}}^5(\F_2, \F_2)) \cong 0$.
+\end{lem}
+
+\begin{figure}[h]
+\begin{center}
+  \scalebox{0.75}{\renewcommand{\arraystretch}{1.1}
+    \begin{tabular}{|c||c|c|c|}\hline
+      & $s=0$ & $s=1$ & $s=2$ \\\hline\hline
+      $5n+6$ & &  $q_{n+1}^4q_{n+2} \cdot h_{2}$ \tikzmark{s30} & \\\hline
+      $5n+5$ & & $q_{n}^2q_{n+1}q_{n+2}^2 \cdot h_{2}$ \tikzmark{s26} & \tikzmark{t30} $q_{n+1}^5 \cdot h_{2}h_{n+1}$ \\\hline
+      $5n+4$ & & & \tikzmark{t26} $q_n^3q_{n+2}^2 \cdot h_{2}h_{n}$ \\\hline
+      $5n+3$ & & $q_{n}^4q_{n+3} \cdot h_{2}$ \tikzmark{s23} & \\\hline
+      $5n+2$ & & $q_{n-1}^2q_nq_{n+1}q_{n+3} \cdot h_{2}$ \tikzmark{s18} & \tikzmark{t23} $q_n^4q_{n+2} \cdot h_{2}h_{n+2}$ \\\hline
+      $5n+1$ & & & \tikzmark{t18} $q_{n-1}^3q_{n+1}q_{n+3} \cdot h_{2}h_{n-1} + q_{n-1}^2q_n^2q_{n+3} \cdot h_2h_{n}$ \\
+             & & & $ + q_{n-1}^2q_nq_{n+1}q_{n+2} \cdot h_2h_{n+2}$ \\\hline        
+      $\cdots$ & & & \\\hline
+      $4n+8$ & $q_2q_{n+1}^2q_{n+2}^2 \cdot 1$ \tikzmark{s15} & & \\\hline
+      $4n+7$ & & \tikzmark{t15} $q_1q_{n+1}^2q_{n+2}^2 \cdot h_1$ & \\
+             & & $q_2q_{n+1}^3q_{n+2} \cdot h_{n+1}$ \tikzmark{s31} & \\
+             & & $q_2q_nq_{n+1}q_{n+2}^2 \cdot h_{n}$ \tikzmark{s27} & \\\hline
+      $4n+6$ & & $q_2q_{n+1}^4 \cdot h_{n+2}$ \tikzmark{s32} & \tikzmark{t31} $q_1q_{n+1}^3q_{n+2} \cdot h_{1}h_{n+1} + q_2q_{n+1}^4 \cdot h_{n+1}^2$ \\
+             & $q_2q_n^2q_{n+1}q_{n+3} \cdot 1$ \tikzmark{sg2a}\tikzmark{sg2b}\tikzmark{sg2c} & $q_2q_{n}^2q_{n+2}^2 \cdot h_{n+1}$ \tikzmark{s28} & \tikzmark{t27} $q_1q_nq_{n+1}q_{n+2}^2 \cdot h_{1}h_{n} + q_2q_{n}^2q_{n+2}^2 \cdot h_{n}^2$ \\\hline
+      $4n+5$ & & \tikzmark{tg2a} $q_1q_n^2q_{n+1}q_{n+3} \cdot h_{1}$ \tikzmark{s11a}\tikzmark{s11b} & \tikzmark{t32} $q_1q_{n+1}^4 \cdot h_{1}h_{n+2}$  \\
+             & & \tikzmark{tg2b} $q_2q_n^3q_{n+3} \cdot h_{n}$ \tikzmark{s24a}\tikzmark{s24b} & \tikzmark{t28} $q_1q_n^2q_{n+2}^2 \cdot h_{1}h_{n+1}$ \\
+           & & \tikzmark{tg2c} $q_2q_n^2q_{n+1}q_{n+2} \cdot h_{n+2}$ \tikzmark{s29a}\tikzmark{s29b} & \\
+             & & $q_2q_{n-1}q_nq_{n+1}q_{n+3} \tikzmark{s19} \cdot h_{n-1}$  & \\\hline
+      $4n+4$ & & & \tikzmark{t11a}\tikzmark{t24a} $q_1q_n^3q_{n+3} \cdot h_1h_{n}$ \\
+             & & & \tikzmark{t11b}\tikzmark{t29a} $q_1q_n^2q_{n+1}q_{n+2} \cdot h_1h_{n+2}$ \\
+             & & & \tikzmark{t24b}\tikzmark{t29b} $q_2q_n^3q_{n+2} \cdot h_nh_{n+2}$ \\
+             & & & \tikzmark{t19} $q_1q_{n-1}q_nq_{n+1}q_{n+3} \cdot h_{1}h_{n-1} + q_2q_{n-1}^2q_{n+1}q_{n+3} \cdot h_{n-1}^2$ \\
+             & & $q_2q_{n-1}^2q_{n+1}q_{n+3} \cdot h_{n}$ \tikzmark{s20} & $+ q_2q_{n-1}q_nq_{n+1}q_{n+2} \cdot h_{n-1}h_{n+2}$ \\\hline
+      $4n+3$ & & $q_2q_{n-1}^2q_nq_{n+3} \cdot h_{n+1}$ \tikzmark{s21} & \tikzmark{t20} $q_1q_{n-1}^2q_{n+1}q_{n+3} \cdot h_{1}h_{n} + q_2q_{n-1}^2q_{n+1}q_{n+2} \cdot h_{n}h_{n+2}$ \\\hline
+      $4n+2$ & & $q_2q_{n}^4 \cdot h_{n+3}$ \tikzmark{s25} & \tikzmark{t21} $q_1q_{n-1}^2q_nq_{n+3} \cdot h_{1}h_{n+1} + q_2q_{n-1}^3q_{n+3} \cdot h_{n-1}h_{n+1}$ \\\hline
+      $4n+1$ & & $q_2q_{n-1}^2q_nq_{n+1} \cdot h_{n+3}$ \tikzmark{s22} & \tikzmark{t25} $q_1q_n^4 \cdot h_{1}h_{n+3}$ \\\hline
+      $4n$ & & & \tikzmark{t22} $q_1q_{n-1}^2q_nq_{n+1} \cdot h_{1}h_{n+3} + q_2q_{n-1}^3q_{n+1} \cdot h_{n-1}h_{n+3} $ \\
+             & & & $+ q_2q_{n-1}^2q_n^2 \cdot h_{n}h_{n+3}$ \\\hline
+    \end{tabular}
+    \begin{tikzpicture}[overlay, remember picture, shorten >=.5pt, shorten <=.5pt, transform canvas={yshift=.25\baselineskip}]
+      \draw [->] ({pic cs:s30}) [red] to ({pic cs:t30});
+      \draw [->] ({pic cs:s26}) [red] to ({pic cs:t26});
+      \draw [->] ({pic cs:s23}) [red] to ({pic cs:t23});
+      \draw [->] ({pic cs:s18}) [red] to ({pic cs:t18});
+
+      \draw [->] ({pic cs:s15}) [red] to ({pic cs:t15});
+      \draw [->] ({pic cs:s31}) [red] to ({pic cs:t31});
+      \draw [->] ({pic cs:s27}) [red] to ({pic cs:t27});
+      \draw [->] ({pic cs:s28}) [red, bend right=10] to ({pic cs:t28});
+      \draw [->] ({pic cs:sg2a})[red] to ({pic cs:tg2a});
+      \draw [->] ({pic cs:sg2b})[red] to ({pic cs:tg2b});
+      \draw [->] ({pic cs:sg2c})[red] to ({pic cs:tg2c});
+      \draw [->] ({pic cs:s11a})[red] to ({pic cs:t11a});
+      \draw [->] ({pic cs:s11b})[red] to ({pic cs:t11b});
+      \draw [->] ({pic cs:s24a})[red] to ({pic cs:t24a});
+      \draw [->] ({pic cs:s24b})[red] to ({pic cs:t24b});
+      \draw [->] ({pic cs:s29a})[red, bend right=15] to ({pic cs:t29a});
+      \draw [->] ({pic cs:s29b})[red, bend right=15] to ({pic cs:t29b});
+      \draw [->] ({pic cs:s19})[red, bend right=20, shorten <=0.2cm] to ({pic cs:t19});
+      \draw [->] ({pic cs:s20})[red] to ({pic cs:t20});
+      \draw [->] ({pic cs:s21})[red] to ({pic cs:t21});
+      \draw [->] ({pic cs:s25})[red, bend right=10] to ({pic cs:t25});
+      \draw [->] ({pic cs:s22})[red] to ({pic cs:t22});
+      \draw [->] ({pic cs:s32})[red, bend right=15] to ({pic cs:t32});
+  \end{tikzpicture}}
+\end{center}
+\caption{The algebraic Atiyah--Hirzebruch spectral sequence in degree $(s,k,t) = (1,5, 3\cdot 2^{n+3}+3)$ and algAH filtration $\geq 4n$ for \Cref{lem:skt153}. In this chart the vertical axis is the algAH filtration and the horizontal axis is the $s$-degree. $d_1$-differentials are red.}
+\label{fig:algA 2a}
+\end{figure}
+
+
+
+\begin{figure}[h]
+\begin{center}
+  \scalebox{0.9}{\renewcommand{\arraystretch}{1.1}
+    \begin{tabular}{|c||c|c|c|}\hline
+      & $s=0$ & $s=1$ & $s=2$ \\\hline\hline
+      $3n+8$ & $q_1^2q_{n+2}^3 \cdot 1$ \tikzmark{s16} & & \\\hline
+      $3n+7$ & $q_1^2q_{n+1}^2q_{n+3} \cdot 1$ \tikzmark{s17} & \tikzmark{t16} $q_1^2q_{n+1}q_{n+2}^2 \cdot h_{n+1}$ & \\
+             & & $q_0q_1q_{n+2}^3 \cdot h_{0}$ \tikzmark{s8} & \\\hline
+      $3n+6$ & & \tikzmark{t17} $q_1^2q_{n+1}q_{n+2}^2 \cdot h_{n+1}$ & \tikzmark{t8} $q_0^2q_{n+2}^3 \cdot h_0^2 + q_0q_1q_{n+1}q_{n+2}^2\cdot h_0h_{n+1}$ \\
+
+             & & $q_0q_1q_{n+1}^2q_{n+3} \cdot h_{0}$ \tikzmark{s4} & \\
+             & & $q_1^2q_nq_{n+1}q_{n+3} \cdot h_{n}$ \tikzmark{s12} & \\
+             & & $q_0^2q_{n+2}^3 \cdot h_{1}$ \tikzmark{s9} & \\\hline
+      $3n+5$ & & & \tikzmark{t4} $ q_0^2q_{n+1}^2q_{n+3} \cdot h_{0}^2 + q_0q_1q_{n+1}^2q_{n+2} \cdot h_0h_{n+2}$ \\                   
+             & & $q_0^2q_{n+1}^2q_{n+3} \cdot h_{1}$ \tikzmark{s5} & \tikzmark{t12} $q_1^2q_{n}^2q_{n+3} \cdot h_{n}^2 + q_1^2q_nq_{n+1}q_{n+2} \cdot h_nh_{n+2}$ \\
+             & & $q_1^2q_{n}^2q_{n+3} \cdot h_{n+1}$ \tikzmark{s13} & \tikzmark{t9} $q_0^2q_{n+1}q_{n+2}^2 \cdot h_{1}h_{n+1}$ \\\hline
+      $3n+4$ & & & \tikzmark{t5} $q_0^2q_{n+1}^2q_{n+2} \cdot h_{1}h_{n+2}$ \\\hline
+      $3n+3$ & & $q_1^2q_{n}^2q_{n+1} \cdot h_{n+3}$ \tikzmark{s14} & \tikzmark{t13} $q_0^2q_n^2q_{n+3}\cdot h_1h_{n+1} + q_1^2q_n^2q_{n+1} \cdot h_{n+2}^2$ \\\hline
+      $3n+2$ & & & \tikzmark{t14} $q_1^2q_{n}^3 \cdot h_{n}h_{n+3}$ \\\hline
+      $\cdots$ & & & \\\hline
+      $2n+6$ & $q_0^2q_1q_{n+2}q_{n+3} \cdot 1$ \tikzmark{sg1a}\tikzmark{sg1b}\tikzmark{sg1c} & & \\\hline
+      $2n+5$ & &  $q_0^2q_1 \tikzmark{tg1a} q_{n+1}q_{n+3} \cdot h_{n+1}$ \tikzmark{s1} & \\
+             & & \tikzmark{tg1b} $q_0^2q_1q_{n+2}^2 \cdot h_{n+2}$ \tikzmark{s6}& \\
+             & & \tikzmark{tg1c} $q_0^3q_{n+2}q_{n+3} \cdot h_0$ \tikzmark{s10a}\tikzmark{s10b} & \\\hline
+      $2n+4$ & & & \tikzmark{t1}\tikzmark{t10a} $q_0^3q_{n+1}q_{n+3} \cdot h_0h_{n+1}$ \\
+             & & & \tikzmark{t6}\tikzmark{t10b} $q_0^3q_{n+2}^2 \cdot h_0h_{n+2}$ \\\hline
+      $2n+3$ & & $q_0^2q_1q_{n+1}^2 \cdot h_{n+3}$ \tikzmark{s7} & \\\hline
+      $2n+2$ & & & \tikzmark{t7} $q_0^3q_{n+1}^2 \cdot h_0h_{n+3}$ \\\hline
+      $\cdots$ & & & \\\hline
+      $n + 3$ & & $q_0^4q_{n+3} \cdot h_{n+2}$ \tikzmark{s2} & \\\hline
+      $n + 2$ & & $q_0^4q_{n+2} \cdot h_{n+3}$ \tikzmark{s3} & \tikzmark{t2} $q_0^4q_{n+2} \cdot h_{n+2}^2$ \\\hline
+      $n + 1$ & & & \tikzmark{t3} $ q_0^4q_{n+1} \cdot h_{n+1}h_{n+3}$ \\\hline
+    \end{tabular}
+    \begin{tikzpicture}[overlay, remember picture, shorten >=.5pt, shorten <=.5pt, transform canvas={yshift=.25\baselineskip}]
+      \draw [->] ({pic cs:s16}) [red] to ({pic cs:t16});
+      \draw [->] ({pic cs:s17}) [red] to ({pic cs:t17});
+      \draw [->] ({pic cs:s8}) [red] to ({pic cs:t8});
+      \draw [->] ({pic cs:s4}) [red] to ({pic cs:t4});
+      \draw [->] ({pic cs:s9}) [red, bend right=30] to ({pic cs:t9});
+      \draw [->] ({pic cs:s5}) [red, bend right=20] to ({pic cs:t5});
+      \draw [->] ({pic cs:s13}) [blue] to ({pic cs:t13});
+      \draw [->] ({pic cs:s14}) [red, bend right=10] to ({pic cs:t14});
+      \draw [->] ({pic cs:s12}) [red] to ({pic cs:t12});
+
+      \draw [->] ({pic cs:sg1a}) [red, bend left, shorten >=0.2cm] to ({pic cs:tg1a});
+      \draw [->] ({pic cs:sg1b}) [red, bend right] to ({pic cs:tg1b});
+      \draw [->] ({pic cs:sg1c}) [red, bend right] to ({pic cs:tg1c});
+      \draw [->] ({pic cs:s1}) [red] to ({pic cs:t1});
+      \draw [->] ({pic cs:s6}) [red, bend right=20] to ({pic cs:t6});
+      \draw [->] ({pic cs:s10a}) [red] to ({pic cs:t10a});
+      \draw [->] ({pic cs:s10b}) [red, bend right=20] to ({pic cs:t10b});
+      \draw [->] ({pic cs:s7}) [red] to ({pic cs:t7});
+      \draw [->] ({pic cs:s2}) [red] to ({pic cs:t2});
+      \draw [->] ({pic cs:s3}) [red] to ({pic cs:t3});
+  \end{tikzpicture}}
+\end{center}
+\caption{The algebraic Atiyah--Hirzebruch spectral sequence in degree $(s,k,t) = (1,5, 3\cdot 2^{n+3}+3)$ and algAH filtration $\leq 3n+8$ for \Cref{lem:skt153}. In this chart the vertical axis is the algAH filtration and the horizontal axis is the $s$-degree. $d_1$-differentials are red and $d_2$-differentials are blue.}
+\label{fig:algA 2b}
+\end{figure}
+
+
+
+\begin{proof}
+  From \Cref{candidates CESS} we know the $E_1$-page of the algebraic Atiyah--Hirzebruch spectral sequence in degree $(s,k,t) = (1,5,3 \cdot 2^{n+3} + 3)$. 
+  Using \Cref{lem AH diff}(1) we compute the relevant algAH $d_1$-differentials.
+  These differentials are displayed in Figures \ref{fig:algA 2a} and \ref{fig:algA 2b}.
+  (Note that when $n=3$, the cases $(18)$ and $(19)$ are identical in \Cref{candidates CESS}, so their algAH $d_1$-differentials are identically displayed twice, in filtration $5n+2$ and $4n+5$, in Figures \ref{fig:algA 2a}.)
+  
+  In order to pass the $E_2$-page we must also verify that the targets of these $d_1$-differentials are all linearly independent.
+  For this we note that two classes $q_{i_1}q_{i_2}q_{i_3}q_{i_4}q_{i_5} \cdot a$ and $q_{j_1}q_{j_2}q_{j_3}q_{j_4}q_{j_5} \cdot b$ (with the $i$'s and $j$'s in non-decreasing order) on the $E_1$-page can only satisfy a relation if $i_k = j_k$ for $k = 1,\dots,5$.
+  Examining Figures \ref{fig:algA 2a} and \ref{fig:algA 2b} we see that no pair of classes satisfy this condition.
+
+  On the $E_2$-page of the algAH sseq only one of the 32 candidates from Lemma~\ref{candidates CESS} is still present: (13). Using \Cref{lem AH diff}(2,3), we obtain the following $d_2$-differential.
+$$(13): \ \ \  d_2(q_1^2q_{n}^2q_{n+3} \cdot h_{n+1})  = q_0^2q_n^2q_{n+3}\cdot h_1h_{n+1} + q_1^2q_n^2q_{n+1} \cdot h_{n+2}^2.$$
+  As the target is non-zero on the $E_2$-page of the algAH sseq this $d_2$-differential is non-zero.
+  In particular, the algAH sseq is empty in degree $(s,k,t) = (1,5,3 \cdot 2^{n+3} + 3)$ starting from the $E_3$-page.
+\end{proof}
+
+\begin{lem}  \label{lem:skt142}
+For $n\geq 3$,  $\Ext^{1,\ 3\cdot 2^{n+3} + 2}_{\P}(\F_2, \Ext_{\mathcal{Q}}^4(\F_2, \F_2)) \cong 0$.
+\end{lem}
+
+\begin{figure}[h]
+\begin{center}
+  \scalebox{0.9}{\renewcommand{\arraystretch}{1.1}
+    \begin{tabular}{|c||c|c|c|}\hline
+      & $s=0$ & $s=1$ & $s=2$ \\\hline\hline
+      $3n+7$ & & $q_1q_{n+2}^3 \cdot h_{0}$ \tikzmark{Ds8} & \\\hline
+      $3n+6$ & & $q_0q_{n+2}^3 \cdot h_{1}$ \tikzmark{Ds9} & \tikzmark{Dt8} $q_0q_{n+2}^3 \cdot h_0^2 + q_1q_{n+1}q_{n+2}^2\cdot h_0h_{n+1}$ \\
+      & & $q_1q_{n+1}^2q_{n+3} \cdot h_{0}$ \tikzmark{Ds4} & \\\hline
+      $3n+5$ & & & \tikzmark{Dt9} $q_0q_{n+1}q_{n+2}^2 \cdot h_{1}h_{n+1}$ \\
+      & & $q_0q_{n+1}^2q_{n+3} \cdot h_{1}$ \tikzmark{Ds5} & \tikzmark{Dt4} $ q_0q_{n+1}^2q_{n+3} \cdot h_{0}^2 + q_1q_{n+1}^2q_{n+2} \cdot h_0h_{n+2}$ \\\hline      
+      $3n+4$ & & & \tikzmark{Dt5} $q_0q_{n+1}^2q_{n+2} \cdot h_{1}h_{n+2}$ \\\hline
+      $\cdots$ & & & \\\hline
+      $2n+6$ & $q_0q_1q_{n+2}q_{n+3} \cdot 1$ \tikzmark{Dsg1a}\tikzmark{Dsg1b}\tikzmark{Dsg1c} & & \\\hline
+      $2n+5$ & &  $q_0q_1 \tikzmark{Dtg1a} q_{n+1}q_{n+3} \cdot h_{n+1}$ \tikzmark{Ds1} & \\
+             & & \tikzmark{Dtg1b} $q_0q_1q_{n+2}^2 \cdot h_{n+2}$ \tikzmark{Ds6}& \\
+             & & \tikzmark{Dtg1c} $q_0^2q_{n+2}q_{n+3} \cdot h_0$ \tikzmark{Ds10a}\tikzmark{Ds10b} & \\\hline
+      $2n+4$ & & & \tikzmark{Dt1}\tikzmark{Dt10a} $q_0^2q_{n+1}q_{n+3} \cdot h_0h_{n+1}$ \\
+             & & & \tikzmark{Dt6}\tikzmark{Dt10b} $q_0^2q_{n+2}^2 \cdot h_0h_{n+2}$ \\\hline
+      $2n+3$ & & $q_0q_1q_{n+1}^2 \cdot h_{n+3}$ \tikzmark{Ds7} & \\\hline
+      $2n+2$ & & & \tikzmark{Dt7} $q_0^2q_{n+1}^2 \cdot h_0h_{n+3}$ \\\hline
+      $\cdots$ & & & \\\hline
+      $n + 3$ & & $q_0^3q_{n+3} \cdot h_{n+2}$ \tikzmark{Ds2} & \\\hline
+      $n + 2$ & & $q_0^3q_{n+2} \cdot h_{n+3}$ \tikzmark{Ds3} & \tikzmark{Dt2} $q_0^3q_{n+2} \cdot h_{n+2}^2$ \\\hline
+      $n + 1$ & & & \tikzmark{Dt3} $ q_0^3q_{n+1} \cdot h_{n+1}h_{n+3}$ \\\hline
+    \end{tabular}
+    \begin{tikzpicture}[overlay, remember picture, shorten >=.5pt, shorten <=.5pt, transform canvas={yshift=.25\baselineskip}]
+      \draw [->] ({pic cs:Ds8}) [red] to ({pic cs:Dt8});
+      \draw [->] ({pic cs:Ds4}) [red] to ({pic cs:Dt4});
+      \draw [->] ({pic cs:Ds9}) [red] to ({pic cs:Dt9});
+      \draw [->] ({pic cs:Ds5}) [red, bend right=15] to ({pic cs:Dt5});      
+      \draw [->] ({pic cs:Dsg1a}) [red, bend left, shorten >=0.2cm] to ({pic cs:Dtg1a});
+      \draw [->] ({pic cs:Dsg1b}) [red, bend right] to ({pic cs:Dtg1b});
+      \draw [->] ({pic cs:Dsg1c}) [red, bend right] to ({pic cs:Dtg1c});
+      \draw [->] ({pic cs:Ds1}) [red] to ({pic cs:Dt1});
+      \draw [->] ({pic cs:Ds6}) [red, bend right=20] to ({pic cs:Dt6});
+      \draw [->] ({pic cs:Ds10a}) [red] to ({pic cs:Dt10a});
+      \draw [->] ({pic cs:Ds10b}) [red, bend right=20] to ({pic cs:Dt10b});
+      \draw [->] ({pic cs:Ds7}) [red] to ({pic cs:Dt7});
+      \draw [->] ({pic cs:Ds2}) [red] to ({pic cs:Dt2});
+      \draw [->] ({pic cs:Ds3}) [red] to ({pic cs:Dt3});
+  \end{tikzpicture}}
+\end{center}
+\caption{The algebraic Atiyah--Hirzebruch spectral sequence in degree $(s,k,t) = (1,4, 3\cdot 2^{n+3}+2)$ for \Cref{lem:skt142}. In this chart the vertical axis is the algAH filtration and the horizontal axis is the $s$-degree. $d_1$-differentials are red.}
+\label{fig:algA 4}
+\end{figure}
+
+
+
+\begin{proof}
+  Dividing by $q_0$ as in \Cref{rmk:q0 remove} we can determine
+  the $E_1$-page of the algAH sseq in degree $(s,k,t) = (1,4,3 \cdot 2^{n+3} + 2)$
+  from \Cref{candidates CESS}.
+  It contains the following classes:
+  \begin{multicols}{2}
+    \begin{enumerate}
+    \item $q_0^2q_{j}q_{j+1} \cdot h_0$,
+    \item $q_0^3q_{j+1} \cdot h_{j}$,
+    \item $q_0^3q_{j} \cdot h_{j+1}$,
+    \item $q_1q_{j-1}^2q_{j+1} \cdot h_0$,
+    \item $q_0q_{j-1}^2q_{j+1} \cdot h_1$,
+    \item $q_0q_1q_{j-1}q_{j+1} \cdot h_{j-1}$,
+    \item $q_0q_1q_{j-1}^2 \cdot h_{j+1}$,
+    \item $q_1q_{j}^3 \cdot h_{0}$,
+    \item $q_0q_{j}^3 \cdot h_{1}$,
+    \item $q_0q_1q_{j}^2 \cdot h_{j}$.
+    \end{enumerate}
+  \end{multicols}
+  Using \Cref{lem AH diff}(1) we compute the relevant algAH $d_1$-differentials.
+  These differentials are displayed in \Cref{fig:algA 4}.
+  In particular, the algAH sseq is empty in degree $(s,k,t) = (1,4,3 \cdot 2^{n+3} + 2)$ starting from the $E_2$-page.  
+%%   Consider algAH sseq that converges to the Cartan-Eilenberg $E_2$-page. Elements in the $E_1$-page of algAHSS that could detect $x$ are of the form $q_aq_bq_cq_d\cdot h_e$. Similar to the proof of Lemma~\ref{candidates CESS}, we consider the $t$-degree, and obtain the following 10 possibilities. 
+%% Their $q_0$-multiples correspond to exactly the cases $(1) - (10)$ in Lemma~\ref{candidates CESS} (with $j = n+2$). By the proof of Lemma~\ref{candidates CESS}, all 10 elements do not survive to the $E_2$-page of algAHSS. Therefore, we have
+%% $$\Ext_P^{1,3\cdot 2^{j+1} +2}(\F_2, \Ext^4_{Q}(\F_2, \F_2)) = 0,$$ 
+%% and completes the proof for part $(c)$.
+\end{proof}
+
+\begin{lem}  \label{lem:skt131}
+For $n\geq 3$,  $\Ext^{1,\ 3\cdot 2^{n+3} + 1}_{\P}(\F_2, \Ext_{\mathcal{Q}}^3(\F_2, \F_2)) \cong 0$.
+\end{lem}
+
+
+\begin{figure}[h]
+\begin{center}
+  \scalebox{0.9}{\renewcommand{\arraystretch}{1.1}
+    \begin{tabular}{|c||c|c|c|}\hline
+      & $s=0$ & $s=1$ & $s=2$ \\\hline\hline
+      $3n+6$ & & $q_{n+2}^3 \cdot h_{1}$ \tikzmark{Ws9} & \\\hline
+      $3n+5$ & & $q_{n+1}^2q_{n+3} \cdot h_{1}$ \tikzmark{Ws5} & \tikzmark{Wt9} $q_{n+1}q_{n+2}^2 \cdot h_{1}h_{n+1}$ \\\hline      
+      $3n+4$ & & & \tikzmark{Wt5} $q_{n+1}^2q_{n+2} \cdot h_{1}h_{n+2}$ \\\hline
+      $\cdots$ & & & \\\hline
+      $2n+6$ & $q_1q_{n+2}q_{n+3} \cdot 1$ \tikzmark{Wsg1a}\tikzmark{Wsg1b}\tikzmark{Wsg1c} & & \\\hline
+      $2n+5$ & &  $q_1 \tikzmark{Wtg1a} q_{n+1}q_{n+3} \cdot h_{n+1}$ \tikzmark{Ws1} & \\
+             & & \tikzmark{Wtg1b} $q_1q_{n+2}^2 \cdot h_{n+2}$ \tikzmark{Ws6}& \\
+             & & \tikzmark{Wtg1c} $q_0q_{n+2}q_{n+3} \cdot h_0$ \tikzmark{Ws10a}\tikzmark{Ws10b} & \\\hline
+      $2n+4$ & & & \tikzmark{Wt1}\tikzmark{Wt10a} $q_0q_{n+1}q_{n+3} \cdot h_0h_{n+1}$ \\
+             & & & \tikzmark{Wt6}\tikzmark{Wt10b} $q_0q_{n+2}^2 \cdot h_0h_{n+2}$ \\\hline
+      $2n+3$ & & $q_1q_{n+1}^2 \cdot h_{n+3}$ \tikzmark{Ws7} & \\\hline
+      $2n+2$ & & & \tikzmark{Wt7} $q_0q_{n+1}^2 \cdot h_0h_{n+3}$ \\\hline
+      $\cdots$ & & & \\\hline
+      $n + 3$ & & $q_0^2q_{n+3} \cdot h_{n+2}$ \tikzmark{Ws2} & \\\hline
+      $n + 2$ & & $q_0^2q_{n+2} \cdot h_{n+3}$ \tikzmark{Ws3} & \tikzmark{Wt2} $q_0^2q_{n+2} \cdot h_{n+2}^2$ \\\hline
+      $n + 1$ & & & \tikzmark{Wt3} $ q_0^2q_{n+1} \cdot h_{n+1}h_{n+3}$ \\\hline
+    \end{tabular}
+    \begin{tikzpicture}[overlay, remember picture, shorten >=.5pt, shorten <=.5pt, transform canvas={yshift=.25\baselineskip}]
+      \draw [->] ({pic cs:Ws9}) [red] to ({pic cs:Wt9});
+      \draw [->] ({pic cs:Ws5}) [red] to ({pic cs:Wt5});      
+      \draw [->] ({pic cs:Wsg1a}) [red, bend left, shorten >=0.2cm] to ({pic cs:Wtg1a});
+      \draw [->] ({pic cs:Wsg1b}) [red, bend right] to ({pic cs:Wtg1b});
+      \draw [->] ({pic cs:Wsg1c}) [red, bend right] to ({pic cs:Wtg1c});
+      \draw [->] ({pic cs:Ws1}) [red] to ({pic cs:Wt1});
+      \draw [->] ({pic cs:Ws6}) [red, bend right=10] to ({pic cs:Wt6});
+      \draw [->] ({pic cs:Ws10a}) [red] to ({pic cs:Wt10a});
+      \draw [->] ({pic cs:Ws10b}) [red, bend right=20] to ({pic cs:Wt10b});
+      \draw [->] ({pic cs:Ws7}) [red] to ({pic cs:Wt7});
+      \draw [->] ({pic cs:Ws2}) [red] to ({pic cs:Wt2});
+      \draw [->] ({pic cs:Ws3}) [red] to ({pic cs:Wt3});
+  \end{tikzpicture}}
+\end{center}
+\caption{The algebraic Atiyah--Hirzebruch spectral sequence in degree $(s,k,t) = (1,3, 3\cdot 2^{n+3}+1)$ for \Cref{lem:skt131}. In this chart the vertical axis is the algAH filtration and the horizontal axis is the $s$-degree. $d_1$-differentials are red.}
+\label{fig:algA 1-3}
+\end{figure}
+
+
+\begin{proof}
+  Dividing by $q_0$ as in \Cref{rmk:q0 remove} again we can determine
+  the $E_1$-page of the algAH sseq in degree $(s,k,t) = (1,3,3 \cdot 2^{n+3} + 1)$.
+  It contains the following classes:
+  \begin{multicols}{2}
+    \begin{enumerate}
+    \item $q_0q_{j}q_{j+1} \cdot h_0$,
+    \item $q_0^2q_{j+1} \cdot h_{j}$,
+    \item $q_0^2q_{j} \cdot h_{j+1}$,
+    \item $q_{j-1}^2q_{j+1} \cdot h_1$,
+    \item $q_1q_{j-1}q_{j+1} \cdot h_{j-1}$,
+    \item $q_1q_{j-1}^2 \cdot h_{j+1}$,
+    \item $q_{j}^3 \cdot h_{1}$,
+    \item $q_1q_{j}^2 \cdot h_{j}$.
+    \end{enumerate}
+  \end{multicols}
+  Using \Cref{lem AH diff}(1) we compute the relevant algAH $d_1$-differentials.
+  These differentials are displayed in \Cref{fig:algA 1-3}.
+  In particular, the algAH sseq is empty in degree $(s,k,t) = (1,3,3 \cdot 2^{n+3} + 1)$ starting from the $E_2$-page.  
+\end{proof}
+
+\begin{lem}  \label{lem:skt120}
+For $n\geq 3$,  $\Ext^{1,\ 3\cdot 2^{n+3}}_{\P}(\F_2, \Ext_{\mathcal{Q}}^2(\F_2, \F_2)) \cong 0$.
+\end{lem}
+
+\begin{figure}[h]
+\begin{center}
+  \scalebox{0.9}{\renewcommand{\arraystretch}{1.1}
+    \begin{tabular}{|c||c|c|c|}\hline
+      & $s=0$ & $s=1$ & $s=2$ \\\hline\hline
+      $2n+5$ & & $q_{n+2}q_{n+3} \cdot h_0$ \tikzmark{Qs10a}\tikzmark{Qs10b} & \\\hline
+      $2n+4$ & & & \tikzmark{Qt10a} $q_{n+1}q_{n+3} \cdot h_0h_{n+1} + q_{n+2}^2 \cdot h_0h_{n+2}$ \\\hline
+      $\cdots$ & & & \\\hline
+      $n + 3$ & & $q_0q_{n+3} \cdot h_{n+2}$ \tikzmark{Qs2} & \\\hline
+      $n + 2$ & & $q_0q_{n+2} \cdot h_{n+3}$ \tikzmark{Qs3} & \tikzmark{Qt2} $q_0q_{n+2} \cdot h_{n+2}^2$ \\\hline
+      $n + 1$ & & & \tikzmark{Qt3} $ q_0q_{n+1} \cdot h_{n+1}h_{n+3}$ \\\hline
+    \end{tabular}
+    \begin{tikzpicture}[overlay, remember picture, shorten >=.5pt, shorten <=.5pt, transform canvas={yshift=.25\baselineskip}]
+      \draw [->] ({pic cs:Qs10a}) [red] to ({pic cs:Qt10a});
+      \draw [->] ({pic cs:Qs2}) [red] to ({pic cs:Qt2});
+      \draw [->] ({pic cs:Qs3}) [red] to ({pic cs:Qt3});
+  \end{tikzpicture}}
+\end{center}
+\caption{The algebraic Atiyah--Hirzebruch spectral sequence in degree $(s,k,t) = (1,2, 3\cdot 2^{n+3})$ for \Cref{lem:skt120}. In this chart the vertical axis is the algAH filtration and the horizontal axis is the $s$-degree. $d_1$-differentials are red.}
+\label{fig:algA 1-2}
+\end{figure}
+
+
+
+\begin{proof}
+  Dividing by $q_0$ as in \Cref{rmk:q0 remove} again we can determine
+  the $E_1$-page of the algAH sseq in degree $(s,k,t) = (1,2,3 \cdot 2^{n+3})$.
+  It contains the following classes:
+  \begin{enumerate}
+  \item $q_{j}q_{j+1} \cdot h_0$,
+  \item $q_0q_{j+1} \cdot h_{j}$,
+  \item $q_0q_{j} \cdot h_{j+1}$,
+  \end{enumerate}
+  Using \Cref{lem AH diff}(1) we compute the relevant algAH $d_1$-differentials.
+  These differentials are displayed in \Cref{fig:algA 1-2}.
+  In particular, the algAH sseq is empty in degree $(s,k,t) = (1,2,3 \cdot 2^{n+3})$ starting from the $E_2$-page.  
+\end{proof}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

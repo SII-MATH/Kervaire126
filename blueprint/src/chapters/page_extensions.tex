@@ -1,0 +1,89 @@
+\section{Extensions on a classical Adams page}
+\label{chap:page-extensions}
+
+This section contains the definitions of normalized page reductions, page extensions, indeterminacy, and crossings.  Concrete regressions and comparison theorems occur later.
+
+\subsection{Definition and indeterminacy}
+
+% SOURCE: MainPaper/main.tex:1277-1282, Notation 5.1.
+\begin{definition}[Finite-page normalized map]
+  \label{def:hat-map-page-reduction}
+  \uses{def:synthetic-hat-map,def:synthetic-lambda-quotient}
+  \notready
+  For finite $2\le r<\infty$, define
+  \[
+    \widehat f_{r-1}:\Sigma^{0,e(f)}\nu X/\lambda^{r-1}
+       \longrightarrow\nu Y/\lambda^{r-1}
+  \]
+  as reduction of $\widehat f$ modulo $\lambda^{r-1}$.  The exponent and
+  subscript are always $r-1$; the occurrence of $\widehat f_r$ in the proof of
+  Proposition 5.10 is treated as a source typo.
+  For $r=\infty$, set $\widehat f_\infty:=\widehat f$ on the untruncated
+  synthetic spectra.  This clause has no quotient exponent or arithmetic
+  involving $\infty-1$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:1301-1317, Definition def:6c076a33.
+\begin{definition}[$(f,E_r)$-extension]
+  \label{def:page-extension}
+  \uses{def:hat-map-page-reduction,def:synthetic-extension-ss,def:f-extension-essential,def:ss-elementwise-page-presentation,def:ss-einfty-presentation}
+  \notready
+  For finite $2\le r<\infty$, let $x\in Z_{r-1}^{s,t}(X)$ and
+  $y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y)$, with
+  $e(f)\le n\le r-2+e(f)$.  An $(f,E_r)$-extension
+  $d_n^{f,E_r}(x)=y$ is the synthetic extension
+  \[
+    d_n^{\widehat f_{r-1}}(x)=\lambda^{n-e(f)}y.
+  \]
+  It is essential exactly when the synthetic extension is essential.
+
+  An $(f,E_\infty)$-extension instead starts with permanent representatives
+  $x\in Z_\infty^{s,t}(X)$ and
+  $y\in Z_\infty^{s+n,t+n}(Y)$ and an integer $n\ge e(f)$, and is the
+  untruncated $\widehat f$-ESS relation
+  \[
+    d_n^{\widehat f}(x)=\lambda^{n-e(f)}y.
+  \]
+  It has no finite upper page bound.  This is a separate clause, not arithmetic
+  with an infinity symbol.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:1386-1389, Remark def:fErextess.
+\begin{definition}[Page-extension target coset]
+  \label{def:page-extension-coset}
+  \uses{def:page-extension,def:fess-cycles-boundaries}
+  \notready
+  The target $y$ of $d_n^{f,E_r}(x)$ is a coset modulo
+  $B_{1+n-e(f)}^{s+n,t+n}(Y)$ plus the sum of images of all shorter
+  $\widehat f_{r-1}$-ESS differentials for finite $r$, or all shorter
+  untruncated $\widehat f$-ESS differentials for $r=\infty$.  The page
+  extension is essential if and only if this complete coset does not contain
+  zero.
+\end{definition}
+
+\subsection{Crossings and passage to classical extensions}
+
+% SOURCE: MainPaper/main.tex:1437-1441, Definition def:41d51149.
+\begin{definition}[Crossing of a page extension]
+  \label{def:page-extension-crossing}
+  \uses{def:page-extension,def:page-extension-coset}
+  \notready
+  A crossing of $d_n^{f,E_r}(x)=y$ is an essential
+  $(f,E_{r-a})$-extension from
+  $x'\in Z_{r-1-a}^{s+a,t+a}(X)$ to a nonboundary
+  $y'\in Z_{r-1-n+b+e(f)}^{s+n-b,t+n-b}(Y)$, where
+  $0<a\le r-2$ and $0\le b\le n-a-e(f)$.  Nonboundary means outside
+  $B_{1+n-b-e(f)}$ and includes the full shorter-extension coset.  The same
+  formula is used only for finite $r$.
+
+  A crossing of an actual $(f,E_\infty)$-extension is instead an actual
+  essential shorter $(f,E_\infty)$-extension
+  \[
+    d_{n-a-b}^{f,E_\infty}(x')=y'
+  \]
+  with $0<a\le n-e(f)$, $0\le b\le n-a-e(f)$, permanent representatives
+  $x'\in Z_\infty^{s+a,t+a}(X)$ and
+  $y'\in Z_\infty^{s+n-b,t+n-b}(Y)$, and the same nonzero complete target
+  coset modulo $B_{1+n-b-e(f)}$.  A collection of unrelated finite crossing
+  candidates is not an $E_\infty$ crossing.
+\end{definition}

@@ -1,0 +1,1157 @@
+\section{Comparison foundations}
+\label{chap:comparison-and-rules}
+
+This section develops the comparison foundations, page-extension consequences,
+and Moss convergence used by the later proof tools.
+
+\subsection{Consequences of extension spectral sequences}
+
+% SOURCE: MainPaper/main.tex:430-453.
+\begin{proposition}[Concrete eta detection slice]
+  \label{prop:classical-eta-extension-iff-detected}
+  \uses{def:classical-eta-ess-concrete,prop:eta-ess-regression}
+  \lean{KIP126.Classical.ExtensionSS.extension_iff_detected}
+  \lean{KIP126.Classical.ExtensionSS.FExtension}
+  \lean{KIP126.Classical.ExtensionSS.DetectedBy}
+  \lean{KIP126.Classical.ExtensionSS.Essential}
+  \lean{KIP126.Classical.ExtensionSS.Crossing}
+  \notready
+  For the concrete finite eta rows, extension is equivalent to membership in
+  the set-valued detection predicate.  Essentiality and crossing are defined
+  only on this construction, so detection representatives are not forced to
+  be unique.
+\end{proposition}
+
+\begin{proof}
+  Expand the two predicates as membership in the detected and differential
+  sets and rewrite with the concrete input's equality between those sets.
+  Use the specified eta differential equations.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:430-453.
+\begin{definition}[Classical $\eta$-extension spectral sequence]
+  \label{def:classical-eta-ess-concrete}
+  \uses{def:classical-adams-ss,def:ess-complex-shape,prop:eta-ess-regression}
+  \lean{KIP126.Classical.ExtensionSS.etaESS}
+  \lean{KIP126.Classical.ExtensionSS.E₀}
+  \lean{KIP126.Classical.ExtensionSS.abutment}
+  \lean{KIP126.Classical.ExtensionSS.ClassicalEtaESSAdapter}
+  \notready
+  On the specified classical Adams data, the $\eta$-extension spectral
+  sequence has page-zero object
+  $E_\infty(X)\oplus E_\infty(Y)$, differential degree $(n,n)$, and
+  componentwise abutment $\ker(\pi_*\eta)\oplus\operatorname{coker}(\pi_*\eta)$.
+  Its specified finite differential equations are the conditions used
+  in Proposition~\ref{prop:classical-eta-extension-iff-detected}.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:327-342, unlabelled Corollary 2.6.
+\begin{corollary}[Map filtration forces initial ESS differentials to vanish]
+  \label{cor:fess-below-map-filtration-zero}
+  \uses{thm:external-map-filtration-factorization,prop:fextension-iff-detected}
+  \notready
+  If $\operatorname{AF}(f)=k$, then $d_i^f=0$ for every $i<k$.
+\end{corollary}
+
+\begin{proof}
+  Factor $f$ into $k$ homology-trivial maps.  Each factor raises Adams
+  filtration by at least one, so the composite raises it by at least $k$.
+  Proposition~\ref{prop:fextension-iff-detected} then excludes a nonzero
+  target in any smaller filtration shift.
+\end{proof}
+
+\subsection{Moss convergence and detected Toda brackets}
+
+\begin{proposition}[Mapping-stage composition at a left successor]
+  \label{prop:moss-stage-composition-successor}
+  \uses{def:hf2-adams-tower,prop:h6-fiber-smash-step,prop:h6-tower-smash-comparison,prop:h6-smash-pairing-left-transition}
+  \lean{KIP126.Classical.Adams.Moss.stageComposition_succ_comparison}
+  \leanok
+  Fix an arbitrary unit $u:\mathbb 1\to H$ in a braided monoidal closed
+  stable category.  Assume every right tensor functor is triangulated with
+  its chosen suspension comparison.  Write $T_s[X,Y]$ for the actual
+  mapping-object Adams stage, $\overline H=\operatorname{fib}(u)$, and
+  \[
+    \chi_s:T_{s+1}[X,Y]\xrightarrow{\ \cong\ }
+      \overline H\otimes T_s[X,Y]
+  \]
+  for the existing fiber comparison.  If $c_{s,t}$ denotes the fixed
+  stage composition with output $T_{t+s}[X,Z]$, then
+  \[
+    \chi_{t+s}\circ c_{s+1,t}
+      =(1_{\overline H}\otimes c_{s,t})\circ\alpha
+        \circ(\chi_s\otimes1_{T_t[Y,Z]}).
+  \]
+  This identifies the actual successor map before any fiber inclusion is
+  applied.  It requires no coefficient multiplication or boundary input.
+  It does not prove that an ordered right-boundary defect vanishes, nor
+  provide higher-page Leibniz or boundary compatibility.
+\end{proposition}
+\begin{proof}
+  \leanok
+  In the iterated-smash coordinates, separate the additional left factor
+  $\overline H$.  Associator naturality and the braided interchange
+  identity express successor composition as
+  $\overline H\otimes c_{s,t}$ after reassociation.  Transport this
+  equality through the actual tower-smash comparisons and cancel the
+  output comparison isomorphism.  The successor definition of the fiber
+  comparison gives exactly the displayed equality.
+\end{proof}
+
+\begin{proposition}[Actual long-layer composition obstruction]
+  \label{prop:moss-long-layer-composition-obstruction}
+  \uses{def:hf2-adams-tower,def:h6-tower-long-layer,thm:stable-homotopy-long-exact}
+  \lean{KIP126.Classical.Adams.Moss.longLayerProjectedComposition_ι,KIP126.Classical.Adams.Moss.longLayerCompositionBoundary_ι,KIP126.Classical.Adams.Moss.longLayerCompositionBoundary_rightTower_factors,KIP126.Classical.Adams.Moss.longLayerCompositionBoundary_leftTower_factors,KIP126.Classical.Adams.Moss.longLayerTwoCompositionObstruction,KIP126.Classical.Adams.Moss.longLayerTwoComposition_exists_iff_obstruction_eq_zero,KIP126.Classical.Adams.Moss.longLayerTwoCompositionObstruction_ι}
+  \leanok
+  Use the actual Adams towers of the three mapping objects, the specified
+  coefficient multiplication, and the selected triangulated left and right
+  tensor functors with their suspension comparisons.  For any length
+  $r\ge1$ and nonnegative tower levels $s,t$,
+  the fixed projected long-layer composition agrees on two tower images
+  with stage composition followed by the output layer inclusion.  Its
+  connecting map therefore vanishes on those two tower images.
+  With either input restricted to its tower, exactness factors this boundary
+  through the other input's actual long-cofiber connecting map, retaining
+  the tensor suspension comparison.
+
+  At length two, write $B$ for the fixed composition boundary and put
+  $O=(\Sigma\iota_{s+t+1})\circ B$, where $\iota_{s+t+1}$ is the actual
+  next tower-to-layer map.  A projection-compatible length-two composition
+  exists if and only if $O=0$.  The obstruction vanishes on two tower
+  images.  This restricted vanishing alone does not establish $O=0$ on
+  the entire tensor of long layers.  Global length-two vanishing under
+  the additional coefficient-unit compatibility hypotheses is proved below.
+  The two restricted factorizations do not supply a full two-term boundary
+  formula or the pagewise Leibniz and convergence compatibility needed by Moss.
+\end{proposition}
+\begin{proof}
+  \leanok
+  The coefficient-unit identity and the actual layer projection identify
+  the composite on the two tower images with stage composition followed by
+  the output inclusion.  Consecutive maps in its cofiber triangle compose
+  to zero, giving the restricted boundary vanishing.  Tensor the left
+  long-cofiber triangle with the right tower and apply Yoneda exactness to
+  factor the boundary restricted on the right.  Apply the same argument
+  to the right long-cofiber triangle tensored with the left tower for the
+  other factorization; keep both selected suspension comparisons.
+
+  Exactness for the output long-cofiber triangle first expresses a
+  projection-compatible composition as a lift of its fixed boundary.
+  At length two, apply exactness to the shifted next-layer triangle:
+  such a lift exists precisely when composition with the shifted inclusion
+  vanishes.  This composite is $O$; the shift signs are absorbed by negating
+  the chosen lift.  Its vanishing on two tower images follows by composing
+  the already proved restricted boundary equality with that same inclusion.
+\end{proof}
+
+\begin{proposition}[First-boundary cycles as a unit equalizer]
+  \label{prop:moss-first-boundary-unit-equalizer}
+  \uses{def:hf2-adams-tower,def:h6-ring-cooperations,def:h6-coefficient-layer-product,thm:stable-homotopy-long-exact}
+  \lean{KIP126.Classical.Adams.Moss.coefficientPairing_precomp,KIP126.Classical.Adams.Moss.coefficientPairing_postcomp,KIP126.Classical.Adams.Moss.coefficientPairing_innerUnit,KIP126.Classical.Adams.Moss.coefficientPairing_preserves_unit_equalizer,KIP126.Classical.Adams.Moss.firstBoundary_eq_zero_iff_unit_equalizer,KIP126.Classical.Adams.Moss.coefficientPairing_firstBoundary_eq_zero,KIP126.Classical.Adams.Moss.layerFirstBoundary_comparison,KIP126.Classical.Adams.Moss.layerFirstBoundary_eq_zero_iff_unit_equalizer,KIP126.Classical.Adams.Moss.layerComposition_firstBoundary_eq_zero}
+  \leanok
+  Fix the actual coefficient object $H$, its unit $\eta$, and a specified
+  coefficient ring structure.  Assume $H\otimes-$ is triangulated with
+  its chosen suspension comparison, and the natural transformation
+  $\eta:\operatorname{Id}\to H\otimes-$ commutes with suspension.
+  Write $I A=\operatorname{fib}(\eta_A)$ and let
+  \[
+    \partial_A:H\otimes A\xrightarrow{\delta_A}\Sigma I A
+      \xrightarrow{\Sigma\eta_{IA}}\Sigma(H\otimes I A)
+  \]
+  be the actual first resolution boundary.  For every test object $U$ and
+  every morphism $a:U\to H\otimes A$,
+  \[
+    \partial_A a=0\quad\Longleftrightarrow\quad
+    \eta_{H\otimes A}a=(1_H\otimes\eta_A)a.
+  \]
+  In a braided category, the specified coefficient pairing associated to
+  any $f:A\otimes B\to D$ preserves this equalizer, hence sends two
+  first-boundary cycles to a first-boundary cycle.
+
+  The actual Adams layer comparisons transport the same criterion to
+  each nonnegative tower level.  For mapping objects, additionally assume
+  the category is monoidal closed and every right tensor functor is
+  triangulated with its chosen suspension comparison.  Then the fixed
+  layer composition preserves these kernels on morphisms from arbitrary
+  test objects; no assertion that homotopy groups detect maps is required.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Unit naturality identifies the first boundary with the connecting map
+  in the triangle obtained by tensoring the unit fiber triangle with $H$.
+  Exactness factors a zero-boundary morphism through the inner unit
+  insertion.  The coefficient action retracts both inner and outer unit
+  insertion, forcing the factor to be the original morphism $a$.
+  Conversely, the equalizer identity reduces the boundary to a composite
+  of consecutive maps in that distinguished triangle.
+  Naturality of the actual coefficient pairing and its two unit identities
+  preserve the equalizer.  Finally, use the specified layer isomorphisms
+  and the comparison of their connecting maps to transport this result
+  to the actual layer composition, retaining the shift signs.
+\end{proof}
+
+\begin{proposition}[Actual composition on length-two long layers]
+  \label{prop:moss-long-layer-two-composition}
+  \uses{prop:moss-long-layer-composition-obstruction,prop:moss-first-boundary-unit-equalizer}
+  \lean{KIP126.Classical.Adams.Moss.longLayerTwoProjection_firstBoundary_eq_zero,KIP126.Classical.Adams.Moss.longLayerTwoCompositionObstruction_eq_zero,KIP126.Classical.Adams.Moss.longLayerTwoComposition_exists}
+  \leanok
+  In a braided monoidal closed stable category, fix the actual coefficient
+  ring structure, triangulated right tensor functors with suspension
+  comparisons, a triangulated $H\otimes-$ with its suspension comparison,
+  and suspension compatibility of the coefficient-unit natural
+  transformation.  For any mapping objects $[X,Y],[Y,Z],[X,Z]$ and
+  nonnegative levels $s,t$, the actual obstruction $O$ from
+  Proposition~\ref{prop:moss-long-layer-composition-obstruction} vanishes
+  on the entire tensor of length-two long layers.  Consequently, writing
+  $L_2^s$ for those long layers, there is a morphism
+  \[
+    \mu:L_2^s[X,Y]\otimes L_2^t[Y,Z]\longrightarrow L_2^{s+t}[X,Z]
+  \]
+  whose composite with the output layer projection is exactly the fixed
+  projected composition.
+  This proves existence at length two under the stated coherence
+  hypotheses.  It does not choose compatible compositions for every
+  length, prove a pagewise Leibniz rule, or establish Moss convergence.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Each length-two projection is an actual first-boundary cycle, by its
+  cofiber-factorization diagram and the zero composite of consecutive
+  triangle maps.  The unit-equalizer result shows that their layer product
+  is also a first-boundary cycle.  Its first boundary, after the actual
+  level reindexing, is exactly $O$, so $O=0$ globally.  Apply the proved
+  length-two obstruction criterion to obtain the required lift.
+\end{proof}
+
+\begin{proposition}[Actual one-sided boundary and second-cycle composition]
+  \label{prop:moss-boundary-and-two-cycles}
+  \uses{prop:moss-stage-composition-successor,prop:moss-long-layer-two-composition}
+  \lean{KIP126.Classical.Adams.Moss.stageComposition_δ_left,KIP126.Classical.Adams.Moss.layerComposition_ι_right_comparison,KIP126.Classical.Adams.Moss.layerComposition_ι_right_δ_comparison,KIP126.Classical.Adams.Moss.layerComposition_ι_right_δ,KIP126.Classical.Adams.Moss.longLayerTwoComposition,KIP126.Classical.Adams.Moss.longLayerTwoPairing,KIP126.Classical.Adams.Moss.longLayerTwoComposition_projection,KIP126.Classical.Adams.Moss.longLayerTwoPairing_projection,KIP126.Classical.Adams.Moss.firstComposition_mem_cycles_two,KIP126.Classical.Adams.Moss.twoCycleComposition}
+  \leanok
+  In the braided monoidal closed stable category, assume right tensor
+  functors are triangulated with suspension comparisons, and supply their
+  explicit \texttt{RightTensorSuspensionCompatibility}.  The actual
+  successor composition intertwines the unit-fiber connecting maps.
+  For the specified coefficient ring structure and monoidal preadditivity,
+  this gives the actual layer identity
+  \[
+    \delta_{t+s}\circ P_{s,t}\circ(1_{L_s}\otimes q_t)
+      =(\Sigma c_{s+1,t})\circ\sigma\circ(\delta_s\otimes1_{T_t}),
+  \]
+  where $q_t:T_t\to L_t$ is the tower-to-layer map and $\sigma$ is the
+  chosen right-tensor suspension comparison.  The right input is restricted
+  to its tower image; this is one boundary identity, not a full Leibniz law.
+
+  Separately, under the hypotheses of
+  Proposition~\ref{prop:moss-long-layer-two-composition} and monoidal
+  preadditivity, choose a proved length-two composition lift.  Its induced
+  homotopy pairing commutes with the actual long-layer projections, so the
+  specified first-layer composition restricts to a bilinear map
+  \[
+    Z_2^{s,u}[X,Y]\times Z_2^{t,v}[Y,Z]
+      \longrightarrow Z_2^{s+t,u+v}[X,Z].
+  \]
+  These are the actual second-page cycle modules, before quotienting by
+  boundaries.  No boundary-ideal condition, $E_2$ descent, compatibility of
+  the chosen lifts across lengths, or Moss convergence follows here.
+\end{proposition}
+\begin{proof}
+  \leanok
+  The successor comparison and unit-fiber suspension compatibility give
+  the first connecting-map identity.  Transport through the actual layer
+  isomorphisms; their two boundary signs cancel in the displayed formula.
+  For the second assertion, select the existing length-two lift and use
+  naturality of the homotopy tensor pairing to prove projection
+  compatibility.  The characterization of cycles as images of long-layer
+  projections then supplies cycle preservation and the bilinear restriction.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2537--2545; Moss Theorem 1.2.
+% The crossing and weak-convergence conventions have also been checked against
+% Belmont--Kong, arXiv:2112.08689v2, Definitions 2.3--2.4.
+\begin{theorem}[Moss convergence for mapping Adams towers]
+  \label{thm:moss-convergence-adapter}
+  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,prop:moss-long-layer-composition-obstruction}
+  \lean{KIP126.Classical.Adams.Moss.PageMassey.Relation,KIP126.Classical.Adams.Moss.PageMassey.Indeterminacy,KIP126.Classical.Adams.Moss.StatementAt,KIP126.Challenge2.MossInterface,KIP126.Challenge2.StandardSphereMossInterface,KIP126.Interface.Solution.sphereMossInterface}
+  \notready
+  Fix one composition system whose page values are constrained by the actual
+  long-layer representatives, with Leibniz, associativity and next-page
+  compatibility, and compatible detection in the actual tower-image filtration.
+  For $r\ge3$, the Massey relation on $E_r$ uses a defining system on
+  $E_{r-1}$: $dy=ab$, $dz=bc$, and the class of
+  $yc-(-1)^{|a|}az$. Its indeterminacy is the sum of the two corresponding
+  composition images on $E_r$.
+
+  Suppose $a,b,c$ detect specified stable maps, both products vanish on the
+  page and as stable composites, and the two product mapping towers satisfy
+  weak convergence and the Moss-direction noncrossing conditions. Then some
+  Massey class is permanent and detects an element of the Toda bracket.
+  Neither zero indeterminacy nor survival of every Massey class is assumed.
+  The chosen family controls the convergence range; no convergence of every
+  ambient object is asserted.
+
+  The precise interface and its existence obligation for the fixed sphere
+  mapping model are now written. The mapping-sphere comparison with the
+  previously fixed sphere Adams object, the model data, and the convergence
+  proof remain unfinished. This preceding-page definition does not claim to
+  define the separate cobar Massey product on $E_2$.
+\end{theorem}
+
+\subsection{Synthetic comparison and normalized lifts}
+
+% SOURCE: MainPaper/main.tex:799--807, Theorem thm:rigid;
+% Source/BHS/source/SynRevAdams.tex:77--85, Theorem thm:synth-ASS.
+\begin{proposition}[Representative-induced comparison and lambda action]
+  \label{prop:representative-induced-synthetic-comparison}
+  \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:synthetic-tridegree,def:reindexed-ss-morphism,thm:external-synthetic-rigidity}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticLambdaAction}
+  \lean{KIP126.Synthetic.SpectralSequence.lambdaMapFromAction}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticLambdaAction.lambdaMap_comm}
+  \lean{KIP126.Synthetic.SpectralSequence.weightPreserving_differential}
+  \lean{KIP126.Comparison.ClassicalSynthetic.sourcePageMap}
+  \lean{KIP126.Comparison.ClassicalSynthetic.sourcePageMap_differential_naturality}
+  \notready
+  The internal \texttt{SyntheticLambdaAction} preserves the actual cycle
+  and boundary towers.  Its page maps are induced quotient maps of the same
+  ambient map; differential commutation is an explicit compatibility field.
+  Fixed-weight classical--synthetic comparison uses the same internal model
+  and the same requirement.  Weight preservation follows from the fixed
+  differential degree, without an independently supplied field.
+
+  Applying BHS rigidity on the selected classical and synthetic objects
+  remains \texttt{notready}. The ambient maps must be constructed from their
+  representatives, and the action must be identified with the regraded image
+  of the actual synthetic deformation map. Comparison across weights must
+  respect that action. The displayed generic declarations check the quotient
+  maps and degree conventions conditional on those compatibility data; they
+  do not construct the fixed-model comparison or prove the sourced
+  differential correspondence.
+\end{proposition}
+
+\begin{proof}
+  Once the ambient maps preserve the cycle and boundary towers, their induced
+  quotient maps satisfy the displayed naturality and lambda-action identities
+  by the supplied differential compatibility. Constructing those maps on the
+  fixed objects and identifying their action with the actual deformation map
+  remain unfinished obligations.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex, Theorem thm:17e90ac0(1);
+% Source/BHS/source/SynRevBigraded.tex:59-63, lemm:ctauE2;
+% Source/BurklundXu/paper.txt:2996-3001, Lemma 7.5.
+% The shifted form additionally requires the actual shift/quotient comparison.
+\begin{definition}[First-quotient homotopy comparison]
+  \label{def:synthetic-first-quotient-homotopy-comparison}
+  \uses{def:synthetic-sphere,def:synthetic-lambda-quotient,def:classical-adams-ss}
+  \lean{KIP126.Challenge2.FirstQuotientHomotopyComparison}
+  \leanok
+  For a fixed classical object $X$, coefficient object $H$, and synthetic
+  analogue functor $\nu$, a first-quotient homotopy comparison consists of
+  additive isomorphisms, for all integers $a,s,t$,
+  \[
+    \pi_{t-s,t+a}\bigl((\Sigma^{0,a}\nu X)/\lambda\bigr)
+       \cong E_2^{s,t}(X).
+  \]
+  The source is the actual quotient of the shifted object, and the target
+  is the actual second page of the same classical Adams tower.
+  The unshifted case is the special-fiber homotopy comparison in the
+  cited sources; extending it to arbitrary $a$ also requires compatibility
+  of the actual shifts, $\lambda$, and cofiber quotients.
+
+  Existence of this family of isomorphisms remains to be established.
+  The existing special-fiber $E_\infty$ presentation identifies associated
+  graded groups and does not by itself provide these homotopy isomorphisms.
+  This comparison type does not include naturality or Bockstein-differential
+  compatibility conditions.
+\end{definition}
+
+% PROOF-SOURCE: BHS Theorem A.1 and its special-fiber edge isomorphism;
+% MainPaper/main.tex:813-823.  This is the exponent-one boundary case that is
+% not covered by MainPaper/main.tex:849-855.
+\begin{proposition}[$E_\infty$ at the first $\lambda$-quotient]
+  \label{prop:synthetic-einfty-first-quotient}
+  \uses{thm:external-lambda-bockstein,thm:external-synthetic-rigidity,def:synthetic-lambda-quotient,def:synthetic-adams-ss,def:ss-convergence-detection-witness,def:bhs-aim-regrading}
+  \notready
+  For every admissible $X$, the special-fiber edge map identifies the
+  synthetic Adams abutment of $\nu X/\lambda$ with the classical initial page:
+  \[
+    E_\infty^{s,t,w}(\nu X/\lambda)\cong
+    \begin{cases}
+      E_2^{s,t}(X),&w=t,\\
+      0,&w\ne t.
+    \end{cases}
+  \]
+  Under this isomorphism the edge class has a unique detected homotopy class
+  in its tridegree.  This proposition is the explicit exponent-one interface;
+  it does not extend the finite $E_\infty$ formula $Z_i/B_j$ of
+  Theorem~\ref{thm:external-synthetic-einfty-quotient} outside its stated
+  range $r\ge2$.
+\end{proposition}
+
+\begin{proof}
+  Apply the synthetic Adams $E_2$ functor to the cofiber of $\lambda$.
+  Rigidity identifies its page with
+  $E_2^{*,*}(X)\otimes\mathbb F_2[\lambda]/(\lambda)$, concentrated in weight
+  $w=t$.  The $\lambda$-Bockstein comparison gives the edge isomorphism
+  $E_2^{s,t}(X)\cong\pi_{t-s,t}(\nu X/\lambda)$.  Strong convergence and the
+  fact that this edge map already exhausts the abutment force every
+  differential and hidden additive extension at this quotient to vanish.
+  Regrade to AIM's three coordinates to obtain the displayed presentation and
+  uniqueness statement.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:865-875, load-bearing compatibility remark after Propositions 3.11-3.12.
+\begin{proposition}[Compatibility of $E_\infty$ formulas with $\lambda$ and $\rho$]
+  \label{prop:synthetic-einfty-map-compatibility}
+  \uses{thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-first-quotient,def:synthetic-lambda-quotient,def:bhs-aim-regrading}
+  \notready
+  For $r'\ge r\ge2$, multiplication is the degree-zero synthetic map
+  \[
+    \lambda^{r'-r}:
+    \Sigma^{0,r-r'}(\nu X/\lambda^r)\longrightarrow\nu X/\lambda^{r'}.
+  \]
+  Under the preceding isomorphisms, its map on $E_\infty$ is
+  \[
+    E_\infty^{s,t,w}(\nu X/\lambda^r)
+      \longrightarrow
+    E_\infty^{s,t,w-r'+r}(\nu X/\lambda^{r'}),
+  \]
+  and, when the displayed cycle and boundary indices are positive, it is the
+  quotient map
+  \[
+    \frac{Z_{r-t+w}^{s,t}(X)}{B_{1+t-w}^{s,t}(X)}
+      \longrightarrow
+    \frac{Z_{r-t+w}^{s,t}(X)}{B_{1+t-w+r'-r}^{s,t}(X)}.
+  \]
+  For $r\ge r''\ge2$, reduction
+  $\rho:\nu X/\lambda^r\to\nu X/\lambda^{r''}$
+  is, in the same range, the inclusion
+  \[
+    \frac{Z_{r-t+w}^{s,t}(X)}{B_{1+t-w}^{s,t}(X)}
+      \hookrightarrow
+    \frac{Z_{r''-t+w}^{s,t}(X)}{B_{1+t-w}^{s,t}(X)}.
+  \]
+  The project's zero-index convention supplies the remaining cycle- and
+  boundary-subscript cases within these exponent ranges.
+
+  For the boundary case $r=1<r'$, the same suspended multiplication map sends
+  the special-fiber edge group to the indicated weight of the $r'$ quotient;
+  it is the canonical quotient and hence is surjective or zero in each
+  tridegree.  For $r''=1<r$, reduction identifies the surviving-cycle subgroup
+  with a subgroup of the special-fiber edge group and hence is injective or
+  zero.  When both exponents are one the map is the identity.  These boundary
+  statements use Proposition~\ref{prop:synthetic-einfty-first-quotient}, not
+  the finite-quotient formula outside its range.
+
+  There are also two explicit infinite-endpoint clauses.  For every $n>0$,
+  multiplication
+  \[
+    \lambda^n:\Sigma^{0,-n}\nu X\longrightarrow\nu X
+  \]
+  is described as follows.  On a tridegree $(s,t,w)$ of the suspended domain,
+  put $j=1+t-(w+n)$.  When the source is nonzero, suspension identifies it
+  with $Z_\infty^{s,t}(X)/B_j^{s,t}(X)$ and the map is the
+  boundary-cutoff quotient
+  \[
+    Z_\infty^{s,t}(X)/B_j^{s,t}(X)
+      \longrightarrow
+    Z_\infty^{s,t}(X)/B_{j+n}^{s,t}(X),
+  \]
+  since the target cutoff is $1+t-w=j+n$.  It is therefore surjective or zero
+  in each tridegree.  For reduction
+  \[
+    \rho:\nu X\longrightarrow\nu X/\lambda^n
+  \]
+  fix a tridegree $(s,t,w)$ and put $j=1+t-w$.  It is the cycle-cutoff inclusion
+  \[
+    Z_\infty^{s,t}(X)/B_j^{s,t}(X)
+      \hookrightarrow
+    Z_{n-t+w}^{s,t}(X)/B_j^{s,t}(X)
+  \]
+  whenever $n\ge2$ and $0\le t-w<n$, and is injective or zero otherwise.  At
+  $n=1$ it is the inclusion of permanent representatives
+  into the special-fiber edge group (or zero off its unique weight).  The
+  infinite source uses Theorem~\ref{thm:external-synthetic-einfty-nu}; it is
+  not obtained by substituting $r=\infty$ into the finite formula.
+\end{proposition}
+
+\begin{proof}
+  Express both synthetic maps on the $\lambda$-Bockstein exact couple.  The
+  first changes the boundary cutoff by $r'-r$ and shifts the weight by
+  $r-r'$, while the second changes the cycle cutoff without shifting weight.
+  For exponents at least two, transport these maps through the two external
+  $E_\infty$ isomorphisms and check the zero-index edge cases separately.  If
+  an endpoint exponent is one, use the special-fiber edge presentation: the
+  multiplication map quotients the initial-page group by the later boundary
+  cutoff, while reduction includes the surviving-cycle subgroup.  This gives
+  the asserted surjective/zero and injective/zero alternatives without
+  applying the finite-quotient theorem at exponent one.
+
+  For an infinite endpoint, compare the untruncated formula
+  $Z_\infty/B_j$ directly with its weight-shifted copy and with the finite
+  quotient formula.  Multiplication by $\lambda^n$ raises the boundary cutoff
+  from $j$ to $j+n$, hence is the displayed quotient.  Reduction retains the
+  boundary cutoff and includes $Z_\infty$ into the finite cycle subgroup; for
+  exponent one use the special-fiber edge group.  These calculations prove
+  the two infinite clauses independently of any limiting shorthand.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:878-910, Example exam:synEinfty.
+\begin{proposition}[Synthetic $14$-stem regression]
+  \label{prop:synthetic-14-stem-regression}
+  \uses{thm:external-synthetic-rigidity,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient}
+  \notready
+  Given the explicit classical evidence
+  $d_2(h_4)=h_0h_3^2$,
+  $d_3(h_0h_4)=h_0d_0$, and
+  $d_3(h_0^2h_4)=h_0^2d_0$, the synthetic spectral sequences of
+  $S^{0,0}$, $S^{0,0}/\lambda^2$, and $S^{0,0}/\lambda^3$ have exactly the
+  differentials, permanent multiples, and $\lambda$-torsion classes listed in
+  Example 3.15.
+\end{proposition}
+
+\begin{proof}
+  Apply rigidity to insert the factors $\lambda$ and $\lambda^2$, truncate at
+  the quotient exponent, and evaluate the two $E_\infty$ formulas.  A finite
+  degree check verifies the list and serves as a regression test for grading
+  and zero-index conventions.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:946-961, cofiber assertion in Notation not:fhat.
+\begin{proposition}[Cofiber of a normalized synthetic map]
+  \label{prop:synthetic-hat-cofiber}
+  \uses{def:synthetic-hat-map,def:normalized-synthetic-exactness-case,thm:external-nu-cofiber-criterion,thm:external-synthetic-triangle-lift}
+  \notready
+  Let $X\xrightarrow fY\xrightarrow gC(f)$ be a cofiber sequence equipped with
+  a normalized cofiber exactness case.  Let $\widehat f$ and $\widehat g$ be
+  the triangle-compatible components obtained simultaneously from the same
+  lifted rotation carried by that case.  Then
+  \[
+    C(\widehat f)\simeq\Sigma^{0,-e(g)}\nu C(f).
+  \]
+  Thus the tagged zero and monomorphism cases, both of which explicitly have
+  $e(g)=0$, give no shift.  The tagged epimorphism case explicitly has
+  $e(g)=1$ and gives a $(0,-1)$ shift.  The homology-map adjective alone does
+  not select a shift in a degenerate case.  No such equivalence is asserted for
+  $\lambda^{k-1}\widetilde f$ formed from an arbitrary full lift.
+\end{proposition}
+
+\begin{proof}
+  Eliminate the tagged exactness datum.  In the zero constructor, rotate so
+  that $f$ is the positive-filtration connecting map; in the monomorphism
+  constructor, use the original short exact homology sequence; in the
+  epimorphism constructor, rotate so that $g$ is the positive-filtration
+  connecting map.
+  Apply the cofiber criterion to the other two components in that chosen
+  rotation.  Because $\widehat f$ and $\widehat g$ are components of this one
+  lifted triangle, its cofiber identifies with the displayed object.  After
+  rotating back, use the constructor's explicit $e(g)$ field to obtain exactly
+  the asserted shift.  The argument never
+  replaces $\widehat f$ by a torsion-equivalent arbitrary full lift.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:965-971, unlabelled Proposition 3.20.
+\begin{proposition}[Normalized synthetic triangle]
+  \label{prop:normalized-synthetic-triangle}
+  \uses{def:synthetic-hat-map,def:normalized-synthetic-exactness-case,prop:positive-adams-filtration-homology-zero,prop:synthetic-hat-cofiber,thm:external-synthetic-triangle-lift,def:cofiber-triangle,def:hf2-homology}
+  \notready
+  If $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ is a
+  distinguished triangle and $e(f)+e(g)+e(h)=1$, there is a simultaneous
+  choice of triangle-compatible normalized lifts that forms a distinguished
+  synthetic triangle
+  \[
+    \nu X\xrightarrow{\widehat f}\Sigma^{0,-e(f)}\nu Y
+    \xrightarrow{\widehat g}\Sigma^{0,-e(f)-e(g)}\nu Z
+    \xrightarrow{\widehat h}\Sigma^{0,-1}\nu\Sigma X.
+  \]
+\end{proposition}
+
+\begin{proof}
+  The sum-one hypothesis selects exactly one of the three explicit
+  $e$-patterns.  Proposition~\ref{prop:positive-adams-filtration-homology-zero}
+  makes the unique positive-filtration map zero on homology.  Exactness of the
+  cofiber long exact sequence then says respectively that $H_*f$ is zero,
+  injective, or surjective, and supplies the corresponding rotated short exact
+  sequence.  Transport along the chosen equivalence with the selected cofiber
+  triangle, rotate so that this positive-filtration map is the connecting map,
+  and apply the triangle-lift theorem once.  These fields form the appropriate
+  tagged exactness datum.  Rotate that same synthetic triangle back.  Its three components define the normalized lifts
+  simultaneously; Proposition~\ref{prop:synthetic-hat-cofiber} identifies the
+  required cofibers.  The equality of the three $e$-values makes the total
+  weight shift exactly $-1$.
+\end{proof}
+
+\subsection{Classical--synthetic extension comparison}
+
+% PROOF-SOURCE: the standard obstruction calculation for a countable inverse
+% system of abelian torsors, combined with BHS Proposition A.13.
+\begin{lemma}[Mittag--Leffler criterion for an inverse-limit ESS extension]
+  \label{lem:synthetic-ess-coherent-tower-limit}
+  \uses{def:synthetic-ess-solution-tower,prop:synthetic-ess-coherent-tower-of-surjective,prop:synthetic-ess-coherent-tower-of-finite,prop:lambda-quotient-restriction-coherence,thm:external-synthetic-lambda-complete}
+  \notready
+  In the setting of
+  Definition~\ref{def:synthetic-ess-solution-tower}, suppose every finite
+  solution fiber is nonempty.  There is a canonical torsor obstruction
+  \[
+    \omega(\operatorname{Sol}_\bullet)
+      \in \varprojlim^{1}_{m} K_m
+  \]
+  whose vanishing is equivalent to the existence of a coherent solution
+  tower.  Any of the following is sufficient for vanishing:
+  \begin{enumerate}
+    \item every finite solution lifts, that is, each
+      $\operatorname{res}_{m+1,m}$ is surjective;
+    \item the difference-group tower $(K_m)$ is Mittag--Leffler: for every
+      $m$, the images of $K_l\to K_m$ stabilize as $l$ increases.  Surjective
+      transition maps are a sufficient special case.  Then
+      $\varprojlim^1_m K_m=0$.
+    \item every actual strict solution fiber is finite.  Together with
+      nonemptiness, Proposition~\ref{prop:synthetic-ess-coherent-tower-of-finite}
+      constructs some coherent tower, without fixing its initial value.
+  \end{enumerate}
+  For an untruncated conclusion, additionally require the following actual
+  representative comparison.  Let the maps $F_m$ be reductions of a map
+  $F_\infty$ between $\lambda$-complete synthetic spectra, and let
+  $R_m,E_m,\Phi_m$ be the representative groups, equation groups, and
+  equation maps defining their strict fibers.  Require the canonical
+  restriction maps to induce isomorphisms
+  \[
+    c_R:R_\infty\xrightarrow{\ \cong\ }\varprojlim_m R_m,
+    \qquad
+    c_E:E_\infty\xrightarrow{\ \cong\ }\varprojlim_m E_m,
+    \qquad
+    c_E\Phi_\infty=(\varprojlim_m\Phi_m)c_R,
+  \]
+  carrying the actual untruncated equation-label triple to the compatible
+  finite equation-label triples.  These are comparisons of the actual
+  filtered source, target, and map, including their fixed cycle labels.
+  Under these additional hypotheses, a coherent solution tower determines
+  the untruncated relation
+  \[
+    d_n^{F_\infty}(x_\infty)=y_\infty
+  \]
+  in the complete target coset, and every untruncated representative
+  solution restricts to a coherent finite tower.  Constructing these
+  comparisons from the actual $\lambda$-complete synthetic model remains
+  a separate open obligation; $\lambda$-completeness alone is not asserted
+  here to provide them.
+\end{lemma}
+
+\begin{proof}
+  Choose one point in each finite solution torsor.  The differences between a
+  chosen point and the restriction of the next one form the usual cocycle for
+  the inverse system $(K_m)$; changing the choices changes it by a coboundary.
+  Its class is $\omega$, and a coboundary correction makes the chosen points
+  coherent exactly when $\omega=0$.  Under explicit surjectivity,
+  Proposition~\ref{prop:synthetic-ess-coherent-tower-of-surjective}
+  constructs such a tower from one initial solution.  The
+  Mittag--Leffler hypothesis gives
+  $\varprojlim^1K_m=0$ and hence the same conclusion.
+  For finite nonempty strict fibers, use the proved finite inverse-system
+  criterion directly; it does not require surjective restrictions.
+
+  Given the stated comparisons, apply $c_R^{-1}$ to the compatible
+  representative sequence.  The commuting equation diagram and the
+  injectivity of $c_E$ imply that this representative has exactly the
+  untruncated equation-label triple.  Conversely, the canonical
+  restrictions carry an untruncated solution to a coherent tower.
+
+  The present Lean fibers are sets of pairs in abelian groups; they have
+  not been identified with homotopy fibers of mapping spaces.  Preservation
+  of homotopy fibers by homotopy limits therefore does not construct the
+  required comparisons for these definitions.  Deriving the displayed
+  isomorphisms, their equation diagram, and their label compatibility from
+  the actual $\lambda$-adic completeness equivalences remains open.
+  The torsor calculation alone does not prove that model comparison or
+  the untruncated extension.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1025-1048, Proposition prop:9770ae6e.
+\begin{proposition}[$\lambda^n$- and $\rho$-ESS have only $d_0$]
+  \label{prop:lambda-rho-ess-only-d0}
+  \uses{def:lambda-rho-delta-triangle,prop:synthetic-einfty-map-compatibility,prop:synthetic-einfty-first-quotient,prop:synthetic-ess-weightwise-transport,prop:fess-exact-middle-boundary}
+  \notready
+  In the extension spectral sequences of $\lambda^n$ and $\rho_{n,m}$, the
+  only possibly nonzero differentials are
+  $d_0^{\lambda^n}=\lambda^n$ and $d_0^\rho=\rho$.  These $d_0$ extensions have
+  no crossings.  On each tridegree, $\lambda^n$ is surjective or zero and
+  $\rho$ is injective or zero on $E_\infty$.
+\end{proposition}
+
+\begin{proof}
+  First suppose $m<\infty$.  If one of the quotient exponents is one, use the
+  mod-$\lambda$ collapse and unique-detection statement of
+  Proposition~\ref{prop:synthetic-einfty-first-quotient}; when both relevant
+  exponents are at least two, use the two finite $E_\infty$ formulas.  If a
+  tridegree is outside the quotient range its group is zero, while in range
+  $\rho$ is a cycle inclusion and $\lambda^n$ is a boundary quotient.
+
+  If $m=\infty$, instead use the two infinite-endpoint clauses of
+  Proposition~\ref{prop:synthetic-einfty-map-compatibility}: on the
+  untruncated $E_\infty$ formula, $\lambda^n$ is the quotient that raises the
+  boundary cutoff by $n$, and
+  $\rho:\nu X\to\nu X/\lambda^n$ includes permanent representatives into the
+  finite cycle cutoff (using the special-fiber clause when $n=1$).  Thus the
+  sequence is exact at its middle term in every tridegree in both the finite
+  and infinite branches.
+  Apply the synthetic exact-middle theorem to eliminate higher differentials,
+  and use the degree-zero filtration shift to obtain no-crossing.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1068-1131, proof of Proposition prop:6de7d130.
+\begin{lemma}[Shorter $\delta_n$ images are classical boundaries]
+  \label{lem:delta-images-equal-classical-boundaries}
+  \uses{thm:external-lambda-bockstein,prop:synthetic-einfty-map-compatibility,prop:synthetic-ess-weightwise-transport,cor:fess-triangle-shift}
+  \notready
+  For the infinite connecting map
+  $\delta_n:\nu X/\lambda^n\to\Sigma^{1,-n}\nu X$, the subgroup generated by
+  extension differentials of length less than $r$ in the target tridegree is
+  exactly the image of the classical boundary subgroup
+  $B_{r-1}^{s+r,t+r-1}(X)$ under the corresponding $\lambda$-multiple.
+\end{lemma}
+
+\begin{proof}
+  Induct on $r$.  Write each generator of $B_{r-1}$ as the target of an
+  essential classical $d_{r'}$ with $2\le r'<r$.  The Bockstein comparison and
+  triangle-shift propagation turn it into a shorter $\delta_n$ extension with
+  the required $\lambda$ power.  Conversely, apply the same comparison to
+  every shorter $\delta_n$ extension.  The inductive hypothesis removes its
+  lower-page indeterminacy.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1068-1131, Proposition prop:6de7d130, m=infinity case.
+\begin{proposition}[Infinite $\delta_n$-ESS formula]
+  \label{prop:delta-ess-formula-infinite}
+  \uses{lem:delta-images-equal-classical-boundaries,thm:external-lambda-bockstein,cor:fess-triangle-shift,prop:lambda-rho-ess-only-d0}
+  \notready
+  Suppose the classical Adams spectral sequence has
+  $d_r(x)=y$, with $x\in Z_{r-1}^{s,t}$ and
+  $y\in Z_\infty^{s+r,t+r-1}$.  For
+  $\delta_n:\nu X/\lambda^n\to\Sigma^{1,-n}\nu X$:
+  \begin{enumerate}
+    \item if $r\ge n+1$, then
+      $d_r^{\delta_n}(x)=\lambda^{r-n-1}y$;
+    \item if $r\le n+1$, then
+      $d_r^{\delta_n}(\lambda^{n+1-r}x)=y$.
+  \end{enumerate}
+  The formulas agree when $r=n+1$ and are equalities in the correct ESS
+  quotient, whether or not the displayed extension is essential.
+\end{proposition}
+
+\begin{proof}
+  Start with $n=1$, where the assertion is the $\lambda$-Bockstein theorem.
+  Induct on $n$ using the commuting triangle relating multiplication by
+  $\lambda$, $\delta_{n-1}$, and $\delta_n$.  Triangle propagation gives the
+  formula before quotient indeterminacy.  Division by one $\lambda$ introduces
+  only the next classical boundary subgroup; Lemma~\ref{lem:delta-images-equal-classical-boundaries}
+  identifies and removes precisely that ESS indeterminacy.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1068-1131, Proposition prop:6de7d130, finite m case.
+% VERIFIED-IN: the printed second case places y in E_infty(nu X); the finite target requires its rho-image.
+\begin{proposition}[Finite $\delta_{n,m}$-ESS formula]
+  \label{prop:delta-ess-formula-finite}
+  \uses{prop:delta-ess-formula-infinite,cor:fess-composition,prop:lambda-rho-ess-only-d0,prop:lambda-quotient-restriction-coherence}
+  \notready
+  For finite $m>n$, compose the formulas of
+  Proposition~\ref{prop:delta-ess-formula-infinite} with the reduction
+  $\rho:\nu X\to\nu X/\lambda^{m-n}$.  Thus the displayed target is the image
+  of $\lambda^{r-n-1}y$, or of $y$ in the second case, in the finite quotient;
+  it is zero once the required $\lambda$ power lies outside that quotient.
+  This explicit image corrects the type ambiguity in
+  \texttt{MainPaper/main.tex:1088--1094}.
+\end{proposition}
+
+\begin{proof}
+  Factor $\delta_{n,m}$ as $\delta_{n,\infty}$ followed by $\rho$.  The
+  $\rho$-ESS has only its injective-or-zero $d_0$, with no crossing, so ESS
+  composition transports the infinite formula to the finite target.  The
+  quotient formula decides exactly when the image is zero.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1138-1144, Corollary cor:2a636737.
+\begin{corollary}[$\lambda$-multiple form of the $\delta$ formula]
+  \label{cor:delta-ess-lambda-multiples}
+  \uses{prop:delta-ess-formula-finite}
+  \notready
+  In the situation above,
+  \[
+    d_r^\delta(\lambda^a x)=\lambda^{a+r-n-1}y
+  \]
+  whenever $0\le a\le n$ and
+  $0\le a+r-n-1<m-n$; outside the finite quotient range the right-hand side
+  and the extension are zero.
+\end{corollary}
+
+\begin{proof}
+  Multiply the finite formula by $\lambda^a$, using $\lambda$-linearity of the
+  synthetic Adams and extension spectral sequences.  Check the source and
+  target quotient ranges directly.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1146-1150, Remark rmk:qvoewfj.
+\begin{theorem}[$\delta$-ESS and classical differential cosets are equivalent]
+  \label{thm:delta-classical-equivalence}
+  \uses{cor:delta-ess-lambda-multiples,lem:delta-images-equal-classical-boundaries,thm:external-lambda-bockstein}
+  \notready
+  For every allowed $a,n,m,r$, the equation
+  $d_r^\delta(\lambda^a x)=\lambda^{a+r-n-1}y$ holds if and only if the
+  classical differential coset is $d_r(x)=y$.  Both sides have the same
+  indeterminacy $B_{r-1}$ after applying the stated $\lambda$ power.
+\end{theorem}
+
+\begin{proof}
+  The forward direction applies the Bockstein comparison to a representative
+  and uses the shorter-image lemma to identify the quotient.  The reverse
+  direction is the $\lambda$-multiple formula.  Equality of the two boundary
+  subgroups makes the correspondence bijective at the level of differential
+  cosets, not merely at the level of nonvanishing.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1152-1163, Example 4.13.
+\begin{proposition}[$\delta_1,\delta_2,\delta_3$ regression]
+  \label{prop:delta-14-stem-regression}
+  \uses{prop:synthetic-14-stem-regression,cor:delta-ess-lambda-multiples}
+  \notready
+  The $d_2(h_4)=h_0h_3^2$ and
+  $d_3(h_0h_4)=h_0d_0$ examples yield exactly the eight
+  $\delta_1,\delta_2,\delta_3$ extensions and $\lambda$ powers listed in
+  Example 4.13: two for $\delta_1$, three for $\delta_2$, and three for
+  $\delta_3$.
+\end{proposition}
+
+\begin{proof}
+  Substitute $(n,m)=(1,\infty),(2,\infty),(3,\infty)$ and each admissible
+  value of $a$ into Corollary~\ref{cor:delta-ess-lambda-multiples}.  The
+  synthetic $E_\infty$ regression verifies that every source and target exists
+  in the displayed tridegree.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1165-1173, Definition def:classicalcrossdiff.
+\begin{definition}[Classical crossing on an $E_{n+1}$ page]
+  \label{def:classical-differential-crossing}
+  \uses{def:classical-adams-ss,def:ss-permanent-einfty-class}
+  \notready
+  Let $r\ge n+1$ and $d_r(x)=y$, with $x$ in filtration $s$.  A crossing on
+  the $E_{n+1}$ page is an essential differential
+  $d_{r-a-b}(x')=y'$ where the source filtration is $s+a$, the target
+  filtration is $s+r-b$, $0<a\le n-1$, and
+  $0\le b\le r-n-1$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:1218-1234, Proposition prop:cross-dr-En.
+\begin{proposition}[Classical crossing iff $\delta_n$ crossing]
+  \label{prop:classical-crossing-iff-delta-crossing}
+  \uses{def:classical-differential-crossing,def:fess-crossing,thm:delta-classical-equivalence,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-first-quotient}
+  \notready
+  A classical $d_r(x)=y$ has a crossing on $E_{n+1}$ if and only if the
+  corresponding extension
+  $d_r^{\delta_n}(x)=\lambda^{r-n-1}y$ has a crossing in the synthetic
+  $\delta_n$-ESS.
+\end{proposition}
+
+\begin{proof}
+  A synthetic crossing has the unique degree form
+  $d_{r-a-b}^{\delta_n}(\lambda^a x')=\lambda^{r-n-1-b}y'$.  The two
+  sides are both empty when $n=1$: the classical range would require
+  $0<a\le0$, while mod-$\lambda$ collapse and unique detection exclude an
+  additional synthetic representative.  For $n\ge2$, the two $E_\infty$
+  formulas force exactly the inequalities in
+  Definition~\ref{def:classical-differential-crossing}.  Apply the
+  $\delta$--classical equivalence in each direction, preserving essentiality
+  through the shared boundary quotient.  The first-quotient proposition is
+  used only in the $n=1$ branch.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1236-1238, Remark nocrossE2.
+\begin{corollary}[No classical crossing on $E_2$]
+  \label{cor:classical-e2-no-crossing}
+  \uses{def:classical-differential-crossing,prop:classical-crossing-iff-delta-crossing}
+  \notready
+  No classical Adams differential has a crossing on the $E_2$ page, and every
+  corresponding $\delta_1$ extension has no crossing.
+\end{corollary}
+
+\begin{proof}
+  Setting $n=1$ would require an integer $a$ with $0<a\le0$.  Hence no
+  classical crossing exists; transfer the conclusion through
+  Proposition~\ref{prop:classical-crossing-iff-delta-crossing}.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1240-1271, Example exam:classcrossdiff.
+\begin{proposition}[Stem-$38$ crossing regression]
+  \label{prop:stem38-crossing-regression}
+  \uses{prop:classical-crossing-iff-delta-crossing,cor:classical-e2-no-crossing}
+  \notready
+  Given the typed computation evidence
+  $d_3(e_1)=h_1t$ and
+  $d_4(h_0h_3h_5)=h_0^2x$, the former is a crossing of the latter on the
+  $E_3$ and $E_4$ pages, but not on $E_2$ or on pages $E_r$ for $r\ge5$.
+  The associated $\delta_n$ extensions and their weights are exactly those in
+  Example 4.18.
+\end{proposition}
+
+\begin{proof}
+  Check the four inequalities in the crossing definition for $n=1,2,3$ and
+  $n\ge4$, then transport the two computed differential cosets using the
+  crossing equivalence.  The synthetic $E_\infty$ formulas verify which
+  $\lambda$ multiples remain represented.
+\end{proof}
+
+\subsection{Classical page-extension theorems}
+
+% SOURCE: MainPaper/main.tex:1541-1564 and 2084-2099, the finite Ext-product
+% enumeration used both for no-crossing and for page stretching.  This node is
+% deliberately stated without assuming that the E_infinity extension exists.
+\begin{proposition}[Hopf crossing-obstruction exclusion]
+  \label{evidence:hopf-crossing-obstruction-exclusion}
+  \uses{def:page-extension-crossing,def:finite-page-extension-nonliftable-crossing,thm:external-adams-one-line,def:ss-elementwise-page-presentation,def:ss-cycle-boundary-survival,evidence:normalized-hopf-detection}
+  \notready
+  For the candidate Hopf relation of length two from
+  $h_0h_4^2$ to $h_0p$, a finite evidence record enumerates every
+  degree-allowed crossing tuple and every tuple satisfying the
+  nonliftable-crossing bounds of
+  Definition~\ref{def:finite-page-extension-nonliftable-crossing} between
+  $E_3$ and any finite page.  The list is
+  empty.  A separate part enumerates every permanent source and target in the
+  same forced bidegrees and excludes every actual shorter
+  $(\nu_{\mathrm{Hopf}},E_\infty)$-extension; this is not inferred from the
+  finite list.  Both the finite-page reductions and this permanent-candidate
+  enumeration use the Hopf component of the single stored normalized
+  triangle lift from Proposition~\ref{evidence:normalized-hopf-detection},
+  together with its retained equality
+  $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$.  Its decisive typed product check is
+  \[
+    h_0^2h_4^2h_2=0\ne h_0p.
+  \]
+  The same record supplies the independent typing facts
+  \[
+    h_0h_4^2\in Z_\infty(S^3),
+    \qquad h_0p\in Z_\infty(S^0).
+  \]
+  The first follows from the known $d_2(h_5)=h_0h_4^2$ and
+  $B_2\subseteq Z_\infty$; the second is a complete outgoing-differential
+  exclusion in the target bidegree.  Thus both the source and target remain
+  typed on every later page.  It also certifies
+  $h_0p\notin B_2$ and that no shorter Hopf-ESS image reaches its complete
+  target coset.  Consequently, whenever the candidate length-two relation
+  exists at a finite or infinite level, it is essential.
+  Thus the record contains both a finite-page obstruction list and an
+  independently computed untruncated candidate list.  Neither branch assumes
+  nor concludes that the candidate relation already exists at its respective
+  finite or infinite level.
+\end{proposition}
+
+\begin{proof}
+  Enumerate the finitely many integers $a,a',b$ allowed by the crossing and
+  nonliftable-crossing inequalities and then enumerate the Ext groups in their
+  forced source and target bidegrees.  Intersect the same finite bidegree lists
+  with $Z_\infty$ to obtain the independent untruncated-candidate list.  The
+  stored equality $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$ identifies, on every
+  finite reduction and on the untruncated list, the only possible shorter Hopf
+  product with the displayed zero class, whereas the proposed target is
+  nonzero.  Store
+  the degree bounds, cycle-range checks, complete incoming/outgoing target
+  search, and typed product inequality in the evidence record.  The source cycle fact is
+  also obtained from the one-line differential and the inclusion of boundaries
+  into permanent representatives.  No inverse-limit representative or
+  $E_\infty$ extension is used in this enumeration.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1284-1298, E_0 formulas before Definition def:6c076a33.
+\begin{proposition}[$E_0$ presentation for the reduced-map ESS]
+  \label{prop:hat-map-ess-e0}
+  \uses{def:hat-map-page-reduction,def:synthetic-extension-ss,thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-first-quotient}
+  \notready
+  For finite $r$, in weight $t-k+e(f)$, the $E_0$ page of the
+  $\widehat f_{r-1}$-ESS is
+  \[
+  \frac{Z_{r-1-k}^{s,t}(X)}{B_{1+k}^{s,t}(X)}\oplus
+  \frac{Z_{r-1-k+e(f)}^{s,t}(Y)}{B_{1+k-e(f)}^{s,t}(Y)}.
+  \]
+  This displayed formula is for finite $r$.  At $r=\infty$, the $E_0$ page
+  of the $\widehat f$-ESS is instead
+  \[
+  \frac{Z_\infty^{s,t}(X)}{B_{1+k}^{s,t}(X)}\oplus
+  \frac{Z_\infty^{s,t}(Y)}{B_{1+k-e(f)}^{s,t}(Y)};
+  \]
+  no expression such as $\infty-1-k$ is formed.
+  For finite $r$, its length-$n$ differential is a map from
+  \[
+    {}^{\widehat f_{r-1}}\!Z_{n-1}^{s,t,t-k}(X)
+      \subseteq Z_{r-1-k}^{s,t}(X)/B_{1+k}^{s,t}(X)
+  \]
+  to
+  \[
+    \frac{Z_{r-1-k-n+e(f)}^{s+n,t+n}(Y)/
+      B_{1+k+n-e(f)}^{s+n,t+n}(Y)}
+    {{}^{\widehat f_{r-1}}\!B_{n-1}^{s+n,t+n,t-k}(Y)}.
+  \]
+  It vanishes for degree reasons when $n<\operatorname{AF}(f)$ or
+  $n>r-2-k+e(f)$.
+  At $r=\infty$, replace $\widehat f_{r-1}$ by $\widehat f$ and every cycle
+  numerator in these source and target groups by $Z_\infty$; only the lower
+  vanishing bound $n<\operatorname{AF}(f)$ remains.
+\end{proposition}
+
+\begin{proof}
+  If $r=2$, substitute the source and target weights into the first-quotient
+  edge presentation.  If $3\le r<\infty$, use the finite-quotient
+  $E_\infty$ formula at exponent $r-1\ge2$.  If $r=\infty$, use the
+  untruncated $Z_\infty/B_j$ formula separately.  Then apply the elementwise ESS presentation,
+  simplify the two cycle and boundary subscripts over integers, and check the
+  quotient range before converting to a finite page index.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1391-1402, Example exam:extonEn(1).
+\begin{proposition}[Hopf-map $E_2$ page extension]
+  \label{prop:hopf-e2-page-extension}
+  \uses{def:page-extension,evidence:normalized-hopf-detection,prop:synthetic-einfty-first-quotient}
+  \notready
+  Let $\nu_{\mathrm{Hopf}}:S^3\to S^0$ denote the classical Hopf map.  Typed Ext
+  product evidence supplies the essential extension
+  \[
+    d_1^{\nu_{\mathrm{Hopf}},E_2}(h_5)=h_2h_5.
+  \]
+  The notation $\nu_{\mathrm{Hopf}}$ is kept distinct from the synthetic functor
+  $\nu$.
+\end{proposition}
+
+\begin{proof}
+  Reduce the precise lifted-triangle component identified in
+  Proposition~\ref{evidence:normalized-hopf-detection} modulo $\lambda$.
+  The first-quotient uniqueness statement identifies its reduction with
+  multiplication by $h_2$, so the stated extension is exactly the supplied
+  Ext product.  Thus this node and the later $E_3/E_\infty$ nodes use the same
+  chosen normalized Hopf map.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1403-1423, Example exam:extonEn(2); proved later by Example exam:Mahowald.
+\begin{proposition}[Hopf-map $E_3$ page extension]
+  \label{prop:hopf-e3-page-extension}
+  \uses{def:page-extension,thm:generalized-mahowald,prop:mahowald-cofiber-regression,evidence:hopf-crossing-obstruction-exclusion}
+  \notready
+  The normalized Hopf map has the essential extension
+  \[
+    d_2^{\nu_{\mathrm{Hopf}},E_3}(h_0h_4^2)=h_0p.
+  \]
+  Equivalently, modulo $\lambda^2$ there are detected representatives with
+  $[h_0h_4^2][h_2]=[\lambda h_0p]$.
+\end{proposition}
+
+\begin{proof}
+  This is the conclusion of the cofiber regression obtained from the
+  generalized Mahowald trick.  Transport that synthetic extension through
+  Definition~\ref{def:page-extension} and verify the displayed bidegrees.  The
+  independent Hopf obstruction certificate says that $h_0p$ is nonzero modulo
+  $B_2$ and is not a shorter Hopf-ESS image, so the complete target coset does
+  not contain zero; hence the extension is essential.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1424-1433, Example exam:extonEn(3); proved later by Example exam:stretchext.
+\begin{proposition}[Hopf-map $E_\infty$ page extension]
+  \label{prop:hopf-einfty-page-extension}
+  \uses{prop:hopf-e3-page-extension,prop:page-stretch-regression}
+  \notready
+  The preceding relation lifts to an essential extension
+  \[
+    d_2^{\nu_{\mathrm{Hopf}},E_\infty}(h_0h_4^2)=h_0p.
+  \]
+\end{proposition}
+
+\begin{proof}
+  This is the intended conclusion of the page-stretch regression.
+  Its untruncated lifting argument remains to be completed; after existence
+  is proved, the independent nonzero target-coset clause gives essentiality.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1391-1433, Example exam:extonEn(4).
+\begin{proposition}[Multiplication-by-two page-extension regression]
+  \label{prop:two-page-extension-regression}
+  \uses{def:page-extension-coset,prop:no-crossing-iff-uniform-detection}
+  \notready
+  Given the stated $14$-stem evidence and the comparison
+  $\lambda[h_0]=2$, multiplication by two has
+  $d_2^{2,E_\infty}(h_0h_3^2)=0$, while
+  $d_1^{2,E_\infty}(d_0)=h_0d_0$ is essential and makes the alternative target
+  $d_2^{2,E_\infty}(h_0h_3^2)=h_0d_0$ inessential.
+\end{proposition}
+
+\begin{proof}
+  Evaluate multiplication by $[h_0]$ on the supplied synthetic homotopy group.
+  Its only nonzero leading target comes from the higher-filtration class
+  $[\lambda d_0]$.  The representative and inessentiality criteria yield the
+  three asserted page-extension statuses.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1515-1539, Proposition prop:cross-f-Er.
+\begin{proposition}[Page crossing iff synthetic crossing]
+  \label{prop:page-crossing-iff-synthetic-crossing}
+  \uses{def:page-extension-crossing,def:fess-crossing,prop:synthetic-einfty-map-compatibility,prop:synthetic-ess-weightwise-transport}
+  \notready
+  An $(f,E_r)$-extension has a page crossing if and only if its defining
+  $\widehat f_{r-1}$-ESS extension has a crossing for finite $r$.  For
+  $r=\infty$, the equivalent objects are the actual untruncated
+  $(f,E_\infty)$ crossing and an actual crossing in the $\widehat f$-ESS.
+\end{proposition}
+
+\begin{proof}
+  A synthetic crossing necessarily has the form
+  $d_{n-a-b}^{\widehat f_{r-1}}(\lambda^ax')
+   =\lambda^{n-b-e(f)}y'$.  Compare the quotient of exponent $r-1$ with that
+  of exponent $r-1-a$.  Dividing by $\lambda^a$ introduces exactly
+  $B_{1+n-b-e(f)}$; therefore essentiality is equivalent to the nonboundary
+  condition in the finite page-crossing definition.
+
+  At $r=\infty$, start with an actual untruncated shorter page extension on
+  permanent representatives.  The infinite-endpoint clause of
+  Proposition~\ref{prop:synthetic-einfty-map-compatibility} identifies
+  multiplication by $\lambda^a$ with the corresponding boundary-cutoff
+  quotient on $Z_\infty/B_j$.  This converts that actual page witness to an
+  actual crossing in the untruncated $\widehat f$-ESS, and the same quotient
+  calculation gives the converse.  No finite solution tower is promoted to an
+  infinite witness in this argument.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1541-1579, Example exam:Ercross.
+\begin{proposition}[Page-crossing regression]
+  \label{prop:page-crossing-regression}
+  \uses{prop:hopf-e2-page-extension,prop:hopf-e3-page-extension,prop:hopf-einfty-page-extension,evidence:hopf-crossing-obstruction-exclusion,prop:two-page-extension-regression,prop:page-crossing-iff-synthetic-crossing}
+  \notready
+  The four examples of Section 5 have the stated crossing behavior: the
+  $E_2$, $E_3$, and $E_\infty$ Hopf-map extensions have no crossings, while
+  the zero multiplication-by-two extension is crossed by the essential
+  length-one $d_0$ target.  The no-crossing certificates include the Ext
+  relation $h_0^2h_4^2h_2=0\ne h_0p$.
+\end{proposition}
+
+\begin{proof}
+  There is no positive $a$ in the $E_2$ crossing range.  For the actual
+  Hopf-map $E_3$ and $E_\infty$ extensions, apply the independent finite
+  obstruction certificate.  Its separate permanent-candidate enumeration
+  excludes every actual untruncated shorter extension without having assumed
+  the candidate $E_\infty$ relation.  For multiplication by two, the essential
+  $d_1$ extension from $d_0$ meets the crossing inequalities and witnesses the
+  failure of no-crossing.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1581-1597, unlabelled Proposition 5.14.
+\begin{proposition}[$E_\infty$ page extension gives a classical extension]
+  \label{prop:einfty-page-to-classical-extension}
+  \uses{def:page-extension,thm:external-lambda-inversion,def:reindexed-ss-morphism,def:f-extension-essential}
+  \notready
+  If $x\in Z_\infty^{s,t}(X)$ and
+  $y\in Z_\infty^{s+n,t+n}(Y)$ satisfy
+  $d_n^{f,E_\infty}(x)=y$, then after passing to classical $E_\infty$ cosets,
+  \[
+    d_n^f(x+B_\infty)=y+B_\infty.
+  \]
+  The resulting classical extension may be inessential.
+\end{proposition}
+
+\begin{proof}
+  Invert $\lambda$ in the $\widehat f$-ESS.  Generic-fiber equivalence
+  identifies its source and target with the classical $f$-ESS and sends the
+  normalized map to $f$.  Naturality of the induced reindexed page maps sends
+  the synthetic differential coset to the displayed classical coset.
+\end{proof}

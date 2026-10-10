@@ -1,0 +1,176 @@
+For clarity of exposition we prove the various parts of \Cref{thm:app-main} as separate lemmas. Before proceeding we summarize each of these parts.
+\begin{enumerate}
+\item \Cref{thm:app-main}(1) is a direct corollary of \Cref{thm:AB-vl}.
+\item \Cref{thm:app-main}(2) is a corollary of \Cref{thm:app-main}(1) and a bound on $\Gamma(k)$ in terms of $f_{\BP\langle 1\rangle}(k)$ due to Davis and Mahowald \cite{DM3} at $p=2$ and Gonz\'alez \cite{GonzalezRegular} at odd primes.
+\item \Cref{thm:app-main}(3) is a corollary of the $n=1$ case of \Cref{thm:app-main}(1) combined with \Cref{cor:ANvl}.
+\item \Cref{thm:app-main}(4) is proved in the same way as \Cref{thm:app-main}(2) except using \Cref{thm:app-main}(3) instead of \Cref{thm:app-main}(1). 
+\end{enumerate}
+
+\begin{cor}[\Cref{thm:app-main}(1)]
+  \label{cor:bpn-vl}
+  $$ f_{\textup{BP}\langle n \rangle}(k) \leq \frac{1}{|v_{n+1}|}k + \left(1 + \frac{1}{|v_{n+1}|}\right)f_{\textup{BP}}(k) - \frac{1}{|v_{n+1}|} = \frac{k}{|v_{n+1}|} + o(k) $$
+\end{cor}
+
+\begin{proof}
+    Apply \Cref{thm:AB-vl} to the map of $\mathbb{E}_1$-algebras $\BP \to \BP\langle n \rangle$, which exists by \cite[Corollary 3.2]{Angeltveit}. While the statement of \cite[Corollary 3.2]{Angeltveit} asks for $R$ to be an $\mathbb{E}_\infty$-ring spectrum, its proof only requires that $R$ be $\mathbb{E}_2$. The spectrum $\BP$ admits the structure of an $\mathbb{E}_4$-ring (and therefore $\mathbb{E}_2$-ring) by \cite{BasterraMandell}.
+\end{proof}
+
+This corollary used only very coarse information about $\BP\langle n \rangle$.
+In fact, the same conclusions hold with $\BP\langle n \rangle$ replaced by $\tau_{<|v_{n+1}|}\BP$.
+We believe that the actual vanishing curve for $\BP\langle n \rangle$ has only a constant ``error term''. As such, we make the following conjecture:
+
+\begin{cnj}
+  $$ f_{\textup{BP}\langle n \rangle}(k) = \frac{k}{|v_{n+1}|} + O(1). $$
+\end{cnj}
+
+\begin{rmk}
+    The $n=0$ case of this conjecture is essentially due to Adams and Luilevicius and appeared in the discussion following \Cref{rmk:g-f-comp}. For $n > 0$ this conjecture is open.
+\end{rmk}
+
+In order to prove \Cref{thm:app-main}(2) we need a technique which allows us to bound $\Gamma(k)$. This is provided by the following pair of theorems proved by Davis-Mahowald at $p=2$ and Gonz\'alez at $p\neq 2$.
+  
+\begin{thm}[{\cite[Theorem 5.1]{DM3}}]
+  \label{thm:DM-bo}
+  Let
+  $$\mathbb{S}^0 = S_0 \xleftarrow{f_1} S_1 \xleftarrow{f_2} S_2 \xleftarrow{f_3} \cdots $$
+  denote the canonical $bo$-Adams resolution of $\Ss^0$ and suppose we are given $\alpha_s \in \pi_n(S_s)$ such that $\alpha_s$ maps to zero under the composite
+  $$\pi_n(S_s) \to \pi_n(S_0) \to \pi_n(L_{K(1)}\Ss) $$
+  and $AF(\alpha_s) \geq \epsilon(n,s)$.\footnote{If $\alpha \in \pi_*(X)$, then $AF(\alpha)$ denotes the $\HFp$-Adams filtration of the class $\alpha$.} Then, there exists an $\alpha_{s+1}$ such that $f_s(f_{s+1}(\alpha_{s+1})) = f_s(\alpha_s)$ and $AF(\alpha_{s+1}) \geq AF(\alpha_s) - \delta(n,s)$ where the values of $\epsilon(n,s)$ and $\delta(n,s)$ are given in the table below:
+  \begin{center}
+    \begin{tabular}{|c||c|c|}\hline
+      \text{s}  & $\epsilon(n,s)$ & $\delta(n,s)$ \\\hline\hline
+      $0$ & $1$ & $1$ \\\hline
+      $1$ & $\max(1, v_2(n+1)-1)$ & $\max(1, v_2(n+1)-1)$ \\\hline
+      $2$ & $v_2(n+2)+1$ & $v_2(n+2)+1$ \\\hline
+      $\geq 3$ & $2$ & $\begin{cases} 2 & n+s \equiv 0,1,2,4 \pmod 8 \\ 1 & n+s \equiv 3,5,6,7 \pmod 8 \end{cases}$ \\\hline
+    \end{tabular}
+  \end{center}
+  Note that $\alpha_s$ maps to zero in $L_{K(1)}\Ss$ automatically if $s \geq 2$.
+\end{thm}
+
+\begin{thm}[{\cite[Theorem 7.5]{GonzalezRegular}}]
+  \label{thm:gon-bp1}
+  Let
+  $$\mathbb{S}^0 = S_0 \xleftarrow{f_1} S_1 \xleftarrow{f_2} S_2 \xleftarrow{f_3} \cdots $$
+  denote the canonical $\textup{BP}\langle 1\rangle$-Adams resolution of $\mathbb{S}^0$ and suppose we are given $\alpha_s \in \pi_n(S_s)$ such that $\alpha_s$ maps to zero under the composite
+  $$ \pi_n(S_s) \to \pi_n(S_0) \to \pi_n(L_{K(1)}\Ss) $$
+  and $AF(\alpha_s) \geq \epsilon(n,s)$. Then, there exists an $\alpha_{s+1}$ such that $f_s(f_{s+1}(\alpha_{s+1})) = f_s(\alpha_s)$ and $AF(\alpha_{s+1}) \geq AF(\alpha_s) - \epsilon(n,s)$ where the values of $\epsilon(n,s)$ are given in the table below:
+  \begin{center}
+    \begin{tabular}{|c|c|}\hline
+      \text{s} & $\epsilon(n,s)$ \\\hline\hline
+      $0,1$ & $1$ \\\hline
+      $2$ & $1 + \ell(n)$ \\\hline
+      $\geq 3$ & $\begin{cases} 2 & n+s \equiv 0 \pmod{q} \\ 1 & n+s \not\equiv 0 \pmod{q}\end{cases}$ \\\hline
+    \end{tabular}
+  \end{center}
+  Note that $\alpha_s$ maps to zero in $L_{K(1)}\Ss$ automatically if $s \geq 2$.
+\end{thm}
+
+\begin{cor}
+  \label{cor:bp1->h}
+  \begin{align*}
+    & \Gamma(k) \leq \frac{3}{2} g_{bo}(k) + \frac{3}{2} + \ell(k) & \text{ at }\ p = 2 \\
+    \text{and}\ \ \ \ \  & \Gamma(k) \leq \frac{q+1}{q} g_{\textup{BP}\langle 1 \rangle}(k) + 1 - \frac{2}{q} + \ell(k) & \text{ at }\ p \neq 2.
+  \end{align*}  
+\end{cor}
+
+\begin{proof}
+  Suppose $p=2$, then we can read off from Theorem \ref{thm:DM-bo} that
+  if $\alpha \in \pi_k(\Ss)$ is a class which maps to zero in $L_{K(1)}\Ss$ and
+  \begin{align*}
+    AF(\alpha) \geq &1 + \max(1, v_2(k+1)-1) + \big( 1 + v_2(k+2) \big) \\
+    &+ (N-3) + \left| \left\{ (k+s) \equiv 0,1,2,4 \pmod 8\ |\ 3 \leq s < N \right\} \right| + 1
+  \end{align*}
+  then $\alpha$ has $bo$-Adams filtration at least $N$.
+  Once $N > g_{bo}(k)$ we automatically have $\alpha = 0$.
+  Stated another way, we have
+  \begin{align*}
+    \Gamma(k)+1 &\leq 1 + \max(1, v_2(n+1)-1) + \big( 1 + v_2(n+2) \big) \\
+    &\ \ \ + (g_{bo}(k) - 2) + \left| \left\{ (n+s) \equiv 0,1,2,4 \pmod 8\ |\ 3 \leq s < (g_{bo}(k)+1) \right\} \right| + 1 \\
+    &\leq 3 + \begin{cases} v_2(n+1) & n \text{ odd} \\ v_2(n+2) & n \text{ even} \end{cases} + (g_{bo}(k) - 2) + \frac{1}{2}(g_{bo}(k) - 2) + \frac{5}{2} \\
+    &\leq \frac{3}{2}g_{bo}(k) + \frac{5}{2} + \ell(k).
+\end{align*}
+
+  Suppose $p \neq 2$, then we can read off from Theorem \ref{thm:gon-bp1} that
+  if $\alpha \in \pi_k(\Ss)$ is a class which maps to zero in $L_{K(1)}\Ss$ and
+  $$ AF(\alpha) \geq 3 + \ell(k) + (N-3) + \left| \left\{ (k+s) \equiv 0 \pmod q\ |\ 3 \leq s < N \right\} \right| $$
+  then $\alpha$ has $BP\langle 1 \rangle$-Adams filtration at least $N$.
+  Once $N > g_{BP\langle 1 \rangle}(k)$ we automatically have $\alpha = 0$.
+  Stated another way, we have
+  \begin{align*}
+    \Gamma(k)+1 &\leq 3 + \ell(k) + (g_{BP\langle 1 \rangle}(k)-2) \\
+    &\ \ \ + \left| \left\{ (k+s) \equiv 0 \pmod q\ |\ 3 \leq s < (g_{BP\langle 1 \rangle}(k)+1) \right\} \right| \\
+    &\leq 1 + \ell(k) + g_{BP\langle 1 \rangle}(k) + \frac{1}{q}(g_{BP\langle 1 \rangle}(k) - 2) + 1 \\
+    &\leq 2 - \frac{2}{q} + \ell(k) + \frac{q+1}{q} g_{BP\langle 1 \rangle}(k).
+  \end{align*}
+\end{proof}
+
+\begin{cor}[\Cref{thm:app-main}(2)]
+\begin{align*}
+  & \Gamma(k) \leq \frac{1}{4}k + \frac{7}{4}f_{\textup{BP}}(k+1) + \ell(k) & \text{ at }\ p = 2 \\
+  \text{and}\ \ \ \ \  & \Gamma(k) \leq \frac{q+1}{q|v_2|}k + \frac{(q+1)(|v_2|+1)}{q|v_2|}f_{\textup{BP}}(k+1) - \frac{3}{q} + \ell(k) & \text{ at }\ p \neq 2. 
+\end{align*}
+\end{cor}
+
+\begin{proof}
+  At $p = 2$, using \Cref{cor:bp1->h}, \Cref{rmk:g->f}, \Cref{thm:AB-vl} and \Cref{thm:app-main}(1) we obtain:
+  \begin{align*}
+    \Gamma(k)
+    &\leq \frac{3}{2} g_{bo}(k) + \frac{3}{2} + \ell(k) 
+    \leq \frac{3}{2} (f_{bo}(k+1) - 1) + \frac{3}{2} + \ell(k) \\
+    &\leq \frac{3}{2} f_{\BP \langle 1 \rangle}(k+1) + \ell(k) 
+    \leq \frac{3}{2} \left( \frac{1}{6}(k+1) + \frac{7}{6} f_{\BP}(k+1) - \frac{1}{6} \right) + \ell(k) \\
+    &\leq \frac{1}{4}k  + \frac{7}{4} f_{\BP}(k+1) + \ell(k).
+  \end{align*}
+  
+  At $p \neq 2$,
+  using \Cref{cor:bp1->h}, \Cref{rmk:g->f} and \Cref{thm:app-main}(1) we obtain:
+  \begin{align*}
+    \Gamma(k)
+    &\leq \frac{q+1}{q} g_{\textup{BP}\langle 1 \rangle}(k) + 1 - \frac{2}{q} + \ell(k) \\
+    &\leq \frac{q+1}{q} \left( f_{\textup{BP}\langle 1 \rangle}(k+1) - 1 \right) + 1 - \frac{2}{q} + \ell(k) \\
+    &\leq \frac{q+1}{q} \left( \frac{1}{|v_{2}|}(k+1) + \frac{|v_2| + 1}{|v_{2}|} f_{\BP}(k+1) - \frac{1}{|v_{2}|} \right) - \frac{3}{q} + \ell(k) \\
+    &\leq \frac{q+1}{q|v_{2}|}k + \frac{(q+1)(|v_2| + 1)}{q|v_{2}|} f_{\BP}(k+1) - \frac{3}{q} + \ell(k). 
+  \end{align*}
+\end{proof}
+
+\begin{cor}[\Cref{thm:app-main}(3)]
+  For each odd prime,
+  $$ f_{\textup{BP}\langle 1 \rangle}(k) \leq \frac{p+2}{2(p^3 - p - 1)}k + 2p^2 - 4p + 11. $$
+\end{cor}
+
+\begin{proof}
+  We specialize \Cref{cor:bpn-vl} to the $n=1$ case and plug in the bound on $f_\BP$ obtained in \Cref{cor:ANvl}.
+  \begin{align}\label{eqn:bp1}
+    \nonumber f_{\textup{BP}\langle 1 \rangle}(k)
+    &\leq \frac{1}{|v_2|}k + \frac{1 + |v_2|}{|v_2|} f_\BP(k) - \frac{1}{|v_2|} \\
+    \nonumber &\leq \frac{1}{|v_2|}k + \frac{1 + |v_2|}{|v_2|} \left( \frac{1}{p^3 - p -1}k + 2p^2 - 4p + 10 - \frac{2p^2+2p-9}{p^3 - p -1} \right) - \frac{1}{|v_2|} \\
+      &\leq \frac{p+2}{2(p^3 - p -1)}k + 2p^2 - 4p + 11 - \frac{2p - 6}{p^2 -1} - \frac{(2p^2+2p-9)(2p^2 -1)}{(2p^2 -2)(p^3 - p -1)} \\
+    &< \frac{p+2}{2(p^3 - p -1)}k + 2p^2 - 4p + 11
+  \end{align}
+\end{proof}
+
+\begin{cor}[\Cref{thm:app-main}(4)]
+  For $p=3$,
+  $$ \Gamma(k) \leq \frac{25}{184}k + 19 + \frac{1133}{1472} + \ell(k), $$
+  and for $p \geq 5$,
+  $$ \Gamma(k) \leq \frac{(2p-1)(p+2)}{4(p-1)(p^3 - p -1)}k + 2p^2 - 3p + 11 + \ell(k). $$
+\end{cor}
+
+\begin{proof}
+  In the proof of \Cref{thm:app-main}(2) we obtained
+  $$ \Gamma(k) \leq \frac{q+1}{q} (f_{\BP\langle 1 \rangle}(k+1) - 1) + 1 - \frac{2}{q} + \ell(k) $$
+  for each odd prime. Using the intermediate bound on $f_{\BP\langle 1 \rangle}(k)$ from \Cref{eqn:bp1} we obtain a bound on $\Gamma(k)$ which simplifies to
+\begin{align*}
+  \Gamma(k)
+    &\leq \frac{(2p-1)(p+2)}{4(p-1)(p^3 - p -1)}k + 2p^2 - 3p + 10 \\ &+ \frac{-4p^5 + 26p^4 + 19p^3 - 52p^2 - 27p + 35}{(2p-2)(2p^2 - 2)(p^3 - p -1)} + \ell(k).
+\end{align*}
+For all $p \geq 5$ the second to last term is less than $1$.
+\end{proof}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Main"
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

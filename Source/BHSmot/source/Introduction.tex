@@ -1,0 +1,87 @@
+\input{Intro-soft.tex}
+
+\subsection{Examples of Artin--Tate motivic spectra}\ 
+
+\input{Intro-AT.tex}
+
+\subsection{Comparison functors}\ 
+
+\input{Intro-comp.tex}
+
+\subsection{$\R$-motivic spectra as a deformation}\ 
+
+\input{Intro-def.tex}
+
+%% \subsection{Limiting behavoirs of the deformation}\ 
+
+%% \input{Intro-limit.tex}
+
+\subsection{Potpourri}\
+
+\input{Intro-potpurri.tex}
+
+\subsection*{Notations and conventions}\ 
+
+%% \todo{We should write this at the end once we know what needs to go here.}
+
+%% \todo{Implement the hyper-modern notation package.}
+
+Throughout this paper the term category will refer to an $\infty$-category as developed by Joyal and Lurie. In some places we use the term $1$-category, which is short-hand for 1-truncated $\infty$-category. We will also assume the reader is familiar with higher algebra as developed in \cite{HA}.
+%% For an introduction to motivic spectra in this context we refer the reader to [cite].
+
+Throughout this paper, filtered and graded objects will be ubiquitous.
+We adopt the convention that a filtered object in a category $\CC$ is a diagram of the form
+  \[ \cdots \to C_2 \to C_1 \to C_0 \to C_{-1} \to C_{-2} \to \cdots, \]
+i.e. that the maps decrease the index variable. We provide a more complete introduction to filtered objects in \Cref{app:fil}, where we set up notation for several standard constructions.
+
+%% Since we have totally dispensed with classical foundations we are now free to reclaim the symbol $\cong$. In this paper we will use $\cong$ when two objects are equivalent along a specified equivalence, when two objects are abstractly equivalent but no preferred equivalence is given (or they are identified along the full poly-isomorphism in the sense of [trash]) we will use the symbol $\simeq$.
+
+Let $\CC$ denote a stable, presentably symmetric monoidal category.
+We will let $\CC_p$ denote the category of $p$-complete objects in $\CC$; this category acquires a symmetric monoidal structure through the completion of the symmetric monoidal structure on $\CC$.
+Similarly, if $X$ is an an object of $\CC$, we let $X_p$ denote the $p$-completion of $X$.
+If $\CC$ has a set of compact generators, then we let $\CC_{ip}$ denote the ind-completion of the full subcategory of $\CC$ generated under finite colimits and retracts by the $p$-completions of compact objects. In the situation where the unit is compact and all compact objects are dualizable, this definition admits the following simplification: $\CC_{ip} \simeq \Mod ( \CC ; \o_p)$. The tensor product can then be described as the relative tensor product over $\o_p$. The reason for this equivalence is that tensoring with a dualizable object commutes with limits, so for $X$ dualizable $X_p \simeq X \otimes \o_p$.
+%% the the restriction to the dualizable objects $\CC_{ip} ^{dual} \to \CC_p$ is fully faithful. Equivalently, a dualizable $\o_p$-module $M$ is already $p$-complete.
+
+Our reason for using $\CC_{ip}$ over $\CC_p$ is that, even if the unit in $\CC$ is compact, the unit in $\CC_p$ may not be compact. On the other hand, compactness of the unit in $\CC$ implies compactness of the unit in $\CC_{ip}$. This will make certain arguments more direct in the $ip$ case.
+%As a more philosophical point, the $ip$ category feels more natural as a category of $p$-adic objects since for example $\Q_p$ live in $\Ab_{ip}$ but not $\Ab_p$.
+The reader who strongly prefers the usual notion of $p$-completion will be relieved to know that in convenient cases (such as those in which we work throughout this paper) $(\CC_{ip})_p \simeq \CC_p$. Therefore, all the main theorems above admit $p$-complete analogs. 
+%For further discussion of aspects of $p$-completion we refer the reader to \Cref{sec:2vsi2complete}, which is logically independent from the rest of the paper (except for its treatment of $\kq$).
+
+When $\CC$ is a stable category and $X,Y \in \CC$ are objects, we will typically let $\Map_{\CC} (X,Y)$ denote the spectrum of maps from $X$ to $Y$.
+One exception is when $\CC$ comes with a natural enrichment to $C_2$-spectra, such as when $\CC = \SHR$. In that case, we will regard $\Map_{\CC} (X,Y)$ as a $C_2$-spectrum.
+When we want to access the underlying space of maps, we shall use the notation $\Omega^{\infty} \Map_{\CC} (X,Y)$.
+
+%% category and let $\CC_{ip}$ denote the category of modules over the $p$-completion of the unit.
+%% Then the map $\CC \to \CC_p$ factors as $\CC \to \CC_{ip} \to \CC_p$ in $\CAlg(Pr^L)$.
+
+
+%% WHAT TO SAY ABOUT ``FINITE TYPE'' OBJECTS? THIS IS IMPORTANT.
+
+%% \todo{Recall our $p$-completion convention.}
+%% \begin{dfn}
+%% The category of Galois cellular $\mathbb{R}$-motivic spectra is the smallest full subcategory $\SHgc \subset \SHR$, closed under tensor products and colimits, that contains the the Picard elements $\Ss^1$, $\G_m$, $\Ss^{\C}$ and their inverses.
+
+%% Let $\Ss_2^{\wedge}$ denote the $2$-completed unit in $\SHR$, and consider the category $\Ss_2^{\wedge}$-mod of $\Ss_2^{\wedge}$-module spectra.  We similarly define $\SHgc$ to be the smallest full subcategory of $\Ss_2^{\wedge}$-mod, closed under colimits and tensor products over $\Ss^{\wedge}_{2}$, containing the Picard elements $(\Ss^1)^{\wedge}_2, (\G_m)_2^{\wedge}$, $(\Ss^{\C})_2^{\wedge}$, and their inverses.
+
+%% Both $\SHgc$ and $\SHgc$ are symmetric monoidal stable $\infty$-categories, and by CITE the $2$-completions of these categories are equivalent.  Note however that not every object in $\SHgc$ is $2$-complete.
+%% \end{dfn}
+
+%% \todo{At some point the notations for graded and filtered objects will have to be standardized across the paper.}
+
+
+%% \todo{MANY MANY CITATIONS TO BE ADDED}
+
+%% We will use $Y : \CC \to \CC^{\Fil}$ to denote the lax symmetric monoidal functor that sends an object $X$ to the constant filtered object at $X$. 
+
+
+\subsection*{Acknowledgements}\
+
+We thank
+Tom Bachmann,
+Mark Behrens,
+Dan Isaksen,
+Piotr Pstr\k{a}gowski and
+Zhouli Xu
+for helpful conversations.
+During the course of this work, the middle author was supported by NSF grant DMS-1803273,
+and the last author by an NSF GRFP fellowship under Grant No. 1745302.

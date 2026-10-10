@@ -1,0 +1,307 @@
+%In this section, we will revisit the classic paper \cite{Miller} from the prime $2$. material on the telescope conjecture at chromatic height 1 and the prime 2, with the goal of proving that $Y$ admits a $v_1$-banded vanishing line with slope $\frac{1}{5}$. We do this by extending the methods used in \cite{Miller} to study the homotopy of an odd primary mod $p$ Moore spectrum to the case of the spectrum $Y = \Ss/2 \smsh \Ss/ \eta$ at the prime $2$.
+
+In \Cref{exm:miller-banded} we observed that Miller's computation of the $T(1)$-local homotopy of a Moore spectrum at odd primes \cite{Miller} can be summarized by saying that $C(p)$ admits a $v_1$-banded vanishing line of slope $\frac{1}{p^2 - p -1}$. The corresponding calculation at the prime $2$ is Mahowald's computation of the $T(1)$-local homotopy of the spectrum $Y \coloneqq C(2) \otimes C(\eta)$ \cite{MahJEHP}. Unfortunately, Mahowald's proof does not provide a $v_1$-banded vanishing line. In this section we adapt Miller's methods to the prime $2$ in order to obtain a $v_1$-banded vanishing line on $Y$.
+
+\begin{thm}\label{thm:Y-v1-band}
+  The $\HFt$-Adams spectral sequence for $Y$ has a $v_1$-banded vanishing line with parameters
+  $\left(-\frac{3}{2} \leq 0, 15, \frac{1}{5}, \frac{13}{5}, 1 \right)$.
+\end{thm}
+
+To prove \Cref{thm:Y-v1-band}, we apply the Miller square technique of \cite{Miller} \footnote{See \cite[Section 9]{AndrewsMiller} for a corrected and improved exposition of this technique.} to compute the $\HFt$-Adams spectral sequence of $Y$ above a line of slope $\frac{1}{5}$. The Miller square technique relates the differentials in the $\HFt$-Adams spectral sequence to those in the algebraic Novikov spectral sequence. We will use this relation to prove \Cref{thm:Y-v1-band} by producing many differentials in the $\HFt$-Adams spectral sequence for $Y$. Another major input to this section is a computation of Davis and Mahowald \cite{v1ExtDavisMahowald} that determines the $\mathrm{E}_2$-page of this spectral sequence above a line of slope $\frac{1}{5}$.
+
+\begin{rmk}
+  In classical language, \Cref{thm:Y-v1-band} is likely well-known to experts (though no proof appears in print) and the authors thank Mark Behrens for a helpful conversation on the subject.
+
+  Although the statement of \Cref{thm:Y-v1-band} involves synthetic spectra,
+  its proof is essentially classical.
+  In fact, the bulk of this proof is simply a collation of statements from \cite{Miller} and \cite{v1ExtDavisMahowald}.
+\end{rmk}
+
+\begin{rmk}
+  More recently, work of Gheorghe, Wang and Xu has identified the Miller square as arising via the motivic Adams spectral sequence \cite{GWX}.\footnote{One could equally well phrase things in terms of the $\nu \HFt$-based Adams spectral sequence in $\BP$-synthetic spectra.} In their formulation, the algebraic Novikov spectral sequence is identified with the motivic Adams spectral sequence for the motivic cofiber of $\tau$.
+  The link between the two sides of the Miller square is then provided by the motivic Adams spectral sequence for the sphere which has maps out to both the classical Adams spectral sequence (by inverting $\tau$) and the motivic Adams spectral sequence for the cofiber of $\tau$ (by modding out by $\tau$).
+  We encourage the reader interested in extending the computations from this section to read \cite{GWX}.
+\end{rmk}
+
+\begin{rmk}
+  At the end of this section, we will show in \Cref{cor:telescope} that \Cref{thm:Y-v1-band} implies the height $1$ prime $2$ telescope conjecture, recovering the main result of \cite{MahJEHP}.
+  % The proof presented here, which is similar to Miller's proof for height $1$ at an odd prime \cite{Miller}, has not previously appeared in the literature.
+\end{rmk}
+
+\begin{ntn}
+  Throughout this section we will fix a prime $p$ and write $\mathrm{H}_* (X)$ for the mod $p$ homology of a spectrum $X$.
+\end{ntn}
+
+%An important input to our argument is the computation by Mahowald and Davis of $v_1 ^{-1} \Ext^{s,t}_{\A_*} (\F_2, \mathrm{H}_* (Y))$ \cite{v1ExtDavisMahowald}, which determines to
+%
+%\begin{rmk}
+%    Given the work of Mahowald and Davis, our argument is almost exactly the same as Miller's application of his square to the odd-primary mod $p$ Moore spectrum. As such, our argument is well known to the experts.
+%\end{rmk}
+
+Let us begin by describing the Miller square technique, which applies to certain spectra $X$, as we recall below. The Miller square consists of the following diagram of spectral sequences:
+%
+%Our approach will be to imitate the computation of the $v_1$-localized Adams spectral sequence for an odd primary Moore spectrum by Miller in \cite{Miller}. His computation of the $v_1$-localized Adams spectral sequence is based on the study of the following square of spectal sequences, which exists under the assumption that the classical Adams spectral sequence for $\BP \smsh X$ degenerates.
+
+\begin{center}
+	\begin{tikzpicture}[baseline= (a).base]
+	    \node[scale=.90] (a) at (0,0){
+	\begin{tikzcd}
+        \Ext_{E_0 \BP_* \BP} ^{s,i,t} (E_0 \BP_*, E_0 \BP_* (X)) \arrow[d, Rightarrow, "\text{Algebraic Novikov}", swap] \arrow[rr,"\cong"] &  & \Ext^{s,t} _{P_*} (\F_p, \Ext^{i,*} _{E_*} (\F_p, \mathrm{H}_*(X))) \arrow[d, Rightarrow, "\text{Cartan-Eilenberg}"] \\[25pt]
+        \Ext_{\BP_* \BP} ^{s,t} (\BP_*, \BP_* (X)) \arrow[dr, Rightarrow, "\text{Adams-Novikov}", swap] & & \Ext_{\A_*} ^{s+i,t+i} (\F_p, \mathrm{H}_* (X)) \arrow[dl, Rightarrow, "\HFp-\text{Adams}"] \\[25pt]
+		& \pi_{t-s} (X) &  
+	\end{tikzcd}
+		};
+	\end{tikzpicture}
+\end{center}
+
+The reader will of course notice that, as we have drawn it, the diagram is not a square. This is because we want to emphasize the fact that the $\mathrm{E}_2$-pages of the algebraic Novikov and Cartan-Eilenberg spectral sequences do not agree in general, but only under the assumption that $X$ is \emph{$(\BP, \HFp)$-good} as defined below.
+
+\begin{dfn}
+    We say that a spectrum $X$ is \emph{$(\BP, \HFp)$-good} if the $\HFp$-Adams spectral sequence for $\BP \otimes X$ converges strongly and collapses on the $\mathrm{E}_2$-page\footnote{Note that under this collapse assumption, strong convergence is implied by conditional convergence.}, and the $\HFp$-Adams filtration on $\BP_* (X)$ agrees with the $(p,v_1,v_2, \dots)$-adic filtration.
+\end{dfn}
+
+\begin{exm}
+    The mod $p$ Moore spectrum $C(p)$ is $(\BP, \HFp)$-good for any prime $p$. The spectrum $Y$ is $(\BP, \HFt)$-good.
+\end{exm}
+
+Let us now recall from \cite{Miller} the definitions of the spectral sequences labeled algebraic Novikov and Cartan-Eilenberg in the above diagram.
+
+Before we describe the algebraic Novikov spectral sequence, we require some notation.
+
+\begin{ntn}
+    Let $I = (p,v_1,\dots) \subset \BP_* $. Given a $\BP_* \BP$-comodule $M$, we let $E_0 M$ denote the associated graded of $M$ with respect to the $I$-adic topology. We equip $E_0 M$ with the bigrading $(i,t)$, where $i$ is the $I$-adic grading and $t$ is the grading inherited from $M$.
+\end{ntn}
+
+\begin{exm}
+    In the grading above, we have \[E_0 \BP_* \cong \F_p[q_0, q_1, \dots] \text{ with } \abs{q_i} = (1,2(p^{i}-1))\] and \[E_0 \BP_* \BP \cong E_0 \BP_* [t_0, t_1, \dots] \text{ with } \abs{t_i} = (0,2(p^{i}-1)).\]
+\end{exm}
+
+To obtain the algebraic Novikov spectral sequence for a $\BP_* \BP$-comodule $M$, equip the cobar complex $\Omega^{*} (\BP_* \BP, M)$ by the tensor product filtration determined by the $I$-adic filtrations on $\BP_* \BP$ and $M$. This makes $\Omega^{*} (\BP_* \BP, M)$ into a filtered complex, and the algebraic Novikov spectral sequence is the associated spectral sequence.
+
+\begin{fact}[{\cite[Remark 8.4]{Miller}}]
+    The algebraic Novikov spectral sequence converges strongly under the assumption that $M$ is of finite type as a $\BP_*$-module.
+\end{fact}
+
+On the other hand, the Cartan-Eilenberg spectral sequence in the above diagram is that associated to the extension of Hopf algebras \[P_* \to \A_* \to E_* ,\] where for an odd prime $P_* \cong \F_p [\xi_1, \xi_2, \dots]$ and $E_* \cong \Lambda_{\F_p} [\tau_0, \tau_1 , \dots]$. At the prime $2$, one has $P_* \cong \F_2 [\zeta_1 ^2, \zeta_2 ^2, \dots]$ and $E_* \cong \F_2 [\zeta_1, \zeta_2, \dots] / (\zeta_1 ^2, \zeta_2 ^2, \dots)$.
+
+\begin{cnv}
+	Here we follow Milnor \cite{MilnorSteenrod} in calling the polynomial generators of the mod $2$ Steenrod algebra $\zeta_i$ rather than the now more common notation $\xi_i$, which conflicts with the notation for an odd prime.
+\end{cnv}
+
+Let us now explain the top horizontal arrow in the above diagram.
+
+\begin{lem}
+    If $X$ is $(\BP, \HFp)$-good, then there exists a natural isomorphism \[\Ext^{s,i,t} _{E_0 \BP_* \BP} (E_0 \BP_*, E_0 \BP_* (X)) \cong \Ext^{s,t} _{P_*} (\F_p, \Ext^{i,*} (\F_p, \mathrm{H}_* (X))).\]
+\end{lem}
+
+\begin{proof}
+    First, one notes that $E_0 \BP_* \BP$ is a split Hopf algebroid in the sense of \cite[Section 7]{Miller}. Indeed, $E_0 \BP_* \BP_*$ splits as $E_0 \BP_* \tilde{\otimes} P_*$ \cite[p. 305]{Miller}, which implies by \cite[Proposition 7.6]{Miller} that \[\Ext^{s,i,t} _{E_0 \BP_* \BP} (E_0 \BP_*, E_0 \BP_* (X)) \cong \Ext^{s,i,t} _{P_*} (\F_p, E_0 \BP_* (X)).\]
+
+    Now, since $\Ext_{E_*} ^{*,*} (\F_p, \mathrm{H}_* (X))$ is the $\mathrm{E}_2$-page of the $\HFp$-Adams spectral sequence converging to $\BP_* (X)$, the desired isomorphism follows from the definition of $(\BP, \HFp)$-good.
+\end{proof}
+%
+%\begin{rmk}
+%	At the prime $2$, there is a degree-doubling isomorphism $\A_* \cong P_*$ of Hopf algebras sending $\zeta_i \in \A_*$ to $\zeta_i ^2 \in P_*$. We will use this below to transform an Ext calculation over $P_*$ into a more well-known Ext calculation over $\A_*$.
+%\end{rmk}
+
+The main tool that we use from \cite{Miller} is the following theorem, which relates the $d_2$-differentials in the algebraic Novikov spectral sequence to those in the $\HFp$-Adams spectral sequence, under the assumption that the Cartan-Eilenberg spectral sequence collapses. We first state a piece of notation, and then the theorem.
+
+\begin{ntn}
+    We let $F^{\bullet} \Ext^{s,t} _{\A_*} (\F_p, \mathrm{H}_* (X))$ denote the filtration induced by the Cartan-Eilenberg spectral sequence on $\Ext^{s,t} _{\A_*} (\F_p, \mathrm{H}_* (X))$.
+\end{ntn}
+
+\begin{thm}[{\cite[Theorem 6.1]{Miller}}]\label{thm:Miller-thm} \todo{Somebody should go and check if I translated what Haynes wrote correctly.}
+    Let $X$ denote a $(\BP, \HFp)$-good spectrum, and let $s,t$ be integers such that the Cartan-Eilenberg spectral sequence converging to $\Ext^{s,t}_{\A_*} (\F_p, \mathrm{H}_* (X))$ collapses at the $\mathrm{E}_2$-page in total degrees $(s,t)$ and $(s+2,t+1)$.
+
+    Then the $d_2$-differential $d_2 ^{\HFt-ASS}$ induces a map
+    \[d_2 ^{\HFt-\mathrm{ASS}} : F^\bullet \Ext^{s,t}_{\A_*} (\F_p, \mathrm{H}_* (X)) \to F^{\bullet+1} \Ext^{s+2,t+1}_{\A_*} (\F_p, \mathrm{H}_* (X)) \]
+    and hence a map
+    \[d_2 ^{\HFt-\mathrm{ASS}} : \frac{F^\bullet \Ext^{s,t}_{\A_*} (\F_p, \mathrm{H}_* (X))}{F^{\bullet+1} \Ext^{s,t}_{\A_*} (\F_p, \mathrm{H}_* (X))} \to \frac{F^{\bullet+1} \Ext^{s+2,t+1}_{\A_*} (\F_p, \mathrm{H}_* (X))}{F^{\bullet+2} \Ext^{s+2,t+1}_{\A_*} (\F_p, \mathrm{H}_* (X))}. \]
+    Moreover, this associated-graded map may be identified with $-d_2 ^{\hspace{0.05cm}\mathrm{alg-Nov}}$, where $d_2 ^{\hspace{0.05cm}\mathrm{alg-Nov}}$ is the $d_2$-differential in the algebraic Novikov spectral sequence.
+\end{thm}
+
+Miller's main application is to the mod $p$ Moore spectrum $X = C(p)$ for an odd prime $p$. In this case, the Cartan-Eilenberg spectral sequence automatically collapses, so \Cref{thm:Miller-thm} applies. Miller is therefore able to compute the $\HFp$-Adams spectral sequence above a line of slope $\frac{1}{p^2-p-1}$ by studying the algebraic Novikov spectral sequence.
+
+The main obstacle to carrying out Miller's program at the prime $2$ is that the Cartan-Eilenberg spectral sequence no longer collapses. What allows us to proceed is a computation of Davis and Mahowald \cite{v1ExtDavisMahowald} that implies that the Cartan-Eilenberg spectral sequence for $Y$ collapses above a line of slope $\frac{1}{5}$. %Our proof of \Cref{thm:Y-v1-band} mainly consists of collating results from the literature, and is well-known to the experts.
+
+The main steps in the proof of \Cref{thm:Y-v1-band} are as follows:
+
+\begin{enumerate}
+    \item Using Davis and Mahowald's computation \cite{v1ExtDavisMahowald} of $v_1 ^{-1} \Ext^{s,t} _{\A_*} (\F_2, \mathrm{H}_* (Y))$, deduce that the $v_1$-localized Cartan-Eilenberg spectral sequence collapses for $Y$.
+    \item Recall from \cite{Miller} the structure of the $v_1$-localized algebraic Novikov spectral sequence for $Y$.
+    \item Show that the $v_1$-local computations above agree with those before $v_1$-localizing above a line of slope $\frac{1}{5}$.
+    \item Use \Cref{thm:Miller-thm} to compute the $\HFt$-Adams spectral sequence for $Y$ above a line of slope $\frac{1}{5}$. Conclude that \Cref{thm:Y-v1-band} holds.
+\end{enumerate}
+
+We begin by recalling some basic facts about $Y$.
+
+\begin{prop}[{\cite[Theorem 1.2]{v1v2DavisMahowald}}]\label{prop:v1-self-map}
+	There is a $v_1$-self map $v_1 : \Sigma^2 Y \to Y$ of $Y$, which is of $\HFt$-Adams filtration one.
+\end{prop}
+
+\begin{lem}\label{lemm:h21-lives}
+	There is a nonzero element $w_1 \in \pi_5 (Y)$ which is represented in the Adams spectral sequence of $Y$ by the cocycle $h_{2,1} = [\zeta_2 ^2]$.
+\end{lem}
+
+\begin{proof}
+    This follows immediately from calculating the first five stems of the $\mathrm{E}_2$-page of the Adams spectral sequence for $Y$. See for example the chart on \cite[p. 620]{v1v2DavisMahowald}.
+\end{proof}
+
+We now collect the computation of some $v_1$-inverted Ext groups.
+
+\begin{thm}\label{thm:v1-inv-comp}
+	There are algebra isomorphisms
+    \begin{align} \tag{1} \label{eq:eq1}
+        v_1 ^{-1} \Ext^{*,*} _{\mathcal{A}_{*}} (\F_2,\mathrm{H}_* (Y)) \cong \F_2 [v_1^{\pm1}][h_{j,1} \vert j \geq 2],
+    \end{align}
+    \begin{align} \tag{2} \label{eq:eq2}
+        q_1 ^{-1} \Ext^{*,*,*} _{P_{*}} (\F_2, E_0 \BP_* (C(2))) \cong \F_2[q_1 ^{\pm 1}][h_{j,1} \vert j \geq 1],
+    \end{align}
+    and
+    \begin{align} \tag{3} \label{eq:eq3}
+        q_1 ^{-1} \Ext^{*,*,*} _{P_{*}} (\F_2, E_0 \BP_* (Y)) \cong \F_2[q_1 ^{\pm 1}][h_{j,1} \vert j \geq 2],
+    \end{align}
+    where \[\abs{h_{j,1}} = (1,2^{j+1}-2) \text{ in } (\ref{eq:eq1}),\] and \[\abs{h_{j,1}} = (1,0,2^{j+1}-2) \text{ in } (\ref{eq:eq2}) \text{ and } (\ref{eq:eq3}).\]
+\end{thm}
+
+\begin{proof}
+    We first need to justify that these localized Ext groups admit the structure of algebras. In the case of the second listed group, this follows from the fact that $\BP_* (C(2)) \cong \BP_* / 2$ is a comodule algebra over $\BP_* \BP$. The case of the first group is \cite[Theorem 3.1]{v1ExtDavisMahowald}, and that of the third follows from its proof.
+
+    Now, the first isomorphism is \cite[Theorem 1.3]{v1ExtDavisMahowald}. The second isomorphism follows from \cite[Corollary 3.5]{MillerLocalization}. Finally, the third isomorphism is obtained from the second because the self-map $\eta$ of $C(2)$ induces multiplication by $h_{1,1}$ on localized Ext groups.
+\end{proof}
+
+We next recall from \cite{Miller} the computation of the the $v_1$-localized algebraic Novikov spectral sequence for $C(2)$, from which we deduce it for $Y$.
+
+\begin{thm}[{\cite[Equation (9.20)]{Miller}}]\label{thm:localized-alg-Nov-Moore}
+    The $d_2$-differentials in the $v_1$-localized algebraic Novikov spectral sequence for $C(2)$ \[q_1 ^{-1} \Ext^{s,i,t} _{P_*} (\F_2, E_0 \BP_* (C(2))) \Rightarrow v_1^{-1} \Ext^{s,t} _{\BP_* \BP} (\BP_*, \BP_*(C(2)))\] are derivations and are determined by \[d_2 (h_{n,1}) = q_1 h_{n-1,1}^2 \text{ for } n \geq 3.\] The spectral sequence collapses at the $\mathrm{E}_3$-term with $\mathrm{E}_3 = \mathrm{E}_\infty$-page \[\F_2 [q_1 ^{\pm 1}][h_{1,1}, h_{2,1}]/(h_{2,1}^2).\]
+\end{thm}
+
+\begin{cor}\label{prop:localized-alg-Nov}
+    The $d_2$-differentials in the $v_1$-localized algebraic Novikov spectral sequence for $Y$ \[q_1 ^{-1} \Ext^{s,i,t} _{P_*} (\F_2, E_0 \BP_* (Y)) \Rightarrow v_1^{-1} \Ext^{s,t} _{\BP_* \BP} (\BP_*, \BP_*(Y))\] are derivations and are determined by \[d_2 (h_{n,1}) = q_1 h_{n-1,1}^2 \text{ for } n \geq 3.\] The spectral sequence collapses at the $\mathrm{E}_3$-term with $\mathrm{E}_3 = \mathrm{E}_\infty$-page \[\F_2 [q_1 ^{\pm 1}][h_{2,1}]/(h_{2,1}^2).\]
+\end{cor}
+
+\begin{comment}
+\begin{proof}
+    There is a map of spectral sequences from the $v_1$-localized algebraic Novikov spectral sequence for $\Ss/2$ to that for $Y$ which induces a surjective map of algebras on the $E_2$-page. Since the $d_2$s in the spectral sequence for $\Ss/2$ are derivations, this implies that they are for $Y$ as well. Moreover, the $d_2$-differentials that we wish to establish exist in the spectral sequence for $\Ss/2$ by \cite[Equation (9.20)]{Miller}, so they induce the desired differentials for $Y$.
+
+	The calculation of the $E_3$-page is immediate, and one sees that the map of $E_3$-pages from the spectral sequence for $\Ss/2$ to that for $Y$ is surjective. Since \cite{Miller} shows that the spectral sequence for $\Ss/2$ degenerates at the $E_3$-page, it follows that the spectral sequence for $Y$ does so as well.
+\end{proof}
+\end{comment}
+
+This gives rise to a convenient computation of the $K(1)$-local homotopy of $Y$.
+
+\begin{cor}\label{cor:K1-homotopy-Y}
+    The $K(1)$-local homotopy of $Y$ is \[ \pi_* (L_{K(1)} Y) \cong \F_2 [v_1 ^{\pm 1}][w_1] / (w_1 ^2) \] as a $\ZZ[v_1]$-module.
+\end{cor}
+
+\begin{proof}
+    The $v_1$-localized Adams-Novikov spectral sequence for $Y$ converges to the homotopy of $L_{K(1)} Y$ by the Localization Theorem \cite[Theorem 7.5.2]{RavenelOrange}. By \Cref{prop:localized-alg-Nov}, the $\mathrm{E}_2$-page is concentrated in filtrations $0$ and $1$, so the spectral sequence collapses to the desired isomorphism.
+\end{proof}
+
+Our next goal is to show that the $v_1$-localized computations above are in fact valid above a line of slope $\frac{1}{5}$.
+
+\begin{lem}\label{lemm:vanishing-results}
+    We have \[\Ext^{s,i,t} _{P_*} (\F_2, E_0 \BP_* (Y) / q_1) = 0\] when $s+i > \frac{1}{5} (t-s) + \frac{4}{5}$ and \[\Ext^{s,t} _{\A_*} (\F_2, \mathrm{H}_* (\cof(Y \xrightarrow{v_1} Y))) = 0\] for $s > \frac{1}{5} (t-s) + \frac{4}{5}$. As a consequence, the maps \[\Ext^{s,i,t} _{P_*} (\F_2, E_0 \BP_* (Y)) \to q_1 ^{-1} \Ext^{s,i,t} _{P_*} (\F_2, E_0 \BP_* (Y))\] and \[\Ext^{s,t} _{\A_*} (\F_2, \mathrm{H}_* (Y)) \to v_1 ^{-1} \Ext^{s,t} _{\A_*} (\F_2, \mathrm{H}_* (Y))\] are isomorphisms for $s+i > \frac{1}{5} (t-s) + \frac{7}{5}$ and $s > \frac{1}{5} (t-s) + \frac{7}{5}$, respectively. Moreover, they are surjections for $s + i > \frac{1}{5}(t-s) + \frac{1}{5}$ and $s > \frac{1}{5}(t-s) + \frac{1}{5}$, respectively.
+\end{lem}
+
+\begin{proof}
+    We begin with the vanishing statement for $\Ext^{s,i,t} _{P_*} (\F_2, E_0 \BP_* (Y) / q_1)$. Let $M$ denote the sub-comodule of $P_*$ spanned by $1$ and $\zeta_1 ^2$ and recall that there is a degree-doubling isomorphism $\A_* \cong P_*$ which sends $\zeta_i$ to $\zeta_i ^2$. Under this isomorphism, $M$ corresponds to the $\A_*$-comodule $\mathrm{H}_* (C(2))$. By \cite[Theorem 2.1]{AdamsPer}, $\Ext^{s,t} _{\A_*} (\F_2, \mathrm{H}_* (C(2)))$ vanishes for $s > \frac{1}{2} (t-s) + 1.$ It follows that $\Ext^{s,t} _{P_*} (\F_2, M)$ vanishes for $s > \frac{1}{2} (\frac{1}{2}t-s) + 1$, i.e. for $s > \frac{1}{5} (t-s) +\frac{4}{5}$.
+
+	We now note that $E_0 \BP_* (Y) / q_1 \cong M \otimes_{\F_2} \F_2 [q_2, q_3, \dots].$ There are therefore a series of Bockstein spectral sequences starting from $\Ext^{s,i,t} _{P_*} (\F_2, M)$ and converging to $\Ext^{s,i,t} _{P_*} (\F_2, E_0 \BP_* (Y) / q_1)$. Since each of the $q_i$ for $i \geq 2$ lies below the plane of interest, this implies the result.
+
+    The vanishing result for $\Ext^{s,t} _{\A_*} (\F_2, \mathrm{H}_* (\cof(Y \xrightarrow{v_1} Y)))$ follows from the above vanishing result and the Cartan-Eilenberg spectral sequence.
+
+	The translation of these vanishing results into the desired isomorphisms and surjections follows from the long exact sequences
+	\begin{center}
+	%\begin{tikzpicture}[baseline= (a).base]
+	    %\node[scale=1] (a) at (0,0){
+		    \begin{tikzcd}[column sep=tiny]
+		\dots \arrow[r] & \Ext^{s-1,i+1,t+2} _{P_*} (\F_2, E_0 \BP_* (Y) / q_1) \arrow[rr] & \arrow[d, phantom, ""{coordinate, name=Z}] & \Ext^{s,i,t} _{P_*} (\F_2, E_0 \BP_* (Y)) \arrow[dll, "\cdot q_1"'{pos=1}, rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east) |- (Z) [near end]\tikztonodes -| ([xshift=-2ex]\tikztotarget.west) --(\tikztotarget)}] & \\
+%, to path={ -- ([xshift=2ex]\tikzctostart.east) |- (Z) [near end]\tikztonodes -| ([xshift=-2ex]\tikztotarget.west) --(\tikztotarget)}
+		& \Ext^{s,i+1,t+2} _{P_*} (\F_2, E_0 \BP_* (Y)) \arrow[rr] & \vphantom{a} & \Ext^{s,i+1,t+2} _{P_*} (\F_2, E_0 \BP_* (Y)/q_1) \arrow[r] & \dots
+	\end{tikzcd}
+		%};
+	%\end{tikzpicture}
+	\end{center}
+	and
+	\begin{center}
+	%\begin{tikzpicture}[baseline= (a).base]
+	    %\node[scale=1] (a) at (0,0){
+	\begin{tikzcd}[column sep = tiny]
+        \dots \arrow[r] & \Ext^{s, t+3} _{\A_*} (\F_2, \mathrm{H}_* (\cof(Y \xrightarrow{v_1} Y))) \arrow[rr] & \arrow[d, phantom, ""{coordinate, name=Z}] & \Ext^{s, t} _{\A_*} (\F_2, \mathrm{H}_* (Y)) \arrow[dll, "\cdot v_1"'{pos=1}, rounded corners, to path={ -- ([xshift=2ex]\tikztostart.east) |- (Z) [near end]\tikztonodes -| ([xshift=-2ex]\tikztotarget.west) --(\tikztotarget)}] & \\
+        & \Ext^{s+1,t+3} _{\A_*} (\F_2, \mathrm{H}_* (Y)) \arrow[rr] & \vphantom{a} & \Ext^{s+1,t+3} _{\A_*} (\F_2, \mathrm{H}_* (\cof(Y \xrightarrow{v_1} Y))) \arrow[r] & \dots.
+	\end{tikzcd} \qedhere
+		%};
+	%\end{tikzpicture}
+	\end{center}
+\end{proof}
+
+\begin{cor}\label{prop:CESS-collapse}
+    For $s + i > \frac{1}{5} (t-s) + \frac{7}{5}$, the Cartan-Eilenberg spectral sequence \[\Ext^{s,i,t} _{P_*} (\F_2, E_0 \BP_* (Y)) \Rightarrow \Ext^{s+i,t+i} _{\A_*} (\F_2, \mathrm{H}_* (Y))\] collapses at the $\mathrm{E}_2$-page.
+\end{cor}
+
+\begin{proof}
+    It suffices to show that the $\mathrm{E}_2$-page and the target are of the same finite dimension as bigraded $\F_2$-vector spaces in this range. This follows from \Cref{thm:v1-inv-comp} and \Cref{lemm:vanishing-results}.
+\end{proof}
+
+\begin{cor}\label{cor:alg-nov-range}
+    For $s + i > \frac{1}{5} (t-s) + \frac{18}{5}$, the algebraic Novikov spectral sequence \[\Ext^{s,i,t} _{P_*} (\F_2, E_0 \BP_* (Y)) \Rightarrow \Ext^{s,t} _{\BP_* \BP} (\BP_*, \BP_*(Y))\] agrees with the $v_1$-localized algebraic Novikov spectral sequence.
+\end{cor}
+
+\begin{proof}
+    There is a map from the algebraic Novikov spectral sequence to its $v_1$-localized version, which by \Cref{lemm:vanishing-results} is an equivalence on $\mathrm{E}_2$-pages for $s+i > \frac{1}{5} (t-s) + \frac{7}{5}$. We may therefore lift all $d_2$-differentials that lie entirely in this range, which shows that the map from the $\mathrm{E}_3$-page of the algebraic Novikov spectral sequence to the $v_1$-localized algebraic Novikov spectral sequence is an equivalence for $s+i > \frac{1}{5}(t-s)+\frac{18}{5}$, since all entering $d_2$-differentials in this range originate in the range $s+i > \frac{1}{5} (t-s) + \frac{7}{5}$.
+
+    The classes left on the $\mathrm{E}_3$-page in the region $s+i > \frac{1}{5}(t-s) + \frac{18}{5}$ cannot be the source of higher differentials by sparsity, and they cannot be the targets of higher differentials because they are detected in the $v_1$-localized Ext groups. It follows that $\mathrm{E}_3 = \mathrm{E}_\infty$ in the region $s+i > \frac{1}{5} (t-s) + \frac{18}{5}$, as desired.
+\end{proof}
+
+Finally, we are able to combine the above results with \Cref{thm:Miller-thm} to compute the $\HFt$-Adams spectral sequence of $Y$ above a line of slope $\frac{1}{5}$, at least up to an associated graded. From this we will deduce \Cref{thm:Y-v1-band}.
+
+\begin{prop}\label{prop:Y-main-prop}
+    For $s > \frac{1}{5}(t-s) + \frac{12}{5}$, the $\HFt$-Adams spectral sequence \[\Ext^{s,t} _{\A_*} (\F_2, \mathrm{H}_* (Y)) \Rightarrow \pi_{t-s} (Y)\] collapses at the $E_3$-page. Moreover, the map \[ F^{\frac{1}{5}k + \frac{13}{5}} \pi_k (Y) \to \pi_k (L_{K(1)} Y) \] is an isomorphism for $k \geq 15$.
+\end{prop}
+
+\begin{proof}
+    We begin by noting that in the range $s > \frac{1}{5} (t-s) + \frac{29}{5}$, all entering $d_2$-differentials originate in the range $s > \frac{1}{5} (t-s) + \frac{18}{5}$. It therefore follows from \Cref{thm:Miller-thm}, \Cref{prop:localized-alg-Nov}, \Cref{prop:CESS-collapse} and \Cref{cor:alg-nov-range} that at most the elements $v_1 ^i$ and $v_1 ^i h_{2,0}$ survive to the $\mathrm{E}_3$-page of the spectral sequence in this range. These elements do in fact survive to represent nonzero elements of the $\mathrm{E}_\infty$-page by \Cref{prop:v1-self-map}, \Cref{lemm:h21-lives}, and \Cref{cor:K1-homotopy-Y}. It follows that, for $s > \frac{1}{5} (t-s) + \frac{29}{5}$, the spectral sequence collapses at the $\mathrm{E}_3$-page, and the $v_1 ^i$ and $v_1^i h_{2,0}$ are all of the nonzero classes on the $\mathrm{E}_3$-page.
+
+    We may in fact extend the above description to the range $s > \frac{1}{5} (t-s) + \frac{12}{5}$ as follows. Since $v_1$ lifts to a self-map of $Y$ by \Cref{prop:v1-self-map}, multiplying by $v_1$ commutes with differentials in the $\HFt$-Adams spectral sequence. Now, it follows from \Cref{lemm:vanishing-results} that multiplication by $v_1$ induces an isomorphism on $\im(d_2)$ for any $d_2$ with target in the range $s > \frac{1}{5}(t-s) + \frac{12}{5}$, hence source in the range $s > \frac{1}{5} (t-s) + \frac{1}{5}$. This is because the source lies in the $v_1$-surjectivity region and the target lies in the $v_1$-periodic region. It follows that the description of the spectral sequence appearing in the previous paragraph applies in fact to the range $s > \frac{1}{5} (t-s) + \frac{12}{5}$.
+
+    We conclude that the only classes in $\pi_k (Y)$ detected in Adams filtration at least $\frac{1}{5} k + \frac{13}{5}$ are $v_1 ^i$ and $v_1 ^i w_1$. By \Cref{cor:K1-homotopy-Y}, these classes map isomorphically to the homotopy of $L_{K(1)} Y$. Thus to check that \[F^{\frac{1}{5} k + \frac{13}{5}} \pi_k (Y) \to \pi_k (L_{K(1)} Y)\] is an isomorphism, it suffices to check that the classes $v_1 ^i$ and $v_1 ^i h_{2,1}$ are in the range $s \geq \frac{1}{5}(t-s) + \frac{13}{5}$. A short calculation shows that this happens when $i \geq 5$, hence when the total degree is at least $15$.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:Y-v1-band}]
+    By \Cref{prop:banded-adams}, we see that there are two things left to check beyond \Cref{prop:Y-main-prop}. The first is that $\Ext_{\A_{*}} ^{s,t} (\F_2, \mathrm{H}_* (Y)) = 0$ for $s > \frac{1}{2} (t-s)$, which follows from the computation \[\Ext_{\A(1)_*} ^{s,t} (\F_2, \mathrm{H}_*(Y)) \cong \Ext_{\F_2 [\overline{\zeta}_2]/(\overline{\zeta}_2 ^2)} (\F_2, \F_2) \cong \F_2 [v_1]\] and \cite[Proposition 3.2]{Miller-Wilkerson}. The second is that the classes $v_1 ^i$ and $v_1^i h_{2,1}$ lie in the region $s \geq \frac{1}{2} (t-s) - \frac{3}{2}$, which is easily verified.
+\end{proof}
+
+Finally, we note down a proof of the telescope conjecture at chromatic height $1$ and the prime $2$, based on \Cref{thm:Y-v1-band}. It is similar to Miller's proof at an odd prime \cite{Miller} and different from the $2$-primary proof of Mahowald \cite{MahJEHP}, which uses $bo$-resolutions. We begin with the following proposition.
+
+\begin{prop}\label{prop:v1-band-tele}
+    Let $X$ be a type $1$ finite spectrum\footnote{A finite spectrum $X$ is said to be type $1$ if $\mathrm{H}_* (X;\mathbb{Q}) = 0$ and $K(1)_* (X) \neq 0$.} whose $\HFp$-Adams spectral sequence admits a $v_1$-banded vanishing line with parameters $(b \leq d, w, m, c, r)$, and suppose $v : \Sigma^{n(2p-2)} X \to X$ is a $v_1$-self map of $\HFp$-Adams filtration $n$. Then the map \[v^{-1} \pi_{*} X \to \pi_* (L_{K(1)} X) \] is an isomorphism.
+\end{prop}
+
+\begin{proof}
+    Inverting $v$ in the $\HFp$-Adams spectral sequence gives rise to the $v$-periodic $\HFp$-Adams spectral sequence, which converges to $v^{-1} \pi_{*} (X)$ by \cite[Theorem 2.13]{TripleLoop}. This theorem applies by the assumption on the Adams filtration of $v$, as well as the fact that $\nu_{\HFp} (X)$ has a finite-page vanishing line of slope $\frac{1}{2p-2}$ by definition of $v_1$-banded vanishing line.
+
+    %Since $X$ is type $1$, it follows from the thick subcategory theorem \cite{NilpII} and the genericity of finite-page vanishing lines (\Cref{cor:HPS} or \cite[Theorem 1.3]{HPS}) that it suffices to show this for the mod $p$  Moore spectrum. The mod $p$ Moore spectrum has such a line by \cite[Theorem 2.1]{AdamsPer} for $p=2$ and \cite[Theorem 1]{liul} for $p > 2$.
+
+	%remarked in \cite{HPS} from the nilpotence theorem from Theorem 1.3 of \cite{HPS}Since $v$ acts along a line of slope $\frac{1}{2p-2}$ and the classical Adams spectral sequence of $X$ has a vanishing line of slope $\frac{1}{2p-2}$\todo{Cite.}, this spectral sequence does in fact converge.
+
+	%We know from the fact that the $\HFp$-Adams spectral sequence of $X$ admits a $v_1$-banded vanishing line that \[F^{mk+c} \pi_k (X) \to \pi_k (L_{K(1)} X)\] is an equivalence for $k >> 0$. Since $v$ acts along a line of slope $\frac{1}{q} > m$, \[F^{mk+c} \pi_k (X) \subset \pi_k (X)\] is a $\Z[v]$-submodule.
+
+    By the assumption on the $\HFp$-Adams filtration of $v$, $\displaystyle\bigoplus_{k} F^{m k + c} \pi_k (X)$ is a $\Z[v]$-submodule of $\pi_k (X)$, so that we have a factorization \[F^{mk+c} \pi_k (X) \to v^{-1} F^{mk +c} \pi_k (X) \to v^{-1} \pi_k (X) \to \pi_k (L_{K(1)} X).\]
+
+    Since both $v^{-1} \pi_k (X)$ and $\pi_k (L_{K(1)} X)$ are $v$-periodic, it suffices to show that \[v^{-1} \pi_k (X) \to \pi_k (L_{K(1)} X)\] is an equivalence for $k \gg 0$. By the assumption that the $\HFp$-Adams spectral sequence of $X$ admits a $v_1$-banded vanishing line, the map \[F^{mk +c} \pi_k (X) \to \pi_k (L_{K(1)} X)\] is an equivalence for $k \geq w$.
+    This implies that \[F^{mk +c} \pi_k (X) \to v^{-1} F^{mk +c} \pi_k (X)\] is an equivalence for $k \geq w$. Therefore it suffices to show that \[v^{-1} F^{mk+c} \pi_k (X) \to v^{-1} \pi_k (X)\] is an equivalence, which follows from the fact that $v$ acts nilpotently on \[\pi_k(X) / (F^{mk+c} \pi_k (X)),\] since $m < \frac{1}{2p-2}$.
+	%Furthermore, the fact that $v$ acts along a line of slope $\frac{1}{2p-2}$ implies that \[F^{m k + p} \pi_k (X) \subset \pi_k (X)\] is a $\Z[v]$-submodule and that the quotient \[\pi_k (X) / (F^{m k + p} \pi_k (X))\] is a torsion $v$-module. In particular, \[v ^{-1} F^{m k + p} \pi_k (X) \to v^{-1} \pi_k (X)\] is an isomorphism, so it suffices to show that \[v ^{-1} F^{m k + p} \pi_k (X) \to \pi_k (L_{K(1)} X)\] is an equivalence. But we already know that \[F^{m k + p} \pi_k (X) \to \pi_k (L_{K(1)} X)\] is an isomorphism for $k \geq w$. Since the action of $v$ on $\pi_k (L_{K(1)} X)$ is invertible, it follows that the same is true for $F^{m k + p} \pi_k (X)$ when $k \geq w$ and therefore that \[v ^{-1} F^{m k + p} \pi_k (X) \to F^{m k + p} \pi_k (X)\] is an equivalence for $k \geq w$.
+	%Thus \[v^{-1} F^{m k + p} \pi_k (X) \to \pi_k (L_{K(1)} X)\] is an equivalence for $k \geq w$ and hence for all $k$ because both sides are $n(2p-2)$-periodic.
+\end{proof}
+
+%Therefore, as a corollary of \Cref{thm:Y-v1-band} and \Cref{prop:v1-band-tele}, \[v^{-1} Y \to L_{K(1)} Y\] is an equivalence. This implies the telescope conjecture as in Section 4 of \cite{BousfieldLocalization} and the proof of Theorem 10.12 of \cite{RavenelConjs}.
+
+\begin{cor}[Telescope Conjecture at height $1$ and the prime $2$] \label{cor:telescope}
+	Suppose that the prime is $2$. Then the Bousfield classes of $K(1)$ and $v^{-1} X$ are equal for any type $1$ spectrum $X$ with $v_1$-self map $v : \Sigma^{n(2p-2)} X \to X$.
+\end{cor}
+
+\begin{proof}
+    Since $v_1 : \Sigma^2 Y \to Y$ has $\HFt$-Adams filtration one, \Cref{thm:Y-v1-band} and \Cref{prop:v1-band-tele} imply that $v ^{-1} Y \to L_{K(1)} Y$ is an equivalence, so this follows as in \cite[Section 4]{BousfieldLocalization} and the proof of \cite[Theorem 10.12]{RavenelConjs}.
+\end{proof}
+

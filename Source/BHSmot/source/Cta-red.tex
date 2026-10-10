@@ -1,0 +1,94 @@
+In this subsection, we express each side of the equivalence (\ref{eqn:cta}) of \Cref{thm:Cta} as the category of modules over some commutative algebra in $\Sp_{C_2, i2} ^{\Fil}$.
+Almost everything in this subsection is a standard application of Lurie's theory of higher algebra.
+We have extracted the necessary material in \Cref{app:boilerplate}, where we present it in a digested form. 
+
+We begin with the left-hand-side of (\ref{eqn:cta}).
+
+\begin{lem} \label{lem:gr-of-comparison}
+  The cofiber of $\ta : \Ss_2^{0,0,-1} \to \Ss_2^{0,0,0}$ is a commutative algebra in $\SHR_{i2}$. Furthermore, there is an equivalence of symmetric monoidal categories
+  \[ \mathrm{Mod}(\SHRat; C\ta) \simeq \mathrm{Mod}( \Sp_{C_2, i2}^{\Gr}; \Gr( R_\bullet ) ), \]
+	where $R_{\bullet} =\Tot^{*}\left( P_{2\bullet} \MU_{\mathbb{R},2}^{\otimes *+1} \right)$ 
+\end{lem}
+
+\begin{proof}
+  Recall that the shift map $\Ss_2(-1) \to \Ss_2$ in $\Sp_{C_2, i2}^{\Fil}$ is denoted by $\tau$.
+    Tensoring the equivalence of \Cref{exm:fil-ctau} with $\Sp_{C_2, i2}$ and applying \Cref{lem:tensor-mod}, we see that there is an equivalence of presentably symmetric monoidal categories
+    \[ \Sp_{C_2, i2} ^{\Gr} \simeq \Mod ( \Sp_{C_2, i2} ^{\Fil} ; C\tau ). \]
+
+    Under the symmetric monoidal functor $i^* : \Sp_{C_2, i2} ^{\Fil} \to \SHRat$ constructed in \Cref{prop:top-diagram}, the commutative algebra $C\tau$ maps to $C\ta$. Therefore, using \Cref{lem:tensor-mod}, we have 
+    \[ \mathrm{Mod}(\SHRat; C\ta) \simeq \Sp_{C_2, i2}^{\Gr} \otimes_{\Sp_{C_2, i2} ^{\Fil}} \SHRat. \]
+    Using \Cref{thm:filt-model}, there is an equivalence of presentably symmetric monoidal categories under $\Sp_{C_2, i2}^{\Fil}$ between $\SHRat$ and $\mathrm{Mod}( \Sp^{\Fil}_{C_2,i2} ; R_\bullet )$. Tensoring down along the associated graded ring map and using \Cref{lem:tensor-mod}, we obtain equivalences
+    \begin{align*}
+      \Sp_{C_2, i2}^{\Gr} \otimes_{\Sp_{C_2, i2}^{\Fil}} \SHRat
+      %&\cong \Sp^{\Gr} \otimes_{\Sp^{\Fil}} \mathrm{Mod}( \Sp_{C_2,i2}^{\Fil} ; \Gamma_* \Ss_2 ) \\
+      &\simeq \Sp_{C_2,i2}^{\Gr} \otimes_{\Sp_{C_2,i2}^{\Fil}} \mathrm{Mod}( \Sp_{C_2,i2}^{\Fil} ; R_\bullet ) \\
+      &\simeq \mathrm{Mod}( \Sp_{C_2,i2}^{\Fil} ; \Gr(R_{\bullet}) ). \qedhere
+    \end{align*}
+      %
+  %% Note that the shift map $\tau: \o(1) \to \o$ in $\Fil(\Sp_{C_2, i2})$ goes to $\ta$ under the colimit-preserving symmetric monoidal functor $c_{\C/\R} : \Fil(\Sp_{C_2, i2}) \to \SH(\R)^{\at} _{i2}$. Since $C\tau$ is an $\E_{\infty}$-ring in $\Fil(\Sp_{C_2, 2})$, it follows that its image $C\ta$ under $c_{\C/\R}$ is as well.
+
+  
+  %% %% \[ \mathrm{Mod}(\SHgc_{\mathrm{i}p}; C\ta) \simeq \Gr(\Sp) \otimes_{\Fil(\Sp)} \SHgc_{\mathrm{i}p} \simeq \Gr(\Sp) \otimes_{\Fil(\Sp)} \mathrm{Mod}(\Fil(\Sp_{C_2}); R_\bullet) \simeq \mathrm{Mod}(\Gr(\Sp_{C_2}); R_\bullet) \]
+  %%   \[ \Gr(\Sp_{C_2, i2}) \otimes_{\Fil(\Sp_{C_2, i2})} \SH(\R)^{\at}_{i2} \simeq \Gr(\Sp_{C_2, i2}) \otimes_{\Fil(\Sp_{C_2, i2})} \mathrm{Mod}(\Fil(\Sp_{C_2,2}); \Gamma_* (\Ss_2)) \]
+  %%   symmetric monoidal categories. Using \Cref{lem:tensor-mod}, we can simplify each side of this equivalence to obtain:
+  %%   \[ \Gr(\Sp_{C_2, i2}) \otimes_{\Fil(\Sp_{C_2, i2})} \SH(\R)^{\at}_{i2} \simeq \mathrm{Mod}(\SH(\R)^{\at}_{i2}; C\ta), \]
+  %%   \[ \Gr(\Sp_{C_2, i2}) \otimes_{\Fil(\Sp_{C_2, i2})} \mathrm{Mod}(\Fil(\Sp_{C_2}); (\Gamma_* (\Ss_2)) \simeq \mathrm{Mod}(\Gr(\Sp_{C_2}); \Gr(\Gamma_* (\Ss_2))), \]
+  %%   where in the first case we have used the fact that $\Mod(\Fil(\Sp_{C_2, i2}); C\tau) \simeq \Gr(\Sp_{C_2,i2})$.
+\end{proof}
+
+Now we proceed to the right-hand-side of (\ref{eqn:cta}).
+
+\begin{lem} \label{lem:omega-euler-one}
+  The Euler characteristic of $\omega_{\G/\Mfg} \in \IndCoh(\Mfg)^{\heartsuit}$ is equal to 1.
+  %% one: $\chi(\omega_{\G/\Mfg}) = 1$.
+  As a consequence, \Cref{cnstr:twist} provides a symmetric monoidal left adjoint
+  \[ p^* : \Ab^{\Gr, \heartsuit} \to \IndCoh(\Mfg)^{\heartsuit} \]
+  %% \subset \IndCoh(\Mfg)
+  which sends $\Z(1)$ to $\omega_{\G/\Mfg}$.
+\end{lem}
+
+\begin{proof}
+  Let $L$ denote the Lazard ring. Then the flat cover $\Spec(L) \to \Mfg$ determines a pullback map $\IndCoh(\Mfg) \to \Mod_{L}$. This determines an injective pullback map
+  $\pi_0 \End(\mathcal{O}_{\Mfg}) \to \pi_0 \End(L)$.
+  Since the pullback of $\omega_{\G/\Mfg}$ is equivalent to $L$ we learn that $\chi(\omega_{\G/\Mfg}) = 1$.
+  %% The latter group is isomorphic to $\Z ^\times$, which the former group contains, so the map is an equivalence.
+  %% It follows that $\chi(\omega_{\G/\Mfg})$ is equal to the Euler characteristic of the pullback of $\omega_{\G/\Mfg}$ to $\Mod_{L}$. But this pullback is just $L$ itself, which implies that its Euler characteristic must be $1$, as desired.
+  %% For the second statement, it is clear that one may construct a monoidal functor $\Z \to \IndCoh(\Mfg)^{\heartsuit}$ sending $1$ to $\omega_{\G/\Mfg}$. To check that it is symmetric monoidal, one has to check that it sends the swap automorphism of $2 = 1+1$, which is the identity, to the swap isomorphism of $\omega_{\G/\Mfg} ^2 \simeq \omega_{\G/\Mfg} \otimes \omega_{\G/\Mfg}$. This is precisely the condition that $\chi(\omega_{\G/\Mfg}) = 1$.
+\end{proof}
+
+Since $p^*$ sends a family of compact dualizable objects (the powers of $\Z(1)$) to a family of compact dualizable generators (the powers of $\omega_{\G/\Mfg}$), we may apply \Cref{prop:rigid} to obtain the following lemma:
+
+\begin{lem}\label{lem:MU-koszul}
+  There is an equivalence of presentably symmetric monoidal categories
+  \[ \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}}) \simeq \mathrm{Mod}(\Ab^{\Gr}; p_*\mathcal{O}_{\Mfg} ). \]
+\end{lem}
+
+%% \begin{proof}
+%%   By \Cref{lem:omega-euler-one}, there is a symmetric monoidal functor $\Z \to \IndCoh(\Mfg) ^{\heartsuit}$ sending $1 \in \Z$ to $\omega_{\G/\Mfg}$.
+  
+%%   As a consequence, we obtain a symmetric monoidal left adjoint
+%%   \[\Ab^{\Gr} \to \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}}) \]
+%%   which sends $\Z(n)$ to $\omega^{n} _{\mathbb{G}/\Mfg}$.
+%%   This functor sends a family of compact dualizable generators to a family of compact dualizable generators,
+%%   so by [ref] \todo{Find or write ref!} it factors through the desired symmetric monoidal equivalence
+%%   \[  \mathrm{Mod}(\Ab^{\Gr}; \ExtMUt ) \simeq \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}}). \qedhere \]
+%%   %% \[ \mathrm{Mod}(\Ab^{\Gr}; \ExtMU) \to \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}}). \]
+%% \end{proof}
+
+Using \Cref{lem:MU-koszul} and \Cref{lem:tensor-mod}, we obtain the following corollary:
+
+\begin{cor}\label{lem:uMU-koszul}
+  There is an equivalence of presentably symmetric monoidal categories
+  \[ \uAb_{i2} \otimes_{\Ab} \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}}) \simeq \Mod ( \uAb_{i2}^{\Gr}; \underline{p_*\mathcal{O}_{\Mfg}} \otimes_{\uZ} \uZt ).  \]
+\end{cor}
+
+%% \begin{proof}
+%%   Using \Cref{lem:MU-koszul}, we have equivalences
+%%   \begin{align*}
+%%     \uAb \otimes_{\Ab} \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}})
+%%     &\simeq \uAb \otimes_{\Ab} \mathrm{Mod}(\Ab^{\Gr}; \ExtMUt ) \\
+%%     &\simeq \uAb^{\Gr} \otimes_{\Ab^{\Gr}} \mathrm{Mod}(\Ab^{\Gr}; \ExtMUt ).
+%%   \end{align*}
+%%   We conclude by applying \Cref{lem:tensor-mod}.
+%% \end{proof}
+

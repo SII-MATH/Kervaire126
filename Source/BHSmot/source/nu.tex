@@ -1,0 +1,527 @@
+In this section, we will study the functor defined below:
+
+\begin{dfn}
+  We define a lax symmetric monoidal functor
+  \[\nur : \Sp_{C_2, i2} \to \SHRat \]
+  to be the composite
+  \[\Sp_{C_2, i2} \xrightarrow{\b^{-1}} \Mod(\SHRat; \Ss_2[\ta^{-1}]) \xrightarrow{\tau_{\geq 0} ^{\cn}} \SHRat.\]
+\end{dfn}
+
+One of the main results of this section is the following theorem, which summarizes the basic properties of $\nur$:
+
+\begin{thm} \label{thm:nu-properties}
+  Let $X, Y, Z \in \Sp_{C_2, i2}$. The lax symmetric monoidal functor $\nur : \Sp_{C_2, i2} \to \SHRat$ satisfies the following properties:
+  \begin{enumerate}
+    \item There is a natural equivalence $\b(\nur(X)) \simeq X$.
+    \item The functor $X \mapsto \nur(X)$ commutes with filtered colimits.
+    \item Given any $k \in \Z$, there is a natural equivalence $\nur(\Sigma^{k\rho} X) \simeq \Sigma^{k,k,k} \nur(X)$.
+    \item Suppose that $X \to Y \to Z$ is a cofiber sequence. Then
+      \[\nur (X) \to \nur (Y) \to \nur (Z)\]
+      is a cofiber sequence if and only if $\piu_{n\rho-1} ^{C_2} (X \otimes \MU_{\R, 2}) \to \piu_{n\rho-1} ^{C_2} (Y \otimes \MU_{\R, 2})$ is a monomorphism for all $n$.
+    \item Suppose that $X$ is a filtered colimit of $C_2$-spectra that admit finite cell structures with all cells of the form $\Ss_2^{n\rho}$ for $n \in \Z$. Then, for all $Y$, the natural map
+      \[\nur (X) \otimes \nur(Y) \to \nur(X \otimes Y)\]
+      is an equivalence.
+    \item The $C_2$-spectrum $X$ is $\MU_{\R, 2}$-local if and only if $\nur (X)$ is $\MGL_2$-local. 
+  \end{enumerate}
+\end{thm}
+
+We also compare $\nur$ to the functor $\Gamma_* : \Sp_{C_2, i2} \to \SHRat$ constructed in \Cref{cnstr:gamma-star}.
+
+\begin{thm} \label{thm:Gamma-nu-comp}
+  For $X \in \Sp_{C_2, i2}$, there is a natural equivalence
+  \[\Gamma_* (X) \simeq \nur (X) ^{\wedge} _{\MGL_2}.\]
+\end{thm}
+
+As evidence that the functor $\nur$ is a good way to produce Artin-Tate $\R$-motivic spectra, we prove that several $\R$-motivic spectra of interest may be recovered from their Betti realizations via $\nur$:
+
+\begin{thm}\label{thm:recover}
+  There are natural equivalences of commutative rings in $\SHRat$:
+  \begin{align*}
+    \MGL_2 &\simeq \nur (\MU_{\R,2}) \\
+    \HFt &\simeq \nur (\uFt) \\
+    \HZt &\simeq \nur (\uZt) \\
+    \kgl_2 &\simeq \nur (\ku_{\R,2}) \\
+    \kq_2 &\simeq \nur (\ko_{C_2, 2}).
+  \end{align*}
+\end{thm}
+
+\begin{rmk}
+  In light of \Cref{thm:recover}, it would be reasonable to define an $\R$-motivic spectrum of motivic modular forms as $\nur (\tmf_{C_2,2})$, assuming that one had a suitable $C_2$-equivariant spectrum of connective topological modular forms $\tmf_{C_2,2}$.
+  Since no such equivariant spectrum has yet been constructed, we leave this to future work. \todo{Mention why previous attempts don't work? Errors in the literature? And perhaps mention that $\TMF_{C_2}$ is known to exist?}
+\end{rmk}
+
+\begin{rmk} \label{rmk:gamma-nu-same}
+  Since all of the Artin-Tate $\R$-motivic spectra in question are $\MGL_2$-complete, in light of \Cref{thm:Gamma-nu-comp} we may replace $\nur$ in \Cref{thm:recover} by $\Gamma_*$.
+\end{rmk}
+
+We now begin with the proof of \Cref{thm:nu-properties}.
+
+\begin{proof}[Proof of \Cref{thm:nu-properties}] \
+
+  \textbf{Proof of (1):} Equivalently, we are to show that $\nur(X)[\ta^{-1}] \simeq \b^{-1} (X)$.
+  Using the cofiber sequence $\nur(X) \to \b^{-1} (X) \to \tau_{\leq -1} ^{\cn} (\b^{-1} (X))$, we find that the cofiber of $\nur(X) [\ta^{-1}] \to \b^{-1} (X)[\ta^{-1}] \simeq \b^{-1} (X)$ is may be expressed as $\varinjlim \Sigma^{0,0,m} \tau_{\leq -1} ^{\cn} (\b^{-1} (X))$.
+
+  Now, we know that $\pi_{n+k_1, n+k_2, n} ^{\R} (\tau_{\leq -1} ^{\cn} (\b^{-1} (X))) \cong 0$ for all $n,k_1,k_2 \in \Z$ with $k_1 > 0$ and $k_1+k_2 > 0$.
+  It follows that $\pi_{n+k_1, n+k_2, n} ^{\R} ( \Sigma^{0,0,m} \tau_{\leq -1} ^{\cn} (\b^{-1} (X))) \cong 0$ for all $n,k_1,k_2 \in \Z$ with $k_1 > -m$ and $k_1+k_2 > -2m$.
+  This implies that $\varinjlim \Sigma^{0,0,m} \tau_{\leq -1} ^{\cn} (\b^{-1} (X))$ is null, as desired.
+
+  \textbf{Proof of (2):} This is immediate from the fact that the Chow $t$-structure is compatible with filtered colimits.
+
+  \textbf{Proof of (3):} It is clear that there is a natural equivalence $\b^{-1} (\Sigma^{k\rho} X) \simeq \Sigma^{k,k,k} \b^{-1} (X)$.
+  Moreover, since $\Sigma^{m,m,m}$ induces an automorphism of the Chow $t$-structure, we find further that $\tau_{\geq 0} ^{\cn}$ commutes with $\Sigma^{m,m,m}$.
+  Combining these facts, we obtain the desired result.
+
+  \textbf{Proof of (4):} It is clear that $X \to Y \to Z$ is a cofiber sequence if and only if $\b^{-1} (X) \to \b^{-1} (Y) \to \b^{-1} (Z)$ is.
+  Applying a general fact about $t$-strutures, we see that
+  \[\tau_{\geq 0} ^\cn (\b^{-1} (X)) \to \tau_{\geq 0} ^\cn (\b^{-1} (Y)) \to \tau_{\geq 0} ^\cn (\b^{-1} (Z)) \]
+  is a cofiber sequence if and only if $\pi_{-1} ^{\ch} (\b^{-1} (X)) \to \pi_{-1} ^{\ch} (\b^{-1} (Y))$ is a monomorphism.
+  The result then follows from \Cref{thm:pi0-MGL} and the isomorphism $\piu_{p,q,w} ^\R (\MGL_2 \otimes \b^{-1} (X)) \cong \piu_{p+q\sigma} ^{C_2} (\MU_{\R, 2} \otimes X)$.
+
+  \textbf{Proof of (5):} By compatibility with filtered colimits, we may assume that $X$ admits a finite cell structure with all cells of the form $\Ss_2^{n\rho}$. Let us write
+  \[\Ss_2^{n_1 \rho} \simeq X_1 \to X_2 \to \dots \to X_k = X\]
+  with $X_i / X_{i-1} \simeq \Ss_2^{n_i \rho}$.
+  Then it is easy to prove that $\piu_{n\rho-1} ^{C_2} (X_i \otimes \MU_{\R, 2}) = 0$ for all $n$ and $i$ by induction, so that by (3) and (4) there are cofiber sequences
+  \[\nur (X_{i-1}) \to \nur (X_i) \to \Ss_2^{n_i, n_i, n_i}.\]
+
+  It follows that $\mathbb{D}(\nur(X))$ is Chow connective. To show that the natural map $\nur(X) \otimes \nur(Y) \to \nur(X \otimes Y)$ is an equivalence, it suffices to show that it induces an equivalence on $\Omega^{\infty} \Map_{\SHRat} (Z, -)$ for all Chow connective $Z$.
+  For such $Z$, we have
+  \begin{align*}
+    \Omega^{\infty} \Map_{\SHRat} (Z, \nur(X) \otimes \nur(Y))
+    &\simeq  \Omega^{\infty} \Map_{\SHRat} (Z \otimes \mathbb{D} (\nur(X)), \nur(Y)) \\
+    &\simeq \Omega^{\infty} \Map_{\SHRat} (Z \otimes \mathbb{D} (\nur(X)), \b^{-1} (Y)) \\
+    &\simeq \Omega^{\infty} \Map_{\SHRat} (Z, \nur(X) \otimes \b^{-1} (Y)) \\
+    &\simeq \Omega^{\infty} \Map_{\SHRat} (Z, \b^{-1} (X) \otimes \b^{-1} (Y)) \\
+    &\simeq \Omega^{\infty} \Map_{\SHRat} (Z, \nur(X \otimes Y)),
+  \end{align*}
+  as desired. We have used Chow connectivity of $\mathbb{D} (\nur(X))$ in the second equivalence and (1) in the fourth.
+
+  \textbf{Proof of (6):} It is clear that $X$ is $\MU_{\R, 2}$-local if and only $\b^{-1} (X)$ is $\MGL_2$-local.
+  By \Cref{prop:complete-compare}, it suffices to show that $\b^{-1} (X)$ is left complete with respect to the Chow $t$-structure if and only if $\nur(X) = \tau_{\geq 0} ^{\cn} (\b^{-1} (X))$ is.
+  This follows from the fact that left completeness is invariant under taking connective cover.
+\end{proof}
+
+We now move on to the proof of \Cref{thm:Gamma-nu-comp}.
+We begin by studying the interaction of the Chow $t$-structure with $\MGL_2$.
+
+\begin{prop} \label{prop:Chow-MGL}
+  Let $X \in \SHRat$. Then the following statements hold:
+  \begin{enumerate}
+    \item If $X$ is Chow connective, then
+      \[\Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes X)\]
+      is regular slice $2n$-connective for all $n$.
+    \item There is a natural equivalence
+      \[\MGL_2 \otimes (\tau^{\cn} _{\geq 0} X) \simeq \tau_{\geq 0} ^{\cn} (\MGL_2 \otimes X).\]
+    \item The natural map
+      \[\Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes \tau_{\geq 0} ^{\cn} X) \to \Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes X)\]
+      induced by the counit $\tau_{\geq 0} ^{\cn} X \to X$ is equivalent to the canonical map
+      \[P_{2n} \Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes X) \to \Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes X).\]
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  We begin with the proof of (1).
+  Since the full subcategory of $X$ for which $\Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes X)$ is regular slice $2n$-connective is closed under colimits and extensions, it suffices to prove this for $X = \Ss_2^{m+k_1,m+k_2,m}$ for all $m,k_1,k_2 \in \Z$ where $k_1 \geq 0$ and $k_1 + k_2 \geq 0$.
+
+  %In the case that $X = \Spec \C$, we have $\pi_{p,q,w} ^{\R} (\MGL_2 \otimes \Spec \C) \cong \pi_{p+q,w} ^{\C} \MGL_2$.
+  %This is $0$ when $p+q < w$, from which the result follows.
+%
+  Now, we have
+  \[\Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes \Ss_2^{m+k_1,m+k_2,m}) \simeq \Sigma^{m+k_1+(m+k_2)\sigma} \Map_{\SHRat} (\Ss_2^{0,0,n-m}, \MGL_2).\]
+  Since $\Sigma^{m+k_1+(m+k_2)\sigma}$ of a regular slice $2(n-m)$-connective $C_2$-spectrum is regular slice $2n$-connective, this reduces us to the case where $X = \Ss_2^{0,0,0}$, where this follows from \Cref{prop:P-MGL}.
+
+  We now prove (2).
+  Since $\MGL_2$ is Chow connective, there is a natural map 
+  \[(\tau_{\geq 0} ^{\cn} X) \otimes \MGL_2 \to \tau_{\geq 0} ^{\cn} (X \otimes \MGL_2).\]
+  To show that this is an equivalence, it suffices to show that
+  \[\Omega^{\infty} \Map_{\SHRat} (Y, (\tau_{\geq 0} ^{\cn} X) \otimes \MGL_2) \to \Omega^{\infty} \Map_{\SHRat} (Y, \tau_{\geq 0} ^{\cn} (X \otimes \MGL_2))\]
+  is an equivalence for all $Y$ compact and Chow connective.
+  This is equivalent to the map
+  \[\Omega^{\infty} \Map_{\SHRat} (Y, (\tau_{\geq 0} ^{\cn} X) \otimes \MGL_2) \to \Omega^{\infty} \Map_{\SHRat} (Y, X \otimes \MGL_2).\]
+  Now, using compactness of $Y$, the identification $\MGL_2 \simeq \varinjlim_{k} \MGL(k,k)_2$, and duality, we may rewrite this map as
+  \[\varinjlim_k \Omega^{\infty} \Map_{\SHRat} (Y \otimes \mathbb{D} (\MGL(k,k)_2), (\tau_{\geq 0} ^{\cn} X)) \to \varinjlim_k \Omega^{\infty} \Map_{\SHRat} (Y \otimes \mathbb{D} (\MGL(k,k)_2), X).\]
+  This is an equivalence by \Cref{cor:MGL-dual-Chow-conn}.
+
+  Finally, we prove (3).
+  By (1), the map
+  \[\Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes \tau_{\geq 0} ^{\cn} X) \to \Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes X)\]
+  factors through a map
+  \[\Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes \tau_{\geq 0} ^{\cn} X) \to P_{2n} \Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes X).\]
+
+  Since both sides are regular slice $2n$-connective, it suffices to show that this map is an equivalence after applying $\Omega^{\infty} \Sigma^{-n\rho}$. Making some basic manipulations, this is equivalent to showing that
+  \[\Omega^{\infty} \Map_{\SHRat} (\Ss_2^{n,n,n}, \MGL_2 \otimes \tau_{\geq 0} ^{\cn} X) \to \Omega^{\infty} \Map_{\SHRat} (\Ss_2^{n,n,n}, \MGL_2 \otimes X)\]
+  is an equivalence.
+  This is equivalence by (2) and the Chow connectivity of $\Ss_2^{n,n,n}$.
+\end{proof}
+%
+%\begin{prop} \label{prop:Chow-conn-slice}
+%  Suppose that $X$ is Chow connective. Then \[\Map_{\SHRat} (\Ss^{0,0,n}, \MGL \otimes X)\] is $2n$-slice connective for all $n$.
+%\end{prop}
+%
+%\begin{proof}
+%  Since the full subcategory of $X$ for which $\Map_{\SHRat} (\Ss^{0,0,n}, \MGL \otimes X)$ is $2n$-slice connective is closed under colimits, it suffices to prove this for $X = \Ss^{m,m,m}$ for all $m \in \Z$ and $X = \Spec \C$.
+%
+%  In the case that $X = \Spec \C$, we have $\pi_{p,q,w} ^{\R} (\MGL \otimes \Spec \C) \cong \pi_{p+q,w} ^{\C} \MGL$.
+%  This is $0$ when $p+q < w$, from which the result follows.
+%
+%  In the case that $X = \Ss^{m,m,m}$, we have
+%  \[\Map_{\SHRat} (\Ss^{0,0,n}, \MGL \otimes \Ss^{m,m,m}) \simeq \Sigma^{m\rho} \Map_{\SHRat} (\Ss^{0,0,n-m}, \MGL).\]
+%  Since $\Sigma^{m\rho}$ of a slice $2(n-m)$-connective $C_2$-spectrum is slice $2n$-connective, this reduces us to the case where $X = \Ss^{0,0,0}$, where this follows from REF.
+%\end{proof}
+%
+%\begin{prop} \label{prop:MGL-Chow-conn-comm}
+%  Suppose that $X \in \SHR^{\at}$. Then there is a natural equivalence
+%  \[(\tau_{\geq 0} ^{\cn} X) \otimes \MGL \simeq \tau_{\geq 0} ^{\cn} (X \otimes \MGL).\]
+%\end{prop}
+%
+%\begin{proof}
+%  Since $\MGL$ is Chow connective, there is a natural map 
+%  \[(\tau_{\geq 0} ^{\cn} X) \otimes \MGL \to \tau_{\geq 0} ^{\cn} (X \otimes \MGL).\]
+%  Since both sides are Chow connective, to show that this is an equivalence, it suffices to show that
+%  \[\Omega^{\infty} \Map_{\SHRat} (Y, (\tau_{\geq 0} ^{\cn} X) \otimes \MGL) \to \Omega^{\infty} \Map_{\SHRat} (Y, \tau_{\geq 0} ^{\cn} (X \otimes \MGL))\]
+%  is an equivalence for $Y = \Spec \C$ or $\Ss^{m,m,m}$.
+%  This is equivalent to the map
+%  \[\Omega^{\infty} \Map_{\SHRat} (Y, (\tau_{\geq 0} ^{\cn} X) \otimes \MGL) \to \Omega^{\infty} \Map_{\SHRat} (Y, X \otimes \MGL).\]
+%  Now, using compactness of $Y$, the identification $\MGL \simeq \varinjlim_{k} \MGL(k,k)$, and duality, we may rewrite this map as
+%  \[\varinjlim_k \Omega^{\infty} \Map_{\SHRat} (Y \otimes \mathbb{D} (\MGL(k,k)), (\tau_{\geq 0} ^{\cn} X)) \to \varinjlim_k \Omega^{\infty} \Map_{\SHRat} (Y \otimes \mathbb{D} (\MGL(k,k)), X).\]
+%  By Chow connectivity of $\mathbb{D} (\MGL(k,k))$, this is an equivalence.
+%\end{proof}
+%
+%\begin{prop} \label{prop:MGL-Chow}
+%  Let $X$ be an $\R$-motivic spectrum. The map
+%  \[\Map_{\SHRat} (\Ss^{0,0,n}, \MGL \otimes \tau_{\geq 0} ^{\cn} X) \to \Map_{\SHRat} (\Ss^{0,0,n}, \MGL \otimes X)\]
+%  induced by the (co?)unit $\tau_{\geq 0} ^{\cn} X \to X$ is equivalent to the canonical map
+%  \[P_{2n} \Map_{\SHRat} (\Ss^{0,0,n}, \MGL \otimes X) \to \Map_{\SHRat} (\Ss^{0,0,n}, \MGL \otimes X).\]
+%\end{prop}
+%
+%\begin{proof}
+%  By \Cref{prop:Chow-conn-slice}, the map
+%  \[\Map_{\SHRat} (\Ss^{0,0,n}, \MGL \otimes \tau_{\geq 0} ^{\cn} X) \to \Map_{\SHRat} (\Ss^{0,0,n}, \MGL \otimes X)\]
+%  factors through a map
+%  \[\Map_{\SHRat} (\Ss^{0,0,n}, \MGL \otimes \tau_{\geq 0} ^{\cn} X) \to P_{2n} \Map_{\SHRat} (\Ss^{0,0,n}, \MGL \otimes X).\]
+%
+%  Since both sides are slice $2n$-connective, it suffices to show that this map is an equivalence after applying $\Omega^{\infty} \Sigma^{-n\rho}$. Making some basic manipulations, this is equivalent to showing that
+%  \[\Omega^{\infty} \Map_{\SHRat} (\Ss^{n,n,n}, \MGL \otimes \tau_{\geq 0} ^{\cn} X) \to \Omega^{\infty} \Map_{\SHRat} (\Ss^{n,n,n}, \MGL \otimes X)\]
+%  is an equivalence.
+%
+%  This is equivalence by \Cref{prop:MGL-Chow-conn-comm} and the Chow connectivity of $\Ss^{n,n,n}$.
+%%
+  %To show this, we use the identification $\MGL \simeq \varinjlim_k \MGL(k,k)$, compactness of $\Ss^{n,n,n}$, and duality to rewrite this as
+  %\[\varinjlim_k \Omega^{\infty} \Map_{\SHRat} (\Ss^{n,n,n} \otimes \mathbb{D}(\MGL(k,k)), \tau_{\geq 0} ^{\cn} X) \to \varinjlim_k \Omega^{\infty} \Map_{\SHRat} (\Ss^{n,n,n} \otimes \mathbb{D}(\MGL(k,k)), X).\]
+  %\todo{Need to justify why I can relate $t$-structure to underlying $C_2$-space instead of just space.}
+%
+  %This map is an equivalence since $\Ss^{n,n,n} \otimes \mathbb{D} (\MGL(k,k))$ is Chow connective by \Cref{cor:MGL-dual-Chow-conn}.
+%\end{proof}
+
+We are now ready to prove \Cref{thm:Gamma-nu-comp}.
+%
+%\begin{prop}
+%  Given $X \in \SHR^{\at}$, there are natural equivalences
+%  \[\Gamma_* (\b(X)) \simeq (\tau_{\geq 0} ^{\cn} (X[\ta^{-1}]))^{\wedge} _{\MGL},\]
+%  where the $\MGL$-completion is taken internally to $\SHR^{\at}$.
+  %\simeq \tau_{\geq 0} ^{\cn} ((X[\ta^{-1}])^{\wedge} _{\MGL}).\]
+  %
+  %
+  %In particular, if $\b(X)$ is $\MUR$-complete, then there is a natural equivalence
+  %
+  %\[\Gamma_* (\b(X)) \simeq \tau_{\geq 0} ^{\cn} (X[\ta^{-1}]).\]
+%\end{prop}
+%
+\begin{proof}[Proof of \Cref{thm:Gamma-nu-comp}]
+  In this proof, we freely use the notation of \Cref{sec:top} and \Cref{app:compare}, in particular the functors $i_*$, $\tau_{\geq 0} ^{2\slice}$, and $\cb$.
+
+  Let $X$ be a $C_2$-spectrum. By \Cref{prop:Chow-MGL}(2), there are equivalences
+  \begin{align*}
+    \nur(X)^{\wedge} _{\MGL_2}
+    &\simeq \Tot^{\bullet} (\nur(X) \otimes \cb(\MGL_2)) \\
+    &\simeq \Tot^{\bullet} (\nur(X \otimes \cb(\MU_{\R, 2}))).
+  \end{align*}
+  Applying $i_*$ to the map $\nur(X \otimes \cb(\MU_{\R, 2})) \to \b^{-1} (X \otimes \cb(\MU_{\R, 2}))$ of $\cb(\MGL_2)$-modules in cosimplicial Artin-Tate $\R$-motivic spectra, we obtain a map
+  \[i_* (\nur (X \otimes \cb(\MU_{\R, 2}))) \to X \otimes \cb(\MU_{\R, 2})\]
+  of $i_* (\cb(\MGL_2)) \simeq \tau_{\geq 0}^{2\slice} \cb(\MU_{\R, 2})$-modules in cosimplicial filtered $C_2$-spectra, where the target is constant in the filtered direction.
+
+  By \Cref{prop:Chow-MGL}(3), this factors through an equivalence
+  \[i_* (\nur (X \otimes \cb(\MU_{\R, 2}))) \xrightarrow{\sim} \tau_{\geq 0} ^{2\slice} (X \otimes \cb(\MU_{\R, 2}))\]
+  of $\tau_{\geq 0} ^{2\slice} \cb(\MU_{\R, 2})$-modules.
+  Totalizing, we obtain an equivalence
+  \[i_* (\nur (X)^{\wedge} _{\MGL_2}) \simeq i_* (\Gamma_* (X))\]
+  of $R_{\bullet}$-modules.
+  Finally, translating back along the equivalence $i_*$, we obtain the desired equivalence
+  \[\nur(X)^{\wedge} _{\MGL_2} \simeq \Gamma_* (X)\]
+  in $\SHRat$.
+%
+%  In this proof, we view $\SHR^{\at}$ as the category of filtered $\Gamma_* (\Ss)$-modules under the equivalence of \Cref{thm:filt-model}.
+%  By definition, $\nur(X)$ is $\tau_{\geq 0} ^{\cn}$ applied to the $\Gamma_* (\Ss)$-module
+  %Let us identify $X$ with the $\Gamma_* (\Ss)$-module
+  %\[\dots \to i_* (X)_1 \to i_* (X)_0 \to i_* (X)_{-1} \to \dots.\]
+  %Then we may identify $X[\ta^{-1}]$ with
+%  \[\dots \xrightarrow{\mathrm{id}} X \xrightarrow{\mathrm{id}} X \xrightarrow{\mathrm{id}} X \xrightarrow{\mathrm{id}} \dots.\]
+%  Applying \Cref{prop:Chow-MGL}(3), we may identify $\nur (X) \otimes \MGL$ with
+%  \[ \dots \to P_2 (X \otimes \MUR) \to P_0 (X \otimes \MUR) \to P_{-2} (X \otimes \MUR) \to \dots. \]
+%  Using the splitting of $\MGL \otimes \MGL$, we infer more generally that the cosimplical object $\nur (X) \otimes \MGL^{\bullet + 1}$ is equivalent to
+%  \[ \dots \to P_2 (X \otimes \MUR^{\bullet + 1}) \to P_0 (X \otimes \MUR^{\bullet+1}) \to P_{-2} (X \otimes \MUR^{\bullet+1}) \to \dots. \]
+%  Totalizing, we find that 
+%  \[\nur(X)^{\wedge} _{\MGL} \simeq \Tot^\bullet (\nur(X) \otimes \MGL^{\bullet+1}) \simeq \Tot^{\bullet} (P_{2*} (X \otimes \MUR^{\bullet+1})) \simeq \Gamma_* (X),\]
+%  as desired.
+\end{proof}
+
+%In the second half of this section, we prove that several $\R$-motivic spectra of interest can be recovered from their Betti realizations via the functor $\nur$. \todo{As of now, there is a slight gap in the proof, really I show that you get the $\MGL$-localization of $nu$ of stuff, so you either need to replace $\nur$ with $\Gamma_*$ here or prove that sometimes $\nur$ of stuff is $\MGL$-local.}
+%
+%\begin{thm}\label{thm:recover}
+  %There are natural equivalences in $\SHR_{i2}$:
+  %\[\MGL_2 \simeq \nur (\MU_{\R,2})\]
+  %\[\HFt \simeq \nur (\uFt)\]
+  %\[\HZt \simeq \nur (\uZt)\]
+  %\[\kgl_2 \simeq \nur (\ku_{\R,2})\]
+  %\[\kq_2 \simeq \nur (\ko_{C_2, 2}).\]
+%\end{thm}
+%
+%\begin{rmk}\label{rmk:nu-gamma}
+  %Since all of the $\R$-motivic spectra appearing in \Cref{thm:recover} are $2$-complete and connective for the homotopy $t$-structue, they are $\MGL$-complete. It follows from \Cref{thm:Gamma-nu-comp} that we could replace $\nur$ by $\Gamma_*$ in \Cref{thm:recover}.
+%\end{rmk}
+We now move on to the proof of \Cref{thm:recover}.
+We will prove \Cref{thm:recover} as an application of a general criterion for there to be an $\MGL_2$-local equivalence $X \simeq \nur (\b(X))$. This will be based on the following definition:
+
+%\begin{dfn}
+  %We say that $X \in \SHRat$ is \emph{slice simple} if the following conditions hold:
+ %\begin{enumerate}
+   %\item The groups $\pi_{k,k,*} ^\R X$ and $\pi_{k+1, k, *}^{\R} X /\ker(\res)$ are $\ta$-torsion free for all $k \in \Z$, where $\res : \pi_{p,q,w} ^\R \to \pi_{p+q,w} ^\C$ is the map induced by base change, and the groups $\pi_{k,*} ^\C X_{\C}$ are $\tau$-torsion free for all $k \in \Z$.
+   %\item The groups $\pi_{k,k,n} ^\R X$ and $\pi_{k+1,k,n}^\R X/\ker(\res)$ are zero for $k < n$, and $\pi_{k,n} ^{\C} X_{\C}$ is zero for $k < 2n$.
+    %\item The groups $\pi_{k,k,n} ^\R X \otimes C\ta$ and $\pi_{k+1,k,n} ^\R X \otimes C\ta / \ker(\res)$ are zero for $k \neq n$, and the groups $\pi_{k,n} ^{\C} X_{\C} \otimes C\tau$ are zero for $k \neq 2n+1, 2n$.
+  %\end{enumerate}
+%\end{dfn}
+
+\begin{dfn}
+  We say that $X \in \SHRat$ is \emph{slice simple} if, for all $n \in \Z$, the natural map
+  \[ \Map_{\SHRat} (\Ss_2^{0,0,n}, X) \to \b(X)\]
+  factors through an equivalence
+  \[ \Map_{\SHRat} (\Ss_2^{0,0,n}, X) \simeq P_{2n} \b(X).\]
+\end{dfn}
+%
+%\begin{lem} \label{lem:slice-simple-alt}
+%  Let $X \in \SHR^{\at}$. Then $X$ is slice simple if and only if the natural map
+%  \[ \Map_{\SHRat} (\Ss^{0,0,n}, X) \to \b(X)\]
+%  factors through an equivalence
+%  \[ \Map_{\SHRat} (\Ss^{0,0,n}, X) \simeq P_{2n} \b(X).\]
+%\end{lem}
+%
+%\begin{proof}
+%  Let us begin by giving equivalent reformulations of the conditions for a spectrum to be slice simple.
+%
+%  Condition (1) corresponds to injectivity of the natural maps $\pi_{k,k,n} ^\R X \to \pi_{k\rho} ^{C_2} \b(X)$, $\pi_{k+1,k,n} ^{\R} X/\ker(\res) \to \pi_{k\rho+1} ^{C_2} \b(X) /\ker(\res)$, and $\pi_{k,n} ^{\C} X_{\C} \to \pi_{k} X_{\C}$.
+%
+%  Condition (2) corresponds to slice $2n$-connectivity of $\Map_{\SHRat} (\Ss^{0,0,n}, X)$.
+%
+%  Given condition (2), condition (3) corresponds to surjectivity of the natural maps $\pi_{k,k,n} ^\R X \to \pi_{k\rho} ^{C_2} \b(X)$ and $\pi_{k+1,k,n} ^{\R} X/\ker(\res) \to \pi_{k\rho+1} ^{C_2} \b(X) /\ker(\res)$ for $k \geq n$ and $\pi_{k,n} ^{\C} X_{\C} \to \pi_{k} X_{\C}$ for $k \geq 2n$.
+%
+%  Using the identification of the regular $2n$-slices of a $C_2$-spectrum $Y$ with $\Sigma^{n\rho} \piu ^{C_2} _{n\rho} Y$ and the regular $2n+1$-slices with $\Sigma^{n\rho+1} \piu ^{C_2} _{n\rho+1} Y / \ker(\res)$, these conditions are manifestly equivalent to the natural map
+%  \[ \Map_{\SHRat} (\Ss^{0,0,n}, X) \to \b(X)\]
+%  factoring through an equivalence
+%  \[ \Map_{\SHRat} (\Ss^{0,0,n}, X) \simeq P_{2n} \b(X). \qedhere\]
+%
+%  Suppose that $X$ is slice simple.
+%  It follows from condition (2) in the definition of slice simple that $\Map_{\SHRat} (\Ss^{0,0,n}, X)$ is slice $2n$-connective, so that the map
+%  \[ \Map_{\SHRat} (\Ss^{0,0,n}, X) \to \b(X)\]
+%  factors naturally through a map
+%  \[ \Map_{\SHRat} (\Ss^{0,0,n}, X) \to P_{2n} \b(X).\]
+%
+%  Combining conditions (1), (2) and (3), we learn that the natural maps $\pi_{k,k,n} ^\R X \to \pi_{k\rho} ^{C_2} \b(X)$, $\pi_{k+1,k,n} ^{\R} X/\ker(\res) \to \pi_{k\rho+1} ^{C_2} \b(X) /\ker(\res)$ are isomorphisms for all $k \geq n$, and that $\pi_{k,n} ^{\C} X_{\C} \to \pi_{k} X_{\C}$ are isomorphisms for all $k \geq 2n$.
+%
+%  We conclude that 
+%
+%  On the other hand, suppose that the natural map
+%  \[ \Map_{\SHRat} (\Ss^{0,0,n}, X) \to \b(X)\]
+%  factors through an equivalence
+%  \[ \Map_{\SHRat} (\Ss^{0,0,n}, X) \simeq P_{2n} \b(X).\]
+%  Condition (2) follows from the slice $2n$-connectivity of $\Map_{\SHRat} (\Ss^{0,0,n}, X)$.
+%  Conditions (1) and (3) follow from the fact that
+%\end{proof}
+
+\begin{prop} \label{prop:slice-simple-nu}
+  Let $X \in \SHR^{\at}$, and let $L_{\MGL_2}$ denote $\MGL_2$-localization. Then $L_{\MGL_2} X \simeq L_{\MGL_2} \nur (\b(X))$ if and only if $\MGL_2 \otimes X$ is slice simple.
+
+  If $X$ is a commutative algebra, then the equivalence $L_{\MGL_2} X \simeq L_{\MGL_2} \nur (\b(X))$ is one of commutative algebras.
+%
+%
+%  under the following assumptions:
+%  \begin{itemize}
+%    \item The groups $\MGL_{k,k,*} ^\R X$ and $\MGL_{k,*} ^\C X_{\C}$ are $\ta$-torsion free for all $k \in \Z$.
+%    \item The groups $\MGL_{k,k,n} ^\R X \otimes C(\ta)$ are zero for $n \neq k$, and the groups $\MGL_{k,n} ^{\C} X_{\C} \otimes C(\tau)$ are zero for $n \neq 2k+1, 2k$.
+%      Furthermore, the groups $\MGL_{k+1,k,n} ^\R X \otimes C(\ta) / \ker(\res)$ are zero for $n \neq k$.
+%  \end{itemize}
+\end{prop}
+
+\begin{proof}
+  Suppose that $L_{\MGL_2} X \simeq L_{\MGL_2} \nur(\b(X))$, so that $\MGL_2 \otimes X \simeq \MGL_2 \otimes \nur(\b(X))$.
+  Then we have
+  \[\Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes X) \simeq \Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes \nur(\b(X))\]
+  as $C_2$-spectra over $\b(X)$.
+  By \Cref{prop:Chow-MGL}(3), the map
+  \[\Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes \nur(\b(X)) \to \b(\MGL_2 \otimes X)\]
+  factors through an equivalence
+  \[\Map_{\SHRat} (\Ss_2^{0,0,n}, \MGL_2 \otimes \nur(\b(X)) \simeq P_{2n} \b(\MGL_2 \otimes X),\]
+  so that $\MGL_2 \otimes X$ is slice simple.
+
+  Now suppose that $\MGL_2 \otimes X$ is slice simple, and
+%
+%  By definition of $\nur$, there is an equivalence $\nur (\b(X)) \simeq \tau_{\geq 0} ^{\cn} (X[\ta^{-1}])$, and we will work with the latter for the rest of the proof.
+%
+  consider the following diagram:
+  \begin{center}
+    \begin{tikzcd}
+      X \ar[r] & X[\ta^{-1}] & \\
+      \tau_{\geq 0} ^{\cn} X \ar[r] \ar[u] & \tau_{\geq 0} ^{\cn} (X[\ta^{-1}]). \ar[u] 
+    \end{tikzcd}
+  \end{center}
+  If $X$ is a commutative algebra, then this is a diagram of commutative algebras.
+  Applying $\Map_{\SHRat} (\Ss_2^{0,0,n}, - \otimes \MGL_2)$, we obtain the diagram:
+  \begin{center}
+    \begin{tikzcd}
+      \Map_{\SHRat} (\Ss_2^{0,0,n}, X \otimes \MGL_2) \ar[r] & \b(X) \otimes \MU_{\R, 2} & \\
+      \Map_{\SHRat} (\Ss_2^{0,0,n}, (\tau_{\geq 0} ^{\cn} X) \otimes \MGL_2) \ar[r] \ar[u] & \Map_{\SHRat} (\Ss_2^{0,0,n}, (\tau_{\geq 0} ^{\cn} (X[\ta^{-1}])) \otimes \MGL_2). \ar[u] 
+    \end{tikzcd}
+  \end{center}
+  Finally, applying \Cref{prop:Chow-MGL}(3) and slice simplicity of $\MGL_2 \otimes X$, we may identify this diagram with
+  \begin{center}
+    \begin{tikzcd}
+      P_{2n} (\b(X) \otimes \MU_{\R, 2}) \ar[r] & \b(X) \otimes \MU_{\R, 2} & \\
+      P_{2n} (\b(X) \otimes \MU_{\R, 2}) \ar[r] \ar[u] & P_{2n} (\b(X) \otimes \MU_{\R, 2}). \ar[u] 
+    \end{tikzcd}
+  \end{center}
+  In conclusion, we find that the maps $\tau_{\geq 0} ^{\cn} X \to X$ and $\tau_{\geq 0} ^{\cn} X \to \tau_{\geq 0} ^{\cn} (X[\ta^{-1}]) \simeq \nur(\b(X))$ are $\MGL_2$-equivalences, as desired.
+%
+%
+%  By \Cref{prop:MGL-Chow} and condition (2) in the defintion of slice simple, we find that
+%  \[X \otimes \MGL \to (\tau_{\geq 0} ^{\cn} X) \otimes \MGL\]
+%  is an equivalence, so that $\tau_{\geq 0} ^{\cn} X \to X$ is an $\MGL$-local equivalence.
+%
+%  On the other hand, $X \otimes \MGL \simeq (\tau_{\geq 0} ^{\cn} X) \otimes \MGL \to (\tau_{\geq 0} ^{\cn} (X[\ta^{-1}])) \otimes \MGL$
+  %It follows that the map $\tau_{\geq 0} ^{\cn} X \to L_{\MGL} (\tau_{\geq 0} ^{\cn} (X[\ta^{-1}]))$ factors through a map $X \to L_{\MGL} (\tau_{\geq 0} ^{\cn} (X[\ta^{-1}])).$
+%
+  %By definition of slice simple, we find that $X$ lies in $\SHR^{\at, \cn} _{\geq 0, i2}$, so that the natural map $X \to X[\ta^{-1}]$ factors through a map $X \to \tau_{\geq 0} ^{\cn} (X[\ta^{-1}])$.
+%
+  %By a PROP and the definition of slice simple, we see that this map induces an equivalence on $\MGL_2$-homology. Since $X$ is $\eta$-complete, it is $\MGL_2$-complete and so this implies that $X \to \tau_{\geq 0} ^{\cn} (X[\ta^{-1}])$ is an equivalence.
+%
+  %Examining the definitions, we find that $\Gamma_* \b(X) \simeq \tau_{\geq 0} ^{\cn} X[\ta^{-1}]$, so we win.
+\end{proof}
+
+To prove \Cref{thm:recover}, we now need to show that the $\R$-motivic spectra in question are slice simple after being tensored with $\MGL_2$. To this end, we record the following simple proposition:
+%
+%\begin{lem}
+%  The functors
+%  \[\pi_{k,k,n} ^\R\]
+%  \[\pi_{k+1,k,n} ^\R / \ker(\res) \]
+%  \[\pi_{k,n} ^\C \]
+%  are jointly conservative on $\SHR ^{gc}$.
+%\end{lem}
+%
+%\begin{proof}
+%%  By joint conservativity of $\pi_{p,q,w} ^\R$, the functors
+%  \[X \mapsto \Map_{\SHR_{i2}} (\Ss^{0,0,w}, X)\]
+%  are jointly conservative on $\SHR^{gc} _{i2}$.
+%
+%  Then the result follows from the joint conservativity of the functors $\piu_{n\rho}$ and $\piu_{n\rho+1} / \ker(\res)$ on $C_2$-spectra. This in turn follows from the identification of the slices of a $C_2$-spectrum.
+%\end{proof}
+%
+%\begin{lem}
+%  Suppose that $X \in \Sp_{C_2, ip}$ is an $\MU_{\R,2}$-module. Then $\Gamma_* X$ is slice simple.
+  %Then the the groups
+  %$\pi_{k,k,n} ^\R \nur X$ and $\pi_{k+1,k,n} ^\R \nur X / \ker(\res)$ are zero for $n > k$ and $\pi_{k,n} ^\C \nur X$ is zero for $n > 2k$.
+  %On the other hand, the maps induced by Betti realization
+  %$\pi_{k,k,n} ^\R \nur X \to \pi_{k\rho} ^{C_2} X$ and
+  %$\pi_{k+1,k,n} ^\R \nur X  \to \pi_{k\rho+1}^{C_2} X /\ker(\res)$
+  %are isomorphisms for $n \leq k$, and the map
+  %$ $
+  %is an isomorphism for $n \leq k$.
+%\end{lem}
+%
+%\begin{proof}
+%  Since $X$ is an $\MUR$-module, the cosimplicial diagram $X \otimes \MUR^{\bullet +1}$ admits a contracting homotopy, hence the diagrams $P_{2n} (X \otimes \MUR^{\bullet+1})$ do as well.
+%  It follows that $\Tot (P_{2n} (X \otimes \MUR^{\bullet+1})) \simeq P_{2n} X$, so that $\Gamma_{n} (X) \simeq P_{2n} X$.
+%
+%  Since we have $P_{2n} ^{2n} X \simeq \Sigma^{n\rho} \piu_{n\rho} X$ and $P_{2n+1} ^{2n+1} X \simeq \Sigma^{n\rho+1} \piu_{n\rho+1} X / \ker(\res)$, the result follows.
+%\end{proof}
+%
+%
+\begin{prop} \label{prop:sl-si-cond}
+  The collection of slice simple Artin-Tate $\R$-motivic spectra is closed under direct sums, retracts, and pure suspensions $\Sigma^{n,n,n}$.
+%
+  %Moreover, suppose that $X \in \SHRat$ has convergent slice tower: $X \simeq \varprojlim f_n X$.
+  %Moreover, any Artin-Tate $\R$-motivic spectrum with convergent slice tower and whose $n$-slice is a direct sum of $\Sigma^{n,n,n} \HFt$ and $\Sigma^{n,n,n} \HZt$ for all $n$ is slice simple.
+\end{prop}
+%
+%\begin{proof}
+%  The closure properties of slice simple $\R$-motivic spectra are clear from the definition.
+%
+%  The second statement follows from the slice spetral sequence and the following facts about the trigraded homotopy groups of $\HZt$ and $\HFt$, which may be read off from \Cref{thm:pthomology} and \Cref{thm:eqpthom}:
+%  \begin{itemize}
+%    \item $\pi_{k,k,*} ^\R \HZt \cong \pi_{k,k,*} ^\R \HFt \cong 0$ for $k \neq 0$.
+%    \item $\pi_{k+1,k,*} ^\R \HZt \cong \pi_{k+1,k,*} ^\R \HFt \cong 0$ for all $k$.
+%    \item $\pi_{0,0,*} ^\R \HZt \cong \Zt[\ta]$ and $\pi_{0,0,*} ^\R \HFt \cong \Ft[\ta]$.
+%    \item $\pi_{*,*} ^\C \HZt \cong \Zt[\tau]$ and $\pi_{*,*} ^\C \HFt \cong \Ft[\tau]$. \qedhere
+%  \end{itemize}
+%\end{proof}
+%
+%\begin{cor} \label{cor:in-im-Gamma}
+%  There are equivalences
+%  \[\MGL_2 \simeq \nur(\MU_{\R,2})\]
+%  \[\HFt \simeq \nur(\uFt)\]
+%  \[\HZt \simeq \nur(\uZt)\]
+%  \[\kgl_2 \simeq \nur(\ku_2)\]
+%  \[\kq_2 \simeq \nur (\ko_2)\]
+%\end{cor}
+%
+\begin{proof}[Proof of \Cref{thm:recover}]
+  By \Cref{prop:slice-simple-nu}, it suffices to show that $\MGL_2 \otimes E$ is slice simple for $E=\MGL_2, \HFt, \HZt, \kgl_2, \kq_2$. Indeed, each of these $E$ is $\MGL_2$-local, and $\nur(\b(E))$ is also $\MGL_2$-local by \Cref{thm:nu-properties}(6), since $\b(E)$ is $\MU_{\R, 2}$-local.
+  %Indeed, as note in \Cref{rmk:nu-gamma}, they are even $\MGL$-complete.
+
+  Now, for $E=\MGL_2, \HFt, \HZt, \kgl_2$, $\MGL_2 \otimes E$ is a direct sum of pure suspensions of $E$, so it suffices to show that $E$ itself is slice simple.
+  For $\MGL_2$, this follows from \Cref{prop:P-MGL}. For $\HZt$ and $\HFt$, it follows from \Cref{lem:Zcalc}.
+  For $\kgl_2$, it follows from \Cref{thm:eff-fil} and \cite[Theorem 1.1]{SliceComp}.
+
+  %For $\MGL$, this follows from \Cref{prop:sl-si-cond}, since $\MGL \otimes \MGL$ is a direct sum of pure suspensions of $\MGL$ and the slices of $\MGL$ are of the specified form.
+  %Since $\HFt$, $\HZt$, and $\kgl_2$ are $\MGL$-modules, we learn that when $E$ is one of these, then $\MGL \otimes E$ is a direct sum of pure suspensions of $E$. Again, \Cref{prop:sl-si-cond} finishes the job.
+%
+  Finally, for the case of $\kq_2$, we use the equivalence $\kq_2 \otimes C\eta \simeq \kgl_2$ and the fact that $\eta = 0$ in $\pi_{0,1,1} ^\R \MGL_2$ to deduce that $\MGL_2 \otimes \kgl_2 \simeq \MGL_2 \otimes \kq_2 \otimes C\eta \simeq \MGL_2 \otimes \kq_2 \oplus \Sigma^{1,1,1} \MGL_2 \otimes \kq_2$.
+  It follows that $\MGL_2 \otimes \kq_2$ is a retract of $\MGL_2 \otimes \kgl_2$, so that $\MGL_2 \otimes \kq_2$ is slice simple.
+\end{proof}
+%
+%
+%\begin{cnstr}
+%  The lax symmetric monoidal functor
+%  \[\Gamma_* : \Sp_{C_2} \to \Sp_{C_2} ^{\Fil}\]
+%  of SEC fators through a lax symmetric monoidal functor
+%  \[\Gamma_* : \Sp_{C_2} \to \Mod(\Sp_{C_2}; \Gamma_* (\Ss)).\]
+%  By REF, this may be identified with a lax symmetric monoidal funtor
+%  \[\Gamma_* : \Sp_{C_2} \to \SHRat\]
+%\end{cnstr}
+%
+%\begin{thm}
+%  Suppose that $X \in \Sp_{C_2}$ admits a bounded below cell structure with cells of the form $\Ss^{n\rho}$. Then there is a natural equivalence
+%  \[\nur(X) \otimes C\ta \simeq \pi_0 ^{\ch} \nur(X).\]
+%\end{thm}
+%
+%The first main theorem of this section shows that $\nur$ is a decompletion of the functor
+%\[\Gamma_* : \Sp_{C_2} \to \SHR^{\at}\]
+%studied in SECTION.
+%
+%\begin{thm} \label{thm:Gamma-nu-comp}
+%  For $X \in \Sp_{C_2}$, there is a natural equivalence
+%  \[\Gamma_* (X) \simeq \nur (X) ^{\wedge} _{\MGL}.\]
+%\end{thm}
+%
+%The second main theorem makes use of this new description of $\Gamma_*$ to prove that several $2$-complete $\R$-motivic spectra may be functorially recovered from their Betti realizations:
+%
+%\begin{thm}\label{thm:recover}
+%  There are natural equivalences in $\SHRat$:
+%  \[\MGL_2 \simeq \Gamma_* (\MU_{\R,2})\]
+%  \[\HFt \simeq \Gamma_* (\uFt)\]
+%  \[\HZt \simeq \Gamma_* (\uZt)\]
+%  \[\kgl_2 \simeq \Gamma_* (\ku_{\R,2})\]
+%  \[\kq_2 \simeq \Gamma_* (\ko_{C_2, 2}).\]
+%\end{thm}
+%
+%\begin{rmk}
+%  In light of \Cref{thm:recover}, it would be reasonable to define an $\R$-motivic spectrum of motivic modular forms as $\nur (\tmf_{C_2,2})$, assuming that one had a good equivariant spectrum of $C_2$-motivic modular forms $\tmf_C_2,2}$.
+%  Since no such equivariant spectrum has yet been constructed, we leave this to future work. \todo{Mention why previous attempts don't work? Errors in the literature?}
+%\end{rmk}
+%

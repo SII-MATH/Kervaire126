@@ -1,0 +1,2127 @@
+% This section can also be compiled directly by the source editor, whose
+% standalone compiler does not load print.tex or the project's macro files.
+% When included in the complete Blueprint, use its existing preamble.
+\ifdefined\chapter
+  \let\KIPExternalResultsBegin\relax
+  \let\KIPExternalResultsEnd\relax
+\else
+  \documentclass[a4paper]{report}
+  \usepackage[margin=25mm]{geometry}
+  \usepackage{amssymb,amsthm,mathtools}
+  \usepackage[unicode,colorlinks=true,linkcolor=blue,urlcolor=magenta]{hyperref}
+  \newtheorem{theorem}{Theorem}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \theoremstyle{definition}
+  \newtheorem{definition}[theorem]{Definition}
+  % These directives remain in the source for the complete Blueprint graph.
+  \newcommand{\lean}[1]{}
+  \newcommand{\discussion}[1]{}
+  \newcommand{\leanok}{}
+  \newcommand{\mathlibok}{}
+  \newcommand{\notready}{}
+  \newcommand{\uses}[1]{}
+  \newcommand{\proves}[1]{}
+  \def\KIPExternalResultsBegin{\begin{document}}
+  \def\KIPExternalResultsEnd{\end{document}}
+\fi
+\KIPExternalResultsBegin
+
+\section{External literature results}
+\label{chap:external-results}
+
+The published results below are grouped by their mathematical subject.
+Their hypotheses, chosen classes and source locators are retained. Applying a
+published theorem to the specified Adams towers or synthetic category requires
+the stated comparisons; these applications remain unfinished wherever indicated.
+
+\subsection{Notation and common mathematical choices}
+\label{sec:literature-notation}
+
+Use the completed sphere $S^0$, the mod--2 Eilenberg--Mac Lane spectrum $H$,
+and the Milnor cooperations $M$ specified for these Adams constructions. Let $D$
+denote the specified stable and synthetic categories together with their
+synthetic analogue $\nu$, realization and quotient comparisons.
+Write $E_r^{s,t}(X)$ for the actual classical Adams page and
+$E_r^{s,t,w}(A)$ for its synthetic analogue. The classical
+$F^s\pi_n(X)$ is the image of stage $s$ of the Adams tower.
+Standard $h_j$ and their cup products use the same $H,M$ comparisons;
+$\pi_n(X)$ and $\pi_{m,w}(A)$ are stable and synthetic mapping groups.
+
+Write $S$ for the chosen classical sphere classes together with their
+convergence identification, and $T$ for the chosen connective tmf spectrum,
+its classes and its unit. In the formulas below, $S.\theta_5$, $S.\eta$,
+$S.\nu$ and $T.\mathrm{spectrum}$ denote these mathematical choices.
+Fix the synthetic class $\eta\in\pi_{1,2}S^{0,0}$ and the specified
+comparisons with its classical counterpart, and choose the synthetic class
+$h_0^{\mathrm{syn}}\in\pi_{0,1}S^{0,0}$ used in the low-degree results.
+Each later theorem uses these
+same choices. Their existence and the necessary model comparisons are not
+established by this notation.
+
+\subsection{Classical Adams differentials, detection and the $62$-stem}
+
+% SOURCE: MainPaper/main.tex:1667--1680, 1697--1705, 2538--2543;
+% May 1964 thesis Part II, Theorem 7.11; Ravenel Theorem 1.2.12 cross-check.
+\begin{theorem}[Classical Hopf $d_2$ differential]
+  \label{thm:external-adams-one-line}
+  \uses{def:classical-adams-ss,def:adams-hj}
+  \lean{KIP126.Challenge2.LiteratureResults.adamsOneLine_d2,KIP126.Interface.Solution.adamsOneLine_d2}
+  \notready
+  On the fixed sphere Adams tower, for every $j\in\mathbb N$ with $j\ge4$,
+  \[
+    d_2(h_j)=h_0h_{j-1}^2\ne0,
+    \qquad (1,2^j)\longrightarrow(3,1+2^j).
+  \]
+  The $j=6$ instance is used in the main proof, and $j=4,5$ occur in the
+  body's tool examples. May's 1964 thesis Part~II, Theorem~7.11 (PDF p.~158),
+  and Ravenel's Theorem~1.2.12 give the recorded classical formula; the precise
+  original Adams locator remains a provenance obligation in the manifest.
+  The classes and their cup products are interpreted through the fixed
+  internal comparison. Identification with the source calculation and the
+  Solution proof remain unfinished.
+\end{theorem}
+
+% SOURCE: Ravenel, Complex Cobordism and Stable Homotopy Groups of Spheres,
+% second edition, Theorem 3.4.5(a); conservative positive-stem specialization.
+\begin{theorem}[Positive-stem sphere Adams vanishing line]
+  \label{thm:external-sphere-vanishing}
+  \lean{KIP126.Classical.Adams.SphereVanishingLine,KIP126.Challenge2.LiteratureResults.sphereVanishing}
+  \uses{def:classical-adams-ss,def:adams-hj}
+  \notready
+  For the actual mod--2 Adams tower of the fixed completed sphere,
+  for every $s,t\in\mathbb Z$, its second page is zero in bidegree $(s,t)$ whenever
+  \[
+    0<t-s<2s-3.
+  \]
+  The zero stem is excluded, retaining the $h_0$ tower. The project uses
+  this conservative specialization of Ravenel's Theorem 3.4.5(a).
+  Identifying the source's spectral sequence with the fixed internal tower
+  remains a model-comparison obligation. Finite CSV data cannot prove this
+  all-degree vanishing statement; separation of the actual Adams filtration
+  is a further internal application with convergence hypotheses.
+\end{theorem}
+
+
+% SOURCE: Xu Corollary 1.3 and the BJM theta5 existence result.
+% The canonical manifest marks the original BJM locator as not independently verified.
+\begin{theorem}[Nonzero permanent survival of the standard classical $h_5^2$]
+  \label{thm:literature-classical-h5Square-permanent}
+  \lean{KIP126.Challenge2.LiteratureResults.classical_h5Square_permanent}
+  \uses{def:classical-adams-ss,def:adams-hj}
+  \notready
+  On the actual mod--2 Adams sequence $E(S^0)$ of the fixed sphere,
+  with the standard Milnor class $h_5^2\in E_2^{2,64}(S^0)$,
+  \[
+    \operatorname{NonzeroSurvival}\bigl(E(S^0),(2,64),h_5^2\bigr).
+  \]
+  Explicitly, there exists a common $Z_\infty$ representative $u$ whose
+  $E_2$ image is $h_5^2$ and whose $E_\infty$ image is nonzero.
+  The recorded source is Xu, Corollary~1.3, together with BJM's existence
+  result. The original BJM locator and the comparison with this fixed
+  internal sphere sequence remain provenance and comparison obligations.
+\end{theorem}
+
+% SOURCE: Xu Corollary 1.3, chosen theta5 detected by h5^2.
+\begin{theorem}[Detection of the selected classical $\theta_5$]
+  \label{thm:literature-classical-theta5-detection}
+  \lean{KIP126.Challenge2.LiteratureResults.classical_theta5_detection}
+  \uses{def:classical-adams-ss,def:adams-hj,def:adams-detection}
+  \notready
+  Let $\theta_5^{\mathrm{cl}}=S.\theta_5\in\pi_{62}(S^0)$ and
+  $c_{\mathrm{cl}}=S.\mathrm{convergence}$ be the class and convergence
+  identification chosen above. Then
+  \[
+    \operatorname{Detects}_{c_{\mathrm{cl}}}^{(2,64)}
+      (h_5^2,\theta_5^{\mathrm{cl}}).
+  \]
+  Thus there exist a common $Z_\infty$ representative $u$ with
+  $\pi_2(u)=h_5^2$ and an element
+  $a\in F^2\pi_{62}(S^0)$ whose inclusion is $\theta_5^{\mathrm{cl}}$,
+  such that
+  \[
+    c_{\mathrm{cl}}^{2,64}\bigl(\pi_\infty(u)\bigr)
+       =\operatorname{gr}^{2}(a).
+  \]
+  This is the selected-class statement of Xu, Corollary~1.3, transported
+  through the same source convergence; no second $\theta_5$ or convergence
+  identification is selected.
+\end{theorem}
+
+% SOURCE: Xu Corollary 1.3, order-two choice.
+\begin{theorem}[The selected classical $\theta_5$ is killed by two]
+  \label{thm:literature-classical-theta5-order-two}
+  \lean{KIP126.Challenge2.LiteratureResults.classical_theta5_order_two}
+  \uses{def:classical-adams-ss,def:adams-hj}
+  \notready
+  For the same selected class
+  $\theta_5^{\mathrm{cl}}=S.\theta_5\in\pi_{62}(S^0)$,
+  \[
+    \theta_5^{\mathrm{cl}}+\theta_5^{\mathrm{cl}}=0.
+  \]
+  This statement asserts annihilation by two, without separately
+  asserting $\theta_5^{\mathrm{cl}}\ne0$.
+  The source is Xu, Corollary~1.3; identifying its class with the selected
+  class remains an unfinished comparison.
+\end{theorem}
+
+% SOURCE: IWX and the 2022 classical data, Adams-classical-Einfty.csv lines
+% 204--207; README-Adams.pdf pp.2--3 (the current canonical locator).
+\begin{theorem}[Exponent two in the actual classical $62$-stem]
+  \label{thm:literature-classical-stem62-exponent-two}
+  \lean{KIP126.Challenge2.LiteratureResults.classical_stem62_exponent_two}
+  \uses{def:classical-adams-ss,def:adams-hj}
+  \notready
+  Every homotopy class in the actual fixed sphere's $62$-stem is killed
+  by two:
+  \[
+    \forall a\in\pi_{62}(S^0),\qquad a+a=0.
+  \]
+  This concerns the homotopy group itself, rather than only its Adams
+  associated graded. The canonical locator records IWX's classical
+  $E_\infty$ data lines~204--207 and the data README, pp.~2--3.
+  Interpretation of the data, including the required extension information,
+  in this actual homotopy group remains an unproved comparison obligation.
+\end{theorem}
+
+% SOURCE: IWX and the 2022 classical data, Adams-classical-Einfty.csv lines
+% 204--207; no 62-stem filtration 3,4,5 rows.
+\begin{theorem}[Filtration gap between classical $h_5^2$ detections]
+  \label{thm:literature-classical-theta5-filtration-gap}
+  \lean{KIP126.Challenge2.LiteratureResults.classical_theta5_filtration_gap}
+  \uses{def:classical-adams-ss,def:adams-hj,def:adams-detection}
+  \notready
+  With $c_{\mathrm{cl}}=S.\mathrm{convergence}$, for every
+  $a,b\in\pi_{62}(S^0)$,
+  \[
+    \left.
+    \begin{aligned}
+      &\operatorname{Detects}_{c_{\mathrm{cl}}}^{(2,64)}(h_5^2,a),\\
+      &\operatorname{Detects}_{c_{\mathrm{cl}}}^{(2,64)}(h_5^2,b)
+    \end{aligned}
+    \right\}
+    \quad\Longrightarrow\quad a-b\in F^6\pi_{62}(S^0).
+  \]
+  Both detections use the same delivered convergence, and $F^6$ is
+  the image filtration of the actual fixed Adams tower.
+  The canonical locator is IWX's classical $E_\infty$ data,
+  lines~204--207, with no $62$-stem rows in filtrations $3,4,5$.
+  Transporting the source filtration statement to this tower remains unproved.
+\end{theorem}
+
+% SOURCE: Adams60/BHS/IWX, low classical stems; BHS prop:syn-toda-range.
+% The original per-class Hopf detection locator remains to be verified.
+\begin{theorem}[Detection of the actual map two by $h_0$]
+  \label{thm:literature-classical-two-detection}
+  \lean{KIP126.Challenge2.LiteratureResults.classical_two_detection}
+  \uses{def:classical-adams-ss,def:adams-hj,def:adams-detection}
+  \notready
+  For $c_{\mathrm{cl}}=S.\mathrm{convergence}$ and the actual stable map
+  \[
+    \tau_2=(\operatorname{shiftFunctorZero})_{S^0}
+      \mathbin{\gg}(2\operatorname{id}_{S^0})\in\pi_0(S^0),
+  \]
+  the standard Milnor class $h_0\in E_2^{1,1}(S^0)$ satisfies
+  \[
+    \operatorname{Detects}_{c_{\mathrm{cl}}}^{(1,1)}(h_0,\tau_2).
+  \]
+  Equivalently, there exist a common $Z_\infty$ representative $u$
+  with $\pi_2(u)=h_0$ and $a\in F^1\pi_0(S^0)$ mapping to $\tau_2$,
+  with $c_{\mathrm{cl}}^{1,1}(\pi_\infty(u))=\operatorname{gr}^1(a)$.
+  The sources are Adams60/BHS/IWX in the low classical stems, including
+  BHS \texttt{prop:syn-toda-range}. The original per-class locator and
+  fixed-model comparison remain obligations.
+\end{theorem}
+
+% SOURCE: Adams60/BHS/IWX, low classical stems; BHS prop:syn-toda-range.
+% The original per-class Hopf detection locator remains to be verified.
+\begin{theorem}[Detection of the selected classical $\eta$ by $h_1$]
+  \label{thm:literature-classical-eta-detection}
+  \lean{KIP126.Challenge2.LiteratureResults.classical_eta_detection}
+  \uses{def:classical-adams-ss,def:adams-hj,def:adams-detection}
+  \notready
+  For $c_{\mathrm{cl}}=S.\mathrm{convergence}$ and the selected
+  classical $\eta_{\mathrm{cl}}=S.\eta\in\pi_1(S^0)$,
+  \[
+    \operatorname{Detects}_{c_{\mathrm{cl}}}^{(1,2)}
+      (h_1,\eta_{\mathrm{cl}}).
+  \]
+  There exist a common $Z_\infty$ representative $u$ with $\pi_2(u)=h_1$
+  and $a\in F^1\pi_1(S^0)$ mapping to $\eta_{\mathrm{cl}}$, such that
+  $c_{\mathrm{cl}}^{1,2}(\pi_\infty(u))=\operatorname{gr}^1(a)$.
+  The class here is the chosen classical $S.\eta$; identification
+  with the independently fixed synthetic $\eta$ is a separate comparison.
+  The canonical locator records Adams60/BHS/IWX in the low stems and
+  BHS \texttt{prop:syn-toda-range}; the original per-class locator and
+  fixed-model comparison remain obligations.
+\end{theorem}
+
+% SOURCE: Adams60/BHS/IWX, low classical stems; BHS prop:syn-toda-range.
+% The original per-class Hopf detection locator remains to be verified.
+\begin{theorem}[Detection of the selected classical $\nu$ by $h_2$]
+  \label{thm:literature-classical-nu-detection}
+  \lean{KIP126.Challenge2.LiteratureResults.classical_nu_detection}
+  \uses{def:classical-adams-ss,def:adams-hj,def:adams-detection}
+  \notready
+  For $c_{\mathrm{cl}}=S.\mathrm{convergence}$ and the selected
+  classical $\nu_{\mathrm{cl}}=S.\nu\in\pi_3(S^0)$,
+  \[
+    \operatorname{Detects}_{c_{\mathrm{cl}}}^{(1,4)}
+      (h_2,\nu_{\mathrm{cl}}).
+  \]
+  There exist a common $Z_\infty$ representative $u$ with $\pi_2(u)=h_2$
+  and $a\in F^1\pi_3(S^0)$ mapping to $\nu_{\mathrm{cl}}$, such that
+  $c_{\mathrm{cl}}^{1,4}(\pi_\infty(u))=\operatorname{gr}^1(a)$.
+  The canonical locator records Adams60/BHS/IWX in the low stems and
+  BHS \texttt{prop:syn-toda-range}; the original per-class locator and
+  fixed-sphere comparison remain obligations.
+\end{theorem}
+
+% SOURCE: Adams60/BHS/IWX, low classical stems; BHS prop:syn-toda-range.
+% The original per-class Hopf detection locator remains to be verified.
+\begin{theorem}[Nonzero permanent survival of the standard classical $h_1$]
+  \label{thm:literature-classical-eta-permanent}
+  \lean{KIP126.Challenge2.LiteratureResults.classical_eta_permanent}
+  \uses{def:classical-adams-ss,def:adams-hj}
+  \notready
+  On the actual Adams sequence of the fixed sphere,
+  \[
+    \operatorname{NonzeroSurvival}\bigl(E(S^0),(1,2),h_1\bigr).
+  \]
+  There exists a common $Z_\infty$ representative $u$ with
+  $\pi_2(u)=h_1$ and $\pi_\infty(u)\ne0$. This is the nonzero permanent
+  survival of the standard Milnor $h_1$, in addition to the separate
+  detection statement for $S.\eta$.
+  The canonical locator records Adams60/BHS/IWX in the low stems and
+  BHS \texttt{prop:syn-toda-range}; the original per-class locator and
+  fixed-tower comparison proof remain obligations.
+\end{theorem}
+
+% SOURCE: Adams60/BHS/IWX, low classical stems; BHS prop:syn-toda-range.
+% The original per-class Hopf detection locator remains to be verified.
+\begin{theorem}[Nonzero permanent survival of the standard classical $h_2$]
+  \label{thm:literature-classical-nu-permanent}
+  \lean{KIP126.Challenge2.LiteratureResults.classical_nu_permanent}
+  \uses{def:classical-adams-ss,def:adams-hj}
+  \notready
+  On the actual Adams sequence of the fixed sphere,
+  \[
+    \operatorname{NonzeroSurvival}\bigl(E(S^0),(1,4),h_2\bigr).
+  \]
+  There exists a common $Z_\infty$ representative $u$ with
+  $\pi_2(u)=h_2$ and $\pi_\infty(u)\ne0$. This statement uses the standard
+  Milnor $h_2$ and asserts nonzero permanent survival, in addition to
+  the separately stated detection of $S.\nu$.
+  The canonical locator records Adams60/BHS/IWX in the low stems and
+  BHS \texttt{prop:syn-toda-range}; the original per-class locator and
+  fixed-tower comparison proof remain obligations.
+\end{theorem}
+
+\subsection{The distinguished $\theta_5$ and the BJM--BX criterion}
+
+% SOURCE: Burklund--Xu Proposition 7.19 AND its proof, at one original
+% distinguished source choice; Source/BurklundXu/paper.txt:3475--3492.
+\begin{theorem}[Original BX criteria at one distinguished synthetic choice]
+  \label{thm:literature-route-bx}
+  \lean{KIP126.Challenge2.LiteratureResults.route_bx}
+  \uses{def:synthetic-theta5-choice,def:synthetic-lambda-quotient,def:adams-hj}
+  \notready
+  Put $Q=D.\mathrm{sphereFirstQuotient}$, keep the fixed
+  $\eta\in\pi_{1,2}(S^{0,0})$, and let $q_r$ be the actual quotient-class
+  map to $S^{0,0}/\lambda^r$. There exists a single
+  $\theta\in\pi_{62,64}(S^{0,0})$ such that all three conditions below
+  hold for that same $\theta$ and $\eta$:
+  \begin{enumerate}
+    \item The first-quotient comparisons and order condition are
+      \[
+        Q^{1,2}(q_1\eta)=h_1,\qquad
+        Q^{2,64}(q_1\theta)=h_5^2,\qquad \theta+\theta=0,
+      \]
+      and for every $r\in\mathbb N$ with $r\ge1$,
+      \[
+        \operatorname{SurvivesTo}
+           \bigl(E(S^0),r+3,(2,128),h_6^2\bigr)
+        \quad\Longleftrightarrow\quad q_r(\eta\theta^2)=0.
+      \]
+      Survival to $E_{r+3}$ means the existence of a nonzero
+      continuation of the specified $E_2$ class on that page.
+    \item The actual first cofiber boundary satisfies
+      \[
+        \delta_1\bigl((Q^{2,128})^{-1}(h_6^2)\bigr)
+          =\lambda\eta\theta^2
+          \quad\text{in }\pi_{125,129}(S^{0,0}).
+      \]
+    \item The untruncated criterion is
+      \[
+        \operatorname{NonzeroSurvival}
+          \bigl(E(S^0),(2,128),h_6^2\bigr)
+        \quad\Longleftrightarrow\quad
+        \lambda\eta\theta^2=0
+          \quad\text{in }\pi_{125,129}(S^{0,0}).
+      \]
+  \end{enumerate}
+  The product $\eta\theta^2$ has bidegree $(125,130)$ before applying
+  $\lambda$. This is the original distinguished-choice input of
+  Burklund--Xu, Proposition~7.19 and its proof; source-to-model transport
+  remains unproved. The finite formula is not replaced by the paper's
+  later $\lambda\eta\theta^2$ modulo $\lambda^{r+1}$ normalization,
+  and no quantifier over all other $\theta$ choices is added.
+\end{theorem}
+
+\subsection{Massey products and Moss convergence}
+
+% SOURCE: Moss (1970), Theorem 1.2; original scan NOT independently read.
+% Cross-check only: Belmont--Kong arXiv:2112.08689v1, Theorem 1.1 p.2 /
+% Theorem 4.11 p.12; IWX Theorem 2.16, background source:556--573.
+\begin{theorem}[Moss convergence on the fixed sphere mapping model]
+  \label{thm:literature-moss}
+  \lean{KIP126.Challenge2.LiteratureResults.moss}
+  \uses{def:classical-adams-ss,def:massey-product,def:toda-bracket,def:adams-detection}
+  \notready
+  Use the specified sphere mapping Adams towers, their composition
+  pairing $P$ and their convergence identifications $c$.
+  The object family is $\mathrm{Unit}\to C$, constant at the fixed
+  $S^0$; it does not range over arbitrary spectra. Write
+  $\mathcal E$ for the actual \emph{mapping} Adams sequence of
+  $(S^0,S^0)$, and $\mathcal A_n$ for its fixed mapping abutment in
+  stem $n$. Identification with $E(S^0)$ is a separate internal comparison.
+
+  Assume $P$ is coherent. For all actual mapping objects, every
+  $m\in\mathbb Z$ with $m\ge2$, and all applicable bidegrees and
+  page elements, it satisfies the stem-signed Leibniz rule
+  \[
+    d_m(ab)=(d_ma)b+(-1)^{\operatorname{stem}(a)}a(d_mb),
+  \]
+  is associative, and takes two actual successor-page relations to
+  the successor-page relation for their product.
+  Also assume detection compatibility for every triple of indices
+  in the constant family: for every $m\ge2$, every $u,v\in\mathbb Z^2$
+  and all elements $a\in\mathcal E_m^u,b\in\mathcal E_m^v$ detecting
+  specified $\alpha\in\mathcal A_{\operatorname{stem}(u)}$ and
+  $\beta\in\mathcal A_{\operatorname{stem}(v)}$ using $c$, their product
+  detects the actual shifted composite of $\alpha,\beta$, using the same $c$.
+
+  Then for every $r\in\mathbb Z$ with $r\ge3$, every
+  $i,j,k\in\mathbb Z^2$, and all
+  \[
+    a\in\mathcal E_r^i,\quad b\in\mathcal E_r^j,\quad
+    c_0\in\mathcal E_r^k,\qquad
+    \alpha\in\mathcal A_{\operatorname{stem}(i)},\
+    \beta\in\mathcal A_{\operatorname{stem}(j)},\
+    \gamma\in\mathcal A_{\operatorname{stem}(k)},
+  \]
+  suppose the following premises hold:
+  \begin{enumerate}
+    \item Both product mapping towers satisfy residual injectivity.
+      Writing $A_s$ for their actual stages and $p_{s,t}:A_t\to A_s$
+      for their restriction maps, this means on each tower
+      \[
+        \begin{aligned}
+        \forall s\in\mathbb N,\ n\in\mathbb Z,\
+                 u\in\pi_n(A_{s+1}),\quad
+        &\bigl(\forall t\in\mathbb N,\ t\ge s+1
+           \Longrightarrow \exists v\in\pi_n(A_t),\
+                  (p_{s+1,t})_*v=u\bigr)\\
+        &{}\land (p_{s,s+1})_*u=0
+          \quad\Longrightarrow\quad u=0.
+        \end{aligned}
+      \]
+    \item The three detections are
+      $\operatorname{Detects}_{c}^{r,i}(a,\alpha)$,
+      $\operatorname{Detects}_{c}^{r,j}(b,\beta)$ and
+      $\operatorname{Detects}_{c}^{r,k}(c_0,\gamma)$.
+      Each uses a common $Z_\infty$ representative and the actual
+      tower-image associated graded under the selected $c$.
+    \item The page products are zero:
+      $P_r(a,b)=0$ and $P_r(b,c_0)=0$.
+      For the actual shifted stable maps $f,g,h$ associated to
+      $\alpha,\beta,\gamma$ by the fixed closed adjunction,
+      $f\mathbin{\gg}g=0$ and $g\mathbin{\gg}h=0$.
+    \item There is no Moss-direction crossing for either product degree
+      $\ell=i+j$ or $\ell=j+k$. For each of these $\ell$, there do not
+      exist $m,q\in\mathbb Z$ satisfying
+      \[
+        r<m,\quad 0\le q<\ell_1-(r-1),\quad
+        \ell_1<q+m,\quad
+        d_m^{\,q,\ q+\ell_2-\ell_1+1}\ne0.
+      \]
+      These differ from the paper's extension-crossing conditions.
+  \end{enumerate}
+  Put $p=i+j+k-(r-1,r-2)$. There exist
+  $x\in\mathcal E_r^p$ and
+  $\xi\in\mathcal A_{\operatorname{stem}(p)}$ such that
+  \[
+    x\in\langle a,b,c_0\rangle_{\mathcal E_r},\qquad
+    x\text{ is a permanent cycle},\qquad
+    \operatorname{Detects}_{c}^{r,p}(x,\xi),\qquad
+    \operatorname{Toda.Relation}
+      \bigl(\operatorname{todaMap}(\xi),f,g,h\bigr).
+  \]
+  The shifted maps here are precisely
+  $f=\operatorname{shiftMap}(S^0,S^0,i,
+       \operatorname{stem}(j)+\operatorname{stem}(k),\alpha)$,
+  $g=\operatorname{shiftMap}(S^0,S^0,j,\operatorname{stem}(k),\beta)$
+  and $h=\operatorname{abutmentMap}(S^0,S^0,k,\gamma)$.
+  The final Toda relation uses the fixed shift reindexing in
+  $\operatorname{todaMap}(r,S^0,S^0,i,j,k,\xi)$.
+
+  The Massey relation quantifies over representatives
+  $a',b',c'$ on $\mathcal E_{r-1}$, their actual successor-page
+  relations to $a,b,c_0$, and both defining-system choices $y,z$, with
+  \[
+    d_{r-1}y=P_{r-1}(a',b'),\qquad
+    d_{r-1}z=P_{r-1}(b',c').
+  \]
+  The degrees of $y,z$ are respectively $i+j-(r-1,r-2)$ and
+  $j+k-(r-1,r-2)$, and $x$ is the actual successor-page image of
+  $P_{r-1}(y,c')-(-1)^{\operatorname{stem}(i)}P_{r-1}(a',z)$.
+  Permanent cycle means the existence of a common $Z_\infty$
+  representative, without requiring a nonzero $E_\infty$ image.
+  No zero-indeterminacy hypothesis or survival of every Massey element
+  is asserted.
+
+  The canonical source is Moss, Theorem~1.2; its 1970 text has not been
+  independently obtained or read. The directly read cross-check is
+  Belmont--Kong v1, Theorem~1.1 (p.~2) and Theorem~4.11 (p.~12), with
+  its multiplicative-setting restriction, together with IWX's
+  Theorem~2.16. Matching all historical hypotheses and the chosen
+  fixed mapping model remains an unfinished comparison.
+  Its local $E_3$ specialization for $\langle h_5^2,h_0,B\rangle$
+  remains unfinished; see Theorem~\ref{thm:main-local-moss-specialization}.
+\end{theorem}
+
+\subsection{Synthetic lifts, quotient towers and Adams differentials}
+
+
+In the following statements, $H$, $D$, $\nu$ and the synthetic Adams family
+are the fixed mathematical objects of Section~\ref{sec:literature-notation}.
+Write $\nu_0X=\Sigma^{0,0}\nu X$, retaining the specified zero-shift
+isomorphism $u_X:\nu_0X\longrightarrow\nu X$.
+Write $\pi_{m,w}A=\operatorname{Hom}(S^{m,w},A)$ and
+$\rho^A_{i,j}:A/\lambda^j\longrightarrow A/\lambda^i$ for the actual
+restriction map of $D$'s quotient tower, with $i\le j$.
+The map $A\longrightarrow A/\lambda^q$ is its actual cofiber inclusion.
+For every actual classical object $X$ and $x\in E_2^{s,t}(X)$,
+$\ell_X(x)\in\pi_{t-s,t}(\nu_0X/\lambda)$ is the inverse image of $x$
+under $D$'s fixed first-quotient comparison.
+Multiplication $\lambda^k:\pi_{m,w}A\longrightarrow\pi_{m,w-k}A$
+includes the specified sphere and shift coherence maps.
+
+``Selected classical $X$'' means an object built from the sphere, the
+actual cofiber of the selected classical $\nu$ map, the selected detector,
+and their integer suspensions, evaluated in $D$.
+``Selected synthetic $A$'' means the synthetic sphere or a synthetic
+analogue of a selected classical object, closed under all bigraded shifts
+and all finite $\lambda$ quotients. Statements saying ``every classical
+$X$'' instead quantify over the whole fixed classical category.
+
+For either actual Adams sequence, write $\operatorname{rep}_r(x,x_r)$
+when a single raw cycle in its $r$-page cycle object projects both to the
+displayed $E_2$ label $x$ and to $x_r\in E_r$; the two projections are
+the sequence's own cycle inclusion and page quotient maps. Write
+$\operatorname{rep}_\infty(x,e)$ for the same condition using one raw
+permanent cycle and its $E_2$ and $E_\infty$ quotient maps.
+Thus a differential equation between $E_2$ labels means that there exist
+such representatives $x_r,y_r$ with $d_r x_r=y_r$, including the required
+degree transport; it allows $y_r=0$.
+
+Given a specified choice $P_\Pi$ of countable products, let
+$\mathcal A_H(X;P_\Pi)$ mean both of the actual BHS applicability
+conditions: the Milnor $1-\mathrm{shift}$ map on the countable product of
+the residual $H$-Adams tower of $X$ is an isomorphism, and the image
+filtration on each $\pi_nX$ is complete and separated, with an
+$E_\infty^{s,t}(X)\cong\operatorname{gr}^s\pi_{t-s}X$ identification
+for every $s,t\in\mathbb Z$.
+Completeness uses the canonical cone to the filtration quotients.
+For a specified convergence identification $c$, say that $x$ detects
+$\alpha\in\pi_{t-s}X$ if there are a raw permanent cycle $z$ projecting
+to $x$ and a filtration element $v\in F^s\pi_{t-s}X$ whose inclusion is
+$\alpha$, such that
+$c_{s,t}(\operatorname{page}_\infty z)=\operatorname{gr}^s(v)$.
+Nonzero permanent survival of $x$ means that some such $z$ has
+$\operatorname{page}_\infty z\ne0$; detection itself does not impose
+this inequality.
+
+% SOURCE: pst. Canonical locator: Compact generators,
+% prop:tau_inversion_functor_exists, Section 4.5; explicit
+% full-category-to-model transport required.
+\begin{theorem}[Kernel of the source localization on included route objects]
+  \label{thm:literature-route-realizationKernel}
+  \lean{KIP126.Challenge2.LiteratureResults.route_realizationKernel}
+  \notready
+  \uses{def:synthetic-context,def:lambda-quotient-realization}
+  Let $K$ be the full synthetic category, $\iota$ the specified inclusion
+  of the complete category, and $L$ its $\lambda$-localization endofunctor.
+  For every selected synthetic
+  $A$, every $m,w\in\mathbb Z$ and every
+  $a\in\pi_{m,w}^{\mathrm{Full}}(\iota A)$,
+  \[
+    L(a)=0\quad\Longleftrightarrow\quad
+    \exists k\in\mathbb N,\ \lambda^k a=0.
+  \]
+  The right-hand equality is in
+  $\pi_{m,w-k}^{\mathrm{Full}}(\iota A)$.
+  This is the scoped source-localization statement on the included objects;
+  its source is Pstragowski's compact-generator and telescope construction
+  and Section~4.5. The application requires the adjunction and comparison
+  with the selected model's realization. The statement does not assert
+  compactness of a completed sphere.
+\end{theorem}
+
+% SOURCE: pst,bhs. Canonical locator: Pst Lemma 4.23;
+% BHS lemm:adams-fil1 and proof.
+\begin{theorem}[The synthetic analogue preserves precisely homology-short-exact triangles]
+  \label{thm:literature-synthetic-nu-cofiber}
+  \lean{KIP126.Challenge2.LiteratureResults.synthetic_nu_cofiber}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  For every distinguished classical triangle
+  $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$, the following
+  are equivalent:
+  \[
+  \begin{gathered}
+    \exists\delta:\nu Z\longrightarrow\Sigma\nu X,\quad
+    \nu X\xrightarrow{\nu f}\nu Y\xrightarrow{\nu g}\nu Z
+      \xrightarrow\delta\Sigma\nu X\text{ is distinguished};\\
+    \forall n\in\mathbb Z,\quad
+    0\longrightarrow H_n(X)\xrightarrow{H_n(f)}H_n(Y)
+      \xrightarrow{H_n(g)}H_n(Z)\longrightarrow0
+      \text{ is exact}.
+  \end{gathered}
+  \]
+  The homology is that of the fixed mod--2 datum $H$; exactness includes
+  injectivity of $H_n(f)$ and surjectivity of $H_n(g)$ in every degree.
+  This is the Pstragowski Lemma~4.23 comparison, with the BHS
+  \texttt{lemm:adams-fil1} locator recorded in the canonical manifest.
+\end{theorem}
+
+% SOURCE: pst,bhs. Canonical locator: Pst Lemma 4.23;
+% BHS lemm:adams-fil1 and proof.
+\begin{theorem}[Full synthetic lift of a map of specified Adams filtration]
+  \label{thm:literature-synthetic-lift}
+  \lean{KIP126.Challenge2.LiteratureResults.synthetic_lift}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  For every classical map $f:X\longrightarrow Y$ and every
+  $k\in\mathbb N$, suppose there is a factorization
+  $X\longrightarrow Y_k\longrightarrow Y$ equal to $f$, where $Y_k$ is
+  stage $k$ of the actual $H$-Adams tower and the second map is its map to
+  stage zero $Y$. Then there is a map
+  \[
+    \widetilde f:\nu X\longrightarrow\Sigma^{0,-k}\nu Y,
+    \qquad \lambda^k_{\nu Y}\circ\widetilde f=\nu f.
+  \]
+  This includes $k=0$. Source: BHS \texttt{lemm:adams-fil1} and its
+  proof, with Pstragowski Lemma~4.23.
+\end{theorem}
+
+% SOURCE: pst,bhs. Canonical locator: Pst Lemma 4.23;
+% BHS lemm:adams-fil1 and proof.
+\begin{theorem}[Triangle-compatible synthetic lift and comparison with full lifts]
+  \label{thm:literature-synthetic-triangle-lift}
+  \lean{KIP126.Challenge2.LiteratureResults.synthetic_triangle_lift}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  For every distinguished classical triangle
+  $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$, suppose
+  $h$ factors through stage one of the actual $H$-Adams tower of
+  $\Sigma X$, and the mod--2 homology sequence
+  $0\to H_nX\to H_nY\to H_nZ\to0$ is short exact for every
+  $n\in\mathbb Z$. There exists
+  $d:\nu Z\longrightarrow\Sigma^{0,-1}\nu(\Sigma X)$ such that
+  \[
+    \lambda_{\nu(\Sigma X)}\circ d=\nu h,
+    \qquad
+    \nu X\xrightarrow{\nu f}\nu Y\xrightarrow{\nu g}\nu Z
+      \xrightarrow{\beta_X\circ d}\Sigma\nu X
+       \text{ is distinguished},
+  \]
+  where $\beta_X:\Sigma^{0,-1}\nu(\Sigma X)\cong\Sigma\nu X$ is
+  the fixed boundary-landing isomorphism. Moreover, for every $k\ge1$
+  and every full lift $L:\nu Z\to\Sigma^{0,-k}\nu(\Sigma X)$ with
+  $\lambda^k\circ L=\nu h$, there is $n\in\mathbb N$ such that
+  \[
+    (d-\ell_{k,1}\circ L)\circ\lambda^n_{\nu Z}=0.
+  \]
+  Here $\ell_{k,1}$ is the actual lowering-of-target map obtained by
+  multiplication by $\lambda^{k-1}$ and the fixed shift coherence.
+  The comparison is modulo $\lambda$ torsion in the actual morphism
+  group. The source locator is BHS \texttt{lemm:adams-fil1} and proof,
+  with Pstragowski Lemma~4.23.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Theorem A.1(1a--c) / lemm:comp1.
+\begin{theorem}[Finite lifts of the actual classical cycle labels]
+  \label{thm:literature-synthetic-finite-lift}
+  \lean{KIP126.Challenge2.LiteratureResults.synthetic_finite_lift}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  For every selected classical $X$, every positive $q\in\mathbb N$,
+  every $s,t\in\mathbb Z$ and every $x\in E_2^{s,t}(X)$,
+  \[
+    x\in Z_q^{s,t}(X)\quad\Longleftrightarrow\quad
+    \exists a\in\pi_{t-s,t}(\nu_0X/\lambda^q),\quad
+      \rho^{\nu_0X}_{1,q}\circ a=\ell_X(x).
+  \]
+  Here $Z_q$ is the image in $E_2$ of the actual cycles through $d_q$;
+  it permits a zero or boundary label. This finite statement has no
+  nilpotent-completeness or convergence premise. Its source locator is
+  BHS Theorem~A.1(1a--c) and \texttt{lemm:comp1}.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Theorem A.1(1c),
+% finite-quotient Bockstein boundary.
+\begin{theorem}[A finite lift whose Bockstein boundary represents the Adams differential]
+  \label{thm:literature-synthetic-bockstein}
+  \lean{KIP126.Challenge2.LiteratureResults.synthetic_bockstein}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  For every selected classical $X$, every $q\in\mathbb N$ with $q>0$,
+  every $s,t\in\mathbb Z$ and every $x\in Z_q^{s,t}(X)$, there exists
+  $a\in\pi_{t-s,t}(\nu_0X/\lambda^q)$ satisfying
+  $\rho^{\nu_0X}_{1,q}\circ a=\ell_X(x)$ and the following equation
+  on actual page representatives:
+  \[
+    \exists x_{q+1},y_{q+1},\quad
+    \operatorname{rep}_{q+1}(x,x_{q+1}),\quad
+    \operatorname{rep}_{q+1}(\partial_q a,y_{q+1}),\quad
+    d_{q+1}x_{q+1}=y_{q+1}.
+  \]
+  The first representative has bidegree $(s,t)$ and the second
+  $(s+q+1,t+q)$. The label
+  $\partial_q a\in E_2^{s+q+1,t+q}(X)$ is constructed by composing
+  $a$ with the actual tower boundary
+  $\delta_{q,q+1}:\nu_0X/\lambda^q\to
+      \Sigma^{1,-q}(\nu_0X/\lambda)$, desuspending to
+  $\pi_{t-s-1,t+q}(\nu_0X/\lambda)$, and applying the same fixed
+  first-quotient comparison. The conclusion selects a suitable lift and
+  allows a zero differential target. It has no completion premise.
+  Source: BHS Theorem~A.1(1c).
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Theorem A.1 clause (2),
+% with actual source applicability.
+\begin{theorem}[Untruncated lifts of permanent cycle labels]
+  \label{thm:literature-synthetic-permanent-lift}
+  \lean{KIP126.Challenge2.LiteratureResults.synthetic_permanent_lift}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  For every classical $X$, every choice $P_\Pi$ of countable products
+  satisfying $\mathcal A_H(X;P_\Pi)$, every $s,t\in\mathbb Z$ and
+  every $x\in E_2^{s,t}(X)$,
+  \[
+    x\in Z_\infty^{s,t}(X)\quad\Longleftrightarrow\quad
+    \exists a\in\pi_{t-s,t}(\nu_0X),\quad
+      (\nu_0X\to\nu_0X/\lambda)\circ a=\ell_X(x).
+  \]
+  Both sides allow zero or boundary labels. The hypothesis is the actual
+  nilpotent-completeness and strong convergence of this $X$, as specified
+  above. Source: BHS Theorem~A.1(2), with its source applicability.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Theorem A.8 thm:synth-ASS.
+\begin{theorem}[Classical and synthetic differentials on the specified labels]
+  \label{thm:literature-synthetic-differentials}
+  \lean{KIP126.Challenge2.LiteratureResults.synthetic_differentials}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  For every selected classical $X$, $a,s,t\in\mathbb Z$,
+  $r,k\in\mathbb N$ with $r\ge2$, and labels
+  $x\in E_2^{s,t}(X)$ and $y\in E_2^{s+r,t+r-1}(X)$, the following
+  are equivalent. Use the specified synthetic $E_2$ labels
+  \[
+    \widetilde x_2=D.\mathrm{nuE2}_{X,a,s,t,k}(x),\qquad
+    \widetilde y_2=D.\mathrm{nuE2}_{X,a,s+r,t+r-1,k+r-1}(y).
+  \]
+  \[
+  \begin{aligned}
+    &\exists x_r,y_r,\quad
+       \operatorname{rep}_r(x,x_r)\ \land\
+       \operatorname{rep}_r(y,y_r)\ \land\ d_rx_r=y_r;\\
+    &\exists\widetilde x_r,\widetilde y_r,\quad
+       \operatorname{rep}_r(\widetilde x_2,\widetilde x_r)
+       \ \land\
+       \operatorname{rep}_r(\widetilde y_2,\widetilde y_r)
+       \ \land\ d_r\widetilde x_r=\widetilde y_r.
+  \end{aligned}
+  \]
+  The second line uses the actual synthetic Adams sequence of
+  $\Sigma^{0,a}\nu X$, at source tridegree $(s,t,t+a-k)$ and target
+  $(s+r,t+r-1,(t+r-1)+a-(k+r-1))$.
+  The third coordinates agree. The $D.\mathrm{nuE2}$ maps are the same
+  fixed $E_2$ coordinate equivalences for the $\lambda^k x$ and
+  $\lambda^{k+r-1}y$ labels. The equation retains both common-cycle
+  representative requirements and permits zero targets. Source: BHS
+  Theorem~A.8, \texttt{thm:synth-ASS}.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: cor:tau-surj with source applicability.
+\begin{theorem}[Adams filtration equals the specified finite lambda-divisibility bound]
+  \label{thm:literature-synthetic-filtration-lambda}
+  \lean{KIP126.Challenge2.LiteratureResults.synthetic_filtration_lambda}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  For every classical $X$ and choice $P_\Pi$ of countable products
+  satisfying $\mathcal A_H(X;P_\Pi)$, every $m,w,s\in\mathbb Z$
+  with $w-m\le s$, and every $a\in\pi_{m,w}\nu X$,
+  \[
+    a\in F^s_{\nu H}\pi_{m,w}\nu X
+    \quad\Longleftrightarrow\quad
+    \exists b'\in\pi_{m,m+s}\nu X,\quad
+         \lambda^{m+s-w}b'=a.
+  \]
+  The left-hand filtration is the image filtration of the actual
+  synthetic Adams tower for the coefficient unit induced by the same
+  $\nu$ and $H$; it is a filtration of the displayed synthetic class.
+  The exponent is nonnegative by the stated inequality, and the equality
+  includes its fixed weight regrading. Source: BHS
+  \texttt{cor:tau-surj}, with source applicability.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Theorem A.8, E2 weight range.
+\begin{theorem}[Synthetic second-page weight vanishing]
+  \label{thm:literature-synthetic-e2-weight-vanishing}
+  \lean{KIP126.Challenge2.LiteratureResults.synthetic_e2_weight_vanishing}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  For every selected classical $X$ and all $a,s,t,w\in\mathbb Z$,
+  \[
+    t+a<w\quad\Longrightarrow\quad
+      E_2^{s,t,w}(\Sigma^{0,a}\nu X)=0.
+  \]
+  The page is that of $D$'s actual synthetic family. Source: BHS
+  Theorem~A.8, the $E_2$ weight range.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Corollary A.11 (1),(3), all finite pages.
+\begin{theorem}[Weight vanishing on every finite page of a finite quotient]
+  \label{thm:literature-synthetic-finite-quotient-page-vanishing}
+  \lean{KIP126.Challenge2.LiteratureResults.synthetic_finite_quotient_page_vanishing}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  For every selected classical $X$, every $q\in\mathbb N$ with $q>0$,
+  and all $r,s,t,w\in\mathbb Z$ with $r\ge2$,
+  \[
+    (t<w\ \lor\ q\le t-w)\quad\Longrightarrow\quad
+      E_r^{s,t,w}(\nu X/\lambda^q)=0.
+  \]
+  This includes $q=1$ and all finite pages, and has no completeness
+  hypothesis on $X$. Source: BHS Corollary~A.11(1),(3).
+\end{theorem}
+
+\subsection{$E_\infty$ quotients and their functoriality}
+
+Fix one family of $E_\infty$ comparison isomorphisms and the weight-shift
+isomorphisms induced by the specified Adams towers. The five statements
+below concern these same maps.
+For $p=(s,t)$ put
+\[
+  N_X(p,w)=E_\infty^{s,t,w}(\nu X),\qquad
+  Q_X(q;p,w)=E_\infty^{s,t,w}(\nu X/\lambda^q).
+\]
+Write $Z_c/B_j$ precisely as $Z_c/(Z_c\cap B_j)$, and similarly
+$Z_\infty/B_j=Z_\infty/(Z_\infty\cap B_j)$, all in the actual classical
+$E_2^{s,t}(X)$. In their windows, the fixed comparison isomorphisms are
+\[
+\begin{aligned}
+  \Phi_X(p,w):N_X(p,w)&\ \cong\ (Z_\infty/B_{1+t-w})^{s,t}(X)
+     &&(w\le t),\\
+  \Psi_X(q,p,w):Q_X(q;p,w)&\ \cong\ (Z_{q-t+w}/B_{1+t-w})^{s,t}(X)
+     &&(q>0,\ 0\le t-w<q).
+\end{aligned}
+\]
+For $q=1$, $\Psi$ is the specified special-fiber comparison;
+for $q\ge2$ it is the specified finite-quotient comparison. For any actual
+synthetic $A$, write
+\[
+  W^-_{A,k;p,w}:E_\infty^{s,t,w-k}(\Sigma^{0,-k}A)
+        \cong E_\infty^{s,t,w}(A)
+\]
+for this fixed weight shift. Each quotient map below is induced by the
+identity on the ambient classical $E_2$ label, with the displayed inclusion
+of cycle submodules and enlargement of boundary submodules.
+
+% SOURCE: bhs. Canonical locator: Corollaries A.9/A.11 on the SAME
+% family; maps remains an explicit source/application obligation.
+\begin{theorem}[Lambda compatibility of the untruncated E-infinity comparison]
+  \label{thm:literature-eInfty-lambda-nu}
+  \lean{KIP126.Challenge2.LiteratureResults.eInfty_lambda_nu}
+  \notready
+  \uses{def:synthetic-adams-ss,def:ss-einfty-presentation,def:synthetic-lambda-quotient}
+  For every classical $X$, $k\in\mathbb N$, $p=(s,t)\in\mathbb Z^2$,
+  $w\in\mathbb Z$ with $w\le t$, and $x\in N_X(p,w)$, let
+  \[
+    \Lambda_{X,k}(x)=
+       E_\infty(\lambda^k_{\nu X})\bigl((W^-_{\nu X,k;p,w})^{-1}x\bigr)
+       \in N_X(p,w-k).
+  \]
+  Then
+  \[
+    \Phi_X(p,w-k)(\Lambda_{X,k}x)
+      =\bigl[\Phi_X(p,w)x\bigr]_{B_{1+t-w+k}},
+  \]
+  where the right side is the canonical quotient map
+  $Z_\infty/B_{1+t-w}\to Z_\infty/B_{1+t-w+k}$ applied to the
+  displayed class. All maps use the same family and presentation.
+  Source: BHS Corollaries~A.9/A.11; their source-to-model map
+  compatibility remains an unfinished application of those results.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Corollaries A.9/A.11 on the SAME
+% family; maps remains an explicit source/application obligation.
+\begin{theorem}[Lambda compatibility of the finite E-infinity comparison]
+  \label{thm:literature-eInfty-lambda-finite}
+  \lean{KIP126.Challenge2.LiteratureResults.eInfty_lambda_finite}
+  \notready
+  \uses{def:synthetic-adams-ss,def:ss-einfty-presentation,def:synthetic-lambda-quotient}
+  For every classical $X$, $q,k\in\mathbb N$ with $k<q$,
+  $p=(s,t)\in\mathbb Z^2$, $w\in\mathbb Z$ with
+  $0\le t-w<q-k$, and $x\in Q_X(q-k;p,w)$, use the actual map
+  \[
+    j_{q,k}:\Sigma^{0,-k}(\nu X/\lambda^{q-k})
+        \longrightarrow\nu X/\lambda^q
+  \]
+  from $D$'s quotient triangle, or the specified zero-shift isomorphism
+  when $k=0$. Put
+  $\Lambda^{\mathrm{fin}}_{X,q,k}=E_\infty(j_{q,k})\circ
+       (W^-_{\nu X/\lambda^{q-k},k;p,w})^{-1}$.
+  For $c=q-k-t+w$ and $j=1+t-w$,
+  \[
+    \Psi_X(q,p,w-k)(\Lambda^{\mathrm{fin}}_{X,q,k}x)
+        =\operatorname{quot}_{c,j}^{c,j+k}
+             \bigl(\Psi_X(q-k,p,w)x\bigr),
+  \]
+  where $\operatorname{quot}_{c,j}^{c,j+k}:Z_c/B_j\to Z_c/B_{j+k}$
+  keeps the same cycle cutoff and enlarges the boundary cutoff. The
+  equality $q-t+(w-k)=c$ fixes the target indices.
+  Source: BHS Corollaries~A.9/A.11 on the same family, with the map
+  comparison retained as an explicit source/application obligation.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Corollaries A.9/A.11 on the SAME
+% family; maps remains an explicit source/application obligation.
+\begin{theorem}[Restriction compatibility between finite E-infinity comparisons]
+  \label{thm:literature-eInfty-rho-finite}
+  \lean{KIP126.Challenge2.LiteratureResults.eInfty_rho_finite}
+  \notready
+  \uses{def:synthetic-adams-ss,def:ss-einfty-presentation,def:synthetic-lambda-quotient}
+  For every classical $X$, $i,j\in\mathbb N$ with $0<i\le j$,
+  $p=(s,t)\in\mathbb Z^2$, $w\in\mathbb Z$ with $0\le t-w<i$,
+  and $x\in Q_X(j;p,w)$,
+  \[
+    \Psi_X(i,p,w)\bigl(E_\infty(\rho^{\nu X}_{i,j})x\bigr)
+     =\operatorname{quot}_{j-t+w,\,1+t-w}^{i-t+w,\,1+t-w}
+          \bigl(\Psi_X(j,p,w)x\bigr).
+  \]
+  The right-hand map is
+  $Z_{j-t+w}/B_{1+t-w}\to Z_{i-t+w}/B_{1+t-w}$, induced by the
+  actual inclusion $Z_{j-t+w}\subseteq Z_{i-t+w}$, with unchanged
+  boundary cutoff. The left side is the $E_\infty$ map of the
+  specified quotient-tower restriction. Source: BHS
+  Corollaries~A.9/A.11 on the same family, with the map comparison
+  retained as an explicit source/application obligation.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Corollaries A.9/A.11 on the SAME
+% family; maps remains an explicit source/application obligation.
+\begin{theorem}[Restriction compatibility from the untruncated E-infinity comparison]
+  \label{thm:literature-eInfty-rho-nu}
+  \lean{KIP126.Challenge2.LiteratureResults.eInfty_rho_nu}
+  \notready
+  \uses{def:synthetic-adams-ss,def:ss-einfty-presentation,def:synthetic-lambda-quotient}
+  For every classical $X$, $q\in\mathbb N$ with $q>0$,
+  $p=(s,t)\in\mathbb Z^2$, $w\in\mathbb Z$ with $0\le t-w<q$,
+  and $x\in N_X(p,w)$,
+  \[
+    \Psi_X(q,p,w)\bigl(E_\infty(\nu X\to\nu X/\lambda^q)x\bigr)
+      =\operatorname{quot}_{\infty,\,1+t-w}^{q-t+w,\,1+t-w}
+          \bigl(\Phi_X(p,w)x\bigr).
+  \]
+  The right-hand map is the one induced by
+  $Z_\infty\subseteq Z_{q-t+w}$ with the same boundary cutoff
+  $1+t-w$. The left side uses the actual cofiber inclusion and its
+  map under the same synthetic Adams family. Source: BHS
+  Corollaries~A.9/A.11 on the same family, with the map comparison
+  retained as an explicit source/application obligation.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Corollaries A.9/A.11 on the SAME
+% family; labels remains an explicit source/application obligation.
+\begin{theorem}[The E-infinity comparisons preserve the actual E-two labels]
+  \label{thm:literature-eInfty-labels}
+  \lean{KIP126.Challenge2.LiteratureResults.eInfty_labels}
+  \notready
+  \uses{def:synthetic-adams-ss,def:ss-einfty-presentation,def:synthetic-lambda-quotient}
+  Both of the following assertions hold. For every selected classical
+  $X$, $p=(s,t)\in\mathbb Z^2$, $q,k\in\mathbb N$ with $0<q$ and
+  $k<q$, every $x\in Z_{q-k}^{s,t}(X)$ and
+  $e\in Q_X(q;p,t-k)$,
+  \[
+    \operatorname{rep}_\infty(L^q_{X,k}(x),e)
+       \quad\Longleftrightarrow\quad
+    \Psi_X(q,p,t-k)e=[x]\in(Z_{q-k}/B_{1+k})^{s,t}(X).
+  \]
+  For every selected classical $X$, $p=(s,t)\in\mathbb Z^2$,
+  $k\in\mathbb N$, every $x\in Z_\infty^{s,t}(X)$ and
+  $e\in N_X(p,t-k)$,
+  \[
+    \operatorname{rep}_\infty(L_{X,k}(x),e)
+       \quad\Longleftrightarrow\quad
+    \Phi_X(p,t-k)e=[x]\in(Z_\infty/B_{1+k})^{s,t}(X).
+  \]
+  Here the actual untruncated $E_2$ label is
+  $L_{X,k}(x)=E_2(u_X)(D.\mathrm{nuE2}_{X,0,s,t,k}(x))$ at
+  $(s,t,t-k)$, and
+  $L^q_{X,k}(x)=E_2(\nu X\to\nu X/\lambda^q)(L_{X,k}(x))$.
+  These are exactly the fixed zero-shift and quotient-inclusion maps;
+  the bracket $[x]$ is the canonical projection of the same classical
+  cycle into the displayed nested quotient. Zero and all boundary
+  ambiguity are retained. Source: BHS Corollaries~A.9/A.11 on the
+  same family; agreement of labels remains an unfinished comparison.
+\end{theorem}
+
+\subsection{Realization and detection of synthetic lifts}
+
+Use the fixed realization functor and its sphere and $\nu$ comparisons.
+For $a\in\pi_{m,w}\nu_0X$ write
+\[
+  \mathcal R_X(a)=
+    \epsilon_X\circ\operatorname{realization}(u_X\circ a)
+       \circ R_{m,w}:S^m\longrightarrow X,
+\]
+where $R_{m,w}:S^m\cong\operatorname{realization}(S^{m,w})$ and
+$\epsilon_X:\operatorname{realization}(\nu X)\cong X$ are the same
+specified sphere-coordinate and $\nu$-realization isomorphisms.
+
+% SOURCE: bhs. Canonical locator: Theorem A.1(2a), exponent r-1.
+\begin{theorem}[Every lift of a nonzero surviving permanent label has the stated lifetime]
+  \label{thm:literature-realization-lifetime}
+  \lean{KIP126.Challenge2.LiteratureResults.realization_lifetime}
+  \notready
+  \uses{def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
+  For every classical $X$, every countable-product choice $P_\Pi$
+  satisfying $\mathcal A_H(X;P_\Pi)$, every convergence identification
+  $c$ for its actual $H$-Adams tower, all $s,t\in\mathbb Z$ and
+  $r\in\mathbb N$ with $r\ge1$, and every
+  $x\in E_2^{s,t}(X)$, suppose $x\in Z_\infty^{s,t}(X)$ and
+  there is $x_{r+1}\in E_{r+1}^{s,t}(X)$ with
+  $\operatorname{rep}_{r+1}(x,x_{r+1})$ and $x_{r+1}\ne0$.
+  Then for every $a\in\pi_{t-s,t}\nu_0X$ with
+  $(\nu_0X\to\nu_0X/\lambda)\circ a=\ell_X(x)$,
+  \[
+    \lambda^{r-1}a\ne0\quad\text{in }\pi_{t-s,t-r+1}\nu_0X.
+  \]
+  The exponent and the universal quantifier over lifts are those of
+  BHS Theorem~A.1(2a). Survival here is nonzero survival to
+  $E_{r+1}$, expressed using an actual common-cycle representative.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Theorem A.1(2b).
+\begin{theorem}[Realization of a lift is detected by its nonzero permanent label]
+  \label{thm:literature-realization-detection}
+  \lean{KIP126.Challenge2.LiteratureResults.realization_detection}
+  \notready
+  \uses{def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
+  For every classical $X$, every countable-product choice $P_\Pi$
+  satisfying $\mathcal A_H(X;P_\Pi)$, every convergence identification
+  $c$ for the actual $H$-Adams tower, all $s,t\in\mathbb Z$,
+  every $x\in E_2^{s,t}(X)$ of nonzero permanent survival, and
+  every $a\in\pi_{t-s,t}\nu_0X$ with
+  $(\nu_0X\to\nu_0X/\lambda)\circ a=\ell_X(x)$, the label $x$
+  detects $\mathcal R_X(a)\in\pi_{t-s}X$ under $c$.
+  Thus there are a raw permanent cycle $z$ projecting to $x$ and
+  $v\in F^s\pi_{t-s}X$ with inclusion $\mathcal R_X(a)$ and
+  \[
+    c_{s,t}(\operatorname{page}_\infty z)=\operatorname{gr}^s(v).
+  \]
+  Source: BHS Theorem~A.1(2b).
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Theorem A.1(3b).
+\begin{theorem}[A lift realizing a prescribed detected classical element]
+  \label{thm:literature-realization-prescribed-lift}
+  \lean{KIP126.Challenge2.LiteratureResults.realization_prescribed_lift}
+  \notready
+  \uses{def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
+  For every classical $X$, every countable-product choice $P_\Pi$
+  satisfying $\mathcal A_H(X;P_\Pi)$, every convergence identification
+  $c$ for the actual $H$-Adams tower, all $s,t\in\mathbb Z$,
+  every $x\in E_2^{s,t}(X)$ of nonzero permanent survival, and
+  every $\alpha\in\pi_{t-s}X$ detected by $x$ under that same $c$,
+  \[
+    \exists a\in\pi_{t-s,t}\nu_0X,\quad
+      (\nu_0X\to\nu_0X/\lambda)\circ a=\ell_X(x)
+      \quad\land\quad \mathcal R_X(a)=\alpha.
+  \]
+  Detection uses a raw permanent cycle projecting to $x$ and a
+  filtration element whose inclusion is this specified $\alpha$,
+  with the associated-graded equality under $c$.
+  Source: BHS Theorem~A.1(3b).
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Theorem A.1(3a),
+% existence of some boundary lift.
+\begin{theorem}[Some lift of an incoming differential target has the stated torsion exponent]
+  \label{thm:literature-realization-boundary-lift}
+  \lean{KIP126.Challenge2.LiteratureResults.realization_boundary_lift}
+  \notready
+  \uses{def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
+  For every classical $X$, every countable-product choice $P_\Pi$
+  satisfying $\mathcal A_H(X;P_\Pi)$, every convergence identification
+  $c$ for the actual $H$-Adams tower, all $s,t\in\mathbb Z$,
+  $r\in\mathbb N$ with $r\ge2$, and every
+  $y\in Z_\infty^{s,t}(X)$, suppose there exist
+  $z_r\in E_r^{s-r,t-r+1}(X)$ and $y_r\in E_r^{s,t}(X)$ such that
+  \[
+    \operatorname{rep}_r(y,y_r),\qquad y_r\ne0,
+    \qquad d_rz_r=y_r.
+  \]
+  Then
+  \[
+    \exists a\in\pi_{t-s,t}\nu_0X,\quad
+      (\nu_0X\to\nu_0X/\lambda)\circ a=\ell_X(y)
+      \quad\land\quad \lambda^{r-1}a=0.
+  \]
+  The conclusion is existence of a suitable lift, with its equality
+  in $\pi_{t-s,t-r+1}\nu_0X$. Source: BHS Theorem~A.1(3a).
+\end{theorem}
+
+
+\subsection{Tensor cofibers and low synthetic Toda relations}
+
+% SOURCE: May01, author PDF pp.12--13 (TC3), p.14 (Lemma 4.6).
+\begin{theorem}[May pushpull data on the selected synthetic category]
+  \label{thm:literature-route-may}
+  \lean{KIP126.Challenge2.LiteratureResults.route_may,KIP126.Literature.Route.MayContext,KIP126.Literature.Route.MaySourceResults,KIP126.Literature.Route.MayPushpullData}
+  \notready
+  \uses{def:smash-triangle,def:synthetic-context}
+  Fix left and right tensor suspension comparisons and exact tensor
+  functors on the chosen synthetic category $\mathrm{Syn}$. Write $B$
+  for these mathematical comparisons.
+  For every two homotopy cofiber
+  sequences
+  \[
+    \mathcal P=(X_0\xrightarrow{f_0}Y_0\xrightarrow{g_0}Z_0
+      \xrightarrow{h_{\mathcal P}}\Sigma X_0),\qquad
+    \mathcal Q=(X_1\xrightarrow{f_1}Y_1\xrightarrow{g_1}Z_1
+      \xrightarrow{h_{\mathcal Q}}\Sigma X_1),
+  \]
+  there exist an object $V$ and actual maps
+  \[
+    j_1:V\to X_0\otimes Z_1,\quad
+    j_2:V\to Y_0\otimes Y_1,\quad
+    j_3:V\to Z_0\otimes X_1
+  \]
+  satisfying
+  \[
+  \begin{aligned}
+    (f_0\otimes1_{Z_1})j_1&=(1_{Y_0}\otimes g_1)j_2,\\
+    (g_0\otimes1_{Y_1})j_2&=(1_{Z_0}\otimes f_1)j_3,\\
+    h_{X_0\otimes\mathcal Q}j_1&=-h_{\mathcal P\otimes X_1}j_3.
+  \end{aligned}
+  \]
+  The last equality uses exactly $B$'s suspension comparisons to identify
+  the common suspension target. Moreover, for every $n\in\mathbb Z$ and
+  every $a\in\pi_n(X_0\otimes Z_1)$ and
+  $c\in\pi_n(Y_0\otimes Y_1)$ such that
+  \[
+    (f_0\otimes1_{Z_1})_*a=(1_{Y_0}\otimes g_1)_*c,
+  \]
+  there exists $v\in\pi_nV$ with $(j_1)_*v=a$ and $(j_2)_*v=c$.
+  The existence statement includes the compatible-pair lifting property
+  and the negative boundary sign for every pair of cofiber sequences.
+  Source: \texttt{May01}, TC3, author PDF pp.12--13, and Lemma 4.6, p.14.
+  Establishing this result on the same selected synthetic category and
+  these tensor conventions remains unproved; sign removal is an internal
+  application with its own exponent-two premise.
+\end{theorem}
+
+% SOURCE: BHS, prop:syn-toda-range, relations (0),(9); h0_label.
+\begin{theorem}[The first-quotient label of the selected synthetic $h_0$]
+  \label{thm:literature-toda-h0-label}
+  \lean{KIP126.Challenge2.LiteratureResults.toda_h0_label}
+  \notready
+  \uses{def:synthetic-sphere,def:synthetic-lambda-quotient,def:adams-hj}
+  Let $h_0^{\mathrm{syn}}
+  \in\pi_{0,1}S^{0,0}$ and let $q_1$ be the actual first-quotient map.
+  Under the fixed first-quotient/Adams comparison,
+  \[
+    D.\mathrm{sphereFirstQuotient}_{1,1}\bigl(q_1(h_0^{\mathrm{syn}})\bigr)
+      =h_0^{\mathrm{Milnor}}
+      =\mathrm{Sphere.Internal.hi}(H,M,0)
+      \in E_2^{1,1}(S^0).
+  \]
+  The source class, quotient map, Milnor coordinates and comparison are
+  the specified mathematical choices. Source: \texttt{BHS},
+  \texttt{prop:syn-toda-range}, low synthetic relations (0),(9) and their
+  $h_0$ label. Its application to this selected model remains unproved.
+\end{theorem}
+
+% SOURCE: BHS, prop:syn-toda-range, relations (0),(9); lambda_h0.
+\begin{theorem}[The selected synthetic $h_0$ lifts multiplication by two]
+  \label{thm:literature-toda-lambda-h0}
+  \lean{KIP126.Challenge2.LiteratureResults.toda_lambda_h0}
+  \notready
+  \uses{def:synthetic-sphere,def:synthetic-lambda-quotient,def:adams-hj}
+  For the same $h_0^{\mathrm{syn}}
+  \in\pi_{0,1}S^{0,0}$,
+  \[
+    \lambda h_0^{\mathrm{syn}}=2_{\mathrm{syn}}
+      \quad\text{in }\pi_{0,0}S^{0,0}.
+  \]
+  Here the left side is the actual operation \texttt{lambdaMultiply 1},
+  and $2_{\mathrm{syn}}$ is the zero-shift comparison followed by
+  $2\cdot\mathrm{id}_{S^{0,0}}$, the defined \texttt{syntheticTwo}.
+  Source: \texttt{BHS}, \texttt{prop:syn-toda-range}, relations (0),(9).
+  The source class and the synthetic sphere are the same fixed choices;
+  realizing this equation there remains unproved.
+\end{theorem}
+
+% SOURCE: BHS, prop:syn-toda-range, relations (0),(9); h0_eta.
+\begin{theorem}[The selected low synthetic $h_0\eta$ relation]
+  \label{thm:literature-toda-h0-eta}
+  \lean{KIP126.Challenge2.LiteratureResults.toda_h0_eta}
+  \notready
+  \uses{def:synthetic-sphere,def:synthetic-lambda-quotient,def:adams-hj}
+  Let $h_0^{\mathrm{syn}}
+  \in\pi_{0,1}S^{0,0}$ and
+  the fixed $\eta\in\pi_{1,2}S^{0,0}$. Then the actual
+  synthetic sphere product satisfies
+  \[
+    h_0^{\mathrm{syn}}\eta=0\quad\text{in }\pi_{1,3}S^{0,0}.
+  \]
+  Source: \texttt{BHS}, \texttt{prop:syn-toda-range}, relations (0),(9).
+  This is the low ring equation on the same selected sphere and $\eta$;
+  establishing this result on the selected model remains unproved.
+\end{theorem}
+
+% SOURCE: BHS, prop:syn-toda-range, degree (2,3); low_indeterminacy.
+\begin{theorem}[The entire low synthetic indeterminacy group is annihilated]
+  \label{thm:literature-toda-low-indeterminacy}
+  \lean{KIP126.Challenge2.LiteratureResults.toda_low_indeterminacy}
+  \notready
+  \uses{def:synthetic-sphere,def:synthetic-lambda-quotient,def:adams-hj}
+  For the same $h_0^{\mathrm{syn}}
+  \in\pi_{0,1}S^{0,0}$,
+  \[
+    \forall a\in\pi_{2,3}S^{0,0},\qquad
+      h_0^{\mathrm{syn}}a=0\quad\text{in }\pi_{2,4}S^{0,0}.
+  \]
+  The quantifier ranges over every element of the actual
+  $\mathrm{BiHom}\,2\,3$ group of the fixed synthetic sphere; the product
+  is its defined \texttt{sphereProduct}. Source: \texttt{BHS},
+  \texttt{prop:syn-toda-range}, relations (0),(9) and degree $(2,3)$.
+  Applying this low-degree calculation to the selected model remains
+  unproved. This clause concerns exactly the displayed degree.
+\end{theorem}
+
+\subsection{tmf homotopy, Hurewicz images and the BR21 differential}
+
+% SOURCE: tmf (BMQ), Section 2; connective convention in Section 1,
+% tmfhi9.tex:197--201 / paper.pdf p.2.
+\begin{theorem}[Connectivity of the selected source tmf spectrum]
+  \label{thm:literature-tmf-connective}
+  \lean{KIP126.Challenge2.LiteratureResults.tmf_connective}
+  \notready
+  \uses{def:classical-adams-ss,def:adams-detection}
+  For the selected source tmf spectrum $T.\mathrm{spectrum}$,
+  \[
+    \forall n\in\mathbb Z,\qquad n<0\Longrightarrow
+      \operatorname{Subsingleton}\bigl(\pi_n(T.\mathrm{spectrum})\bigr).
+  \]
+  Equivalently, all its negative-degree homotopy groups are zero.
+  Source: \texttt{tmf} (Behrens--Mahowald--Quigley), Section 2 and the
+  connective tmf convention in Section 1 (PDF p.2).
+  The paper works 2-locally; the source realization and its transport to
+  the selected completed model remain comparison obligations. This input
+  is stated on the same selected $T.\mathrm{spectrum}$.
+\end{theorem}
+
+% SOURCE: tmf (BMQ), Section 2, Theorem 2.4 and H_*tmf description;
+% tmfhi9.tex:420--429,480--482 / paper.pdf pp.10--11.
+\begin{theorem}[Degreewise finite mod-two homology of the source tmf]
+  \label{thm:literature-tmf-finiteMod2Type}
+  \lean{KIP126.Challenge2.LiteratureResults.tmf_finiteMod2Type,KIP126.StableHomotopy.FiniteMod2Type,KIP126.StableHomotopy.Cohomology.Mod2Homology}
+  \notready
+  \uses{def:classical-adams-ss,def:adams-detection}
+  For the selected source tmf spectrum $T.\mathrm{spectrum}$,
+  \[
+    \forall n\in\mathbb Z,\qquad
+      \operatorname{Finite}\bigl(H_n(T.\mathrm{spectrum};\mathbb F_2)\bigr),
+    \qquad
+    H_n(T.\mathrm{spectrum};\mathbb F_2)
+      =\pi_n(H.\mathrm{HF2}\otimes T.\mathrm{spectrum}).
+  \]
+  This expands \texttt{FiniteMod2Type}: the underlying type of each
+  displayed actual homology group is finite, for every integer degree.
+  Source: \texttt{tmf}, Section 2, Theorem 2.4 and the description
+  \[
+    H_*\mathrm{tmf}=\mathbb F_2[\bar\xi_1^8,\bar\xi_2^4,
+      \bar\xi_3^2,\bar\xi_4,\ldots]
+  \]
+  (PDF pp.10--11).
+  Transport from the paper's 2-local spectrum to this same source model
+  remains unproved; the statement is about mod-two homology, not the
+  cardinalities of ordinary $\pi_n(T.\mathrm{spectrum})$.
+\end{theorem}
+
+% SOURCE: IWX classical Adams E2 CSV lines 59,275; README pp.2--3;
+% tmf and iwx_data_2022 in the canonical manifest.
+\begin{theorem}[The two source labels are the unique nonzero sphere classes]
+  \label{thm:literature-tmf-standard-labels}
+  \lean{KIP126.Challenge2.LiteratureResults.tmf_standard_labels,KIP126.Literature.Route.TmfLabels.Standard}
+  \notready
+  \uses{def:classical-adams-ss,def:adams-detection}
+  Put $g_T=T.\mathrm{labels}.g\in E_2^{4,24}(S^0)$ and
+  $d_T=T.\mathrm{labels}.\mathrm{delta\_h\_1\_mul\_g}
+  \in E_2^{9,54}(S^0)$. The condition
+  $T.\mathrm{labels}.\mathrm{Standard}$ is precisely
+  \[
+  \begin{aligned}
+    &g_T\ne0,\qquad
+      \forall x\in E_2^{4,24}(S^0),\quad x\ne0\Longrightarrow x=g_T,\\
+    &d_T\ne0,\qquad
+      \forall x\in E_2^{9,54}(S^0),\quad x\ne0\Longrightarrow x=d_T.
+  \end{aligned}
+  \]
+  These are the actual fixed sphere Adams groups; $d_T$ is the
+  $\Delta h_1g$ label. Source: \texttt{IWX}, classical Adams $E_2$ chart
+  CSV lines 59 ($g$, stem 20, filtration 4) and 275 ($D\,h_1g$, stem 45,
+  filtration 9), with degree conventions in README pp.2--3; these label
+  the classes used by \texttt{tmf}, Section 7. The same delivered tmf
+  comparison identifies both labels with the fixed sphere labels. Its
+  source-to-fixed-tower application remains unproved.
+\end{theorem}
+
+% SOURCE: tmf (BMQ), Theorem 1.2 and Figure 1.1; the full-group
+% vanishing uses the empty 62 column and the chart conventions.
+\begin{theorem}[Vanishing of the entire source tmf 62-stem]
+  \label{thm:literature-tmf-vanishing62}
+  \lean{KIP126.Challenge2.LiteratureResults.tmf_vanishing62}
+  \notready
+  \uses{def:classical-adams-ss,def:adams-detection}
+  For the same source spectrum $T.\mathrm{spectrum}$,
+  \[
+    \forall x\in\pi_{62}(T.\mathrm{spectrum}),\qquad x=0.
+  \]
+  Source: \texttt{tmf}, Theorem 1.2 and Figure 1.1 (PDF pp.3--4).
+  The full-group zero statement is read from the figure's empty 62-stem
+  together with its periodicity and infinite-ray conventions; the
+  Hurewicz-image theorem alone is weaker. The 2-local-to-completed model
+  comparison remains unfinished on the same source spectrum.
+\end{theorem}
+
+% SOURCE: tmf (BMQ), Section 2, H_*tmf and A(2) change of rings;
+% tmfhi9.tex:420--429,480--482 / paper.pdf pp.10--11.
+\begin{theorem}[The entire nonpositive-filtration source tmf 63-stem region]
+  \label{thm:literature-tmf-low-filtration63}
+  \lean{KIP126.Challenge2.LiteratureResults.tmf_low_filtration63}
+  \notready
+  \uses{def:classical-adams-ss,def:adams-detection}
+  For the actual $H$-unit Adams tower of $T.\mathrm{spectrum}$,
+  \[
+    \forall s\in\mathbb Z,\qquad s\le0\Longrightarrow
+      \operatorname{Subsingleton}\bigl(E_2^{s,63+s}
+        (T.\mathrm{spectrum})\bigr).
+  \]
+  Thus every element in each displayed group is zero, including $s=0$
+  and all negative $s$. Source: \texttt{tmf}, Section 2, its mod-two
+  homology description and $\mathcal A(2)$ change of rings (PDF pp.10--11).
+  Application of that algebraic calculation to this source's actual
+  tower, and its comparison with the fixed detector, remain unproved.
+\end{theorem}
+
+% SOURCE: tmf (BMQ), Section 7, Lemma 7.3 and proof / paper.pdf p.47;
+% associated IWX classical E2 g label, CSV line 59.
+\begin{theorem}[Sphere detection of the actual source $\bar\kappa$]
+  \label{thm:literature-tmf-kappaBar-detection}
+  \lean{KIP126.Challenge2.LiteratureResults.tmf_kappaBar_detection,KIP126.Classical.Adams.TowerDetection.Detects}
+  \notready
+  \uses{def:classical-adams-ss,def:adams-detection}
+  Let $c_S=T.\mathrm{sphereConvergence}$,
+  $g_T=T.\mathrm{labels}.g\in E_2^{4,24}(S^0)$ and
+  $\bar\kappa_T=T.\mathrm{kappaBar}\in\pi_{20}(S^0)$. Then
+  \[
+    \operatorname{Detects}_{c_S}\bigl((4,24),g_T,\bar\kappa_T\bigr).
+  \]
+  Explicitly, there exists a common permanent-cycle representative $z$
+  with $E_2$ image $g_T$, and there exists a lift
+  $a\in F^4\pi_{20}(S^0)$ of the actual class $\bar\kappa_T$, such that
+  $c_S$ identifies the $E_\infty$ class of $z$ with the image of $a$ in
+  $\operatorname{gr}^4\pi_{20}(S^0)$. All classes and convergence data
+  are the fixed choices above. Source: \texttt{tmf}, Section 7,
+  Lemma 7.3 and its proof (PDF p.47), with the \texttt{IWX} classical
+  $g$ label, CSV line 59. This is sphere detection of the source class;
+  its tmf Hurewicz image and fixed-model comparison are separate.
+  Establishing this source detection on the specified model remains unfinished.
+\end{theorem}
+
+% SOURCE: tmf (BMQ), Section 7, Lemma 7.3 and proof / paper.pdf p.47;
+% associated IWX Delta h1 g label, CSV line 275.
+\begin{theorem}[Sphere detection of the actual source $w$]
+  \label{thm:literature-tmf-w-detection}
+  \lean{KIP126.Challenge2.LiteratureResults.tmf_w_detection,KIP126.Classical.Adams.TowerDetection.Detects}
+  \notready
+  \uses{def:classical-adams-ss,def:adams-detection}
+  Let $c_S=T.\mathrm{sphereConvergence}$ and put
+  \[
+    d_T=T.\mathrm{labels}.\mathrm{delta\_h\_1\_mul\_g}
+      \in E_2^{9,54}(S^0),\qquad
+    w_T=T.\mathrm{wClass}\in\pi_{45}(S^0).
+  \]
+  Then
+  \[
+    \operatorname{Detects}_{c_S}\bigl((9,54),d_T,w_T\bigr).
+  \]
+  Explicitly, there exists a common permanent-cycle representative $z$
+  with $E_2$ image $d_T$, and there exists a lift
+  $a\in F^9\pi_{45}(S^0)$ of $w_T$, such that $c_S$ identifies the
+  $E_\infty$ class of $z$ with the image of $a$ in
+  $\operatorname{gr}^9\pi_{45}(S^0)$. Source: \texttt{tmf}, Section 7,
+  Lemma 7.3 and its proof (PDF p.47), with the \texttt{IWX} classical
+  $\Delta h_1g$ label, CSV line 275. The source class and this convergence
+  are on the fixed sphere, not on the tmf homotopy group. Their
+  application to these same mathematical choices remains unproved.
+\end{theorem}
+
+% SOURCE: tmf (BMQ), Section 7, Lemma 7.3 / Corollary 7.5;
+% actual product and Hurewicz compatibility: Lemma 7.1 / Corollary 7.2;
+% paper.pdf pp.46--47 and Figure 1.1.
+\begin{theorem}[Nonzero tmf image of the actual source product $\bar\kappa^4w$]
+  \label{thm:literature-tmf-high125-nonzero}
+  \lean{KIP126.Challenge2.LiteratureResults.tmf_high125_nonzero,KIP126.Literature.Route.TmfSourceData.high125,KIP126.Literature.Route.TmfSourceData.unit}
+  \notready
+  \uses{def:classical-adams-ss,def:adams-detection}
+  Let $\bar\kappa_T=T.\mathrm{kappaBar}\in\pi_{20}(S^0)$,
+  $w_T=T.\mathrm{wClass}\in\pi_{45}(S^0)$ and
+  $u_T=T.\mathrm{unit}:S^0\to T.\mathrm{spectrum}$, the actual unit of
+  $T$'s algebra object. Using the actual shifted-composite sphere product,
+  put
+  \[
+    k_T=T.\mathrm{high125}
+      =\bigl((\bar\kappa_T\bar\kappa_T)
+        (\bar\kappa_T\bar\kappa_T)\bigr)w_T
+      \in\pi_{125}(S^0).
+  \]
+  Then
+  \[
+    (u_T)_*k_T=k_T\mathbin{\gg}u_T\ne0
+      \quad\text{in }\pi_{125}(T.\mathrm{spectrum}).
+  \]
+  Source: \texttt{tmf}, Section 7, Lemma 7.3 and Corollary 7.5
+  (PDF p.47), the multiplicative Hurewicz statements in Lemma 7.1 and
+  Corollary 7.2 (PDF p.46), and the nonzero $w\bar\kappa^4$ point in
+  Figure 1.1. This asserts the nonzero image of this specified actual
+  sphere product under this source algebra unit. The source model's
+  completion and its unit-preserving comparison with the fixed detector
+  remain comparison obligations. Deriving the synthetic high-filtration
+  consequence remains an unfinished deduction.
+\end{theorem}
+
+% SOURCE: BR21 Table 5.4 / Theorem 5.18, printed p.196 / PDF p.213.
+% Keep the old label as an alias for existing references to the source result.
+\begin{theorem}[BR21's source tmf differential]
+  \label{thm:literature-br21}
+  \label{thm:external-tmf-br21-d3-slice}
+  \lean{KIP126.Challenge2.LiteratureResults.br21,KIP126.Classical.Adams.Tmf.Br21Classes}
+  \notready
+  \uses{def:classical-adams-ss,def:adams-detection}
+  On the actual $H$-unit Adams tower of
+  the selected source spectrum $T.\mathrm{spectrum}$,
+  take the source endpoint classes
+  \[
+  \begin{aligned}
+    x&=w_2^2
+      \in E_2^{16,112}(T.\mathrm{spectrum}),\\
+    y&=\beta g^4
+      \in E_2^{19,114}(T.\mathrm{spectrum}).
+  \end{aligned}
+  \]
+  Their source meanings are respectively $w_2^2$ and $\beta g^4$.
+  The differential statement is
+  \[
+    \operatorname{HasDifferential}_{\operatorname{Adams}(H,T.\mathrm{spectrum})}
+      \bigl(3,(16,112),(19,114),x,y\bigr),
+    \qquad d_3(w_2^2)=\beta g^4.
+  \]
+  It is an equality of the $d_3$ differential on these common-cycle
+  representatives, without an extra nonzero-differential, later-survival
+  or homotopy-detection clause. Source: \texttt{BR21}, Table 5.4, last
+  row, and Theorem 5.18, printed p.196 / PDF p.213.
+  Identifying this source calculation with the specified Adams tower
+  remains unproved.
+
+  Identification of the transported $x,y$ with the selected CSV classes
+  requires a comparison of graded algebras. In the fixed CSV
+  quotient the relations $g^2=\beta\gamma$ and $\gamma g=\beta^3$ prove
+  $g^3=\beta^4$ and hence $\beta g^4=\beta^5g$; the corresponding book
+  relations are in \texttt{BR21}, Tables 3.4 and 3.5, printed pp.149 and
+  151 / PDF pp.166 and 168. These coordinate comparisons and the resulting
+  fixed-tmf equation $d_3(v_2^{16})=\beta^5g$ are the internal consequence
+  in Theorem~\ref{thm:main-tmf-br21-coordinate-differential}, not additional
+  external results. That transport still depends on the unfinished
+  generic Adams tower naturality theorem.
+\end{theorem}
+
+\subsection{Stable operations and comparison lemmas}
+
+\begin{proposition}[Generic Toda cosets and juggling]
+  \label{prop:generic-toda-coset-juggling}
+  \lean{KIP126.Foundation.TodaInterface,KIP126.StableHomotopy.Toda.indeterminacy_complete,KIP126.StableHomotopy.Toda.relation_iff_indeterminacy,KIP126.StableHomotopy.Toda.juggling,KIP126.Def.Solution.todaInterface}
+  \uses{def:toda-bracket}
+  \leanok
+  For the cone-defined Toda relation in a triangulated category, a bracket
+  exists exactly when the two successive composites vanish. Given a member
+  $x_0\in\langle f,g,h\rangle$, its entire indeterminacy is
+  \[
+    x\in\langle f,g,h\rangle\quad\Longleftrightarrow\quad
+    x-x_0=(\Sigma f)y+zh
+  \]
+  for suitable $y:\Sigma Y\to W$ and $z:\Sigma X\to Z$.
+  If $hd=0$, there is $y\in\langle g,h,d\rangle$ with
+  $xd=-(\Sigma f)y$. The additional triangulated hypothesis and sign are
+  explicit; this does not calculate the named brackets below.
+\end{proposition}
+\begin{proof}
+  Use exactness of distinguished triangles, completion
+  of triangle morphisms and the octahedral axiom. The reverse coset inclusion
+  follows from the two indeterminacy actions.
+  \leanok
+\end{proof}
+
+% SOURCE: the cone-based Toda relation and its exact-functor transport.
+\begin{theorem}[Toda naturality, suspension, products and shuffle]
+  \label{thm:toda-product-identities}
+  \uses{def:toda-bracket,prop:generic-toda-coset-juggling}
+  \lean{KIP126.Foundation.TodaNaturalityInterface,KIP126.Foundation.TodaFunctorInterface,KIP126.Foundation.TodaTensorInterface,KIP126.Def.Solution.todaNaturalityInterface,KIP126.Def.Solution.todaFunctorInterface,KIP126.Def.Solution.todaTensorInterface}
+  \notready
+  The same cone-defined Toda relation satisfies pre- and postcomposition
+  containments, both intermediate-factor absorption containments, suspension
+  with the sign $(-1)^n$ and the specified shift comparison, and transport
+  under an exact functor. In particular, exact left and right tensor functors
+  give product containments. If $fg=gh=hd=0$, then for each $z$,
+  \[
+    z\in\langle f,g,h\rangle d
+      \quad\Longleftrightarrow\quad
+    z\in-(\Sigma f)\langle g,h,d\rangle.
+  \]
+  The image sets retain their complete indeterminacy. These nine precise
+  statements remain unfinished. Specific Section~7 bracket values and
+  the vanishing of their indeterminacy require further proofs.
+\end{theorem}
+
+% SOURCE: MainPaper/main.tex:2791, citing Bruner--Rognes (BR21).
+% COORDINATES: Zenodo record 14875701, v126.3.cw49, kervaire_csv.rar;
+% tmf_AdamsE2_generators.csv and tmf_AdamsE2_relations.csv (13 generators, 72 relations).
+\begin{definition}[A multiplicative presentation of the tmf Adams $E_2$ page]
+  \label{def:tmf-csv-coordinate-binding}
+  \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:adams-hj,def:hf2-adams-tower,def:unital-multiplication-data}
+  \lean{KIP126.Classical.Adams.Tmf.CsvE2.v2Sixteen,KIP126.Classical.Adams.Tmf.CsvE2.betaFiveG,KIP126.Challenge2.TmfDifferentialInterface,KIP126.Interface.Solution.tmfDifferentialInterface}
+  \lean{KIP126.Classical.Adams.Tmf.CsvE2.one,KIP126.Classical.Adams.Tmf.CsvE2.mul,KIP126.Classical.Adams.Tmf.firstMultiplication,KIP126.Classical.Adams.Tmf.unitSecondCycle}
+  \lean{KIP126.Classical.Adams.Tmf.E2Presentation.RespectsMultiplication,KIP126.Classical.Adams.Tmf.E2Presentation.RespectsUnit,KIP126.Challenge2.StandardTmfMultiplicativeInterface,KIP126.Interface.Solution.tmfMultiplicativeInterface}
+  \notready
+  The fixed computation coordinate algebra is the polynomial quotient over
+  $\mathbb F_2$ with its 13 CSV generators and 72 relations. Its graded
+  comparison with the selected detector's actual Adams $E_2$ is required
+  for $t\le261$, on the same algebra object and its actual unit.
+  For every pair of second-cycle representatives $a,b$ satisfying
+  $[a]=\phi_{s,t}(x)$ and $[b]=\phi_{s',t'}(y)$, the multiplicative
+  comparison requires
+  \[
+    [\mu_1(a,b)]=\phi_{s+s',t+t'}(xy)
+      \quad\text{if }t+t'\le261.
+  \]
+  It also identifies the coordinate unit with the second-page class of
+  the actual unit map. The actual first-layer product uses the fixed tensor,
+  coefficient and cofiber comparisons. Establishing this presentation on the
+  selected detector remains unfinished.
+
+  The source differential is Theorem~\ref{thm:literature-br21}; the
+  coordinate comparison gives
+  $d_3(v_2^{16})=\beta^5g$ in
+  Theorem~\ref{thm:main-tmf-br21-coordinate-differential} using the
+  relation $\beta g^4=\beta^5g$. No completion of the detector
+  comparison or differential transport is claimed by this definition.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:253-263; bibliography key Adams58.  The local
+% source inventory does not contain a checked copy of the original convergence
+% proof, so this remains a provenance-carrying input rather than a ready node.
+\begin{theorem}[Classical Adams convergence and detection]
+  \label{thm:external-classical-adams-convergence}
+  \uses{def:admissible-spectrum,def:ss-convergence-detection-witness}
+  \notready
+  For a 2-complete connective spectrum of finite type, an explicit external
+  result supplies a convergence-and-detection witness for the mod--$2$ Adams
+  spectral sequence: its algebraic $E_\infty$ page is the associated graded of
+  the 2-complete stable homotopy filtration, and its nonzero permanent classes
+  detect the corresponding filtered homotopy elements. This is the standing
+  convergence hypothesis in
+  \texttt{MainPaper/main.tex:253--263}, with the classical source cited there
+  (bibliography key \texttt{Adams58}); it does not prove convergence for
+  arbitrary unbounded filtered complexes.
+\end{theorem}
+
+\begin{proof}
+  Apply the cited convergence theorem to the admissible spectrum and
+  compare its pages and filtration with the specified Adams tower. This
+  model comparison remains unfinished.
+\end{proof}
+
+% SOURCE: Ravenel, Complex Cobordism, Theorem 2.2.14; cited at MainPaper/main.tex:273-275.
+\begin{theorem}[Factorization criterion for map filtration]
+  \label{thm:external-map-filtration-factorization}
+  \uses{def:adams-filtration,def:hf2-homology}
+  \lean{KIP126.Classical.Adams.AdamsFiltrationAtLeast.hasMod2ZeroFactorization}
+  \leanok
+  Fix the actual Adams tower of a specified mod-two Eilenberg--Mac Lane
+  object $H$, an associative multiplication with the same unit, and
+  preservation of zero morphisms by $H\wedge-$.  For every positive integer
+  $k$, if $\operatorname{AF}(f)\ge k$, then $f$ is a composite of exactly
+  $k$ composable maps, each inducing zero on $H$-homology in every degree.
+  The finite chain records its actual intermediate objects and arrows.
+  The restriction $k>0$ is explicit: an empty chain represents an identity,
+  whereas every map has Adams filtration at least zero.
+  This forward implication is established from the constructed tower;
+  Ravenel Theorem 2.2.14 remains the published source, not an additional
+  hypothesis of this proof.  No converse is asserted here.
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  The specified multiplication splits the $H$-smash of each Adams unit.
+  Consequently every successor map in the actual Adams tower induces zero
+  on $H$-homology.  Compose the lift witnessing
+  $\operatorname{AF}(f)\ge k$ with the first of the $k$ successor maps;
+  this composite still induces zero on homology.  The remaining $k-1$
+  successor maps give the required chain, whose composite is $f$ by the
+  tower composition law.  No literature proof or project axiom is used
+  in this implication.
+\end{proof}
+
+% SOURCE: May author PDF AddJan01.pdf, TC3 pp.12--13, Lemma 4.6 p.14.
+
+\begin{theorem}[Conditional signed boundary and sign removal]
+  \label{thm:route-may-signed-adapter}
+  \uses{thm:literature-route-may}
+  \lean{KIP126.Interface.Solution.Literature.Route.may_signed_boundary_of_source,KIP126.Interface.Solution.Literature.Route.may_boundary_projected_of_exponent_two}
+  \leanok
+  Given the stated source data and a compatible pair $(a,b)$, there is $c$
+  with the required second square and $\partial_U a=-\partial_T c$.
+  For an additive projection $q$ satisfying $q(x)+q(x)=0$ for every $x\in\pi_{n-1}(X\wedge X')$, the projected boundaries are equal. No exponent-two property of
+  actual homotopy groups follows merely from mod-two Adams $E_2$ coordinates.
+\end{theorem}
+\begin{proof}
+  \leanok
+  Lift $(a,b)$ to the source vertex, apply its third map, and compose the
+  signed source identity. Apply additivity and the displayed exponent-two
+  premise for the unsigned projected statement.
+\end{proof}
+
+\begin{definition}[A symmetric secondary-operation comparison]
+  \label{def:route-toda-source-application}
+  \uses{thm:literature-toda-h0-label,thm:literature-toda-lambda-h0,thm:literature-toda-h0-eta,thm:literature-toda-low-indeterminacy,def:toda-bracket}
+  \lean{KIP126.Literature.Route.TodaSecondaryComparison,KIP126.Literature.Route.TodaApplication}
+  \leanok
+  For the fixed $h_0^{\mathrm{syn}}$ and $\eta$, the comparison consists of
+  the low-degree membership
+  \[
+    \eta^2\in\langle h_0^{\mathrm{syn}},\eta,h_0^{\mathrm{syn}}\rangle
+  \]
+  and a class $\epsilon\in\pi_{1,0}S^{0,0}$ such that, for every
+  $\theta\in\pi_{62,64}S^{0,0}$,
+  \[
+    \epsilon\theta=\lambda^2\eta\theta,
+    \qquad 2\theta=0\Longrightarrow
+      \epsilon\theta\in\langle2,\theta,2\rangle.
+  \]
+  All products and Toda relations are in the chosen synthetic category.
+  IWX Corollary 6.2 is C-motivic; its application here requires this
+  secondary-operation comparison in addition to the low ring equations.
+\end{definition}
+\begin{theorem}[Consequences of the secondary-operation comparison]
+  \label{thm:route-toda-adapter}
+  \uses{def:route-toda-source-application}
+  \lean{KIP126.Interface.Solution.Literature.Route.todaApplication_of_secondary}
+  \leanok
+  Under the preceding comparison,
+  \[
+    \eta^2\in\langle h_0^{\mathrm{syn}},\eta,h_0^{\mathrm{syn}}\rangle,
+    \qquad
+    2\theta=0\Longrightarrow
+      \lambda^2\eta\theta\in\langle2,\theta,2\rangle
+  \]
+  for every $\theta\in\pi_{62,64}S^{0,0}$. Neither membership asserts
+  that its bracket has zero indeterminacy.
+\end{theorem}
+\begin{proof}
+  \leanok
+  Substitute the star/product identity into the supplied symmetric-bracket
+  relation. The low membership is one of the comparison hypotheses.
+\end{proof}
+
+\begin{definition}[Full localization and completion comparison]
+  \label{def:route-kernel-source-binding}
+  \uses{def:synthetic-context,thm:literature-route-realizationKernel}
+  \lean{KIP126.Literature.Route.RealizationKernelSourceData,KIP126.Literature.Route.RealizationKernelSourceResults,KIP126.Literature.Route.RealizationKernelBinding}
+  \leanok
+  Let $\mathcal S$ be the full synthetic category, $\mathcal C$ the chosen
+  complete category, $c:\mathcal S\to\mathcal C$ the completion functor,
+  and $\iota:\mathcal C\to\mathcal S$ a fully faithful right adjoint.
+  Assume specified isomorphisms $c(S^{m,w}_{\mathcal S})\cong
+  S^{m,w}_{\mathcal C}$. They induce additive isomorphisms
+  \[
+    J_{A;m,w}:\pi_{m,w}^{\mathcal C}(A)
+       \cong\pi_{m,w}^{\mathcal S}(\iota A).
+  \]
+  The realization/localization comparison requires, for each selected $A$
+  and $a\in\pi_{m,w}^{\mathcal C}(A)$,
+  \[
+    \mathcal R(a)=0\Longleftrightarrow L(J_{A;m,w}a)=0,
+    \qquad
+    J_{A;m,w-k}(\lambda^ka)=\lambda^kJ_{A;m,w}(a)
+       \quad(k\in\mathbb N).
+  \]
+  The sphere isomorphisms are taken after completion.
+  Compactness of a hypercomplete sphere is not assumed.
+\end{definition}
+\begin{theorem}[Conditional finite-power kernel transport]
+  \label{thm:route-kernel-adapter}
+  \uses{def:route-kernel-source-binding}
+  \lean{KIP126.Interface.Solution.Literature.Route.realizationKernel_of_source}
+  \leanok
+  Given the source kernel theorem and the preceding comparison, for every
+  class $a$ on a selected object,
+  \[
+    \mathcal R(a)=0\Longleftrightarrow
+      \exists k\in\mathbb N,\quad\lambda^ka=0.
+  \]
+  This does not assert one-step $\lambda$ injectivity or a particular torsion bound.
+\end{theorem}
+\begin{proof}
+  \leanok
+  Use the actual adjunction equivalence on representatives, the
+  realization-zero comparison, and injectivity of that equivalence together
+  with its $\lambda$ compatibility.
+\end{proof}
+
+
+\subsection{Published synthetic and comparison results}
+
+% SOURCE: Pstragowski, Synthetic Spectra and the Cellular Motivic Category, category construction and synthetic analogue functor; summarized at MainPaper/main.tex:755-758.
+\begin{theorem}[Existence and functoriality of the synthetic context]
+  \label{thm:external-synthetic-foundation}
+  \uses{def:synthetic-context}
+  \notready
+  An explicit Pstragowski external result supplies the synthetic category and
+  functor of Definition~\ref{def:synthetic-context}, including stability,
+  presentability, the symmetric monoidal structure, lax monoidality of $\nu$,
+  and preservation of filtered colimits.
+\end{theorem}
+
+\begin{proof}
+  Apply the cited construction of the synthetic category and its analogue
+  functor, retaining the listed operations and coherences.  No claim that $\nu$ preserves all
+  cofibers is included.
+\end{proof}
+
+% SOURCE: Pstragowski, Corollary 4.45
+% (label cor:ctau_is_an_algebra; Source/Pst/source/synthetic_spectra.tex:2247-2253).
+% VERIFIED-IN: BHSmot, Appendix B, Lemma prop:mod-fil
+% (Source/BHSmot/source/Filtered.tex:95-105).
+\begin{theorem}[$\lambda$-quotient ring structure]
+  \label{thm:external-lambda-quotient-ring}
+  \uses{def:synthetic-lambda-quotient,def:lambda-quotient-operadic-target}
+  \notready
+  The cofiber $S^{0,0}/\lambda$ has a unique commutative, equivalently
+  $E_\infty$, algebra structure compatible with the canonical quotient map
+  $S^{0,0}\to S^{0,0}/\lambda$.
+\end{theorem}
+
+\begin{proof}
+  Instantiate Pstragowski's located corollary; the filtered-object construction
+  in BHSmot gives an independent checked copy for $C\tau$.  This external
+  theorem concerns the first cofiber only and supplies no assertion about
+  $S^{0,0}/\lambda^n$ for $n>1$.
+  Pstragowski identifies the specified quotient arrow with the
+  $0$-truncation of the connective unit. Transferring its uniqueness to the
+  concrete relative unit moduli above still requires the synthetic model
+  and under-unit comparisons. A strict operad-map fiber, or a claim of
+  actual topological contractibility, cannot replace those obligations.
+\end{proof}
+
+% SOURCE: Pstragowski, theorem
+% thm:tau_invertible_synthetic_spectra_are_just_spectra
+% (Source/Pst/source/synthetic_spectra.tex:2355-2360), together with
+% Proposition prop:spectral_yoneda_embedding_the_tau_inversion_of_the_synthetic_analogue
+% (Source/Pst/source/synthetic_spectra.tex:2344-2346).
+% VERIFIED-IN: Source/BHS/source/SynRevBigraded.tex:34-40.
+\begin{theorem}[$\lambda$-inversion recovers classical spectra]
+  \label{thm:external-lambda-inversion}
+  \uses{def:synthetic-context,def:synthetic-lambda-quotient}
+  \notready
+  The spectral Yoneda embedding identifies the category of all spectra
+  $\operatorname{Sp}$ with the full subcategory of $\lambda$-invertible
+  $H\mathbb F_2$-synthetic spectra, and this equivalence is canonically
+  symmetric monoidal.  For every spectrum $X$, the canonical map from $\nu X$
+  to its spectral Yoneda image is a $\lambda$-inversion; hence
+  $\lambda^{-1}\nu X\simeq X$ naturally.  No completion restriction is part of
+  this generic-fiber statement.
+\end{theorem}
+
+\begin{proof}
+  Apply the two located Pstragowski results and retain their monoidal and
+  naturality data.  The separate restriction to hypercomplete synthetic
+  spectra and $H\mathbb F_2$-local spectra occurs only later in Pstragowski
+  (\texttt{Source/Pst/source/synthetic\_spectra.tex:2867--2874}) and is not
+  used here.  Transport of a later map or triangle must cite this node and its
+  relevant compatibility explicitly.
+\end{proof}
+
+% SOURCE: Pstragowski Lemma 4.23; MainPaper/main.tex:759-767, Proposition prop:1f7950df.
+\begin{theorem}[Cofiber criterion for $\nu$]
+  \label{thm:external-nu-cofiber-criterion}
+  \uses{def:synthetic-context,def:cofiber-triangle,def:hf2-homology}
+  \notready
+  For a cofiber sequence $X\to Y\to Z$, the sequence
+  $\nu X\to\nu Y\to\nu Z$ is a synthetic cofiber sequence if and only if
+  \[
+    0\to H_*(X;\mathbb F_2)\to H_*(Y;\mathbb F_2)
+      \to H_*(Z;\mathbb F_2)\to0
+  \]
+  is short exact.
+\end{theorem}
+
+\begin{proof}
+  This is the specialization of Pstragowski's Lemma 4.23 carried by an
+  external-result parameter.  Check that the project's homology and cofiber
+  conventions match the cited statement, then transport it into the abstract
+  contexts.
+\end{proof}
+
+% SOURCE: BHS Theorem A.8; MainPaper/main.tex:799-807, Theorem thm:rigid.
+\begin{theorem}[Synthetic Adams rigidity]
+  \label{thm:external-synthetic-rigidity}
+  \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:bhs-aim-regrading,def:synthetic-lambda-quotient}
+  \notready
+  For every admissible $X$, a BHS external result gives
+  \[
+    {}^{\mathrm{syn}}E_2^{*,*,*}(\nu X)
+      \cong E_2^{*,*}(X)\otimes\mathbb F_2[\lambda].
+  \]
+  Every classical differential $d_r(x)=y$ corresponds to the synthetic
+  differential $d_r(x)=\lambda^{r-1}y$, and all synthetic Adams differentials
+  arise this way, after applying the regrading adapter.
+\end{theorem}
+
+\begin{proof}
+  Instantiate BHS Theorem A.8, transport it along
+  Definition~\ref{def:bhs-aim-regrading}, and verify the three coordinates of
+  each differential.  The resulting isomorphism and differential
+  correspondence remain an explicit external-result parameter.
+\end{proof}
+
+% SOURCE: BHS SynRevBigraded.tex:149--159, thm:synthetic-Adams (1a)--(1c),
+% retaining dfn:E-complete and dfn:strong-conv at 123--136;
+% MainPaper/main.tex:813--823, thm:17e90ac0.
+\begin{theorem}[Finite $\lambda$-Bockstein lifting and differentials]
+  \label{thm:external-finite-lambda-bockstein}
+  \lean{KIP126.Challenge2.FiniteLambdaBocksteinInterface}
+  \uses{def:first-lambda-quotient-comparison,def:finite-lambda-bockstein-maps,def:actual-adams-strong-convergence}
+  \notready
+  Fix the same $H\mathbb F_2$ unit, $\nu$, first-quotient comparison $Q$,
+  and suspension/cofiber coherence. Assume that $X$ is $H\mathbb F_2$-nilpotent
+  complete and that its actual Adams tower is strongly convergent in the
+  sense of Definition~\ref{def:actual-adams-strong-convergence}.
+  For every $q\ge1$ and $x\in E_2^{s,t}(X)$, the finite part of BHS
+  Theorem A.1 asserts
+  \[
+    x\in Z_q^{s,t}(X)\quad\Longleftrightarrow\quad
+    \exists z\in\pi_{t-s,t}(\nu X/\lambda^q),\qquad
+      \rho_{1,q,*}z=e_{s,t}^{-1}(x).
+  \]
+  Here $Z_q$ is the paper cycle level: it means that $x$ represents a class
+  on $E_{q+1}$. Thus $q=1$ imposes no earlier differential condition, while
+  $q=2$ means $d_2x=0$.
+  For such an $x$ there is a suitable lift $z$ satisfying the same restriction
+  equation and the actual page relation
+  \[
+    d_{q+1}([x])=[-b_q(z)]
+      \in E_{q+1}^{s+q+1,t+q}(X).
+  \]
+  The differential relation retains the $B_q$ representative indeterminacy;
+  it does not assert a strict, lift-independent equality in $E_2$. The negative sign is the source's
+  sign. Removing it requires the mod-two property on the compared first
+  quotient, not an exponent-two assertion about all synthetic homotopy groups.
+\end{theorem}
+\begin{proof}
+  Apply BHS Theorem A.1 to the same complete spectrum and quotient
+  comparisons. Identifying its finite lifts and signed boundaries with the
+  specified cofiber maps remains unfinished; the full Bockstein
+  spectral-sequence comparison requires the separate theorem below.
+\end{proof}
+
+% SOURCE: BHS SynRevAdams.tex:300--304, the displayed beta_r/E_(r+1)
+% identification; BHS Theorem A.1; MainPaper/main.tex:813--823.
+% MainPaper line 819's tau denotes the deformation map called lambda here.
+\begin{theorem}[$\lambda$-Bockstein comparison]
+  \label{thm:external-lambda-bockstein}
+  \uses{thm:external-synthetic-rigidity,thm:external-finite-lambda-bockstein,def:lambda-normalized-sequence,def:pagewise-sequence-comparison,def:bhs-aim-regrading,def:synthetic-lambda-quotient}
+  \notready
+  Under the preceding source hypotheses, for $q\ge1$ the intrinsic $\lambda$-Bockstein
+  page $q$ corresponds to synthetic Adams page $q+1$, compatibly with
+  differentials and passage to the next page. In tower indices $(a,n,w)$,
+  the AIM regrading is $(s,t,w)=(w+a-n,w+a,w)$.
+  In particular the intrinsic first differential corresponds to synthetic
+  $d_2$. Definition~\ref{def:lambda-normalized-sequence} now constructs this
+  degree and page reindexing using the actual $E_1$-based tower sequence.
+  The first-quotient and suitable finite-lift parts are stated
+  separately above. The ``$\tau$'' in
+  \texttt{MainPaper/main.tex:819} is corrected to $\lambda$ in this context.
+  The raw and regraded sequences are defined using pending property proofs.
+  Their comparison with the specified synthetic Adams family, the initial
+  page and shifted quotient-layer identifications, and the finite rigidity
+  model comparison remain unfinished. The required comparison must commute
+  with differentials and successor homology maps; agreement of displayed
+  pages does not identify arbitrary raw ambient SSData objects.
+  Definition~\ref{def:pagewise-sequence-comparison} now supplies this generic
+  comparison language, but not its first-quotient and $\nu$ representative
+  comparisons in the specified model.
+\end{theorem}
+
+\begin{proof}
+  Use the constructed residual-tower pages, retaining the first differential,
+  and establish their pending laws. Transport the located BHS comparison
+  to the same synthetic model through the displayed degree and page shifts.
+  Check the initial map against the
+  specified first-quotient comparison and the actual cofiber boundary.
+  These model comparisons remain separate obligations from the finite input
+  and from defining the regraded sequence.
+\end{proof}
+
+% SOURCE: BHS Corollary A.9; MainPaper/main.tex:841-847, Proposition prop:30e8b746.
+\begin{theorem}[$E_\infty$ of $\nu X$]
+  \label{thm:external-synthetic-einfty-nu}
+  \uses{thm:external-synthetic-rigidity,def:ss-elementwise-page-presentation,def:ss-einfty-presentation}
+  \notready
+  In AIM grading,
+  \[
+    E_\infty^{s,t,w}(\nu X)\cong
+    \begin{cases}
+      Z_\infty^{s,t}(X)/B_{1+t-w}^{s,t}(X),&t\ge w,\\
+      0,&t<w.
+    \end{cases}
+  \]
+  This is the regraded form of BHS Corollary A.9.
+\end{theorem}
+
+\begin{proof}
+  Instantiate the external corollary, apply the BHS-to-AIM regrading, and
+  check that the Bockstein filtration is $t-w$.  For nonpositive boundary
+  indices use the explicit zero convention, not an implicit natural-number
+  subtraction.
+\end{proof}
+
+% SOURCE: BHS Corollary A.11; MainPaper/main.tex:849-855, Proposition prop:59f111f.
+\begin{theorem}[$E_\infty$ of a finite $\lambda$-quotient]
+  \label{thm:external-synthetic-einfty-quotient}
+  \uses{thm:external-lambda-bockstein,def:ss-elementwise-page-presentation,def:ss-einfty-presentation}
+  \notready
+  For $r\ge2$,
+  \[
+    E_\infty^{s,t,w}(\nu X/\lambda^r)\cong
+    \begin{cases}
+      Z_{r-t+w}^{s,t}(X)/B_{1+t-w}^{s,t}(X),&0\le t-w<r,\\
+      0,&\text{otherwise}.
+    \end{cases}
+  \]
+  This is BHS Corollary A.11 after regrading.
+\end{theorem}
+
+\begin{proof}
+  Transport the cited result through the grading adapter and identify its
+  truncation length with the exponent $r$.  Prove separately that every
+  nonpositive cycle or boundary subscript denotes the zero group, so no
+  truncated subtraction is hidden in the statement.
+\end{proof}
+
+% SOURCE: BHS Lemma 9.15; MainPaper/main.tex:912-919, Proposition prop:ef21f9bc.
+\begin{theorem}[Synthetic lift of a filtered map]
+  \label{thm:external-synthetic-lift}
+  \uses{def:adams-filtration,def:synthetic-context,def:synthetic-lambda-quotient}
+  \notready
+  If $\operatorname{AF}(f)=k<\infty$, an explicit BHS result supplies a map
+  $\widetilde f:\Sigma^{0,k}\nu X\to\nu Y$ with
+  $\nu f=\lambda^k\widetilde f$.  This is an arbitrary chosen full lift; the
+  result does not make it a component of a lifted distinguished triangle and
+  does not assign a cofiber equivalence to it.
+\end{theorem}
+
+\begin{proof}
+  Instantiate BHS Lemma 9.15 at $f$, transport its suspension convention, and
+  retain the chosen factorization and its equality.
+\end{proof}
+
+% SOURCE: proof of BHS Lemma 9.15; MainPaper/main.tex:929-940, Proposition prop:41561db2.
+\begin{theorem}[Lift of a classical distinguished triangle]
+  \label{thm:external-synthetic-triangle-lift}
+  \uses{thm:external-nu-cofiber-criterion,thm:external-synthetic-lift,def:synthetic-lambda-quotient}
+  \notready
+  For a distinguished triangle
+  $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ with
+  $\operatorname{AF}(h)>0$ and short exact $H\mathbb F_2$-homology, an
+  explicit BHS input supplies a synthetic distinguished triangle ending in
+  $\Sigma^{1,0}\nu X$ and a particular triangle-compatible map $\widehat h$
+  satisfying $\nu h=\lambda\widehat h$.  If
+  $\operatorname{AF}(h)=k<\infty$ and a full lift $\widetilde h$ is chosen
+  separately, the source identifies $\widehat h$ with
+  $\lambda^{k-1}\widetilde h$ only modulo a $\lambda$-torsion map, not by an
+  equality of maps.
+\end{theorem}
+
+\begin{proof}
+  Use the cofiber criterion on the first two maps and retain the located
+  construction in the proof of BHS Lemma 9.15 as the chosen connecting map.
+  Verify the suspension
+  $\Sigma^{0,-1}\nu\Sigma X=\Sigma^{1,0}\nu X$ in AIM grading.  The final
+  torsion qualification is exactly the comparison recorded in
+  \texttt{MainPaper/main.tex:942--943}.
+\end{proof}
+
+% SOURCE: BHS Proposition A.13; MainPaper/main.tex:1016-1019.
+\begin{theorem}[$\lambda$-adic completeness]
+  \label{thm:external-synthetic-lambda-complete}
+  \uses{def:lambda-rho-delta-triangle}
+  \lean{KIP126.StableHomotopy.SequentialHomotopyLimit,KIP126.Classical.Adams.IsENilpotentComplete,KIP126.Synthetic.Context.IsLambdaComplete,KIP126.Synthetic.Context.LambdaAdicCompletion,KIP126.Synthetic.LambdaAdicCompletenessInterface,KIP126.Def.Solution.nu_lambdaAdicCompletion}
+  \notready
+  For an $H\mathbb F_2$-nilpotent-complete spectrum $X$, an explicit BHS
+  external result supplies a natural equivalence
+  \[
+    \nu X\simeq\varprojlim_m\nu X/\lambda^m
+  \]
+  compatible with the quotient maps and the finite
+  $\lambda$--$\rho$--$\delta$ triangles.
+  The completeness condition on $X$ is essential. Nilpotent completeness means
+  acyclicity of the actual residual Adams tower, expressed by invertibility
+  of $1-\mathrm{shift}$ on its countable product. The homotopy limit is the
+  fiber in the Milnor triangle, retaining derived-limit information; its
+  projections are the actual quotient inclusions of one specified finite
+  tower. The comparison also fixes the residual boundary squares and the
+  equivalence with $\lambda$-completeness. These are precise statements;
+  construction of the chosen model, its tower and the comparison is unproved.
+\end{theorem}
+
+\begin{proof}
+  Instantiate BHS Proposition A.13 and transport its grading and inverse-system
+  maps to the conventions of Definition~\ref{def:lambda-rho-delta-triangle}.
+  The archived \texttt{Source/BHS/source/SynRevAdams.tex:137--148} identifies
+  $E$-nilpotent completeness of $X$ with $\tau$-completeness of $\nu X$;
+  it does not assert completeness for arbitrary $X$.
+\end{proof}
+
+\subsection{The source quadratic construction and its boundary formula}
+
+% SOURCE NOTE: Barratt--Jones--Mahowald inductive method and Burklund--Xu
+% Proposition 7.19; MainPaper/main.tex:2117--2125, whose quantifier is ``for
+% some theta_5''.  The Burklund--Xu proof internally uses the commutative
+% algebra tower of Construction 7.7, but that proof dependency is represented
+% only by this external-result source note and does not enter the project graph.
+\begin{theorem}[Original BJM/BX criterion for the source choice]
+  \label{thm:external-bjm-bx-criterion}
+  \lean{KIP126.Kervaire.BJMOriginalCriterion}
+  \lean{KIP126.Kervaire.BJMUntruncatedCriterion}
+  \uses{def:synthetic-theta5-choice}
+  \notready
+  Burklund--Xu Proposition 7.19 states the finite criterion using
+  $\eta(\theta_5^{\mathrm{src}})^2=0$ modulo $\lambda^r$ for survival of
+  $h_6^2$ to $E_{r+3}$. In the paper's grading this lies in
+  $\pi_{125,130}(S^{0,0}/\lambda^r)$.
+  The proof also identifies $\delta_1(h_6^2)=\lambda\eta(\theta_5^{\mathrm{src}})^2$
+  and gives the untruncated permanence criterion.
+  The finite predicate now uses the actual internal tower and standard Milnor
+  class, the first-quotient detection of the specified eta and theta choices,
+  and the actual quotient map. Its mathematical input requires an explicit proof.
+  Canonical comparison and the cited theorem's
+  model-specific witness remain pending. The separate untruncated predicate
+  uses the same standard nonzero-survival target; it is not a proved theorem.
+\end{theorem}
+
+\begin{proof}
+  Source: Burklund--Xu, \texttt{kervairev2.tex}, lines 587--600.
+  The finite $\lambda\eta/\lambda^{r+1}$ formulation is a separate paper
+  deduction, Proposition~\ref{prop:bjm-bx-normalized-criterion}; it must not
+  be supplied by labelling that strengthened interface as this external input.
+\end{proof}
+
+% SOURCE: Burklund--Xu Theorem 7.15, proof (the paragraph containing property
+% (*), the quadratic-construction diagram, and Q_0(a), Q_0(b)); Proposition
+% 7.19, proof (the attaching-map formula before naturality);
+% MainPaper/main.tex:2133-2139, Remark rem:theta5choice.
+\begin{theorem}[B--X quadratic-construction cell calculus]
+  \label{thm:external-bx-quadratic-cell-calculus}
+  \uses{def:stable-context,def:synthetic-context,def:synthetic-theta5-choice,def:lambda-rho-delta-triangle}
+  \notready
+  The published calculation concerns the
+  distinguished source map used in the published proof, translated to the AIM
+  grading convention.  Let $\theta_5^{\mathrm{src}}$ be the source class and
+  $\widehat\theta_5^{\mathrm{src}}$ its chosen Moore extension.  Write $a$ and
+  $b$ for the bottom and top cells.  In the quadratic construction:
+  \begin{enumerate}
+    \item the bottom quadratic cell maps by
+      $Q_0(a)\mapsto(\theta_5^{\mathrm{src}})^2$;
+    \item after reduction modulo $\lambda$, the top cell maps by
+      $b\mapsto h_6$ and hence $Q_0(b)\mapsto h_6^2$; no comparison with a
+      second Moore extension is included;
+    \item after applying $\operatorname{Sq}(\widehat\theta_5^{\mathrm{src}})$,
+      the bottom two cells in the resulting quadratic-construction diagram
+      have the attaching-map identity
+      \[
+        \delta_1(Q_0(b))=\lambda\eta Q_0(a).
+      \]
+  \end{enumerate}
+  This calculation concerns the distinguished quadratic-construction map and its
+  attaching calculation.  It does not contain a comparison map for a second
+  choice or the pushed-forward identity for arbitrary $\theta_5$; both are
+  Section~7 project obligations.
+\end{theorem}
+
+\begin{proof}
+  The first two clauses are the source-map statements in the proof of
+  Burklund--Xu Theorem~7.15.  The third is the source-cell attaching-map
+  calculation displayed in the proof of Proposition~7.19, before naturality is
+  applied.  Store these source maps and their exact locators; do not attribute
+  a comparison of independently chosen Moore extensions to B--X.
+\end{proof}
+
+% SOURCE: Source/BurklundXu/paper.txt:3475-3492, Proposition 7.19 in the
+% archived version; MainPaper/main.tex:2133-2139, Remark rem:theta5choice.
+% The universal TotalDifferentialIdentity declaration is project transport and
+% is therefore not the external-result interface below.
+\begin{theorem}[Total differential identity for the source choice]
+  \label{thm:external-total-differential-identity}
+  \lean{KIP126.Kervaire.BJMSourceTotalBoundaryIdentity}
+  \lean{KIP126.Kervaire.SourceTotalDifferentialIdentity}
+  \uses{def:synthetic-theta5-choice,def:lambda-rho-delta-triangle}
+  \notready
+  For the distinguished order-two source choice
+  $\theta_5^{\mathrm{src}}$ used in the located Burklund--Xu quadratic
+  construction, the input supplies the identity
+  \[
+    \delta_1(h_6^2)=\lambda\eta(\theta_5^{\mathrm{src}})^2
+  \]
+  in the $\delta_1:S^{0,0}/\lambda\to S^{1,-1}$ total-extension problem, with
+  its source representative and grading conventions.  It does not quantify
+  over other choices of $\theta_5$.
+\end{theorem}
+
+\begin{proof}
+  Record the source bottom-cell class, the attaching-map calculation, and the
+  resulting naturality comparison from Burklund--Xu Proposition 7.19, with the
+  grading translation used by AIM.  The external input supplies no comparison
+  between independently chosen Moore extensions.  Extending the identity to
+  every order-two choice is a project obligation in
+  Proposition~\ref{prop:theta5-total-differential-any-choice}.
+\end{proof}
+
+\KIPExternalResultsEnd

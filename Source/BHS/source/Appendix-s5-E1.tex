@@ -1,0 +1,298 @@
+%% ---- outline ----
+% 1. define Mod(R)
+% 2. its triangulated
+% 3. get a t structure
+% 4. prove that it behaves well
+In this subsection we prove the four lemmas used in the proof of \Cref{thm:AB-vl}.
+Lemmas \ref{lemm:resolution-prep} and \ref{lemm:res-by-B-mod} follow from standard manipulations of Postnikov towers for $R$-modules. \Cref{lemm:new-resolution} requires the iterated application of several simple maneuvers that modify finite resolutions. After laying out the necessary constructions the proof is straightforward. 
+
+\begin{lem}[{\cite[Proposition 7.1.1.13]{HA}}]
+  \label{lemm:truncate-modules}\
+  Let $U : \mathrm{LMod}_R \to \Sp$ denote the functor which sends a left $R$-module to its underlying spectrum. Let $\mathrm{LMod}_R^{\geq 0}$ (resp. $\mathrm{LMod}_R^{\leq 0}$) denote the full subcategory of $\mathrm{LMod}_R$ on those left $R$-modules whose underlying spectrum is connective (coconnective). Then, $\mathrm{LMod}_R^{\geq 0}$ and $\mathrm{LMod}_R^{\leq 0}$ determine an accessible $t$-structure on $\mathrm{LMod}_R$ such that
+  \begin{enumerate}
+  \item $U(\tau_{\geq 0}M) \simeq \tau_{\geq 0}U(M)$,
+  \item $U(\tau_{\leq 0}M) \simeq \tau_{\leq 0}U(M)$ and
+  \item the natural functor $\pi_0U : \mathrm{LMod}_R^\heartsuit \to \Sp_{(p)}^\heartsuit$ is an equivalence. \footnote{Recall that by convention $\pi_0R \cong \Z_{(p)}$.}
+  \end{enumerate}
+\end{lem}
+%\todo{Is what I say here close enough to what's in HA to just omit any further discussion? If not uncomment the proof below.}
+
+%% \begin{proof}
+%%   (1) and (3) appear as (2) and (3) in Proposition 7.1.1.13 in \cite{HA}.
+%%   In order to prove (2) we just need to show that the cofiber sequence
+%%   $$ U(\tau_{\geq 0} M) \to U(M) \to U(\tau_{<0} M) $$
+%%   is equivalent to the cofiber sequence
+%%   $$ \tau_{\geq 0} U(M) \to U(M) \to \tau_{<0} U(M). $$
+%%   This is relatively easy because for any $B$ there is a unique cofiber sequence
+%%   $$ A \to B \to C $$
+%%   with $A$ connective,
+%%   $C$ (-1)-coconnective
+%%   and $\pi_0A \to \pi_0B$ injective.
+%% \end{proof}
+
+\begin{proof}[Proof of Lemma \ref{lemm:res-by-B-mod}]
+  It will suffice to prove the lemma in the case where $a=0$.
+  We would like to show that the left $B$-module $$ \tau_{<m} ( B \otimes_A M) $$
+  is equivalent to $M$. Consider the following diagram of spectra
+  \begin{center}
+    \begin{tikzcd}
+      (\tau_{\geq m}B) \otimes_A M \ar[r] &
+      B \otimes_A M \ar[r] &
+      (\tau_{<m}B) \otimes_A M \ar[d, equal] \\
+      (\tau_{\geq m}A) \otimes_A M \ar[r] &
+      A \otimes_A M \ar[r] &
+      (\tau_{<m}A) \otimes_A M
+    \end{tikzcd}
+  \end{center}
+  where both rows are cofiber sequences.
+  In order to produce a chain of equivalences
+  $$ \tau_{<m}(B \otimes_A M) \simeq \tau_{<m}(\tau_{<m}B \otimes_A M) \simeq \tau_{<m}(\tau_{<m}A \otimes_A M) \simeq \tau_{<m}(A \otimes_A M) $$
+  it will suffice to show that $(\tau_{\geq m}B) \otimes_A M$ and $(\tau_{\geq m}A) \otimes_A M$ are $m$-connective. This follows from the fact that a relative tensor product of connective modules over a connective ring is connective.
+\end{proof}
+
+\begin{proof}[Proof of Lemma \ref{lemm:resolution-prep}]
+  We are given a resolution:
+  \begin{center}
+    \begin{tikzcd}
+      F_N \ar[r] & X_{N-1} \ar[r] \ar[d] & \cdots \ar[r] & X_1 \ar[r] \ar[d] & X \ar[d] \\
+    & F_{N-1} & & F_1 & F_0
+    \end{tikzcd}
+  \end{center}
+  From this we construct the resolution:
+  \begin{center}
+    \begin{tikzcd}
+      \tau_{\leq M-1}F_N \ar[r] &
+      \tau_{\leq M-1}X_{N-1} \ar[r] \ar[d] &
+      \cdots \ar[r] &
+      \tau_{\leq M-1}X_1 \ar[r] \ar[d] &
+      \tau_{\leq M-1}X \ar[d] \\
+      & F_{N-1}' & &
+      F_1' &
+      F_0'
+    \end{tikzcd}
+  \end{center}
+
+  In order to finish the proof we just need to analyze $F_j'$.
+  For $j \neq N$, we can construct the following diagram of spectra where $Y$ and $Z$ are chosen so that each row is a cofiber sequence.
+  \begin{center}
+    \begin{tikzcd}
+      \tau_{\leq M-1}X_{j+1} \ar[r] \ar[d, equal] &
+      Y \ar[r] \ar[d] &
+      \tau_{\leq M} F_j \ar[d] \ar[r] &
+      \tau_{\leq M} \Sigma X_{j+1} \ar[d, equal] \ar[r] &
+      \Sigma Y \ar[d] \\
+      \tau_{\leq M-1}X_{j+1} \ar[r] \ar[d] &
+      \tau_{\leq M-1}X_j \ar[r] \ar[d, equal] &
+      F_j' \ar[d] \ar[r] &
+      \tau_{\leq M} \Sigma X_{j+1} \ar[d] \ar[r] &
+      \tau_{\leq M} \Sigma X_j \ar[d, equal] \\
+      Z \ar[r] &
+      \tau_{\leq M-1} X_j \ar[r] &
+      \tau_{\leq M-1} F_j \ar[r] &
+      \Sigma Z \ar[r] &
+      \tau_{\leq M} \Sigma X_j
+    \end{tikzcd}
+  \end{center}
+  On long exact sequences of homotopy groups this diagram becomes:
+  \begin{center}
+    \begin{tikzcd}
+      \cdots \ar[r] &
+      0 \ar[r] \ar[d] &
+      A \ar[r] \ar[d] &
+      \pi_M(F_j) \ar[d] \ar[r] &
+      \pi_{M-1}(X_{j+1}) \ar[d] \ar[r] &
+      \pi_{M-1}(X_j)  \ar[d] \ar[r] &
+      \cdots \\
+      \cdots \ar[r] &
+      0 \ar[r] \ar[d] &
+      0 \ar[r] \ar[d] &
+      \pi_M(F_j') \ar[d] \ar[r] &
+      \pi_{M-1}(X_{j+1}) \ar[d] \ar[r] &
+      \pi_{M-1}(X_j) \ar[d] \ar[r] &
+      \cdots \\
+      \cdots \ar[r] &
+      0 \ar[r] &
+      0 \ar[r] &
+      0 \ar[r] &
+      B \ar[r] &
+      \pi_{M-1}(X_j) \ar[r] &
+      \cdots
+    \end{tikzcd}
+  \end{center}
+  where $A, \pi_{M}(F_j')$ and $B$ are the kernels of the next map in the sequence.
+  From this we can read off that the sequence 
+  $$ \tau_{\leq M}F_j \to F_j' \to \tau_{\leq M -1}F_j $$
+  becomes an equivalence after applying $\tau_{\leq M-1}$ and induces a surjection on $\pi_M$.
+  In particular, this tells us that $F_j' \in \Sp^{[0,M]}$.
+  What remains is to show that $F_j'$ is an $A$-module.
+
+  In order to do this we recall \cite[Proposition 1.3.15]{BBDG}:
+  Let $\mathcal{C}$ be a triangulated category equipped with a left and right complete $t$-structure.
+  Suppose we are given an object $P \in \mathcal{C}$
+  and a quotient map $\pi_MP \to Q$ in $\mathcal{C}^\heartsuit$.
+  Then, there is a unique object $P'$ equipped with a factorization
+  $$ \tau_{\leq M}P \to P' \to \tau_{\leq M-1}P $$
+  such that $P' \in \mathcal{C}^{\leq M}$ and after applying $\pi_M$ this sequence becomes
+  $$ \pi_M(P) \to Q \to 0. $$
+  
+  Using the existence part of this proposition with $\mathcal{C} = \mathrm{LMod}_R$
+  we construct an $A$-module $P$.
+  Using the properties of $U$ from \Cref{lemm:truncate-modules} we may apply the uniqueness assertion in the proposition to conclude that $UP \simeq F_j'$.
+  
+  In the $j=N$ case we have $F_N' := \tau_{\leq M-1}F_j$.
+  This objects clearly lives in $\Sp_{[0,M]}$ and is an $A$-module by \Cref{lemm:truncate-modules}.
+\end{proof}
+
+Before proceeding with the proof of Lemma \ref{lemm:new-resolution} we introduce several basic constructions which we will need in order to efficiently manipulate resolutions.
+The first pair of constructions (which are inverse to each other) codify the process of inserting a resolution into another resolution and extracting a piece of a resolution.
+
+\begin{cnstr}[Compression]  
+  Given a resolution
+  $$ [\dots, F_j, \dots, F_{j-a}, \dots, F_0; X] $$
+  we construct resolutions
+  $$ [\dots, F_{j+1}, G, F_{j-a-1}, \dots, F_0; X]\ \ \ \text{ and }\ \ \ [F_j, \dots, F_{j-a}; G]. $$
+\end{cnstr}
+
+\begin{proof}
+  The desired resolution is given by
+  \begin{center}
+    \begin{tikzcd}
+      \cdots \ar[r] & X_{j+2} \ar[r] \ar[d] & X_{j+1} \ar[r] \ar[d] & X_{j-a} \ar[r] \ar[d] & X_{j-a-1} \ar[r] \ar[d] & \cdots \ar[r] & X \ar[d] \\
+      & F_{j+2} & F_{j+1} & G & F_{j-a-1} & & F_0
+    \end{tikzcd}
+  \end{center}
+
+  The resolution of $G$ is given by 
+  \begin{center}
+    \begin{tikzcd}
+      F_j \ar[r] & X_{j-1}/X_{j+1} \ar[r] \ar[d] & X_{j-2}/X_{j+1} \ar[r] \ar[d] & \cdots \ar[r] & X_{j-a}/X_{j+1} =: G \ar[d] \\
+      & F_{j-1} & F_{j-2} & & F_{j-a}
+    \end{tikzcd}
+  \end{center}
+\end{proof}
+
+\begin{cnstr}[Insertion]
+  Given a resolution $ [F_n, \dots , F_0; X] $
+  and another resolution $ [G_m, \dots, G_0; F_j] $
+  we construct a third resolution
+  $$ [F_n, \dots, F_{j+1}, G_m, \dots, G_0, F_{j-1}, \dots, F_0; X] $$
+\end{cnstr}
+
+\begin{proof}
+  We will make our construction by induction on $m$. The $m=0$ case is trivial.
+
+  In the $m=1$ case let $H$ denote the fiber of the composite
+  $ X_j \to F_j \to G_0 $.
+  Then, we obtain a natural maps $ X_{j+1} \to H \to X_j $
+  and the desired resolution is given by
+  \begin{center}
+    \begin{tikzcd}
+      \cdots \ar[r] & X_{j+1} \ar[r] \ar[d] & H \ar[r] \ar[d] & X_j \ar[r] \ar[d] & X_{j-1} \ar[d] \ar[r] & \cdots \ar[r] & X \ar[d] \\
+      & F_{j+1} & G_1 & G_0 & F_{j-1} & & F_0 
+    \end{tikzcd}
+  \end{center}
+  
+  For the induction step we compress $[G_m, \dots, G_0; F_j]$ into a resolution $[G_m, \dots, G_2, K; F_j]$ insert this new resolution into the given one, then apply insertion again, this time with  $[G_1,G_0; K]$ instead, which finishes the construction.
+\end{proof}
+
+When appropriate connectivity hypotheses are satisfied we can use compression and insertion to swap the order of the terms in a resolution.
+
+\begin{lem}[Splitting Lemma]
+  When the compression construction is applied with $a=1$, if $F_{j-1}$ is $k$-connective and $F_j$ is $(k-2)$-coconnective, then $G \simeq F_j \oplus F_{j-1}$. 
+\end{lem}
+
+\begin{proof}
+  The attaching map in the cofiber sequence building $G$ is 0 for connectivity reasons.
+\end{proof}
+
+\begin{cnstr}[Swapping]
+  Given a resolution
+  $$ [F_n, \dots F_j, A \oplus B, F_{j-1}, \dots, F_0; X] $$
+  we can construct another resolution
+  $$ [F_n, \dots, F_j, A, B, F_{j-1}, \dots, F_0; X] $$
+  by inserting the resolution $[A,B; A \oplus B]$ into the given resolution.
+\end{cnstr}
+
+Finally, we have a second pair of inverse constructions where we slice off the leading object of a resolution or add a new leading term.
+
+\begin{cnstr}[Slicing]
+  Given a resolution $ [F_n, \dots, F_0; X] $
+  we will construct another resolution
+  $ [F_n, \dots, F_1; X_1] $
+  where $X_1$ sits in a cofiber sequence $X_1 \to X \to F_0$.
+\end{cnstr}
+
+\begin{proof}
+  The desired resolution is given by
+  \begin{center}
+    \begin{tikzcd}
+      \cdots \ar[r] & X_2 \ar[r] \ar[d] & X_1 \ar[d] \\
+      & F_2 & F_1
+    \end{tikzcd}
+  \end{center}
+  together with the cofiber sequence
+  $X_1 \to X \to F_0$.
+\end{proof}
+
+\begin{cnstr}[Appending]
+  Given a resolution $ [F_n, \dots, F_0; X] $
+  and a cofiber sequence $X \to Y \to A$ 
+  we can construct another resolution
+  $ [F_n, \dots, F_0, A; Y] $
+\end{cnstr}
+
+\begin{proof}
+  The desired resolution is given by
+  \begin{center}
+    \begin{tikzcd}
+      \cdots \ar[r] & X_2 \ar[r] \ar[d] & X_1 \ar[d] \ar[r] & X \ar[r] \ar[d] & Y \ar[d] \\
+      & F_2 & F_1 & F_0 & A
+    \end{tikzcd}
+  \end{center}
+\end{proof}
+
+\begin{proof}[Proof of \Cref{lemm:new-resolution}]
+  We will prove the proposition by induction on $N$.
+  For the base case we replace the resolution $[X;X]$ with
+  $$[\dots, \tau_{[2m,3m)}X, \tau_{[m,2m)}X, \tau_{[0,m)}X; X]$$
+  which is a variant on the Postnikov resolution.
+  For the induction step we start by slicing and suspending the given resolution to obtain a new resolution
+  % $$ [F_N, \dots, F_1; X_1] $$
+  % Suspend this resolution to obtain a new resolution
+  $$ [\Sigma F_N, \dots, \Sigma F_1; \Sigma X_1] $$
+  Next we apply the $(N-1)$ case of this proposition to this resolution
+  % $$ \left[ \dots, \left( \bigoplus_{0 \leq i \leq j} \tau_{[(j-i)c-i,(j-i+1)c-i)}(\Sigma F_{i+1}) \right) , \dots, \left( \tau_{[-1,c-1)} (\Sigma F_2)  \oplus  \tau_{[c,2c)} (\Sigma F_1) \right) , \left( \tau_{[0,c)} (\Sigma F_1) \right) ; \Sigma X_1 \right] $$
+  $$ \left[ \dots, \left( \bigoplus_{0 \leq i \leq j} \tau_{[(j-i)m-i,(j-i+1)m-i)}(\Sigma F_{i+1}) \right) , \dots , \left( \tau_{[0,m)} (\Sigma F_1) \right) ; \Sigma X_1 \right]. $$
+  After desuspending this resolution and appending $X$ to the front we obtain a resolution,
+  $$ \left[ \dots, \left( \bigoplus_{1 \leq i \leq j} \tau_{[(j-i)m-i,(j-i+1)m-i)} F_i \right) , \dots , \left( \tau_{[-1,m-1)} F_1 \right), F_0 ; X \right]. $$
+  In order to simplify notation we will define
+  $$ G_j := \left( \bigoplus_{1 \leq i \leq j} \tau_{[(j-i)m-i,(j-i+1)m-i)} F_i \right) $$
+    
+  Now we make two observations that will let us finish the proof:\\
+  \noindent (1) We're trying to produce a resolution whose terms are $G_j \oplus \tau_{[jm,(j+1)m)}F_0$,\\
+  \noindent (2) $G_j$ is $(jm-2)$-coconnective.
+
+  Next, we insert the the same variant of the Postnikov resolution considered in the base case (this time applied to $F_0$). This produces a resolution,
+  % $ [\dots, \tau_{[m,2m)}F_0, \tau_{[0,m)}F_0; F_0] $
+  % and insert it into our resolution in the first slot,
+  $$ [\dots, G_2, G_1, \dots, \tau_{[2m,3m)}F_0, \tau_{[m,2m)}F_0, \tau_{[0,m)}F_0; X]$$  
+  We now apply the Splitting Lemma and the Swap Construction repeatedly in order to move the terms $\tau_{[am,(a+1)m)}F_0$ to the left until we saturate the coconnectivity from (2). This yields a resolution
+  $$ [\dots, \tau_{[2m,3m)}F_0 \oplus G_2, \tau_{[m,2m)}F_0 \oplus G_1, \tau_{[0,m)}F_0; X], $$
+  which completes the proof.
+\end{proof}
+
+\begin{proof}[Proof of Lemma \ref{lemm:length-count}]
+  The last term in the resolution from Lemma \ref{lemm:new-resolution} which contains a truncation of $F_i$ as a summand has $j$ such that
+  $$ K \in [(j-i)m-i, (j-i+1)m - i) $$
+  Thus, there are $j+1$ terms in the resolution where $j$ is the integer such that
+  $$ K \in [(j-N)m-N, (j-N+1)m - N) $$
+ From this we may conclude that
+ $$ j+1 = 1 + N + \left\lfloor \frac{K+N}{m} \right\rfloor $$
+\end{proof}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Main"
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

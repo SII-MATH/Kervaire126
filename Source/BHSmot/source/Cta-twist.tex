@@ -1,0 +1,279 @@
+%In the beginning of this section we highlighted the fact that the $(2n)^{\mathrm{th}}$ slice of $\MU_\R$ is a sum of copies of $\Sigma^{n \rho} \uZ$, which is \emph{not} in (a shift of) the heart of the usual $t$-structure. From this we were able to conclude that the obvious comparison functor between $C\ta$-modules and graded equivariant objects was inadiqute for our purposes.
+%In this subsection, we discuss twisted $t$-structures on filtered and graded categories. Using this, we will produce ``twisting functors'' which will allow us to . We will take particular care to study how these twisting functors interact with symmetric monoidal structures.
+%
+We begin this subsection with a discussion of several natural $t$-structures on categories of graded and filtered objects, obtained by twisting a given $t$-structure by a Picard element.
+In the filtered case our constructions are a straightforward generalization of a construction of Beilinson. Although these constructions are simple, they have the effect of modifying the symmetric monoidal structure on the heart of a category.
+Next, we explicitly describe this modification at the level of the heart, where it admits a description in terms of an Euler characteristic. Read another way, there is an Euler characteristic obstruction to producing symmetric monoidal twisting functors. 
+We close the subsection by producing symmetric monoidal twisting functors whenever this Euler characteristic obstruction vanishes.
+
+
+\begin{dfn} \label{dfn:L-twist}
+  For the remainder of this subsection, we fix the following data:
+  a stable, presentably symmetric monoidal category $\mathcal{C}$
+  equipped with a compatible $t$-structure\footnote{Here compatible means that a tensor product of objects which are $\geq 0$ is $\geq 0$ itself, and that the unit is $\geq 0$.}
+  and a Picard element $\mathcal{L}$.
+
+  We then define the $\mathcal{L}$-twisted $t$-structure on $\mathcal{C}^{\Gr}$ and $\mathcal{C}^{\Fil}$ as follows:\todo{Cite something to show this allowed?}
+  \begin{itemize}
+  \item An object $X_\bullet$ of $\mathcal{C}^{\Gr}$ is $\geq 0$ in the $\mathcal{L}$-twisted $t$-structure if, for all $n$, $\mathcal{L}^{\otimes -n} \otimes X_n$ is $\geq 0$ in the original $t$-structure.
+  \item Similarly, an object $X_\bullet$ of $\mathcal{C}^{\Fil}$ is $\geq 0$ in the $\mathcal{L}$-twisted $t$-structure if $\mathcal{L} ^{\otimes -n} \otimes X_n$ is $\geq 0$ in the original $t$-structure, for all $n$.
+  \end{itemize}
+  We denote the hearts of these $t$-structures by $\CC^{\Gr, \mathcal{L}, \heartsuit}$ and $\CC^{\Fil, \mathcal{L}, \heartsuit}$ respectively.
+  We denote the $i^{\mathrm{th}}$ $\mathcal{L}$-twisted $t$-structure homotopy objects by $\piu_{i} ^{\mathcal{L}, \Gr}$ and $\piu_{i} ^{\mathcal{L}, \Fil}$ respectively.
+  When $\mathcal{L} = \o$, we frequently omit it from the notation.
+\end{dfn}
+
+We summarize the basic properties of this definition in the following lemma.
+
+\begin{lem} \label{prop:twist-grade} \label{prop:twist-filt} \label{prop:twist-1-conn}
+  In the graded case:
+  \begin{enumerate}
+  \item The $\mathcal{L}$-twisted $t$-structure on $\CC^{\Gr}$ is compatible with the symmetric monoidal structure.
+  \item An object $X_\bullet$ is $< 0$ in the $\mathcal{L}$-twisted $t$-structure if and only if, for all $n$, $\mathcal{L}^{\otimes -n} \otimes X_n$ is $< 0$ in the original $t$-structure.
+  \item The $t$-structure homotopy groups are determined by the following formula:
+\[ (\underline{\pi}_0^{\mathcal{L}, \Gr} X_\bullet )_n \cong \mathcal{L}^{\otimes n} \underline{\pi}_0(\mathcal{L}^{\otimes -n} \otimes X_n). \]
+  \end{enumerate}
+  Assuming that $\mathcal{L} \geq 0$, we obtain similar results in the filtered case:
+  \begin{enumerate}
+  \item[(1')] The $\mathcal{L}$-twisted $t$-structure on $\CC^{\Fil}$ is compatible with the symmetric monoidal structure.
+  \item[(2')] An object $X_\bullet$ is $< 0$ in the $\mathcal{L}$-twisted $t$-structure if and only if $\mathcal{L}^{\otimes -n} \otimes X_n < 0$.
+  \item[(3')] The $t$-structure homotopy groups are given the by following formula:
+  \[ (\underline{\pi}_0^{\mathcal{L}, \Fil} X_\bullet )_n \cong \mathcal{L}^{\otimes n} \underline{\pi}_0(\mathcal{L}^{\otimes -n} \otimes X_n). \]
+
+  \end{enumerate}
+
+  Under the stronger assumption that $\mathcal{L} \geq 1$, 
+  the functor $\CC^{\Gr} \to \CC^{\Fil}$ which is right adjoint to the associated graded functor
+  restricts to an equivalence of symmetric monoidal $1$-categories
+  \[ \CC^{\Gr, \mathcal{L}, \heartsuit} \simeq \CC^{\Fil, \mathcal{L}, \heartsuit}. \]
+\end{lem}
+
+\begin{ntn}
+  We write $- \otimes^{\heartsuit, \mathcal{L}} -$ for the tensor product induced on either $\CC^{\Gr, \mathcal{L}, \heartsuit}$ or $\CC^{\Fil, \mathcal{L}, \heartsuit}$. In the case that $\mathcal{L} = \o$, we simply write $- \otimes ^{\heartsuit} -$.
+\end{ntn}
+
+%The $\mathcal{L}$-twisted $t$-structure is easy to understand in the graded case:
+%
+%If we assume that $\mathcal{L} \geq 0$, then we may obtain similar results in the filtered case.
+
+\begin{proof}
+  The statements (1), (2) and (3) are all clear. We therefore restrct ourselves to the filtered case for the rest of the proof.
+
+  From the expression of the tensor product as a Day convolution, we observe that a tensor product of connective objects has $n^{\mathrm{th}}$ term presented as a colimit over a diagram of connective objects tensored with $\mathcal{L}$ at least $n$ times. Since $\mathcal{L} \geq 0$ we may conclude that (1') holds.
+
+  The expression for the homotopy objects in (3') follows from (2') in a straightforward way.
+  We now prove (2').
+  Suppose that $X_\bullet$ is an object such that $\mathcal{L}^{\otimes -n} \otimes X_n < 0$.
+  We want to show that $X_\bullet < 0$, i.e. that it recieves no maps from $Y_\bullet \geq 0$.
+  Using the condition that $\mathcal{L} \geq 0$, we learn that $[Y_n, X_m] = 0$ for all $n > m$, which is enough to imply that $[Y_\bullet, X_\bullet] = 0$.
+
+  Suppose that $X_\bullet < 0$; then we would like to show that $\mathcal{L}^{\otimes -n} \otimes X_n < 0$.
+  Associated to every $Y \geq 0$ in $\CC$ we can consider the filtered object $Y \otimes \mathcal{L}^{\otimes n}(n)$, which is depicted below:
+  \[ \dots \to 0 \to 0 \to Y \otimes \mathcal{L} ^{\otimes n} \xrightarrow{\id} Y \otimes \mathcal{L} ^{\otimes n} \xrightarrow{\id} \dots \]
+Here, the first nonzero object occurs at position $n$.
+  Using the asssumption that $\mathcal{L} \geq 0$, we can conclude that $Y \otimes \mathcal{L}^{\otimes n}(n) \geq 0$. Now, on mapping out of this object we have
+  \[ * \simeq \Omega^{\infty} \Map_{\CC^{\Fil}} ( Y \otimes \mathcal{L}^{\otimes n}(n), X) \simeq \Omega^\infty \Map_\CC ( Y \otimes \mathcal{L}^{\otimes n}, X_n), \]
+  which implies that $\mathcal{L}^{\otimes -n} \otimes X_n < 0$ for all $n$, as desired.
+
+  We now proceed to prove the final statement.
+  Let $\tau : \o_{\CC^{\Fil}} (-1) \to \o_{\CC^{\Fil}}$ denote the shift map in $\CC^{\Fil}$. Then $C\tau$ admits an $\E_\infty$-algebra structure in $\CC^{\Fil}$ such that there is an equivalence of symmetric monoidal categories $\CC^{\Gr} \simeq \Mod(\CC^{\Fil}; C\tau)$ (cf. \Cref{prop:mod-fil}). Using the assumption that $\mathcal{L} \geq 0$, we learn that $\o_{\CC^{\Fil}}$ and $C\tau$ are $\geq 0$. As a consequence, we find that $\CC^{\Gr, \mathcal{L}, \heartsuit}$ may be identified with $\Mod(\CC^{\Fil, \mathcal{L}, \heartsuit}; \piu_0 ^{\mathcal{L}} C\tau)$.
+
+  The proposition will therefore follow if we prove that $\piu_{0} ^{\mathcal{L}} \o_{\CC^{\Fil}} \to \piu_0 ^{\mathcal{L}} C\tau$ is an equivalence.
+  By \Cref{prop:twist-filt}, we find that
+  \[(\piu_{0} ^{\mathcal{L}, \Fil} \o_{\CC^{\Fil}})_n \cong \begin{cases} \mathcal{L}^{\otimes n} \pi_0 (\mathcal{L} ^{\otimes -n}) & \text{ if } n \leq 0, \\ 0 & \text{ otherwise.} \end{cases}\]
+    Since $\mathcal{L} \geq 1$ by assumption, we find for $n < 0$ that $\mathcal{L}^{\otimes n} \pi_0 \mathcal{L} ^{\otimes -n} \cong 0$, whereas for $n=0$ we just get $\pi_0 \o_{\CC}$.
+
+  On the other hand, we have that
+  \[(\piu_0 ^{\mathcal{L}, \Fil} C\tau)_n \cong \begin{cases} \pi_0 \o_{\CC} & \text{ if } n = 0, \\ 0 & \text{ otherwise.} \end{cases}\]
+  It follows from this that the map $\piu_{0} ^{\mathcal{L}, \Fil} \o_{\CC^{\Fil}} \to \piu_0 ^{\mathcal{L}, \Fil} C\tau$ is an equivalence, as desired.
+\end{proof}
+
+We can now profitably define the twist functors.
+
+\begin{cnstr} \label{cnstr:twist}
+  Given a symmetric monoidal Grothendieck abelian $1$-category $\mathcal{A}$ and an invertible object $a \in \mathcal{A}$, we can construct a monoidal functor
+  $i_a : \Z \to \mathcal{A}$ which sends $1$ to $a$.\footnote{By symmetric monoidal Grothendieck abelian $1$-category, we mean a commutative algebra object of the symmetric monoidal category $\mathrm{Groth}_1$ discussed in \Cref{rec:groth-ab}. In other words, we assume that the tensor product commutes with colimits in each variable.}
+  If the swap map $s_{a,a}$ is the identity, then we can make this functor symmetric monoidal.
+  Tensoring up with $\Abh$, we obtain a monoidal (or symmetric monoidal) functor
+  \[ i_a : \Ab^{\Gr, \heartsuit} \xrightarrow{\o(1) \mapsto a} \mathcal{A}. \]
+  
+  In our situation of interest, we take $\mathcal{A} = \CC^{\Gr, \mathcal{L}, \heartsuit}$ and $a = (\piu_0 \o) \otimes \mathcal{L}(1)$. Then we can define the functor $\twist^{\mathcal{L}}$ as the composite
+  \[ \CC^{\Gr, \heartsuit} \cong \CC^\heartsuit \otimes \Ab^{\Gr, \heartsuit} \xrightarrow{\mathrm{Id} \otimes i_{(\piu_0 \o) \otimes \mathcal{L}(1)}} \CC^\heartsuit \otimes \CC^{\Gr, \mathcal{L}, \heartsuit} \xrightarrow{\otimes} \CC^{\Gr, \mathcal{L}, \heartsuit}. \]
+  On objects this has the effect of sending $\{X_n\}$ to $\{X_n \otimes \mathcal{L}^{\otimes n}\}$.
+  It is easy to see that this is a monoidal equivalence between $\CC^{\Gr, \heartsuit}$ and $\CC^{\Gr, \mathcal{L}, \heartsuit}$, and is further symmetric monoidal if $s_{a, a}$ is the identity. 
+\end{cnstr}
+
+The above construction succinctly explains how much the symmetric monoidal structure on $\CC^{\Gr, \mathcal{L}, \heartsuit}$ has been twisted in terms of the quantity $s_{a, a}$. We now give a description of this quantity in terms of the following standard definition:
+
+\begin{dfn}
+  Given a dualizable object $X$,
+  with dual $X^\vee$, unit $\eta$, and counit $\epsilon$,
+  the trace of an endomorphism $f: X \to X$ is the element $\mathrm{tr}(f) \in \pi_0 \End(\o)$ given by the composite
+  \[ \o \xrightarrow{\eta} X \otimes X^\vee \xrightarrow{ f \otimes X^\vee} X \otimes X^\vee \xrightarrow{s_{X,X^\vee}} X^{\vee} \otimes X \xrightarrow{\epsilon} \o. \]
+  The trace of the identity is called the Euler characteristic and denoted $\chi(X)$.
+\end{dfn}
+
+A simple diagram chase tells us that the Euler characteristic is multiplicative and defines an $\End(\o)$-linear map $\mathrm{tr} : \End(X) \to \End(\o)$. Moreover, one can compute that the trace of the swap map $s_{X,X}$ is equal to $\chi(X)$. In the case where $X$ is invertible the trace map is an isomorphism, and we can use this to conclude that the condition $s_{a,a} = \mathrm{Id}_{a \otimes a}$ in \Cref{cnstr:twist} is equivalent to asking that $\chi(a) = 1$. Specializing further to the case $a = (\piu_0 \o) \otimes \mathcal{L}(1)$, we note that the diagram computing the Euler characteristic of $(\piu_0 \o) \otimes \mathcal{L}(1)$ is $\piu_0^{\mathcal{L},\Gr}$ applied to the diagram computing the Euler characteristic of $\mathcal{L}(1)$ in the ambient category $\CC^{\Gr}$. This implies that
+\[ \chi(a) = \chi(\mathcal{L}(1)) = \chi(\mathcal{L})\chi(\o(1)) = \chi(\mathcal{L}) \cdot 1. \]
+Thus, we have proved:
+
+\begin{lem} \label{prop:twist}
+  The functor $\twist^{\mathcal{L}}$ can be made symmetric monoidal if $\chi(\mathcal{L}) = 1$.
+\end{lem}
+
+%% \begin{lem}
+%%   The assignment $\{X_n\} \mapsto \{X_n \otimes \mathcal{L}^{\otimes n}\}$ determines an automorphism of $\twist^{\mathcal{L}}$ of $\CC^{\Gr}$ which is $t$-exact if we equip the source with the standard $t$-structure and the target with the $\mathcal{L}$-twisted $t$-structure. 
+%% \end{lem}
+
+%% \begin{proof} Clear from \Cref{dfn:L-twist} and \Cref{prop:twist-grade}. \end{proof}
+
+%% The question we would like to answer is ``when can these functors be equipped with a symmetric monoidal structure?''. The first obstruction to this comes from the Euler characteristic, which we define below.
+
+Conversely, if we assume that $\twist^{\mathcal{L}}$ is symmetric monoidal, then we can make the following Euler characteristic computation:
+\[ 1 = \twist^{\mathcal{L}} (1) = \twist^{\mathcal{L}}( \chi (\o(1))) = \chi ( \twist^{\mathcal{L}}(\o(1))) = \chi ( \mathcal{L}(1) ) = \chi (\mathcal{L}). \]
+%% In fact, we can show that at the level of the heart this is the only obstruction to making the functor $\twist^{\mathcal{L}}$ symmetric monoidal. 
+
+%% \begin{lem} \label{prop:twist}
+%%   Since $\twist^{\mathcal{L}}$ is $t$-exact it naturally restricts to a functor,
+%%   \[ \twist^{\mathcal{L}} : \CC^{\Gr, \heartsuit} \simeq \CC^{\Gr, \mathcal{L}, \heartsuit}. \]
+%%   This functor may naturally be given the structure of a monoidal functor.
+%%   Moreover, it may be given a symmetric monoidal structure if $\chi(\mathcal{L}) = 1$.
+%% \end{lem}
+
+%% \begin{proof}
+%%    To give $\twist^{\mathcal{L}}$ the structure of a monoidal functor, we must specify natural isomorphisms
+%%    \[\{X_n \otimes \mathcal{L}^{\otimes n}\} \otimes^{\heartsuit, \mathcal{L}} \{Y_n \otimes \mathcal{L}^{\otimes n}\} \cong \{(X_\bullet \otimes^{\heartsuit} Y_\bullet)_n \otimes \mathcal{L}^{\otimes n}\},\]
+%%    i.e. specify natural isomorphisms
+%%    \[\piu_0 ^{\mathcal{L}} (\{X_n \otimes \mathcal{L}^{\otimes n}\} \otimes \{Y_n \otimes \mathcal{L}^{\otimes n}\}) \cong \{(\piu_{0} (X_\bullet \otimes Y_\bullet))_n \otimes \mathcal{L}^{\otimes n}\}.\]
+%%    Now, by \Cref{prop:twist-grade}, we have a natural isomorphism
+%%    \[\{(\piu_{0} (X_\bullet \otimes Y_\bullet))_n \otimes \mathcal{L}^{\otimes n}\} \cong \piu_0 ^{\mathcal{L}} (\{(X_\bullet \otimes Y_\bullet)_n \otimes \mathcal{L}^{\otimes n}\}).\]
+%%    It therefore suffices to specify natural isomorphisms
+%%    \[\{X_n \otimes \mathcal{L}^{\otimes n}\} \otimes \{Y_n \otimes \mathcal{L}^{\otimes n}\} \cong \{(X_\bullet \otimes Y_\bullet)_n \otimes \mathcal{L}^{\otimes n}\}\]
+%%    in the homotopy $1$-category $h\CC$ of $\CC$. From this point on we work in the symmetric monoidal $1$-category $h\CC$.
+
+%%    Expanding out the definitions, we find that we need to provide natural isomorphisms
+%%    \[\{\bigoplus_{a+b=n} (X_a \otimes \mathcal{L}^{\otimes a}) \otimes (Y_b \otimes \mathcal{L}^{\otimes b})\} \cong \{(\bigoplus_{a+b=n} X_a \otimes Y_b) \otimes \mathcal{L}^{\otimes n}\}.\]
+%%    We now provide, for each $a$ and $b$, an equivalence
+%%    \[(X_a \otimes \mathcal{L}^{\otimes a}) \otimes (Y_b \otimes \mathcal{L}^{\otimes b}) \cong (X_a \otimes Y_b) \otimes \mathcal{L}^{\otimes a+b},\]
+%%    namely the swap map $s_{\mathcal{L}^{\otimes a}, Y_b}$ (here and throughout the rest of the proof we will suppress the associativity isomorphisms).
+
+%%    It is not hard to check that this equips $\twist^{\mathcal{L}}$ with the structure of a monoidal functor.
+%%    To check that it is in fact a symmetric monoidal functor, we need to check that the following diagram commutes for each $a$ and $b$:
+%%    \begin{center}
+%%      \begin{tikzcd} [column sep = 1.5in, row sep = large]
+%%        (X_a \otimes \mathcal{L} ^{\otimes a}) \otimes (Y_b \otimes \mathcal{L}^{\otimes b}) \ar[r,"s_{(X_a \otimes \mathcal{L} ^{\otimes a}), (Y_b \otimes \mathcal{L}^{\otimes b})}"] \ar[d,"s_{\mathcal{L}^{\otimes a}, Y_b}"] & (Y_b \otimes \mathcal{L} ^{\otimes b}) \otimes (X_a \otimes \mathcal{L}^{\otimes a}) \ar[d, "s_{\mathcal{L}^{\otimes b}, X_a}"] \\
+%%        (X_a \otimes Y_b) \otimes \mathcal{L}^{\otimes a+b} \ar[r,"s_{X_a, Y_b}"] & (Y_b \otimes X_a) \otimes \mathcal{L}^{\otimes a+b}.
+%%      \end{tikzcd}
+%%    \end{center}
+%%    Tracing around the the bottom of the diagram, we obtain the map
+%%    \[s_{X_a, \mathcal{L}^{\otimes b}} \circ s_{X_a, Y_b} \circ s_{\mathcal{L}^{\otimes a}, Y_b}.\]
+%%    On the other hand, going across the top, we have
+%%    \begin{align*}
+%%      &s_{(X_a \otimes \mathcal{L} ^{\otimes a}), (Y_b \otimes \mathcal{L}^{\otimes b})} \\
+%%      &= s_{(X_a \otimes \mathcal{L} ^{\otimes a}), \mathcal{L}^{\otimes b}} \circ s_{(X_a \otimes \mathcal{L} ^{\otimes a}), Y_b} \\
+%%      &=  s_{X_a, \mathcal{L}^{\otimes b}} \circ s_{\mathcal{L} ^{\otimes a}, \mathcal{L}^{\otimes b}} \circ s_{X_a, Y_b} \circ s_{\mathcal{L} ^{\otimes a}, Y_b}.
+%%    \end{align*}
+%%    Now, we have $s_{\mathcal{L}^{\otimes a}, \mathcal{L}^{\otimes b}} = (s_{\mathcal{L}, \mathcal{L}})^{\circ (ab)}$ and therefore is will suffice to show that $s_{\mathcal{L}, \mathcal{L}}$ is the identity.
+
+%%    The trace defines a $\pi_0\o$-linear isomorphism between $\pi_0End(\mathcal{L}^{\otimes 2})$ and $\pi_0\o$ which sends the identity to $\chi(\mathcal{L}^{\otimes 2}) = \chi( \mathcal{L} )^2$. One can then directly compute that the trace of $s_{\mathcal{L}, \mathcal{L}}$ is equal to $\chi ( \mathcal{L} )$. Now, using the assumption that $\chi (\mathcal{L}) = 1$ we may conclude.
+%% \end{proof}
+
+\begin{rmk}
+  Examining the failure of $\twist^{\mathcal{L}}$ to be symmetric monoidal, we find that in general the symmetric monoidal structure on $\CC^{\Gr, \mathcal{L}, \heartsuit}$ is twisted by the Euler characteristic $\chi(\mathcal{L})$.
+\end{rmk}
+%
+%\begin{rec}
+%  Given a presentably symmetric monoidal category $\CC$, we may consider the Picard category $\Pic(\CC)$. This is the full subcategory
+%
+%  If $\CC$ is a $1$-category, then $\pi_n \pic (\CC) = 0$ for $n \neq 0,1$. Moreover, $\pi_0 \pic(\CC)$ is the Picard group of $\CC$ and $\pi_1 \Pic(\CC) \cong \aut(\o)$.
+%\end{rec}
+%
+%\begin{prop}
+%  The cofiber of the map $\pic (\CC^{\heartsuit}) \to \pic (\CC^{\Gr, \mathcal{L}, \heartsuit})$ is equivalent to $\Z$.
+%\end{prop}
+%
+%\begin{proof}
+%  Since $\CC^{\heartsuit} \to \CC^{\Gr, \mathcal{L}, \heartsuit}$ is fully faithful, the induced map  $\pic (\CC^{\heartsuit}) \to \pic (\CC^{\Gr, \mathcal{L}, \heartsuit})$
+%\end{proof}
+%
+%\begin{prop}
+%  The natural symmetric monoidal functor $\mathcal{P} (\Pic (\CC^{\Gr, \mathcal{L}, \heartsuit})) \otimes_{\mathcal{P} (\Pic (\CC^{\heartsuit}))} \CC^{\heartsuit} \to \CC^{\Gr, \mathcal{L}, \heartsuit}$ is an equivalence.
+%\end{prop}
+%
+%As a consequence, the symmetric monoidal structure on $\CC^{\Gr, \mathcal{L}, \heartsuit}$ only depends on the map of spectra $\pic (\CC^{\heartsuit}) \to \pic (\CC^{\Gr, \mathcal{L}, \heartsuit})$.
+%
+%It follows that this map is determined by a map $\Z \to \Sigma \pic(\CC^{\heartsuit})$.
+%\begin{lem}
+%  Let $A$ and $B$ denote abelian groups, viewed as Eilenberg-Maclane spectra. Let $B[2] \subset B$ denote the subgroup of $2$-torsion elements. Then there are isomorphisms:
+%  \[ [A,\Sigma B] \cong \Ext_{\Z} (A,B) \]
+%  \[ [A, \Sigma^2 B] \cong \Hom_{\Z} (A,B[2]). \]
+%\end{lem}
+%
+%We therefore need to understand the structure of $\pic(\CC^{\heartsuit})$.
+%This has two nonzero homotopy groups: $\pi_0 \pic(\CC^{\heartsuit})$ is the Picard group of $\CC^{\heartsuit}$, and $\pi_1 \pic(\CC^{\heartsuit}) \cong \aut(\o_{\CC^{\heartsuit}})$.
+%The single nonzero $k$-invariant $\pi_0 \pic(\CC^{\heartsuit}) \to \Sigma^{2} \pi_1 \pic(\CC^{\heartsuit}) \simeq \Sigma^{2} \aut(\o_{\CC^{\heartsuit}})$
+%corresponds to the trace map $\Tr : \pi_0 \pic(\CC^{\heartsuit}) \to \aut(\o_{\CC^{\heartsuit}})[2]$ sending a Picard element $\mathcal{L}$ to its trace $\Tr(\mathcal{L})$.
+%
+%
+%  The negative objects are easy to recognize in the graded case.
+%  If we assume that $\mathcal{L}$ is $\geq 0$, then the negative are similarly easy to determine,
+%  \begin{itemize}
+%  \item An object $X_\bullet$ of $\mathcal{C}^{\Gr}$ is $\leq 0$ in the $\mathcal{L}$-twisted $t$-structure if and only if for all $n$, $\mathcal{L}^{\otimes -n} \otimes X_n$ is $\leq 0$ in the original $t$-structure.
+%  \item Assuming that $\mathcal{L}$ is $\geq 0$, an object $X_\bullet$ of $\mathcal{C}^{\Fil}$ is $\leq 0$ in the $\mathcal{L}$-twisted $t$-structure if and only if its underlying graded object satisfies the same.
+%  \end{itemize}
+%
+%In the graded case we have a simple formula for homotopy group functor,
+%\[ (\underline{\pi}_0^{\mathcal{L}, \Gr} (X_\bullet) )_n \cong \mathcal{L}^{\otimes n} \underline{\pi}_0(\mathcal{L}^{\otimes -n} \otimes X_n) \]
+%In the filtered case we have a similar formula as long as $\mathcal{L}$ is $\geq 0$,
+%\[ (\underline{\pi}_0^{\mathcal{L}, \Fil} (X_\bullet) )_n \cong \mathcal{L}^{\otimes n} \underline{\pi}_0(\mathcal{L}^{\otimes -n} \otimes X_n) \]
+%If we make the stronger assumption that $\mathcal{L}$ is $\geq 1$, then the shift map on an object of the heart becomes zero (up to contractible ambiguity) so $\underline{\pi}_0^{\mathcal{L}, \Fil}$ factors through the graded version of the heart with an equivalence
+%\[ \underline{\pi}_0^{\mathcal{L},\Gr}(\Gr(-)) \cong \underline{\pi}_0^{\mathcal{L},\Fil}(-). \]
+%Altogether, this lets us conclude that as long as $\mathcal{L}$ is $\geq 1$, there are equivalences
+%\[ \mathcal{C}^{\Fil, \mathcal{L}\heartsuit} \cong \mathcal{C}^{\Gr, \mathcal{L}\heartsuit} \cong (\mathcal{C}^\heartsuit)^{\Gr}. \]
+%where the second equivalence sends $X_\bullet$ to $\mathcal{L}^{\otimes \bullet} \otimes X_\bullet$.
+%
+%In the situation of \cite{dfn:L-twist} the compatibility of the $t$-structure with the tensor product turns $\mathcal{C}^\heartsuit$ into a symmetric monoidal $1$-category. Similarly, the assumption that $\mathcal{L}$ is $\geq 0$ ensures that the $\mathcal{L}$-twisted $t$-structure is compatible with the tensor product on filtered/graded objects. Using the equivalence of 1-categories from the previous paragraph, we have constructed a symmetric moniodal structure on $(\mathcal{C}^\heartsuit)^{\Gr}$ for each suitable $\mathcal{L}$. For later use we would like to study these symmetric monoidal structures.
+%
+%A monoidal $\mathcal{C}^\heartsuit$-linear functor with source $\mathcal{C}^{\heartsuit,\Gr}$ is equivalent to the choice of Picard element in the target (to which $\o(1)$ is sent). From this, we can conclude that the $\mathcal{L}$-twisted symmetric monoidal structure on $\mathcal{C}^{\heartsuit, \Gr}$ has the same underlying monoidal structure as the untwisted case.
+%
+%\begin{lem}
+%  If we consider $\mathcal{C}^{\heartsuit, \Gr}$ as a monoidal $\mathcal{C}^\heartsuit$-algebra, then symmetric monoidal refinements of the monoidal structure are in bijective correspondence with 2-torsion elements of $\pi_0(\o)^\times$. The correspondence sends a symmetric monoidal refinement to $Tr(\o(1))$.
+%\end{lem}
+%
+%\begin{proof}
+%  \todo{write this.}
+%\end{proof}
+%
+
+\begin{exm}
+  If we take $\mathcal{C} = \Sp$ with its usual $t$-structure, then the $\Ss^1$-twisted category $\Sp^{\Gr, \Ss^1, \heartsuit}$ is equivalent to the symmetric monoidal category of graded abelian groups with the Koszul sign convention, since $\chi(\Ss^1) = -1$.
+
+  On the other hand, $\Sp^{\Gr, \Ss^2, \heartsuit}$ is symmetric monoidally equivalent to the category of graded abelian groups by \Cref{prop:twist}, since $\chi(\Ss^2) = 1$. \todo{Define $\chi$ above, note that it is $2$-torsion for a Picard element.}
+\end{exm}
+%
+%In [Ctau], the fact that $S^2$-twisted graded abelian groups are equivalent to graded abelian groups is implicitly used in proving their symmetric monoidal equivalence.
+%\todo{Should we throw some shade about lazy non-proofs here?}
+
+%
+%Extending the example above, the case of interest for this paper is $\Ss^{\rho}$-twisted graded $\uZ$-module Mackey functors. Observe that since $[C_2] - 1$ maps to $1$ in $\uZ$ the twist is trivial (like the case over $\C$).
+
+\begin{lem} \label{lem:D-twist}
+  Suppose that $\CC$ is equivalent to the derived category of its heart $\CC^{\heartsuit}$ as a symmetric monoidal category with compatible $t$-structure. Then there exists an equivalence of monoidal categories $\twist^{\mathcal{L}} : \CC^{\Gr} \simeq \CC^{\Gr}$ making the following diagram of monoidal functors commute:
+  \begin{center}
+    \begin{tikzcd}
+      \CC^{\Gr, \heartsuit} \ar[r, "\twist^{\mathcal{L}}"] \ar[d] & \CC^{\Gr, \mathcal{L}, \heartsuit} \ar[d] \\
+      \CC^{\Gr} \ar[r, "\twist^{\mathcal{L}}"] & \CC^{\Gr}.
+    \end{tikzcd}
+  \end{center}
+  If $\chi(\mathcal{L}) = 1$, then the above square naturally lifts to a diagram of symmetric monoidal functors.
+  On objects, $\twist^{\mathcal{L}} : \CC^{\Gr} \to \CC^{\Gr}$ is given by $\{X_n\} \mapsto \{X_n \otimes \mathcal{L}^{\otimes n}\}$.
+\end{lem}
+
+\begin{proof}
+  The assumption implies that $\CC^{\Gr}$, equipped with the usual $t$-structure, is equivalent as a symmetric monoidal category with compatible $t$-struture to $\mathcal{D}(\CC^{\Gr, \heartsuit})$.
+  It also implies that $\CC^{\Gr}$, when equipped with the $\mathcal{L}$-twisted $t$-structure, is equivalent as a symmteric monoidal category with compatible $t$-struture to $\mathcal{D}(\CC^{\Gr, \mathcal{L}, \heartsuit})$.
+
+  It follows that the equivalence of monoidal $1$-categories $\twist^{\mathcal{L}} : \CC^{\Gr, \heartsuit} \to \CC^{\Gr, \mathcal{L}, \heartsuit}$ of \Cref{prop:twist} determines a compatible equivalence of monoidal categories $\twist^{\mathcal{L}}: \CC^{\Gr} \to \CC^{\Gr}$, via taking derived categories.
+  If $\chi(\mathcal{L}) = 1$, these are equivalences of symmetric monoidal categories by \Cref{prop:twist}.
+\end{proof}
+

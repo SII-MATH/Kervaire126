@@ -1,0 +1,120 @@
+We begin by defining two functions attached to a ring $R$ which we will refer to as the $R$-Adams spectral sequence vanishing curves. Although the function $g_R$ defined below has a more direct interpretation as a vanishing curve it will turn out that $f_R$ has more tractable properties. For example, $f_R$ is sub-additive while $g_R$ has no such property.
+
+\begin{dfn}
+  \label{dfn:exp-of-nilp}
+  Given a ring spectrum $R$ as above,
+  \begin{itemize}
+  \item Let $g_R(k)$ denote the minimal $m$ such that every
+    $\alpha \in \pi_k(\Ss)$ whose $R$-Adams filtration is strictly greater than $m$ is zero. \footnote{Our function $g_{\BP}$ is equal to the function $g$ defined by Hopkins in \cite{''''}.}
+  \item Let $f_R(k)$ denote the minimal $m$ such that
+    for every connective $p$-local spectrum $X$, $i < k$, and $\alpha \in \pi_i(X)$,
+    if $\alpha$ has $R$-Adams filtration at least $m$, then $\alpha = 0$. %(it suffices to check this on finite spectra).
+  \item Let $\Gamma (k)$ denote the minimal $m$ such that every $\alpha \in \pi_k(\Ss^0)$ whose $\HFp$-Adams filtration is strictly greater than $m$ is detected in the $K(1)$-local sphere ($\Gamma$ does not depend on a choice of $R$).
+    \footnote{\Cref{dfn:h} is equivalent to the definition given here by our knowledge of the homotopy of the $K(1)$-local sphere.}
+  \end{itemize}
+\end{dfn}
+
+\begin{rmk}\label{rmk:g-f-comp}
+  \label{rmk:g->f}
+  The $X = \Ss^0$ case in the definition of $f_R(k)$ implies that $$g_R(k) \leq f_R(k+1) - 1. $$
+\end{rmk}
+
+Several classic results in stable homotopy theory can be reformulated as bounds on the functions $f_R, g_R$ and $\Gamma$ for various rings $R$.
+In \cite{MathewExponent} and \cite{Akhil}, work of Adams \cite{AdamsPer} and Luilevicius \cite{liul} is reformulated into the pair of inequalities
+$$ f_{\Z_p}(k) \leq \frac{1}{q}k + O(1) \ \ \ \text{ and }\ \ \  \Gamma(k) \leq \frac{1}{q}k + O(1). $$
+Later, in \cite{DM3}, Davis and Mahowald showed that at the prime $2$,
+$$ g_{\text{bo}}(k) \leq \frac{1}{5}k + O(\log(k)) \ \ \ \text{ and }\ \ \  \Gamma(k) \leq \frac{3}{10}k + O(\log(k)) $$
+In \cite{Gonz00}, Gonzalez proved the analogous results at odd primes, 
+$$ g_{\BP\langle 1 \rangle}(k) \leq \frac{1}{p^2 - p -1}k + O(\log(k))\  \text{ and }\  \Gamma(k) \leq \frac{(2p-1)}{(2p-2)(p^2 - p -1)}k + O(\log(k)) $$
+Finally, another formulation of the Nilpotence theorem \cite{DHS} worked out by Hopkins and Smith is that\footnote{See \cite[Theorem 3.30]{Akhil} for a published account of this argument.}
+$$ f_{\BP}(k) = o(k). $$
+One of the purposes of \Cref{sec:ANvl} was to provide the first effective bound on $f_{\BP}(k)$ which is not already present at the $\mathrm{E}_2$-page.
+
+In the situation where $R$ is both an $\mathbb{E}_1$-ring and of Adams type we have the following lemma which relates $f_R$ and $g_R$ to weak and strong vanishing lines in synthetic spectra. 
+
+\begin{lem}
+  \label{lemm:strong-vl->f}
+  Suppose $R$ is both an $\mathbb{E}_1$ ring and of Adams type,
+  \begin{itemize}
+      \item If $\nu_{R} (\mathbb{S}^{0})$ has a finite-page vanishing line of slope $m$ and intercept $c$,
+    then
+    $$ g_R(k) \leq mk + c. $$
+\item If $\nu_{R} (\mathbb{S}^{0})$ has a strong finite-page vanishing line of slope $m$ and intercept $c$,
+    then
+    $$ f_R(k) \leq m(k-1) + c + 1.  $$
+  \end{itemize}
+\end{lem}
+
+\begin{proof}
+  By Lemma \ref{lemm:adams-fil1} each nonzero class $\alpha \in \pi_j(X)$ whose $R$-Adams filtration is $\geq n$ yields a non-$\tau$-torsion class $\tilde{\alpha} \in \pi_{j,j-n}(\nu X)$.
+  \todo{It may be appropriate to say something about tau-completeness here. AS: It doesn't seem to be required, if I read the lemma right.}
+\end{proof}
+
+Applying \Cref{lemm:strong-vl->f} to \Cref{thm:AN-vl} we obtain the following corollary.
+
+\begin{cor}
+  \label{cor:ANvl}
+  For each odd prime,
+  $$ f_{\BP}(k) \leq \frac{1}{p^3 - p -1}k + 2p^2 - 4p + 10 - \frac{2p^2+2p-9}{p^3 - p -1}. $$
+\end{cor}
+The main theorem of this appendix is the following.
+
+
+\begin{thm}\label{thm:app-main}\ 
+  \begin{enumerate}
+  \item For each prime and $n \in \Z_{\geq 0}$,
+    $$ f_{\BP\langle n \rangle}(k) \leq \frac{1}{|v_{n+1}|}k + \left(1 + \frac{1}{|v_{n+1}|} \right) f_{\BP}(k) - \frac{1}{|v_{n+1}|}. $$
+  \item For each prime,
+    $$ \Gamma(k) \leq \frac{(q+1)}{q|v_2|}k + \frac{(q+1)(|v_2| + 1)}{q|v_2|}f_{\BP}(k) + \ell(k). $$
+  \item For each odd prime,
+    $$ f_{\BP\langle 1\rangle}(k) \leq \frac{p+2}{2(p^3 - p -1)}k + 2p^2 - 4p + 11. $$
+  \item For $p=3$,
+    $$ \Gamma(k) \leq \frac{25}{184}k + 19 + \frac{1133}{1472} + \ell(k), $$
+    and for $p \geq 5,$
+    $$ \Gamma(k) \leq \frac{(2p-1)(p+2)}{4(p-1)(p^3 - p -1)}k + 2p^2 - 3p + 11 + \ell(k). $$
+  \end{enumerate}
+\end{thm}
+
+The proof of this theorem will occupy the remainder of this appendix.
+Once we have proved \ref{thm:app-main}(1) the rest of the theorem follows by relatively standard arguments. Note that \ref{thm:app-main}(1), when combined with the Nilpotence theorem, implies the following corollary which appeared as question 3.33 in \cite{Akhil}.
+
+\begin{cor}
+     \[f_{\BP \langle n \rangle} (k) \leq \frac{1}{\abs{v_{n+1}}}k + o(k).\]
+\end{cor}
+
+\begin{rmk}
+  Similarly, using the Nilpotence theorem, the bound on $\Gamma$ given in \Cref{thm:app-main}(2) at the prime 2 simplifies to
+  $$ \Gamma(k) \leq \frac{1}{4}k + o(k). $$
+  Although this is asymptotically better than the result of Davis-Mahowald quoted above, because we don't have explicit control over the error term it is unsuitable for use in \cref{sec:Finale}.
+  In fact, as observed by Stolz \cite[p. XX]{StolzBook}, any further improvement of the slope of a linear bound on $\Gamma(k)$ would imply \Cref{thm:intro-main} at the prime $2$ for $k \gg 0$. This would, at least for $k \gg 0$, bypass the need for \Cref{thm:AdamsBound}. 
+\end{rmk}
+
+% \todo{There needs to be some discussion here}
+\begin{cnj} \label{cnj:vanishing-line}
+  $$ \Gamma(k) \leq \frac{1}{|v_2|}k + O(1). $$
+\end{cnj}
+
+The application of \ref{thm:app-main}(2) to bounding torsion exponents in the stable homotopy groups of spheres was explained in \Cref{ssec:exp}. Ultimately, torsion exponent bounds arise as a corollaries to bounds on $\Gamma(k)$. A more numerically precise result is obtained at odd primes by using \ref{thm:app-main}(4). The mysterious ``sublinear error term'' present in \Cref{thm:torsion-bound} is a residue of the non-effective nature of the Nilpotence theorem.
+
+%% The connection with bounds on the torsion order of the stable homotopy groups of spheres requires some explanation.
+
+%% \begin{lem}
+%%   \label{lemm:p-tors-bound}
+%%   Any element of $\pi_k(\Ss)$ is annihilated by $p^{C(k)}$ where
+%%   $$ C(k) = \max \left( h(k), \begin{cases} v_2(k+1)+1 & \text{ if }\ p=2 \\ \ell(k-1) & \text{ if }\ p \neq 2 \end{cases} \right) $$
+%% \end{lem}
+
+%% \begin{proof}
+%%   The two terms of the maximum above come from the two terms in the splitting
+%%   $$ \pi_k(\Ss^0) \cong J_* \oplus \ker(\pi_k(\Ss^0) \to \pi_k(L_{K(1)}\Ss^0)) $$
+%%     (where $k > 0$) of \cite{AdamsJIV} and \cite{QuillenAdamsConj}. Here we let $J_*$ include the Adams elements $\mu_{8n+1}$ and $\mu_{8n+2}$, even though they are not in the image of the stable $J$-homorphism. \todo{There's a little more that needs saying here I think. AS: Have I covered what you wanted?}
+%%   The orders of the groups $J_*$ are well known and appear as the right-hand term above.
+%%   An element $\alpha$ in the right-hand summand must have $\HFp$-Adams filtration at least $1$ and no more than $h(k)$. Using the fact that multiplication by $p$ raises Adams filtration we obtain the desired torsion bound.
+%% \end{proof}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Main"
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

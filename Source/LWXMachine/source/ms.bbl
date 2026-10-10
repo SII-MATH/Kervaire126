@@ -1,0 +1,54 @@
+\begin{thebibliography}{1}
+
+\bibitem{BarrattJonesMahowald}
+M.~G. Barratt, J.~D.~S. Jones, and M.~E. Mahowald.
+\newblock The {K}ervaire invariant problem.
+\newblock In {\em Proceedings of the {N}orthwestern {H}omotopy {T}heory
+  {C}onference ({E}vanston, {I}ll., 1982)}, volume~19 of {\em Contemp. Math.},
+  pages 9--22. Amer. Math. Soc., Providence, RI, 1983.
+
+\bibitem{BR21}
+Robert~R. Bruner and John Rognes.
+\newblock {\em The {A}dams spectral sequence for topological modular forms},
+  volume 253 of {\em Mathematical Surveys and Monographs}.
+\newblock American Mathematical Society, Providence, RI, [2021] \copyright
+  2021.
+
+\bibitem{Chua}
+Dexter Chua.
+\newblock The ${E}_3$ page of the {A}dams spectral sequence.
+\newblock {\em arXiv preprint, arXiv.2105.07628}, 2021.
+
+\bibitem{LinProgram}
+Weinan Lin.
+\newblock Github repo.
+\newblock \url{https://github.com/WayneLin92/SSeqCpp} Github Webpage 2024.
+
+\bibitem{LinPlot}
+Weinan Lin.
+\newblock Interactive plot of the {A}dams spectral sequence.
+\newblock \url{https://waynelin92.github.io/ss/kervaire-49.html} Github Webpage
+  2024.
+
+\bibitem{LWXZenodo}
+Weinan Lin, Guozhen Wang, and Zhouli Xu.
+\newblock Machine proofs for {A}dams differentials and extension problems among
+  {CW} spectra.
+\newblock Zenodo. \url{https://doi.org/10.5281/zenodo.14272279} December 2024.
+
+\bibitem{LWX126}
+Weinan Lin, Guozhen Wang, and Zhouli Xu.
+\newblock On the {L}ast {K}ervaire {I}nvariant {P}roblem.
+\newblock {\em arXiv Preprint, arXiv:2412.10879}, 2024.
+
+\bibitem{Nassau}
+Christian Nassau.
+\newblock On the secondary {S}teenrod algebra.
+\newblock {\em New York J. Math.}, 18:679--705, 2012.
+
+\bibitem{Xu}
+Zhouli Xu.
+\newblock The strong {K}ervaire invariant problem in dimension 62.
+\newblock {\em Geom. Topol.}, 20(3):1611--1624, 2016.
+
+\end{thebibliography}

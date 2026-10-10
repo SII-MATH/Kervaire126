@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "source": "https://zenodo.org/records/14875701",
+  "version": "v126.3.cw49",
+  "storage": "git-lfs",
+  "scope": "Exact extracted DB/CSV inputs already pinned by the translators; no proof replay and no new interpretation.",
+  "files": [
+    {
+      "path": "proofs.db",
+      "size": 623042560,
+      "sha256": "3a460683c023ee2d8f7e8f904ecef9044a474d88bb7184731e54978ba7dac248",
+      "role": "SQLite log: full original computation records"
+    },
+    {
+      "path": "S0_AdamsE2_generators.csv",
+      "size": 149568,
+      "sha256": "3c4e45a1e28837e651e729bee14e7c62a99f797bc650d69e8a79aec13a762c72",
+      "role": "UTF-16 CSV: generators"
+    },
+    {
+      "path": "S0_AdamsE2_relations.csv",
+      "size": 11634438,
+      "sha256": "8b4b67d6fb3c9a3a264813ea780340e73b1a66290c8616d3308ae1fc19f3add5",
+      "role": "UTF-16 CSV: relations"
+    },
+    {
+      "path": "S0_AdamsE2_basis.csv",
+      "size": 1408908,
+      "sha256": "6a337964ad3ac02b729a46fd839dced7cb6764d14d4cea413163987eba8de871",
+      "role": "UTF-16 CSV: additive basis"
+    },
+    {
+      "path": "S0_AdamsSS_t261.db",
+      "size": 7913472,
+      "sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+      "role": "SQLite: independent selected-record cross-check"
+    }
+  ]
+}

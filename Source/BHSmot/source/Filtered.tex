@@ -1,0 +1,110 @@
+%% \subsubsection{Recollections on filtered objects}
+
+%% Before we describe our deformation machine, we first recall some basic properties of the categories of filtered and graded objects in a category $\CC$.
+
+In this appendix we give a more detailed introduction to filtered objects.
+The results here are well-known (cf. \cite{RotationInvariance}), and we aim mainly to fix notation.
+
+\begin{cnv}
+  In this appendix, $\CC$ will denote a stable, presentable category.
+  %% When we ask for $\CC$ to be $\En$-monoidal, we will always assume that it is presentably $\En$-monoidal, i.e. that the tensor product preserves colimits in each variable separately.
+  We will use $\o$ to denote the unit of $\CC$ when it is monoidal.
+\end{cnv}
+
+
+\begin{dfn}
+  We let $\Z$ denote the symmetric monoidal category with underlying category given by the discrete set $\Z$ and symmetric monoidal structure given by addition.
+
+  Similarly, we let $\Z^{\Fil}$ denote the symmetric monoidal category with underlying category given by the poset $\Z$ with its order $\leq$, so that there is a unique map $n \to m$ whenever $n \leq m$, and symmetric monoidal structure given by addition.
+\end{dfn}
+
+\begin{dfn}
+  Given a category $\CC$, we let $\CC^{\Fil} \coloneqq \Fun(\Z^{\Fil,op}, \CC)$ denote the category of filtered objects in $\CC$.
+  Objects of $\CC^{\Fil}$ are diagrams
+  \[ \dots \to C_2 \to C_1 \to C_0 \to C_{-1} \to C_{-2} \to \dots \]
+  in the category $\CC$. We will sometimes use the notation $C_\bullet$ for an object of $\CC^{\Fil}$.
+  \begin{itemize}
+  \item There is a natural left adjoint $c : \CC \to \CC^{\Fil}$, which sends $C$ to the constant object
+    \[ \dots \to 0 \to 0 \to C \xrightarrow{\id} C \xrightarrow{\id} C \xrightarrow{\id} \dots \]
+    that is equal to $C$ in nonpositive degrees and $0$ in positive degrees.
+  \item There is a natural left adjoint $Y : \CC \to \CC^{\Fil}$, which sends $C$ to the constant object
+    \[ \dots \xrightarrow{\id} C \xrightarrow{\id} C \xrightarrow{\id}  C \xrightarrow{\id} C \xrightarrow{\id} C \xrightarrow{\id} \dots \]
+    that is equal to $C$ in each degree.
+  \item The functor $Y$ admits a left adjoint $\Re : \CC^{\Fil} \to \CC$, which sends
+    $C_\bullet$ to $\varinjlim_{n} C_{-n}$.
+  \item The category $\CC^{\Fil}$ admits natural automorphisms $(k) : \CC^{\Fil} \to \CC^{\Fil}$ that send $C_\bullet$ to $C_{\bullet - k}$.
+  \item There is a natural transformation $\tau : (-1) \to \mathrm{Id}$, which captures the shift map in the filtration. We depict $\tau$ on $cX$ below,
+  \begin{center}
+    \begin{tikzcd}
+      \dots \ar[r] & 0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & X \ar[r] \ar[d] & X \ar[d] \ar[r] & \dots \\
+      \dots \ar[r] & 0 \ar[r] & 0 \ar[r] & X \ar[r] & X \ar[r] & X \ar[r] & \dots
+    \end{tikzcd}
+  \end{center}
+  If $\CC$ is monoidal, then we will refer to the cofiber of $\tau : \o(-1) \to \o$ as $C\tau$.
+  \end{itemize}
+
+  We let $\CC^{\Gr} \coloneqq \Fun(\Z^{op}, \CC)$ denote the category of graded objects in $\CC$.
+  Objects of $\CC^{\Gr}$ are collections $\{C_n\}_n$ of objects of $\CC$.
+  We will sometimes use the notation $C_*$ for an object of $\CC^{\Gr}$.
+  \begin{itemize}
+  \item There is a natural fully-faithful left adjoint $c : \CC \to \CC^{\Gr}$, which sends $C$ to $C_*$ with $C_0 = C$ and $C_k = 0$ for $k \neq 0$.
+  \item There is a natural left adjoint $\Gr : \CC^{\Fil} \to \CC^{\Gr}$, which sends
+  \[ \dots \to C_2 \to C_1 \to C_0 \to C_{-1} \to C_{-2} \to \dots \]
+  to $\{C_n / C_{n+1}\}_n$.
+  \end{itemize}
+  
+  If $\CC$ is a presentably $\mathbb{E}_{n}$-monoidal category,
+  then $\CC^{\Fil}$ and $\CC^{\Gr}$ inherit the structure of $\En$-monoidal categories under Day convolution,
+  and the functors $c$, $Y$, $\Re$, $c$ and $\Gr$ are all $\En$-monoidal.
+\end{dfn}
+
+\begin{rmk}
+  Using the assumption that $\CC$ is stable and presentable we can offer another description of the categories of filtered and graded objects, which is often useful in proofs.
+  \[ \CC^{\Fil} \simeq \Sp^{\Fil} \otimes\ \CC \quad \text{ and } \quad \CC^{\Gr} \simeq \Sp^{\Gr} \otimes\ \CC. \]
+  Since it is well-known that the analogs of $c$, $Y$, $\Re$, $c$ and $\Gr$ are symmetric monoidal in the case of spectra, the claims about $\En$ monoidality made above follow by tensoring up. 
+\end{rmk}
+
+Using the fact that $\o(1) \otimes \o(-1) \simeq \o$, we learn that if $X$ is a dualizable object of $\CC$, then $c(X)(n)$ is a dualizable object of $\CC^{\Fil}$. Similarly, we have that if $\{X_\alpha\}$ is a set of compact (dualizable) generators of $\CC$, then $\{c(X_\alpha)(k)\}$ is a set of compact (dualizable) generators of $\CC^{\Fil}$.
+
+%% \begin{cnstr} \label{cnstr:twist}
+%%   Suppose that $\CC$ is an $\En$-monoidal category.
+%%   We let $\o (k) \in \CC$ denote the object which is equal to $\o$ in degrees $\leq k$ and $0$ in degrees $> k$, and all of whose maps are either $0$ or $\id_{\o}$.
+%%   Then $\o(0)$ is the unit of $\CC^{\Fil}$ and $\o(k) \otimes \o(\ell) \simeq \o(k+\ell)$.
+%%   Given $C \in \CC$ and $k \in \Z$, we let $C(k) \coloneqq c(C) \otimes \o(k)$.
+%%   Then, for each $k$, $C \mapsto C(k)$ is a colimit-preserving functor, and the joint image of these functors generate $\CC^{\Fil}$ under colimits.
+
+%%   We let $\tau : \o(1) \to \o$ denote the map
+%%   \begin{center}
+%%     \begin{tikzcd}
+%%       \dots \ar[r] & 0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & \o \ar[r] \ar[d] & \o \ar[d] \ar[r] & \dots \\
+%%       \dots \ar[r] & 0 \ar[r] & 0 \ar[r] & \o \ar[r] & \o \ar[r] & \o \ar[r] & \dots
+%%     \end{tikzcd}
+%%   \end{center}
+%%   where all the maps between $\o$ are the identity.
+
+%%   Then the cofiber of $\tau$, $C\tau$, is of the form
+%%   \[ \dots \to 0 \to 0 \to \o \to 0 \to 0 \to \dots,\]
+%%   and is easily seen to admit a canonical $\mathbb{E}_{n}$-ring structure.
+
+%%   Similarly, $\o[\tau^{-1}]$ admits a canonical $\mathbb{E}_{n}$-ring structure and is of the form
+%%   \[ \dots \to \o \xrightarrow{\id_\o} \o \xrightarrow{\id_\o} \o \xrightarrow{\id_\o} \o \xrightarrow{\id_\o} \o\to \dots. \]
+%% \end{cnstr}
+
+%% AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa
+
+\begin{lem} \label{prop:mod-fil}
+  Given an $\En$-monoidal category $\CC$,
+  the image of $\o$ under the right adjoint of $\Re$ is $\o[\tau^{-1}]$;
+  therefore this object is an $\En$-algebra and there is an equivalence of $\mathbb{E}_{n-1}$-monoidal categories
+  $ \Mod(\CC^{\Fil}; \o[\tau^{-1}]) \simeq \CC $.
+  Similarly,
+  the image of $\o \in \CC^{\Gr}$ under the right adjoint of $\Gr$ is $C\tau$;
+  therefore this object is an $\En$-algebra and there is an equivalence of $\mathbb{E}_{n-1}$-monoidal categories
+  $ \Mod(\CC^{\Fil}; C\tau) \simeq \CC^{\Gr}. $
+  Moreover, the functors $- \otimes \o[\tau^{-1}]$ and $- \otimes C\tau$ are identified under these equivalences with $\Re$ and $\Gr$, respectively.
+\end{lem}
+
+\begin{proof}
+  The case of spectra was handled in Examples \ref{exm:fil-ctau} and \ref{exm:fil-inv-tau}.
+  For a general $\CC$ we just tensor the case of spectra with $\CC$.
+\end{proof}

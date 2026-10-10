@@ -1,0 +1,4101 @@
+{
+  "schema_version": 3,
+  "project": "KIP126",
+  "description": "Single external provenance manifest: source acquisition and artifacts, field-to-source locators, and the selected h6-square route audit. The source catalogue also retains bibliographic background outside the current goal; geometric corollaries are not Challenge2 inputs. Metadata and hash checks are not proofs or independent verification of cited mathematical statements. source-status.json files are retained raw acquisition records.",
+  "sources": [
+    {
+      "id": "aim_paper",
+      "directory": "MainPaper",
+      "kind": "paper",
+      "citation_keys": [
+        "LWX126"
+      ],
+      "title": "On the Last Kervaire Invariant Problem",
+      "year": 2024,
+      "canonical_url": "https://arxiv.org/abs/2412.10879",
+      "role": "Target paper; theorem, table, and locator source for the formalization blueprint.",
+      "status_file": null,
+      "status_class": "source_of_record",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": true,
+        "source": true
+      },
+      "artifacts": [
+        {
+          "path": "MainPaper/main.tex",
+          "kind": "tex",
+          "required": true,
+          "sha256": "828ee5a5aa06e1f390b036a043230ed417446fa7be11a4e27eecc4a565135c4b"
+        },
+        {
+          "path": "MainPaper/112.tex",
+          "kind": "tex",
+          "required": true,
+          "sha256": "5eb83ef105ce9dbbda87a9f57726bb5c078308fd3718840ea29ee8100cbefabb"
+        },
+        {
+          "path": "MainPaper/main.bib",
+          "kind": "bibliography",
+          "required": true,
+          "sha256": "ef28d62f0343a70c6176387d25fd19c50cc053197d522170632aa9aa24f1cd1d"
+        },
+        {
+          "path": "MainPaper/main.bbl",
+          "kind": "bibliography",
+          "required": false,
+          "sha256": "bab55d90e78aa1910e086c0b811be5113eea2470af20e4eb3bf1e26e9d8f6675"
+        },
+        {
+          "path": "MainPaper/2412.10879.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "7cae269851a88d10dd194651dbf7497b75ef8b8b914bc1901dfa3734cd8096b4"
+        }
+      ],
+      "route_review": {
+        "role": "consumer-only",
+        "url": "https://arxiv.org/html/2412.10879v2",
+        "status": "local-source-and-online-checked",
+        "artifact_paths": [
+          "MainPaper/main.tex"
+        ]
+      }
+    },
+    {
+      "id": "browder",
+      "directory": "Source/Browder",
+      "kind": "literature",
+      "citation_keys": [
+        "Browder"
+      ],
+      "title": "The Kervaire invariant of framed manifolds and its generalization",
+      "year": 1969,
+      "doi": "10.2307/1970686",
+      "canonical_url": "https://doi.org/10.2307/1970686",
+      "role": "Bibliographic background outside the current h6-square goal: Kervaire-invariant criterion relating survival of h_j^2 to a nonzero Kervaire class. Not a Challenge2 input.",
+      "status_file": "Source/Browder/source-status.json",
+      "status_class": "full_text",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": true,
+        "source": false
+      },
+      "artifacts": [
+        {
+          "path": "Source/Browder/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "57c7b5b0e1c37ebea4163f831e27f1607a0dc677f8d6b705b4cc08d3163e9ea9"
+        },
+        {
+          "path": "Source/Browder/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "5fce9aa430e08a6c432824c63a73407286831009cd88b7410b015a5b8b7e87c1"
+        },
+        {
+          "path": "Source/Browder/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "db1d6df5fe79e1b92b234fd78022acaf288bc99b8fccb1ddee2aec3eb0160471"
+        },
+        {
+          "path": "Source/Browder/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "c193503233aa6885b094c83cbc98c91405650ff30d22b12baec34d7c30d823b3"
+        },
+        {
+          "path": "Source/Browder/paper.txt",
+          "kind": "text",
+          "required": true,
+          "sha256": "740589b47594fc47dfb4328b69833ede27a185f9bf7258d23870dca979fc0377"
+        }
+      ],
+      "route_review": {
+        "url": "https://doi.org/10.2307/1970686",
+        "status": "Retained source catalogue only; geometric realization and corollaries are outside the current goal.",
+        "artifact_paths": [
+          "Source/Browder/citation.bib",
+          "Source/Browder/paper.pdf"
+        ]
+      }
+    },
+    {
+      "id": "mahowald_tangora",
+      "directory": "Source/MahowaldTangora",
+      "kind": "literature",
+      "citation_keys": [
+        "MahowaldTangora"
+      ],
+      "title": "Some differentials in the Adams spectral sequence",
+      "year": 1967,
+      "doi": "10.1016/0040-9383(67)90023-7",
+      "canonical_url": "https://doi.org/10.1016/0040-9383(67)90023-7",
+      "role": "Earlier Adams differentials and the h_4^2 survival input.",
+      "status_file": "Source/MahowaldTangora/source-status.json",
+      "status_class": "metadata_only",
+      "availability": {
+        "metadata": true,
+        "pdf": false,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [
+        {
+          "path": "Source/MahowaldTangora/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "573448eb965d8209bd63f370cc1d70ef1adb4ba82a4c122a6eb7ff4f9ce1179a"
+        },
+        {
+          "path": "Source/MahowaldTangora/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "9d93742531cfb2c526cbb68459fec8c112f516031df2c2f6e6fb929d3f467334"
+        },
+        {
+          "path": "Source/MahowaldTangora/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "bd153d7ea007fce820192f9117ef6e604b9cfc9ecbc293f021331209e14bf947"
+        }
+      ]
+    },
+    {
+      "id": "bjm_theta5",
+      "directory": "Source/BJMtheta5",
+      "kind": "literature",
+      "citation_keys": [
+        "BJMtheta5"
+      ],
+      "title": "Relations amongst Toda brackets and the Kervaire invariant in dimension 62",
+      "year": 1984,
+      "doi": "10.1112/jlms/s2-30.3.533",
+      "canonical_url": "https://doi.org/10.1112/jlms/s2-30.3.533",
+      "role": "h_5^2 survival and dimension-62 input supplying theta_5.",
+      "status_file": "Source/BJMtheta5/source-status.json",
+      "status_class": "metadata_only",
+      "availability": {
+        "metadata": true,
+        "pdf": false,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [
+        {
+          "path": "Source/BJMtheta5/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "e29fee8f9a4d7fc71e4ca71719a4c4ee1a19f4a3eab1210a451db52a31b45230"
+        },
+        {
+          "path": "Source/BJMtheta5/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "473a51351b2cbebbd0ade357bdac62ff9f8fac1187a68d495caedf85f9a1594c"
+        },
+        {
+          "path": "Source/BJMtheta5/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "e27b63bf3352b9d422c6a7bcab5c46d9c470e61506feb812919194ec8dd5bcbc"
+        },
+        {
+          "path": "Source/BJMtheta5/semantic-scholar.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "c71f7b1fe80bef14172a78b893f07ea36dffb802fb3517c765009dd1b2332d87"
+        }
+      ]
+    },
+    {
+      "id": "bjm_induction",
+      "directory": "Source/BJMinduction",
+      "kind": "literature",
+      "citation_keys": [
+        "BJMinduction",
+        "BarrattJonesMahowald"
+      ],
+      "title": "The Kervaire invariant problem",
+      "year": 1983,
+      "doi": "10.1090/conm/019/711039",
+      "canonical_url": "https://doi.org/10.1090/conm/019/711039",
+      "role": "Barratt–Jones–Mahowald inductive criterion for theta_j.",
+      "status_file": "Source/BJMinduction/source-status.json",
+      "status_class": "metadata_only",
+      "availability": {
+        "metadata": true,
+        "pdf": false,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [
+        {
+          "path": "Source/BJMinduction/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "8b08f1d3c475c7f834f5e84e9b43001852fe29f288f6f607b0f8af17aa5fbd4e"
+        },
+        {
+          "path": "Source/BJMinduction/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "4236c88cafb6f457c6e66c17c2ac2f6e8f79f9297d9736b223cc4627ace8bcde"
+        },
+        {
+          "path": "Source/BJMinduction/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "3353faa63b0c855d09fef6d2c36510e6b6435f8d5b78841af0685e0fa1267f9e"
+        }
+      ]
+    },
+    {
+      "id": "may_thesis",
+      "directory": "Source/Maythesis",
+      "kind": "literature",
+      "citation_keys": [
+        "Maythesis"
+      ],
+      "title": "The Cohomology of Restricted Lie Algebras and of Hopf Algebras; Application to the Steenrod Algebra",
+      "year": 1964,
+      "canonical_url": "https://www.math.ens.psl.eu/~obenoist/textes/May.pdf",
+      "role": "Archived primary thesis used in the source review. Its low-dimensional products and square-survival families only supported the excluded introduction and are no longer Challenge2 inputs.",
+      "status_file": "Source/Maythesis/source-status.json",
+      "status_class": "partial",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [
+        {
+          "path": "Source/Maythesis/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "6a6d66511ccb04a1ba10bc7a1f129d32dfc3e8c7feef7c6cf60a5b04df5c590f"
+        },
+        {
+          "path": "Source/Maythesis/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "a6da37b1cc8e6cf9e13a315185e076e925501f9e1e3bbedd1e03130956f0c3da"
+        },
+        {
+          "path": "Source/Maythesis/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "65e8f8532364309e4f822ef123078d3b4ed295efb7d3eb6efb8e0ef1e0023161"
+        },
+        {
+          "path": "Source/Maythesis/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "d5402b5b43ada2b33432c407d6ff1764e0d722d8a91580f92c6fa33ad96bf487"
+        },
+        {
+          "path": "Source/Maythesis/article-1966.citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "b231d4d775a1a975644dae52f34df053a5dc75a57f03efb8dcd21c469d83bd26"
+        },
+        {
+          "path": "Source/Maythesis/source-status-1966.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "2cd35e8c40d58efbf1aa9a8be020e1294a8496f8e71dad9e8114feec21bb82c3"
+        },
+        {
+          "path": "Source/Maythesis/article-1966.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "89228460dcb000a60100f9e67ca3dd07cbf2deb996cd565e0cec6ea74006e7b7"
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://www.math.ens.psl.eu/~obenoist/textes/May.pdf",
+        "status": "primary-thesis-pdf-read-and-pinned",
+        "locators": [
+          "PDF p.152 / printed II-7.2, h0 multiplication and the zero-stem case",
+          "Theorem II.7.9(2), PDF p.156 / printed II-7.6",
+          "Theorem II.7.9(3),(4),(9),(13) and E-infinity survivor identifications, PDF p.157 / printed II-7.7"
+        ],
+        "note": "The primary source is the 1964 thesis, not the 1966 Part I article. Scanned mathematical pages were visually reviewed; no usable extracted full text is claimed. Source identification is not fixed-model proof completion.",
+        "artifact_paths": [
+          "Source/Maythesis/paper.pdf",
+          "Source/Maythesis/citation.bib"
+        ]
+      }
+    },
+    {
+      "id": "hhr",
+      "directory": "Source/HHR",
+      "kind": "literature",
+      "citation_keys": [
+        "HHR"
+      ],
+      "title": "On the nonexistence of elements of Kervaire invariant one",
+      "year": 2016,
+      "doi": "10.4007/annals.2016.184.1.1",
+      "canonical_url": "https://doi.org/10.4007/annals.2016.184.1.1",
+      "role": "Bibliographic background outside the current h6-square goal: nonexistence of Kervaire-invariant-one classes in forbidden higher dimensions. Not a Challenge2 input.",
+      "status_file": "Source/HHR/source-status.json",
+      "status_class": "full_text",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": true,
+        "source": true
+      },
+      "artifacts": [
+        {
+          "path": "Source/HHR/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "1ea332d9b9487c6ae2f67fd1c31ce01eea02ca62aaf3617ff9573455828770c0"
+        },
+        {
+          "path": "Source/HHR/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "b7a1616b3717acd58c66cffaa7f5020d0cdf4a9ed88a927509c612c2311b1e10"
+        },
+        {
+          "path": "Source/HHR/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "37fac92079be007677f4d32bc302b644c9eb6ce16b97534db253caa4accdc979"
+        },
+        {
+          "path": "Source/HHR/arxiv-source",
+          "kind": "source_archive",
+          "required": true,
+          "sha256": "8ae2e3f4e7cbfccafbf4557a621e07e1fadc95a200f6b3500f2488c047c79484"
+        },
+        {
+          "path": "Source/HHR/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "f2c42787c5ca6532b131c2deae2cf211fef6bdc2513559dbb5e69f2c92daf1d2"
+        },
+        {
+          "path": "Source/HHR/paper.txt",
+          "kind": "text",
+          "required": true,
+          "sha256": "2ea86c84f33d30dcfb3c712d0b131b84def2963a2d78c97c7c78ca412e491e0d"
+        }
+      ],
+      "route_review": {
+        "url": "https://arxiv.org/abs/0908.3724",
+        "status": "Retained source catalogue only; geometric realization and corollaries are outside the current goal.",
+        "artifact_paths": [
+          "Source/HHR/citation.bib",
+          "Source/HHR/paper.pdf"
+        ]
+      }
+    },
+    {
+      "id": "xu",
+      "directory": "Source/Xu",
+      "kind": "literature",
+      "citation_keys": [
+        "Xu"
+      ],
+      "title": "The strong Kervaire invariant problem in dimension 62",
+      "year": 2016,
+      "doi": "10.2140/gt.2016.20.1611",
+      "canonical_url": "https://doi.org/10.2140/gt.2016.20.1611",
+      "role": "Dimension-62 stable-stem and order-two facts for theta_5.",
+      "status_file": "Source/Xu/source-status.json",
+      "status_class": "full_text",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": true,
+        "source": true
+      },
+      "artifacts": [
+        {
+          "path": "Source/Xu/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "bef724085402bffd78cd862b4020c69b032e7b57803b884166db9787ab217141"
+        },
+        {
+          "path": "Source/Xu/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "7c7854dec1fba9816988aefb596fcd7d6378e36a58d0c6697d196630e577f01c"
+        },
+        {
+          "path": "Source/Xu/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "77a7c7a7c81c0cf975e144bf907517a59f6af84bc4c95fa5a043ae29ee164e0b"
+        },
+        {
+          "path": "Source/Xu/arxiv-source",
+          "kind": "source_archive",
+          "required": true,
+          "sha256": "fd37b77a8b7d5e38b3cf87f7c6ea6e95a8bcc4c69e6c7e7ca6778622dea95275"
+        },
+        {
+          "path": "Source/Xu/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "133f6258fb9e4d2cc28651020697203b15ed793b1e4705bd111bd1fd27efa183"
+        },
+        {
+          "path": "Source/Xu/paper.txt",
+          "kind": "text",
+          "required": true,
+          "sha256": "7de73c13b272eba9f8e45e90077cc27d09f35d5ea77f6fd8ea16f82cd9a35496"
+        },
+        {
+          "path": "Source/Xu/source/theta5_arxiv.tex",
+          "sha256": "ee83a8162dfedd7a8cc07d117ffc025e0999387644017d6c03e4e701265f4b89",
+          "kind": "tex",
+          "required": true
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://doi.org/10.2140/gt.2016.20.1611",
+        "status": "local-primary-source-checked",
+        "locators": [
+          "Corollary 1.3"
+        ],
+        "artifact_paths": [
+          "Source/Xu/source/theta5_arxiv.tex"
+        ]
+      }
+    },
+    {
+      "id": "iwx",
+      "directory": "Source/IWX",
+      "kind": "literature",
+      "citation_keys": [
+        "IWX"
+      ],
+      "title": "Stable homotopy groups of spheres: from dimension 0 to 90",
+      "year": 2023,
+      "doi": "10.1007/s10240-023-00139-1",
+      "canonical_url": "https://doi.org/10.1007/s10240-023-00139-1",
+      "role": "Stable-stem and theta_5 indeterminacy/order-two facts.",
+      "status_file": "Source/IWX/source-status.json",
+      "status_class": "full_text",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": true,
+        "source": true
+      },
+      "artifacts": [
+        {
+          "path": "Source/IWX/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "cc9a29719d448a700ebdc1e68426a791e23e3621f7125a560d85bf86aaf81a74"
+        },
+        {
+          "path": "Source/IWX/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "f6b6b89d57e280e2990ce8e3ac6d12c4d7a992ac7cb45f7bb421391ad9fd0fe4"
+        },
+        {
+          "path": "Source/IWX/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "a25101836295eefa85a1054efa4fafd2d7c9fdbfffdab2e61786e91ecd57b186"
+        },
+        {
+          "path": "Source/IWX/arxiv-source",
+          "kind": "source_archive",
+          "required": true,
+          "sha256": "178477986a1d07c6fae12ca657bca191d6b8903d98d78f3eb9650aedc9ac25cb"
+        },
+        {
+          "path": "Source/IWX/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "f79cf973414fb3c1d6fa5fd94c522755518eb73933945b5ef0cece4e70e85bcc"
+        },
+        {
+          "path": "Source/IWX/paper.txt",
+          "kind": "text",
+          "required": true,
+          "sha256": "e7b07da9365d801d0d3026886b180cbbe0fa41833387666bcd6fc1ef050a7f00"
+        },
+        {
+          "path": "Source/IWX/source/more-stable-stems-intro.tex",
+          "sha256": "c690105bd338fd1e5ff045ea54d5aa05e89d440e070c92c82842221ae3720d63",
+          "kind": "tex",
+          "required": true
+        },
+        {
+          "path": "Source/IWX/source/more-stable-stems-tables.tex",
+          "sha256": "c606709433ccd65fee9fb7ad3d519279df5469c22979ee8fcffe57e037d6e379",
+          "kind": "tex",
+          "required": true
+        },
+        {
+          "path": "Source/IWX/source/more-stable-stems-background.tex",
+          "sha256": "a96b762ab110325b0395ccce5ef74331b2634c1853ea0329c7a26f69ce0797b6",
+          "kind": "tex",
+          "required": true
+        },
+        {
+          "path": "Source/IWX/source/more-stable-stems-Toda.tex",
+          "sha256": "8bcdca77a8c459b78815e0f080c29ae2f1e7f5d54043fdcd3a4cf2fa284bc060",
+          "kind": "tex",
+          "required": true
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://doi.org/10.1007/s10240-023-00139-1",
+        "status": "local-primary-source-checked",
+        "locators": [
+          "classical 62-stem table",
+          "defn:crossing-diff",
+          "thm:Moss",
+          "cor:2-symmetric"
+        ],
+        "note": "The Toda symmetric theorem and Corollary 6.2 in the local TeX are C-motivic. They do not automatically give the selected synthetic Toda operation.",
+        "artifact_paths": [
+          "Source/IWX/source/more-stable-stems-intro.tex",
+          "Source/IWX/source/more-stable-stems-tables.tex",
+          "Source/IWX/source/more-stable-stems-background.tex",
+          "Source/IWX/source/more-stable-stems-Toda.tex"
+        ]
+      }
+    },
+    {
+      "id": "tmf",
+      "directory": "Source/tmf",
+      "kind": "literature",
+      "citation_keys": [
+        "tmf"
+      ],
+      "title": "The 2-primary Hurewicz image of tmf",
+      "year": 2023,
+      "doi": "10.2140/gt.2023.27.2763",
+      "canonical_url": "https://doi.org/10.2140/gt.2023.27.2763",
+      "role": "Hurewicz-detection input for the possible lambda^20 g^4 Delta h_1 g class.",
+      "status_file": "Source/tmf/source-status.json",
+      "status_class": "full_text",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": true,
+        "source": true
+      },
+      "artifacts": [
+        {
+          "path": "Source/tmf/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "e4d34be2fae0b5f48b72249c7ae75b4b6eda985b217d2212c304bde0d6373d6f"
+        },
+        {
+          "path": "Source/tmf/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "4cdd914c0079f9bca0d396d466cbc981cd026e256864912beb978c26afa30fd7"
+        },
+        {
+          "path": "Source/tmf/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "a8323936c039591718cd6e487de6f44ab620ae104fa7c6bc2fd8cb916d614796"
+        },
+        {
+          "path": "Source/tmf/arxiv-source",
+          "kind": "source_archive",
+          "required": true,
+          "sha256": "8e8f095032b7f41d57aeac1d336ac626f8f0396daa5b2cf643cc3960f20eeac8"
+        },
+        {
+          "path": "Source/tmf/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "4cf5ba296d4a6bc1402b4c0dbdac10b689c2d41dda039372bef357f67b45561b"
+        },
+        {
+          "path": "Source/tmf/paper.txt",
+          "kind": "text",
+          "required": true,
+          "sha256": "fa657969d0ca224ed0d2a71704239021ad7a8ca1394fdb46e4ee9f6af47d3ee6"
+        },
+        {
+          "path": "Source/tmf/source/tmfhi9.tex",
+          "sha256": "0509d24b10bb9563e23302e37dac800e73e8fcd7dd70c54b3411a6c3c39d6381",
+          "kind": "tex",
+          "required": true
+        },
+        {
+          "path": "Source/tmf/source/tmf2.pdf",
+          "sha256": "e0d37d1d51d5bf959408bf009c5528c1a7c3cb419de8e1405177d4ed46aff98c",
+          "kind": "pdf",
+          "required": true
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://arxiv.org/abs/2011.08956v4",
+        "status": "local-primary-source-and-figure-checked",
+        "locators": [
+          "thm:main (Theorem 1.2)",
+          "fig:tmf2 (Figure 1.1)",
+          "Section 2 H_*tmf and change of rings",
+          "Section 7: kappa-bar^4 w; Lem:Eoo"
+        ],
+        "artifact_paths": [
+          "Source/tmf/source/tmfhi9.tex",
+          "Source/tmf/source/tmf2.pdf"
+        ]
+      }
+    },
+    {
+      "id": "pst",
+      "directory": "Source/Pst",
+      "kind": "literature",
+      "citation_keys": [
+        "Pst"
+      ],
+      "title": "Synthetic spectra and the cellular motivic category",
+      "year": 2023,
+      "doi": "10.1007/s00222-022-01173-2",
+      "canonical_url": "https://doi.org/10.1007/s00222-022-01173-2",
+      "role": "Synthetic spectra, nu, and deformation/localization interfaces.",
+      "status_file": "Source/Pst/source-status.json",
+      "status_class": "full_text",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": true,
+        "source": true
+      },
+      "artifacts": [
+        {
+          "path": "Source/Pst/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "96a6bdae98f0d6242a7d536cfea9c213b3bfdceaf5fa373357465fc15a89c7b1"
+        },
+        {
+          "path": "Source/Pst/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "cd9df0c7ec01cc685b2de3ae87865e23eeb30cf1c0ca9d6fecd79fa7057574f7"
+        },
+        {
+          "path": "Source/Pst/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "a9d49db8f7db478a32c0e7e98552989c83df667675b8c45d8e1581cac65d6eb2"
+        },
+        {
+          "path": "Source/Pst/arxiv-source",
+          "kind": "source_archive",
+          "required": true,
+          "sha256": "bc3187f0a63dc833b2c88aa580ad32674242587ee50765ac1ecd36633185d917"
+        },
+        {
+          "path": "Source/Pst/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "7d27ca462cafbbb6ef3befc0ef76bb340c44a7bb666581a7e2eb7c10ada1c76d"
+        },
+        {
+          "path": "Source/Pst/paper.txt",
+          "kind": "text",
+          "required": true,
+          "sha256": "5bf56a321eb0557ed99f44fdb07a56c2d3607df43a1e8416d2d00548a551f517"
+        },
+        {
+          "path": "Source/Pst/source/synthetic_spectra.tex",
+          "sha256": "8cf4dea5a56c89ed6d7adf6e8774a7c4be31a5da447b91c8c6c9061f292cd890",
+          "kind": "tex",
+          "required": true
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://doi.org/10.1007/s00222-022-01173-2",
+        "status": "local-primary-source-checked",
+        "locators": [
+          "Lemma 4.23",
+          "prop:tau_inversion_functor_exists",
+          "prop:tau_inversion_cocontinuous_symmetric_monoidal_left_inverse_to_synthetic_analogue",
+          "lemma:synthetic_analogue_construction_preserves_filtered_colimits_and_is_lax_symmetric_monoidal"
+        ],
+        "artifact_paths": [
+          "Source/Pst/source/synthetic_spectra.tex"
+        ]
+      }
+    },
+    {
+      "id": "bhs",
+      "directory": "Source/BHS",
+      "kind": "literature",
+      "citation_keys": [
+        "BHS"
+      ],
+      "title": "On the boundaries of highly connected, almost closed manifolds",
+      "year": 2023,
+      "doi": "10.4310/acta.2023.v231.n2.a1",
+      "canonical_url": "https://doi.org/10.4310/acta.2023.v231.n2.a1",
+      "role": "Rigidity, synthetic Adams/Bockstein comparison, and extension interfaces.",
+      "status_file": "Source/BHS/source-status.json",
+      "status_class": "full_text",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": true,
+        "source": true
+      },
+      "artifacts": [
+        {
+          "path": "Source/BHS/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "a2a01ae7adf8723a7204d18a839044a550380bdb7d9d5fa59cb140e3a5f2ece4"
+        },
+        {
+          "path": "Source/BHS/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "1d1534796214722cc1d42bc46d8f492114f2724183fa957160d469f7e1f4d057"
+        },
+        {
+          "path": "Source/BHS/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "28e4e8266b33cd1ab03420e6322c260cad734b39d3715cf6c9699b77206a91a9"
+        },
+        {
+          "path": "Source/BHS/arxiv-source",
+          "kind": "source_archive",
+          "required": true,
+          "sha256": "1caedec23a4a9d827930c8718d17d9a5643eda4457148ebd88cccd243c8df9db"
+        },
+        {
+          "path": "Source/BHS/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "563c5bb63166c54033e82fcd90df1cef094def0dc7f8c69104a0888565474e6b"
+        },
+        {
+          "path": "Source/BHS/paper.txt",
+          "kind": "text",
+          "required": true,
+          "sha256": "69e6c64c752723f4dd10f3edd8f27310011aec0073e22fe96de5d5e4d6fa6d74"
+        },
+        {
+          "path": "Source/BHS/source/SynRevBigraded.tex",
+          "sha256": "3b9394fbf7b40946bd19fb85563e72b7177d50096934240af2db185682a54231",
+          "kind": "tex",
+          "required": true
+        },
+        {
+          "path": "Source/BHS/source/SynRevAdams.tex",
+          "sha256": "22e5f3c7c8b734f2611b812ee50f4de48c3ce2a2cf123615f3ded88613dc0943",
+          "kind": "tex",
+          "required": true
+        },
+        {
+          "path": "Source/BHS/source/SyntheticTodaRange.tex",
+          "sha256": "d1ab0ecaddde05a9f4ba038c2cb0ccb16e885e958b1880688a4f3ce81570c29e",
+          "kind": "tex",
+          "required": true
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://doi.org/10.4310/acta.2023.v231.n2.a1",
+        "status": "local-primary-source-checked",
+        "locators": [
+          "lemm:adams-fil1",
+          "thm:synthetic-Adams",
+          "thm:synth-ASS",
+          "cor:synth-ASS",
+          "cor:synth-ctau-ASS",
+          "cor:tau-surj",
+          "prop:syn-toda-range"
+        ],
+        "artifact_paths": [
+          "Source/BHS/source/SynRevBigraded.tex",
+          "Source/BHS/source/SynRevAdams.tex",
+          "Source/BHS/source/SyntheticTodaRange.tex"
+        ]
+      }
+    },
+    {
+      "id": "bhs_mot",
+      "directory": "Source/BHSmot",
+      "kind": "literature",
+      "citation_keys": [
+        "BHSmot"
+      ],
+      "title": "Galois reconstruction of Artin–Tate R-motivic spectra",
+      "year": 2020,
+      "doi": "10.48550/arXiv.2010.10325",
+      "canonical_url": "https://arxiv.org/abs/2010.10325",
+      "role": "E_infinity structure on lambda^n-quotients used by synthetic constructions.",
+      "status_file": "Source/BHSmot/source-status.json",
+      "status_class": "full_text",
+      "availability": {
+        "metadata": false,
+        "pdf": true,
+        "text": true,
+        "source": true
+      },
+      "artifacts": [
+        {
+          "path": "Source/BHSmot/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "2601dede1852dfbec033aaf04ef0bb189083da6f3fd424cc67e3106fd8de902c"
+        },
+        {
+          "path": "Source/BHSmot/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "a502afcb353203fd176f89a55ddca793eb0496c7cc026573c10fc6c90c988036"
+        },
+        {
+          "path": "Source/BHSmot/arxiv-source",
+          "kind": "source_archive",
+          "required": true,
+          "sha256": "d873685e6f859a40952d55ec9a41beccd8d48e64bb7b74dbc101968d13cabd3d"
+        },
+        {
+          "path": "Source/BHSmot/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "f74a6f89b5774c5e022750ddd46cbc8cb77abd6fddb9485746171d52586e2ef8"
+        },
+        {
+          "path": "Source/BHSmot/paper.txt",
+          "kind": "text",
+          "required": true,
+          "sha256": "f8e2bb9eac1a3d6d050e743f4ca46db2fc28ae8176f1a4ace122ccec7350311e"
+        },
+        {
+          "path": "Source/BHSmot/source/Filtered.tex",
+          "sha256": "e24f321a6c2217a79842a951ffc90a43c231a994e42afb9fb91720f18fc435cc",
+          "kind": "tex",
+          "required": true
+        },
+        {
+          "path": "Source/BHSmot/source/Deformation.tex",
+          "sha256": "614d8c7ebf1707861e9b32b7699eca97e037ea99432739d8e9825981442fbc74",
+          "kind": "tex",
+          "required": true
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://arxiv.org/abs/2010.10325",
+        "status": "local-primary-source-checked",
+        "locators": [
+          "Appendices B/C",
+          "Example C.15; also BX cnstr:bock-maps"
+        ],
+        "artifact_paths": [
+          "Source/BHSmot/source/Filtered.tex",
+          "Source/BHSmot/source/Deformation.tex"
+        ]
+      }
+    },
+    {
+      "id": "burklund_xu",
+      "directory": "Source/BurklundXu",
+      "kind": "literature",
+      "citation_keys": [
+        "BurklundXu"
+      ],
+      "title": "The Adams differentials on the classes h_j^3",
+      "year": 2025,
+      "doi": "10.1007/s00222-024-01298-6",
+      "canonical_url": "https://doi.org/10.1007/s00222-024-01298-6",
+      "role": "Synthetic extension of the BJM criterion and the lambda eta theta_5^2 differential relation.",
+      "status_file": "Source/BurklundXu/source-status.json",
+      "status_class": "full_text",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": true,
+        "source": true
+      },
+      "artifacts": [
+        {
+          "path": "Source/BurklundXu/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "4e3494ac2239ac49b2319cdbe54ebd740c7744faad189356f15dc639cfc32883"
+        },
+        {
+          "path": "Source/BurklundXu/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "c6ccb83ea3956f0ec4c590456c05390af67df518a9cd85d8ca236c6b15852fa1"
+        },
+        {
+          "path": "Source/BurklundXu/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "9855be643480048ccd3669522b840b57115eb6652229fba5ebbe1a479e21c5dd"
+        },
+        {
+          "path": "Source/BurklundXu/arxiv-source",
+          "kind": "source_archive",
+          "required": true,
+          "sha256": "a30c50a346291dde22bab52d07cff3fc378afb3088ec92643b45418fb615e028"
+        },
+        {
+          "path": "Source/BurklundXu/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "c94a3184977162ccbc3fa538a184c2bc3789e67e56de60ef9b1d72bb60617b6a"
+        },
+        {
+          "path": "Source/BurklundXu/paper.txt",
+          "kind": "text",
+          "required": true,
+          "sha256": "5487db430f7d1173f09ec2691bdc7a28796e806bcc25268254bc52f53cd08f4e"
+        },
+        {
+          "path": "Source/BurklundXu/source/kervairev2.tex",
+          "sha256": "34cdb9d20d21eafb3d502418b535b6517337a11a985487497003832de888491a",
+          "kind": "tex",
+          "required": true
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://doi.org/10.1007/s00222-024-01298-6",
+        "status": "local-primary-source-checked",
+        "locators": [
+          "Proposition 7.19 and proof",
+          "cnstr:bock-maps"
+        ],
+        "artifact_paths": [
+          "Source/BurklundXu/source/kervairev2.tex"
+        ]
+      }
+    },
+    {
+      "id": "may01",
+      "directory": "Source/May01",
+      "kind": "literature",
+      "citation_keys": [
+        "May01"
+      ],
+      "title": "The additivity of traces in triangulated categories",
+      "year": 2001,
+      "doi": "10.1006/aima.2001.1995",
+      "canonical_url": "https://doi.org/10.1006/aima.2001.1995",
+      "role": "Triangulated pullback lemma used in the generalized Leibniz argument.",
+      "status_file": "Source/May01/source-status.json",
+      "status_class": "partial",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [
+        {
+          "path": "Source/May01/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "30765408084974b75e03b0e7e97ce6d4511119f3b99c80b39085a52ee8a94d04"
+        },
+        {
+          "path": "Source/May01/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "2ba8ada4e8da0cdd0b3e18096b38e47744a6e53fb615f1d738f8127ff3f460f9"
+        },
+        {
+          "path": "Source/May01/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "dbedbd5347d40d8272f23d8162d56d7ce7800428ea8b13f0d6c75805e3e23888"
+        },
+        {
+          "path": "Source/May01/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "61f6f38ffc88becad1d482270526477de03c03e64b8871d353e3b3116d655763"
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://math.uchicago.edu/~may/PAPERS/AddJan01.pdf",
+        "status": "author-pdf-read-and-pinned",
+        "locators": [
+          "TC3",
+          "Lemma 4.6, PDF p.14"
+        ],
+        "note": "Author PDF TC3 and Lemma 4.6 checked directly; signs retained, unsigned projection requires exponent two.",
+        "artifact_paths": [
+          "Source/May01/citation.bib",
+          "Source/May01/paper.pdf"
+        ]
+      }
+    },
+    {
+      "id": "moss",
+      "directory": "Source/Moss",
+      "kind": "literature",
+      "citation_keys": [
+        "Moss"
+      ],
+      "title": "Secondary compositions and the Adams spectral sequence",
+      "year": 1970,
+      "doi": "10.1007/BF01129978",
+      "canonical_url": "https://doi.org/10.1007/BF01129978",
+      "role": "No-crossing/Toda-bracket criterion used in the final extension contradiction.",
+      "status_file": "Source/Moss/source-status.json",
+      "status_class": "metadata_only",
+      "availability": {
+        "metadata": true,
+        "pdf": false,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [
+        {
+          "path": "Source/Moss/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "24755b33ce39a3bdfca49af7ccb065256050c541c77e46ef952b3bec98c41dfd"
+        },
+        {
+          "path": "Source/Moss/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "90fd45004ecbac787304a7e057b6fcd229d231f05d629dded1cfbc99656a9b41"
+        },
+        {
+          "path": "Source/Moss/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "0d8ab7e5fe9108c75a2e92c7a9ccf985632d4fc831c3eb0cd7174ed978eb7e51"
+        },
+        {
+          "path": "Source/Moss/semantic-scholar.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "5e938ee760c86289d296e385b6dd8b4243dd070012037cd04f2709b9b633af44"
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://doi.org/10.1007/BF01129978",
+        "status": "original-scan-unavailable",
+        "locators": [
+          "Theorem 1.2"
+        ],
+        "note": "Statement checked using Belmont-Kong v1 and IWX; original Moss scan was NOT independently read.",
+        "artifact_paths": [
+          "Source/Moss/citation.bib"
+        ]
+      }
+    },
+    {
+      "id": "br21",
+      "directory": "Source/BR21",
+      "kind": "literature",
+      "citation_keys": [
+        "BR21"
+      ],
+      "title": "The Adams spectral sequence for topological modular forms",
+      "year": 2021,
+      "doi": "10.1090/surv/253",
+      "canonical_url": "https://www.sas.rochester.edu/mth/sites/doug-ravenel/otherpapers/rognes-bruner-tmf-book.pdf",
+      "role": "Author preliminary book: Theorem 5.18/Table 5.4 gives d3(w2^2)=beta*g^4; Tables 3.4/3.5 imply beta*g^4=beta^5*g. Source-to-selected-coordinate transport is a separate internal proof.",
+      "status_file": "Source/BR21/source-status.json",
+      "status_class": "full_text",
+      "availability": {
+        "metadata": true,
+        "pdf": true,
+        "text": true,
+        "source": false
+      },
+      "artifacts": [
+        {
+          "path": "Source/BR21/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "f36a963b2b4c9f45ab0b86cb9418b53cf327799f7b14192be7215a2e2cb22c47"
+        },
+        {
+          "path": "Source/BR21/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "6819d2663ca5600203caefe91141388acaccca9ca42d0726daa59b49a380cd40"
+        },
+        {
+          "path": "Source/BR21/openalex.json",
+          "kind": "metadata",
+          "required": true,
+          "sha256": "e6d60ececf20d6ee696509464259c405f03f8b244a8e72a8336e49d21793cf47"
+        },
+        {
+          "path": "Source/BR21/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "cad4df7d4f6057408e7ec90d8b7003f5658cdd46ee5eb3972d66eaef86f6e1b1"
+        },
+        {
+          "path": "Source/BR21/paper.txt",
+          "kind": "text",
+          "required": true,
+          "sha256": "1c350553acae9c47a33d481159b3768f3af389d725bcc440a01e49074cd649c7"
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://www.sas.rochester.edu/mth/sites/doug-ravenel/otherpapers/rognes-bruner-tmf-book.pdf",
+        "status": "author-primary-preliminary-book-directly-read",
+        "locators": [
+          "Table 3.3, PDF 165 / print 148: beta=(stem15,s3), g=(20,4), gamma=(25,5), w2=(48,8)",
+          "Tables 3.4/3.5, PDF 166/168 / print 149/151: beta*gamma=g^2, beta^3=gamma*g",
+          "Remark 5.9, PDF 207 / print 190: d3(w2^2)=beta*g^4",
+          "Table 5.4 and Theorem 5.18, PDF 213 / print 196: d3(w2^2)=beta*g^4"
+        ],
+        "note": "Unchanged 708-page author preliminary version made available with AMS permission, independently read in this follow-up. The exact fixed CSV quotient relations prove beta*g^4=beta^5*g; the source-to-actual-tmf/coordinate realization is a separate internal obligation, not inferred from class names or bidegrees.",
+        "artifact_paths": [
+          "Source/BR21/citation.bib",
+          "Source/BR21/paper.pdf",
+          "Source/BR21/paper.txt",
+          "Source/BR21/source-status.json"
+        ]
+      }
+    },
+    {
+      "id": "lwx_machine",
+      "directory": "Source/LWXMachine",
+      "kind": "machine",
+      "citation_keys": [
+        "LWXMachine",
+        "LWXZenodo",
+        "LinProgram",
+        "LinPlot"
+      ],
+      "title": "Machine Proofs for Adams Differentials and Extension Problems Among CW Spectra",
+      "year": 2024,
+      "doi": "10.48550/arXiv.2412.10876",
+      "canonical_url": "https://arxiv.org/abs/2412.10876",
+      "role": "Lin–Wang–Xu paper, Zenodo proofs/data, SSeqCpp, and plot evidence for Appendix facts.",
+      "status_file": "Source/LWXMachine/source-status.json",
+      "status_class": "full_text",
+      "availability": {
+        "metadata": false,
+        "pdf": true,
+        "text": true,
+        "source": true
+      },
+      "artifacts": [
+        {
+          "path": "Source/LWXMachine/citation.bib",
+          "kind": "citation",
+          "required": true,
+          "sha256": "335a38a8aa422e134562d17957856a26c449d499a2d54b9364c1115fb57f2b9a"
+        },
+        {
+          "path": "Source/LWXMachine/source-status.json",
+          "kind": "status",
+          "required": true,
+          "sha256": "6da3f6ede4fd2f6c8e5a59b884fcb329e8beaa3e8d6b516d8e90d20a668306ac"
+        },
+        {
+          "path": "Source/LWXMachine/arxiv-source",
+          "kind": "source_archive",
+          "required": true,
+          "sha256": "1431b62157e5e430e8fb62a0e11a666a969794d67597f132f89ce92a57a301c0"
+        },
+        {
+          "path": "Source/LWXMachine/paper.pdf",
+          "kind": "pdf",
+          "required": true,
+          "sha256": "226fdd5b7d0078eaa9fd6c599a922d172ede5f8c095394b55c7550d4c8743935"
+        },
+        {
+          "path": "Source/LWXMachine/paper.txt",
+          "kind": "text",
+          "required": true,
+          "sha256": "d3caf1c0541328b8409ea24216d1ec168d3ccadf21aa3e898068e0c2602bb51d"
+        },
+        {
+          "path": "Source/LWXMachine/zenodo-record.json",
+          "kind": "machine_metadata",
+          "required": true,
+          "sha256": "ee6a6622777d04cce0f268eded8255a108714e4bf4fddc333321309475fa43b3"
+        },
+        {
+          "path": "Source/LWXMachine/lin-program-page.html",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "4bbec290b545ec628834307701939937d206090cff6c9831cd439ee80737c1dd"
+        },
+        {
+          "path": "Source/LWXMachine/lin-plot.html",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "96d3a345648b94971fb51fd15befd15f011878c2c2d7818e70e041955a0761bb"
+        }
+      ]
+    },
+    {
+      "id": "belmont_kong",
+      "directory": null,
+      "kind": "literature",
+      "citation_keys": [],
+      "title": "Belmont–Kong, arXiv:2112.08689v1 (Moss convergence cross-check)",
+      "year": 2021,
+      "canonical_url": "https://arxiv.org/pdf/2112.08689v1",
+      "role": "prior-result-crosscheck",
+      "status_file": null,
+      "status_class": "partial",
+      "availability": {
+        "metadata": false,
+        "pdf": false,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [],
+      "route_review": {
+        "role": "prior-result-crosscheck",
+        "url": "https://arxiv.org/pdf/2112.08689v1",
+        "status": "primary-pdf-checked-online",
+        "locators": [
+          "Theorem 1.1 / 4.11",
+          "Definition 2.10",
+          "Proposition 2.12",
+          "Proposition 4.10; p. 2 multiplicativity caveat"
+        ],
+        "note": "December 2021 v1 primary theorem checked directly. It supplies a multiplicative-tower version of Moss with its own hypotheses; p. 2 explicitly restricts Proposition 4.10 to the multiplicative setting. Applying it to the sphere requires actual pairing/composition comparison. It does not certify a general arbitrary-object composition theorem, nor constitute reading Moss 1970.",
+        "artifact_paths": []
+      }
+    },
+    {
+      "id": "toda",
+      "directory": null,
+      "kind": "literature",
+      "citation_keys": [],
+      "title": "Composition methods in homotopy groups of spheres",
+      "year": 1962,
+      "canonical_url": "https://doi.org/10.1515/9781400882625",
+      "role": "prior-result",
+      "status_file": null,
+      "status_class": "partial",
+      "availability": {
+        "metadata": false,
+        "pdf": false,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://doi.org/10.1515/9781400882625",
+        "status": "original-book-not-independently-read",
+        "locators": [
+          "Theorem 3.6",
+          "low bracket <2,eta,2>"
+        ],
+        "note": "Symmetric membership checked through IWX chapter 6; synthetic transport is an explicit unproved input, not a verbatim classical or motivic statement.",
+        "artifact_paths": []
+      }
+    },
+    {
+      "id": "iwx_data_2022",
+      "directory": "Source/IWX/data",
+      "kind": "machine",
+      "citation_keys": [],
+      "title": "Classical Adams charts: IWX author-deposited v1 data",
+      "year": 2022,
+      "canonical_url": "https://zenodo.org/records/6987157",
+      "role": "prior-computation",
+      "status_file": null,
+      "status_class": "partial",
+      "availability": {
+        "metadata": false,
+        "pdf": true,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [
+        {
+          "path": "Source/IWX/data/Adams-classical-E2.csv",
+          "sha256": "0b103227bf84d8c335b3e65c91219e1e2a7913bc95bac03f2ba52011abfaaa4c",
+          "url": "https://zenodo.org/records/6987157/files/Adams-classical-E2.csv?download=1",
+          "kind": "machine_artifact",
+          "required": true
+        },
+        {
+          "path": "Source/IWX/data/Adams-classical-Einfty.csv",
+          "sha256": "1e3b79c97472241543f1c58e713cf4c96447f553d99a94a7fc6ce3eeaac8393b",
+          "url": "https://zenodo.org/records/6987157/files/Adams-classical-Einfty.csv?download=1",
+          "kind": "machine_artifact",
+          "required": true
+        },
+        {
+          "path": "Source/IWX/data/README-Adams.pdf",
+          "sha256": "954227755b91ece8284acca2c1942d2d2fb97a6e811b3de255e79ce407e4e0bf",
+          "url": "https://zenodo.org/records/6987157/files/README-Adams.pdf?download=1",
+          "kind": "pdf",
+          "required": true
+        }
+      ],
+      "route_review": {
+        "role": "prior-computation",
+        "url": "https://zenodo.org/records/6987157",
+        "status": "author-primary-csv-and-readme-directly-checked",
+        "locators": [
+          "Adams-classical-E2.csv lines 59 and 275, counting the header",
+          "Adams-classical-Einfty.csv lines 204-207, counting the header",
+          "README-Adams.pdf pp. 2-3"
+        ],
+        "note": "Author-deposited v1 data of 2022. Classical 2-complete Adams charts; D h1 g denotes Delta h1 g. CSV identity/rows are checked by check_route_literature.py; the mathematical interpretation and model comparison remain proof obligations.",
+        "artifact_paths": [
+          "Source/IWX/data/Adams-classical-E2.csv",
+          "Source/IWX/data/Adams-classical-Einfty.csv",
+          "Source/IWX/data/README-Adams.pdf"
+        ]
+      }
+    },
+    {
+      "id": "ravenel",
+      "directory": "Source/Ravenel",
+      "kind": "literature",
+      "citation_keys": [
+        "RavenelGreenbook"
+      ],
+      "title": "Complex cobordism and stable homotopy groups of spheres",
+      "year": 1986,
+      "canonical_url": "https://www.sas.rochester.edu/mth/sites/doug-ravenel/mybooks/ravenel.pdf",
+      "role": "prior-result",
+      "status_file": null,
+      "status_class": "partial",
+      "availability": {
+        "metadata": false,
+        "pdf": true,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [
+        {
+          "path": "Source/Ravenel/ravenel.pdf",
+          "sha256": "880c053ba8f2d1695e2d8bae5ef28f9b7f737324ea43d420173c7219409528ab",
+          "kind": "pdf",
+          "required": true
+        }
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://www.sas.rochester.edu/mth/sites/doug-ravenel/mybooks/ravenel.pdf",
+        "status": "author-hosted-book-statement-and-proof-directly-checked",
+        "locators": [
+          "Theorem 3.4.5(a), printed p.87 / PDF p.107; proof printed p.89 / PDF p.109",
+          "Theorem 2.1.1(b), printed pp.41-42 / PDF pp.61-62",
+          "Lemma 2.1.12 and Corollary 2.1.13, printed p.46 / PDF p.66",
+          "Lemmas 2.1.15-16 and proof of 2.1.1(b), printed pp.46-47 / PDF pp.66-67",
+          "Theorem 2.2.13, printed p.52 / PDF p.72"
+        ],
+        "note": "Directly read the author-hosted book, including its explicit Adams/May attribution. The conservative positive-stem vanishing region follows from epsilon <= 3. Classical finite-type completion/convergence is stated for an ordinary connective finite-type source and its completion; applying this to the derived-complete model and the canonical tower remains an Interface proof obligation. This is not a claim that Adams original papers were read.",
+        "artifact_paths": [
+          "Source/Ravenel/ravenel.pdf"
+        ]
+      }
+    },
+    {
+      "id": "adams_may",
+      "directory": null,
+      "kind": "source_group",
+      "citation_keys": [],
+      "title": "Legacy combined Adams/May source attribution (not a single publication)",
+      "year": null,
+      "canonical_url": "https://www.math.ens.psl.eu/~obenoist/textes/May.pdf",
+      "role": "Historical attribution group; not an input package. Introductory one-line classification and May low-dimensional survival families are excluded from the current formalization.",
+      "status_file": null,
+      "status_class": "partial",
+      "availability": {
+        "metadata": false,
+        "pdf": false,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [],
+      "members": [
+        "adams58",
+        "adams60",
+        "may_thesis"
+      ],
+      "route_review": {
+        "role": "prior-result",
+        "url": "https://www.math.ens.psl.eu/~obenoist/textes/May.pdf",
+        "status": "individual-primary-source-reviews-recorded",
+        "locators": [
+          "Adams one-line and Hopf invariant one; May thesis 1964 Part II Section 7"
+        ],
+        "note": "Historical source grouping only. The body’s classical Hopf differential remains an individually recorded input; introductory classification and May survival families have been removed.",
+        "artifact_paths": [
+          "Source/Maythesis/citation.bib"
+        ]
+      }
+    },
+    {
+      "id": "adams58",
+      "directory": null,
+      "kind": "literature",
+      "citation_keys": [
+        "Adams58"
+      ],
+      "title": "On the structure and applications of the Steenrod algebra",
+      "year": 1958,
+      "doi": "10.1007/BF02564578",
+      "canonical_url": "https://doi.org/10.1007/BF02564578",
+      "role": "Bibliography-only attribution for an existing interface obligation; original statement locator remains to be independently checked.",
+      "status_file": null,
+      "status_class": "partial",
+      "availability": {
+        "metadata": false,
+        "pdf": false,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [],
+      "bibliography_file": "MainPaper/main.bib",
+      "review_status": "original-source-unverified"
+    },
+    {
+      "id": "adams60",
+      "directory": null,
+      "kind": "literature",
+      "citation_keys": [
+        "Adams60"
+      ],
+      "title": "On the non-existence of elements of Hopf invariant one",
+      "year": 1960,
+      "doi": "10.2307/1970147",
+      "canonical_url": "https://doi.org/10.2307/1970147",
+      "role": "Bibliography-only attribution for an existing interface obligation; original statement locator remains to be independently checked.",
+      "status_file": null,
+      "status_class": "partial",
+      "availability": {
+        "metadata": false,
+        "pdf": false,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [],
+      "bibliography_file": "MainPaper/main.bib",
+      "review_status": "original-source-unverified"
+    },
+    {
+      "id": "jones30",
+      "directory": null,
+      "kind": "literature",
+      "citation_keys": [
+        "Jones30"
+      ],
+      "title": "The Kervaire invariant of extended power manifolds",
+      "year": 1978,
+      "doi": "10.1016/0040-9383(78)90029-0",
+      "canonical_url": "https://doi.org/10.1016/0040-9383(78)90029-0",
+      "role": "Bibliography-only attribution for an existing interface obligation; original statement locator remains to be independently checked.",
+      "status_file": null,
+      "status_class": "partial",
+      "availability": {
+        "metadata": false,
+        "pdf": false,
+        "text": false,
+        "source": false
+      },
+      "artifacts": [],
+      "bibliography_file": "MainPaper/main.bib",
+      "review_status": "original-source-unverified"
+    }
+  ],
+  "route": {
+    "scope": "Selected LWX v2 Section 7 route on Def's one fixed route model and background: Challenge2 delivers literature source bindings/results and computation interpretation bindings/results on those same sources; Main internal applications and Def sphere separation are separately classified; no source proof or comparison certificate is claimed complete.",
+    "entry": "KIP126.Literature.Route.Statements",
+    "frozen_model": "KIP126.Kervaire.Route.Model",
+    "claims": [
+      {
+        "id": "AM01-part-1",
+        "input_field": "classical",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.ClassicalSourceData"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "xu"
+        ],
+        "locator": "Corollary 1.3",
+        "lwx_consumers": [
+          "thm:bjmbx",
+          "lem:toda2ext"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "The source results concern one classical source witness. Equality with the route convergence, eta, nu and selected normalized eta is a separate model comparison."
+      },
+      {
+        "id": "AM01-part-2",
+        "input_field": "classical",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.ClassicalSourceResults"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "xu"
+        ],
+        "locator": "Corollary 1.3",
+        "lwx_consumers": [
+          "thm:bjmbx",
+          "lem:toda2ext"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "The source results concern one classical source witness. Equality with the route convergence, eta, nu and selected normalized eta is a separate model comparison."
+      },
+      {
+        "id": "AM02",
+        "input_field": "classical",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.Stem62ExponentTwo"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "iwx",
+          "iwx_data_2022"
+        ],
+        "locator": "IWX 2022 v1 classical Einfty CSV lines 204-207; README pp. 2-3",
+        "lwx_consumers": [
+          "lem:toda2ext"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "The entire 62-stem has four associated-graded basis records, in filtrations 2,6,8,10. All h0info/h0target fields are empty, hence the data specify no visible or hidden 2-extensions. Reading the whole 2-complete group as exponent two uses convergence; this is stronger than the order of one theta witness."
+      },
+      {
+        "id": "AM03",
+        "input_field": "classical",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.Theta5FiltrationGap"
+        ],
+        "kind": "prior-result-consequence",
+        "sources": [
+          "iwx",
+          "iwx_data_2022"
+        ],
+        "locator": "IWX 2022 v1 classical Einfty CSV lines 204-207; no 62-stem records in filtrations 3,4,5",
+        "lwx_consumers": [
+          "lem:equistate4"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Classical difference filtration only; synthetic choice-independence remains Main."
+      },
+      {
+        "id": "AM04",
+        "input_field": "classical",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.ClassicalSourceResults.two_detection",
+          "KIP126.Literature.Route.ClassicalSourceResults.eta_detection",
+          "KIP126.Literature.Route.ClassicalSourceResults.nu_detection"
+        ],
+        "kind": "source-specialization-and-transport",
+        "sources": [
+          "bhs",
+          "iwx"
+        ],
+        "locator": "low classical stems and prop:syn-toda-range",
+        "lwx_consumers": [
+          "lem:toda2ext",
+          "lem:x_123_9",
+          "lem:nuext125"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Source classical Hopf detections only; normalized synthetic eta identification is a separate ClassicalSourceBinding/EtaChoice obligation."
+      },
+      {
+        "id": "AM05",
+        "input_field": "bx",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.BXDistinguishedInput"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "burklund_xu"
+        ],
+        "locator": "Proposition 7.19 AND its proof",
+        "lwx_consumers": [
+          "thm:bjmbx",
+          "rem:theta5choice"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "All clauses for one theta; finite normalization and arbitrary-choice upgrade remain Main."
+      },
+      {
+        "id": "AM06",
+        "input_field": "synthetic",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.SyntheticSourceInputs.lifts"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "pst",
+          "bhs"
+        ],
+        "locator": "Pst Lemma 4.23; BHS lemm:adams-fil1 and proof",
+        "lwx_consumers": [
+          "prop:1f7950df",
+          "prop:ef21f9bc",
+          "prop:41561db2"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Uses existing SyntheticInterface H D.nu; does not identify arbitrary selected lifts."
+      },
+      {
+        "id": "AM07",
+        "input_field": "synthetic",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.FiniteLiftCriterion",
+          "KIP126.Literature.Route.BocksteinDifferential"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "BHS A.1(1a-c), proved using SynRevAdams.tex lemm:comp1 and the finite-quotient argument",
+        "lwx_consumers": [
+          "thm:17e90ac0"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Finite quotient and boundary assertions retain their more general scope: lemm:comp1 proves Ctau^p nu(X) complete without assuming X itself complete. Do not add the untruncated source hypotheses to this finite clause. Actual rho/delta and d_(q+1) after a quotient-q lift are retained."
+      },
+      {
+        "id": "AM08-part-1",
+        "input_field": "synthetic",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.BHSPermanentLiftAt"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "thm:synthetic-Adams (A.1), clause (2)",
+        "lwx_consumers": [
+          "thm:17e90ac0"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Conditional source theorem: BHSObjectApplicability retains E-nilpotent completeness and strong Adams convergence. PermanentLiftCriterion on selected objects is an applied conclusion, obtained through BHSCompletionApplicability and BHSCompletionComparison. A permanent label may be zero or a boundary."
+      },
+      {
+        "id": "AM08-part-2",
+        "input_field": "synthetic",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.SyntheticSourceInputs.permanent_lift"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "thm:synthetic-Adams (A.1), clause (2)",
+        "lwx_consumers": [
+          "thm:17e90ac0"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Conditional source theorem: BHSObjectApplicability retains E-nilpotent completeness and strong Adams convergence. PermanentLiftCriterion on selected objects is an applied conclusion, obtained through BHSCompletionApplicability and BHSCompletionComparison. A permanent label may be zero or a boundary."
+      },
+      {
+        "id": "AM09",
+        "input_field": "synthetic",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.DifferentialRigidity",
+          "KIP126.Literature.Route.E2WeightVanishing"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "thm:synth-ASS (A.8)",
+        "lwx_consumers": [
+          "thm:rigid"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Same classical and synthetic sequences; lambda exponent r-1, not a replacement map."
+      },
+      {
+        "id": "AM10",
+        "input_field": "synthetic",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.EInftyInput"
+        ],
+        "kind": "source-specialization-and-transport",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "cor:synth-ASS and finite-quotient corollary (A.9/A.11)",
+        "lwx_consumers": [
+          "prop:6de7d130"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "BHS input scope is νX and its finite λ-quotients, including their λ/ρ formulas and common-label agreement. Full synthetic weight-shift naturality is an internal Main theorem on the fixed tower construction, not a BHS input."
+      },
+      {
+        "input_field": "synthetic",
+        "kind": "source-specialization",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "SynRevAdams.tex cor:synth-ctau-ASS (A.11), clauses (1) and (3)",
+        "lwx_consumers": [
+          "prop:59f111f",
+          "lem:x_123_9"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "For q >= 1 and every finite page r >= 2, the actual nu(X)/lambda^q Adams group is zero when w > t or t-w >= q, in the LWX weight convention. These finite-page zero regions are additional to the E-infinity presentation; no nilpotent-completeness assumption on X and no claim that lambda^q annihilates quotient homotopy are introduced.",
+        "id": "AM10-finite-pages-predicate",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.FiniteQuotientPageVanishing"
+        ]
+      },
+      {
+        "input_field": "synthetic",
+        "kind": "source-specialization",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "SynRevAdams.tex cor:synth-ctau-ASS (A.11), clauses (1) and (3)",
+        "lwx_consumers": [
+          "prop:59f111f",
+          "lem:x_123_9"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "For q >= 1 and every finite page r >= 2, the actual nu(X)/lambda^q Adams group is zero when w > t or t-w >= q, in the LWX weight convention. These finite-page zero regions are additional to the E-infinity presentation; no nilpotent-completeness assumption on X and no claim that lambda^q annihilates quotient homotopy are introduced.",
+        "id": "AM10-finite-pages-delivery",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.SyntheticSourceInputs.finite_quotient_page_vanishing",
+          "KIP126.Literature.Route.SyntheticInputs.finite_quotient_page_vanishing"
+        ],
+        "declaration_modules": {
+          "KIP126.Literature.Route.SyntheticInputs.finite_quotient_page_vanishing": "KIP126/Interface/Solution/Literature/Applications.lean"
+        }
+      },
+      {
+        "id": "AM11",
+        "input_field": "synthetic",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.RealizationKernelSourceResults"
+        ],
+        "kind": "prior-result-consequence",
+        "sources": [
+          "pst"
+        ],
+        "locator": "Pst compact generators and prop:tau_inversion_functor_exists; Section 4.5 completion adjunction",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq",
+          "lem:equistate4"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Finite-power kernel statement for full-source spheres and the inclusion of precisely the selected SyntheticObject targets. Transport uses the completion adjunction and RealizationKernelBinding. Compactness of a hypercomplete sphere is NOT asserted."
+      },
+      {
+        "id": "AM12-part-1",
+        "input_field": "synthetic",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.BHSFiltrationLambdaAt"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "cor:tau-surj",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq",
+          "lem:x_123_9"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Source cor:tau-surj retains E-nilpotent completeness and strong convergence; the exponent is explicitly nonnegative. The selected FiltrationLambda conclusion uses actual q/nu(q) filtration and finite-divisibility reflection, not an unconditional source specialization."
+      },
+      {
+        "id": "AM12-part-2",
+        "input_field": "synthetic",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.SyntheticSourceInputs.filtration_lambda"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "cor:tau-surj",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq",
+          "lem:x_123_9"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Source cor:tau-surj retains E-nilpotent completeness and strong convergence; the exponent is explicitly nonnegative. The selected FiltrationLambda conclusion uses actual q/nu(q) filtration and finite-divisibility reflection, not an unconditional source specialization."
+      },
+      {
+        "id": "AM13-part-1",
+        "input_field": "realization",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.RealizationCoordinates"
+        ],
+        "kind": "source-transport",
+        "sources": [
+          "pst",
+          "bhs"
+        ],
+        "locator": "lambda-inversion, nuRealization and bigraded sphere comparisons",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq",
+          "lem:toda2ext"
+        ],
+        "proof_status": "comparison-obligation",
+        "role": "model-comparison",
+        "notes": "Same actual realization, normalized unit and lambda actions."
+      },
+      {
+        "id": "AM13-part-2",
+        "input_field": "realization",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
+        "declarations": [
+          "KIP126.Literature.Route.RealizationInput"
+        ],
+        "kind": "source-transport",
+        "sources": [
+          "pst",
+          "bhs"
+        ],
+        "locator": "lambda-inversion, nuRealization and bigraded sphere comparisons",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq",
+          "lem:toda2ext"
+        ],
+        "proof_status": "comparison-obligation",
+        "role": "model-comparison",
+        "notes": "Same actual realization, normalized unit and lambda actions."
+      },
+      {
+        "id": "AM14",
+        "input_field": "realization",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.BHSRealizationDetectionAt.lifetime",
+          "KIP126.Literature.Route.BHSRealizationSourceResults"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "A.1(2a)",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq",
+          "lem:toda2ext"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Every lift; E_(r+1) nonzero survival gives lambda^(r-1) nonzero. These are completed-source clauses under BHSObjectApplicability and the same source tower convergence. RealizationDetection is the internal transported consumer result; actual q/nu(q), detection and lift-image comparisons are separately required."
+      },
+      {
+        "id": "AM15",
+        "input_field": "realization",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.BHSRealizationDetectionAt.detection",
+          "KIP126.Literature.Route.BHSRealizationDetectionAt.prescribed_lift",
+          "KIP126.Literature.Route.BHSRealizationSourceResults"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "A.1(2b),(3b)",
+        "lwx_consumers": [
+          "lem:equistate4",
+          "lem:toda2ext"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Same E2 class in actual convergence detection. These are completed-source clauses under BHSObjectApplicability and the same source tower convergence. RealizationDetection is the internal transported consumer result; actual q/nu(q), detection and lift-image comparisons are separately required."
+      },
+      {
+        "id": "AM16",
+        "input_field": "realization",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.BHSRealizationDetectionAt.boundary_lift",
+          "KIP126.Literature.Route.BHSRealizationSourceResults"
+        ],
+        "kind": "source-specialization",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "A.1(3a)",
+        "lwx_consumers": [
+          "lem:toda2ext"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Some lift, NOT every lift, killed by the required lambda power. These are completed-source clauses under BHSObjectApplicability and the same source tower convergence. RealizationDetection is the internal transported consumer result; actual q/nu(q), detection and lift-image comparisons are separately required."
+      },
+      {
+        "id": "AM17",
+        "input_field": "algebra",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.AlgebraInput",
+          "KIP126.Literature.Route.QuotientAlgebras",
+          "KIP126.Literature.Route.QuotientAlgebraStructures",
+          "KIP126.Literature.Route.QuotientAlgebraBinding"
+        ],
+        "kind": "source-existence-with-separate-internal-comparison",
+        "sources": [
+          "pst",
+          "bhs_mot",
+          "burklund_xu"
+        ],
+        "locator": "lambda-inversion symmetric monoidal; BHSmot B/C; BX cnstr:bock-maps",
+        "lwx_consumers": [
+          "lem:x_123_9",
+          "lem:toda2ext"
+        ],
+        "proof_status": "comparison-obligation",
+        "role": "model-comparison",
+        "notes": "Source quotient algebras provide algebra, commutativity and the specified unit. Compatibility with selected restrictions, sphere action, detection and filtration is an internal Interface obligation, not the source existence theorem."
+      },
+      {
+        "id": "AM18",
+        "input_field": "algebra",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.DetectorAlgebra"
+        ],
+        "kind": "source-specialization-and-transport",
+        "sources": [
+          "pst",
+          "tmf"
+        ],
+        "locator": "nu lax symmetric monoidal; tmf commutative ring structure",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq"
+        ],
+        "proof_status": "comparison-obligation",
+        "role": "model-comparison",
+        "notes": "Selected detector and synthetic detector units are fixed to actual Hurewicz maps."
+      },
+      {
+        "id": "AM19-part-1",
+        "input_field": "may",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.MayPushpullData"
+        ],
+        "kind": "signed-source-statement",
+        "sources": [
+          "may01"
+        ],
+        "locator": "May author PDF pp.12–13 TC3 signed square, p.14 Lemma 4.6",
+        "lwx_consumers": [
+          "lem:452d218c"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Boundary equality retains the negative sign. The conditional Interface proof derives SignedBoundary; sign removal in a projected additive target requires an explicit exponent-two premise."
+      },
+      {
+        "id": "AM19-part-2",
+        "input_field": "may",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.MaySourceResults"
+        ],
+        "kind": "signed-source-statement",
+        "sources": [
+          "may01"
+        ],
+        "locator": "May author PDF pp.12–13 TC3 signed square, p.14 Lemma 4.6",
+        "lwx_consumers": [
+          "lem:452d218c"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Boundary equality retains the negative sign. The conditional Interface proof derives SignedBoundary; sign removal in a projected additive target requires an explicit exponent-two premise."
+      },
+      {
+        "id": "AM20",
+        "input_field": "moss",
+        "module": "KIP126/Main/Solution/Literature/Route/SourceConsequences.lean",
+        "declarations": [
+          "KIP126.Literature.Route.MossSourceInput",
+          "KIP126.Main.Solution.Literature.route_moss"
+        ],
+        "kind": "internal-specialization-of-general-moss",
+        "sources": [
+          "moss",
+          "belmont_kong",
+          "iwx"
+        ],
+        "locator": "Moss 1.2; BK 1.1/4.11, 2.10; IWX defn:crossing-diff and thm:Moss",
+        "lwx_consumers": [
+          "lem:toda2ext"
+        ],
+        "proof_status": "internal-application-obligation",
+        "role": "internal-application",
+        "notes": "The local source-convergence Moss statement is derived in Main from the same LiteratureResults.moss, using the actual sphere mapping / Milnor and convergence comparisons. It is no longer a separate Challenge2 premise. Its internal proof remains unfinished; no crossing, indeterminacy or residual-injectivity hypothesis is dropped.",
+        "declaration_modules": {
+          "KIP126.Literature.Route.MossSourceInput": "KIP126/Interface/Challenge/Literature/Source.lean"
+        }
+      },
+      {
+        "id": "AM21-part-1",
+        "input_field": "toda",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TodaSourceData"
+        ],
+        "kind": "prior-result-consequence-and-transport",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "prop:syn-toda-range, relations (0),(9), and degree (2,3)",
+        "lwx_consumers": [
+          "lem:x_123_9",
+          "lem:toda2ext"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Only the h0 label, lambda_h0, h0_eta and low indeterminacy source facts. Neither secondary Toda membership follows from these ring data alone."
+      },
+      {
+        "id": "AM21-part-2",
+        "input_field": "toda",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TodaSourceResults"
+        ],
+        "kind": "prior-result-consequence-and-transport",
+        "sources": [
+          "bhs"
+        ],
+        "locator": "prop:syn-toda-range, relations (0),(9), and degree (2,3)",
+        "lwx_consumers": [
+          "lem:x_123_9",
+          "lem:toda2ext"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Only the h0 label, lambda_h0, h0_eta and low indeterminacy source facts. Neither secondary Toda membership follows from these ring data alone."
+      },
+      {
+        "id": "AM22",
+        "input_field": "toda",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TodaApplication.eta_squared"
+        ],
+        "kind": "prior-result-consequence-and-transport",
+        "sources": [
+          "toda",
+          "bhs",
+          "iwx"
+        ],
+        "locator": "low classical bracket <2,eta,2>; BHS low groups; IWX tables",
+        "lwx_consumers": [
+          "lem:toda2ext"
+        ],
+        "proof_status": "internal-application-obligation",
+        "role": "internal-application",
+        "notes": "Internal secondary-operation comparison obligation on the chosen model. Citation of the low classical bracket does not prove this synthetic bracket."
+      },
+      {
+        "id": "AM22-part-2",
+        "input_field": "toda",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TodaSecondaryComparison.low_bracket"
+        ],
+        "kind": "prior-result-consequence-and-transport",
+        "sources": [
+          "toda",
+          "bhs",
+          "iwx"
+        ],
+        "locator": "low classical bracket <2,eta,2>; BHS low groups; IWX tables",
+        "lwx_consumers": [
+          "lem:toda2ext"
+        ],
+        "proof_status": "internal-application-obligation",
+        "role": "internal-application",
+        "notes": "Internal secondary-operation comparison obligation on the chosen model. Citation of the low classical bracket does not prove this synthetic bracket."
+      },
+      {
+        "id": "AM23-part-1",
+        "input_field": "toda",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TodaApplication.symmetric_two"
+        ],
+        "kind": "source-transport",
+        "sources": [
+          "toda",
+          "iwx",
+          "bhs"
+        ],
+        "locator": "Toda Theorem 3.6; IWX thm:Toda-symmetric/cor:2-symmetric",
+        "lwx_consumers": [
+          "lem:toda2ext"
+        ],
+        "proof_status": "internal-application-obligation",
+        "role": "internal-application",
+        "notes": "IWX Corollary 6.2 is C-motivic. TodaSecondaryComparison requires an actual star operation, its symmetric bracket theorem and its lambda^2 eta product identification; no automatic C-motivic-to-synthetic inference."
+      },
+      {
+        "id": "AM23-part-2",
+        "input_field": "toda",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TodaSecondaryComparison"
+        ],
+        "kind": "source-transport",
+        "sources": [
+          "toda",
+          "iwx",
+          "bhs"
+        ],
+        "locator": "Toda Theorem 3.6; IWX thm:Toda-symmetric/cor:2-symmetric",
+        "lwx_consumers": [
+          "lem:toda2ext"
+        ],
+        "proof_status": "internal-application-obligation",
+        "role": "internal-application",
+        "notes": "IWX Corollary 6.2 is C-motivic. TodaSecondaryComparison requires an actual star operation, its symmetric bracket theorem and its lambda^2 eta product identification; no automatic C-motivic-to-synthetic inference."
+      },
+      {
+        "id": "AM24",
+        "input_field": "tmf",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TmfSourceResults.vanishing62"
+        ],
+        "kind": "source-result-with-internal-route-transport",
+        "sources": [
+          "tmf"
+        ],
+        "locator": "Theorem 1.2 and Figure 1.1, stem 62",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Source result on the actual source tmf object. The matching TmfInputs consumer conclusion requires the separately listed same-model adapter."
+      },
+      {
+        "id": "AM25-part-1",
+        "input_field": "tmf",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TmfSourceData"
+        ],
+        "kind": "source-result-with-internal-route-transport",
+        "sources": [
+          "tmf",
+          "iwx_data_2022"
+        ],
+        "locator": "Section 7 Hurewicz image, kappa-bar^4 w in stem 125",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "BMQ provides the nonzero Hurewicz image of the actual kappaBar^4*w product. The route adapter additionally requires multiplicative detection and explicit nonzero survival of its leading term; a nonzero homotopy image alone is insufficient. Arbitrary-representative independence remains a conditional Main theorem. The g and Delta h1 g E2 labels are pinned by the unique rows in IWX 2022 CSV lines 59 and 275; product nonzero does not imply nonzero associated grade."
+      },
+      {
+        "id": "AM25-part-2",
+        "input_field": "tmf",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TmfSourceResults"
+        ],
+        "kind": "source-result-with-internal-route-transport",
+        "sources": [
+          "tmf",
+          "iwx_data_2022"
+        ],
+        "locator": "Section 7 Hurewicz image, kappa-bar^4 w in stem 125",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "BMQ provides the nonzero Hurewicz image of the actual kappaBar^4*w product. The route adapter additionally requires multiplicative detection and explicit nonzero survival of its leading term; a nonzero homotopy image alone is insufficient. Arbitrary-representative independence remains a conditional Main theorem. The g and Delta h1 g E2 labels are pinned by the unique rows in IWX 2022 CSV lines 59 and 275; product nonzero does not imply nonzero associated grade."
+      },
+      {
+        "id": "AM26",
+        "input_field": "tmf",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TmfSourceResults.low_filtration63"
+        ],
+        "kind": "source-result-with-internal-route-transport",
+        "sources": [
+          "tmf"
+        ],
+        "locator": "Section 2 H_*tmf and change of rings",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq"
+        ],
+        "proof_status": "external-statement-unproved",
+        "role": "source-result",
+        "notes": "Source result on the actual source tmf object. The matching TmfInputs consumer conclusion requires the separately listed same-model adapter."
+      },
+      {
+        "id": "AM27-part-1",
+        "input_field": "applicability",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
+        "declarations": [
+          "KIP126.Literature.Route.Applicability"
+        ],
+        "kind": "model-applicability",
+        "sources": [
+          "bhs",
+          "pst"
+        ],
+        "locator": "geometric triangle construction and chosen normalized lifts",
+        "lwx_consumers": [
+          "prop:41561db2",
+          "lem:nuext125",
+          "prop:state5false"
+        ],
+        "proof_status": "comparison-obligation",
+        "role": "model-comparison",
+        "notes": "Requires compatibility of the fixed choices, not a theorem for arbitrary normalized lifts."
+      },
+      {
+        "id": "AM27-part-2",
+        "input_field": "applicability",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.NuCofiberApplicability"
+        ],
+        "kind": "model-applicability",
+        "sources": [
+          "bhs",
+          "pst"
+        ],
+        "locator": "geometric triangle construction and chosen normalized lifts",
+        "lwx_consumers": [
+          "prop:41561db2",
+          "lem:nuext125",
+          "prop:state5false"
+        ],
+        "proof_status": "comparison-obligation",
+        "role": "model-comparison",
+        "notes": "Requires compatibility of the fixed choices, not a theorem for arbitrary normalized lifts."
+      },
+      {
+        "id": "AM28",
+        "input_field": "applicability",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.MossTowerApplicability"
+        ],
+        "kind": "internal-source-application-and-selected-map-comparison",
+        "sources": [
+          "moss",
+          "belmont_kong"
+        ],
+        "locator": "actual tower residual/strong convergence applicability",
+        "lwx_consumers": [
+          "lem:toda2ext"
+        ],
+        "proof_status": "internal-application-obligation",
+        "role": "internal-application",
+        "notes": "Residual injectivity for the SAME actual classical sphere tower is a model-applicability obligation; this entry does not supply a no-crossing computation or a source triangle."
+      },
+      {
+        "id": "AM29-part-1",
+        "role": "source-result",
+        "proof_status": "external-statement-unproved",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TmfSourceResults.connective",
+          "KIP126.Literature.Route.TmfSourceResults.finiteMod2Type"
+        ],
+        "notes": "Connective finite-mod-two-type tmf scope and intrinsic g/Delta h1 g labels. The same completed tmf object and unit are identified in TmfBinding and bhsDetectorIso/bhsDetectorUnit; no high125 premise is used to prove completion applicability.",
+        "input_field": "tmf",
+        "kind": "source-scope-and-prior-label-computation",
+        "sources": [
+          "tmf",
+          "iwx_data_2022"
+        ],
+        "locator": "BMQ connective tmf/H_*tmf; IWX E2 CSV lines 59,275",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq"
+        ]
+      },
+      {
+        "id": "AM29-part-2",
+        "role": "source-result",
+        "proof_status": "external-statement-unproved",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TmfLabels.Standard"
+        ],
+        "notes": "Connective finite-mod-two-type tmf scope and intrinsic g/Delta h1 g labels. The same completed tmf object and unit are identified in TmfBinding and bhsDetectorIso/bhsDetectorUnit; no high125 premise is used to prove completion applicability.",
+        "input_field": "tmf",
+        "kind": "source-scope-and-prior-label-computation",
+        "sources": [
+          "tmf",
+          "iwx_data_2022"
+        ],
+        "locator": "BMQ connective tmf/H_*tmf; IWX E2 CSV lines 59,275",
+        "lwx_consumers": [
+          "prop:possible_h_6_sq"
+        ]
+      }
+    ],
+    "excluded": [
+      "C(M) CSV/relations/basis and proofs.db certification",
+      "LWX generalized Leibniz/Mahowald/stretching",
+      "LWX Propositions 7.8/7.9 and C3/C4/C5",
+      "synthetic detector injectivity derived from tables",
+      "geometric corollaries requiring Browder/HHR",
+      "full C(M) machine-proof replay inputs"
+    ],
+    "source_caveats": [
+      "Moss original scan unavailable; checked prior Belmont-Kong v1 theorem instead.",
+      "Toda original book not independently read; IWX/BHS comparison and synthetic transport explicitly distinguished.",
+      "LWX final cofiber formula with lambda[h2] is not adopted; actual normalized Cnu triangle is used.",
+      "Finite BHS quotient statements are more general than the untruncated theorem; only the latter retain the original completeness/strong-convergence application path.",
+      "RealizationDetection is an applied conclusion, not an unconditional external BHS statement; completed-source results and actual realization/detection comparisons are separately recorded.",
+      "The root vanishing/separation, Adams-one-line and BR21 leaves are now covered. BR21 and the original Adams/May one-line proofs remain source-evidence debts.",
+      "The IWX direct CSV check verifies fixed rows and their recorded extensions; it does not certify model comparison or the proof of the original computation."
+    ],
+    "consumer_entry": "KIP126.Literature.Route.Inputs",
+    "model_bindings": [
+      {
+        "id": "MB01",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.ClassicalSourceBinding"
+        ],
+        "notes": "Same classical convergence and actual eta/nu maps; normalized eta identity remains required."
+      },
+      {
+        "id": "MB02",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.RealizationKernelSourceData",
+          "KIP126.Literature.Route.RealizationKernelBinding"
+        ],
+        "notes": "Actual completion adjunction, completed-sphere comparison, lambda action and realization zero comparison, restricted to the selected object closure."
+      },
+      {
+        "id": "MB03",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TodaSourceData",
+          "KIP126.Literature.Route.TodaSecondaryComparison"
+        ],
+        "notes": "Same h0, actual secondary Toda evidence and product identification; not implied by low ring data."
+      },
+      {
+        "id": "MB04",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.MayContext"
+        ],
+        "notes": "Specified left/right tensor suspension and exactness choices; TC3 source is additional evidence."
+      },
+      {
+        "id": "MB05",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.TmfBinding"
+        ],
+        "notes": "Same detector/unit and named high class; nonzero leading-term survival is a separate producer premise."
+      },
+      {
+        "id": "MB06",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.NuCofiberLiftBinding",
+          "KIP126.Literature.Route.NuCofiberSourceData"
+        ],
+        "notes": "Three actual map equalities for the same source normalized triangle. The compatible three-lift construction is an internal delivery from Pstragowski/BHS leaves; NuCofiberSourceResults is not an external axiom."
+      },
+      {
+        "id": "MB07",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.AlgebraBinding"
+        ],
+        "notes": "Actual source-to-model multiplicative detection comparisons."
+      },
+      {
+        "id": "MB08",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.Bindings"
+        ],
+        "notes": "One package of source choices and completion/model comparisons over Def.standardRouteBackground; these certificates remain Interface construction obligations, not external literature results."
+      },
+      {
+        "id": "MB09-part-1",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.BHSCompletionData",
+          "KIP126.Literature.Route.BHSCompletionApplicability",
+          "KIP126.Literature.Route.BHSCompletionComparison"
+        ],
+        "notes": "Actual completed objects q and nu(q), mod-two equivalences, source completeness/strong convergence, permanent-cycle and finite-divisibility reflections. The completed detector is the same tmf source with the same actual unit; the nu cofiber is that of the fixed actual nu map."
+      },
+      {
+        "id": "MB09-part-2",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.Bindings.bhsDetectorIso",
+          "KIP126.Literature.Route.Bindings.bhsDetectorUnit"
+        ],
+        "notes": "Actual completed objects q and nu(q), mod-two equivalences, source completeness/strong convergence, permanent-cycle and finite-divisibility reflections. The completed detector is the same tmf source with the same actual unit; the nu cofiber is that of the fixed actual nu map."
+      },
+      {
+        "id": "MB10",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "declarations": [
+          "KIP126.Literature.Route.BHSRealizationComparison"
+        ],
+        "notes": "Actual E2 survival/differential, quotient-label, realization and detection comparisons along q/nu(q), with prescribed-lift and finite-torsion-lift reflection. No whole-homotopy surjectivity or particular target theorem is assumed."
+      },
+      {
+        "id": "MB11",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Def/ClassicalAdams/Convergence/BHS/Predicates.lean",
+        "declarations": [
+          "KIP126.Classical.Adams.BHSObjectApplicability"
+        ],
+        "notes": "The precise source applicability language retains countable products, E-nilpotent completeness and strong convergence. Countable products are structural data; completeness and convergence must be proved for the source objects."
+      },
+      {
+        "id": "MB12-literature-delivery",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
+        "declarations": [
+          "KIP126.Challenge2.LiteratureBindings",
+          "KIP126.Challenge2.LiteratureBindings.tmfLabels",
+          "KIP126.Challenge2.LiteratureBindings.route",
+          "KIP126.Challenge2.LiteratureBindings.br21Classes",
+          "KIP126.Challenge2.LiteratureBindings.eInfty_nu",
+          "KIP126.Challenge2.LiteratureBindings.eInfty_quotient",
+          "KIP126.Challenge2.LiteratureBindings.eInfty_specialFiber"
+        ],
+        "notes": "Source labels, route bindings, BR21 source endpoint classes, and the three νX / finite-quotient E∞ comparison choices share Def’s fixed model. The full synthetic weight-shift comparison is constructed from the fixed tower, with its naturality proved internally in Main; it is not an independently chosen literature input."
+      },
+      {
+        "id": "MB13-computation-delivery",
+        "role": "model-comparison",
+        "proof_status": "comparison-obligation",
+        "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+        "declarations": [
+          "KIP126.Challenge2.ComputationBindings",
+          "KIP126.Challenge2.ComputationBindings.presentation",
+          "KIP126.Challenge2.ComputationBindings.routeRealization",
+          "KIP126.Challenge2.ComputationBindings.tmfCoordinates",
+          "KIP126.Challenge2.ComputationBindings.tmfMultiplicative",
+          "KIP126.Challenge2.ComputationBindings.tmf_v2Sixteen",
+          "KIP126.Challenge2.ComputationBindings.tmf_betaGFour",
+          "KIP126.Challenge2.ComputationBindings.routeLabels"
+        ],
+        "notes": "One fixed E2 presentation, route realization and tmf coordinate interpretation on the same literature sources. The source BR21 endpoints are compared with actual CSV classes here; routeLabels is defined from the route realization. Certificates remain Interface proof obligations."
+      }
+    ],
+    "internal_adapters": [
+      {
+        "id": "IA01",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Literature/Route/May.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.may_signed_boundary_of_source",
+          "KIP126.Interface.Solution.Literature.Route.may_boundary_projected_of_exponent_two"
+        ],
+        "notes": "Conditional signed transport and projected sign removal; no generic exponent-two assertion."
+      },
+      {
+        "id": "IA02",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Literature/Route/Toda.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.todaApplication_of_secondary",
+          "KIP126.Interface.Solution.Literature.Route.toda_of_source"
+        ],
+        "notes": "Assembly only after explicit secondary-operation evidence."
+      },
+      {
+        "id": "IA03",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Literature/Route/RealizationKernel.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.realizationKernel_of_source"
+        ],
+        "notes": "Transport finite-power kernel along the completion/selected-target comparison."
+      },
+      {
+        "id": "IA04",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Literature/Route/Moss.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.mossInputOfClassicalSource"
+        ],
+        "notes": "Pure equality transport along the fixed classical convergence."
+      },
+      {
+        "id": "IA05",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Literature/Route/Adapters.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.nuCofiber_of_source"
+        ],
+        "notes": "Transport actual source triangle along three selected map equalities."
+      },
+      {
+        "id": "IA06",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Main/Solution/Computation/Tmf.lean",
+        "declarations": [
+          "KIP126.Main.Solution.Computation.tmf_of_source"
+        ],
+        "notes": "Main transport after its independent A+C+V/S proof of high125 NonzeroSurvival. This is not an Interface source application or Challenge2 field."
+      },
+      {
+        "id": "IA07",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Literature/Route/Adapters.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.application_of_parts"
+        ],
+        "notes": "Parameterized assembly from five explicit comparison and source premises. Main's routeApplication must establish those premises from the selected witness or prove the target directly."
+      },
+      {
+        "id": "IA08",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
+        "declarations": [
+          "KIP126.Literature.Route.Statements.toInputs"
+        ],
+        "notes": "Pure assembly from SAME Bindings, Statements and Application plus an explicit Main-derived TmfInputs argument. Inputs is not a pure external-source delivery."
+      },
+      {
+        "id": "IA09",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Interface/Solution/Literature/Route/BHS.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.realization_detection_of_completed_sources"
+        ],
+        "notes": "Independent transport theorem from conditional completed-source results and all actual q/nu(q) comparisons to RealizationDetection. Proof remains sorry; no aggregate Challenge2 or paper conclusion is a premise."
+      },
+      {
+        "id": "IA10",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
+        "declarations": [
+          "KIP126.Literature.Route.SyntheticSourceInputs.toInputs"
+        ],
+        "notes": "Actual iff composition supplies selected PermanentLiftCriterion and FiltrationLambda from source applicability and the internal completion comparison."
+      },
+      {
+        "id": "IA-BHS-finite-pages",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Literature/Route/BHS.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.bhs_finite_quotient_page_vanishing"
+        ],
+        "notes": "Projection of the same delivered BHS source field. Source proof and model construction remain obligations of source_background_exists; SyntheticSourceInputs.toInputs preserves the exact field."
+      },
+      {
+        "id": "IA-SPHERE-SEPARATED",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Def/StageInput/StandardSphere/Sequence/Proofs.lean",
+        "declarations": [
+          "KIP126.Def.standardSphereSeparated"
+        ],
+        "notes": "Def-owned fixed 2-completed sphere filtration separation from standard applicability and convergence; explicit proof placeholder, not a Challenge2 field.",
+        "sources": [
+          "bhs",
+          "ravenel"
+        ]
+      },
+      {
+        "id": "IA-ROUTE-APPLICATION",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Main/Solution/StageInput.lean",
+        "declarations": [
+          "KIP126.Main.StageInput.completionApplicability",
+          "KIP126.Main.StageInput.completionComparison",
+          "KIP126.Main.StageInput.realizationComparison",
+          "KIP126.Main.StageInput.todaSecondaryComparison",
+          "KIP126.Main.StageInput.nuSourceResults",
+          "KIP126.Main.StageInput.routeApplication",
+          "KIP126.Main.StageInput.routeStatements"
+        ],
+        "notes": "Main derives the local Moss implication from the one general LiteratureResults.moss and derives full synthetic weight-shift naturality from Def’s actual canonical tower construction. Those applications join the same source fields in routeStatements. Completion certificates remain source projections; TodaSecondaryComparison and NuCofiberSourceResults remain internal proof placeholders.",
+        "sources": [
+          "bhs",
+          "pst",
+          "may01",
+          "toda",
+          "moss"
+        ]
+      },
+      {
+        "id": "IA-MAIN-WEIGHT-NATURAL",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Main/Solution/Literature/Route/SourceConsequences.lean",
+        "declarations": [
+          "KIP126.Main.Solution.Literature.eInfty_shift_natural"
+        ],
+        "notes": "Full synthetic naturality is an internal consequence of the actual fixed weight-tower construction. BHS only supplies νX / finite-quotient comparison formulas; no arbitrary all-object E-infinity isomorphism is a literature choice."
+      },
+      {
+        "id": "IA-MAIN-BR21-COORDINATES",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Main/Solution/Computation/Tmf/Br21.lean",
+        "declarations": [
+          "KIP126.Main.Solution.Computation.tmf_br21_d3"
+        ],
+        "sources": [
+          "br21",
+          "lwx_machine"
+        ],
+        "notes": "Main transports the same literature.results.br21 through that witness’s detectorIso and computation endpoint comparisons, then applies the proved betaGFour=betaFiveG coordinate relation. The theorem has a real proof body but depends on the existing unfinished generic Adams tower differential naturality theorem; it is not a new computation field or proof-completion claim."
+      }
+    ],
+    "delivery_packages": [
+      {
+        "id": "DP02",
+        "role": "internal-application",
+        "proof_status": "internal-application-obligation",
+        "module": "KIP126/Interface/Solution/Literature/Applications.lean",
+        "declarations": [
+          "KIP126.Literature.Route.Application",
+          "KIP126.Literature.Route.Inputs"
+        ],
+        "notes": "Application is the internal proof target constructed in Main from the one stage witness; Inputs also requires Main-derived TmfInputs. Neither is a Challenge2 field or pure external A."
+      },
+      {
+        "id": "DP03",
+        "role": "internal-application",
+        "proof_status": "internal-application-obligation",
+        "module": "KIP126/Interface/Challenge/Literature/Source.lean",
+        "declarations": [
+          "KIP126.Literature.Route.NuCofiberSourceResults"
+        ],
+        "notes": "Compatible normalized triple construction remains an internal Main application target, not an independent external theorem or Challenge2 field."
+      }
+    ],
+    "source_producers": [
+      {
+        "id": "SP01",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Literature/Route/BHS.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.bhs_permanent_lift_of_complete_source",
+          "KIP126.Interface.Solution.Literature.Route.bhs_filtration_lambda_of_complete_source",
+          "KIP126.Interface.Solution.Literature.Route.bhs_realization_of_complete_source"
+        ],
+        "notes": "Projection adapters consume the source statements delivered on the SAME route; completeness and strong convergence remain explicit. No result is asserted for an arbitrary abstract route without source evidence."
+      },
+      {
+        "id": "SP02",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Interface/Solution/Literature/Route/BHS.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.bhs_completed_sources"
+        ],
+        "notes": "Independent internal completion/comparison construction for the selected route on the actual HF2-local classical background. Sphere, the actual nu cofiber, the same connective finite-type tmf detector and shifts retain their BHS applicability obligations. No high125 or T premise."
+      },
+      {
+        "id": "SP03",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Interface/Solution/Literature/Route/Range.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.standard_sphere_vanishing"
+        ],
+        "notes": "Independent positive-stem vanishing producer on the fixed sphere. Separation is now Def.standardSphereSeparated; finite tables supply neither."
+      },
+      {
+        "id": "challenge1-sphere-background-handoff",
+        "module": "KIP126/Def/StageInput/StandardSphere/Sequence/Proofs.lean",
+        "declarations": [
+          "KIP126.Def.standardSphereApplicability",
+          "KIP126.Def.standardSphereSeparated"
+        ],
+        "sources": [
+          "ravenel",
+          "bhs"
+        ],
+        "locator": "Ravenel Theorem 2.2.13; BHS source applicability: the fixed completed sphere and actual tower still require an internal proof.",
+        "blueprint_labels": [
+          "thm:external-classical-adams-convergence"
+        ],
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "notes": "Fixed sphere completion/convergence applicability and filtration separation are Def-owned with explicit sorry proofs. Neither is a Challenge2 field."
+      },
+      {
+        "id": "SP04",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Interface/Solution/Literature/Route/SourceExistence.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.Literature.Route.source_background_exists"
+        ],
+        "sources": [
+          "pst",
+          "bhs",
+          "xu",
+          "iwx",
+          "burklund_xu",
+          "tmf",
+          "may01",
+          "moss",
+          "belmont_kong",
+          "toda",
+          "ravenel",
+          "adams_may",
+          "br21",
+          "bhs_mot",
+          "iwx_data_2022"
+        ],
+        "notes": "Correlated source delivery for the route and mathematical background fixed in Def: source objects, their comparisons and literature results must match that one background. Pstr hypercomplete construction and separately inventoried prior results supply the source reasoning; no C, route Application, high125 result, paper tools or final T is inferred."
+      },
+      {
+        "id": "BR21-book-language",
+        "role": "source-result",
+        "proof_status": "external-statement-unproved",
+        "module": "KIP126/Def/ClassicalAdams/Tmf/Br21/Data.lean",
+        "declarations": [
+          "KIP126.Challenge2.TmfModel.Br21BookStatement"
+        ],
+        "sources": [
+          "br21"
+        ],
+        "notes": "Exact conditional source statement on identified tmf coordinates: d3(w2^2)=beta*g^4. Merely defining this Prop does not prove it for arbitrary models."
+      },
+      {
+        "id": "BR21-source-realization",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Interface/Solution/Tmf.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.tmfBookDifferentialInterface"
+        ],
+        "sources": [
+          "br21"
+        ],
+        "notes": "Construct actual tmf and identify its source generators and tower with the fixed CSV comparison before invoking the book theorem."
+      },
+      {
+        "id": "BR21-source-adapter",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Tmf.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.br21Statement_of_book",
+          "KIP126.Interface.Solution.tmfDifferentialInterface"
+        ],
+        "sources": [
+          "br21"
+        ],
+        "notes": "Pure target equality transport and existential assembly from the same book source model; quotient identity is a proved theorem."
+      },
+      {
+        "id": "BR21-quotient-relations",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Def/ClassicalAdams/Tmf/CsvE2/Proofs.lean",
+        "declarations": [
+          "KIP126.Classical.Adams.Tmf.CsvE2.g_square_eq_beta_gamma",
+          "KIP126.Classical.Adams.Tmf.CsvE2.g_gamma_eq_beta_cube",
+          "KIP126.Classical.Adams.Tmf.CsvE2.g_cube_eq_beta_four",
+          "KIP126.Classical.Adams.Tmf.CsvE2.betaGFourValue_eq_betaFiveGValue"
+        ],
+        "sources": [
+          "br21"
+        ],
+        "notes": "Kernel-checked quotient-ring proofs from the two explicit archived relations. No new sorry and no equality inferred merely from names or degrees."
+      },
+      {
+        "id": "BR21-model-label-transport",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Def/ClassicalAdams/Tmf/Model/Data.lean",
+        "declarations": [
+          "KIP126.Classical.Adams.Tmf.E2Presentation.betaGFour_eq_betaFiveG"
+        ],
+        "sources": [
+          "br21"
+        ],
+        "notes": "The same fixed linear E2 comparison transports the proved equality of typed quotient classes."
+      },
+      {
+        "id": "Main-tmf-high125",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Main/Solution/Computation/Tmf.lean",
+        "declarations": [
+          "KIP126.Main.Solution.Computation.high125_nonzero_survival_of_computation"
+        ],
+        "notes": "Main alone derives the high125 nonzero leading grade from source product/nonzero image, multiplication detection, C, vanishing and separation. Challenge2 does not deliver the resulting TmfInputs or high125 NonzeroSurvival."
+      },
+      {
+        "id": "Main-tmf-assembly",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Main/Solution/Computation/Tmf.lean",
+        "declarations": [
+          "KIP126.Main.Solution.Computation.tmf_inputs_of_computation"
+        ],
+        "notes": "Actual composition of the Main high125 nonzero-survival theorem and tmf_of_source, with shared A/C/V/S inputs; no Challenge2 assumption of the conclusion."
+      },
+      {
+        "id": "SP-CANONICAL-WEIGHT-TOWER",
+        "role": "internal-adapter",
+        "proof_status": "proof-placeholder",
+        "module": "KIP126/Def/Synthetic/EInfty/Shift/Canonical/Proofs.lean",
+        "declarations": [
+          "KIP126.Synthetic.SpectralSequence.weightShiftObjectIso",
+          "KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient",
+          "KIP126.Synthetic.SpectralSequence.CanonicalWeightShift",
+          "KIP126.Synthetic.SpectralSequence.canonicalWeightShift_exists",
+          "KIP126.Def.standardEInftyWeightShift"
+        ],
+        "declaration_modules": {
+          "KIP126.Synthetic.SpectralSequence.weightShiftObjectIso": "KIP126/Def/Synthetic/EInfty/Shift/Canonical/Data.lean",
+          "KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient": "KIP126/Def/Synthetic/EInfty/Shift/Canonical/Data.lean",
+          "KIP126.Synthetic.SpectralSequence.CanonicalWeightShift": "KIP126/Def/Synthetic/EInfty/Shift/Canonical/Predicates.lean",
+          "KIP126.Def.standardEInftyWeightShift": "KIP126/Def/StageInput/StandardSphere/EInfty/Data.lean"
+        },
+        "notes": "Structural construction from the fixed TowerPresentation and the actual biShift composition isomorphism. Its explicit existence theorem must prove descent and invertibility for the prescribed map; data definitions contain no hidden property proof. This is not a BHS external premise."
+      }
+    ],
+    "csv_evidence": [
+      {
+        "id": "IWX-G",
+        "source": "iwx_data_2022",
+        "path": "Source/IWX/data/Adams-classical-E2.csv",
+        "selector": {
+          "stem": "20",
+          "Adams filtration": "4"
+        },
+        "expected": [
+          {
+            "line": 59,
+            "row": {
+              "name": "g",
+              "stem": "20",
+              "Adams filtration": "4",
+              "shift": "0",
+              "h0info": "",
+              "h0target": "h2 e0",
+              "h1target": "h1 g",
+              "h2target": "h2 g",
+              "drinfo": "",
+              "drtarget": ""
+            }
+          }
+        ]
+      },
+      {
+        "id": "IWX-DHG",
+        "source": "iwx_data_2022",
+        "path": "Source/IWX/data/Adams-classical-E2.csv",
+        "selector": {
+          "stem": "45",
+          "Adams filtration": "9"
+        },
+        "expected": [
+          {
+            "line": 275,
+            "row": {
+              "name": "D h1 g",
+              "stem": "45",
+              "Adams filtration": "9",
+              "shift": "0",
+              "h0info": "",
+              "h0target": "",
+              "h1target": "",
+              "h2target": "",
+              "drinfo": "",
+              "drtarget": ""
+            }
+          }
+        ]
+      },
+      {
+        "id": "IWX-62",
+        "source": "iwx_data_2022",
+        "path": "Source/IWX/data/Adams-classical-Einfty.csv",
+        "selector": {
+          "stem": "62"
+        },
+        "expected": [
+          {
+            "line": 204,
+            "row": {
+              "name": "h5^2",
+              "stem": "62",
+              "Adams filtration": "2",
+              "shift": "",
+              "h0info": "",
+              "h0target": "",
+              "h1info": "",
+              "h1target": "h1 h5^2",
+              "h2info": "",
+              "h2target": "h2 h5^2",
+              "drinfo": "",
+              "drtarget": ""
+            }
+          },
+          {
+            "line": 205,
+            "row": {
+              "name": "h5 n",
+              "stem": "62",
+              "Adams filtration": "6",
+              "shift": "",
+              "h0info": "",
+              "h0target": "",
+              "h1info": "",
+              "h1target": "",
+              "h2info": "",
+              "h2target": "k1",
+              "drinfo": "",
+              "drtarget": ""
+            }
+          },
+          {
+            "line": 206,
+            "row": {
+              "name": "E1 + C0",
+              "stem": "62",
+              "Adams filtration": "8",
+              "shift": "",
+              "h0info": "",
+              "h0target": "",
+              "h1info": "",
+              "h1target": "h1 E1",
+              "h2info": "h",
+              "h2target": "h2 B22",
+              "drinfo": "",
+              "drtarget": ""
+            }
+          },
+          {
+            "line": 207,
+            "row": {
+              "name": "R",
+              "stem": "62",
+              "Adams filtration": "10",
+              "shift": "",
+              "h0info": "",
+              "h0target": "",
+              "h1info": "",
+              "h1target": "",
+              "h2info": "",
+              "h2target": "",
+              "drinfo": "",
+              "drtarget": ""
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "interface_coverage": [
+    {
+      "structure": "KIP126.Challenge2.LiteratureResults",
+      "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
+      "role": "literature",
+      "fields": {
+        "adamsOneLine_d2": {
+          "sources": [
+            "adams60"
+          ],
+          "locator": "Adams Hopf differentials d2(h_j)=h0 h_(j-1)^2 for j>=4; May 1964 thesis II.7.11 / PDF p.158 and Ravenel Theorem 1.2.12 cross-check. MainPaper body uses j=6 in Lemma 7.16 (lem:toda2ext), and j=4,5 in generalized-Leibniz tool examples. The precise Adams60 original differential locator remains a review obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:external-adams-one-line"
+          ]
+        },
+        "classical_h5Square_permanent": {
+          "sources": [
+            "xu",
+            "bjm_theta5"
+          ],
+          "locator": "Xu Cor.1.3 and BJM theta5 existence; BJM original locator not independently verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-h5Square-permanent"
+          ]
+        },
+        "classical_theta5_detection": {
+          "sources": [
+            "xu"
+          ],
+          "locator": "Corollary 1.3, chosen theta5 detected by h5^2",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-theta5-detection"
+          ]
+        },
+        "classical_theta5_order_two": {
+          "sources": [
+            "xu"
+          ],
+          "locator": "Corollary 1.3, order-two choice",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-theta5-order-two"
+          ]
+        },
+        "classical_stem62_exponent_two": {
+          "sources": [
+            "iwx",
+            "iwx_data_2022"
+          ],
+          "locator": "Classical Einfty CSV lines 204–207; README pp.2–3",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-stem62-exponent-two"
+          ]
+        },
+        "classical_theta5_filtration_gap": {
+          "sources": [
+            "iwx",
+            "iwx_data_2022"
+          ],
+          "locator": "Classical Einfty CSV lines 204–207; no 62-stem filtration 3,4,5 rows",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-theta5-filtration-gap"
+          ]
+        },
+        "classical_two_detection": {
+          "sources": [
+            "adams60",
+            "bhs",
+            "iwx"
+          ],
+          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-two-detection"
+          ]
+        },
+        "classical_eta_detection": {
+          "sources": [
+            "adams60",
+            "bhs",
+            "iwx"
+          ],
+          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-eta-detection"
+          ]
+        },
+        "classical_nu_detection": {
+          "sources": [
+            "adams60",
+            "bhs",
+            "iwx"
+          ],
+          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-nu-detection"
+          ]
+        },
+        "classical_eta_permanent": {
+          "sources": [
+            "adams60",
+            "bhs",
+            "iwx"
+          ],
+          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-eta-permanent"
+          ]
+        },
+        "classical_nu_permanent": {
+          "sources": [
+            "adams60",
+            "bhs",
+            "iwx"
+          ],
+          "locator": "Low classical stems; BHS prop:syn-toda-range; original per-class Hopf detection locator remains to be verified.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-classical-nu-permanent"
+          ]
+        },
+        "route_bx": {
+          "sources": [
+            "burklund_xu"
+          ],
+          "locator": "Proposition 7.19 AND proof (original distinguished choice)",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-route-bx"
+          ]
+        },
+        "route_realizationKernel": {
+          "sources": [
+            "pst"
+          ],
+          "locator": "Compact generators, prop:tau_inversion_functor_exists, Section 4.5; explicit full-category-to-model transport required.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-route-realizationKernel"
+          ]
+        },
+        "route_may": {
+          "sources": [
+            "may01"
+          ],
+          "locator": "Author PDF pp.12–13 TC3 signed square; p.14 Lemma 4.6",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-route-may"
+          ]
+        },
+        "synthetic_nu_cofiber": {
+          "sources": [
+            "pst",
+            "bhs"
+          ],
+          "locator": "Pst Lemma 4.23; BHS lemm:adams-fil1 and proof",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-nu-cofiber"
+          ]
+        },
+        "synthetic_lift": {
+          "sources": [
+            "pst",
+            "bhs"
+          ],
+          "locator": "Pst Lemma 4.23; BHS lemm:adams-fil1 and proof",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-lift"
+          ]
+        },
+        "synthetic_triangle_lift": {
+          "sources": [
+            "pst",
+            "bhs"
+          ],
+          "locator": "Pst Lemma 4.23; BHS lemm:adams-fil1 and proof",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-triangle-lift"
+          ]
+        },
+        "synthetic_finite_lift": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(1a–c) / lemm:comp1",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-finite-lift"
+          ]
+        },
+        "synthetic_bockstein": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(1c), finite-quotient Bockstein boundary",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-bockstein"
+          ]
+        },
+        "synthetic_permanent_lift": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1 clause (2), with actual source applicability",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-permanent-lift"
+          ]
+        },
+        "synthetic_differentials": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.8 thm:synth-ASS",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-differentials"
+          ]
+        },
+        "synthetic_filtration_lambda": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "cor:tau-surj with source applicability",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-filtration-lambda"
+          ]
+        },
+        "synthetic_e2_weight_vanishing": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.8, E2 weight range",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-e2-weight-vanishing"
+          ]
+        },
+        "synthetic_finite_quotient_page_vanishing": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollary A.11 (1),(3), all finite pages",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-synthetic-finite-quotient-page-vanishing"
+          ]
+        },
+        "eInfty_lambda_nu": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollaries A.9/A.11 on the SAME family; maps remains an explicit source/application obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-eInfty-lambda-nu"
+          ]
+        },
+        "eInfty_lambda_finite": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollaries A.9/A.11 on the SAME family; maps remains an explicit source/application obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-eInfty-lambda-finite"
+          ]
+        },
+        "eInfty_rho_finite": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollaries A.9/A.11 on the SAME family; maps remains an explicit source/application obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-eInfty-rho-finite"
+          ]
+        },
+        "eInfty_rho_nu": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollaries A.9/A.11 on the SAME family; maps remains an explicit source/application obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-eInfty-rho-nu"
+          ]
+        },
+        "eInfty_labels": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Corollaries A.9/A.11 on the SAME family; labels remains an explicit source/application obligation.",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-eInfty-labels"
+          ]
+        },
+        "realization_lifetime": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(2a), exponent r-1",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-realization-lifetime"
+          ]
+        },
+        "realization_detection": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(2b)",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-realization-detection"
+          ]
+        },
+        "realization_prescribed_lift": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(3b)",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-realization-prescribed-lift"
+          ]
+        },
+        "realization_boundary_lift": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "Theorem A.1(3a), existence of some boundary lift",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-realization-boundary-lift"
+          ]
+        },
+        "toda_h0_label": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); h0_label",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-toda-h0-label"
+          ]
+        },
+        "toda_lambda_h0": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); lambda_h0",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-toda-lambda-h0"
+          ]
+        },
+        "toda_h0_eta": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); h0_eta",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-toda-h0-eta"
+          ]
+        },
+        "toda_low_indeterminacy": {
+          "sources": [
+            "bhs"
+          ],
+          "locator": "prop:syn-toda-range, relations (0),(9), degree (2,3); low_indeterminacy",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-toda-low-indeterminacy"
+          ]
+        },
+        "tmf_connective": {
+          "sources": [
+            "tmf"
+          ],
+          "locator": "Section 2, connective tmf",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-connective"
+          ]
+        },
+        "tmf_finiteMod2Type": {
+          "sources": [
+            "tmf"
+          ],
+          "locator": "Section 2 H_*tmf, degreewise finite mod-2 homology",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-finiteMod2Type"
+          ]
+        },
+        "tmf_standard_labels": {
+          "sources": [
+            "tmf",
+            "iwx_data_2022"
+          ],
+          "locator": "IWX E2 CSV lines 59/275; README pp.2–3",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-standard-labels"
+          ]
+        },
+        "tmf_vanishing62": {
+          "sources": [
+            "tmf"
+          ],
+          "locator": "Theorem 1.2 and Figure 1.1, stem 62",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-vanishing62"
+          ]
+        },
+        "tmf_low_filtration63": {
+          "sources": [
+            "tmf"
+          ],
+          "locator": "Section 2 H_*tmf and change of rings",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-low-filtration63"
+          ]
+        },
+        "tmf_kappaBar_detection": {
+          "sources": [
+            "tmf",
+            "iwx_data_2022"
+          ],
+          "locator": "Section 7 actual kappa-bar product; associated IWX g label",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-kappaBar-detection"
+          ]
+        },
+        "tmf_w_detection": {
+          "sources": [
+            "tmf",
+            "iwx_data_2022"
+          ],
+          "locator": "Section 7 actual w class; IWX Delta h1 g label",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-w-detection"
+          ]
+        },
+        "tmf_high125_nonzero": {
+          "sources": [
+            "tmf"
+          ],
+          "locator": "Section 7 Hurewicz image of actual kappa-bar^4 w, stem 125",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-tmf-high125-nonzero"
+          ]
+        },
+        "sphereVanishing": {
+          "sources": [
+            "ravenel"
+          ],
+          "locator": "Ravenel Theorem 3.4.5(a), printed p.87 / PDF p.107; fixed-tower application remains a proof obligation",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:external-sphere-vanishing"
+          ]
+        },
+        "moss": {
+          "sources": [
+            "moss",
+            "belmont_kong"
+          ],
+          "locator": "Moss Theorem 1.2; Belmont–Kong v1 Theorems 1.1 / 4.11 cross-check only",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-moss"
+          ]
+        },
+        "br21": {
+          "sources": [
+            "br21"
+          ],
+          "locator": "BR21 Table 5.4 / Theorem 5.18",
+          "proof_status": "external-statement-unproved",
+          "blueprint_labels": [
+            "thm:literature-br21"
+          ]
+        }
+      }
+    },
+    {
+      "structure": "KIP126.Challenge2.ComputationResults",
+      "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+      "role": "computation",
+      "fields": {
+        "sphereBasis": {
+          "sources": [
+            "lwx_machine"
+          ],
+          "locator": "Pinned LinProgram data and interpretation certificates: sphereBasis. Correctness on the selected mathematical model remains a certification obligation.",
+          "proof_status": "certification-obligation",
+          "blueprint_labels": [
+            "thm:computation-sphereBasis-csv-values"
+          ],
+          "statements": {
+            "csv_values": {
+              "declaration": "KIP126.Challenge2.SphereBasisInterface.csv_values",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereBasis-csv-values"
+              ]
+            }
+          }
+        },
+        "sphereMultiplicative": {
+          "sources": [
+            "lwx_machine"
+          ],
+          "locator": "Pinned LinProgram data and interpretation certificates: sphereMultiplicative. Correctness on the selected mathematical model remains a certification obligation.",
+          "proof_status": "certification-obligation",
+          "blueprint_labels": [
+            "thm:computation-sphereMultiplicative"
+          ],
+          "statements": {
+            "": {
+              "declaration": "KIP126.Challenge2.ComputationResults.sphereMultiplicative",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereMultiplicative"
+              ]
+            }
+          }
+        },
+        "sphereStaircase": {
+          "sources": [
+            "lwx_machine"
+          ],
+          "locator": "Pinned LinProgram data and interpretation certificates: sphereStaircase. Correctness on the selected mathematical model remains a certification obligation.",
+          "proof_status": "certification-obligation",
+          "blueprint_labels": [
+            "thm:computation-sphereStaircase-rows-sound"
+          ],
+          "statements": {
+            "rows_sound": {
+              "declaration": "KIP126.Challenge2.SphereStaircaseInterface.rows_sound",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereStaircase-rows-sound"
+              ]
+            }
+          }
+        },
+        "sphereSquare": {
+          "sources": [
+            "lwx_machine"
+          ],
+          "locator": "Pinned LinProgram data and interpretation certificates: sphereSquare. Correctness on the selected mathematical model remains a certification obligation.",
+          "proof_status": "certification-obligation",
+          "blueprint_labels": [
+            "thm:computation-sphereSquare-nonzero",
+            "thm:computation-sphereSquare-exhaustive",
+            "thm:computation-sphereSquare-standard-class"
+          ],
+          "statements": {
+            "nonzero": {
+              "declaration": "KIP126.Challenge2.SphereSquareInterface.nonzero",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereSquare-nonzero"
+              ]
+            },
+            "exhaustive": {
+              "declaration": "KIP126.Challenge2.SphereSquareInterface.exhaustive",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereSquare-exhaustive"
+              ]
+            },
+            "standard_class": {
+              "declaration": "KIP126.Challenge2.SphereSquareInterface.standard_class",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereSquare-standard-class"
+              ]
+            }
+          }
+        },
+        "sphereTable_sound": {
+          "sources": [
+            "lwx_machine"
+          ],
+          "locator": "Pinned LinProgram data and interpretation certificates: sphereTable_sound. Correctness on the selected mathematical model remains a certification obligation.",
+          "proof_status": "certification-obligation",
+          "blueprint_labels": [
+            "thm:computation-sphereTable-sound"
+          ],
+          "statements": {
+            "": {
+              "declaration": "KIP126.Challenge2.ComputationResults.sphereTable_sound",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-sphereTable-sound"
+              ]
+            }
+          }
+        },
+        "route": {
+          "sources": [
+            "lwx_machine"
+          ],
+          "locator": "Pinned LinProgram data and interpretation certificates: route. Correctness on the selected mathematical model remains a certification obligation.",
+          "proof_status": "certification-obligation",
+          "blueprint_labels": [
+            "thm:computation-route-basis",
+            "thm:computation-route-csv",
+            "thm:computation-route-products",
+            "thm:computation-route-labels-h0",
+            "thm:computation-route-labels-h1",
+            "thm:computation-route-labels-h2",
+            "thm:computation-route-labels-h4",
+            "thm:computation-route-labels-h5",
+            "thm:computation-route-labels-h6",
+            "thm:computation-route-labels-h0-square",
+            "thm:computation-route-labels-h5-square",
+            "thm:computation-route-labels-h6-square",
+            "thm:computation-route-labels-x-126-8-4",
+            "thm:computation-route-labels-x-126-8",
+            "thm:computation-route-labels-x-124-8",
+            "thm:computation-route-labels-x-109-12",
+            "thm:computation-route-labels-g",
+            "thm:computation-route-labels-delta-h-1-mul-g",
+            "thm:computation-route-results",
+            "thm:computation-route-bottom",
+            "thm:computation-route-top"
+          ],
+          "statements": {
+            "basis": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.basis",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-basis"
+              ]
+            },
+            "csv": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.csv",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-csv"
+              ]
+            },
+            "products": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.products",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-products"
+              ]
+            },
+            "labels.h0": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h0",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h0"
+              ]
+            },
+            "labels.h1": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h1",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h1"
+              ]
+            },
+            "labels.h2": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h2",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h2"
+              ]
+            },
+            "labels.h4": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h4",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h4"
+              ]
+            },
+            "labels.h5": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h5",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h5"
+              ]
+            },
+            "labels.h6": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h6",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h6"
+              ]
+            },
+            "labels.h0_square": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h0_square",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h0-square"
+              ]
+            },
+            "labels.h5_square": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h5_square",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h5-square"
+              ]
+            },
+            "labels.h6_square": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.h6_square",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-h6-square"
+              ]
+            },
+            "labels.x_126_8_4": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.x_126_8_4",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-x-126-8-4"
+              ]
+            },
+            "labels.x_126_8": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.x_126_8",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-x-126-8"
+              ]
+            },
+            "labels.x_124_8": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.x_124_8",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-x-124-8"
+              ]
+            },
+            "labels.x_109_12": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.x_109_12",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-x-109-12"
+              ]
+            },
+            "labels.g": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.g",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-g"
+              ]
+            },
+            "labels.delta_h_1_mul_g": {
+              "declaration": "KIP126.Computation.Route.LabelsCorrect.delta_h_1_mul_g",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-labels-delta-h-1-mul-g"
+              ]
+            },
+            "results": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.results",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-results"
+              ]
+            },
+            "bottom": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.bottom",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-bottom"
+              ]
+            },
+            "top": {
+              "declaration": "KIP126.Computation.Route.CertifiedRealization.top",
+              "module": "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+              "blueprint_labels": [
+                "thm:computation-route-top"
+              ]
+            }
+          }
+        },
+        "route_presentation": {
+          "sources": [
+            "lwx_machine"
+          ],
+          "locator": "Pinned LinProgram data and interpretation certificates: route_presentation. Correctness on the selected mathematical model remains a certification obligation.",
+          "proof_status": "certification-obligation",
+          "blueprint_labels": [
+            "thm:computation-route-presentation"
+          ],
+          "statements": {
+            "": {
+              "declaration": "KIP126.Challenge2.ComputationResults.route_presentation",
+              "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+              "blueprint_labels": [
+                "thm:computation-route-presentation"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "declaration_sources": [
+    {
+      "declaration": "KIP126.Kervaire.SourceTotalDifferentialIdentity",
+      "module": "KIP126/Def/Kervaire/Theta5/Predicates.lean",
+      "sources": [
+        "burklund_xu"
+      ],
+      "locator": "Proposition 7.19 construction, total differential identity for an order-two choice",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Kervaire.BrowderCriterionStatement",
+      "module": "KIP126/Def/Kervaire/Theta5/Predicates.lean",
+      "sources": [
+        "browder"
+      ],
+      "locator": "Section 7, Theorem 7.1; physical PDF p.23",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Kervaire.HHRNonexistenceStatement",
+      "module": "KIP126/Def/Kervaire/Theta5/Predicates.lean",
+      "sources": [
+        "hhr"
+      ],
+      "locator": "Kervaire invariant one nonexistence theorem",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Kervaire.BJMInductionStatement",
+      "module": "KIP126/Def/Kervaire/Theta5/Predicates.lean",
+      "sources": [
+        "bjm_induction"
+      ],
+      "locator": "Primary text unavailable; MainPaper/main.tex line 162 cites BJMinduction for order-two theta_j to theta_(j+1) induction",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Kervaire.BJMOriginalCriterion",
+      "module": "KIP126/Def/Kervaire/Theta5/Synthetic/Predicates.lean",
+      "sources": [
+        "burklund_xu"
+      ],
+      "locator": "Proposition 7.19, original eta / lambda^r finite criterion",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Classical.ExtensionSS.etaD₁",
+      "module": "KIP126/Def/ClassicalESS/Eta/Data.lean",
+      "sources": [
+        "aim_paper"
+      ],
+      "locator": "Example 2.11, d1 eta extension; transcription only",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Classical.ExtensionSS.etaD₂",
+      "module": "KIP126/Def/ClassicalESS/Eta/Data.lean",
+      "sources": [
+        "aim_paper"
+      ],
+      "locator": "Example 2.11, d2 eta extension; transcription only",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Classical.ExtensionSS.etaD₃",
+      "module": "KIP126/Def/ClassicalESS/Eta/Data.lean",
+      "sources": [
+        "aim_paper"
+      ],
+      "locator": "Example 2.11, d3 eta extension; transcription only",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Classical.ExtensionSS.etaD₄",
+      "module": "KIP126/Def/ClassicalESS/Eta/Data.lean",
+      "sources": [
+        "aim_paper"
+      ],
+      "locator": "Example 2.11, d4 eta extension; transcription only",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Classical.ExtensionSS.etaD₂Inessential",
+      "module": "KIP126/Def/ClassicalESS/Eta/Data.lean",
+      "sources": [
+        "aim_paper"
+      ],
+      "locator": "Example 2.11, inessential d2 eta extension; transcription only",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Challenge2.LiteratureBindings.eInfty_nu",
+      "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "Corollaries A.9/A.11 on the SAME family; presentation remains an explicit source/application obligation.",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Challenge2.LiteratureBindings.eInfty_quotient",
+      "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "Corollaries A.9/A.11 on the SAME family; presentation remains an explicit source/application obligation.",
+      "status": "statement-or-data-only"
+    },
+    {
+      "declaration": "KIP126.Challenge2.LiteratureBindings.eInfty_specialFiber",
+      "module": "KIP126/Interface/Challenge/Literature/Delivery.lean",
+      "sources": [
+        "bhs"
+      ],
+      "locator": "Corollaries A.9/A.11 on the SAME family; presentation remains an explicit source/application obligation.",
+      "status": "statement-or-data-only"
+    }
+  ],
+  "computation_binding_statements": {
+    "presentation.comparison_mul": {
+      "declaration": "KIP126.Classical.Adams.LinE2Presentation.comparison_mul",
+      "module": "KIP126/Interface/Challenge/Computation/Presentation.lean",
+      "sources": [
+        "lwx_machine"
+      ],
+      "locator": "Fixed Lin sphere quotient products through the same bounded presentation (t+t′≤261). Identification with the actual sphere-layer product remains a separate result obligation.",
+      "proof_status": "comparison-obligation",
+      "blueprint_labels": [
+        "thm:computation-presentation-comparison-mul"
+      ]
+    },
+    "tmfMultiplicative": {
+      "declaration": "KIP126.Challenge2.ComputationBindings.tmfMultiplicative",
+      "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+      "sources": [
+        "lwx_machine"
+      ],
+      "locator": "Fixed tmf CSV unit and products through the same bounded E2 coordinate comparison on Def.standardTmfTarget (t+t′≤261). Actual second-cycle multiplication is required for every representative pair.",
+      "proof_status": "comparison-obligation",
+      "blueprint_labels": [
+        "thm:computation-tmfMultiplicative"
+      ]
+    },
+    "tmf_v2Sixteen": {
+      "declaration": "KIP126.Challenge2.ComputationBindings.tmf_v2Sixteen",
+      "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+      "sources": [
+        "lwx_machine",
+        "br21"
+      ],
+      "locator": "Fixed tmf CSV w2^2, named v2^16 at (16,112), compared with the BR21 source endpoint through the inverse of the same detectorIso. BR21 Table 5.4 / Theorem 5.18, printed p.196 / PDF p.213 identifies the source differential; the endpoint comparison is a separate obligation.",
+      "proof_status": "comparison-obligation",
+      "blueprint_labels": [
+        "thm:computation-bindings-tmf-v2Sixteen"
+      ]
+    },
+    "tmf_betaGFour": {
+      "declaration": "KIP126.Challenge2.ComputationBindings.tmf_betaGFour",
+      "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
+      "sources": [
+        "lwx_machine",
+        "br21"
+      ],
+      "locator": "Fixed tmf CSV beta*g^4 at (19,114), compared with the BR21 source endpoint through the inverse of the same detectorIso. BR21 Table 5.4 / Theorem 5.18, printed p.196 / PDF p.213 identifies the source differential; beta*g^4=beta^5*g is a fixed-quotient relation, not this comparison proof.",
+      "proof_status": "comparison-obligation",
+      "blueprint_labels": [
+        "thm:computation-bindings-tmf-betaGFour"
+      ]
+    }
+  }
+}

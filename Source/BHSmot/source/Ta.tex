@@ -1,0 +1,123 @@
+The map $\tau$ and its properties are the most striking feature of the category of $p$-complete motives over $\C$. In this section we construct a map $\ta$ which plays the role of $\tau$ over $\R$ and verify its basic property: its Betti realization is $1$. 
+
+\begin{thm}\label{thm:ta}
+  For all primes $p$, there is a class $\ta \in \pi_{0,0,-1} ^\R \Ss_p$ with the following properties:
+  \begin{enumerate}
+    \item Under Betti realization, $\ta$ goes to $1 \in \pi_{0} ^{C_2} \Ss_p$.
+    \item Under base change to $\C$, $\ta$ goes to $\tau \in \pi_{0,-1} ^\C \Ss_p$.
+  \end{enumerate}
+\end{thm}
+
+Surprisingly, as with the element $\tau$ in previous work, we will not need to use any information about the construction of $\ta$ besides properties (1) and (2) outside this section.
+Since the construction of $\ta$ will be completely analogous to the construction of $\tau$ over $\C$, we begin by recalling that construction. The construction below is inspired by \cite[Remark on p. 22]{HKO} and \cite[Section 4]{TomEtaleII}.
+
+
+\subsection{Constructing $\tau$ over $\C$}\
+
+We begin by fixing a compatible sequence of primitive $(p^k)^{\mathrm{th}}$ roots of unity
+$\{\zeta_{p^k}\}_{k \geq 0}$. %, in the sense that that $\zeta_{p^k} ^p = \zeta_{p^{k-1}}$.
+We may then construct the following diagram of varieties over $\C$
+\begin{center}
+  \begin{tikzcd}
+    \Spec(\C) \coprod \Spec(\C) \ar[d,"{(\zeta_{p^k},1)}"] \ar[r] & \Spec(\C) \ar[d,"1"] \\
+    \G_m \ar[r,"{[p^k]}"] & \G_m .
+  \end{tikzcd}
+\end{center}
+After passing to the associated diagram of motivic spaces we can add a third column by taking cofibers:
+\begin{center}
+  \begin{tikzcd}
+    \Spec(\C) \coprod \Spec(\C) \ar[d,"{(\zeta_{p^k},1)}"] \ar[r] & 
+    \Spec(\C) \ar[d, "1"] \ar[r] & 
+    S^1 \ar[d,"\tau_k"] \\
+    \G_m \ar[r,"{[p^k]}"] & \G_m \ar[r] & \G_m /{[p^k]}.
+  \end{tikzcd}
+\end{center}
+Using the compatibility of the chosen primitive $(p^k)^{\mathrm{th}}$ roots of unity,
+the maps $\tau_k$ so defined are compatible in the sense that there are commutative diagrams
+\begin{center}
+  \begin{tikzcd}
+    S^1 \ar[r,"\mathrm{id}"] \ar[d,"\tau_k"] & S^1 \ar[d,"\tau_{k-1}"] \\
+    \G_m /{[p^k]} \ar[r] & \G_m /{[p^{k-1}]}.
+  \end{tikzcd}
+\end{center}
+
+%% The pointing is given as follows: $\G_m$ is pointed at the unit, $\Spec(\C) \coprod \Spec(\C)$ is pointed at the right $\Spec(\C)$, and $\Spec(\C)$ is given the unique pointing.
+
+Stabilizing and using the fact that $\Sigma^\infty [p^k] : \Ss^{1,1} \to \Ss^{1,1}$ is equivalent to $p^k$ over $\C$,\footnote{This follows from \Cref{cor:betti-iso}, since the Betti realization of $[p^k]$ is clearly $p^k$.} we find that we have constructed a compatible system of elements $\tau_k \in \pi_{0,-1} ^\C \Ss/p^k$. Passing to the limit, we obtain the element $\tau \in \pi_{0,-1} ^\C \Ss_p$.
+
+\begin{prop} \label{prop:tau-1}
+  For some choice of $\{\zeta_{p^k}\}_{k \geq 0}$, we have $\b(\tau) = 1$. \footnote{It seems likely that the choice of roots of unity which yields $1$ is $ \exp\left( \frac{2\pi i}{p^k} \right)$.}
+\end{prop}
+
+\begin{proof}
+  We will show that $\b(\tau) \in \pi_0 \Ss_p = \Z_p$ is a $p$-adic unit.
+  Then, using the action of $Aut(\mu_{p^\infty}) = \Z_p^\times$ on systems of $(p^k)^{\mathrm{th}}$ roots of unity, we may change $\tau$ by multiplication by any $p$-adic unit.
+  %% so this implies that we may then modify our choice of sytsem of $p^k$'th roots of unity $\{\zeta_{p^k}\}_{k \geq 0}$ so that $\tau$ Betti realizes to $1$
+
+It now suffices to show that the Betti realizations of the unstable maps $\tau_k : S^1 \to \G_m / [p^k]$ are surjective on $\pi_1$. Since $[p^k] : \C^\times \to \C^\times$ is a principal $\mu_{p^k}$-fibration, it is classified by a map $\C^\times \to B\mu_{p^k}$ and we can form the following diagram:
+\begin{center}
+  \begin{tikzcd}
+    S^0 \ar[d, "{(\zeta_{p^k},1)}"] \ar[r] & 
+    S^0 \ar[d, "{(\zeta_{p^k},1)}"] \ar[r] & 
+    * \ar[d] \ar[r] & 
+    S^1 \ar[d] \\
+    \mu_{p^k} \ar[r] &
+    \C^\times \ar[r,"{[p^k]}"] & 
+    \C^\times \ar[d] \ar[r] & 
+    \C^\times / [p^k] \ar[dl, dashed] \\
+    & & B\mu_{p^k} 
+  \end{tikzcd}
+\end{center}
+
+The dashed map $\C^\times / [p^k] \to B\mu_{p^k}$ is an isomorphism on $\pi_1$ after Betti realization, so it suffices to show that the composite map $S^1 \to \C^\times / [p^k] \to B\mu_{p^k}$ is surjective on Betti-realized $\pi_1$. This follows from the fact that the map $S^1 \to B\mu_{p^k}$ is adjoint to the map $S^0 \xrightarrow{(\zeta_{p^k},1)} \mu_{p^k}$.
+\end{proof}
+
+\subsection{Constructing $\ta$ over $\R$}\
+
+We now imitate the construction of $\tau$ above to construct $\ta$ and prove \Cref{thm:ta}.
+The key point is that there are two forms of $\G_m$ over $\R$.
+While the roots of unity $\zeta_n$ do not lie in
+\[ \{\pm 1\} \subset \G_m (\R) \subseteq \G_m (\C) = \C^\times, \]
+the other form of $\G_m$ over $\R$ (which is the ``algebraic circle'', $Q$, given by $\{x^2 + y^2 = 1\}$) has
+\[ S^1 = Q(\R) \subseteq Q(\C) \cong \G_m (\C) = \C^\times. \]
+As such, we are free to imitate the construction of $\tau$ above with $\G_m$ replaced by the algebraic circle $Q$.
+
+Let $\{\zeta_{p^k}\}_{k \geq 0}$ be the system of primitive $(p^k)^{\mathrm{th}}$ roots of unity satisfying the conclusion of \Cref{prop:tau-1}. As before, we form the diagram of $\R$-motivic spaces:
+\begin{center}
+  \begin{tikzcd}
+    \Spec(\R) \coprod \Spec(\R) \ar[d,"{(\zeta_{p^k},1)}"] \ar[r] & 
+    \Spec(\R) \ar[d, "1"] \ar[r] & 
+    S^1 \ar[d,"\ta_k"] \\
+    Q \ar[r,"{[p^k]}"] &
+    Q \ar[r] &
+    Q /{[p^k]}.
+  \end{tikzcd}
+\end{center}
+Before finishing the construction and proving \Cref{thm:ta} we need a short lemma which identifies the map $[p^k]$.
+
+\begin{lem}\label{lem:sus-pk}
+  The map $\Sigma^\infty [p^k] : \Ss^{1,0,1} \to \Ss^{1,0,1}$ is homotopic to $p^k : \Ss^{1,0,1} \to \Ss^{1,0,1}$.
+\end{lem}
+
+\begin{proof}
+  Since the map $\pi_{0,0,0} ^\R \to \pi_{0} ^{C_2}$ induced by Betti realization is an isomorphism by \Cref{cor:betti-iso}, it suffices to show this after Betti realization.
+  Upon Betti realization, this is a map $\Ss^1 \to \Ss^1$ which induces multiplication by $p^k$ on both geometric fixed points and on the underlying spectrum.
+   The map $\pi_0^{C_2} \to \Z \oplus \Z$ given by (underlying, geometric fixed points) is injective.
+%
+  %%  I claim that this implies that it is homotopic to $p^k$.  
+  %% To see this, note that $\pi_0 ^{C_2} \cong A(C_2) \cong \Z[x]/(x^2 - 2x)$. Taking the underlying spectrum corresponds to the map $\Z[x]/(x^2 - 2x) \to \Z$ sending $x$ to $2$, and geometric fixed points correponds to the map $\Z[x]/(x^2 -2x) \to \Z$ sending $x$ to $0$. The product of these maps is an isomorphism, so the result follows.
+  %% it's not an iso lol
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:ta}]
+  Stabilizing and applying \Cref{lem:sus-pk},
+  we obtain a compatible system of classes $\ta_k \in \pi_{0,0,-1} ^\R \Ss/p^k$
+  which give rise to a class $\ta \in \pi_{0,0,-1} ^\R \Ss_p$.
+  It follows immediately from the definition that the base change of $\ta$ to $\C$ is $\tau$.
+  Since the Betti realization of $\tau$ is $1$, we find that the underlying of the Betti realization of $\ta$ is $1$. 
+
+  In order to show that the Betti realization of $\ta$ is $1$,
+  it therefore suffices to show that it is multiplication by some $p$-adic integer.
+  To do this, it suffices to do so modulo $p^k$ for all $k$.
+  Modulo $p^k$, the Betti realization of $\ta$ arises as the stabilization of a map $S^1 \to S^1 / p^k$ of $C_2$-equivariant spaces, and all such maps are given by multiplication by a $p$-adic integer.
+\end{proof}

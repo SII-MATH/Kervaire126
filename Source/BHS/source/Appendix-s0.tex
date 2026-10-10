@@ -1,0 +1,44 @@
+In this appendix we study vanishing curves in Adams spectral sequences via an explicit analysis of Adams towers and their Postnikov truncations. These techniques were developed in order to answer Question 3.33 from \cite{Akhil}, which asks about the linear term in the vanishing curve of the $\BP\langle n \rangle$-Adams spectral sequence for the sphere. At the prime $3$ our results provide the upper bound on the left-hand-side of \cref{eqn:BIG} necessary in the proof of \Cref{thm:intro-main}. As a corollary we obtain new bounds on the $p$-torsion order of the stable homotopy groups of spheres.
+
+Before proceeding further we should highlight several differences between the perspective on vanishing curves taken in \Cref{sec:AppendixVL} and this appendix. In the main body of the paper vanishing curves are interpreted in terms of the bigraded homotopy groups of a synthetic spectrum and are often implicitly linear and finite page. The emphasis is mostly on genericity results. \Cref{sec:AppendixVL} inherits the technical assumption that we must work only with ring spectra which are of Adams type from \cite{Pstragowski}. In this appendix we will not consider finite-page vanishing lines, instead confining ourselves to the vanishing curve present at the $E_\infty$ page. Our emphasis is on exploiting naturality in the choice of ring spectrum. This appendix works with the approach to descent developed by Akhil Mathew in \cite{Akhil} and thereby inherits the technical assumption that all ring spectra admit an $\mathbb{E}_1$ multiplication.
+
+In Section \ref{app:prelim} we recall the definition of the vanishing curve, review previous results and state our main theorem, which is a collection of novel bounds on various vanishing curves.
+In Section \ref{app:ABvl} we give a comparison theorem for vanishing curves over different rings. This comparison theorem is the key technical advance in this appendix. 
+In Section \ref{app:blocks} we finish the proof of the comparison theorem.
+In Section \ref{app:reductions} we use the comparison theorem and theorems of Davis-Mahowald and Gonz\'alez \cite{DM3} \cite{GonzalezRegular} to prove the main theorem.
+
+\begin{cnv} \label{cnv:desc-ring}
+  Throughout this appendix we will adopt the following conventions:
+  \begin{enumerate}
+  \item All spectra will be $p$-local for a fixed prime $p$.
+  \item Rings and ring morphisms will refer to objects and morphisms of $\Alg(Sp)$. \footnote{The results of this appendix remain true if we replace $Alg(Sp)$ with the full subcategory of $Alg^{\mathbb{E}_0}(\Sp)$ on those objects that admit an $\mathbb{A}_2$ structure. We opt to work in less generality for convenience and so that we can avoid reproving many statements from \cite{Akhil}.}
+  \item A ring $R$ will also be assumed to satisfy the following hypotheses:
+    \begin{itemize}
+    \item $R$ is $p$-local and connective,
+    \item $\pi_0(R) \cong \Z_{(p)}$,
+    \item $\pi_i(R)$ is a finitely generated $\Z_{(p)}$ module for all $i$.
+    \end{itemize}
+    Moreover, $A$ and $B$ will also denote rings satisfying the same hypotheses. \footnote{This convention ensures that the Adams spectral sequence based on $R$ converges for every connective $p$-local spectrum.}
+  \item In order to make concise statements about the asymptotics of various functions we will make use both big $O$ and little $o$ notation. 
+  \end{enumerate}
+\end{cnv}
+
+\begin{ntn}
+  In this appendix we will adopt the following notation in order to simplify expressions,
+  \begin{enumerate}
+  \item $q = 2p-2$,
+  \item $v_p(k)$ will denote the $p$-adic valuation of an integer $k \in \Z$,
+  \item if $p \neq 2$, 
+    $$ \ell(k) = \begin{cases} v_p(k+2) & k+2 \equiv 0 \pmod q \\ 0 & k+2 \not\equiv 0 \pmod q \end{cases}, $$
+    if $p = 2$, 
+    $$ \ell(k) = \begin{cases} v_2(k+1) & k \text{ odd} \\ v_2(k+2) & k \text{ even} \end{cases}. $$
+  \end{enumerate}
+  We will sometimes use that $\ell(k) \in O(\log(k))$.
+\end{ntn}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Main"
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

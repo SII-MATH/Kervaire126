@@ -1,0 +1,46 @@
+{
+  "bib_key": "BR21",
+  "doi": "10.1090/surv/253",
+  "grouped_bib_keys": [
+    "BR21"
+  ],
+  "openalex_metadata": "downloaded",
+  "semantic_scholar_metadata": "unavailable",
+  "primary_url": "https://www.sas.rochester.edu/mth/sites/doug-ravenel/otherpapers/rognes-bruner-tmf-book.pdf",
+  "primary_version": "Author preliminary version made available with AMS permission; downloaded PDF unchanged",
+  "primary_pdf": "paper.pdf",
+  "pdf_pages": 708,
+  "primary_sha256": "cad4df7d4f6057408e7ec90d8b7003f5658cdd46ee5eb3972d66eaef86f6e1b1",
+  "derived_text": "paper.txt",
+  "text_description": "Locally extracted text with explicit 1-based PDF-page delimiters; the original PDF remains the primary artifact",
+  "verification": "Directly read Tables 3.3, 3.4, 3.5, Remark 5.9, Table 5.4 and Theorem 5.18",
+  "verified_locators": [
+    {
+      "pdf_page": 165,
+      "printed_page": 148,
+      "item": "Table 3.3: beta (15,3), g (20,4), gamma (25,5), w2 (48,8) in (stem,filtration)"
+    },
+    {
+      "pdf_page": 166,
+      "printed_page": 149,
+      "item": "Table 3.4: beta*gamma=g^2 and beta^3=gamma*g"
+    },
+    {
+      "pdf_page": 168,
+      "printed_page": 151,
+      "item": "Table 3.5: same polynomial relations"
+    },
+    {
+      "pdf_page": 207,
+      "printed_page": 190,
+      "item": "Remark 5.9: d3(w2^2)=beta*g^4"
+    },
+    {
+      "pdf_page": 213,
+      "printed_page": 196,
+      "item": "Table 5.4 and Theorem 5.18: d3(w2^2)=beta*g^4"
+    }
+  ],
+  "open_pdf": "downloaded",
+  "plain_text": "extracted"
+}

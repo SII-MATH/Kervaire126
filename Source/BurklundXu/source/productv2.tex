@@ -1,0 +1,712 @@
+
+In this section we prove the key motivic Adams differentials for $S^{0,0}/\tau$ appearing in \Cref{diff motivic ctau}.
+Through \Cref{MASS algNSS} this is equivalent to the following family of algebraic Novikov differentials:
+
+\begin{prop}\label{prop:alg-n-diff}
+   In the algebraic Novikov spectral sequence we have differentials
+  \[ d_2(h_j^3) = 0, \quad d_3(h_j^3) = 0, \quad d_4(h_j^3) = q_0^3 g_{j-2}\]
+  for $j \geq 5$.
+\end{prop}
+
+% Without these operations we are forced to give a more direct and explicit proof.
+
+\begin{rmk}
+  Note that in Proposition~\ref{prop:alg-n-diff}
+  we are using Cartan--Eilenberg names 
+  rather than motivic Adams names.
+  In particular, the class $q_0^3g_{j-2}$ corresponds to the class $h_0^3g_{j-1}$ in \Cref{diff motivic ctau} and the condition $j \geq 5$ corresponds to the condition $j \geq 6$.\footnote{See Section~\ref{sec:cess} for more on this translations of names.} % Also note that by Theorem~\ref{diff motivic ctau}~(3), the targets of these $d_4$-differentials are nonzero.
+\end{rmk}
+
+Speaking broadly, the proof of \Cref{prop:alg-n-diff} has two parts.
+In the first part, we relate the differential on $h_j^3$ to a product $\vartheta_{j}\vartheta_{j+1}$ on the Adams--Novikov $E_2$-page. Where $\vartheta_j$ refers to a particular choice of class that maps to $h_j^2$ under the Thom reduction map 
+\[ \Ext_{\BP_*\BP}^{2, 2^{j+1}}(\BP_*,\, \BP_*) \to \Ext_{\A}^{2, 2^{j+1}}(\F_2,\, \F_2) \]
+whose precise definition will be given in \Cref{dfn:Tj}.
+In the second part, we use explicit cocycle representatives to identify $\vartheta_{j}\vartheta_{j+1}$ in the algebraic Novikov spectral sequence and thereby prove \Cref{prop:alg-n-diff}.
+
+\begin{rmk} 
+  In \Cref{sec:kervaire}, we will explain how the product $\vartheta_{j}\vartheta_{j+1}$ is related to the Adams differentials supported by the Kervaire invariant class $h_j^2$ and is therefore of independent interest.
+\end{rmk}
+
+  % and has some bearing on  one differentials in the Adams spectral sequence. %Surprisingly, the reason our cocycle manipulations succeed is that there is a closely related stack which \emph{does} admit a lift of frobenius 
+
+% justifying its name as a Kervaire invariant one class. 
+% Kervaire invaraint one class on the Adams--Novikov $E_2$-page\footnote{By a ``Kervaire invariant one class'' we mean that the image of $\vartheta_j$ under the Thom reduction map is $h_j^2$.}, the precise definition of this class 
+
+
+Speaking concretely, the section is organized as follows.
+In \Cref{subsec:cocycle-diffs} we explain how algebraic Novikov differentials can be computed in terms of cocycles and reduce \Cref{prop:alg-n-diff} to understanding the product $\vartheta_j\vartheta_{j+1}$.
+In \Cref{subsec:product-reln} we identify the class detecting the product $\vartheta_j\vartheta_{j+1}$ in the algebraic Novikov spectral sequence.
+In \Cref{subsec:correction}, we provide material which, although not strictly necessary for the proof of \Cref{prop:alg-n-diff}, is useful for the reader looking to extend our results and methods.
+
+% but we have included it in order to provide a more principled explanation of why the proofs in \Cref{subsec:product-reln} work.
+% The remaining three subsections of this section are not strictly necessary for the material in the rest of the paper, but we have included them in order to provide a more principled explanation of why the proof of \Cref{prop:alg-n-diff} works.
+
+\begin{rmk}
+  The family of differentials we prove in \Cref{prop:alg-n-diff} 
+  appears as though it might be obtainable inductively via algebraic Steenrod operations. 
+  Unfortunately, as the moduli of formal groups is an integral object, 
+  the operation we would like to use is not definable without a lift of Frobenius. 
+  This does, however, suggest an alternative approach to proving \Cref{prop:alg-n-diff} for $j \gg 0$.
+  
+  Instead of studying the moduli stack of one-dimensional formal groups $\mathcal{M}_{\mathrm{fg}}$ (\cite{GoerssMfg, HopkinsMfg}) we can study another closely related object,
+  \[ \mathbb{W}\left( \left( \mathcal{M}_{\mathrm{fg}} \times_{\Spec(\Z)} \Spec(\F_p) \right)^{\mathrm{perf}} \right),\]
+  which \emph{does} admit a lift of Frobenius.
+  This is the Witt vectors of the perfection of the reduction mod $p$ of the moduli of formal groups.
+  Although there is no comparison map between these two stacks, 
+  it seems that computations on the Witt vector side can be lifted back to the moduli of formal groups in an asymptotic sense (i.e. for $j \gg 0$).
+  On the Witt vector side the lift of Frobenius would let us reduce the proof of the analog of \Cref{prop:alg-n-diff} to a single calculation.
+\end{rmk}
+
+  
+  %The particular algebraic Steenrod operation we would want to apply is 
+  %$$\Sq^0: \Ext_{\BP_*\BP}^{s,t}(\BP_*, \BP_*) \to \Ext_{\BP_*\BP}^{s, 2t}(\BP_*, \BP_*)$$ which would require a lift of Frobenius on the moduli of formal groups.
+  %Unfortunately, the moduli of formal groups does not admit a lift of Frobenius.
+  
+  
+  
+  %If one is only interested in 
+  %In \Cref{sec:witt} we give an alternative proof of \Cref{prop:alg-n-diff} valid only for $j \gg 0$.
+  %This alternative proof begins with the observations that 
+  %the family of differentials we prove appears as though it might be obtainable inductively via algebraic Steenrod operations. The particular algebraic Steenrod operation we would want to apply is 
+  %$$\Sq^0: \Ext_{\BP_*\BP}^{s,t}(\BP_*, \BP_*) \to \Ext_{\BP_*\BP}^{s, 2t}(\BP_*, \BP_*)$$ which would require a lift of Frobenius on the moduli of formal groups.
+  %Unfortunately, the moduli of formal groups does not admit a lift of Frobenius.
+  
+  %%%%% Expand on Sq^0 on ANSS E2. Compare with Ravenel's solution of odd primary Kervaire.%%%%
+
+  %The key idea of \Cref{sec:witt} is that we can study another closely related object,
+  %\[ \mathbb{W}\left( \left( \mathcal{M}_{\mathrm{fg}} \times_{\Spec(\Z)} \Spec(\F_p) \right)^{\mathrm{perf}} \right),\]
+  %which \emph{does} admit a lift of frobenius.
+  %This is the Witt vectors of the perfection of the reduction mod $p$ of the moduli of formal groups.
+  %Although there is no comparison map between these stacks, we are able to use $p$-adic convergence properties to reduce the $j \gg 0$ case of \Cref{prop:alg-n-diff} to a single corresponding calculation on the Witt vector side.
+  % to the Witt vector version can be obtained as a ``limiting case'' of the moduli of formal groups and through this we can reduce  for $j \gg 0$ to a corresponding calculation on the Witt vector side.
+
+  % conclude that the $j \gg 0$ case of \Cref{prop:alg-n-diff} follows from a corresponding calculation in the 
+  
+  % In \Cref{sec:witt} we explore this 
+  % An examination of the cocyles used in \Cref{subsec:product-reln} reveals that they occur in both objects. This is part of a phenomenon that although there is not a map in either direction the Witt vector version can be obtained as a ``limiting case'' of the moduli of formal groups.
+  
+  % the authors were unable to find any appropriate formulas for propogating differentials along power operations which are applicable in this case. Instead, our proofs are surprisingly indirect, going via a certain product relation between the $\vartheta_j$ classes on the Adams--Novikov $E_2$-page. 
+
+% As explained above, if the the moduli of formal groups had a lift of frobenius we could use it to propogate the algebraic Novikov differentials in \Cref{prop:alg-n-diff}, which would reduce things to a single, finite-length, computation. 
+
+\subsection{Algebraic Novikov differentials in terms of cocycles}\label{subsec:cocycle-diffs}\hfill
+
+% % Before proceeding %proving this proposition
+% We begin by explaining how algebraic Novikov differentials can be computed in terms of explicit cocycles.
+In \Cref{sec:review} we introduced the algebraic Novikov spectral sequence by filtering the cobar complex for $\BP_*\BP$ by powers of the augmentation ideal $I$ of $\BP_*$. This spectral sequence takes the form
+\todo{fix degrees, it seems like $k$-degree is power of augmentation ideal.}
+\begin{align*}
+   \Ext_{\BP_*\BP/I}^{s,t'}(\BP_*/I,\, I^k/I^{k+1}) &\cong E_2^{s,k,t'} \Longrightarrow \Ext_{\BP_*\BP}^{s,t'}(\BP_*,\, \BP_*) \\
+  d_r: E_r^{s,k,t'} &\longrightarrow E_r^{s+1,k+r-1,t'}.
+\end{align*}
+In this subsection we explain how algebraic Novikov differentials can be calculated using cocycles and prove \Cref{prop:alg-n-diff} modulo a lemma which we defer to \Cref{subsec:product-reln}.
+
+\begin{ntn}
+  We write $\mathrm{cb}(-)$ for the cobar complex of a Hopf algebroid and use bar notation for elements of this complex. For example this means that we write $[t_1 | t_2^2]$ for the class
+  $t_1 \otimes t_2^2$ in $(\BP_*\BP) \otimes_{\BP_*} (\BP_*\BP)$.
+  Note that we are also identifying $\BP_*\BP$ with $\BP_*[t_1,t_2,\dots]$ in the usual way.
+
+  We let $I \cdot \mathrm{cb}(\BP_*\BP)$ denote the (levelwise) augmentation ideal of this cosimplicial ring. The quotient by this ideal is $\mathrm{cb}(\BP_*\BP/I)$.
+\end{ntn}
+
+Suppose we have a class $\epsilon$ on the $E_2$-page of the algebraic Novikov spectral sequence.
+For simplicity we will assume that the $k$-degree of $\epsilon$ is zero.
+The differentials $d_*(\epsilon)$ can be computed using the following procedure:
+
+\begin{enumerate}
+\item Pick a cocycle $e$ in $\mathrm{cb}(\BP_*\BP/I)$ which represents $\epsilon$.
+\item Pick a lift $e_2$ of $e$ to the cobar complex $\mathrm{cb}(\BP_*\BP)$. Note that although $e$ is a cocyle, $e_2$ may not be a cocycle.\footnote{This is the mechanism by which algebraic Novikov differentials arise.}
+\item Compute $d(e_2)$ in $\mathrm{cb}(\BP_*\BP)$ and denote it by $c_2$. Note that $c_2 \in I \cdot \mathrm{cb}(\BP_*\BP)$ since $e_2$ is a cocycle modulo the augmentation ideal. Now proceed to step $(4.2)$. 
+\item[(4.r)] We currently have $e_r$ with $c_r = d(e_r)$ such that $c_r \in I^{r-1} \cdot \mathrm{cb}(\BP_*\BP)$.
+  In order to proceed we break into two cases:
+  \begin{itemize}
+  \item Suppose there exists a $w_r \in I^{r-1} \cdot \mathrm{cb}(\BP_*\BP)$ such that
+    \[ d(w_r) \equiv c_r \pmod{I^{r}}. \]
+    Pick such a $w_r$ and proceed to step $(4.r+1)$ with 
+    $$e_{r+1} \coloneqq e_r + w_r, \ c_{r+1} \coloneqq d(e_{r+1}).$$ 
+    We then have
+   $$c_{r+1}  = d(e_{r+1}) = d(e_r) + d(w_r) \equiv 2c_r \pmod{I^{r}}$$ 
+Since $c_r \in I^{r-1} \cdot \mathrm{cb}(\BP_*\BP)$, we have $c_{r+1} \in I^{r} \cdot \mathrm{cb}(\BP_*\BP)$.   
+
+  In this case we have the statement that $d_r(\epsilon) = 0$.\footnote{More specifically, the class $w_r$ can be viewed as a class which supports a differential pre-empting the one on $\epsilon$. Note that this implies that in order to compute the $d_r$-differential one needs knowledge of all shorter length differentials.}
+  \item If no such $w_r$ exists, then we may conclude that there is a class
+    \[ \zeta \in \Ext_{\BP_*\BP/I}^{*,*}(\BP_*/I, I^{r-1}/I^{r}) \]
+    which is detected by $c_r$ and survives to the $E_r$-page of the algebraic Novikov spectral sequence where it is hit by the differential $d_r(\epsilon) = \zeta$.
+  \end{itemize}
+\end{enumerate}
+
+
+
+%%%%% As an illustration, recompute the Hopf invariant 1 differential here? %%%%%
+
+In order to apply this procedure to the classes $h_j^3$ there is one more wrinkle we need to iron out. In the statement of \Cref{prop:alg-n-diff} both the source and target of the differential we wish to prove were stated in terms of the names for classes coming from the \emph{Cartan--Eilenberg $E_2$-page}. This means we will have to provide a precise procedure for translating between these naming schemes.
+
+From \Cref{sec:review} we recall that the isomorphism
+$$\xymatrix{
+\Ext^{s,t}_{\P}(\F_2, \F_2[q_0,q_1,\dots]) \ar[rr]^-{\cong} & & \bigoplus_{t'+k=t} \Ext_{\BP_*\BP/I}^{s,t'}(\BP_*/I, I^k/I^{k+1})
+}$$
+sends a $q_i$ to $v_i$ and uses the fact that $\BP_*\BP/I \cong \P$ in order to provide an isomorphism at the level of cobar complexes. The most subtle point here is that this isomorphism sends $t_i$ to $\chi(\xi_i^2)$ where $\chi$ is the antipode on $\P$ (see also \cite{AndrewsMiller, MillerSquare, RavenelGreenBook} for this isomorphism).
+
+% \begin{exm}
+%   The cocycle $[t_1]$ which detects $\eta$ in the Adams--Novikov spectral sequence maps to $[\xi_1^2]$ in $\mathcal{P}$ which upon including into $\mathcal{A}$ detects $\eta$ in the Adams spectral sequence.
+% \end{exm}
+
+\begin{dfn} \label{dfn:Tj}
+  Let $T_j$ denote the following class in the cobar complex $\mathrm{cb}(\BP_*\BP)$:
+  \[ T_j \coloneqq \frac{1}{2} d(t_1^{2^j}) = \frac{1}{2} \left( \Delta( t_1^{2^{j}} ) - t_1^{2^j}|1 - 1|t_1^{2^j} \right) = \frac{1}{2} \sum_{i=1}^{2^{j} -1} \binom{2^{j}}{i} [t_1^i | t_1^{2^{j} - i}]. \]
+  The class $T_j$ is a cocycle since $d^2=0$ and the $\BP_*\BP$-cobar complex is torsion free.
+  We will let $\vartheta_j$ denote the class on the Adams--Novikov $E_2$-page detected by $T_j$.
+  In \Cref{exm:vartheta-hj2} we will check that $\vartheta_j$ maps to $h_{j-1}^2$ under the quotient map to the cohomology of $\P$.
+\end{dfn}
+
+
+%%%%% Refer later to explain why this element maps to h_j^2.  %%%%%%%
+
+For \Cref{prop:alg-n-diff} we will need the following lemma whose proof we defer to the next subsection.
+
+\begin{lem} \label{lem:prod-small}
+  For $j \geq 5$, the product $ \vartheta_j\vartheta_{j+1} $ is detected by $q_0^2g_{j-2}$ in the algebraic Novikov spectral sequence.
+\end{lem}
+
+Now we prove \Cref{prop:alg-n-diff}.
+
+\begin{proof}[Proof of \Cref{prop:alg-n-diff}]
+  We follow the procedure outlined above.
+  The first step is picking a lift of $h_j^3$ to the the cobar complex $\mathrm{cb}(\BP_*\BP)$. Under the isomorphism between $\BP_*\BP/I$ and $\P$ followed by the isomorphism with $\A$ the class
+  $[t_1^{2^{j-1}}]$ is detected by $h_{j-1}$.  
+  We pick the class:
+  \[ e_2 \coloneqq t_1^{2^{j}} | T_{j+1} \]
+  where $T_{j+1}$ is the cocycle given in \Cref{dfn:Tj} which detects $\vartheta_{j+1}$. By \Cref{exm:vartheta-hj2}, $T_{j+1}$ is a cobar representative of a lift of $h_{j}^2$, therefore $t_1^{2^{j}} | T_{j+1}$ is a cobar representative of a lift of $h_j^3$.
+  % and $c_j$ is the correction term from \Cref{lem:prod-big}.
+  We can compute the algebraic Novikov differential on $h_j^3$ by applying the cobar differential to this cobar representative $e_2$. In particular, we have
+  \[ c_2 \coloneqq d(e_2) = d( t_1^{2^{j}} | T_{j+1} ) =  -d(t_1^{2^{j}}) | T_{j+1} + t_1^{2^{j}} | d(T_{j+1}) = -2T_j|T_{j+1} \in I \cdot \mathrm{cb}(\BP_*\BP). \]
+
+  Now we need to produce the correction terms for step (4.2).
+  
+  We make use of \Cref{lem:prod-small}, from which we know for $j \geq 5$, $\vartheta_j\vartheta_{j+1}$ is detected by $q_0^2g_{j-2}$ in the algebraic Novikov spectral sequence. In terms of cocycles this means that there exists a correction term $c$ such that 
+  $$T_j|T_{j+1} + d(c) \in I^2 \cdot \mathrm{cb}(\BP_*\BP)$$ 
+  %%%%%% Explain where I^3 comes from %%%%%%
+  and the image of this cocycle in the cohomology of $I^2/I^3$ is detected by $q_0^2g_{j-2}$.
+
+  Therefore, we have
+  \[ d(t_1^{2^{j}} | T_{j+1}   - 2c) =  -d(t_1^{2^{j}})|T_{j+1} + t_1^{2^{j}} | d(T_{j+1}) - 2d(c) = -2T_j|T_{j+1} - 2d(c) \]
+  which is detected by $q_0^3g_{j-2}$ in the cohomology of $I^3/I^4$. 
+  
+  Choose $w_2 $ to be $-2c \in I \cdot \mathrm{cb}(\BP_*\BP)$. Then
+  $$c_2 - d(w_2) = -2T_j|T_{j+1} - 2d(c) \in I^{3} \cdot \mathrm{cb}(\BP_*\BP),.$$
+  This proves that $d_2(h_j^3) = 0$. Next, we go to step (4.3), we have
+  $$e_3 = e_2 + w_2 = t_1^{2^{j}} | T_{j+1}   - 2c,$$ 
+  $$c_3 = d(e_3) = -2T_j|T_{j+1} - 2d(c).$$
+  Since $c_3$ already belongs to $I^{3} \cdot \mathrm{cb}(\BP_*\BP)$, we may choose $w_3=0$. This proves that $d_3(h_j^3) = 0$.  Next, we go to step (4.4), we have 
+  $$e_4=e_3= t_1^{2^{j}} | T_{j+1}   - 2c,$$
+  $$c_4 = c_3 = -2T_j|T_{j+1} - 2d(c).$$
+  Since $c_4$ is detected by $q_0^3g_{j-2}$, this proves that $d_4(h_j^3) = q_0^3 g_{j-2}$.
+ 
+  (Note that we do not discuss the existence a $w_4$ such that 
+  $d(w_4) - c_4 \in I^{4} \cdot \mathrm{cb}(\BP_*\BP).$ Therefore we do not conclude $q_0^3 g_{j-2}$ is nonzero even on the $E_2$-page. For this we need the material from \Cref{sec:cess}.)
+  
+  In sum we have for $j \geq 5$,
+  \[ d_2(h_j^3) = 0, \quad d_3(h_j^3) = 0, \quad d_4(h_j^3) = q_0^3 g_{j-2}.\]
+  
+  % Now we can use the conclusion of \Cref{lem:prod-big} to say that this cocyle is in $I^3$ and 
+  % its image in the cohomology of $I^3/I^4$ is detected by $q_0^3g_{j-2}$.
+  
+  % In order to finish the proof we must show that $q_0^3g_{j-2}$ is non-zero on the $E_4$-page of the algebraic Novikov spectral sequence.
+  % From \Cref{???} we know enough about the $E_2$-page of the algebraic Novikov spectral sequence to conclude that this class survives as desired.
+\end{proof}
+
+% At this point we can make a first pass at running the algorithm laid out above (enough to motivate the next steps at least). For our lift of $h_j^3$ we pick the following class: $t_1^{2^{j}} | T_{j+1} $. 
+% From this we obtain
+% \begin{align} d(t_1^{2^{j}} | T_{j+1}) = 2 T_j | T_{j+1} \label{eqn:diff-simple} \end{align} %\TODO{signs}
+% which allows us to read off that if the product $\vartheta_j\vartheta_{j+1}$ is detected by a class $c$ in the algebraic Novikov spectral sequence, then $d_*(h_j^3) = q_0c$. Note that this may not in fact determine the differential since on the relevant page of the algebraic Novikov spectral sequence this class may already be zero\footnote{Thankfully this isn't how things shake out.}.
+
+% ------------------------------------------
+
+% With all the preliminaries out of the way we can now prove the main result of this section.
+% Our proof  and uses the identification of the product $\vartheta_j\vartheta_{j+1}$ given in \Cref{subsec:product-reln} in an essential way.
+
+% \begin{prop}
+%   For $j \geq 5$, there are algebraic Novikov differentials
+%   \[ d_4(h_j^3) = q_0^3 g_{j-2}. \]
+% \end{prop}
+
+\subsection{A key product relation}
+\label{subsec:product-reln}\ 
+
+% Through \Cref{eqn:diff-simple} we have related the algebraic Novikov differential we wish to prove to the fate of the product $\vartheta_j\vartheta_{j+1}$ in the algebraic Novikov spectral sequence. In this subsection we identify the class which detects this cocycle. 
+
+% Before proceeding further it is profitable to unwind the precise meaning of this lemma a bit.
+% Recall that we have chosen cocycles $T_j$ and $T_{j+1}$ representing $\vartheta_j$ and $\vartheta_{j+1}$.
+% What we will actually prove is the following more precise version of \Cref{lem:prod-small}
+% The product $T_j|T_{j-1}$ is non-zero modulo the augmentation ideal, so the statement that $\vartheta_j\vartheta_{j-1}$ is detected by $q_0^2g_{j-2}$ means that there exists a correction term $c$ such that
+% $ T_j|T_{j-1} + d(c) $ lifts to the square of the augmentation ideal and it is detected on the associated graded by $q_0^2g_{j-2}$.
+
+In this subsection we prove \Cref{lem:prod-small}, identifying the class detecting the product $\vartheta_j\vartheta_{j+1}$ in the algebraic Novikov spectral sequence in the following refined form in \Cref{lem:prod-big}.
+
+\begin{lem} \label{lem:prod-big}
+  For $j \geq 5$, there exists a correction term $c_j$ such that $T_j|T_{j+1} + d(c_j)$ is zero modulo $(4, v_1^4)$.
+  Moreover, the image of this cocycle in $I^2/I^3$ is detected by $q_0^2g_{j-2}$.
+\end{lem}
+
+%\begin{rmk}
+%  This lemma is sufficient to conclude that $q_0^2g_{j-2}$ is a permanent cycle in the algebraic Novikov spectral sequence, but does not guarantee that this class is non-zero (even on the $E_2$-page).
+%  For this we need the material from \Cref{sec:cess}.
+%\end{rmk}
+
+  %more specifically \Cref{Ext h03gn} and \Cref{d3 mot ass ctau group}. 
+  % However, from our computation of the $E_2$-page of the algebriac Novikov spectral sequence in \Cref{} we 
+  % We will return to this point in the next subsection.\todo{Update this with proper reference.}
+
+\begin{dfn} \label{dfn:cj}
+The correction term $c_j$ we use is
+\begin{align*}
+  c_j &\coloneqq [t_1^{2^{j-1}} | t_1^{3\cdot2^{j-1}} | t_1^{2^{j}}]
+        + 7 [t_2^{2^{j-1}} | t_1^{2^{j-1}} | t_1^{2^{j}}] \\
+      & + 2 [t_2^{2^{j-2}} | t_2^{2^{j-2}} | t_2^{2^{j-1}}] \\
+      &+ 2 [t_1^{2^{j-2}} | t_1^{2^{j-1}} | t_2^{2^{j-1}}] \cdot \left( [t_2^{2^{j-2}}|1|1] + [1|t_2^{2^{j-2}}|1] \right) \\
+      & + 2 \left([t_1^{2^{j-1}}|t_1^{2^{j-1}}|t_1^{2^{j-1}}] + [t_1^{2^{j-2}}|t_1^{2^{j-2}}|t_1^{2^{j}}] \right) \cdot \left( [t_2^{2^{j-1}}|1|1] + [1|t_2^{2^{j-1}}|1] + [1|1|t_2^{2^{j-1}}] \right) \\
+      & + 2 [t_1^{3 \cdot 2^{j-2}}|t_1^{5 \cdot 2^{j-2}}|t_1^{2^{j}}] \\
+      & + 2 [t_1^{2^{j}}|t_1^{3 \cdot 2^{j-1}}|t_1^{2^{j-1}}] + 2 [t_1^{3 \cdot 2^{j-1}}|t_1^{2^{j}}|t_1^{2^{j-1}}] \\
+      & + 2 [t_1^{2^{j-2}}|t_2^{2^{j-2}}|t_1^{2^{j+1}}] + 2 [t_1^{2^{j-1}}|t_2^{2^{j-1}}|t_1^{2^{j}}].
+\end{align*}
+\end{dfn}
+
+%     + 7 t_1^{2^{n+2}} | t_1^{2^{n+1}} | t_2^{2^{n+1}} \\
+%   & + 2 t_1^{2^{n+1}} t_2^{2^{n+1}} | t_1^{2^{n+1}} | t_1^{2^{n+1}} 
+%     + 2 t_1^{2^{n+1}} | t_1^{2^{n+1}} t_2^{2^{n+1}} | t_1^{2^{n+1}} 
+%     + 2 t_1^{2^{n+1}} | t_1^{2^{n+1}} | t_1^{2^{n+1}} t_2^{2^{n+1}} \\
+%   & + 2 t_1^{2^{n+1}} | t_1^{2^{n+2}} | t_2^{2^{n+1}} 
+%    + 2 t_1^{2^{n+1}} | t_2^{2^{n+1}} | t_1^{2^{n+2}} 
+%    + 2 t_1^{2^{n+1}} | t_1^{3\cdot2^{n+1}} | t_1^{2^{n+2}} \\
+%   & + 2 t_2^{2^{n+1}} | t_1^{2^{n+1}} t_2^{2^n} | t_1^{2^n} 
+%    + 2 t_2^{2^{n+1}} | t_1^{2^{n+1}} | t_2^{2^n} t_1^{2^n} 
+%    + 2 t_2^{2^{n+1}} | t_2^{2^n} | t_2^{2^n} \\
+%   & + 2 t_1^{2^{n+2}} t_2^{2^{n+1}} | t_1^{2^n} | t_1^{2^n} 
+%    + 2 t_1^{2^{n+3}} | t_2^{2^n} | t_1^{2^n} 
+%    + 2 t_1^{2^{n+2}} | t_1^{2^n} t_2^{2^{n+1}} | t_1^{2^n} \\
+%   & + 2 t_1^{2^{n+2}} | t_1^{2^n} | t_2^{2^{n+1}} t_1^{2^n}
+%    + 2 t_1^{2^{n+2}} | t_1^{5\cdot2^n} | t_1^{3\cdot 2^n}.
+% \end{align*}
+
+We will return to the issue of how we produced this correction term in Subsection~\ref{subsec:correction} and at that point the reason for our somewhat unnatural choice of line breaks will become clear. The remainder of the proof involves computing $T_j|T_{j+1} + d(c_j)$. We will do this by showing that this cocycle stabilizes for $j \gg 0$ and then either using a small computer program or by hand to verify the desired conclusion holds in a single (now universal) case directly.
+
+We will need to give formulas for the cobar differential on certain powers of $t_1$ and $t_2$ modulo $(8,v_1^4)$. The key observation here is the following congruence of binomial coefficients
+\[ \binom{a \cdot 2^{n+k}}{b \cdot 2^{n} + c} \equiv \begin{cases} \binom{a \cdot 2^k}{b} & c=0 \\ 0 & c=1,\dots,2^n-1 \end{cases} \pmod{2^{k+1}}. \]
+This congruence allows us to replace cocycles which, a priori, would have a number of terms depending on $j$ with cocycles that are independent of $j$ in a certain sense. 
+
+\begin{exm} \label{exm:t1powermod16}
+As an example to illustrate the point we consider the following calculation mod 16 (for $k=3$):
+
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+  d(t_1^{2^{n+3}}) &= \sum_{i=1}^{2^{n+3} -1} \binom{2^{n+3}}{i} [t_1^i | t_1^{2^{n+3} - i}] \\
+  &\equiv \sum_{j=1}^{7} \binom{2^{n+3}}{j \cdot 2^n} [t_1^{j \cdot 2^n} | t_1^{2^{n+3} - j \cdot 2^n}] \\
+  &\equiv \binom{2^{n+3}}{1 \cdot 2^n} [t_1^{1 \cdot 2^{n}} | t_1^{7 \cdot 2^{n}}] + \binom{2^{n+3}}{2 \cdot 2^n} [t_1^{2 \cdot 2^{n}} | t_1^{6 \cdot 2^{n}}] + \binom{2^{n+3}}{3\cdot 2^n} [t_1^{3 \cdot 2^{n}} | t_1^{5 \cdot 2^{n}}] + \binom{2^{n+3}}{4\cdot 2^n} [t_1^{4 \cdot 2^{n}} | t_1^{4 \cdot 2^{n}}] \\
+  &\quad + \binom{2^{n+3}}{5\cdot 2^n} [t_1^{5 \cdot 2^{n}} | t_1^{3 \cdot 2^{n}}] + \binom{2^{n+3}}{6\cdot 2^n} [t_1^{6 \cdot 2^{n}} | t_1^{2 \cdot 2^{n}}] + \binom{2^{n+3}}{7\cdot 2^n} [t_1^{7 \cdot 2^{n}} | t_1^{1 \cdot 2^{n}}]  \\
+                   &\equiv \binom{8}{1} [t_1^{1 \cdot 2^{n}} | t_1^{7 \cdot 2^{n}}] + \binom{8}{2} [t_1^{2 \cdot 2^{n}} | t_1^{6 \cdot 2^{n}}] + \binom{8}{3} [t_1^{3 \cdot 2^{n}} | t_1^{5 \cdot 2^{n}}] + \binom{8}{4} [t_1^{4 \cdot 2^{n}} | t_1^{4 \cdot 2^{n}}] \\
+                   &\quad + \binom{8}{5} [t_1^{5 \cdot 2^{n}} | t_1^{3 \cdot 2^{n}}] + \binom{8}{6} [t_1^{6 \cdot 2^{n}} | t_1^{2 \cdot 2^{n}}] + \binom{8}{7} [t_1^{7 \cdot 2^{n}} | t_1^{1 \cdot 2^{n}}]  \\
+                 &\equiv 8[t_1^{1 \cdot 2^{n}} | t_1^{7 \cdot 2^{n}}] + 12[t_1^{2 \cdot 2^{n}} | t_1^{6 \cdot 2^{n}}] + 8[t_1^{3 \cdot 2^{n}} | t_1^{5 \cdot 2^{n}}] + 6 [t_1^{4 \cdot 2^{n}} | t_1^{4 \cdot 2^{n}}] \\
+                 &\quad + 8 [t_1^{5 \cdot 2^{n}} | t_1^{3 \cdot 2^{n}}] + 12 [t_1^{6 \cdot 2^{n}} | t_1^{2 \cdot 2^{n}}] + 8 [t_1^{7 \cdot 2^{n}} | t_1^{1 \cdot 2^{n}}]  \pmod{16}
+\end{align*}
+  % &\equiv 8 [t_1^{1 \cdot 2^{n-3}} | t_1^{7 \cdot 2^{n-3}}] + 12 [t_1^{2^{n-2}} | t_1^{3 \cdot 2^{n-2}}] + 8 [t_1^{3 \cdot 2^{n-3}} | t_1^{5 \cdot 2^{n-3}}] + 6 [t_1^{2^{n-1}} | t_1^{2^{n-1}}] \\ &\quad + 8 [t_1^{5 \cdot 2^{n-3}} | t_1^{3 \cdot 2^{n-3}}] + 12 [t_1^{3 \cdot 2^{n-2}} | t_1^{2^{n-2}}] + 8 [t_1^{7 \cdot 2^{n-3}} | t_1^{1 \cdot 2^{n-3}}] \pmod{16}
+
+We make two observations from this calculation which holds for $n \geq 0$: 
+\begin{itemize}
+\item For $m \geq 3$, to obtain the expression $d(t_1^{2^{m+1}})$ mod 16 from $d(t_1^{2^{m}})$ mod 16, we can take a termwise square for each monomial (with coefficient 1)  in $t_1$ and then take the sum. We say this expansion \emph{stabilizes} for $m \geq 3$.
+
+\item We can also read off the expression $d(t_1^{2^{m}})$ mod 8, and that it stabilizes for $m \geq 2$.
+\end{itemize}  
+  
+\end{exm}
+
+
+\begin{exm}\label{exm:vartheta-hj2}
+  Consider the mod 4 ($k=1$) version of these congruences:
+$$d(t_1^{2^{j}}) = \sum_{i=1}^{2^{j} -1} \binom{2^{j}}{i} [t_1^i | t_1^{2^{j} - i}] \equiv \binom{2^{j}}{2^{j-1}}[t_1^{2^{j-1}} | t_1^{2^{j-1}}] \equiv 2[t_1^{2^{j-1}} | t_1^{2^{j-1}}] \pmod{4}$$
+  we can determine the image of $\vartheta_j$ under the quotient map to the cohomology of $\P$.
+  \[ T_j = \frac{1}{2} d(t_1^{2^j}) \equiv [t_1^{2^{j-1}} | t_1^{2^{j-1}}] \pmod{2} \]
+  Under the isomorphism between $\BP_*\BP/I$ and $\P$ followed by the isomorphism with $\A$ the class
+  $[t_1^{2^{j-1}}]$ is detected by $h_{j-1}$ and therefore the image of $\vartheta_j$ maps to $h_{j-1}^2$.
+\end{exm}
+
+% From the fact that $2T_j$ is killed by the algebraic Novikov differential on $h_{j+1}$ we can infer that $T_j$ provides a choice of Kervaire invariant one class.
+% More formally, we have
+% \[ T_j \equiv \frac{1}{2} \binom{2^j}{2^{j-1}} [t_1^{2^{j-1}} | t_1^{2^{j-1}}] \equiv [t_1^{2^{j-1}} | t_1^{2^{j-1}}] \pmod{2} \]
+% which implies that $\vartheta_j$ maps to $h_j^2$ under the Thom reduction map---justifying the name.
+
+
+\begin{exm} \label{exm:tjtj1mod8}
+This same formula also allows us to rewrite $T_j|T_{j+1}$ mod $8$ in terms of powers of $t_1$ for $j \geq 3$. From the formula in \Cref{exm:t1powermod16}, we have
+ \begin{align*}
+T_j & = \frac{1}{2} d(t_1^{2^{j}}) \\
+&\equiv 4[t_1^{1 \cdot 2^{j-3}} | t_1^{7 \cdot 2^{j-3}}] + 6[t_1^{2 \cdot 2^{j-3}} | t_1^{6 \cdot 2^{j-3}}] + 4[t_1^{3 \cdot 2^{j-3}} | t_1^{5 \cdot 2^{j-3}}] + 3[t_1^{4 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}}] \\
+                 &\quad + 4[t_1^{5 \cdot 2^{j-3}} | t_1^{3 \cdot 2^{j-3}}] + 6[t_1^{6 \cdot 2^{j-3}} | t_1^{2 \cdot 2^{j-3}}] + 4[t_1^{7 \cdot 2^{j-3}} | t_1^{1 \cdot 2^{j-3}}]  \pmod{8}
+     \end{align*}             
+                 
+{\footnotesize
+  \begin{align*}
+    T_j|T_{j+1} & \equiv 4 [t_1^{1 \cdot 2^{j-3}} | t_1^{7 \cdot 2^{j-3}}|T_{j+1}] &+ 6 [t_1^{2 \cdot 2^{j-3}} | t_1^{6 \cdot 2^{j-3}}|T_{j+1}] &+ 4 [t_1^{3 \cdot 2^{j-3}} | t_1^{5 \cdot 2^{j-3}}|T_{j+1}] \\ 
+    &+ 3 [t_1^{4 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}}|T_{j+1}] \\
+                 &+ 4 [t_1^{5 \cdot 2^{j-3}} | t_1^{3 \cdot 2^{j-3}}|T_{j+1}] &+ 6 [t_1^{6 \cdot 2^{j-3}} | t_1^{2 \cdot 2^{j-3}}|T_{j+1}] &+ 4 [t_1^{7 \cdot 2^{j-3}} | t_1^{1 \cdot 2^{j-3}}|T_{j+1}]  \\   
+   & \equiv 4 [t_1^{1 \cdot 2^{j-3}} | t_1^{7 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}} ] \\
+    &+ (4 [t_1^{2 \cdot 2^{j-3}} | t_1^{6 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}} | t_1^{12 \cdot 2^{j-3}}]
+    &+ 2 [t_1^{2 \cdot 2^{j-3}} | t_1^{6 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}}]
+    &+ 4 [t_1^{2 \cdot 2^{j-3}} | t_1^{6 \cdot 2^{j-3}} | t_1^{12 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}}]) \\
+    &+ 4 [t_1^{3 \cdot 2^{j-3}} | t_1^{5 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}}] \\
+    &+ (4 [t_1^{4 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}} | t_1^{2 \cdot 2^{j-3}} | t_1^{14 \cdot 2^{j-3}}]
+    &+ 2 [t_1^{4 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}} | t_1^{12 \cdot 2^{j-3}}]
+    &+ 4 [t_1^{4 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}} | t_1^{6 \cdot 2^{j-3}} | t_1^{10 \cdot 2^{j-3}}] \\
+    &+ 1 [t_1^{4 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}}] \\
+    &+ 4 [t_1^{4 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}} | t_1^{10 \cdot 2^{j-3}} | t_1^{6 \cdot 2^{j-3}}]
+    &+ 2 [t_1^{4 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}} | t_1^{12 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}}]
+    &+ 4 [t_1^{4 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}} | t_1^{14 \cdot 2^{j-3}} | t_1^{2 \cdot 2^{j-3}}])\\
+    &+ 4 [t_1^{5 \cdot 2^{j-3}} | t_1^{3 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}}] \\
+    &+ (4 [t_1^{6 \cdot 2^{j-3}} | t_1^{2 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}} | t_1^{12 \cdot 2^{j-3}}]
+    &+ 2 [t_1^{6 \cdot 2^{j-3}} | t_1^{2 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}}]
+    &+ 4 [t_1^{6 \cdot 2^{j-3}} | t_1^{2 \cdot 2^{j-3}} | t_1^{12 \cdot 2^{j-3}} | t_1^{4 \cdot 2^{j-3}}])\\
+    &+ 4 [t_1^{7 \cdot 2^{j-3}} | t_1^{1 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}} | t_1^{8 \cdot 2^{j-3}}] & &\pmod{8}.
+    \end{align*}}
+  
+%{\footnotesize
+%  \begin{align*}
+%    T_j|T_{j+1} &\equiv 4 [t_1^{2^{j-1}} | t_1^{2^{j-1}} | t_1^{1 \cdot 2^{j-2}} | t_1^{7 \cdot 2^{j-2}}] &
+%    &\hspace{-11pt}+ 4 [t_1^{2^{j-2}} | t_1^{3 \cdot 2^{j-2}} | t_1^{2^{j-1}} | t_1^{3 \cdot 2^{j-1}}] &
+ %   &\hspace{-11pt}+ 2 [t_1^{2^{j-1}} | t_1^{2^{j-1}} | t_1^{2^{j-1}} | t_1^{3 \cdot 2^{j-1}}] \\
+%                &+ 4 [t_1^{3 \cdot 2^{j-2}} | t_1^{2^{j-2}} | t_1^{2^{j-1}} | t_1^{3 \cdot 2^{j-1}}] &
+%    &\hspace{-11pt}+ 4 [t_1^{2^{j-1}} | t_1^{2^{j-1}} | t_1^{3 \cdot 2^{j-2}} | t_1^{5 \cdot 2^{j-2}}] &
+%    &\hspace{-11pt}+ 4 [t_1^{1 \cdot 2^{j-3}} | t_1^{7 \cdot 2^{j-3}} | t_1^{2^{j}} | t_1^{2^{j}}] \\
+%                &+ 2 [t_1^{2^{j-2}} | t_1^{3 \cdot 2^{j-2}} | t_1^{2^{j}} | t_1^{2^{j}}] &
+%    &\hspace{-11pt}+ 4 [t_1^{3 \cdot 2^{j-3}} | t_1^{5 \cdot 2^{j-3}} | t_1^{2^{j}} | t_1^{2^{j}}] &
+%    &\hspace{-11pt}+ 1 [t_1^{2^{j-1}} | t_1^{2^{j-1}} | t_1^{2^{j}} | t_1^{2^{j}}] \\
+%                &+ 4 [t_1^{5 \cdot 2^{j-3}} | t_1^{3 \cdot 2^{j-3}} | t_1^{2^{j}} | t_1^{2^{j}}] &
+%    &\hspace{-11pt}+ 2 [t_1^{3 \cdot 2^{j-2}} | t_1^{2^{j-2}} | t_1^{2^{j}} | t_1^{2^{j}}] &
+%    &\hspace{-11pt}+ 4 [t_1^{7 \cdot 2^{j-3}} | t_1^{1 \cdot 2^{j-3}} | t_1^{2^{j}} | t_1^{2^{j}}] \\
+%                &+ 4 [t_1^{2^{j-1}} | t_1^{2^{j-1}} | t_1^{5 \cdot 2^{j-2}} | t_1^{3 \cdot 2^{j-2}}] &
+ %   &\hspace{-11pt}+ 4 [t_1^{2^{j-2}} | t_1^{3 \cdot 2^{j-2}} | t_1^{3 \cdot 2^{j-1}} | t_1^{2^{j-1}}] &
+%    &\hspace{-11pt}+ 2 [t_1^{2^{j-1}} | t_1^{2^{j-1}} | t_1^{3 \cdot 2^{j-1}} | t_1^{2^{j-1}}] \\
+%                &+ 4 [t_1^{3 \cdot 2^{j-2}} | t_1^{2^{j-2}} | t_1^{3 \cdot 2^{j-1}} | t_1^{2^{j-1}}] &
+%    &\hspace{-11pt}+ 4 [t_1^{2^{j-1}} | t_1^{2^{j-1}} | t_1^{7 \cdot 2^{j-2}} | t_1^{1 \cdot 2^{j-2}}] & &\pmod{8}.
+%  \end{align*}}  
+  
+\end{exm}
+
+\begin{exm} \label{exm:formulas}
+Some further formulas that can be similarly verified for $n \geq 0$ are:
+
+\begin{align*}
+  d(t_1^{3 \cdot 2^{n+2}}) &= \sum_{i=1}^{3 \cdot 2^{n+2} - 1} \binom{3 \cdot 2^{n+2}}{i} [t_1^i | t_1^{3 \cdot 2^{n+2} - i}] 
+  \equiv \sum_{j=1}^{3 \cdot 2^{2} -1} \binom{3 \cdot 2^{n+2}}{j} [t_1^{j \cdot 2^{n}} | t_1^{(3 \cdot 2^{2} - j) \cdot 2^{n}}] \\
+  &\equiv 4 [t_1^{1 \cdot 2^{n}} | t_1^{11 \cdot 2^{n}}]
+  + 2 [t_1^{2 \cdot 2^{n}} | t_1^{10 \cdot 2^{n}}]
+  + 4 [t_1^{3 \cdot 2^{n}} | t_1^{9 \cdot 2^{n}}]
+  + 7 [t_1^{4 \cdot 2^{n}} | t_1^{8 \cdot 2^{n}}]
+  + 4 [t_1^{6 \cdot 2^{n}} | t_1^{6 \cdot 2^{n}}] \\
+  &\quad 
+  + 7 [t_1^{8 \cdot 2^{n}} | t_1^{4 \cdot 2^{n}}]
+  + 4 [t_1^{9 \cdot 2^{n}} | t_1^{3 \cdot 2^{n}}]
+  + 2 [t_1^{10 \cdot 2^{n}} | t_1^{2 \cdot 2^{n}}]
+  + 4 [t_1^{11 \cdot 2^{n}} | t_1^{1 \cdot 2^{n}}] \pmod{8},
+\end{align*}
+
+We observe that the expression $d(t_1^{3 \cdot 2^{m}})$ mod 8 stabilizes for $m \geq 2$.
+
+\begin{align*}
+  d(t_1^{5 \cdot 2^{n+1}})
+  &= \sum_{i=1}^{5 \cdot 2^{n+1} - 1} \binom{5 \cdot 2^{n+1}}{i} [t_1^i | t_1^{5 \cdot 2^{n+1} - i}]
+  \equiv \sum_{j=1}^{5 \cdot 2 -1} \binom{5 \cdot 2}{j} [t_1^{j \cdot 2^{n}} | t_1^{(5 \cdot 2 - j) \cdot 2^{n}}] \\
+  &\equiv 2 [t_1^{1 \cdot 2^{n}} | t_1^{9 \cdot 2^{n}}]
+  + [t_1^{2 \cdot 2^{n}} | t_1^{8 \cdot 2^{n}}]
+  + 2 [t_1^{4 \cdot 2^{n}} | t_1^{6 \cdot 2^{n}}]
+  + 2 [t_1^{6 \cdot 2^{n}} | t_1^{4 \cdot 2^{n}}] \\
+  &\quad + [t_1^{8 \cdot 2^{n}} | t_1^{2 \cdot 2^{n}}]
+  + 2 [t_1^{9 \cdot 2^{n}} | t_1^{1 \cdot 2^{n}}] \pmod{4},
+\end{align*}
+
+We observe that the expression $d(2 \cdot t_1^{5 \cdot 2^{m}})$ mod 8 stabilizes for $m \geq 1$.
+
+{\footnotesize
+\begin{align*}
+  \Delta (t_2^{2^{n+4}}) &= \left( [t_2|1] - [t_1|t_1^2] + v_1 [t_1|t_1] + [1|t_2] \right)^{2^{n+4}} \\
+                         &= \sum_{|J| = 4,\ \mathrm{deg}(J) = 2^{n+4}} (-1)^{j_2} \binom{2^{n+4}}{ J } v_1^{j_3} [ t_1^{j_2 + j_3} t_2^{j_1} | t_1^{2j_2 + j_3} t_2^{j_4} ] \\
+                         &\equiv  \sum_{|I|=4,\ \mathrm{deg}(I) = 4} (-1)^{i_2 \cdot 2^{n+2}} \binom{4}{I} v_1^{i_3 \cdot 2^{n+2}} [ t_1^{(i_2 + i_3) \cdot 2^{n+2}} t_2^{i_1 \cdot 2^{n+2}} | t_1^{(2i_2 + i_3) \cdot 2^{n+2}} t_2^{i_4 \cdot 2^{n+2}} ] \\
+                         &\equiv  \sum_{|I|=4,\ \mathrm{deg}(I) = 4,\ i_3=0} \binom{4}{I} [ t_1^{i_2 \cdot 2^{n+2}} t_2^{i_1 \cdot 2^{n+2}} | t_1^{i_2 \cdot 2^{n+3}} t_2^{i_4 \cdot 2^{n+2}} ] \\
+                         &\equiv 1 [t_2^{16 \cdot 2^{n}}|1] + 4 [t_1^{4 \cdot 2^{n}}t_2^{12 \cdot 2^{n}}| t_1^{8 \cdot 2^{n}}] + 4 [t_2^{12 \cdot 2^{n}} | t_2^{4 \cdot 2^{n}}] + 6 [t_1^{8 \cdot 2^{n}}t_2^{8 \cdot 2^{n}}| t_1^{16 \cdot 2^{n}}] \\
+                         &\quad+ 4 [t_1^{4 \cdot 2^{n}}t_2^{8\cdot 2^{n}} | t_1^{8 \cdot 2^{n}} t_2^{4 \cdot 2^{n}}] + 6 [t_2^{8 \cdot 2^{n}} | t_2^{8 \cdot 2^{n}}] + 4 [t_1^{12 \cdot 2^{n}}t_2^{4 \cdot 2^{n}}| t_1^{24 \cdot 2^{n}}] + 4 [t_1^{8 \cdot 2^{n}}t_2^{4 \cdot 2^{n}} | t_1^{16 \cdot 2^{n}} t_2^{4 \cdot 2^{n}}] \\
+                         &\quad+ 4 [t_1^{4 \cdot 2^{n}}t_2^{4 \cdot 2^{n}} | t_1^{8 \cdot 2^{n}} t_2^{8 \cdot 2^{n}}] + 4 [t_2^{4 \cdot 2^{n}} | t_2^{12 \cdot 2^{n}}] + 1 [t_1^{16 \cdot 2^{n}}| t_1^{32 \cdot 2^{n}}] + 4 [t_1^{12 \cdot 2^{n}}| t_1^{24 \cdot 2^{n}} t_2^{4 \cdot 2^{n}}] \\
+                         &\quad+ 6 [t_1^{8 \cdot 2^{n}}| t_1^{16 \cdot 2^{n}} t_2^{8 \cdot 2^{n}}] + 4 [t_1^{4 \cdot 2^{n}}| t_1^{8 \cdot 2^{n}} t_2^{12 \cdot 2^{n}}] + 1 [1| t_2^{16 \cdot 2^{n}}] \pmod{8,v_1^4}.
+\end{align*}}
+Here $J=(j_1,j_2,j_3,j_4), I = (i_1,i_2,i_3,i_4)$. Since for each monomial the minimal 2-adic evaluation of the power of $t_1, t_2$ in the above expression is $n+2$, and to get ride of $(-1)^{i_2}\cdot 2^{n+2}$ we would like to have $n+2\geq 1$, we observe that the expression $d(t_2^{2^m})$ mod $(8, v_1^4)$ stabilizes for $m \geq 3$.
+\end{exm}
+
+
+\begin{lem}\label{lem:cobar-stabilize}
+  The value of $T_j|T_{j+1} + d(c_j)$ mod $(8,v_1^4)$ stabilizes for $j \geq 5$ in the sense that after expanding this cocycle as a sum of monomials (with coefficient 1) in $t_1$ and $t_2$ we can increase $j$ by taking a termwise square. 
+\end{lem}
+
+\begin{proof}
+From \Cref{exm:tjtj1mod8} we see that the expression $T_j|T_{j+1}$ mod 8 (and therefore mod $(8,v_1^4)$) stabilizes for $j \geq 3$. From \Cref{dfn:cj}, we see that $c_j$ can be expressed as the sum of products and tensors of the following terms (powers of $t_1,t_2$ are written in the form $a \cdot 2^{j-2}$ for easier comparison):
+\[ {t_1^{1 \cdot 2^{j-2}}},\ t_1^{2 \cdot 2^{j-2}},\ {t_1^{3 \cdot 2^{j-2}}},\ t_1^{4 \cdot 2^{j-2}},\ 2 \cdot {t_1^{5 \cdot 2^{j-2}}},\ t_1^{6 \cdot 2^{j-2}},\ {t_1^{8 \cdot 2^{j-2}}},\ {t_2^{1 \cdot 2^{j-2}}},\ t_2^{2 \cdot 2^{j-2}}. \]
+ % \[ \underline{t_1^{1 \cdot 2^{j-2}}},\ t_1^{2 \cdot 2^{j-2}},\ \underline{t_1^{3 \cdot 2^{j-2}}},\ t_1^{4 \cdot 2^{j-2}},\ \underline{t_1^{5 \cdot 2^{j-2}}},\ t_1^{6 \cdot 2^{j-2}},\ \underline{t_1^{8 \cdot 2^{j-2}}},\ \underline{t_2^{1 \cdot 2^{j-2}}},\ t_2^{2 \cdot 2^{j-2}} \]
+%  where the underlined terms only appear with coefficient 2.
+Therefore, $d(c_j)$ can be expressed as the sum of products and tensors of these terms and differentials on them. These terms stabilize for $j \geq 2$. As for their differentials,
+for powers of $t_1$, from \Cref{exm:t1powermod16}, we see that the expression $d(t_1^{2^{j-2}})$ mod 8 stabilizes for $j \geq 4$; 
+  From \Cref{exm:formulas}, the expressions $d(t_1^{3 \cdot 2^{j-2}})$ and $d(2 \cdot t_1^{5 \cdot 2^{j-2}})$ mod 8 stabilizes for $j \geq 4$.  
+  For powers of $t_2$, from \Cref{exm:formulas}, the expression $d(t_2^{2^{j-2}})$ mod $(8, v_1^4)$ stabilizes for $j \geq 5$. 
+ 
+  In sum, we have that the expression $T_j|T_{j+1} + d(c_j)$ mod $(8,v_1^4)$ stabilizes for $j \geq 5$.
+ 
+\end{proof}
+
+\begin{proof}[Proof of \Cref{lem:prod-big}.]
+  Using either the program provided in \Cref{app:code} or directly by hand one may use the formulas above to give an explicit expansion of the cocycle $T_5|T_{6} + d(c_5)$ modulo $(8,v_1^4)$. Applying \Cref{lem:cobar-stabilize} we can then covert this into an explicit expansion of $T_j|T_{j+1} + d(c_j)$ valid for $j \geq 5$.\footnote{Note that if one does this expansion by hand it is actually easier to skip over \Cref{lem:cobar-stabilize} and just use the formulas given prior to that lemma directly.}
+
+  In the tables below we provide expansions of the terms which make up $T_j|T_{j+1} + d(c_j)$ modulo $(8,v_1^4)$.
+  The columns are organized by the May filtration of the monomials (see below for a review of our use of the May filtration).
+  
+  Throughout these tables we use the following compact notation:
+  we write $k_1$ for $t_1^{k \cdot 2^n}$ and $k_2$ for $t_2^{k \cdot 2^n}$ and here $n=j-3$. So for example $4[4_2|1_1|3_1|8_1]$ stands for 
+  $$4[t_2^{4\cdot 2^n}|t_1^{1\cdot 2^n}|t_1^{3\cdot 2^n}|t_1^{8\cdot 2^n}] = 4[t_2^{4\cdot 2^{j-3}}|t_1^{1\cdot 2^{j-3}}|t_1^{3\cdot 2^{j-3}}|t_1^{8\cdot 2^{j-3}}] = 4[t_2^{2^{j-1}}|t_1^{2^{j-3}}|t_1^{3\cdot 2^{j-3}}|t_1^{2^{j}}] .$$
+
+  \input{tablev2.tex}
+  Explicit calculation of the first row $T_j|T_{j+1}$ mod 8 was already carried out in \Cref{exm:tjtj1mod8}.
+  We provide detailed calculation of the second row and the fifth row as typical examples and let the reader to check the rest of the table. 
+ 
+\begin{itemize}  
+\item The second row $d( [ 4_1 | 12_1 | 8_1 ] )$ mod 8: 
+\end{itemize}
+\begin{align*}
+d( [ 4_1 | 12_1 | 8_1 ] ) & = - [d(4_1) | 12_1 | 8_1 ] &+ [4_1 | d(12_1) | 8_1] &- [ 4_1 | 12_1 | d(8_1) ] \\
+ & \equiv - 4 [1_1 | 3_1 | 12_1 | 8_1] &- 6 [2_1 | 2_1 | 12_1 | 8_1] &- 4 [3_1 | 1_1 | 12_1 | 8_1] && (by \ \Cref{exm:t1powermod16}) \\
+ & + 4 [4_1 | 1_1 | 11_1 | 8_1] &+ 2 [4_1 | 2_1 | 10_1 | 8_1] &+ 4 [4_1 | 3_1 | 9_1 | 8_1] \\
+ & + 7 [4_1 | 4_1 | 8_1 | 8_1] &+ 4 [4_1 | 6_1 | 6_1 | 8_1] &+ 7 [4_1 | 8_1 | 4_1 | 8_1] \\
+ & + 4 [4_1 | 9_1 | 3_1 | 8_1] &+ 2 [4_1 | 10_1 | 2_1 | 8_1] &+ 4 [4_1 | 11_1 | 1_1 | 8_1]
+ && (by \ \Cref{exm:formulas}) \\
+ & - 4 [ 4_1 | 12_1 | 2_1 | 6_1 ] &- 6 [ 4_1 | 12_1 | 4_1 | 4_1 ] &- 4 [ 4_1 | 12_1 | 6_1 | 2_1 ] && (by \ \Cref{exm:t1powermod16})
+\end{align*}
+Re-organize these 15 terms by May filtration, we have the following in May filtration 4:
+$$7 [4_1 | 4_1 | 8_1 | 8_1], \ 7 [4_1 | 8_1 | 4_1 | 8_1],$$
+in May filtration 5:
+$$2 [2_1 | 2_1 | 12_1 | 8_1], \  2 [4_1 | 2_1 | 10_1 | 8_1], \ 2 [4_1 | 10_1 | 2_1 | 8_1], \ 2 [ 4_1 | 12_1 | 4_1 | 4_1 ],$$
+and in May filtration 6:
+$$4 [1_1 | 3_1 | 12_1 | 8_1], \  4 [3_1 | 1_1 | 12_1 | 8_1], \ 4 [4_1 | 1_1 | 11_1 | 8_1], \ 4 [4_1 | 3_1 | 9_1 | 8_1], \ 4 [4_1 | 6_1 | 6_1 | 8_1],$$  
+$$4 [4_1 | 9_1 | 3_1 | 8_1], \ 4 [4_1 | 11_1 | 1_1 | 8_1], \ 4 [ 4_1 | 12_1 | 2_1 | 6_1 ], \ 4 [ 4_1 | 12_1 | 6_1 | 2_1 ].$$
+
+\ \ \\
+
+\begin{itemize}  
+\item The fifth row $d(2[2_1 2_2 | 4_1 | 4_2])$ mod $(8, v_1^4)$:
+\end{itemize}
+
+We first expand $d(2_1 2_2)$ mod $(4, v_1^4)$:
+\begin{align*}
+d(2_1 2_2) &= \Delta(2_1 2_2) - [1|2_1 2_2] - [2_1 2_2|1]\\
+ & = \Delta(2_1) \cdot \Delta(2_2) - [1|2_1 2_2] - [2_1 2_2|1]\\
+ & \equiv ([1|2_1] + 2[1_1|1_1] + [2_1|1]) \cdot ([1|2_2] + 2[1_11_2|2_1] + 2[1_2|1_2] + [2_1|4_1]+2[1_1|2_11_2]+[2_2|1])\\
+ & - [1|2_1 2_2] - [2_1 2_2|1] \ \ \ (by \ \Cref{exm:t1powermod16} \ and \ \Cref{exm:formulas})\\
+ & \equiv (2[1_11_2|4_1] + 2[1_2|1_22_1] + [2_1|6_1]+2[1_1|4_11_2]+[2_2|2_1]) \\
+ &+ (2[1_1|1_12_2] + 2[3_1|5_1] + 2[1_12_2|1_1]) \\
+ &+ ([2_1|2_2] + 2[3_11_2|2_1] + 2[2_11_2|1_2] + [4_1|4_1]+2[3_1|2_11_2])
+\end{align*}
+Then we have $d(2[2_1 2_2 | 4_1 | 4_2])$ mod $(8, v_1^4)$:
+{\footnotesize
+\begin{align*}
+d(2[2_1 2_2 | 4_1 | 4_2]) & = - [2\cdot d([2_12_2]) | 4_1 | 4_2] + [2_12_2 | 2\cdot d(4_1) | 4_2] - [2_12_2 | 4_1| 2\cdot d(4_2)] \\
+&  \equiv (-4[1_11_2|4_1| 4_1 | 4_2] -4[1_2|2_11_2| 4_1 | 4_2] -2 [2_1|6_1| 4_1 | 4_2]-4[1_1|4_11_2| 4_1 | 4_2]-2[2_2|2_1| 4_1 | 4_2]) \\
+ &+ (-4[1_1|1_12_2| 4_1 | 4_2] -4[3_1|5_1| 4_1 | 4_2] -4[1_12_2|1_1]| 4_1 | 4_2) \\
+ &+ (-2[2_1|2_2| 4_1 | 4_2] -4[3_11_2|2_1| 4_1 | 4_2] -4[2_11_2|1_2| 4_1 | 4_2] -2 [4_1|4_1| 4_1 | 4_2]-4[3_1|2_11_2| 4_1 | 4_2]) \\
+ & + 4[2_12_2 | 2_1|2_1 | 4_2] \ \ (by \ \Cref{exm:t1powermod16})\\
+ & - (4[2_12_2 | 4_1| 2_12_2|4_1] + 4[2_12_2 | 4_1| 2_2|2_2] +2[2_12_2 | 4_1| 4_1|8_1]+4[2_12_2 | 4_1| 2_1|4_12_2)]) \ \ (by \ \Cref{exm:formulas}).
+\end{align*}}
+Re-organize these 18 terms by May filtration, we have the following in May filtration 6:
+$$6[4_1|4_1| 4_1 | 4_2],$$
+in May filtration 7:
+$$6[2_1|6_1| 4_1 | 4_2], \ 6[2_12_2 | 4_1| 4_1|8_1],$$
+in May filtration 8:
+$$6[2_2|2_1| 4_1 | 4_2], \ 4[3_1|5_1| 4_1 | 4_2], \ 6[2_1|2_2| 4_1 | 4_2],$$
+and 4-multiples in May filtrations 9, 10 and 11.\\
+
+  
+The proof of \Cref{lem:prod-big} follows essentially from the following two facts about $T_j|T_{j+1} + d(c_j)$, which we extract by examining these tables:
+  \begin{itemize}
+  \item[(a)] $T_j|T_{j+1} + d(c_j)$ is zero modulo $(4,v_1^4)$ and
+  \item[(b)] modulo terms of May filtration $< 12$ it is given by
+    \[ [t_2^{2^{j-2}} | t_2^{2^{j-2}} | t_2^{2^{j-2}} | t_2^{2^{j-2}}]
+    + [t_2^{2^{j-2}} | t_2^{2^{j-3}} | t_2^{2^{j-3}} | t_2^{2^{j-1}}]
+    + [t_2^{2^{j-3}} | t_2^{2^{j-3}} | t_2^{2^{j-2}} | t_2^{2^{j-1}}]. \]
+  \end{itemize}
+  
+
+
+  Part (a) is exactly the first part of the lemma.
+  To check that part (a) is true, we sum within each column (fixed May filtration) and check that the sum is divisible by 4.
+  
+  In order to determine which class detects this cocycle in $I^2/I^3$ we first note that no $v_n$'s appear other than $v_0=2$. This means that if we divide this class by $4$, view it as an element of the cobar complex of $\P$, and at that point it detects a class $H$, then the original cocycle was detected by $q_0^2H$ in the algebraic Novikov spectral sequence.
+
+  In order to determine the relevant class in the cohomology of $\P$ we make two observations.
+  First, as a consequence of computations of $\Ext_{\A}^4$ (\cite{LinExt}) the only nontrivial element of the cohomology of $\P$ in this bidegree is $g_{j-2}$, which under the double up isomorphism corresponds to $g_{j-1}$ in $\Ext_{\A}^4$. Therefore it suffices to show that this class is detected by something nontrivial.
+  Second, in the May spectral sequence $g_{j-1}$ is detected by $h_{2,j-1}^4$ (see \cite{TangoraExt, RavenelGreenBook} for example).
+  In order to identify our class we would like to pass to the associated graded of the May filtration.
+  
+  Recall that $\Ext_{\A}$ can be computed via the cobar complex over the dual Steenrod algebra $\A$. The May filtration we use here is an increasing filtration that filters the cobar complex over $\A$ and in particular it assigns $\xi_i^{2^j}$ filtration $2i-1$ (see Page 69 of \cite{RavenelGreenBook}). It has the advantage that 
+  $$\Delta(\xi_i^{2^j}) = 1|\xi_i^{2^j} + \xi_i^{2^j}|1 + \text{lower May filtration terms},$$
+  so $\xi_i^{2^j}$ is primitive in the associated graded $E^0 \A$. 
+We view the associated graded cobar complex as the May $E_0$-page, and the May $E_1$-page has the form
+$$E_1 \cong \mathbb{F}_2[h_{i,j}| i\geq 1, j \geq 0],$$
+where $h_{i,j}$ corresponds to $\xi_i^{2^j}$ with May filtration $2i-1$.
+  
+  
+Although the $t_i$'s don't directly correspond to the $\xi_i^2$'s in $\P$---they differ by an action of the anti-involution, this action is the identity on the May $E_0$-page since the rest of the terms are in lower May filtration. 
+  Using (b) we find that our class
+      \[ [t_2^{2^{j-2}} | t_2^{2^{j-2}} | t_2^{2^{j-2}} | t_2^{2^{j-2}}]
+    + [t_2^{2^{j-2}} | t_2^{2^{j-3}} | t_2^{2^{j-3}} | t_2^{2^{j-1}}]
+    + [t_2^{2^{j-3}} | t_2^{2^{j-3}} | t_2^{2^{j-2}} | t_2^{2^{j-1}}]\]
+   is sent to (up to lower May filtration terms)
+    \[ [\xi_2^{2^{j-1}} | \xi_2^{2^{j-1}} | \xi_2^{2^{j-1}} | \xi_2^{2^{j-1}}]
+    + [\xi_2^{2^{j-1}} | \xi_2^{2^{j-2}} | \xi_2^{2^{j-2}} | \xi_2^{2^{j}}]
+    + [\xi_2^{2^{j-2}} | \xi_2^{2^{j-2}} | \xi_2^{2^{j-1}} | \xi_2^{2^{j}}] \]
+   and is detected in the May $E_1$-page by 
+  \[ h_{2,j-1}^4 + h_{2,j}h_{2,j-2}^2h_{2,j-1}  + h_{2,j}h_{2,j-1}h_{2,j-2}^2 \]
+  which is equal to $h_{2,j-1}^4$, finishing the proof.
+\end{proof}
+\endgroup
+
+% In the associated graded of the May filtration $t_2^{2^n}$ is a polynomial generator $h_{2,n}$. Since the $E_1$ page is commutative the first and third term cancel and we are left with the single term $h_{2,n}^4$. This is also the class in the May spectral sequence which detects $g_{j-2}$(?) so we may conclude that the image of $1/4 * \vartheta_j \vartheta_j-1$ in the Adams spectral sequence is $g_{j-2}$.
+  
+
+
+\begin{cor}
+  The product $\vartheta_j\vartheta_{j+1}$ is nontrivial on the Adams--Novikov $E_2$-page.
+\end{cor}
+
+\begin{proof}
+  From \Cref{lem:prod-small} we know that $\vartheta_j\vartheta_{j+1}$ is detected by $q_0^2g_{j-2}$ in the algebraic Novikov spectral sequence. This means that it will suffice to show this class isn't hit by a differential.
+  
+  Examining the information about the $E_2$ page of the algebraic Novikov spectral sequence from \Cref{E2 descriptions}(3) the only potential differentials which could hit $q_0^2g_{j-2}$ are a $d_2$ differential on $q_0h_j^3$ or a $d_3$ differential on $h_j^3$.
+  We showed that $d_2(h_j^3)$ and $d_3(h_j^3)$ are zero in the Proposition~\ref{prop:alg-n-diff}.
+\end{proof}
+
+
+\subsection{Constructing the correction term}\ 
+\label{subsec:correction}
+
+In this short subsection we digress and discuss the choice of the correction term $c_j$. 
+Although $c_j$ was originally produced by inspection we explain our idea of how to produce such a term. We hope that this serves as a useful guide to the reader trying to make similar calculations in the future. 
+
+First note that we have rigged things so that at each step no $v_i$ appears (other than $v_0 = 2$).
+What this means is that the associated graded of the algebraic Novikov filtration becomes, as far as we see, the same as the cobar complex for $\P$. What gain does this provide us? Well, we can now filter things by the May filtration and successively add terms to work our way up the May filtration. As an example: The cocycle we started with $T_j|T_{j+1}$ is quite complicated, but mod 2 things are manageable
+\[ T_j | T_{j+1} \equiv [t_1^{2^{j-1}}|t_1^{2^{j-1}}|t_1^{2^{j}}|t_1^{2^{j}}] \pmod{2} \]
+We use the term $[t_1^{2^{j-1}}|t_1^{3 \cdot 2^{j-1}}|t_1^{2^{j}}]$ to swap the middle pair of powers of $t_1$.
+Next we add the term $[t_2^{2^{j-1}}|t_1^{2^{j-1}}|t_1^{2^{j}}]$ in order to use the May $d_1$ differential killing $h_{j-1}h_j$.
+
+At this point, after adding $d(-)$ of these two correction terms we get something which is zero mod 2.
+This means we get to move up one stage in the algebraic Novikov filtration.
+Now we look at things mod 4, since we get a cocycle mod 4 which is divisible by 2 we consider it again as a cocycle in $\P$. We also have to make a choice of lift of our coefficients on the correction term and we use the ones that appear in $c_j$ (i.e. one and seven). The reasoning behind this choice is related to how we initially wrote down this cocycle (by inspection) and it likely makes little difference in the end what coefficients were chosen.
+
+The next stage involves examining the cocycle
+\[ T_j|T_{j+1} + d\left([t_1^{2^{j-1}}|t_1^{3 \cdot 2^{j-1}}|t_1^{2^{j}}] + 7[t_2^{2^{j-1}}|t_1^{2^{j-1}}|t_1^{2^{j}}] \right) \pmod{4}. \]
+The leading term in the May filtration of this cocycle is $2[t_2^{2^{j-2}}|t_2^{2^{j-2}}|t_1^{2^{j-1}}|t_1^{2^{j}}]$ in May filtration 8. In the May $E_1$ page this cocycle is detected by $h_{2,j-2}^2h_{1,j-1}h_{1,j}$ and this class is hit by a May $d_1$ differential coming off of $h_{2,j-2}^2h_{2,j-1}$. Using this we conclude that the next correction term we want to add is $2[t_2^{2^{j-2}}|t_2^{2^{j-2}}|t_2^{2^{j-1}}]$.
+
+The leading May filtration of the cocycle
+\[ T_j|T_{j+1} + d\left([t_1^{2^{j-1}}|t_1^{3 \cdot 2^{j-1}}|t_1^{2^{j}}] + 7[t_2^{2^{j-1}}|t_1^{2^{j-1}}|t_1^{2^{j}}] + 2[t_2^{2^{j-2}}|t_2^{2^{j-2}}|t_2^{2^{j-1}}] \right) \pmod{4} \]
+is $2[t_2^{2^{j-2}}|t_1^{2^{j-2}}|t_1^{2^{j-1}}|t_2^{2^{j-1}}] + 2[t_1^{2^{j-2}}|t_1^{2^{j-1}}|t_2^{2^{j-2}}|t_2^{2^{j-1}}]$ in May filtration 8. In the May $E_1$ page this cocycle is already zero so we add a correction term that swaps the $t_1$'s and $t_2$'s so that they cancel (see the third line of the formula for $c_j$). After adding this correction the top May filtration is now reduced from 8 to 6.
+
+Repeating this process we eventually eliminate the entire thing---proving that $\vartheta_j\vartheta_{j+1}$ is divisible by 4 (with the desired correction term $c_j$ providing a witness to divisibility in the cobar complex).
+In \Cref{app:code} we have annotated the corrections terms we add with the May lengths of the corresponding May differentials we are using at each step. One of the reasons this process was relatively straightforward was that we used only May $d_0$ and $d_1$ differentials.
+
+% \subsection{The proof}\label{subsec:diff-proof}\
+
+% With all the preliminaries out of the way we can now prove the main result of this section.
+% Our proof follows the procedure outlined in \Cref{subsec:cocycle-diffs} and uses the identification of the product $\vartheta_j\vartheta_{j+1}$ given in \Cref{subsec:product-reln} in an essential way.
+
+% \begin{prop}
+%   For $j \geq 5$, there are algebraic Novikov differentials
+%   \[ d_4(h_j^3) = q_0^3 g_{j-2}. \]
+% \end{prop}
+
+% \begin{proof}
+%   The first step is picking a lift of $h_j^3$ to the $\BP_*\BP$-cobar complex.
+%   For our lift we pick the following class:
+%   \[ t_1^{2^{j}} | T_{j+1}   + 2c_j \]
+%   where $T_{j+1}$ is the cocyle given in \Cref{dfn:Tj} which detects $\vartheta_{j+1}$
+%   and $c_j$ is the correction term from \Cref{lem:prod-big}.
+%   We can compute the algebraic Novikov differential on $h_j^3$ by applying the cobar differential to this cocycle. In particular, we have
+%   \[ d(t_1^{2^{j}} | T_{j+1}   + 2c_j) =  d(t_1^{2^{j}})|T_{j+1} + t_1^{2^{j}} | d(T_{j+1}) + 2d(c_j) = 2T_j|T_{j+1} + 2d(c_j). \]
+%   Now we can use the conclusion of \Cref{lem:prod-big} to say that this cocyle is in $I^3$ and 
+%   its image in the cohomology of $I^3/I^4$ is detected by $q_0^3g_{j-2}$.
+
+%   At this point we may conclude that $d_2(h_j^3) = d_3(h_j^3) = 0$ and $d_4(h_j^3) = q_0^3 g_{j-2}$.
+%   % In order to finish the proof we must show that $q_0^3g_{j-2}$ is non-zero on the $E_4$-page of the algebraic Novikov spectral sequence.
+%   % From \Cref{???} we know enough about the $E_2$-page of the algebraic Novikov spectral sequence to conclude that this class survives as desired.
+% \end{proof}
+
+% \begin{cor}
+%   The product $\vartheta_j\vartheta_{j+1}$ is nontrivial on the Adams--Novikov $E_2$-page.
+% \end{cor}
+
+% \begin{proof}
+%   From \Cref{lem:prod-small} we know that $\vartheta_j\vartheta_{j+1}$ is detected by $q_0^2g_{j-2}$ in the algebraic Novikov spectral sequence. This means that it will suffice to show this class isn't hit by a differential.
+  
+%   Examining the information about the $E_2$ page of the algebraic Novikov spectral sequence from \Cref{E2 descriptions} the only potential differentials which could hit $q_0^2g_{j-2}$ are a $d_2$ differential on $q_0h_j^3$ or a $d_3$ on $h_j^3$.
+%   We showed that $d_2(h_j^3)$ and $d_3(h_j^3)$ are zero in the previous proposition.
+% \end{proof}
+
+% \begin{lem}
+%   In the $E_2$-page of the Adams--Novikov spectral sequence for $M(3,16)$
+%   there are product relations
+%   \[ \vartheta_{j-1} \vartheta_j = 4 g_{j-2} \neq 0  \quad \text{ for } \quad j \geq ? \]
+%   where $g_{j-2}$ is some class which maps to $g_{j-2}$ under the Thom reduction map. \todo{May want to just remove this.}
+% \end{lem}
+
+% \todo{more text here.}
+
+% \subsection{A power operation reformulation}\
+
+% \todo{I may remove this depending on how quickly writing is going.}
+
+% \subsection{Loose ends}\ 
+
+% In this subsection we comment on several of the loose ends 
+% The proof of \Cref{prop:alg-n-diff} we have given leaves b
+
+% We begin by showing that every element of the $g$-family is a $d_2$-cycle in the algebraic Novikov. The authors were suprised to find that it is not known whether a general element of the $g$-family is a permanent cycle in the algebraic Novikov spectral sequence, so we pose the following question:
+
+% \begin{qst}
+%   For which $j \geq 2$ does $g_{j-2}$ have a pre-image under the Thom reduction map between the $E_2$ page of the Adams--Novikov spectral sequence and the $E_2$ page of the Adams spectral sequecne?
+% \end{qst}
+
+% A positive answer to this question seems likely given the following partial results.
+
+% \begin{itemize}
+% \item The element $g$ on the Adams $E_2$-page does not have a pre-image.
+% \item There are elemnts $g_2$ and $g_3$ on the Adams--Novikov $E_2$-page lifting the corresponding elements on the Adams $E_2$-page.
+% \item In \Cref{lem:g-sq0} we will show that each $g_{j-2}$ lifts to the Adams--Novikov $E_2$-page of the Moore spectrum $M(1)$ \footnote{Recall that the Thom reduction map factors through this $E_2$-page according to [thing].}.
+% \item In \Cref{lem:???} we will show that for each $j \geq ?$ we may lift $g_{j-2}$ to a class in the Adams--Novikov $E_2$-page of the generalized Moore spectrum $M(3,8)$.
+% \end{itemize}
+
+% While the proof of \Cref{lem:g-sq0} is simple, the proof of \Cref{lem:???} is rather involved and will only be completed near the end of the section.
+
+% \begin{lem}
+%   There are classes $g_{j-2}$ in the cohomology of $BP_*/2$ which reduce to the usual classes $g_{j-2}$ under the Thom reduction map.
+% \end{lem}
+
+% \begin{proof}
+%   SQ0 EXISTS.
+%   G2 LIFTS.
+% \end{proof}
+
+% \begin{cor}
+%   The class $g_{j-2}$ on the $E_2$-page of the algebraic Novikov spectral sequence is a $d_2$-cycle.
+% \end{cor}
+
+% \begin{proof}
+%   Since $g_{j-2}$ is a permanent cycle in the algebraic Novikov spectral sequence for $BP_*/2$ we may conclude that $d_2^{\mathrm{alg.N}}(g_{j-2})$ is divisible by $q_0$. The tri-degree of $d_2^{\mathrm{alg.N}}(g_{j-2})$ is $(3 \cdot 2^j - 5, 6, 5)$ and since this is divisible by $q_0$ we're looking for a class in tri-degree $(3 \cdot 2^j - 5, 5, 5)$. Using the explicit description of the $E_2$ page of the algebraic Novikov spectral sequence we find that
+%   \[ E_2^{3 \cdot 2^j -5, 5, 5} \cong \oplus_{a+b = 3 \cdot 2^j} \Ext^{5, a}_P(\F_2, \Ext^{0, b}_Q(\F_2, \F_2)) \cong \Ext_P^{5, 3 \cdot 2^j}(\F_p, \F_p) \cong \Ext_A^{5, 3 \cdot 2^{j-1}}(\F_p, \F_p). \]
+%   CITE LIN'S STUDENT TO FINISH HERE.
+% \end{proof}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

@@ -1,0 +1,27 @@
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% Standard AMS commands used in the mathematical source.  The guarded
+% declarations make their availability explicit to lightweight Blueprint
+% linters; amsmath/amssymb provide the actual definitions in both builds.
+\providecommand{\xrightarrow}[2][]{\longrightarrow}
+\providecommand{\Longrightarrow}{\Rightarrow}
+\providecommand{\leadsto}{\mapsto}
+\providecommand{\mathbin}[1]{#1}
+\providecommand{\mathord}[1]{#1}
+\providecommand{\mathop}[1]{#1}
+\providecommand{\underleftarrow}[1]{#1\leftarrow}
+\providecommand{\downarrow}{|}
+\providecommand{\scriptsize}{}
+\providecommand{\scriptstyle}{}
+\providecommand{\linewidth}{}
+\providecommand{\hline}{}
+\providecommand{\bigvee}{}
+\providecommand{\bigwedge}{}
+\providecommand{\pmod}[1]{\ (\mathrm{mod}\ #1)}
+\providecommand{\varprojlim}{\mathop{\underleftarrow{\lim}}}

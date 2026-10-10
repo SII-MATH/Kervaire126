@@ -1,0 +1,1985 @@
+\chapter{Tables}
+\label{ch:table}
+
+Table \ref{tab:notation} gives some notation for elements in
+$\pi_{*,*}$.  The fourth column gives partial information that
+reduces the indeterminacies in the definitions, but does not
+completely specify a unique element in all cases.
+See Section \ref{sctn:notation} for further discussion.
+
+Table \ref{tab:unit-mmf} gives hidden values of the unit map
+$\pi_{*,*} \map \pi_{*,*} \mmf$.
+The elements in the third column belong to the
+Adams $E_\infty$-page for $\mmf$ \cite{Isaksen09} \cite{Isaksen18}.
+See Section \ref{sctn:mmf} for further discussion.
+
+Table \ref{tab:Massey} lists information about some Massey products.
+The fifth column indicates the proof.  When a differential appears
+in this column, it indicates the May differential that can be used
+with the May Convergence Theorem (see Remark \ref{rem:May-convergence})
+to compute the bracket.  The sixth column
+shows where each specific Massey product is used in the manuscript.
+See Chapter \ref{ch:Massey} for more discussion.
+
+Table \ref{tab:Adams-d2} lists all of the multiplicative generators 
+of the Adams $E_2$-page through the 95-stem.  The third column indicates
+the value of the $d_2$ differential, if it is non-zero.
+A blank entry in the third column indicates that the $d_2$ differential
+is zero.
+The fourth column indicates the proof. A blank entry in the fourth column
+indicates that there are no possible values for the differential.
+The fifth column gives alternative names for the element, as used 
+in \cite{Bruner97}, \cite{Isaksen14c}, or \cite{Tangora70a}.
+See Sections \ref{sctn:notation} and
+\ref{sctn:Adams-d2} for further discussion.
+
+Table \ref{tab:Adams-perm} lists some elements in the 
+Adams spectral sequence that are known to be permanent cycles.
+The third column indicates the proof.  When a Toda bracket
+appears in the third column, the Moss Convergence Theorem
+\ref{thm:Moss} applied to that Toda bracket implies that the
+element is a permanent cycle (see Table \ref{tab:Toda} for
+more information).  When a product appears in the third column,
+the element must survive to detect that product.
+
+Table \ref{tab:Adams-d3} lists the multiplicative generators 
+of the Adams $E_3$-page through the 95-stem
+whose $d_3$ differentials are non-zero, or whose $d_3$ differentials
+are zero for non-obvious reasons.
+See Section \ref{sctn:Adams-d3} for further discussion.
+
+Table \ref{tab:Adams-d4} lists the multiplicative generators 
+of the Adams $E_4$-page through the 95-stem
+whose $d_4$ differentials are non-zero, or whose $d_4$ differentials
+are zero for non-obvious reasons.
+See Section \ref{sctn:Adams-d4} for further discussion.
+
+Table \ref{tab:Adams-d5} lists the multiplicative generators 
+of the Adams $E_5$-page through the 95-stem
+whose $d_5$ differentials are non-zero, or whose $d_5$ differentials
+are zero for non-obvious reasons.
+See Section \ref{sctn:Adams-d5} for further discussion.
+
+Table \ref{tab:Adams-higher} lists the multiplicative generators 
+of the Adams $E_r$-page, for $r \geq 6$, through the 90-stem
+whose $d_r$ differentials are non-zero, or whose $d_r$ differentials
+are zero for non-obvious reasons.
+See Section \ref{sctn:Adams-higher} for further discussion.
+
+Table \ref{tab:Toda} lists information about some Toda brackets.
+\rev{
+Whenever possible, we use Greek letter names to refer to specific homotopy
+elements.  An expression of the form $\{ x\}$ means that the Toda
+bracket computation applies to any homotopy element detected by
+the element $x$ of the Adams $E_\infty$-page.  An expression
+of the form $[ x ]$ means that the Toda bracket computation
+applies to at least one homotopy element that is detected by $x$.
+}
+The third column of Table \ref{tab:Toda} gives an element of the
+Adams $E_\infty$-page that detects an element of the Toda bracket.
+The fourth column of Table \ref{tab:Toda} gives partial
+information about indeterminacies, again by giving detecting elements
+of the Adams $E_\infty$-page.  We have not completely analyzed the
+indeterminacies of some brackets when the details are inconsequential
+for our purposes; this is indicated by a blank entry in the fourth 
+column.  The fifth column indicates the proof of 
+the Toda bracket, and the sixth column shows where each specific
+Toda bracket is used in the manuscript.
+See Chapter \ref{ch:Toda} for further discussion.
+
+Tables \ref{tab:hid-incl} and \ref{tab:hid-proj} gives
+hidden values of the inclusion $\pi_{*,*} \map \pi_{*,*} C\tau$ of the
+bottom cell, and of the projection $\pi_{*,*} C\tau \map \pi_{*-1,*+1}$
+to the top cell.
+See Section \ref{sctn:tau-extn} for further discussion.
+
+
+Table \ref{tab:tau-extn} lists hidden $\tau$ extensions in the
+$E_\infty$-page of the $\C$-motivic Adams spectral sequence.
+See Section \ref{sctn:tau-extn} for further discussion.
+
+Tables \ref{tab:2-extn}, \ref{tab:eta-extn}, and \ref{tab:nu-extn}
+list hidden extensions by $2$, $\eta$, and $\nu$.  
+The fourth column indicates the proof of each extension.
+The fifth column gives additional information about each extension,
+including whether it is a crossing extension and whether it
+has indeterminacy in the sense of Section \ref{subsctn:hid-indet}.
+See Sections \ref{sctn:2-extn}, \ref{sctn:eta-extn}, and \ref{sctn:nu-extn}
+for further discussion.
+
+Tables \ref{tab:2-extn-possible}, \ref{tab:eta-extn-possible}, 
+and \ref{tab:nu-extn-possible} list possible hidden extensions
+by $2$, $\eta$, and $\nu$ that we have not yet resolved.
+
+Finally, Table \ref{tab:misc-extn} gives some various hidden
+extensions by elements other than $2$, $\eta$, and $\nu$.
+See Section \ref{sctn:misc-extn} for further discussion.
+
+\newpage
+
+\begin{longtable}{llll}
+\caption{Notation for $\pi_{*,*}$  \label{tab:notation}
+} \\
+\toprule
+$(s,w)$ & element & detected by & definition \\
+\midrule \endfirsthead
+\caption[]{Notation for $\pi_{*,*}$} \\
+\toprule
+$(s,w)$ & element & detected by & definition \\
+\midrule \endhead
+\bottomrule \endfoot
+$(0,-1)$ & $\tau$ & $\tau$ & \\
+$(0, 0)$ & $2$ & $h_0$ & \\
+$(1, 1)$ & $\eta$ & $h_1$ & \\
+$(3, 2)$ & $\nu$ & $h_2$ & \\
+$(7, 4)$ & $\sigma$ & $h_3$ & \\
+$(8, 5)$ & $\epsilon$ & $c_0$ & \\
+$(9, 5)$ & $\mu_9$ & $P h_1$ & \\
+$(14, 8)$ & $\kappa$ & $d_0$ & \\
+$(15, 8)$ & $\rho_{15}$ & $h_0^3 h_4$ & \\
+$(16, 9)$ & $\eta_4$ & $h_1 h_4$ & \\
+$(17, 9)$ & $\mu_{17}$ & $P^2 h_1$ & \\
+$(19, 11)$ & $\sigmabar$ & $c_1$ & \\
+$(20, 11)$ & $\kappabar$ & $\tau g$ & 
+	$\langle \kappa, 2, \eta, \nu \rangle$ \\
+$(23, 12)$ & $\rho_{23}$ & $h_0^2 i + \tau P h_1 d_0$ & \\
+$(25, 13)$ & $\mu_{25}$ & $P^3 h_1$ & \\
+$(30,16)$ & $\theta_4$ & $h_4^2$ & \\
+$(32, 17)$ & $\eta_5$ & $h_1 h_5$ & 
+	in $\langle \eta, 2, \theta_4 \rangle$ \\
+$(32, 18)$ & $\kappa_1$ & $d_1$ & \\
+$(44, 24)$ & $\kappabar_2$ & $g_2$ & \\
+$(45, 24)$ & $\theta_{4.5}$ & $h_4^3$ & 
+	$\eta \theta_{4.5} \in \{M h_1\}$ \\
+$(62, 32)$ & $\theta_5$ & $h_5^2$ & \\
+$(63,32)$ & $\eta_6$ & $h_1 h_6$ & 
+	in $\langle \eta, 2, \theta_5 \rangle$ \\
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{lll}
+\caption{Some hidden values of the unit map of $\mmf$ \label{tab:unit-mmf}} \\
+\toprule
+$(s,f,w)$ & element & image \\
+\midrule \endfirsthead
+\caption[]{Some hidden values of the unit map of $\mmf$} \\
+\toprule
+$(s,f,w)$ & element & image  \\
+\midrule \endhead
+\bottomrule \endfoot
+$(28,6,17)$ & $h_1 h_3 g$ & $c g$ \\
+$(29,7,18)$ & $h_1^2 h_3 g$ & $h_1 c g$ \\
+$(32,6,17)$ & $\D h_1 h_3$ & $\D c + \tau a g$ \\
+$(33,7,18)$ & $\D h_1^2 h_3$ & $\D h_1 c$ \\
+$(35,8,18)$ & $\tau^3 h_1 e_0^2$ & $P a n$ \\
+$(40,10,21)$ & $\tau \D h_1^2 d_0$ & $P(\D c + \tau a g)$ \\
+$(48,10,29)$ & $h_1 h_3 g^2$ & $c g^2$ \\
+$(49,11,30)$ & $h_1^2 h_3 g^2$ & $h_1 c g^2$ \\
+$(52,10,29)$ & $\D h_1 h_3 g$ & $(\D c + \tau a g) g$ \\
+$(53,11,30)$ & $\D h_1^2 h_3 g$ & $\D h_1 c g$ \\
+$(54,9,28)$ & $h_0 h_5 i$ & $\D^2 h_2^2$ \\
+$(54,11,32)$ & $h_1^6 h_5 e_0$ & $d g^2$ \\
+$(55,12,33)$ & $h_1^7 h_5 e_0$ & $h_1 d g^2$ \\
+$(57,10,30)$ & $h_0 h_2 h_5 i$ & $\D h_1 (\D c + \tau a g)$ \\
+$(59,12,33)$ & $P h_1^3 h_5 e_0$ & $\D h_1 d g$ \\
+$(60,13,34)$ & $\tau^2 h_0 g^3$ & $\D h_1^2 d g$ \\
+$(62,14,37)$ & $h_1^6 h_5 c_0 e_0$ & $c d g^2$ \\
+$(63,15,38)$ & $h_1^7 h_5 c_0 e_0$ & $h_1 c d g^2$ \\
+$(65,12,34)$ & $P h_5 j$ & $\D^2 h_2 d$ \\
+$(66,14,37)$ & $P h_1^2 h_5 c_0 e_0$ & $(\D c + \tau a g) d g$ \\
+$(67,15,38)$ & $P h_1^3 h_5 c_0 e_0$ & $\D h_1 c d g$ \\
+$(68,13,37)$ & $P h_2 h_5 j$ & $\D^2 h_2^2 d$ \\
+$(68,14,41)$ & $h_1 h_3 g^3$ & $c g^3$ \\
+$(69,15,42)$ & $h_1^2 h_3 g^3$ & $h_1 c g^3$ \\
+$(71,15,38)$ & $\D^2 h_0^2 h_2 g$ & $\D h_1 (\D c + \tau a g) d$ \\
+$(72,14,41)$ & $\D h_1 h_3 g^2$ & $(\D c + \tau a g) g^2$ \\
+$(73,15,42)$ & $\D h_1^2 h_3 g^2$ & $\D h_1 c g^2$ \\
+$(77,15,42)$ & $\D^2 h_2^3 g$ & $\D h_1 (\D c + \tau a g) g$ \\
+$(88,18,53)$ & $h_1 h_3 g^4$ & $c g^4$ \\
+$(89,19,54)$ & $h_1^2 h_3 g^4$ & $h_1 c g^4$ \\
+\end{longtable}
+
+\begin{landscape}
+
+\begin{longtable}{llllll}
+\caption{Some Massey products in $\Ext_\C$ \label{tab:Massey}} \\
+\toprule
+$(s,f,w)$ & bracket & contains & indeterminacy & proof & used for \\
+\midrule \endfirsthead
+\caption[]{Some Massey products in $\Ext_\C$} \\
+\toprule
+$(s,f,w)$ & bracket & contains & indeterminacy & proof & used for \\
+\midrule \endhead
+\bottomrule \endfoot
+$(2, 2, 1)$ & $\langle h_0, h_1, h_0 \rangle$ & $\tau h_1^2$ & $0$ & Theorem \ref{thm:Massey-symmetric} & $\langle 2, \eta, 2 \rangle$ \\
+\revrow
+$(3, 2, 2)$ & $\langle h_1, h_0, h_1 \rangle$ & $h_0 h_2$ & $0$ & Theorem \ref{thm:Massey-symmetric} & $\langle \eta, 2, \eta \rangle$, \ref{lem:eta-h2^2h6} \\
+& & & & & $\langle \{h_1 x_{76,6} \}, 2, \eta \rangle$  \\
+$(6, 2, 4)$ & $\langle h_1, h_2, h_1 \rangle$ & $h_2^2$ & $0$ & Theorem \ref{thm:Massey-symmetric} & $\langle \eta, \nu, \eta \rangle$ \\
+$(8, 2, 5)$ & $\langle h_2, h_1, h_2 \rangle$ & $h_1 h_3$ & $0$ & Theorem \ref{thm:Massey-symmetric} & $\langle \nu, \eta, \nu \rangle$ \\
+$(8, 3, 5)$ & $\langle h_1^2, h_0, h_1, h_2 \rangle$ & $c_0$ & $0$ & $d_1(h_{20}) = h_0 h_1$ & $\langle \eta^2, 2, \eta, \nu \rangle$ \\
+ & & & &  $d_1(h_{21}) = h_1 h_2$ \\
+$(8, 3, 5)$ & $\langle h_1, h_2, h_0 h_2 \rangle$ & $c_0$ & $0$ & $d_2(h_0(1) = h_0 h_2^2$ & $\langle \eta, \nu, 2 \nu \rangle$, $\langle \eta_5, \nu, 2 \nu \rangle$ \\
+$(9, 5, 5)$ & $\langle h_1, h_0, h_0^3 h_3 \rangle$ & $P h_1$ & $0$ & $d_4(b_{20}^2) = h_0^4 h_3$ & $\langle \eta, 2, 8 \sigma \rangle$ \\
+$(11, 5, 6)$ & $\langle h_0, h_1, \tau h_1 c_0 \rangle$ & $P h_2$ & $0$ & $d_2(b_{20} h_0(1)) = \tau h_1^2 c_0$ & $\langle 2, \eta, \tau \eta \epsilon \rangle$ \\
+$(20, 4, 11)$ & $\langle \tau, h_1^4, h_4 \rangle$ & $\tau g$ & $0$ & $d_4(g) = h_1^4 h_4$ & \ref{lem:nu-(De1+C0)g} \\
+\revvrow
+$(23, 5, 14)$ & $\langle h_2, h_1, h_1^3 h_4 \rangle$ & $h_2 g$ & $0$ & $d_4(g) = h_1^4 h_4$ & \ref{lem:h1^3h4,h1,tgn} \\
+$(23, 9, 12)$ & $\langle h_3, h_0^4, h_0^4 h_4 \rangle$ & $h_0^2 i + \tau P h_1 d_0$ & $0$ & $d_8(b_{20}^4) = h_0^8 h_4$ & $\langle \sigma, 16, 2 \rho_{15} \rangle$ \\
+$(30, 6, 16)$ & $\langle h_0^2, h_3^2, h_0^2, h_3^2 \rangle$ & $\D h_2^2$ & $0$ & $d_4(h_2 b_{30}) = h_0^2 h_3^2$ & \ref{lem:h1^2,h4^2,h1^2,h4^2} \\
+$(32, 4, 18)$ & $\langle h_1, h_3^2, h_1, h_3^2 \rangle$ & $d_1$ & $0$ & $d_2(h_1(1)) = h_1 h_3^2$ & $\langle \eta, \sigma^2, \eta, \sigma^2 \rangle$ \\
+$(33, 4, 18)$ & $\langle h_1 h_4^2, h_1, h_0 \rangle$ & $p$ & $0$ & $d_4(h_3 b_{31}) = h_1^2 h_4^2$ & $\langle \eta \theta_4, \eta, 2 \rangle$ \\
+\revvrow
+$(41, 3, 22)$ & $\langle h_2 h_4, h_4, h_3 \rangle$ & $c_2$ & $0$ & $d_2(h_2(1)) = h_2 h_4^2$ & \ref{lem:h3,p',h2} \\
+$(46, 7, 25)$ & $\langle h_1, h_0, h_0^2 g_2 \rangle$ & $M h_1$ & $0$ & $M$ & \ref{lem:eta,2,4kappabar2} \\
+$(54, 6, 29)$ & $\langle h_1, h_0, D_1 \rangle$ & $\tau \D_1 h_1^2$ &
+	$0$ & \cite{IX15} & Example \ref{ex:Leibniz-tD1h1^2} \\
+$(66, 6, 36)$ & $\langle h_1^2, h_4^2, h_1^2, h_4^2 \rangle$ & $\D_1 h_3^2$ & $0$ & Lemma \ref{lem:h1^2,h4^2,h1^2,h4^2} & \ref{lem:eta^2,theta4,eta^2,theta4} \\
+\revrow
+$(66, 7, 35)$ & $\langle A', h_1, h_2 \rangle$ & $\tau G_0$ & $0$ &
+Lemma \ref{lem:A',h1,h2} & \ref{lem:eta-e0A'} \\
+$(67, 14, 36)$ & $\langle P d_0, h_0^3, g_2 \rangle$ & $M P d_0$ & $0$ & $M$ & \ref{lem:d6-h2^2H1} \\
+$(68, 11, 38)$ & $\langle h_2 g, h_0^3, g_2 \rangle$ & $M h_2 g$ & $0$ & $M$ & \ref{lem:d4-Mh2g} \\
+$(71, 13, 40)$ & $\langle h_1^3 h_4, h_1, \tau g n \rangle$ & $\tau g^2 n$ & $M h_0 h_2^2 g$ & Lemma \ref{lem:h1^3h4,h1,tgn} & \ref{lem:d4-h2^2G0} \\
+$(75, 18, 42)$ & $\langle \D h_0^2 d_0 e_0, h_1, h_1^3 h_4 \rangle$ & $\D h_2^2 d_0^2 e_0$ & $0$ & Proposition \ref{prop:g-Massey} & $\langle \tau \eta \kappa \kappabar^2, \eta, \eta^2 \eta_4 \rangle$ \\
+$(80, 5, 42)$ & $\langle h_3, p', h_2 \rangle$ & $h_0 e_2$ & $0$ & Lemma \ref{lem:h3,p',h2} & \ref{lem:nu-h3^2h6} \\
+$(82, 12, 45)$ & $\langle \D e_1 + C_0, h_1^3, h_1 h_4 \rangle$ & $(\D e_1 + C_0) g$ & $0$ & Lemma \ref{lem:De1+C0,h1^3,h1h4} & $\langle \{\D e_1 + C_0 \}, \eta^3, \eta_4 \rangle$ \\
+$(86, 16, 46)$ & $\langle \D h_0^2 e_0, h_0^2, h_0 g_2 \rangle$ & $M \D h_0^2 e_0$ & $0$ & $M$ & \ref{lem:tetakappabar^2,2,4kappabar2} \\
+$(91, 13, 49)$ & $\langle M h_1, h_0, h_0^2 g_2 \rangle$ & $M^2 h_1$ & $0$ & $M$ & \ref{lem:perm-M^2} \\
+$(93, 13, 49)$ & $\langle \tau^3 g G_0, h_0 h_2, h_2 \rangle$ & $? \tau e_0 x_{76,9}$ & $\tau M^2 h_2$ & Lemma \ref{lem:t^3gG0,h0h2,h2} & \ref{lem:d5-t^3gG0} \\
+\end{longtable}
+
+\end{landscape}
+
+\begin{longtable}{lllll}
+\caption{Generators of the $\C$-motivic Adams $E_2$-page
+%$E_2$-page generators of the $\C$-motivic Adams spectral sequence 
+\label{tab:Adams-d2}
+} \\
+\toprule
+$(s,f,w)$ & element & $d_2$ & proof & other names \\
+\midrule \endfirsthead
+\caption[]{Generators of the $\C$-motivic Adams $E_2$-page
+%$E_2$-page generators of the $\C$-motivic Adams spectral sequence
+} \\
+\toprule
+$(s,f,w)$ & element & $d_2$ & proof & other names \\
+\midrule \endhead
+\bottomrule \endfoot
+$(0, 1, 0)$ & $h_0$ & $$ & \\
+$(1, 1, 1)$ & $h_1$ & $$ & \\
+$(3, 1, 2)$ & $h_2$ & $$ & \\
+$(7, 1, 4)$ & $h_3$ & $$ & \\
+$(8, 3, 5)$ & $c_0$ & $$ & \\
+$(9, 5, 5)$ & $P h_1$ & $$ & \\
+$(11, 5, 6)$ & $P h_2$ & $$ & \\
+$(14, 4, 8)$ & $d_0$ & $$ & \\
+$(15, 1, 8)$ & $h_4$ & $h_0 h_3^2$ & $C\tau$ \\
+$(16, 7, 9)$ & $P c_0$ & $$ & \\
+$(17, 4, 10)$ & $e_0$ & $h_1^2 d_0$ & $C\tau$ \\
+$(17, 9, 9)$ & $P^2 h_1$ & $$ & \\
+$(18, 4, 10)$ & $f_0$ & $h_0^2 e_0$ & $C\tau$ \\
+$(19, 3, 11)$ & $c_1$ & $$ & $C\tau$ \\
+$(19, 9, 10)$ & $P^2 h_2$ & $$ & \\
+$(20, 4, 11)$ & $\tau g$ & $$ & \\
+$(22, 8, 12)$ & $P d_0$ & $$ & \\
+$(23, 5, 14)$ & $h_2 g$ & $$ & \\
+$(23, 7, 12)$ & $i$ & $P h_0 d_0$ & $C\tau$ \\
+$(24, 11, 13)$ & $P^2 c_0$ & $$ & \\
+$(25, 8, 14)$ & $P e_0$ & $P h_1^2 d_0$ & $C\tau$ \\
+$(25, 13, 13)$ & $P^3 h_1$ & $$ & \\
+$(26, 7, 14)$ & $j$ & $P h_0 e_0$ & $C\tau$ \\
+$(27, 5, 16)$ & $h_3 g$ & $h_0 h_2^2 g$ & $C\tau$ \\
+$(27, 13, 14)$ & $P^3 h_2$ & $$ & \\
+$(29, 7, 16)$ & $k$ & $h_0 d_0^2$ & $C\tau$ \\
+$(30, 6, 16)$ & $\D h_2^2$ & $$ & $C\tau$ & $r$ \\
+$(30, 12, 16)$ & $P^2 d_0$ & $$ & & \\
+$(31, 1, 16)$ & $h_5$ & $h_0 h_4^2$ & $C\tau$ \\
+$(31, 5, 17)$ & $n$ & $$ & \\
+$(32, 4, 18)$ & $d_1$ & $$ & \\
+$(32, 6, 17)$ & $\D h_1 h_3$ & $$ & $h_0$ & $q$ \\
+$(32, 7, 18)$ & $l$ & $h_0 d_0 e_0$ & $C\tau$ \\
+$(32, 15, 17)$ & $P^3 c_0$ & $$ & \\
+$(33, 4, 18)$ & $p$ & $$ & \\
+$(33, 12, 18)$ & $P^2 e_0$ & $P^2 h_1^2 d_0$ & $C\tau$ \\
+$(33, 17, 17)$ & $P^4 h_1$ & $$ & \\
+$(34, 11, 18)$ & $P j$ & $P^2 h_0 e_0$ & $C\tau$ \\
+$(35, 7, 20)$ & $m$ & $h_0 e_0^2$ & $C\tau$ \\
+$(35, 17, 18)$ & $P^4 h_2$ & $$ & \\
+$(36, 6, 20)$ & $t$ & $$ & $C\tau$ \\
+$(37, 5, 20)$ & $x$ & $$ & \\
+$(37, 8, 22)$ & $e_0 g$ & $h_1^2 e_0^2$ & $C\tau$ \\
+$(38, 4, 21)$ & $e_1$ & $$ & \\
+$(38, 6, 20)$ & $\D h_3^2$ & $h_0^3 x$ & $C\tau$ & $y + ? h_2^2 d_1$ \\
+$(38, 16, 20)$ & $P^3 d_0$ & $$ & \\
+$(39, 7, 23)$ & $c_1 g$ & $$ & $C\tau$ \\
+$(39, 9, 21)$ & $\D h_1 d_0$ & $$ & & $u$ \\
+$(39, 15, 20)$ & $P^2 i$ & $P^3 h_0 d_0$ & $C\tau$ \\
+$(40, 4, 22)$ & $f_1$ & $$ & \\
+$(40, 8, 23)$ & $\tau g^2$ & $$ & \\
+$(40, 19, 21)$ & $P^4 c_0$ & $$ & \\
+$(41, 3, 22)$ & $c_2$ & $h_0 f_1$ & $C\tau$ \\
+$(41, 10, 22)$ & $\D h_0^2 e_0$ & $$ & $C\tau$ & $z$ \\
+$(41, 16, 22)$ & $P^3 e_0$ & $P^3 h_1^2 d_0$ & $C\tau$ \\
+$(41, 21, 21)$ & $P^5 h_1$ & $$ & \\
+$(42, 9, 23)$ & $\D h_1 e_0$ & $\D h_1^3 d_0$ & $C\tau$ & $v$ \\
+$(42, 15, 22)$ & $P^2 j$ & $P^3 h_0 e_0$ & $C\tau$ \\
+$(43, 9, 26)$ & $h_2 g^2$ & $$ & \\
+$(43, 21, 22)$ & $P^5 h_2$ & $$ & \\
+$(44, 4, 24)$ & $g_2$ & $$ & \\
+$(45, 9, 24)$ & $\tau \D h_1 g$ & $$ & & $w$ \\
+$(46, 7, 25)$ & $M h_1$ & $$ & & $B_1$ \\
+$(46, 8, 25)$ & $\D h_2 c_1$ & $$ & & $N$ \\
+$(46, 11, 25)$ & $\D c_0 d_0$ & $\tau h_0 d_0^2 e_0$ & $C\tau$ & $u'$ \\
+$(46, 20, 24)$ & $P^4 d_0$ & $$ & \\
+$(47, 9, 28)$ & $h_3 g^2$ & $h_0 h_2^2 g^2$ & $C\tau$ \\
+$(47, 13, 24)$ & $\D h_0^2 i$ & $h_0 i^2$ & $C\tau$ & $Q'$, $Q + P u$ \\
+$(47, 13, 25)$ & $P \D h_1 d_0$ & $$ & & \\
+$(48, 7, 26)$ & $M h_2$ & $$ & & $B_2 + ? h_0^2 h_5 e_0$ \\
+$(48, 23, 25)$ & $P^5 c_0$ & $$ & \\
+$(49, 11, 27)$ & $\D c_0 e_0$ & $\D h_1^2 c_0 d_0 + \tau h_0 d_0 e_0^2$ & $C\tau$ & $v'$ \\
+$(49, 20, 26)$ & $P^4 e_0$ & $P^4 h_1^2 d_0$ & $C\tau$ \\
+$(49, 25, 25)$ & $P^6 h_1$ & $$ & \\
+$(50, 6, 27)$ & $C$ & $$ & \\
+$(50, 10, 28)$ & $\D h_2^2 g$ & $$ & $C\tau$ & \\
+$(50, 13, 27)$ & $P \D h_1 e_0$ & $P \D h_1^3 d_0$ & $C\tau$ & \\
+$(50, 19, 26)$ & $P^3 j$ & $P^4 h_0 e_0$ & $C\tau$ \\
+$(51, 9, 28)$ & $\D h_3 g$ & $\D h_0 h_2^2 g$ & $C\tau$ & $G_3$ \\
+$(51, 9, 29)$ & $g n$ & $$ & \\
+$(51, 25, 26)$ & $P^6 h_2$ & $$ & \\
+$(52, 5, 28)$ & $D_1$ & $h_0^2 h_3 g_2$ & $C\tau$ \\
+$(52, 8, 30)$ & $d_1 g$ & $$ & \\
+$(53, 7, 30)$ & $i_1$ & $$ & $C\tau$ & \\
+$(53, 9, 29)$ & $M c_0$ & $$ & $h_0$ & $B_8$, $P h_5 d_0$ \\
+$(53, 10, 28)$ & $M P$ & $$ & & $x'$ \\
+$(54, 6, 29)$ & $\tau \D_1 h_1^2 $ & $M h_1 h_3$ & $C\tau$ & $G$ \\
+$(54, 10, 28)$ & $\D^2 h_2^2$ & $M P h_0^2$ & $C\tau$ & $R_1 + ? h_0^2 h_5 i$ \\
+$(54, 15, 29)$ & $P \D c_0 d_0$ & $\tau P h_0 d_0^2 e_0$ & $C\tau$ & \\
+$(54, 24, 28)$ & $P^5 d_0$ & $$ & \\
+$(55, 7, 30)$ & $B_6$ & $$ & $C\tau$ \\
+$(55, 11, 32)$ & $g m$ & $h_0 e_0^2 g$ & $C\tau$ \\
+$(55, 17, 29)$ & $P^2 \D h_1 d_0$ & $$ & & \\
+$(55, 23, 28)$ & $P^4 i$ & $P^5 h_0 d_0$ & $C\tau$ \\
+$(56, 10, 29)$ & $\D^2 h_1 h_3$ & $\tau M P h_1^2$ & $h_1$ & $Q_1 + ? g t$ \\
+$(56, 10, 32)$ & $g t$ & $$ & $C\tau$ \\
+$(56, 27, 29)$ & $P^6 c_0$ & $$ & \\
+$(57, 6, 31)$ & $D_4$ & $h_1 B_6$ & $C\tau$ \\
+$(57, 7, 30)$ & $Q_2$ & $$ & $C\tau$ \\
+$(57, 9, 31)$ & $\D h_1 d_1$ & $$ & & $D_{11}$ \\
+$(57, 15, 31)$ & $P \D c_0 e_0$ & $P \D h_1^2 c_0 d_0 + \tau h_0 d_0^4$ & $C\tau$ & \\
+$(57, 24, 30)$ & $P^5 e_0$ & $P^5 h_1^2 d_0$ & $C\tau$ \\
+$(57, 29, 29)$ & $P^7 h_1$ & $$ & \\
+$(58, 6, 30)$ & $D_2$ & $h_0 Q_2$ & $C\tau$ \\
+$(58, 8, 33)$ & $e_1 g$ & $$ & \\
+$(58, 17, 31)$ & $P^2 \D h_1 e_0$ & $P^2 \D h_1^3 d_0$ & $C\tau$ & \\
+$(58, 23, 30)$ & $P^4 j$ & $P^5 h_0 e_0$ & $C\tau$ \\
+$(59, 7, 33)$ & $j_1$ & $$ & \\
+$(59, 10, 32)$ & $M d_0$ & $$ & & $B_{21}$ \\
+$(59, 11, 35)$ & $c_1 g^2$ & $$ & \\
+$(59, 29, 30)$ & $P^7 h_2$ & $$ & \\
+$(60, 7, 32)$ & $M h_4$ & $$ & $C\tau$ & $B_3$ \\
+$(60, 9, 32)$ & $B_4$ & $M h_0 d_0$ & $C\tau$ \\
+$(60, 12, 35)$ & $\tau g^3$ & $$ & \\
+$(60, 13, 36)$ & $h_0 g^3$ & $$ & \\
+$(61, 4, 32)$ & $D_3$ & $$ & \\
+$(61, 6, 32)$ & $A'$ & $$ & $C\tau$ \\
+$(61, 6, 32)$ & $A+A'$ & $M h_0 h_4$ & $C\tau$ \\
+$(61, 7, 33)$ & $B_7$ & $$ & \\
+$(61, 9, 32)$ & $\D x$ & $h_0^2 B_4 + \tau M h_1 d_0$ & Lemma \ref{lem:d2-Dx} & $X_1$ \\
+& & & or $C\tau$, $h_1^2$ \\
+$(62, 5, 33)$ & $H_1$ & $B_7$ & $C\tau$ \\
+$(62, 8, 33)$ & $C_0$ & $$ & & $x_{8,33} + h_0^6 h_5^2$ \\
+$(62, 8, 33)$ & $\D e_1$ & $$ & & $E_1$, $x_{8,32} + x_{8,33}$ \\
+$(62, 10, 32)$ & $\D^2 h_3^2$ & $$ & $C\tau$ & $x_{10,27} + x_{10,28} +$ \\
+ & & & & $+ h_1 X_1$, $R$ \\
+$(62, 10, 34)$ & $M e_0$ & $M h_1^2 d_0$ & $C\tau$ & $B_{22}$, $x_{10,28}$ \\
+$(62, 19, 33)$ & $P^2 \D c_0 d_0$ & $\tau P^2 h_0 d_0^2 e_0$ & $C\tau$ & \\
+$(62, 28, 32)$ & $P^6 d_0$ & $$ & \\
+$(63, 1, 32)$ & $h_6$ & $h_0 h_5^2$ & $C\tau$ \\
+$(63, 7, 34)$ & $C'$ & $$ & $C\tau$ & $x_{7,33} + x_{7,34}$ \\
+$(63, 7, 34)$ & $X_2$ & $M h_1^2 h_4$ & $C\tau$ & $x_{7,33}$ \\
+$(63, 13, 38)$ & $h_2 g^3$ & $$ & \\
+$(63, 21, 33)$ & $P^3 \D h_1 d_0$ & $$ & & \\
+$(64, 6, 34)$ & $A''$ & $h_0 X_2$ & $C\tau$ \\
+$(64, 10, 33)$ & $\D^2 h_1 h_4$ & $$ & & $x_{10,32} \mathord{+} ? h_0^2 h_3 Q_2$, \\
+ & & & & $q_1$ \\
+$(64, 14, 34)$ & $\D^2 h_1^2 d_0$ & $M P^2 h_1^2$ & $C\tau$ & $U$, $P Q_1 + ? k m$ \\
+$(64, 31, 33)$ & $P^7 c_0$ & $$ & \\
+$(65, 7, 36)$ & $k_1$ & $$ & \\
+$(65, 10, 35)$ & $\tau M g$ & $$ & $C\tau$ & $B_{23}$ \\
+$(65, 13, 34)$ & $\D^2 h_0 e_0$ & $h_0 \cdot \D^2 h_1^2 d_0$ & $C\tau$ & $R_2 + ? g w$ \\
+$(65, 19, 35)$ & $P^2 \D c_0 e_0$ & $P^2 \D h_1^2 c_0 d_0 +$ & $C\tau$ & \\
+ & & $+\tau P h_0 d_0^4$ \\
+$(65, 28, 34)$ & $P^6 e_0$ & $P^6 h_1^2 d_0$ & $C\tau$ \\
+$(65, 33, 33)$ & $P^8 h_1$ & $$ & \\
+$(66, 6, 36)$ & $\D_1 h_3^2$ & $$ & & $r_1$ \\
+$(66, 7, 35)$ & $\tau G_0$ & $h_2 C_0 + h_1 h_3 Q_2$ & $C\tau$ & $x_{7,40} + ? h_0 r_1$ \\
+$(66, 10, 34)$ & $D_2'$ & $\tau^2 M h_0^2 g$ & $C\tau$, $i$ & $P D_2$  \\
+$(66, 10, 35)$ & $\tau B_5$ & $\tau M h_0^2 g$ & $i$  \\
+$(66, 21, 35)$ & $P^3 \D h_1 e_0$ & $P^3 \D h_1^3 d_0$ & $C\tau$ & \\
+$(66, 27, 34)$ & $P^5 j$ & $P^6 h_0 e_0$ & $C\tau$ \\
+$(67, 5, 35)$ & $\tau Q_3$ & $\tau \D_1 h_0 h_3^2$ & $g_2$  \\
+$(67, 5, 36)$ & $n_1$ & $\D_1 h_0 h_3^2$ & $C\tau$ \\
+$(67, 6, 36)$ & $h_0 Q_3 \mathord{+} h_2^2 D_3$ & $$ & $C\tau$ \\
+$(67, 9, 36)$ & $X_3$ & $$ & $C\tau$ & $x_{9,40}$ \\
+$(67, 9, 37)$ & $C''$ & $$ & & $x_{9,39}$ \\
+$(67, 11, 35)$ & $\D^2 c_1$ & $$ & & $x_{11,35} + h_0^2 x_{9,40}$ \\
+$(67, 13, 40)$ & $h_3 g^3$ & $h_0 h_2^2 g^3$ & $C\tau$ \\
+$(67, 33, 34)$ & $P^8 h_2$ & $$ & \\
+$(68, 4, 36)$ & $d_2$ & $$ & $C\tau$ \\
+$(68, 8, 36)$ & $\D g_2$ & $h_0 X_3$ & $C\tau$ & $G_{21} + ? h_0 h_3 A'$ \\
+$(68, 11, 38)$ & $M h_2 g$ & $$ & \\
+$(68, 13, 36)$ & $\D^2 h_0 g$ & $M P h_0 d_0$ & $C\tau$ & $P^2 D_1 \mathord{+} ? h_0^5 G_{21}$, \\
+ & & & & $G_{11}$ \\
+$(69, 4, 36)$ & $p'$ & $$ & $C\tau$ \\
+\revrow
+$(69, 8, 37)$ & $D_3'$ & $h_1 X_3$ & $C\tau$, \cite{Chua21} & $P D_3$ \\
+$(69, 8, 38)$ & $h_2 G_0$ & $h_1 C''$ & $C\tau$ \\
+$(69, 10, 36)$ & $P(A+A')$ & $\tau^2 M h_0 h_2 g$ & $C\tau$, $i$  \\
+$(69, 11, 38)$ & $h_2 B_5$ & $$ & $C\tau$ \\
+$(69, 13, 36)$ & $\tau \D^2 h_1 g$ & $$ & $d_0$ & $W_1$ \\
+$(69, 18, 36)$ & $M P^3$ & $$ & & $x_{18,20} + ? d_0 i l$ \\
+$(70, 4, 37)$ & $p_1$ & $$ & $C\tau$ \\
+$(70, 6, 38)$ & $h_2 Q_3$ & $$ & $C\tau$ \\
+$(70, 17, 36)$ & $P \D^2 h_0 d_0$ & $M P^3 h_0$ & $C\tau$ & $R'_1$, $R_1 + ? d_0^2 v$ \\
+$(70, 23, 37)$ & $P^3 \D c_0 d_0$ & $\tau P^3 h_0 d_0^2 e_0$ & $C\tau$ & \\
+$(70, 32, 36)$ & $P^7 d_0$ & $$ & \\
+$(71, 6, 38)$ & $x_{71,6}$ & $\tau d_1 e_1$ & $h_3$ & $x_{6,47} + ? h_1^2 p'$  \\
+$(71, 7, 39)$ & $l_1$ & $$ & \\
+$(71, 12, 37)$ & $\D^2 h_4 c_0$ & $$ & $C\tau$, $\tmf$, $h_0$ & $x_{12,37} + ? h_0 d_0 Q_2$ \\
+$(71, 13, 38)$ & $\D^2 h_2 g$ & $$ & $C\tau$ & $x_{13,34}$ \\
+$(71, 13, 38)$ & $M j$ & $M P h_0 e_0$ & $C\tau$ & $x_{13,35}$ \\
+$(71, 13, 40)$ & $\D h_3 g^2$ & $h_0 m^2$ & $C\tau$ \\
+$(71, 13, 41)$ & $g^2 n$ & $$ & \\
+$(71, 25, 37)$ & $P^4 \D h_1 d_0$ & $$ & & \\
+$(71, 31, 36)$ & $P^6 i$ & $P^7 h_0 d_0$ & $C\tau$ \\
+$(72, 12, 42)$ & $d_1 g^2$ & $$ & \\
+$(72, 17, 39)$ & $\D^2 h_1^2 c_0 d_0$ & $M P^2 h_1^2 c_0$ & $C\tau$ \\
+$(72, 18, 38)$ & $P \D^2 h_1^2 d_0$ & $M P^3 h_1^2$ & $C\tau$ & \\
+$(72, 35, 37)$ & $P^8 c_0$ & $$ & \\
+$(73, 17, 38)$ & $P \D^2 h_0 e_0$ & $M P^3 h_2$ & $C\tau$ & \\
+$(73, 23, 39)$ & $P^3 \D c_0 e_0$ & $P^3 \D h_1^2 c_0 d_0 + $ & $C\tau$ \\
+ & & $+\tau P^2 h_0 d_0^4$ \\
+$(73, 32, 38)$ & $P^7 e_0$ & $P^7 h_1^2 d_0$ & $C\tau$ \\
+$(73, 37, 37)$ & $P^9 h_1$ & $$ & \\
+$(74, 8, 40)$ & $x_{74,8}$ & $$ & & $x_{8,51} + ? P h_0^2 h_2 h_6$ \\
+$(74, 25, 39)$ & $P^4 \D h_1 e_0$ & $P^4 \D h_1^3 d_0$ & $C\tau$ & \\
+$(74, 31, 38)$ & $P^6 j$ & $P^7 h_0 e_0$ & $C\tau$ \\
+$(75, 7, 40)$ & $x_{75,7}$ & $$ & $C\tau$ & $x_{7,53}$ \\
+$(75, 11, 42)$ & $g B_6$ & $$ & $C\tau$ \\
+$(75, 13, 40)$ & $\D^2 h_3 g$ & $\D^2 h_0 h_2^2 g$ & $C\tau$ \\
+$(75, 15, 44)$ & $g^2 m$ & $h_0 e_0^2 g^2$ & $C\tau$ \\
+$(75, 37, 38)$ & $P^9 h_2$ & $$ & \\
+$(76, 6, 40)$ & $x_{76,6}$ & $h_0 x_{75,7}$ & $C\tau$ & $x_{6,53}$ \\
+$(76, 9, 40)$ & $x_{76,9}$ & $$ & $C\tau$ & $x_{9,51} + ? h_1 h_4 B_3$ \\
+$(76, 14, 44)$ & $g^2 t$ & $$ & $C\tau$ \\
+$(76, 16, 40)$ & $\D^2 d_0^2$ & $\tau^2 d_0 j m$ & $C\tau$, $\tmf$ & $x_{16,32}$ \\
+$(77, 7, 40)$ & $x_{77,7}$ & $\tau M h_1 h_4^2$ & Lemma \ref{lem:d2-x77,7} & $x_{7,57} + m_1$ \\
+$(77, 7, 42)$ & $m_1$ & $$ & $C\tau$ \\
+$(77, 8, 41)$ & $x_{77,8}$ & $\D h_1 h_3 g_2$ & $C\tau$ & $x_{8,57}$ \\
+$(77, 12, 41)$ & $M \D h_1 h_3$ & $$ & $C\tau$, $h_0$, $\tau g$ & $P^2 D_3$ \\
+$(77, 13, 43)$ & $\D h_1 d_1 g$ & $$ & \\
+$(77, 16, 40)$ & $\D^2 h_0 k$ & $\D^2 h_0^2 d_0^2$ & $C\tau$ & $x_{16,33} + ? e_0 g^3$ \\
+$(77, 16, 46)$ & $e_0 g^3$ & $h_1^2 e_0^2 g^2$ & $C\tau$ \\
+$(78, 6, 42)$ & $t_1$ & $h_0 m_1$ & $C\tau$ \\
+$(78, 9, 41)$ & $x_{78,9}$ & $$ & $C\tau$ & $x_{9,55} + ? h_0^7 h_4 h_6$ \\
+$(78, 10, 40)$ & $x_{78,10}$ & $h_0^5 x_{77,7}$ & $C\tau$, $h_1$ & $P^2 h_5^2$ \\
+$(78, 12, 45)$ & $e_1 g^2$ & $$ & \\
+$(78, 27, 41)$ & $P^4 \D c_0 d_0$ & $\tau P^4 h_0 d_0^2 e_0$ & $C\tau$ \\
+$(78, 36, 40)$ & $P^8 d_0$ & $$ & \\
+$(79, 5, 42)$ & $x_1$ & $$ & $C\tau$ \\
+$(79, 11, 42)$ & $\D B_6$ & $$ & $C\tau$ \\
+$(79, 11, 45)$ & $g j_1$ & $$ & \\
+$(79, 13, 41)$ & $\D^2 n$ & $$ & & $x_{13,42}$ \\
+$(79, 15, 47)$ & $c_1 g^3$ & $$ & $C\tau$ \\
+$(79, 16, 42)$ & $\D^2 d_0 e_0$ & $\D^2 h_1^2 d_0^2 + \tau^2 d_0 k m$ & $C\tau$, $\tmf$ & $x_{16,35}$ \\
+$(79, 29, 40)$ & $P^4 \D h_0^2 i$ & $P^4 h_0 i^2$ & $C\tau$ & \\
+$(79, 29, 41)$ & $P^5 \D h_1 d_0$ & $$ & $C\tau$ & \\
+$(80, 4, 42)$ & $e_2$ & $h_0 x_1$ & $C\tau$ \\
+$(80, 12, 42)$ & $\D^2 d_1$ & $$ & $h_0$ & $x_{12,44}$ \\
+$(80, 13, 44)$ & $g B_4$ & $M h_0 e_0^2$ & $C\tau$ \\
+$(80, 14, 41)$ & $\D^3 h_1 h_3$ & $$ & $h_0$ & $x_{14,42}$ \\
+$(80, 16, 42)$ & $\D^2 h_0 l$ & $\D^2 h_0^2 d_0 e_0$ & $C\tau$ & $x_{16,37} + ? g^4$ \\
+$(80, 16, 47)$ & $\tau g^4$ & $$ & \\
+$(80, 22, 42)$ & $P^2 \D^2 h_1^2 d_0$ & $M P^4 h_1^2$ & $C\tau$ & \\
+$(80, 39, 41)$ & $P^9 c_0$ & $$ & \\
+$(81, 10, 44)$ & $g A'$ & $$ & \\
+$(81, 11, 45)$ & $g B_7$ & $$ & \\
+$(81, 12, 42)$ & $\D^2 p$ & $$ & $h_0$ & $x_{12,45}$ \\
+$(81, 21, 42)$ & $P^2 \D^2 h_0 e_0$ & $h_0 \cdot P^2 \D^2 h_1^2 d_0$ & $C\tau$ & \\
+$(81, 27, 43)$ & $P^4 \D c_0 e_0$ & $P^4 \D h_1^2 c_0 d_0 +$ & $C\tau$ \\
+ & & $+\tau P^3 h_0 d_0^4$ \\
+$(81, 36, 42)$ & $P^8 e_0$ & $P^8 h_1^2 d_0$ & $C\tau$ \\
+$(81, 41, 41)$ & $P^{10} h_1$ & $$ & \\
+$(82, 6, 44)$ & $h_4 Q_3$ & $$ & \\
+$(82, 9, 45)$ & $g H_1$ & $g B_7$ & $C\tau$ \\
+$(82, 12, 45)$ & $(\D e_1 \mathord{+} C_0) g$ & $$ & \\
+$(82, 12, 45)$ & $g C_0$ & $$ & \\
+$(82, 14, 46)$ & $M e_0 g$ & $M h_1^2 e_0^2$ & $C\tau$ \\
+$(82, 16, 44)$ & $\D^2 e_0^2$ & $\tau^2 \D h_2^2 e_0^3$ & $C\tau$, $\tmf$ & $x_{16,38}$ \\
+$(82, 17, 47)$ & $\D h_1 e_0 g^2$ & $\D h_1^3 e_0^2 g + M h_1^5 d_0 e_0$ & $C\tau$ \\
+$(82, 29, 43)$ & $P^5 \D h_1 e_0$ & $P^5 \D h_1^3 d_0$ & $C\tau$ & \\
+$(82, 35, 42)$ & $P^7 j$ & $P^8 h_0 e_0$ & $C\tau$ \\
+$(83, 11, 45)$ & $\D j_1$ & $$ & \\
+$(83, 11, 46)$ & $g C'$ & $$ & \\
+$(83, 15, 44)$ & $\D^2 m$ & $\D^2 h_0 e_0^2 +$ & $C\tau$, $\tmf$ & $x_{15,41}$ \\
+ & & $+\tau^3 \D h_1 e_0 g^2$ \\
+$(83, 17, 50)$ & $h_2 g^4$ & $$ & \\
+$(83, 41, 42)$ & $P^{10} h_2$ & $$ & \\
+$(84, 4, 44)$ & $f_2$ & $$ & $C\tau$ \\
+$(84, 10, 45)$ & $P x_{76,6}$ & $$ & $C\tau$ \\
+$(84, 14, 44)$ & $\D^2 t$ & $$ & $C\tau$ & $x_{14,46}$ \\
+$(84, 15, 44)$ & $\D h_0^2 B_4$ & $\D^2 h_0^2 m + \tau \D^2 h_1 e_0^2$ & $C\tau$, $\mmf$ & $x_{15,42} + x_{15,43}$ \\
+$(84, 15, 45)$ & $M \D h_1 d_0$ & $$ & $C\tau$ & $x_{15,43}$ \\
+$(85, 3, 44)$ & $c_3$ & $h_0 f_2$ & $C\tau$ \\
+\revrow
+$(85, 6, 45)$ & $x_{85,6}$ & $\tau h_1^2 h_4 Q_3$ & $h_1$ & $x_{6,68} + h_0^3 c_3$ \\
+$(85, 13, 44)$ & $\D^2 x$ & $$ & $C\tau$, $h_1^2$ & $x_{13,46}$ \\
+$(85, 14, 48)$ & $M g^2$ & $$ & $C\tau$ \\
+$(85, 16, 46)$ & $\D^2 e_0 g$ & $\D^2 h_1^2 e_0^2 + \tau^2 d_0 m^2$ & $\tmf$ & $x_{16,42} + h_0^3 x_{13,46}$ \\
+$(85, 26, 44)$ & $M P^5$ & $$ & \\
+$(86, 11, 47)$ & $\tau g G_0$ & $h_2 (\D e_1 + C_0) g$ & $C\tau$ \\
+$(86, 12, 45)$ & $\D^2 e_1$ & $$ & $d_0$ & $x_{12,48}$ \\
+$(86, 12, 46)$ & $\D h_1 B_7$ & $$ & \\
+$(86, 14, 44)$ & $\D^3 h_3^2$ & $\D^2 h_0^3 x$ & $C\tau$, $h_1$ & $P^3 h_5^2 + ? g B_5$ \\
+$(86, 14, 47)$ & $\tau B_5 g$ & $\tau M h_0^2 g^2$ & Lemma \ref{lem:d2-tB5g} \\
+$(86, 25, 44)$ & $\D^2 P^3 h_0 d_0$ & $M P^5 h_0$ & $C\tau$ & $x_{25,24} + ? P^2 d_0^2 v$ \\
+$(86, 31, 45)$ & $P^5 \D c_0 d_0$ & $\tau P^5 h_0 d_0^2 e_0$ & $h_0$  \\
+$(86, 40, 44)$ & $P^9 d_0$ & $$ & \\
+$(87, 7, 45)$ & $x_{87,7}$ & $$ & & $x_{7,74}$ \\
+$(87, 9, 48)$ & $g Q_3$ & $$ & $C\tau$ \\
+$(87, 10, 46)$ & $\D h_1 H_1$ & $\D h_1 B_7$ & $C\tau$ & $x_{10,60}$ \\
+$(87, 13, 49)$ & $g C''$ & $$ & $C\tau$ \\
+$(87, 15, 47)$ & $\D^2 c_1 g$ & $$ & $C\tau$ \\
+$(87, 15, 47)$ & $M \D h_1 e_0$ & $M \D h_1^3 d_0$ & $C\tau$ & $x_{15,47} + ? h_2 x_{14,46}$ \\
+$(87, 17, 45)$ & $\D^3 h_1 d_0$ & $\tau^5 e_0^3 m$ & $\tmf$ & $x_{17,50}$ \\
+$(87, 17, 52)$ & $h_3 g^4$ & $h_0 h_2^2 g^4$ & $C\tau$ \\
+$(87, 20, 46)$ & $P \D^2 d_0 e_0$ & $P \D^2 h_1^2 d_0^2 +$ & $C\tau$, $\tmf$ \\
+ & & $+\tau^2 \D h_2^2 d_0^4$ \\
+$(87, 33, 45)$ & $P^6 \D h_1 d_0$ & $$ & $C\tau$ \\
+$(87, 39, 36)$ & $P^8 i$ & $P^9 h_0 d_0$ & $C\tau$ \\
+$(88, 10, 48)$ & $x_{88,10}$ & $$ & \\
+$(88, 12, 46)$ & $\D^2 f_1$ & $$ & & $x_{12,51} \mathord{+} ? g G_{21} \mathord{+}$ \\
+ & & & & $+? P h_0^3 h_6 e_0$ \\
+$(88, 12, 48)$ & $\D g_2 g$ & $$ & \\
+$(88, 16, 47)$ & $\tau \D^2 g^2$ & $\tau^3 \D h_2^2 e_0 g^2$ & $\tmf$, $h_0$ & $x_{16,48}$ \\
+$(88, 26, 46)$ & $P^3 \D^2 h_1^2 d_0$ & $M P^5 h_1^2$ & $C\tau$ \\
+$(88, 43, 45)$ & $P^{10} c_0$ & $$ & \\
+$(89, 11, 46)$ & $\D^2 c_2$ & $\D^2 h_0 f_1$ & $C\tau$ & $x_{11,59}$ \\
+$(89, 12, 50)$ & $h_2 g G_0$ & $h_1 g C''$ & $C\tau$ \\
+$(89, 15, 50)$ & $h_2 B_5 g$ & $$ & $C\tau$ \\
+$(89, 18, 46)$ & $\D^3 h_0^2 e_0$ & $\tau^6 e_0^4 g$ & $C\tau$, $\tmf$ & $x_{18,50}$ \\
+$(89, 19, 51)$ & $\D c_0 e_0 g^2$ & $\D h_1^2 c_0 e_0^2 g + \tau h_0 e_0^4 g$ & $C\tau$, $h_0$  \\
+  & & $+ M h_1^4 c_0 d_0 e_0$ & \\
+$(89, 25, 46)$ & $P^3 \D^2 h_0 e_0$ & $M P^5 h_2$ & $C\tau$ \\
+$(89, 31, 47)$ & $P^5 \D c_0 e_0$ & $P^5 \D h_1^2 c_0 d_0 +$ & $C\tau$ \\
+ & & $+\tau P^4 h_0 d_0^4$ \\
+$(89, 40, 46)$ & $P^9 e_0$ & $P^9 h_1^2 d_0$ & $C\tau$ \\
+$(89, 45, 45)$ & $P^{11} h_1$ & $$ & \\
+$(90, 10, 48)$ & $x_{90,10}$ & $$ & & $x_{10,63}$ \\
+$(90, 12, 48)$ & $M^2$ & $$ & & $x_{12,55}$ \\
+$(90, 15, 49)$ & $M \D h_1 g$ & $$ & $C\tau$ & $r B_4$ \\
+$(90, 17, 47)$ & $\D^3 h_1 e_0$ & $\D^3 h_1^3 d_0 + \tau^5 e_0^2 g m$ & $C\tau$, $\tmf$ & $x_{17,52}$ \\
+$(90, 33, 47)$ & $P^6 \D h_1 e_0$ & $P^6 \D h_1^3 d_0$ & $C\tau$ \\
+$(90, 39, 46)$ & $P^8 j$ & $P^9 h_0 e_0$ & $C\tau$ \\
+$(91, 8, 48)$ & $x_{91,8}$ & $x_{90,10}$ & $C\tau$ & $x_{8,75}$ \\
+$(91, 11, 48)$ & $x_{91,11}$ & $M^2 h_0$ & $C\tau$ & $x_{11,61} + ? h_0^2 h_6 d_0^2$ \\
+$(91, 17, 49)$ & $M \D c_0 d_0$ & $\tau M h_0 d_0^2 e_0$ & $C\tau$, $h_0$  \\
+$(91, 17, 50)$ & $\D^2 h_2 g^2$ & $$ & \\
+$(91, 17, 52)$ & $\D h_3 g^3$ & $h_0 g m^2$ & $C\tau$ \\
+$(91, 17, 53)$ & $g^3 n$ & $$ & \\
+$(91, 45, 46)$ & $P^{11} h_2$ & $$ & \\
+$(92, 4, 48)$ & $g_3$ & $$ & $C\tau$ \\
+$(92, 10, 48)$ & $x_{92,10}$ & $$ & $C\tau$ & $x_{10,65} + ? h_0^2 h_6 k$ \\
+$(92, 10, 51)$ & $\D_1 h_1^2 e_1$ & $$ & $C\tau$ \\
+$(92, 12, 48)$ & $\D^2 g_2$ & $$ & $C\tau$ & $x_{12,58} + ? h_0^2 x_{10,65}$ \\
+$(92, 16, 54)$ & $d_1 g^3$ & $$ & \\
+$(92, 18, 48)$ & $\D^3 h_2^2 d_0$ & $\tau^6 d_0 e_0 g^3$ & $C\tau$, $\tmf$ & $x_{18,55}$ \\
+$(92, 24, 48)$ & $P^2 \D^2 d_0^2$ & $\tau^2 d_0^3 i j$ & $C\tau$, $\tmf$ \\
+$(93, 8, 49)$ & $x_{93,8}$ & $$ & $C\tau$ & $x_{8,78} + h_0 h_6 r$ \\
+$(93, 9, 51)$ & $\D_1 h_2 e_1$ & $$ & \\
+$(93, 10, 49)$ & $\D h_3 H_1$ & $h_1 x_{91,11}$ & $C\tau$ & $x_{10,67} + h_0^4 h_6 r$ \\
+$(93, 12, 50)$ & $\D \D_1 e_0$ & $M^2 h_1^2$ & $C\tau$ & $x_{12,60} + ? P h_6 c_0 d_0$ \\
+$(93, 15, 54)$ & $g^2 i_1$ & $$ & $C\tau$ \\
+$(93, 17, 48)$ & $\tau \D^3 h_1 g$ & $\tau^6 e_0^2 g m$ & $\tmf$, $h_1$ & $x_{17,57}$ \\
+\revrow
+$(94, 8, 49)$ & $x_{94,8}$ & $$ & \cite{Chua21} & $x_{8,80}$ \\
+$(94, 9, 50)$ & $x_{94,9}$ & $$ & $C\tau$ \\
+$(94, 10, 50)$ & $y_{94,10}$ & $$ & $C\tau$ & $x_{10,70} + ? h_0^2 x_{8,80}$ \\
+$(94, 10, 51)$ & $x_{94,10}$ & $$ & \\
+$(94, 15, 49)$ & $M \D^2 h_1$ & $$ & & $x_{15,56}$ \\
+$(94, 16, 49)$ & $\D^3 h_2 c_1$ & $$ & $d_0$ & $x_{16,54}$  \\
+$(94, 17, 51)$ & $M \D c_0 e_0$ & $M \D h_1^2 c_0 d_0 \mathord{+}$ & $C\tau$, $h_0$  \\
+& & $+\tau M h_0 d_0 e_0^2$ \\
+$(94, 19, 49)$ & $\D^3 c_0 d_0$ & $\tau \D^2 h_0 d_0^2 e_0$ & $h_0$  \\
+$(94, 19, 50)$ & $\D^2 d_0 l$ & $\D^2 h_0 d_0^2 e_0 +$ & $C\tau$, $\tmf$ & $x_{19,49}$ \\
+ & & $+\tau^3 \D h_1 e_0^4$ \\
+$(94, 22, 48)$ & $\D^2 i^2$ & $\tau^6 d_0^3 e_0^3$ & $\tmf$ & $x_{22,39}$ \\
+$(94, 35, 49)$ & $P^6 \D c_0 d_0$ & $\tau P^6 h_0 d_0^2 e_0$ & $C\tau$ \\
+$(94, 44, 48)$ & $P^{10} d_0$ & $$ & \\
+\revrow
+$(95, 7, 50)$ & $x_{95,7}$ & $x_{94,9}$ & $C\tau$, \cite{BF21} & $x_{7,79}$ \\
+$(95, 8, 51)$ & $x_{95,8}$ & $x_{94,10}$ & $C\tau$ \\
+$(95, 10, 50)$ & $\D x_{71,6}$ & $\tau \D d_1 e_1$ & $C\tau$, $h_3$ & $x_{10,73} + ? h_0^2 h_6 l$ \\
+$(95, 11, 51)$ & $x_{95,11}$ & $$ & $C\tau$ \\
+$(95, 15, 54)$ & $g^2 B_6$ & $$ & \\
+$(95, 16, 52)$ & $M \D h_2^2 g$ & $$ & $C\tau$ \\
+$(95, 17, 52)$ & $\D^2 h_3 g^2$ & $P^2 h_1^7 h_6 c_0$ & $C\tau$ \\
+$(95, 18, 50)$ & $\D^3 h_2^2 e_0$ & $\tau^6 e_0^2 g^3$ & $C\tau$, $\tmf$ & $x_{18,57}$ \\
+$(95, 19, 56)$ & $g^3 m$ & $h_0 e_0^2 g^3$ & $C\tau$ \\
+$(95, 21, 48)$ & $\D^3 h_0^2 i$ & $\D^2 h_0 i^2 + \tau^6 d_0^3 e_0 m$ & $C\tau$, $\tmf$ & $x_{21,43} + ? P x_{17,50}$ \\
+$(95, 21, 49)$ & $P \D^3 h_1 d_0$ & $\tau^5 d_0^3 e_0 m$ & $\tmf$ \\
+$(95, 24, 50)$ & $P^2 \D^2 d_0 e_0$ & $P^2 \D^2 h_1^2 d_0^2 + \tau^2 d_0^3 i k$ & $C\tau$, $\tmf$ \\
+$(95, 37, 49)$ & $P^7 \D h_1 d_0$ & $$ & $C\tau$ \\
+\end{longtable}
+
+
+\begin{longtable}{lll}
+\caption{Some $\C$-motivic permanent cycles
+%Some permanent cycles in the $\C$-motivic Adams spectral sequence
+\label{tab:Adams-perm}
+} \\
+\toprule
+$(s,f,w)$ & element & proof \\
+\midrule \endfirsthead
+\caption[]{Some $\C$-motivic permanent cycles
+%Some permanent cycles in the $\C$-motivic Adams spectral sequence
+} \\
+\toprule
+$(s,f,w)$ & element & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(36,6,20)$ & $t$ & $\langle \tau, \eta^2 \kappa_1, \eta \rangle$ \\
+$(64,2,33)$ & $h_1 h_6$ & $\langle \eta, 2, \theta_5 \rangle$ \\
+$(68,7,36)$ & $h_3 A'$ & $\langle \sigma, \kappa, \tau \eta \theta_{4.5} \rangle$ \\
+$(69,3,36)$ & $h_2^2 h_6$ & $\langle \nu^2, 2, \theta_5 \rangle$ \\
+$(69,4,36)$ & $p'$ & $\sigma \theta_5$ \\
+$(70,5,36)$ & $h_0^3 h_3 h_6$ & $\langle 8 \sigma, 2, \theta_5 \rangle$ \\
+$(70,14,37)$ & $\tau \D^2 h_1^2 g + \tau^3 \D h_2^2 g^2$ &
+	$\langle \eta, \tau \kappa^2, \tau \kappabar^2 \rangle$ \\
+$(71,4,37)$ & $h_6 c_0$ & $\langle \epsilon, 2, \theta_5 \rangle$ \\
+\revrow
+$(71, 5, 37)$ & $\tau h_1 p_1$ & Lemma \ref{lem:perm-th1p1} \\
+$(72,6,37)$ & $P h_1 h_6$ & $\langle \mu_9, 2, \theta_5 \rangle$ \\
+$(74,7,38)$ & $P h_0 h_2 h_6$ & Lemma \ref{lem:perm-Ph0h2h6} \\
+$(74,8,40)$ & $x_{74,8}$ & $\theta_4 \kappabar_2$ \\
+$(77,3,40)$ & $h_3^2 h_6$ & $\langle \sigma^2, 2, \theta_5 \rangle$ \\
+$(77,5,40)$ & $h_6 d_0$ & $\langle \kappa, 2, \theta_5 \rangle$ \\
+$(79,3,41)$ & $h_1 h_4 h_6$ & $\langle \eta_4, 2, \theta_5 \rangle$ \\
+$(79,8,41)$ & $P h_6 c_0$ & $\rho_{15} \eta_6$ \\
+$(80,6,42)$ & $\tau h_1 x_1$ & $ \langle 2, \eta, \tau \eta \{h_1 x_{76,6}\} \rangle$ \\
+$(80,10,41)$ & $P^2 h_1 h_6$ & $\langle \mu_{17}, 2, \theta_5 \rangle$ \\
+$(80,12,42)$ & $\D^2 d_1$ & Lemma \ref{lem:perm-D^2d1} \\
+$(82,4,43)$ & $h_6 c_1$ & $\langle \sigmabar, 2, \theta_5 \rangle$ \\
+$(83,6,44)$ & $h_0 h_6 g$ & $\langle \kappa \eta_6, \eta, \nu \rangle$ \\
+$(84,4,44)$ & $h_2^2 h_4 h_6$ & $\langle \nu \nu_4, 2, \theta_5 \rangle$ \\
+%$(85,5,44)$ & $\tau h_1 f_2$ & Lemma \ref{lem:perm-th1f2} \\
+$(85,9,44)$ & $P h_6 d_0$ & $\langle \tau \eta^2 \kappabar, 2, \theta_5 \rangle$ \\
+$(86,5,45)$ & $h_4 h_6 c_0$ & $\sigma \{h_1 h_4 h_6\}$ \\
+$(87,5,46)$ & $h_1^2 c_3$ & $\langle \tau \{h_0 Q_3 + h_0 n_1\}, \nu_4, \eta \rangle$ \\
+\revrow
+$(87,8,47)$ & $h_1 h_4 x_{71,6}$ & $\langle \{h_1 x_{71,6}\}, 2, \sigma^2 \rangle$ \\
+$(87,12,45)$ & $P^2 h_6 c_0$ & $\rho_{23} \eta_6$ \\
+$(88,10,48)$ & $x_{88,10}$ & Lemma \ref{lem:perm-x88,10} \\
+$(88,14,45)$ & $P^3 h_1 h_6$ & $\langle \mu_{25}, 2, \theta_5 \rangle$ \\
+$(90,12,48)$ & $M^2$ & Lemma \ref{lem:perm-M^2} \\
+$(91,7,49)$ & $h_1 h_3 h_6 g$ & $\langle \{h_1 h_3 g\}, 2, \theta_5 \rangle$ \\
+$(92,5,48)$ & $h_0 g_3$ & Lemma \ref{lem:perm-h0g3} \\
+%$(93,6,48)$ & $h_0^3 h_4^2 h_6$ & $\langle \theta_5, 2, \theta_4 \rangle$ \\
+$(93,10,50)$ & $h_1^2 x_{91,8}$ & $\langle \kappa_1, \kappa, \tau \eta \theta_{4.5} \rangle$ \\
+$(94,6,49)$ & $h_6 n$ & $\langle \{n\}, 2, \theta_5 \rangle$ \\
+$(95,5,50)$ & $h_6 d_1$ & $\langle \kappa_1, 2, \theta_5 \rangle$ \\
+$(95,7,49)$ & $\D h_1 h_3 h_6$ & $\langle \{\D h_1 h_3\}, 2, \theta_5 \rangle$ \\
+$(95,16,49)$ & $P^3 h_6 c_0$ & Lemma \ref{lem:perm-P^3h6c0} \\
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{llll}
+\caption{$\C$-motivic Adams $d_3$ differentials
+%Adams $d_3$ differentials in the $\C$-motivic Adams spectral sequence 
+\label{tab:Adams-d3}
+} \\
+\toprule
+$(s,f,w)$ & element & $d_3$ & proof \\
+\midrule \endfirsthead
+\caption[]{$\C$-motivic Adams $d_3$ differentials
+% Adams $d_3$ differentials in the $\C$-motivic Adams spectral sequence
+} \\
+\toprule
+$(s,f,w)$ & element & $d_3$ & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(15, 2, 8)$ & $h_0 h_4$ & $h_0 d_0$ & $C\tau$ \\
+$(30, 6, 16)$ & $\D h_2^2$ & $\tau h_1 d_0^2$ & $\tmf$ \\
+$(31, 4, 16)$ & $h_0^3 h_5$ & $h_0 \cdot \D h_2^2$ & $C\tau$ \\
+$(31, 8, 17)$ & $\tau d_0 e_0$ & $P c_0 d_0$ & $d_4(\tau^2 d_0 e_0 + h_0^7 h_5)$ \\
+$(34, 2, 18)$ & $h_2 h_5$ & $\tau h_1 d_1$ & Lemma \ref{lem:d3-h2h5} \\
+$(37, 8, 21)$ & $\tau e_0 g$ & $c_0 d_0^2$ & $d_4(\tau^2 e_0 g)$ \\
+$(38, 4, 21)$ & $e_1$ & $h_1 t$ & $C\tau$ \\
+$(39, 12, 21)$ & $\tau P d_0 e_0$ & $P^2 c_0 d_0$ & $h_1$ \\
+$(40, 4, 22)$ & $f_1$ & $0$ & $h_2$ \\
+$(46, 14, 24)$ & $i^2$ & $\tau P^2 h_1 d_0^2$ & $\tmf$ \\
+$(47, 16, 25)$ & $\tau P^2 d_0 e_0$ & $P^3 c_0 d_0$ & $h_1$ \\
+$(47, 18, 24)$ & $h_0^5 Q'$ & $P^4 h_0 d_0$ & $C\tau$ \\
+$(49, 6, 27)$ & $h_1 h_5 e_0$ & $M h_1^3$ & $C\tau$ \\
+$(49, 11, 26)$ & $\tau^2 d_0 m$ & $P \D h_1^2 d_0$ & $\mmf$ \\
+$(50, 10, 28)$ & $\D h_2^2 g$ & $\tau h_1 d_0 e_0^2$ & $\tau$ \\
+$(54, 8, 28)$ & $h_5 i$ & $M P h_0$ & $C\tau$ \\
+$(54, 6, 28)$ & $\tau^2 \D_1 h_1^2$ & $\tau M c_0$ & Lemma \ref{lem:d3-t^2D1h1^2} \\
+$(55, 11, 30)$ & $\tau^2 g m$ & $\D h_1^2 d_0^2$ & $d_4(\tau^3 g m)$ \\
+$(55, 20, 29)$ & $\tau P^3 d_0 e_0$ & $P^4 c_0 d_0$ & $h_1$ \\
+$(55, 7, 30)$ & $B_6$ & $\tau h_2 g n$ & $C\tau$ \\
+$(56, 8, 31)$ & $h_5 c_0 e_0$ & $M h_1^2 c_0$ & $C\tau$ \\
+$(56, 9, 30)$ & $P h_5 e_0$ & $M P h_1^2$ & $C\tau$ \\
+$(56, 10, 32)$ & $g t$ & $0$ & $\tau$ \\
+$(56, 13, 30)$ & $\tau \D h_1 d_0 e_0$ & $P \D h_1 c_0 d_0$ & $d_4(\tau^2 \D h_1 d_0 e_0)$ \\
+$(57, 12, 33)$ & $\tau e_0 g^2$ & $c_0 d_0 e_0^2$ & $C\tau$ \\
+$(57, 8, 30)$ & $h_5 j$ & $M P h_2$ & $C\tau$ \\
+$(57, 15, 30)$ & $\tau^2 P d_0 m$ & $P^2 \D h_1^2 d_0$ & $\mmf$ \\
+$(57, 7, 30)$ & $Q_2$ & $\tau^2 g t$ & $\tau \D h_1 g$ \\
+$(58, 8, 33)$ & $e_1 g$ & $h_1 g t$ & $C\tau$ \\
+$(60, 12, 35)$ & $\tau g^3$ & $M h_1^6 c_0$ & $C\tau$ \\
+$(61, 4, 32)$ & $D_3$ & $M h_4$ & $C\tau$ \\
+$(62, 13, 34)$ & $\tau \D h_1 e_0 g$ & $\D h_1 c_0 d_0^2$ & $C\tau$ \\
+$(62, 8, 33)$ & $\D e_1$ & $\D h_2^2 n$ & $C\tau$ \\
+$(62, 8, 33)$ & $C_0$ & $\D h_2^2 n$ & $C\tau$ \\
+$(62, 10, 33)$ & $h_1 \cdot \D x + \tau M e_0$ & $M P c_0$ & $C\tau$ \\
+$(62, 10, 32)$ & $\tau h_1 \cdot \D x$ & $0$ & $\D h_2^2$ \\
+$(62, 10, 32)$ & $\D^2 h_3^2$ & $0$ & $\D h_2^2$ \\
+$(62, 22, 32)$ & $P^2 i^2$ & $\tau P^4 h_1 d_0^2$ & $\tmf$ \\
+\revrow
+$(63, 8, 32)$ & $h_0^7 h_6$ & $\D^2 h_0 h_3^2$ & $C\tau$, \cite{Chua21} \\
+$(63, 24, 33)$ & $\tau P^4 d_0 e_0$ & $P^5 c_0 d_0$ & $h_1$ \\
+$(64, 17, 34)$ & $\tau P \D h_1 d_0 e_0$ & $P^2 \D h_1 c_0 d_0$ & $d_4(\tau^2 P \D h_1 d_0 e_0)$ \\
+$(65, 13, 36)$ & $\D h_2^2 m$ & $M P h_1^3 c_0$ & $C\tau$ \\
+$(65, 19, 34)$ & $\tau^2 P^2 d_0 m$ & $P^3 \D h_1^2 d_0$ & $\mmf$ \\
+$(67, 5, 35)$ & $\tau Q_3 + \tau n_1$ & $0$ & $h_2$ \\
+$(67, 9, 37)$ & $C''$ & $n m$ & $C\tau$ \\
+$(67, 9, 36)$ & $X_3$ & $0$ & $\tau g$ \\
+$(68, 4, 36)$ & $d_2$ & $h_0^2 Q_3$ & $C\tau$ \\
+$(68, 11, 35)$ & $\tau h_0^3 \cdot \D g_2$ & $\tau^3 \D h_2^2 e_0 g$ & Lemma \ref{lem:d3-tDg2.h0^3} \\
+$(68, 11, 38)$ & $M h_2 g$ & $0$ & $\tau$ \\
+\revrow
+$(69, 8, 36)$ & $\tau D_3'$ & $\tau^2 M h_2 g$ & Lemma \ref{lem:d3-tD3'} \\
+$(69, 11, 38)$ & $h_2 B_5$ & $M h_1 c_0 d_0$ & $C\tau$ \\
+$(69, 13, 36)$ & $\tau \D^2 h_1 g$ & $\tau^4 e_0^4$ & $\tmf$ \\
+$(70, 2, 36)$ & $h_3 h_6$ & $h_0 p'$ & $C\tau$ \\
+$(70, 4, 37)$ & $p_1$ & $\tau h_1^2 Q_3$ & $C\tau$ \\
+$(70, 14, 37)$ & $\tau M P e_0$ & $M P^2 c_0$ & $d_4(\tau^2 M P e_0)$ \\
+$(70, 14, 40)$ & $m^2$ & $\tau h_1 e_0^4$ & $\tau$ \\
+$(71, 28, 37)$ & $\tau P^5 d_0 e_0$ & $P^6 c_0 d_0$ & $h_1$ \\
+$(72, 21, 39)$ & $\tau P^2 \D h_1 d_0 e_0$ & $P^3 \D h_1 c_0 d_0$ & $d_4(\tau^2 P^2 \D h_1 d_0 e_0)$ \\
+$(73, 23, 38)$ & $\tau^2 P^3 d_0 m$ & $P^4 \D h_1^2 d_0$ & $\mmf$ \\
+$(74, 6, 38)$ & $P h_2 h_6$ & $\tau h_1 h_4 Q_2$ & Lemma \ref{lem:d3-h2h5} \\
+$(75, 7, 40)$ & $x_{75,7}$ & $h_0^2 x_{74,8}$ & $C\tau$ \\
+$(75, 11, 42)$ & $g B_6$ & $\tau h_2 g^2 n$ & $h_2$ \\
+$(75, 15, 42)$ & $\tau^2 g^2 m$ & $\D h_1^2 d_0 e_0^2$ & $d_4(\tau^3 g^2 m)$ \\
+$(76, 5, 40)$ & $h_4 D_3$ & $d_0 D_3$ & $C\tau$ \\
+$(76, 14, 41)$ & $\D^2 h_1 h_3 g$ & $0$ & $h_1$ \\
+$(76, 14, 44)$ & $g^2 t$ & $0$ & $\tau$ \\
+$(77, 14, 40)$ & $\tau^2 M h_0 l$ & $\D^2 h_0 d_0^2$ & Lemma \ref{lem:d3-t^2Mh0l} \\
+$(77, 16, 45)$ & $\tau e_0 g^3$ & $c_0 e_0^4$ & $d_4(\tau^2 e_0 g^3)$ \\
+$(77, 17, 41)$ & $\D^2 h_1 d_0^2$ & $\tau^3 d_0^3 e_0^2$ & $\tmf$ \\
+$(78, 3, 40)$ & $h_0 h_4 h_6$ & $h_0 h_6 d_0$ & $C\tau$ \\
+$(78, 12, 45)$ & $e_1 g^2$ & $h_1 g^2 t$ & $C\tau$ \\
+$(78, 13, 40)$ & $h_0^3 x_{78,10}$ & $\tau^6 e_0 g^3$ & Lemma \ref{lem:d3-h0^3x78,10} \\
+$(78, 18, 41)$ & $\tau M P^2 e_0$ & $M P^3 c_0$ & $h_1$ \\
+$(78, 30, 40)$ & $P^4 i^2$ & $\tau P^6 h_1 d_0^2$ & $\tmf$ \\
+$(79, 5, 42)$ & $x_1$ & $\tau h_1 m_1$ & Lemma \ref{lem:d3-x1} \\
+$(79, 32, 41)$ & $\tau P^6 d_0 e_0$ & $P^7 c_0 d_0$ & $h_1$ \\
+$(79, 34, 40)$ & $P^4 h_0^5 Q'$ & $P^8 h_0 d_0$ & $C\tau$ \\
+\revrow
+$(80, 14, 41)$ & $\D^3 h_1 h_3$ & $\tau^4 \D h_1 e_0^2 g$ & Lemma \ref{lem:d3-D^3h1h3}, \cite{Chua21} \\
+\revrow
+$(80, 14, 42)$ & $\tau^2 d_0 B_5$ & $\D^2 h_0 d_0 e_0 + \tau^3 \D h_1 e_0^2 g$ & Lemma \ref{lem:d3-t^2d0B5}, \cite{Chua21} \\
+$(80, 25, 42)$ & $\tau P^3 \D h_1 d_0 e_0$ & $P^4 \D h_1 c_0 d_0$ & $d_4 (\tau^2 P^3 \D h_1 d_0 e_0)$ \\
+$(81, 3, 42)$ & $h_2 h_4 h_6$ & $0$ & Lemma \ref{lem:d3-h2h4h6} \\
+$(81, 12, 42)$ & $\D^2 p$ & $0$ & Lemma \ref{lem:d3-D^2p} \\
+$(81, 27, 42)$ & $\tau^2 P^4 d_0 m$ & $P^5 \D h_1^2 d_0$ & $\mmf$ \\
+$(82, 6, 44)$ & $h_4 Q_3$ & $h_3 x_{74,8}$ & $C\tau$ \\
+$(82, 10, 42)$ & $P^2 h_2 h_6$ & $0$ & Lemma \ref{lem:d3-h2h4h6} \\
+$(82, 12, 45)$ & $g C_0$ & $\D h_2^2 g n$ & $C\tau$ \\
+$(82, 14, 45)$ & $\tau M e_0 g$ & $M c_0 d_0^2$ & $h_1$ \\
+$(82, 17, 46)$ & $\tau \D h_1 e_0 g^2$ & $\D h_1 c_0 d_0 e_0^2$ & $d_4(\tau^2 \D h_1 e_0 g^2)$ \\
+$(83, 5, 43)$ & $\tau h_6 g + \tau h_2 e_2$ & $0$ & Lemma \ref{lem:d3-th6g} \\
+$(83, 17, 45)$ & $\D^2 h_1 e_0^2$ & $\tau^3 d_0 e_0^4$ & $\tau$ \\
+$(84, 4, 44)$ & $f_2$ & $\tau h_1 h_4 Q_3$ & Lemma \ref{lem:d3-f2} \\
+$(84, 19, 45)$ & $\D^2 c_0 d_0^2$ & $\tau \D h_0^2 d_0^3 e_0$ & $\mmf$ \\
+\revrow
+$(85, 6, 45)$ & $\tau x_{85,6} + h_0^3 c_3$ & $0$ & 
+Lemma \ref{lem:d3-tx85,6+h0^3c3} \\
+$(85, 21, 45)$ & $P \D^2 h_1 d_0^2$ & $\tau^3 d_0^6$ & $\tmf$ \\
+$(86, 4, 45)$ & $h_1 c_3$ & $0$ & $h_0$ \\
+%$(86, 6, 46)$ & $h_2 h_6 g$ & $$ & \\
+$(86, 11, 45)$ & $\tau^3 g G_0$ & $0$ & $d_0$ \\
+$(86, 12, 45)$ & $\D^2 e_1$ & $\D^2 h_1 t$ & $C\tau$ \\
+$(86, 17, 46)$ & $\tau \D^2 h_1 e_0 g$ & $\D^2 h_1 c_0 d_0^2 + \tau^4 e_0^5$ & $\mmf$ \\
+$(86, 22, 45)$ & $\tau M P^3 e_0$ & $M P^4 c_0$ & $h_1$ \\
+$(87, 7, 45)$ & $x_{87,7}$ & $0$ & $d_0$ \\
+$(87, 13, 49)$ & $g C''$ & $g n m$ & $C\tau$ \\
+$(87, 36, 45)$ & $\tau P^7 d_0 e_0$ & $P^8 c_0 d_0$ & $h_1$ \\
+$(88, 12, 46)$ & $\D^2 f_1$ & $0$ & $h_2$ \\
+\revrow
+$(88, 18, 46)$ & $\tau^2 M h_0 d_0 k$ & $P \D^2 h_0 d_0 e_0 + \tau^3 \D h_1 d_0^2 e_0^2$ & Lemma \ref{lem:d3-t^2Mh0d0k} \\
+\revrow
+$(88, 18, 46)$ & $\D^3 h_1^2 d_0$ & $\tau^3 \D h_1 d_0^2 e_0^2$ & $\mmf$, \cite{Chua21} \\
+$(88, 29, 46)$ & $\tau P^4 \D h_1 d_0 e_0$ & $P^5 \D h_1 c_0 d_0$ & $d_4 (\tau^2 P^4 \D h_1 d_0 e_0)$ \\
+$(89, 14, 51)$ & $h_1^9 h_6 e_0$ & $M h_1^3 g^2$ & $C\tau$ \\
+$(89, 15, 50)$ & $h_2 B_5 g$ & $M h_1 c_0 e_0^2$ 
+	& Lemma \ref{lem:d3-h2B5g} \\
+$(89, 17, 48)$ & $\tau \D^2 h_1 g^2$ & $\tau^4 e_0^4 g$ & $\tau$ \\
+$(89, 31, 46)$ & $\tau^2 P^5 d_0 m$ & $P^6 \D h_1^2 d_0$ & $\mmf$ \\
+$(90, 18, 52)$ & $g m^2$ & $\tau h_1 e_0^4 g$ & $\tau$ \\
+$(90, 19, 49)$ & $\D^2 c_0 e_0^2$ & $\tau \D h_2^2 d_0^3 e_0$ & $\mmf$ \\
+$(92, 10, 48)$ & $x_{92,10}$ & $0$ & $d_0$ \\
+$(92, 14, 50)$ & $m Q_2$ & $\tau^3 g^3 n$ & $C\tau$, $\tau$ \\
+$(92, 23, 49)$ & $P \D^2 c_0 d_0^2$ & $\tau P^2 \D h_2^2 d_0^2 e_0$ 
+	& $\mmf$ \\
+$(93, 7, 48)$ & $\D h_2^2 h_6$ & $\tau h_1 h_6 d_0^2$ & Lemma \ref{lem:d3-Dh2^2h6} \\
+$(93, 8, 49)$ & $x_{93,8}$ & $\D h_2^2 H_1$ & $C\tau$ \\
+$(93, 13, 48)$ & $P^2 h_6 d_0$ & $0$ & Lemma \ref{lem:d3-P^2h6d0} \\
+\revrow
+$(93, 22, 48)$ & $\tau^2 M P h_0 d_0 j$ & $P^2 \D^2 h_0 d_0^2 + \tau^3 P \D h_1 d_0^3 e_0$ & Lemma \ref{lem:d3-t^2MPh0d0j} \\
+$(93, 25, 49)$ & $P^2 \D^2 h_1 d_0^2$ & $\tau^3 P d_0^6$ & $\tmf$ \\
+\revrow
+$(94, 8, 49)$ & $x_{94,8}$ & $h_1 x_{92,10}$ & $C\tau$ \\
+$(94, 9, 49)$ & $\tau h_6 d_0 e_0$ & $P h_6 c_0 d_0$ & $h_1$ \\
+\revrow
+$(94, 15, 49)$ & $M \D^2 h_1$ & $\tau^3 M d_0 e_0^2$ & $P d_0^2$ \\
+$(94, 15, 52)$ & $P h_1^6 h_6 e_0$ & $M \D h_1^4 g$ & $C\tau$ \\
+$(94, 17, 50)$ & $\tau^2 M d_0 m$ & $M P \D h_1^2 d_0$ & $d_0$ \\
+$(94, 21, 50)$ & $\tau \D^2 h_1 d_0^2 e_0$ & $P \D^2 h_1 c_0 d_0^2 + \tau^4 d_0^3 e_0^3$ & $\mmf$ \\
+$(94, 26, 49)$ & $\tau M P^4 e_0 +$ & $M P^5 c_0$ & $h_1$ \\
+	& $+ \tau P^2 \D^2 h_1^2 d_0^2$ \\
+$(94, 38, 48)$ & $P^6 i^2$ & $\tau P^8 h_1 d_0^2$ & $\tmf$ \\
+$(95, 15, 54)$ & $g^2 B_6$ & $\tau h_2 g^3 n$ & $C\tau$ \\
+$(95, 16, 52)$ & $M \D h_2^2 g$ & $\tau M h_1 d_0 e_0^2$ & $\tau$ \\
+$(95, 19, 54)$ & $\tau^2 g^3 m$ & $\D h_1^2 e_0^4 + M h_1^4 d_0^2 e_0$ 
+	& $\mmf$ \\
+$(95, 20, 50)$ & $\D^3 h_1 c_0 d_0$ & $\tau^4 d_0^3 e_0 m$ & $\mmf$ \\
+$(95, 36, 48)$ & $h_0^{15} \cdot \D^3 h_0^2 i$ & $P^6 h_0 i^2$ & $C\tau$ \\
+$(95, 40, 49)$ & $\tau P^8 d_0 e_0$ & $P^9 c_0 d_0$ & $h_1$ \\
+\end{longtable}
+
+
+\begin{longtable}{llll}
+\caption{$\C$-motivic Adams $d_4$ differentials
+% Adams $d_4$ differentials in the $\C$-motivic Adams spectral sequence 
+\label{tab:Adams-d4}
+} \\
+\toprule
+$(s,f,w)$ & element & $d_4$ & proof \\
+\midrule \endfirsthead
+\caption[]{$\C$-motivic Adams $d_4$ differentials
+% Adams $d_4$ differentials in the $\C$-motivic Adams spectral sequence
+} \\
+\toprule
+$(s,f,w)$ & element & $d_4$ & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(31,8,16)$ & $\tau^2 d_0 e_0 + h_0^7 h_5$ & $P^2 d_0$ & $C\tau$ \\
+$(37,8,20)$ & $\tau^2 e_0 g$ & $P d_0^2$ & $\tmf$ \\
+$(38,2,20)$ & $h_3 h_5$ & $h_0 x$ & $C\tau$ \\
+$(39,12,20)$ & $\tau^2 P d_0 e_0$ & $P^3 d_0$ & $\tmf$ \\
+$(42, 6, 22)$ & $P h_2 h_5$ & $0$ & $d_0$ \\
+$(47,16,24)$ & $\tau^2 P^2 d_0 e_0$ & $P^4 d_0$ & $\tmf$ \\
+$(50,6,27)$ & $C$ & $P h_1^2 h_5 c_0$ & $C\tau$ \\
+$(50,10,26)$ & $\tau^2 \Delta h_2^2 g$ & $i j$ & $\tmf$ \\
+$(55,11,29)$ & $\tau^3 g m$ & $P \Delta c_0 d_0 + \tau d_0^2 j$ & $\tmf$ \\
+$(55,20,28)$ & $\tau^2 P^3 d_0 e_0$ & $P^5 d_0$ & $\tmf$ \\
+$(56,13,29)$ & $\tau^2 \Delta h_1 d_0 e_0$ & $P^2 \Delta h_1 d_0$ & $\tmf$ \\
+$(57,12,32)$ & $\tau^2 e_0 g^2$ & $d_0^4$ & $d_0$ \\
+$(58,14,30)$ & $\tau^2 \Delta h_2^2 d_0^2$ & $P i j$ & $\tmf$ \\
+$(62,10,32)$ & $\tau h_1 \cdot \Delta x$ & $\tau^2 \Delta h_2^2 d_0 e_0$ & Lemma \ref{lem:d4-th1.Dx} \\
+$(62, 10, 32)$ & $\D^2 h_3^2$ & $0$ & Lemma \ref{lem:d4-D^2h3^2} \\
+$(62,13,33)$ & $\tau^2 \Delta h_1 e_0 g$ & $P \Delta h_1 d_0^2$ & $\tmf$ \\
+$(63,7,34)$ & $C'$ & $M h_2 d_0$ & $C\tau$ \\
+$(63,7,33)$ & $\tau X_2$ & $\tau M h_2 d_0$ & Lemma \ref{lem:d4-tX2} \\
+$(63,11,33)$ & $\tau^2 M h_1 e_0$ & $M P^2 h_1$ & $d_0$ \\
+$(63,15,33)$ & $\tau^3 d_0^2 m$ & $P^2 \Delta c_0 d_0 + \tau P d_0^2 j$ & $\tmf$ \\
+$(63,19,32)$ & $h_0^{18} h_6$ & $P^2 h_0 i^2$ & $C\tau$ \\
+$(64,17,33)$ & $\tau^2 \Delta h_2^2 d_0 g$ & $P^3 \Delta h_1 d_0$ & $\tmf$ \\
+$(66,18,34)$ & $\tau^2 P \Delta h_2^2 d_0^2$ & $P^2 i j$ & $\tmf$ \\
+$(68,5,36)$ & $h_0 d_2$ & $X_3$ & Lemma \ref{lem:d4-h0d2} \\
+\revrow
+$(68, 11, 38)$ & $M h_2 g$ & $0$ & Lemma \ref{lem:d4-Mh2g} \\
+$(69,11,37)$ & $\tau h_2 B_5$ & $M P h_1 d_0$ & $d_0$ \\
+$(70,10,39)$ & $h_2 C''$ & $h_1^4 c_0 Q_2$ & $C\tau$ \\
+$(70,14,38)$ & $\tau^2 \D h_2^2 g^2$ & $\Delta h_0^2 d_0^2 e_0$ & $\tau$ \\
+$(70,14,36)$ & $\tau^2 M P e_0$ & $M P^3$ & $d_0$ \\
+$(71,19,37)$ & $\tau^3 P d_0^2 m$ & $P^3 \Delta c_0 d_0 + \tau P^2 d_0^2 j$ & $\tmf$ \\
+$(71,28,36)$ & $\tau^2 P^5 d_0 e_0$ & $P^7 d_0$ & $\tmf$ \\
+$(72,9,40)$ & $h_2^2 G_0$ & $\tau g^2 n$ & Lemma \ref{lem:d4-h2^2G0} \\
+$(72,21,37)$ & $\tau^2 P^2 \Delta h_1 d_0 e_0$ & $P^4 \Delta h_1 d_0$ & $\tmf$ \\
+$(74,22,38)$ & $\tau^2 P^2 \Delta h_2^2 d_0^2$ & $P^3 i j$ & $\tmf$ \\
+$(75,5,40)$ & $h_3 d_2$ & $h_0 x_{74,8}$ & $C\tau$ \\
+$(75,11,40)$ & $\Delta h_0^2 h_3 g_2$ & $\tau M h_1 d_0^2$ & Lemma \ref{lem:d4-Dh0^2h3g2} \\
+$(75,15,41)$ & $\tau^3 g^2 m$ & $\Delta c_0 d_0^3 + \tau d_0^3 l$ & $\tmf$ \\
+$(76,14,40)$ & $\tau^2 M d_0 e_0$ & $M P^2 d_0$ & $h_1$ \\
+$(76,14,41)$ & $\Delta^2 h_1 h_3 g$ & $\tau \Delta h_2^2 d_0^2 e_0$ & Lemma \ref{lem:d4-D^2h1h3g} \\
+$(77,16,44)$ & $\tau^2 e_0 g^3$ & $d_0^3 e_0^2$ & $\tau$ \\
+$(78,5,40)$ & $h_0^3 h_4 h_6$ & $h_0^2 x_{77,7}$ & $C\tau$ \\
+$(79,23,41)$ & $\tau^3 P^2 d_0^2 m$ & $P^4 \Delta c_0 d_0 + \tau P^3 d_0^2 j$ & $\tmf$ \\
+$(79,32,40)$ & $\tau^2 P^6 d_0 e_0$ & $P^8 d_0$ & $\tmf$ \\
+$(80,5,42)$ & $h_0 e_2$ & $\tau h_1^3 x_{76,6}$ & Lemma \ref{lem:d4-h0e2} \\
+$(80,25,41)$ & $\tau^2 P^3 \Delta h_1 d_0 e_0$ & $P^5 \Delta h_1 d_0$ & $\tmf$ \\
+$(81, 8, 43)$ & $\tau g D_3$ & $0$ & $h_1$ \\
+$(81,15,42)$ & $\Delta^3 h_1^2 h_3$ & $\tau^4 d_0 e_0^2 l$ & Lemma \ref{lem:d4-D^3h1^2h3} \\
+$(82,14,44)$ & $\tau^2 M e_0 g$ & $M P d_0^2$ & $h_1$ \\
+$(82,17,45)$ & $\tau^2 \Delta h_1 e_0 g^2$ & $\Delta h_1 d_0^4$ & $\tau$ \\
+$(82,26,42)$ & $\tau^2 P^3 \Delta h_2^2 d_0^2$ & $P^4 i j$ & $\tmf$ \\
+$(83,11,46)$ & $g C'$ & $M h_0 e_0 g$ & $C\tau$ \\
+$(83,11,45)$ & $\Delta j_1$ & $\tau M h_0 e_0 g$ & Lemma \ref{lem:d4-Dj1} \\
+\revrow
+$(85,5,45)$ & $h_1 f_2$ & $0$ & Lemma \ref{lem:d4-h1f2} \\
+\revrow
+$(85,6,44)$ & $\tau x_{85,6} + h_0^3 c_3$ & $0$ & Lemma \ref{lem:d4-tx85,6+h0^3c3} \\
+$(86,4,45)$ & $h_1 c_3$ & $\tau h_0 h_2 h_4 Q_3$ & Lemma \ref{lem:d4-h1c3} \\
+$(86,10,44)$ & $h_0^2 h_6 i$ & $0$ & $d_0$, $C\tau$ \\
+$(86,22,44)$ & $\tau^2 M P^3 e_0$ & $M P^5$ & $h_1$ \\
+$(87,7,45)$ & $x_{87,7}$ & $0$ & Lemma \ref{lem:d4-x87,7} \\
+$(87, 10, 45)$ & $\tau \D h_1 H_1$ & $0$ & Lemma \ref{lem:d4-tDh1H1} \\
+$(87,15,47)$ & $\D^2 c_1 g$ & $0$ & $\tau$ \\
+$(87,27,45)$ & $\tau^3 P^3 d_0^2 m$ & $P^5 \Delta c_0 d_0 + \tau P^4 d_0^2 j$ & $\tmf$ \\
+$(87,36,44)$ & $\tau^2 P^7 d_0 e_0$ & $P^9 d_0$ & $\tmf$ \\
+$(88,17,48)$ & $\Delta^2 h_0 g^2$ & $\tau \Delta h_1 d_0^2 e_0^2$ & $\mmf$ \\
+$(88,29,45)$ & $\tau^2 P^4 \Delta h_1 d_0 e_0$ & $P^6 \Delta h_1 d_0$ & $\tmf$ \\
+$(89,15,49)$ & $\tau h_2 B_5 g$ & $M h_1 d_0^3$ & Lemma \ref{lem:d4-th2B5g} \\
+$(90,14,51)$ & $h_2 g C''$ & $P h_1^{10} h_6 c_0$ & $C\tau$ \\
+$(90,18,50)$ & $\tau^2 g m^2$ & $\Delta h_2^2 d_0^3 e_0$ & $\mmf$ \\
+$(90,30,46)$ & $\tau^2 \Delta P^4 h_2^2 d_0^2$ & $P^5 i j$ & $\tmf$ \\
+$(91,12,48)$ & $\D h_2^2 A'$ & $0$ & Lemma \ref{lem:d4-Dh2^2A'} \\
+$(91,20,50)$ & $\Delta^2 h_1 c_0 e_0^2$ & $\tau^2 d_0^4 e_0^2$ 
+	& $\mmf$ \\
+$(92,13,52)$ & $h_2^2 g G_0$ & $\tau g^3 n$ & $\tau$ \\
+$(93,3,48)$ & $h_4^2 h_6$ & $h_0^3 g_3$ & Lemma \ref{lem:d4-h4^2h6} \\
+\revrow
+$(95,16,50)$ & $M \Delta^2 h_1^2$ & $M P \Delta h_0^2 e_0$ & Lemma \ref{lem:d4-MD^2h1^2} \\
+$(95,16,50)$ & $\tau^2 M \Delta h_2^2 g$ & $M P \Delta h_0^2 e_0$ 
+	& $d_0$ \\
+$(95,19,53)$ & $\tau^3 g^3 m$ & $\Delta c_0 d_0^2 e_0^2 +  \tau d_0^3 e_0 m$ & $\tau$ \\
+$(95,31,49)$ & $\tau^3 P^4 d_0^2 m$ & $P^6 \Delta c_0 d_0 + \tau P^5 d_0^2 j$ & $\tmf$ \\
+$(95,40,48)$ & $P^6 \Delta h_0^5 i + \tau^2 P^8 d_0 e_0$ & $P^{10} d_0$ & $\tmf$ \\
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{llll}
+\caption{$\C$-motivic Adams $d_5$ differentials
+%Adams $d_5$ differentials in the $\C$-motivic Adams spectral sequence 
+\label{tab:Adams-d5}
+} \\
+\toprule
+$(s,f,w)$ & element & $d_5$ & proof \\
+\midrule \endfirsthead
+\caption[]{$\C$-motivic Adams $d_5$ differentials
+%Adams $d_5$ differentials in the $\C$-motivic Adams spectral sequence
+} \\
+\toprule
+$(s,f,w)$ & element & $d_5$ & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(56, 9, 29)$ & $\tau P h_5 e_0$ & $\tau \D h_0^2 d_0 e_0$ &  \cite{Isaksen14c}*{Lemma 3.92}\\
+$(61, 6, 32)$ & $A'$ & $\tau M h_1 d_0$ & \cite{WangXu17}*{Theorem 12.1} \\
+$(63, 11, 33)$ & $\tau h_1^2 \cdot \D x$ & $\tau^3 d_0^2 e_0^2$ & Lemma \ref{lem:d5-th1^2.Dx} \\
+$(63, 23, 32)$ & $h_0^{22} h_6$ & $P^6 d_0$ & $C\tau$ \\
+$(67, 6, 36)$ & $h_0 Q_3 + h_2^2 D_3$ & $0$ & $C\tau$, $\tau$ \\
+$(68, 12, 36)$ & $h_5 d_0 i$ & $\tau \D h_1 d_0^3$ & Lemma \ref{lem:d5-h5d0i} \\
+$(70, 4, 36)$ & $\tau p_1 + h_0^2 h_3 h_6$ & $\tau^2 h_2^2 C'$ & Lemma \ref{lem:d5-tp1+h0^2h3h6}, \cite{BIX} \\
+$(72, 7, 39)$ & $h_1 x_{71,6}$ & $0$ & Lemma \ref{lem:d5-h1x71,6} \\
+$(73, 7, 38)$ & $h_4 D_2$ & $\tau^4 d_1 g^2$ & Lemma \ref{lem:d5-h4D2} \\
+$(81, 10, 44)$ & $g A'$ & $\tau M h_1 e_0^2$ & $\tau$ \\
+$(85,6,45)$ & $x_{85,6}$ & $0$ & $h_2$ \\
+$(86, 10, 44)$ & $h_0^2 h_6 i$ & $\D^2 h_0^2 x$ & $C\tau$ \\
+$(86, 11, 45)$ & $\tau^3 g G_0$ & $\tau M \D h_1^2 d_0$ & Lemma \ref{lem:d5-t^3gG0} \\
+$(92, 4, 48)$ & $g_3$ & $h_6 d_0^2$ & Lemma \ref{lem:d5-g3} \\
+\revrow
+$(92, 12, 48)$ & $\D^2 g_2$ & $0$ & Lemma \ref{lem:d5-D^2g2}, \cite{Chua21} \\
+$(93, 8, 48)$ & $h_0 \cdot \D h_2^2 h_6$ & $\D^2 h_0 g_2$ & $C\tau$ \\
+$(93, 13, 50)$ & $e_0 x_{76,9}$ & $M \D h_1 c_0 d_0$ & Lemma \ref{lem:d5-e0x76,9} \\
+\end{longtable}
+
+
+
+\begin{longtable}{lllll}
+\caption{$\C$-motivic higher Adams differentials
+%Higher Adams differentials in the $\C$-motivic Adams spectral sequence 
+\label{tab:Adams-higher}
+} \\
+\toprule
+$(s,f,w)$ & element & $r$ & $d_r$ & proof \\
+\midrule \endfirsthead
+\caption[]{$\C$-motivic higher Adams differentials
+%Higher Adams differentials in the $\C$-motivic Adams spectral sequence
+} \\
+\toprule
+$(s,f,w)$ & element & $r$ & $d_r$ & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(67, 5, 35)$ & $\tau Q_3 + \tau n_1$ & $6$ & $0$ & Lemma \ref{lem:d6-tQ3+tn1} \\
+$(68, 7, 37)$ & $h_2^2 H_1$ & $6$ & $M c_0 d_0$ & 
+	Lemma \ref{lem:d6-h2^2H1} \\
+$(68, 7, 36)$ & $\tau h_2^2 H_1$ & $7$ & $M P d_0$ & 
+	Lemma \ref{lem:d6-h2^2H1} \\
+$(77, 7, 42)$ & $m_1$ & $7$ & $0$ & Lemma \ref{lem:d7-m1} \\
+$(80, 6, 43)$ & $h_1 x_1$ & $8$ & $0$ & Lemma \ref{lem:d8-h1x1} \\
+$(81, 3, 42)$ & $h_2 h_4 h_6$ & $6$ & $0$ 
+	& Lemma \ref{lem:d6-h2h4h6} \\
+\revrow
+$(83, 5, 43)$ & $\tau h_6 g + \tau h_2 e_2$ & $9$ & $0$ & \cite{BIX} \\
+\revrow
+$(85, 5, 45)$ & $h_1 f_2$ & $10$ & $? M \D h_1 d_0$ & \\
+\revrow
+$(85, 6, 44)$ & $\tau x_{85,6} + h_0^3 c_3$ & $9$ & $? \tau M \D h_1 d_0$ \\
+\revrow
+$(86, 6, 46)$ & $h_2 h_6 g + h_1^2 f_2$ & $10$ & $0$ & Lemma \ref{lem:d10-h2h6g+h1^2f2} \\
+\revrow
+$(87, 7, 45)$ & $x_{87,7}$ & $7$ & $0$ & Lemma \ref{lem:d7-x87,7} \\
+$(87, 9, 48)$ & $g Q_3$ & $6$ & $0$ & Lemma \ref{lem:d6-tQ3+tn1} \\
+\revrow
+$(87, 10, 45)$ & $\tau \D h_1 H_1$ & $6$ & $\tau M \D h_0^2 e_0$ & Lemma \ref{lem:d6-tDh1H1} \\
+$(88, 11, 49)$ & $h_2^2 g H_1$ & $6$ & $M c_0 e_0^2$ & Lemma \ref{lem:d6-h2^2gH1} \\
+$(88, 11, 48)$ & $\tau h_2^2 g H_1$ & $7$ & $0$ & Lemma \ref{lem:d6-h2^2gH1} \\
+\revrow
+$(88, 12, 46)$ & $\D^2 f_1$ & $6$ & $\tau^2 M d_0^3$ & Remark \ref{rem:d6-D^2f1} \\
+$(88, 12, 48)$ & $\D g_2 g$ & $6$ & $M d_0^3$ 
+	& Lemma \ref{lem:d6-Dg2g} \\
+\revrow
+$(91, 6, 48)$ & $h_4^2 D_3$ & $9$ & $? \tau M \D h_1 g$ \\
+$(92, 10, 51)$ & $\D_1 h_1^2 e_1$ & $6$ & $0$ & Lemma \ref{lem:d6-D1h1^2e1} \\
+\revrow
+$(92, 10, 48)$ & $x_{92,10}$ & $7$ & $? \tau M \D c_0 d_0 + \tau^2 M d_0 l$ & Lemma \ref{lem:d7-x92,10} \\
+$(93, 9, 51)$ & $\D_1 h_2 e_1$ & $8$ & $0$ & Lemma \ref{lem:d8-D1h2e1} \\
+$(93, 13, 49)$ & $\tau e_0 x_{76,9}$ & $6$ & $M P \D h_1 d_0$ & Lemma \ref{lem:hit-MPDh1d0}, \cite{BIX} \\
+\end{longtable}
+
+\begin{landscape}
+
+\begin{longtable}{llllll}
+\caption{Some Toda brackets \label{tab:Toda}
+} \\
+\toprule
+$(s,w)$ & bracket & contains & indeterminacy & proof & used in \\
+\midrule \endfirsthead
+\caption[]{Some Toda brackets} \\
+\toprule
+$(s,w)$ & bracket & detected by & indeterminacy & proof & used in \\
+\midrule \endhead
+\bottomrule \endfoot
+$(2, 1)$ & $\langle 2, \eta, 2 \rangle$ & $\tau h_1^2$ & $0$ & $\langle h_0, h_1, h_0 \rangle$ & \ref{lem:2,eta,th1^2x76,6}, \ref{lem:2-th1H1}, \ref{lem:2-h1h6}, \ref{lem:2-h1h3h6}, \ref{lem:2-e0A'} \\
+& & & & & \ref{lem:2-h1h4h6}, \ref{lem:2-Ph6c0}, %\ref{lem:2-th1h6g}, 
+\ref{lem:2-P^2h6c0}, \ref{lem:eta-th1^2x76,6} \\
+\revrow
+$(3, 2)$ & $\langle \eta, 2, \eta \rangle$ & $h_0 h_2$ & $\tau h_1^3$ & $\langle h_1, h_0, h_1 \rangle$ & \ref{lem:2-h2^2x76,6} \\
+$(6, 4)$ & $\langle \eta, \nu, \eta \rangle$ & $h_2^2$ & $0$ & $\langle h_1, h_2, h_1 \rangle$ & \ref{lem:eta-h0h6g}, \ref{lem:eta-D^2h1f1} \\
+$(8, 5)$ & $\langle \nu, \eta, \nu \rangle$ & $h_1 h_3$ & $0$ & $\langle h_2, h_1, h_2 \rangle$ & \ref{lem:nu-th1D3'} \\
+$(8, 5)$ & $\langle \eta, \nu, 2 \nu \rangle$ & $c_0$ & $h_1 h_3$ & $\langle h_1, h_2, h_0 h_2 \rangle$ & \ref{lem:eta-h0d0D2}, \ref{lem:nubar-h5^2} \\
+$(8, 5)$ & $\langle \eta^2, \nu, \eta, 2 \rangle$ & $c_0$ & $0$ & $\langle h_1^2, h_2, h_1, h_0 \rangle$ & \ref{lem:kappa,2,eta,nu} \\
+$(9, 5)$ & $\langle 2, \epsilon, 2 \rangle$ & $\tau h_1 c_0$ & $0$ & Corollary \ref{cor:2-symmetric} & \ref{lem:2-h6c0} \\
+$(9, 5)$ & $\langle \eta, 2, 8 \sigma \rangle$ & $P h_1$ & $\tau h_1^2 h_3, \tau h_1 c_0$ & $\langle h_1, h_0, h_0^3 h_3 \rangle$ & \ref{lem:2-Ph1h6}, \ref{lem:eta-h0^3h3h6} \\
+$(10, 5)$ & $\langle 2, \mu_9, 2 \rangle$ & $\tau P h_1^2$ & $0$ & Corollary \ref{cor:2-symmetric} & \ref{lem:2-Ph1h6} \\
+$(11, 6)$ & $\langle 2, \eta, \tau \eta \epsilon \rangle$ & $P h_2$ & $P h_0 h_2, \tau P h_1^3$ & $\langle h_0, h_1, \tau h_1 c_0 \rangle$ & \ref{lem:eta-th1h6c0} \\
+$(15, 8)$ & $\langle 8, 2 \sigma, \sigma \rangle$ & $h_0^3 h_4$ & $h_0^6 h_4, h_0^7 h_4$ & $d_2(h_4) = h_0 h_3^2$ & \ref{lem:rho15-h5^2} \\
+$(15, 8)$ & $\langle 2, \kappa, 2 \rangle$ & $\tau h_1 d_0$ & $h_0^4 h_4, h_0^5 h_4$ & Corollary \ref{cor:2-symmetric} & \ref{lem:2-h6d0}, \ref{lem:sigma^2+kappa-h5^2} \\
+& & & $h_0^6 h_4, h_0^7 h_4$ \\
+$(16, 9)$ & $\langle \eta, \sigma^2, 2 \rangle$ & $h_1 h_4$ & $P c_0$ & $d_2(h_4) = h_0 h_3^2$ & \ref{lem:sigma^2,2,T,tkappabar} \\
+$(16, 9)$ & $\langle \eta, 2, \sigma^2 \rangle$ & $h_1 h_4$ & $P c_0$ &
+$d_2(h_4) = h_0 h_3^2$ & \ref{lem:nubar,sigma,2sigma} \\
+$(17, 9)$ & $\langle 2, \eta_4, 2 \rangle$ & $\tau h_1^2 h_4$ & $0$ & Corollary \ref{cor:2-symmetric} & \ref{lem:2-h1h4h6} \\
+$(17, 10)$ & $\langle 2, \eta, \eta \kappa \rangle$ & $h_2 d_0$ & $0$ & $d_2(e_0) = h_1^2 d_0$ & \ref{lem:eta-h1h6d0} \\
+$(18, 10)$ & $\langle \nu, \sigma, 2 \sigma \rangle$ & $h_2 h_4$ & $0$ & $d_2(h_4) = h_0 h_3^2$ & \ref{lem:d4-h1c3} \\
+$(20, 11)$ & $\langle \kappa, 2, \eta, \nu \rangle$ & $\tau g$ & $\tau h_0^2 g$ & Lemma \ref{lem:kappa,2,eta,nu} & \ref{lem:nu-th1H1} \\
+$(20, 12)$ & $\langle \nu, \eta, \eta \kappa \rangle$ & $h_0 g$ & $h_0^2 g$ & $d_2(e_0) = h_1^2 d_0$ & \ref{lem:nu-De1+C0} \\
+$(21, 12)$ & $\langle \nu, 2 \nu, \kappa \rangle$ & $\tau h_1 g$ & $h_2^2 h_4$ & $d_2(f0) = h_0^2 e_0$ & \ref{lem:epsilon-h5d0} \\
+$(23, 12)$ & $\langle \sigma, 16, 2 \rho_{15} \rangle$ & $h_0^2 i + \tau P h_1 d_0$ & $\tau h_4 c_0$ & $\langle h_3, h_0^4, h_0^4 h_4 \rangle$ & \ref{lem:teta^2kappabar,8,kappabar2} \\
+$(30, 16)$ & $\langle \sigma^2, 2, \sigma^2, 2 \rangle$ & $h_4^2$ & $0$ & $d_2(h_4) = h_0 h_3^2$ & \ref{lem:2-h3(tQ3+tn1)} \\
+$(32, 17)$ & $\langle \eta, 2, \theta_4 \rangle$ & $h_1 h_5$ & $0$ & $d_2(h_5) = h_0 h_4^2$ & \ref{lem:theta4,eta^2,theta4} \\
+$(32, 18)$ & $\langle \eta, \sigma^2, \eta, \sigma^2 \rangle$ & $d_1$ & $0$ & $\langle h_1, h_3^2, h_1, h_3^2 \rangle$ & \ref{lem:eta-h0h3d2} \\
+$(33, 18)$ & $\langle \eta \theta_4, \eta, 2 \rangle$ & $p$ & $0$ & $\langle h_1 h_4^2, h_1, h_0 \rangle$ & \ref{lem:2-D1h3^2} \\
+$(36, 20)$ & $\langle \tau, \eta^2 \kappa_1, \eta \rangle$ & $t$ & $P h_1^4$ & Lemma \ref{lem:t,eta^2kappa1,eta} & Table \ref{tab:Adams-perm} \\
+$(36, 20)$ & $\langle \nu, \eta, \eta \theta_4 \rangle$ & $t$ & $0$ & \cite{Bruner84}*{Corollary 4.3} & \ref{lem:2-D1h3^2} \\
+$(39, 21)$ & $\langle \eta_5, \nu, 2 \nu \rangle$ & $h_5 c_0$ & $h_1 h_3 h_5$ & $\langle h_1 h_5, h_2, h_0 h_2 \rangle =$  & \ref{lem:epsilon-h5d0} \\
+& & & & $= h_5 \langle h_1, h_2, h_0 h_2 \rangle$ \\
+$(39, 21)$ & $\langle \epsilon, 2, \theta_4 \rangle$ & $h_5 c_0$ & $0$ & $d_2(h_5) = h_0 h_4^2$ & \ref{lem:epsilon-h5d0} \\
+\revrow
+$(45, 24)$ & $\langle \theta_4, 2, \sigma^2 + \kappa \rangle$ &
+	$0$ or $\tau h_1 g_2$ & $h_0^2 h_5 d_0$ & Lemma \ref{lem:theta4,2,sigma^2+kappa} & \\
+$(45, 24)$ & $\langle 2, \theta_4, \kappa \rangle$ & $h_5 d_0$ & $h_0 h_3^2 h_5, h_0 h_5 d_0$ & $d_2(h_5) = h_0 h_4^2$ & \ref{lem:epsilon-h5d0}, \ref{lem:Dh1h3-h5d0} \\
+ & & & $h_0^2 h_5 d_0$ \\
+$(57, 30)$ & $\langle \tau, \tau \eta \kappa \kappabar^2, \eta \rangle$ & $h_0 h_2 h_5 i$ & $P^6 h_1 c_0$ & $d_5(\tau P h_5 e_0) = \tau \D h_0^2 d_0 e_0$ & \ref{lem:d4-D^2h1h3g} \\
+$(62, 32)$ & $\langle 2, \theta_4, \theta_4, 2 \rangle$ & $h_5^2$ & $h_5 n$ & $d_2(h_5) = h_0 h_4^2$ & \ref{lem:perm-h0g3}, \ref{lem:sigma^2+kappa-h5^2} \\
+$(62, 33)$ & $\langle \eta, \eta \kappa, \tau \theta_{4.5} \rangle$ & $\D e_1 + C_0$ & $0$ & Remark \ref{rem:eta,etakappa,ttheta4.5} & \ref{lem:nu-De1+C0} \\
+$(63, 33)$ & $\langle \tau \eta \theta_{4.5}, \kappa, 2, \eta \rangle$ & $\tau h_1 H_1$ & $$ & Remark \ref{rem:tetatheta4.5,kappa,2,eta} & \ref{lem:nu-th1H1} \\
+$(64, 33)$ & $\langle \eta, 2, \theta_5 \rangle$ & $h_1 h_6$ & $\tau h_1^2 h_5^2, \tau^2 h_1 X_2$ & $d_2(h_6) = h_0 h_5^2$ & \ref{lem:d5-g3},  \ref{lem:2-h1h6}, \ref{lem:2-h1h3h6}, \ref{lem:2-Ph6c0}, \ref{lem:2-P^2h6c0}, %\ref{lem:2-th1h6g}, 
+\ref{lem:eta-th1^3h6} \\
+& & & $\tau h_3 Q_2, P^7 c_0$ & & \ref{lem:eta-th1h6c0}, \ref{lem:eta-h1h6d0}, \ref{lem:nu-h1h6}, \ref{lem:rho15-h1h6}, Table \ref{tab:Adams-perm} \\
+$(64, 34)$ & $\langle \nu, \eta, \tau \kappa \theta_{4.5} \rangle$ & $h_2 A'$ & $0$ & $d_5(A') = \tau M h_1 d_0$ & \ref{lem:nu-h2^2A'}, \ref{lem:nu-h2c1A'} \\
+$(66, 36)$ & $\langle \eta^2, \theta_4, \eta^2, \theta_4 \rangle$ & $\D_1 h_3^2$ & $$ & Lemma \ref{lem:eta^2,theta4,eta^2,theta4} & \ref{lem:2-D1h3^2} \\
+$(68, 36)$ & $\langle \sigma, \kappa, \tau \eta \theta_{4.5} \rangle$ & $h_3 A'$ & $0$ & $d_5(A') = \tau M h_1 d_0$ & \ref{lem:2-h3A'}, \ref{lem:nu-h3A'}, Table \ref{tab:Adams-perm} \\
+$(69, 36)$ & $\langle \nu^2, 2, \theta_5 \rangle$ & $h_2^2 h_6$ & $$ & $d_2(h_6) = h_0 h_5^2$ & \ref{lem:nubar-h5^2}, Table \ref{tab:Adams-perm} \\
+$(70, 36)$ & $\langle 8 \sigma, 2, \theta_5 \rangle$ & $h_0^3 h_3 h_6$ & $\tau h_1 p'$ & $d_2(h_6) = h_0 h_5^2$ & \ref{lem:2-Ph1h6}, \ref{lem:eta-h0^3h3h6}, \ref{lem:rho15-h5^2}, Table \ref{tab:Adams-perm} \\
+$(70, 37)$ & $\langle \eta, \nu, \tau \theta_{4.5} \kappabar \rangle$ & $\tau h_1 D'_3$ & $$ & Lemma \ref{lem:eta,nu,ttheta4.5kappabar} & \ref{lem:2-th1D3'}, \ref{lem:nu-th1D3'} \\
+$(70, 37)$ & $\langle \eta, \tau \kappa^2, \tau \kappabar^2 \rangle$ & $\tau \D^2 h_1^2 g +$ & $$ & $d_3(\D h_2^2) = \tau h_1 d_0^2$ & Table \ref{tab:Adams-perm} \\
+& & $+ \tau^3 \D h_2^2 g^2$ & & $d_3(\tau \D^2 h_1 g) = \tau^4 e_0^4$ \\
+$(71, 37)$ & $\langle \epsilon, 2, \theta_5 \rangle$ & $h_6 c_0$ & $$ & $d_2(h_6) = h_0 h_5^2$ & \ref{lem:2-h1h3h6}, \ref{lem:2-h6c0}, \ref{lem:nu-h6c0}, Table \ref{tab:Adams-perm} \\
+\revrow
+$(71, 37)$ & $\langle \eta, \nu, [\tau^2 h_2 C'] \rangle$ & $\tau h_1 p_1$ & & Lemma \ref{lem:eta,nu,t^2h2C'} & \ref{lem:2-th1p1} \\
+$(71, 39)$ & $\langle \nu, \epsilon, \kappa \theta_{4.5} \rangle$ & $h_2^3 H_1$ & $\tau M h_2^2 g$ & $d_6(h_2^2 H_1) = M c_0 d_0$ & \ref{lem:eta-h1^2h3H1} \\
+$(72, 37)$ & $\langle \mu_9, 2, \theta_5 \rangle$ & $P h_1 h_6$ & $$ & $d_2(h_6) = h_0 h_5^2$ & \ref{lem:2-Ph1h6}, Table \ref{tab:Adams-perm} \\
+$(72, 38)$ & $\langle \tau \kappabar \theta_{4.5}, 2 \nu, \nu \rangle$ & $h_0 d_0 D_2$ & $h_1^2 h_3 h_6$ & $d_2(P(A\mathord{+}A')) = \tau^2 M h_0 h_2 g$ & \ref{lem:eta-h0d0D2} \\
+$(72, 38)$ & $\langle \sigma^2, 2, \{ t \}, \tau \kappabar \rangle$ & $h_4 Q_2 + h_3^2 D_2$ & $$ & Lemma \ref{lem:sigma^2,2,T,tkappabar} & \ref{lem:2-h4Q2+h3^2D2} \\
+$(75, 42)$ & $\langle \tau \eta \kappa \kappabar^2, \eta, \eta^2 \eta_4 \rangle$ & $\D h_2^2 d_0^2 e_0$ & $0$ & $\langle \D h_0^2 d_0 e_0, h_1, h_1^3 h_4 \rangle$ & \ref{lem:d4-D^2h1h3g} \\
+$(77, 40)$ & $\langle \sigma^2, 2, \theta_5 \rangle$ & $h_3^2 h_6$ & $$ & $d_2(h_6) = h_0 h_5^2$ & \ref{lem:nu-h3^2h6}, Table \ref{tab:Adams-perm} \\
+& & & & $d_2(h_4) = h_0 h_3^2$ \\
+$(77, 40)$ & $\langle \kappa, 2, \theta_5 \rangle$ & $h_6 d_0$ & $$ & Lemma \ref{lem:kappa,2,theta5} & \ref{lem:2-h6d0}, Table \ref{tab:Adams-perm} \\
+$(79, 41)$ & $\langle \eta_4, 2, \theta_5 \rangle$ & $h_1 h_4 h_6$ & $$ & $d_2(h_6) = h_0 h_5^2$ & \ref{lem:2-h1h4h6}, \ref{lem:nu-h1h4h6}, Table \ref{tab:Adams-perm} \\
+\revrow
+$(79, 42)$ & $\langle \{\tau m_1\}, \eta, 2 \rangle$ & $0$ or $\tau^2 M e_0^2$ & $h_0 h_2 x_{76,6}$ & Lemma \ref{lem:tm1,eta,2} & \cite{BIX} \\
+$(79, 42)$ & $\langle \{h_1 x_{76,6} \}, 2, \eta \rangle$ & $h_0 h_2 x_{76,6}$ & $$ & $\langle h_1 x_{76,6}, h_0, h_1 \rangle =$ & \ref{lem:2-h1h4h6} \\
+ & & & & $= x_{76,6} \langle h_1, h_0, h_1 \rangle$ \\
+$(80, 41)$ & $\langle \mu_{17}, 2, \theta_5 \rangle$ & $P^2 h_1 h_6$ & $$ & $d_2(h_6) = h_0 h_5^2$ & Table \ref{tab:Adams-perm} \\
+$(80, 42)$ & $\langle 2, \eta, \tau \eta \{h_1 x_{76,6} \} \rangle$ & $\tau h_1 x_1$ & $$ & Lemma \ref{lem:2,eta,th1^2x76,6} & Table \ref{tab:Adams-perm} \\
+$(82, 43)$ & $\langle \sigmabar, 2, \theta_5 \rangle$ & $h_6 c_1$ & $$ & $d_2(h_6) = h_0 h_5^2$ & \ref{lem:eta-h6c1}, Table \ref{tab:Adams-perm} \\
+$(82, 45)$ & $\langle \{ \D e_1 + C_0 \}, \eta^3, \eta_4 \rangle$ & $(\D e_1 + C_0) g$ & $h_1^3 x_1$ & $\langle \D e_1 + C_0, h_1^3, h_1 h_4 \rangle$ & \ref{lem:nu-(De1+C0)g} \\
+$(83, 44)$ & $\langle \eta_6 \kappa, \eta, \nu \rangle$ & $h_0 h_6 g$ & $$ & $d_2(h_6 e_0) = h_1^2 h_6 d_0$ & Table \ref{tab:Adams-perm}, \ref{lem:eta-h0h6g} \\
+\revrow
+$(83, 44)$ & $\langle \nu^2 \theta_5, 2, \sigma^2 \rangle$ & $\tau h_1 h_4 Q_3$ & $$ & $d_2(h_4) = h_0 h_3^2$ & \ref{lem:d3-f2} \\
+$(84, 44)$ & $\langle \nu \nu_4, 2, \theta_5 \rangle$ & $h_2^2 h_4 h_6$ & $$ & $d_2(h_6) = h_0 h_5^2$ & \ref{lem:nu-h2^2h4h6}, Table \ref{tab:Adams-perm} \\
+$(85, 44)$ & $\langle \tau \eta^2 \kappabar, 2, \theta_5 \rangle$ & $P h_6 d_0$ & $$ & $d_2(h_6) = h_0 h_5^2$ & Table \ref{tab:Adams-perm} \\
+\revrow
+$(86, 46)$ & $\langle \tau \eta \kappabar^2, 2, 4 \kappabar_2 \rangle$ & $M \D h_0^2 e_0$ & & Lemma \ref{lem:tetakappabar^2,2,4kappabar2} & \ref{lem:d6-tQ3+tn1} \\
+$(87, 46)$ & $\langle \theta_4, \tau \kappabar, \{ t \}  \rangle$ & $\tau^2 g Q_3$ & $0$ & $d_3(Q_2) = \tau^2 g t$ & \ref{lem:d6-tQ3+tn1} \\
+$(87, 46)$ & $\langle \tau \{ h_0 Q_3 + h_0 n_1 \}, \nu_4, \eta \rangle$ & $h_1^2 c_3$ & $$ & Lemma \ref{lem:th0Q3,nu4,eta} & \ref{lem:2-h1^2c3}, Table \ref{tab:Adams-perm} \\
+\revrow
+$(87, 47)$ & $\langle \{ h_1 x_{71,6} \}, 2, \sigma^2 \rangle$ & $h_1 h_4 x_{71,6}$ & & $d_2(h_4) = h_0 h_3^2$ & Table \ref{tab:Adams-perm} \\
+$(88, 45)$ & $\langle \mu_{25}, 2, \theta_5 \rangle$ & $P^3 h_1 h_6$ & $$ & $d_2(h_6) = h_0 h_5^2$ & Table \ref{tab:Adams-perm} \\
+$(89, 49)$ & $\langle \nu, \eta, \{h_2 g A'\} \rangle$ & $\D h_1 g_2 g$ & $\tau h_2^2 g C'$ & Remark \ref{rem:nu,eta,h2gA'} & \ref{lem:nu-h2^2gA'} \\
+$(91, 49)$ & $\langle \{ h_1 h_3 g \}, 2, \theta_5 \rangle$ & $h_1 h_3 h_6 g$ & $$ & $d_2(h_6) = h_0 h_5^2$ & Table \ref{tab:Adams-perm} \\
+$(92, 48)$ & $\langle \theta_4, \theta_4, 2, \theta_4 \rangle$ & $h_0 g_3$ & $$ & Lemma \ref{lem:perm-h0g3} &  \\
+%$(93, 48)$ & $\langle \theta_4, 2, \theta_5 \rangle$ & $h_0^3 h_4^2 h_6$ & $$ & $C\tau$ & Table \ref{tab:Adams-perm} \\
+$(93, 50)$ & $\langle \kappa_1, \kappa, \tau \eta \theta_{4.5} \rangle$ & $h_1^2 x_{91,8}$ & $$ & $d_5(A') = \tau M h_1 d_0$ & Table \ref{tab:Adams-perm} \\
+$(94, 49)$ & $\langle \{ n \}, 2, \theta_5 \rangle$ & $h_6 n$ & $$ & $d_2(h_6) = h_0 h_5^2$ & Table \ref{tab:Adams-perm} \\
+$(95, 49)$ & $\langle \{ \D h_1 h_3 \}, 2, \theta_5 \rangle$ & $\D h_1 h_3 h_6$ & $$ & $d_2(h_6) = h_0 h_5^2$ & Table \ref{tab:Adams-perm} \\
+$(95, 50)$ & $\langle \kappa_1, 2, \theta_5 \rangle$ & $h_6 d_1$ & $$ & $d_2(h_6) = h_0 h_5^2$ & Table \ref{tab:Adams-perm} \\
+\revrow
+$(95, 50)$ & $\langle \eta, \tau \kappa^2, \tau \theta_{4.5} \kappabar \rangle$ & $M \D^2 h_1^2 +$ & &
+$d_3(\Delta h_2^2) = \tau h_1 d_0^2$ & \ref{lem:d4-MD^2h1^2} \\
+\revrow
+ & & $+ \tau^2 M \D h_2^2 g$ & & $d_3(M \D^2 h_1) = \tau^3 M d_0 e_0^2$
+\end{longtable}
+
+\rev{
+\begin{longtable}{llllll}
+\caption{Some null Toda brackets \label{tab:Toda-null}
+} \\
+\toprule
+$(s,w)$ & bracket & contains & indeterminacy & proof & used in \\
+\midrule \endfirsthead
+\caption[]{Some null Toda brackets} \\
+\toprule
+$(s,w)$ & bracket & detected by & indeterminacy & proof & used in \\
+\midrule \endhead
+\bottomrule \endfoot
+$(16, 9)$ & $\langle \kappa, 2, \eta \rangle$ & $0$ & $P c_0$ & Lemma \ref{lem:kappa,2,eta} & \ref{lem:kappa,2,eta,nu}, \ref{lem:nu-th1H1} \\
+$(23,13)$ & $\langle \epsilon + \eta \sigma, \sigma, 2 \sigma \rangle$ & $0$ & $P h_1 d_0$ & Lemma \ref{lem:nubar,sigma,2sigma} & \ref{lem:d4-h1c3} \\
+$(30, 16)$ & $\langle \tau \kappa^2, \eta, 2 \rangle$ & $0$ & $0$ & Lemma \ref{lem:tkappa^2,eta,2} & \ref{lem:d5-g3} \\
+$(35, 20)$ & $\langle \eta^2, \theta_4, \eta^2 \rangle$ & $0$ & $h_1^4 h_5$ & Lemma \ref{lem:eta^2,theta4,eta^2} & \ref{lem:eta^2,theta4,eta^2,theta4} \\
+$(46, 25)$ & $\langle \eta, 2, 4 \kappabar_2 \rangle$ & $0$ & $h_1 h_5 d_0$, $M h_1$, $\D h_2 c_1$, $\tau d_0 l + \D c_0 d_0$ & Lemma \ref{lem:eta,2,4kappabar2} & \ref{lem:d6-tQ3+tn1}, \ref{lem:teta^2kappabar,8,kappabar2} \\
+$(59, 31)$ & $\langle \tau \kappabar_2, \sigma^2, 2 \rangle$ & $0$ & $0$ & Lemma \ref{lem:tkappabar2,sigma^2,2} & \ref{lem:2-h3(tQ3+tn1)} \\
+\revrow
+$(60, 33)$ & $\langle \eta \kappabar_2, 2 \sigma, \sigma \rangle$ & $0$ & $0$ & Lemma \ref{lem:etakappabar2,2sigma,sigma} \\
+$(60, 32)$ & $\langle 2, \sigma^2, \{ h_3^2 h_5 \} \rangle$ & $0$ & $\tau^2 d_0^2 l$ & Lemma \ref{lem:2,sigma^2,theta4.5} & \ref{lem:d3-tD3'} \\
+$(63, 34)$ & $\langle \theta_4, \eta^2, \theta_4 \rangle$ & $0$ & $0$ & Lemma \ref{lem:theta4,eta^2,theta4} & \ref{lem:eta^2,theta4,eta^2,theta4}, \ref{lem:2-D1h3^2} \\
+$(67, 36)$ & $\langle \tau \eta^2 \kappabar, 8, \kappabar_2 \rangle$ & $0$ & & Lemma \ref{lem:teta^2kappabar,8,kappabar2} & \ref{lem:d6-h2^2H1} \\
+\revrow
+$(81, 43)$ & $\langle 2, \eta, \{h_2 x_{76,6} \} \rangle$ & $0$ & $0$ & Lemma \ref{lem:2,eta,h2x76,6} & \ref{lem:2-h2^2x76,6} \\
+$(84, 45)$ & $\langle 2, \sigma^2, \{\tau h_2^2 C'\} \rangle$ & $0$ & $0$ & Lemma \ref{lem:2,sigma^2,th2^2C'} & \ref{lem:d3-tx85,6+h0^3c3} \\
+$(84, 45)$ & $\langle 2, \sigma^2, \{h_3(\D e_1 + C_0)\} \rangle$ & $0$ & $0$ & Lemma \ref{lem:2,sigma^2,h3(De1+C0)} & \ref{lem:d3-tx85,6+h0^3c3} \\
+
+\end{longtable}
+}
+\end{landscape}
+
+
+
+\begin{longtable}{llll}
+\caption{Hidden values of inclusion of the bottom cell into $C\tau$ \label{tab:hid-incl}
+} \\
+\toprule
+$(s,f,w)$ & source & value & proof \\
+\midrule \endfirsthead
+\caption[]{Hidden values of inclusion of the bottom cell into $C\tau$} \\
+\toprule
+$(s,f,w)$ & source & value & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(50,6,26)$ & $\tau C$ & $\ol{P h_1^2 h_5 c_0}$ \\
+$(57,10,30)$ & $h_0 h_2 h_5 i$ & $\D^2 h_1^2 h_3$ \\
+$(63,6,33)$ & $\tau h_1 H_1$ & $\ol{h_1 B_7}$ \\
+$(63,7,33)$ & $\tau X_2 + \tau C'$ & $\ol{h_5 d_0 e_0}$ \\
+$(64,8,34)$ & $\tau h_1 X_2$ & $\ol{h_1 h_5 d_0 e_0}$ \\
+$(66,8,35)$ & $\tau h_2 C'$ & $\tau B_5$ \\
+$(70,7,37)$ & $\tau h_1 h_3 H_1$ & $\ol{h_1 h_3 B_7}$ \\
+$(70,8,37)$ & $\tau h_1 D_3'$ & $\ol{h_1^2 X_3}$ \\
+$(70,10,38)$ & $h_1 h_3 (\D e_1+C_0) + \tau h_2 C''$ & $\ol{h_1^4 c_0 Q_2}$ & Lemma \ref{lem:t-d1e1} \\
+$(71,5,37)$ & $\tau h_1 p_1$ & $\ol{h_0^2 h_2 Q_3}$ \\
+$(74,6,39)$ & $h_3 (\tau Q_3 + \tau n_1)$ & $\ol{h_1^4 p'}$ \\
+$(75,11,41)$ & $h_1^3 h_4 Q_2$ & $\ol{\tau h_2 g^2 n}$ \\
+$(77,6,40)$ & $\tau h_1 h_4 D_3$ & $x_{77,7}$ \\
+$(81,8,43)$ & $\tau g D_3$ & $\ol{h_1^4 x_{76,6}}$ \\
+$(83,10,45)$ & $h_2 c_1 A'$ & $\ol{h_1 g B_7}$ \\
+\revrow
+$(85,5,44)$ & $\tau h_1 f_2$ & $? h_0^3 c_3$ \\
+\revrow
+$(86,6,45)$ & $\tau h_1^2 f_2$ & $? \ol{\tau h_1^3 h_4 Q_3}$ \\
+	\revrow
+	& & $? \D^2 e_1 + \ol{\tau \D h_2 e_1 g}$ \\
+%$(86,6,45)$ & $\tau h_2 h_6 g + ? \tau h_1^2 f_2$ & $? \ol{\tau h_1^3 h_4 Q_3}$ \\
+%	& & $? \D^2 e_1 + \ol{\tau \D h_2 e_1 g}$ \\
+\revrow
+$(86,7,45)$ & $\tau h_1 x_{85,6}$ &  $? \ol{\tau h_1^3 h_4 Q_3}$ \\
+	\revrow
+	& & $? \D^2 e_1 + \ol{\tau \D h_2 e_1 g}$ \\
+$(86,12,47)$ & $\tau h_2 g C'$ & $\tau B_5 g$ \\
+%$(87,10,45)$ & $\tau \D h_1 H_1$ & $? \ol{\D h_1 B_7}$ \\
+$(88,11,48)$ & $\tau h_2^2 g H_1$ & $\D g_2 g$ \\
+$(90,14,50)$ & $\tau h_2 g C''$ & $\ol{P h_1^{10} h_6 c_0}$ \\
+$(90,19,49)$ & $\tau^3 g m^2$ & $\D^2 c_0 e_0^2$ \\
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{llll}
+\caption{Hidden values of projection from $C\tau$ to the top cell \label{tab:hid-proj}
+} \\
+\toprule
+$(s,f,w)$ & source & value & crossing source \\
+\midrule \endfirsthead
+\caption[]{Hidden values of projection from $C\tau$ to the top cell} \\
+\toprule
+$(s,f,w)$ & source & value & crossing source \\
+\midrule \endhead
+\bottomrule \endfoot
+$(30,6,16)$ & $\D h_2^2$ & $h_1 d_0^2$ \\
+$(34,2,18)$ & $h_2 h_5$ & $h_1 d_1$ \\
+$(38,7,20)$ & $h_0 y$ & $\tau h_0 e_0 g$ \\
+$(41,4,22)$ & $h_0 c_2$ & $h_1 h_3 d_1$ \\
+$(44,10,24)$ & $\D h_2^2 d_0$ & $h_1 d_0^3$ \\
+$(50,10,28)$ & $\D h_2^2 g$ & $h_1 d_0 e_0^2$ \\
+$(55,7,30)$ & $B_6$ & $h_2 g n$ \\
+$(56,10,29)$ & $\D^2 h_1 h_3$ & $\D h_0^2 d_0 e_0$ \\
+$(57,7,30)$ & $Q_2$ & $\tau g t$ \\
+$(58,7,30)$ & $h_0 D_2$ & $\D h_1 d_1$ \\
+$(58,11,32)$ & $P h_1^2 h_5 e_0$ & $\tau h_2 e_0^2 g$ \\
+$(59,8,33)$ & $h_1^2 D_4$ & $h_2^2 d_1 g$ \\
+$(61,6,32)$ & $A'$ & $M h_1 d_0$ & $\ol{h_1^3 Q_2}$ \\
+$(62,11,32)$ & $\ol{P h_5 c_0 d_0}$ & $\tau \D h_2^2 d_0 e_0$ \\
+$(63,12,33)$ & $\ol{P h_1 h_5 c_0 d_0}$ & $\tau^2 d_0^2 e_0^2$ \\
+$(64,14,36)$ & $k m$ & $h_1 d_0^2 e_0^2$ \\
+$(65,6,35)$ & $h_2 H_1$ & $d_1^2$ \\
+$(65,8,34)$ & $h_0 h_3 D_2$ & $h_1^2 (\D e_1+C_0)$ \\
+$(66,3,34)$ & $h_0 h_2 h_6$ & $h_1^3 h_5^2$ \\
+$(68,5,36)$ & $h_0 d_2$ & $h_1 \cdot \D_1 h_3^2$ \\
+$(68,7,37)$ & $h_2^2 H_1$ & $h_1^4 X_2$ & $\ol{h_1 h_3 j_1}$ \\
+$(68,12,35)$ & $\ol{\tau M c_0 d_0}$ & $\tau^2 \D h_2^2 e_0 g$ \\
+$(68,12,36)$ & $h_5 d_0 i$ & $\D h_1 d_0^3$ \\
+$(69,9,36)$ & $\ol{h_1 X_3}$ & $\tau M h_2 g$ \\
+$(69,10,36)$ & $P(A+A')$ & $\tau M h_0 h_2 g$ \\
+$(69,13,36)$ & $\tau \D^2 h_1 g$ & $\tau^3 e_0^4$ \\
+$(70,4,36)$ & $h_0^2 h_3 h_6$ & $\tau h_2^2 C'$ \\
+$(70,14,40)$ & $m^2$ & $h_1 e_0^4$ \\
+$(72,9,40)$ & $h_2^2 G_0$ & $g^2 n$ \\
+$(72,10,38)$ & $d_0 D_2$ & $\tau M h_2^2 g$ \\
+$(73, 7, 38)$ & $h_4 D_2$ & $\tau^3 d_1 g^2$ \\
+$(74,6,38)$ & $P h_2 h_6$ & $h_1 h_4 Q_2$ \\
+$(75,11,40)$ & $h_2 d_0 D_2$ & $M h_1 d_0^2$ \\
+$(75,11,42)$ & $g B_6$ & $h_2 g^2 n$ \\
+$(76,14,41)$ & $\D^2 h_1 h_3 g$ & $\D h_2^2 d_0^2 e_0$ \\
+$(77,11,41)$ & $\tau g Q_2$ & $\tau^2 g^2 t$ \\
+$(78,7,42)$ & $h_3 x_{71,6}$ & $h_1 d_1 g_2$ \\
+$(78,13,40)$ & $h_0^3 x_{78,10}$ & $\tau^5 e_0 g^3$ \\
+$(80,5,42)$ & $h_0 e_2$ & $h_1^3 x_{76,6}$ \\
+$(80,14,41)$ & $\D^3 h_1 h_3$ & $\tau^3 \D h_1 e_0^2 g$ \\
+$(81,10,44)$ & $g A'$ & $M h_1 e_0^2$ & $\ol{P h_1^9 h_6}$ \\
+$(81,15,42)$ & $\D^3 h_1^2 h_3$ & $\tau^3 d_0 e_0^2 l$ \\
+$(82,16,44)$ & $\D^2 e_0^2$ & $\tau \D h_2^2 e_0^3$ \\
+%$(83,5,43)$ & $\tau h_6 g$ & $? \tau (\D e_1 + C_0) g$ & $\ol{P h_1^3 h_6 c_0}$ \\
+$(83,17,45)$ & $\D^2 h_1 e_0^2$ & $\tau^2 d_0 e_0^4$ \\
+$(84,4,44)$ & $f_2$ & $h_1 h_4 Q_3$ \\
+$(84,18,48)$ & $d_0 m^2$ & $h_1 d_0 e_0^4$ \\
+\revrow
+$(85,5,45)$ & $h_1 f_2$ & $? h_1^2 h_4 Q_3$ \\
+	\revrow
+	& & $? \D h_1 j_1$ \\
+\revrow
+$(85, 6, 44)$ & $h_0^3 c_3$ & $? M \D h_1 d_0$ \\
+\revrow
+$(85, 6, 45)$ & $x_{85,6}$ & $? h_1^2 h_4 Q_3$ \\
+	\revrow
+	& & $? \D h_1 j_1$ \\
+$(85,10,47)$ & $h_2 g H_1$ & $d_1^2 g$ \\
+$(86,4,45)$ & $h_1 c_3$ & $h_0 h_2 h_4 Q_3$ \\
+\revrow
+$(86,6,46)$ & $h_1^2 f_2$ & $? h_1^3 h_4 Q_3$ \\
+	\revrow
+	& & $? \tau M h_0 g^2$ \\
+%$(86,6,46)$ & $h_2 h_6 g$ & $? \tau M h_0 g^2$ \\
+\revrow
+$(86,7,46)$ & $h_1 x_{85,6}$ & $? h_1^3 h_4 Q_3$ \\
+	\revrow
+	& & $? \tau M h_0 g^2$ \\
+\revrow
+$(86,8,45)$ & $\ol{\tau h_1^3 h_4 Q_3}$ & $? M \D h_1^2 d_0$ & $\ol{P^2 h_1^6 h_6}$ \\
+$(86,12,45)$ & $\D^2 e_1 + \ol{\tau \D h_2 e_1 g}$ 
+	& $? M \D h_1^2 d_0$ & $\ol{P^2 h_1^6 h_6}$ \\
+$(86,15,44)$ & $\D^3 h_0 h_3^2$ & $\tau \D^2 h_0 e_0 g$ \\
+%$(87,7,45)$ & $x_{87,7}$ & $? M \D h_0^2 e_0$ \\
+\revrow
+$(87,11,45)$ & $\ol{\D h_1 B_7}$ & $M \D h_0^2 e_0$ \\
+$(87,17,45)$ & $\D^3 h_1 d_0$ & $\tau^4 e_0^3 m$ \\
+$(88,11,49)$ & $h_2^2 g H_1$ & $M h_1^2 g^2$ \\
+$(88,16,47)$ & $\tau \D^2 g^2$ & $\tau^2 \D h_2^2 e_0 g^2$ \\
+$(88,17,48)$ & $\D^2 h_0 g^2$ & $\D h_1 d_0^2 e_0^2$ \\
+$(89,12,46)$ & $\D^2 h_0 c_2$ & $\D^2 h_1 h_3 d_1$ \\
+$(89,17,48)$ & $\tau \D^2 h_1 g^2$ & $\tau^3 e_0^4 g$ \\
+$(90,18,52)$ & $g m^2$ & $h_1 e_0^4 g$ \\
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{llll}
+\caption{Hidden $\tau$ extensions
+%Hidden $\tau$ extensions in the $\C$-motivic Adams spectral sequence
+\label{tab:tau-extn}
+} \\
+\toprule
+$(s,f,w)$ & from & to & proof \\
+\midrule \endfirsthead
+\caption[]{Hidden $\tau$ extensions
+%Hidden $\tau$ extensions in the $\C$-motivic Adams spectral sequence
+} \\
+\toprule
+$(s,f,w)$ & from & to & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(22, 7, 13)$ & $c_0 d_0$ & $P d_0$ \\
+$(23, 8, 14)$ & $h_1 c_0 d_0$ & $P h_1 d_0$ \\
+$(28, 6, 17)$ & $h_1 h_3 g$ & $d_0^2$ \\
+$(29, 7, 18)$ & $h_1^2 h_3 g$ & $h_1 d_0^2$ \\
+$(40, 9, 23)$ & $\tau h_0 g^2$ & $\D h_1^2 d_0$ \\
+$(41, 9, 23)$ & $\tau^2 h_1 g^2$ & $\D h_0^2 e_0$ \\
+$(42, 11, 25)$ & $c_0 e_0^2$ & $d_0^3$ \\
+$(43, 12, 26)$ & $h_1 c_0 e_0^2$ & $h_1 d_0^3$ \\
+$(46, 6, 26)$ & $h_1^2 g_2$ & $\D h_2 c_1$ \\
+$(47, 12, 26)$ & $\D h_1 c_0 d_0$ & $P \D h_1 d_0$ \\
+$(48, 10, 29)$ & $h_1 h_3 g^2$ & $d_0 e_0^2$ \\
+$(49, 11, 30)$ & $h_1^2 h_3 g^2$ & $h_1 d_0 e_0^2$ \\
+$(52, 10, 29)$ & $\D h_1 h_3 g$ & $\tau^2 e_0 m$ \\
+$(53, 9, 29)$ & $M c_0$ & $M P$ \\
+$(53, 11, 30)$ & $\D h_1^2 h_3 g$ & $\D h_1 d_0^2$ \\
+$(54, 8, 31)$ & $h_1 i_1$ & $M h_1 c_0$ \\
+$(54, 10, 30)$ & $M h_1 c_0$ & $M P h_1$ \\
+$(54, 11, 32)$ & $h_1^6 h_5 e_0$ & $\tau e_0^2 g$ \\
+$(55, 12, 33)$ & $h_1^7 h_5 e_0$ & $\tau h_1 e_0^2 g$ \\
+$(55, 13, 31)$ & $\tau^2 h_1 e_0^2 g$ & $\D h_0^2 d_0 e_0$ \\
+$(59, 7, 33)$ & $j_1$ & $M d_0$ \\
+$(59, 12, 33)$ & $P h_1^3 h_5 e_0$ & $\tau \D h_1 d_0 g$ \\
+$(60, 9, 34)$ & $h_1^3 D_4$ & $M h_1 d_0$ \\
+$(60, 13, 34)$ & $\tau^2 h_0 g^3$ & $\D c_0 d_0^2 + \tau d_0^2 l$ \\
+$(61, 13, 35)$ & $\tau^2 h_1 g^3$ & $\D h_2^2 d_0 e_0$ \\
+$(62, 14, 37)$ & $h_1^6 h_5 c_0 e_0$ & $d_0^2 e_0^2$ \\
+$(63, 15, 38)$ & $h_0^2 h_2 g^3$ & $h_1 d_0^2 e_0^2$ \\
+$(65, 9, 36)$ & $h_1^2 X_2$ & $\tau M g$ \\
+$(66, 10, 37)$ & $h_1^3 X_2$ & $\tau M h_1 g$ \\
+$(66, 14, 37)$ & $P h_1^2 h_5 c_0 e_0$ & $\tau^2 d_0 e_0 m$ \\
+$(67, 15, 38)$ & $P h_1^3 h_5 c_0 e_0$ & $\D h_1 d_0^3$ \\
+$(68, 14, 41)$ & $h_1 h_3 g^3$ & $e_0^4$ \\
+$(69, 15, 42)$ & $h_1^2 h_3 g^3$ & $h_1 e_0^4$ \\
+$(70, 8, 39)$ & $d_1 e_1$ & $h_1 h_3 (\D e_1 + C_0)$ & 
+	Lemma \ref{lem:t-d1e1} \\
+$(70, 10, 38)$ & $\tau h_2 C'' + h_1 h_3 (\D e_1 + C_0)$ & $\D^2 h_2 c_1$ \\
+$(71, 8, 39)$ & $h_2^3 H_1$ & $h_3^2 Q_2$ \\
+$(72, 7, 39)$ & $h_1 x_{71,6}$ & $h_0 d_0 D_2$ \\
+$(72, 14, 41)$ & $\D h_1 h_3 g^2$ & $\tau^2 e_0 g m$ \\
+$(73, 6, 39)$ & $h_1^2 h_6 c_0$ & $h_0 h_4 D_2$ \\
+$(73, 11, 40)$ & $\tau h_2^2 C''$ & $\D^2 h_1^2 h_4 c_0$ \\
+$(73, 12, 41)$ & $M h_1 h_3 g$ & $M d_0^2$ \\
+$(73, 15, 42)$ & $\D h_1^2 h_3 g^2$ & $\D h_1 d_0 e_0^2$ \\
+$(74, 13, 42)$ & $M h_1^2 h_3 g$ & $M h_1 d_0^2$ \\
+$(75, 17, 43)$ & $\tau^2 h_1 e_0^2 g^2$ & $\D h_2^2 d_0^2 e_0$ \\
+$(77, 15, 42)$ & $\D^2 h_2^3 g$ & $\tau^5 e_0 g^3$ \\
+$(78, 8, 43)$ & $h_1 m_1$ & $M \D h_1^2 h_3$ \\
+$(79, 11, 45)$ & $g j_1$ & $M e_0^2$ \\
+$(80, 12, 46)$ & $h_1 g j_1$ & $M h_1 e_0^2$ \\
+$(80, 17, 47)$ & $\tau h_0 g^4$ & $\D h_1^2 e_0^2 g$ \\
+$(80, 18, 46)$ & $\D h_1^2 e_0^2 g$ & 
+	$\D c_0 d_0 e_0^2 + \tau d_0 e_0^2 l$ \\
+$(81, 17, 47)$ & $\tau^2 h_1 g^4$ & $\D h_2^2 e_0^3$ \\
+\revrow
+$(82, 12, 44)$ & $\tau (\D e_1 + C_0) g$ & $\D^2 h_2 n$ \\
+$(82, 19, 49)$ & $c_0 e_0^2 g^2$ & $d_0 e_0^4$ \\
+$(83, 20, 50)$ & $h_1 c_0 e_0^2 g^2$ & $h_1 d_0 e_0^4$ \\
+$(84, 12, 46)$ & $\D h_1 j_1$ & $? M \D h_1 d_0$ \\
+$(85, 8, 45)$ & $h_6 c_0 d_0$ & $P h_6 d_0$ \\
+$(85, 15, 47)$ & $\tau M h_0 g^2$ & $? M \D h_1^2 d_0$ \\
+$(86, 9, 46)$ & $h_1 h_6 c_0 d_0$ & $P h_1 h_6 d_0$ \\
+$(86, 12, 47)$ & $\tau h_2 g C'$ & $\D^2 h_2^2 d_1$ \\
+$(86, 15, 47)$ & $\tau^2 M h_1 g^2$ & $M \D h_0^2 e_0$ \\
+$(87, 20, 50)$ & $\D h_1 c_0 e_0^2 g$ & $\D h_1 d_0^2 e_0^2$ \\
+$(88, 18, 53)$ & $h_1 h_3 g^4$ & $e_0^4 g + M h_1^6 e_0 g$ \\
+$(89, 13, 49)$ & $\tau h_2^2 g C'$ & $\D^2 h_1^2 h_3 d_1$ \\
+$(89, 19, 54)$ & $h_1^2 h_3 g^4$ & $h_1 e_0^4 g + M h_1^7 e_0 g$ \\
+$(90, 14, 50)$ & $\tau h_2 g C''$ & $\D^2 h_2 c_1 g$ \\
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{lllll}
+\caption{Hidden $2$ extensions \label{tab:2-extn}
+} \\
+\toprule
+$(s,f,w)$ & source & target & proof & notes \\
+\midrule \endfirsthead
+\caption[]{Hidden $2$ extensions} \\
+\toprule
+$(s,f,w)$ & source & target & proof & notes \\
+\midrule \endhead
+\bottomrule \endfoot
+$(23, 6, 13)$ & $\tau h_0 h_2 g$ & $P h_1 d_0$ & $\tau$ \\
+$(23, 6, 14)$ & $h_0 h_2 g$ & $h_1 c_0 d_0$ & $C\tau$ \\
+$(40, 8, 22)$ & $\tau^2 g^2$ & $\D h_1^2 d_0$ & $\tau$ \\
+$(43, 10, 25)$ & $\tau h_0 h_2 g^2$ & $h_1 d_0^3$ & $\tau$ \\
+$(43, 10, 26)$ & $h_0 h_2 g^2$ & $h_1 c_0 e_0^2$ & $C\tau$ \\
+$(47, 10, 25)$ & $\tau \D h_2^2 e_0$ & $P \D h_1 d_0$ & $\tau$ \\
+$(47, 10, 26)$ & $\D h_2^2 e_0$ & $\D h_1 c_0 d_0$ & $C\tau$ \\
+$(51, 6, 28)$ & $h_0 h_3 g_2$ & $\tau g n$ & \cite{WangXu18} \\
+$(54, 9, 28)$ & $h_0 h_5 i$ & $\tau^4 e_0^2 g$ & Lemma \ref{lem:2-h0h5i}, \cite{Burklund21} \\
+$(60, 12, 33)$ & $\tau^3 g^3$ & $\D c_0 d_0^2 + \tau d_0^2 l$ & $\tau$ \\
+$(63, 6, 33)$ & $\tau h_1 H_1$ & $\tau h_1 (\D e_1 + C_0)$ & Lemma \ref{lem:2-th1H1} \\
+$(63, 14, 37)$ & $\tau h_0 h_2 g^3$ & $h_1 d_0^2 e_0^2$ & $\tau$ \\
+$(64, 2, 33)$ & $h_1 h_6$ & $\tau h_1^2 h_5^2$ & Lemma \ref{lem:2-h1h6} \\
+$(65, 9, 36)$ & $h_1^2 X_2$ & $M h_0 g$ & $\tau$ \\
+$(67, 14, 37)$ & $\tau \D h_2^2 e_0 g$ & $\D h_1 d_0^3$ & $\tau$ \\
+$(70, 7, 37)$ & $\tau h_1 h_3 H_1$ & $\tau h_1 h_3 (\D e_1 + C_0)$ &
+	Lemma \ref{lem:2-th1H1} & \\ 
+$(71, 4, 37)$ & $h_6 c_0$ & $\tau h_1^2 p'$ & Lemma \ref{lem:2-h6c0} \\
+$(71, 8, 39)$ & $h_2^3 H_1$ & $\tau M h_2^2 g$ & 
+	Lemma \ref{lem:2-h1^2h3H1} \\
+$(74, 6, 39)$ & $h_3 (\tau Q_3 + \tau n_1)$ & $\tau x_{74,8}$ &
+	Lemma \ref{lem:2-h3(tQ3+tn1)} & indet \\
+$(74, 10, 41)$ & $h_3 C''$ & $M h_1 d_0^2$ & $C\tau$ \\
+$(74, 14, 40)$ & $\D^2 h_2^2 g$ & $\tau^4 e_0^2 g^2$ & $\mmf$ \\
+$(77, 6, 41)$ & $\tau h_1 h_4 D_3$ & $h_0 x_{77,7}$ & $C\tau$ \\
+$(78, 10, 42)$ & $e_0 A'$ & $M \D h_1^2 h_3$ & Lemma \ref{lem:2-e0A'} \\
+$(80, 16, 45)$ & $\tau^3 g^4$ & $\D c_0 d_0 e_0^2 + \tau d_0 e_0^2 l$ & $\tau$ \\
+$(80, 16, 46)$ & $\tau^2 g^4$ & $\D h_1^2 e_0^2 g + M h_1^3 d_0 e_0$ & $\tau$ \\
+$(83, 18, 49)$ & $\tau h_0 h_2 g^4$ & $h_1 d_0 e_0^4$ & $\tau$ \\
+$(83, 18, 50)$ & $h_0 h_2 g^4$ & $h_1 c_0 e_0^2 g^2$ & $C\tau$ \\
+%$(85, 5, 44)$ & $\tau h_1 f_2$ & $\tau^2 h_2 h_4 Q_3$ & Lemma \ref{lem:2-th1f2} & \\ 
+$(85, 14, 46)$ & $\tau^2 M g^2$ & $? M \D h_1^2 d_0$ & $\tau$ & \\ 
+$(86, 7, 45)$ & $\tau h_0 h_2 h_6 g$ & $P h_1 h_6 d_0$ & $\tau$ & \\ 
+$(86, 7, 46)$ & $h_0 h_2 h_6 g$ & $h_1 h_6 c_0 d_0$ & $C\tau$ & \\ 
+\revrow
+$(87, 7, 45)$ & $x_{87,7}$ & $\tau^3 g Q_3$ & Remark \ref{rem:2-x87,7} \\
+%	& & $? \tau \D^2 h_3 d_1$ \\
+%	& & $? \tau^2 \D^2 c_1 g$ \\
+$(87, 9, 48)$ & $g Q_3$ & $B_6 d_1$ & $C\tau$ \\
+%$(87, 10, 45)$ & $? \tau \D h_1 H_1$ & $? \tau \D^2 h_3 d_1$ & Lemma \ref{lem:2-tDh1H1} \\
+%	& & $? \tau^2 \D^2 c_1 g$ \\
+$(87, 18, 49)$ & $\tau \D h_2^2 e_0 g^2$ & $\D h_1 d_0^2 e_0^2$ & $C\tau$ \\
+$(87, 18, 50)$ & $\D h_2^2 e_0 g^2$ & $\D h_1 c_0 e_0^2 g \mathord{+} M h_1^3 c_0 d_0 e_0$ & $C\tau$ \\
+$(90, 10, 50)$ & $h_2 g Q_3$ & $\tau d_1 e_1 g$ & $C\tau$ \\
+\end{longtable}
+
+\newpage
+
+\rev{
+\begin{longtable}{lll}
+\caption{Some null hidden $2$ extensions \label{tab:2-extn-null}
+} \\
+\toprule
+$(s,f,w)$ & source & proof \\
+\midrule \endfirsthead
+\caption[]{Some null hidden $2$ extensions} \\
+\toprule
+$(s,f,w)$ & source & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(63, 7, 33)$ & $\tau X_2 + \tau C'$  & Lemma \ref{lem:2-th1H1} \\
+$(66, 6, 36)$ & $\D_1 h_3^2$  & Lemma \ref{lem:2-D1h3^2} \\
+$(67, 6, 36)$ & $h_0 Q_3 + h_2^2 D_3$  & Lemma \ref{lem:2-h0Q3} \\
+$(68, 7, 36)$ & $h_3 A'$  & Lemma \ref{lem:2-h3A'} \\
+$(69, 4, 36)$ & $p'$  & Lemma \ref{lem:2-p'} \\
+$(70, 9, 37)$ & $\tau h_1 D_3'$  & Lemma \ref{lem:2-th1D3'} \\
+$(71, 3, 37)$ & $h_1 h_3 h_6$  & Lemma \ref{lem:2-h1h3h6} \\
+$(71, 5, 37)$ & $\tau h_1 p_1$  & Lemma \ref{lem:2-th1p1} \\
+$(72, 6, 37)$ & $P h_1 h_6$  & Lemma \ref{lem:2-Ph1h6} \\
+$(72, 8, 38)$ & $h_4 Q_2 + h_3^2 D_2$  & Lemma \ref{lem:2-h4Q2+h3^2D2} \\
+$(73, 7, 40)$ & $h_2^2 Q_3$  & Lemma \ref{lem:2-h2^2Q3} \\
+$(73, 8, 38)$ & $h_0 h_4 D_2$  & Lemma \ref{lem:2-h0h4D2} \\
+$(77, 5, 40)$ & $h_6 d_0$  & Lemma \ref{lem:2-h6d0} \\
+$(79, 3, 41)$ & $h_1 h_4 h_6$  & Lemma \ref{lem:2-h1h4h6} \\
+$(79, 8, 42)$ & $h_0 h_2 x_{76,6}$  & Lemma \ref{lem:2-h0h2x76,6} \\
+$(79, 8, 41)$ & $P h_6 c_0$  & Lemma \ref{lem:2-Ph6c0} \\
+$(79, 11, 42)$ & $\D B_6$  & Lemma \ref{lem:2-DB6} \\
+$(82, 6, 44)$ & $h_5^2 g$  & Lemma \ref{lem:2-h5^2g} \\
+\revrow
+$(82, 8, 44)$ & $h_2^2 x_{76,6}$ & Lemma \ref{lem:2-h2^2x76,6} \\
+$(83, 7, 44)$ & $h_0^2 h_6 g$  & Lemma \ref{lem:2-h0^2h6g} \\
+$(85, 7, 45)$ & $\tau h_2 h_4 Q_3$  & Lemma \ref{lem:2-th2h4Q3} \\
+$(85, 8, 45)$ & $h_6 c_0 d_0$  & Lemma \ref{lem:2-h6hc0d0} \\
+$(85, 9, 44)$ & $P h_6 d_0$  & Lemma \ref{lem:2-h6hc0d0} \\
+$(86, 5, 45)$ & $h_4 h_6 c_0$  & Lemma \ref{lem:2-h4h6c0} \\
+$(86, 12, 47)$ & $\tau h_2 g C'$  & Lemma \ref{lem:2-th2gC'} \\
+$(87, 5, 46)$ & $h_1^2 c_3$  & Lemma \ref{lem:2-h1^2c3} \\
+$(87, 12, 45)$ & $P^2 h_6 c_0$  & Lemma \ref{lem:2-P^2h6c0} \\
+$(90, 12, 48)$ & $M^2$  & Lemma \ref{lem:2-M^2} \\
+\end{longtable}
+}
+
+
+
+
+\begin{longtable}{lll}
+\caption{Possible hidden $2$ extensions \label{tab:2-extn-possible}
+} \\
+\toprule
+$(s,f,w)$ & source & target \\
+\midrule \endfirsthead
+\caption[]{Possible hidden $2$ extensions} \\
+\toprule
+$(s,f,w)$ & source & target \\
+\midrule \endhead
+\bottomrule \endfoot
+$(59, 7, 33)$ & $j_1$ & $? \tau^2 c_1 g^2$ \\
+$(72, 7, 39)$ & $h_1 x_{71,6}$ & $? \tau^3 d_1 g^2$ \\
+$(79, 11, 45)$ & $g j_1$ & $? \tau^2 c_1 g^3$ \\
+%$(82, 6, 44)$ & $h_5^2 g$ & $? \tau (\D e_1 + C_0) g$ \\
+\revrow
+$(85, 5, 45)$ & $h_1 f_2$ & $? \tau h_2 h_4 Q_3$ \\
+	\revrow
+	& & $? \tau P h_1 x_{76,6}$ \\
+\revrow
+$(85, 5, 44)$ & $\tau h_1 f_2$ & $? \tau^2 h_2 h_4 Q_3$ \\
+	\revrow
+	& & $? \tau^2 P h_1 x_{76,6}$ \\
+	\revrow
+	& & $? \tau^4 M g^2$ \\
+\revrow
+$(86, 6, 46)$ & $h_1^2 f_2$ & $? \D^2 h_2^2 d_1$ \\
+%	& & $? M \D h_0^2 e_0$ \\
+\revrow
+$(86, 6, 45)$ & $\tau h_1^2 f_2$ & $? \tau \D^2 h_2^2 d_1$ \\
+\revrow
+$(86, 7, 45)$ & $\tau h_1 x_{85,6}$ & $? \tau \D^2 h_2^2 d_1$ \\
+	\revrow
+	& & $? P h_1 h_6 d_0$ \\
+%$(84, 10, 45)$ & $P x_{76,6}$ & $? M \D h_1 d_0$ \\
+%$(86, 7, 45)$ & $? \tau h_1 x_{85,6}$ & $? P h_1 h_6 d_0$ \\
+%	& & $? \tau \D^2 h_2^2 d_1$ \\
+%	& & $? \tau M \D h_0^2 e_0$ \\
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{lllll}
+\caption{Hidden $\eta$ extensions \label{tab:eta-extn}
+} \\
+\toprule
+$(s,f,w)$ & source & target & proof & notes \\
+\midrule \endfirsthead
+\caption[]{Hidden $\eta$ extensions} \\
+\toprule
+$(s,f,w)$ & source & target & proof & notes \\
+\midrule \endhead
+\bottomrule \endfoot
+$(15, 4, 8)$ & $h_0^3 h_4$ & $P c_0$ & $C\tau$ \\
+$(21, 5, 11)$ & $\tau^2 h_1 g$ & $P d_0$ & $\tau$ \\
+$(21, 5, 12)$ & $\tau h_1 g$ & $c_0 d_0$ & $C\tau$ \\
+$(23, 9, 12)$ & $h_0^2 i$ & $P^2 c_0$ & $C\tau$ & \\ 
+$(31, 11, 16)$ & $h_0^{10} h_5$ & $P^3 c_0$ & $C\tau$ \\
+$(38, 4, 20)$ & $h_0^2 h_3 h_5$ & $\tau^2 c_1 g$ & \cite{Isaksen14c}*{Table 29} \\
+$(39, 17, 20)$ & $P^2 h_0^2 i$ & $P^4 c_0$ & $C\tau$ \\
+$(40, 8, 21)$ & $\tau^3 g^2$ & $\D h_0^2 e_0$ & $\tau$ \\
+$(41, 5, 23)$ & $h_1 f_1$ & $\tau h_2 c_1 g$ & \cite{Isaksen14c}*{Table 29} & crossing \\
+$(41, 9, 23)$ & $\tau^2 h_1 g^2$ & $d_0^3$ & $\tau$ \\
+$(41, 9, 24)$ & $\tau h_1 g^2$ & $c_0 e_0^2$ & $C\tau$ \\
+$(41, 10, 22)$ & $\D h_0^2 e_0$ & $\tau d_0^3$ & $\tau$ \\
+$(45, 3, 24)$ & $h_3^2 h_5$ & $M h_1$ & \cite{Isaksen14c}*{Table 29} &
+	crossing \\
+$(45, 5, 24)$ & $\tau h_1 g_2$ & $\D h_2 c_1$ & $\tau$ \\
+$(45, 9, 24)$ & $\tau \D h_1 g$ & $\tau d_0 l + \D c_0 d_0$ & $C\tau$ \\
+$(46, 11, 24)$ & $\tau^2 d_0 l$ & $P \D h_1 d_0$ & $\tau$ \\
+$(47, 10, 26)$ & $\D h_2^2 e_0$ & $\tau d_0 e_0^2$ & \mmf \\
+$(47, 20, 24)$ & $h_0^7 Q'$ & $P^5 c_0$ & $C\tau$ \\
+$(50, 6, 26)$ & $\tau C$ & $\tau^2 g n$ & \cite{WangXu18} \\
+$(52, 11, 28)$ & $\tau^2 e_0 m$ & $\D h_1 d_0^2$ & $\tau$ \\
+$(54, 12, 29)$ & $\tau^3 e_0^2 g$ & $\D h_0^2 d_0 e_0$ & $\tau$ \\
+$(55, 25, 28)$ & $P^4 h_0^2 i$ & $P^6 c_0$ & $C\tau$ \\
+$(59, 13, 31)$ & $\tau \D h_1 d_0 g$ & $\D c_0 d_0^2 + \tau d_0^2 l$ & $\tau$ \\
+$(60, 12, 33)$ & $\tau^3 g^3$ & $\D h_2^2 d_0 e_0$ & $\tau$ \\
+$(61, 9, 35)$ & $h_1^2 j_1$ & $\tau h_2 c_1 g^2$ & $C\tau$ 
+	& crossing \\
+$(61, 13, 35)$ & $\tau^2 h_1 g^3$ & $d_0^2 e_0^2$ & $\tau$ \\
+$(61, 14, 34)$ & $\D h_2^2 d_0 e_0$ & $\tau d_0^2 e_0^2$ & $\tau$ \\
+$(63, 6, 33)$ & $\tau h_1 H_1$ & $h_3 Q_2$ & $C\tau$ & indet \\
+$(63, 26, 32)$ & $h_0^{25} h_6$ & $P^7 c_0$ & $C\tau$ \\
+$(64, 8, 34)$ & $\tau h_1 X_2$ & $c_0 Q_2$ & $C\tau$ \\
+$(64, 8, 33)$ & $\tau^2 h_1 X_2$ & $\tau^2 M h_0 g$ & Lemma \ref{lem:eta-t^2h1X2} & indet \\
+$(65, 13, 35)$ & $\tau^2 \D h_1 g^2$ & $\tau^2 d_0 e_0 m$ & $\tau$ \\
+$(66, 15, 36)$ & $\tau^2 d_0 e_0 m$ & $\D h_1 d_0^3$ & $\tau$ \\
+$(67, 14, 38)$ & $\D h_2^2 e_0 g$ & $\tau e_0^4$ & $C\tau$ \\
+$(68, 7, 36)$ & $h_3 A'$ & $h_3 (\D e_1 + C_0)$ & Lemma \ref{lem:eta-h3A'} \\
+$(69, 3, 36)$ & $h_2^2 h_6$ & $\tau h_0 h_2 Q_3$ & Lemma \ref{lem:eta-h2^2h6} & crossing \\
+$(70,7,37)$ & $\tau h_1 h_3 H_1$ & $h_3^2 Q_2$ & Lemma \ref{lem:eta-th1h3H1} & \\ 
+$(70,9,37)$ & $\tau h_1 D_3'$ & $d_0 Q_2$ & $C\tau$ \\
+$(71,5,37)$ & $\tau h_1 p_1$ & $h_4 Q_2$ & $C\tau$ \\
+$(71,13,38)$ & $\D^2 h_2 g$ & $\tau^3 e_0 g m$ & $\mmf$ \\
+$(71,33,36)$ & $P^6 h_0^2 i$ & $P^8 c_0$ & $C\tau$ \\
+$(72,5,37)$ & $\tau h_1 h_6 c_0$ & $\tau^2 h_2^2 Q_3$ & Lemma \ref{lem:eta-th1h6c0} & indet \\
+$(72,11,38)$ & $h_0 d_0 D_2$ & $\tau M d_0^2$ & Lemma \ref{lem:eta-h0d0D2} & indet \\
+$(72,15,40)$ & $\tau^2 e_0 g m$ & $\D h_1 d_0 e_0^2$ & $\tau$ \\
+$(74,16,41)$ & $\tau^3 e_0^2 g^2$ & $\D h_2^2 d_0^2 e_0$ & $\tau$ \\
+$(75,6,40)$ & $h_0 h_3 d_2$ & $\tau d_1 g_2$ & Lemma \ref{lem:eta-h0h3d2} \\
+$(75,10,42)$ & $h_1^4 x_{71,6}$ & $h_1 g B_6$ & $C\tau$ \\
+$(75,11,41)$ & $h_1^3 h_4 Q_2$ & $\tau^2 g^2 t$ & $C\tau$ \\
+$(76,9,40)$ & $x_{76,9}$ & $M \D h_1 h_3$ & $C\tau$ \\
+$(77,6,40)$ & $\tau h_1 h_4 D_3$ & $x_{78,9}$ & $C\tau$ 
+	& crossing \\
+$(78,8,40)$ & $h_0^6 h_4 h_6$ & $\tau \D B_6$ & Lemma \ref{lem:eta-h0^6h4h6} \\
+$(78,10,42)$ & $e_0 A'$ & $\tau M e_0^2$ & Lemma \ref{lem:eta-e0A'} & \\
+$(79,17,44)$ & $\tau \D h_1 e_0^2 g$ & $\D c_0 d_0 e_0^2 + \tau d_0 e_0^2 l$ & $\tau$ \\
+$(79,36,40)$ & $P^4 h_0^7 Q'$ & $P^9 c_0$ & $C\tau$ \\
+$(80,16,45)$ & $\tau^3 g^4$ & $\D h_2^2 e_0^3$ & $\tau$ \\
+$(81,13,47)$ & $h_1^2 g j_1$ & $\tau h_2 c_1 g^3$ & $C\tau$ & crossing \\
+$(81,17,47)$ & $\tau^2 h_1 g^4$ & $d_0 e_0^4$ & $\tau$ \\
+$(81,17,48)$ & $\tau h_1 g^4$ & $c_0 e_0^2 g^2$ & $C\tau$ \\
+$(81,18,46)$ & $\D h_2^2 e_0^3$ & $\tau d_0 e_0^4$ & $\tau$ \\
+$(83,11,44)$ & $\tau \D j_1 + \tau^2 g C'$ & $? M \D h_1 d_0$ & $\tau$ & crossing \\
+$(84,6,43)$ & $\tau^2 h_1 h_6 g$ & $P h_6 d_0$ & $\tau$ \\
+$(84,6,44)$ & $\tau h_1 h_6 g$ & $h_6 c_0 d_0$ & $C\tau$ \\
+$(85,14,45)$ & $\tau^3 M g^2$ & $M \D h_0^2 e_0$ & $\tau$ & \\ 
+$(85,17,48)$ & $\tau \D h_1 g^3$ & $\D c_0 e_0^2 g + M h_1^2 c_0 d_0 e_0$ & $C\tau$ & \\ 
+ & & $+ \tau e_0^3 m$ \\
+$(86,11,44)$ & $h_0^3 h_6 i$ & $\tau^2 \D^2 c_1 g$ & Lemma \ref{lem:eta-h0^3h6i} \\
+$(86,16,47)$ & $P^2 h_1^7 h_6$ & $\tau^2 \D h_2^2 e_0 g^2$ & $C\tau$ \\
+$(86,19,48)$ & $\tau^2 e_0^3 m$ & $\D h_1 d_0^2 e_0^2$ & $\tau$ \\
+\revrow
+$(87,8,47)$ & $h_1 h_4 x_{71,6}$ & $x_{88,10}$ & $C\tau$ \\
+%$(87,10,45)$ & $? \tau \D h_1 H_1$ & $\D^2 f_1 + ? \tau^2 \D g_2 g$ & $C\tau$ \\
+$(87,18,50)$ & $\D h_2^2 e_0 g^2$ & $\tau e_0^4 g$ & $C\tau$ \\
+$(87,41,44)$ & $P^8 h_0^2 i$ & $P^{10} c_0$ & $C\tau$ \\
+$(88,11,48)$ & $\tau h_2^2 g H_1$ & $\D h_1 g_2 g + \tau h_2^2 g C'$ & $C\tau$ \\
+$(89,13,47)$ & $\D^2 h_1 f_1$ & $\tau \D^2 h_2 c_1 g$ & Lemma \ref{lem:eta-D^2h1f1} & crossing \\
+\end{longtable}
+
+\newpage
+
+\rev{
+\begin{longtable}{lll}
+\caption{Some null hidden $\eta$ extensions \label{tab:eta-extn-null}
+} \\
+\toprule
+$(s,f,w)$ & source & proof \\
+\midrule \endfirsthead
+\caption[]{Some null hidden $\eta$ extensions} \\ 
+\toprule
+$(s,f,w)$ & source & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(58, 8, 30)$ & $\tau h_1 Q_2$ & Lemma \ref{lem:eta-th1Q2} \\
+$(64, 4, 33)$ & $\tau h_1^2 h_5^2$ & Lemma \ref{lem:eta-th1^2h5^2} \\
+$(66, 4, 34)$ & $\tau h_1^3 h_6$ & Lemma \ref{lem:eta-th1^3h6} \\
+$(68, 6, 36)$ & $\tau h_1 Q_3$ & Lemma \ref{lem:eta-th1Q3} \\
+$(70, 5, 36)$ & $h_0^3 h_3 h_6$ & Lemma \ref{lem:eta-h0^3h3h6} \\
+$(70, 6, 38)$ & $h_2 Q_3$ & Lemma \ref{lem:eta-h2Q3} \\
+$(70, 10, 38)$ & $h_1 h_3 (\D e_1 + C_0)$ & Lemma \ref{lem:eta-h1h3(De1+C0)} \\
+$(70, 10, 38)$ & $\tau h_2 C'' + h_1 h_3 (\D e_1 + C_0)$ & Lemma \ref{lem:eta-h1h3(De1+C0)} \\
+$(71, 6, 37)$ & $\tau h_1^2 p'$ & Lemma \ref{lem:eta-th1^2p'} \\
+$(71, 8, 39)$ & $h_2^3 H_1$ & Lemma \ref{lem:eta-h1^2h3H1} \\
+$(72, 7, 39)$ & $h_1^3 p'$ & Lemma \ref{lem:eta-h1^3p'} \\
+$(77, 3, 40)$ & $h_3^2 h_6$ & Lemma \ref{lem:eta-tm1} \\
+$(77, 7, 41)$ & $\tau m_1$ & Lemma \ref{lem:eta-tm1} \\
+$(77, 8, 40)$ & $h_0 x_{77,7}$ & Lemma \ref{lem:eta-h0x77,7} \\
+$(78, 6, 41)$ & $h_1 h_6 d_0$ & Lemma \ref{lem:eta-h1h6d0} \\
+$(78, 8, 41)$ & $\tau h_1^2 x_{76,6}$ & Lemma \ref{lem:eta-th1^2x76,6} \\
+$(81, 5, 43)$ & $h_1^3 h_4 h_6$ & Lemma \ref{lem:eta-h1^3h4h6} \\
+$(81, 7, 44)$ & $h_3^2 n_1$ & Lemma \ref{lem:eta-h3^2n1} \\
+$(81, 12, 42)$ & $\D^2 p$ & Lemma \ref{lem:eta-D^2p} \\
+$(82, 4, 43)$ & $h_6 c_1$ & Lemma \ref{lem:eta-h6c1} \\
+$(83, 6, 44)$ & $h_0 h_6 g$ & Lemma \ref{lem:eta-h0h6g} \\
+$(85, 7, 46)$ & $h_2 h_4 Q_3$ & Lemma \ref{lem:eta-h2h4Q3} \\
+$(86, 9, 46)$ & $h_1 h_6 c_0 d_0$ & Lemma \ref{lem:eta-h1h6c0d0} \\
+$(86, 10, 45)$ & $P h_1 h_6 d_0$ & Lemma \ref{lem:eta-h1h6c0d0} \\
+$(87, 11, 48)$ & $B_6 d_1$ & Lemma \ref{lem:eta-B6d1} \\
+$(88, 7, 47)$ & $h_1^2 h_4 h_6 c_0$ & Lemma \ref{lem:eta-h1^2h4h6c0} \\
+\end{longtable}
+}
+
+
+\newpage
+
+\begin{longtable}{llll}
+\caption{Possible hidden $\eta$ extensions \label{tab:eta-extn-possible}
+} \\
+\toprule
+$(s,f,w)$ & source & target & proof \\
+\midrule \endfirsthead
+\caption[]{Possible hidden $\eta$ extensions} \\
+\toprule
+$(s,f,w)$ & source & target & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+%$(64, 5, 34)$ & $h_2 D_3$ & $? \tau k_1$ & $$ \\
+$(66, 6, 35)$ & $\tau \D_1 h_3^2$ & $? \tau^2 \D h_2^2 e_0 g$ & Lemma \ref{lem:eta-tD1h3^2} \\
+$(66, 12, 35)$ & $\D^2 h_1^3 h_4$ & $? \tau^2 \D h_2^2 e_0 g$ & $$ \\
+$(67, 6, 36)$ & $h_0 Q_3 + h_2^2 D_3$ & $? \tau M h_0 h_2 g$ & $$ \\
+$(81,3,42)$ & $h_2 h_4 h_6$ & $? \tau h_5^2 g$ & Lemma \ref{lem:eta-h2h4h6} \\
+&& $? \tau^2 e_1 g_2$ & $$ \\
+&& $? \D^2 h_2 n$ & $$ \\
+$(81,5,39)$ & $h_1^3 h_4 h_6$ & $? \tau (\D e_1 + C_0) g$ & Lemma \ref{lem:eta-h1^3h4h6} \\
+$(81,8,42)$ & $\tau^2 g D_3$ & $? \D^2 h_2 n$ & $$ \\
+$(81,8,43)$ & $\tau g D_3$ & $? \tau (\D e_1 + C_0) g$ & $$ \\
+$(86,6,45)$ & $\tau h_1^2 f_2$ & $? \tau^2 g Q_3$ & $$ \\
+&& $? \D^2 h_3 d_1$ & $$ \\
+%$(86,6,45)$ & $\tau h_2 h_6 g + ? \tau h_1^2 f_2$ & $? \tau^2 g Q_3$ & Lemma \ref{lem:eta-th1x85,6} \\
+%&& $? \D^2 h_3 d_1$ & $$ \\
+\revrow
+$(86,6,46)$ & $h_1^2 f_2$ & $? h_1 h_4 x_{71,6}$ \\
+	\revrow
+	& & $? \tau g Q_3$ \\
+	\revrow
+	& & $? \tau h_2^2 g A'$ \\
+\revrow
+$(86,6,46)$ & $h_2 h_6 g + h_1^2 f_2$ & $? h_1 h_4 x_{71,6}$ & $$ \\
+	\revrow
+	&& $? \tau h_2^2 g A'$ & $$ \\
+$(86,7,45)$ & $\tau h_1 x_{85,6}$ & $? \tau^2 g Q_3$ & \\
+	&& $? \D^2 h_3 d_1$ & $$ \\
+$(87,5,46)$ & $h_1^2 c_3$ & $? \tau h_0 g_2^2$ & $$ \\
+$(87,6,45)$ & $\tau h_1 h_4 h_6 c_0$ & $? \tau^2 h_0 g_2^2$ & $$ \\
+$(87,9,48)$ & $g Q_3$ & $? \tau M h_0 h_2 g^2$ & $$ \\
+$(88,8,48)$ & $g_2^2$ & $? \tau h_2^2 g C'$ & $$ \\
+&& $? \D h_1 g_2 g$ & $$ \\
+%$(89,7,48)$ & $h_2^2 h_6 g$ & $? \tau h_2 g Q_3$ & $$ \\
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{lllll}
+\caption{Hidden $\nu$ extensions \label{tab:nu-extn}
+} \\
+\toprule
+$(s,f,w)$ & source & target & proof & notes \\
+\midrule \endfirsthead
+\caption[]{Hidden $\nu$ extensions} \\
+\toprule
+$(s,f,w)$ & source & target & proof & notes \\
+\midrule \endhead
+\bottomrule \endfoot
+$(20, 6, 11)$ & $\tau h_0^2 g$ & $P h_1 d_0$ & $\tau$ \\
+$(20, 6, 12)$ & $h_0^2 g$ & $h_1 c_0 d_0$ & $C\tau$ \\
+$(22, 4, 13)$ & $h_2 c_1$ & $h_1^2 h_4 c_0$ & $C\tau$ \\
+$(26, 6, 15)$ & $\tau h_2^2 g$ & $h_1 d_0^2$ & $\tau$ \\
+$(30, 2, 16)$ & $h_4^2$ & $p$ & $C\tau$ \\
+$(32, 6, 17)$ & $\D h_1 h_3$ & $\tau^2 h_1 e_0^2$ & $\tmf$ \\
+$(39, 9, 21)$ & $\D h_1 d_0$ & $\tau d_0^3$ & $\tmf$ \\
+$(40, 10, 23)$ & $\tau h_0^2 g^2$ & $h_1 d_0^3$ & $\tau$ \\
+$(40, 10, 24)$ & $h_0^2 g^2$ & $h_1 c_0 e_0^2$ & $C\tau$ \\
+$(42,8,25)$ & $h_2 c_1 g$ & $h_1^6 h_5 c_0$ & $C\tau$ \\
+$(45, 3, 24)$ & $h_3^2 h_5$ & $M h_2$ & $C\tau$ & crossing \\
+$(45, 4, 24)$ & $h_0 h_3^2 h_5$ & $M h_0 h_2$ & $C\tau$ & crossing \\
+$(45, 9, 24)$ & $\tau \D h_1 g$ & $\tau^2 d_0 e_0^2$ & $\mmf$ \\
+$(46, 10, 27)$ & $\tau h_2^2 g^2$ & $h_1 d_0 e_0^2$ & $\tau$ \\
+$(48, 6, 26)$ & $h_2 h_5 d_0$ & $\tau g n$ & \cite{WangXu18} & crossing \\
+$(51,8,27)$ & $\tau M h_2^2$ & $M P h_1$ & $\tau$ \\
+$(51,8,28)$ & $M h_2^2$ & $M h_1 c_0$ & \cite{Isaksen14c}*{Table 31} \\
+$(52, 10, 29)$ & $\D h_1 h_3 g$ & $\tau^2 h_1 e_0^2 g$ & $\tau$ \\
+$(52, 11, 28)$ & $\tau^2 e_0 m$ & $\D h_0^2 d_0 e_0$ & $\mmf$ \\
+$(53, 7, 30)$ & $i_1$ & $g t$ & $C\tau$ \\
+$(54, 11, 32)$ & $h_1^6 h_5 e_0$ & $h_2 e_0^2 g$ & $\tau$ \\
+$(57, 10, 30)$ & $h_0 h_2 h_5 i$ & $\tau^2 d_0^2 l$ & $\tmf$ \\
+$(59, 12, 33)$ & $P h_1^3 h_5 e_0$ & $\tau d_0^2 e_0^2$ & $\tau$ \\
+$(59, 13, 32)$ & $\tau \D h_1 d_0 g$ & $\tau^2 d_0^2 e_0^2$ & $\mmf$ \\
+$(60, 14, 35)$ & $\tau h_0^2 g^3$ & $h_1 d_0^2 e_0^2$ & $\tau$ \\
+$(62, 8, 33)$ & $\D e_1 + C_0$ & $\tau M h_0 g$ & Lemma \ref{lem:nu-De1+C0} \\
+$(62, 12, 37)$ & $h_2 c_1 g^2$ & $h_1^8 D_4$ & $C\tau$ \\
+$(63, 6, 33)$ & $\tau h_1 H_1$ & $\tau^2 M h_1 g$ & Lemma \ref{lem:nu-th1H1} & crossing \\
+$(65, 3, 34)$ & $h_2 h_5^2$ & $\tau h_1 Q_3$ & $C\tau$ & \\ 
+$(65, 9, 36)$ & $h_1^2 X_2$ & $M h_2 g$ & $\tau$ \\
+$(65, 13, 36)$ & $\tau \D h_1 g^2 + P h_1 h_5 c_0 e_0$ & $\tau^2 e_0^4$ & $\mmf$ \\
+$(66, 6, 36)$ & $\D_1 h_3^2$ & $h_2^2 C'$ & $C\tau$ \\
+$(66, 14, 39)$ & $\tau h_2^2 g^3$ & $h_1 e_0^4$ & $\tau$ \\
+$(67, 8, 36)$ & $h_2^2 A'$ & $h_1 h_3 (\D e_1 + C_0)$ & Lemma \ref{lem:nu-h2^2A'} \\
+$(68, 13, 36)$ & $P h_2 h_5 j$ & $\D^2 h_0^2 h_2 g$ & $C\tau$ \\
+$(69, 9, 38)$ & $h_2^2 C'$ & $\tau^2 d_1 g^2$ & Lemma \ref{lem:nu-h2^2C'} & \\ 
+$(70, 9, 37)$ & $\tau h_1 D_3'$ & $\tau M d_0^2$ & Lemma \ref{lem:nu-th1D3'} & indet \\
+$(70, 12, 37)$ & $\D^2 h_2 c_1$ & $\D^2 h_1^2 h_4 c_0$ & $\tau$ \\
+$(70, 14, 37)$ & $\tau \D^2 h_1^2 g + \tau^3 m^2$ & $\tau^2 \D h_1 d_0 e_0^2$ & $\mmf$ \\
+$(71, 8, 39)$ & $h_2^3 H_1$ & $h_3 C''$ & $C\tau$ \\
+$(71, 12, 39)$ & $\tau M h_2^2 g$ & $M h_1 d_0^2$ & $\tau$ \\
+$(71, 14, 38)$ & $\D^2 h_0 h_2 g$ & $\tau^4 e_0^2 g^2$ & $\mmf$ \\
+$(72, 14, 41)$ & $\D h_1 h_3 g^2$ & $\tau^2 h_1 e_0^2 g^2$ & $\tau$ \\
+$(72, 15, 40)$ & $\tau^2 e_0 g m$ & $\D h_2^2 d_0^2 e_0$ & $\mmf$ \\
+$(73, 11, 41)$ & $h_2^2 C''$ & $\tau g^2 t$ & Lemma \ref{lem:nu-h2^2C''} \\
+$(74, 14, 39)$ & $\tau \D^2 h_2^2 g$ & $\tau^5 e_0 g^3$ & $\tau$ \\
+$(77,3,40)$ & $h_3^2 h_6$ & $\tau h_1 x_1$ & Lemma \ref{lem:nu-h3^2h6} & indet \\
+$(77,7,41)$ & $h_1 x_{76,6}$ & $c_1 A'$ & $C\tau$ & \\ 
+$(77,15,42)$ & $\D^2 h_2^3 g$ & $\tau^2 d_0 e_0^2 l$ & $\tau$ \\
+$(77,16,41)$ & $\tau^5 e_0 g^3$ & $\tau^3 d_0 e_0^2 l$ & $\mmf$ \\
+$(78,8,40)$ & $h_0^6 h_4 h_6$ & $\D^2 p$ & $C\tau$ & \\ 
+$(78,9,40)$ & $h_0^7 h_4 h_6$ & $\tau \D^2 h_1 d_1$ & Lemma \ref{lem:nu-h0^7h4h6} & \\ 
+$(79,17,45)$ & $\D h_1 e_0^2 g + M h_1^3 d_0 e_0$ & $\tau d_0 e_0^4$ & $\mmf$ \\
+$(80,18,47)$ & $\tau h_0^2 g^4$ & $h_1 d_0 e_0^4$ & $\tau$ \\
+$(80,18,48)$ & $h_0^2 g^4$ & $h_1 c_0 e_0^2 g^2$ & $C\tau$ \\
+$(82,6,44)$ & $h_5^2 g$ & $h_0 h_2 h_4 Q_3$ & $C\tau$ \\
+$(82,8,44)$ & $h_2^2 x_{76,6}$ & $P h_1 x_{76,6}$ & $C\tau$ & \\ 
+$(82,10,42)$ & $P^2 h_2 h_6$ & $\D^2 h_0 x$ & $C\tau$ \\
+$(82,12,44)$ & $\tau (\D e_1 + C_0) g$ & $? M \D h_1^2 d_0$ & $\tau$ \\
+$(82,12,45)$ & $(\D e_1 + C_0) g$ & $\tau M h_0 g^2$ & Lemma \ref{lem:nu-(De1+C0)g}\\
+$(82,16,49)$ & $h_2 c_1 g^3$ & $h_1^{14} h_6 c_0$ & $C\tau$ \\
+$(83,7,43)$ & $\tau h_0^2 h_6 g$ & $P h_1 h_6 d_0$ & $\tau$ \\
+$(83,7,44)$ & $h_0^2 h_6 g$ & $h_1 h_6 c_0 d_0$ & $C\tau$ \\
+$(83,11,44)$ & $\tau^2 g C'$ & $M \D h_0^2 e_0$ & Lemma \ref{lem:nu-Dj1+tgC'} & crossing \\
+$(83,11,45)$ & $\D j_1 + \tau g C'$ & $\tau^2 M h_1 g^2$ & Lemma \ref{lem:nu-Dj1+tgC'}\\
+$(84,9,46)$ & $h_2 g D_3$ & $B_6 d_1$ & $C\tau$ \\
+\revrow
+$(85,6,44)$ & $\tau x_{85,6} + h_0^3 c_3$ & $? h_1 x_{87,7} + \tau^2 g_2^2$ & Lemma \ref{lem:nu-tx85,6+h0^3c3} \\
+$(85,5,45)$ & $h_2 h_6 c_1$ & $h_1^2 h_4 h_6 c_0$ & $C\tau$ \\
+$(85,7,46)$ & $h_2 h_4 Q_3$ & $h_0 g_2^2$ & $C\tau$ \\
+$(85,17,48)$ & $\tau \D h_1 g^3$ & $\tau^2 e_0^4 g$ & $\mmf$ \\
+$(86,18,51)$ & $\tau h_2^2 g^4$ & $h_1 e_0^4 g + M h_1^7 e_0 g$ & $\tau$ \\
+$(87,12,48)$ & $h_2^2 g A'$ & $\D h_1^2 g_2 g$ & Lemma \ref{lem:nu-h2^2gA'} \\
+\end{longtable}
+
+\newpage
+
+\rev{
+\begin{longtable}{lll}
+\caption{Some null hidden $\nu$ extensions \label{tab:nu-extn-null}
+} \\
+\toprule
+$(s,f,w)$ & source & proof \\
+\midrule \endfirsthead
+\caption[]{Some null hidden $\nu$ extensions} \\ 
+\toprule
+$(s,f,w)$ & source & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(64, 2, 33)$ & $h_1 h_6$ & Lemma \ref{lem:nu-h1h6} \\
+$(64, 8, 34)$ & $h_3 Q_2$ & Lemma \ref{lem:nu-h3Q2} \\
+$(68, 7, 36)$ & $h_3 A'$ & Lemma \ref{lem:nu-h3A'} \\
+$(69, 4, 36)$ & $p'$ & Lemma \ref{lem:nu-p'} \\
+$(71, 4, 37)$ & $h_6 c_0$ & Lemma \ref{lem:nu-h6c0} \\
+$(71, 5, 37)$ & $\tau h_1 p_1$ & \cite{BIX} \\
+$(73, 12, 41)$ & $M h_1 h_3 g$ & Lemma \ref{lem:nu-Mh1h3g} \\
+$(76, 8, 41)$ & $\tau d_1 g_2$ & Lemma \ref{lem:nu-td1g2} \\
+$(76, 8, 40)$ & $h_0 h_4 A$ & Lemma \ref{lem:nu-h0h4A} \\
+$(78, 10, 42)$ & $e_0 A'$ & Lemma \ref{lem:nu-e0A'} \\
+$(79, 3, 41)$ & $h_1 h_4 h_6$ & Lemma \ref{lem:nu-h1h4h6} \\
+$(81, 7, 44)$ & $h_3^2 n_1$ & Lemma \ref{lem:nu-h3^2n1} \\
+$(82, 8, 44)$ & $\tau e_1 g_2$ & Lemma \ref{lem:nu-te1g2} \\
+$(82, 11, 42)$ & $P^2 h_0 h_2 h_6$ & Lemma \ref{lem:nu-Ph0h2h6} \\
+$(83, 10, 45)$ & $h_2 c_1 A'$ & Lemma \ref{lem:nu-h2c1A'} \\
+$(84, 4, 44)$ & $h_2^2 h_4 h_6$ & Lemma \ref{lem:nu-h2^2h4h6} \\
+$(87, 12, 45)$ & $P^2 h_6 c_0$ & Lemma \ref{lem:nu-P^2h6c0} \\
+\end{longtable}
+}
+
+\begin{longtable}{llll}
+\caption{Possible hidden $\nu$ extensions \label{tab:nu-extn-possible}
+} \\
+\toprule
+$(s,f,w)$ & source & target & proof  \\
+\midrule \endfirsthead
+\caption[]{Possible hidden $\nu$ extensions} \\
+\toprule
+$(s,f,w)$ & source & target & proof  \\
+\midrule \endhead
+\bottomrule \endfoot
+$(70, 5, 36)$ & $h_0^3 h_3 h_6$ & $? h_0 h_4 D_2$  \\
+\revrow
+$(75, 6, 40)$ & $h_0 h_3 d_2$ & $? M \D h_1^2 h_3$ & Lemma \ref{lem:nu-h0h3d2}  \\
+%$(81,4,42)$ & $h_0 h_2 h_4 h_6$ & $? M \D h_1 d_0$ \\
+\revrow
+$(81,12,42)$ & $\D^2 p$ & $? \tau M \D h_1 d_0$ \\
+\revrow
+$(85,5,45)$ & $h_1 f_2$ & $? \tau g_2^2$ \\
+\revrow
+$(85, 5, 44)$ & $\tau h_1 f_2$ & $? h_1 x_{87,7}$ or \\
+	\revrow
+	& & $? h_1 x_{87,7} + \tau^2 g_2^2$ \\
+$(86,11,44)$ & $h_0^3 h_6 i$ & $? \tau \D^2 h_1 f_1$ \\
+$(87,5,46)$ & $h_1^2 c_3$ & $? \tau M \D h_1 g$ \\
+$(87,7,45)$ & $x_{87,7}$ & $? \tau^2 M \D h_1 g$ \\
+%$(87,9,46)$ & $\tau^2 g Q_3$ & $? \tau M \D h_1 g$ \\
+%$(87,10,45)$ & $\tau \D h_1 H_1$ & $? \tau^2 M \D h_1 g$ \\
+\end{longtable}
+
+\newpage
+
+\begin{longtable}{lllll}
+\caption{Miscellaneous hidden extensions \label{tab:misc-extn}	
+} \\
+\toprule
+$(s,f,w)$ & type & source & target & proof \\
+\midrule \endfirsthead
+\caption[]{Miscellaneous hidden extensions} \\
+\toprule
+$(s,f,w)$ & type & source & target & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(16,2,9)$ & $\sigma$ & $h_1 h_4$ & $h_4 c_0$ & $C\tau$ \\
+$(20,4,11)$ & $\epsilon$ & $\tau g$ & $d_0^2$ & \cite{Isaksen14c}*{Table 33} \\
+$(30,2,16)$ & $\sigma$ & $h_4^2$ & $x$ & $C\tau$ \\
+$(30,2,16)$ & $\eta_4$ & $h_4^2$ & $h_1 h_5 d_0$ & \cite{Isaksen14c}*{Table 33} \\
+$(32,6,17)$ & $\epsilon$ & $\D h_1 h_3$ & $\D h_1^2 d_0$ & $\tmf$ \\
+$(32,6,17)$ & $\kappa$ & $\D h_1 h_3$ & $\tau d_0 l + \D c_0 d_0$ & $\tmf$ \\
+$(44,4,24)$ & $\theta_4$ & $g_2$ & $x_{74,8}$ & $C\tau$ \\
+$(45,3,23)$ & $\epsilon$ & $\tau h_3^2 h_5$ & $M P$ & Lemma \ref{lem:epsilon-h3^2h5} \\
+$(45,3,24)$ & $\epsilon$ & $h_3^2 h_5$ & $M c_0$ & Lemma \ref{lem:epsilon-h3^2h5} \\
+$(45,3,24)$ & $\kappa$ & $h_3^2 h_5$ & $M d_0$ & Lemma \ref{lem:kappa-h3^2h5} \\
+$(45,3,24)$ & $\kappabar$ & $h_3^2 h_5$ & $\tau M g$ & Lemma \ref{lem:kappabar-h3^2h5} \\
+$(45,3,24)$ & $\{\D h_1 h_3\}$ & $h_3^2 h_5$ & $M \D h_1 h_3$ & Lemma \ref{lem:Dh1h3-h3^2h5} \\
+$(45,3,24)$ & $\theta_{4.5}$ & $h_3^2 h_5$ & $M^2$ & Lemma \ref{lem:theta4.5-h3^2h5} \\
+$(62,2,32)$ & $\sigma$ & $h_5^2$ & $p'$ & $C\tau$ \\
+%$(62,2,32)$ & $\kappa$ & $h_5^2$ & $h_0 h_4 A$ & $C\tau$ \\
+$(62,2,32)$ & $\rho_{15}$ & $h_5^2$ & $? h_0 x_{77,7}$ & Lemma \ref{lem:rho15-h5^2} \\
+& & & $? \tau^2 m_1$ \\
+$(62,2,32)$ & $\theta_4$ & $h_5^2$ & $h_0^2 g_3$ & $C\tau$ \\
+$(63,7,33)$ & $\epsilon$ & $\tau X_2 + \tau C'$ & $d_0 Q_2$ & $C\tau$ \\
+$(63,7,33)$ & $\kappa$ & $\tau X_2 + \tau C'$ & $M \D h_1 h_3$ & $C\tau$ \\
+$(63,7,33)$ & $\eta_4$ & $\tau X_2 + \tau C'$ & $h_1 x_{78,9}$ & $C\tau$ \\
+$(64,2,33)$ & $\rho_{15}$ & $h_1 h_6$ & $P h_6 c_0$ & Lemma \ref{lem:rho15-h1h6} \\
+$(64,2,33)$ & $\rho_{23}$ & $h_1 h_6$ & $P^2 h_6 c_0$ & Lemma \ref{lem:rho15-h1h6} \\
+$(65,10,35)$ & $\epsilon$ & $\tau M g$ & $M d_0^2$ & Lemma \ref{lem:epsilon-tMg} \\
+\revrow
+$(69,4,36)$ & $\sigma$ & $p'$ & $h_0 h_4 A$ or & $C\tau$ \\
+\revrow
+& & & $h_0 h_4 A + \tau^2 d_1 g_2$ \\
+$(77,12,41)$ & $\epsilon$ & $M \D h_1 h_3$ & $? M \D h_1^2 d_0$ & Lemma \ref{lem:epsilon-MDh1h3} \\
+$(79,3,41)$ & $\sigma$ & $h_1 h_4 h_6$ & $h_4 h_6 c_0$ & $C\tau$ \\
+\end{longtable}
+
+\rev{
+\begin{longtable}{llll}
+\caption{Some miscellaneous null hidden extensions \label{tab:misc-extn-null}
+} \\
+\toprule
+$(s,f,w)$ & type & source & proof \\
+\midrule \endfirsthead
+\caption[]{Some null hidden $\nu$ extensions} \\ 
+\toprule
+$(s,f,w)$ & type & source & proof \\
+\midrule \endhead
+\bottomrule \endfoot
+$(30, 2, 16)$ & $\theta_4$ & $h_4^2$ & Lemma \ref{lem:theta4-h4^2} \\
+$(45, 5, 24)$ & $\epsilon$ & $h_5 d_0$ & Lemma \ref{lem:epsilon-h5d0} \\
+$(45, 5, 24)$ & $\{\D h_1 h_3\}$ & $h_5 d_0$ & Lemma \ref{lem:Dh1h3-h5d0} \\
+
+
+\end{longtable}
+}
+

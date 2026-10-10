@@ -1,0 +1,1013 @@
+In this section, we provide a Galois reconstruction of $\SHRat$. In other words, we show how to reconstruct $\SHRat$ from $C_2$-equivariant homotopy theory.
+As in the case of $\C$, understanding the close connection between $\MGL$ and its Betti realization is the essential step in reconstruction.
+In \Cref{app:def}, we have set up a general framework for reconstruction results of this kind. We will rely heavily on the work there, so we suggest the reader familiarize themself with the material and notations therein before proceeding.
+
+Before we state the main theorem, let us recall the definition of the regular slice filtration of $C_2$-spectra.
+
+\begin{dfn}
+  We say that a $C_2$-spectrum $X$ is regular slice $n$-connective if $\Phi^e X$ is $n$-connective and $\Phi^{C_2} X$ is $\lceil \frac{n}{2} \rceil$-connective.\footnote{Here we work with the regular slice filtration because of its good multiplicative properties.}
+
+  We let $\Sp_{C_2} ^{\geq n}$ denote the full subcategory of $\Sp_{C_2}$ consisting of the regular slice $n$-connective $C_2$-spectra. This is a coreflective subcategory, and we let $P_{n} : \Sp_{C_2} \to \Sp_{C_2} ^{\geq n}$ denote the right adjoint to the inclusion. We let $P^n$ denote the $n^{\mathrm{th}}$ regular slice truncation functor and let $P^n _n$ denote the $n^{\mathrm{th}}$ regular slice functor.
+\end{dfn}
+
+\begin{cnstr}
+  Since the functors $\Phi^e$ and $\Phi^{C_2}$ are monoidal, the hypotheses of \Cref{cnstr:trunc-tower} are satisfied and we may assemble the categories $\Sp_{C_2}^{\geq n}$ into a coreflective symmetric monoidal subcategory $\Sp_{C_2, \geq 0}^{\Fil, 2\mathrm{slice}} \subset \Sp_{C_2}^{\Fil}$ which consists of those $X_\bullet$ which are regular slice $2n$-connective in position $n$. This provides a lax symmetric monoidal connective cover functor $\tau_{\geq 0}^{2\mathrm{slice}}$ which takes the $(2n)^{\mathrm{th}}$-slice cover at position $n$. The composition $\tau_{\geq 0}^{2\mathrm{slice}}(Y(-))$ is equivalent to even slice tower functor $P_{2\bullet}$ and demonstrates that this functor is lax symmetric monoidal.
+\end{cnstr}
+
+%% \begin{ntn}
+%%   Given a $C_2$-spectrum $E$, we continue to let $P_{n} E$ denote the $n^{\mathrm{th}}$ regular slice cover of $E$, and let $P^n E$ denote the $n^{\mathrm{th}}$ regular slice truncation of $E$ and $P^n _n E$ denote the $n^{\mathrm{th}}$ regular slice of $E$.
+%%   %% Given an $\R$-motivic spectrum $E$, we let $f_n E$ denote the $n$th effective slice cover of $E$, $f^n E$ denote the $n$th effective slice truncation of $E$ and let $s_n E$ denote the $n$th effective slice of $E$.
+%% \end{ntn}
+
+The fundamental construction of the section is the following commutative algebra in filtered $C_2$-spectra:
+\[ R_\bullet \coloneqq \mathrm{Tot}^* \left( P_{2\bullet} \MU_{\R,2}^{\otimes * + 1} \right). \]
+
+\begin{thm}[Galois reconstruction] \label{thm:filt-model}
+  There is an equivalence of presentably symmetric monoidal categories under $\Sp_{C_2, i2} ^{\Fil}$,
+  \[\SHRat \simeq \Mod(\Sp^{\Fil}_{C_2, i2}; R_\bullet),\]
+  where $\Sp_{C_2, i2}$ acts on the left through $c_{\C/\R}$.
+\end{thm}
+
+The commutative algebra $R_\bullet$ can be called the ``d\'ecalage of the $\MU_{\R,2}$-Adams tower with respect to the even slice filtration''. The commutative algebra $R_\bullet$ is also the image of the unit in $\Sp_{C_2,i2}$ under a certain lax symmetric monoidal functor.
+
+\begin{cnstr} \label{cnstr:gamma-star}
+  Applying \Cref{cnstr:shear}, we obtain a lax symmetric monoidal functor
+  \[ \mathrm{Sh}(P_{2\bullet} ; \MU_{\R,2}) : \Sp_{C_2,i2} \to \Sp^{\Fil}_{C_2, i2}. \]
+  By construction, $R_\bullet \simeq \mathrm{Sh}(P_{2\bullet} ; \MU_{\R,2})(\Ss_2)$, so this functor factors through the category of modules over $R_\bullet$. Composing with the equivalence of \Cref{thm:filt-model}, this defines a lax symmetric monoidal functor,
+  \[ \Gamma_* :  \Sp_{C_2, i2} \to \SHRat. \]  
+\end{cnstr}
+
+This functor is analogous to the functor $\Gamma_* : \Sp_{2} \to \SHC_{2}$ studied in \cite{cmmf}, and may also be compared with the synthetic analogue functor of Pstragowski \cite{Pstragowski}. We will study this functor more closely in \Cref{sec:t-structures}.
+
+The proof of \Cref{thm:filt-model} will be carried out in two steps: first we will prove that there is an equivalence
+  \[\SHRat \simeq \Mod(\Sp^{\Fil}_{C_2, i2}; i_* (\Ss_2))\]
+for some lax symmetric monoidal functor $i_* : \SHRat \to \Sp^{\Fil} _{C_2, i2}$.
+We will then construct an equivalence $i_* (\Ss_2) \simeq R_\bullet$ of commutative rings in $\Sp^{\Fil} _{C_2, i2}$.
+The key step in the construction of this equivalence is the identification of $i_* (\MGL_2)$ as a commutative algebra in $\Sp^{\Fil} _{C_2, i2}$.
+In order make this identification, we will show that $i_*$ admits a description in terms of Voevodsky's effective slice filtration.
+
+%% where $\Gamma_* (\Ss_2)$ is an explicit filtered $\E_{\infty}$-ring in $C_2$-spectra,
+%% constructed by ``decalage with respect to the even regular slice filtration'' from the $\MU_{\R,2}$-Adams tower for $\Ss_{2}$---see CITE\todo{Fill in.} for the full defintion.
+
+
+%% have two main goals.
+%% The first is to obtain a topological model for the category of $i2$-complete Galois-cellular $\R$-motivic spectra, and this is given in \Cref{thm:filt-model}.
+%% The second is to use this topological model to construct and study an interesting functor $\Gamma_* : \Sp_{C_2, i2} \to \SHR_{i2}$. This functor is analogous to the functor $\Gamma_* : \Sp_{2} \to \SHC_{2}$ studied in \cite{cmmf}, and may also be compared with the synthetic analogue functor of Pstragowski \cite{Pstragowski}.
+%% Using the functor $\Gamma_*$, we show in \Cref{cor:in-im-Gamma} that the $\R$-motivic spectra $\HF_2$, $\HZ_2$, $\MGL_2$, $\kgl_2$ and $\kq_2$ may be recovered from their Betti realizations.
+
+\subsection{The filtered model}\
+
+In this subsection we prove the first half of Galois reconstruction,
+namely that there is a filtered model for $\SHRat$.
+
+\begin{prop} \label{prop:top-diagram}
+  There is a diagram of symmetric monoidal left adjoints
+  \begin{center}
+    \begin{tikzcd}
+      {\Sp_{C_2,i2}} \ar[r] \ar[d, "\mathrm{Id}"] &
+      {\Sp_{C_2,i2}^{\Fil}} \ar[r, " - \otimes i_*\Ss"] \ar[dr, "i^*"] &
+      {\Mod ( \Sp_{C_2,i2}^{\Fil} ; i_*\Ss_2)} \ar[r, "\Re"] \ar[d, "\simeq"] &
+      {\Sp_{C_2,i2}} \ar[d, "\mathrm{Id}"] \\
+      {\Sp_{C_2,i2}} \ar[rr, "c_{\C/\R}"] & &
+      \SHRat \ar[r, "\b"] &
+      {\Sp_{C_2,i2}}
+    \end{tikzcd}
+  \end{center}
+  such that $i^*(\Ss_2^{p+q\sigma}(w)) \simeq \Ss_2^{p,q,w}$.
+\end{prop}
+
+Note that \Cref{prop:filt-mod} produces a diagram of this type,
+so in order to prove the proposition we only need to endow $\SHRat$ and $\Sp_{C_2,i2}$ with the structure of a deformation pair in the sense of \Cref{dfn:def-pair}.
+
+\begin{proof}
+  We begin with the diagram
+  \begin{center} \begin{tikzcd}
+      & \SHRat \ar[dr, "\b"] & \\
+      {\Sp_{C_2,i2}} \ar[ur, "c_{\C/\R}"] \ar[rr, "\mathrm{Id}"] & &
+      {\Sp_{C_2,i2}}.
+  \end{tikzcd} \end{center}
+  In order to make $i^*$ behave as desired on Picard elements, we pick
+  $i_0(w) = \Ss_2^{0,0,w}$. Since $\b (\Ss_2^{0,0,w}) \simeq \Ss_2^{0}$, this factors through the kernel of the map on Picard groups induced by $\b$.
+
+  To conclude, we now need to verify the two conditions in the definition of a deformation pair.
+  The first condition is implied by \Cref{prop:weak-one-sided}.  
+  To verify the second condition, we note that the representation spheres $\Ss^{p+q\sigma} _2$ form a set of compact dualizable generators for $\Sp_{C_2,i2}$ and the tri-graded spheres $\Ss^{p,q,w} _2$ form a set of compact dualizable generators for $\SHRat$.
+\end{proof}
+
+\begin{rmk}
+  Unraveling the definitions in \Cref{app:def}, we find that for $X \in \SHRat$ there is a natural identification
+  \[ i_* (X)_n \simeq \Map_{\SHRat} (\Ss_2 ^{0,0,n}, X), \]
+  and that the natural maps
+  \[ \Map_{\SHRat} (\Ss_2 ^{0,0,n}, X) \simeq i_* (X)_n \to i_* (X)_{n-1} \simeq \Map_{\SHRat} (\Ss_2 ^{0,0,n-1}, X) \]
+  are induced by $\ta : \Ss^{0,0,n-1} _2 \to \Ss^{0,0,n} _2$.
+\end{rmk}
+
+The task of identifying $i_*\Ss_2$ with $R_\bullet$ will occupy us for the remainder of the section.
+
+
+%% AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+
+
+%% The main goal of the first half of this section is the proof of the following theorem:
+
+%% \begin{thm} \label{thm:filt-model}
+%%   There is an equivalence of symmetric monoidal categories under $\Sp_{C_2, i2}$
+%%   \[\SHR_{i2} ^{gc} \simeq \Mod(\Fil(\Sp_{C_2, i2}); \Gamma_* (\Ss_2)),\]
+%%   where $\Gamma_* (\Ss_2)$ is an explicit filtered $\E_{\infty}$-ring in $C_2$-spectra, constructed by ``decalage with respect to the even regular slice filtration'' from the $\MU_{\R,2}$-Adams tower for $\Ss_{2}$---see CITE\todo{Fill in.} for the full defintion.
+%% \end{thm}
+
+%% The proof of the theorem will progress in two steps. First, we prove that there is an equivalence of symmetric categories under $\Sp_{C_2, i2}$
+%% \[\SHR_{i2} ^{gc} \simeq \Mod(\Fil(\Sp_{C_2, i2}); i_* (\Ss_2)),\]
+%% for some filtered $\E_{\infty}$-ring in $C_2$-spectra $i_* (\Ss_2)$.
+%% We then will proceed to identify $i_* (\Ss_2)$ with $\Gamma_* (\Ss_2)$.
+
+%% To carry out the first step, we will make use of the general method expounded in \Cref{app:compare}. This is based off of the definition of an $\E_\infty$-deformation pair, which we repeat here:
+
+%% \begin{dfn}
+%%   An $\E_\infty$-deformation pair consists of the following data:
+%%   \begin{itemize}
+%%     \item A pair $(\CCdef, \CC)$ of a stable presentably symmetric monoidal category $\CC$ and an augmented stable presentably symmetric $\CC$-monoidal category $\CCdef$. We denote the structure map by $c : \CC \to \CCdef$ and the augmentation by $\Re : \CCdef \to \CC$. Both are required to be colimit-preserving.
+%%     \item A symmetric monoidal functor $i : \Z \to \Pic(\CCdef)$ along with a trivialization of the composite $\Z \xrightarrow{i} \Pic(\CCdef) \xrightarrow{\Pic(\Re)} \Pic(\CC)$.
+%%       We set $\o(n) = i(n)$.
+%%       Note that this is equivalent data to a map of spectra $i : \Z \to \fib(\pic(\CCdef) \to \pic(\CC))$.
+%%   \end{itemize}
+%%   These are requied to satisfy the following conditions:
+%%   \begin{itemize}
+%%     \item For $a \leq b$, the map on $\CC$-enriched hom objects $\Hom_{\CCdef} (\o(a),\o(b)) \to \Hom_{\CC} (\o,\o)$ induced by $\Re$ is an equivalence.
+%%     \item The category $\CC$ admits a set $\{C_\alpha\}_{\alpha}$ of compact dualizable generators with the property that $\{c(C_{\alpha}) \otimes \o(n)\}$ is a set of compact dualizable generators for $\CCdef$.
+%%   \end{itemize}
+%% \end{dfn}
+
+%% In \Cref{app:compare}, it is shown that, for every $\E_\infty$-deformation pair $(\CCdef, \CC)$, there is a model of $\CCdef$ in terms of filtered objects in $\CC$.
+
+%% Before recalling this statement, we show that $(\SHR^{gc}_{i2}, \Sp_{C_2, i2})$ is an $\E_{\infty}$-deformation pair. We already have functors $c_{\C/\R} : \Sp_{C_2, i2} \to \SHR^{gc} _{i2}$ and $\b : \SHR^{gc} _{i2} \to \Sp_{C_2, i2}$, but as of yet we are lacking a map of spectra
+%% \[i : \Z \to \fib \left(\pic(\SHR^{gc} _{ip}) \to \pic(\Sp_{C_2, ip}) \right).\]
+%% This state of affairs is remedied by the following lemma:
+
+%% \begin{lem} \label{lem:shr-pic}
+%%   There is a map $i : \Z \to \fib \left(\pic(\SHR^{gc} _{i2}) \to \pic(\Sp_{C_2, i2}) \right)$ whose composite to $\pic(\SHR^{gc} _{i2})$ sends $1 \in \Z$ to $\Ss^{0,0,1} _2$.
+%% \end{lem}
+
+%% \begin{proof}
+%%   The pair of functors $c_{\C/\R}$ and $\b$ induce a splitting $\pic(\SHR^{\mathrm{gc}}) \simeq X \oplus \pic(\Sp_{C_2})$.
+%%   From \Cref{prop:weak-one-sided} we know that the map $\mathrm{Map}_{\SHR}(\Ss, \Ss) \to \mathrm{Map}_{\Sp_{C_2}}(\Ss, \Ss)$ is an equivalence, $X$ is concentrated in degree $0$.
+%%   Since $\b(\Ss^{0,0,1}) \simeq \Ss^{0,0}$, this implies that there are no obstructions to constructing the desired map $\Z \to X$.
+%% \end{proof}
+
+%% It now makes sense to ask whether $(\SHR^{gc} _{i2}, \Sp_{C_2, i2})$ is an $\E_\infty$-deformation pair when equipped with the structure maps $c_{\C/\R}$, $\b$ and $i$.
+
+%% \begin{prop}
+%%   The pair symmetric monoidal categories $(\SHR^{gc} _{i2}, \Sp_{C_2, i2})$ form an $\E_{\infty}$-deformation pair when equipped with the symmetric monoidal colimit-preserving functors
+%%   \[c_{\C/\R} : \Sp_{C_2, i2} \to \SHR^{gc} _{i2}\]
+%%   and
+%%   \[\b : \SHR^{gc} _{i2} \to \Sp_{C_2, i2},\]
+%%   as well as the map of spectra 
+%%   \[i : \Z \to \fib(\pic(\SHR^{gc} _{i2}) \to \pic(\Sp_{C_2, i2}))\]
+%%   described in \Cref{lem:shr-pic}.
+%% \end{prop}
+
+%% \begin{proof}
+%%   We just need to verify the two conditions in the definition of $\E_{\infty}$-deformation pair.
+%%   %following conditions:
+%%   %\begin{itemize}
+%%   %  \item For $a \leq b$, the map $\Hom_{\SHR^{gc} _{ip}} (\Ss^{0,0,a},\Ss^{0,0,b}) \to \Hom_{\Sp_{C_2, ip}} (\Ss,\Ss)$ induced by $\b$ is an equivalence of $C_2$-spectra.
+%%   %  \item The category of $C_2$-spectra $\Sp_{C_2, ip}$ admits a set $\{C_\alpha\}_{\alpha}$ of compact dualizable generators with the property that $\{c_{\C/\R} (C_{\alpha}) \otimes \Ss^{0,0,n}\}$ is a set of compact dualizable generators for $\SHR^{gc} _{ip}$.
+%%   %\end{itemize}
+
+%%   The first condition follows immediately from \Cref{prop:weak-one-sided}.
+
+%%   To verify the second condition, we note that the representation spheres $\Ss^{p+q\sigma} _2$ form a set of compact dualizable generators for $\Sp_{C_2,i2}$, so the second condition follows from the fact the $\Ss^{p,q,w} _2$ form a set of compact dualizable generators for $\SHR^{gc} _{i2}$.
+%% \end{proof}
+
+%% We now recall from \Cref{app:compare} how this leads to a filtered model of $\SHR_{i2}$.
+%% First, we note that by \Cref{cor:fil-ext}, the symmetric monoidal functor $i : \Z \to \Pic(\SHR_{i2})$ upgrades in a canonical way to a symmetric monoidal functor $i : \Z^{\Fil} \to \Pic(\SHR_{i2})$.
+%% This gives rise to an adjoint pair of functors
+%% \[i^* : \Fil(\Sp_{C_2 , i2}) \rightleftarrows \SHR_{i2} : i_*, \]
+%% where $i^*$ is symmetric monoidal.
+%% The functor $i_* : \SHR_{i2} \to \Fil(\Sp_{C_2, i2})$ may be described by the formula 
+%% \[i_* (X)_k \simeq \Map_{\SHR} (\Ss_2 ^{0,0,k}, X) .\]
+%% Since $i^*$ is symmetric monoidal, $i_*$ is lax symmetric monoidal and so it follows that there is an induced adjunction
+%% \[j^* : \Mod(\Fil(\Sp_{C_2, i2}); i_* (\Ss_2)) \rightleftarrows \SHR_{i2} : j_* .\]
+%% By \Cref{thm:filt-mod}, this is an adjoint equivalence.
+
+\subsection{The effective slice filtration} \label{sec:eff}\ 
+
+\input{Slice.tex}
+
+\subsection{Identification of $i_* \MGL_2$}\ 
+
+In this subsection, we will identify the commutative algebra in filtered $C_2$-spectra given by $i_* \MGL_2$.
+This requires two main inputs.
+The first is the description of the underlying filtered object in terms of the effective slice filtration from the previous subsection.
+The second is a theorem of Heard which relates the effective slice filtration of $\MGL$ to the regular slice filtration of its Betti realization $\MU_\R$.
+
+
+
+\begin{prop} \label{prop:P-MGL}
+  There is an equivalence of commutative algebras in filtered $C_2$-spectra
+  \[ i_* \MGL_2  \simeq P_{2\bullet} \MU_{\R,2}. \]
+\end{prop}     
+
+We prove this as a special case of a slightly stronger result where we allow tensor powers of $\MGL_2$. This generalization will be useful in the sequel.
+
+\begin{prop} \label{prop:P-MGL-power}
+  The objects $i_* \MGL_2^{\otimes k}$ are regular slice $2n$-connective in position $n$.
+  This yields a natural factorization of the map to the constant filtered object
+  \begin{center} \begin{tikzcd}
+      & P_{2\bullet} \MU_{\R,2}^{\otimes k} \ar[dr] & \\
+      i_* \MGL_2^{\otimes k} \ar[ur, "\simeq"] \ar[rr] & & Y \MU_{\R,2}^{\otimes k},
+  \end{tikzcd} \end{center}
+  where the indicated map
+  is an equivalence of commutative algebras in filtered $C_2$-spectra.
+  %% is an equivalence of 
+  %% \[ i_* \MGL_2^{\otimes n}  \simeq P_{2\bullet} \MU_{\R,2}^{\otimes n}. \]
+\end{prop}     
+
+%% \begin{thm}[Hopkins--Morel, \cite{HM}] \label{thm:MGL-pure}
+%%   The $\R$-motivic spectra $\MGL ^{\otimes n}$ are \emph{pure} for all $n \geq 1$ in the sense that for each $q$, the $q$th effective slice $s_q \MGL^{\otimes n}$ is a direct sum of copies of $\Sigma^{q,q,q} \HZ$. Moreover, they are complete with respect to the effective slice tower.
+%% \end{thm}
+
+%% \todo{Also slice complete}
+
+The result of Heard that we will need is the following:
+
+\begin{thm}[\cite{SliceComp}] \label{thm:slice-comp}
+  Under Betti realization, the slice tower of $\MGL ^{\otimes k}$ goes to the even part of the regular slice tower of $\MUR^{\otimes k}$.
+  More precisely, there is a commutative diagram
+  \begin{center} \begin{tikzcd}[sep=small]
+      \cdots \ar[r] &
+      \b (f_{2} \MGL^{\otimes k}) \ar[r] \ar[d, "\simeq"] &
+      \b (f_1 \MGL^{\otimes k}) \ar[r] \ar[d, "\simeq"] &
+      \b (f_0 \MGL^{\otimes k}) \ar[r] \ar[d, "\simeq"] &
+      %% \b (f_{-1} \MGL^{\otimes n}) \ar[r] \ar[d, "\simeq"] &
+      %% \b (f_{-2} \MGL^{\otimes n}) \ar[r] \ar[d, "\simeq"] &
+      \cdots \b (\MGL^{\otimes k}) \ar[d, "\simeq"] \\
+      \cdots \ar[r] &
+      P_{4}  (\MU_{\R}^{\otimes k}) \ar[r] &
+      P_2  (\MU_{\R}^{\otimes k}) \ar[r] &
+      P_0  (\MU_{\R}^{\otimes k}) \ar[r] &
+      %% P_{-2}  (\MU_{\R}^{\otimes n}) \ar[r] &
+      %% P_{-4}  (\MU_{\R}^{\otimes n}) \ar[r] &
+      \cdots \MU_\R^{\otimes k} .
+  \end{tikzcd} \end{center}  
+      %% for all $q$ the map $\b(\MGL^{\otimes n}) \simeq \MUR ^{\otimes n} \to P^{2q} \MUR$ factors through an equivalence $\b(f^q \MGL ^{\otimes n}) \xrightarrow{\sim} P^{2q} \MUR^{\otimes n}$.
+  Moreover, the odd regular slices of $\MUR$ vanish.
+\end{thm}
+
+Applying \Cref{thm:complete-compare}, we are able to deduce the $2$-completed analogue of %\ref{thm:MGL-pure} and
+\Cref{thm:slice-comp}. \todo{ehhh}
+
+\begin{proof}
+  For notational brevity we set $E \coloneqq \MGL_2^{\otimes k}$.
+  Note that it is a consequence of \Cref{thm:complete-compare} that $\b (E) $ is equivalent as a commutative algebra to $\MU_{\R,2}^{\otimes n}$.
+  Using \Cref{thm:eff-fil}, we can conclude that $i_*E$ is given by the filtered $C_2$-spectrum, 
+  \[\cdots \to \b (f_{2} E) \to \b (f_1 E) \to \b (f_0 E) \to \b (f_{-1} E) \to \b (f_{-2} E) \to \cdots.\]
+  By \Cref{thm:slice-comp}, this is equivalent to the tower
+  \[ \cdot \to P_{4} \b (E) \to P_2 \b (E) \to P_0 \b (E) \to P_{-2} \b (E) \to P_{-4} \b (E) \to \cdots.\]
+  Now, consider the natural map of commutative algebras $i_*E \to Y (\b (E))$.
+  Looking at the explicit description of $i_*E$ we can conclude it lies in the coreflective subcategory $\Sp_{C_2, \geq 0}^{\Fil, 2\mathrm{slice}}$. Thus we obtain a diagram of commutative algebras
+ \begin{center} \begin{tikzcd}
+      & P_{2\bullet} (\b (E)) \ar[dr] & \\
+      i_*E \ar[ur, "\simeq"] \ar[rr] & &  Y(\b (E)),
+  \end{tikzcd} \end{center}
+  where the first map is an equivalence by the above.
+\end{proof}
+
+\subsection{Identification of $i_* (\Ss_2)$}\
+
+In order to finish the proof of \Cref{thm:filt-model}, we need to prove the following proposition:
+
+\begin{prop}
+  There is an equivalence of commutative algebras in $\Sp_{C_2,i2}^{\Fil}$ between $i_*\Ss_2$ and $R_\bullet$.
+\end{prop}
+
+%The proof is surprisingly straighforward once one is familiar with the strategy of producing interesting comparison maps from trivial comparison maps using truncation.
+
+\begin{proof}
+  Recall that $\mathrm{cb}$ is the functor which sends a commutative algebra $A$ to the cosimplicial commutative algebra given by its cobar complex $A^{\otimes(\ast+1)}$. Consider the natural map
+  \[ \mathrm{cb}(\MGL_2) \to \mathrm{cb}(\MGL_2[\ta^{-1}]) \]
+  in $\SHRat$. After applying $i_*$, we may use $i_*((-)[\ta^{-1}]) \simeq Y(\b (-))$ and the equivalence $\b (\MGL_2) \simeq \MU_{\R,2}$ to obtain a map
+  \[ i_*\mathrm{cb}(\MGL_2) \to Y(\mathrm{cb}(\MU_{\R,2})). \]
+  Applying \Cref{prop:P-MGL-power}, we obtain a factorization
+  \[ i_*\mathrm{cb}(\MGL_2) \xrightarrow{\simeq} \tau_{\geq 0}^{2\mathrm{slice}} Y(\mathrm{cb}(\MU_{\R,2})) \to Y(\mathrm{cb}(\MU_{\R,2})). \]
+  Taking totalizations, we obtain
+  \begin{align*}
+    i_*(\Ss_2)
+    &\simeq i_*((\Ss_2)_{\MGL_2}^{\wedge})
+    \simeq i_* (\mathrm{Tot}( \mathrm{cb}(\MGL_2)) )
+    \simeq \mathrm{Tot}( i_* (\mathrm{cb}(\MGL_2)) ) \\
+    &\simeq \mathrm{Tot}( \tau_{\geq 0}^{2\mathrm{slice}} Y(\mathrm{cb}(\MU_{\R,2})))
+    \simeq \mathrm{Sh}(P_{2\bullet} ; \MU_{\R,2})(\o)
+    \simeq R_\bullet 
+  \end{align*} 
+  where the first equivalence is the $\MGL_2$-completeness of $\Ss_2$ \footnote{One argument for this is that $\HFt$-completeness implies $\MGL_2$-completeness and $\Ss_2$ is $\HFt$-complete by \cite{MAdamsConv}.} and the final equivalence is the definition of $R_\bullet$.
+\end{proof}
+
+We close with a simple corollary which we will make use of in \Cref{sec:t-structures}.
+
+\begin{cor} \label{cor:gamma-MGL}
+  There is an equivalence $\MGL_2 \simeq \Gamma_*(\MU_{\R,2})$ of commutative algebras in $\SHRat$.
+  %% $\mathbb{E}_\infty$-rings over $\Gamma_* (\Ss_2)$.
+\end{cor}
+
+\begin{proof}
+  By \Cref{thm:filt-model}, it suffices to show that there is an equivalence $i_* \MGL_2 \simeq \mathrm{Sh}(P_{2\bullet} ; \MU_{\R,2}) (\MU_{\R,2})$ of commutative algebras over $i_* \Ss_2$.
+  Unraveling the construction of the equivalence $i_*\Ss_2 \simeq \mathrm{Sh}(P_{2\bullet} ; \MU_{\R,2}) (\Ss_2)$ we can build a diagram of commutative algebras in $\Sp_{C_2, i2} ^{\Fil}$
+  \begin{center} \begin{tikzcd}
+      i_*\Ss_2 \ar[r, "\simeq"] \ar[d] &
+      \mathrm{Sh}(P_{2\bullet} ; \MU_{\R,2})(\Ss_2) \ar[r] \ar[d] &
+      \mathrm{Sh}(P_{2\bullet} ; \MU_{\R,2})(\MU_{\R,2}) \ar[dl, dashed, "\simeq"] \\
+      i_*\MGL_2 \ar[r, "\simeq"] &
+      P_{2\bullet}\MU_{\R,2} ,
+  \end{tikzcd} \end{center}
+  where the dashed equivalence comes from \Cref{exm:E-collapse}.
+\end{proof}
+
+
+
+%% AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+%% We would now like to identify the filtered $\E_\infty$-ring $i_* (\Ss_2)$ in $C_2$-spectra more explicitly.
+%% To do this, we will first define a candidate $\Gamma_* (\Ss_2)$ for $i_* (\Ss_2)$, then prove that they are equivalent.
+%% More generally, we shall define a lax symmetric monoidal functor $\Gamma_* : \Sp_{C_2, i2} \to \Fil(\Sp_{C_2, i2})$, which, once we establish the identification $\Gamma_* (\Ss_2) \simeq i_* (\Ss_2)$, will lift to an interesting functor $\Gamma_* : \Sp_{C_2, i2} \to \SHR_{i2}$.
+
+%% We shall work in the context of \Cref{app:def-const}, to which we refer for the details. We recall from \Cref{dfn:def-data} that $\E_\infty$-deformation data consist of a triple $(\CC, E, \CC_{\geq \bullet})$, where:
+%% \begin{itemize}
+%%   \item $\CC$ is a stable presentably symmetric monoidal category.
+%%   \item $E$ is an $\E_\infty$-algebra in $\CC$.
+%%   \item $\CC_{\geq n}$ is an increasing series of coreflective subcategories of $\CC$. We let $\tau_{\geq n} : \CC \to \CC_{\geq n}$ denote the right adjoint to the inclusion. We assume that $\CC_{\geq n} \otimes \CC_{\geq m} \subset \CC_{\geq n+m}$. 
+%% \end{itemize}
+
+%% Given $\E_\infty$-deformation data $(\CC, E, \CC_{\geq n})$, we are able to define a lax symmetric monoidal functor
+%% \[\Gamma_* : \CC \to \Fil(\CC)\]
+%% given by $\Gamma_i (X) = \Tot(\tau_{\geq i} (X \otimes E^{\bullet+1}))$, where $E^{\bullet+1}$ is the cosimplicial $E$-Adams resolution.
+
+%% We will now define our functor $\Gamma_*$ by choosing $\E_\infty$-deformation data. To do this, we need to discuss the regular slice filtration on $C_2$-spectra.
+
+%% \begin{dfn}
+%%   We say that a $C_2$-spectrum $X$ is regular slice $n$-connective if $\Phi^e X$ is $n$-connective and $\Phi^{C_2} X$ is $\lceil \frac{n}{2} \rceil$-connective.\footnote{Here we work with the regular slice filtration because of its good multiplicative properties.}
+
+%%   We let $\Sp_{C_2} ^{\geq n}$ denote the full subcategory of $\Sp_{C_2}$ consisting of the regular slice $n$-connective $C_2$-spectra. It is a coreflective subcategory, and we let $P_{n} : \Sp_{C_2} \to \Sp_{C_2} ^{\geq n}$ denote the right adjoint to the inclusion.
+%% \end{dfn}
+
+%% The triple $(\Sp_{C_2, i2}, \MU_{\R,2}, \Sp_{C_2, i2} ^{\geq 2\bullet})$ then satisfies the conditions to be $\E_{\infty}$-deformation data.
+%% In particular, we obtain a lax symmetric monoidal functor
+%% \[\Gamma_* : \Sp_{C_2, i2} \to \Fil(\Sp_{C_2, i2})\]
+%% with $\Gamma_i (X) = \Tot(P_{2i} (X \otimes \MU_{\R, 2} ^{\bullet+1})$.
+
+%% To complete the proof of \Cref{thm:filt-model}, we now need to prove the following result:
+
+%% \begin{prop}\label{prop:2-rings}
+%%   There is an equivalence of filtered $\E_\infty$-rings in $\Ss_2$-modules in $C_2$-spectra $\Gamma_* (\Ss_2) \simeq i_* (\Ss_2)$.
+%% \end{prop}
+
+%% \Cref{prop:2-rings} will follow from the following key lemma:
+
+%% \begin{lem}\label{lem:fund-lem}
+%%   For $n \geq 1$, the map $\Map_{\SHR_{i2}} (\Ss^{0,0,w}_2, \MGL_2 ^{\otimes n}) \to \MU_{\R,2}^{\otimes n}$ induced by Betti realization factors through an equivalence $\Map_{\SHR_{i2}} (\Ss^{0,0,w}_2, \MGL^{\otimes n}_2) \xrightarrow{\sim} P_{2w} \MU_{\R,2}^{\otimes n}$.
+%% \end{lem}
+
+%% Given \Cref{lem:fund-lem}, the proof of \Cref{prop:2-rings} is straightforward:
+
+%% \begin{proof}[Proof of \Cref{prop:2-rings}]
+
+%%   Since there is a canonical symmetric monoidal trivialization of the composition
+%%   \[ \Z^{\Fil} \xrightarrow{i} \SHR_{i2} \xrightarrow{\b} \Sp_{C_2, i2},\]
+%%   there's a natural map $i_* (X) \to \b(X)$ induced by Betti realization, where $\b(X)$ is regarded as a constant filtered object.
+
+%%   By the definition of $i_*$, we have that $i_* (E)_k \simeq \Map_{\SHR_{i2}} (\Ss^{0,0,k}_2, E)$.
+%%   It therefore follows from \Cref{lem:fund-lem} that $i_* (\MGL^{\otimes n} _2 )_{k}$ is regular slice $2k$-connective for all $n \geq 1$.
+%%   As in \Cref{dfn:beilinson-trunc}, we let $\Fil(\Sp_{C_2, i2})_{\geq 0}$ denote the full coreflective subcategory of $\Fil(\Sp_{C_2, i2})$ spanned by objects
+%%   \[\dots \to X_2 \to X_1 \to X_0 \to X_{-1} \to X_{-2} \to \dots\]
+%%   with $X_i$ regular slice $2i$-connective.
+%%   We let $\tau_{\geq 0} : \Fil(\Sp_{C_2, i2}) \to \Fil(\Sp_{C_2, i2})_{\geq 0}$ denote the right adjoint of the inclusion.
+%%   Then we have shown that $i_* (\MGL^{n}_2)$ lies in $\Fil(\Sp_{C_2, i2})_{\geq 0}$, so that the Betti realization map $i_* (\MGL^{\bullet+1}_2) \to \MU_{\R,2}^{\bullet+1}$ factors through a map $i_* (\MGL_2 ^{\bullet+1}) \to \tau_{\geq 0} (\MU_{\R,2}^{\bullet+1})$, which is an equivalence by \Cref{lem:fund-lem}.
+
+%%   Taking totalizations and using the convergence of the $\R$-motivic Adams-Novikov spectral sequence for $\Ss_2$ \todo{Cite}, we obtain the desired equivalence
+%%   \[i_* (\Ss_2) \simeq \Gamma_* (\Ss_2). \qedhere \]
+%% %
+%% %  By the definition of $i_*$, we have that $i_* (E)_k \simeq \Map_{\SHR} (\Ss^{0,0,k}, E)$.
+%% %  We will prove the proposition by combining this formula with the convergence of the motivic Adams-Novikov spectral sequence of $\R$, which implies that
+%% %  \[\Ss^{0,0,0} \simeq \Tot (\MGL^{\bullet+1}).\]
+%% %  Combining this with \Cref{lem:fund-lem}, we find that
+%% %  \[i_* (\Ss)_k  \simeq \Map_{\SHR} (\Ss^{0,0,k}, \Ss^{0,0,0}) \simeq \Tot(\Map(\Ss^{0,0,k}, \MGL^{\bullet+1})) \simeq \Tot( P_{2k} \MUR^{\bullet+1}).\]
+%% %
+%% %  $i_* (\MGL^{\bullet+1})$
+%% %
+%% %  Let $A_*$ denote the cosimplicial commutative algebra in filtered $C_2$-spectra given by $\Map_{\SHR} (\Ss^{0,0,*}, \MGL^{\bullet+1})$, i.e. obtained by applying the lax symmetric monoidal right adjoint $\SHgc \to \Fil(\Sp_{C_2})$ to $\MGL^{\bullet+1}$. \todo{Fix usage of double bullet.}
+%% %  Then we have $R_\bullet \simeq \Tot A_\bullet$
+%% %
+%% %  Let $B_\bullet$ denote the cosimplicial commutative algebra in filtered $C_2$-spectra obtained by making $\MUR^{\bullet+1}$ constant in the filtered direction.
+%% %  Then we will show that $\tau_{\geq 0} B_\bullet \simeq A_\bullet$, which will yield the desired equivalence upon totalization.
+%% %
+%% %  To begin, note that Betti realization induces a map $A_\bullet \to B_\bullet$.\todo{Here I need to use the fact that $\Z^{\Fil} \to \SHgc \to \Sp_{C_2}$ is trivial as a symmetric monoidal functor.}
+%% %  By \Cref{thm:fund-lem}, $A_\bullet$ lies in $\Fil(\Sp_{C_2})^{\geq 0}$, so the map $A_\bullet \to B_\bullet$ factors through a map $A_\bullet \to \tau_{\geq 0} B_{\bullet}$. Invoking \Cref{thm:fund-lem} once again, we see that this map is an equivalence of cosimplicial commutative algebras in filtered $C_2$-spectra, as desired.
+%% %
+%% \end{proof}
+
+%% We also note down the following corollary, which we will find useful later:
+
+%% \begin{cor} \label{cor:gamma-MGL}
+%%   There is an equivalence $i_* (\MGL_2 ) \simeq \Gamma_*(\MU_{\R,2})$ of filtered $\mathbb{E}_\infty$-rings over $\Gamma_* (\Ss_2)$.
+%% \end{cor}
+
+%% \begin{proof}
+%%   As in the proof of \Cref{prop:2-rings}, we can construct a commtutative square of cosimplicial filtered $\mathbb{E}_\infty$-rings in $C_2$-spectra
+%%   \begin{center}
+%%     \begin{tikzcd}
+%%       i_* (\MGL_2 ^{\bullet+1}) \ar[d] \ar[r, "\sim"] & \tau_{\geq 0} (\MU_{\R,2} ^{\bullet+1}) \ar[d] \\
+%%       i_* (\MGL_2 \otimes \MGL_2 ^{\bullet+1}) \ar[r, "\sim"] & \tau_{\geq 0} (\MU_{\R, 2} \otimes \MU_{\R,2} ^{\bullet+1})
+%%     \end{tikzcd}
+%%   \end{center}
+%%   where the horizontal maps are equivalences.
+
+%%   Totalizing, we obtain a square of filtered $\mathbb{E}_\infty$-rings in $C_2$-spectra
+%%   \begin{center}
+%%     \begin{tikzcd}
+%%       i_* (\Ss_2) \ar[d] \ar[r, "\sim"] & \Gamma_* (\Ss_2) \ar[d] \\
+%%       i_* (\MGL_2) \ar[r, "\sim"] & \Gamma_* (\MU_{\R, 2}),
+%%     \end{tikzcd}
+%%   \end{center}
+%%   which implies the result.
+%% \end{proof}
+
+%% We now progress to the proof of \Cref{lem:fund-lem}. First, we fix some notation.
+
+%% \begin{ntn}
+%%   Given a $C_2$-spectrum $E$, we continue to let $P_{n} E$ denote the $n$th regular slice cover of $E$, and let $P^n E$ denote the $n$th regular slice truncation of $E$ and $P^n _n E$ denote the $n$th regular slice of $E$.
+
+%%   Given an $\R$-motivic spectrum $E$, we let $f_n E$ denote the $n$th effective slice cover of $E$, $f^n E$ denote the $n$th effective slice truncation of $E$ and let $s_n E$ denote the $n$th effective slice of $E$.
+%% \end{ntn}
+%% %
+%% %Throughout this section we will use the symmetric moniodal functor $c$ to regard $\SHgc$ as tensored over $\Sp_{C_2}$. In particular, all mapping spectra appearing in this section are in fact valued in $\Sp_{C_2}$ by means of this tensor structure.
+%% %
+%% %\begin{thm}\label{thm:fund-lem}
+%% %  For $n \geq 1$, the map $\Map(\Ss^{0,0,w}, \MGL^{\otimes n}) \to \MUR^{\otimes n}$ induced by Betti realization factors through an equivalence $\Map(\Ss^{0,0,w}, \MGL^{\otimes n}) \xrightarrow{\sim} P_{2w} \MUR^{\otimes n}$.
+%% %\end{thm}
+
+%% The main inputs to \Cref{lem:fund-lem} will be the computation of \Cref{sec:homology} and the following two results.
+
+%% \begin{thm}[Hopkins--Morel, \cite{HM}] \label{thm:MGL-pure}
+%%   The $\R$-motivic spectra $\MGL ^{\otimes n}$ are \emph{pure} for all $n \geq 1$ in the sense that for each $q$, the $q$th effective slice $s_q \MGL^{\otimes n}$ is a direct sum of copies of $\Sigma^{q,q,q} \HZ$. Moreover, they are complete with respect to the effective slice tower.
+%% \end{thm}
+
+%% \todo{Also slice complete}
+
+%% \begin{thm}[\cite{SliceComp}] \label{thm:slice-comp}
+%%   Under Betti realization, the slice tower of $\MGL ^{\otimes n}$ goes to the even part of the regular slice tower of $\MUR^{\otimes n}$.
+%%   More precisely, for all $q$ the map $\b(\MGL^{\otimes n}) \simeq \MUR ^{\otimes n} \to P^{2q} \MUR$ factors through an equivalence $\b(f^q \MGL ^{\otimes n}) \xrightarrow{\sim} P^{2q} \MUR^{\otimes n}$.
+%%   Moreover, the odd regular slices of $\MUR$ vanish.
+%% \end{thm}
+
+%% Since $2$-completion commutes with limits, the obvious $2$-completed analogues of Theorems \ref{thm:MGL-pure} and \ref{thm:slice-comp} follow at once.
+
+%% %In fact, we will prove this more generally for any $\R$-motivic spectrum with pure slices.
+%% %
+%% %\begin{dfn}
+%%   %We say that a $2$-complete $\R$-motivic spectrum $E$ is \emph{pure} if for every $n$ its $n$th slice $s_{n} E$ is equivalent to a direct sum of copies of $\Sigma^{n,n,n} \HZt$.
+%% %\end{dfn}
+%% %
+%% %In particular, we know that $\MGL^{\otimes n}$ is pure.
+%% %
+%% %Ok, actually the key point is that it's pure \emph{and} we know that its slice tower realizes to the slice tower of its Betti realization. \todo{Come back to address this.}
+%% %
+%% %\begin{lem} \label{lem:main-lem}
+%%   %Let $E$ be a pure $\R$-motivic spectrum. Then the map $\Map(S^{0,0,w}, E) \to \b(E)$ factors through an equivalence $\Map(S^{0,0,w}, E) \xrightarrow{\sim} \tau_{\geq 2w} \b(E)$.
+%% %\end{lem}
+%% %
+%% %\begin{lem}
+%% %  We have $\pi_{n-1,n,*} \HZt = 0$ and $\pi_{n,n,k} \HZt = \begin{cases} 0 &\text{if } n \neq 0 \\ \Zt\{\ta^k\} &\text{if } n = 0. \end{cases}$
+%% %\end{lem}
+%% %
+%% Using the results of \Cref{sec:homology}, we can prove the analogue of \Cref{lem:fund-lem} in the case that $E = \HZt$.
+
+%% \begin{lem}\label{lem:HZ-case}
+%%   If $w > n$, we have $\Map(\Ss^{0,0,w}, \Sigma^{n,n,n} \HZt) = 0$. On the other hand, if $w \leq n$ then the map $\Map(\Ss^{0,0,w}, \Sigma^{n,n,n} \HZt) \to \Sigma^{n\rho} \uZt$ is an equivalence.
+%% \end{lem}
+
+%% \begin{proof}
+%%   Since the representation spheres $\Ss^{p+q\sigma}_2$ form a set of compact generators for the category of $\Ss_2$-modules in $C_2$-spectra, it suffices to show that for all $(p,q)$ one has $\pi_{p,q,w} ^\R \HZt = 0$ for $w > 0$ and that Betti realization induces isomorphisms $\pi_{p,q,w} ^{\R} \HZt \to \pi_{p,q} ^{C_2} \uZt$ for all $w \leq 0.$
+%%   This is an immediate consequence of \Cref{lem:Zcalc}.
+%% \end{proof}
+
+%% \begin{proof}[Proof of \Cref{lem:fund-lem}]
+%%   To simplify our notation, we let $E$ denote $\MGL^{\otimes n}_2$ for some $n \geq 1$.
+%%   Since $E$ is effective slice connective, we have $f^q E \simeq 0$ for all $q < 0$.
+
+%%   The $\R$-motivic spectra $E$ , we have $E \simeq \varprojlim_q f^q E$.
+%%   From this, it follows that $\Map_{\SHR_{i2}} (\Ss^{0,0,w}_2, E) \simeq \varprojlim_{q} \Map_{\SHR_{i2}} (\Ss^{0,0,w}_2 , f^q E)$. Moreover, by \Cref{thm:slice-comp} we have $\b(f^q E) \simeq P^{2q} \b(E)$, and
+%%   %from which it follows that and $\b(E) \simeq \varprojlim_{n} \b(f_n E) \simeq \varprojlim_{n} \tau_{\leq 2n} \b(E)$. We also know that the odd slices of $\b(E)$ vanish.
+%%   the map $\Map_{\SHR_{i2}} (\Ss^{0,0,w} _2, E) \to \b(E)$ is the limit of the maps $\Map_{\SHR_{i2}} (\Ss^{0,0,w} _2, f^q E) \to P^{2q} \b(E)$.
+
+%%   It therefore suffices to show that for all $q \geq 0$, $\Map_{\SHR_{i2}} (\Ss^{0,0,w} _2, f^q E) \to P^{2q} \b(E)$ factors through the canonical map $P^{2q} _{2w} \b(E) \to P^{2q} \b(E)$ and moreover that the induced map $\Map_{\SHR_{i2}} (\Ss^{0,0,w} _2, f^q E) \to P^{2q} _{2w} \b(E)$ is an equivalence.
+
+%%   For the first part, using \Cref{thm:MGL-pure} we find that it follows from a repeated application of \Cref{lem:HZ-case} that $\Map_{\SHR_{i2}} (\Ss^{0,0,w} _2, f^{w-1} E) \simeq 0$, so that the composition $\Map_{\SHR_{i2}} (\Ss^{0,0,w} _{2}, f^q E) \to P^{2q} \b(E) \to P^{2q-2} \b(E)$ is null and so factors as $\Map_{\SHR_{i2}} (\Ss^{0,0,w}_2, f^q E) \to P_{2w} ^{2q} \b (E)$.
+%%   Inducting over $n$ and applying \Cref{thm:MGL-pure} and \Cref{lem:HZ-case}, we find that this map is an equivalence, as desired.
+%% \end{proof}
+
+%
+%\subsection{Properties of the functor $\Gamma_*$}
+%
+%\begin{cnstr}
+%  Note that $\Gamma_* : \Sp_{C_2, i2} \to \Fil(\Sp_{C_2, i2})$ factors through a functor $\Gamma_* : \Sp_{C_2, i2} \to \Mod(\Fil(\Sp_{C_2, i2}); \Gamma_* (\Ss_2))$, which through the equivalence of \Cref{thm:filt-model} may be viewed as a map
+%  \[\Gamma_* : \Sp_{C_2, i2} \to \SHR_{i2} ^{gc}.\]
+%\end{cnstr}
+%
+%However, the functor $\Gamma_* : \Sp_{C_2, i2} \to \SHR_{i2} ^{gc}$ does not have certain properties that we would like it to enjoy.
+%In particular, it does not commute with filtered colimits.
+%
+%In fact, $\Gamma_*$ behaves like the composite of a functor with the $\ta$-completion functor. Indeed, it lands in $\ta$-complete $\R$-motivic spectra by the following lemma:
+%We collect the main properties of the functor $\Gamma_*$ in the proposition below.
+%
+%\begin{prop}\label{prop:gamma}
+%  Let $X$, $Y$ and $Z$ will denote objects of $\Sp_{C_2, i2}$. Then the functor $\Gamma_*$ satisfies the following properties:
+%  \begin{enumerate}
+%    \item Suppose that $X \to Y \to Z$ is a cofiber sequence with the property that $\piu_{w\rho-1} ^{C_2} X \otimes \MU_{\R,2} \to \piu_{w\rho-1} ^{C_2} Y \otimes \MU_{\R,2}$ is injective for all $w$. Then
+%  \[\nu X \to \nu Y \to \nu Z\]
+%  is a cofiber sequence.
+%    \item Given any $X$, $\Gamma_* (X)$ is $\ta$-complete. In other words, $\varprojlim_{n} \Gamma_n (X) \simeq 0$.
+%    \item Let $X$ denote a $C_2$-spectrum which is regular slice $k$-connective for some $k \in \Z$. Then the natural map
+%  \[\varinjlim_{n} \Gamma_n (X) \to \Tot(X \otimes \MUR^{\bullet+1})\]
+%  is an equivalence.
+%  Moreover, there is a natural equivalence $\Tot(X \otimes \MUR^{\bullet+1}) \simeq X_{\eta}$.
+%    \item The functor $X \mapsto \Gr(\Gamma_*(X))$ preserves filtered colimits.
+%    \item The functor $X \mapsto \Gamma_* (X)$ commutes with filtered colimits up to $\ta$-completion.
+%    \item For any $X$ and $k \in \Z$, there is a natural equivalence $\Gamma_* (\Sigma^{k\rho} X) \simeq \Sigma^{k,k,k} \Gamma_* (X)$.
+%    \item Suppose that $\piu_{n\rho-1} ^{C_2} Y \otimes \MUR = 0$ and that $X$ is bounded below and admits a cell structure with all cells of the form $\Ss^{n\rho}$.
+%  Then the natural map
+%  \[\Gamma_* (X) \otimes_{\Gamma_* (\Ss_2)} \Gamma_* (Y) \to \Gamma_* (X \otimes Y)\]
+%  is $\ta$-completion.
+%    \item Suppose that $X$ satisfies $\piu_{n\rho-1} ^{C_2} X \otimes \MUR = 0$ for all $n \in \Z$.
+%      Then the natural map $\Gamma_* (X) \otimes_{\Gamma_* (\Ss_2)} \Gamma_* (\MUR) \to \Gamma_* (X \otimes \MUR)$ is $\ta$-completion. \todo{This last a corollary or something?}
+%  \end{enumerate}
+%\end{prop}
+%
+%\begin{rmk}
+%  Recall that a $C_2$-spectrum $E$ is said to be \emph{even} if $\piu_{n\rho-1} E = 0$ for all $n$ \cite[Definition 3.1]{HillMeier}. It follows from \Cref{prop:gamma}(1) that $\Gamma_*$ preserves cofiber sequences $X \to Y \to Z$ where $X \otimes \MU_{\R,2}$ is even. Since $\MU_{\R,2}$ itself is even, this is the case for all bounded below $X$ which admit a cell structure where all cells are of the form $\Ss^{n\rho}$.
+%\end{rmk}
+%
+%\begin{rmk}
+%  In view of \Cref{prop:gamma}(2) and the failure of many good properties of $\Gamma_*$ before $\ta$-completion, one might hope that $\Gamma_*$ is the composition of another, better behaved functor with $\ta$-completion.
+%  This is indeed the case, and such a decompleted functor may be constructed by \textit{renormalization}.
+%  Namely, one proves that $\Gamma_*$ preserves compact objects\footnote{Are we sure of this?} and then defines a decompleted functor by applying Ind to the restriction of $\Gamma_*$ to the categories of compact objects.
+%\end{rmk}
+%
+%\begin{proof}[Proof of \Cref{prop:gamma}]
+%
+%  \textbf{Part (1):}   It is equivalent to show that
+%  \[\Gamma_* X \to \Gamma_* Y \to \Gamma_* Z\]
+%  is a cofiber sequence of filtered $C_2$-spectra.
+%
+%  Since $\MU_{\R,2} \otimes \MU_{\R,2}$ splits as a direct sum of copies of $\Sigma^{n\rho} \MU_{\R,2}$, we find that $\piu_{w\rho-1} ^{C_2} X \otimes \MU_{\R,2}^{n+1} \to \piu_{w\rho-1} ^{C_2} Y \otimes \MU_{\R,2}^{n+1}$ is injective for all $w$ and $n$.
+%
+%  To show that
+%  \[\Gamma_* X \to \Gamma_* Y \to \Gamma_* Z\]
+%  is a cofiber sequence, it suffices to show that
+%  \[P_{2w} X \otimes \MU_{\R,2}^{n+1} \to P_{2w} Y \otimes \MU_{\R,2}{n+1} \to P_{2w} Z \otimes \MU_{\R,2}^{n+1}\]
+%  is a cofiber sequence for all $n$ and $k$, i.e. that the induced map
+%  \[\cof \left( P_{2w} X \otimes \MU_{\R,2}^{n+1} \to P_{2w} Y \otimes \MU_{\R,2}^{n+1}\right) \to P_{2w} Z \otimes \MU_{\R,2}^{n+1}\]
+%  is an equivalence.
+%
+%  To do this, it suffices to show that it is an equivalence on all regular slices. From the formula for regular slices, it suffices to show that it is an equivalence on $\piu_{k\rho} ^{C_2}$ and $\piu_{k\rho+1} ^{C_2}$ for all $k$.
+%
+%  Using the exact sequence
+%  \[ \piu_{k\rho} ^{C_2} X \otimes \MU_{\R,2}^{n+1} \to \piu_{k\rho} ^{C_2} Y \otimes \MU_{\R,2}^{n+1} \to \piu_{k\rho} ^{C_2} Z \otimes \MU_{\R,2}^{n+1} \to \piu_{k\rho-1} ^{C_2} X \otimes \MU_{\R,2}^{n+1} \to \piu_{k\rho-1} ^{C_2} Y \otimes \MU_{\R,2}^{n+1}\]
+%  and the assumption, we find that this holds for $\piu_{k\rho} ^{C_2}$.
+%
+%  On the other hand, the exact sequence
+%  \[ \piu_{k\rho+1} ^{C_2} X \otimes \MU_{\R,2}^{n+1} \to \piu_{k\rho+1} ^{C_2} Y \otimes \MU_{\R,2}^{n+1} \to \piu_{k\rho+1} ^{C_2} Z \otimes \MU_{\R,2}^{n+1} \to \piu_{k\rho} ^{C_2} X \otimes \MU_{\R,2}^{n+1} \to \piu_{k\rho} ^{C_2} Y \otimes \MU_{\R,2}^{n+1}\]
+%  makes this clear for the $\piu_{k\rho+1} ^{C_2}$ case.
+%
+%  \textbf{Part (2):}   We have
+%  \[\varprojlim_{n} \Gamma_n (X) = \varprojlim_{n} \Tot (P_{2n} (X \otimes \MU_{\R,2}^{\bullet+1})) \simeq \Tot \varprojlim_{n} P_{2n} (X \otimes \MU_{\R,2}^{\bullet+1}).\]
+%%  This is equivalent to zero because $\varprojlim_{n} P_{2n} Y \simeq 0$ for all $C_2$-spectra $Y$.
+%
+%  \textbf{Part (3):} For the first statement, it suffices to show that
+%  \[\Gamma_n (X) = \Tot(P_{2n} (X \otimes \MU_{\R,2}^{\bullet+1})) \to \Tot (X \otimes \MU_{\R,2}R^{\bullet+1})\]
+%  is an equivalence for $2n \leq k$.
+%  This follows immediately from the regular slice connectivity of $\MU_{\R,2}$ and the assumption of regular slice $k$-connectivity of $X$. \todo{Equivalent to something in the appendix.}
+%
+%  The second statement follows from the following two facts: that $\eta = 0 \in \MU_{\R,2}$, so $\MU_{\R,2}$ is $\eta$-complete, and that the induced map $C(\eta) \to \MU_{\R,2}$ is an isomorphism in $\piu_0 ^{C_2}$.
+%
+%  \textbf{Part (4):}   Expanding out the definitions, we have
+%  \[\Gr_n (\Gamma_* (X)) = \Tot ( P_{2n} ^{2n+1} (X \otimes \MU_{\R,2}^{\bullet+1})).\]
+%  The functors $X \mapsto X \otimes \MU_{\R,2}^{\bullet+1}$ and $X \mapsto P_{2n} ^{2n+1} X$ preserve filtered colimits, so we are left with commuting the filtered colimit past the totalization.
+%  Writing
+%  \[\Tot ( P_{2n} ^{2n+1} (X \otimes \MU_{\R,2}^{\bullet+1})) \simeq \varprojlim_k \Tot^k ( P_{2n} ^{2n+1} (X \otimes \MU_{\R,2}^{\bullet+1})),\]
+%  we see that it suffices to show that the regular slice coconnectivity of the map
+%  \[\Tot ( P_{2n} ^{2n+1} (X \otimes \MU_{\R,2}^{\bullet+1})) \to \Tot^k ( P_{2n} ^{2n+1} (X \otimes \MU_{\R,2}^{\bullet+1}))\]
+%  goes to infinity as $k$ goes to infinity.
+%  This is clear from the fact that the cosimplicial object is levelwise regular slice $(2n+1)$-coconnective.
+%
+%  \textbf{Part (5):} Follows from (4).
+%
+%  \textbf{Part (6):} This follows immediately from the definitions and the equivalence $P_{2n} \Sigma^{k\rho} X \simeq \Sigma^{k\rho} P_{2(n-k)} X$.
+%
+%  \textbf{Part (7):}   It follows from (2) that $\Gamma_* (X \otimes Y)$ is $\ta$-complete, so it suffices to show that
+%  \[\Gr \Gamma_* (X) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \to \Gr \Gamma_* (X \otimes Y)\]
+%  is an equivalence.
+%
+%  Using the fact that $X \mapsto \Gr \Gamma_* (X)$ commutes with filtered colimits, it suffices to show that given a cofiber sequence
+%  \[X_1 \to X_2 \to \Ss^{n\rho}\]
+%  for which $X_1$ admits a cell structure with all cells of the form $\Ss^{n\rho}$ and
+%  \[\Gr \Gamma_* (X_1) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \to \Gr \Gamma_* (X_1 \otimes Y)\]
+%  is an equivalence, then
+%  \[\Gr \Gamma_* (X_2) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \to \Gr \Gamma_* (X_2 \otimes Y)\]
+%  is an equivalence.
+%
+%  To see this, we make use of the following diagram:
+%  \begin{center}
+%    \begin{tikzcd}
+%      \Gr \Gamma_* (X_1) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \ar[r] \ar[d] & \Gr \Gamma_* (X_2) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \ar[r] \ar[d] & \Gr \Gamma_* (\Ss^{n\rho} ) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \ar[d] \\
+%      \Gr \Gamma_* (X_1 \otimes Y) \ar[r] & \Gr \Gamma_* (X_2 \otimes Y) \ar[r] & \Gr \Gamma_* (\Ss^{n\rho} \otimes Y).
+%    \end{tikzcd}
+%  \end{center}
+%  The left vertical map is an equivalence by assumption, and the right vertical map is an equivalence by (6).
+%  It therefore suffices to show that the top and bottom rows are cofiber sequences.
+%
+%  For this, we will make use of (1) and the exactness of $\Gr$.
+%  The assumption on the cell structure of $X_1$ implies that $X_1 \otimes \MU_{\R,2}$ is a direct sum of $C_2$-spectra of the form $\Sigma^{n\rho} \MU_{\R,2}$.
+%  It follows that $\piu_{n\rho-1} ^{C_2} X_1 \otimes \MU_{\R,2} = \piu_{n\rho-1} ^{C_2} X_1 \otimes Y \otimes \MU_{\R,2} = 0$ by the assumption on $Y$.
+%  Therefore the assumption of (1) is satisfied, and we are done.
+%
+%  \textbf{Part (8):} Follows from (7).
+%\end{proof}
+%
+%\begin{lem} \label{lem:Gamma-ta-comp}
+%  For any $C_2$-spectrum $X$, $\Gamma_* (X)$ is $\ta$-complete. In other words, $\varprojlim_{n} \Gamma_n (X) \simeq 0$.
+%\end{lem}
+%
+%\begin{proof}
+%  We have
+%  \[\varprojlim_{n} \Gamma_n (X) = \varprojlim_{n} \Tot (P_{2n} (X \otimes \MUR^{\bullet+1})) \simeq \Tot \varprojlim_{n} P_{2n} (X \otimes \MUR^{\bullet+1}).\]
+%  This is equivalent to zero because $\varprojlim_{n} P_{2n} Y \simeq 0$ for all $C_2$-spectra $Y$.
+%\end{proof}
+%
+%We may view the failure of $\Gamma_*$ to commute with filtered colimits as a consequence of this implicit $\ta$-completion.
+%To obtain a better behaved functor, we \textit{renormalize} to remove the $\ta$-completion.
+%
+%\begin{dfn}
+  %Consider the restriction of $\Gamma_* : \Sp_{C_2, i2} \to \SHR_{i2} ^{gc}$ to finite $\Ss_2$-modules in $C_2$-spectra
+  %\[\Gamma_* : \Sp_{C_2, i2} ^{\fin} \to \SHR_{i2} ^{gc}\]
+%\end{dfn}
+%
+%\begin{prop} \label{prop:exactness}
+%  Let $X \to Y \to Z$ be a cofiber sequence of $C_2$-spectra with the property that $\piu_{w\rho-1} ^{C_2} X \otimes \MUR \to \piu_{w\rho-1} ^{C_2} Y \otimes \MUR$ is injective for all $w$. Then
+%  \[\nu X \to \nu Y \to \nu Z\]
+%  is a cofiber sequence.
+%\end{prop}
+%
+%\begin{proof}
+%  It is equivalent to show that
+%  \[\Gamma_* X \to \Gamma_* Y \to \Gamma_* Z\]
+%  is a cofiber sequence of filtered $C_2$-spectra.
+%
+%  Since $\MUR \otimes \MUR$ splits as a direct sum of copies of $\Sigma^{n\rho} \MUR$, we find that $\piu_{w\rho-1} ^{C_2} X \otimes \MUR^{n+1} \to \piu_{w\rho-1} ^{C_2} Y \otimes \MUR^{n+1}$ is injective for all $w$ and $n$.
+%
+%  To show that
+%  \[\Gamma_* X \to \Gamma_* Y \to \Gamma_* Z\]
+%  is a cofiber sequence, it suffices to show that
+%  \[P_{2w} X \otimes \MUR^{n+1} \to P_{2w} Y \otimes \MUR^{n+1} \to P_{2w} Z \otimes \MUR^{n+1}\]
+%  is a cofiber sequence for all $n$ and $k$, i.e. that the induced map
+%  \[\cof \left( P_{2w} X \otimes \MUR^{n+1} \to P_{2w} Y \otimes \MUR^{n+1}\right) \to P_{2w} Z \otimes \MUR^{n+1}\]
+%  is an equivalence.
+%
+%  To do this, it suffices to show that it is an equivalence on all regular slices. From the formula for regular slices, it suffices to show that it is an equivalence on $\piu_{k\rho} ^{C_2}$ and $\piu_{k\rho+1} ^{C_2}$ for all $k$.
+%
+%  Using the exact sequence
+%  \[ \piu_{k\rho} ^{C_2} X \otimes \MUR^{n+1} \to \piu_{k\rho} ^{C_2} Y \otimes \MUR^{n+1} \to \piu_{k\rho} ^{C_2} Z \otimes \MUR^{n+1} \to \piu_{k\rho-1} ^{C_2} X \otimes \MUR^{n+1} \to \piu_{k\rho-1} ^{C_2} Y \otimes \MUR^{n+1}\]
+%  and the assumption, we find that this holds for $\piu_{k\rho} ^{C_2}$.
+%
+%  On the other hand, the exact sequence
+%  \[ \piu_{k\rho+1} ^{C_2} X \otimes \MUR^{n+1} \to \piu_{k\rho+1} ^{C_2} Y \otimes \MUR^{n+1} \to \piu_{k\rho+1} ^{C_2} Z \otimes \MUR^{n+1} \to \piu_{k\rho} ^{C_2} X \otimes \MUR^{n+1} \to \piu_{k\rho} ^{C_2} Y \otimes \MUR^{n+1}\]
+%  makes this clear for the $\piu_{k\rho+1} ^{C_2}$ case.
+%\end{proof}
+%
+%\begin{rmk}
+%  Recall that a $C_2$-spectrum $E$ is said to be \emph{even} if $\piu_{n\rho-1} E = 0$ for all $n$. \cite[Definition 3.1]{HillMeier} It follows from \Cref{prop:exactness} that $\Gamma_*$ preserves cofiber sequences $X \to Y \to Z$ where $X \otimes \MUR$ is even. Since $\MUR$ itself is even, this is the case for all bounded below $X$ which admit a cell structure where all cells are of the form $\Ss^{n\rho}$.
+%\end{rmk}
+%
+%SOMETHING ABOUT MONOIDALITY.
+%
+%\begin{lem} \label{lem:Gamma-ta-comp}
+%  For any $C_2$-spectrum $X$, $\Gamma_* (X)$ is $\ta$-complete. In other words, $\varprojlim_{n} \Gamma_n (X) \simeq 0$.
+%\end{lem}
+%
+%\begin{proof}
+%  We have
+%  \[\varprojlim_{n} \Gamma_n (X) = \varprojlim_{n} \Tot (P_{2n} (X \otimes \MUR^{\bullet+1})) \simeq \Tot \varprojlim_{n} P_{2n} (X \otimes \MUR^{\bullet+1}).\]
+%  This is equivalent to zero because $\varprojlim_{n} P_{2n} Y \simeq 0$ for all $C_2$-spectra $Y$.
+%\end{proof}
+%
+%\begin{lem}
+%  Let $X$ denote a $C_2$-spectrum which is regular slice $k$-connective for some $k \in \Z$. Then the natural map
+%  \[\varinjlim_{n} \Gamma_n (X) \to \Tot(X \otimes \MUR^{\bullet+1})\]
+%  is an equivalence.
+%
+%  Moreover, there is a natural equivalence $\Tot(X \otimes \MUR^{\bullet+1}) \simeq X_{\eta}$.
+%\end{lem}
+%
+%\begin{proof}
+%  For the first statement, it suffices to show that
+%  \[\Gamma_n (X) = \Tot(P_{2n} (X \otimes \MUR^{\bullet+1})) \to \Tot (X \otimes \MUR^{\bullet+1})\]
+%  is an equivalence for $2n \leq k$.
+%  This follows immediately from the regular slice connectivity of $\MUR$ and the assumption of regular slice $k$-connectivity of $X$.
+%
+%  The second statement follows from the following two facts: that $\eta = 0 \in \MUR$, so $\MUR$ is $\eta$-complete, and that the induced map $\C(\eta) \to \MUR$ is an isomorphism in $\piu_0 ^{C_2}$.
+%\end{proof}
+%
+%\begin{lem}
+%  The functor $X \mapsto \Gr(\Gamma_*(X))$ preserves filtered colimits.
+%\end{lem}
+%
+%\begin{proof}
+%  Expanding out the definitions, we have
+%  \[\Gr_n (\Gamma_* (X)) = \Tot ( P_{2n} ^{2n+1} (X \otimes \MUR^{\bullet+1})).\]
+%  The functors $X \mapsto X \otimes \MUR^{\bullet+1}$ and $X \mapsto P_{2n} ^{2n+1} X$ preserve filtered colimits, so we are left with commuting the filtered colimit past the totalization.
+%  Writing
+%  \[\Tot ( P_{2n} ^{2n+1} (X \otimes \MUR^{\bullet+1})) \simeq \varprojlim_k \Tot^k ( P_{2n} ^{2n+1} (X \otimes \MUR^{\bullet+1})),\]
+%  we see that it suffices to show that the regular slice coconnectivity of the map
+%  \[\Tot ( P_{2n} ^{2n+1} (X \otimes \MUR^{\bullet+1})) \to \Tot^k ( P_{2n} ^{2n+1} (X \otimes \MUR^{\bullet+1}))\]
+%  goes to infinity as $k$ goes to infinity.
+%  This is clear from the fact that the cosimplicial object is levelwise regular slice $(2n+1)$-coconnective.
+%\end{proof}
+%
+%\begin{cor}
+%  The functor $X \mapsto \Gamma_* (X)$ commutes with filtered colimits up to $\ta$-completion.
+%\end{cor}
+%
+%\begin{lem} \label{lem:pure-susp}
+%  For any $C_2$-spectrum $X$ and $k \in \Z$, there is a natural equivalence $\Gamma_* (\Sigma^{k\rho} X) \simeq \Sigma^{k,k,k} \Gamma_* (X)$.
+%\end{lem}
+%
+%\begin{proof}
+%  This follows immediately from the definitions and the equivalence $P_{2n} \Sigma^{k\rho} X \simeq \Sigma^{k\rho} P_{2(n-k)} X$.
+%\end{proof}
+%
+%\begin{prop}
+%  Let $X$ and $Y$ be $C_2$-spectra and assume that $\piu_{n\rho-1} ^{C_2} Y \otimes \MUR = 0$ and that $X$ is bounded below and admits a cell structure with all cells of the form $\Ss^{n\rho}$.
+%
+%  Then the natural map
+%  \[\Gamma_* (X) \otimes_{\Gamma_* (\Ss)} \Gamma_* (Y) \to \Gamma_* (X \otimes Y)\]
+%  is $\ta$-completion.
+%\end{prop}
+%
+%\begin{proof}
+%  It follows from \Cref{lem:Gamma-ta-comp} that $\Gamma_* (X \otimes Y)$ is $\ta$-complete, so it suffices to show that
+%  \[\Gr \Gamma_* (X) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \to \Gr \Gamma_* (X \otimes Y)\]
+%  is an equivalence.
+%
+%  Using the fact that $X \mapsto \Gr \Gamma_* (X)$ commutes with filtered colimits, it suffices to show that given a cofiber sequence
+%  \[X_1 \to X_2 \to \Ss^{n\rho}\]
+%  for which $X_1$ admits a cell structure with all cells of the form $\Ss^{n\rho}$ and
+%  \[\Gr \Gamma_* (X_1) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \to \Gr \Gamma_* (X_1 \otimes Y)\]
+%  is an equivalence, then
+%  \[\Gr \Gamma_* (X_2) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \to \Gr \Gamma_* (X_2 \otimes Y)\]
+%  is an equivalence.
+%
+%  To see this, we make use of the following diagram:
+%  \begin{center}
+%    \begin{tikzcd}
+%      \Gr \Gamma_* (X_1) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \ar[r] \ar[d] & \Gr \Gamma_* (X_2) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \ar[r] \ar[d] & \Gr \Gamma_* (\Ss^{n\rho} ) \otimes_{\Gr \Gamma_* (\Ss)} \Gr \Gamma_* (Y) \ar[d] \\
+%      \Gr \Gamma_* (X_1 \otimes Y) \ar[r] & \Gr \Gamma_* (X_2 \otimes Y) \ar[r] & \Gr \Gamma_* (\Ss^{n\rho} \otimes Y).
+%    \end{tikzcd}
+%  \end{center}
+%  The left vertical map is an equivalence by assumption, and the right vertical map is an equivalence by \Cref{lem:pure-susp}.
+%  It therefore suffices to show that the top and bottom rows are cofiber sequences.
+%
+%  For this, we will make use of \Cref{prop:exactness} and the exactness of $\Gr$.
+%  The assumption on the cell structure of $X_1$ implies that $X_1 \otimes \MUR$ is a direct sum of $C_2$-spectra of the form $\Sigma^{n\rho} \MUR$.
+%  It follows that $\piu_{n\rho-1} ^{C_2} X_1 \otimes \MUR = \piu_{n\rho-1} ^{C_2} X_1 \otimes Y \otimes \MUR = 0$ by the assumption on $Y$.
+%  Therefore the assumption of \Cref{prop:exactness} is satisfied, and we are done.
+%\end{proof}
+%
+%\begin{lem}
+%  Let $X \to Y \to Z$ be a cofiber sequence of $C_2$-spectra.
+%\end{lem}
+%
+%\begin{lem}
+%  The functor $X \mapsto \varinjlim_{n} \Gamma_n (X)$ is exact.
+%\end{lem}
+%
+%\begin{proof}
+%  Given a cofiber sequence of $C_2$-spectra
+%  \[X \to Y \to Z,\]
+%  we wish to show that
+%  \[\varinjlim_{n} \Tot(P_{2n} (X \otimes \MUR^{\bullet+1})) \to \varinjlim_{n} \Tot(P_{2n} (Y \otimes \MUR^{\bullet+1})) \to \varinjlim_{n} \Tot(P_{2n} (Z \otimes \MUR^{\bullet+1}))\]
+%  is again exact.
+%  Let $C_{2n,\bullet}$ denote the cofiber of
+%  \[P_{2n} (X \otimes \MUR^{\bullet+1}) \to P_{2n} (Y \otimes \MUR^{\bullet+1}).\]
+%  Then there is a natural map
+%  \[C_{2n,\bullet} \to P_{2n} (Z \otimes \MUR^{\bullet+1})\]
+%  whose cofiber we denote by $D_{2n,\bullet}$.
+%
+%  Since filtered colimits and totalizations are exact, the lemma is equivalent to the statement that
+%  \[\varinjlim_{n} \Tot( D_{2n,\bullet}) \simeq 0.\]
+%
+%  Since totalizations preserve coconnectivity, it suffices to show that $D_{2n,k}$ becomes infinitely coconnective as $n \to -\infty$, uniformly in $k$.
+%  This follows from LEM.
+%\end{proof}
+%
+%\begin{lem}
+%  For any bounded below $C_2$-spectrum $X$, the fiber of the natural transformation
+%  \[\varinjlim_n \Tot(P_{2n} X \otimes \MUR^{\bullet + 1}) \to  \Tot\]
+%  is $\eta$-invertible.
+%\end{lem}
+%
+%\begin{proof}
+%  By LEM, this is equivalent to the statement that
+%  \[\varinjlim_n \Tot(P_{2n} X \otimes C(\eta) \otimes \MUR^{\bullet + 1} \to  \]
+%\end{proof}
+%
+%\begin{cor}
+%  Suppose that $X$ is a $C_2$ spectrum which satisfies $\piu_{n\rho-1} ^{C_2} X \otimes \MUR = 0$ for all $n \in \Z$.
+%  Then the natural map $\Gamma_* (X) \otimes_{\Gamma_* (\Ss)} \Gamma_* (\MUR) \to \Gamma_* (X \otimes \MUR)$ is $\ta$-completion.
+%\end{cor}
+%
+%-------------------
+%
+%\begin{dfn}
+%  We let $\SHR^{\at, \cn} _{\geq 0, i2} \subset \SHR^{\at} _{i2}$ denote the full subcategory spanned by those $X$ for which $\Map_{\SHR^{\at}_{i2} } (\Ss^{0,0,n}, X \otimes \MGL)$ is slice $2n$-connective for every $n$.
+%
+%  It is easy to see that $\SHR^{\at, \cn} _{\geq 0, i2}$ is closed under colimits, so that the inclusion admits a right adjoint $\tau_{\geq 0} ^{\cn} : \SHR^{\at, \cn} _{\geq 0, i2} \to \SHR^{\at} _{i2}$.
+%\end{dfn}
+%
+%\begin{prop}
+%  For all $\ell, k \geq n$, the functor $\Sigma^{k,k,n} : \SHR^{\at} _{i2} \to \SHR^{\at}_{i2}$ preserves Chow-Novikov connectivity, i.e. it restricts to a functor $\Sigma^{k,k,n} : \SHR^{\at, \cn} _{\geq 0, i2} \to \SHR^{\at, \cn} _{\geq 0, i2}$.
+%\end{prop}
+%
+%\begin{proof}
+%  Since $\Ss^{\ell + k \sigma}$ is slice connective for all $\ell, k \geq 0$, it suffices to show that $\Sigma^{n,n,n}$ preserves slice connecitivity.
+%  This follows from the sequence of equivalences
+%  \[\Map_{\SHR^{\at}_{i2}} (\Ss^{0,0,m}, \Sigma^{n,n,n} X \otimes \MGL_2 ) \simeq \Map_{\SHR^{\at} _{i2}} (\Ss^{0,0,m-n}, \Sigma^{n,n,0} X \otimes \MGL_2 ) \simeq \Sigma^{n\rho} \Map_{\SHR^{\at} _{i2}} (\Ss^{0,0,m-n}, X \otimes \MGL_2 )\]
+%  along with the fact that $\Sigma^{n\rho}$ sends slice $2(m-n)$-connective $C_2$-spectra to slice $2m$-connective $C_2$-spectra.
+%\end{proof}
+%
+%\begin{prop}
+%  Both $\MGL(n,k)_2$ and $\mathbb{D} (\MGL(n.k)_2)$ lie in $\SHR^{\at, \cn} _{\geq 0, i2}$ for all $n,k$.
+%\end{prop}
+%
+%\begin{proof}
+%  For their cellularity, see CITE.
+%
+%  Now, we know from CITE that $\MGL(n,k)_2 \otimes \MGL_2$ splits as a finite direct sum of $\R$-motivic spectra of the form $\Sigma^{m,m,m} \MGL_2$ for various $m$. Dualizing, it follows that the same is true of $\mathbb{D} (\MGL(n,k)_2) \otimes \MGL_2$.
+%
+%  By the PROP, it therefore suffices to apply CITE, which in particular implies that $\Map_{\SHR^{\at} _{i2}} (\Ss^{0,0,n}, \MGL_{2})$ is $2n$-slice connective.
+%\end{proof}
+%
+%\begin{prop}
+%  Let $X \in \SHR^{\at} _{i2}$. Then the (co?)unit map $\tau^{\cn} _{\geq 0} X \to X$ induces an equivalence of $C_2$-spectra for each $n \in \Z$:
+%  \[\Map_{\SHR^{\at} _{i2}} (\Ss^{0,0,n}, (\tau^{\cn} _{\geq 0} X) \otimes \MGL_2) \simeq P_{2n} \Map_{\SHR^{\at} _{i2}} (\Ss^{0,0,n}, X \otimes \MGL_2).\]
+%\end{prop}
+%
+%\begin{proof}
+%  Given $A,B \in \SHRat$, we let $\Map_{\SHRat}^{\spa} (A,B)$ denote the space of maps between $A$ and $B$. By definition of $\tau ^{\cn} _{\geq 0}$, if $A$ lies in $\SHR^{\at, \cn} _{\geq 0, i2}$ then the natural map $\Map_{\SHRat}^{\spa} (A, \tau_{\geq 0} B) \to \Map_{\SHRat}^{\spa} (A, B)$ is an equivalence.
+%
+%  Since the functors $\pi_{k \rho} ^{C_2}$, $\pi_{k \rho + 1} ^{C_2}$, $\pi_{2k} ^u$, and $\pi_{2k+1} ^e$ for $k \geq n$ are jointly conservative on slice $2n$-connective $C_2$-spectra, it follows that it suffices to show that the maps
+%  \[\Map_{\SHRat}^{\spa} (\Ss^{k,k,n}, (\tau^{\cn} _{\geq 0} X) \otimes \MGL_2 ) \to \Map_{\SHRat}^{\spa} (\Ss^{k,k,n}, X \otimes \MGL_2 )\]
+%  and
+%  \[\Map_{\SHRat}^{\spa} (\Ss^{k,k,n} \otimes (C_2)_+, (\tau^{\cn} _{\geq 0} X) \otimes \MGL_2 ) \to \Map_{\SHRat}^{\spa} (\Ss^{k,k,n} \otimes (C_2)_+, X \otimes \MGL_2)\]
+%  are equivalences of spaces for all $k \geq n$.
+%
+%  We now prove that the first maps are equivalences. A similar argument shows that the second maps are as well.
+%
+%  Now, for $Y = X$ or $\tau^{\cn} _{\geq 0} X$, we have
+%  \[\Map_{\SHRat}^{\spa} (\Ss^{k,k,n}, Y \otimes \MGL_2) \simeq \varinjlim_m \Map_{\SHRat}^{\spa} (\Ss^{k,k,n}, Y \otimes \MGL(m,m)_2 ) \simeq \varinjlim_m \Map_{\SHRat}^{\spa} (\Ss^{k,k,n} \otimes \mathbb{D} (\MGL(m,m)_2), Y).\]
+%
+%  The map
+%  \[\varinjlim_m \Map_{\SHRat}^{\spa} (\Ss^{k,k,n} \otimes \mathbb{D} (\MGL(m,m)_2), \tau^{\cn} _{\geq 0} X) \to \varinjlim_m \Map_{\SHRat}^{\spa} (\Ss^{k,k,n} \otimes \mathbb{D} (\MGL(m,m)_2), X)\]
+%  is an equivalence because we have $\Ss^{k,k,n} \otimes \mathbb{D} (\MGL(m,m)_2) \in \SHR^{\at, \cn} _{\geq 0, i2}$ by PROPs.
+%
+  %A similar argument works for the map
+  %\[\Map_{\SHRat}^{\spa} (\Ss^{k,k,n} \otimes (C_2)_+, (\tau^{\cn} _{\geq 0} X) \otimes \MGL_2 ) \to \Map_{\SHRat}^{\spa} (\Ss^{k,k,n} \otimes (C_2_+), X \otimes \MGL_2).\]
+%
+  %Now, for any $A \in \SHR^{\at} _{i2}$ and $n \in \Z$, we have
+  %\[\Map_{\SHR^{\at} _{i2}} (\Ss^{0,0,n}, Y \otimes \MGL_2) \simeq \varinjlim_k \Map_{\SHR^{\at} _{i2}} (\Ss^{0,0,n}, Y \otimes \MGL(k,k)_2) \simeq \varinjlim_k \Map_{\SHR^{\at} _{i2}} (\Ss^{0,0,n} \otimes \mathbb{D}(\MGL(k,k)), Y \otimes \MGL_2).\]
+%\end{proof}
+%
+%-----------------
+%
+%Finally, we wish to prove that several $\R$-motivic spectra of interest can be recovered from their Betti realizations via the functor $\Gamma_*$.
+%
+%\begin{thm}\label{thm:recover}
+%  There are natural equivalences in $\SHR_{i2}$:
+%  \[\MGL_2 \simeq \Gamma_* (\MU_{\R,2})\]
+%  \[\HFt \simeq \Gamma_* (\uFt)\]
+%  \[\HZt \simeq \Gamma_* (\uZt)\]
+%  \[\kgl_2 \simeq \Gamma_* (\ku_{\R,2})\]
+%  \[\kq_2 \simeq \Gamma_* (\ko_{C_2, 2}).\]
+%\end{thm}
+%
+%\begin{rmk}
+%  In light of \Cref{thm:recover}, it would be reasonable to define an $\R$-motivic spectrum of motivic modular forms as $\Gamma_* (\tmf_{C_2,2})$, assuming that one had a good equivariant spectrum of $C_2$-motivic modular forms $\tmf_{C_2,2}$.
+%  Since no such equivariant spectrum has yet been constructed, we leave this to future work. \todo{Mention why previous attempts don't work? Errors in the literature?}
+%\end{rmk}
+%
+%We will prove \Cref{thm:recover} as an application of a general criterion for there to be an equivalence $X \simeq \Gamma_* (\b(X))$. This will be based on the following definition:
+%
+%\begin{dfn}
+%  We say that a Galois cellular $\R$-motivic spectrum $X$ is \emph{slice simple} if the following conditions hold:
+% \begin{itemize}
+%    \item The groups $\pi_{k,k,*} ^\R X$ and $\pi_{k,*} ^\C X_{\C}$ are $\ta$-torsion free for all $k \in \Z$.
+%    \item The groups $\pi_{k,k,n} ^\R X \otimes C(\ta)$ are zero for $n \neq k$, and the groups $\pi_{k,n} ^{\C} X_{\C} \otimes C(\tau)$ are zero for $n \neq 2k+1, 2k$.
+%      Furthermore, the groups $\pi_{k+1,k,n} ^\R X \otimes C(\ta) / \ker(\res)$ are zero for $n \neq k$, where $\res : \pi_{p,q,w} ^\R \to \pi_{p+q,w} ^\C$ is the map induced by base change.
+%  \end{itemize}
+%\end{dfn}
+%
+%\begin{prop}
+%  Suppose that $X \in \SHR^{gc}$ is $\eta$-complete and bounded below with respect to the effective slice filtration. Then $X \simeq \Gamma_*(\b(X))$ if and only if $\MGL_2 \otimes X$ is slice simple.
+%
+%
+%  under the following assumptions:
+%  \begin{itemize}
+%    \item The groups $\MGL_{k,k,*} ^\R X$ and $\MGL_{k,*} ^\C X_{\C}$ are $\ta$-torsion free for all $k \in \Z$.
+%    \item The groups $\MGL_{k,k,n} ^\R X \otimes C(\ta)$ are zero for $n \neq k$, and the groups $\MGL_{k,n} ^{\C} X_{\C} \otimes C(\tau)$ are zero for $n \neq 2k+1, 2k$.
+%      Furthermore, the groups $\MGL_{k+1,k,n} ^\R X \otimes C(\ta) / \ker(\res)$ are zero for $n \neq k$.
+%  \end{itemize}
+%\end{prop}
+%
+%\begin{proof}
+%  By definition of slice simple, we find that $X$ lies in $\SHR^{\at, \cn} _{\geq 0, i2}$, so that the natural map $X \to X[\ta^{-1}]$ factors through a map $X \to \tau_{\geq 0} ^{\cn} (X[\ta^{-1}])$.
+%
+%  By a PROP and the definition of slice simple, we see that this map induces an equivalence on $\MGL_2$-homology. Since $X$ is $\eta$-complete, it is $\MGL_2$-complete and so this implies that $X \to \tau_{\geq 0} ^{\cn} (X[\ta^{-1}])$ is an equivalence.
+%
+%  Examining the definitions, we find that $\Gamma_* \b(X) \simeq \tau_{\geq 0} ^{\cn} X[\ta^{-1}]$, so we win.
+%\end{proof}
+%
+%\begin{lem}
+%  The functors
+%  \[\pi_{k,k,n} ^\R\]
+%  \[\pi_{k+1,k,n} ^\R / \ker(\res) \]
+%  \[\pi_{k,n} ^\C \]
+%  are jointly conservative on $\SHR ^{gc}$.
+%\end{lem}
+%
+%\begin{proof}
+%  By joint conservativity of $\pi_{p,q,w} ^\R$, the functors
+%  \[X \mapsto \Map_{\SHR_{i2}} (\Ss^{0,0,w}, X)\]
+%  are jointly conservative on $\SHR^{gc} _{i2}$.
+%
+%  Then the result follows from the joint conservativity of the functors $\piu_{n\rho}$ and $\piu_{n\rho+1} / \ker(\res)$ on $C_2$-spectra. This in turn follows from the identification of the slices of a $C_2$-spectrum.
+%\end{proof}
+%
+%\begin{lem}
+%  Suppose that $X \in \Sp_{C_2, ip}$ is an $\MU_{\R,2}$-module. Then $\Gamma_* X$ is slice simple.
+  %Then the the groups
+  %$\pi_{k,k,n} ^\R \nu X$ and $\pi_{k+1,k,n} ^\R \nu X / \ker(\res)$ are zero for $n > k$ and $\pi_{k,n} ^\C \nu X$ is zero for $n > 2k$.
+  %On the other hand, the maps induced by Betti realization
+  %$\pi_{k,k,n} ^\R \nu X \to \pi_{k\rho} ^{C_2} X$ and
+  %$\pi_{k+1,k,n} ^\R \nu X  \to \pi_{k\rho+1}^{C_2} X /\ker(\res)$
+  %are isomorphisms for $n \leq k$, and the map
+  %$ $
+  %is an isomorphism for $n \leq k$.
+%\end{lem}
+%
+%\begin{proof}
+%  Since $X$ is an $\MUR$-module, the cosimplicial diagram $X \otimes \MUR^{\bullet +1}$ admits a contracting homotopy, hence the diagrams $P_{2n} (X \otimes \MUR^{\bullet+1})$ do as well.
+%  It follows that $\Tot (P_{2n} (X \otimes \MUR^{\bullet+1})) \simeq P_{2n} X$, so that $\Gamma_{n} (X) \simeq P_{2n} X$.
+%
+%  Since we have $P_{2n} ^{2n} X \simeq \Sigma^{n\rho} \piu_{n\rho} X$ and $P_{2n+1} ^{2n+1} X \simeq \Sigma^{n\rho+1} \piu_{n\rho+1} X / \ker(\res)$, the result follows.
+%\end{proof}
+%
+%
+%\begin{prop} \label{prop:sl-si-cond}
+%  The collection of slice simple Galois cellular $\R$-motivic spectra is closed under direct sums, retracts, and pure suspensions $\Sigma^{n,n,n}$.
+%
+%  Moreover, any $\eta$-complete Galois cellular $\R$-motivic spectrum whose $n$-slice is a direct sum of $\Sigma^{n,n,n} \HFt$ and $\Sigma^{n,n,n} \HZt$ for all $n$ is slice simple.
+%\end{prop}
+%
+%\begin{proof}
+%  The closure properties of slice simple $\R$-motivic spectra are clear from the definition.
+%
+%  The second statement follows from the slice spetral sequence and the following facts about the trigraded homotopy groups of $\HZt$ and $\HFt$, which may be read off from \Cref{thm:pthomology} and \Cref{thm:eqpthom}:
+%  \begin{itemize}
+%    \item $\pi_{k,k,*} ^\R \HZt \cong \pi_{k,k,*} ^\R \HFt \cong 0$ for $k \neq 0$.
+%    \item $\pi_{k+1,k,*} ^\R \HZt \cong \pi_{k+1,k,*} ^\R \HFt \cong 0$ for all $k$.
+%    \item $\pi_{0,0,*} ^\R \HZt \cong \Zt[\ta]$ and $\pi_{0,0,*} ^\R \HFt \cong \Ft[\ta]$.
+%    \item $\pi_{*,*} ^\C \HZt \cong \Zt[\tau]$ and $\pi_{*,*} ^\C \HFt \cong \Ft[\tau]$.
+%  \end{itemize}
+%\end{proof}
+%
+%\begin{cor} \label{cor:in-im-Gamma}
+%  There are equivalences
+%  \[\MGL_2 \simeq \nu(\MU_{\R,2})\]
+%  \[\HFt \simeq \nu(\uFt)\]
+%  \[\HZt \simeq \nu(\uZt)\]
+%  \[\kgl_2 \simeq \nu(\ku_2)\]
+%  \[\kq_2 \simeq \nu (\ko_2)\]
+%\end{cor}
+%
+%\begin{proof}
+%  It suffices to show that $\MGL \otimes E$ is slice simple for each of the spectra $E$ above.
+%  For $\MGL$, this follows from \Cref{prop:sl-si-cond}, since $\MGL \otimes \MGL$ is a direct sum of pure suspensions of $\MGL$ and the slices of $\MGL$ are of the specified form.
+%  Since $\HFt$, $\HZt$, and $\kgl_2$ are $\MGL$-modules, we learn that when $E$ is one of these, then $\MGL \otimes E$ is a direct sum of pure suspensions of $E$. Again, \Cref{prop:sl-si-cond} finishes the job.
+%
+%  Finally, for the case of $\kq$, we use the equivalence $\kq \otimes C(\eta) \simeq \kgl$ and the fact that $\eta = 0$ in $\pi_{0,1,1} ^\R \MGL$ to deduce that $\MGL \otimes \kgl \simeq \MGL \otimes \kq \otimes C(\eta) \simeq \MGL \otimes \kq \oplus \Sigma^{1,1,1} \MGL \otimes \kq$.
+%  It follows that $\MGL \otimes \kq$ is a retract of $\MGL \otimes \kgl$, so that $\MGL \otimes \kq$ is slice simple.
+%\end{proof}
+%
+%\begin{rmk}
+%  In light of \Cref{thm:complete-compare}, we see that in \Cref{cor:in-im-Gamma} we can tensor by $\Ss_2$ instead of $2$-competing.
+%\end{rmk}
+

@@ -1,0 +1,2134 @@
+\section{Objects in the permanent $h_6^2$ statement}
+\label{chap:h6-statement}
+
+This section develops the target-specific objects needed for the permanent-cycle
+proof. The preceding general tower and page foundations are recorded in the
+mathematical-background chapter. The explicit Milnor cooperation coordinates, the
+constructed sphere sequence, and the standard $h_6^2$ class are introduced
+here; the reduction to $d_{12}$ and the conditions used in its exclusion
+belong to the later proof.
+
+\begin{definition}[Constructed sphere Adams sequence]
+  \label{def:h6-constructed-sphere-sequence}
+  \lean{KIP126.Classical.Adams.adamsTowerSpectralSequence}
+  \lean{KIP126.Classical.Adams.mod2SphereAdams}
+  \uses{prop:h6-tower-page-passage,def:h6-em-object}
+  \notready
+  Specialize the tower to $X=S^0$ and display its quotient-page spectral
+  sequence from $E_2$, with differential bidegree $(r,r-1)$.
+  Its underlying abelian groups may be regarded as integer modules.
+  Given the ring and additive-tensor structures, the mod--$2$ scalars are
+  derived in Proposition~\ref{prop:h6-derived-mod2-pages}. The Milnor
+  coordinates below specify the further cobar comparison; no
+  convergence-to-an-abutment assertion is required to state pagewise
+  nonzero permanence.
+\end{definition}
+
+% SOURCE: J. M. Boardman, Stable operations in generalized cohomology,
+% p. 208, (7.4), verified at
+% https://www.sas.rochester.edu/mth/sites/doug-ravenel/otherpapers/boardman-8.pdf
+\begin{definition}[Normalized Milnor cobar cochains]
+  \label{def:h6-milnor-cobar}
+  \lean{KIP126.Steenrod.Milnor.TensorPower}
+  \lean{KIP126.Steenrod.Milnor.weight}
+  \lean{KIP126.Steenrod.Milnor.coproductGenerator}
+  \lean{KIP126.Steenrod.Milnor.cochains}
+  \lean{KIP126.Steenrod.Milnor.differential}
+  \lean{KIP126.Steenrod.Milnor.cup}
+  \uses{def:mathlib-f2}
+  \leanok
+  Set $\mathcal A_*=\mathbb F_2[\xi_1,\xi_2,\ldots]$, with
+  $|\xi_i|=2^i-1$, $\xi_0=1$, and
+  \[
+    \Delta\xi_n=\sum_{i=0}^n\xi_{n-i}^{2^i}\otimes\xi_i.
+  \]
+  Define $C^{s,t}$ as the internal-degree-$t$ polynomials in $s$ tensor
+  slots whose augmentation in every slot is zero.  The cobar differential
+  is the sum of the two end coaugmentations and the coproduct in each slot.
+  The product $C^{s,t}\otimes C^{s',t'}\to C^{s+s',t+t'}$ concatenates slots.
+\end{definition}
+
+\begin{proposition}[Monomial basis and word tensor decomposition]
+  \label{prop:h6-cobar-monomial-basis}
+  \lean{KIP126.Steenrod.Milnor.mem_cochains_iff_monomials,KIP126.Steenrod.Milnor.cochainsMonomialBasis,KIP126.Steenrod.Milnor.cochainsMonomialBasis_val,KIP126.Steenrod.Milnor.cochainsWordEquiv,KIP126.Steenrod.Milnor.wordTensorEquiv,KIP126.Steenrod.Milnor.wordTensorEquiv_single}
+  \uses{def:h6-milnor-cobar}
+  \leanok
+  The normalized homogeneous cochains have the specified monomial basis:
+  an exponent belongs to the basis exactly when it has weight $t$ and
+  uses every tensor slot. Let $P_i$ be the nonconstant Milnor monomials of
+  integer degree $i$, and let $W_s(t)$ be the length-$s$ words in these
+  monomials with total degree $t$. Then there are constructed isomorphisms
+  \[
+    C^{s,t}\cong\mathbb F_2^{(W_s(t))},\qquad
+    \bigoplus_{i\in\mathbb Z}
+       \mathbb F_2^{(P_i)}\otimes\mathbb F_2^{(W_s(t-i))}
+       \cong\mathbb F_2^{(W_{s+1}(t))}.
+  \]
+  Superscripts in parentheses denote finite support. The first map takes
+  actual polynomial coefficients. The second sends the tensor of two
+  basis vectors to the prepended word with multiplied coefficient.
+  Integer degrees are retained, so negative-degree word sets are empty.
+\end{proposition}
+\begin{proof}
+  Augmenting a slot deletes precisely the monomials using that slot; all
+  remaining monomials retain their coefficients, so there is no hidden
+  cancellation. Combine this with weighted homogeneity and restrict the
+  polynomial coefficient equivalence. Curry exponents into individual
+  slots and split a nonempty word into its head and tail. Finally apply
+  the finite-support tensor and direct-sum equivalences, checking their
+  values on basis vectors.
+  \leanok
+\end{proof}
+
+\begin{definition}[Below-page reduced Milnor basis input]
+  \label{def:h6-reduced-milnor-basis-input}
+  \lean{KIP126.StableHomotopy.Cohomology.Mod2ReducedMilnorBasis}
+  \uses{prop:h6-graded-tensor-kernel,prop:h6-cobar-monomial-basis}
+  \leanok
+  A \texttt{Mod2ReducedMilnorBasis} specifies for each integer $i$ a basis
+  of the actual reduced cooperation group
+  $\ker(\pi_i(H\wedge H)\xrightarrow{\mu_*}\pi_iH)$ indexed by $P_i$.
+  It has no Adams page, page coordinate, differential, or permanence field.
+  The input structure is defined, but its existence on the fixed foundation
+  is not proved or postulated here. A graded basis alone does not supply
+  the Milnor coproduct compatibility.
+\end{definition}
+
+\begin{definition}[Full single-slot monomials]
+  \label{def:h6-full-milnor-monomials}
+  \lean{KIP126.Steenrod.Milnor.MilnorMonomial,KIP126.Steenrod.Milnor.zeroMilnorMonomial,KIP126.Steenrod.Milnor.milnorMonomialEquivPositive,KIP126.Steenrod.Milnor.milnorZeroCoefficientsEquiv}
+  \uses{prop:h6-cobar-monomial-basis}
+  \leanok
+  Let $M_n$ consist of finite exponent vectors $d$ of integer weight $n$,
+  including the zero exponent vector. The unique degree-zero monomial
+  is the constant monomial. For $n\ne0$, forgetting or adding the
+  nonzero-exponent condition gives $M_n\cong P_n$.
+  The degree-zero coefficient space is identified with $\mathbb F_2$
+  by evaluation at the constant monomial. Negative degrees are retained,
+  not replaced with their nonnegative truncation.
+\end{definition}
+
+\begin{proposition}[Complete cooperation coordinates with the actual unit]
+  \label{prop:h6-full-milnor-coordinates}
+  \lean{KIP126.Steenrod.Milnor.slotWeight_eq_zero_iff,KIP126.Steenrod.Milnor.positiveMonomial_degree_pos,KIP126.StableHomotopy.Cohomology.cooperationCounit_surjective,KIP126.StableHomotopy.Cohomology.reducedCooperations_zero_subsingleton,KIP126.StableHomotopy.Cohomology.cooperationCounitF2_zero_bijective,KIP126.StableHomotopy.Cohomology.cooperationMilnorEquiv,KIP126.StableHomotopy.Cohomology.cooperationMilnorEquiv_zero_coefficient,KIP126.StableHomotopy.Cohomology.cooperationMilnorEquiv_unit,KIP126.StableHomotopy.Cohomology.cooperationMilnorEquiv_of_ne,KIP126.StableHomotopy.Cohomology.cooperationMilnorEquiv_reduced_basis}
+  \uses{def:h6-full-milnor-monomials,def:h6-reduced-milnor-basis-input,prop:h6-cooperation-unit-laws}
+  \leanok
+  Given only the existing reduced Milnor basis, the ring structure and
+  additive tensor, construct for every integer $n$ a linear isomorphism
+  \[
+    \Phi_n:\pi_n(H\wedge H)\cong\mathbb F_2^{(M_n)}.
+  \]
+  It sends the actual cooperation unit to the constant monomial with
+  coefficient one, and every supplied reduced basis vector to its original
+  nonconstant monomial. In degree zero its sole coefficient is exactly
+  the actual counit followed by the specified $\pi_0H\cong\mathbb F_2$.
+  In other degrees the actual counit is zero and the comparison uses
+  precisely the original reduced basis. No full-basis existence input,
+  K\"unneth comparison, or Adams page is used.
+  This does not prove preservation of multiplication or the Milnor
+  coproduct; it supplies the unit- and counit-compatible coordinates
+  needed to formulate that remaining coproduct comparison.
+\end{proposition}
+\begin{proof}
+  All single-variable weights are positive, so weight zero forces the
+  zero exponent vector. Hence $P_0$ is empty and its basis forces the
+  actual counit kernel in degree zero to vanish. The actual unit splits
+  the counit, which is therefore a linear isomorphism in that degree.
+  Use its coefficient to fill the unique constant monomial. Away from
+  zero, $\pi_nH=0$, so the full cooperation group equals its counit kernel;
+  apply the original basis coordinates and the identification $P_n\cong M_n$.
+  The ring unit law proves the asserted constant coefficient, while
+  basis-coordinate evaluation proves the reduced-vector formula.
+  \leanok
+\end{proof}
+
+\begin{definition}[Below-page Milnor coproduct comparison]
+  \label{def:h6-milnor-coproduct-input}
+  \lean{KIP126.StableHomotopy.Cohomology.milnorMonomialPolynomial,KIP126.StableHomotopy.Cohomology.cooperationMilnorPolynomial,KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorPolynomial,KIP126.StableHomotopy.Cohomology.Mod2MilnorCoproductCompatible}
+  \uses{prop:h6-full-milnor-coordinates,def:h6-kunneth-diagonal-input}
+  \leanok
+  Realize the full coordinates as a linear map $P_n$ into the existing
+  one-slot polynomial algebra. On the tensor square, let $Q_n$ concatenate
+  the two polynomial coordinates in adjacent slots. The remaining Milnor
+  coproduct condition is, for each supplied reduced basis vector $b_d$,
+  \[
+    Q_n\Delta(b_d)=\operatorname{splitSlot}_0(m_d).
+  \]
+  Here $\Delta$ is actual middle-unit insertion followed by K\"unneth,
+  and $m_d$ is the corresponding monomial. Thus the two sides are
+  independently defined. The quantifier runs over all reduced basis
+  monomials, not just algebra generators. This definition neither asserts
+  existence of a compatible basis on the fixed foundation nor prescribes
+  an Adams page differential.
+\end{definition}
+
+\begin{proposition}[Extend the coproduct comparison from the basis]
+  \label{prop:h6-milnor-coproduct-linear-extension}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperation_linearMap_ext,KIP126.StableHomotopy.Cohomology.cooperationMilnorPolynomial_unit,KIP126.StableHomotopy.Cohomology.cooperationMilnorPolynomial_reduced_basis,KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorPolynomial_lof_tmul,KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorPolynomial_unit,KIP126.StableHomotopy.Cohomology.cooperationMilnorCoproduct_unit,KIP126.StableHomotopy.Cohomology.cooperationMilnorCoproduct,KIP126.StableHomotopy.Cohomology.mod2MilnorCoproductCompatible_iff}
+  \uses{def:h6-milnor-coproduct-input,def:h6-kunneth-unit-input,prop:h6-cooperation-unit-laws}
+  \leanok
+  Two families of linear maps on actual cooperations agree if they agree
+  on the actual unit and the reduced basis. Under K\"unneth unit coherence,
+  the constant case of the coproduct formula follows from the actual unit
+  law. Consequently the reduced-basis condition is equivalent to
+  \[
+    Q_n\Delta(a)=\operatorname{splitSlot}_0(P_n(a))
+    \qquad\text{for every integer }n\text{ and }a\in\pi_n(H\wedge H).
+  \]
+  This is a conditional linear-extension theorem, not a proof of the
+  coproduct input or of the full cobar differential comparison.
+\end{proposition}
+\begin{proof}
+  Pull the two linear maps back along the full coordinate isomorphism
+  $\Phi_n$. Finite-support linear maps are determined by their singletons.
+  The degree-zero singleton corresponds to the actual unit, and all other
+  singletons correspond to the original reduced basis. The coordinate
+  map sends the unit to $1$, and the tensor coordinate map sends the unit
+  tensor to $1$. Apply the previously proved group-like unit identity and
+  then the singleton criterion. The reverse implication is specialization
+  to the reduced basis.
+  \leanok
+\end{proof}
+
+\begin{definition}[Derived basis of the cooperation tensor square]
+  \label{def:h6-milnor-tensor-basis}
+  \lean{KIP126.StableHomotopy.Cohomology.MilnorPair,KIP126.StableHomotopy.Cohomology.milnorPairExponents,KIP126.StableHomotopy.Cohomology.cooperationMilnorBasis,KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorBasis}
+  \uses{prop:h6-full-milnor-coordinates,def:h6-milnor-coproduct-input}
+  \leanok
+  In total degree $n$, index tensor basis vectors by
+  $\coprod_{i\in\mathbb Z} M_i\times M_{n-i}$.
+  Derive the basis of each genuine cooperation group from its existing
+  full coordinates, tensor these bases, and take their direct-sum basis.
+  Encode a pair of exponents in slots zero and one. There is no additional
+  basis-existence assumption.
+\end{definition}
+
+\begin{proposition}[Faithful polynomial coordinates and coproduct tests]
+  \label{prop:h6-milnor-polynomial-faithful}
+  \lean{KIP126.StableHomotopy.Cohomology.milnorPairExponents_injective,KIP126.StableHomotopy.Cohomology.cup_milnorMonomialPolynomial,KIP126.StableHomotopy.Cohomology.cooperationMilnorPolynomial_basis,KIP126.StableHomotopy.Cohomology.cooperationMilnorPolynomial_injective,KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorBasis_apply,KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorPolynomial_basis,KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorPolynomial_injective,KIP126.StableHomotopy.Cohomology.cooperationTensorDiagonal_eq_iff}
+  \uses{def:h6-milnor-tensor-basis,prop:h6-milnor-coproduct-linear-extension}
+  \leanok
+  Both the one-slot map $P_n$ and the tensor map $Q_n$ are injective.
+  Assuming the stated unit and Milnor coproduct compatibilities, any
+  proposed tensor value $z$ can therefore be tested exactly:
+  \[
+    \Delta(a)=z\quad\Longleftrightarrow\quad
+    \operatorname{splitSlot}_0(P_n(a))=Q_n(z).
+  \]
+  The polynomial comparison does not silently discard a tensor kernel.
+  Surjectivity onto the entire polynomial algebra is neither claimed nor
+  needed; $n$ remains a fixed total degree.
+\end{proposition}
+\begin{proof}
+  The one-slot monomial embedding has distinct exponents. In two slots,
+  restriction to each slot recovers the two exponent vectors; the weight
+  of the first vector also recovers its direct-sum degree $i$.
+  Thus all tensor basis vectors map to distinct polynomial monomials.
+  Linear independence of polynomial monomials gives both injectivity
+  assertions. Apply tensor injectivity and the previously proved full
+  coproduct formula to obtain the equivalence.
+  \leanok
+\end{proof}
+
+\begin{definition}[Right unit tensor]
+  \label{def:h6-right-unit-tensor}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationTensorRightUnit}
+  \uses{prop:h6-cooperation-unit-laws}
+  \leanok
+  Define the linear map $a\mapsto a\otimes1$ by inserting the actual
+  cooperation unit in the second factor of the degree-$n$ summand, with
+  the canonical degree cast $0=n-n$. This construction uses neither
+  Milnor coordinates nor K\"unneth.
+\end{definition}
+
+\begin{proposition}[The actual primitive cooperation representing the h-six polynomial]
+  \label{prop:h6-actual-primitive-cooperation}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorPolynomial_leftUnit,KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorPolynomial_rightUnit,KIP126.StableHomotopy.Cohomology.cooperationMilnorPolynomial_h6_existsUnique,KIP126.StableHomotopy.Cohomology.cooperationTensorDiagonal_primitive_iff,KIP126.StableHomotopy.Cohomology.cooperationTensorDiagonal_primitive_of_h6Polynomial,KIP126.StableHomotopy.Cohomology.cooperationTensorDiagonal_h6_existsUnique}
+  \uses{prop:h6-milnor-polynomial-faithful,def:h6-right-unit-tensor}
+  \leanok
+  The two actual unit tensors have coordinates given by the left and right
+  polynomial insertions. Under the explicit unit and Milnor coproduct
+  compatibilities, $\Delta(a)=1\otimes a+a\otimes1$ is equivalent to the
+  same primitive identity for $P_n(a)$.
+  There is a unique actual cooperation $a\in\pi_{64}(H\wedge H)$ with
+  $P_{64}(a)=\xi_1^{64}$; under those compatibilities it is primitive.
+  Existence is constructed from the derived full basis, not supplied as
+  another input. This is a statement about a cooperation underlying the
+  standard one-bar cocycle, not an identification of a permanent Adams
+  class or a proof of survival of its square.
+\end{proposition}
+\begin{proof}
+  The exponent vector with exponent $64$ at $\xi_1$ has weight $64$.
+  Its basis vector supplies the required cooperation, uniquely by
+  injectivity of $P_{64}$. The unit tensor formulas and injectivity of
+  $Q_{64}$ reduce the primitive identity to the existing polynomial
+  coproduct. In characteristic two, the $64$th power of a sum is the sum
+  of the $64$th powers, giving the desired formula.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The actual tensor boundary is a comodule map]
+  \label{prop:h6-tensor-boundary-comodule}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationTensorLowerMap_unit,KIP126.Classical.Adams.adamsTensorCoaction_tensorBoundary,KIP126.Classical.Adams.adamsTensorBoundary_unit}
+  \uses{prop:h6-next-stage-coproduct,prop:h6-first-cycle-coaction}
+  \leanok
+  Write $q_X$ for the actual homology connecting map after inverse
+  K\"unneth, lowering degree by one. Under the explicit suspension,
+  diagonal, and unit compatibilities, for every tensor $w$,
+  \[
+    \rho_{\operatorname{fib}(\eta_X)}q_X(w)
+      =(1\otimes q_X)(\Delta\otimes1)(w),
+    \qquad q_X(1\otimes x)=D_1(x).
+  \]
+  The first identity is valid before normalization; the second uses the
+  original tower first differential. Unit tensors also commute with
+  arbitrary degree-minus-one linear maps, with all grading casts retained.
+\end{proposition}
+\begin{proof}
+  Choose the inverse K\"unneth representative of $w$. Apply naturality of
+  the actual coaction with the connecting map, then diagonal coherence
+  and composition of the right tensor maps. For the unit tensor, unit
+  coherence converts it to outer-unit insertion; the previously proved
+  boundary formula gives the actual $D_1$. The degree-cast identities
+  for the elementary unit tensor follow by transporting equal indices.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Primitive tensors give cycles at the next tower stage]
+  \label{prop:h6-primitive-next-stage-cycle}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationTensorComultiply_primitive,KIP126.Classical.Adams.adamsHomologyD1_tensorBoundary_primitive,KIP126.Classical.Adams.sphereAdamsHomologyD1_tensorBoundary_primitive,KIP126.Classical.Adams.sphereAdamsPageD_one_tensorBoundary_primitive}
+  \uses{prop:h6-tensor-boundary-comodule,def:h6-right-unit-tensor,prop:h6-first-cycle-coaction,prop:h6-sphere-unit-image}
+  \leanok
+  Under the same low-level compatibilities, let $a\in\pi_k(H\wedge H)$
+  satisfy $\Delta a=1\otimes a+a\otimes1$ and let
+  $x\in H_{n-k}(X;\mathbb F_2)$ satisfy $D_1x=0$.
+  Then the actual next-stage class $q_X(a\otimes x)$ has $D_1=0$.
+  For $X=S^0$ every coefficient class satisfies the required condition.
+  Transferring by the existing first-page homology isomorphism gives
+  a class in the actual $E_1^{1,n}$ whose actual quotient-page
+  differential to $E_1^{2,n}$ is zero. No Milnor coordinates are used
+  in this general statement, and nonzero classes are not asserted here.
+\end{proposition}
+\begin{proof}
+  Reassociation and primitivity expand $(\Delta\otimes1)(a\otimes x)$
+  into $1\otimes(a\otimes x)+a\otimes(1\otimes x)$.
+  The boundary-comodule identity and $q_X(1\otimes x)=D_1x=0$
+  give $\rho(q_X(a\otimes x))=1\otimes q_X(a\otimes x)$.
+  The actual first-cycle coaction criterion proves the claim.
+  Sphere coefficients are cycles by the already proved unit-surjectivity
+  argument. The original page/homology comparison transports this result
+  to the quotient-page differential.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The primitive h-six polynomial gives an actual first-page cycle]
+  \label{prop:h6-polynomial-actual-first-cycle}
+  \lean{KIP126.Classical.Adams.sphereAdamsPageD_one_h6_tensorBoundary,KIP126.Classical.Adams.sphereAdamsPageD_one_h6_tensorBoundary_existsUnique}
+  \uses{prop:h6-primitive-next-stage-cycle,prop:h6-actual-primitive-cooperation}
+  \leanok
+  Assume the explicit low-level K\"unneth and Milnor compatibilities.
+  There is a unique cooperation $a$ with $P_{64}(a)=\xi_1^{64}$.
+  For every degree-zero sphere coefficient $x$, the actual first-page
+  class obtained from $q_{S^0}(a\otimes x)$ lies in the kernel of
+  $d_1:E_1^{1,64}\to E_1^{2,64}$.
+  This uses the actual tower differential, not a differential supplied
+  by the fixed Milnor page-comparison input. It does not yet identify the
+  class with the fixed standard $h_6$ or prove any higher-page permanence.
+  Nonvanishing for a nonzero coefficient is established below.
+\end{proposition}
+\begin{proof}
+  The preceding polynomial calculation makes the unique cooperation
+  primitive. Apply the general primitive-cycle construction in total
+  degree $64$ with first-factor degree $64$. Uniqueness remains exactly
+  uniqueness of the single-slot cooperation coordinate.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Nonzero primitive-polynomial first cycle]
+  \label{prop:h6-nonzero-first-cycle}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2SphereHomology_exists_ne_zero,KIP126.StableHomotopy.Cohomology.cooperation_ne_zero_of_h6Polynomial,KIP126.StableHomotopy.Cohomology.cooperationTensor_lof_tmul_ne_zero,KIP126.Classical.Adams.adamsTensorBoundary_eq_zero_iff_of_augmentation_eq_zero,KIP126.Classical.Adams.sphereAdamsPageOne_h6_tensorBoundary_ne_zero,KIP126.Classical.Adams.sphereAdamsPageOne_h6_nonzero_cycle_exists}
+  \uses{prop:h6-polynomial-actual-first-cycle,prop:h6-homology-normalization,prop:h6-sphere-unit-image}
+  \leanok
+  Under the same explicit structural hypotheses, choose a nonzero
+  degree-zero sphere coefficient $x$. The first-page cycle obtained from
+  the cooperation with polynomial $\xi_1^{64}$ is nonzero.
+\end{proposition}
+\begin{proof}
+  The sphere unitor and the specified degree-zero coefficient equivalence
+  provide $x\ne0$. A cooperation with nonzero polynomial is nonzero.
+  A pure tensor of two nonzero vectors over $\mathbb F_2$ is nonzero,
+  as witnessed by a linear functional on the first factor. Its positive
+  cooperation degree makes its augmentation zero. The proved normalized
+  boundary identity then prevents its image under $q$ from being zero.
+  Transport along the actual first-page homology equivalence.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Nonzero second-page class with polynomial provenance]
+  \label{prop:h6-nonzero-second-page}
+  \lean{KIP126.Classical.Adams.sphereAdamsPageTwo_nonzero_of_first_cycle,KIP126.Classical.Adams.sphereAdamsPageTwo_h6_nonzero_exists}
+  \uses{prop:h6-nonzero-first-cycle,prop:h6-sphere-unit-image}
+  \leanok
+  Every nonzero first-page sphere cycle in filtration one has a
+  $Z_2$ representative whose $E_1$ image is that cycle and whose $E_2$
+  quotient class is nonzero. In particular the preceding polynomial
+  construction gives such a representative in bidegree $(1,64)$.
+  All structural hypotheses remain explicit. This does not identify it
+  with the fixed standard $h_6$, prove a multiplicative comparison, or
+  establish the permanence of its square.
+\end{proposition}
+\begin{proof}
+  Lift the first-page class to $Z_1$; the zero differential makes the
+  same element lie in $Z_2$. If its second-page class vanished, the
+  exact-couple boundary theorem would express the original class as an
+  incoming $d_1$ from filtration zero. That differential is zero by the
+  sphere unit-image theorem, contradicting the original nonvanishing.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The primitive-polynomial class on the internal page]
+  \label{prop:h6-nonzero-internal-second-page}
+  \lean{KIP126.Classical.Adams.sphereAdamsInternalE2_h6_nonzero_exists}
+  \uses{prop:h6-nonzero-second-page,prop:h6-first-cycle-internal-class}
+  \leanok
+  Under the explicit structural hypotheses above, the polynomial
+  $\xi_1^{64}$ gives a nonzero class on KIP126's internal $E_2^{1,64}$.
+  The statement retains its actual $Z_2$ representative, its original
+  first-page tensor-boundary class, and the specified cooperation polynomial.
+\end{proposition}
+\begin{proof}
+  Apply the internal first-cycle construction to the proved nonzero
+  second-page representative. The exact comparison preserves nonvanishing.
+  No fixed Milnor or Lin comparison is invoked.
+  \leanok
+\end{proof}
+
+\begin{definition}[Twice-applied tensor-boundary representative]
+  \label{def:h6-double-tensor-representative}
+  \lean{KIP126.Classical.Adams.sphereH6TensorRepresentative,KIP126.Classical.Adams.sphereH6DoubleTensorRepresentative}
+  \uses{prop:h6-tensor-boundary-comodule,prop:h6-actual-primitive-cooperation}
+  \leanok
+  For a degree-$64$ cooperation $a$ and $x\in H_0(S^0;\mathbb F_2)$,
+  set $y=q_{S^0}(a\otimes x)\in H_{63}(T_1)$ and
+  $w=q_{T_1}(a\otimes y)\in H_{126}(T_2)$.
+  These are actual connecting maps, not a prescribed page multiplication.
+\end{definition}
+
+\begin{proposition}[The double representative is a nonzero first cycle]
+  \label{prop:h6-double-first-cycle}
+  \lean{KIP126.Classical.Adams.sphereH6DoubleTensorRepresentative_ne_zero,KIP126.Classical.Adams.sphereAdamsPageOne_h6_double_ne_zero,KIP126.Classical.Adams.sphereH6DoubleTensorRepresentative_d1_zero,KIP126.Classical.Adams.sphereAdamsPageD_one_h6_double_zero,KIP126.Classical.Adams.sphereAdamsDifferential_one_h6_double_zero}
+  \uses{def:h6-double-tensor-representative,prop:h6-nonzero-first-cycle,prop:h6-primitive-next-stage-cycle}
+  \leanok
+  Suppose $P_{64}(a)=\xi_1^{64}$ and $x\ne0$. Under the explicit structural
+  compatibilities, the resulting actual $E_1^{2,128}$ class is nonzero
+  and has zero $d_1$. This does not assert that it is not an incoming boundary.
+\end{proposition}
+\begin{proof}
+  Apply the primitive-cycle theorem twice. Each tensor has nonzero first
+  factor in positive cooperation degree, so the normalized-boundary
+  identity proves nonvanishing at each step. Transfer to the original
+  quotient page through its homology equivalence.
+  \leanok
+\end{proof}
+
+\begin{definition}[The double construction on the internal target page]
+  \label{def:h6-double-internal-second-page}
+  \lean{KIP126.Classical.Adams.sphereH6DoubleInternalE2}
+  \uses{prop:h6-double-first-cycle,def:h6-first-cycle-internal-class}
+  \leanok
+  Send the double first cycle to the existing internal $E_2^{2,128}$
+  by the general first-cycle construction. The definition takes the
+  low-level structures and compatibilities explicitly.
+\end{definition}
+
+\begin{proposition}[Provenance and remaining boundary test for the double class]
+  \label{prop:h6-double-internal-representative}
+  \lean{KIP126.Classical.Adams.sphereH6DoubleInternalE2_representative,KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_zero_iff}
+  \uses{def:h6-double-internal-second-page,prop:h6-first-cycle-internal-class}
+  \leanok
+  The double internal class has a genuine $Z_2$ lift of the specified
+  double first cycle. It vanishes exactly when such a lift lies in $B_2$.
+  Exclusion of that boundary, identification with the fixed standard or
+  computed square, and higher-page survival remain open for this construction.
+\end{proposition}
+\begin{proof}
+  Specialize the general first-cycle lifting, comparison, and vanishing
+  theorems. No non-boundary or permanence premise is inserted.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Derived all-filtration Milnor vector-space coordinates]
+  \label{prop:h6-derived-milnor-coordinates}
+  \lean{KIP126.StableHomotopy.Cohomology.reducedTensorMilnorWordEquiv,KIP126.Classical.Adams.sphereHomologyEmptyWordEquiv,KIP126.Classical.Adams.sphereTowerHomologyWordEquiv,KIP126.Classical.Adams.sphereFirstPageMilnorEquiv,KIP126.Classical.Adams.sphereTowerHomologyWordEquiv_d1}
+  \uses{def:h6-reduced-milnor-basis-input,prop:h6-cobar-monomial-basis,prop:h6-kunneth-tower-recurrence,prop:h6-first-differential-cobar-step}
+  \leanok
+  Given the reduced-cooperation basis, the homology-level K\"unneth input,
+  the ring structure, and the tensor exactness and suspension structure
+  used in the recurrence, one obtains for every $s\geq0$ and integer $n$
+  \[
+    H_n(T_s(S^0);\mathbb F_2)\cong\mathbb F_2^{(W_s(n+s))}.
+  \]
+  Composing with actual first-page homology and the proved polynomial
+  coefficient equivalence gives $E_1^{s,t}(S^0)\cong C^{s,t}$ for all
+  $s,t\geq0$. No page-coordinate field is used.
+  If the unit also commutes with suspension, the resolution differential
+  in these word coordinates equals the tensor-word conversion of
+  $c_{T_s,n}$ from Definition~\ref{def:h6-reduced-cobar-step}.
+  The equality with the explicitly specified Milnor polynomial
+  differential is not yet proved: it still requires the compatible
+  coproduct/coaction identification. The required structures and their
+  compatibility on the fixed sphere remain to be constructed.
+\end{proposition}
+\begin{proof}
+  In length zero, the tensor unitor and the Eilenberg--Mac Lane property
+  identify sphere homology with the empty word in degree zero and zero
+  in all other degrees. Induct using the actual next-fiber K\"unneth
+  isomorphism, replace each reduced factor using its basis, and prepend
+  words by the preceding tensor decomposition. The degree becomes
+  $n+s$, hence $t$ on $E_1^{s,t}$. The differential statement follows
+  from the already proved boundary/coaction formula, not an additional
+  differential input.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Reduced tensors are the exact coordinates of actual boundaries]
+  \label{prop:h6-reduced-boundary-coordinates}
+  \lean{KIP126.StableHomotopy.Cohomology.reducedCooperationTensorInclusion_lof_tmul,KIP126.StableHomotopy.Cohomology.cooperationTensorAugmentation_reduced_inclusion,KIP126.Classical.Adams.adamsNextHomologyTensorEquiv_boundary_reduced,KIP126.Classical.Adams.adamsNextHomologyTensorEquiv_boundary_lof_tmul,KIP126.StableHomotopy.Cohomology.reducedTensorMilnorWordEquiv_basis_single}
+  \uses{prop:h6-tensor-boundary-comodule,prop:h6-derived-milnor-coordinates}
+  \leanok
+  For every reduced tensor $w$, the derived next-stage coordinates send
+  the actual boundary of its inclusion back to $w$. An elementary reduced
+  basis tensor followed by a single word has the concatenated word as
+  its coordinates, with the same coefficient. No fixed page coordinates
+  or coproduct compatibility are required for these assertions.
+\end{proposition}
+\begin{proof}
+  A reduced tensor has augmentation zero, so the normalization identity
+  reduces to the inclusion of $w$. Cancel the injective reduced inclusion.
+  The direct-sum tensor coordinate map sends a reduced basis vector to its
+  single coefficient and then applies the already constructed word-cons
+  equivalence.
+  \leanok
+\end{proof}
+
+\begin{definition}[Specified h-six words and normalized sphere coefficient]
+  \label{def:h6-normalized-word-representatives}
+  \lean{KIP126.Steenrod.Milnor.emptyMilnorWord,KIP126.Steenrod.Milnor.h6PositiveMonomial,KIP126.Steenrod.Milnor.h6MilnorWord,KIP126.Steenrod.Milnor.h6SquareMilnorWord,KIP126.Classical.Adams.sphereMilnorUnitCoefficient}
+  \uses{prop:h6-derived-milnor-coordinates}
+  \leanok
+  Specify the empty word, the cooperation monomial $\xi_1^{64}$, its
+  length-one word, and the length-two word with two such factors. Normalize
+  the sphere coefficient by requiring its degree-zero empty-word coordinate
+  to be one, using the existing sphere unitor and specified $\pi_0$ coordinate.
+\end{definition}
+
+\begin{proposition}[Exact polynomial coordinates of the constructed representatives]
+  \label{prop:h6-exact-polynomial-representatives}
+  \lean{KIP126.Steenrod.Milnor.cochainsWordEquiv_h6,KIP126.Steenrod.Milnor.cochainsWordEquiv_h6Square,KIP126.Classical.Adams.sphereMilnorUnitCoefficient_ne_zero,KIP126.Classical.Adams.cooperation_h6_eq_reduced_basis,KIP126.Classical.Adams.sphereTowerHomologyWordEquiv_unitCoefficient,KIP126.Classical.Adams.sphereTowerHomologyWordEquiv_h6,KIP126.Classical.Adams.sphereTowerHomologyWordEquiv_h6_double,KIP126.Classical.Adams.sphereFirstPageMilnorEquiv_h6,KIP126.Classical.Adams.sphereFirstPageMilnorEquiv_h6_double}
+  \uses{def:h6-normalized-word-representatives,prop:h6-reduced-boundary-coordinates,def:h6-double-tensor-representative,prop:h6-first-boundary-word-coordinate,prop:h6-word-polynomial-realization}
+  \leanok
+  The normalized coefficient is nonzero. With this coefficient, the
+  derived first-page coordinates send the actual single and double tensor
+  boundaries exactly to the existing cochains $[\xi_1^{64}]$ and
+  $[\xi_1^{64}\mid\xi_1^{64}]$. This is equality of specified elements,
+  not merely agreement of their bidegrees.
+\end{proposition}
+\begin{proof}
+  Polynomial injectivity identifies the cooperation with its reduced
+  monomial basis vector. Apply the reduced-boundary coordinate formula
+  once and twice, starting with the empty word of coefficient one. The
+  inverse word map is the polynomial monomial with exactly those slot
+  exponents; for two slots it is the existing concatenation product.
+  Compose with the original first-page homology equivalence.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The internal double class has the specified square cochain]
+  \label{prop:h6-internal-square-polynomial-provenance}
+  \lean{KIP126.Classical.Adams.sphereH6DoubleInternalE2_polynomial_representative}
+  \uses{prop:h6-exact-polynomial-representatives,prop:h6-double-internal-representative}
+  \leanok
+  Under the explicit low-level cycle-compatibility hypotheses, the internal
+  double class with normalized sphere coefficient has an actual $Z_2$ lift
+  whose first-page coordinate under the derived equivalence is precisely
+  the existing square cochain. This does not compare the derived coordinates
+  with the independently assumed fixed Milnor coordinates or with Lin data.
+  Non-boundary, full differential compatibility, and permanence obligations
+  remain open.
+\end{proposition}
+\begin{proof}
+  Use the already proved actual $Z_2$ representative and substitute its
+  exact polynomial coordinate, retaining its image in the internal page.
+  \leanok
+\end{proof}
+
+\begin{definition}[Unit-corrected actual cooperation split]
+  \label{def:h6-actual-cobar-split}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationCobarDiagonal,KIP126.StableHomotopy.Cohomology.cooperationTensorCobarSplit}
+  \uses{prop:h6-tensor-boundary-comodule,def:h6-right-unit-tensor}
+  \leanok
+  Set $c(a)=1\otimes a+a\otimes1-\Delta(a)$ for actual cooperations.
+  On an arbitrary cooperation tensor $w$, define
+  $C(w)=U(w)+(1\otimes U)(w)-(\Delta\otimes1)(w)$, with reassociation
+  understood. These are operations on the existing tensors; reducedness
+  is not assumed for arbitrary inputs.
+\end{definition}
+
+\begin{proposition}[Actual splitting and its single-slot polynomial formula]
+  \label{prop:h6-actual-cobar-split}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationTensor_unitParts,KIP126.StableHomotopy.Cohomology.cooperationTensorCobarSplit_lof_tmul,KIP126.StableHomotopy.Cohomology.cooperationCobarDiagonal_polynomial}
+  \uses{def:h6-actual-cobar-split,prop:h6-actual-primitive-cooperation}
+  \leanok
+  The operation $C$ applies $c$ to the first tensor factor and reassociates.
+  Under the explicit low-level unit and Milnor coproduct comparisons,
+  $Q(c(a))=d_{\mathrm{poly}}P(a)$, where the right side is the existing
+  length-one polynomial differential, not a new prescribed differential.
+\end{proposition}
+\begin{proof}
+  Expand both unit terms and track the graded associator casts. Apply
+  the previously proved coproduct and unit-coordinate formulas. In
+  characteristic two subtraction equals addition, giving exactly the
+  two coaugmentation terms and the single split-slot term.
+  \leanok
+\end{proof}
+
+\begin{proposition}[First-differential recurrence for arbitrary tensor boundaries]
+  \label{prop:h6-actual-cobar-recurrence}
+  \lean{KIP126.Classical.Adams.adamsHomologyD1_tensorBoundary_cobar_recurrence,KIP126.Classical.Adams.sphereAdamsHomologyD1_tensorBoundary_cobar}
+  \uses{prop:h6-actual-cobar-split,prop:h6-first-cycle-coaction,prop:h6-tensor-boundary-comodule,prop:h6-sphere-unit-image}
+  \leanok
+  Write $L_q$ for tensoring the identity with the actual degree-minus-one
+  boundary, and $e$ for the derived next-stage tensor coordinates.
+  Under explicit K\"unneth compatibilities, for every tensor $w$ one has
+  \[
+    \iota e D_1 q(w)=L_q C(w)-L_{qU}(w).
+  \]
+  Here $qU=D_1$ on the remaining factor by the proved unit formula.
+  For sphere coefficients this remaining-factor term is zero. No
+  primitivity assumption on the first factor is made.
+\end{proposition}
+\begin{proof}
+  Substitute the boundary coaction formula into the actual
+  unit-minus-coaction differential formula. Expand $C$, commute the
+  unit insertion with the lowering map, and cancel the remaining-factor
+  term. For the sphere, its first differential already vanishes.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Exact test for the incoming first differential]
+  \label{prop:h6-first-incoming-cobar-image}
+  \lean{KIP126.Classical.Adams.adamsTensorBoundary_surjective,KIP126.Classical.Adams.sphereAdamsHomologyD1_image_cobar_iff,KIP126.Classical.Adams.sphereAdamsPageD_one_128_image_cobar_iff}
+  \uses{prop:h6-actual-cobar-recurrence,prop:h6-reduced-boundary-coordinates,prop:h6-first-page-homology}
+  \leanok
+  Every next-stage homology element is an actual tensor boundary. Thus an
+  element $y$ at the second sphere tower stage lies in the image of $D_1$
+  if and only if there exists a tensor $w$ with $L_qC(w)=\iota e(y)$.
+  In particular this gives an exact test for the image of
+  $d_1:E_1^{1,128}\to E_1^{2,128}$ on the original quotient pages.
+  The assertion does not prove that the double representative fails the
+  test by itself. The polynomial image criterion and non-boundary
+  calculation below subsequently exclude it for the normalized double
+  representative; later survival remains open.
+\end{proposition}
+\begin{proof}
+  For surjectivity use the reduced inclusion of $e(y)$ and the proved
+  inverse identity for the actual boundary. Apply the recurrence to
+  such a preimage; conversely use the injective inclusion and equivalence
+  to recover equality of homology classes. Transfer the image criterion
+  through the existing first-page homology equivalences.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Tensor equation for vanishing of the internal double class]
+  \label{prop:h6-internal-square-cobar-image}
+  \lean{KIP126.Classical.Adams.sphereH6DoubleTensorRepresentative_normalized,KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_zero_iff_is_differential,KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_zero_iff_cobar}
+  \uses{prop:h6-internal-first-cycle-image,prop:h6-first-incoming-cobar-image,def:h6-double-internal-second-page}
+  \leanok
+  Assume the explicit low-level compatibility conditions used to construct
+  the double class, and let $P(a)=[\xi_1^{64}]$ and $x\in H_0(S)$.
+  Write $b=q_S(a\otimes x)$. The constructed internal double class in
+  $E_2^{2,128}$ is zero if and only if some degree-128 cooperation tensor
+  $w$ satisfies
+  \[
+    L_{q_S}C(w)=a\otimes b.
+  \]
+  Direct-sum inclusions at cooperation degree 64 are understood.
+  Thus proving this equation has no solution would prove nonvanishing
+  of the actual internal class. No assertion of insolubility, fixed Lin
+  comparison, or higher-page survival is made here.
+\end{proposition}
+\begin{proof}
+  Combine the internal first-cycle image test with the actual tower
+  image criterion. Normalize the double tensor boundary: its
+  augmentation correction vanishes because the cooperation degree is
+  64, leaving exactly $a\otimes b$. This last normalization needs no
+  Milnor or coproduct comparison assumptions.
+  \leanok
+\end{proof}
+
+\begin{definition}[Removal of the sphere coefficient factor]
+  \label{def:h6-sphere-tensor-coefficient}
+  \lean{KIP126.Classical.Adams.sphereHomologyScalarEquiv,KIP126.Classical.Adams.sphereCooperationTensorEquiv}
+  \uses{def:h6-normalized-word-representatives}
+  \leanok
+  The actual sphere coefficient homology is concentrated in degree zero,
+  where the existing empty-word coordinate identifies it with $\mathbb F_2$.
+  Thus in every integer degree $n$ there is a constructed linear equivalence
+  $(A\otimes H_*S)_n\simeq A_n$: discard the zero summands, apply the scalar
+  coordinate on the remaining factor, and use the tensor right unitor.
+  No K\"unneth map, Milnor basis, or Adams-page comparison is required.
+\end{definition}
+
+\begin{proposition}[Unique cooperation coefficient of every sphere tensor]
+  \label{prop:h6-sphere-tensor-coefficient}
+  \lean{KIP126.Classical.Adams.sphereHomologyScalarEquiv_symm_one,KIP126.Classical.Adams.sphereCooperationTensorEquiv_symm_apply,KIP126.Classical.Adams.sphereCooperationTensor_existsUnique}
+  \uses{def:h6-sphere-tensor-coefficient}
+  \leanok
+  The inverse sends $b\in A_n$ to the degree-$n$ summand $b\otimes1$,
+  with the explicit degree transport $n-n=0$. Its sphere coefficient is
+  exactly the previously specified normalized sphere unit. Consequently
+  every tensor in $(A\otimes H_*S)_n$ has a unique such coefficient $b$.
+\end{proposition}
+\begin{proof}
+  Expand the inverse direct-sum concentration equivalence, the tensor
+  product of equivalences, and the right unitor. Existence and uniqueness
+  then follow from bijectivity.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The incoming search reduces to degree-128 cooperations]
+  \label{prop:h6-internal-square-cooperation-source}
+  \lean{KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_zero_iff_cooperation_cobar}
+  \uses{prop:h6-sphere-tensor-coefficient,prop:h6-internal-square-cobar-image,prop:h6-actual-cobar-split}
+  \leanok
+  Under the same explicit low-level hypotheses, the constructed internal
+  double class is zero if and only if some $b\in A_{128}$ satisfies
+  \[
+    L_{q_S}\operatorname{assoc}(c(b)\otimes1)
+      =a\otimes q_S(a\otimes x),\qquad
+    c(b)=1\otimes b+b\otimes1-\Delta b.
+  \]
+  All direct-sum inclusions and degree transports are retained in Lean.
+  The polynomial formula for $c(b)$ is already proved. The comparison of
+  the remaining map $L_{q_S}\operatorname{assoc}(-\otimes1)$ and the
+  non-boundary calculation for the normalized sphere coefficient are
+  supplied by the later nodes below.
+\end{proposition}
+\begin{proof}
+  Replace the quantified tensor in the exact zero criterion by its unique
+  cooperation coefficient and apply the elementary-tensor split formula.
+  Conversely the coefficient supplies a candidate tensor by the inverse
+  equivalence. No candidates are lost and no differential is postulated.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Word and first-page coordinates of every reduced boundary]
+  \label{prop:h6-boundary-word-coordinates}
+  \lean{KIP126.Classical.Adams.sphereTowerHomologyWordEquiv_boundary_reduced,KIP126.Classical.Adams.sphereTowerHomologyWordEquiv_boundary_basis_single,KIP126.Classical.Adams.sphereFirstPageMilnorEquiv_boundary_reduced}
+  \uses{prop:h6-reduced-boundary-coordinates,prop:h6-derived-milnor-coordinates}
+  \leanok
+  For every tower stage and every reduced tensor $w$, the word coordinate
+  of the actual boundary $q(\iota w)$ is precisely the already constructed
+  tensor-word coordinate of $w$. A reduced basis factor followed by a
+  specified word gives their concatenation, with its coefficient unchanged.
+  On the original first quotient page, the corresponding formula takes
+  values in the existing normalized polynomial cochains.
+  No coproduct, unit, or suspension compatibility predicate is required
+  beyond the structures used to construct the tensor coordinates themselves.
+\end{proposition}
+\begin{proof}
+  Expand the successor word coordinate, cancel the degree-transport
+  equivalence, and apply the reduced-boundary inverse identity.
+  For the basis formula use the proved tensor-word basis calculation.
+  For the first page additionally cancel its homology-coordinate inverse.
+  \leanok
+\end{proof}
+
+\begin{definition}[Word realization in the existing polynomial tensor powers]
+  \label{def:h6-word-polynomial-realization}
+  \lean{KIP126.Steenrod.Milnor.singleMilnorWordEquiv,KIP126.Steenrod.Milnor.milnorWordPolynomial}
+  \uses{prop:h6-cobar-monomial-basis}
+  \leanok
+  Positive monomials of degree $t$ are equivalent to length-one words.
+  More generally realize word coefficients by sending a word to the
+  polynomial monomial with exactly its slot exponents and extending linearly.
+  Integer degrees are allowed; the target remains the existing polynomial
+  tensor power, not a replacement cochain model.
+\end{definition}
+
+\begin{proposition}[Faithfulness and agreement of polynomial realization]
+  \label{prop:h6-word-polynomial-realization}
+  \lean{KIP126.Steenrod.Milnor.singleMilnorWord_exponents,KIP126.Steenrod.Milnor.wordConsEquiv_zero,KIP126.Steenrod.Milnor.cochainsWordEquiv_symm_single_val,KIP126.Steenrod.Milnor.milnorWordPolynomial_single,KIP126.Steenrod.Milnor.milnorWordPolynomial_injective,KIP126.Steenrod.Milnor.milnorWordPolynomial_eq_cochainsWordEquiv_symm}
+  \uses{def:h6-word-polynomial-realization,prop:h6-cobar-monomial-basis}
+  \leanok
+  Realization is injective at each fixed integer degree. In nonnegative
+  degree it equals the inverse of the existing cochain word equivalence
+  followed by inclusion of the normalized cochains into polynomials.
+  The single-word realization places the monomial in slot zero.
+\end{proposition}
+\begin{proof}
+  Distinct words have distinct slot exponent vectors, hence linearly
+  independent polynomial monomials. Check agreement with the existing
+  cochain map on single word coefficients and use linearity.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The full first boundary on reduced cooperation coefficients]
+  \label{prop:h6-first-boundary-word-coordinate}
+  \lean{KIP126.Classical.Adams.sphereTowerHomologyWordEquiv_firstBoundary_basis,KIP126.Classical.Adams.sphereTowerHomologyWordEquiv_firstBoundary_reduced}
+  \uses{prop:h6-boundary-word-coordinates,prop:h6-sphere-tensor-coefficient,def:h6-word-polynomial-realization}
+  \leanok
+  For any reduced cooperation $a$ of degree $n+1$, insert the normalized
+  sphere coefficient and apply the actual boundary to $H_n(T_1 S)$.
+  Its word coefficients are exactly the reduced Milnor basis coefficients
+  of $a$, relabeled as length-one words. This includes every reduced
+  element, not only $\xi_1^{64}$. The existing $h_6$ calculation is now
+  a specialization of this theorem.
+\end{proposition}
+\begin{proof}
+  The sphere scalar coordinate is the empty word with coefficient one.
+  The preceding reduced-basis formula prepends the chosen monomial.
+  Extend the equality of the two linear maps from the reduced basis.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Polynomial value of the actual first boundary]
+  \label{prop:h6-first-boundary-polynomial}
+  \lean{KIP126.Classical.Adams.sphereFirstBoundary_polynomial_reduced}
+  \uses{prop:h6-first-boundary-word-coordinate,prop:h6-word-polynomial-realization,prop:h6-full-milnor-coordinates}
+  \leanok
+  The polynomial coordinate of $q_S(a\otimes1)$ is exactly $P(a)$ for
+  every reduced cooperation $a$, with the degree shifts explicit.
+  This computes the actual boundary; no differential comparison is
+  assumed. Double reduction of the corrected coproduct is proved below;
+  the remaining application requires the graded tensor compatibility calculations.
+  The full incoming differential comparison and non-boundary assertion
+  are not claimed here.
+\end{proposition}
+\begin{proof}
+  Apply word realization to the first-boundary coordinate formula.
+  On each reduced basis vector its single-word monomial equals the
+  already defined cooperation polynomial. Extend by linearity.
+  \leanok
+\end{proof}
+
+\begin{definition}[Actual double-reduced cooperation tensors]
+  \label{def:h6-double-reduced-cooperations}
+  \lean{KIP126.StableHomotopy.Cohomology.reducedCooperationSquare,KIP126.StableHomotopy.Cohomology.reducedCooperationSquareInclusion}
+  \uses{prop:h6-graded-tensor-kernel}
+  \leanok
+  Use the existing reduced tensor construction with $\ker\epsilon$ also
+  as the remaining factor. Its inclusion into $A\otimes A$ is the
+  composite of the two actual factor inclusions. This introduces no
+  new quotient, cochain model, or spectral-sequence page.
+\end{definition}
+
+\begin{proposition}[Double inclusion and reduced-basis support]
+  \label{prop:h6-double-reduced-support}
+  \lean{KIP126.StableHomotopy.Cohomology.reducedCooperationSquareInclusion_lof_tmul,KIP126.StableHomotopy.Cohomology.reducedCooperationSquareInclusion_injective,KIP126.StableHomotopy.Cohomology.cooperationMilnorBasis_reduced,KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorPolynomial_coeff,KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorBasis_support_reduced,KIP126.StableHomotopy.Cohomology.cooperationTensor_mem_span_reduced_of_normalized,KIP126.StableHomotopy.Cohomology.cooperationTensorMilnorBasis_positive}
+  \uses{def:h6-double-reduced-cooperations,prop:h6-milnor-polynomial-faithful}
+  \leanok
+  The double inclusion is injective and preserves elementary represented
+  factors. Coefficients of the actual tensor basis are precisely the
+  polynomial coefficients at its distinct pair exponents. If the
+  polynomial of a tensor is killed by both slot augmentations, every
+  supported basis pair has two nonconstant factors. Each such basis
+  vector is exactly an included tensor of the original reduced bases.
+\end{proposition}
+\begin{proof}
+  Tensor the injective factor maps over the field and take the direct sum.
+  Compare coefficient functionals on the full tensor basis. Normalization
+  forces every monomial with nonzero coefficient to use both slots;
+  a constant factor would contradict this. Identify the positive full
+  basis vectors with the previously specified reduced basis vectors.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Polynomial normalization yields an actual reduced tensor]
+  \label{prop:h6-double-reduced-lift}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationTensor_reduced_span_le_range,KIP126.StableHomotopy.Cohomology.cooperationTensor_existsUnique_reduced_of_normalized,KIP126.StableHomotopy.Cohomology.cooperationMilnorPolynomial_reduced_normalized}
+  \uses{prop:h6-double-reduced-support}
+  \leanok
+  Every polynomially normalized tensor has a unique preimage under the
+  actual double-reduced inclusion. Also every reduced cooperation has
+  a normalized single-slot polynomial. Neither assertion assumes an
+  Adams differential or a coproduct formula.
+\end{proposition}
+\begin{proof}
+  Every positive pair basis vector has an explicit reduced tensor lift,
+  so its span lies in the inclusion's range. Apply the support result,
+  and use injectivity for uniqueness. Check single-slot normalization
+  on the reduced basis, whose exponent vectors are nonzero, and extend
+  linearly.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Double reduction of the actual corrected coproduct]
+  \label{prop:h6-corrected-coproduct-double-reduced}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationCobarDiagonal_reduced_normalized,KIP126.StableHomotopy.Cohomology.cooperationCobarDiagonal_mem_span_reduced,KIP126.StableHomotopy.Cohomology.cooperationCobarDiagonal_mem_span_reduced_of_ne,KIP126.StableHomotopy.Cohomology.cooperationCobarDiagonal_existsUnique_reduced,KIP126.StableHomotopy.Cohomology.cooperationCobarDiagonal_existsUnique_reduced_of_ne}
+  \uses{prop:h6-double-reduced-lift,prop:h6-actual-cobar-split,prop:h6-polynomial-cocycles}
+  \leanok
+  Under the explicit unit and Milnor coproduct compatibilities, the
+  corrected coproduct $c(a)=1\otimes a+a\otimes1-\Delta a$ of a reduced
+  cooperation has a unique actual double-reduced tensor lift. All
+  nonzero-degree cooperations, including every degree-128 candidate,
+  satisfy the reduced-input condition automatically.
+\end{proposition}
+\begin{proof}
+  The proved polynomial formula is $Q(c(a))=dP(a)$. The single-slot input
+  is normalized, and the polynomial differential preserves normalization
+  in both slots. Apply the actual reduced-lift theorem. In nonzero degree
+  the coefficient counit vanishes by the Eilenberg--Mac Lane property.
+  \leanok
+\end{proof}
+
+\begin{definition}[Derived reduced cooperation differential]
+  \label{def:h6-reduced-coproduct-map}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationReducedCobarDiagonal}
+  \uses{prop:h6-corrected-coproduct-double-reduced}
+  \leanok
+  Restrict the codomain of the actual corrected coproduct to the
+  double-reduced tensor via the injective inclusion and its proved
+  range property. The result is a linear map, constructed rather than
+  supplied as additional differential data.
+\end{definition}
+
+\begin{proposition}[The reduced map retains the actual and polynomial values]
+  \label{prop:h6-reduced-coproduct-map}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationReducedCobarDiagonal_inclusion,KIP126.StableHomotopy.Cohomology.cooperationReducedCobarDiagonal_polynomial}
+  \uses{def:h6-reduced-coproduct-map,prop:h6-actual-cobar-split}
+  \leanok
+  Inclusion of the constructed reduced map gives exactly $c(a)$, and
+  its polynomial is exactly the existing one-slot cobar differential
+  of $P(a)$. Reducedness of the output is proved, not assumed.
+\end{proposition}
+\begin{proof}
+  Use the defining property of codomain restriction along an injection,
+  then the previously proved corrected-coproduct polynomial formula.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Actual first differential through the reduced coproduct]
+  \label{prop:h6-actual-first-differential-reduced-coproduct}
+  \lean{KIP126.Classical.Adams.sphereAdamsHomologyD1_firstBoundary_reduced}
+  \uses{prop:h6-reduced-coproduct-map,prop:h6-actual-cobar-recurrence,prop:h6-sphere-tensor-coefficient}
+  \leanok
+  For every reduced cooperation $a$ in degree $n$, and under the stated
+  low-level K\"unneth compatibilities, the actual first differential
+  of $q_S(a\otimes1)$ has included next-stage tensor coordinate
+  \[
+    L_{q_S}\operatorname{assoc}(\iota\overline c(a)\otimes1).
+  \]
+  Here $\overline c$ is the constructed double-reduced map. This retains
+  the original tower representative. Composing the whole graded tensor
+  expression with faithful two-slot coordinates and the non-boundary
+  calculation are completed below; higher-page survival remains open.
+\end{proposition}
+\begin{proof}
+  Substitute the coefficient-removal inverse and elementary tensor
+  splitting formula into the actual sphere recurrence, then use the
+  inclusion formula for the reduced coproduct.
+  \leanok
+\end{proof}
+
+\begin{definition}[The reduced sphere boundary equivalence]
+  \label{def:h6-reduced-sphere-boundary-equiv}
+  \lean{KIP126.Classical.Adams.sphereReducedCooperationTensorEquiv,KIP126.Classical.Adams.sphereReducedBoundaryEquiv}
+  \uses{prop:h6-sphere-tensor-coefficient,prop:h6-reduced-boundary-coordinates}
+  \leanok
+  Remove the normalized sphere coefficient from
+  $(\overline A\otimes H_*S)_n$ by degree-zero concentration.
+  Compose its inverse with the actual next-stage tensor-coordinate inverse
+  to construct $e_1:\overline A_n\simeq H_{n-1}(T_1S)$.
+  No Milnor basis or differential comparison is supplied.
+\end{definition}
+
+\begin{proposition}[The reduced equivalence is the actual sphere boundary]
+  \label{prop:h6-reduced-sphere-boundary-equiv}
+  \lean{KIP126.Classical.Adams.sphereHomologyScalarEquiv_cast_symm_one,KIP126.Classical.Adams.sphereReducedCooperationTensorEquiv_symm_apply,KIP126.Classical.Adams.sphereReducedCooperationTensorEquiv_inclusion,KIP126.Classical.Adams.sphereReducedBoundaryEquiv_apply}
+  \uses{def:h6-reduced-sphere-boundary-equiv}
+  \leanok
+  The coefficient-removal inverse inserts $a\otimes1$, commutes with
+  inclusion into ordinary tensors, and the normalized coefficient is
+  preserved by degree transport. Consequently $e_1(a)=q_S(a\otimes1)$.
+\end{proposition}
+\begin{proof}
+  Expand the concentrated direct-sum equivalence. Apply the next-stage
+  tensor coordinate and its proved inverse identity on reduced tensors.
+  \leanok
+\end{proof}
+
+\begin{definition}[Tensoring a degree-lowering equivalence]
+  \label{def:h6-tensor-lowering-equiv}
+  \lean{KIP126.Core.Algebra.gradedTensorLowerEquiv}
+  \uses{prop:h6-graded-tensor-kernel}
+  \leanok
+  Degreewise linear equivalences $V_i\simeq W_{i-1}$ induce
+  $(A\otimes V)_n\simeq(A\otimes W)_{n-1}$ by tensoring with the
+  identity, transporting the displayed degree, and taking the direct sum.
+\end{definition}
+
+\begin{proposition}[Agreement with the existing lowering map]
+  \label{prop:h6-tensor-lowering-equiv}
+  \lean{KIP126.Core.Algebra.gradedTensorLowerEquiv_toLinearMap,KIP126.Core.Algebra.gradedTensorLowerMap_injective}
+  \uses{def:h6-tensor-lowering-equiv}
+  \leanok
+  The underlying linear map is the existing graded tensor lowering map.
+  More generally, degreewise injections give an injective lowering map
+  whenever each left factor is flat.
+\end{proposition}
+\begin{proof}
+  Check the map formula on elementary tensors. For injectivity use flatness
+  of each left factor and injectivity of the direct-sum map.
+  \leanok
+\end{proof}
+
+\begin{definition}[Double-reduced actual boundary coordinates]
+  \label{def:h6-double-reduced-boundary-equiv}
+  \lean{KIP126.Classical.Adams.sphereCooperationSquareBoundary,KIP126.Classical.Adams.sphereDoubleReducedBoundaryEquiv,KIP126.Classical.Adams.sphereSecondReducedBoundaryEquiv}
+  \uses{prop:h6-reduced-sphere-boundary-equiv,prop:h6-tensor-lowering-equiv,def:h6-double-reduced-cooperations}
+  \leanok
+  Let $F_n(z)=L_{q_S}\operatorname{assoc}(z\otimes1)$ on ordinary
+  cooperation tensors. Tensoring $e_1$ with a reduced left factor gives
+  $\overline A\otimes\overline A\simeq\overline A\otimes H_*T_1S$,
+  with the required degree shift. Composing with the next actual boundary
+  equivalence gives $e_2:(\overline A\otimes\overline A)_n
+  \simeq H_{n-2}(T_2S)$.
+\end{definition}
+
+\begin{proposition}[Faithful double-reduced boundary transport]
+  \label{prop:h6-double-reduced-boundary-equiv}
+  \lean{KIP126.Classical.Adams.sphereCooperationSquareBoundary_lof_tmul,KIP126.Classical.Adams.sphereDoubleReducedBoundaryEquiv_lof_tmul,KIP126.Classical.Adams.sphereDoubleReducedBoundary_injective,KIP126.Classical.Adams.sphereDoubleReducedBoundaryEquiv_inclusion}
+  \uses{def:h6-double-reduced-boundary-equiv}
+  \leanok
+  On elementary tensors $F_n$ applies $q_S(b\otimes1)$ to the right
+  factor, retaining the left factor and the explicit degree transport.
+  On every double-reduced tensor it agrees with the constructed equivalence
+  followed by inclusion. This composite is injective: the actual boundary
+  step loses no information on the double-reduced subspace.
+\end{proposition}
+\begin{proof}
+  Expand the associator and the lowering map on elementary tensors and
+  use invariance of the normalized sphere coefficient under transport.
+  Extend linearly; injectivity follows from the equivalence and inclusion.
+  \leanok
+\end{proof}
+
+\begin{proposition}[First incoming differential and polynomial image criterion]
+  \label{prop:h6-first-incoming-polynomial-comparison}
+  \lean{KIP126.Classical.Adams.sphereAdamsHomologyD1_reduced_comparison,KIP126.Classical.Adams.sphereAdamsHomologyD1_reduced_polynomial,KIP126.Classical.Adams.sphereAdamsHomologyD1_mem_range_iff_polynomial}
+  \uses{prop:h6-double-reduced-boundary-equiv,prop:h6-actual-first-differential-reduced-coproduct,prop:h6-reduced-coproduct-map,prop:h6-milnor-polynomial-faithful}
+  \leanok
+  Under the explicit low-level K\"unneth and Milnor coproduct
+  compatibilities, $d_1e_1=e_2\overline c$ in every integer degree.
+  Thus $Q\iota e_2^{-1}d_1e_1(a)=dP(a)$, using the existing polynomial
+  differential and cooperation coordinate maps $P,Q$.
+  For any actual $y\in H_{n-2}(T_2S)$,
+  \[
+    y\in\operatorname{im}(d_1:H_{n-1}(T_1S)\to H_{n-2}(T_2S))
+    \quad\Longleftrightarrow\quad
+    \exists a\in\overline A_n,\ dP(a)=Q\iota e_2^{-1}(y).
+  \]
+  These are derived conditional theorems, not new comparison axioms.
+  They concern the first incoming differential only. The target square
+  and source cochains are identified below, followed by a proved
+  non-boundary certificate. Comparing the fixed Lin class and higher-page permanence remain separate.
+\end{proposition}
+\begin{proof}
+  Cancel the injective inclusion from the actual first-differential
+  formula and the double-reduced boundary transport identity.
+  Apply the reduced coproduct polynomial formula. For the image criterion
+  use surjectivity of $e_1$ in one direction and faithfulness of $Q\iota$
+  together with $e_2$ in the other.
+  \leanok
+\end{proof}
+
+\begin{definition}[Reduced cooperations as all one-slot cochains]
+  \label{def:h6-reduced-cooperation-cochains}
+  \lean{KIP126.StableHomotopy.Cohomology.reducedCooperationCochainEquiv}
+  \uses{def:h6-reduced-milnor-basis-input,def:h6-word-polynomial-realization,prop:h6-cobar-monomial-basis}
+  \leanok
+  For every natural internal degree $n$, use the reduced Milnor basis,
+  the equivalence of positive monomials with single-slot words, and the
+  existing word coordinates to construct
+  $\overline A_n\simeq C^{1,n}_{\mathrm{cobar}}$.
+  No tower, K\"unneth comparison, or coproduct condition is required.
+\end{definition}
+
+\begin{proposition}[The source quantifier exhausts normalized cobar cochains]
+  \label{prop:h6-reduced-cooperation-cochains}
+  \lean{KIP126.StableHomotopy.Cohomology.reducedCooperationCochainEquiv_val,KIP126.StableHomotopy.Cohomology.reducedCooperation_polynomial_boundary_iff}
+  \uses{def:h6-reduced-cooperation-cochains,prop:h6-full-milnor-coordinates}
+  \leanok
+  The underlying polynomial of the cochain associated to $a$ is exactly
+  $P(a)$. For any $y\in C^{2,n}_{\mathrm{cobar}}$, the condition
+  $\exists a\in\overline A_n,\ dP(a)=y$ is equivalent to
+  $\exists b\in C^{1,n}_{\mathrm{cobar}},\ db=y$.
+  In particular, the actual-cooperation quantifier does not omit any
+  possible normalized cochain source.
+\end{proposition}
+\begin{proof}
+  Check equality with $P$ on the reduced Milnor basis and extend linearly.
+  Use the equivalence and its surjectivity, then equality of cochains is
+  equality of their underlying polynomials.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The specified square in double-reduced boundary coordinates]
+  \label{prop:h6-square-double-reduced-coordinate}
+  \lean{KIP126.Classical.Adams.sphereSecondReducedBoundaryEquiv_h6_double,KIP126.Classical.Adams.sphereSecondReducedBoundaryEquiv_h6_double_polynomial}
+  \uses{prop:h6-double-reduced-boundary-equiv,prop:h6-internal-square-cobar-image,prop:h6-milnor-polynomial-faithful}
+  \leanok
+  The derived equivalence $e_2$ sends the reduced tensor $a\otimes a$
+  in degrees $(64,64)$ to the existing twice-applied actual boundary
+  representative with normalized sphere coefficient one. If
+  $P(a)=[\xi_1^{64}]$, then its polynomial coordinate
+  $Q\iota e_2^{-1}$ is exactly the existing cochain
+  $[\xi_1^{64}\mid\xi_1^{64}]$.
+  No differential comparison is needed for this coordinate calculation.
+\end{proposition}
+\begin{proof}
+  Apply the next-stage tensor coordinate and its injective inclusion.
+  Both sides are the same elementary boundary tensor. The sphere scalar
+  is the already normalized unit. Apply the tensor polynomial formula
+  and the stated coordinate of $a$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Exact pure-cobar criterion for the internal square]
+  \label{prop:h6-internal-square-pure-cobar-criterion}
+  \lean{KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_zero_iff_homologyD1,KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_zero_iff_polynomial,KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_zero_iff_cobar_boundary,KIP126.Classical.Adams.sphereH6DoubleInternalE2_ne_zero_iff_cobar_nonboundary}
+  \uses{prop:h6-internal-square-cobar-image,prop:h6-first-incoming-polynomial-comparison,prop:h6-reduced-cooperation-cochains,prop:h6-square-double-reduced-coordinate}
+  \leanok
+  Under the explicit low-level compatibility conditions, take the
+  constructed internal double class $x$ with $P(a)=[\xi_1^{64}]$ and
+  normalized sphere coefficient one. Then
+  \[
+    x=0\quad\Longleftrightarrow\quad
+    \exists b\in C^{1,128}_{\mathrm{cobar}},\ db=h_6^2,
+  \]
+  and therefore $x\ne0$ is equivalent to the assertion that no such
+  cochain exists. The right side uses only the already defined normalized
+  Milnor cobar complex, with no categorical or tower source objects.
+  This equivalence does not itself prove the non-boundary calculation,
+  supply the fixed low-level witnesses, identify the fixed Lin class,
+  or assert higher-page permanence.
+\end{proposition}
+\begin{proof}
+  Transport the original internal first-cycle zero criterion through
+  the actual first-page homology equivalences. Apply the first incoming
+  polynomial image criterion, the target-square calculation, and the
+  exhaustive cochain-source equivalence. Negate to obtain the nonzero test.
+  \leanok
+\end{proof}
+
+\begin{definition}[Seven-coefficient detection of the standard square]
+  \label{def:h6-cobar-square-detector}
+  \lean{KIP126.Steenrod.Milnor.xiOneProjection,KIP126.Steenrod.Milnor.h6SquarePureDetector,KIP126.Steenrod.Milnor.h6SquareDetector}
+  \uses{def:h6-milnor-cobar}
+  \leanok
+  Project each tensor slot onto its pure $\xi_1$ powers, killing the
+  higher Milnor generators. On the resulting polynomial ring
+  $\mathbb F_2[X,Y]$ set
+  \[
+    D(f)=\sum_{i=0}^{6}[X^{128-2^i}Y^{2^i}]f.
+  \]
+  Compose this linear map with the projection to obtain the detector on
+  the original two-slot cobar polynomials. No external table is used.
+\end{definition}
+
+\begin{proposition}[Detector normalization and removal of unit terms]
+  \label{prop:h6-cobar-square-detector-basic}
+  \lean{KIP126.Steenrod.Milnor.xiOneProjection_X,KIP126.Steenrod.Milnor.xiOneProjection_xi,KIP126.Steenrod.Milnor.h6SquarePureDetector_apply,KIP126.Steenrod.Milnor.h6SquareDetector_square,KIP126.Steenrod.Milnor.h6SquarePureDetector_rename,KIP126.Steenrod.Milnor.h6SquareDetector_insertLeft,KIP126.Steenrod.Milnor.h6SquareDetector_insertRight,KIP126.Steenrod.Milnor.h6SquareDetector_differential}
+  \uses{def:h6-cobar-square-detector,prop:h6-cobar-projection-generators}
+  \leanok
+  The detector takes value one on
+  $[\xi_1^{64}\mid\xi_1^{64}]$ and vanishes on a polynomial supported
+  in only one slot. Both coaugmentation terms are therefore invisible.
+  On a one-slot polynomial its cobar differential has the same detector
+  value as its projected coproduct.
+\end{proposition}
+\begin{proof}
+  Evaluate the seven coefficients of the square directly. Each tested
+  monomial uses both slots with positive exponent, so none can occur in
+  a one-slot renaming. Use the projection formulas for the two insertions
+  and the definition of the cobar differential.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Projection reduces all source monomials to two generators]
+  \label{prop:h6-cobar-projection-generators}
+  \lean{KIP126.Steenrod.Milnor.xiOneProjection_coproductGenerator,KIP126.Steenrod.Milnor.xiOneProjection_split_X,KIP126.Steenrod.Milnor.xiOneProjection_insertLeft,KIP126.Steenrod.Milnor.xiOneProjection_insertRight,KIP126.Steenrod.Milnor.xiOneProjection_split_monomial_high,KIP126.Steenrod.Milnor.singleSlot_exponents_eq_two,KIP126.Steenrod.Milnor.xiOneProjection_split_monomial_two,KIP126.Steenrod.Milnor.singleSlot_two_weight}
+  \uses{def:h6-cobar-square-detector}
+  \leanok
+  The projected coproduct sends $\xi_1$ to $X+Y$, $\xi_2$ to $X^2Y$,
+  and every higher generator to zero. It sends $\xi_1^a\xi_2^b$ to
+  $(X+Y)^a(X^2Y)^b$, of degree $a+3b$; every monomial containing a
+  higher generator has zero image. A one-slot exponent vector with no
+  higher generator is exactly the sum of its two indicated components.
+  Projection also commutes with inserting an empty slot at either end.
+\end{proposition}
+\begin{proof}
+  Expand Milnor's generator coproduct. For a generator of index at least
+  three every summand has a factor killed by the projection. Extend by
+  multiplicativity. The exponent-vector identity is pointwise, and the
+  weight formula follows by additivity of weight.
+  \leanok
+\end{proof}
+
+\begin{definition}[Bounded binary binomial parity]
+  \label{def:h6-binary-binomial-parity}
+  \lean{KIP126.Steenrod.Milnor.binaryChooseParity}
+  \leanok
+  Define the parity function by the product of the eight binary-digit
+  binomial coefficients, reduced modulo two. Eight digits suffice for
+  the integers occurring here, all less than $256$.
+\end{definition}
+
+\begin{proposition}[Kernel-checked binomial cancellation]
+  \label{prop:h6-binomial-parity-certificate}
+  \lean{KIP126.Steenrod.Milnor.binaryChooseParity_eq,KIP126.Steenrod.Milnor.h6Square_binary_parity,KIP126.Steenrod.Milnor.h6Square_binomial_parity}
+  \uses{def:h6-binary-binomial-parity}
+  \leanok
+  The binary function equals the actual binomial coefficient modulo two,
+  by Lucas's theorem. For every $0\le b\le42$,
+  \[
+    \sum_{\substack{0\le i\le6\\b\le2^i}}
+      {128-3b\choose 2^i-b}=0\quad\text{in }\mathbb F_2.
+  \]
+  The finite binary identity is checked by the Lean kernel, without a
+  native-evaluation axiom or imported computation certificate.
+\end{proposition}
+\begin{proof}
+  Apply Mathlib's proved Lucas theorem, verify the 43 finite binary
+  cases using kernel reduction, and transport the resulting parity to
+  $\mathbb F_2$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The projected monomial contributions are annihilated]
+  \label{prop:h6-cobar-detector-binomial}
+  \lean{KIP126.Steenrod.Milnor.h6Square_binomial_coefficient,KIP126.Steenrod.Milnor.h6SquarePureDetector_binomial}
+  \uses{prop:h6-binomial-parity-certificate,prop:h6-cobar-projection-generators}
+  \leanok
+  If $a+3b=128$, the coefficient of $X^{128-j}Y^j$ in
+  $(X+Y)^a(X^2Y)^b$ is ${a\choose j-b}$ when $b\le j$, and zero otherwise.
+  The statement includes all cases where a shifted exponent is too large.
+  Hence the detector vanishes on every such projected monomial.
+\end{proposition}
+\begin{proof}
+  Shift coefficients by the monomial $X^{2b}Y^b$ and apply the binomial
+  coefficient formula for $(X+Y)^a$. Use binomial symmetry and the
+  zero convention outside the range. Sum over $j=2^i$ and apply the
+  finite parity certificate, noting $b\le42$.
+  \leanok
+\end{proof}
+
+\begin{theorem}[The standard square is not a normalized cobar boundary]
+  \label{thm:h6-square-cobar-nonboundary}
+  \lean{KIP126.Steenrod.Milnor.h6SquareDetector_differential_monomial,KIP126.Steenrod.Milnor.h6SquareDetector_differential_zero,KIP126.Steenrod.Milnor.h6SquareCochain_not_boundary}
+  \uses{prop:h6-cobar-square-detector-basic,prop:h6-cobar-detector-binomial,prop:h6-cobar-monomial-basis}
+  \leanok
+  For every $b\in C^{1,128}_{\mathrm{cobar}}$, one has
+  $D(db)=0$ and consequently
+  \[
+    db\ne[\xi_1^{64}\mid\xi_1^{64}].
+  \]
+  This is an unconditional theorem of the specified polynomial cobar
+  model. Its proof does not import Adams, Lin, or project axioms.
+\end{theorem}
+\begin{proof}
+  On a monomial containing a higher generator the projected coproduct
+  is zero. Otherwise its exponents have $a+3b=128$, and the binomial
+  cancellation applies. Extend from the actual normalized monomial basis
+  to every cochain. Equality with the square would contradict detector
+  values zero and one.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Nonvanishing of the actual internal double class]
+  \label{prop:h6-double-internal-nonzero}
+  \lean{KIP126.Classical.Adams.sphereH6DoubleInternalE2_ne_zero,KIP126.Classical.Adams.sphereAdamsInternalE2_h6_double_nonzero_exists}
+  \uses{prop:h6-internal-square-pure-cobar-criterion,thm:h6-square-cobar-nonboundary}
+  \leanok
+  Under the explicit low-level structures and coherence conditions, the
+  constructed actual internal double class with normalized sphere
+  coefficient is nonzero in $E_2^{2,128}$. In particular this page has
+  a nonzero element. This does not identify the fixed Lin class, supply
+  the fixed low-level witnesses, or prove higher-page survival.
+\end{proposition}
+\begin{proof}
+  Apply the already proved internal nonvanishing equivalence to the
+  pure cobar non-boundary theorem. For existence use the unique actual
+  cooperation with polynomial coordinate $[\xi_1^{64}]$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Polynomial multiplication and the two closed representatives]
+  \label{prop:h6-polynomial-cocycles}
+  \lean{KIP126.Steenrod.Milnor.cupPolynomial_mem}
+  \lean{KIP126.Steenrod.Milnor.h6Polynomial_mem}
+  \lean{KIP126.Steenrod.Milnor.h6Polynomial_differential}
+  \lean{KIP126.Steenrod.Milnor.h6SquarePolynomial_differential}
+  \uses{def:h6-milnor-cobar}
+  \leanok
+  Concatenation preserves normalization and adds internal degrees.
+  The polynomial $[\xi_1^{64}]$ is normalized of internal degree $64$.
+  Its polynomial cobar differential and that of
+  $[\xi_1^{64}\mid\xi_1^{64}]$ both vanish.
+\end{proposition}
+\begin{proof}
+  Disjoint slot renamings preserve the weight. Augmentation of any slot
+  annihilates the corresponding factor of a concatenation. Since
+  $\xi_1$ is primitive, the characteristic-two identity
+  $(a+b)^{64}=a^{64}+b^{64}$ gives the two differential calculations.
+  Preservation of all normalized homogeneous cochains is also proved;
+  it does not by itself identify the topological differential with this
+  polynomial differential.
+  \leanok
+\end{proof}
+
+% SOURCE: explicit abstract-foundation boundary confirmed for this task.
+% This node is a supplied mathematical structure, not a proved comparison theorem.
+\begin{definition}[Milnor coordinates of the mod--2 foundation]
+  \label{def:h6-milnor-cooperations}
+  \lean{KIP126.Classical.Adams.MilnorCooperations}
+  \lean{KIP126.Classical.Adams.sphereFirstDifferential}
+  \uses{def:h6-tower-differential,def:h6-milnor-cobar}
+  \notready
+  The explicit Milnor cooperation input consists of additive isomorphisms
+  $\phi^{s,t}:E_1^{s,t}(S^0)\cong C^{s,t}$ for $s,t\ge0$, satisfying
+  $\phi^{s+1,t}d_1=d_{\mathrm{cobar}}\phi^{s,t}$.
+  Here $E_1$ and $d_1$ are those already constructed from the tower.
+  This is a foundational input; its existence is not inferred merely from
+  the homotopy groups of $H$.  It contains no later page, named $h$ class,
+  selected multiplication, or permanence assertion.
+  Proposition~\ref{prop:h6-derived-milnor-coordinates} now constructs its
+  vector-space coordinates from below-page inputs. The coproduct comparison
+  and the fixed instances needed to replace this whole input remain open.
+\end{definition}
+
+\begin{proposition}[The actual initial sphere column survives in internal SSData]
+  \label{prop:h6-sphere-initial-survival}
+  \lean{KIP126.Classical.Adams.sphereAdamsResolutionBoundary_zero,KIP126.Classical.Adams.sphereAdamsHomologyD1_zero,KIP126.Classical.Adams.sphereAdamsPageD_one_filtration_zero,KIP126.Classical.Adams.sphereAdamsK_zero,KIP126.Classical.Adams.sphereAdamsCycles_filtration_zero,KIP126.Classical.Adams.sphereAdamsDifferential_filtration_zero,KIP126.Classical.Adams.adamsBoundaries_filtration_zero,KIP126.Classical.Adams.sphereAdamsSSData_Z_filtration_zero,KIP126.Classical.Adams.sphereAdamsSSData_B_filtration_zero,KIP126.Classical.Adams.sphereAdams_nonzeroSurvival_filtration_zero_iff}
+  \uses{prop:h6-sphere-unit-image,def:h6-tower-internal-data,prop:h6-tower-common-representative,prop:h6-first-differential-homology}
+  \leanok
+  For the actual sphere tower, the initial connecting map is zero.
+  At filtration zero, all finite cycle modules equal the whole first
+  page, all boundary modules vanish, and every outgoing differential
+  is zero. For its internal SSData this gives $Z_n=\top$ and $B_n=\bot$
+  for every $n\in\mathbb N\cup\{\infty\}$. Consequently, for every
+  integer $t$ and internal class $x\in E_2^{0,t}$,
+  \[
+    \operatorname{NonzeroSurvival}(x)\quad\Longleftrightarrow\quad x\ne0.
+  \]
+  Only the specified Eilenberg--Mac Lane object, stable category, and
+  actual cofiber construction are used: no ring, K\"unneth, Milnor,
+  Lin-table, or fixed-foundation witness is required. This proves the
+  initial column, not the filtration-two square's permanence.
+\end{proposition}
+\begin{proof}
+  Unit surjectivity and exactness kill the initial resolution boundary,
+  hence the exact-couple map $k$. Zero lifts through every tower map, so
+  every class lies in every cycle module and has zero differential.
+  The tower maps from filtration zero to its constant negative extension
+  are isomorphisms, so the defining boundary kernels vanish. Restrict to
+  the actual $Z_2$ ambient module and take the intersection/union stages.
+  In the proved common-representative characterization of survival,
+  every representative meets all cycle conditions and the boundary
+  condition says precisely that its quotient class is nonzero.
+  \leanok
+\end{proof}
+
+% SOURCE: consequences of the constant negative-stage extension and the
+% the Eilenberg--Mac Lane property; neither Milnor nor Lin coordinates are used.
+\begin{proposition}[No incoming differential at the square's bidegree]
+  \label{prop:h6-no-incoming}
+  \lean{KIP126.Classical.Adams.sphereAdamsPageOne_filtration_zero_subsingleton,KIP126.Classical.Adams.adamsLayerAt_isZero_of_negative,KIP126.Classical.Adams.sphereAdamsInternal_h6_incoming_source_subsingleton,KIP126.Classical.Adams.sphereAdamsInternal_h6_incoming_d_eq_zero}
+  \uses{def:h6-em-object,def:h6-fiber-tower,prop:h6-first-page-homology,def:h6-tower-internal-sequence}
+  \leanok
+  For the chosen Eilenberg--Mac Lane object and every $r\ge2$, the internal sphere tower satisfies
+  \[
+    E_r^{2-r,129-r}=0.
+  \]
+  Consequently every incoming differential to $(2,128)$ is zero.
+  No Milnor coordinates or Lin table are required. This is not an assertion
+  that outgoing differentials vanish.
+\end{proposition}
+\begin{proof}
+  For $r>2$, the source has negative filtration. The tower is constant there,
+  so its transition is an isomorphism and its layer is zero. For $r=2$,
+  the source is $(0,127)$. The first-page comparison and the right unitor give
+  $E_1^{0,127}\cong\pi_{127}(H\wedge S)\cong\pi_{127}H=0$ by the
+  Eilenberg--Mac Lane property. Vanishing propagates from the
+  first page to later quotient pages. Transport these facts along the proved
+  internal page isomorphisms.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Survival reduced to initial nonvanishing and liftability]
+  \label{prop:h6-survival-liftability}
+  \lean{KIP126.Classical.Adams.adamsBoundaries_succ_eq_of_source_subsingleton,KIP126.Classical.Adams.sphereAdams_h6_boundaries_eq_two,KIP126.Classical.Adams.sphereAdams_h6_nonzeroSurvival_iff}
+  \uses{prop:h6-no-incoming,def:h6-tower-pages,prop:h6-tower-common-representative}
+  \leanok
+  With the same Eilenberg--Mac Lane foundation, $B_{n+2}^{2,128}=B_2^{2,128}$ for every
+  $n\ge0$. Thus an internal class $x\in E_2^{2,128}$ has nonzero survival
+  if and only if $x\ne0$ and there is a representative $z\in Z_2^{2,128}$
+  of its image in the actual tower quotient such that
+  $z\in Z_{n+2}^{2,128}$ for every $n\ge0$.
+  The latter condition is liftability through every finite tower stage;
+  it is still a proof obligation, not a consequence of the $E_2$ table.
+\end{proposition}
+\begin{proof}
+  Each next-page boundary is the image of a current differential modulo
+  current boundaries. Its source is zero by Proposition~\ref{prop:h6-no-incoming},
+  so no new boundaries occur. Induct on the page. In the common-representative
+  criterion for survival, not being a boundary on every page now reduces to
+  not being a boundary on page two, equivalently $x\ne0$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Liftability is independent of the chosen quotient representative]
+  \label{prop:h6-specified-representative-liftability}
+  \lean{KIP126.Classical.Adams.adamsCycles_mem_iff_of_page_eq,KIP126.Classical.Adams.sphereAdams_h6_nonzeroSurvival_iff_representative}
+  \uses{prop:h6-tower-common-representative,prop:h6-survival-liftability}
+  \leanok
+  Representatives of the same actual quotient class have identical cycle
+  membership at every tower stage. Consequently, for any specified
+  $u\in Z_2^{2,128}$ representing $x$, nonzero survival of $x$ is equivalent
+  to $x\ne0$ and $u\in Z_{n+2}^{2,128}$ for every $n\ge0$.
+  No search for a different representative is necessary.
+\end{proposition}
+\begin{proof}
+  The difference of equal quotient representatives is a boundary, hence
+  lies in the image of $j$. Exactness $kj=0$ places that difference in
+  every cycle submodule. Adding or subtracting it preserves membership.
+  Apply the no-incoming-differential survival criterion at $(2,128)$.
+  \leanok
+\end{proof}
+
+% SOURCE: W. M. Singer, Rings of symmetric functions as modules over the
+% Steenrod algebra, AGT 8 (2008), p. 548, after (2-13), verified at
+% https://msp.org/agt/2008/8-1/agt-v8-n1-p17-p.pdf
+\begin{definition}[The constructed $h_6$ and its square]
+  \label{def:h6-constructed-square}
+  \lean{KIP126.Steenrod.Milnor.h6Cochain}
+  \lean{KIP126.Steenrod.Milnor.h6SquareCochain}
+  \lean{KIP126.Classical.Adams.Sphere.classOfMilnorCocycle}
+  \lean{KIP126.Classical.Adams.Sphere.h6}
+  \lean{KIP126.Classical.Adams.Sphere.h6Square}
+  \uses{def:h6-milnor-cooperations,def:h6-constructed-sphere-sequence}
+  \notready
+  Take the cocycle $[\xi_1^{64}]\in C^{1,64}$ and its concatenation square
+  $[\xi_1^{64}\mid\xi_1^{64}]\in C^{2,128}$.
+  Apply $\phi^{-1}$ to each, take its first-page homology class, and apply
+  the constructed page-passage isomorphism.  This defines respectively
+  $h_6\in E_2^{1,64}$ and $h_6^2\in E_2^{2,128}$.
+\end{definition}
+
+\begin{proposition}[Zero detection for the specified Milnor classes]
+  \label{prop:h6-standard-class-zero-criterion}
+  \lean{KIP126.Classical.Adams.Sphere.classOfMilnorCocycle_eq_zero_iff}
+  \uses{def:h6-constructed-square,def:h6-milnor-cooperations,prop:h6-tower-page-passage}
+  \leanok
+  Given explicit Milnor coordinates compatible with the constructed $d_1$,
+  a cocycle $x\in C^{s+1,t}$ represents zero in the actual second page if
+  and only if $x=db$ for some $b\in C^{s,t}$, for $s,t\ge0$.
+  This uses the existing specified-class construction; no Lin presentation
+  or specified-class comparison is an input.
+\end{proposition}
+\begin{proof}
+  The page-passage isomorphism detects zero. The homology class of a cycle
+  is zero precisely when its representative maps to zero in the cokernel
+  of the preceding differential, equivalently when it is a boundary.
+  Transport this equation through the Milnor coordinate equivalences and
+  their $d_1$ compatibility, in both directions.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Nonvanishing of the specified standard square]
+  \label{prop:h6-standard-square-nonzero}
+  \lean{KIP126.Classical.Adams.Sphere.h6Square_ne_zero}
+  \uses{def:h6-constructed-square,prop:h6-standard-class-zero-criterion,thm:h6-square-cobar-nonboundary}
+  \leanok
+  For every supplied Milnor cooperation structure on the constructed sphere
+  tower, the specified class $h_6^2\in E_2^{2,128}$ is nonzero.
+  The assertion is conditional on that structure, not a construction of it.
+\end{proposition}
+\begin{proof}
+  The zero criterion would make the specified square a cobar boundary,
+  contradicting the pure polynomial non-boundary theorem.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Second-page multiplication and the square identity]
+  \label{prop:h6-e2-square-identity}
+  \uses{def:h6-constructed-square,def:h6-milnor-cobar,prop:h6-tower-page-passage}
+  \notready
+  The cobar differential satisfies square-zero and the Leibniz identity;
+  concatenation descends to homology and corresponds under a multiplicative
+  comparison to a second-page product adding both bidegrees. Under this product,
+  the class currently named $h_6^2$ equals the product of $h_6$ with itself.
+  Bilinearity and the two individual cocycle calculations above do not
+  establish this descent or this second-page identity. Neither the
+  second-page product nor the asserted identity has a Lean implementation yet.
+\end{proposition}
+
+\begin{definition}[Pagewise nonzero permanence]
+  \label{def:h6-pagewise-permanence}
+  \lean{KIP126.Core.SpectralSequence.nextPageClass}
+  \lean{KIP126.Core.SpectralSequence.PageTrajectory}
+  \lean{KIP126.Core.SpectralSequence.IsPermanent}
+  \uses{def:h6-constructed-sphere-sequence}
+  \notready
+  A class $x\in E_2^{s,t}$ is nonzero permanent if there are classes
+  $x_n\in E_{2+n}^{s,t}$ for every $n\ge0$, with $x_0=x$, such that
+  $d_{2+n}x_n=0$, the page-passage image of $[x_n]$ is $x_{n+1}$, and
+  $x_n\ne0$ for every $n$.  This definition uses the actual differentials
+  and homology quotients and makes no claim of convergence to an abutment.
+\end{definition}
+
+
+
+\begin{definition}[Fixed standard and computational sphere objects]
+  \label{def:h6-fixed-computation}
+  \lean{KIP126.Classical.Adams.sphereAdams,KIP126.Classical.Adams.sphereH6Square,KIP126.Classical.Adams.sphereAdamsModel,KIP126.Classical.Adams.sphereAdamsData,KIP126.Classical.Adams.sphereAdams_towerComparison,KIP126.Classical.Adams.survival_comparison,KIP126.Classical.Adams.computedH6Square,KIP126.Core.SpectralSequence.NonzeroSurvival}
+  \uses{def:h6-constructed-square,def:h6-pagewise-permanence,def:h6-tower-internal-sequence,prop:h6-tower-internal-comparison,prop:h6-tower-survival-comparison}
+  \notready
+  Fix the stable foundation, $H\mathbb F_2$, and Milnor coordinates.
+  Both sphere sequences are obtained from the Adams tower of the same unit.
+  The standard square is defined by its Milnor cocycle. Given the bounded
+  Lin algebra presentation, the computational square is the image of
+  generator 69 squared in the quotient of version \texttt{v126.3.cw49}
+  (Zenodo 14875701), in internal degrees at most 261.
+  The tower comparison identifies the pages and differentials of the two
+  constructions, and its survival comparison identifies their common
+  $Z_\infty$ representatives and nonzero $E_\infty$ classes.
+  Construction of the specified foundation, Milnor coordinates, and Lin
+  presentation remains unfinished. These comparisons give no higher-page
+  survival conclusion for the square.
+\end{definition}
+
+\begin{proposition}[Nonvanishing of the standard square on the second page]
+  \label{prop:h6-fixed-standard-square-nonzero}
+  \lean{KIP126.Classical.Adams.sphereH6Square_ne_zero}
+  \uses{def:h6-fixed-computation,prop:h6-standard-square-nonzero}
+  \notready
+  Under the specified stable foundation and Milnor comparison, the
+  standard square is nonzero on the second page of the constructed sphere
+  Adams sequence. This is the specialization of
+  Proposition~\ref{prop:h6-standard-square-nonzero}; it concerns only $E_2$.
+\end{proposition}
+
+\begin{definition}[Fixed Lin algebra and additive catalogue]
+  \label{def:lin-e2-catalogue}
+  \lean{KIP126.LinE2.E2}
+  \lean{KIP126.LinE2.basisRowsAt}
+  \lean{KIP126.LinE2.findBasisIndex?}
+  \lean{KIP126.LinE2.mulAt}
+  \lean{KIP126.LinE2.Compute.Engine.multiplyBasis}
+  \uses{def:h6-fixed-computation}
+  \notready
+  Use the fixed Zenodo 14875701 dataset, version v126.3.cw49.
+  Its quotient algebra has 2914 algebra
+  generators and 231848 relations and is truncated above internal degree 261.
+  The separate additive catalogue has 23822 monomials, indexed by $(s,t,k)$;
+  these indices are not algebra-generator numbers. The catalogue entry
+  $(2,128,0)$ is generator 69 squared. Lookup rejects absent coordinates.
+  Multiplication is that of the quotient, with homogeneous closure proved;
+  the executable reducer reports invalid input, range violations and fuel
+  exhaustion rather than silently returning a value.
+\end{definition}
+
+\begin{proposition}[The unique possible square-degree monomial]
+  \label{prop:lin-square-degree-unique}
+  \lean{KIP126.LinE2.generatorDegree_eq_row,KIP126.LinE2.generatorDegree_low_filtration,KIP126.LinE2.squareDegree_support,KIP126.LinE2.monomialDegree_square_unique}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  A polynomial monomial of bidegree $(2,128)$ in the actual archived
+  generator degrees is exactly generator 69 squared. Every supported
+  generator lies among indices $0,1,2,3,7,18,69,324$.
+\end{proposition}
+\begin{proof}
+  A kernel-checked finite certificate exhausts the generator table in
+  filtration at most two and internal degree at most 128. Each supported
+  generator obeys these bounds because its contribution is at most the
+  total degree. For the eight remaining exponents $a_0,\ldots,a_7$, the
+  degree equations are $\sum a_i=2$ and
+  $\sum 2^i a_i=128$. Nonnegative integer arithmetic forces $a_6=2$
+  and every other exponent zero. No relation reduction or additive-basis
+  certification is used.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The square-degree component has at most two elements]
+  \label{prop:lin-square-component-two-elements}
+  \lean{KIP126.LinE2.homogeneousPart_square_eq_span,KIP126.LinE2.E2At_square_eq_zero_or}
+  \uses{prop:lin-square-degree-unique}
+  \leanok
+  The actual homogeneous submodule of the archived quotient in bidegree
+  $(2,128)$ is the $\mathbb F_2$-span of \texttt{dataH6Sq}. Consequently
+  each element is either zero or that square. The independent nonvanishing
+  certificate makes these two elements distinct, but is not needed for
+  the exhaustive alternative itself.
+\end{proposition}
+\begin{proof}
+  Replace every monomial in the defining spanning set by the unique
+  monomial just proved. The two possible scalar coefficients are zero and one.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The fixed internal square is the unique nonzero element]
+  \label{prop:h6-internal-square-unique}
+  \lean{KIP126.Classical.Adams.sphereAdamsData_square_eq_zero_or,KIP126.Classical.Adams.sphereAdamsData_eq_computedH6Square_of_ne_zero}
+  \uses{def:h6-fixed-computation,prop:lin-square-component-two-elements,thm:computation-sphereSquare-exhaustive}
+  \notready
+  Under the existing fixed foundation and Lin presentation, every element
+  of the internal $E_2^{2,128}$ is zero or \texttt{computedH6Square}.
+  In particular every nonzero element equals that square. Surjectivity of
+  the Lin comparison transports the exhaustive alternative from the
+  quotient-algebra component to the actual second page.
+\end{proposition}
+
+\begin{proposition}[The actual double tensor-boundary class is the computed square]
+  \label{prop:h6-computed-double-representative}
+  \lean{KIP126.Classical.Adams.sphereH6DoubleInternalE2_eq_computedH6Square,KIP126.Classical.Adams.computedH6Square_double_representative}
+  \uses{prop:h6-internal-square-unique,prop:h6-double-internal-nonzero,prop:h6-internal-square-polynomial-provenance}
+  \notready
+  Supply the ring, K\"unneth, reduced Milnor-basis structures and their
+  suspension, diagonal, unit, and coproduct coherence conditions on the
+  selected foundation. For the cooperation $a$ with polynomial coordinate
+  $[\xi_1^{64}]$ and normalized sphere coefficient, the actual internal
+  double tensor-boundary class equals \texttt{computedH6Square}.
+  It therefore supplies a $Z_2$ representative of that fixed class whose
+  first-page image is the specified double tensor-boundary element and
+  whose derived polynomial coordinate is $[\xi_1^{64}\mid\xi_1^{64}]$.
+  The proof uses only the fixed foundation and Lin-presentation axioms;
+  the lower structures and coherences are explicit, still-unsupplied inputs.
+  In particular it neither imports nor assumes the fixed Milnor-coordinate
+  comparison axiom, and does not use a Mathlib spectral-sequence adapter.
+\end{proposition}
+\begin{proof}
+  The actual double class is nonzero by the pure cobar non-boundary theorem.
+  The internal square-degree uniqueness result makes it the fixed computed
+  class. Transport the previously constructed representative and its
+  derived polynomial coordinate along this equality.
+\end{proof}
+
+\begin{proposition}[The remaining computational target as actual tower lifts]
+  \label{prop:h6-computed-double-tower-lifts}
+  \lean{KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff_double_lifts,KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff_double_connecting_lifts}
+  \uses{prop:h6-computed-double-representative,prop:h6-specified-representative-liftability,def:h6-tower-pages}
+  \notready
+  Under those same explicit lower inputs, choose any $Z_2$ lift $u$ of the
+  actual double tensor-boundary first-page element. The fixed computational
+  permanence statement is equivalent to
+  \[
+    \forall n\ge0,\quad \exists y_n\in\pi_{125}(T_{n+4}S),\qquad
+    (T_{n+4}S\longrightarrow T_3S)_*(y_n)=k(u).
+  \]
+  Here $k$ is the actual cofiber connecting map and
+  $k(u)\in\pi_{125}(T_3S)$. Existence of these lifts is an open mathematical
+  obligation, not a new axiom or a consequence of the $E_2$ table. The
+  equivalence asks for finite-stage lifts, not a compatible chosen family
+  or an inverse-limit element, and asserts no abutment convergence.
+\end{proposition}
+\begin{proof}
+  Every such $u$ represents the computed square, whose nonvanishing also
+  follows from the actual double-class calculation. Apply representative
+  independence and the no-incoming-differential criterion, then unfold the
+  actual definition of $Z_{n+2}$ as the preimage under $k$ of the tower-map
+  image. The degrees are $128-2-1=125$ and $2+(n+2)=n+4$.
+\end{proof}
+
+\begin{proposition}[The internal second differential is a tower obstruction]
+  \label{prop:h6-internal-second-differential-obstruction}
+  \lean{KIP126.Classical.Adams.adamsTowerPreSS_d_two_h6_eq,KIP126.Classical.Adams.adamsTower_d_two_h6_comparison,KIP126.Classical.Adams.adamsTower_d_two_h6_representative,KIP126.Classical.Adams.adamsTower_d_two_h6_value_of_lift,KIP126.Classical.Adams.adamsTower_d_two_h6_value_exists,KIP126.Classical.Adams.adamsTower_d_two_h6_eq_zero_iff_lift}
+  \uses{def:h6-tower-internal-sequence,prop:h6-tower-internal-laws,def:h6-tower-differential}
+  \leanok
+  For any tower in the stated stable-category context, let $u\in Z_2^{2,128}$
+  represent an internal class $x\in E_2^{2,128}$. There exists
+  $y\in\pi_{125}(T_4X)$ mapping to $k(u)\in\pi_{125}(T_3X)$.
+  Every such lift computes the existing internal differential as
+  $d_2(x)=[j(y)]\in E_2^{4,129}$, using the specified quotient-page
+  comparison. Moreover,
+  \[
+    d_2(x)=0\quad\Longleftrightarrow\quad
+    \exists z\in\pi_{125}(T_5X),\quad
+    (T_5X\longrightarrow T_3X)_*(z)=k(u).
+  \]
+  This is independent of the fixed foundation, Lin presentation, Milnor
+  coordinates, and Mathlib spectral-sequence adapter.
+\end{proposition}
+\begin{proof}
+  Check the numerical reindexing of the internal differential and transport
+  the tower quotient differential through the existing page isomorphisms.
+  Membership in $Z_2$ supplies $y$. The lift-independent differential formula
+  gives its value, and the kernel criterion identifies vanishing with $Z_3$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The computed square's second differential as a concrete obstruction]
+  \label{prop:h6-computed-second-differential-obstruction}
+  \lean{KIP126.Classical.Adams.computedH6Square_of_double_representative,KIP126.Classical.Adams.computedH6Square_d_two_value_of_double_lift,KIP126.Classical.Adams.computedH6Square_d_two_double_value_exists,KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_iff_double_lift}
+  \uses{prop:h6-computed-double-representative,prop:h6-internal-second-differential-obstruction}
+  \notready
+  Supply the same explicit lower structures and coherences as for the
+  actual double tensor-boundary representative. For any $Z_2$ representative
+  $u$ of that first-page element, the preceding formula computes
+  $d_2(\texttt{computedH6Square})$ in the existing internal sequence.
+  Its vanishing is equivalent to lifting $k(u)$ from $T_3S$ to $T_5S$.
+  These Lean proofs retain exactly the fixed foundation and Lin-presentation
+  project assumptions, with the lower witnesses still explicit and unsupplied.
+  No $T_5$ lift or vanishing assertion is provided, and no multiplicativity
+  or Leibniz rule for the spectral sequence is assumed by these formulas.
+\end{proposition}
+\begin{proof}
+  Any such representative has second-page class equal to the computed square.
+  Substitute this equality in the generic internal differential formula
+  and its vanishing criterion.
+\end{proof}
+
+\begin{definition}[The actual second differential in bounded Lin coordinates]
+  \label{def:h6-lin-second-differential}
+  \lean{KIP126.Classical.Adams.sphereE2SecondDifferential,KIP126.Classical.Adams.LinE2Presentation.secondDifferential,KIP126.Classical.Adams.LinE2Presentation.SecondDifferentialLeibniz}
+  \uses{def:h6-fixed-computation,def:h6-tower-internal-sequence}
+  \notready
+  For a supplied Lin presentation $P$, express the existing internal tower
+  differential in coordinates as
+  \[
+    D_P^{s,t}=P_{s+2,t+1}^{-1}\,d_2\,P_{s,t},\qquad t+1\le261.
+  \]
+  This is a family on homogeneous components, not a freely chosen
+  differential on the whole truncated quotient. The predicate
+  \texttt{SecondDifferentialLeibniz} requires
+  $D_P(xy)=D_P(x)y+xD_P(y)$ for all homogeneous $x,y$ with
+  $t(x)+t(y)+1\le261$. The equality is taken in the common Lin quotient.
+  The predicate is defined but has no supplied witness: neither the
+  presentation axiom nor the imported multiplication table asserts it.
+  Establishing it requires compatibility with the actual tower differential.
+\end{definition}
+
+\begin{proposition}[Leibniz suffices for the square's first outgoing differential]
+  \label{prop:h6-d2-zero-from-leibniz}
+  \lean{KIP126.Classical.Adams.sphereE2SecondDifferential_h6_square,KIP126.Classical.Adams.LinE2Presentation.secondDifferential_eq_zero_iff,KIP126.Classical.Adams.linE2_add_self_eq_zero,KIP126.Classical.Adams.LinE2Presentation.secondDifferential_square_eq_zero,KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_leibniz,KIP126.Classical.Adams.computedH6Square_double_lift_five_of_leibniz}
+  \uses{def:h6-lin-second-differential,prop:h6-computed-second-differential-obstruction}
+  \notready
+  If the selected Lin presentation satisfies the preceding Leibniz
+  condition, then the actual internal $d_2(\texttt{computedH6Square})$ is zero.
+  More generally every homogeneous square in the covered range is a
+  $D_P$-cycle. No assertion that the unsquared class is a cycle is required.
+  Under the additional explicit lower structures identifying the actual
+  double representative $u$, this gives a lift of $k(u)$ to $\pi_{125}(T_5S)$.
+  These are conditional Lean proofs, not a witness of Leibniz compatibility.
+  The fixed conclusions retain the existing foundation and Lin-presentation
+  axioms, introduce no new axiom, and imply neither higher outgoing
+  differential vanishing nor permanent survival.
+\end{proposition}
+\begin{proof}
+  The actual Lin quotient has $z+z=0$, by its $\mathbb F_2$-module structure;
+  no properness of the defining ideal is needed. Commutativity gives
+  $D_P(x^2)=D_P(x)x+xD_P(x)=0$.
+  Set $x=\texttt{dataH6}$, identify its product with \texttt{dataH6Sq}, and
+  transport vanishing through the invertible target coordinate map.
+  The previous tower criterion then supplies the $T_5S$ lift.
+\end{proof}
+
+\begin{proposition}[Three geometric products suffice for the square's second differential]
+  \label{prop:h6-d2-zero-from-long-layer}
+  \lean{KIP126.Classical.Adams.SphereH6LongLayerMaps.LinCompatible,KIP126.Classical.Adams.SphereH6LongLayerMaps.LinCompatible.cross_sum_zero,KIP126.Classical.Adams.LinE2Presentation.h6_cross_products_add_eq_zero,KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_longLayer}
+  \uses{def:h6-three-long-layer-products,def:h6-fixed-computation,prop:h6-long-layer-cross-cancellation,prop:h6-internal-second-differential-obstruction}
+  \notready
+  Assume the fixed foundation has the indicated tensor and coefficient-ring
+  structures, the three actual maps satisfy the preceding compatibility
+  and relative-boundary predicates, and their three descended internal
+  products equal the corresponding products of the fixed Lin presentation.
+  Then $d_2(\texttt{computedH6Square})=0$ for the existing internal
+  differential. A global \texttt{SecondDifferentialLeibniz} premise is not
+  needed, nor is $d_2(\texttt{computedH6})=0$.
+  This conditional implication has a Lean proof; the geometric maps and
+  their predicates remain unconstructed for the fixed foundation. Its
+  existing foundation and Lin-presentation axioms remain disclosed.
+  The result asserts neither higher differential vanishing nor permanence.
+\end{proposition}
+\begin{proof}
+  Apply the internal relative-boundary formula to the two copies of the
+  computed $h_6$. The square comparison identifies the input product with
+  the computed square. The two cross comparisons turn its differential
+  into $D(h_6)h_6+h_6D(h_6)$. Take Lin preimages of the two factors in
+  bidegrees $(3,65)$ and $(1,64)$; their products agree by commutativity and
+  their sum is zero by characteristic two in the covered degree $(4,129)$.
+  Transport this cancellation through the target comparison and its
+  injective quotient-page isomorphism.
+\end{proof}
+
+\begin{proposition}[The fixed second differential from lower connecting lifts]
+  \label{prop:h6-d2-zero-from-boundary-lifts}
+  \lean{KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_boundaryLifts,KIP126.Classical.Adams.computedH6Square_d_two_eq_zero_of_firstCycleProductRule}
+  \uses{def:h6-three-boundary-lifts,prop:h6-filtration-one-boundaries,prop:h6-cross-boundary-from-first-differential,prop:h6-d2-zero-from-long-layer}
+  \notready
+  Under the same fixed tensor and coefficient-ring assumptions, suppose
+  the three lower lifts satisfy \texttt{FitsProducts}, and the resulting
+  products satisfy the two \texttt{CrossBoundaryCompatible} conditions, the relative-boundary
+  identity, and the three Lin product comparisons. Then
+  $d_2(\texttt{computedH6Square})=0$. The long-layer products and their
+  projection squares are constructed, rather than additional inputs;
+  four of the six original descent boundary conditions are now proved.
+  Alternatively, the two local first-differential product rules supply
+  the remaining cross conditions. They do not replace the separate
+  second-differential relative-boundary identity.
+  This implication is proved in Lean without new axioms or \texttt{sorry};
+  the existing foundation and Lin-presentation axioms remain. The actual
+  lifts and the listed compatibility witnesses are still missing, so this
+  is not an unconditional vanishing or permanence theorem.
+\end{proposition}
+\begin{proof}
+  Construct the three products from the prescribed lifts, discharge their
+  projection compatibility by construction and four boundary conditions
+  by filtration-one boundary vanishing, and apply the preceding
+  three-product vanishing theorem with the remaining hypotheses.
+\end{proof}
+
+\begin{proposition}[CSV and standard labels agree on the internal page]
+  \label{prop:h6-internal-standard-comparison}
+  \lean{KIP126.Classical.Adams.standardH6Square_ne_zero,KIP126.Classical.Adams.computedH6Square_eq_standardH6Square,KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff_standard}
+  \uses{def:h6-standard-internal-target,prop:h6-internal-square-unique,prop:h6-standard-square-nonzero}
+  \notready
+  On the same internal $E_2$ page,
+  \texttt{computedH6Square} equals \texttt{standardH6Square}.
+  Consequently their internal nonzero-survival assertions are equivalent.
+  The comparison uses the staged Lin presentation and standard foundation;
+  it neither assumes permanence nor adds a class-identification axiom.
+\end{proposition}
+\begin{proof}
+  Standard cobar nonvanishing passes through the actual quotient-page
+  isomorphism to the internal standard class. The exhaustive two-element
+  description in bidegree $(2,128)$ then identifies it with the CSV class.
+  Rewrite the class in the nonzero-survival predicate on the same sequence.
+\end{proof}
+
+\begin{proposition}[The specified-class comparison is a theorem]
+  \label{prop:h6-fixed-class-comparison}
+  \lean{KIP126.Classical.Adams.h6Square_comparison}
+  \uses{prop:h6-internal-square-unique,prop:h6-fixed-standard-square-nonzero,prop:h6-tower-internal-comparison}
+  \notready
+  Under the specified foundation, Milnor coordinates, and Lin presentation,
+  the second-page comparison carries the computational square to the
+  standard square.
+\end{proposition}
+\begin{proof}
+  Pull the standard class back through the actual second-page isomorphism.
+  Its preimage is nonzero by standard nonvanishing, hence equals the
+  computational square by the exhaustive internal alternative. Map back.
+  The proof neither presupposes the class comparison nor asserts permanence.
+\end{proof}
+
+\begin{definition}[A finite nonzero-square detector]
+  \label{def:lin-square-detector}
+  \lean{KIP126.LinE2.SquareDetection.Target,KIP126.LinE2.SquareDetection.evaluate,KIP126.LinE2.SquareDetection.relationCheck,KIP126.LinE2.SquareDetection.allRelationsCheck}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  Let $P$ be the polynomial algebra underlying the specified Lin
+  presentation, $I$ its defining ideal, and $T=\mathbb F_2[u]/(u^3)$.
+  Define the evaluation homomorphism $\epsilon:P\to T$ by
+  \[
+    \epsilon(x_{69})=u,\qquad\epsilon(x_i)=0\quad(i\ne69).
+  \]
+  The finite relation test \texttt{allRelationsCheck} applies a sufficient
+  termwise vanishing criterion to each specified relation: a monomial
+  vanishes under $\epsilon$ if it contains another variable with positive
+  exponent or at least three copies of $x_{69}$. The test is defined here;
+  its successful value is a separate assertion.
+\end{definition}
+
+\begin{proposition}[Soundness of the nonzero-square detector]
+  \label{prop:lin-square-detector-sound}
+  \lean{KIP126.LinE2.SquareDetection.u_square_ne_zero,KIP126.LinE2.SquareDetection.relationCheck_sound,KIP126.LinE2.SquareDetection.definingIdeal_le_ker,KIP126.LinE2.SquareDetection.dataH6Sq_ne_zero_of_check}
+  \uses{def:lin-square-detector}
+  \leanok
+  If the finite test \texttt{allRelationsCheck} equals \texttt{true}, then
+  the specified data square is nonzero in the Lin quotient algebra.
+  This conditional theorem requires neither additive-basis certification
+  nor the admitted soundness of the general Gr\"obner reducer.
+\end{proposition}
+\begin{proof}
+  Every term covered by the test vanishes under $\epsilon$, so the
+  specified relations lie in its kernel. A monomial of internal
+  degree greater than 261 either involves a killed variable or is a pure
+  power of generator 69 with exponent at least five, so the truncation
+  ideal also lies in the kernel. Finally $u^2\ne0$, since $X^3$ cannot
+  divide $X^2$ in $\mathbb F_2[X]$. Hence generator 69 squared cannot
+  belong to the defining ideal.
+  \leanok
+\end{proof}
+
+\begin{theorem}[Nonvanishing of the square in the specified quotient algebra]
+  \label{thm:lin-square-certified}
+  \lean{KIP126.LinE2.SquareDetection.dataH6Sq_ne_zero}
+  \uses{def:lin-square-detector,prop:lin-square-detector-sound}
+  \leanok
+  If $q:P\to P/I$ is the quotient map for the fixed Lin presentation, then
+  \[
+    q(x_{69}^2)\ne0.
+  \]
+  This is the specified data square in the Lin quotient algebra. The
+  conclusion has no remaining finite-test hypothesis and does not require
+  a certification of its additive basis.
+\end{theorem}
+\begin{proof}
+  For the fixed presentation, all specified relations satisfy the finite
+  detector's termwise criterion. By soundness, $I\subseteq\ker\epsilon$,
+  so $\epsilon$ factors through $P/I$. The image of $q(x_{69}^2)$ is
+  $u^2\ne0$ in $\mathbb F_2[u]/(u^3)$, proving the claim.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Fixed computational nonvanishing and the remaining target]
+  \label{prop:h6-certified-nonvanishing}
+  \lean{KIP126.Classical.Adams.computedH6Square_ne_zero,KIP126.Classical.Adams.computedH6Square_nonzeroSurvival_iff}
+  \uses{thm:lin-square-certified,prop:h6-survival-liftability,def:h6-fixed-computation,thm:computation-sphereSquare-nonzero}
+  \notready
+  Under the already disclosed fixed foundation and Lin comparison, the
+  computational class is nonzero on $E_2$. Using the proved
+  no-incoming-differential theorem, its nonzero survival is equivalent to
+  the existence of one actual tower $Z_2$ representative of the specified
+  class that belongs to every $Z_{n+2}$. No finite-check premise remains;
+  the all-stage lifting assertion is not proved by this equivalence.
+\end{proposition}
+\begin{proof}
+  Transport quotient-algebra nonvanishing through the injective Lin
+  comparison and apply the survival/liftability equivalence.
+\end{proof}
+
+\begin{definition}[Tensor and cooperation compatibility]
+  \label{def:stage-zero-cooperation-contract}
+  \lean{KIP126.Foundation.TensorInput,KIP126.Foundation.CooperationInput}
+  \uses{def:h6-reduced-milnor-basis-input,def:h6-milnor-coproduct-input,prop:h6-derived-milnor-coordinates,def:h6-milnor-cooperations}
+  \leanok
+  For the specified $H\mathbb F_2$, choose tensor suspension and exactness,
+  an associative unital multiplication, a K\"unneth comparison, and a
+  reduced Milnor basis. Require the suspension, diagonal, unit, and Milnor
+  coproduct diagrams to commute for these same choices. The induced
+  first-page coordinates are those derived from these structures.
+  Existence of such compatible choices on the fixed sphere remains
+  unfinished.
+\end{definition}
+
+\begin{proposition}[Cobar square-zero law from the first-page comparison]
+  \label{prop:cobar-square-zero-from-comparison}
+  \lean{KIP126.Classical.Adams.sphereFirstDifferential_squared,KIP126.Classical.Adams.milnor_differential_squared,KIP126.Def.Solution.cobar_square_zero}
+  \uses{def:h6-milnor-cooperations,def:h6-tower-differential}
+  \leanok
+  Given the explicit Milnor comparison for the actual Adams first page,
+  $d_{s+1,t}d_{s,t}=0$ on every normalized Milnor cochain group.
+  This is conditional on that comparison, whose construction is still a
+  separate obligation; it does not assert an independent polynomial proof.
+\end{proposition}
+\begin{proof}
+  Lift a cochain along the first-page coordinate equivalence. Apply the
+  coordinate compatibility twice and the square-zero law of the constructed
+  first-page homological complex, then use preservation of zero.
+  \leanok
+\end{proof}
+
+\begin{definition}[Normalized Milnor cobar cohomology]
+  \label{def:milnor-cobar-cohomology}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cycles,KIP126.Classical.Adams.MilnorCohomology.boundaries,KIP126.Classical.Adams.MilnorCohomology.Cohomology,KIP126.Classical.Adams.MilnorCohomology.ofCocycle}
+  \uses{prop:cobar-square-zero-from-comparison}
+  \leanok
+  Given the same explicit $H\mathbb F_2$ and Milnor comparison, define
+  $H^{s,t}_{\mathrm{cobar}}=\ker(d_{s,t})/\operatorname{im}(d_{s-1,t})$
+  as an actual $\mathbb F_2$-module quotient; the incoming boundary module
+  at $s=0$ is zero. The proved square-zero law supplies its inclusion into
+  cycles. This construction alone does not identify the quotient with
+  derived Steenrod Ext.
+\end{definition}
+
+\begin{proposition}[Cobar class criteria and the specified nonzero square]
+  \label{prop:milnor-cobar-class-criteria}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.classOf_eq_iff,KIP126.Classical.Adams.MilnorCohomology.hiSquare_six_ne_zero}
+  \uses{def:milnor-cobar-cohomology}
+  \leanok
+  Two cycles define equal classes precisely when their difference belongs
+  to the actual incoming boundary module. The class of
+  $[\xi_1^{64}\mid\xi_1^{64}]$ is nonzero.
+\end{proposition}
+\begin{proof}
+  The quotient criterion gives the first statement; the existing concrete
+  nonboundary detector gives the second.
+  \leanok
+\end{proof}
+
+\begin{definition}[The full internal Milnor $h_i$ family]
+  \label{def:milnor-internal-hi-family}
+  \lean{KIP126.Steenrod.Milnor.hiCochain,KIP126.Steenrod.Milnor.hiSquareCochain,KIP126.Classical.Adams.Sphere.Internal.hi,KIP126.Classical.Adams.Sphere.Internal.hiSquare}
+  \uses{def:h6-milnor-cooperations,def:h6-tower-internal-sequence}
+  \leanok
+  For every $i\in\mathbb N$, the cocycles $[\xi_1^{2^i}]$ and their
+  concatenation squares define actual classes of bidegree $(1,2^i)$ and
+  $(2,2^{i+1})$ on the internal second page of the same sphere Adams tower.
+  They are obtained through its constructed quotient-page isomorphism,
+  rather than chosen independently.
+\end{definition}
+
+\begin{proposition}[Cobar multiplication descends to cohomology]
+  \label{prop:milnor-cobar-cup-descent}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.cup_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Challenge2.CobarCupCalculus}
+  \uses{def:milnor-cobar-cohomology,def:milnor-internal-hi-family}
+  \leanok
+  Cobar concatenation induces an actual $\mathbb F_2$-bilinear product
+  $H^{s,t}_{\mathrm{cobar}}\otimes H^{s',t'}_{\mathrm{cobar}}
+  \to H^{s+s',t+t'}_{\mathrm{cobar}}$.
+  Products of cocycle classes are the classes of their concatenations.
+  The specified $h_i^2$ is the cup square of $h_i$, transported along
+  $2^i+2^i=2^{i+1}$. This does not yet assert multiplicativity of the
+  comparison with the Adams page pairing.
+\end{proposition}
+\begin{proof}
+  The actual Leibniz identity makes cycles closed under concatenation and
+  incoming boundaries an ideal on either side; degree-zero boundaries
+  are handled as the zero submodule. Descend the bilinear map through both
+  quotient maps and evaluate it on the specified cocycles.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Canonical cobar comparison with the internal second page]
+  \label{prop:milnor-cobar-internal-e2}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.comparison,KIP126.Classical.Adams.MilnorCohomology.comparison_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.comparison_hi,KIP126.Classical.Adams.MilnorCohomology.comparison_hiSquare,KIP126.Challenge2.CobarE2Comparison,KIP126.Def.Comparison.StageInterfaces.cobarE2Comparison}
+  \uses{def:milnor-cobar-cohomology,def:h6-tower-internal-sequence}
+  \leanok
+  For the same explicit Milnor coordinate comparison and all $s,t\ge0$,
+  there is a canonical $\mathbb Z$-linear equivalence
+  $H^{s,t}_{\mathrm{cobar}}\cong E_2^{s,t}$ of the actual internal sphere
+  Adams tower. It takes every cocycle class to the class constructed from
+  that cocycle in this tower. This identifies the actual two quotients,
+  and in particular preserves the full specified $h_i$ and $h_i^2$ families,
+  without introducing a derived Ext model or comparing spectral sequences
+  with the optional Mathlib adapter.
+\end{proposition}
+\begin{proof}
+  Send cobar cycles through the inverse Milnor coordinates into first-page
+  cycles, then through their homology quotient and the same tower's
+  internal quotient-page isomorphism. The map is surjective with kernel
+  exactly the incoming boundaries. In filtration zero, use vanishing of
+  the negative-filtration first page. The quotient first-isomorphism
+  theorem gives the stated equivalence and its cocycle formula.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Linearity of the transported internal sphere product]
+  \label{prop:internal-sphere-product-linearity}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.product_add_right,KIP126.Classical.Adams.Sphere.Internal.product_zsmul_right}
+  \uses{prop:milnor-cobar-cup-descent,prop:milnor-cobar-internal-e2}
+  \leanok
+  For a fixed left factor, the prescribed internal sphere product preserves
+  addition and integer multiples in the right factor. This follows by
+  transporting the cobar cohomology product through the same comparison.
+\end{proposition}
+\begin{proof}
+  Apply additivity of the comparison maps and of the descended cup product.
+  Additive maps also preserve integer multiples.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Closedness and quotient-page compatibility of $h_i$]
+  \label{prop:milnor-internal-hi-family}
+  \lean{KIP126.Steenrod.Milnor.hiCochain_isCycle,KIP126.Steenrod.Milnor.hiSquareCochain_isCycle,KIP126.Classical.Adams.Sphere.Internal.hi_pageIso,KIP126.Classical.Adams.Sphere.Internal.hiSquare_pageIso,KIP126.Classical.Adams.Sphere.Internal.hi_six,KIP126.Classical.Adams.Sphere.Internal.hiSquare_six}
+  \uses{def:milnor-internal-hi-family}
+  \leanok
+  These representatives are closed and the quotient-page isomorphism sends
+  them to the corresponding tower classes. At $i=6$ they agree with the
+  previously specified $h_6$ and square. No higher-page permanence follows
+  from this construction.
+\end{proposition}
+\begin{proof}
+  Characteristic-two Frobenius proves closedness of the one-letter
+  representative; the cobar Leibniz identity proves closedness of its square.
+  The remaining equalities use the inverse quotient-page isomorphism and
+  the definitions of the specified degree-six representatives.
+  \leanok
+\end{proof}
+
+\begin{theorem}[Basis of the Lin quotient-algebra components]
+  \label{thm:lin-e2-basis-certification}
+  \lean{KIP126.Interface.Solution.LinE2.basisTable_correct}
+  \uses{def:lin-e2-catalogue}
+  \notready
+  For all $s,t\in\mathbb N$ with $t\le261$, the listed monomial values of
+  degree $(s,t)$ in the fixed v126.3.cw49 catalogue form an
+  $\mathbb F_2$-basis of its quotient-algebra component. This asserts both
+  linear independence and spanning, not merely that the list has the right
+  length. The proof remains unfinished. Identifying these components
+  with the actual sphere $E_2$ page additionally requires the Lin
+  presentation.
+\end{theorem}
+
+\begin{theorem}[Additive coordinates on the sphere second page]
+  \label{thm:lin-sphere-basis-interface}
+  \lean{KIP126.Challenge2.SphereBasisInterface,KIP126.Interface.Solution.sphereBasis}
+  \uses{def:lin-e2-catalogue,def:h6-fixed-computation}
+  \notready
+  Given the same range-limited Lin presentation $P$, there are unique
+  finite-support $\mathbb F_2$ coordinates on the actual internal sphere
+  $E_2^{s,t}$ for every $s,t\in\mathbb N$ with $t\le261$.
+  The coordinate equivalences are integer-linear, preserving the existing
+  page additive structure without choosing another $\mathbb F_2$ action.
+  Pulling the inverse image of each standard coordinate vector back
+  through $P$ gives exactly the specified CSV monomial value.
+  The coordinate-value condition is that of
+  Theorem~\ref{thm:computation-sphereBasis-csv-values}.
+\end{theorem}
+\begin{proof}
+  \uses{thm:lin-e2-basis-certification}
+  Transport the certified quotient-algebra basis through $P$.
+  This construction is conditional on the quotient-algebra basis theorem,
+  whose proof remains unfinished.
+\end{proof}
+
+\begin{definition}[Data and internal Adams additive coordinates]
+  \label{def:lin-e2-coordinates}
+  \lean{KIP126.LinE2.basisTable_correct}
+  \lean{KIP126.LinE2.dataBasis}
+  \lean{KIP126.LinE2.dataCoordinates}
+  \lean{KIP126.Classical.Adams.sphereE2BasisByCSV?}
+  \lean{KIP126.Classical.Adams.sphereE2Coordinates}
+  \lean{KIP126.Classical.Adams.linToSphere_product_eq}
+  \lean{KIP126.Classical.Adams.linToSphere_exists_preimage}
+  \lean{KIP126.Classical.Adams.linToSphere_eq_iff}
+  \lean{KIP126.Classical.Adams.linToSphere_product_eq_zero}
+  \uses{thm:lin-sphere-basis-interface,def:h6-fixed-computation}
+  \notready
+  Use the same presentation and coordinate equivalences on every covered
+  component. The algebra-side basis and the sphere-side coordinates are
+  compared through this one family of equivalences.
+  Each covered component has unique finite-support $\mathbb F_2$
+  coordinates, with an integer-linear equivalence retaining the internal
+  SSData $E_2$ page's existing additive structure.
+  Basis vectors have the specified CSV values and are nonzero; coordinates
+  reconstruct any element. Product equalities in the data quotient transfer
+  to the internal page, including zero products. Every covered page element
+  has a data preimage, and equality of images is equivalent to equality of
+  data representatives. These comparisons concern the second page.
+\end{definition}
+
+\begin{lemma}[The computed class is the square of computed $h_6$]
+  \label{lem:lin-h6-square-product}
+  \lean{KIP126.Classical.Adams.computedH6_mul_self}
+  \uses{def:h6-fixed-computation,def:lin-e2-catalogue}
+  \notready
+  Under the fixed Lin comparison, the internal $E_2$ product of the image of
+  data $h_6$ with itself is the computational target class.
+\end{lemma}
+
+\begin{theorem}[Soundness of coordinate reduction]
+  \label{thm:lin-e2-coordinate-check}
+  \lean{KIP126.LinE2.Automation.coordinateCheck_sound}
+  \uses{def:lin-e2-catalogue}
+  \notready
+  If the concrete reducer successfully checks equal CSV coordinates for two
+  expressions within range, their interpretations in the quotient algebra
+  are equal. A reduction certificate must express their difference as a
+  sum of multiples of the defining relations. Correctness of the coordinate
+  reducer remains unfinished and is separate from basis certification and
+  comparison with the sphere Adams page.
+\end{theorem}

@@ -1,0 +1,257 @@
+In this subsection we set notation for working in the various categories of interest.
+%Our goal here is to provide a gentle introduction so that reader interested in working with $C\ta$-modules has good computational control over the category.
+%This means digesting the category on the right-hand-side of \Cref{thm:Cta}
+In particular, we aim for a practical understanding of the category
+\[ \Mod ( \Sp_{C_2, i2}; \uZt) \otimes_{\Z} \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}}) \]
+that appears on the right-hand-side of \Cref{thm:Cta}. Proceeding from inside out,
+we start by fixing notation for the category of $\Z$-modules:
+
+\begin{dfn}
+  Let $\Abh$ denote the abelian category of discrete abelian groups.
+  Let $\Ab$ denote the category of $\Z$-modules with its standard $t$-structure,
+  so that $\Abh$ is the heart of $\Ab$.
+\end{dfn}
+
+%From here this subsection now breaks into three parts.
+%First, we discuss the relevant categories of equivariant objects.
+%Next, we discuss the relevant category of $\MU_*\MU$-comodules, or equivalently sheaves on the moduli stack of formal groups $\Mfg$.
+%Finally, we explain how to combine these two pieces.
+%Thankfully, the equivariant and comodule aspects are only weakly coupled so we will be able to give simple descriptions.
+
+%% We begin by recalling the definitions of the relevant equivariant categories. These include (discrete) Mackey functors for $C_2$ and modules over $\uZt$ in Mackey functors.
+%% Let us begin by taking the time to carefully set up the various players in the story. We start by discussing some categories of Mackey functors and functors between them.
+
+Next, we describe the $C_2$-equivariant analog of $\Ab$:
+
+\begin{dfn} \label{dfn:mackey}
+  Let $M(C_2)^{\heartsuit}$ denote the abelian category of discrete Mackey functors for the group $C_2$,
+  which may be explicitly described as follows.
+  A Mackey functor $B \in M(C_2) ^{\heartsuit}$ consists of the following:
+  \begin{itemize}
+    \item abelian groups $B(C_2)$ and $B(\ast)$,
+    \item an involution $\sigma : B(C_2) \to B(C_2)$,
+    \item homomorphisms $r : B(\ast) \to B(C_2)$ and $t : B(C_2) \to B(\ast)$,
+     which satisfy the relations $\sigma \circ r = r$, $t \circ \sigma = t$ and $r \circ t = 1 + \sigma$.
+  \end{itemize}
+  We will somtimes write $[C_2]$ for the endomorphism $t \circ r$ of $B(*)$.
+  We let $M(C_2)$ denote the unbounded derived category of $M(C_2)^{\heartsuit}$ equipped with its standard $t$-structure.\footnote{As defined, for example, in \cite[Definition 1.3.5.8]{HA}.}
+\end{dfn}
+
+In our setting, $M(C_2)$ arises naturally because it is equivalent to the category of $\piu_0 ^{C_2} \Ss$-modules in $\Sp_{C_2}$ \cite[Theorem 5.10]{SpectrumMackey}.
+This description equips $M(C_2)$ with a symmetric monoidal structure compatible with the $t$-structure. The induced symmetric monoidal structure on $M(C_2)^{\heartsuit}$ is known as the box product and admits an explicit description as in \cite{CpBox}.
+\todo{Probably there's a better cite for this, but this one has a nice modern proof.}
+\todo{rwb: Its always unnerved me that I don't know an explicit description of the monoidal structure on Mackey functors.}
+
+\begin{exm}
+  Given a discrete abelian group $A$, we may consider the constant Mackey functor $\underline{A} \in M(C_2)^{\heartsuit}$. This Mackey functor is determined by $\underline{A} (C_2) = \underline{A} (\ast) = A$, $r = \sigma = \mathrm{id}_{A}$ and $t=2 \cdot \mathrm{id}_{A}$.
+  This construction provides an exact colimit-preserving functor
+  \[\_ : \Abh \to M(C_2)^{\heartsuit}.\]
+  Examining the explicit description of the box product in \cite{CpBox}, we find that $\_$ acquires the structure of a (non-unital) tensor-product preserving lax symmetric monoidal functor.
+  In particular, we obtain a commutative algebra $\uZ$ in $M(C_2)^{\heartsuit}$.
+\end{exm}
+\todo{rwb: Given we describe nothing about the monoidal structure, why is this functor lax-mon?}
+
+\begin{dfn}
+  Let $\underline{\mathrm{Ab}}$ denote the the symmetric monoidal category of $\uZ$-modules in $M(C_2)$ (or, equivalently, $\Sp_{C_2}$), equipped with its standard $t$-structure. This is equivalent to the derived category of $\Mod(M(C_2)^{\heartsuit}; \uZ)$; in particular, we have $\uAbh = \Mod(M(C_2) ^{\heartsuit}; \uZ)$.
+\end{dfn}
+
+\begin{rmk} \label{rmk:underline}
+  Since $\Z$ is the unit of $\Abh$, we learn that $\_$ factors through an exact colimit-preserving symmetric monoidal functor% \footnote{A priori this functor is only lax symmetric monoidal, but exact colimit-preserving lax symmetric monoidal functors out of the category of abelian groups which preserve the unit are automatically symmetric monoidal.}
+  \[\_ : \Abh \to \uAbh.\]
+  Since $\_$ is exact, colimit-preserving and symmetric monoidal it extends uniquely to a colimit-preserving symmetric monoidal functor $\_ : \Ab \to \uAb$ of derived categories. Moreover, the pair of functors $A \to A(*)$ and $A \to A(C_2)$ extend to limit-preserving functors on the level of the derived category. Since this pair of functors is jointly conservative, we can use the fact that $\underline{A}(*) \cong A$ and $\underline{A}(C_2) \cong A$ to conclude that $\_$ preserves limits as well.
+ 
+%% \todo{Is it symmetric monoidal? If so, reason/cite? rwb: Apply BBL to the algebra map Sp --> uAb and you obtain the same symm mon functor in from Ab. Is this worth stating? rwb (later): yes, b/c nobodies written down a lax tensor product of infinity categories we need the functor to have been monoidal.}
+\end{rmk}
+
+Before proceeding to explicitly describe $\IndCoh(\Mfg)$, we record a few lemmas for later use. 
+
+\begin{lem} \label{lem:const-mackey}
+  The functor $\_ : \Abh \to \uAbh$ is fully faithful and left adjoint to the functor
+  $B \mapsto B(\ast)$.
+  Its essential image is therefore a coreflective subcategory of $\uAbh$, with coreflector given by the counit map $\underline{B(\ast)} \to B$.
+  In particular, for any $B$ in the essential image of $\_$, there are canonical isomorphisms
+  \[B \cong \underline{B(\ast)} \cong \underline{B(C_2)}.\]
+\end{lem}
+
+\begin{proof} Clear.
+\end{proof}
+
+\begin{lem} \label{lem:uabh-image}
+  The forgetful functor $\uAbh \to M(C_2)^{\heartsuit}$ is fully faithful, with image spanned by the Mackey functors $B$ for which $[C_2]=2$ as endomorphisms of $B(\ast)$.
+\end{lem}
+
+\begin{proof}
+  The unit of $M(C_2)^{\heartsuit}$ is the Burnside Mackey functor $\underline{\mathcal{A}}$, whose values are given by $\underline{\mathcal{A}} (C_2) = \Z$ and $\underline{\mathcal{A}} (\ast) = \Z[[C_2]]/([C_2]^2 - 2[C_2])$.
+  As a commutative algebra in $M(C_2)^{\heartsuit}$, $\uZ$ is the quotient of $\underline{\mathcal{A}}$ by the relation $[C_2]=2$.
+  The result follows.
+\end{proof}
+
+The following definition and construction sum up what we need to know about categories of quasicoherent and ind-coherent sheaves on $\Mfg$:
+
+\begin{dfn} \label{dfn:IndCoh}
+  We let $\Mfg$ denote the moduli stack of formal groups and let $\QCoh (\Mfg)$ denote the category of quasicoherent sheaves on $\Mfg$.
+  It is equivalent to the derived category of evenly graded $\MU_* \MU$-comodules \cite[Remarks 2.38 and 3.14]{GoerssMfg}.
+%
+  %Let $\QCoh(\Mfg)_{i2}$ denote the category of modules over the $2$-completion of the unit.
+
+  Let $\mathcal{D} \subset \QCoh(\Mfg)$ denote the thick subcategory generated by the sheaves $\omega_{\mathbb{G}/\Mfg} ^{\otimes k}$ for $k \in \Z$, where $\omega_{\mathbb{G} / \Mfg}$ is the sheaf of invariant differentials on the universal formal group $\mathbb{G} / \Mfg$. We define $\IndCoh(\Mfg) \coloneqq \Ind(\mathcal{D})$.
+  %It follows from \cite[Remark 4.30]{LocDual} that $\IndCoh(\Mfg)$ is equivalent to .
+  The category $\IndCoh(\Mfg)$ is equivalent to Hovey's category of evenly graded stable comodules $\mathrm{Stable}_{\MU_* \MU}$, c.f. \cite[Remark 4.30]{LocDual}.
+  %
+  %Finally, we let $\IndCoh(\Mfg)_{i2}$ denote the category of modules over the $2$-completion of the unit.
+
+  Both $\QCoh(\Mfg)$ and $\IndCoh(\Mfg)$ are naturally stable presentably symmetric monoidal categories and come equipped with compatible $t$-structures whose hearts are equivalent to the $1$-category of $\MU_* \MU$-comodules. \todo{Come back to this and remark that D = Perf and justify that Indcoh = Indperf here.}
+\end{dfn}
+
+\begin{cnstr}
+  Since $\QCoh(\Mfg)$ is equivalent to the derived category of a Grothendieck abelian category, it is equipped with the structure of a colimit-preserving symmetric monoidal functor $\Ab \to \QCoh(\Mfg)$.
+  Letting $\Ab ^{\mathrm{fin}}$ denote the full subcategory of compact objects, this restricts to an exact symmetric monoidal functor $\Ab ^{\mathrm{fin}} \to \D$, where $\D$ is defined as in \Cref{dfn:IndCoh}.
+  Taking $\Ind$ and using the fact that $\Ab$ is compactly generated, we obtain a colimit-preserving symmetric monoidal functor
+  \[\Ab \simeq \Ind(\Ab ^{\mathrm{fin}}) \to \Ind(\D) = \IndCoh(\Mfg).\]
+
+  Using this functor and the functor $\Ab \xrightarrow{\_} \uAb \xrightarrow{- \otimes_{\uZ} \uZt} \uAb_{i2}$, we are able to define the stable presentably symmetric monoidal category
+  \[\uAb_{i2} \otimes_{\Z} \IndCoh(\Mfg),\]
+  which appeared in \Cref{thm:Cta} with slightly different notation.
+\end{cnstr}
+
+The core of our understanding of $\uAb_{i2} \otimes_{\Z} \IndCoh(\Mfg)$ rests on the following lemma, where we put a $t$-structure on this category whose heart we can describe explicitly.
+
+\begin{lem} \label{lem:Cta-t-structure}
+  There exists a $t$-structure on $\uAb_{i2} \otimes_{\Ab} \IndCoh(\Mfg)$ with the following properties:
+  \begin{enumerate}
+    \item It is compatible with the symmetric monoidal structure, accessible, compatible with filtered colimits and right complete.
+    \item The natural functor
+      \[\uAb_{i2, \geq 0} \otimes _{\Ab_{\geq 0}} \IndCoh(\Mfg)_{\geq 0} \to \uAb_{i2} \otimes_{\Ab} \IndCoh(\Mfg)\]
+      is fully faithful with essential image the connective objects.
+    \item The natural functor
+      \[\uAb_{i2} ^{\heartsuit} \otimes_{\Ab^{\heartsuit}} \IndCoh(\Mfg)^{\heartsuit} \to \uAb_{i2} \otimes_{\Ab} \IndCoh(\Mfg)\]
+      is fully faithful with essential image the heart of $\uAb_{i2} \otimes_{\Ab} \IndCoh(\Mfg)$.
+  \end{enumerate}
+\end{lem}
+
+Using the explicit description of $\uAbh$ given by \Cref{dfn:mackey} and \Cref{lem:uabh-image} and the fact that $\IndCoh(\Mfg)^{\heartsuit}$ is equivalent to the category of evenly-graded $\MU_* \MU$-comodules, we obtain the following description of
+\[\uAb_{i2}^{\heartsuit} \otimes_{\Ab^{\heartsuit}} \IndCoh(\Mfg)^{\heartsuit}:\]
+this is the category of pairs of $(\MU_2)_*\MU_2$-comodules $A(C_2)$ and $A(\ast)$ equipped with following structures (all of which are compatible with the comodule structure):
+\begin{itemize}
+  \item maps $r : A(\ast) \to A(C_2)$ and $t : A(C_2) \to A(\ast)$, along with an involution $\sigma : A(C_2) \to A(C_2)$,
+  \item which satisfy the relations $\sigma \circ r = r$, $t \circ \sigma = t$, $t \circ r = 2$ and $r \circ t = 1 + \sigma$.
+\end{itemize}
+
+In other words, $\uAb^{\heartsuit}_{i2} \otimes_{\Ab^{\heartsuit}} \IndCoh(\Mfg)^{\heartsuit}$ is the category of evenly graded comodules over the Hopf algebroid $(\underline{(\MU_2)_{*}}, \underline{(\MU_2)_* \MU_2})$ in graded $C_2$-Mackey functors.
+
+\begin{rmk}
+  Using the fact that $$((\underline{\MU_{\R,2}})_{*\rho}, (\underline{\MU_{\R,2}})_{*\rho} \MU_{\R,2}) \cong (\underline{(\MU_2)_{2*}}, \underline{(\MU_2)_{2*} \MU_2}),$$ see \cite[Theorems 2.25 and 2.28]{HuKriz}, this category may equally well be described as the category of graded comodules over the Hopf algebroid $((\underline{\MU_{\R,2}})_{*\rho}, \underline({\MU_{\R,2}})_{*\rho} \MU_{\R,2})$ in graded $C_2$-Mackey functors.
+\end{rmk}
+
+The proof of \Cref{lem:Cta-t-structure} is not difficult, but it will rely on material from \cite[Appendix C]{SAG} which we presently recount. We begin with a simple method for producing $t$-structures. 
+
+\begin{cnstr}
+  Given a pointed presentable category $\CC$, we let 
+  $\Sp \otimes \CC \simeq \Sp(\CC)$
+  %% = \varprojlim \left( \dots \xrightarrow{\Omega} \CC \xrightarrow{\Omega} \CC \xrightarrow{\Omega} \CC \right)\]
+  denote the category of spectrum objects in $\CC$. It is a stable presentable category.
+
+  The category $\Sp \otimes \CC$ admits a $t$-structure with $(\Sp \otimes \CC)_{\geq 0}$ equal to the essential image of the functor $\Sigma^{\infty} : \CC \to \Sp \otimes \CC$.
+  This $t$-structure is accessible and right complete.
+
+  Note that if $\CC$ is endowed with the structure of a presentably symmetric monoidal category, then $\Sp \otimes \CC$ naturally inherits this structure and the $t$-structure defined above is compatible with it.
+\end{cnstr}
+
+In fact, the following lemma, which follows from \cite[Remark C.3.1.5]{SAG}, demonstrates that this construction is the universal way to produce a (well-behaved) $t$-structure on a presentable stable category. 
+
+\begin{lem} \label{lem:conn-enough}
+  Suppose that $(\CC, \CC_{\geq 0})$ is a stable presentably symmetric monoidal category with compatible $t$-structure. Suppose that the $t$-structure is accessible, compatible with filtered colimits and right complete.
+
+  Then there is a natural equivalence of symmetric monoidal categories with compatible $t$-structure
+  \[(\CC, \CC_{\geq 0}) \simeq (\Sp \otimes \CC_{\geq 0}, (\Sp \otimes \CC_{\geq 0})_{\geq 0}).\]
+\end{lem}
+
+%% \begin{cor} \label{cor:is-sp}
+%%   There are natural equivalences of symmetric monoidal categories with compatible $t$-structures:
+%%   \[(\Ab,\Ab_{\geq 0}) \simeq (\Sp(\Ab_{\geq 0}), \Sp(\Ab_{\geq 0})_{\geq 0}),\]
+%%   \[(\uAb,\uAb_{\geq 0}) \simeq (\Sp(\uAb_{\geq 0}), \Sp(\uAb_{\geq 0})_{\geq 0}),\]
+%%   \[(\IndCoh(\Mfg), \IndCoh(\Mfg)_{\geq 0}) \simeq (\Sp(\IndCoh(\Mfg)_{\geq 0}), \Sp(\IndCoh(\Mfg)_{\geq 0})_{\geq 0}).\]
+%% \end{cor}
+
+In conclusion, we may as well work with the categories of connective objects. For $\Ab, \uAb_{i2}$, and $\IndCoh(\Mfg)$, these are all Grothendieck prestable categories in the sense of \cite[Definition C.1.4.2]{SAG}.
+
+\begin{rec} \label{rec:groth-ab}
+  We let $\Groth_{\infty}$ denote the category of Grothendieck prestable categories \cite[Definition C.3.0.5]{SAG}. By \cite[Theorem C.4.2.1]{SAG}, $\Groth_{\infty}$ is a symmetric monoidal category with tensor product given by the usual tensor product of presentable categories and unit $\Sp_{\geq 0}$.
+
+  Moreover, let $\Groth_{1}$ denote the category of Grothendieck abelian $1$-categories. It is a symmetric monoidal category with tensor product given by the usual tensor product of presentable categories and unit $\Abh$ \cite[Corollary C.5.4.19]{SAG}. There is a functor $\tau_{\leq 0} : \Groth_{\infty} \to \Groth_{1}$ sending a Grothendieck prestable category to its subcategory of discrete objects.
+  By \cite[Remark C.5.4.20]{SAG}, the functor $\tau_{\leq 0}$ is symmetric monoidal.
+
+  We summarize this in the following span of symmetric monoidal categories 
+  \begin{center}
+    \begin{tikzcd}
+      & \Groth_{\infty} \ar[dl, "\Sp \otimes -"] \ar[dr, "\tau_{\leq 0}"] \\
+      \mathrm{Pr}^{L,\mathrm{Stab}} & & \Groth_{1}.
+    \end{tikzcd}
+  \end{center}
+\end{rec}
+
+\begin{proof}[Proof (of \Cref{lem:Cta-t-structure}).]
+  Using \Cref{lem:conn-enough} and \cite[Remark C.4.2.3]{SAG}, we have
+  \[\Sp \otimes \left(\uAb_{i2, \geq 0} \otimes_{\Ab_{\geq 0}} \IndCoh(\Mfg)_{\geq 0} \right) \simeq \uAb_{i2} \otimes_{\Ab} \IndCoh(\Mfg).\]
+  Moreover, since $\uAb_{i2, \geq 0} \otimes_{\Ab_{\geq 0}} \IndCoh(\Mfg)_{\geq 0}$ is prestable, the $\Sigma^{\infty}$ functor identifies it with $\left(\Sp \otimes \left(\uAb_{i2, \geq 0} \otimes_{\Ab_{\geq 0}} \IndCoh(\Mfg)_{\geq 0} \right)\right)_{\geq 0}$.
+
+  This immediately implies the first two properties, with the exception of compatibility with filtered colimits. This follows from the fact that $\uAb_{i2, \geq 0} \otimes_{\Ab_{\geq 0}} \IndCoh(\Mfg)_{\geq 0}$ is compactly generated, which holds becuase each one of $\uAb_{i2, \geq 0}$, $\Ab_{\geq 0}$ and $\IndCoh(\Mfg)_{\geq 0}$ is compactly generated \cite[Corollary C.6.2.3]{SAG}.
+
+  The third property follows from the fact that $\CC^{\heartsuit} = \tau_{\leq 0} \left( \CC_{\geq 0} \right)$ and the fact that $\tau_{\leq 0}: \Groth_{\infty} \to \Groth_1$ is symmetric monoidal.
+\end{proof}
+
+%\begin{dfn}
+%  Let $\CC$ and $\D$ denote stable presentably symmetric monoidal $\infty$-categories equipped with $t$-strutures generated by connective objects $\CC_{\geq 0}$ and $\D_{\geq 0}$. We make the following additional assumptions on the $t$-structure:
+%  \begin{itemize}
+%    \item We have $\o_\CC \in \CC_{\geq 0}$ and $\o_{\D} \in \D_{\geq 0}$.
+%    \item The full subcategories $\CC_{\geq 0}$ and $\D_{\geq 0}$ are closed under the tensor product.
+%    \item The full subcategories $\CC_{\geq 0}$ and $\D_{\geq 0}$ of coconnective objects are closed under filtered colimits.
+%  \end{itemize}
+%\end{dfn}
+%
+%Remark C.5.4.20
+%
+%Finally, we define a $t$-structure on $\uAb \otimes_\Z \IndCoh(\Mfg)$ by setting $\left( \uAb \otimes_\Z \IndCoh(\Mfg) \right) _{\geq 0}$ to be the category generated under colimits and extensions by the image of the restriction of the functor $m : \uAb \times \IndCoh(\Mfg) \to \uAb \otimes_{\Z} \IndCoh(\Mfg)$ to $\uAb_{\geq 0} \times \IndCoh(\Mfg)_{\geq 0}$.
+%
+%
+%We may now make sense of the tensor product on the right-hand side of the isomorphism in \Cref{thm:Cta}. By the description of $\uAb$ in \Cref{prop:uA-pre}, we see that there is an equivalence
+%\[\Mod(\Sp_{C_2}; \uZ) \otimes_{\Z} \IndCoh(\Mfg) = \uAb \otimes_{\Z} \IndCoh(\Mfg) \simeq \Fun^{\times} (\uA, \IndCoh(\Mfg)).\]
+%
+
+
+
+%
+%The usual $t$-structure on $\IndCoh(\Mfg)$ induces a $t$-structure on $\Fun^{\times} (\uA, \IndCoh(\Mfg))$ with heart $\Fun^{\times} (\uA, \IndCoh(\Mfg)^{\heartsuit})$. Unpacking the definitions, we find that an object of this heart consists \todo{up to p-completion nonsense...} of a pair of $\MU_*\MU$-comodules $A(C_2)$ and $A(\ast)$ equipped with following strucutre (all of which is compatible with the comodule structure),
+%\begin{itemize}
+  %\item an involution, $\sigma$, on $A(C_2)$,
+  %\item restriction and transfer maps, $r: A(\ast) \to A(C_2)$ and $t: A(C_2) \to A(\ast)$,
+%\end{itemize}
+%subject to compatabilities $r \sigma = r$, $\sigma t = t$, $rt = 2$ and $tr = 1 + \sigma$.
+%
+%
+%
+%Now we begin our task of understanding the tensor product on the right-hand-side of the isomorphism in the statement of [thm]. Since $\uAb$ can be described as product preserving presheaves of $\Z$-modules on $\uA$ we can correspondingly describe $\Mod ( \Sp_{C_2}; \uZ) \otimes_{\Z} \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}})$ as product preserving presheaves on $\uA$ with values in $\mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}})$.  
+%
+%By declaring that external tensors of connective objects are connective we obtain a $t$-structure on $\Mod ( \Sp_{C_2}; \uZ) \otimes_{\Z} \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}})$. The sheaf description gives us a simple description of the heart of this $t$-structure. 
+%An object of $(\uAb \otimes_{\Ab} \mathrm{IndCoh}(\mathcal{M}_{\mathrm{fg}}))^\heartsuit$
+%consists of a pair of $\MU_*\MU$-comodules $A_e$ and $A_{C_2}$ equipped with following strucutre (all of which is compatible with the comodule structure),
+%\begin{itemize}
+%\item an involution, $\sigma$, on $A_e$,
+%\item restriction and transfer maps, $r: A_{C_2} \to A_e$ and $t: A_e \to A_{C_2}$,
+%\end{itemize}
+%subject to compatabilities $r \sigma = r$, $\sigma t = t$, $rt = 2$ and $tr = 1 + \sigma$.
+%
+%Using this description we can conclude that the statement about the trigraded homotopy ring in [thm] follows from equivalence of categories given earlier in [thm]. \todo{Actually prove this and come back to it later.}
+%We will prove the remainder of [thm] over the course of the next two subsections.
+%In [subsec], we will use general nonsense to produce a comparison functor between the two categories in question and reduce [thm] to a single, more technical lemma.
+%In [subsec], we will use the special properties of $t$-structures to prove this lemma.
+%\todo{Update this at the end to take into account the fact that there are two theorems now.}
+%
+%% \begin{rmk}\todo{Move this elsewhere}
+%%   Although we have mentioned Mackey functors in connection with >>> it is not true that >>> is the category of $\MU_*\MU$-comodule valued Mackey functors. We suspect that if one studied $C_2$ equivariant motives, i.e. $\SH(B\mu_2)$, that a corresponding story would play out with $\MU_\R$ replaced by $\MU_{C_2}$. In this case the the modules over associated [tau] element would actually be comodule valued Mackey functors. 
+%% \end{rmk}
+%
+%The proof of this theorem will occupy the next several pages.
+%We begin with several lemmas whose proofs are short and abstract (Lemmas \ref{lem:gr-of-comparison}, \ref{lem:MU-koszul} and \ref{lem:uMU-koszul}).
+%These lemmas puts us in a position where \Cref{lem:gr-R-bullet-computation} finishes the proof.
+%The proof of \Cref{lem:gr-R-bullet-computation} is much more concrete, it proceeds via a direct examination of the object $R_\bullet$ constructed in [location].

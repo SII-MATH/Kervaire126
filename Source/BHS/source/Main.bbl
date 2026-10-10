@@ -1,0 +1,550 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{BHHM08}
+
+\bibitem[ABG{\etalchar{+}}14]{ABGHR}
+Matthew Ando, Andrew~J. Blumberg, David Gepner, Michael~J. Hopkins, and Charles
+  Rezk.
+\newblock Units of ring spectra, orientations and {T}hom spectra via rigid
+  infinite loop space theory.
+\newblock {\em J. Topol.}, 7(4):1077--1117, 2014.
+
+\bibitem[ABS64]{ABS}
+M.~F. Atiyah, R.~Bott, and A.~Shapiro.
+\newblock Clifford modules.
+\newblock {\em Topology}, 3(suppl. 1):3--38, 1964.
+
+\bibitem[Ada64]{Ad:SHT}
+J.~Frank Adams.
+\newblock {\em Stable homotopy theory}, volume~3 of {\em Lectures Notes in
+  Mathematics}.
+\newblock Springer-Verlag, Berlin, 1964.
+
+\bibitem[Ada66a]{AdamsJIV}
+J.~F. Adams.
+\newblock On the groups {$J(X)$}. {IV}.
+\newblock {\em Topology}, 5:21--71, 1966.
+
+\bibitem[Ada66b]{AdamsPer}
+J.~F. Adams.
+\newblock A periodicity theorem in homological algebra.
+\newblock {\em Proc. Cambridge Philos. Soc.}, 62:365--377, 1966.
+
+\bibitem[AM17]{AndrewsMiller}
+Michael Andrews and Haynes Miller.
+\newblock Inverting the {H}opf map.
+\newblock {\em J. Topol.}, 10(4):1145--1168, 2017.
+
+\bibitem[And15]{Andrews}
+Michael Andrews.
+\newblock The $v_1$-periodic part of the {A}dams spectral sequence at an odd
+  prime.
+\newblock 2015.
+\newblock Thesis (Ph.D.)--Massachusetts Institute of Technology.
+
+\bibitem[Ang08]{Angeltveit}
+Vigleik Angeltveit.
+\newblock Topological {H}ochschild homology and cohomology of {$A_\infty$} ring
+  spectra.
+\newblock {\em Geom. Topol.}, 12(2):987--1032, 2008.
+
+\bibitem[Arl91]{Arlettaz}
+Dominique Arlettaz.
+\newblock Universal bounds for the exponent of stable homotopy groups.
+\newblock {\em Topology Appl.}, 38(3):255--261, 1991.
+
+\bibitem[BBB{\etalchar{+}}21]{BBBCX2}
+Agn\`es Beaudry, Mark Behrens, Prasit Bhattacharya, Dominic Culver, and Zhouli
+  Xu.
+\newblock The telescope conjecture at height 2 and the tmf resolution.
+\newblock {\em J. Topol.}, 14(4):1243--1320, 2021.
+
+\bibitem[BBDG18]{BBDG}
+A.~A. Be\u{\i}linson, J.~Bernstein, P.~Deligne, and O.~Gabber.
+\newblock {\em Faisceaux Pervers}, volume 100 of {\em Ast\'{e}risque}.
+\newblock Soc. Math. France, Paris, 2018.
+
+\bibitem[BCS14]{SteinFillable}
+Jonathan Bowden, Diarmuid Crowley, and Andr\'{a}s~I. Stipsicz.
+\newblock The topology of {S}tein fillable manifolds in high dimensions {I}.
+\newblock {\em Proc. Lond. Math. Soc. (3)}, 109(6):1363--1401, 2014.
+
+\bibitem[Bel20]{Eva}
+Eva Belmont.
+\newblock Localizing the {$E_2$} page of the {A}dams spectral sequence.
+\newblock {\em Algebr. Geom. Topol.}, 20(4):1965--2028, 2020.
+
+\bibitem[BHHM08]{BHHM}
+M.~Behrens, M.~Hill, M.~J. Hopkins, and M.~Mahowald.
+\newblock On the existence of a {$v^{32}_2$}-self map on {$M(1,4)$} at the
+  prime 2.
+\newblock {\em Homology Homotopy Appl.}, 10(3):45--84, 2008.
+
+\bibitem[BHS20]{burklund2020inertia}
+Robert Burklund, Jeremy Hahn, and Andrew Senger.
+\newblock Inertia groups in the metastable range.
+\newblock 2020.
+\newblock \href{https://arxiv.org/abs/2010.09869}{arXiv:2010.09869}.
+
+\bibitem[BJM84]{BJMKervaire}
+M.~G. Barratt, J.~D.~S. Jones, and M.~E. Mahowald.
+\newblock Relations amongst {T}oda brackets and the {K}ervaire invariant in
+  dimension {$62$}.
+\newblock {\em J. London Math. Soc. (2)}, 30(3):533--550, 1984.
+
+\bibitem[BM13]{BasterraMandell}
+Maria Basterra and Michael~A. Mandell.
+\newblock The multiplication on {BP}.
+\newblock {\em J. Topol.}, 6(2):285--310, 2013.
+
+\bibitem[BMMS86]{BMMS}
+R.~R. Bruner, J.~P. May, J.~E. McClure, and M.~Steinberger.
+\newblock {\em {$H_\infty $} ring spectra and their applications}, volume 1176
+  of {\em Lecture Notes in Mathematics}.
+\newblock Springer-Verlag, Berlin, 1986.
+
+\bibitem[Boa99]{Boardman}
+J.~Michael Boardman.
+\newblock Conditionally convergent spectral sequences.
+\newblock In {\em Homotopy invariant algebraic structures ({B}altimore, {MD},
+  1998)}, volume 239 of {\em Contemp. Math.}, pages 49--84. Amer. Math. Soc.,
+  Providence, RI, 1999.
+
+\bibitem[Bou79]{BousfieldLocalization}
+A.~K. Bousfield.
+\newblock The localization of spectra with respect to homology.
+\newblock {\em Topology}, 18(4):257--281, 1979.
+
+\bibitem[BP66]{BPKervaire}
+Edgar~H. Brown, Jr. and Franklin~P. Peterson.
+\newblock The {K}ervaire invariant of {$(8k+2)$}-manifolds.
+\newblock {\em Amer. J. Math.}, 88:815--826, 1966.
+
+\bibitem[Bro69]{BrowderKervaire}
+William Browder.
+\newblock The {K}ervaire invariant of framed manifolds and its generalization.
+\newblock {\em Ann. of Math. (2)}, 90:157--186, 1969.
+
+\bibitem[Bru68]{Brumfiel}
+G.~Brumfiel.
+\newblock On the homotopy groups of {${\rm BPL}$} and {${\rm PL/O}$}.
+\newblock {\em Ann. of Math. (2)}, 88:291--311, 1968.
+
+\bibitem[BS20]{ManSmall}
+Robert Burklund and Andrew Senger.
+\newblock On the high-dimensional geography problem.
+\newblock 2020.
+\newblock \href{https://arxiv.org/abs/2007.05127}{arXiv:2007.05127}.
+
+\bibitem[CE12]{SteinBook}
+Kai Cieliebak and Yakov Eliashberg.
+\newblock {\em From {S}tein to {W}einstein and back}, volume~59 of {\em
+  American Mathematical Society Colloquium Publications}.
+\newblock American Mathematical Society, Providence, RI, 2012.
+\newblock Symplectic geometry of affine complex manifolds.
+
+\bibitem[Cro11]{Crowley}
+Diarmuid~J. Crowley.
+\newblock On the mapping class groups of {$\#_r(S^p\times S^p)$} for {$p=3,7$}.
+\newblock {\em Math. Z.}, 269(3-4):1189--1199, 2011.
+
+\bibitem[DHS88]{DHS}
+Ethan~S. Devinatz, Michael~J. Hopkins, and Jeffrey~H. Smith.
+\newblock Nilpotence and stable homotopy theory. {I}.
+\newblock {\em Ann. of Math. (2)}, 128(2):207--241, 1988.
+
+\bibitem[DM81]{v1v2DavisMahowald}
+Donald~M. Davis and Mark Mahowald.
+\newblock {$v_{1}$}- and {$v_{2}$}-periodicity in stable homotopy theory.
+\newblock {\em Amer. J. Math.}, 103(4):615--659, 1981.
+
+\bibitem[DM88]{v1ExtDavisMahowald}
+Donald~M. Davis and Mark Mahowald.
+\newblock {$v_1$}-periodic {${\rm Ext}$} over the {S}teenrod algebra.
+\newblock {\em Trans. Amer. Math. Soc.}, 309(2):503--516, 1988.
+
+\bibitem[DM89]{DM3}
+Donald~M. Davis and Mark Mahowald.
+\newblock The image of the stable {$J$}-homomorphism.
+\newblock {\em Topology}, 28(1):39--58, 1989.
+
+\bibitem[Eli90]{EliTopChar}
+Yakov Eliashberg.
+\newblock Topological characterization of {S}tein manifolds of dimension
+  {$>2$}.
+\newblock {\em Internat. J. Math.}, 1(1):29--46, 1990.
+
+\bibitem[Eli12]{ContactWorkshop}
+Yakov Eliashberg.
+\newblock {AIM} {W}orkshop - {C}ontact topology in higher dimensions:
+  {Q}uestions and open problems.
+\newblock 2012.
+\newblock \newline {A}vailable at
+  \href{https://aimath.org/WWN/contacttop/notes\_contactworkshop2012.pdf}{https://aimath.org/WWN/contacttop/notes\_contactworkshop2012.pdf}.
+
+\bibitem[Fra68]{Frank}
+David~L. Frank.
+\newblock An invariant for almost-closed manifolds.
+\newblock {\em Bull. Amer. Math. Soc.}, 74:562--567, 1968.
+
+\bibitem[Fri86]{Fried}
+David Fried.
+\newblock Word maps, isotopy and entropy.
+\newblock {\em Trans. Amer. Math. Soc.}, 296(2):851--859, 1986.
+
+\bibitem[Gia71]{GiambalvoO8}
+V.~Giambalvo.
+\newblock On {$\langle 8\rangle$}-cobordism.
+\newblock {\em Illinois J. Math.}, 15:533--541, 1971.
+
+\bibitem[Gia72]{GiambalvoO8corrected}
+V.~Giambalvo.
+\newblock Correction to my paper: ``{O}n {$<8>$}-cobordism''.
+\newblock {\em Illinois J. Math.}, 16:704, 1972.
+
+\bibitem[GIKR18]{GIKR}
+Bogdan Gheorghe, Daniel~C. Isaksen, Achim Krause, and Nicolas Ricka.
+\newblock C-motivic modular forms.
+\newblock 2018.
+\newblock \href{https://arxiv.org/abs/1810.11050}{arxiv:1810.11050}.
+
+\bibitem[Gon98]{GonzalezRegular}
+Jes\'{u}s Gonz\'{a}lez.
+\newblock The regular complex in the {${\rm BP}\langle 1\rangle$}-{A}dams
+  spectral sequence.
+\newblock {\em Trans. Amer. Math. Soc.}, 350(7):2629--2664, 1998.
+
+\bibitem[Gon00a]{Gonzalez}
+Jes\'{u}s Gonz\'{a}lez.
+\newblock Odd primary {$b{\rm o}$} resolutions and classification of the stable
+  summands of stunted lens spaces.
+\newblock {\em Trans. Amer. Math. Soc.}, 352(3):1149--1169, 2000.
+
+\bibitem[Gon00b]{Gonz00}
+Jes\'{u}s Gonz\'{a}lez.
+\newblock A vanishing line in the {${\rm BP}\langle 1\rangle$}-{A}dams spectral
+  sequence.
+\newblock {\em Topology}, 39(6):1137--1153, 2000.
+
+\bibitem[GRW16]{GRAbelianQuotients}
+S{\o}ren Galatius and Oscar Randal-Williams.
+\newblock Abelian quotients of mapping class groups of highly connected
+  manifolds.
+\newblock {\em Math. Ann.}, 365(1-2):857--879, 2016.
+
+\bibitem[GRW20]{GRHandbook}
+S{\o}ren Galatius and Oscar Randal-Williams.
+\newblock Moduli spaces of manifolds: a user's guide.
+\newblock In {\em Handbook of homotopy theory}, CRC Press/Chapman Hall Handb.
+  Math. Ser., pages 443--485. CRC Press, Boca Raton, FL, 2020.
+
+\bibitem[GWX21]{GWX}
+Bogdan Gheorghe, Guozhen Wang, and Zhouli Xu.
+\newblock The special fiber of the motivic deformation of the stable homotopy
+  category is algebraic.
+\newblock {\em Acta Math.}, 226(2):319--407, 2021.
+
+\bibitem[Hae61]{Haefliger}
+Andr\'{e} Haefliger.
+\newblock Differentiable imbeddings.
+\newblock {\em Bull. Amer. Math. Soc.}, 67:109--112, 1961.
+
+\bibitem[HHLN21]{OpLaxAdjoint}
+Rune Haugseng, Fabian Hebestreit, Sil Linskens, and Joost Nuiten.
+\newblock Lax monoidal adjunctions, two-variable fibrations and the calculus of
+  mates.
+\newblock 2021.
+\newblock \href{https://arxiv.org/abs/2011.08808}{arXiv:2011.08808}.
+
+\bibitem[HHR16]{HHR}
+M.~A. Hill, M.~J. Hopkins, and D.~C. Ravenel.
+\newblock On the nonexistence of elements of {K}ervaire invariant one.
+\newblock {\em Ann. of Math. (2)}, 184(1):1--262, 2016.
+
+\bibitem[HKO11]{HKO}
+Po~Hu, Igor Kriz, and Kyle Ormsby.
+\newblock Remarks on motivic homotopy theory over algebraically closed fields.
+\newblock {\em J. K-Theory}, 7(1):55--89, 2011.
+
+\bibitem[Hop08]{''''}
+Michael~J. Hopkins.
+\newblock The mathematical work of {D}ouglas {C}. {R}avenel.
+\newblock {\em Homology Homotopy Appl.}, 10(3):1--13, 2008.
+
+\bibitem[HPS99]{HPS}
+M.~J. Hopkins, J.~H. Palmieri, and J.~H. Smith.
+\newblock Vanishing lines in generalized {A}dams spectral sequences are
+  generic.
+\newblock {\em Geom. Topol.}, 3:155--165, 1999.
+
+\bibitem[Isa19]{StableStems}
+Daniel~C. Isaksen.
+\newblock Stable stems.
+\newblock {\em Mem. Amer. Math. Soc.}, 262(1269):viii+159, 2019.
+
+\bibitem[KM63]{KervaireMilnor}
+Michel~A. Kervaire and John~W. Milnor.
+\newblock Groups of homotopy spheres. {I}.
+\newblock {\em Ann. of Math. (2)}, 77:504--537, 1963.
+
+\bibitem[Kos67]{Kosinski}
+A.~Kosi\'{n}ski.
+\newblock On the inertia group of {$\pi $}-manifolds.
+\newblock {\em Amer. J. Math.}, 89:227--248, 1967.
+
+\bibitem[KR20]{KrannichCharacteristic}
+Manuel Krannich and Jens Reinhold.
+\newblock Characteristic numbers of manifold bundles over surfaces with highly
+  connected fibers.
+\newblock {\em J. Lond. Math. Soc. (2)}, 102(2):879--904, 2020.
+
+\bibitem[Kra18]{AchimThesis}
+Achim Krause.
+\newblock {\em Periodicity in motivic homotopy theory and over $BP_* BP$}.
+\newblock PhD thesis, Rheinische Friedrich-Wilhelms-Universit{\"a}t Bonn, 2018.
+
+\bibitem[Kra20]{KrannichMappingClass}
+Manuel Krannich.
+\newblock Mapping class groups of highly connected {$(4k+2)$}-manifolds.
+\newblock {\em Selecta Math. (N.S.)}, 26(5):Paper No. 81, 49, 2020.
+
+\bibitem[Kre79]{Kreck}
+M.~Kreck.
+\newblock Isotopy classes of diffeomorphisms of {$(k-1)$}-connected
+  almost-parallelizable {$2k$}-manifolds.
+\newblock In {\em Algebraic topology, {A}arhus 1978 ({P}roc. {S}ympos., {U}niv.
+  {A}arhus, {A}arhus, 1978)}, volume 763 of {\em Lecture Notes in Math.}, pages
+  643--663. Springer, Berlin, 1979.
+
+\bibitem[Kry02]{Kry02}
+Nikolai~Anatolievich Krylov.
+\newblock {\em Mapping class groups of (k-1)-connected almost-parallelizable
+  2k-manifolds}.
+\newblock ProQuest LLC, Ann Arbor, MI, 2002.
+\newblock Thesis (Ph.D.)--University of Illinois at Chicago.
+
+\bibitem[Kry03]{Kry03}
+Nikolai~A. Krylov.
+\newblock On the {J}acobi group and the mapping class group of {$S^3\times
+  S^3$}.
+\newblock {\em Trans. Amer. Math. Soc.}, 355(1):99--117, 2003.
+
+\bibitem[Kuh06]{KuhnTAQ}
+Nicholas~J. Kuhn.
+\newblock Localization of {A}ndr\'{e}-{Q}uillen-{G}oodwillie towers, and the
+  periodic homology of infinite loopspaces.
+\newblock {\em Adv. Math.}, 201(2):318--378, 2006.
+
+\bibitem[Lam81]{Lampe}
+R.~Lampe.
+\newblock Diffeomorphismen auf {S}ph{\"a}ren und die {M}ilnor-{P}aarung.
+\newblock 1981.
+\newblock Thesis (Diploma)--Johannes Gutenberg University Mainz.
+
+\bibitem[Liu63]{liul}
+Arunas Liulevicius.
+\newblock Zeroes of the cohomology of the {S}teenrod algebra.
+\newblock {\em Proc. Amer. Math. Soc.}, 14:972--976, 1963.
+
+\bibitem[Lur09]{HTT}
+Jacob Lurie.
+\newblock {\em Higher topos theory}, volume 170 of {\em Annals of Mathematics
+  Studies}.
+\newblock Princeton University Press, Princeton, NJ, 2009.
+
+\bibitem[Lur17]{HA}
+Jacob Lurie.
+\newblock Higher {A}lgebra.
+\newblock 2017.
+\newblock \newline {A}vailable at
+  \href{http://www.math.ias.edu/~lurie/}{http://www.math.ias.edu/~lurie/}.
+
+\bibitem[Lur18]{SAG}
+Jacob Lurie.
+\newblock Spectral {A}lgebraic {G}eometry.
+\newblock 2018.
+\newblock \newline {A}vailable at
+  \href{http://www.math.ias.edu/~lurie/}{http://www.math.ias.edu/~lurie/}.
+
+\bibitem[Mah70]{MahBull}
+Mark Mahowald.
+\newblock The order of the image of the {$J$}-homomorphisms.
+\newblock {\em Bull. Amer. Math. Soc.}, 76:1310--1313, 1970.
+
+\bibitem[Mah75]{MahTokyo}
+Mark Mahowald.
+\newblock Description homotopy of the elements in the image of the
+  {$J$}-homomorphism.
+\newblock In {\em Manifolds---{T}okyo 1973 ({P}roc. {I}nternat. {C}onf.,
+  {T}okyo, 1973)}, pages 255--263, 1975.
+
+\bibitem[Mah82]{MahJEHP}
+Mark Mahowald.
+\newblock The image of {$J$} in the {$EHP$} sequence.
+\newblock {\em Ann. of Math. (2)}, 116(1):65--112, 1982.
+
+\bibitem[Mat16]{MathewExponent}
+Akhil Mathew.
+\newblock Torsion exponents in stable homotopy and the {H}urewicz homomorphism.
+\newblock {\em Algebr. Geom. Topol.}, 16(2):1025--1041, 2016.
+
+\bibitem[Mat18]{Akhil}
+Akhil Mathew.
+\newblock Examples of descent up to nilpotence.
+\newblock In {\em Geometric and topological aspects of the representation
+  theory of finite groups}, volume 242 of {\em Springer Proc. Math. Stat.},
+  pages 269--311. Springer, Cham, 2018.
+
+\bibitem[Mil58]{MilnorSteenrod}
+John Milnor.
+\newblock The {S}teenrod algebra and its dual.
+\newblock {\em Ann. of Math. (2)}, 67:150--171, 1958.
+
+\bibitem[Mil78]{MillerLocalization}
+Haynes~R. Miller.
+\newblock A localization theorem in homological algebra.
+\newblock {\em Math. Proc. Cambridge Philos. Soc.}, 84(1):73--84, 1978.
+
+\bibitem[Mil81]{Miller}
+Haynes~R. Miller.
+\newblock On relations between {A}dams spectral sequences, with an application
+  to the stable homotopy of a {M}oore space.
+\newblock {\em J. Pure Appl. Algebra}, 20(3):287--312, 1981.
+
+\bibitem[Mil00]{MilnorTalk}
+John Milnor.
+\newblock Classification of {$(n-1)$}-connected {$2n$}-dimensional manifolds
+  and the discovery of exotic spheres.
+\newblock In {\em Surveys on surgery theory, {V}ol. 1}, volume 145 of {\em Ann.
+  of Math. Stud.}, pages 25--30. Princeton Univ. Press, Princeton, NJ, 2000.
+
+\bibitem[MRS01]{TripleLoop}
+Mark Mahowald, Douglas Ravenel, and Paul Shick.
+\newblock The triple loop space approach to the telescope conjecture.
+\newblock In {\em Homotopy methods in algebraic topology ({B}oulder, {CO},
+  1999)}, volume 271 of {\em Contemp. Math.}, pages 217--284. Amer. Math. Soc.,
+  Providence, RI, 2001.
+
+\bibitem[MW81]{Miller-Wilkerson}
+Haynes Miller and Clarence Wilkerson.
+\newblock Vanishing lines for modules over the {S}teenrod algebra.
+\newblock {\em J. Pure Appl. Algebra}, 22(3):293--307, 1981.
+
+\bibitem[Nov63]{Novikov}
+S.~P. Novikov.
+\newblock Homotopy properties of the group of diffeomorphisms of the sphere.
+\newblock {\em Dokl. Akad. Nauk SSSR}, 148:32--35, 1963.
+
+\bibitem[Pal01]{PalmieriBook}
+John~H. Palmieri.
+\newblock Stable homotopy over the {S}teenrod algebra.
+\newblock {\em Mem. Amer. Math. Soc.}, 151(716):xiv+172, 2001.
+
+\bibitem[Pst18]{Pstragowski}
+Piotr Pstr\k{a}gowski.
+\newblock Synthetic spectra and the cellular motivic category.
+\newblock 2018.
+\newblock \href{https://arxiv.org/abs/1803.01804v1}{arxiv:1803.01804v1}.
+
+\bibitem[Qui71]{QuillenAdamsConj}
+Daniel Quillen.
+\newblock The {A}dams conjecture.
+\newblock {\em Topology}, 10:67--80, 1971.
+
+\bibitem[Rav84]{RavenelConjs}
+Douglas~C. Ravenel.
+\newblock Localization with respect to certain periodic homology theories.
+\newblock {\em Amer. J. Math.}, 106(2):351--414, 1984.
+
+\bibitem[Rav86]{GreenBook}
+Douglas~C. Ravenel.
+\newblock {\em Complex cobordism and stable homotopy groups of spheres}, volume
+  121 of {\em Pure and Applied Mathematics}.
+\newblock Academic Press, Inc., Orlando, FL, 1986.
+
+\bibitem[Rav92]{RavenelOrange}
+Douglas~C. Ravenel.
+\newblock {\em Nilpotence and periodicity in stable homotopy theory}, volume
+  128 of {\em Annals of Mathematics Studies}.
+\newblock Princeton University Press, Princeton, NJ, 1992.
+\newblock Appendix C by Jeff Smith.
+
+\bibitem[Sal16]{SalchEnoughProj}
+Andrew Salch.
+\newblock Graded comodule categories with enough projectives.
+\newblock 2016.
+\newblock \href{https://arxiv.org/abs/1607.00749}{arXiv:1607.00749}.
+
+\bibitem[Sat69]{Sato}
+Hajime Sato.
+\newblock Diffeomorphism group of {$S^{p}\times S^{q}$} and exotic spheres.
+\newblock {\em Quart. J. Math. Oxford Ser. (2)}, 20:255--276, 1969.
+
+\bibitem[Sch72]{Schultz}
+Reinhard Schultz.
+\newblock Composition constructions on diffeomorphisms of {$S^{p}\times
+  S^{q}$}.
+\newblock {\em Pacific J. Math.}, 42:739--754, 1972.
+
+\bibitem[Ser53a]{SerreCohEM}
+Jean-Pierre Serre.
+\newblock Cohomologie modulo {$2$} des complexes d'{E}ilenberg-{M}ac{L}ane.
+\newblock {\em Comment. Math. Helv.}, 27:198--232, 1953.
+
+\bibitem[Ser53b]{SerreFinite}
+Jean-Pierre Serre.
+\newblock Groupes d'homotopie et classes de groupes ab\'{e}liens.
+\newblock {\em Ann. of Math. (2)}, 58:258--294, 1953.
+
+\bibitem[Sin68]{Singer}
+William~M. Singer.
+\newblock Connective fiberings over {${\rm BU}$} and {${\rm U}$}.
+\newblock {\em Topology}, 7:271--303, 1968.
+
+\bibitem[Smi67]{SmithEM}
+Larry Smith.
+\newblock Homological algebra and the {E}ilenberg-{M}oore spectral sequence.
+\newblock {\em Trans. Amer. Math. Soc.}, 129:58--93, 1967.
+
+\bibitem[Sta16]{Stahn}
+Sven-Torben Stahn.
+\newblock {The motivic Adams-Novikov spectral sequence at odd primes over
+  $\mathbb{C}$ and $\mathbb{R}$}.
+\newblock 2016.
+\newblock \href{https://arxiv.org/abs/1606.06085}{arXiv:1606.06085}.
+
+\bibitem[Sto63]{Stong}
+Robert~E. Stong.
+\newblock Determination of {$H^{\ast} ({\rm BO}(k,\cdots,\infty ),Z_{2})$}\ and
+  {$H^{\ast} ({\rm BU}(k,\cdots,\infty ),Z_{2})$}.
+\newblock {\em Trans. Amer. Math. Soc.}, 107:526--544, 1963.
+
+\bibitem[Sto85]{StolzBook}
+Stephan Stolz.
+\newblock {\em Hochzusammenh\"{a}ngende {M}annigfaltigkeiten und ihre
+  {R}\"{a}nder}, volume 1116 of {\em Lecture Notes in Mathematics}.
+\newblock Springer-Verlag, Berlin, 1985.
+\newblock With an English introduction.
+
+\bibitem[Sto87]{StolzbP}
+Stephan Stolz.
+\newblock A note on the {$bP$}-component of {$(4n-1)$}-dimensional homotopy
+  spheres.
+\newblock {\em Proc. Amer. Math. Soc.}, 99(3):581--584, 1987.
+
+\bibitem[Wal62]{Wall62}
+C.~T.~C. Wall.
+\newblock Classification of {$(n-1)$}-connected {$2n$}-manifolds.
+\newblock {\em Ann. of Math. (2)}, 75:163--189, 1962.
+
+\bibitem[Wal67]{Wall67}
+C.~T.~C. Wall.
+\newblock Classification problems in differential topology. {VI}.
+  {C}lassification of {$(s-1)$}-connected {$(2s+1)$}-manifolds.
+\newblock {\em Topology}, 6:273--296, 1967.
+
+\bibitem[Xu16]{XuKervaire}
+Zhouli Xu.
+\newblock The strong {K}ervaire invariant problem in dimension 62.
+\newblock {\em Geom. Topol.}, 20(3):1611--1624, 2016.
+
+\end{thebibliography}

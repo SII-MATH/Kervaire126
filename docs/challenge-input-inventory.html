@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KIP126 · 统一输入审阅</title>
+<style>
+:root{--ink:#20332c;--muted:#626f68;--line:#d9ded6;--paper:#f6f5ef;--card:#fffef9;--accent:#27674f;--warn:#865c20}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1000px;margin:auto;padding:48px 24px 80px}h1{font:500 clamp(28px,5vw,44px)/1.2 Georgia,serif;margin:10px 0 16px}h2{font-size:22px;margin:0 0 12px}h3{font-size:18px;margin:0 0 6px}p{margin:8px 0 14px}a{color:var(--accent);text-underline-offset:3px}.eyebrow{color:var(--accent);letter-spacing:.08em;font-weight:700}.muted,small{color:var(--muted)}.intro{max-width:760px}.note{border-left:4px solid #c28d3b;background:#fcf2dc;padding:14px 18px;margin:24px 0;border-radius:4px}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 24px}button,input,select{font:inherit;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:8px 12px;color:inherit}button{cursor:pointer}button[aria-pressed=true]{background:var(--accent);color:white;border-color:var(--accent)}button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #daa956;outline-offset:3px}.card{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:20px;margin:12px 0}.card p:last-child{margin-bottom:0}.tag{font-size:12px;display:inline-block;padding:2px 8px;border-radius:20px;background:#f4ead5;color:var(--warn);margin-bottom:7px}details{border-top:1px solid var(--line);margin-top:14px;padding-top:12px}summary{cursor:pointer;color:var(--accent);font-weight:600}details details{margin:10px 0 0;padding:10px 0}.field{padding:14px 0;border-bottom:1px solid var(--line)}.field:last-child{border:0}.field code{overflow-wrap:anywhere;font-size:13px}.field .locator{margin-top:8px;color:var(--muted);font-size:14px}.source-list{font-size:14px;display:flex;gap:8px;flex-wrap:wrap}.sources{margin:24px 0}label{display:block;margin-top:10px;font-size:14px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.toolbar input{flex:1;min-width:180px}.meta{font-size:13px;color:var(--muted)}.error{color:#9b3229}footer{margin-top:40px;border-top:1px solid var(--line);padding-top:20px;font-size:14px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eee;padding:12px;border-radius:8px}#search-area{margin-top:28px}#loading{padding:22px 0}select{max-width:100%}ul{padding-left:22px}.small-links{display:flex;gap:14px;flex-wrap:wrap;margin:16px 0}@media(max-width:600px){main{padding:28px 16px 50px}.card{padding:16px}.tabs button{flex:1;white-space:nowrap}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">KIP126 / 输入审阅</div>
+<h1>一个 Challenge2，各项义务分别看。</h1>
+<p class="intro">Challenge2 顶层只交付文献和计算。两包各自列出绑定与结果，计算沿用同一文献来源；Def 固定路线模型和数学背景。Main 在取得见证后证明内部应用。来源比较与计算认证仍有生产证明责任，清单和编译不代表完成。</p>
+<div class="note">当前目标是标准 h₆² 的非零永久存活，不包含几何推论。文献包的完整性、原文定位和模型适用性仍待逐项核验。</div>
+</header>
+<nav class="tabs" aria-label="查看输入类别">
+<button type="button" data-view="literature" aria-pressed="true">文献</button>
+<button type="button" data-view="computation" aria-pressed="false">计算</button>
+<button type="button" data-view="internal" aria-pressed="false">内部证明</button>
+</nav>
+<div id="loading" role="status">正在读取统一清单…</div>
+<section id="view" aria-live="polite"></section>
+<details id="search-area">
+<summary>查找全部登记字段与来源</summary>
+<p class="muted">文献列出 48 条直接命题声明；计算逐条列出 29 条结果与 4 条绑定比较。包装与对象数据不计入陈述条数。审计覆盖不等于文献正确性或证明完成。</p>
+<div class="toolbar"><input id="search" type="search" aria-label="搜索声明、来源或定位" placeholder="搜索 Adams、BHS、字段名或 theorem locator…"><button id="export" type="button">导出我的审阅</button></div>
+<div id="all-fields"></div>
+<details><summary>文献与制品目录（含范围外背景资料）</summary><div id="sources"></div></details>
+</details>
+<footer>
+<p id="manifest-info">本页从 external-inputs.json 读取，不保存第二份输入台账。</p>
+<div class="small-links">
+<a href="external-inputs.json">唯一机器清单</a>
+<a href="STAGE0_INTERFACES.md">范围与未完成义务</a>
+<a href="../KIP126/Interface/Challenge/Challenge2.lean">Lean 数学接口</a>
+<a href="../KIP126/Def/StageInput/StandardSphere/Sequence/Proofs.lean">固定球谱适用性</a>
+<a href="../blueprint/web/index.html">Blueprint 陈述</a>
+</div>
+<p>浏览器中的审阅选择只用于记录意见，不会修改 Lean 或证明状态。旧页面已保存的意见仍保留，导出时一并包含。</p>
+</footer>
+</main>
+<script>
+"use strict";
+const prefix = "KIP126.Challenge2.";
+const views = {
+  literature: {
+    heading: "文献结果：48 条独立声明",
+    intro: "逐条列出来源绑定上的数学声明，包装视图不重复登记。E∞ 同构选择属于 bindings，其相容性条件列入 results。来源比较证书仍须由 Interface 证明。",
+    bindingId: "MB12-literature-delivery",
+    structure: prefix + "LiteratureResults",
+    order: null
+  },
+  computation: {
+    heading: "计算：29 条结果与 4 条绑定比较",
+    intro: "逐条列出同一计算绑定上的结果和比较等式。E₂ presentation、路线解释和 tmf 坐标沿用同一文献交付；每条陈述分别对应 Blueprint 节点与实际 Lean 声明。",
+    bindingId: "MB13-computation-delivery",
+    structure: prefix + "ComputationResults",
+    order: null
+  },
+  internal: {
+    heading: "后续证明责任",
+    intro: "Main 在同一个见证上证明路线适配；Def 证明固定球谱的滤过分离性。这两项均非 Challenge2 字段。",
+    adapterIds: ["IA-ROUTE-APPLICATION", "IA-SPHERE-SEPARATED"]
+  }
+};
+const descriptions = {
+  sphereVanishing: ["球谱 Adams 消失线", "Ravenel 的正 stem 消失范围。将其应用到项目固定 Adams 塔，还需模型比较。"],
+  adamsOneLine: ["Adams 一线与 May 低维结果", "一线的生成和消失、Hopf invariant one、d₂(hⱼ) 及若干低维乘积与平方的永久性。原文 locator 仍有缺口。"],
+  moss: ["Moss convergence", "Massey product 与 Toda bracket 的比较，必须保留 convergence、crossing 和不定性条件。"],
+  br21: ["tmf 来源端点的指定 d₃", "BR21 的微分先陈述在来源端点类上；这些类与所选 CSV 坐标的比较属于计算绑定。"],
+  sphereBasis: ["E₂ 的有限坐标", "CSV 单项式确实线性无关并张成实际 E₂；缺失次数不能视作零。"],
+  sphereMultiplicative: ["乘法比较", "所选 presentation 与实际球谱乘法、单位相容。"],
+  sphereStaircase: ["staircase 的数学语义", "区分微分、非零微分、boundary、reach 和条件性反证。"],
+  sphereSquare: ["标准平方与候选穷尽", "固定数据的平方证书运输到实际 E₂，并识别标准 h₆²。"],
+  sphereTable_sound: ["固定微分表的正确性", "具体 CSV 坐标在实际塔上满足所登记的有限页球谱微分等式。"],
+  route_presentation: ["路线与 presentation 一致", "已认证路线解释与计算绑定中的同一 E₂ presentation 比较。"],
+  sphereSeparated: ["球塔滤过分离性", "从实际收敛、有限型和模型比较得到的 Def 证明目标。"]
+};
+let manifest, records = [], active = "literature";
+function readStored(key) { try { return JSON.parse(localStorage.getItem(key) || "{}"); } catch { return {}; } }
+const decisions = readStored("kip126-unified-input-decisions");
+const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const statusLabel = status => ({
+  "external-statement-unproved": "文献陈述，待证明",
+  "certification-obligation": "计算认证待证明",
+  "comparison-obligation": "比较待证明"
+}[status] || status);
+const sourcesFor = record => (record.sources || []).map(id => manifest.sources.find(source => source.id === id)).filter(Boolean);
+function sourceLinks(record) {
+  return sourcesFor(record).map(source => '<a href="#source-' + escapeHTML(source.id) + '" data-source="' + escapeHTML(source.id) + '">' +
+    escapeHTML((source.citation_keys || [])[0] || source.id) + "</a>").join(" · ");
+}
+function field(structure, name, record, reviewId) {
+  const id = reviewId || structure + "." + name;
+  const declaration = record.declaration || structure + "." + name;
+  const options = [["", "尚未判断"], ["check-source", "需要核实原文"], ["check-form", "需要检查数学形式"], ["check-role", "需要重新分类"], ["statement-ok", "陈述可接受，证明另审"]];
+  const blueprint = (record.blueprint_labels || []).map(label => '<code>' + escapeHTML(label) + '</code>').join(' · ');
+  return '<div class="field"><code>' + escapeHTML(declaration) + '</code>' +
+    (record.module ? '<p class="meta">' + escapeHTML(record.module) + '</p>' : '') +
+    (blueprint ? '<p class="meta">Blueprint：' + blueprint + '</p>' : '') +
+    '<div class="locator">' + escapeHTML(record.locator) + '</div><div class="source-list">' + sourceLinks(record) + '</div><label>我的审阅 <select data-decision="' + escapeHTML(id) + '">' +
+    options.map(([value, label]) => '<option value="' + value + '"' + (decisions[id] === value ? " selected" : "") + ">" + label + "</option>").join("") +
+    '</select></label><p class="meta">清单状态：' + escapeHTML(statusLabel(record.proof_status)) + '</p></div>';
+}
+function card(name, record, structure, reviewId, scope) {
+  let description = descriptions[name] || [name, ""];
+  if (name === "route") description = active === "literature"
+    ? ["§7 主证明路线", "θ₅、synthetic/BHS、May、Toda、tmf 等文献输入；来源事实与内部应用须分别审查。"]
+    : active === "computation" ? ["§7 路线计算", "在同一路线模型上解释并认证筛选后的程序记录。"]
+    : ["文献到路线的内部应用", "由来源结论和模型绑定组装 Main 所需事实；保留其内部证明责任。"];
+  return '<article class="card"><span class="tag">' + (active === "literature" ? "待核验" : scope === "bindings" ? "绑定比较" : "计算结果") +
+    "</span><h3>" + escapeHTML(description[0]) + "</h3>" + (description[1] ? "<p>" + escapeHTML(description[1]) + "</p>" : "") +
+    '<div class="source-list">' + sourceLinks(record) + '</div><details><summary>查看陈述定位</summary>' +
+    field(structure, name, record, reviewId) + "</details></article>";
+}
+function statementRecords(data) {
+  const result = [];
+  for (const group of data.interface_coverage) {
+    for (const [top, record] of Object.entries(group.fields || {})) {
+      if (group.role === "computation") {
+        for (const [relativePath, statement] of Object.entries(record.statements || {})) {
+          const name = relativePath ? top + "." + relativePath : top;
+          result.push({
+            structure: group.structure, name, scope: "results", role: "computation",
+            reviewId: statement.declaration,
+            record: {sources: record.sources, locator: record.locator, proof_status: record.proof_status, ...statement}
+          });
+        }
+      } else {
+        result.push({structure: group.structure, name: top, role: group.role,
+          reviewId: group.structure + "." + top, record});
+      }
+    }
+  }
+  for (const [name, record] of Object.entries(data.computation_binding_statements || {})) {
+    result.push({structure: prefix + "ComputationBindings", name, scope: "bindings",
+      role: "computation", reviewId: record.declaration, record});
+  }
+  return result;
+}
+function render() {
+  const config = views[active];
+  if (active === "internal") {
+    const items = config.adapterIds.map(id => manifest.route.internal_adapters.find(item => item.id === id)).filter(Boolean);
+    document.querySelector("#view").innerHTML = "<h2>" + config.heading + "</h2><p class='muted'>" + config.intro + "</p>" +
+      items.map(item => '<article class="card"><span class="tag">待证明</span><h3>' + escapeHTML(item.id) +
+        '</h3><p>' + escapeHTML(item.notes) + '</p><p class="meta">' +
+        item.declarations.map(name => '<code>' + escapeHTML(name) + '</code>').join(' · ') +
+        '</p><p class="meta">' + escapeHTML(item.module) + '</p></article>').join("");
+    document.querySelectorAll("[data-view]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.view === active)));
+    return;
+  }
+  const group = manifest.interface_coverage.find(item => item.structure === config.structure);
+  const binding = manifest.route.model_bindings.find(item => item.id === config.bindingId);
+  const bindingCard = active === "literature" && binding ? '<article class="card"><span class="tag">比较待证明</span><h3>本包的绑定</h3><p>' +
+    escapeHTML(binding.notes) + '</p><details><summary>查看绑定声明</summary><p class="meta">' +
+    binding.declarations.map(name => '<code>' + escapeHTML(name) + '</code>').join(' · ') +
+    '</p></details></article>' : '';
+  const computation = records.filter(item => item.role === "computation");
+  const heading = active === "computation"
+    ? "计算：" + computation.filter(item => item.scope === "results").length + " 条结果与 " + computation.filter(item => item.scope === "bindings").length + " 条绑定比较"
+    : config.heading;
+  const cards = active === "computation"
+    ? computation.map(item => card(item.name, item.record, item.structure, item.reviewId, item.scope)).join("")
+    : (config.order || Object.keys(group?.fields || {})).filter(name => group && group.fields[name]).map(name => card(name, group.fields[name], config.structure)).join("");
+  document.querySelector("#view").innerHTML = "<h2>" + heading + "</h2><p class='muted'>" + config.intro +
+    "</p>" + bindingCard + cards;
+  document.querySelectorAll("[data-view]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.view === active)));
+}
+function renderSearch() {
+  const needle = document.querySelector("#search").value.toLocaleLowerCase().trim();
+  const filtered = records.filter(item => JSON.stringify(item).toLocaleLowerCase().includes(needle));
+  document.querySelector("#all-fields").innerHTML = "<p class='meta'>" + filtered.length + " 个登记声明</p>" +
+    filtered.map(item => "<details><summary>" + escapeHTML(item.role === "computation"
+      ? (item.scope === "bindings" ? "绑定比较 · " : "计算结果 · ") + item.name
+      : item.structure.split(".").pop() + "." + item.name) + "</summary>" +
+      field(item.structure, item.name, item.record, item.reviewId) + "</details>").join("");
+}
+document.addEventListener("click", event => {
+  const button = event.target.closest("[data-view]");
+  if (button && manifest) { active = button.dataset.view; render(); }
+  const source = event.target.closest("[data-source]");
+  if (source) {
+    document.querySelector("#search-area").open = true;
+    document.querySelector("#sources").parentElement.open = true;
+  }
+});
+document.addEventListener("change", event => {
+  if (!event.target.matches("[data-decision]")) return;
+  decisions[event.target.dataset.decision] = event.target.value;
+  try { localStorage.setItem("kip126-unified-input-decisions", JSON.stringify(decisions)); } catch {
+    document.querySelector("#manifest-info").textContent = "浏览器禁止本地保存；请导出审阅意见。";
+  }
+  document.querySelectorAll("[data-decision]").forEach(select => { select.value = decisions[select.dataset.decision] || ""; });
+});
+document.querySelector("#search").addEventListener("input", renderSearch);
+document.querySelector("#export").addEventListener("click", () => {
+  const payload = {schema_version: 1, manifest: "docs/external-inputs.json", decisions,
+    legacy_statement_decisions: readStored("kip126-input-decisions"),
+    legacy_layout_decisions: readStored("kip126-compact-decisions")};
+  const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], {type: "application/json"}));
+  const link = document.createElement("a"); link.href = url; link.download = "kip126-input-review.json"; link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+fetch("external-inputs.json", {cache: "no-store"}).then(response => {
+  if (!response.ok) throw new Error("HTTP " + response.status); return response.json();
+}).then(data => {
+  if (!Array.isArray(data.interface_coverage) || !Array.isArray(data.sources)) throw new Error("清单格式不匹配");
+  manifest = data;
+  records = statementRecords(data);
+  document.querySelector("#loading").hidden = true;
+  render(); renderSearch();
+  document.querySelector("#sources").innerHTML = data.sources.map(source =>
+    '<article class="field" id="source-' + escapeHTML(source.id) + '"><h3>' + escapeHTML(source.title || source.id) +
+    '</h3><code>' + escapeHTML(source.id) + '</code><p class="meta">获取状态：' + escapeHTML(source.status_class || "见清单") +
+    " · " + (source.artifacts || []).length + " 个登记制品</p><p>" + escapeHTML(source.role || "") + "</p>" +
+    (source.canonical_url && /^https?:\/\//.test(source.canonical_url) ? '<a href="' + escapeHTML(source.canonical_url) + '">来源入口</a>' : "") +
+    "</article>").join("");
+  document.querySelector("#manifest-info").textContent = "直接读取 external-inputs.json：当前登记 " + data.sources.length +
+    " 个来源条目。来源条目数不等于已取得原文的篇数，也不等于定理数。";
+}).catch(error => {
+  document.querySelector("#loading").innerHTML = '<p class="error">无法读取统一清单：' + escapeHTML(error.message) +
+    '。请通过 HTTP 服务打开本页，并检查 <a href="external-inputs.json">清单链接</a>。</p>';
+});
+</script>
+</body>
+</html>

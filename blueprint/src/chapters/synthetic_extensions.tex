@@ -1,0 +1,514 @@
+\section{Synthetic extension spectral sequences}
+\label{chap:synthetic-extension-ss}
+
+This section defines weightwise extension spectral sequences, the basic $\lambda$--$\rho$--$\delta$ triangle, and coherent solution towers.  Comparison theorems are deferred to the internal-results layer.
+
+\subsection{Weightwise extension spectral sequences}
+
+% SOURCE: MainPaper/main.tex:998-1007.
+\begin{definition}[Synthetic extension spectral sequence]
+  \label{def:synthetic-extension-ss}
+  \uses{def:synthetic-adams-ss,def:f-extension-ss}
+  \notready
+  For a weight-preserving map $f:X\to Y$ of finite synthetic spectra equipped
+  with convergence-and-detection witnesses for their synthetic Adams
+  sequences, filter
+  $0\to\pi_{*,*}X\to\pi_{*,*}Y\to0$ by Adams filtration.  The resulting
+  $f$-ESS has
+  \[
+    {}^fE_0^{s,t,w}\cong E_\infty^{s,t,w}(X)\oplus
+    E_\infty^{s,t,w}(Y),
+    \qquad d_n^f:(s,t,w)\mapsto(s+n,t+n,w).
+  \]
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:999-1007, assertion that all Section 2 results remain valid.
+\begin{proposition}[Weightwise transport of the ESS calculus]
+  \label{prop:synthetic-ess-weightwise-transport}
+  \uses{def:synthetic-extension-ss,prop:fextension-iff-detected,prop:fextension-inessential-iff-higher,prop:no-crossing-iff-uniform-detection,thm:fess-commutative-square,prop:fess-exact-middle-boundary}
+  \notready
+  Every definition and theorem of Section~\ref{chap:extension-ss} holds in a
+  fixed synthetic weight, provided every map and comparison preserves that
+  weight.  In particular, essentiality, crossings, the representative
+  criterion, square propagation, and exact-middle boundary detection retain
+  their statements with a third grading coordinate.
+\end{proposition}
+
+\begin{proof}
+  Fix $w$ and regard the bigraded homotopy groups in that weight as filtered
+  graded groups.  Reuse the two-term filtered-complex construction and each
+  proof from Section~\ref{chap:extension-ss}; all maps preserve $w$, so no
+  additional reindexing occurs.  Reassemble the family over all weights.
+\end{proof}
+
+% PROJECT CONSTRUCTION: the actual equation fibers of a filtered complex,
+% used for the representative calculations in MainPaper/main.tex:1981-2081.
+\begin{definition}[Strict filtered representative fibers]
+  \label{def:strict-ess-representative-fiber}
+  \uses{def:core-filtered-chain-complex,def:fess-cycles-boundaries}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Solutions.equation,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.Fiber,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differences,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.coordinateEquiv}
+  \leanok
+  For a filtered complex $C$, a test object $T$, and integers $n,s,k$,
+  take pairs of actual morphisms
+  $a:T\to F^sC_k$ and $b:T\to F^{s+n}C_{k-1}$.
+  Their equation map is the additive homomorphism
+  \[
+    \Phi(a,b)=(\pi_s a,\pi_{s+n}b,d\iota_s a-\iota_{s+n}b).
+  \]
+  The strict fiber with labels $(x,y)$ is
+  $\Phi^{-1}(x,y,0)$, and its difference group is $\ker\Phi$.
+  These are actual representative pairs, without a further quotient of the
+  solution set.  Translation and subtraction give a free transitive action
+  on every nonempty fiber; a chosen point identifies that fiber with the
+  kernel.  This makes no nonemptiness assertion.
+\end{definition}
+
+\begin{proposition}[Strictification of an internal page relation]
+  \label{prop:strict-ess-fiber-page-relation}
+  \uses{def:strict-ess-representative-fiber,thm:filtered-complex-to-spectral-sequence,def:page-extension,def:filtered-chain-map}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_of_fiber,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_iff_nonempty_fiber,KIP126.Synthetic.PageExtension.finitePageExtension_iff_solutions,KIP126.Synthetic.PageExtension.infinitePageExtension_iff_solutions,KIP126.Synthetic.PageExtension.mem_targetCoset_iff_differentialRelation,KIP126.Synthetic.PageExtension.FiniteExtensionWitness.mem_targetCoset_iff_solutions,KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.mem_targetCoset_iff_solutions,KIP126.Def.Comparison.StageInterfaces.finitePageExtension_restrict}
+  \leanok
+  Suppose the filtered complex is bounded and $n\ge0$.
+  A strict solution gives the canonical internal relation $d_n(x)=y$.
+  If $T$ is projective, the converse holds as well.
+  In particular this applies to the free rank-one test module
+  $\operatorname{ULift}(\mathbb Z)$ used for the actual synthetic ESS.
+  More precisely, fix one normalized page family $P$, including its actual
+  quotient maps, ESS and comparison maps.  For $r\ge2$, $n\ge e(f)$ and
+  $n-e(f)<r-1$, fix
+  \[
+    x\in Z_{r-1}^{s,t}(X),\qquad
+    y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y).
+  \]
+  The $(f,E_r)$-extension from $x$ to $y$ is equivalent to nonemptiness of
+  $P$'s strict solution fiber at quotient $r-1$, using those same source
+  and target labels and the actual $\lambda^{n-e(f)}$ target map.
+  For permanent representatives $x,y$ and $n\ge e(f)$, the analogous
+  equivalence holds for $P$'s untruncated ESS.
+
+  Moreover, suppose $P$ is equipped with the filtration-preservation and
+  label-comparison witnesses for its actual $\rho$ square.  For
+  $0<i\le j$ and $n-e(f)<i$, a fixed-label extension on page $j+1$
+  restricts to one on page $i+1$, provided the two chosen source labels
+  and the two target labels are respectively equal as elements of $E_2$.
+  These statements bind the fixed classical labels to the actual fibers.
+
+  For any given finite or untruncated extension witness $W$, its complete
+  actual target coset is also characterized by these fibers:
+  \[
+    z\in\operatorname{TargetCoset}(W)
+      \quad\Longleftrightarrow\quad
+    \operatorname{Sol}_P^n(x_W,z)\ne\varnothing.
+  \]
+  Here $z$ ranges over the target cycle subgroup displayed above (over
+  permanent representatives in the untruncated case), $x_W$ is the same
+  source representative as in $W$, and the coset is pulled back along
+  $P$'s actual $\lambda$ target map from the ESS boundary coset of $W$.
+  A single fixed-label fiber remains a set of representative pairs; the
+  coset is the set of labels indexing its nonempty fibers.  These claims
+  do not assert the existence of the comparison witnesses, restriction
+  surjectivity, or a coherent-tower comparison.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Projectivity lifts a cycle through its actual cycle-kernel image.
+  The discrepancy between its strict target and $y$ is an actual $B_n$
+  boundary.  Lift that boundary through the differential image and subtract
+  its primitive in $F^{s+1}C_k$ from the source lift.  This preserves $x$
+  and makes the target equation strict.  Thus strictness does not discard
+  the boundary ambiguity of the page relation.
+  Specialize to the actual ESS and its free rank-one test module.  Unfold
+  the fixed source and target comparisons to obtain the finite and
+  untruncated page-extension equivalences.  The actual filtered $\rho$
+  chain map sends strict solutions to strict solutions; the supplied label
+  comparisons preserve the stated labels, giving finite restriction.
+  Finally, subtract a representative of an actual ESS boundary to see that
+  every target in the boundary coset satisfies the same page relation.
+  The converse follows from equality on the page.  Pull this equivalence
+  back along the fixed $\lambda$ target map and apply strictification.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1981-2081, representative equations used in the
+% page-restriction argument; project packaging of their inverse system.
+\begin{definition}[Finite ESS solution torsors and coherent towers]
+  \label{def:synthetic-ess-solution-tower}
+  \uses{def:synthetic-extension-ss,def:strict-ess-representative-fiber,prop:strict-ess-fiber-page-relation,def:filtered-chain-map,def:synthetic-lambda-quotient}
+  \lean{KIP126.Synthetic.PageExtension.NormalizedPageFamily.FiniteSolutions,KIP126.Synthetic.PageExtension.NormalizedPageFamily.InfiniteSolutions,KIP126.Synthetic.PageExtension.NormalizedPageFamily.PermanentFiniteSolutions,KIP126.Challenge2.PageExtensionRestrictionFiltration,KIP126.Challenge2.PageExtensionRestrictionLabels,KIP126.Challenge2.restrictFiniteSolution,KIP126.Challenge2.restrictPermanentFiniteSolution,KIP126.Challenge2.CoherentPageExtensionSolutions,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.coordinateEquiv,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrict,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.restrict_translate}
+  \leanok
+  Fix one normalized page family $P$ for $f:X\to Y$, integers $n,s,t$
+  with $n\ge e(f)$, and permanent representatives
+  \[
+    x\in Z_\infty^{s,t}(X),\qquad
+    y\in Z_\infty^{s+n,t+n}(Y).
+  \]
+  Put $k=n-e(f)\ge0$.  For every natural-number quotient length $q>k$, let
+  $x_q\in Z_q^{s,t}(X)$ and $y_q\in Z_{q-k}^{s+n,t+n}(Y)$ be the
+  actual inclusions of these fixed permanent representatives.  Define
+  $\operatorname{Sol}_q^n(x,y)$ to be the strict solution fiber of the
+  actual two-term complex for $\widehat f_q$, with source label $x_q$
+  and target label obtained from $y_q$ by the actual $\lambda^k$ map.
+  All fibers use $P$'s fixed comparisons and synthetic degree
+  $(t-s,t+e(f))$.  This is the type
+  \texttt{PermanentFiniteSolutions}; it has precisely the pairs of
+  Definition~\ref{def:strict-ess-representative-fiber}, with no further
+  quotient.  A fixed-label fiber is not itself the set of possible target
+  labels.
+
+  Supply the filtration-preservation witness $I$ for $P$'s actual $\rho$
+  squares and the label-comparison witness $J$ for that same $I$.
+  When nonempty, each fiber is a torsor under its actual difference group
+  $K_q=\ker\Phi_q$, and a chosen solution identifies the fiber with $K_q$.
+  The filtered chain map supplied by the actual $\rho$ square and the two
+  label comparisons give the restrictions
+  \[
+    \operatorname{res}_{q+1,q}:\operatorname{Sol}_{q+1}^n(x,y)
+      \longrightarrow\operatorname{Sol}_q^n(x,y),\qquad q>k.
+  \]
+  At the level of actual representative pairs, these restrictions satisfy
+  the generic equivariance with respect to the induced difference-group map.
+  Define a \emph{coherent solution tower} to consist of a solution
+  $u_q\in\operatorname{Sol}_q^n(x,y)$ for every $q>k$, together with
+  the adjacent compatibility equations
+  $\operatorname{res}_{q+1,q}(u_{q+1})=u_q$.  Thus its first quotient
+  length is $m_0=k+1$.
+
+  This defines the type of coherent solutions from the specified $P,I,J$.
+  It neither constructs those comparison witnesses nor supplies a member
+  of the type.  Restriction surjectivity and comparison with an actual
+  untruncated solution or a homotopy limit remain separate obligations;
+  nonemptiness of every finite fiber alone does not establish them.
+\end{definition}
+
+\begin{proof}
+  \leanok
+  Use the filtered two-term complex defining the synthetic ESS.  A choice of
+  filtered source lift and target lift is precisely a solution of its
+  representative equation.  Subtracting two solutions gives the stated
+  difference group, and addition acts freely and transitively.  The compatible
+  quotient squares induce the restrictions, and the generic restriction
+  theorem gives equivariance on representative pairs.  Include the fixed
+  permanent labels into each finite cycle subgroup and collect the actual
+  adjacent compatibility equations in the coherent-solution structure.
+\end{proof}
+
+\begin{proposition}[Coherent finite solutions from surjective restrictions]
+  \label{prop:synthetic-ess-coherent-tower-of-surjective}
+  \uses{def:synthetic-ess-solution-tower}
+  \lean{KIP126.Core.InverseSequence.exists_compatible_of_surjective,KIP126.Def.Comparison.StageInterfaces.exists_coherentPageExtensionSolutions_of_surjective,KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_surjective}
+  \leanok
+  Use one fixed $P,I,J$, permanent labels $x,y$, and $k=n-e(f)$ as in
+  Definition~\ref{def:synthetic-ess-solution-tower}.  Specify an actual
+  initial solution $a_0\in\operatorname{Sol}_{k+1}^n(x,y)$ and assume
+  that every actual adjacent restriction
+  \[
+    \operatorname{res}_{q+1,q}:\operatorname{Sol}_{q+1}^n(x,y)
+      \longrightarrow\operatorname{Sol}_q^n(x,y),\qquad q>k,
+  \]
+  is surjective.  Then there is a coherent solution tower whose solution
+  at $q=k+1$ is exactly $a_0$.
+  The statement does not assert those restrictions are surjective for the
+  chosen model, or recover an untruncated ESS relation.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Starting with $a_0$, recursively choose a preimage of the current solution
+  under the next surjective restriction.  The generic dependent inverse
+  sequence theorem gives both the initial-value equality and every adjacent
+  compatibility equation.  Applying it to the actual permanent-label
+  solution fibers constructs the stated coherent solution.
+\end{proof}
+
+\begin{proposition}[Actual difference-group criterion for coherent finite solutions]
+  \label{prop:synthetic-ess-coherent-tower-of-differences}
+  \uses{def:synthetic-ess-solution-tower,lem:strict-solution-restriction-surjectivity,prop:synthetic-ess-coherent-tower-of-surjective}
+  \lean{KIP126.Def.Comparison.StageInterfaces.restrictPermanentFiniteSolution_surjective_iff_differences_surjective,KIP126.Def.Comparison.StageInterfaces.exists_coherentPageExtensionSolutions_of_differences_surjective}
+  \leanok
+  Keep the same $P,I,J$, permanent labels, and actual difference groups
+  $K_q=\ker\Phi_q$.  For $k<i\le j$, specify a solution in
+  $\operatorname{Sol}_j^n(x,y)$.  The actual restriction
+  $\operatorname{Sol}_j^n(x,y)\to\operatorname{Sol}_i^n(x,y)$ is
+  surjective if and only if the homogeneous restriction $K_j\to K_i$
+  induced by the same filtered $\rho$ square is surjective.  The two
+  label diagrams in $J$ identify its target labels with the fixed
+  permanent-label inclusions.
+
+  Consequently, given a specified initial solution $a_0$, nonemptiness
+  of every finite solution fiber, and surjectivity of each actual adjacent
+  homogeneous restriction $K_{q+1}\to K_q$ for $q>k$, there exists a
+  coherent tower extending $a_0$.  This supplies a concrete additional
+  condition beyond finite relation existence; no no-crossing hypothesis
+  has been used to prove homogeneous surjectivity.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Transport the generic affine restriction criterion through the actual
+  source and target label diagrams.  For each adjacent restriction, use
+  an element of the later nonempty fiber as its basepoint.  Homogeneous
+  surjectivity then implies surjectivity on the strict solution fibers.
+  The preceding proposition constructs the coherent tower while preserving
+  the specified initial solution.
+\end{proof}
+
+\begin{lemma}[Finite strict fibers from the source homotopy group]
+  \label{lem:strict-fiber-finite-of-source}
+  \uses{def:strict-ess-representative-fiber,def:synthetic-ess-solution-tower}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Solutions.source_ambient_injective,KIP126.Core.SpectralSequence.FilteredComplex.Solutions.finite_of_finite_source_hom,KIP126.Core.ModuleCat.freeRankOne_eval_one_injective,KIP126.Core.ModuleCat.finite_freeRankOne_hom,KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.finite_solutions_of_finite_source,KIP126.Synthetic.PageExtension.NormalizedPageFamily.finite_finiteSolutions_of_finite_source,KIP126.Synthetic.PageExtension.NormalizedPageFamily.finite_permanentFiniteSolutions_of_finite_source}
+  \leanok
+  For a strict fiber of a filtered complex, sending a solution to its
+  source representative in $\operatorname{Hom}(T,C_k)$ is injective.
+  Hence finiteness of that source Hom set implies finiteness of the fiber.
+  For the actual synthetic ESS, $T=\operatorname{ULift}(\mathbb Z)$;
+  a morphism from this free rank-one module is determined by its value at
+  $1$.  Thus finiteness of the actual source bigraded homotopy group
+  suffices for finiteness of the corresponding strict fibers, including
+  \texttt{FiniteSolutions} and \texttt{PermanentFiniteSolutions}.
+  No finiteness of the target group or nonemptiness of the fiber is needed.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Monicity of the source filtration inclusion determines the filtered
+  source lift from its ambient representative.  The strict equation
+  determines the ambient target lift as the differential of that source;
+  monicity of the target inclusion then determines the target lift itself.
+  This proves injectivity.  Evaluation at $1$ is injective for homomorphisms
+  from the lifted rank-one free module, so a finite source homotopy group
+  gives the needed finite Hom set and then a finite solution subtype.
+\end{proof}
+
+\begin{proposition}[Coherent choices in finite nonempty strict fibers]
+  \label{prop:synthetic-ess-coherent-tower-of-finite}
+  \uses{def:synthetic-ess-solution-tower}
+  \lean{KIP126.Core.InverseSequence.exists_compatible_of_finite,KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_finite}
+  \leanok
+  Fix the same $P,I,J$ and permanent labels as above.  Suppose every actual
+  strict fiber $\operatorname{Sol}_q^n(x,y)$ for $q>k$ is a finite nonempty
+  set.  Then there exists a coherent solution tower for the actual adjacent
+  restrictions.  These restrictions need not be surjective.  The theorem
+  produces some coherent choice and does not prescribe its value at the
+  first quotient.
+
+  Here finiteness concerns the set of actual representative pairs.
+  A finite quotient length, a bounded Adams filtration, or finitely many
+  possible page labels does not alone establish this hypothesis.  No
+  untruncated solution is recovered by this proposition.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Compose the adjacent restrictions to obtain projections between any two
+  indices.  The inverse system of nonempty finite sets admits a compatible
+  sequence by the finite inverse-system form of K\"onig's lemma.  Apply
+  this result to the actual permanent-label fibers and retain its adjacent
+  projection equations.  An arbitrarily specified initial point need not
+  lie in the stable image of the later restrictions.
+\end{proof}
+
+\begin{lemma}[Finiteness along actual finite $\lambda$ quotients]
+  \label{lem:synthetic-finite-quotient-homotopy}
+  \uses{def:synthetic-lambda-quotient,def:lambda-rho-delta-triangle,def:synthetic-sphere,thm:stable-homotopy-long-exact}
+  \lean{KIP126.StableHomotopy.finite_hom_middle_of_distinguished,KIP126.Synthetic.Context.FiniteLambdaQuotientTower.finite_biHom}
+  \leanok
+  For a distinguished triangle $A\to B\to C$ and a test object $W$,
+  finiteness of $\operatorname{Hom}(W,A)$ and $\operatorname{Hom}(W,C)$
+  implies finiteness of $\operatorname{Hom}(W,B)$.
+  Consequently, fix an actual finite quotient tower on a synthetic object
+  $A$.  If $q>0$ and all the groups
+  \[
+    \pi_{m,w+j}(A/\lambda),\qquad 0\le j<q,
+  \]
+  are finite, then $\pi_{m,w}(A/\lambda^q)$ is finite.
+  The hypothesis involves only this finite list of first-quotient groups.
+\end{lemma}
+\begin{proof}
+  \leanok
+  For the first assertion, Hom exactness identifies the kernel of the
+  second map with the image of the first.  Its kernel and image are finite,
+  so the middle group is finite.  For the second assertion, induct on $q$
+  using the tower's actual triangle
+  \[
+    \Sigma^{0,-1}(A/\lambda^q)\longrightarrow A/\lambda^{q+1}
+      \longrightarrow A/\lambda.
+  \]
+  The existing suspension equivalence identifies the left Hom group in
+  degree $(m,w)$ with $\pi_{m,w+1}(A/\lambda^q)$.  Apply the induction
+  hypothesis and the first assertion.  No splitting of the resulting
+  finite group extension is required.
+\end{proof}
+
+\begin{proposition}[A finite classical diagonal supplies coherent strict solutions]
+  \label{prop:synthetic-coherent-tower-of-finite-e2}
+  \uses{def:synthetic-first-quotient-homotopy-comparison,lem:synthetic-finite-quotient-homotopy,lem:strict-fiber-finite-of-source,prop:synthetic-ess-coherent-tower-of-finite}
+  \lean{KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_finite_source,KIP126.Def.Comparison.StageInterfaces.finite_normalizedSourceHomotopy_of_firstQuotientComparison,KIP126.Def.Comparison.StageInterfaces.nonempty_coherentPageExtensionSolutions_of_finite_e2}
+  \leanok
+  Fix $P,I,J$, permanent labels $x,y$, and $n\ge e(f)$ as above.
+  Supply a first-quotient homotopy comparison for $X$.  For each $q>0$,
+  finiteness of
+  \[
+    E_2^{s+j,t+j}(X),\qquad 0\le j<q,
+  \]
+  implies finiteness of the actual normalized-source group
+  \[
+    \pi_{t-s,t+e(f)}\bigl((\Sigma^{0,e(f)}\nu X)/\lambda^q\bigr).
+  \]
+  Therefore, if every $E_2^{s+j,t+j}(X)$ for $j\ge0$ is finite and
+  every required permanent-label strict fiber is nonempty, there is some
+  coherent solution tower.  More generally, direct finiteness of the
+  displayed source groups and nonemptiness of the fibers suffice.
+
+  The first-quotient comparison, classical finiteness, and $I,J$ are
+  explicit hypotheses.  The chosen model must still supply them; this
+  proposition does not deduce finite type from bounded convergence or
+  recover an untruncated solution.  In the paper's connective finite-type
+  setting, the missing classical finiteness proof is the degreewise finite
+  Steenrod-cobar argument.  The homotopy comparison also requires its
+  actual normalized-source shift and quotient compatibility.
+\end{proposition}
+\begin{proof}
+  \leanok
+  In the first-quotient comparison take $a=e(f)$ and replace $(s,t)$ by
+  $(s+j,t+j)$.  The corresponding source groups have degrees
+  $(t-s,t+e(f)+j)$, exactly those needed by the preceding finite-quotient
+  lemma.  Finite source homotopy makes each strict fiber finite.  Apply
+  the finite nonempty inverse-system criterion to construct the coherent
+  tower.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1009--1021 defines the quotient triangles;
+% Burklund--Xu Construction 7.7, Source/BurklundXu/paper.txt:3022--3035,
+% supplies the finite tower and its cofiber sequences.  Naturality and the
+% identity/composition laws below are project-level consequences of the finite
+% cofiber presentations, not additional external algebra input.
+\begin{proposition}[Coherence of quotient restrictions]
+  \label{prop:lambda-quotient-restriction-coherence}
+  \uses{def:synthetic-lambda-quotient,def:cofiber-triangle,def:lambda-rho-delta-triangle}
+  \notready
+  For every map of classical spectra $f:X\to Y$ in the stable homotopy
+  context (so $\nu f:\nu X\to\nu Y$ is the induced synthetic map), put
+  $Q_j(X):=\nu X/\lambda^j$ for each finite $j\ge1$ and write
+  $\bar f_j:Q_j(X)\to Q_j(Y)$ for the map induced by $\nu f$.  For finite
+  $1\le i\le j$, the quotient restriction maps are natural:
+  \[
+    \rho^Y_{i,j}\circ\bar f_j
+      =\bar f_i\circ\rho^X_{i,j}.
+  \]
+  They satisfy the identity and composition laws
+  \[
+    \rho^X_{i,i}=\operatorname{id},\qquad
+    \rho^X_{k,i}\circ\rho^X_{i,j}=\rho^X_{k,j}
+    \quad(1\le k\le i\le j).
+  \]
+  For every finite pair $0<i<j$, the maps
+  $\Sigma^{0,-i}\bar f_{j-i}$, $\bar f_j$, $\bar f_i$, and
+  $\Sigma^{1,-i}\bar f_{j-i}$ form a morphism from the finite
+  $\lambda$--$\rho$--$\delta$ triangle for $X$ at $(i,j)$ to the
+  corresponding triangle for $Y$.  Thus multiplication, restriction, and
+  connecting maps commute in the finite tower, naturally in $f$.  This
+  proposition asserts no map of $E_\infty$- or $\mathrm{CAlg}$-objects; the
+  $m=\infty$ endpoint is handled separately by the complete-tower statements.
+\end{proposition}
+
+\begin{proof}
+  Write $\mu^X_j:\Sigma^{0,-j}\nu X\to\nu X$ for multiplication by
+  $\lambda^j$ (and put $\mu^X_0=\operatorname{id}_{\nu X}$).  For each finite
+  $j$, the square
+  \[
+    \begin{array}{ccc}
+      \Sigma^{0,-j}\nu X & \xrightarrow{\mu^X_j} & \nu X \\
+      {\scriptstyle\Sigma^{0,-j}\nu f}\downarrow && \downarrow{\scriptstyle\nu f} \\
+      \Sigma^{0,-j}\nu Y & \xrightarrow{\mu^Y_j} & \nu Y
+    \end{array}
+  \]
+  commutes by naturality of multiplication by $\lambda^j$.  Applying the
+  chosen cofiber construction gives $\bar f_j$.  For $i\le j$, define the shifted
+  factor map
+  \[
+    q^X_{i,j}:=\Sigma^{0,-i}\mu^X_{j-i}:
+      \Sigma^{0,-j}\nu X\longrightarrow\Sigma^{0,-i}\nu X,
+    \qquad \mu^X_i\circ q^X_{i,j}=\mu^X_j.
+  \]
+  The square with horizontal maps $\mu^X_j,\mu^X_i$ and vertical maps
+  $q^X_{i,j},\operatorname{id}_{\nu X}$ induces $\rho^X_{i,j}$ by the
+  chosen cofiber construction.  The identities
+  $q^X_{i,i}=\operatorname{id}$ and
+  $q^X_{k,i}\circ q^X_{i,j}=q^X_{k,j}$ induce the displayed identity and
+  composition laws.  Naturality of the $q^X_{i,j}$ squares with respect to
+  $\nu f$, followed by the chosen triangle equivalences, gives the morphism
+  of finite distinguished triangles with the four components displayed above.
+  This is a finite cofiber calculation and uses no multiplicative algebra
+  structure.
+\end{proof}
+
+\subsection{The elementary lambda and rho extensions}
+
+\begin{definition}[Finite quotient-tower witness on the specified cofibers]
+  \label{def:finite-lambda-quotient-witness}
+  \lean{KIP126.Synthetic.Context.LambdaRhoDeltaTriangle,KIP126.Synthetic.Context.FiniteLambdaQuotientTower,KIP126.Synthetic.Context.FiniteLambdaQuotientTower.Hom,KIP126.Synthetic.FiniteQuotientTowerInterface}
+  \uses{def:synthetic-lambda-quotient,def:cofiber-triangle}
+  \leanok
+  Every level of this witness is the already chosen cofiber $X/\lambda^n$.
+  It supplies restrictions $\rho_{i,j}$ with identity and composition laws,
+  compatibility with the actual quotient inclusions, and the finite
+  $\lambda$--$\rho$--$\delta$ triangles. The first arrow in each triangle
+  is also required to agree with the actual $\lambda^i$ on quotient
+  inclusions. A map of witnesses uses precisely the cofiber maps induced
+  by the original map $f$, with all three triangle squares specified.
+  The root interface requests these witnesses naturally for the same
+  family $\nu X$. It does not construct an inhabitant or a homotopy limit.
+\end{definition}
+
+\begin{proposition}[Naturality of the actual powers and finite quotient maps]
+  \label{prop:finite-lambda-quotient-local-laws}
+  \lean{KIP126.Synthetic.Context.lambdaPow_naturality,KIP126.Synthetic.Context.XModLambdaN.map,KIP126.Synthetic.Context.XModLambdaN.incl_naturality,KIP126.Synthetic.Context.XModLambdaN.proj_naturality,KIP126.Synthetic.Context.FiniteLambdaQuotientTower.lambda_comp_rho,KIP126.Synthetic.Context.FiniteLambdaQuotientTower.rho_comp_delta}
+  \uses{def:finite-lambda-quotient-witness}
+  \leanok
+  The existing recursively defined $\lambda^n$ is natural. Its chosen
+  cofiber maps commute with inclusion and boundary. In a supplied finite
+  tower, consecutive arrows in each specified quotient triangle compose
+  to zero. These facts do not provide the missing shift-action coherence,
+  arbitrary power factorization, exactness of bigraded shifts, or identity
+  and composition laws for the chosen cofiber maps; a construction of
+  Proposition~\ref{prop:lambda-quotient-restriction-coherence} still needs
+  those compatible data.
+\end{proposition}
+\begin{proof}
+  Express the same recursive powers as natural transformations and prove
+  equality of their components with the original powers. Apply the chosen
+  cofiber's inclusion and boundary squares. The final zero composites are
+  the axioms of the displayed distinguished triangles.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Finite-quotient lift filtration]
+  \label{prop:finite-quotient-lift-filtration}
+  \lean{KIP126.Synthetic.Bockstein.Lift.V,KIP126.Synthetic.Bockstein.Lift.lift,KIP126.Synthetic.Bockstein.Lift.cycles,KIP126.Synthetic.Bockstein.Lift.obstruction,KIP126.Synthetic.Bockstein.Lift.mem_cycles_iff,KIP126.Synthetic.Bockstein.Lift.lift_restrict,KIP126.Synthetic.Bockstein.Lift.cycles_anti}
+  \uses{def:finite-lambda-quotient-witness,prop:finite-lambda-quotient-local-laws}
+  \leanok
+  At each finite stage, the first-quotient classes which admit a lift through
+  $X/\lambda^{i+1}$ form the range of the restriction map.  Restricting a
+  lift through a larger quotient gives the same first-quotient class, so the
+  resulting lift filtration is decreasing.  The connecting composite of a
+  chosen lift is recorded as the raw finite Bockstein obstruction.
+\end{proposition}
+\begin{proof}
+  The range characterization is definitional.  The restriction identity is
+  the tower composition law, and the decreasing property follows by applying
+  it to a range representative.
+  \leanok
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1009-1021, Notation not:deltaandrho.
+\begin{definition}[$\lambda$--$\rho$--$\delta$ quotient triangle]
+  \label{def:lambda-rho-delta-triangle}
+  \uses{def:synthetic-lambda-quotient,def:cofiber-triangle}
+  \notready
+  For $0<n<m\le\infty$, define the distinguished triangle
+  \[
+    \Sigma^{0,-n}\nu X/\lambda^{m-n}
+      \xrightarrow{\lambda^n}\nu X/\lambda^m
+      \xrightarrow{\rho_{n,m}}\nu X/\lambda^n
+      \xrightarrow{\delta_{n,m}}
+      \Sigma^{1,-n}\nu X/\lambda^{m-n}.
+  \]
+  For $m=\infty$, the first two terms are
+  $\Sigma^{0,-n}\nu X$ and $\nu X$.  Translation in the synthetic category is
+  suspension by $S^{1,0}$.
+\end{definition}

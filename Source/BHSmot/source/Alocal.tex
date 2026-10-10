@@ -1,0 +1,164 @@
+In this section, we study the $a$-localized category, $\Mod(\SHR^{\at}_{i2} ; \Ss_2 [a^{-1}])$.
+The authors find this category to be the most enduring mystery in our study of Artin--Tate motivic spectra over $\R$.
+Some of the behavior of this category is the subject of \Cref{cnj:72} and \Cref{cnj:73}.
+
+In the category of $C_2$-equivariant spectra,
+inverting the class $a_{\sigma} \in \pi_{-\sigma}^{C_2} \Ss$ corresponds to taking geometric fixed points.
+As a consequence, since $a = c_{\C/\R}(a_\sigma)$, we may interpret $\Mod(\SHR^{\at}_{i2} ; \Ss_2 [a^{-1}])$ as the natural target for some kind of ``motivic geometric fixed points'' operation.
+Using $\ta$, we may also view the category $\Mod(\SHRat ; \Ss_2 [a^{-1}])$ as a deformation of $\Sp_{i2}$ with algebraic special fiber.
+Since $\Phi^{C_2} \MU_{\R,2} \simeq \MO$, one might imagine that this degeneration is related to $\Syn_{\MO} \simeq \Syn_{\F_2}$. In \Cref{prop:a-inv-compare}, we will construct a comparison functor between $\Mod(\SHRat ; \Ss_2 [a^{-1}])$ and $\Syn_{\F_2}$. However, it is not an equivalence.
+
+Another feature of the equivariant setting is the existence of the diagram,
+\begin{center} \begin{tikzcd}
+    & \Sp_{C_2} \ar[dr, "\Phi^{C_2}"] & \\
+    \Sp \ar[ur, "\mathrm{Nm}_e^{C_2}"] \ar[rr, "\mathrm{Id}"] & & \Sp.
+\end{tikzcd} \end{center}
+This suggests we study the composite $\mathrm{Nm}_\C^\R(-)[a^{-1}]$.
+Although the norm functor itself is not exact, in \Cref{lem:norm-invert} we observe that this composite preserves all colimits. However, it is not an equivalence.
+
+Altogether, we conclude that the $a$-local category sits between the even $\BP$-synthetic category and the $\F_2$-synthetic category in a nontrivial way. In fact, although we are able to identify the three algebraic categories which arise as the special fibers, the maps between them are surprisingly nontrival. 
+
+\subsection{The $a$-local category as a deformation}\
+
+The symmetric monoidal category $\Mod(\SHR; \Ss[a^{-1}, \ta^{-1}])$ is equivalent to $\Sp$ by \cite{RealEtale} and \Cref{cor:rels}. As a consequence, there is an equivalence \footnote{Of course, this can also be deduced directly from \Cref{thm:comparison-invert-ta} and the equivalence $\Mod(\Sp_{C_2, i2} ; \Ss_2 [a_\sigma ^{-1}]) \simeq \Sp_{i2}$.}
+\[ \Mod(\SHRat; \Ss_2[a^{-1}, \ta^{-1}]) \simeq \Sp_{i2}. \]
+On the other hand, the following is an immediate corollary of \Cref{thm:Cta}.
+
+\begin{cor}
+  There is an equivalence of symmetric monoidal categories
+  \[\Mod(\SHRat; C\ta[a^{-1}]) \simeq \Mod(\Sp_{i2}; \Phi^{C_2} \uZt) \otimes_\Z \IndCoh(\Mfg).\]
+  On homotopy groups, this induces an isomorphism \footnote{Since $\abs{a} = (0,-1,0)$, the trigraded homotopy groups of an $a$-local $\R$-motivic spectrum are periodic in the $q$ degree. This is reflected by the fact that the given formula has no dependence on $q$.}
+  \[ \pi_{p,q,w}^\R(C\ta[a^{-1}]) \cong \bigoplus_{w+2b-s = p} \left( \F_2\{u^{2b}\} \otimes_{\F_2} \Ext_{\BP_*\BP}^{s,2w}(\BP_*, \BP_*/2)\right). \]
+\end{cor}
+
+\begin{rec}
+  There is an isomorphism $\pi_* \Phi^{C_2} \uZt \cong \F_2 [y]$, where $\abs{y} = 2$. Viewing $\Phi^{C_2} \uZt$ as $\uZt [a_{\sigma}^{-1}]$, $y$ may be identified with $\frac{u_{2\sigma}}{a_\sigma ^2} = \frac{u_{\sigma} ^2}{a_\sigma ^2}$.
+\end{rec}
+
+The presence of the non-nilpotent element $u$ in the homotopy of $C\ta[a^{-1}]$ prevents this category from being equivalent to either a $\BP$-synthetic category or an $\F_2$-synthetic category.
+
+The simplest way to gain computational access to the $a$-local category seems to be the $\ta$-Bockstein spectral sequence.
+
+\subsection{The $a$-local norm}\ 
+
+Equivariantly, the composition of the norm functor with geometric fixed points is the identity.
+As we shall see, over $\R$ the situation is not so straightforward.
+
+\begin{lem}\label{lem:norm-invert}
+  The composite
+  \[ \SHC_{i2}^{\at} \xrightarrow{\mathrm{Nm}_\C^\R} \SHRat \xrightarrow{(-)[a^{-1}]} \Mod ( \SHRat ; \Ss_2[a^{-1}] ) \]
+  is a symmetric monoidal left adjoint.
+  On Picard elements this composite sends $\Ss_2^{s,w}$ to $\Ss_2^{s,*,2w}[a^{-1}]$.
+  The map $\tau$ is sent to $\ta^2$.
+\end{lem}
+
+\begin{proof}
+  The norm functor $\mathrm{Nm}_\C^\R$ is symmetric monoidal and commutes with sifted colimits \cite[Proposition 4.5]{norms}. Since we compose it with a symmetric monoidal left adjoint, in order to prove the first claim we need only show the composite preserves binary sums. From \cite[Corollary 5.13]{norms}, we have a formula
+  \[ \mathrm{Nm}_\C^\R(X \oplus Y) \simeq \mathrm{Nm}_\C^\R(X) \oplus i_*(X \otimes Y) \oplus \mathrm{Nm}_\C^\R(Y), \]
+  where $i$ is the inclusion $\R \to \C$. Since the functor $i_*$ lands in modules over the cofiber of $a$, the middle term vanishes upon inverting $a$, as desired.
+  The claim about Picard elements is just a restatement of what we already know about Picard elements from \Cref{rec:norms}.
+
+  Now we examine $\mathrm{Nm}_\C^\R(\tau) \in \pi_{0,0,-2}^\R \Ss_2$.
+  Since the invert $\ta$ map
+  \[\pi_{0,0,-2} ^{\R} \Ss_2 \to \pi_{0,0,-2} ^{\R} \Ss_2 [\ta^{-1}] \cong \pi_{0,0} ^{C_2} \Ss_2\]
+  is an isomorphism which sends $\ta$ to $1$, it suffices to note that  \[\mathrm{Nm}_\C^\R(\tau)[\ta^{-1}] = \mathrm{Nm}_e^{C_2}((\tau)[\tau^{-1}]) = \mathrm{Nm}_e^{C_2}(1) = 1. \qedhere\]
+  %From this we can read off that $\mathrm{Nm}_\C^\R(\tau) = \ta^2$.  
+\end{proof}
+
+\begin{rmk}
+  Despite the fact that upon inverting $\ta$ the functor $\mathrm{Nm}_\C ^\R [a^{-1}]$ becomes the identity on $\Sp_{i2}$, for degree reasons the class $\eta$ in $\pi_{1,1}^\C \Ss_2$ cannot map to the class $1 \otimes \alpha_{1}$ in the homotopy of $C\ta[a^{-1}]$ which one might expect detects $\eta$. \todo{This needs more details. $\Ext^1$ where?}
+\end{rmk}
+
+\begin{qst} \label{cnj:72}
+Is there an equivalence $\mathrm{Nm}^{\R} _\C (C\tau) \simeq C\ta^2$ of commutative algebras? Postcomposing with the quotient map $C\ta^2 \to C\ta$, one obtains functors
+\[ \Mod ( \SHCat ; C\tau) \to \Mod ( \SHRat ; C\ta^2 [a^{-1}]) \to \Mod ( \SHRat ; C\ta [a^{-1}]).\]
+  Can the composite functor above be identified with the composite functor below?
+\begin{center} \begin{tikzcd}
+  \IndCoh(\Mfg)_{i2} \ar[d, "\F_2 \otimes -"] \ar[r] & \Mod(\Ab; \Phi^{C_2}\uZt ) \otimes_{\Zt} \IndCoh(\Mfg)_{i2} \\
+    \mathrm{Vect}_{\F_2} \otimes_{\Zt} \IndCoh(\Mfg)_{i2} \ar[r, "\mathrm{Frobenius}"] & \mathrm{Vect}_{\F_2} \otimes_{\Zt} \IndCoh(\Mfg)_{i2} \ar[u, hook]
+\end{tikzcd} \end{center}
+\end{qst}
+
+\subsection{Mapping down to $\F_2$-synthetic spectra}\
+
+In this section, we will construct a realization functor from the $a$-local category to the category of $\F_2$-synthetic spectra. In some ways, this functor is even more surprising than the norm functor. While the norm functor seems to double degrees on the special fiber, \Cref{cnj:73} suggests that inverting $a$ cuts degrees in half.  
+
+\begin{prop} \label{prop:a-inv-compare}
+  There is a symmetric monoidal left adjoint
+  \[ \Re_{\F_2} : \mathrm{Mod}( \SHRat ; \Ss_2 [a^{-1}] ) \to \Syn_{\F_2, i\tau}, \]
+  which sends $\Ss_2^{p,q,w}$ to $\Ss_\tau^{p,w}$ and $\ta$ to $\tau$.
+\end{prop}
+
+\begin{proof}
+  %Since $a \in \pi_{0,-1,0} ^{\R} \Ss$ is the image of $a_\sigma \in \pi_{-\sigma} ^{C_2} \Ss$ under the symmetric monoidal colimit-perserving functor $c_{\C/\R} : \Sp_{C_2} \to \SHRat$ which we used to define the $C_2$
+  We begin by noting that under the equivalence
+  $ \SHRat \simeq \Mod(\Sp_{C_2, i2} ^{\Fil}; R_\bullet) \simeq \Mod(\Sp_{C_2} ^{\Fil}; R_\bullet)$ from \Cref{thm:filt-model},
+  inverting $a$ becomes levelwise geometric fixed points.
+  Thus, $\Mod(\SHRat; \Ss_2 [a^{-1}])$ is equivalent to modules over the commutative algebra $\Phi^{C_2}R_\bullet$ %% filtered $\mathbb{E}_\infty$-ring
+  %% \[ \cdots \to \Phi^{C_2} (\Gamma_1 \Ss) \to \Phi^{C_2} (\Gamma_0 \Ss) \to \Phi^{C_2} (\Gamma_{-1} \Ss) \to \cdots \]
+  obtained by applying $\Phi^{C_2}$ levelwise. %% to $\Gamma_* (\Ss)$.
+  Now recall that
+  \[ R_\bullet \coloneqq \Tot^* \left( P_{2\bullet} \MU_{\R,2}^{* + 1} \right). \]
+  We may then construct a chain of comparison maps
+  \begin{align*}
+    \Phi^{C_2} R_\bullet &\xrightarrow{\simeq}
+    \Phi^{C_2} \Tot^* \left( P_{2\bullet} \MU_{\R,2}^{* + 1} \right) \to
+    \Tot^{*} \Phi ^{C_2} \left( P_{2\bullet} \MU_{\R,2}^{* + 1} \right) \\
+    &\to \Tot^{*} \tau_{\geq \bullet} \left( \Phi^{C_2}  \MU_{\R,2}^{* + 1} \right) \xrightarrow{\simeq}
+    \Tot^{*} \tau_{\geq \bullet} \left( \MO^{* + 1} \right),
+  \end{align*}
+  where the key step is a use of the fact that 
+  the geometric fixed points of a regular slice $2n$-connective $C_2$-spectrum are $n$-connective.
+  This is used to produce the map across the line-break.
+
+  In \Cref{prop:syn-to-fil}, we produced a symmetric monoidal equivalence
+  \[\Mod \left(\Sp^{\Fil} ; \Tot^{*} \tau_{\geq \bullet} \left( \MO^{* + 1} \right) \right) \simeq \Syn^{\mathrm{cell}}_{\MO, i\tau}.\]
+  Since the category of $\MO$-finite-projective spectra is equivalent to the category of $\F_2$-finite-projective spectra, and a map $X \to Y$ of spectra is an $\MO_*$-surjection if and only if it's an $(\F_2)_*$-surjection, there is a symmetric monoidal equivalence $\Syn_{\MO} \simeq \Syn_{\F_2}$. Finally, we can use the fact that $\Syn_{\F_2}^{\mathrm{cell}} \simeq \Syn_{\F_2}$ to drop the decoration. Altogether, base-change along this ring map produces a symmetric monoidal left adjoint
+  \[ \mathrm{Mod}( \SHRat ; \Ss_2 [a^{-1}] ) \to \Syn_{\F_2, i\tau}. \qedhere \]
+     
+  %% There is a natural comparison map,
+  %% \[ \Phi^{C_2} \left( \Tot^* \left( P_{2n} \MU_\R^{* + 1} \right) \right) \to \Tot^{*} \Phi ^{C_2} \left( P_{2n} \MU_\R^{* + 1} \right) \]
+  %% Since the geometric fixed points of a regular slice $2n$-connective $C_2$-spectrum are $n$-connective by definition, we obtain a further comparison map
+  %% \[ \Tot^* \Phi^{C_2} \left( P_{2n} \MU_\R^{* + 1} \right) \to \Tot^{*} \tau_{\geq n} \left( \Phi^{C_2}  \MU_\R^{* + 1} \right). \]
+  %% Finally, making use of the equivalence $\Phi^{C_2} \MUR \simeq \MO$, we may identify this with a map 
+  %% \[ \Tot^* \Phi^{C_2} \left( P_{2n} \MU_\R^{* + 1} \right) \to \Tot^{*} \tau_{\geq n} \left( \MO^{* + 1} \right) \]
+  %% Altogether this gives us a map of filtered $\mathbb{E}_\infty$-ring spectra
+  %% \[\Phi^{C_2} \Gamma_* (\Ss) \to \Tot^{*} \tau_{\geq n} \left( \MO^{* + 1} \right).\]
+  %% By CITE, there is a symmetric monoidal equivalence \todo{Need to check exactly what kind of completion I want on the synthetic side.}
+  %% \[\Mod \left(\Sp_{i2} ; \Tot^{*} \tau_{\geq n} \left( \MO^{* + 1} \right) \right) \simeq \Syn_{\MO, i2}.\]
+  %% Making use of the symmetric monoidal equivalence $\Syn_{\MO} \simeq \Syn_{\F_2}$, base change along the above map of filtered $\mathbb{E}_\infty$-ring spectra induces a symmetric monoidal functor
+  %% \[ \mathrm{Mod}( \SHRat ; \Ss_2 [a^{-1}] ) \to \Syn_{\F_2}, \]
+  %% as desired.
+\end{proof}
+
+
+Much of what was said in this section can be summarized with the existence of the following diagram of symmetric monoidal left adjoints:
+
+\begin{center}
+  \begin{tikzcd}
+    \Sp_{i2} \ar[r, "\mathrm{Id}"] &
+    \Sp_{i2} \ar[r, "\mathrm{Id}"] &
+    \Sp_{i2}  \\
+    \SHC_{i2} ^{\at} \ar[u, "{(-)[\tau^{-1}]}"'] \ar[d, " - \otimes C\tau"] \ar[r, "{(\mathrm{Nm}_\C^\R(-))[a^{-1}]}"'] &
+    \SHRat \ar[u, "{(-)[\ta^{-1}]}"'] \ar[d, " - \otimes C\ta"] \ar[r, "\Re_{\F_2}"'] &
+    \Syn_{\F_2, i\tau} \ar[u, "{(-)[\tau^{-1}]}"] \ar[d, " - \otimes C\tau"'] \\
+    \IndCoh(\Mfg)_{i2} \ar[r] &
+    \Mod(\Ab ; \Phi^{C_2} \uZ_2) \otimes_{\Zt} \IndCoh(\Mfg)_{i2} \ar[r] &
+    \Mod ( \Syn_{\F_2} ; C\tau).
+  \end{tikzcd}
+\end{center}
+
+The bottom right corner can be described in terms of comodules over the dual Steenrod algebra \cite[Section 4.5]{Pstragowski}.  The maps from the left to the right are comparison maps from the Adams--Novikov to the Adams spectral sequence.
+
+\begin{qst} \label{cnj:73}
+Is the map from the bottom middle to the bottom right induced by the map of Hopf algebroids $(\BP_*, \BP_*\BP) \to (\F_2, \A)$ which sends $t_i$ to $\zeta_i$? Note that this map is \emph{not} the usual Thom reduction map that sends $t_i$ to $\zeta_i^2$.
+\end{qst}
+
+%% \begin{ctrexm}
+%%   The comparison functor of \Cref{prop:a-inv-compare} does not admit a section.
+%%   Since the comparison functor induces an equivalence on picard groups any section of it would send $\Ss^{p,w}$ to $\Ss^{p,*,w}[a^{-1}]$. This would induce a section on the level of bigraded homotopy groups. We will argue that no such section exists.
+
+%%   Any section must send $\eta$ to $\eta$ since $\pi_{1,*,2} \to \pi_{1,2}$ is an isomorphism.
+%%   Similarly, a section must send $\kappa$ to $\kappa$ since $\pi_{14,*,18} \to \pi_{14,18}$ is an isomorphism. In $\pi_{16,*,22}(\Ss[a^{-1}])$ there is an element $\eta^2 \kappa$ which maps to $\eta^2 \kappa$ under the comparison functor. Now, we note that in the computation above we found that $\ta \eta^2 \kappa \neq 0$ while in the synthetic homotopy groups of the sphere we have that $\tau \eta^2 \kappa = 0$.
+
+%% \end{ctrexm}

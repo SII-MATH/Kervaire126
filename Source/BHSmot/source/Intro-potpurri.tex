@@ -1,0 +1,220 @@
+In this subsection, we collect a number of additional results about the category of Artin--Tate $\R$-motivic spectra that are worth highlighting.%, but which didn't fit into the previous sections.
+
+%% First we discuss the trigraded $\R$-motivic homology of a point, as well as the trigraded $\R$-motivic dual Steenrod algebra.
+%% We then discuss the functor $\nur : \Sp_{C_2, i2} \to \SHRat$ and show that it may be used to recover many interesting Artin-Tate $\R$-motivic spectra. For more information on this, we refer the reader to \Cref{sec:nu}.
+%% After that, we discusss the category of $a$-local Artin--Tate $\R$-motivic spectra and its relation to the Pstragowski's category of $\F_2$-synthetic spectra. \Cref{sec:a-local} discusses this topic in more detail.
+%% Finally, we include some speculations on the possibility of other deformations of equivariant categories.
+
+\subsubsection{Trigraded $\R$-motivic homology and Steenrod algebra}
+From a computational point of view, an important first step in studying the trigraded homotopy groups of $\R$-motivic spectra is the computation of the trigraded homology of a point and the trigraded dual Steenrod algebra. Leaning on known bigraded computations, we make these computations in \Cref{sec:homology}.
+%
+%is then interested in determining the trigraded homology of a point, the motivic Steenrod algebra, and the trigraded homotopy groups of $C\ta$.  Leaning on known bigraded computations, we determine all of these invariants:
+
+\begin{prop}
+As trigraded commutative rings, with $|\ta|=(0,0,-1)$, there are isomorphisms
+$$\pi^{\R}_{p,q,w} \HZt \cong \left(\pi^{C_2}_{p+q\sigma}\uZt\right)[\ta],$$
+$$\pi^{\R}_{p,q,w} \HFt \cong \left(\pi^{C_2}_{p+q\sigma}\uFt\right)[\ta].$$
+Here, $\pi^{C_2}_{p+q\sigma}\uZt$ and $\pi^{C_2}_{p+q\sigma}\uFt$ are placed in degrees $(p,q,0)$
+\end{prop}
+
+\begin{rmk}\label{rmk:ta-explanation}
+  There are well-known elements $\tau \in \pi_{1,-1-1} ^{\R} \HFt$ and $u_{\sigma} \in \pi_{1-\sigma} ^{C_2} \uFt$. Write $u \in \pi_{1,-1,0} ^{\R} \HFt$ for the corresponding element.
+  Then there is a relation (see \Cref{cor:rels})
+  \[\tau = \ta \cdot u,\]
+  i.e.
+  \[\mathrm{tau} = \mathrm{ta} \cdot u.\]
+  This was the original motivation for our choice of the character $\ta$.
+\end{rmk}
+
+\begin{prop} 
+The trigraded dual Steenrod algebra $\pi^{\R}_{*,*,*} \left(\HFt \otimes \HFt\right)$ is isomorphic to
+$$\left(\HFt\right)_{***} [\tau_0,\tau_1,\cdots,\xi_1,\xi_2,\cdots]/(\tau_i^2 = \ta (a \tau_{i+1} + u \xi_{i+1} + a \tau_0 \xi_{i+1}))$$
+Here, $|\tau_i|=(2^i,2^{i}-1,2^{i}-1)$ and $|\xi_{i}|=(2^i-1,2^i-1,2^i-1)$.
+\end{prop}
+
+\begin{rmk}
+The reader may notice that the `negative cone' in the $C_2$-equivariant homology of a point appears in the above formulas.  This is a feature of the Artin--Tate category, as opposed to the Tate category.
+\end{rmk}
+
+We expect that a computer could be coaxed into computing the $\HFt$-Adams spectral sequence for the tri-graded homotopy of $C\ta$, and that the natural maps between this spectral sequence and the $\HFt$-Adams spectral sequence for the tri-graded homotopy of the sphere would provide many of the differentials in the latter. This technique would likely be the most efficient way of computing both tri-graded $\R$-motivic stems and (in the long-run) the bi-graded $C_2$-equivariant homotopy groups. However, as the quad-graded nature of this computation would begin to tax our ability to visualize data it is unlikely that such a computation could be accomplished without the aid of a well-developed software suite for manipulating spectral sequence data.
+
+%
+%\begin{rmk}
+%While the trigraded homotopy groups of $\HZt$ and $\HFt$ are $\ta$-torsion free, the trigraded homotopy groups of $\MGL$ are not.  This a key difference between the situations over $\C$ and $\R$, related to the fact in $C_2$-equivariant homotopy theory that the slice spectral sequence for $\MUR$ is non-trivial.
+%\end{rmk}
+%
+
+\subsubsection{The effective slice filtration}
+In \Cref{sec:eff}, we study Voevodsky's effective slice filtration. 
+The effective slice filtration associates to any object $E \in \SHk$ a tower
+\[ \dots \to f_{2} E \to f_1 E \to f_0 E \to f_{-1} E \to f_{-2} E \to \dots \to E.\]
+The main result of the section is the following proposition, proven as \Cref{thm:eff-fil} which identifies the Betti realization of this tower.
+
+\begin{prop}
+  The functor $i_* : \SHRat \to \Sp_{C_2, i2}^{\Fil}$ sending $E$ to the tower
+  \[ \dots \to \Map_{\SHRat} (\Ss_2 ^{0,0,1}, E) \xrightarrow{\ta} \Map_{\SHRat} (\Ss_2 ^{0,0,0}, E) \xrightarrow{\ta} \Map_{\SHRat} (\Ss_2 ^{0,0,-1}, E) \to \dots \]
+  is equivalent to the functor $\b \circ f_\bullet : \SHRat \to \Sp_{C_2, i2}^{\Fil}$ taking $E \in \SHRat$ to the Betti realization of its effective slice tower.
+\end{prop}
+
+\begin{rec}
+  Voevodsky has defined the ``rigid homotopy groups'' \cite[Definition 5.1]{VoeOpenProbs} of an $\R$-motivic spectrum $X$ to be
+  \[\pi_{p,q,w} ^{\R,rig} X \coloneqq \pi_{p,q,w} ^{\R} s_w X,\]
+  where $s_w X$ is $n$th effective slice of $X$, i.e. the cofiber of $f_{n+1} X \to f_n X$.
+\end{rec}
+
+Using the notion of rigid homotopy groups, he observed the phenomenon of \emph{algebraic degeneration} in motivic homotopy theory.
+Since the associated graded of this tower also computes the homotopy groups of $X \otimes C\ta$, it follows from the proposition that $\pi_{p,q,w} ^{\R,rig} X \cong \pi_{p,q,w} ^{\R} X \otimes C\ta$ when $X \in \SHRat$.
+This shows that Voevodsky's ideas about algebraic degeneration line up with notions coming from the cofiber of $\ta$ (or $\tau$) philosophy.
+
+The proposition also implies that the so-called $C_2$-effective spectral sequence (see \cite{Kong}) is interchangeable with the $\ta$-Bockstein spectral sequence.
+
+%The rigid homotopy groups introduced in \cite{VoeOpenProbs} can be described as the homotopy groups of the associated graded of this tower.
+%Since the associated graded of this tower also computes the homotopy groups of $C\ta$ we learn that these two natural objects are equivalent.
+
+\subsubsection{The functor $\nur$}
+%
+%Such a concrete description of $\SHgc$ allows one to build $\R$-motivic spectra `by hand,' using purely the tools of $C_2$-equivariant homotopy theory.
+%
+%We also consider two exotic comparison functors: $\nu_\R$ and the norm functor (introduced in \cite{norms}).
+%These functors produce more interesting examples of objects of $\SHRat$ at the cost of being non-exact.
+In \Cref{sec:nu}, we will construct a lax symmetric monoidal functor
+\[\nur : \Sp_{C_2, i2} \to \SHRat,\]
+which is a section of the Betti realization functor and sends $\Ss_2^{n\rho}$ to $\Ss_2^{n,n,n}$.
+This functor is defined similarly to Pstragowski's synthetic analog functor \cite[Definition 4.3]{Pstragowski}.
+Unlike the section $c_{\C/\R}$ of Heller--Ormsby, the functor $\nur$ is not exact.
+However, it is better adapted to the construction of interesting $\R$-motivic spectra, as the following result shows.
+
+\begin{prop}
+  There are equivalences of commutative algebras,
+  \begin{center}
+  \begin{tabular}{lll}
+    $ \nur \uFt \simeq \HFt,  \qquad\qquad$ &
+    $ \nur \uZt \simeq \HZt, \qquad\qquad$ &    
+    $ \nur \MU_{\R,2} \simeq \MGL_2, $ \\
+    $ \nur \ku_{\R,2} \simeq \kgl_2, $ &
+    $ \nur \ko_{C_2,2} \simeq \kq_2.$
+  \end{tabular}
+  \end{center}
+\end{prop}
+
+On the one hand, this proposition suggests that each of the $2$-complete $\R$-motivic homology theories above is not particularly far from being purely topological.
+On the other hand, it suggests that one may profitably define $\R$-motivic analogs of $2$-complete $C_2$-equivariant homology theories by applying $\nu_\R$.
+For example, if we had a good definition of $2$-complete $C_2$-equivariant connective topological modular forms $\tmf_{C_2, 2}$, then we could define a spectrum of $\R$-motivic modular forms as $\nu_{\R} \tmf_{C_2, 2}$. Unfortunately, no such definition is currently known.
+%
+%\begin{rec}
+%  In \cite{norms}, Bachmann and Hoyois construct symmetric monoidal norm functors along finite etale maps.
+%  These norm functors may be thought of as an indexed tensor product and in the case of $\R$ they fit into the following diagram showing compatability with the Hill--Hopkins--Ravenel norm functors in equivariant homotopy theory \cite[Section 11]{norms}
+%  \begin{center}
+%  \begin{tikzcd}
+%  \SHC \ar[r, "\mathrm{Nm}_{\C/\R}"] \ar[d, "\b"] & \SHR \ar[d, "\b"] \\
+%  \Sp \ar[r, "\mathrm{Nm}_e^{C_2}"] & \Sp_{C_2}
+%  \end{tikzcd}
+%  \end{center}
+%  From \cite[{Example 3.5, Lemma 4.4, Example 4.10}]{norms} we can conclude that on bigraded spheres $\mathrm{Nm}_\C^{\R}(\Ss_\C^{s,w}) \simeq \Ss^{s,s,2w}$. The functor $\mathrm{Nm}_{\C}^\R$ is polynomial of degree 2 and when applied to a direct sum we have a formula \cite[Corollary 5.13]{norms}
+%  \[ \mathrm{Nm}_{\C}^\R(X \oplus Y) \simeq \mathrm{Nm}_{\C}^\R(X) \oplus i_*(X \otimes Y) \oplus \mathrm{Nm}_{\C}^\R(Y). \]
+%\end{rec}
+%
+%
+%
+%\begin{thm}
+%There is an equivalence of $\R$-motivic spectra
+%$$\nu(\mathrm{ko}_{C_2}) \simeq kq.$$
+%\end{thm}
+%
+%We expect that the $\nu$ functor will be helpful in producing additional $\R$-motivic spectra of higher chromatic height.  The $\nu$ functor may also provide a computational tool for studying the $C_2$-equivariant homotopy groups of any $C_2$-spectrum $X$, via the comparison $\nu X \to \nu X \otimes C\ta$.
+
+
+
+
+
+
+
+
+
+
+%% AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+%% material from comparisons
+
+%% AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+%% We also consider two exotic comparison functors: $\nu_\R$ and the norm functor (introduced in \cite{norms}).
+%% These functors produce more interesting examples of objects of $\SHRat$ at the cost of being non-exact.
+%% The functor $\nu_\R$ will be constructed in [location] where we will prove the following proposition:
+
+%% \begin{prop}
+%%   There is commutative diagram of lax symmetric monoidal functors,
+%%   \begin{center}
+%%       \begin{tikzcd}    
+%%         \Sp_{C_2} \ar[rr, "\mathrm{id}_{\Sp_{C_2}}", bend left=20] \ar[r, "\nu_\R"'] \ar[d,"\Phi^e"] & \SHR \ar[r, "\b"'] \ar[d,"(-)_\C"] & \Sp_{C_2} \ar[d,"\Phi^e"] \\
+%%         \Sp \ar[rr, "\mathrm{id}_{\Sp}"', bend right=20] \ar[r, "\nu_\C"] & \SHC \ar[r, "\b"] & \Sp.
+%%       \end{tikzcd}
+%%   \end{center}
+%%   where the functor $\nu_\C$ is the functor constructed in [location].
+%%   These functors have the property that
+%%   \begin{center}
+%%   \begin{tabular}{lll}
+%%     $ \nu \Ss_2^{n \rho} \simeq \Ss_2^{n,n,n}  \qquad\qquad$ &
+%%     $ \nu \uFt \simeq M\F_2  \qquad\qquad$ &
+%%     $ \nu \uZt \simeq M\Z_2 $ \\
+%%     $ \nu \MU_{\R,2} \simeq \MGL_2 $ &
+%%     $ \nu \ku_{\R,2} \simeq \kgl_2 $ &
+%%     $ \nu \ko_{C_2,2} \simeq \kq_2$
+%%   \end{tabular}
+%%   \end{center}
+%% \end{prop}
+
+%% On the one hand, this proposition suggests that each of these motivic homology theories above is not particularly far from being purely topological.
+%% On the other hand, this proposition suggest that one may profitably define $\R$-motivic analogs of $C_2$-equivariant homology theories by applying $\nu_\R$.
+%% As an example which is still out reach at the moment, if we had a good definition of $\tmf_{C_2}$, then one could define $\R$-motivic modular forms as $\nu_{\R} \tmf_{C_2}$. 
+
+%% \begin{rec}
+%%   In \cite{norms}, Bachmann and Hoyois construct symmetric monoidal norm functors along finite etale maps.
+%%   These norm functors may be thought of as an indexed tensor product and in the case of $\R$ they fit into the following diagram showing compatability with the Hill--Hopkins--Ravenel norm functors in equivariant homotopy theory \cite[Section 11]{norms}
+%%   \begin{center}
+%%   \begin{tikzcd}
+%%   \SHC \ar[r, "\mathrm{Nm}_{\C/\R}"] \ar[d, "\b"] & \SHR \ar[d, "\b"] \\
+%%   \Sp \ar[r, "\mathrm{Nm}_e^{C_2}"] & \Sp_{C_2}
+%%   \end{tikzcd}
+%%   \end{center}
+%%   From \cite[{Example 3.5, Lemma 4.4, Example 4.10}]{norms} we can conclude that on bigraded spheres $\mathrm{Nm}_\C^{\R}(\Ss_\C^{s,w}) \simeq \Ss^{s,s,2w}$. The functor $\mathrm{Nm}_{\C}^\R$ is polynomial of degree 2 and when applied to a direct sum we have a formula \cite[Corollary 5.13]{norms}
+%%   \[ \mathrm{Nm}_{\C}^\R(X \oplus Y) \simeq \mathrm{Nm}_{\C}^\R(X) \oplus i_*(X \otimes Y) \oplus \mathrm{Nm}_{\C}^\R(Y). \]
+%% \end{rec}
+
+
+
+
+
+
+\subsubsection{Further deformations}
+
+One of our motivations for this project was the hope that a deformation-theoretic description of Artin--Tate $\R$-motivic stable homotopy theory would suggest other profitable deformations of classical stable homotopy theories.
+
+In \Cref{app:def-const}, we show how a $1$-parameter deformation of a stable presentably symmetric monoidal category $\CC$ may be associated to a choice of object $E \in \CC$ and filtration $\{\CC_{\geq k}\}$ of $\CC$.
+The case of $\SHCat$ is associated to the case where $E = \MU_{p}$, $\CC = \Sp_{ip}$ and $\CC_{\geq k}$ consists of the $2k$-connective objects. 
+The case of $\SHRat$, on the other hand, is associated to the case where $E = \MU_{\R, 2}$, $\CC = \Sp_{C_2, i2}$ and $\CC_{\geq k}$ consists of the regular slice $2k$-connective objects.
+Note that while the completions are necessary for the link to motivic homotopy theory, for the purpose of studying classical homotopy theory one may just as well work with integral deformations.
+
+This suggests several other deformations that may be profitable to study.
+\begin{enumerate}
+\item We can take the deformation of $C_{2^n}$-equivariant homotopy theory with respect to the norm $\mathrm{N}_{C_2} ^{C_{2^n}} \MU_\R$ and the even slice filtration.
+\item At odd primes, one could try to construct the deformation associated to the hypothetical spectrum $\mathrm{BP}_{\mu_p}$ and the even regular slice filtration.
+\item One could take the deformation of $\Sp_{C_p}$ associated to $\underline{\mathbb{F}}_p$ and the regular slice filtration.
+At the prime $2$, this is connected to a variant of the $\underline{\mathbb{F}}_2$-Adams spectral sequence.
+Dylan Wilson has suggested that this variant may be more tractable at odd primes than the $\underline{\mathbb{F}}_p$-Adams spectral sequence, considering his forthcoming work with Krishanu Sankar proving that $\underline{\mathbb{F}}_p \otimes \underline{\mathbb{F}}_p$ is not a free $\underline{\mathbb{F}}_p$-module.
+%Although the $C_p$-equivaraint Steenrod algebra is not yet totally known, the deformation of $\Sp_{C_p}$ associated to $\underline{\mathbb{F}}_p$ and the regular slice filtration, may be tractable anyway.
+%This may be particularly interesting when $p$ is odd, as in this case the regular slice tower for $\underline{\mathbb{F}}_p \otimes \underline{\mathbb{F}}_p$ is nontrivial.
+\item The deformation of $\Syn_{\MU}$ based on $\nu \F_p$ and an appropriately chosen filtration would likely shed much light on the motivic Adams spectral sequence over $\C$. Such a category might be called a ``bisynthetic''.
+\end{enumerate}
+
+
+%% In a different direction, the deformation of spectra associated to $E = \F_p$ and the usual notion of connectivity has also proven useful in several circumstances.
+%When $p$ is odd, the study of the $\underline{\mathbb{F}}_p$-Adams spectral sequence has been held back by the fact that the 
+%On the other hand, one might seek similar deformations of 
+%
+%\begin{rmk}
+%One of our motivations for this research was the hope that a deformation-theoretic description of $\R$-motivic stable homotopy theory would suggest other profitable deformations of classical stable homotopy theories.
+
+%It seems clear from \Cref{thm:filtered-model} that there are natural deformations to study associated to slice towers of \emph{norms} of $\MUR$.  A variant deformation at odd primes would also follow from the existence of the hypothetical $\mathrm{BP}_{\mu_p}$ spectrum.
+%\end{rmk}
+

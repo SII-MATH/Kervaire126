@@ -1,0 +1,319 @@
+
+
+% Obtaining a systematic understanding of the differentials in the Adams spectral sequence is one of the basic goals of stable homotopy theory. Fix a prime $p$, the Adams spectral sequence converges to the homotopy groups of $p$-completed sphere spectrum $S^0$ and has signature
+% $$\Ext^{s, t}_{\A}(\mathbb{F}_p, \mathbb{F}_p) \cong E_2^{s,t} \Longrightarrow \pi_{t-s} S^0,$$
+% $$d_r: E_r^{s,t} \longrightarrow E_r^{s+r, t+r-1}$$
+% with $E_2$-page isomorphic to the cohomology of the Steenrod algebra. At the prime 2, the Adams $1$-line is given by 
+% \[ \Ext^{1,t}_{\A}(\mathbb{F}_2, \mathbb{F}_2) \cong \begin{cases}
+%  	\mathbb{F}_2, \ \text{if} \ t = 2^j \ \text{for some} \ j \geq 0, \\
+%  	0, \ \text{otherwise} \end{cases} \]
+% where $s=1$ is the cohomological degree and $t$ is the internal degree.
+% The generator of the copy of $\mathbb{F}_2$ in bidegree $(s, t)=(1, 2^j)$ is typically denoted $h_j$.\todo{I almost think we can just remove this. It's not like anybody reading this paper hasn't seen the Adams sseq.}
+
+
+
+% A systematic understanding of differentials in the Adams spectral sequence is a fundamental problem in stable homotopy theory. Many questions in geometry and topology are closely related to the computations of the Adams spectral sequence, especially on the Adams differentials of certain classes.
+
+One of the basic goals of stable homotopy theory is to obtain a systematic understanding of the differentials in the Adams spectral sequence.
+Perhaps surprisingly, many questions in differential topology also require and reduce to a core Adams spectral sequence computation. As an example, let us consider the following question: When is the $n$-sphere parallelizable?
+Classical constructions using division algebras provide parallelizations of $S^1$, $S^3$ and $S^7$ and the remaining problem is to show that all other spheres are not parallelizable.
+For this it suffices to show that there does not exist a class with Hopf invariant one in the $n$-stem. %\footnote{In fact, one only needs to show that there is no Hopf invariant one class in the image of $J$, which is easier than the full Hopf invariant one problem (see \cite{BottMilnor}).}
+In order to approach this problem Adams began by reformulating earlier work of Adem into the following theorem.
+
+% Adem showed that a necessary condition is that $n$ be of the form $2^j-1$ and his argument can be rephrased as the computation of the $1$-line of the $E_2$-page of the Adams spectral sequence. 
+% Specifically, 
+% As motivation for introducing the Adams spectral sequence
+
+\begin{thm}[Adem, Adams \cite{AdamsSseq}]\label{thm: Hopf inv}
+  Hopf invariant one classes can only exist in dimensions of the form $2^j-1$.
+  Moreover, there exists a Hopf invariant one class in the $(2^j-1)$-stem
+  if and only if the class $h_j$ on the $1$-line of the Adams spectral sequence is a permanent cycle.
+\end{thm}
+
+% It was known that the Hopf invariant 1 problem has a negative answer in dimensions not of the form $2^j-1$.
+% Due to the existence of the first several Hopf maps, the Hopf classes $h_j$ are permanent cycles for $0 \leq j \leq 3$.
+
+Then, using secondary cohomology operations, Adams computed the first infinite family of nonzero differentials in the Adams spectral sequence, resolving the Hopf invariant one problem.
+% then proved the following theorem and therefore completely solved the Hopf invariant 1 problem.
+
+\begin{thm}[Adams \cite{Adams}] \label{thm: hopf inv diff}
+$d_2(h_j) = h_0 h_{j-1}^2 \neq 0$ for all $j \geq 4$.	
+\end{thm}
+
+\begin{rmk}
+We now have many other methods proving Adams' theorem, for example, using Adams operations in K-theory, using the comparison map between the Adams and the Adams-Novikov spectral sequence, using product structure in higher Adams filtrations, and using Bruner's power operation in the Adams spectral sequence.
+\end{rmk}
+
+%Consequences of Theorem~\ref{thm: hopf inv diff} includes that the tangent bundle of the $n$-sphere is trivial if and only if $n = 0, 1, 3, 7$, and that the only finite dimensional division algebra over the real numbers are of dimensions $1, 2, 4, 8$. \todo{I think many of these were known without Adams, due to Milnor's work.}
+
+On the Adams $2$-line we have classes $h_j^2$ and Browder showed that they too are intimately connected with a fundamental problem in differential topology.
+
+\begin{thm}[Browder \cite{Browder}]\label{thm: Ker inv}
+  A smooth framed manifold with Kervaire invariant one can only exist in dimensions of the form $2(2^j-1)$.
+  Moreover, the following statements are equivalent.
+  \begin{itemize}
+  \item The class $h_j^2$ is a permanent cycle in the Adams spectral sequence.
+  \item There exists a smooth framed manifold of dimension $2(2^j-1)$ with Kervaire invariant one.
+  \end{itemize}
+\end{thm}
+
+Using equivariant and chromatic methods, Hill, Hopkins and Ravenel 
+proved the following celebrated theorem, resolving the Kervaire invariant problem in large dimensions.
+
+\begin{thm}[Hill--Hopkins--Ravenel \cite{HHR}] \label{thm: HHR}
+The classes $h_j^2$ support nonzero Adams differentials for $j \geq 7$.%\footnote{Note that the targets of the Adams differentials on the Kervaire classes $h_j^2$ have not been identified.}
+\end{thm}
+
+\begin{rmk}
+Unlike the solution of the Hopf invariant one problem, the Hill--Hopkins--Ravenel proof is still the only proof to the solution of the Kervaire invariant one problem. Also note that the targets of the Adams differentials on the Kervaire classes $h_j^2$ have not been identified.
+\end{rmk}
+
+Computations of the homotopy groups of spheres show that the Kervaire classes $h_j^2$ are permanent cycles for $0 \leq j \leq 5$ \cite{BMT, BJM62, Xu}. The final case, the fate of $h_6^2$ in dimension 126, remains open.
+
+Continuing in this manner we are led to consider the classes $h_j^3$ on the Adams $3$-line.
+We begin by asking whether they too lie at the heart of some geometric problem.
+
+\begin{qst}\label{qst: hj3 geo}
+  Do the classes $h_j^3$ %, like the classes $h_j$ and $h_j^2$, 
+  also have an interpretation in differential topology?
+\end{qst}
+
+Laures and Miller \cite{Laures, Miller} have interpreted differentials in the Adams spectral sequence in terms of certain characteristic numbers of framed manifolds with corners and worked out the cases for $h_j$ and $h_j^2$. We plan to study the geometric meaning of $h_j^3$ through their frame work and our Theorem~\ref{thm:main} in a future project. 
+
+% Based on \cite{KM, Browder}, a consequence of Theorem~\ref{thm: HHR} and recent work of Wang and the second author \cite{WX} is that the only odd dimensional spheres that have a unique smooth structure is of dimensions $1, 3, 5, 61$.
+
+% Given the connections in Theorems~\ref{thm: Hopf inv} and \ref{thm: Ker inv} from differential topology regarding the destiny of the classes $h_j$ and $h_j^2$ in the Adams spectral sequences, we propose the following two questions.
+
+% \begin{qst}\label{qst: hj3}
+% When are the classes $h_j^n$ permanent cycles in the Adams spectral sequence for $n \geq 3$?	
+% \end{qst}
+
+% \begin{qst}\label{qst: hj3 geo}
+%   What is the differential topology meaning of Question~\ref{qst: hj3}?
+% \end{qst}
+
+% In this article, we give a complete solution to Question~\ref{qst: hj3}. 
+
+% Before we discuss our result and the methodology, here is an observation. Adams proved that $h_j^4 = 0$ for all $j \geq 1$, and that $h_0^n$ are nonzero permanent cycles for all $n$. Therefore, the only nontrivial case for Questions~\ref{qst: hj3} and \ref{qst: hj3 geo} is when $n=3$.
+
+Barratt, Mahowald and Tangora \cite{BMT} proved that the classes $h_j^3$ are permanent cycles for $j \leq 4$. At Toda's $60^{\mathrm{th}}$ birthday conference in 1988 Mahowald then made the following conjecture (see \cite[Remark~3.1]{Minami}) regarding the $h_j^3$ family:
+
+% Minami \cite[Remark~3.1]{Minami} stated that during the Toda's conference in Kinosaki, Japan, in the summer of 1988, Mahowald made the following conjecture.
+
+\begin{cnj}[Mahowald] \label{conj Mahowald}
+The classes $h_j^3$ are not permanent cycles for $j$ large.
+\end{cnj}
+
+Recently, Isaksen, Wang and the second author proved that $h_5^3$ supports a nonzero Adams differential using motivic stable homotopy theory. Let $g_j$ be the generator of the group $\Ext^{4, 3 \cdot 2^{j+2}}_{\A}(\mathbb{F}_2, \mathbb{F}_2) \cong \mathbb{F}_2$.
+    
+\begin{thm}[Isaksen--Wang--Xu \cite{IWX}]\label{thm: d4 h53}
+  $d_4(h_5^3) = h_0^3 g_3 \neq 0$.
+  %where $g_3$ is a generator of $\Ext^{4, 96}_{\A}(\mathbb{F}_2, \mathbb{F}_2) \cong \mathbb{F}_2$.
+\end{thm}
+%% Here $g_j$ is the generator of the group $\Ext^{4, 2^{j+3}+2^{j+2}}_{\A}(\mathbb{F}_2, \mathbb{F}_2) = \mathbb{F}_2$.% forms a $\Sq^0$-family on the Adams $4$-line.
+
+Previously, Wu and Lin had, respectively, shown that $h_6^3$ and $h_7^3$ support nonzero Adams differentials.
+
+\begin{thm}[Lin \cite{Lin}, Wu \cite{Wu}]\label{thm: d4 h63}
+  $d_4(h_6^3) = h_0^3 g_4 \neq 0$ and $d_4(h_7^3) \neq 0$.
+\end{thm}
+
+Lin and Wu analyze $h_6^3$ and $h_7^3$ via a study of the Kahn--Priddy transfer map.
+Lin also went on to conjecture that $d_4(h_j^3) = h_0^3g_{j-2}$ for $j \geq 6$ \cite{Lin} and Wu verified this conjecture in the case $j=6$.
+
+In this article we prove Lin's refinement of Mahowald's Conjecture, 
+thereby determining the fate the $h_j^3$ family.
+
+% \begin{rmk}
+%   % In \cite{Lin}, Lin established that the $d_4$ differential on $h_7^3$ is non-zero (though the precise target was not identified) and stated the conclusion of \Cref{thm: d4 hj3} as a conjecture.
+%   Lin's method for analyzing $h_7^3$ proceeds via a study of the Kahn--Priddy transfer map and is rather elaborate.
+%   We remark that we found the contents of \cite{Lin} and \cite{Wu} exceedingly difficult to evaluate.
+%   %  as several key arguments are omitted.
+%   %Wu extended Lin's methods in order to compute $d_4(h_6^3)$ in \cite{Wu}.  
+%   % \cite{Lin} conjectured that the classes $h_j^3$ supports nonzero $d_4$ differentials, and equal to $h_0^3 g_{j-2}$ plus possible other terms. For more details, see Remark later.
+%   % The differential on $h_6^3$ was previously established in \cite{Wu} by studying the $C_2$ transfer map.
+%   % This builds on the main theorem of \cite{Lin} which asserts that there is a non-zero $d_4$ differential on $h_7^3$.   
+% \end{rmk}
+
+
+\begin{thm}\label{thm: d4 hj3} \label{thm:main}
+  $d_4(h_j^3) = h_0^3 g_{j-2} \neq 0$
+  for $j \geq 6$. % where $g_j$ is a generator of $\Ext^{4, 2^{j+3}+2^{j+2}}_{\A}(\mathbb{F}_2, \mathbb{F}_2) \cong \mathbb{F}_2$.
+\end{thm}
+
+\begin{rmk}
+We would like to comment that we don't expect the fate of $h_j^3$ can be obtained via the Hill--Hopkins--Ravenel's detection method for cyclic groups $C_{2^n}$. This is partly because we will show that for $j$ large the class $h_j^3$ does not survive to the Adams--Novikov $E_2$-page in the algebraic Novikov spectral sequence so it is difficult to directly compare with the homotopy fixed point spectral sequence and the slice spectral sequence; This is also suggested by a theorem of Hill \cite{Hill} that $\eta^3$ maps to zero under the Hurewicz map for all fixed points of all norms to cyclic 2-groups of the Landweber-Araki Real bordism spectrum, and the work of Li--Shi--Wang--Xu \cite{LSWX} that the Hurewicz image of the $C_2$-fixed point of the Real bordism spectrum behaves well under the $\Sq^0$-operation (see also \Cref{rec:sq0}).
+\end{rmk}
+
+The proof of \Cref{thm: d4 hj3} uses two different deformations of the category of spectra---$\mathbb{C}$-motivic spectra and $\F_2$-synthetic spectra---in an essential way. 
+We prove \Cref{thm: d4 hj3} as the Betti realization of a corresponding differential in the motivic Adams spectral sequence. This differential in turn is lifted from the the motivic Adams spectral sequence of a certain 2 cell complex---the cofiber of $\tau$. The map $\tau$ here is a map between two p-completed motivic sphere spectra in bidegree $(0,-1)$ that induces a nonzero map on mod $p$ motivic homology (\cite{Voe032}, \cite{HuKrizOrmsby}), which has played a significant role in the $\mathbb{C}$-motivic stable homotopy theory \cite{Isaksen}, \cite{IWX} (see more details in Section~\ref{section2.2}), in contrast to the story over a general base field \cite{rmot}, \cite{BKWX}.  In particular, 
+by a theorem of Gheorghe, Wang and the second author \cite[Theorem~1.3]{GWX},
+the motivic Adams spectral sequence for the cofiber of $\tau$ is isomorphic to
+the algebraic Novikov spectral sequence.
+The crucial step in our proof is then to establish a certain non-trivial differential in the algebraic Novikov spectral sequence.
+
+The most delicate part of our argument is in lifting the algebraic Novikov differential proved in \Cref{sec:alg-nov-diff} to the motivic Adams spectral sequence and it is at this point where we need several auxiliary inputs from $\F_2$-synthetic spectra (\cite{Pstragowski}). In \Cref{sec:kervaire} we analyze the differentials on the classes $h_j^2$ using a synthetic refinement of the ``inductive approach to Kervaire invariant one'' from \cite{Inductive}. Roughly speaking, the sphere spectrum in the category of $\F_2$-synthetic spectra has bigraded homotopy groups that encode the Adams spectral sequence information (including differentials) of the classical sphere spectrum. There is a map $\lambda$ between sphere spectra in bidegree $(0,-1)$ such that the bigraded homotopy groups of the cofiber of $\lambda^r$, i.e., $\pi_{**}(\clambda^r)$ encodes information of the Adams spectral sequence of the sphere up to the $E_{r+1}$-page. See \Cref{sec:kervaire} for an introduction and our conventions regarding synthetic spectra.
+
+As a consequence of this we obtain the following theorem.
+
+% Theorem~\ref{thm: d4 hj3} then gives a complete solution to Question~\ref{qst: hj3}. 
+
+% A crucial step in our proof of Theorem~\ref{thm: d4 hj3} is to establish a nonzero differential in the algebraic Novikov spectral sequence, which, by a theorem of Gheorghe, Wang and the second author \cite[Theorem~1.3]{GWX}, is isomorphic to the motivic Adams spectral sequence of a 2 cell complex -- the cofiber of $\tau$. We then pullback this motivic Adams differential from the cofiber of $\tau$ to the motivic sphere spectrum, then use the Betti realization to push forward it to get the classical Adams differentials as stated in Theorem~\ref{thm: d4 hj3}. Background on relevant motivic homotopy theory is included in Section~2.
+
+\begin{thm} \label{thm:inductive-intro} %\!\!\footnote{See \Cref{sec:kervaire} for our conventions regarding synthetic spectra.}
+  Fix an $r \geq 2$ and suppose that $\theta_j$ is a lift of $h_j^2$ from $\clambda$ to $\clambda^r$.
+  If $2\theta_j = 0$ and $\lambda^2 \theta_j^2 = 0$ in $\pi_{**}(\clambda^r)$,
+  then there exists a class $\theta_{j+1}$ lifting $h_{j+1}^2$ to $\clambda^r$ such that $2\theta_{j+1} = 0$ in $\pi_{**}(\clambda^r)$.
+  %As a corollary we show that
+ % $ d_4(h_j^2) = 0 $
+%  for all $j \geq 0$.
+\end{thm}
+
+As a corollary of \Cref{thm:inductive-intro} we show that
+\begin{cor}
+The class $h_j^2$ survives to the Adams $E_5$-page for all $j \geq 0$. In other words,
+  \[ d_r(h_j^2) = 0 \quad\text{for}\quad 2 \leq r \leq 4.\]
+\end{cor}
+
+Specializing to the case $j=6$ we are able to %use the existence of $\Theta_5 \in \pi_{62}S^0$ to 
+refine our arguments to obtain partial progress towards understanding the fate of $h_6^2$.
+
+\begin{thm} \label{thm:h62-intro}
+  The class $h_6^2$ survives to the Adams $E_9$-page. In other words,
+  \[ d_r(h_6^2) = 0 \quad\text{for}\quad 2 \leq r \leq 8.\]
+\end{thm}
+
+
+\begin{rmk}
+  Adams proved that $h_j^4 = 0$ for all $j \geq 1$ and $h_0^n$ is a nonzero permanent cycles detecting $2^n$, therefore as a consequence of \Cref{thm: d4 hj3} the only remaining class of the form $h_j^n$ whose fate we do not know is $h_6^2$.
+\end{rmk}
+
+\subsection*{The New Doomsday Conjecture}\hfill
+
+The infinite families of Adams differentials in Theorems~\ref{thm: hopf inv diff} and \ref{thm: d4 hj3} share a key structural feature: their sources and targets naturally fit into $\Sq^0$-families. We expect that this is not a coincidence.
+
+\begin{rec} \label{rec:sq0}
+The commutative $\F_2$-algebra structure on the stack of additive formal groups 
+provides us with algebraic Steenrod operations (see Chapters IV--VI of \cite{BMMS})
+acting on the cohomology of the Steenrod algebra. 
+In particular, there is an operation
+$$\Sq^0: \Ext^{s, t}_{\A}(\mathbb{F}_2, \mathbb{F}_2) \longrightarrow \Ext^{s, 2t}_{\A}(\mathbb{F}_2, \mathbb{F}_2).$$
+
+Given a class $x$ in the cohomology of the Steenrod algebra we obtain an infinite $\Sq^0$-family of classes $\{x,\ \Sq^0(x),\ \Sq^0(\Sq^0(x)),\ \dots\}$ by iterating $\Sq^0$. 
+We say that a $\Sq^0$-family is non-trivial if all members of the family are non-zero.
+\end{rec}
+
+\begin{exm}
+On the Adams 1-line the Hopf classes $\{h_j\}_{j \geq 0}$ form a $\Sq^0$-family as 
+$$\Sq^0 (h_j) = h_{j+1}.$$
+Similarly, because $\Sq^0$ is a ring map, we have $\Sq^0$-families $\{h_j^2\}_{j\geq0}$ and $\{h_j^3\}_{j \geq 0}$ as well. 
+\end{exm}
+
+\begin{exm}
+The classes 
+$g_j \in \Ext^{4, 2^{j+3}+2^{j+2}}_{\A}(\mathbb{F}_2, \mathbb{F}_2)$ (see \cite{BMMS}, \cite{LinExt}, \cite{Ext5} for example)
+in the statement of Theorem~\ref{thm: d4 hj3} also form a $\Sq^0$-family. In fact, the $g_j$ are defined to be the classes in the $\Sq^0$-family generated by $g_1 \coloneqq g$, which is an element that plays a significant role in the homotopy groups of tmf \cite{TMFbook}. 
+\end{exm}
+
+In 1995, Minami \cite{Minami} made the following conjecture regarding $\Sq^0$-families:
+%which can be interpretted as a far reaching generalization of the non-existence of Hopf invariant 1 and Kervaire invariant 1 classes.
+
+\begin{cnj}[New Doomsday Conjecture]\label{conj: doomsday}
+  For any $\Sq^0$-family $\{x_j\}_{j \geq 0}$ on the Adams $E_2$-page
+  only finitely many classes survive to the $E_\infty$-page.
+\end{cnj}
+
+Adams's solution of the Hopf invariant one problem (Theorem~\ref{thm: hopf inv diff}) shows that the New Doomsday Conjecture is true on the Adams 1-line. Similarly, Hill--Hopkins--Ravenel's solution of the Kervaire invariant one problem (Theorem~\ref{thm: HHR}) was the last, hardest, case of the New Doomsday Conjecture on the Adams 2-line. 
+
+\begin{rmk}
+On the Adams 3-line and above, Conjecture~\ref{conj: doomsday} remains open. With our Theorem~\ref{thm: d4 hj3}, the remaining open cases are the $\Sq^0$-families $\{ h_j^2 h_{j+k+1} + h_{j+1} h_{j+k}^2 \}_{j \geq 0}$ for $k \geq 2$.
+\end{rmk}
+
+Based on the uniformity of the differentials in Theorems~\ref{thm: hopf inv diff} and \ref{thm:main} we propose the following refinement of Minami's conjecture:
+%Assuming Conjecture~\ref{conj: doomsday} is true, we make another conjecture regarding the $\Sq^0$-families, in an even stronger form.
+
+\begin{cnj}[Uniform Doomsday Conjecture]\label{conj: stable length}
+  Let $\{a_j\}_{j \geq 0}$ be a non-trivial $\Sq^0$-family on the Adams $E_2$-page.
+  Then, there exists another $\Sq^0$-family $\{b_j\}_{j \geq 0}$, an $r \geq 2$ and a class $c$ such that
+  \[ d_r(a_j) = c \cdot b_j \neq 0 \]
+  for $j \gg 0$.
+\end{cnj}
+%$\Sq^0$-stabilization conjecture
+\todo{sq0 upper vs lower indexing}
+
+\todo{more on this.}
+\begin{exm} \label{exm:Bruner formula}
+  Bruner's formulas for power operations on Adams differentials naturally produces families of differentials of the form predicted by \Cref{conj: stable length}. For example one obtains families of differentials 
+  \setlength{\columnsep}{-30pt}
+  \begin{multicols}{2}
+    \begin{enumerate}[leftmargin=30pt, rightmargin=0pt]
+    \item $d_2(h_{j+1}) = h_0 \cdot \mathrm{Sq}^1(h_j) = h_0h_j^2$,
+    \item $d_2(h_{j+1}^2) = h_0 \cdot \mathrm{Sq}^1(h_j^2) = 0$,
+    \item $d_2(c_{j+1}) = h_0 \cdot \mathrm{Sq}^1(c_j) = h_0f_j$,
+    \item $d_2(d_{j+1}) = h_0 \cdot \mathrm{Sq}^1(d_j) = 0$,
+    \item $d_2(e_{j+1}) = h_0 \cdot \mathrm{Sq}^1(e_j) = h_0x_j$,
+    \item $d_2(f_{j+1}) = h_0 \cdot \mathrm{Sq}^1(f_j) = 0$,
+    \item $d_2(g_{j+1}) = h_0 \cdot \mathrm{Sq}^1(g_j) = 0$,
+    \item $d_2(p_{j+1}) = h_0 \cdot \mathrm{Sq}^1(p_j) = h_0h_jp'_j$,
+    \item $d_2(D_3(j+1)) = h_0 \cdot \mathrm{Sq}^1(D_3(j)) = h_0K_j$,
+    \item $d_2(p'_{j+1}) = h_0 \cdot \mathrm{Sq}^1(p'_{j}) = h_0T_j$,
+    \end{enumerate}    
+  \end{multicols}
+  \noindent for $j \geq 1$.
+  \setlength{\columnsep}{0pt}
+  These $Sq^0$-families and these families of differentials are discussed in \cite{BMMS}, \cite{LinExt}, \cite{Ext5}.
+\end{exm}
+
+Prior to the present work, all known cases of \Cref{conj: stable length} followed as corollaries of Bruner's power operation formulas
+and the authors' core motivation in undertaking this project was to provide a more substantiative test of this conjecture.
+The differentials of \Cref{thm:main} cannot be obtained from Bruner's formulas. 
+In fact, reversing the flow of information, the differentials of \Cref{thm:main} can be interpreted as the first computation of an infinite family of \emph{hidden} power operations in the Adams spectral sequence for the sphere.
+
+\subsection{An outline of the paper}\hfill
+
+
+In \Cref{sec:review} we review the Miller square, motivic homotopy theory and set up notation for many of the spectral sequences we will use throughout the paper.
+In \Cref{sec:proof} we reduce the proof of \Cref{thm:main} to a collection of propositions which we will verify across the remaining sections of the paper.
+In \Cref{sec:algAH} we study the $E_2$-page of the Cartan--Eilenberg spectral sequence near $h_j^3$.
+In \Cref{sec:cess} we show that there are no Cartan--Eilenberg differentials near $h_j^3$ and in particular it is at this point that we show that the target of the Adams differential in \Cref{thm:main} is non-trivial.
+%% In \Cref{sec:mcess} we introduce the motivic Cartan--Eilenberg spectral sequence and use it to obtain information about the $E_2$-page of the motivic Adams spectral sequence near $h_j^3$.
+%% In \Cref{sec:e4}, using the material developed in the previous pair of sections, we prove that $d_2(h_j^3) = 0$ and $d_3(h_j^3) = 0$.
+In \Cref{sec:alg-nov-diff} we prove the key family of algebraic Novikov differentials at the heart of our proof.
+In \Cref{sec:kervaire} we use $\F_2$-synthetic homotopy theory to analyze the classes $h_j^2$, proving \Cref{thm:inductive-intro}, \Cref{thm:h62-intro} and the final input necessary for the proof of \Cref{thm:main}.
+
+%% \todo{summary copied from elsewhere. Merge this in.}
+%% In the rest of this paper, we prove Theorems~\ref{E2 descriptions}, \ref{diff classical}, \ref{diff motivic sphere}, \ref{diff motivic ctau}. In Section~\ref{sec:cess}, we set up the Cartan-Eilenberg spectral sequence and prove part $(1)$ of Theorem~\ref{E2 descriptions}. We also prove Theorem~\ref{diff motivic ctau}~$(3)$ at the end of Section~\ref{sec:cess}. In Section~\ref{sec:mcess}, we set up the motivic analog of the Cartan-Eilenberg spectral sequence and prove parts $(2)(3)$ of Theorem~\ref{E2 descriptions}. In Section~\ref{sec:e4}, we prove Theorem~\ref{diff classical}~$(3)$ and we use Theorem~\ref{diff motivic ctau}~$(1)$ and the motivic zigzag strategy to prove Theorem~\ref{diff classical}~$(1)$ and Theorem~\ref{diff motivic sphere}. These proofs are similar to but easier than the proof of our main Theorem~\ref{thm: d4 hj3}. What remains to be proved are Theorem~\ref{diff motivic ctau}~$(1)(2)$ and Theorem~\ref{diff classical}~$(2)$. In Section~\ref{sec:alg-nov-diff}, we study the key algebraic Novikov differential through the cobar complex, and prove Theorem~\ref{diff motivic ctau}~$(1)(2)$. In Section~\ref{sec:kervaire}, we revisit Barratt--Jones--Mahowald's inductive approach on the Kervaire invariant classes and prove Theorem~\ref{diff classical}~$(2)$.
+
+
+\subsection{Notations and conventions}\hfill
+
+\begin{enumerate}
+\item We write $S^n$ for the $n$-sphere in spectra, \\
+  $S^{s,w}$ for the $\CC$-motivic $(s,w)$-sphere $\Sigma^{s-w}(\mathbb{G}_m)^{\otimes w}$ and \\
+  $\Ss^{k,s}$ for the $\F_2$-synthetic $(k,s)$-sphere $\Sigma^{-s}\nu( S^{k+s} )$.
+\item The indices we use in the various spectral sequences we consider are as follows:
+  In the classical Adams $E_2$-page $\Ext_{\A}^{a,t}(\mathbb{F}_2, \mathbb{F}_2)$, we use $a$ for the Adams filtration and $t$ for the internal degree.
+  In the motivic Adams $E_2$-page $\Ext^{a,t,w}_{\A^\textup{mot}}(\mathbb{F}_2[\tau], \mathbb{F}_2[\tau])$, we use $a$ for the Adams filtration and $t$ for the internal degree and $w$ for weight, which corresponds to the dimension of $\mathbb{G}_m$-twists (see Section~\ref{section2.2} for more details).
+  Moreover, from the motivic Cartan--Eilenberg spectral sequence, every element in $\Ext^{a,t,w}_{\A^\textup{mot}}(\mathbb{F}_2[\tau], \mathbb{F}_2[\tau])$ has a Cartan--Eilenberg filtration, denoted by $k$, and an Adams--Novikov filtration $s$, satisfying that $a = s+k$.
+\item In order to avoid notational collisions we write $\tau$ for the usual $\CC$-motivic map $\tau$ and $\lambda$ for the $\F_2$-synthetic map usually denoted $\tau$.
+\item In the final pair of sections it becomes important to distinguish between several different classes connected with Kervaire invariant one. 
+  We use $h_j^2$ for the classes on the Adams $E_2$-page.
+  We use $\vartheta_j$ for certain class on the Adams--Novikov $E_2$-page which map to $h_j^2$ under the Thom reduction map (see \Cref{dfn:Tj}).
+  We use $\Theta_j$ for the Kervaire invariant one classes in the stable homotopy groups of spheres.
+  We use $\theta_j$ for a choice of class in the synthetic homotopy groups of $\clambda^k$ (which exists when $h_j^2$ survives to the $E_{k+1}$-page of the Adams spectral sequence).
+\item All objects are $p$-complete unless otherwise noted.
+\item Other than some general introduction in \Cref{sec:review} we work entirely at $p=2$.
+\end{enumerate}
+  
+\subsection*{Acknowledgments}\hfill
+
+The authors would like to thank Hood Chatham, Lars Hesselholt, Mike Hopkins, Hana Jia Kong, Ishan Levy, Haynes Miller, Andy Senger and Guozhen Wang for helpful conversations regarding the content of this paper. We would also like to thank anonymous referee for helpful comments.
+During the course of this work the first author was supported by NSF grant DMS-2202992, by the DNRF through the Copenhagen center for Geometry and Topology (DNRF151) and by Villum Fonden through the Young Investigator Program.
+The second author is partially supported by NSF grant DMS 2105462.
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

@@ -1,0 +1,241 @@
+\usepackage{verbatim}
+\usepackage[textsize=scriptsize]{todonotes}
+\usepackage{tikz-cd}
+\usepackage{etex}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage[T1]{fontenc}
+
+\usepackage[all,cmtip]{xy}
+\usepackage{multicol}
+
+
+\hypersetup{
+   colorlinks,
+   linkcolor={red},
+   citecolor={blue!50!black},
+   urlcolor={blue!80!black}
+}
+
+\usepackage{chemarr}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{comment}
+\usepackage{spectralsequences}
+%\usepackage[draft]{spectralsequences}
+\usepackage{cleveref}
+\usepackage{mathtools}
+\usepackage{rotating}
+\usepackage{wrapfig}
+\usepackage{outlines}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{bbm}
+\usepackage{enumitem}
+
+%----------------------------------------------------------------------%
+
+
+\theoremstyle{definition}
+\newtheorem{nul}{}[section]
+\newtheorem{dfn}[nul]{Definition}
+\newtheorem{axm}[nul]{Axiom}
+\newtheorem{rmk}[nul]{Remark}
+\newtheorem{term}[nul]{Terminology}
+\newtheorem{cnstr}[nul]{Construction}
+\newtheorem{cnv}[nul]{Convention}
+\newtheorem{ntn}[nul]{Notation}
+\newtheorem{exm}[nul]{Example}
+\newtheorem{obs}[nul]{Observation}
+\newtheorem{ctrexm}[nul]{Counterexample}
+\newtheorem{rec}[nul]{Recollection}
+\newtheorem{exr}[nul]{Exercise}
+\newtheorem{wrn}[nul]{Warning}
+\newtheorem{qst}[nul]{Question}
+\newtheorem*{dfn*}{Definition}
+\newtheorem*{axm*}{Axiom}
+\newtheorem*{ntn*}{Notation}
+\newtheorem*{exm*}{Example}
+\newtheorem*{exr*}{Exercise}
+\newtheorem*{int*}{Intuition}
+\newtheorem*{qst*}{Question}
+\newtheorem*{rmk*}{Remark}
+\newtheorem*{comp1}{Computation 1:}
+
+\theoremstyle{plain}
+\newtheorem{sch}[nul]{Scholium}
+\newtheorem{claim}[nul]{Claim}
+\newtheorem{thm}[nul]{Theorem}
+\newtheorem{prop}[nul]{Proposition}
+\newtheorem{lem}[nul]{Lemma}
+\newtheorem{var}[nul]{Variant}
+\newtheorem{sublem}{Lemma}[nul]
+\newtheorem{por}[nul]{Porism}
+\newtheorem{cnj}[nul]{Conjecture}
+\newtheorem{cor}[nul]{Corollary}
+\newtheorem{fact}[nul]{Fact}
+\newtheorem*{thm*}{Theorem}
+\newtheorem*{prop*}{Proposition}
+\newtheorem*{cor*}{Corollary}
+\newtheorem*{lem*}{Lemma}
+\newtheorem*{cnj*}{Conjecture}
+\newtheorem{innercustomthm}{Theorem}
+\newenvironment{customthm}[1]
+  {\renewcommand\theinnercustomthm{#1}\innercustomthm}
+  {\endinnercustomthm}
+
+%%% Make widetilde work in spectral sequences.
+
+\let\oldwidetilde\widetilde
+\protected\def\widetilde{\oldwidetilde}
+
+
+%----------------------------------------------------------------------%
+
+\DeclareMathOperator{\Aut}{\mathrm{Aut}}
+\DeclareMathOperator{\Tr}{\mathrm{Tr}}
+\DeclareMathOperator{\Res}{\mathrm{Res}}
+\DeclareMathOperator{\im}{\mathrm{im}}
+\DeclareMathOperator*{\colim}{\mathrm{colim}}
+\DeclareMathOperator{\Map}{\mathrm{Map}}
+\DeclareMathOperator{\cofiber}{\mathrm{cofiber}}
+\DeclareMathOperator{\fiber}{\mathrm{fiber}}
+\DeclareMathOperator{\gr}{\mathrm{gr}}
+\DeclareMathOperator{\fib}{\mathrm{fib}}
+\DeclareMathOperator{\sBar}{\mathrm{Bar}}
+
+\DeclareMathOperator{\Hom}{\mathrm{Hom}} 
+\DeclareMathOperator{\End}{\mathrm{End}} 
+\DeclareMathOperator{\Skel}{\mathrm{Skel}}
+\DeclareMathOperator*{\hocolim}{\mathrm{hocolim}}
+\DeclareMathOperator*{\holim}{\mathrm{holim}}
+\DeclareMathOperator{\smsh}{\wedge}
+\DeclareMathOperator{\coker}{\mathrm{coker}}
+
+
+
+\DeclareMathOperator{\Ss}{\mathbb{S}}
+\DeclareMathOperator{\FF}{\mathbb{F}}
+\DeclareMathOperator{\F}{\mathbb{F}}
+\DeclareMathOperator{\ZZ}{\mathbb{Z}}
+\DeclareMathOperator{\NN}{\mathbb{N}}
+\DeclareMathOperator{\A}{\mathcal{A}}
+\DeclareMathOperator{\C}{\mathcal{C}}
+\DeclareMathOperator{\D}{\mathcal{D}}
+\DeclareMathOperator{\CP}{\mathbb{CP}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\sE}{\mathrm{E}}
+\DeclareMathOperator{\mE}{\mathcal{E}}
+\DeclareMathOperator{\MO}{\mathrm{MO}}
+\DeclareMathOperator{\Of}{O \langle 4n-1\rangle}
+%\DeclareMathOperator{\spOf}{\Sigma^{\infty}_+ O \langle 4n-1\rangle}
+%\DeclareMathOperator{\sOf}{\Sigma^{\infty} O \langle 4n-1\rangle}
+%\DeclareMathOperator{\Of}{\mathrm{O} \langle 4n-1\rangle}
+\DeclareMathOperator{\cS}{\mathcal{S}}
+\DeclareMathOperator{\bS}{\mathbb{S}}
+\DeclareMathOperator{\Z}{\mathbb{Z}}
+\DeclareMathOperator{\Ring}{\textbf{Ring}}
+\DeclareMathOperator{\Aff}{\textbf{Aff}}
+\DeclareMathOperator{\Ran}{\mathrm{Ran}}
+\DeclareMathOperator{\Spec}{\text{Spec}}
+\DeclareMathOperator{\Poly}{\text{Poly}}
+\DeclareMathOperator{\pic}{\mathrm{pic}}
+\DeclareMathOperator{\Pic}{\mathrm{Pic}}
+\DeclareMathOperator{\Fin}{\mathrm{Fin}}
+\DeclareMathOperator{\Ext}{\mathrm{Ext}}
+\DeclareMathOperator{\Gra}{\mathrm{Gr}}
+\DeclareMathOperator{\nil}{\text{nil}}
+\DeclareMathOperator{\ac}{\tilde{c}}
+\DeclareMathOperator{\fin}{\text{fin}}
+\DeclareMathOperator{\Gr}{\mathbf{Gr}}
+\DeclareMathOperator{\Fil}{\mathbf{Fil}}
+\DeclareMathOperator{\Fun}{\text{Fun}}
+\DeclareMathOperator{\Alg}{\mathrm{Alg}}
+\DeclareMathOperator{\Sp}{\mathrm{Sp}}
+\DeclareMathOperator{\Spaces}{\mathcal{S}}
+\DeclareMathOperator{\J}{\mathcal{J}}
+\DeclareMathOperator{\Cofil}{\mathbf{Cofil}}
+\DeclareMathOperator{\GL}{\mathrm{GL}}
+\DeclareMathOperator{\cofib}{\mathrm{cofib}}
+\DeclareMathOperator{\cof}{\mathrm{cof}}
+\DeclareMathOperator{\DD}{\mathbb{cofib}}
+\DeclareMathOperator{\Sq}{\mathrm{Sq}}
+
+\newcommand{\spOf}{\Sigma^{\infty}_+ \mathrm{O \langle 4n-1\rangle}}
+\newcommand{\sOf}{\Sigma^{\infty} \mathrm{O \langle 4n-1\rangle}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\BOn}{\mathrm{BO \langle n \rangle}}
+\newcommand{\BOm}{\mathrm{BO \langle m \rangle}}
+\newcommand{\BO}{\mathrm{BO}}
+\newcommand{\Om}{\mathrm{O \langle m -1 \rangle}}
+\newcommand{\Oo}{\mathrm{O}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\BP}{\mathrm{BP}}
+\newcommand{\Syn}{\mathrm{Syn}}
+\newcommand{\HZ}{\mathrm{H}\mathbb{Z}}
+\newcommand{\HFp}{\mathrm{H}\mathbb{F}_p}
+\newcommand{\HFt}{\mathrm{H}\mathbb{F}_2}
+\newcommand{\Qoppa}{\kappa}
+\newcommand{\qoppa}{\kappa}
+\newcommand{\sampi}{\lambda}
+\newcommand{\tor}{\mathrm{tor}}
+\newcommand{\tf}{\mathrm{tf}}
+\newcommand{\Tot}{\mathrm{Tot}}
+
+\def\o{\mathbbm{1}}
+\def\CAlg{\mathrm{CAlg}}
+\def\W{\mathbb{W}}
+\def\G{\mathbb{G}}
+\def\BG{\mathrm{B}\mathbb{G}}
+\def\Mfg{\mathcal{M}_{\mathrm{fg}}}
+\def\op{\mathrm{op}}
+\def\perf{\mathrm{perf}}
+\def\P{\mathcal{P}}
+\def\CC{\mathbb{C}}
+
+%\DeclareSymbolFont{extraitalic}      {U}{zavm}{m}{it}
+%\DeclareMathSymbol{\Qoppa}{\mathord}{extraitalic}{161}
+%\DeclareMathSymbol{\qoppa}{\mathord}{extraitalic}{161}
+%\DeclareMathSymbol{\sampi}{\mathord}{extraitalic}{166}
+
+% \DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+% \makeatletter
+% \let\oldabs\abs
+% \def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+%%% Code from Hood to fix a positioning error with his spectralsequences package.
+%% \usepackage{etoolbox}
+%% \makeatletter
+%% \patchcmd\endsseqpage{\path (0,-\sseq@yoffset) node}{\node}{}{\failed}
+%% \makeatother
+
+
+\def\clambda{\Ss\hspace{-2.2pt}/\!\lambda}
+
+
+
+%----------------------------------------------------------------------%
+
+\usepackage{tikz}
+\usetikzlibrary{matrix,arrows,decorations}
+\usepackage{tikz-cd}
+
+\usepackage{adjustbox}
+
+\let\oldtocsection=\tocsection
+ 
+\let\oldtocsubsection=\tocsubsection
+ 
+\let\oldtocsubsubsection=\tocsubsubsection
+ 
+\renewcommand{\tocsection}[2]{\hspace{0em}\oldtocsection{#1}{#2}}
+\renewcommand{\tocsubsection}[2]{\hspace{1em}\oldtocsubsection{#1}{#2}}
+\renewcommand{\tocsubsubsection}[2]{\hspace{2em}\oldtocsubsubsection{#1}{#2}}
+
+%----------------------------------------------------------------------%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Main"
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

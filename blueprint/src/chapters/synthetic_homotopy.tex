@@ -1,0 +1,542 @@
+\section{$H\mathbb F_2$-synthetic homotopy and synthetic Adams objects}
+\label{chap:synthetic-foundations}
+
+This section introduces the synthetic objects and the language in which the imported Pstragowski and BHS statements can later be written.
+
+\subsection{Topological operad language}
+
+% SOURCE: Def/HigherAlgebra/Operad/{Arity,Topological,Algebra}; May,
+% The Geometry of Iterated Loop Spaces, Definitions 1.1--1.2 and Lemma 1.4;
+% What precisely are E-infinity ring spaces and E-infinity ring spectra?,
+% Section 1, pp. 224--225. The ambient spaces here are all TopCat spaces.
+\begin{definition}[Topological operads and Cartesian algebras]
+  \label{def:topological-operad-foundation}
+  \lean{KIP126.HigherAlgebra.Operad.TopologicalOperad,KIP126.HigherAlgebra.Operad.TopologicalOperad.Hom}
+  \lean{KIP126.HigherAlgebra.Operad.TopologicalOperad.SigmaFree,KIP126.HigherAlgebra.Operad.TopologicalOperad.IsEInfinity,KIP126.HigherAlgebra.Operad.TopologicalOperad.IsReduced}
+  \lean{KIP126.HigherAlgebra.Operad.TopologicalOperad.Algebra,KIP126.HigherAlgebra.Operad.TopologicalOperad.Algebra.Hom,KIP126.HigherAlgebra.Operad.TopologicalOperad.BundledAlgebra}
+  \leanok
+  A topological operad assigns a space $\mathcal O(I)$ to each finite
+  labelled set $I$, a homeomorphism $e_*$ to each bijection of input sets,
+  an identity $1\in\mathcal O(\{*\})$, and jointly continuous substitutions
+  \[
+    \gamma:\mathcal O(I)\times\prod_{i\in I}\mathcal O(J_i)
+       \longrightarrow\mathcal O\Bigl(\coprod_{i\in I}J_i\Bigr).
+  \]
+  Relabelling preserves identities and composition. Left and right unit
+  substitution are identities after the canonical singleton relabellings.
+  Substitution is associative after the canonical bijection between the
+  two dependent-sum label sets. Both equivariance laws are required: for
+  $e:I\simeq I'$ and $e_i:J_i\simeq J'_i$,
+  \[
+    (\coprod e)_*\gamma(x,(y_{e(i)})_i)
+       =\gamma(e_*x,(y_{i'})_{i'}),\qquad
+    (\coprod_i e_i)_*\gamma(x,(y_i)_i)
+       =\gamma(x,((e_i)_*y_i)_i).
+  \]
+  All laws include empty input sets. An operad morphism is continuous in
+  every arity and preserves relabelling, identity, and substitution.
+
+  In the chosen topological convention, $\mathcal O$ is $E_\infty$ when
+  every $\mathcal O(I)$ is contractible and its permutation action is free.
+  Contractibility means homotopy equivalence to a point. The separate
+  reduced condition requires exactly one nullary operation; it is not
+  imposed on every operad. A Cartesian $\mathcal O$-algebra on a space $X$
+  has jointly continuous actions $\mathcal O(I)\times X^I\to X$ preserving
+  the identity, substitution, and relabelling. Algebra morphisms preserve
+  every such action, including the nullary ones.
+\end{definition}
+
+The ambient spaces here have ordinary product topologies, without May's
+additional compactly generated Hausdorff convention. The following
+definitions supply tensor-valued actions and actual spaces in which to state
+uniqueness. Applying them to synthetic spectra still requires the model and
+under-unit comparisons described below; these definitions alone do not
+complete checklist item a09.
+
+\begin{definition}[Enriched finite tensor presentation]
+  \label{def:enriched-finite-tensor}
+  \lean{KIP126.HigherAlgebra.EnrichedTensor.Presentation,KIP126.HigherAlgebra.EnrichedTensor.TensorLaws,KIP126.HigherAlgebra.EnrichedTensor.SymmetricTensorLaws}
+  \uses{def:topological-operad-foundation}
+  \leanok
+  Fix a monoidal category $M$ with its actual topological enrichment.
+  A finite tensor presentation chooses objects $T_I(A_i)$ and jointly
+  continuous tensor maps on the enriched mapping spaces, together with
+  empty, singleton, binary, relabelling and flattening isomorphisms.
+  The tensor laws impose functoriality, naturality, and the unit,
+  associativity and two permutation diagrams for coloured substitutions.
+  The symmetric tensor laws additionally identify the binary permutation,
+  the empty-input comparisons and the three-input comparison with the
+  existing braiding, unitors and associator of $M$.
+  Thus the tensor is the specified monoidal tensor of $M$; ordinary
+  Cartesian products occur in the enrichment base. Existence of such a
+  presentation on a synthetic model is a separate obligation.
+\end{definition}
+
+\begin{definition}[Endomorphism operads and tensor-valued algebras]
+  \label{def:enriched-operadic-algebra}
+  \lean{KIP126.HigherAlgebra.Operad.Endomorphism.operad,KIP126.HigherAlgebra.Operad.Endomorphism.nullaryHomeomorph}
+  \lean{KIP126.HigherAlgebra.Operad.AlgebraOn,KIP126.HigherAlgebra.Operad.EnrichedAlgebra,KIP126.HigherAlgebra.Operad.EnrichedAlgebra.Hom}
+  \lean{KIP126.HigherAlgebra.Operad.EnrichedAlgebra.unit,KIP126.HigherAlgebra.Operad.EnrichedAlgebra.forget,KIP126.HigherAlgebra.Operad.EnrichedAlgebra.unitForget}
+  \uses{def:enriched-finite-tensor}
+  The endomorphism operations of $X\in M$ are
+  $\operatorname{End}_P(X)(I)=\operatorname{Map}_M(T_I(X),X)$.
+  Substitution first flattens the inputs, then tensors the inner maps and
+  composes with the outer map. A structure on $X$ is a continuous operad
+  map $\mathcal O\to\operatorname{End}_P(X)$.
+  Algebra morphisms commute with every operation, including empty inputs,
+  and compose by their underlying morphisms in $M$.
+  A fixed $o\in\mathcal O(\varnothing)$ determines the actual unit
+  $\mathbf1_M\to X$ through the empty tensor isomorphism. Hence forgetting
+  the action gives a functor to $\mathbf1_M\downarrow M$.
+  These definitions depend on the stated, currently unproved, consequences
+  of the tensor laws and on the algebra-morphism identity, composition and
+  unit-naturality lemmas. Their compilation does not discharge those proofs.
+\end{definition}
+
+\begin{definition}[Strict operad-map spaces and path fibers]
+  \label{def:strict-operadic-structure-space}
+  \lean{KIP126.HigherAlgebra.Operad.TopologicalOperad.homSpace,KIP126.HigherAlgebra.Operad.TopologicalOperad.evaluation,KIP126.HigherAlgebra.Operad.TopologicalOperad.nullaryEvaluation,KIP126.HigherAlgebra.Operad.TopologicalOperad.NullaryStructureFiber}
+  \lean{KIP126.Topology.PathHomotopyFiber,KIP126.Topology.PathHomotopyFiber.space}
+  \uses{def:topological-operad-foundation}
+  \leanok
+  Give the strict operad maps $\operatorname{Hom}(\mathcal O,\mathcal P)$
+  the topology induced by their components in
+  $\prod_I C(\mathcal O(I),\mathcal P(I))$, with compact-open topologies.
+  Evaluation at a fixed operation is continuous. For any continuous
+  $f:X\to Y$ and $q\in Y$, define its path homotopy fiber as
+  \[
+    \{(x,\gamma)\in X\times C([0,1],Y):
+       \gamma(0)=f(x),\ \gamma(1)=q\},
+  \]
+  with the product subspace topology. In particular this defines the
+  fiber of nullary evaluation. It retains a path to the fixed value and
+  does not make the space of structures discrete.
+\end{definition}
+
+\begin{definition}[Strict unit fibers and relative unit moduli]
+  \label{def:operadic-unit-spaces}
+  \lean{KIP126.HigherAlgebra.Operad.EnrichedAlgebra.unitEvaluation,KIP126.HigherAlgebra.Operad.EnrichedAlgebra.strictUnitFiber}
+  \lean{KIP126.HigherAlgebra.ClassifyingSpace.space,KIP126.HigherAlgebra.ClassifyingSpace.relativeModuli,KIP126.HigherAlgebra.Operad.EnrichedAlgebra.unitModuli}
+  \uses{def:enriched-operadic-algebra,def:strict-operadic-structure-space}
+  For a fixed arrow $q:\mathbf1_M\to X$, the strict unit fiber is the
+  path fiber of evaluation into the actual enriched space
+  $\operatorname{Map}_M(\mathbf1_M,X)$, transported through the empty
+  tensor comparison.
+  Separately, choose a multiplicative morphism property $W$ on $M$.
+  In both the algebra category and the unit under-category retain exactly
+  the morphisms whose underlying maps belong to $W$. Write $B$ for the
+  geometric realization of the ordinary nerve. The relative unit moduli is
+  \[
+    \operatorname{hofib}_{q}\bigl(
+      B\operatorname{Alg}_{\mathcal O}(M)^W\longrightarrow
+      B(\mathbf1_M\downarrow M)^W\bigr).
+  \]
+  Both constructions are explicit spaces. No equivalence between them is
+  asserted. To interpret the second as synthetic commutative-algebra
+  structures requires the actual model weak equivalences, an applicable
+  operadic algebra model, and comparison of the fixed-unit under-category.
+  Multiplicativity of $W$ or an equivalence of homotopy categories alone
+  does not provide these comparisons. The algebra-category proof
+  obligations of Definition~\ref{def:enriched-operadic-algebra} persist.
+\end{definition}
+
+\begin{definition}[Weak contractibility]
+  \label{def:weak-contractible-space}
+  \lean{KIP126.Topology.WeaklyContractibleSpace}
+  \leanok
+  A space $X$ is weakly contractible if it is nonempty and
+  $\pi_n(X,x)$ is a singleton for every $x\in X$ and every $n\geq0$.
+  At $n=0$ this means that the set of path components is a singleton.
+  This condition does not assert an actual homotopy equivalence to a point;
+  such an upgrade requires additional hypotheses or a separate comparison.
+\end{definition}
+
+\begin{definition}[Transferred algebra model structure]
+  \label{def:transferred-operadic-model}
+  \lean{KIP126.HigherAlgebra.Operad.TransferredModelStructure}
+  \uses{def:enriched-operadic-algebra}
+  For a model category $M$, specify a model structure on the actual
+  category $\operatorname{Alg}_{\mathcal O}(M)$. Require its weak
+  equivalences and fibrations to be exactly the inverse images of those
+  of $M$ under the same forgetful functor. The specified model structure
+  includes its lifting and factorization axioms; no independent class of
+  cofibrations is substituted. This record neither constructs a model
+  structure nor asserts enriched model axioms or comparison with synthetic
+  commutative algebras.
+\end{definition}
+
+\subsection{The category, spheres, and deformation element}
+
+% SOURCE: MainPaper/main.tex:755-758; Pstragowski, construction of Syn_E.
+\begin{definition}[Synthetic context]
+  \label{def:synthetic-context}
+  \uses{def:stable-context,def:hf2-homology}
+  \notready
+  An $H\mathbb F_2$-synthetic context is a stable, presentable, symmetric
+  monoidal category $\operatorname{Syn}_{H\mathbb F_2}$, together with a lax
+  symmetric monoidal, filtered-colimit-preserving functor
+  $\nu:\operatorname{Sp}\to\operatorname{Syn}_{H\mathbb F_2}$.  It has
+  bigraded suspension, bigraded homotopy groups, cofibers, smash products, and
+  the coherences required by the constructions below.
+\end{definition}
+
+% SOURCE: Pstragowski Definition 4.6; MainPaper/main.tex:770-772.
+\begin{definition}[Synthetic spheres]
+  \label{def:synthetic-sphere}
+  \uses{def:synthetic-context}
+  \notready
+  For integers $s,w$, define the synthetic sphere
+  \[
+    S^{s,w}=\Sigma^{s-w}\nu(S^w).
+  \]
+  Suspension by $S^{s,w}$ is written $\Sigma^{s,w}$ and the corresponding
+  bigraded homotopy group is $\pi_{s,w}$.
+\end{definition}
+
+% SOURCE: Pstragowski Definition 4.27; MainPaper/main.tex:774-782.
+\begin{definition}[The deformation element and its quotients]
+  \label{def:synthetic-lambda-quotient}
+  \uses{def:synthetic-sphere}
+  \notready
+  The comparison map $S^{0,-1}\to S^{0,0}$ is denoted
+  $\lambda\in\pi_{0,-1}S^{0,0}$.  For any synthetic spectrum $X$, multiplication
+  by $\lambda^n$ is a natural map
+  $\Sigma^{0,-n}X\to X$, and $X/\lambda^n$ is its cofiber.  In particular,
+  $X/\lambda\simeq(S^{0,0}/\lambda)\mathbin{\wedge}X$.
+\end{definition}
+
+\begin{definition}[Realizing the fixed first quotient arrow]
+  \label{def:lambda-quotient-realization}
+  \lean{KIP126.Synthetic.LambdaQuotientRealization}
+  \uses{def:synthetic-lambda-quotient,def:operadic-unit-spaces}
+  For a specified functor $L:M\to\operatorname{Syn}$, choose $Q\in M$,
+  $q:\mathbf1_M\to Q$, and isomorphisms
+  $L\mathbf1_M\cong S^{0,0}$ and $LQ\cong S^{0,0}/\lambda$.
+  Require the resulting square to identify $Lq$ with the existing first
+  quotient inclusion. The quotient object and its unit are thus bound
+  together. This square supplies no localization, derived tensor, or
+  algebra-model comparison for $L$.
+\end{definition}
+
+\begin{definition}[Relative moduli of quotient algebra structures]
+  \label{def:lambda-quotient-operadic-target}
+  \lean{KIP126.Synthetic.LambdaQuotientOperadicInput,KIP126.Synthetic.LambdaQuotientOperadicInput.moduli,KIP126.Synthetic.LambdaQuotientOperadicInput.uniqueness}
+  \uses{def:lambda-quotient-realization,def:transferred-operadic-model,def:enriched-finite-tensor,def:operadic-unit-spaces,def:weak-contractible-space}
+  In one fixed enriched symmetric monoidal model $M$, require a
+  localization functor $L$ at its actual weak equivalences and a cofibrant
+  monoidal unit. Specify one symmetric finite tensor presentation, one
+  reduced $E_\infty$ operad with its nullary operation, its transferred
+  algebra model structure, and the first quotient realization above.
+  Use the actual model weak equivalences and the specified quotient
+  arrow to form the relative unit moduli. The model-level uniqueness
+  target is weak contractibility of this particular space, including
+  nonemptiness and the degree-zero condition.
+  This defines a concrete target, not a theorem for every such input.
+  Constructing the input and identifying its higher algebra model with
+  synthetic commutative algebras remain obligations. A localization of
+  ordinary homotopy categories alone does not give that identification.
+\end{definition}
+
+% SOURCE NOTE: MainPaper/main.tex:784--786; Burklund--Xu Construction 7.7
+% (Source/BurklundXu/paper.txt:3017--3039), using the filtered deformation
+% machinery of Burklund--Hahn--Senger, Example C.15 and Appendix C.
+\paragraph{Remark (higher $\lambda$-power quotient algebras).}
+The claim in \texttt{MainPaper/main.tex:784--786} is true: the locally filtered
+synthetic category supplies a coherent tower of commutative algebra objects
+$S^{0,0}\to\cdots\to S^{0,0}/\lambda^3\to S^{0,0}/\lambda^2\to
+S^{0,0}/\lambda$.  Its precise source chain is Burklund--Xu Construction 7.7,
+which invokes Burklund--Hahn--Senger Example C.15 and the surrounding filtered
+deformation construction.  This is an expository provenance record, not a
+formalization obligation: the project models the quotient maps and their
+coherence below, while a complete $\mathrm{CAlg}$ tower and its higher
+coherences remain outside the Project Boundary.
+
+\subsection{Synthetic Adams objects}
+
+% SOURCE: BHS SynRevBigraded.tex:149--159, thm:synthetic-Adams (1b)--(1c);
+% MainPaper/main.tex:813--823. The arrows use the project's chosen cofibers.
+\begin{definition}[Actual finite $\lambda$-Bockstein maps]
+  \label{def:finite-lambda-bockstein-maps}
+  \lean{KIP126.Synthetic.Bockstein.beta,KIP126.Synthetic.Bockstein.betaPostcompose,KIP126.Synthetic.Bockstein.betaHom,KIP126.Synthetic.Bockstein.inclHom,KIP126.Synthetic.Bockstein.restrictionHom,KIP126.Synthetic.Bockstein.firstRestrictionHom,KIP126.Synthetic.Context.biSuspensionHomEquiv,KIP126.Synthetic.Context.lambdaResidualSequence}
+  \uses{def:synthetic-lambda-quotient,def:synthetic-sphere,def:cofiber-triangle}
+  \notready
+  Write $\iota_q:A\to A/\lambda^q$ and $\partial_q$ for the inclusion and
+  boundary of the actual $\lambda^q$ cofiber triangle. Define
+  \[
+    \beta_q:\ A/\lambda^q\xrightarrow{\partial_q}
+       (\Sigma^{0,-q}A)[1]
+       \xrightarrow{(\Sigma^{0,-q}\iota_1)[1]}
+       (\Sigma^{0,-q}(A/\lambda))[1].
+  \]
+  Postcomposition followed by the specified additive suspension equivalence
+  gives
+  $\beta_{q,*}:\pi_{n,w}(A/\lambda^q)\to
+    \pi_{n-1,w+q}(A/\lambda)$.
+  The maps $\rho_{i,j}:A/\lambda^j\to A/\lambda^i$ are the cofiber maps
+  of the actual $\lambda$-power factorization squares. Their maps on homotopy,
+  including restriction to the first quotient, are postcomposition with
+  these same arrows. Identity and composition retain the specified cofiber
+  coherence hypotheses.
+  The residual tower $\Sigma^{0,-q}A$ and these finite arrows are defined;
+  suspension and naturality properties still carry proof obligations.
+  Its $E_1$-based tower construction is defined separately in
+  Definition~\ref{def:lambda-weightwise-sequence}.
+\end{definition}
+
+\begin{definition}[The represented spectral sequence of an actual descending tower]
+  \label{def:represented-tower-sequence}
+  \lean{KIP126.StableHomotopy.DescendingTower,KIP126.StableHomotopy.DescendingTower.map,KIP126.StableHomotopy.DescendingTower.layer,KIP126.StableHomotopy.ShiftedHom,KIP126.StableHomotopy.connectingHom,KIP126.StableHomotopy.TowerSpectralSequence.cycles,KIP126.StableHomotopy.TowerSpectralSequence.boundaries,KIP126.StableHomotopy.TowerSpectralSequence.differential,KIP126.StableHomotopy.TowerSpectralSequence.ssData,KIP126.StableHomotopy.TowerSpectralSequence.sequence,KIP126.StableHomotopy.TowerSpectralSequence.firstPageIso,KIP126.StableHomotopy.TowerSpectralSequence.firstPageProjection}
+  \uses{def:cofiber-triangle,def:ss-elementwise-page-presentation}
+  \notready
+  A descending tower specifies objects $T_k$ and adjacent arrows
+  $T_{k+1}\to T_k$; all ordered maps are their finite composites.
+  For a fixed representing object $P$, put
+  $D_{k,n}=\operatorname{Hom}(P[n],T_k)$ and
+  $E_1^{k,n}=\operatorname{Hom}(P[n],\operatorname{cofib}(T_{k+1}\to T_k))$.
+  The maps $I,J,K$ are the actual tower map, cofiber inclusion, and boundary
+  with its specified suspension transport. For $q\ge1$ use
+  \[
+    Z_q^{k,n}=K^{-1}\operatorname{im}(D_{k+q,n-1}\to D_{k+1,n-1}),
+    \qquad
+    B_q^{k,n}=J\ker(D_{k,n}\to D_{k-q+1,n}).
+  \]
+  The page is $Z_q/B_q$, and its differential is the quotient class of
+  $J$ applied to a lift of $K(x)$, in degree $(k+q,n-1)$.
+  The lift is selected from cycle membership; independence of that selection,
+  descent, square-zero and successor-page laws are explicit proof obligations.
+  The constructed nested-subobject sequence has initial page $1$ and internal
+  stage $m$ equal to raw page $m+1$. At stage zero, the actual top cycle
+  submodule and zero boundary submodule give a specified isomorphism with
+  $E_1^{k,n}$. The representative projection uses the cycle inclusion,
+  the actual quotient map \texttt{mkQ}, and the inverse of the categorical
+  quotient comparison. Its inverse and representative identities remain
+  property obligations; this is not yet the first-quotient model comparison.
+  Its infinite cycles and boundaries are
+  the actual intersection and union of the finite stages. The assembled
+  sequence depends on the pending laws; its definition proves no convergence.
+\end{definition}
+
+\begin{definition}[The actual weightwise $\lambda$-tower sequence]
+  \label{def:lambda-weightwise-sequence}
+  \lean{KIP126.Synthetic.Bockstein.lambdaTower,KIP126.Synthetic.Bockstein.representedSphereIso,KIP126.Synthetic.Bockstein.representedHomEquiv,KIP126.Synthetic.Bockstein.weightwiseSequence}
+  \uses{def:represented-tower-sequence,def:finite-lambda-bockstein-maps,def:synthetic-lambda-quotient,def:synthetic-sphere}
+  \notready
+  Extend the existing residual $\lambda$ tower constantly to nonpositive
+  indices from its actual zeroth object $\Sigma^{0,0}A$. Its negative tail
+  is not a family of positive-weight shifts. At weight $w$, apply
+  Definition~\ref{def:represented-tower-sequence} with $P=S^{0,w}$.
+  The specified isomorphism $S^{0,w}[n]\cong S^{n,w}$ identifies the
+  represented groups with $\pi_{n,w}$.
+  This gives an actual $E_1$-based internal sequence, retaining $d_1$;
+  the page-$q$ differential has degree $(q,-1)$. Its first layer remains the chosen cofiber
+  of the actual tower arrow. Identifying that layer with
+  $\Sigma^{0,-k}(A/\lambda)$ at $k\ge0$ requires the relevant exact shift and
+  $\lambda$ coherence comparisons; those are not supplied by this definition.
+  The construction imposes no completeness or convergence hypothesis, and
+  its underlying tower-sequence property proofs remain unfinished.
+\end{definition}
+
+% SOURCE: BHS SynRevBigraded.tex:123--136, dfn:E-complete and dfn:strong-conv.
+\begin{definition}[Completeness and strong convergence of the actual Adams tower]
+  \label{def:actual-adams-strong-convergence}
+  \lean{KIP126.Classical.Adams.towerAbutment,KIP126.Classical.Adams.adamsTowerToSpectrum,KIP126.Classical.Adams.adamsHomotopyFiltrationSubmodule,KIP126.Classical.Adams.adamsHomotopyFiltration,KIP126.Classical.Adams.IsENilpotentComplete,KIP126.Classical.Adams.IsAdamsTowerStronglyConvergent}
+  \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:classical-adams-ss,def:core-filtration}
+  \notready
+  For the same unit and spectrum $X$, use the actual tower-image filtration
+  $F^s\pi_nX=\operatorname{im}(\pi_nX_s\to\pi_nX)$, with its constant
+  extension at nonpositive levels. Strong convergence requires this
+  filtration to be complete and Hausdorff and the same constructed
+  sequence's $E_\infty^{s,t}$ to identify with
+  $F^s\pi_{t-s}X/F^{s+1}\pi_{t-s}X$.
+  Completeness uses the canonical cone to these filtration quotients;
+  no replacement abutment or filtration is chosen. The decreasing-filtration
+  property remains a proof obligation.
+  Separately, $E$-nilpotent completeness requires the actual residual Adams
+  tower to be acyclic. The finite Bockstein literature input below retains
+  both conditions; neither is replaced by eventual page stabilization.
+\end{definition}
+
+% SOURCE: BHS SynRevBigraded.tex:59--62, lemm:ctauE2 (Pstragowski Lemma 4.56);
+% MainPaper/main.tex:813--823, thm:17e90ac0 (1).
+\begin{definition}[Specified first-quotient comparison and Bockstein target]
+  \label{def:first-lambda-quotient-comparison}
+  \lean{KIP126.Challenge2.FirstQuotientHomotopyComparison,KIP126.Challenge2.FirstQuotientHomotopyComparison.unshifted,KIP126.Challenge2.FirstQuotientHomotopyComparison.bocksteinTargetClass}
+  \uses{def:finite-lambda-bockstein-maps,def:classical-adams-ss}
+  \notready
+  Given the specified first-quotient comparison $Q$, its zero-weight-shift
+  component and the actual quotient functor applied to the zero-shift
+  isomorphism give
+  $e_{s,t}:\pi_{t-s,t}(\nu X/\lambda)\cong E_2^{s,t}(X)$.
+  This uses the same comparison, rather than selecting another edge map.
+  For $z\in\pi_{t-s,t}(\nu X/\lambda^q)$ define
+  \[
+    b_q(z)=e_{s+q+1,t+q}(\beta_{q,*}z)
+      \in E_2^{s+q+1,t+q}(X),
+  \]
+  using $t-s-1=(t+q)-(s+q+1)$.
+  The first-quotient source statement itself holds for every spectrum in
+  the cited model. Realizing $Q$ in the chosen abstract model and its
+  additional shifted components remains separate from this adapter.
+\end{definition}
+
+% SOURCE: BHS Appendix A grading; MainPaper/main.tex:799-811.
+\begin{definition}[BHS-to-AIM regrading]
+  \label{def:bhs-aim-regrading}
+  \uses{def:synthetic-tridegree,def:reindexed-ss-morphism}
+  \notready
+  If BHS uses indices $(s,k,w_{\mathrm{BHS}})$, the paper uses
+  \[
+    (s,t,w_{\mathrm{AIM}})=(s,s+k,k+w_{\mathrm{BHS}}).
+  \]
+  Under this change a classical class in $(s,t)$ has synthetic degree
+  $(s,t,t)$, $\lambda$ has degree $(0,0,-1)$, and differentials preserve the
+  third coordinate.  The adapter includes proofs that page shapes and all
+  displayed source and target degrees agree.
+\end{definition}
+
+% SOURCE: BHS SynRevAdams.tex:300--304, intrinsic page q versus synthetic page q+1.
+\begin{definition}[The constructed sequence in synthetic Adams degrees]
+  \label{def:lambda-normalized-sequence}
+  \lean{KIP126.Synthetic.Bockstein.gradingEquiv,KIP126.Synthetic.Bockstein.normalizedSSData,KIP126.Synthetic.Bockstein.normalizedPreSS,KIP126.Synthetic.Bockstein.normalizedSequence,KIP126.Synthetic.Bockstein.normalizedAdamsSS}
+  \uses{def:lambda-weightwise-sequence,def:bhs-aim-regrading,def:synthetic-tridegree}
+  \notready
+  The additive grading equivalence and its inverse are
+  \[
+    (k,n,w)\longmapsto(w+k-n,w+k,w),\qquad
+    (s,t,w)\longmapsto(t-w,t-s,w).
+  \]
+  At synthetic page $r\ge2$, use the actual weightwise page $r-1$ and
+  differential $d_{r-1}$, with explicit target transports. Thus
+  $E_1,d_1$ become $E_2,d_2$, and the differential degree becomes
+  $(r,r-1,0)$. Internal stage $r-2$ and its nested cycle and boundary
+  subobjects are unchanged. This is more than assigning a different
+  initial-page number: the differential is the earlier constructed map
+  at that stage.
+  This is the same spectral sequence with the indicated regrading. Its ambient still consists of raw
+  first-layer representatives. The construction depends on unfinished
+  spectral-sequence laws and is not a comparison with a separately supplied
+  synthetic Adams family, a rigidity theorem, or a convergence result.
+\end{definition}
+
+\begin{definition}[Pagewise comparison with the induced successor map]
+  \label{def:pagewise-sequence-comparison}
+  \lean{KIP126.Core.SpectralSequence.PagewiseIso,KIP126.Core.SpectralSequence.PagewiseIso.shortComplexIso,KIP126.Core.SpectralSequence.PagewiseIso.homologyIso,KIP126.Core.SpectralSequence.PagewiseIso.RespectsSuccessor}
+  \uses{def:internal-nested-spectral-sequence}
+  \notready
+  For two internal sequences $E,F$ in the same abelian category and grading
+  group, specify equal initial pages and differential degrees, together with
+  isomorphisms $\phi_{r,k}:E_r^k\cong F_r^k$ on every admissible page.
+  They commute with the actual differentials, including the displayed
+  degree transports. The same maps at $k-d_r,k,k+d_r$ assemble an
+  isomorphism of the centered short complexes. Applying the homology
+  functor to this isomorphism defines $H(\phi_r)$; no separate homology
+  isomorphism is chosen.
+  With the canonical next-page identifications
+  $h_E:E_{r+1}^k\cong H(E_r)^k$ and
+  $h_F:F_{r+1}^k\cong H(F_r)^k$, the additional successor condition is
+  \[
+    H(\phi_r)\circ h_E=h_F\circ\phi_{r+1,k}.
+  \]
+  The constructions retain unfinished short-complex compatibility proofs.
+  They require no isomorphism of the two raw ambient objects or their cycle
+  subobjects. Applying this interface to the constructed Bockstein sequence
+  and a specified synthetic Adams family still requires its page maps and
+  the initial representative diagram for the same first-quotient comparison
+  and $\nu$ datum; those bindings are not supplied by this definition.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:799-807, definition implicit in Theorem thm:rigid.
+\begin{definition}[Synthetic Adams spectral sequence]
+  \label{def:synthetic-adams-ss}
+  \uses{def:synthetic-context,def:synthetic-tridegree,def:ss-elementwise-page-presentation,def:ss-einfty-presentation,def:multiplicative-ss,def:ss-convergence-detection-witness,def:unital-multiplication-data}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsSS}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily.nu}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily.nuQuotient}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily.nuSphereIso}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily.quotientProjection}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsFamily.deformationMap}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticAdamsConvergence}
+  \notready
+  For a synthetic spectrum in scope, its synthetic Adams spectral sequence is
+  a trigraded spectral sequence
+  \[
+    {}^{\mathrm{syn}}E_r^{s,t,w}\Longrightarrow\pi_{t-s,w},
+    \qquad d_r:(s,t,w)\mapsto(s+r,t+r-1,w),
+  \]
+  with finite-page elementwise cycles, boundaries, naturality, and an algebraic
+  $E_\infty$ presentation.  A concrete convergence-and-detection witness is
+  supplied separately whenever the paper identifies a synthetic abutment.  It has natural external smash pairings, and
+  every such sequence is a module over the sequence for the synthetic sphere
+  $S^{0,0}$.  The sphere sequence is internally multiplicative.  More
+  generally, an internal multiplicative spectral sequence is obtained only
+  for a synthetic spectrum equipped with chosen unital multiplication data;
+  no internal product is asserted for an arbitrary synthetic spectrum.
+
+  The internal family interface and its actual object bindings are defined:
+  a single functor on the chosen synthetic category is evaluated at the
+  chosen $\nu X$ and at the cofiber of the same $\lambda^n$ map.  Quotient
+  projections and deformation maps are images of those actual morphisms.
+  The explicit unit isomorphism of the same $\nu$ datum identifies its
+  sphere image with the synthetic unit; the family transports this
+  isomorphism to the internal sequences.
+  The convergence datum uses the actual bigraded homotopy groups of that
+  object.  Constructing the family, its pairings, and the needed convergence
+  witnesses remains unfinished; these declarations do not choose a model or
+  provide the literature results.
+\end{definition}
+
+\subsection{Normalized synthetic map data}
+
+% SOURCE: MainPaper/main.tex:929-961, Proposition prop:41561db2, its following
+% torsion remark, and Notation not:fhat.
+\begin{definition}[Chosen normalized synthetic map]
+  \label{def:synthetic-hat-map}
+  \uses{def:synthetic-context,def:synthetic-lambda-quotient,def:adams-filtration,def:cofiber-triangle}
+  \notready
+  For a selected occurrence of a map $f:X\to Y$ in a distinguished triangle,
+  a triangle-compatible normalized synthetic map datum consists of the
+  exponent $e(f)$, a chosen map $\widehat f$, its factorization equality, and
+  its compatibility with one chosen synthetic lift of that triangle.  Put
+  $e(f)=0$ when
+  $\operatorname{AF}(f)=0$ and $e(f)=1$ when
+  $\operatorname{AF}(f)>0$, including the infinite-filtration zero map.  A
+  triangle-compatible normalized lift is the corresponding component
+  \[
+    \widehat f:\Sigma^{0,e(f)}\nu X\longrightarrow\nu Y,
+    \qquad \nu f=\lambda^{e(f)}\widehat f,
+  \]
+  of that chosen lifted triangle after rotating back.  When $e(f)=0$
+  this component is $\nu f$.  When $e(f)=1$, it is the particular component of
+  the lifted triangle, not the map $\lambda^{k-1}\widetilde f$ formed from an
+  arbitrary full lift.  This definition packages the required data but makes
+  no existence claim; the located synthetic lift and triangle-lift results in
+  the external-results chapter supply instances later.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:929-971, the three rotations used in Proposition
+% prop:41561db2 and Notation not:fhat; project disjoint packaging of the
+% filtration hypotheses, including degenerate homology objects.
+\begin{definition}[Normalized cofiber exactness case]
+  \label{def:normalized-synthetic-exactness-case}
+  \uses{def:synthetic-hat-map,def:hf2-homology,def:cofiber-triangle}
+  \notready
+  For a cofiber triangle
+  $X\xrightarrow fY\xrightarrow gC(f)\xrightarrow h\Sigma X$, a normalized
+  cofiber exactness case is one of the following tagged, disjoint data:
+  \begin{enumerate}
+    \item a zero case with $H_*f=0$ and
+      $(e(f),e(g),e(h))=(1,0,0)$;
+    \item a monomorphism case with $H_*f$ injective and
+      $(e(f),e(g),e(h))=(0,0,1)$;
+    \item an epimorphism case with $H_*f$ surjective and
+      $(e(f),e(g),e(h))=(0,1,0)$.
+  \end{enumerate}
+  Each constructor also carries both the short exact homology sequence for the
+  relevant rotation and one chosen lifted distinguished triangle datum for
+  that rotation.  The latter field contains the triangle and its
+  three compatible components; it is not merely an existence assertion.  The explicit
+  $e$-pattern is part of the constructor, so degenerate maps that are both zero
+  and mono or epi cannot be used with two contradictory shifts.  Equivalently,
+  the data always includes $e(f)+e(g)+e(h)=1$ and records which summand is one.
+\end{definition}

@@ -1,0 +1,356 @@
+\begin{thebibliography}{BKWX22}
+
+\bibitem[Ada95]{Adams}
+J.~F. Adams.
+\newblock {\em Stable homotopy and generalised homology}.
+\newblock Chicago Lectures in Mathematics. University of Chicago Press,
+  Chicago, IL, 1995.
+\newblock Reprint of the 1974 original.
+
+\bibitem[Bac18]{RealEtale}
+Tom Bachmann.
+\newblock Motivic and real \'{e}tale stable homotopy theory.
+\newblock {\em Compos. Math.}, 154(5):883--917, 2018.
+
+\bibitem[Bac20]{TomEtaleI}
+Tom Bachmann.
+\newblock Rigidity in {\'e}tale motivic stable homotopy theory.
+\newblock {\em Algebr. Geom. Topol.}, 2020.
+
+\bibitem[BE{\O}20]{TomEtaleII}
+Tom Bachmann, Elden Elmanto, and Paul~Arne {\O}stv{\ae}r.
+\newblock Stable motivic invariants are eventually {\'e}tale local.
+\newblock 2020.
+\newblock \href{https://arxiv.org/abs/2003.04006}{arxiv:2003.04006}.
+
+\bibitem[BGI20]{c2stems}
+Eva Belmont, Bertrand Guillou, and Daniel Isaksen.
+\newblock {$C_2$}-equivariant and {$\R$}-motivic stable stems, ii.
+\newblock 2020.
+\newblock \href{https://arxiv.org/abs/2001.02251}{arXiv:2001.02251}.
+
+\bibitem[BH20a]{etaPeriodic}
+Tom Bachmann and Michael~{J}. Hopkins.
+\newblock $\eta$-periodic motivic stable homotopy theory over fields.
+\newblock 2020.
+\newblock \href{https://arxiv.org/abs/2005.06778}{arxiv:2005.06778}.
+
+\bibitem[BH20b]{norms}
+Tom Bachmann and Marc Hoyois.
+\newblock Norms in motivic homotopy theory.
+\newblock {\em Astérisque}, 2020.
+
+\bibitem[BHS19]{Boundaries}
+Robert Burklund, Jeremy Hahn, and Andrew Senger.
+\newblock On the boundaries of highly connected, almost closed manifolds.
+\newblock 2019.
+\newblock \href{https://arxiv.org/abs/1910.14116}{arXiv:1910.14116}.
+
+\bibitem[BHV18]{LocDual}
+Tobias Barthel, Drew Heard, and Gabriel Valenzuela.
+\newblock Local duality in algebra and topology.
+\newblock {\em Adv. Math.}, 335:563--663, 2018.
+
+\bibitem[BKWX22]{Chow}
+Tom Bachmann, Hana~Jia Kong, Guozhen Wang, and Zhouli Xu.
+\newblock The {C}how {$t$}-structure on the {$\infty$}-category of motivic
+  spectra.
+\newblock {\em Ann. of Math. (2)}, 195(2):707--773, 2022.
+
+\bibitem[Bon10]{Bondarko}
+M.~V. Bondarko.
+\newblock Weight structures vs. {$t$}-structures; weight filtrations, spectral
+  sequences, and complexes (for motives and in general).
+\newblock {\em J. K-Theory}, 6(3):387--504, 2010.
+
+\bibitem[BS20]{BehrensShah}
+Mark Behrens and Jay Shah.
+\newblock {$C_2$}-equivariant stable homotopy from real motivic stable
+  homotopy.
+\newblock {\em Ann. K-Theory}, 5(3):411--464, 2020.
+
+\bibitem[Bur20]{BurklundExtension}
+Robert Burklund.
+\newblock An extension in the {A}dams spectral sequence in dimension 54.
+\newblock 2020.
+\newblock \href{https://arxiv.org/abs/2005.08910}{arxiv:2005.08910}.
+
+\bibitem[DI05]{DICell}
+Daniel Dugger and Daniel~C. Isaksen.
+\newblock Motivic cell structures.
+\newblock {\em Algebr. Geom. Topol.}, 5:615--652, 2005.
+
+\bibitem[DI10]{DI}
+Daniel Dugger and Daniel~C. Isaksen.
+\newblock The motivic {A}dams spectral sequence.
+\newblock {\em Geom. Topol.}, 14(2):967--1014, 2010.
+
+\bibitem[ES19]{EldenJay}
+Elden Elmanto and Jay Shah.
+\newblock Scheiderer motives and equivariant higher topos theory.
+\newblock 2019.
+\newblock \href{https://arxiv.org/abs/1912.11557}{arxiv:1912.11557}.
+
+\bibitem[Ghe18]{Ctau}
+Bogdan Gheorghe.
+\newblock The motivic cofiber of {$\tau$}.
+\newblock {\em Doc. Math.}, 23:1077--1127, 2018.
+
+\bibitem[GHIR20]{koC2}
+Bertrand~J. Guillou, Michael~A. Hill, Daniel~C. Isaksen, and Douglas~Conner
+  Ravenel.
+\newblock The cohomology of {$C_2$}-equivariant {$\mathcal A(1)$} and the
+  homotopy of {${\rm ko}_{C_2}$}.
+\newblock {\em Tunis. J. Math.}, 2(3):567--632, 2020.
+
+\bibitem[GI17]{GI}
+Bogdan Gheorghe and Daniel~C. Isaksen.
+\newblock The structure of motivic homotopy groups.
+\newblock {\em Bol. Soc. Mat. Mex. (3)}, 23(1):389--397, 2017.
+
+\bibitem[GIKR18]{cmmf}
+Bogdan Gheorghe, Daniel~C. Isaksen, Achim Krause, and Nicolas Ricka.
+\newblock C-motivic modular forms.
+\newblock 2018.
+\newblock \href{https://arxiv.org/abs/1810.11050}{arxiv:1810.11050}.
+
+\bibitem[{Goe}08]{GoerssMfg}
+Paul~G. {Goerss}.
+\newblock {Quasi-coherent sheaves on the moduli stack of formal groups}.
+\newblock 2008.
+\newblock \href{https://arxiv.org/abs/0802.0996}{arxiv:0802.0996}.
+
+\bibitem[Gre12]{gregersen}
+Thomas Gregersen.
+\newblock {\em A {S}inger construction in motivic homotopy theory}.
+\newblock PhD thesis, University of Oslo, 2012.
+
+\bibitem[GWX20]{ctauactalol}
+Bogdan Gheorghe, Guozhen Wang, and Zhouli Xu.
+\newblock The special fiber of the motivic deformation of the stable homotopy
+  category is algebraic.
+\newblock {\em Acta Math.}, 2020.
+
+\bibitem[Hea19]{SliceComp}
+Drew Heard.
+\newblock On equivariant and motivic slices.
+\newblock {\em Algebr. Geom. Topol.}, 19(7):3641--3681, 2019.
+
+\bibitem[HHR16]{HHR}
+M.~A. Hill, M.~J. Hopkins, and D.~C. Ravenel.
+\newblock On the nonexistence of elements of {K}ervaire invariant one.
+\newblock {\em Ann. of Math. (2)}, 184(1):1--262, 2016.
+
+\bibitem[HK01]{HuKriz}
+Po~Hu and Igor Kriz.
+\newblock Real-oriented homotopy theory and an analogue of the
+  {A}dams-{N}ovikov spectral sequence.
+\newblock {\em Topology}, 40(2):317--399, 2001.
+
+\bibitem[HKO11a]{MAdamsConv}
+P.~Hu, I.~Kriz, and K.~Ormsby.
+\newblock Convergence of the motivic {A}dams spectral sequence.
+\newblock {\em J. K-Theory}, 7(3):573--596, 2011.
+
+\bibitem[HKO11b]{HKO}
+Po~Hu, Igor Kriz, and Kyle Ormsby.
+\newblock Remarks on motivic homotopy theory over algebraically closed fields.
+\newblock {\em J. K-Theory}, 7(1):55--89, 2011.
+
+\bibitem[HK{\O}17]{HoyoisSteenrod}
+Marc Hoyois, Shane Kelly, and Paul~Arne {\O}stv{\ae}r.
+\newblock The motivic {S}teenrod algebra in positive characteristic.
+\newblock {\em J. Eur. Math. Soc. (JEMS)}, 19(12):3813--3849, 2017.
+
+\bibitem[HO16]{HellerOrmsby}
+J.~Heller and K.~Ormsby.
+\newblock Galois equivariance and stable motivic homotopy theory.
+\newblock {\em Trans. Amer. Math. Soc.}, 368(11):8047--8077, 2016.
+
+\bibitem[HO18]{HellerOrmsbyII}
+J.~Heller and K.~Ormsby.
+\newblock The stable {G}alois correspondence for real closed fields.
+\newblock In {\em New directions in homotopy theory}, volume 707 of {\em
+  Contemp. Math.}, pages 1--9. Amer. Math. Soc., Providence, RI, 2018.
+
+\bibitem[Hoy15]{HM}
+Marc Hoyois.
+\newblock From algebraic cobordism to motivic cohomology.
+\newblock {\em J. Reine Angew. Math.}, 702:173--226, 2015.
+
+\bibitem[Hoy17]{hoyois}
+Marc Hoyois.
+\newblock The six operations in equivariant motivic homotopy theory.
+\newblock {\em Adv. Math.}, 305:197--279, 2017.
+
+\bibitem[Hu05]{HuPicard}
+Po~Hu.
+\newblock On the {P}icard group of the stable {$\Bbb A^1$}-homotopy category.
+\newblock {\em Topology}, 44(3):609--640, 2005.
+
+\bibitem[Isa19]{StableStems}
+Daniel~C. Isaksen.
+\newblock Stable stems.
+\newblock {\em Mem. Amer. Math. Soc.}, 262(1269):viii+159, 2019.
+
+\bibitem[Kon20]{Kong}
+Hana~Jia Kong.
+\newblock The {$C_2$}-effective spectral sequence for {$C_2$}-equivariant
+  connective real {$K$}-theory.
+\newblock 2020.
+\newblock \href{https://arxiv.org/abs/2004.00806}{arxiv:2004.00806}.
+
+\bibitem[Lan67]{LandweberI}
+Peter~S. Landweber.
+\newblock Fixed point free conjugations on complex manifolds.
+\newblock {\em Ann. of Math. (2)}, 86:491--502, 1967.
+
+\bibitem[Lan68]{LandweberII}
+Peter~S. Landweber.
+\newblock Conjugations on complex manifolds and equivariant homotopy of {$MU$}.
+\newblock {\em Bull. Amer. Math. Soc.}, 74:271--274, 1968.
+
+\bibitem[Lev14]{LevineComparison}
+Marc Levine.
+\newblock A comparison of motivic and classical stable homotopy theories.
+\newblock {\em J. Topol.}, 7(2):327--362, 2014.
+
+\bibitem[Lev15]{LevineSlicemU}
+Marc Levine.
+\newblock The {A}dams-{N}ovikov spectral sequence and {V}oevodsky's slice
+  tower.
+\newblock {\em Geom. Topol.}, 19(5):2691--2740, 2015.
+
+\bibitem[Lin80]{Lin}
+Wen~Hsiung Lin.
+\newblock On conjectures of {M}ahowald, {S}egal and {S}ullivan.
+\newblock {\em Math. Proc. Cambridge Philos. Soc.}, 87(3):449--458, 1980.
+
+\bibitem[Loy17]{CpBox}
+Kaitlyn Loyd.
+\newblock Box {P}roduct of {$C_p$}-{M}ackey {F}unctors.
+\newblock 2017.
+\newblock \href{https://arxiv.org/abs/1710.08560}{arxiv:1710.08560}.
+
+\bibitem[Lur15]{RotationInvariance}
+Jacob Lurie.
+\newblock Rotation {I}nvariance in {A}lgebraic {K}-theory.
+\newblock 2015.
+\newblock \newline {A}vailable at
+  \href{http://www.math.ias.edu/~lurie/}{http://www.math.ias.edu/~lurie/}.
+
+\bibitem[Lur17]{HA}
+Jacob Lurie.
+\newblock Higher {A}lgebra.
+\newblock 2017.
+\newblock \newline {A}vailable at
+  \href{http://www.math.ias.edu/~lurie/}{http://www.math.ias.edu/~lurie/}.
+
+\bibitem[Lur18a]{ECII}
+Jacob Lurie.
+\newblock Elliptic {C}ohomology {II}: {O}rientations.
+\newblock 2018.
+\newblock \newline {A}vailable at
+  \href{http://www.math.ias.edu/~lurie/}{http://www.math.ias.edu/~lurie/}.
+
+\bibitem[Lur18b]{SAG}
+Jacob Lurie.
+\newblock Spectral {A}lgebraic {G}eometry.
+\newblock 2018.
+\newblock \newline {A}vailable at
+  \href{http://www.math.ias.edu/~lurie/}{http://www.math.ias.edu/~lurie/}.
+
+\bibitem[MNN17]{MNN}
+Akhil Mathew, Niko Naumann, and Justin Noel.
+\newblock Nilpotence and descent in equivariant stable homotopy theory.
+\newblock {\em Adv. Math.}, 305:994--1084, 2017.
+
+\bibitem[Mor05]{MorelConn}
+Fabien Morel.
+\newblock The stable {${\Bbb A}^1$}-connectivity theorems.
+\newblock {\em $K$-Theory}, 35(1-2):1--68, 2005.
+
+\bibitem[Mor06]{Morelpizero}
+Fabien Morel.
+\newblock {$\Bbb A^1$}-algebraic topology.
+\newblock In {\em International {C}ongress of {M}athematicians. {V}ol. {II}},
+  pages 1035--1059. Eur. Math. Soc., Z\"{u}rich, 2006.
+
+\bibitem[MV99]{MorelVoevodsky}
+Fabien Morel and Vladimir Voevodsky.
+\newblock {${\bf A}^1$}-homotopy theory of schemes.
+\newblock {\em Inst. Hautes \'{E}tudes Sci. Publ. Math.}, (90):45--143 (2001),
+  1999.
+
+\bibitem[Pel13]{Pelaez}
+Pablo Pelaez.
+\newblock On the functoriality of the slice filtration.
+\newblock {\em J. K-Theory}, 11(1):55--71, 2013.
+
+\bibitem[Pos11]{DMRecon}
+Leonid Positselski.
+\newblock Mixed {A}rtin-{T}ate motives with finite coefficients.
+\newblock {\em Mosc. Math. J.}, 11(2):317--402, 407--408, 2011.
+
+\bibitem[Pos14]{GalKosz}
+Leonid Positselski.
+\newblock Galois cohomology of a number field is {K}oszul.
+\newblock {\em J. Number Theory}, 145:126--152, 2014.
+
+\bibitem[Pst18]{Pstragowski}
+Piotr Pstr\k{a}gowski.
+\newblock Synthetic spectra and the cellular motivic category.
+\newblock 2018.
+\newblock \href{https://arxiv.org/abs/1803.01804}{arxiv:1803.01804}.
+
+\bibitem[PSW20]{SpectrumMackey}
+Irakli {Patchkoria}, Beren {Sanders}, and Christian {Wimmer}.
+\newblock {The spectrum of derived Mackey functors}.
+\newblock 2020.
+\newblock \href{https://arxiv.org/abs/2008.02368}{arxiv:2008.02368}.
+
+\bibitem[ROsr08]{MotivicModules}
+Oliver R\"{o}ndigs and Paul~Arne \O~stv\ae r.
+\newblock Modules over motivic cohomology.
+\newblock {\em Adv. Math.}, 219(2):689--727, 2008.
+
+\bibitem[Spi10]{Spitzweck}
+Markus Spitzweck.
+\newblock Relations between slices and quotients of the algebraic cobordism
+  spectrum.
+\newblock {\em Homology Homotopy Appl.}, 12(2):335--351, 2010.
+
+\bibitem[Tho85]{Thomason}
+R.~W. Thomason.
+\newblock Algebraic {$K$}-theory and \'{e}tale cohomology.
+\newblock {\em Ann. Sci. \'{E}cole Norm. Sup. (4)}, 18(3):437--552, 1985.
+
+\bibitem[Voe02]{VoeOpenProbs}
+Vladimir Voevodsky.
+\newblock Open problems in the motivic stable homotopy theory. {I}.
+\newblock In {\em Motives, polylogarithms and {H}odge theory, {P}art {I}
+  ({I}rvine, {CA}, 1998)}, volume~3 of {\em Int. Press Lect. Ser.}, pages
+  3--34. Int. Press, Somerville, MA, 2002.
+
+\bibitem[Voe03a]{Voe03b}
+Vladimir Voevodsky.
+\newblock Motivic cohomology with {${\bf Z}/2$}-coefficients.
+\newblock {\em Publ. Math. Inst. Hautes \'{E}tudes Sci.}, (98):59--104, 2003.
+
+\bibitem[Voe03b]{Voe03}
+Vladimir Voevodsky.
+\newblock Reduced power operations in motivic cohomology.
+\newblock {\em Publ. Math. Inst. Hautes \'{E}tudes Sci.}, (98):1--57, 2003.
+
+\bibitem[Voe10]{Voe10}
+Vladimir Voevodsky.
+\newblock Motivic {E}ilenberg-{M}aclane spaces.
+\newblock {\em Publ. Math. Inst. Hautes \'{E}tudes Sci.}, (112):1--99, 2010.
+
+\bibitem[Wen10]{Wendt}
+Matthias Wendt.
+\newblock More examples of motivic cell structures.
+\newblock 2010.
+\newblock \href{https://arxiv.org/abs/1012.0454}{arxiv:1012.0454}.
+
+\end{thebibliography}

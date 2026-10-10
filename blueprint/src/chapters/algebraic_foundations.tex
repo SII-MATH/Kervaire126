@@ -1,0 +1,571 @@
+\section{Algebraic foundations}
+\label{chap:algebraic-foundations}
+
+The exact, graded, derived, and filtered algebra in this appendix supports
+the subsequent spectral-sequence constructions.
+
+\subsection{Exact, graded, and derived algebra}
+
+\begin{definition}[Graded object]
+  \label{def:mathlib-graded-object}
+  \lean{CategoryTheory.GradedObject}
+  \mathlibok
+  For an index type $I$ and a category $\mathcal C$, a graded object is a
+  family $(A_i)_{i\in I}$ of objects of $\mathcal C$.  In the pinned Mathlib
+  revision this is definitionally the function type $I\to\mathcal C$.
+\end{definition}
+
+% SOURCE: Mathlib/Data/ZMod/Defs.lean:140--144, declaration ZMod; Mathlib/Algebra/Field/ZMod.lean:29--30, prime-field instance.
+\begin{definition}[The $\operatorname{ZMod}$ coefficient family]
+  \label{def:mathlib-f2}
+  \lean{ZMod}
+  \mathlibok
+  Mathlib's declaration is the family $\operatorname{ZMod}(n)$ indexed by
+  $n\in\mathbb N$; it does not itself fix a modulus.  This node records only
+  that generic family.  Later sign simplifications must use an explicit
+  characteristic-two specialization rather than treating every abelian
+  category as characteristic two.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Category/ModuleCat/Basic.lean:48--62, declaration ModuleCat.
+\begin{definition}[Category of modules over a ring]
+  \label{def:mathlib-f2-module-category}
+  \lean{ModuleCat}
+  \mathlibok
+  Mathlib's declaration $\operatorname{ModuleCat}(R)$ is the category of
+  modules over an arbitrary ring $R$.  This generic declaration does not
+  silently choose the project's coefficient ring.
+\end{definition}
+
+% VERIFIED-IN: KIP126/Core/Algebra/Coefficients.lean, declaration KIP126.Core.Algebra.F2.
+\begin{definition}[Project mod--2 coefficient field]
+  \label{def:core-f2}
+  \lean{KIP126.Core.Algebra.F2}
+  \leanok
+  \uses{def:mathlib-f2}
+  The project fixes the abbreviation
+  $\mathbb F_2:=\operatorname{ZMod}(2)$.  Its pinned Mathlib instances provide
+  $1+1=0$, characteristic two, decidable equality, and finiteness.
+\end{definition}
+
+% VERIFIED-IN: KIP126/Core/Algebra/Coefficients.lean, declaration KIP126.Core.Algebra.F2ModuleCat.
+\begin{definition}[Project mod--2 coefficient category]
+  \label{def:core-f2-module-category}
+  \lean{KIP126.Core.Algebra.F2ModuleCat}
+  \leanok
+  \uses{def:core-f2,def:mathlib-f2-module-category}
+  The coefficient category for the classical and synthetic Adams
+  constructions is
+  $\operatorname{ModuleCat}(\mathbb F_2)$.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Category/ModuleCat/Abelian.lean:74--78, instance ModuleCat.abelian.
+\begin{theorem}[Module categories are abelian]
+  \label{thm:mathlib-module-category-abelian}
+  \lean{ModuleCat.abelian}
+  \mathlibok
+  \uses{def:mathlib-f2-module-category}
+  For every ring $R$, the category $\operatorname{ModuleCat}(R)$ carries
+  Mathlib's abelian-category instance.  In particular this applies after the
+  project specializes $R$ to $\mathbb F_2$.
+\end{theorem}
+
+% SOURCE: Mathlib/CategoryTheory/Abelian/Basic.lean, declaration CategoryTheory.Abelian.
+\begin{definition}[Abelian category]
+  \label{def:mathlib-abelian}
+  \lean{CategoryTheory.Abelian}
+  \mathlibok
+  In the pinned Mathlib declaration, an abelian category is preadditive, has
+  kernels, cokernels, and finite products, and every monomorphism and
+  epimorphism is normal.  A zero object and the usual finite biproduct
+  consequences are derived from these fields.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/HomologicalComplex.lean, declaration CategoryTheory.HomologicalComplex.
+\begin{definition}[Homological complex]
+  \label{def:mathlib-homological-complex}
+  \lean{HomologicalComplex}
+  \mathlibok
+  For a category $\mathcal C$, an index type $\iota$, and a complex shape
+  $c$, a homological complex consists of objects $K_i$, differentials
+  $d_{ij}:K_i\to K_j$ allowed by $c$, and the square-zero relations required
+  by that shape.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/HomologicalComplex.lean, abbreviation CategoryTheory.ChainComplex.
+\begin{definition}[Chain complex]
+  \label{def:mathlib-chain-complex}
+  \lean{ChainComplex}
+  \mathlibok
+  \uses{def:mathlib-homological-complex}
+  A chain complex in $\mathcal C$ indexed by an additive index type is the
+  Mathlib homological complex with differential of degree $-1$.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/HomologicalComplex.lean, abbreviation CategoryTheory.CochainComplex.
+\begin{definition}[Cochain complex]
+  \label{def:mathlib-cochain-complex}
+  \lean{CochainComplex}
+  \mathlibok
+  \uses{def:mathlib-homological-complex}
+  A cochain complex in $\mathcal C$ indexed by an additive index type is the
+  Mathlib homological complex with differential of degree $+1$.  Passing from a
+  chain complex to a cochain complex therefore requires an explicit reindexing;
+  the two abbreviations are not interchangeable.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/ShortComplex/Exact.lean, declaration CategoryTheory.ShortComplex.Exact.
+\begin{definition}[Exact short complex]
+  \label{def:mathlib-short-complex-exact}
+  \lean{CategoryTheory.ShortComplex.Exact}
+  \mathlibok
+  For a short complex $X_1\xrightarrow{f}X_2\xrightarrow{g}X_3$, Mathlib
+  exactness means that there exists homology data whose homology object is
+  zero.  In an abelian category, the next node identifies this with the
+  familiar image-to-kernel comparison being an isomorphism.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Abelian/Exact.lean:77, theorem CategoryTheory.ShortComplex.exact_iff_isIso_imageToKernel.
+\begin{theorem}[Exactness via image and kernel]
+  \label{thm:mathlib-exact-iff-image-kernel}
+  \lean{CategoryTheory.ShortComplex.exact_iff_isIso_imageToKernel}
+  \mathlibok
+  \uses{def:mathlib-short-complex-exact,def:mathlib-abelian}
+  In an abelian category, a short complex is exact if and only if its canonical
+  morphism from the image of the first map to the kernel of the second map is
+  an isomorphism.
+\end{theorem}
+
+% SOURCE: Mathlib/CategoryTheory/GradedObject.lean, declaration CategoryTheory.GradedObject.comap.
+\begin{definition}[Regrading a Mathlib graded object]
+  \label{def:mathlib-graded-comap}
+  \lean{CategoryTheory.GradedObject.comap}
+  \mathlibok
+  \uses{def:mathlib-graded-object}
+  A function $h:J\to I$ induces Mathlib's regrading functor from
+  $I$-graded objects to $J$-graded objects by precomposition.  This declaration
+  regrades objects only; it does not by itself regrade complexes or spectral
+  sequences.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/ComplexShape.lean, declaration ComplexShape.up'.
+\begin{definition}[Complex shape of a fixed additive degree]
+  \label{def:mathlib-complex-shape-up}
+  \lean{ComplexShape.up'}
+  \mathlibok
+  For an additive index type and a fixed degree $a$, Mathlib's
+  $\operatorname{up}'(a)$ permits a differential from $i$ to $j$ exactly when
+  $i+a=j$.  The AIM Adams shape therefore uses the integer pair
+  $(r,r-1)$, not Mathlib's prepackaged cohomological convention $(r,1-r)$.
+\end{definition}
+
+% SOURCE: Mathlib/Algebra/Homology/DerivedCategory/Ext/Basic.lean, declaration CategoryTheory.Abelian.Ext.
+\begin{definition}[Mathlib derived Ext]
+  \label{def:mathlib-derived-ext}
+  \lean{CategoryTheory.Abelian.Ext}
+  \mathlibok
+  \uses{def:mathlib-abelian}
+  In an abelian category satisfying Mathlib's Ext-size hypothesis,
+  $\operatorname{Ext}(X,Y,n)$ is a singly graded derived Ext type indexed by
+  $n\in\mathbb N$.  It does not provide the Steenrod algebra, internal grading,
+  comodules, or the bigraded Adams $\operatorname{Ext}_{\mathcal A}^{s,t}$.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Shift/Basic.lean:60--68, declaration CategoryTheory.HasShift.
+\begin{definition}[Mathlib shift structure]
+  \label{def:mathlib-shift}
+  \lean{CategoryTheory.HasShift}
+  \mathlibok
+  Mathlib's declaration supplies a coherent family of endofunctors indexed by
+  an arbitrary additive monoid $A$.  The generic monoid-indexed structure does
+  not assert that every shift is an autoequivalence.  The project uses
+  $A=\mathbb Z$, where inverse indices supply the equivalence behaviour needed
+  by triangulated constructions.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/Basic.lean, declaration CategoryTheory.Pretriangulated.Triangle.
+\begin{definition}[Mathlib triangle]
+  \label{def:mathlib-triangle}
+  \lean{CategoryTheory.Pretriangulated.Triangle}
+  \mathlibok
+  \uses{def:mathlib-shift}
+  A Mathlib triangle consists of $X\to Y\to Z\to X[1]$ in a category with
+  integer shifts.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/Pretriangulated.lean, declaration CategoryTheory.Pretriangulated.
+\begin{definition}[Mathlib pretriangulated structure]
+  \label{def:mathlib-pretriangulated}
+  \lean{CategoryTheory.Pretriangulated}
+  \mathlibok
+  \uses{def:mathlib-triangle}
+  Mathlib's pretriangulated class chooses distinguished triangles and their
+  closure laws.  It does not include a stable-spectrum model or compatibility
+  of a monoidal product with distinguished triangles.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:82, declaration CategoryTheory.Functor.IsHomological.
+\begin{definition}[Mathlib homological functor]
+  \label{def:mathlib-homological-functor}
+  \lean{CategoryTheory.Functor.IsHomological}
+  \mathlibok
+  \uses{def:mathlib-pretriangulated,def:mathlib-abelian}
+  A functor from a pretriangulated category to an abelian category is
+  homological when it preserves zero morphisms and sends every distinguished
+  triangle to an exact short complex.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Shift/ShiftSequence.lean:48, declaration CategoryTheory.Functor.ShiftSequence.
+\begin{definition}[Mathlib shift sequence for a functor]
+  \label{def:mathlib-homological-shift-sequence}
+  \lean{CategoryTheory.Functor.ShiftSequence}
+  \mathlibok
+  \uses{def:mathlib-shift}
+  For a functor $F:\mathcal C\to\mathcal A$, a shift sequence indexed by
+  $\mathbb Z$ chooses functors $F_n:\mathcal C\to\mathcal A$ and coherent
+  isomorphisms identifying $F_n\circ[m]$ with $F_{m+n}$.  This is additional
+  data on a homological functor and is what lets Mathlib state its long exact
+  sequence with separately indexed functors $F_n$.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:173, declaration CategoryTheory.Functor.homologySequenceδ.
+\begin{definition}[Homology-sequence connecting morphism]
+  \label{def:mathlib-homology-sequence-connecting}
+  \lean{CategoryTheory.Functor.homologySequenceδ}
+  \mathlibok
+  \uses{def:mathlib-triangle,def:mathlib-homological-shift-sequence}
+  Let $F:\mathcal C\to\mathcal A$ have a $\mathbb Z$-shift sequence.  For a
+  triangle $X\to Y\to Z\to X[1]$ and $n_0+1=n_1$, Mathlib constructs the
+  connecting morphism $F_{n_0}(Z)\to F_{n_1}(X)$ by applying the shift map of
+  $F$ to the third morphism of the triangle.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:181, declaration CategoryTheory.Functor.homologySequenceδ_naturality.
+\begin{theorem}[Naturality of the homology-sequence connecting morphism]
+  \label{thm:mathlib-homology-sequence-connecting-naturality}
+  \lean{CategoryTheory.Functor.homologySequenceδ_naturality}
+  \mathlibok
+  \uses{def:mathlib-homology-sequence-connecting}
+  For every morphism of triangles, the third component mapped by $F_{n_0}$,
+  the two connecting morphisms, and the first component mapped by $F_{n_1}$
+  form a commutative square.
+\end{theorem}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:217, declaration CategoryTheory.Functor.homologySequence_exact₂.
+\begin{theorem}[Middle exactness of a homology sequence]
+  \label{thm:mathlib-homology-sequence-exact-two}
+  \lean{CategoryTheory.Functor.homologySequence_exact₂}
+  \mathlibok
+  \uses{def:mathlib-homological-functor,def:mathlib-triangle,def:mathlib-homological-shift-sequence}
+  A Mathlib homological functor sends the middle two maps of every shifted
+  distinguished triangle to an exact short complex.
+\end{theorem}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:226, declaration CategoryTheory.Functor.homologySequence_exact₃.
+\begin{theorem}[Connecting-map exactness of a homology sequence]
+  \label{thm:mathlib-homology-sequence-exact-three}
+  \lean{CategoryTheory.Functor.homologySequence_exact₃}
+  \mathlibok
+  \uses{def:mathlib-homological-functor,def:mathlib-triangle,def:mathlib-homological-shift-sequence,def:mathlib-homology-sequence-connecting}
+  Rotation gives exactness at the term adjacent to the homology-sequence
+  connecting morphism.
+\end{theorem}
+
+% SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:234, declaration CategoryTheory.Functor.homologySequence_exact₁.
+\begin{theorem}[Shifted exactness of a homology sequence]
+  \label{thm:mathlib-homology-sequence-exact-one}
+  \lean{CategoryTheory.Functor.homologySequence_exact₁}
+  \mathlibok
+  \uses{def:mathlib-homological-functor,def:mathlib-triangle,def:mathlib-homological-shift-sequence,def:mathlib-homology-sequence-connecting}
+  Inverse rotation gives the remaining adjacent exactness statement, allowing
+  the three short complexes to splice into a long exact sequence.
+\end{theorem}
+
+% SOURCE: Mathlib/Algebra/Homology/HomotopyCategory/HomologicalFunctor.lean:34, instance HomotopyCategory.instIsHomologicalIntUpHomologyFunctor.
+\begin{theorem}[Cochain homology is homological on the homotopy category]
+  \label{thm:mathlib-homotopy-cochain-homology-is-homological}
+  \lean{HomotopyCategory.instIsHomologicalIntUpHomologyFunctor}
+  \mathlibok
+  \uses{def:mathlib-cochain-complex,def:mathlib-homological-functor,def:mathlib-abelian}
+  If $\mathcal C$ is abelian, then for every $n\in\mathbb Z$ the degree-$n$
+  homology functor from the homotopy category of $\mathbb Z$-indexed cochain
+  complexes in $\mathcal C$ to $\mathcal C$ is homological.
+\end{theorem}
+
+% SOURCE: Mathlib/Algebra/Homology/HomotopyCategory/ShiftSequence.lean:192-196, instance HomotopyCategory.instShiftSequenceIntUpHomologyFunctorOfNat.
+\begin{definition}[Shift sequence on cochain homology]
+  \label{def:mathlib-homotopy-cochain-homology-shift-sequence}
+  \lean{HomotopyCategory.instShiftSequenceIntUpHomologyFunctorOfNat}
+  \mathlibok
+  \uses{def:mathlib-cochain-complex,def:mathlib-homological-shift-sequence}
+  In a preadditive category equipped with Mathlib's homology structure, the
+  degree-zero homology functor on the homotopy category of $\mathbb Z$-indexed
+  cochain complexes has a $\mathbb Z$-shift sequence whose degree-$n$ member is
+  the degree-$n$ homology functor.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Monoidal/Category.lean, declaration CategoryTheory.MonoidalCategory.
+\begin{definition}[Mathlib monoidal category]
+  \label{def:mathlib-monoidal-category}
+  \lean{CategoryTheory.MonoidalCategory}
+  \mathlibok
+  Mathlib's monoidal category provides tensor product, unit, associator, and
+  unitors with their coherence laws.
+\end{definition}
+
+% SOURCE: Mathlib/CategoryTheory/Monoidal/Braided/Basic.lean, declaration CategoryTheory.SymmetricCategory.
+\begin{definition}[Mathlib symmetric category]
+  \label{def:mathlib-symmetric-category}
+  \lean{CategoryTheory.SymmetricCategory}
+  \mathlibok
+  \uses{def:mathlib-monoidal-category}
+  A symmetric category extends a monoidal category with a symmetric braiding.
+  Exactness of tensoring a triangle remains extra project data.
+\end{definition}
+
+\subsection{Filtered objects and complexes}
+
+\begin{definition}[Decreasing filtration]
+  \leanok
+  \label{def:core-filtration}
+  \lean{KIP126.Core.Algebra.Filtration}
+  \uses{def:mathlib-graded-object}
+  Let $A=(A_i)_{i\in I}$ be a graded object in a category.  A decreasing
+  filtration $F$ of $A$ assigns a subobject $F^sA_i\subseteq A_i$ for every
+  $s\in\mathbb Z$ and $i\in I$, together with inclusions
+  \[
+    F^{s+1}A_i\subseteq F^sA_i.
+  \]
+\end{definition}
+
+\begin{definition}[Arbitrary-level filtration inclusions]
+  \leanok
+  \label{def:core-filtration-inclusions}
+  \lean{KIP126.Core.Algebra.Filtration.le_of_le}
+  \lean{KIP126.Core.Algebra.Filtration.inclusion}
+  \lean{KIP126.Core.Algebra.Filtration.inclusion_arrow}
+  \lean{KIP126.Core.Algebra.Filtration.inclusion_refl}
+  \lean{KIP126.Core.Algebra.Filtration.inclusion_comp}
+  \lean{KIP126.Core.Algebra.Filtration.transport_arrow}
+  \lean{KIP126.Core.Algebra.Filtration.inclusion_naturality}
+  \uses{def:core-filtration}
+  The successor inclusions of a decreasing filtration extend canonically to
+  every pair of levels: for $t\le s$ there is a map
+  $F^sA_i\to F^tA_i$.  These maps are identity at equal levels and compose
+  along chains of inequalities.  The transport and naturality equations keep
+  the construction well-typed when a graded index is represented by
+  propositionally equal integer expressions.
+\end{definition}
+
+\begin{definition}[Associated graded piece]
+  \leanok
+  \label{def:core-associated-graded}
+  \lean{KIP126.Core.Algebra.Filtration.associatedGraded}
+  \uses{def:core-filtration,def:mathlib-abelian}
+  If $\mathcal C$ is abelian and $F$ is a decreasing filtration of $A$, define
+  \[
+    \operatorname{gr}^s_F(A_i) := F^sA_i/F^{s+1}A_i
+  \]
+  as the cokernel of the canonical inclusion
+  $F^{s+1}A_i\hookrightarrow F^sA_i$.
+\end{definition}
+
+\begin{definition}[Quotient to an associated graded piece]
+  \leanok
+  \label{def:core-to-associated-graded}
+  \lean{KIP126.Core.Algebra.Filtration.toAssociatedGraded}
+  \uses{def:core-associated-graded}
+  For every $(s,i)$, the canonical quotient morphism is
+  \[
+    F^sA_i\longrightarrow \operatorname{gr}^s_F(A_i).
+  \]
+\end{definition}
+
+\begin{definition}[Associated graded object]
+  \leanok
+  \label{def:core-associated-graded-object}
+  \lean{KIP126.Core.Algebra.Filtration.associatedGradedObject}
+  \uses{def:core-associated-graded}
+  The associated graded object is the $(\mathbb Z\times I)$-graded object
+  whose $(s,i)$-component is $\operatorname{gr}^s_F(A_i)$.
+\end{definition}
+
+\begin{definition}[Degreewise eventually-top filtration]
+  \leanok
+  \label{def:core-exhaustive-filtration}
+  \lean{KIP126.Core.Algebra.Filtration.IsExhaustive}
+  \uses{def:core-filtration}
+  The project predicate named \texttt{IsExhaustive} requires that for every
+  $i$ there is an $s$ with $F^sA_i=A_i$.  Since the filtration is decreasing,
+  all lower levels are then also the whole object.  This degreewise
+  eventual-top condition is stronger than ordinary exhaustiveness stated only
+  as $\bigcup_sF^sA_i=A_i$ or by a colimit.
+\end{definition}
+
+\begin{definition}[Degreewise eventually-bottom filtration]
+  \leanok
+  \label{def:core-eventually-zero-filtration}
+  \lean{KIP126.Core.Algebra.Filtration.IsEventuallyZero}
+  \uses{def:core-filtration,def:mathlib-abelian}
+  The predicate \texttt{IsEventuallyZero} requires that for every $i$ there
+  is an $s$ with $F^sA_i=0$; all higher levels then vanish as well.  This
+  degreewise eventual-bottom condition is stronger than separatedness
+  $\bigcap_sF^sA_i=0$.
+\end{definition}
+
+\begin{definition}[Bounded-below filtration]
+  \leanok
+  \label{def:core-bounded-below-filtration}
+  \lean{KIP126.Core.Algebra.Filtration.IsBoundedBelow}
+  \uses{def:core-filtration}
+  A filtration is bounded below if each $i$ has an integer $l(i)$ such
+  that $F^sA_i=A_i$ for $s\le l(i)$.
+\end{definition}
+
+\begin{definition}[Bounded-above filtration]
+  \leanok
+  \label{def:core-bounded-above-filtration}
+  \lean{KIP126.Core.Algebra.Filtration.IsBoundedAbove}
+  \uses{def:core-filtration,def:mathlib-abelian}
+  In an abelian category, a filtration is bounded above if each $i$ has an
+  integer $u(i)$ such that $F^sA_i=0$ for $u(i)\le s$.
+\end{definition}
+
+\begin{definition}[Degreewise bounded filtration]
+  \leanok
+  \label{def:core-bounded-filtration}
+  \lean{KIP126.Core.Algebra.Filtration.IsBounded}
+  \uses{def:core-bounded-below-filtration,def:core-bounded-above-filtration}
+  In an abelian category, a filtration is degreewise bounded when it is both
+  bounded below and bounded above, with chosen bounds satisfying
+  $l(i)\le u(i)$ for every $i$.
+\end{definition}
+
+\begin{lemma}[A lower bound gives degreewise eventual-top]
+  \leanok
+  \label{lem:core-bounded-below-exhaustive}
+  \lean{KIP126.Core.Algebra.Filtration.IsBoundedBelow.isExhaustive}
+  \uses{def:core-bounded-below-filtration,def:core-exhaustive-filtration}
+  A bounded-below filtration satisfies the project's strong
+  \texttt{IsExhaustive} predicate, hence is degreewise eventually top.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  For a component $i$, use $l(i)$ as the eventual-top witness.  The
+  defining endpoint equation gives the conclusion.
+\end{proof}
+
+\begin{lemma}[An upper bound gives eventual vanishing]
+  \leanok
+  \label{lem:core-bounded-above-eventually-zero}
+  \lean{KIP126.Core.Algebra.Filtration.IsBoundedAbove.isEventuallyZero}
+  \uses{def:core-bounded-above-filtration,def:core-eventually-zero-filtration}
+  In an abelian category, a bounded-above filtration is eventually zero.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  For a component $i$, use $u(i)$ as the witness for eventual vanishing.  The
+  defining endpoint equation gives the conclusion.
+\end{proof}
+
+\begin{definition}[Filtered morphism]
+  \leanok
+  \label{def:core-filtered-morphism}
+  \lean{KIP126.Core.Algebra.FilteredMorphism}
+  \uses{def:core-filtration}
+  For filtered graded objects $(A,F)$ and $(B,G)$, a filtered morphism is a
+  degree-preserving map $f:A\to B$ such that, for every $(s,i)$, its component
+  $f_i$ restricts to a map $F^sA_i\to G^sB_i$.  Equivalently, the square of
+  the two subobject inclusions and $f_i$ commutes.
+\end{definition}
+
+\begin{definition}[Map on associated graded pieces]
+  \leanok
+  \label{def:core-associated-graded-map}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.associatedGradedMap}
+  \uses{def:core-filtered-morphism,def:core-associated-graded}
+  A filtered morphism $f:(A,F)\to(B,G)$ induces, for each $(s,i)$, a morphism
+  \[
+    \operatorname{gr}^s_F(A_i)\longrightarrow
+    \operatorname{gr}^s_G(B_i),
+  \]
+  obtained from the commuting square on the two consecutive filtration levels
+  by the universal property of cokernels.
+\end{definition}
+
+\begin{lemma}[Projection equation for an associated-graded map]
+  \leanok
+  \label{lem:core-associated-graded-map-projection}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.toAssociatedGraded_comp_associatedGradedMap}
+  \uses{def:core-filtered-morphism,def:core-associated-graded-map}
+  The quotient projection from a filtration level to its associated-graded
+  piece followed by the induced map agrees with the chosen filtration-level
+  factorisation followed by the target quotient projection.
+\end{lemma}
+
+\begin{proof}
+  \leanok
+  This is the cokernel universal-property equation defining the induced map.
+\end{proof}
+
+\begin{definition}[Functorial filtered morphisms]
+  \leanok
+  \label{def:core-filtered-morphism-functoriality}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.id}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.comp}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.associatedGradedMap_id}
+  \lean{KIP126.Core.Algebra.FilteredMorphism.associatedGradedMap_comp}
+  \uses{def:core-filtered-morphism,def:core-associated-graded-map}
+  Filtered morphisms have the identity and composition operations needed for
+  categorical transport.  The induced maps on associated graded pieces
+  preserve those operations, so the quotient construction is functorial in
+  filtered maps.
+\end{definition}
+
+\begin{definition}[Filtered chain complex]
+  \leanok
+  \label{def:core-filtered-chain-complex}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex}
+  \uses{def:core-filtration,def:mathlib-chain-complex,def:mathlib-abelian}
+  In an abelian category, a filtered chain complex is a Mathlib chain complex
+  $(C_k,d_k)$ together with a decreasing filtration $F^sC_k$ of its underlying
+  $\mathbb Z$-graded object such that every differential restricts to a map
+  \[
+    F^sC_k\longrightarrow F^sC_{k-1}.
+  \]
+\end{definition}
+
+\begin{definition}[Associated graded differential]
+  \leanok
+  \label{def:core-associated-graded-differential}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedDifferential}
+  \uses{def:core-filtered-chain-complex,def:core-associated-graded}
+  The restriction of $d_k$ in a filtered chain complex descends to a morphism
+  \[
+    d^{\operatorname{gr}}_{s,k}:
+    \operatorname{gr}^s_F(C_k)\longrightarrow
+    \operatorname{gr}^s_F(C_{k-1}).
+  \]
+\end{definition}
+
+\begin{theorem}[The associated graded differential squares to zero]
+  \leanok
+  \label{thm:core-associated-graded-differential-sq}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.associatedGradedDifferential_sq}
+  \uses{def:core-associated-graded-differential}
+  For every filtration degree $s$ and chain degree $k$,
+  \[
+    d^{\operatorname{gr}}_{s,k-1}\circ
+    d^{\operatorname{gr}}_{s,k}=0.
+  \]
+\end{theorem}
+
+\begin{proof}
+  \leanok
+  Precompose with the quotient epimorphism $F^sC_k\longrightarrow
+  \operatorname{gr}^s_F(C_k)$.  The resulting composite factors through
+  $d_{k-1}\circ d_k$, which is zero because $C$ is a chain complex.  The
+  epimorphism then gives the asserted equality.
+\end{proof}

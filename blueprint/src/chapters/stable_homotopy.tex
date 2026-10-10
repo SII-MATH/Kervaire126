@@ -1,0 +1,163 @@
+\section{Stable-homotopy objects}
+\label{chap:stable-background}
+
+This section defines the stable-homotopy language required by the paper.  Located May, Moss, and Toda inputs are stated later in the external-results chapter rather than treated as definitions.
+
+\subsection{Spectra, triangles, and homology}
+
+% SOURCE: PROJECT_BOUNDARY.md, Confirmed design decision 1; MainPaper/main.tex:253-263, 670-758.
+\begin{definition}[Stable homotopy context]
+  \label{def:stable-context}
+  \uses{def:mathlib-shift,def:mathlib-triangle,def:mathlib-pretriangulated,def:mathlib-monoidal-category,def:mathlib-symmetric-category}
+  \notready
+  A stable homotopy context consists of a pointed additive homotopy category
+  of spectra, suspension equivalences $\Sigma^n$, a symmetric monoidal smash
+  product with sphere unit $S^0$, cofiber sequences, and distinguished
+  triangles.  It includes rotation, functoriality, smash compatibility, and
+  the sign and suspension conventions needed below.  Stable homotopy groups
+  and their exact sequences are exposed separately so that later proofs do not
+  hide them inside this context record.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:126-138 and 253-263; suspension conventions used throughout.
+\begin{definition}[Sphere spectrum and suspension]
+  \label{def:stable-sphere-suspension}
+  \uses{def:stable-context}
+  \notready
+  The monoidal unit is the sphere spectrum $S^0$.  For every $n\in\mathbb Z$,
+  suspension gives an equivalence $\Sigma^n$ with coherent isomorphisms
+  $\Sigma^0X\simeq X$ and $\Sigma^{m+n}X\simeq\Sigma^m\Sigma^nX$, compatible
+  with smash products and mapping groups.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:102-170 and throughout Sections 2--7.
+\begin{definition}[Stable homotopy groups]
+  \label{def:stable-homotopy-group}
+  \uses{def:stable-sphere-suspension}
+  \notready
+  For a spectrum $X$ and $n\in\mathbb Z$, define
+  \[
+    \pi_nX=[\Sigma^nS^0,X].
+  \]
+  These are abelian groups, functorial in $X$, with suspension and composition
+  isomorphisms fixed by the context's sign convention.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:253-263, global standing assumptions.
+\begin{definition}[Admissible spectrum]
+  \label{def:admissible-spectrum}
+  \uses{def:stable-context}
+  \notready
+  A spectrum is admissible when it is $2$-complete, connective, and of finite
+  type.  Strong convergence is deliberately not part of this predicate:
+  whenever a classical or synthetic Adams spectral sequence is invoked, its
+  convergence witness is supplied separately.  This avoids defining
+  admissibility in terms of spectral sequences that are themselves indexed by
+  admissible spectra.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:135-159, where products are used for the sphere;
+% standard associative-algebra-object structure in a symmetric monoidal category.
+\begin{definition}[Unital multiplication data]
+  \label{def:unital-multiplication-data}
+  \uses{def:stable-context,def:stable-sphere-suspension}
+  \notready
+  A unital multiplication datum on a spectrum $R$ is an associative algebra
+  object in the stable symmetric monoidal context: it includes multiplication
+  $R\wedge R\to R$, a unit $S^0\to R$, and all associativity and unit
+  coherences.  This is extra structure and is not implied by admissibility.
+  The sphere $S^0$, as the monoidal unit, has its canonical such datum.  The
+  same terminology will be used for associative algebra objects in the
+  synthetic context.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:688-769; Pstragowski interface used in Proposition 3.1.
+\begin{definition}[$H\mathbb F_2$ homology]
+  \label{def:hf2-homology}
+  \uses{def:stable-context,def:mathlib-f2}
+  \notready
+  The context contains an Eilenberg--Mac Lane ring spectrum $H\mathbb F_2$ and
+  a homology functor $H_*(-;\mathbb F_2)$ from spectra to graded
+  $\mathbb F_2$-vector spaces.  It preserves suspension and sends cofiber
+  sequences to long exact sequences.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:929-964 and all uses of distinguished triangles.
+\begin{definition}[Cofiber and distinguished triangle data]
+  \label{def:cofiber-triangle}
+  \uses{def:stable-context}
+  \notready
+  For every map $f:X\to Y$, choose a cofiber $C(f)$ and a distinguished
+  triangle
+  \[
+    X\xrightarrow fY\longrightarrow C(f)\longrightarrow\Sigma X.
+  \]
+  A morphism of triangles is three compatible maps, and a triangle equivalence
+  is a morphism whose three components are isomorphisms.  Rotations and
+  suspensions preserve distinguished triangles.  Every distinguished triangle
+  whose first map is $f$ also carries a chosen triangle equivalence to this
+  selected cofiber triangle; transporting along that equivalence is explicit
+  data rather than definitional equality of its third object with $C(f)$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:253-271, 648-664, and 929-971; exactness used repeatedly.
+\begin{theorem}[Stable homotopy long exact sequence]
+  \label{thm:stable-homotopy-long-exact}
+  \uses{def:stable-homotopy-group,def:cofiber-triangle,def:mathlib-homological-functor,thm:mathlib-homology-sequence-exact-one,thm:mathlib-homology-sequence-exact-two,thm:mathlib-homology-sequence-exact-three}
+  \notready
+  Every chosen cofiber triangle
+  $X\to Y\to C(f)\to\Sigma X$ induces the natural long exact sequence
+  \[
+    \cdots\to\pi_{n+1}C(f)\to\pi_nX\to\pi_nY
+      \to\pi_nC(f)\to\pi_{n-1}X\to\cdots,
+  \]
+  with connecting maps compatible with rotation, suspension, and morphisms of
+  triangles.
+\end{theorem}
+
+\begin{proof}
+  Equip the representable functor $[S^0,-]$ with Mathlib's homological-functor
+  structure, apply its three homology-sequence exactness lemmas to every
+  shift, and splice the rotated triangles.  Naturality follows from a morphism
+  of triangles.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:1755-1921, smash diagrams in May's lemma and the Mahowald trick.
+\begin{definition}[Smash of cofiber triangles]
+  \label{def:smash-triangle}
+  \uses{def:cofiber-triangle}
+  \notready
+  Smashing a distinguished triangle with any spectrum gives a distinguished
+  triangle, naturally in both variables.  For two cofiber triangles the
+  induced $3\times3$ diagram contains the canonical pullback/pushout square
+  and connecting maps used to compare the two ways of reaching the double
+  cofiber.
+\end{definition}
+
+\subsection{Homotopy classes and secondary operations}
+
+% SOURCE: MainPaper/main.tex:2387-2616, Toda-bracket arguments.
+\begin{definition}[Toda bracket]
+  \label{def:toda-bracket}
+  \uses{def:cofiber-triangle}
+  \notready
+  Given composable stable maps $a,b,c$ with chosen nullhomotopies of $ba$ and
+  $cb$, the triple Toda bracket $\langle c,b,a\rangle$ is a coset of homotopy
+  classes with its standard left and right indeterminacy.  The interface
+  includes suspension, naturality, containment under changed nullhomotopies,
+  and Moss-style comparison with Massey products when an Adams convergence
+  theorem supplies that comparison.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:2470-2567, Massey products on Adams pages; Moss Theorem 1.2.
+\begin{definition}[Massey product]
+  \label{def:massey-product}
+  \uses{def:multiplicative-ss,def:mathlib-f2}
+  \notready
+  On a differential graded page model for the multiplicative Adams spectral
+  sequence, composable classes $a,b,c$ with $ab=0$ and $bc=0$ and chosen
+  nullhomologies define a triple Massey-product coset
+  $\langle a,b,c\rangle$.  The interface records its bidegree, left and right
+  indeterminacy, naturality, change-of-choice formula, and a proposition that
+  the indeterminacy is zero in a specified finite bidegree.
+\end{definition}

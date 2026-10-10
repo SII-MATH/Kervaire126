@@ -1,0 +1,256 @@
+In this section, we define the Chow $t$-structure on Artin-Tate $\R$-motivic spectra, compute its heart, and describe the $t$-structure homotopy objects, which we denote $\pi^{\ch} _k$.
+
+\begin{dfn}
+  By \cite[Proposition 1.2.1.16]{HA}, we can construct a $t$-structure on $\SHRat$ with
+	\begin{itemize}
+	\item connective part $(\SHRat)^{\cn} _{\geq 0}$ generated under colimits and extensions by \[\{ \Ss_2^{n+k_1,n+k_2,n}\ \vert \ k_1 \geq 0 \text{ and } k_1 + k_2 \geq 0 \}.\]
+	\item $(-1)$-coconnective part $(\SHRat)^{\cn} _{< 0}$ spanned by those $X \in \SHRat$ with $\pi_{n+k_1, n+k_2, n} ^{\R} X = 0$ for all $n,k_1,k_2 \in \Z$ satisfying $k_1 \geq 0$ and $k_1+k_2 \geq 0$.
+	\end{itemize}
+  We call this $t$-structure the \emph{Chow $t$-structure} on $\SHRat$.
+%
+%  Note that the Chow $t$-structure is compatible with the symmetric monoidal structure in the sense that the full subcategory of Chow connective objects contains the unit and it closed uner the tensor product.
+%
+%  Since the functors $X \mapsto \pi_{p,q,w} ^{\R} X$ are jointly conservative on $\SHRat$, it is easy to see that the Chow $t$-structure is right complete.
+  %simply by specifying which full subcategory we wish to to be the $\geq 0$ part.
+%
+  %We define the Chow $t$-structure to have connective part generated under colimits by
+  %\[ \{ \o_\R, \Spec(\C), (\mathbb{P}^1)^n\ \vert \ n \in \Z \}. \]
+  %Note that the full subcategory of Chow connective objects contains the unit and it closed uner the tensor product.
+%
+  Moreover, we let $\tau_{\geq 0} ^{\cn} : \SHRat \to (\SHRat)^{\cn} _{\geq 0}$ denote the connective cover with respect to the Chow $t$-structure, and let $\pi_n ^{\ch} : \SHRat \to \SHR_{i2}^{\at, \ch}$ denote the homotopy object functors.
+\end{dfn}
+
+The following result is immediate from the definition:
+\begin{prop}
+  The Chow $t$-structure on $\SHRat$ is compatible with the symmetric monoidal structure, right complete and compatible with filtered colimits.
+  Moreover, $\Sigma^{n,n,n}$ restricts to an equivalence $\Sigma^{n,n,n} : (\SHRat)^{\cn} _{\geq 0} \to (\SHRat)^{\cn} _{\geq 0}$.
+  %Moreover, for any $X \in \SHRat$ there are natural equivalences
+  %\begin{align*}
+    %\tau_{\geq 0} ^{\cn} (\Sigma^{n,n,n} X) \simeq \Sigma^{n,n,n} \tau_{\geq 0} ^{\cn} (X) \\
+    %\pi{0} ^{\ch} (\Sigma^{n,n,n} X) \simeq \Sigma^{n,n,n} \tau_{\geq 0} ^{\cn} (X) 
+  %\end{align*}
+\end{prop}
+
+The main two theorems that we prove in this section are as follows:
+
+\begin{thm} \label{thm:chow-heart}
+  Let $\SHRatch$ denote the heart of $\SHRat$ with respect to the Chow $t$-structure. Then there is a symmetric monoidal equivalence of categories
+  \[\SHRatch \simeq \Comod(\uAbh_{i2}; \underline{(\MU_2)_{2*} \MU_2}),\]
+  where $\Comod(\uAbh; \underline{(\MU_2)_{2*} \MU_2})$ is the category of evenly-graded $(\underline{(\MU_2)_{*}}, \underline{(\MU_2)_{*} \MU_2})$-comodules in $C_2$-Mackey functors.
+\end{thm}
+
+\begin{thm} \label{thm:pi0-MGL}
+  Given any $X \in \SHRat$ and $n,k \in \Z$, there is an isomorphism
+  \[(\pi_k ^{\ch} X)_n \cong \underline{(\MGL_2)}_{n+k,n,n} (X).\]
+\end{thm}
+
+\begin{rec}
+In \Cref{thm:Cta}, we constructed a symmetric monoidal equivalence
+\[ \Mod(\SHRat; C\ta) \simeq \Mod(\Sp_{C_2, i2}; \uZt) \otimes_{\Z} \IndCoh(\Mfg). \]
+Moreover, in \Cref{lem:Cta-t-structure} we equipped $\Mod(\Sp_{C_2, i2}; \uZt) \otimes_{\Z} \IndCoh(\Mfg)$ with a $t$-structure whose heart is identified with $\Comod(\uAbh; \underline{(\MU_2)_{2*} \MU_2})$.
+  We call the induced $t$-structure on $\Mod(\SHRat; C\ta)$ the \emph{tensor $t$-structure} and write $\Mod(\SHRat; C\ta)^{\th}$ for the heart.
+\end{rec}
+
+To prove \Cref{thm:chow-heart}, it will suffice to prove the following:
+
+\begin{prop} \label{prop:t-compare}
+  The tensor $t$-structure on $\Mod(\SHRat; C\ta)$ is induced by the Chow $t$-structure on $\SHRat$: a $C\ta$-module $X$ is tensor (co)connective if and only if its underlying Artin-Tate $\R$-motivic spectrum is Chow (co)connective.
+
+  Moreover, the induced symmetric monoidal functor
+  \[\Mod(\SHRat; C\ta)^{\th} \to \SHR_{i2}^{\at, \ch}\]
+  is an equivalence of categories.
+  %Equip $\SHRat$ with the Chow $t$-structure and $\Mod(\SHRat; C\ta)$ with the tensor $t$-structure.
+  %Then the forgetful functor
+  %\[\Mod(\SHRat; C\ta) \to \SHRat\]
+  %is $t$-exact and induces an equivalence upon taking the heart.
+\end{prop}
+
+%In fact, we will even show in \Cref{lem:tensor-t-ta} that the tensor $t$-structure on is induced by the Chow $t$-structure.
+
+First, we need a lemma:
+
+\begin{lem} \label{lem:Cta-pi0}
+  We have $C\ta \in \SHRatch$ and the unit map $\Ss_2 ^{0,0,0} \to C\ta$ induces an equivalence $\pi_0 ^{\ch} \Ss_2 ^{0,0,0} \simeq C\ta$.
+\end{lem}
+
+\begin{proof}
+  First, we note that $\Ss_2^{0,0,-1} \geq 1$ in the Chow $t$-structure.
+  Since $$\Ss_2^{0,0,-1} \simeq \Sigma \Ss_2^{0,1,0} \otimes \Ss_2^{-1,-1,-1},$$ it suffices to show that $\Ss_2^{0,1,0} \geq 0$.
+  This follows immediately from the cofiber sequence $\Sigma^{\infty} _+ \Spec(\C)_2 \to \Ss_2^{0,0,0} \to \Ss_2^{0,1,0}$.
+
+  Combining this fact with the cofiber sequence $\Ss_2^{0,0,-1} \xrightarrow{\ta} \Ss_2^{0,0,0} \to C\ta$, we find that $C\ta \geq 0$ and that $\Ss_2^{0,0,0} \to C\ta$ induces an equivalence on $\pi_0 ^{\ch}$.
+
+  To conclude, it suffices to show that $C\ta \leq 0$.
+  By definition, we must show that $\pi_{n+k_1, n+k_2, n} ^{\R} C\ta = 0$ for all $n,k_1,k_2$ satisfying $k_1 > 0$ and $k_1 + k_2 > 0$.
+  This follows directly from \Cref{thm:omnibus-vanishing}(2).
+\end{proof}
+
+We note down the following corollary for later use: 
+
+\begin{cor} \label{cor:cta-homotopy}
+  Suppose that $X \in \SHRat$ is a filtered colimit of Artin-Tate $\R$-motivic spectra that each admit a finite cell structure with all cells of the form $\Ss_2^{n,n,n}$.
+  Then $X \otimes C\ta \in \SHRatch$ and $X \to X \otimes C\ta$ induces an equivalence $\pi_0 ^{\ch} X \to X \otimes C\ta$.
+\end{cor}
+
+\begin{proof}
+  It is clear that the collection of $X$ which satisfy the conclusions of the corollary is closed under filtered colimits and extensions, so it suffices to assume that $X \simeq \Ss_2^{n,n,n}$
+  Since $\Sigma^{n,n,n}$ is an automorphism of the Chow $t$-structure, we may reduce to the case of $X \simeq \Ss_2^{0,0,0}$, which is precisely \Cref{lem:Cta-pi0}.
+\end{proof}
+
+%\begin{lem} \label{lem:tensor-t-ta}
+  %The tensor $t$-structure on $\Mod(\SHRat; C\ta)$ is induced by the Chow $t$-structure on $\SHRat$: a $C\ta$-module $X$ is tensor (co)connective if and only if it is Chow (co)connective.
+%\end{lem}
+
+\begin{proof}[Proof of \Cref{prop:t-compare}]
+  We first show that the tensor $t$-structure is induced by the Chow $t$-structure.
+  We begin by showing that the connective part of the tensor $t$-structure on $\Mod(\SHRat; C\ta)$ is generated under colimits and extensions by
+  \[ \{ \Sigma^{n+k_1, n+k_2,n} C\ta \ \vert \ k_1 \geq 0 \text{ and } k_1 + k_2 \geq 0 \}. \]
+
+  The $t$-structure on $\IndCoh(\Mfg)$ has connective part generated under colimits and extensions by $\omega^{\otimes n} _{\mathbb{G}/ \Mfg}$ for $n \in \Z$.
+  On the other hand, the $t$-structure on $\Mod(\Sp_{C_2, i2}; \uZt)$ has connective part generated under colimits and extensions by $\Sigma^{k_1+ k_2 \sigma} \uZt$, where $k_1 \geq 0$ and $k_1 + k_2 \geq 0$.
+
+  By definition, it follows that the connective part of the induced $t$-structure on $\Mod(\Sp_{C_2, i2}; \uZt) \otimes_{\Z} \IndCoh(\Mfg)$ is generated under colimits and extensions by the tensor products $\Sigma^{k_1 + k_2 \sigma} \uZt \otimes \omega^{\otimes n}_{\mathbb{G} / \Mfg}$, where $k_1 \geq 0$ and $k_1 + k_2 \geq 0$. Under the equivalence of \Cref{thm:Cta}, these correspond to $\Sigma^{n+k_1, n+k_2, n} C\ta$, as desired. \todo{Check sign of $n$.}
+
+  It follows directly from the above identification of the tensor connective category that a $C\ta$-module is is tensor coconnective if and only if it is Chow coconnective.
+  By Chow connectivity of $C\ta$, which follows from \Cref{lem:Cta-pi0}, it also follows that a $C\ta$-module is Chow connective if it is tensor connective.
+  On the other hand, if $X$ is Chow connective, then $X \otimes C\ta$ is clearly tensor connective. Using the equivalence $X \otimes C\ta \simeq X \oplus \Sigma^{1,0,-1} X$ (since $X$ is a $C\ta$-module), we see that $X$ itself is also tensor connective.
+
+  As a consequence of the above, we obtain a symmetric monoidal functor
+  \[ \Mod(\SHRat; C\ta)^{\th} \to \SHRatch. \]
+  Since the tensor $t$-structure is induced by the Chow $t$-structure, the fact that $C\ta$ lies in the Chow heart from \Cref{lem:Cta-pi0} implies that the above functor factors through a symmetric monoidal equivalence
+  \[ \Mod(\SHRat; C\ta)^{\th} \simeq \Mod(\SHRatch; C\ta). \]
+  Finally, the equivalence $\pi_0 ^{\ch} \Ss_2 ^{0,0,0} \simeq C\ta$ of \Cref{lem:Cta-pi0} implies that $C\ta$ is the unit of $\SHRatch$, so that the forgetful functor
+  \[\Mod(\SHRatch; C\ta) \to \SHRatch\]
+  is a symmetric monoidal equivalence.
+\end{proof}
+
+We now move on to the proof of \Cref{thm:pi0-MGL}. First we need to recall some basic facts about cell structures on finite approximations of $\MGL$.
+
+\begin{dfn}
+  Let $\mathrm{Gr}_k (\mathbb{A}^{n+k})$ denote the Grassmannian scheme of $k$-planes in $\mathbb{A}^{n+k}$, and let $\gamma$ denote the tautological $k$-dimensional vector bundle over $\mathrm{Gr}_k (\mathbb{A}^{n+k})$.
+
+  We let $\MGL(n,k)$ denote the Thom spectrum of the virtual bundle $\gamma - k\cdot \mathrm{triv}$. Then there is a canonical map $\MGL (n_1,k_1) \to \MGL(n_2, k_2)$ whenever $n_2 \geq n_1$ and $k_2 \geq n_2$, and we have $\varinjlim \MGL(n,n) \simeq \MGL$.
+\end{dfn}
+
+\begin{prop}[\cite{DICell}] \label{prop:MGL-chow-conn} \label{cor:MGL-dual-Chow-conn}
+  The $\R$-motivic spectrum $\MGL(n,k)$ admits a finite cell structure with cells of the form $\Ss^{m,m,m}$.
+
+  As a consequence, $\MGL(n,k)_2$, its Spanier-Whitehead dual $\mathbb{D}(\MGL(n,k)_2)$, and $\MGL_2$ are all Chow connective.
+\end{prop}
+
+\begin{proof}
+  The cell structure is a consequence of \cite{DICell}.
+  It follows from \Cref{thm:complete-compare} and \Cref{prop:compl-facts}(1) that there are equivalences:
+  \begin{align*}
+    &\MGL(n,k) \otimes \Ss_2 \simeq \MGL(n,k)_2 \\
+    &\mathbb{D} (\MGL(n,k)) \otimes \Ss_2 \simeq \mathbb{D} (\MGL(n,k)_2) \\
+    &\MGL \otimes \Ss_2 \simeq \MGL_2.
+  \end{align*}
+  Therefore these spectra continue to have the same cell structure after $2$-completion, from which the statements about Chow connectivity follow immediately.
+\end{proof}
+
+%\begin{lem}
+  %There is an equivalence of $\mathbb{E}_\infty$-rings $\MGL \simeq \Gamma_* (\MUR)$.
+%\end{lem} \todo{Push this one into Section 4!}
+%
+%\begin{proof}
+  %Let us view Artin-Tate $\R$-motivic spectra as filtered $\Gamma_* (\Ss)$-modules.
+  %First, we note that since there is an extra degeneracy we have $\Gamma_* (\MUR) \simeq \tau_{\geq 0} \MUR$.
+%
+  %On the other hand, we have ...
+%\end{proof}
+
+\begin{prop} \label{prop:MGL-Cta}
+  The map $\MGL_2 \to \MGL_2 \otimes C\ta$ induces an equivalence $\pi_0 ^{\ch} \MGL_2 \simeq \MGL_2 \otimes C\ta$, and the corresponding $\underline{(\MU_2)_{2*} \MU_2}$-comodule is $\underline{(\MU_2)_{2*} \MU_2}$.
+  %We have $\MGL \otimes C\ta \in \SHRatch$. Under the equivalence $\SHRatch \simeq \Comod(\uAbh; \underline{\MU_{2*} \MU})$, it corresponds to $\MU_{2*}$
+\end{prop}
+
+\begin{proof}
+  The first part of the statement follows directly from \Cref{cor:cta-homotopy} and \Cref{prop:MGL-chow-conn}.
+  On the other hand, \Cref{cor:gamma-MGL} states that $\MGL_2 \simeq \Gamma_* (\MU_{\R,2})$, so that \Cref{thm:Cta-homotopy} and \Cref{prop:t-compare} together imply that $\MGL_2 \otimes C\ta$ coreponds to $\piu_{*\rho} ^{C_2} (\MU_{\R,2} \otimes \MU_{\R,2}) \cong \underline{(\MU_2)_{2*} \MU_2}$.
+  %Since $\MGL$ is Chow connective by \Cref{prop:MGL-chow-conn}, the map $\MGL \to \MGL \otimes C\ta$ induces an equivalence on $\pi_0 ^{\ch}$. On the other hand, \Cref{cor:gamma-MGL}, \Cref{thm:Cta-homotopy} and \Cref{lem:tensor-t-ta} together imply that $\MGL \otimes C\ta$ lies in the heart of the Chow $t$-structure and corresponds to $\piu_{*\rho} ^{C_2} (\MUR \otimes \MUR) \cong \underline{\MU_{2*} \MU}$.
+\end{proof}
+
+\begin{ntn}
+  We let $\otimes^{\heartsuit}$ denote the symmetric monoidal structure on $\SHRatch \simeq \Comod(\uAbh_2; \underline{(\MU_2)_{2*} \MU_2})$.
+
+  Given a graded $\underline{(\MU_2)_{2*} \MU_2}$-comodule $M_*$, we let $M[n]_*$ denote the shift with $M[n]_{k+n} = M_{k}$.
+\end{ntn}
+
+\begin{lem} \label{lem:MGL-heart-tensor}
+  Let $M_*$ be a graded $\underline{(\MU_2)_{2*} \MU_2}$-comodule in $C_2$-Mackey functors, viewed as a element of $\SHRatch$.
+  Then $M_* \otimes \MGL_2$ lies in $\SHRatch$ and corresponds to $M_* \otimes^{\heartsuit} \underline{(\MU_2)_{2*} \MU_2}$.
+\end{lem}
+
+\begin{proof}
+  It follows from \Cref{prop:MGL-chow-conn} that $M_* \otimes \MGL_2$ is Chow connective.
+  As a consequence, \Cref{prop:MGL-Cta} implies that there are equivalences
+  \begin{align*}
+    \pi_0 ^{\ch} (M_* \otimes \MGL_2) &\simeq M_* \otimes^{\heartsuit} \pi_0 ^{\ch} \MGL_2 \\
+    &\simeq M_* \otimes^{\heartsuit} \underline{(\MU_2)_{2*} \MU_2}.
+  \end{align*}
+
+  It therefore suffices to show that $M_* \otimes \MGL_2$ is Chow coconnective.
+  For this, we compute for $n,k_1, k_2 \in \Z$ with $k_1 > 0$ and $k_1+ k_2 > 0$:
+  \begin{align*}
+    \pi_{n+k_1, n+k_2, n} ^{\R} (M _* \otimes \MGL_2) &\cong [\Ss_2^{n+k_1, n+k_2, n}, M _* \otimes \MGL_2]_{\SHRat} \\
+    &\cong \varinjlim [\Ss_2^{n+k_1, n+k_2, n}, M_* \otimes \MGL(m,m)_2]_{\SHRat} \\
+    &\cong \varinjlim [\Ss_2^{n+k_1, n+k_2, n} \otimes \mathbb{D} (\MGL(m,m)_2), M_*]_{\SHRat} \\
+    &\cong 0
+  \end{align*}
+  since $\mathbb{D} (\MGL(m,m)_2)$ is Chow connective by \Cref{prop:MGL-chow-conn}.
+  It follows that $M_* \otimes \MGL_2$ is Chow coconnective, as desired.
+\end{proof}
+
+\begin{lem} \label{lem:MGL-tensor-thing}
+  Suppose that $X$ is Chow connective. Then the map $X \otimes \MGL_2 \to \pi_0 ^{\ch} (X) \otimes \MGL_2$ induces an equivalence on $\piu_{n-k_1,n-k_2,n} ^{\R}$ for all $n,k_1,k_2 \in \Z$ with $k_1 \geq 0$ and $k_1 + k_2 \geq 0$.
+\end{lem}
+
+\begin{proof}
+  It suffices to show that $\piu_{n-k_1, n-k_2, n} ^{\R} Y \otimes \MGL_2 = 0$ for all Chow $1$-connective $Y$.
+  Since this condition is closed under filtered colimits, suspensions and extensions, it is closed under all colimits and extensions. It therefore suffices to assume that $Y = \Ss_2^{m+a_1, m+a_2, m}$ for $m,a_1,a_2 \in \Z$ satisfying $a_1 > 0$ and $a_1 + a_2 > 0$.
+  In other words, we must show that $\piu_{n-k_1, n-k_2, n} ^{\R} \MGL_2$ for all $n,k_1, k_2 \in \Z$ now satisfying $k_1 > 0$ and $k_1 + k_2 > 0$.
+
+  By \Cref{prop:P-MGL}, there is an isomorphism $\piu_{n-k_1, n-k_2, n} ^{\R} \MGL_2 \cong \piu_{n-k_1 + (n-k_2)\sigma} ^{C_2} P_{2n} \MU_{\R,2}$. This is zero because $\Phi^{e} (\Ss_2^{n-k_1 + (n-k_2)\sigma}) \simeq \Ss_2^{2n-k_1-k_2}$ is of dimension $< 2n$ and $\Phi^{C_2} (\Ss_2^{n-k_1 + (n-k_2) \sigma}) \simeq \Ss_2^{n-k_1}$ is of dimension $< n$. %\todo{Dunno where to find this in the literature... hope I don't need to write a lemma for it.}
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:pi0-MGL}]
+  %Given a graded $\underline{\MU_{2*} \MU}$-comodule $\underline{M}_*$, we let $\underline{M}[n]_*$ denote the shift with $\underline{M}[n]_{k+n} = \underline{M}_{k}$.
+%
+  We have
+  \begin{align*}
+    \pi_{0} ^{\ch} (X)_n &\cong \uHom_{\underline{(\MU_2)_{2*}}-\mathrm{mod}} (\underline{(\MU_2)_{2*}}[n], \pi_0 ^{\ch} (X)) \\
+    &\cong \uHom_{\underline{(\MU_2)_{2*} \MU_2}-\mathrm{comod}} (\underline{(\MU_2)_{2*}}, \pi_0 ^{\ch} (X) \otimes^{\heartsuit} \underline{(\MU_2)_{2*} \MU_2}) \\
+    &\cong \piu_0 ^{C_2} \Map_{\SHRat} (\Ss_2^{n,n,n}, \pi_0 ^{\ch} (X) \otimes \MGL_2) \\
+    &\cong \piu_0 ^{C_2} \Map_{\SHRat} (\Ss_2^{n,n,n}, X \otimes \MGL_2) \\
+    &\cong \underline{(\MGL_2)}^{\R}_{n+k,n,n} (X),
+  \end{align*}
+  where the third and fourth isomorphisms follow from \Cref{lem:MGL-heart-tensor} and \Cref{lem:MGL-tensor-thing}, respectively.
+\end{proof}
+
+%
+%\begin{ntn}
+%  Let $\tau_{\geq 0} ^{\cn}$ denote connectivization with respect to the Chow $t$-structure.
+%\end{ntn}
+
+Finally, we record the following proposition for use in \Cref{sec:nu}.
+
+\begin{prop} \label{prop:complete-compare}
+  An Artin-Tate $\R$-motivic spectrum $X \in \SHRat$ is left complete with respect to the Chow $t$-structure if and only if it is $\MGL_2$-local.
+\end{prop}
+
+The proof will make use of the following lemma:
+
+\begin{lem} \label{lem:conservative-funcs}
+  The functors $X \mapsto \piu_{n+k,n,n} ^{\R} X$ are jointly conservative on $\SHRat$.
+\end{lem}
+
+\begin{proof}
+  Since the functors $X \mapsto \Map_{\SHRat} (\Ss_2^{n,n,n}, X)$ are jointly conservative, it suffices to note that the functors $Y \mapsto \piu_{k} ^{C_2} Y$ are jointly conservative on $\Sp_{C_2}$.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{prop:complete-compare}]
+  Since the Chow $t$-structure is right complete, it is equivalent to show that $X \otimes \MGL_2 \simeq 0$ if and only if $\pi_{n} ^{\ch} X = 0$ for all $n$. This is an immediate consequence of \Cref{thm:pi0-MGL} and \Cref{lem:conservative-funcs}.
+\end{proof}
+
+

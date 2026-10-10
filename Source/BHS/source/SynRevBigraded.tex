@@ -1,0 +1,266 @@
+To precisely relate $\nu X$ to the $E$-based Adams spectral sequence for $X$, we must introduce \emph{bigraded spheres} and the canonical bigraded homotopy element $\tau$. 
+
+\begin{dfn}[{\cite[Definitions 4.6 and 4.9]{Pstragowski}}]
+The \emph{bigraded sphere} $\bS^{n,n}$ is defined to be $\nu(\bS^{n})$.  Since $\mathrm{Syn}_E$ is stable, we more generally define
+$\bS^{a,b}$
+to be $\Sigma^{a-b} \bS^{b,b}$, which makes sense even if $a-b<0$. For any synthetic spectrum $X$, the \emph{bigraded homotopy groups} $\pi_{a,b}(X)$ are defined to be the abelian groups
+$$ \pi_{a,b}(X) = \pi_0 \Hom(\bS^{a,b},X). $$
+\end{dfn}
+
+%% \begin{dfn}[{\cite[Definition 4.9]{Pstragowski}}]
+%% Suppose that $X$ is a synthetic spectrum.  Then $\pi_{a,b}(X)$ is defined to be the abelian group
+%% $$\pi_{a,b}(X) = \pi_0 \Hom(\bS^{a,b},X).$$
+%% \end{dfn}
+
+\begin{rmk}
+  The fact that $\nu$ is symmetric monoidal when restricted to finite projectives (such as $\bS^b$) implies that each of the bigraded spheres $\bS^{a,b}$ is $\otimes$-invertible. Thus, bigraded homotopy groups are particular instances of Picard-graded homotopy groups.
+\end{rmk}
+
+\begin{rmk} \label{rmk:colimit-compare}
+Recall that, if $F:\mathcal{C} \to \mathcal{D}$ is any functor of pointed, cocomplete $\infty$-categories, the definition of $\Sigma$ as a pushout gives natural comparison morphisms
+$$\Sigma F(c) \to F(\Sigma c).$$
+\end{rmk}
+
+\begin{dfn}[{\cite[Definition 4.27]{Pstragowski}}]
+The natural comparison map 
+$$\bS^{0,-1}=\Sigma \nu(\bS^{-1}) \longrightarrow \nu(\Sigma \bS^{-1})=\bS^{0,0}$$
+is denoted by $\tau$.  In short, $\tau$ is a canonical element of $\pi_{0,-1} \bS^{0,0}$.   The symbol $C\tau$ denotes the cofiber of $\tau$.  A synthetic spectrum $X$ is said to be \emph{$\tau$-invertible} if the map $$\tau:\Sigma^{0,-1} X \to X$$ is an equivalence.  
+\end{dfn}
+
+Using $\tau$ we can now give a global description of the category of synthetic spectra.
+Although the description given in \Cref{thm:tau-inv} is concise and powerful,
+we will ultimately trade it in for the more computationally precise \Cref{thm:synthetic-Adams}.
+
+\begin{thm}[Pstr\k{a}gowski] \label{thm:tau-inv}\ 
+
+  \begin{enumerate}
+  \item The localization functor given by inverting $\tau$ is symmetric monoidal. \todo{should we say it's smashing?}
+  \item The full subcategory of $\tau$-invertible synthetic spectra is equivalent to the category of spectra.
+  \item The composite $\tau^{-1} \circ \nu$ is equivalent to the identity functor on $\Sp$.
+  \item The object $C\tau$ admits the structure of an $\mathbb{E}_\infty$-ring in $\Syn_E$.
+  \item Suppose that $E$ is homotopy commutative.
+    Then there is a natural fully faithful, monoidal functor
+    $$ \mathrm{Mod}_{C\tau} \to \mathrm{Stable}_{E_*E},$$
+    where the target is Hovey's stable $\infty$-category of comodules and
+    the composition of $\nu(-) \otimes C\tau$ with this functor is equivalent to $E_*(-)$.
+  \end{enumerate}
+  We can construct the following diagram, where every arrow except $\nu$ and $E_*(-)$ is a left adjoint.
+  \begin{center}
+    \begin{tikzcd}
+      & \Sp \ar[dl, swap, "1"] \ar[d, "\nu"] \ar[drr, bend left, "E_*(-)"] & & \\
+      \Sp & \mathrm{Syn}_E \ar[l, "\tau^{-1}"] \ar[r, "- \otimes C\tau"] &
+      \mathrm{Mod}_{C\tau} \ar[r] & \mathrm{Stable}_{E_*E}
+    \end{tikzcd}
+  \end{center}
+\end{thm}
+
+Before proving \Cref{thm:tau-inv} we record the following useful corollary.
+
+\begin{cor}[{\cite[Lemma 4.56]{Pstragowski}}] \label{lemm:ctauE2}
+  For any spectrum $X$, there is a natural isomorphism of bigraded abelian groups
+  $$ \pi_{t-s,t}(C\tau \otimes \nu X) \cong \Ext_{E_*E}^{s,t}(E_*,E_*X).$$
+  Note that the latter object is the $\mathrm{E}_2$-page of the $E$-based Adams spectrum sequence for $X$.
+\end{cor}
+
+\begin{proof}[Proof of \Cref{thm:tau-inv}]
+  Except for the claim that the functor in (5) is symmetric monoidal, this theorem is just a combination of citations to \cite{Pstragowski}:
+  (1) is \cite[Theorem 4.36 and Proposition 4.39]{Pstragowski}, (2) is \cite[Theorem 4.36]{Pstragowski}, (3) is \cite[Proposition 4.39]{Pstragowski}, (4) is \cite[Corollary 4.45]{Pstragowski} and most of (5) is \cite[Theorem 4.46 and Remark 4.55]{Pstragowski}.
+
+  We finish by proving the remaining claim.
+  By \cite[Lemma 4.43]{Pstragowski} the left adjoint
+  $$ \epsilon_* : \mathrm{Syn}_E \to \mathrm{Stable}_{E_*E} $$
+  is symmetric monoidal because $E$ is homotopy commutative.\footnote{While \cite[Lemma 4.43]{Pstragowski} as written does not state that $E$ needs to be homotopy commutative, this hypothesis is necessary: we refer the reader to Lemma 4.44 in the second arXiv version of \cite{Pstragowski}.} Then, by \cite[Corollary I.2.5.5.3]{SAG} and \cite[Lemma 4.44]{Pstragowski}, there is a factorization of lax symmetric monoidal right adjoints
+  $$ \mathrm{Stable}_{E_*E} \to \mathrm{Mod}_{C\tau} \to \mathrm{Syn}_E.$$
+  In particular, this means that the left adjoint $\mathrm{Mod}_{C\tau} \to \mathrm{Stable}_{E_* E}$ canonically acquires the structure of an oplax symmetric monoidal functor \cite[Proposition A]{OpLaxAdjoint}.
+  It remains to check that the comparison maps provided by the oplax structure are equivalences.
+  Because the tensor products on $\mathrm{Syn}_E$ and $\mathrm{Stable}_{E_*E}$ are cocontinuous in each variable, it suffices to check this on compact generators. This follows from \cite[Lemma 4.43]{Pstragowski} and the fact that $\mathrm{Mod}_{C\tau}$ is compactly generated by objects of the form $C\tau \otimes M$. 
+\end{proof}
+
+\begin{rmk}
+Altogether, \Cref{thm:tau-inv} suggests the following geometric picture of synthetic spectra:
+Synthetic spectra form a $\mathbb{G}_m$-equivariant family over $\mathbb{A}^1$, where $\tau$ is the coordinate on $\mathbb{A}^1$.
+The special fiber of this family is a category of comodules while the generic fiber is the category of spectra.
+We will not pursue this perspective further in the present paper.
+\end{rmk}
+
+\begin{lem} \label{lemm:adams-fil1}
+  If a map $f:X \longrightarrow Y$ of spectra has $E$-Adams filtration $k$, then there exists a factorization:
+  \begin{center}
+    \begin{tikzcd}
+      & \Sigma^{0,-k} \nu(Y) \arrow{d}{\tau^{k}} \\
+        \nu(X) \arrow[dashed]{ur}{\wt{f}} \arrow{r}{\nu(f)} & \nu(Y)
+    \end{tikzcd}
+  \end{center}
+\end{lem}
+
+\begin{proof}
+  Any map which is of Adams filtration $k$ can be factored into a composite of $k$ maps each of Adams filtration 1. Then, by pasting diagrams as shown below it will suffice to prove the lemma for $k=1$.
+  \begin{center}
+    \begin{tikzcd}
+      & & \Sigma^{0,-a-b} \nu(C) \ar[d, "\tau^b"] \\
+      & \Sigma^{0,-a} \nu(B) \ar[ur, dashed] \ar[r, "\nu(h)"] \ar[d, "\tau^a"] & \Sigma^{0,-a}\nu(C) \ar[d, "\tau^a"] \\
+      \nu(A) \ar[r, "\nu(g)"] \ar[ur, dashed] & \nu(B) \ar[r, "\nu(h)"] & \nu(C)
+    \end{tikzcd}
+  \end{center}  
+
+  Using the associated cofiber sequence
+  $$ \Sigma^{-1}Y \xrightarrow{g} Z \xrightarrow{h} X \xrightarrow{f} Y,  $$
+  we can build the diagram below.
+  \begin{center}
+    \begin{tikzcd}
+      \nu (\Sigma^{-1} Y) \ar[r] \ar[d, "\nu(g)"] & 0 \ar[r] \ar[d] & \Sigma \nu (\Sigma^{-1}Y) \ar[r, "\tau"] \ar[d] & \nu(Y) \ar[d, equal] \\
+      \nu (Z) \ar[r, "\nu(h)"] & \nu(X) \ar[r] \ar[rr, bend right, "\nu(f)"] & \text{cof}(\nu(h)) \ar[r] & \nu(\mathrm{cof}(h)).
+    \end{tikzcd}
+  \end{center}
+
+  In this diagram, the first pair of maps in each row form cofiber sequences and the right-most map in each row is an assembly map.
+  Now, since $f$ has positive Adams filtration it is zero on $E$-homology and therefore $g$ and $h$ satisfy the conditions of \Cref{lemm:syn-cof}.
+  This implies that the left-most square is cocartesian and the third vertical map is an equivalence, which provides the desired factorization of $\nu(f)$.
+\end{proof}
+
+Before we can relate the bigraded homotopy groups of $\nu X$ to the $E$-based Adams spectral sequence of $X$, we must engage in a brief discussion of completion and convergence.
+
+\begin{dfn} \label{rmk:E-complete} \label{dfn:E-complete}
+  A spectrum $X$ is said to be \emph{$E$-nilpotent complete} if the $E$-based Adams resolution for $X$ converges to $X$. In this paper we will make use of two instances of this:
+  \begin{itemize}
+      \item Any bounded below, $p$-local spectrum $X$ is $\BP$-nilpotent complete \cite[Theorem 6.5]{BousfieldLocalization}.
+      \item Any bounded below, $p$-complete spectrum $X$ is $\mathrm{H}\mathbb{F}_p$-nilpotent complete \cite[Theorem 6.6]{BousfieldLocalization}.
+  \end{itemize}
+\end{dfn}
+
+\begin{dfn} \label{dfn:strong-conv}
+    Following Boardman \cite[Defintion 5.2]{Boardman}, we will say that the $E$-based Adams spectral sequence for a spectrum $X$ is \emph{strongly convergent} if:
+    \begin{itemize}
+        \item The $E$-Adams filtration $F^{\bullet} \pi_{*} (X)$ of the homotopy groups of $X$ is complete and Hausdorff.
+        \item There are isomorphisms $F^{s} \pi_{t-s} (X) / F^{s+1} \pi_{t-s} (X) \cong \mathrm{E}^{s,t}_\infty (X)$, where $\mathrm{E}_{\infty} ^{s,t} (X)$ is the $\mathrm{E}_\infty$-page of the $E$-Adams spectral sequence for $X$.
+    \end{itemize}
+\end{dfn}
+
+%Recall that the $E$-based Adams spectral sequence of a spectrum $X$ is \emph{conditionally convergent} in the sense of Boardman \cite[Definition 5.10]{Boardman} if and only if $X$ is $E$-nilpotent complete.
+
+\begin{rmk}
+    \Cref{dfn:E-complete} and \Cref{dfn:strong-conv} have obvious analogs for synthetic spectra, and we will make use of these analogs without further mention.
+\end{rmk}
+
+Our strongest result concerning the relationship between synthetic spectra and Adams spectral sequences is \Cref{thm:synthetic-Adams} (stated below). This theorem provides a dictionary between the structure of the $E$-Adams spectral sequence for $X$ and the structure of the bigraded homotopy groups of $\nu X$. The proof of \Cref{thm:synthetic-Adams} is quite technical, and we defer it to \Cref{sec:proof-synth-Adams}. We have structured the paper so that the reader willing to assume \Cref{thm:synthetic-Adams} need not read \Cref{sec:proof-synth-Adams}.
+
+In order to highlight many of the subtleties which can arise in applying \Cref{thm:synthetic-Adams}, we give example calculations of $\pi_{*,*}(\nu_{\HFt} \bS_2^\wedge)$ through the Toda range in \Cref{subsec:syn-toda-range}.  We strongly recommend that any reader seeking to understand Theorem \ref{thm:synthetic-Adams} examine \Cref{subsec:syn-toda-range}.
+
+\begin{thm} \label{thm:synthetic-Adams}
+  Let $X$ denote an $E$-nilpotent complete spectrum with strongly convergent $E$-based Adams spectral sequence.
+  Then we have the following description of the bigraded homotopy groups of $\nu X$.
+
+  Let $x$ denote a class in topological degree $k$ and filtration $s$ of the $\mathrm{E}_2$-page of the $E$-based Adams spectral sequence for $X$. The following are equivalent:
+  \begin{itemize}
+  \item[(1a)] Each of the differentials $d_2$,...,$d_r$ vanish on $x$.
+  \item[(1b)] $x$, viewed as an element of $\pi_{k,k+s}(C\tau \otimes \nu X)$, lifts to $\pi_{k,k+s}(C\tau^r \otimes \nu X)$.
+  \item[(1c)] $x$ admits a lift to $\pi_{k,k+s}(C\tau^r \otimes \nu X)$ whose image under the $\tau$-Bockstein
+  $$ C\tau^r \otimes \nu X \to \Sigma^{1,-r} C\tau \otimes \nu X $$
+  is equal to $-d_{r+1}(x)$.
+  \end{itemize}
+
+  If we moreover assume that $x$ is a permanent cycle, then there exists a (not necessarily unique) lift of $x$ along the map
+  $\pi_{k,k+s}(\nu X) \to \pi_{k,k+s}(C\tau \otimes \nu X)$.  For any such lift, $\wt{x}$, the following statements are true:
+  \begin{itemize}
+  \item[(2a)] If $x$ survives to the $\mathrm{E}_{r+1}$-page, then $\tau^{r-1} \wt{x} \neq 0$.
+  \item[(2b)] If $x$ survives to the $\mathrm{E}_\infty$-page, then the image of $\wt{x}$ in $\pi_{k} (X)$ is of $E$-Adams filtration $s$ and detected by $x$ in the $E$-based Adams spectral sequence.\footnote{The image of $\wt{x}$ in $\pi_{k} (X)$ refers to the image of $\wt{x}$ under the map $\pi_{k,k+s} (\nu X) \to \pi_{k} (\tau^{-1} \nu X) \cong \pi_k (X)$ induced by the functor $\tau^{-1}$ of \Cref{thm:tau-inv}.}
+  \end{itemize}
+  Furthermore, there always exists a choice of lift $\wt{x}$ satisfying additional properties:
+  \begin{itemize}
+  \item[(3a)] If $x$ is the target of a $d_{r+1}$-differential, then we may choose $\wt{x}$ so that $\tau^r \wt{x} = 0$.
+  \item[(3b)] If $x$ survives to the $\mathrm{E}_\infty$-page, and $\alpha \in \pi_k X$ is detected by $x$, then we may choose $\wt{x}$ so that
+    $\tau^{-1} \wt{x} = \alpha$. In this case we will often write $\wt{\alpha}$ for $\wt{x}$.
+  \end{itemize}
+  Finally, the following generation statement holds:
+  \begin{itemize}
+  \item[(4)] Fix any collection of $\wt{x}$ (not necessarily chosen according to (3)) such that the $x$ span the permanent cycles in topological degree $k$.  Then the $\tau$-adic completion of the $\Z[\tau]$-submodule of $\pi_{k,*}(\nu X)$ generated by those $\wt{x}$ is equal to $\pi_{k,*} (\nu X)$.\footnote{We consider $\pi_{k,*}(\nu X)$ as a graded abelian group with an operation $\tau$ which decreases the grading by 1.}
+  \end{itemize}
+\end{thm}
+
+The proof is somewhat involved, so we postpone it to \Cref{sec:proof-synth-Adams}.
+We extract below some more digestible corollaries of the above omnibus theorem.
+
+\begin{cor}\label{lemm:ctaugoodenough}
+  Let $X$ denote an $E$-nilpotent complete spectrum with strongly convergent $E$-based Adams spectral sequence.
+  Suppose for fixed integers $a$ and $b$ that 
+  $$\pi_{a,b+s} (C\tau \otimes \nu X) = 0$$
+	for all integers $s \geq 0$.   Then it is also true that $\pi_{a,b+s} (\nu X) = 0$ for all $s \geq 0$.
+\end{cor}
+
+\begin{proof}
+    This follows by combining the vanishing assumption and \Cref{thm:synthetic-Adams}(4).
+\end{proof}
+
+We next note that the filtration by ``divisibility by $\tau$'' coincides with the Adams filtration:
+
+\begin{cor}\label{cor:synth-filt}
+  Let $X$ denote an $E$-nilpotent complete spectrum with strongly convergent $E$-based Adams spectral sequence.
+  Then the filtration of $\pi_k(X)$ given by
+  $$ F^s \pi_k(X) := \mathrm{im}(\pi_{k,k+s}(\nu X) \to \pi_k(X)) $$
+  coincides with the $E$-Adams filtration on $\pi_k(X)$.
+\end{cor}
+
+\begin{proof}
+  We show that each filtration contains the other.
+  \Cref{lemm:adams-fil1} provides an inclusion in one direction: if $x \in \pi_k(X)$ has $E$-Adams filtration $\geq s$, then $x \in F^s\pi_k(X)$.
+
+    Suppose now that $x \in F^s \pi_{k} (X)$, so that we may find some $\wt{x} \in \pi_{k,k+s} (\nu X)$ that maps to $x$. We may assume without loss of generality that $s$ was chosen maximally. Let $y$ be the image of $\wt{x}$ in $\pi_{k,k+s} (C\tau \otimes \nu X)$.
+
+    Suppose that $y$ is a boundary in the $E$-Adams spectral sequence. Then by \Cref{thm:synthetic-Adams}(3a) there exists a $\tau$-power torsion element $\wt{y}$ lifting $y$. It follows that $\wt{x}-\wt{y} = \tau \wt{z}$ for some $\wt{z} \in \pi_{k,k+s+1} (\nu X)$. But then $\wt{z}$ maps to $x \in \pi_k (X)$ under $\tau^{-1}$, which implies that $x \in F^{s+1} \pi_{k} (X)$. This contradicts the maximality assumption on $s$.
+
+    We conclude that $y$ cannot be a boundary. Then \Cref{thm:synthetic-Adams}(2b) finishes the proof.
+  %
+  %For the other direction, choose $s$ so that $x \not\in F^{s+a}\pi_k(X)$ and choose a $\wt{x} \in \pi_{k,k+s}(\nu X)$ that maps to $x$. Let $y$ denote the image of $\wt{x}$ in $\pi_{k,k+s}(C\tau \otimes \nu X)$. We break into cases based on whether $y$ is a boundary in the $E$-based Adams spectral sequence.
+%
+  %\textbf{Case 1}: $y$ is not a boundary.
+  %Then \Cref{thm:synthetic-Adams}(2b) suffices to conclude.
+%
+  %\textbf{Case 2:} $y$ is a boundary.
+  %Then by \ref{thm:synthetic-Adams}(3a) there exists a $\wt{y}$ lifting $y$ which is $\tau$-power torsion. This implies that $\wt{x} - \wt{y}$ is divisible by $\tau$ while that same element maps to $x$ in $\pi_k(X)$. This contradicts tha maximality of $s$.
+\end{proof}
+
+Let $\pi_{k,k+s}(\nu X)^{\mathrm{tor}}$ denote the subgroup of $\tau$-power torsion elements.
+We obtain the following $\tau$-power torsion order bound:
+
+\begin{cor}\label{cor:tau-torsion-bound}
+  Let $X$ denote an $E$-nilpotent complete spectrum with strongly convergent $E$-based Adams spectral sequence.
+  Then the $\tau$-torsion order of $\pi_{k,k+s}(\nu X)^{\mathrm{tor}}$ is equal to the maximum of
+  \begin{enumerate}
+  \item one less than the $\tau$-torsion order of $\pi_{k,k+s+1}(\nu X)^{\mathrm{tor}}$,
+  \item one less than the length of the longest Adams differential entering $\mathrm{E}_*^{s,k+s}$.
+  \end{enumerate}
+\end{cor}
+
+\begin{proof}
+  Suppose $x \in \pi_{k,k+s}(\nu X)^{\mathrm{tor}}$, and let $y$ denote the image of $x$ in $\pi_{k,k+s}(C\tau \otimes \nu X)$.
+  Choose a lift $\wt{y}$ of $y$ as in \Cref{thm:synthetic-Adams}(3).
+  
+  Suppose that $y$ is not a boundary in the $E$-Adams spectral sequence.
+  Then, $\wt{y} - x$ is divisible by $\tau$ while
+  $ \tau^{-1}(\wt{y} - x) = \tau^{-1} \wt{y} $
+  is detected by $y$, which contradicts \Cref{cor:synth-filt}.
+  
+  We conclude that $y$ must be a boundary in the $E$-Adams spectral sequence. Let $r$ denote the length of the differential that hits $y$.
+    Then $\wt{y} - x$ is divisible by $\tau$ and $\wt{y}$ is $\tau^{r-1}$-torsion, so the desired bound on the $\tau$-torsion order of $x$ follows.
+\end{proof}
+
+%\begin{rmk}
+    %In attempting to apply \Cref{cor:tau-torsion-bound}, one can easily run into an unbased induction. Often this can be fixed by using \Cref{lemm:ctaugoodenough} first to provide a base case.
+%\end{rmk}
+%
+%% however this isn't always possible.
+%% For use in this situation we offer the following corollary whose proof depends on the details of the proof of \Cref{thm:synthetic-Adams} and will therefore be deferred to ???.
+
+%% \begin{cor}
+%%   Let $X$ denote an $E$-complete spectrum such that for each $k$ there exists a increasing function $f_k(s)$ with the property that
+%%   $ \lim (f(s) - s) = -\infty $ and
+%%   $$ \mathrm{E}_{f(s)}^{s,k+s}(X) = \mathrm{E}_\infty^{s,k+s}(X). $$
+%%   Then, the $E$-based Adams spectral for $X$ converges strongly and the $\tau$-adic completion in the statement of \Cref{thm:synthetic-Adams} is unneccesary.
+%% \end{cor}
+%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Main"
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

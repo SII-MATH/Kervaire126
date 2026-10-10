@@ -1,0 +1,414 @@
+In this paper correctly handling a variety of different types of completion has been a key point.
+The purpose of this section is to give a single uniform source of information on completeness questions and how we handle them.
+
+In \Cref{sec:2vsi2complete}, we show that $2$-completion agrees with tensoring with $\Ss_2$ for some important $\R$-motivic spectra. Since these $\R$-motivic spectra are cellular, this implies that their $2$-completions in $\SHR$ lie in $\SHRat$ and that that their cell decompositions carry over unchanged to the $2$-completion.
+In the case of $\MGL$, this is an important technical point in the rest of the paper.
+
+In \Cref{sec:ta-comp}, we record the fact that every dualizable object of $\SHRat$ is $\ta$-complete.
+
+Finally, in \Cref{sec:a-comp}, we make some remarks about $a$-completion.
+
+\subsection{2 completion is sometimes i2 completion}\label{sec:2vsi2complete} \
+
+The main goal of this section is to prove the following theorem:
+
+\begin{thm}\label{thm:complete-compare}
+  There are natural equivalences in $\SHR$:
+  \begin{align*}
+    &\MGL \otimes \Ss_2 \to \MGL_2 \\
+    &\HZ \otimes \Ss_2 \to \HZ_2 \\
+    &\kgl \otimes \Ss_2 \to \kgl_2 \\
+    &\kq \otimes \Ss_2 \to \kq_2.
+  \end{align*}
+\end{thm}
+
+The proof for $\MGL$, $\HZ$ and $\kgl$ will be completely independent of the rest of this paper. On the other hand, the proof for $\kq$ will use results from Sections \ref{sec:ta} through \ref{sec:top}.
+
+We begin with some basic facts about the situation.
+In the following, we will make use of the homotopy $t$-structure on the category of $\SHR$ of $\R$-motivic spectra.
+We refer to the reader to \cite[\S 2.1]{HM} for basic facts about the homotopy $t$-structure.
+
+\begin{prop} \label{prop:compl-facts}
+  Given $X \in \SHR$, the following statements are true:
+  \begin{enumerate}
+    \item If $X$ is dualizable, then
+  \[X \otimes \Ss_2 \to X_2\]
+  is an equivalence.
+
+%\item If $X$ is $n$-connective with respect to the homotopy $t$-structure, then $X_2$ is $(n-1)$-connective.
+%
+\item Suppose that $\varinjlim X(n) \simeq X$ and that the connectivity of the maps $X(n) \to X$ tend to infinity with respect to the homotopy $t$-structure. Then if
+  \[X(n) \otimes \Ss_2 \to X(n)_2\]
+  is an equivalence for all $n$, we also learn that
+  \[X \otimes \Ss_2 \to X_2\]
+  is an equivalence.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  To prove (1), it simply suffices to note that since $X$ is dualizable, the functor $- \otimes X$ preserves limits.
+
+%  To prove (2), we make use of the presentation
+%  \[X_2 \simeq \varprojlim_{k} X/2^k \simeq \fib \left( \prod_{k} X/2^k \to \prod_{k} X/2^k \right).\]
+%  Since infinite products preserve connectivity in the homotopy $t$-structure, it suffices to note that the cofiber sequences
+%  \[X \to X/2^k \to \Sigma^{1,0,0} X\]
+%  imply that $X/2^k$ is $n$-connective if $X$ is.
+%
+  To prove (2), we note that, since tensoring with $\Ss_2$ preserves colimits, it is equivalent to show that
+  \[\varinjlim X(n)_2 \to X_2\]
+  is an equivalence, i.e. that
+  \[\varinjlim (X_2 / X(n)_2) \simeq \varinjlim (X/X(n))_2 \simeq 0 .\]
+
+  Since $\{\Ss^{p,w,w} \otimes S_+ \vert S \in \Sm/\R \text{ and } p,w \in \Z\}$ forms a set of compact generators for $\SHR$, it suffices to show that
+  \[\Map_{\SHR} (\Ss^{p,w,w} \otimes S_+, \varinjlim(X/X(n))_2 ) \simeq \varinjlim \left( \Map_{\SHR} (\Ss^{p,w,w} \otimes S_+, X/X(n))_2 \right)\]
+  is equivalent to $0$ for all $S \in \Sm/\R$ and $p,w \in \Z$.
+
+  This follows from the definition of the homotopy $t$-structure, which implies that, for fixed $S \in \Sm/\R$ and $p,w \in \Z$, the connectivity of the spectrum
+  \[\Map_{\SHR} (\Ss^{p,w,w} \otimes S_+, X/X(n))\]
+  goes to infinity as $n$ goes to infinity.
+%
+  %Since the homotopy $t$-structure is left complete, it suffices to show that the connectivity of $(X/X(n))_2$ tends to infinity.
+  %This follows from (2) and the assumption that the connectivity of $X/X(n)$ tends to infinity.
+\end{proof}
+
+The key input to our proof of \Cref{thm:complete-compare} will be the following:
+
+\begin{lem}\label{lem:cof-conn}
+  Let $\MGL(n,k)$ denote the Thom spectrum of the bundle $\gamma - k \cdot \triv$ over $\mathrm{Gr}_k (\mathbb{A}^{n+k})$.
+  Then the cofiber of the natural map $\MGL(n,n) \to \MGL$ is $n$-connective with respect to the homotopy $t$-structure.
+\end{lem}
+
+\begin{proof}
+  This is an immediate consequence of \cite[Lemma 3.4]{HM}.
+  %By Tom's conservativity result,\footnote{Here use use connectivity and slice connectivity of $\MGL$ and $\MGL(n,n)$.} it should suffice to check that this is true after taking the associated motives in DM and after taking $\R$-points. (I think the usual $\R$-points $t$-structure is compatible with the motivic one here....)
+%
+  %This is clear after taking $\R$-points.
+  %On the other hand, we know that the associated motives of $\MGL(n,n)$ and $\MGL$ are pure Tate and are determined by the cohomology of $\MU(n,n)$ and $\MU$.
+  %The result therefore follows from its analogue for $\MU(n,n) \to \MU$, which follows easily from classical computations of their cohomology.
+\end{proof}
+%
+%We also need the following lemma:
+%
+%\begin{lem} \label{lem:cmpl-conn}
+%  If $X$ is $n$-connective with respect to the homotopy $t$-structure, then $X_2$ is $(n-1)$-connective.
+%\end{lem}
+%
+%\begin{proof}
+%  There are equivalences
+%  \[X_2 \simeq \varprojlim_{k} X/2^k \simeq \fib \left( \prod_{k} X/2^k \to \prod_{k} X/2^k \right).\]
+%  Since infinite products preserve connectivity in the homotopy $t$-structure,\todo{I hope...} it suffices to note that the cofiber sequences
+%  \[X \to X/2^k \to \Sigma^{1,0,0} X\]
+%  imply that $X/2^k$ is $n$-connective if $X$ is.
+%\end{proof}
+%
+%\begin{lem} \label{lem:dual-good}
+%  If $X$ is dualizable, then
+%  \[X \otimes \Ss_2 \to X_2\]
+%  is an equivalence.
+%\end{lem}
+%
+%\begin{proof}
+%  Since $X$ is dualizable, tensoring with $X$ commutes with limits.
+%\end{proof}
+%
+%\begin{lem} \label{lem:lim-good}
+%  Suppose that $\varinjlim X(n) \simeq X$ and that the connectivity of the maps $X(n) \to X$ tend to infinity. Then if
+%  \[X(n) \otimes \Ss_2 \to X(n)_2\]
+%  is an equivalence for all $n$, we also learn that
+%  \[X \otimes \Ss_2 \to X_2\]
+%  is an equivalence.
+%\end{lem}
+%
+%\begin{proof}
+%  Since tensoring with $\Ss_2$ preserves colimits, it is equvalent to show that
+%  \[\varinjlim X(n)_2 \to X_2\]
+%  is an equivalence, i.e. that
+%  \[\varinjlim X_2 / X(n)_2 \simeq \varinjlim (X/X(n))_2 \simeq 0 .\]
+%
+%  Since the homotopy $t$-structure is (left? right?) complete, it suffices to show that the connectivity of $(X/X(n))_2$ tends to infinity.
+%  This follows from \Cref{lem:cmpl-conn} and the assumption that the connectivity of $X/X(n)$ tends to infinity.
+%\end{proof}
+%
+\begin{proof}[Proof of \Cref{thm:complete-compare} for $\MGL$, $\HZ$ and $\kgl$]
+  Since $\MGL(n,k)$ is dualizable, the result for $\MGL$ follows from the combination of \Cref{prop:compl-facts}(1,2) with \Cref{lem:cof-conn}.
+
+  We now turn to the case of $\HZ$.
+  By the Hopkins--Morel theorem \cite{HM}, there is an equivalence
+  \[ \MGL / (a_1, a_2, \dots) \simeq \HZ \]
+  for certain classes $a_i \in \pi_{i,i,i} ^\R \MGL$.
+  In other words,
+  \[\varinjlim \MGL / (a_1, a_2, \dots, a_k) \simeq \HZ.\]
+  By the result for $\MGL$, we know that the result holds for all $\MGL / (a_1, a_2, \dots, a_k)$. By \Cref{prop:compl-facts}(2), it therefore suffices to show that the connectivity of
+  \[\MGL / (a_1, a_2, \dots, a_k) \to \MGL / (a_1, a_2, \dots) \simeq \HZ\]
+  goes to infinity.
+  To do this, it suffices to show that the connectivity of
+  \[\MGL / (a_1, a_2, \dots, a_k) \to \MGL / (a_1, a_2, \dots, a_k, a_{k+1})\]
+  goes to infinity, which follows from the cofiber sequences
+  \[\MGL / (a_1, a_2, \dots, a_k) \to \MGL / (a_1, a_2, \dots, a_k, a_{k+1}) \to \Sigma^{k+2, k+1,k+1} \MGL / (a_1, a_2, \dots, a_k).\]
+
+  Finally, we handle the case of $\kgl$.
+  Combining the Hopkins--Morel theorem and convergence of the effective slice towers for $\MGL$ and $\kgl$ \cite[Lemmas 8.10 and 8.11]{HM} with \cite[Proposition 5.4]{Spitzweck}, we find that there is an equivalence
+  \[\MGL / (a_2, a_3, \dots) \simeq \kgl. \]
+  We may therefore prove the result for $\kgl$ exactly as we did for $\HZ$.
+ % Finally, we handle the case of $\kgl$. It follows from \cite[Lemma 8.11]{HM} that the $n$th effective slice cover $f_n \kgl$ of $\kgl$ is $n$-connective.
+ % As a consequence, we find that $\kgl \otimes \Ss_2 \simeq \varprojlim (f^n \kgl) \otimes \Ss_2$.
+ % The negative slices of $\kgl$ are trivial, and the nonnegative slices are given by the formula $s_n \kgl \simeq \Sigma^{2n,n} \HZ$.
+  %It follows that the slice cover $f_n \kgl$ is $n$-connective \todo{Or at least $n-1$ if you want to be really careful.} in the homotopy $t$-structure.
+ % By the computation of the slices, this reduces the result to that for $\HZ$, where we've already shown it.
+\end{proof}
+
+Before we move on to the case of $\kq$, we collect some facts that we will need:
+\begin{prop} \label{prop:completion-useful}
+  The following are true:
+  \begin{enumerate}
+    \item Suppose that $X \in \SHRat$ is effective slice connective. Then the natural map
+      \[\Map_{\SHR} (\Ss^{0,0,n}, X) \to \b (X)\]
+      is an equivalence for any $n \leq 0$.
+    %\item For any $C_2$-spectrum $X$, there is a natural equivalence
+      %\[X^{C_2} \otimes \Ss_2 \simeq (X \otimes \Ss_2 )^{C_2}.\]
+    \item In $C_2$-equivariant spectra, there is a canonical equivalence
+      \[\Phi^{C_2} (\ko_{C_2, 2}) \simeq \Phi^{C_2} (\ko_{C_2})_2.\]
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  Given $X \in \SHRat$, it follows from \Cref{thm:comparison-invert-ta}
+  %and \Cref{thm:filt-model}
+  that $\b(X) \simeq \varinjlim \Map_{\SHR} (\Ss^{0,0,n}, X)$.
+  Part (1) therefore follows from \Cref{thm:eff-fil}.
+%
+  %Since the collection of $X$ which satisfy the statement of (2) is closed under colimits, we may assume that $X = \Ss^{p+q\sigma}$ for some $p,q \in \Z$. For such $X$, $X^{C_2}$ is finite type, so that there is a commuting square
+  %\begin{center}
+    %\begin{tikzcd}
+      %X^{C_2} \otimes \Ss_2 \ar[r, "\sim"] \ar[d] & (X^{C_2})_2 \ar[d] \\
+      %(X \otimes \Ss_2 )^{C_2} \ar[r, "\sim"] & (X_2 )^{C_2}
+    %\end{tikzcd}
+  %\end{center}
+  %where the horizontal maps are equivalences.
+  %The result therefore follows from the fact that the fixed points functor preserves limits.
+
+  We now prove (2). By the cofiber sequence
+  \[(\ko_{C_2})_{hC_2} \to (\ko_{C_2})^{C_2} \to \Phi^{C_2} (\ko_{C_2})\]
+  and the fact that $(-)^{C_2}$ commutes with limits, it suffices to show that the canonical map
+  \[(\ko_{C_2,2})_{hC_2} \to (\ko_{C_2})_{hC_2, 2}\]
+  is an equivalence.
+  This map is equivalent to
+  \[\ko_{2} \otimes \RP^{\infty}_{+} \to (\ko \otimes \RP^{\infty} _+ )_2, \]
+  so this follows from connectivity of $\ko$ and the fact that $\RP^\infty _+$ is of finite type. 
+%
+  %It follows from \cite[Theorem 2.2]{KSW} \todo{Just trusting Hana here that this is the right reference...} that there is an equivalence $\b(\KQ) \simeq \KO_{C_2}$. Since $\kq$ is very effective by definition, $\b(\kq)$ is connective, so that the above equivalence factors as $\b (\kq) \to \ko_{C_2}$.
+  %It follows from the equivalences $\kgl \simeq \kq \otimes C(\eta)$ and $\ku_\R \simeq \ko_{C_2} \otimes C(\eta)$ and \cite[Theorem 1.1]{SliceComp} that this map is an equivalence after smashing with $C(\eta)$.
+\end{proof}
+
+The key input will be the following special case:
+
+\begin{prop} \label{prop:2-eta-invert-win}
+  The map
+  \[(\kq \otimes \Ss_2)[1/2, 1/\eta] \to \kq_2 [1/2, 1/\eta]\]
+  is an equivalence.
+\end{prop}
+
+This will make essential use of the following result of Bachmann.
+
+\begin{prop} \label{prop:invert-2-eta-rho}
+  The assignment $X \mapsto X(\R)$ induces an equivalence
+  \[\SHR[1/\rho] \simeq \Sp.\]
+  Moreover, we have
+  \[\SHR_{(2)} [1/2, 1/\eta] = \SHR_{(2)} [1/2, 1/\rho] \simeq \Mod_\Q.\]
+\end{prop}
+
+\begin{proof}
+  The first statement follows from \cite[Theorem 35 and Proposition 36]{RealEtale}.
+  The second statement is a consequence of the first and \cite[Lemma 39]{RealEtale}.
+\end{proof}
+
+Given \Cref{prop:invert-2-eta-rho}, \Cref{prop:2-eta-invert-win} is reduced to the following proposition:
+
+\begin{prop}
+  There are isomorphisms:
+  \begin{align*}
+    &\pi_{*,0,0} ^{\R} (\kq_{(2)}[1/2, 1/\eta]) \cong \Q[\beta], \abs{\beta} = 4 \\
+    &\pi_{*,0,0} ^{\R} (\Ss_2 [1/2, 1/\eta]) \cong \Q_2 \\
+    &\pi_{*,0,0} ^{\R} (\kq_2 [1/2, 1/\eta]) \cong \Q_2 [\beta], \abs{\beta} = 4.
+  \end{align*}
+\end{prop}
+
+\begin{proof}
+  Let $\mathrm{W} (\R)$ denote the Witt group of the real numbers. There is an isomorphism $\mathrm{W} (\R) \cong \Z$.
+  It follows from \cite[Section 6.3.2]{etaPeriodic} that
+  \[\pi_{*,0,0} ^{\R} \kq[1/\eta] \cong \mathrm{W} (\R) [\beta] \cong \Z[\beta],\]
+  from which we deduce the first isomorphism.
+
+  By \Cref{thm:comparison-invert-ta}, Betti realization induces an isomorphism 
+  \[\pi_{*,*,0} ^{\R} (\Ss_2)[1/\ta] \cong \pi_{*+*\sigma} ^{C_2} (\Ss_2).\]
+  As a consequence, we find
+  \begin{align*}
+    \pi_{*,0,0} ^{\R} (\Ss_2)[1/\rho]
+    &\cong \pi_{*,0,0} ^{\R} (\Ss_2)[1/\ta, 1/a] \\
+    &\cong \pi_{*} ^{C_2} (\Ss_2)[1/a_\sigma] \\
+    &\cong \pi_* \Phi^{C_2} (\Ss_2) \\
+    &\cong \pi_* \Ss_2.
+  \end{align*}
+  Inverting $2$ and applying \Cref{prop:invert-2-eta-rho}, we deduce the second isomorphism.
+
+  For the third isomorphism, we make use of the sequence of equivalences
+  \begin{align*}
+    \Map_{\SHR} (\Ss^{0,0,n}, \kq_2)
+    &\simeq \varprojlim \Map_{\SHR} (\Ss^{0,0,n}, \kq/2^k) \\
+    &\simeq \varprojlim \b(\kq/2^k) \\
+    &\simeq \b(\kq)_2 \\
+    &\simeq \ko_{C_2,2},
+  \end{align*}
+  where the second equivalence follows from \Cref{prop:completion-useful}(1) and the fourth equivalence follows from \cite[Corollary 2.30]{Kong}.
+
+  As a consequence, we find that
+  \begin{align*}
+    \pi_{*,0,0} ^\R \kq_2 [1/\rho] 
+    &\cong \pi_{*,0,0} ^\R \kq_2 [1/\ta, 1/a] \\
+    &\cong \pi_{*} ^{C_2} \ko_{C_2,2} [1/a_\sigma] \\
+    &\cong \pi_{*} \Phi^{C_2} (\ko_{C_2,2}) \\
+    &\cong \pi_* \Phi^{C_2} (\ko_{C_2})_2 \\
+    &\cong \Z_2 [\beta],
+  \end{align*}
+  where the fourth isomorphism follows from \Cref{prop:completion-useful}(2) and the fifth isomorphism follows from \cite[Propositon 10.18]{koC2}.
+  Inverting $2$ and applying \Cref{prop:invert-2-eta-rho}, we obtain the result.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:complete-compare} for $\kq$]
+  We want to prove that
+  \[\kq \otimes \Ss_2 \to \kq_2\]
+  is an equivalence.
+  It is clearly an equivalence after smashing with $C(2)$, so it suffices to show that it is an equivalence after inverting $2$.
+  Moreover, by the equivalence $\kq \otimes C(\eta) \simeq \kgl$ and the $\kgl$ case, it is also an equivalence after smashing with $C(\eta)$.
+  It therefore suffices to show that
+  \[(\kq \otimes \Ss_2)[1/2, 1/\eta] \to \kq_2 [1/2, 1/\eta]\]
+  is an equivalence, which is \Cref{prop:2-eta-invert-win}.
+%
+  %To summarize, we just need to show that
+  %\[\kq \otimes \Ss_{2} [1/2,1/\eta] \to \kq_2 [1/2,1/\eta] \]
+  %is an equivalence.
+%
+  %The categories $\SHR[1/2,1/\eta]$ and $\SHR[1/2,1/\rho]$ are equal, so it is equivalent to show that
+  %\[\kq \otimes \Ss_{2} [1/2,1/\rho] \to \kq_2 [1/2,1/\rho]\]
+  %is an equivalence.
+%
+  %Since the realization functor induced by $X \mapsto X(\R)$ induces an equivalence $\SHR[1/\rho] \simeq \Sp$ by TOM, it suffices to show that the above map induces an equivalence on homotopy groups.
+%
+  %We have $\pi_{n} ^\R (\kq [1/2,1/\rho]$
+%
+  %We will prove that
+  %\[\pi_{n,0,0} ^{\R} (\kq \otimes \Ss_2) [1/\eta, 1/\rho] \to \pi_{n,0,0}^{\R}\]
+ %
+  %Now, there are equivalences
+  %\begin{align*}
+    %\Map_{\SHR} (\Ss^{0,0,0}, \kq_2)
+    %&\simeq \varprojlim \Map_{\SHR} (\Ss^{0,0,0}, \kq/2^k) \\
+    %&\simeq \varprojlim \b(kq / 2^k) \\
+    %&\simeq \b(kq)_2 \\
+    %&\simeq \ko_{C_2,2}.
+  %\end{align*}
+%
+  %It follows that
+  %\[\pi_{n,0,0} ^{\R} (\kq_2 [\rho^{-1}]) \cong \pi_n \Phi^{C_2} (\ko_{C_2,2}) \cong \pi_n \Phi^{C_2} (\ko_{C_2})_2.\]
+%
+ %
+  %STILL NEED AN ARGUMENT TO CONCLUDE.
+\end{proof}
+
+
+
+\subsection{Ta completion} \label{sec:ta-comp}\
+
+At several points we have suggested that from a computational viewpoint the $\ta$-Bockstein spectral sequence is probably the best way to gain access to various objects. Here we show such computations often converge to the correct answer.
+
+%% In the first subsection of this section we considered what happened when we set each of the deformation paramaters to be $0$ or $1$. At several points we wanted to speread out from the 0 case using a Bockstein spectral sequence. Unfortunately, this spectral sequence doesn't necessarily converge. Therefore, we now expand our scope to study completions as well.
+
+%% Given an endormorphism, $f$, of an object $X$ in a presentable stable category we can form a fracture square which relates inverting $f$ to completing at $f$.
+%% \begin{center} \begin{tikzcd}
+%%     X \ar[r] \ar[d] & X[f^{-1}] \ar[d] \\
+%%     X_f^{\wedge} \ar[r] & X_f^{\wedge}[f^{-1}]
+%% \end{tikzcd} \end{center}
+%% This square is always a pullback.
+%% If $X$ came equipped with two commuting endomorphisms, then things become more complicated since completion (a limit) need not commute with inverting an element (a colimit). 
+%% A priori, this allows us to define 33 different commutative algebras using $\ta$ and $a$.
+%% These are
+%% \begin{center}
+%%   \begin{tabular}{|c|c|c|c|c|} \hline
+%%     $\Ss$ & $Ca$ &  $\Ss_a^{\wedge}$ & $\Ss[a^{-1}]$ & $\Ss_a^\wedge[a^{-1}]$ \\\hline
+%%     $C\ta$ & $C\ta \otimes Ca$ & $(C\ta)_a^{\wedge}$ & $(C\ta)[a^{-1}]$ & $(C\ta)_a^\wedge[a^{-1}]$ \\\hline
+%%     $\Ss_{\ta}^{\wedge}$ & $(Ca)_{\ta}^\wedge$ & $\Ss_{a,\ta}^\wedge$ & $\Ss_{\ta}^\wedge[a^{-1}]$, & $\Ss_{a,\ta}^\wedge[a^{-1}]$, \\
+%%     &  &  & $\Ss[a^{-1}]_{\ta}^\wedge$ & $\Ss_a^\wedge[a^{-1}]_{\ta}^\wedge$ \\\hline
+%%     $\Ss[\ta^{-1}]$ & $(Ca)[\ta^{-1}]$ & $\Ss[\ta^{-1}]_a^\wedge$, & $\Ss[\ta^{-1},a^{-1}]$ & $\Ss[\ta^{-1}]_a^\wedge[a^{-1}]$, \\
+%%      & & $\Ss_a^\wedge[\ta^{-1}]$ &  & $\Ss_a^\wedge[a^{-1}, \ta^{-1}]$ \\\hline
+%%     $\Ss_{\ta}^\wedge[\ta^{-1}]$ & $(Ca)_{\ta}^\wedge[\ta^{-1}]$ & $\Ss_{\ta, a}^\wedge[\ta^{-1}]$, & $\Ss[a^{-1}]_{\ta}^\wedge[\ta^{-1}]$, & $\Ss_{a,\ta}^\wedge[a^{-1},\ta^{-1}]$, \\
+%%     & & $\Ss_{\ta}^\wedge[\ta^{-1}]_a^\wedge$ & $\Ss_{\ta}^\wedge[a^{-1},\ta^{-1}]$ & $\Ss_a^\wedge[a^{-1}]_\ta^{\wedge}[\ta^{-1}]$, \\
+%% & & & & $\Ss_\ta^\wedge[\ta^{-1}]_a^\wedge[a^{-1}]$. \\\hline
+%%   \end{tabular}
+%% \end{center}
+
+%% We now use the special properties of our situation to cut this down to only 13 distinct objects.
+%% This occurs in two steps. First we show that all of these objects are $\ta$-complete, then we show that after inverting $\ta$ everything becomes $a$-complete.
+
+\begin{prop}\label{prop:unit-ta-complete}
+ The unit in $\SHRat$ is $\ta$-complete.
+\end{prop}
+
+Before proving this proposition we give a corollary of it.
+
+\begin{cor}\label{cor:dualizable-ta-complete}
+  Every dualizable object of $\SHgc$ is $\ta$-complete.
+\end{cor}
+
+Now we turn to the proof of this proposition.
+We begin with the following lemma.
+
+\begin{lem} \label{lem:Z-ta-complete}
+  $\HZt$ is $\ta$-complete.
+\end{lem}
+
+\begin{proof}
+  Since the tri-graded spheres are a family of compact generators it will suffice to show that
+  \[ \varprojlim \left( \cdots \to \pi_{p,q,2} ^\R (\HZt) \to \pi_{p,q,1} ^\R (\HZt) \to \pi_{p,q,0} ^\R (\HZt) \right) \]
+  is zero and there is no $\mathrm{lim}^1$ term. Both of these claims follow from the fact that $\pi_{p,q,w}^\R (\HZt) = 0$ for $w \geq 0$.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{prop:unit-ta-complete}]
+  Since the $\HZt$-Adams spectral sequence converges \cite{MAdamsConv}  and limits of complete objects are complete we may use \Cref{lem:Z-ta-complete} to conclude.
+\end{proof}
+
+\subsection{$a$-completion} \label{sec:a-comp}\ 
+
+Almost none of the objects we have encountered are $a$-complete.  This stands in contrast to $C_2$-equivariant homotopy theory, where the Segal conjecture implies that the $2$-completed unit is $a$-complete. To see explicit failures of completeness, note that if an object $X$ is $a$-complete then $C\ta \otimes X $ is also $a$-complete. On the other hand, the homotopy groups of $C\ta$ contain copies of the homotopy of $\uZt$, which is not $a$-complete.
+
+\begin{exm}
+  The elements $\frac{\theta}{a^n} \otimes 1$ in the homotopy of $C\ta$ give an explicit example of non-$a$-completeness.
+  If we consider the image of $\frac{\theta}{a^n}$ under the connecting map $\delta: \Sigma^{-1,0,1}C\ta \to \Ss$ we obtain an example of an infinitely $a$-divisible element in the sphere. \footnote{This image is non-trivial for $n$ sufficiently large, though we don't prove it. Of course if the image is trivial for all $n$, then a lift of these classes to the sphere gives a different example of non-completeness.}    
+  %% The class $\delta(\frac{\theta}{a^n} \otimes 1)$ is non-zero because if it were zero then $\frac{\theta}{a^n} \otimes 1$ would lift to a nontrivial element of $\pi_{p,q,0}^\R$. Since the map $\pi_{p,q,0}^\R \to \pi_{p,q}^{C_2}$ is an isomorphism, this would provide a $C_2$-equivariant lift of $\theta$ to the homotopy of the $C_2$-equivariant sphere. No such lift exists. \todo{check this }
+\end{exm}
+
+On the other hand,
+it often happens that after inverting $\ta$ objects becomes $a$-complete.
+
+\begin{lem}\label{lem:using-lin}
+  On dualizable objects of $\SHRat$ the following functors are equivalent:
+  $(-)[\ta^{-1}]$, $(-)_a^\wedge[\ta^{-1}]$ and $(-)[\ta^{-1}]_a^\wedge$.
+\end{lem}
+
+\begin{proof}
+  For any dualizable object $X$ there is an $n$ such that $\pi_{p,q,w} ^\R (C\ta \otimes X) = 0$ for $w \leq n$. Using this we learn that on the level of trigraded homotopy groups the colimit inverting $\ta$ commutes with the inverse limit completing at $a$. Now, we only need to explain why $(-)[\ta^{-1}]$ is already $a$-complete on dualizable inputs. If we invert $\ta$ on a dualizable $i2$-complete $\R$-motivic spectrum we get a dualizable $i2$-complete $C_2$-spectrum. Thus, we're reduced to showing that dualizable $i2$-complete $C_2$-spectra are $a_\sigma$-complete. Using the fact that tensoring with a dualizable object commutes with limits it suffices to show this is true for the unit. The 2-complete sphere in $C_2$-spectra is $a_\sigma$-complete as a consequence of Lin's theorem \cite{Lin}.
+\end{proof}
+
+The tension this introduces is heightened when one recalls Gregersen's motivic analog of Lin's theorem, which is proved over any field of characteristic zero \cite{gregersen}. However, Gregersen's result only asserts a $\pi_{**}$-isomorphism, i.e. an equivalence after reflecting into the Tate category. 
+In fact, a careful examination of the formula for the homotopy groups of $C\ta$ reveals that the copies of the negative cone (from which the non-$a$-completeness originates) all lie below the plane of Tate spheres. Therefore, upon running the $\ta$-Bockstein spectral sequence the tri-degrees $(p,w,w)$ never receive contributions from copies of the negative cone. 
+
+%% Together, \Cref{prop:unit-ta-complete} and \Cref{lem:using-lin} reduce the table above to the following:
+%% \begin{center}
+%%   \begin{tabular}{|c|c|c|c|c|} \hline
+%%     $\Ss$ & $Ca$ &  $\Ss_a^{\wedge}$ & $\Ss[a^{-1}]$ & $\Ss_a^\wedge[a^{-1}]$ \\\hline
+%%     $C\ta$ & $C\ta \otimes Ca$ & $(C\ta)_a^{\wedge}$ & $(C\ta)[a^{-1}]$ & $(C\ta)_a^\wedge[a^{-1}]$ \\\hline
+%%     $\Ss[\ta^{-1}]$ & $(Ca)[\ta^{-1}]$ &  & $\Ss[\ta^{-1},a^{-1}]$ &  \\\hline
+%%   \end{tabular}
+%% \end{center}
+
+%% The following example tells us that all the objects in this table are distinct.
+

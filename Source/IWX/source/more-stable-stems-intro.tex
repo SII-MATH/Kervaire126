@@ -1,0 +1,753 @@
+\chapter{Introduction}
+
+The computation of stable homotopy groups of spheres is one of the most fundamental and important
+problems in homotopy theory. It \revv{informs on} many topics in topology, such as the cobordism theory of framed manifolds, 
+the classification of smooth structures on spheres, obstruction theory, the theory of topological modular forms, algebraic K-theory, motivic homotopy theory, and equivariant homotopy theory.
+
+Despite their simple definition, which was available eighty years ago, these groups are notoriously hard to compute.  All known methods only give a complete answer through a range, \revv{but they eventually stall.
+Further progress requires the introduction of a new method.}
+The standard approach to computing stable stems is to use an 
+\revv{Adams spectral sequence (based on a generalized cohomology theory
+$E$) that converges} from algebra to homotopy.  In turn, to identify the algebraic $E_2$-pages, one needs algebraic spectral sequences that converge from simpler algebra to more complicated algebra. For any spectral sequence, difficulties arise in computing differentials and in solving extension problems. Different methods lead to trade-offs.  One method may compute some types of differentials and extension problems efficiently, but leave other types unanswered, perhaps even unsolvable by that technique. To obtain complete computations, one must be eclectic, applying and combining different methodologies. Even so, combining all known methods, there are eventually some problems that \revv{have not been} solved.  Mahowald's uncertainty principle states that no finite collection of methods can completely compute the stable homotopy groups of spheres.
+
+Because stable stems are finite \revv{abelian} groups (except for the $0$-stem),
+the computation is most easily
+accomplished by working one prime at a time.  At odd primes,
+the Adams-Novikov spectral sequence and the chromatic spectral sequence, which are based on complex cobordism and formal groups, have yielded a wealth of
+data \cite{Ravenel86}. As the prime grows, so does the range of computation. For example, at the primes 3 and 5, we have complete knowledge up to around 100 and 1000 stems respectively \cite{Ravenel86}.
+
+The prime $2$, being the smallest prime, remains the most difficult part of the computation.
+\revv{This entire manuscript considers exclusively the $2$-completed
+stable homotopy groups.}
+In this case, the Adams spectral sequence is the most effective tool.
+The manuscript \cite{Isaksen14c} presents a careful analysis of 
+the Adams spectral sequence, in both the classical and $\C$-motivic
+contexts, that is essentially complete through the 59-stem.
+This includes a verification of the details in the classical literature
+ \cite{BJM84} \cite{BMT70} \cite{Bruner84} 
+  \cite{MT67}.
+Subsequently,
+the second and third authors computed the 60-stem
+and 61-stem \cite{WangXu17}.
+
+We also mention \cite{Kochman90}  \cite{KM93},
+which take an entirely different approach to computing stable
+homotopy groups. 
+However, the computations in \cite{Kochman90}  \cite{KM93} are now known to contain several errors. 
+See \cite{WangXu17}*{Section 2} for a more detailed discussion.
+
+The goal of this manuscript is to continue the analysis of the Adams
+spectral sequence into higher stems at the prime 2.  We will present information
+up to the 90-stem.
+While we have not
+been able to resolve all of the possible differentials in this range,
+we enumerate the handful of uncertainties explicitly
+\rev{within Table \ref{tab:Adams-higher}}.
+
+The charts in \cite{Isaksen14a} and \cite{IWX19}
+are an essential companion to this manuscript. 
+They present the same information in an easily interpretable 
+graphical format.
+
+
+Our analysis uses various methods and techniques, including 
+machine-generated homological algebra computations, 
+a deformation of homotopy theories that connects
+$\C$-motivic and classical stable homotopy theory,
+and the theory of motivic modular forms. Here is a quick summary of our approach:
+\begin{enumerate}
+\item
+\label{item:machine-Adams}
+Compute 
+the cohomology of the $\C$-motivic Steenrod algebra by machine.  
+These groups
+serve as the input to the $\C$-motivic Adams spectral sequence.
+\item
+\label{item:machine-algNov}
+Compute by machine
+the algebraic Novikov spectral sequence that converges to the
+cohomology of the Hopf algebroid $(BP_*, BP_* BP)$.
+This includes all
+differentials, and the multiplicative structure of the cohomology of
+$(BP_*, BP_* BP)$.
+\item
+Identify
+the $\C$-motivic Adams spectral sequence for the cofiber of $\tau$ 
+with 
+the algebraic Novikov spectral sequence
+\cite{GWX18}.  This includes an identification of the
+cohomology of $(BP_*, BP_* BP)$ with the
+homotopy groups of the cofiber of $\tau$.
+\item
+Pull back and push forward Adams differentials for the cofiber of $\tau$
+to Adams differentials for the $\C$-motivic sphere, along
+the inclusion of the bottom cell and the projection to the top cell.
+\item
+\label{item:ad-hoc}
+Deduce additional Adams differentials for the $\C$-motivic sphere with 
+a variety of ad hoc arguments.  The most important methods are Toda bracket shuffles and 
+comparison to the motivic modular forms spectrum $\mmf$ \cite{GIKR18}.
+\item
+Deduce hidden $\tau$
+extensions in the $\C$-motivic Adams spectral sequence for the sphere, 
+using a long exact sequence in homotopy groups.
+\item
+Obtain the classical Adams spectral sequence and the 
+classical stable homotopy groups by inverting $\tau$.
+\end{enumerate}
+
+The machine-generated data that we obtain in steps (\ref{item:machine-Adams}) and (\ref{item:machine-algNov}) are available at 
+\cite{Isaksen14a} and \cite{IWX19}.
+See also \cite{Wang20} for a discussion of the implementation of the
+machine computation.
+
+Much of this process is essentially automatic.
+The exception occurs in step (\ref{item:ad-hoc}) where ad hoc arguments come
+into play.
+
+This document describes the results of this systematic program through the
+90-stem.  We anticipate that our approach will allow us to compute into 
+even higher stems, especially towards the last unsolved Kervaire invariant problem in dimension 126.  However, we have not yet carried out a careful analysis.
+
+\section{New Ingredients}
+
+We discuss in more detail several new ingredients that allow us to carry out this program.
+
+\subsection{Machine-generated algebraic data} 
+
+
+The Adams-Novikov spectral sequence has been used very successfully
+to carry out computations at odd primes.  However, at the prime 2, its usage has not been fully exploited in stemwise computations. This is due to the difficulty of computing its $E_2$-page. The first author predicted in
+\cite{Isaksen14c} that ``the next major breakthrough in computing stable stems will involve machine computation of the Adams-Novikov $E_2$-page."
+
+The second author achieved this machine computation; the resulting data is available at \cite{IWX19}.  The process goes roughly like this.
+Start with a minimal resolution that computes the cohomology of the  Steenrod algebra.  Lift this resolution to a resolution of $BP_*BP$.
+Finally, use the Curtis algorithm to compute the homology of the resulting
+complex, and to compute differentials in the associated algebraic
+spectral sequences, such as 
+the algebraic Novikov spectral sequence 
+and the Bockstein spectral sequence.
+See \cite{Wang20} for further details.
+
+\subsection{Motivic homotopy theory}
+
+
+The $\C$-motivic stable homotopy category
+gives rise to new methods to compute stable stems.
+These ideas are used in a critical way in \cite{Isaksen14c} to compute stable stems up to the $59$-stem.
+
+The key insight of this article that distinguishes it
+significantly from \cite{Isaksen14c} is that $\C$-motivic 
+cellular stable homotopy theory is a deformation of classical stable
+homotopy theory \cite{GWX18}.  
+From this perspective, the ``generic fiber" of
+$\C$-motivic stable homotopy theory is classical stable homotopy theory,
+and the ``special fiber"
+has an entirely algebraic description.  The special fiber is
+  \revv{Hovey's stable derived} category of $BP_*BP$-comodules \cite{Hovey}, or equivalently,
+the \revv{stable derived} 
+category of quasicoherent sheaves on the moduli stack of 
+1-dimensional formal groups.
+
+\revv{
+In more concrete terms, let $C\tau$ be the cofiber of the 
+$\C$-motivic stable map $\tau$.
+The cofiber sequence
+$S^{0,0} \map C\tau \map S^{1,-1}$
+induces maps
+\[
+\xymatrix{
+E_2(S^{0,0}) \ar[r] \ar@{=>}[d] & E_2(C\tau) \ar[r] \ar@{=>}[d] & E_2(S^{1,-1}) \ar@{=>}[d] \\
+\pi_{*,*}(S^{0,0}) \ar[r] & \pi_{*,*}(C\tau) \ar[r] & \pi_{*,*}(S^{1,-1})
+}
+\]
+of spectral sequences, in which each vertical column represents
+a $\C$-motivic Adams spectral sequence.
+
+The homotopy category of $C\tau$-modules has an algebraic structure
+\cite{GWX18}.
+In particular,  the $\C$-motivic Adams spectral sequence for $C\tau$ is isomorphic to the algebraic Novikov spectral sequence 
+that computes the $E_2$-page of the Adams-Novikov spectral
+sequence for $BP_*$.  This means that the middle spectral sequence
+in the above diagram
+can be computed by machine.  Naturality then yields information
+about the $\C$-motivic Adams spectral sequence
+for the $\C$-motivic sphere spectrum in two different ways, 
+since the latter spectral sequence appears on both the
+left and right side of the diagram.
+Finally,
+the Betti realization functor produces differentials in the classical Adams spectral sequence.
+}
+
+Our use of $\C$-motivic stable homotopy theory appears to rely on
+the fundamental computations, due to Voevodsky \cite{Voevodsky03b} \cite{Voevodsky10},
+of the motivic cohomology of a point and of the motivic Steenrod
+algebra.  
+In fact, recent progress has determined that 
+our results do not depend on this deep and difficult work.
+There are now purely topological constructions of homotopy
+categories that have identical computational properties to
+the cellular stable $\C$-motivic homotopy category
+\cite{GIKR18} \cite{Pstragowski18}.
+In these homotopy categories, one can obtain from first principles
+the fundamental computations of the cohomology of a point and
+of the Steenrod algebra, using only well-known classical computations.
+Therefore,
+the material in this manuscript does not logically
+depend on Voevodsky's work, even though the methods were very much
+inspired by his groundbreaking computations.
+
+\subsection{Motivic modular forms}
+
+In classical chromatic homotopy theory, the theory of topological modular forms, introduced by Hopkins and Mahowald \cite{tmf14}, plays a central role in the computations of the $K(2)$-local sphere.
+
+Using a topological model of the cellular stable $\C$-motivic homotopy category, 
+one can construct a ``motivic modular forms" spectrum $\mmf$ \cite{GIKR18},
+whose motivic \revv{$\F_2$-}cohomology is the quotient of the $\C$-motivic
+Steenrod algebra by its subalgebra generated by
+$\Sq^1$, $\Sq^2$, and $\Sq^4$.
+Just as $\tmf$ plays an essential role in studies of the classical
+Adams spectral sequence \rev{\cite{BMQ21} \cite{BBBCX}}, $\mmf$ is an essential tool for
+motivic computations.  The $\C$-motivic Adams spectral sequence
+for $\mmf$ can be analyzed completely \cite{Isaksen18}, and naturality
+of Adams spectral sequences along the unit map of $\mmf$
+provides much information about the behavior of the $\C$-motivic
+Adams spectral sequence for the $\C$-motivic sphere spectrum.
+
+
+\section{Main results}
+
+We summarize our main results in the following theorem and corollaries.
+
+\begin{thm}
+\label{thm:main-Adams}
+The $\C$-motivic Adams spectral sequence for the $\C$-motivic sphere 
+spectrum
+is displayed in the charts in \cite{Isaksen14a}, up to the $90$-stem.
+\end{thm}
+
+The proof of Theorem \ref{thm:main-Adams} consists of a series of
+specific computational facts, which are verified throughout this
+manuscript.
+
+\begin{cor}
+\label{cor:main-Adams}
+The classical Adams spectral sequence for the sphere spectrum is 
+displayed in the charts in \cite{Isaksen14a}, up to the $90$-stem.
+\end{cor}
+
+Corollary \ref{cor:main-Adams} follows immediately from
+Theorem \ref{thm:main-Adams}.  One simply inverts $\tau$, or equivalently
+ignores $\tau$-torsion.
+
+\rev{
+Theorem \ref{thm:main-Adams} could also be used to completely determine
+the $E_2$-page and all differentials of the Adams-Novikov spectral
+sequence for the sphere spectrum.}
+ As described in
+\cite{Isaksen14c}*{Chapter 6}, the Adams-Novikov spectral sequence
+can be reverse-engineered from information about $\C$-motivic
+stable homotopy groups.
+
+\begin{cor}
+\label{cor:cl-order}
+Table \ref{tab:order} describes the stable homotopy groups $\pi_k$
+for all values of $k$ up to $90$.
+\end{cor}
+
+We adopt the following
+notation in Table \ref{tab:order}.  
+An integer $n$ stands for the cyclic abelian group $\Z/n$; 
+the symbol $\mydot$ by itself stands for the trivial group;
+the expression $n\mydot m$ stands for the direct sum $\Z/n \oplus \Z/m$;
+and $n^j$ stands for the direct sum of $j$ copies of $\Z/n$.
+The horizontal line after dimension 61 indicates the range
+in which our computations are new information.
+
+Table \ref{tab:order} describes each group $\pi_k$ as the direct sum
+of three subgroups: the $2$-primary $v_1$-torsion, the
+odd primary $v_1$-torsion, and the $v_1$-periodic subgroups.
+
+The last column of Table \ref{tab:order} describes the groups of homotopy spheres  that classify smooth structures on spheres in dimensions at least 5. See Section~\ref{section homotopy sphere} and Theorem~\ref{thm homotopy sphere} for more details.
+
+Starting in dimension 84, there remain some uncertainties in the $2$-primary $v_1$-torsion.
+In most cases, these uncertainties mean that the order of some stable
+homotopy groups are
+known only up to factors of $2$.  In a few cases, the additive group
+structures are also undetermined.
+
+These uncertainties have two causes.  First, there are a handful
+of differentials that remain unresolved; they are listed in
+\rev{Table \ref{tab:Adams-higher}.}
+Second, there are some possible hidden $2$ extensions
+that remain unresolved.
+
+\begin{longtable}{l|llll}
+\caption{Stable homotopy groups up to dimension $90$.
+$n$ stands for $\Z/n$;
+$n\mydot m$ stands for $\Z/n \oplus \Z/m$;
+and $n^j$ stands for $(\Z/n)^j$.
+\label{tab:order} 
+} \\
+\toprule
+$k$ & $v_1$-torsion & $v_1$-torsion & $v_1$-periodic & group of  \\
+& at the prime 2 & at odd & & smooth structures\\
+& & primes \\
+\midrule \endfirsthead
+\caption[]{Stable homotopy groups up to dimension $90$.
+$n$ stands for $\Z/n$;
+$n\mydot m$ stands for $\Z/n \oplus \Z/m$;
+and $n^j$ stands for $(\Z/n)^j$.
+} \\
+\toprule
+$k$ & $v_1$-torsion & $v_1$-torsion & $v_1$-periodic & group of  \\
+& at the prime 2 & at odd & & smooth structures\\
+& & primes \\
+\midrule \endhead
+\bottomrule \endfoot
+$1$ & $\mydot$ & $\mydot$ & $2$ & $\mydot$ \\
+$2$ & $\mydot$ & $\mydot$ & $2$ & $\mydot$ \\
+$3$ & $\mydot$ & $\mydot$ & $8\mydot3$ & $\mydot$ \\
+$4$ & $\mydot$ & $\mydot$ & $\mydot$ & $?$ \\
+$5$ & $\mydot$ & $\mydot$ & $\mydot$ & $\mydot$ \\
+$6$ & $2$ & $\mydot$ & $\mydot$ & $\mydot$ \\
+$7$ & $\mydot$ & $\mydot$ & $16\mydot3\mydot5$ & $\underline{b_2}$ \\
+$8$ & $2$ & $\mydot$ & $2$ & $2$\\
+$9$ & $2$ & $\mydot$ & $2^2$ & $\underline{2}\mydot 2^2$ \\
+$10$ & $\mydot$ & $3$ & $2$ & $2\mydot3$ \\
+$11$ & $\mydot$ & $\mydot$ & $8\mydot9\mydot7$ & $\underline{b_3}$ \\
+$12$ & $\mydot$ & $\mydot$ & $\mydot$ & $\mydot$ \\
+$13$ & $\mydot$ & $3$ & $\mydot$ & $3$ \\
+$14$ & $2\mydot2$ & $\mydot$ & $\mydot$ & $2$ \\
+$15$ & $2$ & $\mydot$ & $32\mydot3\mydot5$ & $\underline{b_4}\mydot2$ \\
+$16$ & $2$ & $\mydot$ & $2$ & $2$ \\
+$17$ & $2^2$ & $\mydot$ & $2^2$ & $\underline{2}\mydot2^3$ \\
+$18$ & $8$ & $\mydot$ & $2$ & $2\mydot8$ \\
+$19$ & $2$ & $\mydot$ & $8\mydot3\mydot11$ & $\underline{b_5}\mydot2$\\
+$20$ & $8$ & $3$ & $\mydot$ & $8\mydot3$\\
+$21$ & $2^2$ & $\mydot$ & $\mydot$ & $\underline{2}\mydot2^2$ \\
+$22$ & $2^2$ & $\mydot$ & $\mydot$ & $2^2$ \\
+$23$ & $2\mydot8$ & $3$ & $16\mydot9\mydot5\mydot7\mydot13$ & $\underline{b_6}\mydot2\mydot8\mydot3$ \\
+$24$ & $2$ & $\mydot$ & $2$ & $2$ \\
+$25$ & $\mydot$ & $\mydot$ & $2^2$ & $\underline{2}\mydot2$ \\
+$26$ & $2$ & $3$ & $2$ & $2^2\mydot3$ \\
+$27$ & $\mydot$ & $\mydot$ & $8\mydot3$ & $\underline{b_7}$ \\
+$28$ & $2$ & $\mydot$ & $\mydot$ & $2$ \\
+$29$ & $\mydot$ & $3$ & $\mydot$ & $3$ \\
+$30$ & $2$ & $3$ & $\mydot$ & $3$ \\
+$31$ & $2^2$ & $\mydot$ & $64\mydot3\mydot5\mydot17$ & $\underline{b_8}\mydot2^2$ \\
+$32$ & $2^3$ & $\mydot$ & $2$ & $2^3$ \\
+$33$ & $2^3$ & $\mydot$ & $2^2$ & $\underline{2}\mydot2^4$ \\
+$34$ & $2^2\mydot4$ & $\mydot$ & $2$ & $2^3\mydot4$ \\
+$35$ & $2^2$ & $\mydot$ & $8\mydot27\mydot7\mydot19$ & $\underline{b_9}\mydot2^2$ \\
+$36$ & $2$ & $3$ & $\mydot$ & $2\mydot3$ \\
+$37$ & $2^2$ & $3$ & $\mydot$ & $\underline{2}\mydot2^2\mydot3$ \\
+$38$ & $2\mydot4$ & $3\mydot5$ & $\mydot$ & $2\mydot4\mydot3\mydot5$ \\
+$39$ & $2^5$ & $3$ & $16\mydot3\mydot25\mydot11$ & $\underline{b_{10}}\mydot2^5\mydot3$ \\
+$40$ & $2^4\mydot4$ & $3$ & $2$ & $2^4\mydot4\mydot3$ \\
+$41$ & $2^3$ & $\mydot$ & $2^2$ & $\underline{2}\mydot2^4$ \\
+$42$ & $2\mydot8$ & $3$ & $2$  & $2^2\mydot8\mydot3$\\
+$43$ & $\mydot$ & $\mydot$ & $8\mydot3\mydot23$ & $\underline{b_{11}}$ \\
+$44$ & $8$ & $\mydot$ & $\mydot$ & $8$ \\
+$45$ & $2^3\mydot16$ & $9\mydot5$ & $\mydot$ & $\underline{2}\mydot2^3\mydot16\mydot9\mydot5$ \\
+$46$ & $2^4$ & $3$ & $\mydot$ & $2^4\mydot3$ \\
+$47$ & $2^3\mydot4$ & $3$ &  $32\mydot9\mydot5\mydot7\mydot13$ & $\underline{b_{12}}\mydot2^3\mydot4\mydot3$  \\
+$48$ & $2^3\mydot4$ & $\mydot$ & $2$ & $2^3\mydot4$ \\
+$49$ & $\mydot$ & $3$ & $2^2$ & $\underline{2}\mydot2\mydot3$ \\
+$50$ & $2^2$ & $3$ & $2$ & $2^3\mydot3$ \\
+$51$ & $2\mydot8$ & $\mydot$ & $8\mydot3$ & $\underline{b_{13}}\mydot2\mydot8$ \\
+$52$ & $2^3$ & $3$ & $\mydot$ & $2^3\mydot3$ \\
+$53$ & $2^4$ & $\mydot$ & $\mydot$ & $\underline{2}\mydot2^4$ \\
+$54$ & $2\mydot4$ & $\mydot$ & $\mydot$ & $2\mydot4$ \\
+$55$ & $\mydot$ & $3$ & $16\mydot3\mydot5\mydot29$ & $\underline{b_{14}}\mydot3$ \\
+$56$ & $\mydot$ & $\mydot$ & $2$ & $\mydot$ \\
+$57$ & $2$ & $\mydot$ & $2^2$ & $\underline{2}\mydot2^2$ \\
+$58$ & $2$ & $\mydot$ & $2$  & $2^2$\\
+$59$ & $2^2$ & $\mydot$ & $8\mydot9\mydot7\mydot11\mydot31$ & $\underline{b_{15}}\mydot2^2$ \\
+$60$ & $4$ & $\mydot$ & $\mydot$ & $4$ \\
+$61$ & $\mydot$ & $\mydot$ & $\mydot$  & $\mydot$\\
+\hline
+$62$ & $2^4$ & $3$ & $\mydot$ & $2^3\mydot3$ \\
+$63$ & $2^2\mydot4$ & $\mydot$ & $128\mydot3\mydot5\mydot17$  & $\underline{b_{16}}\mydot2^2\mydot4$\\
+$64$ & $2^5\mydot4$ & $\mydot$ & $2$  & $2^5\mydot4$\\
+$65$ & $2^7\mydot4$ & $3$ & $2^2$  & $\underline{2}\mydot2^8\mydot4\mydot3$\\
+$66$ & $2^5\mydot8$ & $\mydot$ & $2$  & $2^6\mydot8$\\
+$67$ & $2^3\mydot4$ & $\mydot$ & $8\mydot3$  & $\underline{b_{17}}\mydot2^3\mydot4$\\
+$68$ & $2^3$ & $3$ & $\mydot$ & $2^3\mydot3$\\
+$69$ & $2^4$ & $\mydot$ & $\mydot$ & $\underline{2}\mydot2^4$\\
+$70$ & $2^5\mydot4^2$ & $\mydot$ & $\mydot$ & $2^5\mydot4^2$\\
+$71$ & $2^6\mydot4\mydot8$  & $\mydot$ & $16\mydot27\mydot5\mydot7\mydot13\mydot19\mydot37$ & $\underline{b_{18}}\mydot2^6\mydot4\mydot8$\\
+$72$ & $2^7$ & $3$ & $2$ & $2^7\mydot3$\\
+$73$ & $2^5$ & $\mydot$ & $2^2$& $\underline{2}\mydot2^6$ \\
+$74$ & $4^3$ & $3$ & $2$ & $2\mydot4^3\mydot3$ \\
+$75$ & $2$ & $9$ & $8\mydot3$ & $\underline{b_{19}}\mydot2\mydot9$\\
+$76$ & $2^2\mydot4$ & $5$ & $\mydot$ & $2^2\mydot4\mydot5$\\
+$77$ & $2^5\mydot4$ & $\mydot$ & $\mydot$ & $\underline{2}\mydot2^5\mydot4$\\
+$78$ & $2^3\mydot4^2$ & $3$ & $\mydot$ & $2^3\mydot4^2\mydot3$\\
+$79$ & $2^6\mydot4$ & $\mydot$ & $32\mydot3\mydot25\mydot11\mydot41$ & $\underline{b_{20}}\mydot2^6\mydot4$\\
+$80$ & $2^8$ & $\mydot$ & $2$ & $2^8$\\
+$81$ & $2^3\mydot4\mydot8$ & $3^2$ & $2^2$ & $\underline{2}\mydot2^4\mydot4\mydot8\mydot3^2$\\
+\revrow
+$82$ & $2^5\mydot8$ & $3\mydot7$ & $2$ & $2^6\mydot8\mydot3\mydot7$ or $2^4\mydot4\mydot8\mydot3\mydot7$ \\
+\revrow
+$83$ & $2^3\mydot8$ & $5$ & $8\mydot9\mydot49\mydot43$ & $\underline{b_{21}}\mydot2^3\mydot8\mydot5$ \\
+$84$ & $2^6$ or $2^5$  & $3^2$ & $\mydot$ & $2^6\mydot3^2$ or $2^5\mydot3^2$  \\
+\revrow
+$85$ & $2^6\mydot4^2$ or $2^5\mydot4^2$ or & $3^2$ & $\mydot$ & $2^6\mydot4^2\mydot3^2$ or $2^5\mydot4^2\mydot3^2$  \\
+	\revrow
+	& $2^4\mydot4^3$ or $2^7\mydot4$ & & & or $2^4\mydot4^3\mydot3^2$ or $2^7\mydot4\mydot3^2$ \\
+\revrow
+$86$ &  $2^4\mydot8^2$ or $2^2\mydot4\mydot8^2$ & $3\mydot5$ & $\mydot$ &  $2^4\mydot8^2\mydot3\mydot5$ or $2^2\mydot4\mydot8^2\mydot3\mydot5$ \\
+\revrow
+$87$ & $2^5\mydot4$ & $\mydot$ & $16\mydot3\mydot5\mydot23$ & $\underline{b_{22}}\mydot2^5\mydot4$ \\
+$88$ & $2^4\mydot4$  & $\mydot$ & $2$ & $2^4\mydot4$ \\
+$89$ & $2^3$ & $\mydot$ & $2^2$ & $\underline{2}\mydot2^4$ \\
+$90$ & $2^3\mydot8$ or $2^2\mydot8$ & $3$ & $2$ & $2^4\mydot8\mydot3$ or $2^3\mydot8\mydot3$
+\end{longtable}
+
+Figure \ref{fig:Hatcher} displays the $2$-primary stable homotopy groups 
+in a graphical format that is
+a modification by Allen Hatcher of Adams spectral sequence charts
+\cite{Hatcher}.
+Vertical chains of $n$ dots 
+indicate $\Z/2^n$.  The non-vertical
+lines indicate multiplications by $\eta$ and $\nu$.  
+The blue dots represent the $v_1$-periodic subgroups.
+The green dots are associated to the topological modular forms
+spectrum $\tmf$.  These elements are detected by
+the unit map from the sphere spectrum to $\tmf$, either in homotopy
+or in the algebraic $\Ext$ groups that serve as Adams $E_2$-pages.
+
+Finally, the red dots indicate uncertainties.  In addition, in higher
+stems, there are possible extensions by $2$, $\eta$, and $\nu$
+that are not indicated in Figure \ref{fig:Hatcher}.
+See Tables \ref{tab:2-extn-possible}, \ref{tab:eta-extn-possible},
+and \ref{tab:nu-extn-possible} for more details about these possible
+extensions.
+
+
+
+\begin{figure}[htbp!]
+
+\caption{$2$-primary stable homotopy groups
+\label{fig:Hatcher}}
+
+\input{Hatcher0-28.tex}
+
+\end{figure}
+
+\begin{center}
+\input{Hatcher30-60.tex}
+\end{center}
+
+\begin{center}
+\input{Hatcher62-90.tex}
+\end{center}
+
+The orders of individual $2$-primary stable homotopy groups do not 
+follow a clear pattern, with large increases and decreases seemingly
+at random.  However, an empirically observed pattern emerges
+if we consider the cumulative size of the groups, i.e., the product
+of the orders of 
+all $2$-primary stable homotopy groups from dimension $1$ to
+dimension $k$.  
+
+Our data strongly suggest that asymptotically, there is a linear relationship between $k^2$ 
+and the logarithm of this product of orders.
+In other words, the number of dots in Figure \ref{fig:Hatcher} in
+stems $1$ through $k$ is linearly proportional to $k^2$.
+Correspondingly,
+the number of dots in the classical Adams $E_\infty$-page in
+stems $1$ through $k$ is linearly proportional to $k^2$.
+Thus, in extending from dimension 60 to dimension 90, the overall 
+size of the computation more than doubles.
+Specifically, through dimension 60, the cumulative rank of the Adams $E_\infty$-page is 199, and is 435 through
+dimension 90.  Similarly, through dimension 60, the cumulative
+rank of the Adams $E_2$-page is 488, and is 1,461 through dimension 90.
+
+\begin{conj}
+Let $f(k)$ be the product of the orders of the $2$-primary
+stable homotopy groups in dimensions $1$ through $k$.
+There exists a non-zero constant $C$ such that
+\[
+\lim_{k \map \infty} \frac{\log_2 f(k)}{k^2} = C.
+\]
+\end{conj}
+
+One interpretation of this conjecture is that the expected value of
+the logarithm of the order of the 2-primary component of $\pi_k$
+grows linearly in $k$.  
+We have only data to support the conjecture, and we have not formulated
+a mathematical rationale.
+It is possible that in higher stems, new phenomena occur that alter the
+growth rate of the stable homotopy groups. 
+
+By comparison, data indicates that the growth rate of the
+Adams $E_2$-page is qualitatively greater than the growth rate of the
+Adams $E_\infty$-page.  This apparent mismatch has implications 
+for the frequency of Adams differentials.
+
+\section{Remaining uncertainties}
+
+Some uncertainties remain in the analysis of the first 90 stable stems.
+All undetermined possible differentials in this range are mentioned within
+Table \ref{tab:Adams-higher}.  
+All of these uncertainties concern the Adams differentials $d_r$
+for $r \geq 9$.
+This means that
+the orders of some of the stable homotopy groups are known only up
+to factors of $2$.
+
+In addition, there are some possible hidden extensions by $2$, $\eta$,
+and $\nu$ that remain unresolved.  Tables \ref{tab:2-extn-possible},
+\ref{tab:eta-extn-possible}, and \ref{tab:nu-extn-possible} 
+summarize these possibilities.  The presence of
+unknown hidden extensions by $2$ means that
+the group structures of some stable homotopy groups are not known, 
+even though their orders are known.
+
+
+\section{Groups of homotopy spheres}\label{section homotopy sphere}
+
+An important application of stable homotopy group computations 
+is to the work of Kervaire and Milnor \cite{KervaireMilnor}
+on the classification of smooth structures on spheres in dimensions at least 5. Let $\Theta_n$ be the group of $h$-cobordism classes of homotopy $n$-spheres. This group classifies the differential structures on $S^n$ for $n\geq5$. It has a subgroup $\Theta_n^{bp}$, which consists of homotopy spheres that bound parallelizable manifolds. The relation between $\Theta_n$ and the stable homotopy group $\pi_n$ 
+is summarized in Theorem \ref{km}. See also \cite{Milnor} for a survey on this subject.
+
+\begin{thm}\label{km}(Kervaire-Milnor \cite{KervaireMilnor})
+Suppose that $n\geq 5$.
+\begin{enumerate}
+\item
+The subgroup $\Theta_n^{bp}$ is cyclic, and has the following order:
+\begin{equation*}
+|\Theta_n^{bp}|=\left\{
+\begin{split}
+1 & , ~~\text{if~~}n\text{~~is even,} \\
+1 \text{~~or~~} 2 & , ~~\text{if~~}n = 4k+1,\\
+b_k & , ~~\text{if~~}n = 4k-1.
+\end{split}
+\right.
+\end{equation*}
+Here $b_k$ is $2^{2k-2}(2^{2k-1}-1)$ times the numerator of $8\zeta(1-2k)$,
+where $\zeta$ is the Riemann zeta function.\\
+\item
+For $n \not\equiv 2 ~(mod ~4)$, there is an exact sequence
+\begin{displaymath}
+    \xymatrix{
+   0 \ar[r] & \Theta_n^{bp} \ar[r] & \Theta_n \ar[r] & \pi_n/J \ar[r] & 0.
+    }
+\end{displaymath}
+Here $\pi_n/J$ is the cokernel of the $J$-homomorphism.\\
+
+\item
+For $n \equiv 2 ~(mod ~4)$, there is an exact sequence
+\begin{displaymath}
+    \xymatrix{
+   0 \ar[r] & \Theta_n^{bp} \ar[r] & \Theta_n \ar[r] & \pi_n/J \ar[r]^\Phi & \mathbb{Z}/2 \ar[r] & \Theta_{n-1}^{bp} \ar[r] & 0.
+    }
+\end{displaymath}
+Here the map $\Phi$ is the Kervaire invariant.
+\end{enumerate}
+\end{thm}
+The first few values, and then estimates, of the numbers $b_k$
+(for $k \geq 2$)
+are given by the sequence
+$$28, \ 992, \ 8128, \ 261632, \ 1.45\times 10^9, \ 6.71\times 10^7, \ 1.94\times 10^{12}, \ 7.54\times 10^{14}, \ldots .$$
+
+\begin{thm}\label{thm homotopy sphere}
+The last column of Table~\ref{tab:order}
+describes the groups $\Theta_n$ for $n \leq 90$, with the exception of $n=4$. 
+The underlined symbols denote the contributions from $\Theta_n^{bp}$.
+\end{thm}
+ 
+The cokernel of the $J$-homomorphism is slightly
+different than the $v_1$-torsion part of $\pi_n$ at the prime 2. 
+In dimensions $8m+1$ and $8m+2$, there are classes detected by $P^m h_1$ 
+and $P^m h_1^2$ in the Adams spectral sequence. 
+These classes are $v_1$-periodic, in the sense that
+they are detected by the $K(1)$-local sphere. 
+However, they are also in the cokernel of the $J$-homomorphism.  
+
+We restate the following conjecture from \cite{WangXu17}, which is based on the current knowledge of stable stems and a problem proposed by Milnor \cite{Milnor}.
+
+\begin{conj}\label{conjecture homotopy sphere}
+In dimensions greater than 4, the only spheres with unique smooth structures are $S^5$, $S^6$, $S^{12}$, $S^{56}$, and $S^{61}$.	
+\end{conj}
+
+Uniqueness in
+dimensions 5, 6 and 12 was known to Kervaire and Milnor \cite{KervaireMilnor}. 
+Uniqueness in dimension 56 is due to the first author \cite{Isaksen14c}, 
+and uniqueness in dimension 61 is due to the second and the third authors \cite{WangXu17}. 
+
+Conjecture~\ref{conjecture homotopy sphere} is equivalent to the claim
+that the group $\Theta_n$ is not of order $1$ for dimensions greater than $61$. This conjecture has been confirmed in all odd dimensions by the second and the third authors \cite{WangXu17} based on the work of Hill, Hopkins, and Ravenel \cite{HHR}, and \rev{in more than half of the even dimensions by Behrens, Hill, Hopkins, Mahowald and Quigley \cite{Behrens}\cite{BMQ21}.}
+
+
+
+
+\section{Notation}
+\label{sctn:notation}
+
+The cohomology of the Steenrod algebra is highly irregular, so
+consistent naming systems for elements presents a challenge.
+A list of multiplicative generators appears in Table \ref{tab:Adams-d2}.
+To a large extent, we rely on the traditional names for elements,
+as used in \cite{Bruner97}, \cite{Isaksen14c}, \cite{Tangora70a},
+and elsewhere.  However, we have adopted some new conventions 
+in order to partially systematize the names of elements.
+
+First, we use the symbol $\Delta x$ to indicate an element that is
+represented by $v_2^4 x$ in the May spectral sequence.  This use of
+$\Delta$ is consistent with the role that $v_2^4$ plays in the homotopy
+of $\tmf$, where it detects the discriminant element $\Delta$.
+For example, instead of the traditional symbol $r$, we use the
+name $\D h_2^2$.
+
+Second, the symbol $M$ indicates the Massey product
+operator $\langle -, h_0^3, g_2 \rangle$.  For example, instead of the
+traditional symbol $B_1$, we use the name $M h_1$.
+
+Similarly, the symbol $g$ indicates the Massey product
+operator $\langle -, h_1^4, h_4 \rangle$. For example, we write
+$h_2 g$ for the indecomposable element $\langle h_2, h_1^4, h_4 \rangle$.
+
+Eventually, we encounter elements that neither have traditional names,
+nor can be named using symbols such as $P$, $\Delta$, $M$, and $g$.
+In these cases, we use arbitrary names of the form $x_{s,f}$, where
+$s$ and $f$ are the stem and Adams filtration of the element.
+
+The last column of Table \ref{tab:Adams-d2} gives alternative names,
+if any, for each multiplicative generator.  These alternative names
+appear in at least one of 
+\cite{Bruner97} \cite{Isaksen14c} \cite{Tangora70a}.
+
+\begin{remark}
+One specific element deserves further discussion.
+\revv{In the cohomology of the motivic Steenrod algebra},
+we define $\tau Q_3$ to be the unique \revv{non-zero} element 
+\revv{in degree $(67, 5, 35)$}
+such that
+$h_3 \cdot \tau Q_3 = 0$.
+This choice is not compatible with the notation of \cite{Isaksen14c}.
+The element $\tau Q_3$ from \cite{Isaksen14c} equals
+the element $\tau Q_3 + \tau n_1$ in this manuscript.
+\end{remark}
+
+We shall also extensively study the Adams spectral sequence for
+the cofiber of $\tau$.  See Section \ref{sctn:Ctau-naming} for
+more discussion of the names of elements in this spectral sequence,
+and how they relate to the Adams spectral sequence for the sphere.
+
+Table \ref{tab:notation} gives some notation for elements in
+$\pi_{*,*}$.  Many of these names follow standard usage, but we 
+have introduced additional non-standard elements such as
+$\kappa_1$ and $\kappabar_2$.  These elements are defined by
+the classes in the Adams $E_\infty$-page that detect them.
+In some cases, this style of definition leaves indeterminacy because
+of the presence of elements in the $E_\infty$-page in higher filtration.
+In some of these cases, Table \ref{tab:notation} provides additional
+defining information.  Beware that this additional defining information
+does not completely specify a unique element in $\pi_{*,*}$ in 
+all cases.  For the purposes of our computations, these remaining
+indeterminacies are not consequential.
+
+\revv{Here is a list of the key notation that we use extensively:}
+
+\begin{itemize}
+\item
+\revv{
+Because we have completed at $2$, we have a map
+$\tau: S^{0,-1} \map S^{0,0}$ \cite{HKO11}*{Lemma 25}.  We write
+$C\tau$ for its cofiber.}
+We can also write $S/\tau$ for this $\C$-motivic spectrum, but the latter
+notation is more cumbersome.
+\item
+$\Ext = \Ext_\C$ is the cohomology of the $\C$-motivic Steenrod algebra.
+It is graded in the form $(s,f,w)$, where $s$ is the stem (i.e.,
+the total degree minus the Adams filtration), $f$ is the Adams
+filtration (i.e., the homological degree), and $w$ is the motivic weight.
+\item
+$\Ext_\cl$ is the cohomology of the classical Steenrod algebra.
+It is graded in the form $(s,f)$, where $s$ is the stem (i.e.,
+the total degree minus the Adams filtration), and $f$ is the Adams
+filtration (i.e., the homological degree).
+\item
+$\pi_{*,*}$ are the $2$-completed $\C$-motivic stable homotopy groups.
+\item
+$H^*(S; BP)$ is the Adams-Novikov $E_2$-page for the classical
+sphere spectrum, i.e., $\Ext_{BP_* BP} (BP_*, BP_*)$.
+\item
+$H^*(S/2; BP)$ is the Adams-Novikov $E_2$-page for the classical
+mod $2$ Moore spectrum, i.e., $\Ext_{BP_* BP} (BP_*, BP_*/2)$.
+\end{itemize}
+
+\section{How to use this manuscript}
+
+The manuscript is oriented around a series of tables to be found
+in Chapter \ref{ch:table}.  In a sense, the rest of the manuscript
+consists of detailed arguments for establishing each of the 
+computations listed in the tables.  We have attempted to give 
+references and cross-references within these tables, so that the 
+reader can more easily find the specific arguments pertaining to
+each computation.
+
+We have attempted to make the arguments accessible to users who
+do not intend to read the manuscript in its entirety.  To some
+extent, with an understanding of how the manuscript is structured,
+it is possible to extract information about a particular homotopy
+class in isolation.
+\revv{
+A secondary goal is to offer a 
+a guide to the computational techniques in use in 
+stable homotopy theory today.
+}
+
+We assume that the reader is also referring to the Adams charts in
+\cite{Isaksen14a} and \cite{Isaksen18}.  These charts describe the
+same information as the tables, except in graphical form.
+\revv{Especially when there are multiple elements in a single
+degree, the charts can be somewhat ambiguous.  In such cases,
+we encourage readers to use the associated spreadsheets
+\cite{Isaksen14a}.  These spreadsheets are more cumbersome than charts,
+but they are entirely explicit.
+}
+
+\rev{The style of this manuscript is very much similar to \cite{Isaksen14c}.}  We will
+frequently refer to discussions in \cite{Isaksen14c}, rather than
+repeat that same material here in an essentially redundant way.
+This is especially true for the first parts of Chapters 2, 3, and 4
+of \cite{Isaksen14c}, which discuss respectively the general properties of
+$\Ext$, the May spectral sequence, and Massey products; 
+the Adams spectral sequence and Toda brackets;
+and hidden extensions.
+
+Chapter \ref{ch:background} provides some additional miscellaneous
+background material not already covered in \cite{Isaksen14c}.
+Chapter \ref{ch:AANSS} discusses the nature of
+the machine-generated data that we rely on.  In particular, it
+describes our data on the algebraic Novikov spectral sequence,
+which is equal to the Adams spectral sequence for the cofiber of $\tau$.
+Chapter \ref{ch:Massey} provides some tools for computing
+Massey products in $\Ext$, and gives some specific computations.
+Chapter \ref{ch:Adams} carries out a detailed analysis of Adams
+differentials.
+Chapter \ref{ch:Toda} computes some miscellaneous Toda brackets
+that are needed for various specific arguments elsewhere.
+Chapter \ref{ch:hidden} methodically studies hidden extensions
+by $\tau$, $2$, $\eta$, and $\nu$ in the $E_\infty$-page of the
+$\C$-motivic Adams spectral sequence.  This chapter also gives some
+information about other miscellaneous hidden extensions.
+Finally, Chapter \ref{ch:table} includes the tables that summarize
+the multitude of specific computations that contribute to our study
+of stable homotopy groups.
+
+\section{Acknowledgements}
+
+We thank Agn\`es Beaudry, Joey Beauvais-Feisthauer, Mark Behrens, Robert Bruner, Robert Burklund, Dexter Chua, Paul Goerss, Jesper Grodal, Lars Hesselholt, Mike Hopkins, Peter May, Haynes Miller, Christian Nassau, Doug Ravenel, and John Rognes for advice, suggestions, corrections, support, and encouragement.
+
+
+
+
+
+
+

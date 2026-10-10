@@ -1,0 +1,117 @@
+In this section we employ technology from the rest of the paper to give example, concrete computations of trigraded homotopy groups.  First, we discuss vanishing regions in the homotopy groups of objects obtained from the sphere by either killing or inverting $a$ and $\ta$.  Then we give a detailed discussion of $\kq_2$, which we hope will be a useful guide to computationally minded stable homotopy theorists.
+
+\subsection{Vanishing regions for trigraded homotopy}\
+
+The coarsest information about the trigraded homotopy groups of Artin--Tate $\R$-motivic spectra comes from understanding which regions contain only zero groups. We summarize what we know in the following omnibus theorem.
+
+\begin{thm}\label{thm:omnibus-vanishing}
+  By either coning or inverting $a \in \pi_{0,-1,0}^{\R} \Ss$ and $\ta \in \pi_{0,0,-1}^{\R} \Ss_2$, we may build $9$ natural objects. The trigraded homotopy groups of these objects are concentrated in the following regions.
+  %% Of these, 5 of them have trigraded homotopy groups which are expressed in terms of either cellular $\C$-motivic spectra or $C_2$-spectra.
+  %% The remaining 4 objects have trigraded homotopy groups concentrated in the following regions.
+  \begin{enumerate}
+  \item $\pi_{p,q,w}^\R (\Ss_2)$
+    is concentrated in the region,
+    \[ \{ p+q \geq w \geq 0 \} \cup \{p+q \geq 0, w \leq 0\} \cup \{ p \geq 0 \}. \]
+
+  \item $\pi_{p,q,w}^\R (C\ta)$
+    is concentrated in the region,
+    \[ \{ 0 \leq p \leq 2w-q, w \geq 0 \} \cup \{ w-q \leq p \leq w-2, w \geq 0 \}. \]
+
+  \item $\pi_{p,q,w}^\R (\Ss_2[\ta^{-1}])$
+    is periodic in the $w$-degree and concentrated in the region,
+    \[ \{ p \geq 0 \} \cup \{ p+q \geq 0 \}. \]
+
+  \item $\pi_{p,q,w}^\R (Ca)$
+    is periodic along lines of the form $(1,-1,0)$ and concentrated in the region,
+    \[ \{ 0 \leq w \leq p+q \} \cup \{ 0 \leq p+q, w \leq 0 \}. \]
+    
+  \item $\pi_{p,q,w}^\R (Ca \otimes C\ta)$
+    is periodic along lines of the form $(1,-1,0)$ and concentrated in the region,
+    \[ \{ w \leq p+q \leq 2w \}. \]
+    
+  \item $\pi_{p,q,w}^\R (Ca \otimes \Ss_2[\ta^{-1}])$
+    is periodic in the $w$-degree, periodic along lines of the form $(1,-1,0)$ and concentrated in the region,
+    \[ \{p+q \geq 0\}. \]
+    
+  \item $\pi_{p,q,w}^\R (\Ss_2 [a^{-1}])$
+    is periodic in the $q$-degree and concentrated in the region,
+    \[ \{ p \geq 0 \}. \] 
+
+  \item $\pi_{p,q,w}^\R (\Ss_2 [a^{-1}] \otimes C\ta)$
+    is periodic in the $q$-degree and concentrated in the region,
+    \[ \{ p \geq 0, w \geq 0\}. \]
+    
+  \item $\pi_{p,q,w}^\R (\Ss_2 [a^{-1}, \ta^{-1}])$
+    is periodic in the $q$-degree, periodic in the $w$-degree and concentrated in the region,
+    \[ \{ p \geq 0 \}. \]
+
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+	We begin with (4), (5) and (6), where we have killed $a$.  In the identification of $Ca$-modules with the $\C$-motivic category, the trigraded homotopy group $\pi_{p,q,w} Ca$ is identified with the bigraded stem $\pi_{p+q,w}\Ss_2^\C$. Hence, $\pi_{p,q,w} Ca \cong \pi_{p+m,q-m,w} Ca$ for any integer $m$.  That $\pi_{p,q,w} Ca$ vanishes outside the indicated regions then reduces to well-known vanishing statements for the $\C$-motivic stable stems, as displayed on \cite[p.2]{GI}.  Similarly, again as indicated on \cite[p.2]{GI}, (5) and (6) are consequences of \cite[Theorem 6.7]{LevineComparison}.  Analogously, statements $(3)$ and $(9)$ follow from combining \Cref{thm:comparison-invert-ta} with the known vanishing regions in $C_2$-equivariant stable stems (for such vanishing regions, see e.g. \cite[Figure 5]{c2stems}).
+	
+	Upon inverting $a$ in (1) and (2) we recover (7) and (8), respectively, so it remains only to prove (1) and (2).  In fact, since \Cref{prop:unit-ta-complete} proves that $\Ss_2$ is $\ta$-complete, we may obtain (1) from (2) by examining the $\mathrm{E}_1$-page of the $\ta$-Bockstein spectral sequence. Finally, in order to prove (2) we directly examine the homotopy of $C\ta$.
+	  In \Cref{thm:Cta} we computed that  
+  \[ \pi_{p,q,w}^\R(C\ta) \cong \bigoplus_{w+a-s = p} \Ext_{(\MU_2)_* \MU_2 }^{s,2w}((\MU_2)_*, (\MU_2)_* \otimes_{\Z_2} \pi_{a + (q-w) \sigma}^{C_2} \uZt). \]
+  The result then follows by combining the following vanishing results:
+  \begin{itemize}
+    \item $\Ext_{(\MU_2)_* \MU_2 }^{s,2w} ((\MU_2)_*, (\MU_2)_*)$ and $\Ext_{(\MU_2)_* \MU_2 }^{s,2w} ((\MU_2)_*, (\MU_2)_*/2)$ are concentrated in the region $\{ 0 \leq s \leq 2w \}$.
+  \item $\pi_{p + q\sigma} ^{C_2} \uZt$ is concentrated in the region $\{ p \geq 0, p+q \leq 0\} \cup \{ p \leq -2, p+q \geq 0 \}$.
+  \end{itemize}
+	
+	
+%  We begin with four easy observations.
+%  First, we observe that (4), (5) and (6) all follow from the identification of $Ca$-modules with the $\C$-motivic category and well-known vanishing regions in the $p$-complete stems over $\C$.
+%  Second, we observe that (3) and (9) follow from \Cref{thm:comparison-invert-ta} and well-known vanishing regions in $C_2$-equivariant homotopy of the sphere.
+%  Third, we observe that upon inverting $a$ in (1) and (2) we obtain (7) and (8) respectively.
+%  Fourth, we know from \Cref{prop:unit-ta-complete} that $\Ss_2$ is $\ta$-complete, so we obtain (1) from (2) together with an examination of the $\mathrm{E}_1$-page of the $\ta$-Bockstein spectral sequence.
+
+%  In order to prove (2) we directly examine the homotopy of $C\ta$.
+%  In \Cref{thm:Cta} we computed that  
+%  \[ \pi_{p,q,w}^\R(C\ta) \cong \bigoplus_{w+a-s = p} \Ext_{(\MU_2)_* \MU_2 }^{s,2w}((\MU_2)_*, (\MU_2)_* \otimes_{\Z_2} \pi_{a + (q-w) \sigma}^{C_2} \uZt). \]
+%  The result then follows by combining the following vanishing results:
+%  \begin{itemize}
+%    \item $\Ext_{(\MU_2)_* \MU_2 }^{s,2w} ((\MU_2)_*, (\MU_2)_*)$ and $\Ext_{(\MU_2)_* \MU_2 }^{s,2w} ((\MU_2)_*, (\MU_2)_*/2)$ are concentrated in the region $\{ 0 \leq s \leq 2w \}$.
+%  \item $\pi_{p + q\sigma} ^{C_2} \uZt$ is concentrated in the region $\{ p \geq 0, p+q \leq 0\} \cup \{ p \leq -2, p+q \geq 0 \}$.
+%  \end{itemize}
+
+\end{proof}
+
+\begin{rmk}
+  As a corollary of the vanishing region for $C\ta$ and the $\ta$-completeness of the unit, we recover \cite[Theorem 1.1]{c2stems}, which describes the region in which $\b : \pi_{p,w,w}^\R \Ss_2 \to \pi_{p+w\sigma}^{C_2} \Ss_2$ is an isomorphism.
+\end{rmk}
+  
+ \subsection{The homotopy of $\kq_2$}\
+ \input{kq.tex}
+  
+%% \subsection{Comments on the homotopy of $\MGL$}\
+
+%% \todo{This bit needs to be rewritten.}
+
+%% As a corollary of the proof of \Cref{lem:fund-lem}, we can compute the slice spectral sequence for the trigraded homotopy groups of $\MGL$.
+
+%% \begin{cor} \todo{Actually, what happens with the negative cone? Not sure I accounted for that here.}
+%%   One may choose a set $x_i \in \pi_{i,i,i} ^\R \MGL$ of generators for the polynomial algebra $\pi_{n,n,n} ^\R \MGL \cong \Zt [x_1, x_2, \dots]$ such that the following is true.
+%%   First, the $\mathrm{E}_1$-page of the effective slice spectral sequence for $\MGL$ is of the form $\left(\pi_{a+b\sigma} \uZt \right) [x_1,x_2, \dots]$.
+%%   Then, the differentials in the slice spectral sequence are all induced by the Leibniz rule by
+%%   \[d_{2^n-1} (u^{2^n}) = a^{2^{n+1}-1} x_{2^n -1} \ta^{2^n-1}.\] \todo{I think this is the right differential length?}
+%% \end{cor}
+
+%% \begin{proof}
+%%   By the proof of \Cref{lem:fund-lem}, the effective slice spectral sequence for $\pi_{*,*,w} ^{\R} \MGL$ maps isomorphically, up to a regrading, to the slice spectral sequence for $\pi_{*+*\sigma} ^{C_2} P_{2w} \MUR$.
+%%   We may therefore deduce the differentials above from the corresponding equivariant slice differentials established in CITE.
+%%   It is not hard to use the known computation of the slice spectral sequence for $\MUR$ CITE to deduce that these differentials generate all of the others using the Leibniz rule.
+%%   %There are no further differentials because $a$, $\ta$, and the $x_i$ are permament cycles, so at each stage $u^{2^n}$ is the only possible source for a differential.
+%% \end{proof}
+
+%% \begin{rmk}
+%%   Multiplying the $d_{2^n-1}$ by a factor of $\ta^{2^n}$, we obtain the usual bigraded differentials (CITE):
+%%   \[d_{2^n-1} (\tau^{2^n}) = \rho^{2^{n+1}-1} x_{2^n-1}.\]
+%% \end{rmk}
+
+
+%% \subsection{The homotopy of the sphere}\ 
+
+%% \input{charts/chart1.tex}
+

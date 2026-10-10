@@ -1,0 +1,531 @@
+\section{The classical mod--2 Adams spectral sequence}
+\label{chap:classical-adams}
+
+This section defines the Steenrod, Ext, tower, convergence, product, and named-class interfaces.  Concrete published differentials and low-line calculations occur only in the later external-results chapter.
+
+\subsection{Steenrod algebra, Ext, towers, and convergence}
+
+% SOURCE: MainPaper/main.tex:126-150; PROJECT_BOUNDARY.md, Steenrod algebra and Ext.
+\begin{definition}[Dual Steenrod algebra]
+  \label{def:dual-steenrod-algebra}
+  \uses{def:mathlib-f2}
+  \notready
+  The project provides the graded connected Hopf algebra
+  $\mathcal A_*=H_*(H\mathbb F_2;\mathbb F_2)$, its augmentation and coproduct,
+  and the graded-dual relation with the mod--$2$ Steenrod algebra $\mathcal A$.
+  Mathlib v4.32.2 has no Steenrod-algebra implementation that supplies this
+  structure.
+  The explicit Milnor coalgebra below supplies the algebraic coproduct
+  slice; its construction does not complete the Hopf structure or identify
+  it with the homology of $H\mathbb F_2$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:126-150 and every Adams E_2-page computation.
+\begin{definition}[Graded Steenrod-comodule category]
+  \label{def:steenrod-comodule-category}
+  \uses{def:dual-steenrod-algebra,def:mathlib-abelian,def:hf2-homology}
+  \notready
+  Graded right $\mathcal A_*$-comodules form the abelian category used to model
+  mod--$2$ Adams input.  The interface includes degree-preserving comodule
+  maps, shifts, kernels, cokernels, tensor products, the trivial comodule
+  $\mathbb F_2$, and the homology comodule $H_*(X;\mathbb F_2)$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:126-150; internal and cohomological Ext gradings.
+\begin{definition}[Bigraded Adams Ext]
+  \label{def:adams-bigraded-ext}
+  \uses{def:steenrod-comodule-category,def:mathlib-derived-ext}
+  \notready
+  The Adams group $\operatorname{Ext}_{\mathcal A}^{s,t}(M,\mathbb F_2)$ has
+  derived degree $s$ and internal degree $t$.  It is represented equivalently
+  by internal graded Ext in $\mathcal A_*$-comodules, with an explicit proof
+  translating the paper's module convention to the comodule convention.  The
+  interface supplies internal-degree shifts, external tensor pairings, and the
+  action of
+  $\operatorname{Ext}_{\mathcal A}^{*,*}(\mathbb F_2,\mathbb F_2)$.
+  It supplies an internal product on
+  $\operatorname{Ext}_{\mathcal A}^{*,*}(M,\mathbb F_2)$ only when $M$ carries
+  the additional coalgebra data that induces one; there is no such product for
+  an arbitrary $M$.  Mathlib's singly graded derived Ext alone does not provide
+  these bigraded structures.
+\end{definition}
+
+\begin{definition}[Graded vector spaces with Cauchy tensor]
+  \label{def:graded-vector-space-cauchy}
+  \lean{KIP126.Algebra.GradedVectorSpace.GrVect,KIP126.Algebra.GradedVectorSpace.tensorInclusion,KIP126.Algebra.GradedVectorSpace.discreteEquivalence}
+  \uses{def:mathlib-f2,def:mathlib-abelian}
+  \leanok
+  For a field $K$, let $\operatorname{GrVect}_K$ be the category of
+  integer-graded $K$-vector spaces and degree-preserving linear maps.
+  Its tensor is the Cauchy tensor
+  $(V\otimes W)_n=\bigoplus_{i+j=n}V_i\otimes_K W_j$, with the actual
+  coproduct inclusions. Its linear operations are pointwise on morphisms;
+  the abelian structure is transported along the equivalence with functors
+  from the discrete category of integers. This does not use a pointwise
+  tensor product.
+\end{definition}
+
+\begin{definition}[The fixed coaugmented Milnor coalgebra]
+  \label{def:fixed-milnor-graded-coalgebra}
+  \lean{KIP126.Steenrod.Milnor.Coalgebra.dualSteenrodGraded,KIP126.Steenrod.Milnor.Coalgebra.comultiplication,KIP126.Steenrod.Milnor.Coalgebra.counit,KIP126.Steenrod.Milnor.Coalgebra.dualSteenrod,KIP126.Steenrod.Milnor.Coalgebra.coaugmentation}
+  \uses{def:graded-vector-space-cauchy}
+  The degree-$n$ carrier has the full Milnor monomials of weight $n$ as
+  its basis, including the constant monomial in degree zero; negative
+  degrees have empty monomial bases. In polynomial coordinates its maps are
+  \[
+    \Delta(\xi_k)=\sum_{i=0}^{k}\xi_{k-i}^{2^i}\otimes\xi_i,
+    \qquad \xi_0=1,\qquad |\xi_k|=2^k-1.
+  \]
+  The counit takes the constant coefficient, and the coaugmentation is
+  the constant polynomial. The coproduct is constructed from the existing
+  polynomial slot-splitting operation and the corresponding Cauchy
+  summands. Counitality, coassociativity and coaugmentation compatibility
+  remain property proof obligations. No unrelated coalgebra maps are
+  selected, and no full Hopf or topological identification follows here.
+\end{definition}
+
+\begin{definition}[Actual graded right comodules and internal shifts]
+  \label{def:actual-graded-right-comodules}
+  \lean{KIP126.Algebra.GradedComodule.rightTensorComonad,KIP126.Algebra.GradedComodule.RightComodule,KIP126.Algebra.GradedComodule.forget}
+  \lean{KIP126.Algebra.GradedComodule.linear,KIP126.Algebra.GradedComodule.abelian,KIP126.Algebra.GradedComodule.internalShift,KIP126.Algebra.GradedComodule.trivialAt}
+  \uses{def:graded-vector-space-cauchy,def:fixed-milnor-graded-coalgebra}
+  For a graded coalgebra $C$, right comodules are the Eilenberg--Moore
+  coalgebras of the actual comonad $V\mapsto V\otimes C$.
+  Addition is the existing coalgebra-morphism addition and scalar
+  multiplication is that of the underlying graded linear maps.
+  Finite limits and colimits use the forgetful functor's creation
+  constructions; the abelian structure is assembled from these and the
+  coimage-to-image isomorphism property. The Cauchy tensor's additivity,
+  linearity and finite-limit preservation, and the comparison-isomorphism
+  property, are stated but not yet proved.
+  Left tensoring by $K[t]$ defines the internal shift, with old degree
+  $n-t$ contributing to degree $n$. A specified coaugmentation defines
+  the trivial comodule $K[t]$ in every integer degree. This left tensor
+  uses a graded vector space; a tensor product of two arbitrary
+  $C$-comodules would additionally require suitable multiplication on $C$.
+  General spectrum-homology coactions are not constructed by this node.
+\end{definition}
+
+\begin{definition}[Derived Ext in the fixed comodule category]
+  \label{def:milnor-derived-ext}
+  \lean{KIP126.Algebra.GradedComodule.BigradedExt,KIP126.Algebra.GradedComodule.CoefficientExt}
+  \lean{KIP126.Steenrod.Milnor.Ext.RightComodule,KIP126.Steenrod.Milnor.Ext.trivialAt,KIP126.Steenrod.Milnor.Ext.SphereExt,KIP126.Steenrod.Milnor.Ext.unit}
+  \uses{def:actual-graded-right-comodules,def:mathlib-derived-ext}
+  In the actual graded-comodule category define
+  $\operatorname{Ext}^{s,t}(M,N)=\operatorname{Ext}^s(M[t],N)$ using
+  Mathlib's derived category, localized at quasi-isomorphisms.
+  For the fixed Milnor coalgebra the sphere convention is
+  $\operatorname{SphereExt}^{s,t}=\operatorname{Ext}^s(\mathbb F_2[t],\mathbb F_2)$,
+  with $s\in\mathbb N$ and $t\in\mathbb Z$; its $(0,0)$ unit is the
+  identity Ext class. This is derived Ext, not a renamed cobar quotient.
+  The abelian-category property debt persists, and comparisons with cobar
+  cohomology and the paper's left-module convention are separate claims.
+\end{definition}
+
+\begin{definition}[Convolution augmentation and left-module Ext]
+  \label{def:milnor-left-module-ext}
+  \lean{KIP126.Algebra.GradedDual.convolutionAlgebra,KIP126.Algebra.GradedDual.convolutionAugmentation}
+  \lean{KIP126.Algebra.GradedModule.leftTensorMonad,KIP126.Algebra.GradedModule.LeftModule,KIP126.Algebra.GradedModule.abelian,KIP126.Algebra.GradedModule.CoefficientExt}
+  \lean{KIP126.Steenrod.Milnor.Module.steenrod,KIP126.Steenrod.Milnor.Module.augmentation,KIP126.Steenrod.Milnor.Module.trivialAt,KIP126.Steenrod.Milnor.Module.SphereExt}
+  \uses{def:fixed-milnor-graded-coalgebra,def:graded-vector-space-cauchy,def:mathlib-derived-ext}
+  Let $A_n=\operatorname{Hom}_{\mathbb F_2}(C_n,\mathbb F_2)$ for the
+  fixed Milnor coalgebra $C$. The convolution product transposes the
+  ordered component $C_{i+j}\to C_i\otimes C_j$; its unit transposes the
+  counit. The augmentation evaluates a degree-zero functional on the
+  specified coaugmentation's value at $1$, and is zero in other degrees.
+  Left modules are algebras of the actual monad $V\mapsto A\otimes V$.
+  Their linear and abelian structures use the underlying maps and the
+  Eilenberg--Moore creation of finite limits and colimits. Restriction along
+  the augmentation gives the actual trivial degree line $k[t]$. Define
+  the left-module sphere groups as $\operatorname{Ext}_A^s(k,k[t])$ in
+  Mathlib's derived category. The monad, algebra and abelian structure
+  property proofs remain obligations; these objects are not additional
+  external inputs or new stage-boundary fields.
+\end{definition}
+
+\begin{definition}[Recursive conjugation and same-degree dualization]
+  \label{def:milnor-contravariant-dualization}
+  \lean{KIP126.Steenrod.Milnor.Coalgebra.Antipode.generatorImage,KIP126.Steenrod.Milnor.Coalgebra.Antipode.polynomialMap,KIP126.Steenrod.Milnor.Coalgebra.Antipode.map}
+  \lean{KIP126.Steenrod.Milnor.Module.conjugation,KIP126.Steenrod.Milnor.Module.dualToLeftModule,KIP126.Steenrod.Milnor.Module.trivialDualIso}
+  \uses{def:milnor-left-module-ext,def:actual-graded-right-comodules}
+  For the fixed coproduct convention, construct the polynomial antipode by
+  \[
+    S_0=1,\qquad
+    S_n=\xi_n+\sum_{1\leq i<n}\xi_{n-i}^{2^i}S_i\quad(n>0).
+  \]
+  Polynomial substitution extends this to all monomials, and its finite
+  support restricts it to the same homogeneous carriers. Transpose this
+  map to obtain $\chi:A\to A$. For a right comodule $M$, evaluation on
+  its coaction first defines the right action $\varphi\cdot a$ on its
+  same-degree dual. Use $a\cdot\varphi=\varphi\cdot\chi(a)$ to define
+  the left action. Degreewise transpose on maps gives the actual functor
+  $D:(\operatorname{Comod}_C)^{\mathrm{op}}\to\operatorname{Mod}_A$.
+  Evaluation on the specified generator identifies $D(k[t])$ with $k[t]$;
+  the degree is not negated. Antipode and action properties are stated but
+  unproved. No equivalence of unrestricted module and comodule categories
+  is asserted.
+\end{definition}
+
+\begin{definition}[Prescribed normalized cofree resolution]
+  \label{def:milnor-cofree-resolution}
+  \lean{KIP126.Steenrod.Milnor.Ext.Cofree.wordSpace,KIP126.Steenrod.Milnor.Ext.Cofree.term,KIP126.Steenrod.Milnor.Ext.Cofree.termPolynomial,KIP126.Steenrod.Milnor.Ext.Cofree.rawDifferential}
+  \lean{KIP126.Steenrod.Milnor.Ext.Cofree.termPolynomial_injective}
+  \lean{KIP126.Steenrod.Milnor.Ext.CobarResolution,KIP126.Steenrod.Milnor.Ext.CobarResolution.representativePolynomial}
+  \uses{def:actual-graded-right-comodules,def:milnor-derived-ext}
+  Write $W_s$ for the graded vector space on normalized Milnor words of
+  length $s$. The prescribed term is the actual cofree right comodule
+  $W_s\otimes C$, with the last, full coalgebra factor retaining constants.
+  Polynomial coordinates concatenate the normalized word with this final
+  factor, degree by degree across the Cauchy direct sum.
+  Injectivity of these polynomial coordinates is a separate, currently
+  unproved statement.
+  A cobar resolution is an injective resolution of $\mathbb F_2[0]$ with
+  comodule isomorphisms from its terms to these specified cofree terms.
+  In these coordinates its differential is
+  \[
+    d_{\mathrm{cofree}}^s=\operatorname{insertLeft}_{s+1}
+       +\sum_{j=0}^{s}\operatorname{splitSlot}_j.
+  \]
+  There is no right-insertion term in this resolution differential.
+  The augmentation takes the actual generator $1$ to the constant
+  polynomial $1$. Evaluating a map out of $\mathbb F_2[t]$ on its
+  degree-$t$ generator defines its representative polynomial.
+  Existence, injectivity of the terms, and the resolution comparison
+  remain obligations; declaring this presentation does not prove them.
+\end{definition}
+
+\begin{theorem}[Cobar comparison with actual derived comodule Ext]
+  \label{thm:cobar-derived-comodule-ext-comparison}
+  \lean{KIP126.Challenge2.CobarDerivedExtComparison,KIP126.Challenge2.CobarDerivedExtComparison.internalEquiv}
+  \lean{KIP126.Def.Comparison.StageInterfaces.cobarDerivedExtComparison}
+  \uses{def:milnor-cofree-resolution,def:milnor-derived-ext,def:milnor-cobar-cohomology}
+  For the fixed $H\mathbb F_2$ input and Milnor cooperation comparison,
+  there exist one prescribed cobar resolution $R$ and $\mathbb F_2$-linear
+  equivalences
+  \[
+    e_{s,t}:H^{s,t}_{\mathrm{cobar}}\cong
+       \operatorname{SphereExt}^{s,t}\qquad(s,t\in\mathbb N).
+  \]
+  For every normalized cocycle $x$ of bidegree $(s,t)$, require a comodule
+  map $f:\mathbb F_2[t]\to R^s$ with $fd=0$ such that
+  \[
+    \operatorname{representativePolynomial}_R(f)
+       =\operatorname{insertRight}_s(x),\qquad
+    e_{s,t}([x])=R.\operatorname{extMk}(f).
+  \]
+  Right insertion appends the constant final coalgebra factor. These
+  representative equations bind the equivalence to the specified
+  resolution in every degree. Composing with the existing cobar-to-internal
+  $E_2$ comparison yields the displayed internal $E_2$-to-derived-Ext
+  equivalence without choosing new coordinates.
+  The target Ext is defined in all integer internal degrees, whereas this
+  comparison currently quantifies nonnegative internal degrees.
+  Construction of these comparisons remains unfinished; neither the
+  left Steenrod-module comparison nor compatibility with Yoneda products
+  follows from this additive comparison.
+\end{theorem}
+
+\begin{theorem}[Coefficient Ext comparison with prescribed representatives]
+  \label{thm:milnor-coefficient-module-comparison}
+  \lean{KIP126.Steenrod.Milnor.Module.dualCobarResolution}
+  \lean{KIP126.Steenrod.Milnor.Module.PreservesDualCobarRepresentatives,KIP126.Steenrod.Milnor.Module.exists_dualCobarComparison}
+  \uses{def:milnor-cofree-resolution,def:milnor-derived-ext,def:milnor-contravariant-dualization}
+  Given a prescribed cofree resolution $R$, form the actual chain complex
+  $P_s=D(R^s)$ with differential $D(d_R)$ and augmentation $D(\iota_R)$
+  followed by $D(k[0])\cong k[0]$. Its projectivity and resolution
+  properties remain proof obligations for these specified terms and maps.
+  There exists a family of linear equivalences
+  \[
+    e_{s,t}:\operatorname{Ext}_C^s(k[t],k)
+       \cong\operatorname{Ext}_A^s(k,k[t]),
+    \qquad s\in\mathbb N,\quad t\in\mathbb Z,
+  \]
+  such that, for every $f:k[t]\to R^s$ with $fd_R=0$,
+  \[
+    e_{s,t}\bigl(R.\operatorname{extMk}(f)\bigr)
+      =P.\operatorname{extMk}\bigl(D(f)\,;\,(D(k[t])\cong k[t])\bigr).
+  \]
+  The target map must be a cocycle for this actual dual differential.
+  The all-representatives condition determines the comparison; its
+  existence is stated but not proved. This coefficient comparison does not
+  supply the general-spectrum coaction bridge or
+  multiplication compatibility.
+\end{theorem}
+
+% SOURCE: MainPaper/main.tex:126-150; finite-type standing assumption at lines 253-263.
+\begin{proposition}[Module--comodule Adams Ext comparison]
+  \label{prop:adams-module-comodule-ext-comparison}
+  \uses{def:adams-bigraded-ext,def:admissible-spectrum,def:hf2-homology,def:unital-multiplication-data}
+  \notready
+  For an admissible spectrum $X$, degreewise finite duality identifies the
+  paper's module expression
+  \[
+    \operatorname{Ext}_{\mathcal A}^{s,t}
+      (H^*(X;\mathbb F_2),\mathbb F_2)
+  \]
+  with the corresponding internal Ext, equivalently Cotor, expression built
+  from the graded $\mathcal A_*$-comodule $H_*(X;\mathbb F_2)$.  The
+  isomorphism preserves $(s,t)$, external pairings, the sphere-Ext action,
+  suspension, and maps induced by spectra.  When $X$ has unital multiplication
+  data, it also preserves the resulting internal product.
+\end{proposition}
+
+\begin{proof}
+  Use finite type to dualize each graded piece, identify Steenrod-module
+  actions with dual-Steenrod coactions, and compare the bar and cobar
+  resolutions degreewise.  Verify the internal grading, external tensor
+  pairing, and sphere action on the chain-level comparison before passing to
+  cohomology.  For a spectrum with multiplication, compare the internal
+  product obtained by composing with its multiplication map.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:134-150; PROJECT_BOUNDARY.md, Steenrod algebra and Ext.
+\begin{definition}[Mod--2 Steenrod algebra and Ext]
+  \label{def:steenrod-ext}
+  \uses{def:adams-bigraded-ext,prop:adams-module-comodule-ext-comparison,def:hf2-homology,def:unital-multiplication-data}
+  \notready
+  Let $\mathcal A$ be the mod--$2$ Steenrod algebra and let
+  $\mathbb F_2$ be its trivial module.  The project interface provides the
+  bigraded groups
+  $\operatorname{Ext}_{\mathcal A}^{s,t}(H^*(X;\mathbb F_2),\mathbb F_2)$,
+  external pairings, their action by the sphere group
+  $\operatorname{Ext}_{\mathcal A}^{*,*}(\mathbb F_2,\mathbb F_2)$,
+  suspension/regrading maps, and functoriality in $X$.  An internal product is
+  present only after supplying multiplication data on $X$; in particular it
+  is canonical for $X=S^0$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:126-150 and 253-275; standard mod-2 Adams resolution used implicitly.
+\begin{definition}[$H\mathbb F_2$-Adams resolution and tower]
+  \label{def:hf2-adams-tower}
+  \uses{def:admissible-spectrum,def:hf2-homology,def:cofiber-triangle,def:stable-sphere-suspension}
+  \notready
+  For an admissible spectrum $X$, iterate the unit
+  $X\to H\mathbb F_2\wedge X$ and its fiber to obtain a functorial Adams
+  resolution and a decreasing tower
+  \[
+    \cdots\longrightarrow X_2\longrightarrow X_1\longrightarrow X_0=X.
+  \]
+  The interface records the exact triangles, augmentations to $X$, naturality,
+  external tower pairings
+  $X_s\wedge Y_{s'}\to (X\wedge Y)_{s+s'}$, and the fact that every successive
+  cofiber is an $H\mathbb F_2$-module spectrum.  The pairings do not give an
+  internal multiplication on the tower of an arbitrary $X$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:253-343, Adams filtration on classes and maps.
+\begin{definition}[Filtration induced by the Adams tower]
+  \label{def:adams-tower-filtration}
+  \uses{def:hf2-adams-tower,def:stable-homotopy-group,def:core-filtration}
+  \notready
+  The Adams filtration on $\pi_nX$ is
+  \[
+    F^s\pi_nX=\operatorname{im}\bigl(\pi_nX_s\longrightarrow\pi_nX\bigr).
+  \]
+  A map has filtration at least $k$ when it factors through the $k$th stage of
+  the target tower, with the chosen factorization retained as data.  Tower
+  pairings give filtration inequalities for external smash products and for
+  composition.  They give internal-product inequalities only after a
+  multiplication on the spectrum has been supplied.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:929-971, especially the homology consequence in
+% Proposition prop:41561db2; standard first-stage Adams-tower argument.
+\begin{proposition}[Positive Adams filtration is homologically trivial]
+  \label{prop:positive-adams-filtration-homology-zero}
+  \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:adams-filtration,def:hf2-homology}
+  \notready
+  For an admissible stable map $u:X\to Y$, if
+  $\operatorname{AF}(u)>0$, including infinite filtration, then
+  \[
+    H_*u=0.
+  \]
+  Consequently, if $H_*u$ is nonzero then $\operatorname{AF}(u)=0$.  The
+  converse direction is not used implicitly: whenever homological vanishing
+  is meant to produce positive filtration, a chosen lift through the first
+  Adams stage must be supplied separately.
+\end{proposition}
+
+\begin{proof}
+  Positive filtration supplies a factorization through the first fiber in the
+  $H\mathbb F_2$-Adams tower of $Y$.  The composite of that fiber with the
+  unit $Y\to H\mathbb F_2\wedge Y$ is null, so applying
+  $H\mathbb F_2$-homology makes the induced map zero.  The final assertion is
+  its contrapositive, using the nonnegative filtration convention.
+  The factorization-level implication is now proved for the constructed
+  tower in Proposition~\ref{prop:h6-tower-homology-zero}, with multiplication
+  on $H\mathbb F_2$ and preservation of zero maps stated explicitly.
+  Its connection to the numerical $\operatorname{AF}$ interface and the
+  chosen fixed model remains pending; this full node is not marked complete.
+  \uses{prop:h6-tower-homology-zero}
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:126-150 and standing convergence assumption at 253-263; classical Adams construction.
+\begin{theorem}[Adams tower, Ext, and convergence comparison]
+  \label{thm:adams-tower-ext-comparison}
+  \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:steenrod-ext,thm:filtered-complex-to-spectral-sequence,def:ss-convergence-detection-witness,thm:external-classical-adams-convergence}
+  \notready
+  The exact couple or filtered cobar complex of the
+  $H\mathbb F_2$-Adams tower yields a spectral sequence whose $E_2$ page is
+  naturally
+  $\operatorname{Ext}_{\mathcal A}^{s,t}
+  (H^*(X;\mathbb F_2),\mathbb F_2)$ and whose induced tower filtration is
+  Definition~\ref{def:adams-tower-filtration}.  A located classical
+  convergence-and-detection witness is an additional input for the admissible
+  spectra used in the paper; this theorem does not prove it.
+\end{theorem}
+
+\begin{proof}
+  Apply the filtered-complex construction to the tower's cobar resolution,
+  identify its normalized cochains with the Steenrod cobar complex, and use
+  the module--comodule comparison to obtain the bigraded Ext page.  Attach the
+  located witness when a later theorem needs the abutment comparison.  Pairings
+  are treated separately in Theorem~\ref{thm:adams-external-pairing}; they are
+  not silently converted into an internal product for arbitrary $X$.
+\end{proof}
+
+% SOURCE: classical Adams tower pairing; MainPaper/main.tex:135-159 uses its
+% internal specialization only for the sphere Adams spectral sequence.
+\begin{theorem}[Adams external pairings and multiplicative specializations]
+  \label{thm:adams-external-pairing}
+  \uses{thm:adams-tower-ext-comparison,def:hf2-adams-tower,def:unital-multiplication-data,def:multiplicative-ss}
+  \notready
+  Whenever $X$, $Y$, and $X\wedge Y$ are in the Adams construction, the tower
+  pairings induce natural pagewise pairings
+  \[
+    E_r^{s,t}(X)\otimes E_r^{s',t'}(Y)
+      \longrightarrow E_r^{s+s',t+t'}(X\wedge Y)
+  \]
+  compatible with page passage and satisfying the Leibniz rule.  Taking
+  $X=S^0$ makes the sphere Adams spectral sequence an internally unital
+  multiplicative spectral sequence, and every $E_r(Y)$ is naturally a module
+  over it.  More generally, if $R$ has chosen unital multiplication data, then
+  composing the external pairing with $R\wedge R\to R$ gives an internal
+  multiplicative Adams spectral sequence for $R$.  No internal multiplication
+  is asserted for an arbitrary admissible spectrum.
+\end{theorem}
+
+\begin{proof}
+  Pass the external pairings of Adams towers to their exact couples, then to
+  every page.  Addition of filtration indices gives the displayed bidegree and
+  the boundary in the paired filtered complex gives the Leibniz rule.  For the
+  sphere, compose with the unit identification
+  $S^0\wedge S^0\simeq S^0$; for $R$, compose with its chosen multiplication.
+  Associativity and units follow from the supplied algebra coherences, while
+  $S^0\wedge Y\simeq Y$ gives the module action.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:134-150 and 253-263.
+\begin{definition}[Classical Adams spectral sequence]
+  \label{def:classical-adams-ss}
+  \uses{thm:adams-tower-ext-comparison,thm:adams-external-pairing,def:steenrod-ext,def:adams-bidegree,def:adams-complex-shape,def:ss-elementwise-page-presentation,def:ss-einfty-presentation,def:admissible-spectrum,def:stable-homotopy-group,def:ss-convergence-detection-witness}
+  \notready
+  For every admissible spectrum $X$, the classical mod--$2$ Adams spectral
+  sequence has
+  \[
+    E_2^{s,t}(X)=\operatorname{Ext}_{\mathcal A}^{s,t}
+      (H^*(X;\mathbb F_2),\mathbb F_2),
+    \qquad d_r:E_r^{s,t}\to E_r^{s+r,t+r-1},
+  \]
+  together with the AIM finite-page presentation
+  $E_r\cong Z_{r-1}/B_{r-1}$ for $r\ge2$, the algebraic $E_\infty$
+  presentation, and naturality.  A chosen convergence-and-detection witness
+  identifies this $E_\infty$ with the $2$-complete stable homotopy of $X$ when
+  supplied.  These sequences
+  have external smash pairings and are modules over the sphere Adams spectral
+  sequence.  The sphere sequence, and more generally the sequence of an
+  admissible spectrum with chosen unital multiplication data, is internally
+  multiplicative; no internal product is included for general $X$.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:253-263 and 841-864.
+\begin{proposition}[Classical Adams convergence and detection]
+  \label{prop:classical-adams-convergence}
+  \uses{def:classical-adams-ss,def:ss-convergence-detection-witness,def:adams-detection}
+  \notready
+  Given a convergence-and-detection witness for the classical sequence, its
+  $E_\infty$ page is identified with the associated graded of the Adams
+  filtration on the $2$-complete stable homotopy groups.  Consequently the
+  witness's detection relation identifies the filtered homotopy classes
+  represented by nonzero permanent classes.
+\end{proposition}
+
+\begin{proof}
+  Project the specified witness to the classical Adams sequence and identify
+  its filtration with the Adams-tower filtration.  The algebraic
+  $Z_\infty/B_\infty$ presentation then supplies the page representatives used
+  by the witness's detection relation.
+\end{proof}
+
+% SOURCE: BHS SynRevBigraded.tex, dfn:E-complete and dfn:strong-conv;
+% fixed-sphere applicability and filtration separation are project obligations.
+\begin{proposition}[Completeness and strong convergence for the fixed sphere]
+  \label{prop:fixed-sphere-adams-applicability}
+  \lean{KIP126.Def.standardSphereApplicability}
+  \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:classical-adams-ss}
+  \notready
+  For the fixed $2$-complete sphere $S^0$ and the same unit of
+  $H\mathbb F_2$, the residual Adams tower has acyclic homotopy limit.
+  Its Adams spectral sequence converges strongly: the tower filtration
+  on each $\pi_nS^0$ is complete and Hausdorff, and
+  \[
+    E_\infty^{s,t}(S^0)\cong
+    F^s\pi_{t-s}S^0/F^{s+1}\pi_{t-s}S^0.
+  \]
+  The applicability proof for this fixed object remains unfinished.
+\end{proposition}
+
+\begin{proposition}[Separation of the fixed sphere Adams filtration]
+  \label{prop:fixed-sphere-adams-separated}
+  \lean{KIP126.Def.standardSphereSeparated}
+  \uses{prop:fixed-sphere-adams-applicability,def:adams-tower-filtration}
+  \notready
+  For every integer $n$ and $a\in\pi_nS^0$, if
+  $a\in F^s\pi_nS^0$ for every $s\in\mathbb N$, then $a=0$.
+  Thus the intersection of all nonnegative Adams filtration stages is zero.
+  The deduction from the fixed-sphere convergence comparison remains
+  unfinished.
+\end{proposition}
+
+% SOURCE: MainPaper/main.tex:136-162.
+\begin{definition}[The classes $h_j$]
+  \label{def:adams-hj}
+  \uses{def:classical-adams-ss,thm:adams-external-pairing}
+  \notready
+  For $j\ge0$, $h_j$ denotes the standard generator in
+  $E_2^{1,2^j}(S^0)$.  Its square $h_j^2$ lies in
+  $E_2^{2,2^{j+1}}(S^0)$ and has stem $2^{j+1}-2$.  In particular,
+  $h_6^2$ lies in bidegree $(2,128)$ and stem $126$.  All products here use
+  the canonical internal multiplication on the sphere Adams spectral sequence
+  supplied by Theorem~\ref{thm:adams-external-pairing}.
+\end{definition}
+
+\subsection{Adams filtration and detection}
+
+% SOURCE: MainPaper/main.tex:253-263, 283-306, and 912-997.
+\begin{definition}[Adams filtration of elements and maps]
+  \label{def:adams-filtration}
+  \uses{def:admissible-spectrum,def:hf2-homology,def:stable-homotopy-group,def:adams-tower-filtration}
+  \notready
+  The primitive notions are predicates $\operatorname{AF}(\alpha)\ge s$ and
+  $\operatorname{AF}(f)\ge k$: respectively, $\alpha$ lies in filtration
+  $F^s\pi_nX$, and $f$ factors through the $k$th Adams-tower stage.  Their
+  suprema take values in $\mathbb Z\cup\{+\infty\}$ for elements and
+  $\mathbb N\cup\{+\infty\}$ for maps; in particular the zero element and zero
+  map have infinite filtration.  The paper's notation
+  $\operatorname{AF}(-)=k$ abbreviates that the finite supremum is attained
+  and equal to $k$.  The interface records monotonicity under sums,
+  composition, and the shift induced on detected classes.
+\end{definition}
+
+% SOURCE: MainPaper/main.tex:307-343, 408-459, and 461-648.
+\begin{definition}[Detection relation]
+  \label{def:adams-detection}
+  \uses{def:ss-convergence-detection-witness,def:adams-filtration}
+  \notready
+  For a permanent Adams class $x\in E_\infty^{s,t}(X)$ and a homotopy class
+  $\alpha\in\pi_{t-s}X$, write $x\leadsto\alpha$ when $x$ is the associated
+  graded image of $\alpha$ in filtration $s$.  Detection is a relation rather
+  than a function: a homotopy element can have several representatives after
+  adding higher-filtration terms.
+\end{definition}

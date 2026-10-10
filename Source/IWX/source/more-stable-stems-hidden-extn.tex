@@ -1,0 +1,3540 @@
+\chapter{Hidden extensions}
+\label{ch:hidden}
+
+In this chapter, we will discuss hidden extensions
+in the $E_\infty$-page of the Adams spectral sequence.
+We methodically explore hidden extensions by
+$\tau$, $2$, $\eta$, and $\nu$, and we study other miscellaneous
+hidden extensions that are relevant for specific purposes.
+\revv{
+For easy reference, the lemmas in this chapter are labelled with degrees that match the degrees given in the tables.}
+
+\section{Hidden $\tau$ extensions}
+\label{sctn:tau-extn}
+
+In order to study hidden $\tau$ extensions,
+we will use the long exact sequence
+\begin{equation}
+\label{eq:LES-Ctau}
+\xymatrix@1{
+\cdots \ar[r] & \pi_{p,q+1} \ar[r]^\tau & \pi_{p,q} \ar[r] & 
+\pi_{p,q} C\tau \ar[r] & 
+\pi_{p-1,q+1} \ar[r]^\tau & \pi_{p-1,q} \ar[r] & \cdots
+}
+\end{equation}
+extensively.
+This sequence governs hidden $\tau$ extensions in the following sense.
+An element $\alpha$ in $\pi_{p,q}$ is divisible by $\tau$
+if and only if it maps to zero in $\pi_{p,q} C\tau$,
+and an element $\alpha$ in $\pi_{p-1,q+1}$ supports a $\tau$ extension
+if and only if it is not in the image of $\pi_{p,q} C\tau$.
+Therefore, we need to study the maps
+$\pi_{*,*} \map \pi_{*,*} C\tau$ and
+$\pi_{*,*} C\tau \map \pi_{*-1,*+1}$
+induced by inclusion of the bottom cell into $C\tau$
+and by projection from $C\tau$ to the top cell.
+
+The $E_\infty$-pages of the Adams spectral sequences for $S^{0,0}$ and
+$C\tau$ give associated graded objects for the homotopy groups that 
+are the sources and targets of these maps.  Naturality of the
+Adams spectral sequence induces maps on associated graded objects.
+
+These maps on associated graded objects often detect the values
+of the maps on homotopy groups.  For example, the element
+$h_0$ in the Adams spectral sequence for the sphere is mapped to the
+element $h_0$ in the Adams spectral sequence for $C\tau$.
+In homotopy groups, this means that inclusion of the bottom cell into
+$C\tau$ takes the element $2$ in $\pi_{0,0}$ to the
+element $2$ in $\pi_{0,0} C\tau$.
+
+On the other side, the element $\ol{h_1^4}$ in the 
+Adams spectral sequence for $C\tau$ is mapped to the
+element $h_1^4$ in Adams spectral sequence for the sphere.
+In homotopy groups, this means that projection from $C\tau$ to
+the top cell takes the element $\{ \ol{h_1^4} \}$ in $\pi_{5,3}C\tau$
+to the element $\eta^4$ in $\pi_{4,4}$.
+
+However, some values of the maps on homotopy groups can be hidden
+in the map of associated graded objects.  This situation is rare in
+low stems but becomes more and more common in higher stems.
+The first such example occurs in the 30-stem.
+The element $\D h_2^2 $ is a permanent cycle in the Adams spectral
+sequence for $C\tau$, so $\{\D h_2^2 \}$ is an element in $\pi_{30,16} C\tau$.
+Now $\D h_2^2$ maps to zero in the $E_\infty$-page of the Adams spectral
+sequence for the sphere, but $\{\D h_2^2 \}$ does not map to zero
+in $\pi_{29,17}$.  In fact $\{\D h_2^2 \}$ maps to $\eta \kappa^2$,
+which is detected by $h_1 d_0^2$.
+This demonstrates that projection from $C\tau$ to the top cell
+has a hidden value.
+
+We refer the reader to Section \ref{sctn:assoc-graded}
+for a precise discussion of these issues.
+
+\begin{thm}
+\label{thm:hid-incl-proj}
+\mbox{}
+\begin{enumerate}
+\item
+Through the 90-stem,
+Table \ref{tab:hid-incl} lists all
+hidden values of inclusion of the bottom cell into $C\tau$,
+except that:
+\rev{
+\begin{enumerate}
+\item
+If $h_1 f_2$ does not survive but $\tau h_1 f_2$ does survive,
+then $\tau h_1 f_2$ maps to $h_0^3 c_3$.
+\item
+If $h_1^2 f_2$ does not survive, then $\tau h_1^2 f_2$
+maps to $\ol{\tau h_1^3 h_4 Q_3}$ or
+$\D^2 e_1 + \ol{\tau \D h_2 e_1 g}$.
+\item
+$\tau h_1 x_{85,6}$
+maps to $\ol{\tau h_1^3 h_4 Q_3}$ or
+$\D^2 e_1 + \ol{\tau \D h_2 e_1 g}$.
+\end{enumerate}
+}
+\item
+Through the 90-stem, Table \ref{tab:hid-proj} lists all
+hidden values of projection from $C\tau$ to the top cell,
+except that:
+\rev{
+\begin{enumerate}
+\item
+If $h_1 f_2$ does not survive, then $h_1 f_2$ maps to $h_1^2 h_4 Q_3$ 
+or $\D h_1 j_1$.
+\item
+$x_{85,6}$ maps to $h_1^2 h_4 Q_3$ or $\D h_1 j_1$.
+\item
+If $h_1^2 f_2$ does not survive, then $h_1^2 f_2$ maps to
+$h_1^3 h_4 Q_3$ or $\tau M h_0 g^2$.
+\item
+$h_1 x_{85,6}$ maps to $h_1^3 h_4 Q_3$ or $\tau M h_0 g^2$.
+\item
+If $h_1^2 f_2$ survives, then 
+$\ol{\tau h_1^3 h_4 Q_3}$ or $\D^2 e_1 + \ol{\tau \D h_2 e_1 g}$
+maps to $M \D h_1^2 d_0$.
+\end{enumerate}
+}
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+The values of inclusion of the bottom cell and projection
+to the top cell are almost entirely determined by inspection
+of Adams $E_\infty$-pages.
+Taking into account the multiplicative structure,
+there are no other combinatorial possibilities.
+For example, consider the exact sequence
+\[
+\pi_{30,16} \map \pi_{30,16} C\tau \map \pi_{29,17}.
+\]
+In the Adams $E_\infty$-page for $C\tau$, 
+$h_4^2$ and $\D h_2^2$
+are the only two elements in the 30-stem with weight 16.
+In the Adams $E_\infty$-page for the sphere,
+$h_4^2$ is the only element in the 30-stem with weight 16,
+and $h_1 d_0^2$ is the only element in the 29-stem with weight 17.
+The only possibility is that $h_4^2$ maps to $h_4^2$ under
+inclusion of the bottom cell, and
+$\D h_2^2$ maps to $h_1 d_0^2$ under projection to the top cell.
+
+One case, given below in Lemma \ref{lem:t-d1e1}, 
+requires a more complicated argument.
+\end{proof}
+
+\begin{remark}
+Through the 90-stem, inclusion of the bottom cell into $C\tau$
+has only one hidden value with target indeterminacy.
+Namely, $h_2 c_1 A'$ is the hidden value of $\ol{h_1 g B_7}$,
+with target indeterminacy generated by $\D j_1$.
+Through the 90-stem, projection from $C\tau$ to the top cell
+has no hidden values with target indeterminacy.
+\end{remark}
+
+\begin{remark}
+Through the 90-stem,
+inclusion of the bottom cell into $C\tau$ has no crossing values.
+On the other hand, projection from $C\tau$ to the top cell
+does have crossing values in this range.  These occurrences
+are described in the fourth column of 
+Table \ref{tab:hid-proj}.
+Each can be verified by direct inspection.
+\end{remark}
+
+\begin{thm}
+\label{thm:tau-extn}
+Through the 90-stem,
+Table \ref{tab:tau-extn}
+lists all hidden $\tau$ extensions in $\C$-motivic stable homotopy groups,
+except that:
+\rev{
+\begin{enumerate}
+\item
+if $M \D h_1 d_0$ is not hit by a differential, then
+there is a hidden $\tau$ extension from $\D h_1 j_1$ to
+$M \D h_1 d_0$.
+\item
+if $M \D h_1^2 d_0$ is not hit by a differential, then
+there is a hidden $\tau$ extension from $\tau M h_0 g^2$ to
+$M \D h_1^2 d_0$.
+\end{enumerate}
+}
+In this range, the only crossing extension is:
+\begin{enumerate}
+\item
+the hidden $\tau$ extension from $h_1^2 h_6 c_0$ to $h_0 h_4 D_2$,
+and the not hidden $\tau$ extension on $\tau h_2^2 Q_3$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Almost all of these hidden $\tau$ extensions follow immediately
+from the values of the maps in the long exact sequence
+(\ref{eq:LES-Ctau})
+given in Tables \ref{tab:hid-incl} and \ref{tab:hid-proj}.
+
+For example, 
+consider the element $P d_0$
+in the Adams $E_\infty$-page for the sphere, which 
+belongs to the 22-stem with weight 12. 
+Now $\pi_{22,12} C\tau$ is zero because there are 
+no elements in that degree in the Adams $E_\infty$-page
+for $C\tau$, so
+inclusion of the bottom cell takes $\{ P d_0 \}$ to zero.
+Therefore, $\{ P d_0 \}$ must be in the image of multiplication
+by $\tau$.
+The only possibility is that there is a hidden $\tau$
+extension from $c_0 d_0$ to $P d_0$.
+\end{proof}
+
+\begin{remark}
+\label{rem:t-Dh1j1}
+If $M \D h_1 d_0$ and $M \D h_1^2 d_0$ are not hit by differentials,
+then a straightforward analysis of the sequence
+(\ref{eq:LES-Ctau})
+shows that the possible $\tau$ extensions on $\D h_1 j_1$ and 
+$\tau M h_0 g^2$ must occur.  Thus these uncertainties are entirely
+determined by corresponding uncertainties in values of the Adams 
+differentials.
+\end{remark}
+
+\begin{lemma}
+\label{lem:t-d1e1}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{70, 10, 38}
+The element 
+$h_1 h_3 (\D e_1 + C_0) + \tau h_2 C''$ maps to
+$\ol{h_1^4 c_0 Q_2}$ 
+under inclusion of the bottom cell into $C\tau$.
+\item
+\revdeg{70, 8, 39}
+There is a hidden $\tau$ extension from $d_1 e_1$ to 
+$h_1 h_3 (\D e_1 + C_0)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Consider the exact sequence
+$\pi_{70, 38} \map \pi_{70, 38} C\tau \map \pi_{69, 39}$.
+For combinatorial reasons, one of the following two possibilities
+must occur:
+\begin{enumerate}[(a)]
+\item
+the element $h_1 h_3 (\D e_1 + C_0) + \tau h_2 C''$ maps to
+$\ol{h_1^4 c_0 Q_2}$ 
+under inclusion of the bottom cell into $C\tau$, and
+there is a hidden $\tau$ extension from $d_1 e_1$ to 
+$h_1 h_3 (\D e_1 + C_0)$.
+\item
+the element $h_1 h_3 (\D e_1 + C_0)$
+maps to $\ol{h_1^4 c_0 Q_2}$ 
+under inclusion of the bottom cell into $C\tau$, and
+there is a hidden $\tau$ extension from $d_1 e_1$ to 
+$h_1 h_3 (\D e_1 + C_0) + \tau h_2 C''$.
+\end{enumerate}
+We will show that there cannot be a hidden
+$\tau$ extension from $d_1 e_1$ to
+$h_1 h_3 (\D e_1 + C_0) + \tau h_2 C''$.
+
+Lemma \ref{lem:eta-sigma-k1} shows that
+$\tau \nu \{d_1 e_1\}$ equals
+$\tau \eta \sigma \{k_1\}$.
+Since there is no hidden $\tau$ extension on $h_1 k_1$,
+there must exist an element $\alpha$ in $\{k_1\}$ such that
+$\tau \eta \alpha = 0$.
+Therefore,
+$\tau \nu \{d_1 e_1\}$ must be zero.
+
+If there were a $\tau$ extension from
+$d_1 e_1$ to 
+$h_1 h_3 (\D e_1 + C_0) + \tau h_2 C''$, then
+$\tau \nu \{d_1 e_1\}$ would be detected by
+\[
+h_2 \cdot (h_1 h_3 (\D e_1 + C_0) + \tau h_2 C'') =
+\tau h_2^2 C'',
+\]
+and in particular would be non-zero.
+\end{proof}
+
+\section{Hidden $2$ extensions}
+\label{sctn:2-extn}
+
+\begin{thm}
+\label{thm:2-extn}
+Tables \ref{tab:2-extn} \rev{and \ref{tab:2-extn-null}} list some hidden extensions by $2$.
+\end{thm}
+
+\begin{proof}
+Many of the hidden extensions follow by comparison to 
+$C\tau$.  For example, there is a hidden $2$ extension
+from $h_0 h_2 g$ to $h_1 c_0 d_0$ in the Adams spectral
+sequence for $C\tau$.
+Pulling back along inclusion of the bottom cell into $C\tau$,
+there must also be a hidden $2$ extension from $h_0 h_2 g$
+to $h_1 c_0 d_0$ in the Adams spectral sequence for the sphere.
+This type of argument is indicated by the notation
+$C\tau$ in the fourth column of Table \ref{tab:2-extn}.
+
+Next, Table \ref{tab:tau-extn} shows a hidden $\tau$
+extension from $h_1 c_0 d_0$ to $P h_1 d_0$.
+Therefore, there is also a hidden $2$ extension from
+$\tau h_0 h_2 g$ to $P h_1 d_0$.
+This type of argument is indicated by the notation $\tau$
+in the fourth column of Table \ref{tab:2-extn}. 
+
+Many cases require more complicated arguments.  In stems up to
+approximately dimension 62, see 
+\cite{Isaksen14c}*{Section 4.2.2 and Tables 27--28}
+\cite{WangXu18}, and \cite{Xu16}.
+The higher-dimensional cases are handled in the following lemmas.
+\end{proof}
+
+\begin{remark}
+Through the 90-stem, there are no crossing $2$ extensions.
+\end{remark}
+
+\begin{remark}
+The hidden $2$ extension from $h_0 h_3 g_2$ to $\tau g n$
+is proved in \cite{WangXu18}, which uses on the
+``$\R P^\infty$-method" to establish a hidden
+$\sigma$ extension from $\tau h_3 d_1$ to $\D h_2 c_1$
+and a hidden $\eta$ extension from $\tau h_1 g_2$ to $\D h_2 c_1$.
+We now have easier proofs for these $\eta$ and $\sigma$ extensions,
+using the hidden $\tau$ extension from $h_1^2 g_2$ to $\D h_2 c_1$
+given in Table \ref{tab:tau-extn}, as well as the relation
+$h_3^2 d_1 = h_1^2 g_2$.
+\end{remark}
+
+\begin{remark}
+\label{rem:2-h0h5i}
+Comparison to synthetic homotopy gives additional
+information about some
+possible hidden $2$ extensions, including:
+\begin{enumerate}
+\item
+there is a hidden $2$ extension from $h_0 h_5 i$ to
+$\tau^4 e_0^2 g$.
+\item
+there is no hidden $2$ extension from $P x_{76,6}$ 
+to $M \D h_1 d_0$.
+\end{enumerate}
+See \rev{\cite{Burklund21} and} \cite{BIX} for more details.
+We are grateful to John Rognes for pointing out a mistake
+in \cite{Isaksen14c}*{Lemma 4.56 and Table 27} 
+concerning the hidden $2$ extension
+on $h_0 h_5 i$.  
+Lemma \ref{lem:2-h0h5i} shows that the extension occurs but
+does not determine its target precisely.  
+\end{remark}
+
+\begin{remark}
+The first correct proof of the relation $2 \theta_5 = 0$ 
+appeared in \cite{Xu16}.  Earlier claims in \cite{Lin01}
+and \cite{Kochman90} were based upon a mistaken understanding of the
+Toda bracket $\langle \sigma^2, 2, \theta_4 \rangle$.
+See \cite{Isaksen14c}*{Table 23} for the correct value of
+this bracket.
+\end{remark}
+
+\begin{remark}
+\label{rem:2-tMh0g^2}
+If $M \D h_1^2 d_0$ is non-zero in the $E_\infty$-page, then
+there is a hidden $\tau$ extension from $\tau M h_0 g^2$ to
+$M \D h_1^2 d_0$.  This implies that there must be a hidden
+$2$ extension from $\tau^2 M g^2$ to $M \D h_1^2 d_0$.
+\end{remark}
+
+\rev{
+\begin{remark}
+\label{rem:2-x87,7}
+Table \ref{tab:2-extn} shows that there is a hidden $2$
+extension from $x_{87,7}$ to $\tau^3 g Q_3$.
+This follows from data recently produced by Dexter Chua on the
+$d_2$ differentials in the Adams spectral sequence for the cofiber 
+of $2$.
+\end{remark}
+}
+
+\begin{thm}
+\label{thm:2-extn-possible}
+Table \ref{tab:2-extn-possible} lists all unknown hidden $2$
+extensions, through the $90$-stem.
+\end{thm}
+
+\begin{proof}
+Many possibilities are eliminated by comparison to $C\tau$, to
+$\tmf$, or to $\mmf$.  For example,
+there cannot be a hidden $2$ extension from $h_2^2 h_4$ to $\tau h_1 g$
+by comparison to $C\tau$.
+
+Many additional possibilities are eliminated by consideration of other
+parts of the multiplicative structure.  For example,
+there cannot be a hidden $2$ extension from $P h_1 h_5$
+to $\tau^3 g^2$ because $\tau^3 g^2$ supports an $h_1$ extension
+and $2 \eta$ equals zero.
+
+Several cases are a direct consequence of Proposition
+\ref{prop:2-<alpha,2,theta5>}.
+
+Some possibilities are eliminated by more complicated arguments.
+These cases are handled in the following lemmas.
+\end{proof}
+
+
+
+\begin{remark}
+\label{rem:2-Px76,6}
+If $M \D h_1^2 d_0$ is not zero in the $E_\infty$-page, then
+$M \D h_1 d_0$ supports an $h_1$ multiplication, and there cannot
+be a hidden $2$ extension from $P x_{76,6}$ to $M \D h_1 d_0$.
+\end{remark}
+
+\begin{prop}
+\label{prop:2-<alpha,2,theta5>}
+Suppose that $2 \alpha$ and $\tau \eta \alpha$ are both zero.
+Then $2 \langle \alpha, 2, \theta_5 \rangle$ is zero.
+\end{prop}
+
+\begin{proof}
+Consider the shuffle
+\[
+2 \langle \alpha, 2, \theta_5 \rangle =
+\langle 2, \alpha, 2 \rangle \theta_5.
+\]
+Since $2 \theta_5$ is zero, this expression has no indeterminacy.
+Corollary \ref{cor:2-symmetric} implies that it equals
+$\tau \eta \alpha \theta_5$, which is zero by assumption.
+\end{proof}
+
+\begin{remark}
+\label{rem:2-<alpha,2,theta5>}
+Proposition \ref{prop:2-<alpha,2,theta5>} eliminates possible
+hidden $2$ extensions on several elements, including $h_2^2 h_6$,
+$h_0^3 h_3 h_6$, $h_3^2 h_6$, $h_6 c_1$, $h_2^2 h_4 h_6$,
+$h_0^5 h_6 i$, and $h_2^2 h_6 g$.
+\end{remark}
+
+
+
+\begin{lemma}
+\label{lem:2-h0h5i}
+\revdeg{54, 9, 28}
+There is a hidden $2$ extension from $h_0 h_5 i$ to either
+$\tau M P h_1$ or to $\tau^4 e_0^2 g$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:unit-mmf} shows that
+$h_0 h_5 i$ maps to $\D^2 h_2^2$ in the homotopy of $\tmf$.
+The element $\D^2 h_2^2$ supports a hidden $2$ extension,
+so $h_0 h_5 i$ must support a hidden $2$ extension as well.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-th1H1}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{63, 6, 33}
+There is a hidden $2$ extension from
+$\tau h_1 H_1$ to $\tau h_1 (\D e_1 + C_0)$.
+\item
+\revdeg{63, 7, 33}
+There is no hidden $2$ extension on $\tau X_2 + \tau C'$.
+\item
+\revdeg{70, 7, 37}
+There is a hidden $2$ extension from
+$\tau h_1 h_3 H_1$ to $\tau h_1 h_3 (\D e_1 + C_0)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that there is an $\eta$
+extension from $\tau h_1 H_1$ to $h_3 Q_2$.
+Let $\alpha$ be any element of $\pi_{63,33}$ that is
+detected by $\tau h_1 H_1$.
+Then
+$\tau \eta^2 \alpha$ is non-zero and detected by 
+$\tau h_1 h_3 Q_2$.
+Note that $\tau h_1 h_3 Q_2$ cannot be the target of a hidden
+$2$ extension because there are no possibilities.
+
+If $2 \alpha$ were zero, then we would have the shuffling
+relation
+\[
+\tau \eta^2 \alpha =
+\langle 2, \eta, 2 \rangle \alpha = 
+2 \langle \eta, 2, \alpha \rangle.
+\]
+But this would contradict the previous paragraph.
+
+We now know that $2 \alpha$ must be non-zero for every possible
+choice of $\alpha$.
+The only possibility is that there is a hidden
+$2$ extension from $\tau h_1 H_1$ to $\tau h_1 (\D e_1 + C_0)$,
+and that there is no hidden $2$ extension on $\tau X_2 + \tau C'$.
+This establishes the first two parts.
+
+The third part follows immediately from the first part by
+multiplication by $h_3$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h1h6}
+\revdeg{64, 2, 33}
+There is a hidden $2$ extension from $h_1 h_6$ to $\tau h_1^2 h_5^2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that 
+$h_1 h_6$ detects $\langle \eta, 2, \theta_5 \rangle$.
+Now shuffle to obtain
+\[
+2 \langle \eta, 2, \theta_5 \rangle =
+\langle 2, \eta, 2 \rangle \theta_5 = \tau \eta^2 \theta_5.
+\]
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-D1h3^2}
+\revdeg{66, 6, 36}
+There is no hidden $2$ extension on $\D_1 h_3^2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $\D_1 h_3^2$ detects the
+Toda bracket $\langle \eta^2, \theta_4, \eta^2, \theta_4 \rangle$.
+We have
+\[
+2 \langle \eta^2, \theta_4, \eta^2, \theta_4 \rangle \subseteq
+\langle \langle 2, \eta^2, \theta_4 \rangle, \eta^2, \theta_4 \rangle.
+\]
+Table \ref{tab:Toda} shows that
+\[
+\nu \theta_4 = \langle 2, \eta, \eta \theta_4 \rangle =
+\langle 2, \eta^2, \theta_4 \rangle,
+\]
+so we must compute $\langle \nu \theta_4, \eta^2, \theta_4 \rangle$.
+
+This bracket contains $\nu \langle \theta_4, \eta^2, \theta_4 \rangle$,
+which equals zero by Lemma \ref{lem:theta4,eta^2,theta4}.
+Therefore, we only need to compute the indeterminacy of 
+$\langle \nu \theta_4, \eta^2, \theta_4 \rangle$.
+
+The only possible non-zero element in the indeterminacy is the 
+product $\theta_4 \{ t \}$.
+Table \ref{tab:Toda} shows that 
+$\{t \} = \langle \nu, \eta, \eta \theta_4 \rangle$.  Now
+\[
+\theta_4 \{ t\} = \langle \nu, \eta, \eta \theta_4 \rangle \theta_4 =
+\nu \langle \eta, \eta \theta_4, \theta_4 \rangle.
+\]
+This last expression is well-defined because
+$\theta_4^2$ is zero \cite{Xu16}, and it 
+must be zero because 
+$\pi_{63,34}$ consists entirely of multiples of $\eta$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h0Q3}
+\revdeg{67, 6, 36}
+There is no hidden $2$ extension on $h_0 Q_3 + h_2^2 D_3$.
+\end{lemma}
+
+\begin{proof}
+By comparison to the homotopy of $C\tau$,
+there is no hidden extension with value $h_2^2 A'$.
+Table \ref{tab:eta-extn} shows that
+$\tau^2 \D h_2^2 e_0 g$ supports a hidden $\eta$ extension.
+Therefore, it cannot be the target of a $2$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h3A'}
+\revdeg{68, 7, 36}
+There is no hidden $2$ extension on $h_3 A'$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_3 A'$ detects the Toda bracket
+$\langle \sigma, \kappa, \tau \eta \theta_{4.5} \rangle$.
+Shuffle to obtain
+\[
+\langle \sigma, \kappa, \tau \eta \theta_{4.5} \rangle 2 =
+\sigma \langle \kappa, \tau \eta \theta_{4.5}, 2 \rangle.
+\]
+The bracket $\langle \kappa, \tau \eta \theta_{4.5}, 2 \rangle$
+is zero because it is contained in $\pi_{61,32} = 0$.
+\end{proof}
+
+
+\begin{lemma}
+\label{lem:2-p'}
+\revdeg{69, 4, 36}
+There is no hidden $2$ extension on $p'$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:misc-extn} shows that $p'$
+detects the product $\sigma \theta_5$, and 
+$2 \theta_5$ is already known to be zero
+\cite{Xu16}.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-th1D3'}
+\revdeg{70, 9, 37}
+There is no hidden $2$ extension on $\tau h_1 D_3'$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that 
+$\tau h_1 D'_3$ detects the Toda bracket 
+$\langle \eta, \nu, \tau \theta_{4.5} \kappabar \rangle$.
+Now shuffle to obtain
+\[
+2 \langle \eta, \nu, \tau \theta_{4.5} \kappabar \rangle =
+\langle 2, \eta, \nu \rangle \tau \theta_{4.5} \kappabar,
+\]
+which equals zero because $\langle 2, \eta, \nu \rangle$
+is contained in in $\pi_{5,3} = 0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h1h3h6}
+\revdeg{71, 3, 37}
+There is no hidden $2$ extension on $h_1 h_3 h_6$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that
+$h_1 h_6$ detects the Toda bracket $\langle \eta, 2, \theta_5 \rangle$.
+Let $\alpha$ be an element of this bracket.
+Then $h_1 h_3 h_6$ detects $\sigma \alpha$, and
+\[
+2 \sigma \alpha = 2 \sigma \langle \eta, 2, \theta_5 \rangle =
+\sigma \langle 2, \eta, 2 \rangle \theta_5 = 
+\tau \eta^2 \sigma \theta_5.
+\]
+
+Table \ref{tab:Toda} also shows that $h_6 c_0$ detects 
+the Toda bracket $\langle \epsilon, 2, \theta_5 \rangle$.
+Let $\beta$ be an element of this bracket.
+As in the proof of Lemma \ref{lem:2-h6c0}, we compute
+that $2 \beta$ equals $\tau \eta \epsilon \theta_5$.
+
+Now consider the element $\sigma \alpha + \beta$, which is also
+detected by $h_1 h_3 h_6$.  Then
+\[
+2(\sigma \alpha + \beta) = 
+\tau \eta^2 \sigma \theta_5 + \tau \eta \epsilon \theta_5 =
+\tau \nu^3 \theta_5,
+\]
+using Toda's relation $\eta^2 \sigma + \nu^3 = \eta \epsilon$
+\cite{Toda62}.
+
+Table \ref{tab:nu-extn} shows that there is a hidden
+$\nu$ extension from $h_2 h_5^2$ to $\tau h_1 Q_3$.
+Therefore, $\tau h_1 Q_3$ detects $\nu^2 \theta_5$.
+
+This does not yet imply that $\nu^3 \theta_5$ is zero,
+because $\nu^2 \theta_5 + \eta \{\tau Q_3 + \tau n_1\}$
+might be detected $h_3 A'$ or $P h_2 h_5 j$ in higher filtration.
+However, $h_3 A'$ does not support a hidden
+$\nu$ extension by Lemma \ref{lem:nu-h3A'}.
+Also, Table \ref{tab:unit-mmf} shows that
+$P h_2 h_5 j$ maps non-trivially to $\tmf$,
+while $\nu^2 \theta_5 + \eta \{\tau Q_3 + \tau n_1\}$
+maps to zero.
+This is enough to conclude that $\nu^3 \theta_5$ is zero.
+
+We have now shown that $2(\sigma \alpha + \beta)$ is zero
+in $\pi_{71,37}$.  Since $h_1 h_3 h_6$
+detects $\sigma \alpha + \beta$, it follows that 
+$h_1 h_3 h_6$ does not support a hidden $2$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h6c0}
+\revdeg{71, 4, 37}
+There is a hidden $2$ extension from $h_6 c_0$ to $\tau h_1^2 p'$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_6 c_0$ detects the Toda bracket
+$\langle \epsilon, 2, \theta_5 \rangle$.
+Now shuffle to obtain
+\[
+2 \langle \epsilon, 2, \theta_5 \rangle = 
+\langle 2, \epsilon, 2 \rangle \theta_5 = 
+\tau \eta \epsilon \theta_5.
+\]
+Finally, $\tau \eta \epsilon \theta_5$ is detected
+by $\tau h_1^2 p'$ because of the relation
+$h_1^2 p' = h_1 h_5^2 c_0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-th1p1}
+\revdeg{71, 5, 37}
+There is no hidden $2$ extension on $\tau h_1 p_1$.
+\end{lemma}
+
+\begin{proof}
+Lemma \ref{lem:eta,nu,t^2h2C'} shows that $\tau h_1 p_1$
+detects $\langle \eta, \nu, \alpha \rangle$ for some
+$\alpha$ detected by $\tau^2 h_2 C'$.
+Now shuffle to obtain
+\[
+2 \langle \eta, \nu, \alpha \rangle = 
+\langle 2, \eta, \nu \rangle \alpha,
+\]
+which is zero because $\langle 2, \eta, \nu \rangle$ is contained
+in $\pi_{5,3} = 0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h1^2h3H1}
+\revdeg{71, 8, 39}
+There is a hidden $2$ extension from $h_2^3 H_1$ to $\tau M h_2^2 g$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:nu-extn} shows that there are hidden $\nu$ extensions
+from $h_2^3 H_1$ to $h_3 C''$, and from
+$\tau M h_2^2 g$ to $M h_1 d_0^2$.
+Table \ref{tab:2-extn} shows that there is also a hidden
+$2$ extension from $h_3 C''$ to $M h_1 d_0^2$.
+The only possibility is that there must also be a hidden $2$
+extension on $h_1^2 h_3 H_1$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-Ph1h6}
+\revdeg{72, 6, 37}
+There is no hidden $2$ extension on $P h_1 h_6$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $P h_1 h_6$ detects the Toda bracket
+$\langle \mu_9, 2, \theta_5 \rangle$.
+Shuffle to obtain
+\[
+2 \langle \mu_9, 2, \theta_5 \rangle =
+\langle 2, \mu_9, 2 \rangle \theta_5 =
+\tau \eta \mu_9 \theta_5.
+\]
+Table \ref{tab:Toda} also shows that $\mu_9$ is contained in the
+Toda bracket $\langle \eta, 2, 8 \sigma \rangle$.
+Shuffle again to obtain
+\[
+\tau \eta \mu_9 \theta_5 =
+\langle \eta, 2, 8 \sigma \rangle \tau \eta \theta_5 =
+\tau \eta^2 \langle 2, 8 \sigma, \theta_5 \rangle.
+\]
+Table \ref{tab:Toda} shows that
+$h_0^3 h_3 h_6$ detects $\langle 2, 8 \sigma, \theta_5 \rangle$.
+
+By inspection, the product $\eta^2 \{h_0^3 h_3 h_6\}$
+can only be detected by $\D^2 h_1 h_4 c_0$.
+However, this cannot occur by comparison to $C\tau$.
+Therefore,
+$\eta^2 \{h_0^3 h_3 h_6\}$, and also
+$\tau \eta^2 \{h_0^3 h_3 h_6\}$, must be zero.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h4Q2+h3^2D2}
+\revdeg{72, 8, 38}
+There is no hidden $2$ extension on $h_4 Q_2 + h_3^2 D_2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that the element
+$h_4 Q_2 + h_3^2 D_2$ detects the Toda bracket
+$\langle \sigma^2, 2, \{t\}, \tau \kappabar \rangle$.
+Consider the relation
+\[
+2 \langle \sigma^2, 2, \{t\}, \tau \kappabar \rangle \subseteq
+\langle \langle 2, \sigma^2, 2 \rangle, \{t\}, \tau \kappabar \rangle.
+\]
+Corollary \ref{cor:2-symmetric} shows 
+that the Toda bracket $\langle 2, \sigma^2, 2 \rangle$ contains
+zero since $\eta \sigma^2$ is zero.  Therefore, it
+consists of even multiples of $\rho_{15}$;
+let $2 k \rho_{15}$ be any such element in $\pi_{15,8}$.
+
+The Toda bracket
+$\langle 2 k \rho_{15}, \{t\}, \tau \kappabar \rangle$
+contains $k \rho_{15} \langle 2, \{t\}, \tau \kappabar \rangle$,
+which equals zero as discussed in the proof
+of Lemma \ref{lem:sigma^2,2,T,tkappabar}.
+Moreover, its indeterminacy
+is equal to $\tau \kappabar \cdot \pi_{52,28}$,
+which is detected in Adams filtration at least 12.
+This implies that
+$\langle 2 k \rho_{15}, \{t\}, \tau \kappabar \rangle$
+is detected in Adams filtration at least 12,
+and that
+the target of a hidden $2$ extension on $h_4 Q_2 + h_3^2 D_2$
+must have Adams filtration at least 12.
+
+The remaining possible targets with Adams filtration at least 12
+are eliminated by comparison to $C\tau$ or to $\mmf$.
+\end{proof}
+
+\begin{remark}
+\label{rem:2-h4Q2+h3^2D2}
+The proof of Lemma \ref{lem:2-h4Q2+h3^2D2} might be simplified by
+considering the shuffle
+\[
+2 \langle \sigma^2, 2, \{t\}, \tau \kappabar \rangle =
+\langle 2, \sigma^2, 2, \{t\} \rangle \tau \kappabar.
+\]
+However, the latter four-fold bracket may not exist, since
+both three-fold subbrackets have indeterminacy.
+See \cite{Isaksen14b} for a discussion of the analogous 
+difficulty with Massey products.
+\end{remark}
+
+\begin{lemma}
+\label{lem:2-h2^2Q3}
+\revdeg{73, 7, 40}
+There is no hidden $2$ extension on $h_2^2 Q_3$.
+\end{lemma}
+
+\begin{proof}
+The element $\tau h_2^2 Q_3$ detects
+$\nu^2 \{\tau Q_3 + \tau n_1\}$, so it cannot support a 
+hidden $2$ extension.
+This rules out all possible $2$ extensions on
+$h_2^2 Q_3$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h0h4D2}
+\revdeg{73, 8, 38}
+There is no hidden $2$ extension on $h_0 h_4 D_2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:tau-extn} shows that there is a hidden
+$\tau$ extension from $h_1^2 h_6 c_0$ to $h_0 h_4 D_2$.
+Therefore, $h_0 h_4 D_2$ detects either
+$\tau \eta \epsilon \eta_6$ or
+$\tau \eta \epsilon \eta_6 + \nu^2 \{\tau Q_3 + \tau n_1\}$,
+because of the presence of $\tau h_2^2 Q_3$ in higher
+filtration.
+In either case, $h_0 h_4 D_2$ cannot support a hidden $2$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h3(tQ3+tn1)}
+\revdeg{74, 6, 39}
+There is a hidden $2$ extension from $h_3(\tau Q_3+ \tau n_1)$
+to $\tau x_{74,8}$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:misc-extn} shows that
+$\tau x_{74,8}$ detects $\tau \kappabar_2 \theta_4$.
+Table \ref{tab:Toda} shows that $\theta_4$ equals
+the Toda bracket $\langle \sigma^2, 2, \sigma^2, 2 \rangle$.
+
+Now consider the shuffle
+\[
+\tau \kappabar_2 \theta_4 = 
+\tau \kappabar_2 \langle \sigma^2, 2, \sigma^2, 2 \rangle =
+\langle \tau \kappabar_2, \sigma^2, 2, \sigma^2 \rangle 2.
+\]
+Lemma \ref{lem:tkappabar2,sigma^2,2} shows that the latter
+bracket is well-defined.
+This implies that $\tau x_{74,8}$ is the target of a hidden $2$
+extension, and $h_3(\tau Q_1 + \tau n_1)$ is the only possible
+source.
+\end{proof}
+
+
+\begin{lemma}
+\label{lem:2-h6d0}
+\revdeg{77, 5, 40}
+There is no hidden $2$ extension on $h_6 d_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_6 d_0$ detects the Toda bracket
+$\langle \kappa, 2, \theta_5 \rangle$.  Now shuffle to obtain
+\[
+2 \langle \kappa, 2, \theta_5 \rangle = 
+\langle 2, \kappa, 2 \rangle \theta_5 = \tau \eta \kappa \theta_5.
+\]
+Lemma \ref{lem:sigma^2+kappa-h5^2} shows that this product
+equals \rev{either $\tau \eta \sigma^2 \theta_5$ or
+$\tau \eta \sigma^2 \theta_5 + \tau^3 \eta \kappa_1 \kappabar_2$.
+Both possibilities are zero because
+$\eta \sigma^2$ and $\tau \eta \kappa_1$ are zero.}
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-e0A'}
+\revdeg{78, 10, 42}
+There is a hidden $2$ extension from $e_0 A'$ to $M \D h_1^2 h_3$.
+\end{lemma}
+
+\begin{proof}
+Let $\alpha$ be an element of $\pi_{76,40}$ that is detected
+by $x_{76,9}$.
+Table \ref{tab:eta-extn} shows that there is a hidden
+$\eta$ extension from $x_{76,9}$ to $M \D h_1 h_3$,
+so $\tau \eta^2 \alpha$ is detected by $\tau M \D h_1^2 h_3$.
+Now shuffle to obtain
+\[
+\tau \eta^2 \alpha = \langle 2, \eta, 2 \rangle \alpha =
+2 \langle \eta, 2, \alpha \rangle.
+\]
+This shows that $\tau M \D h_1^2 h_3$ must be the target
+of a hidden $2$ extension.
+
+Moreover, the source of this hidden $2$ extension must be in Adams
+filtration at least $10$, since the Adams differential
+$d_2(\tau x_{77,8}) = h_0 x_{76,9}$ implies that
+$\langle \eta, 2, \alpha \rangle$ is detected by
+$h_1 x_{77,8} = 0$ in filtration $9$.
+The only possible source is $e_0 A'$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h1h4h6}
+\revdeg{79, 3, 41}
+There is no hidden $2$ extension on $h_1 h_4 h_6$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_1 h_4 h_6$ detects the Toda bracket
+$\langle \eta_4, 2, \theta_5 \rangle$.
+Now shuffle to obtain
+\[
+2 \langle \eta_4, 2, \theta_5 \rangle =
+\langle 2, \eta_4, 2 \rangle \theta_5,
+\]
+which equals $\tau \eta \eta_4 \theta_5$ by Table \ref{tab:Toda}.
+We will show that this product is zero.
+
+There are several elements in the Adams $E_\infty$-page
+that might detect $\eta_4 \theta_5$.  The possibilities
+$h_1 h_6 d_0$ and $x_{78,9}$ are ruled out by comparison to $C\tau$.
+The possibility $\tau e_0 A'$ is ruled out because
+Table \ref{tab:2-extn} shows that $e_0 A'$ supports a hidden
+$2$ extension.
+
+Two possibilities remain.  If $\eta_4 \theta_5$ is detected
+by $\tau M \D h_1^2 h_3$, then $\tau \eta \eta_4 \theta_5$
+must be zero because there are no elements in sufficiently
+high Adams filtration.
+
+Finally, suppose that $\eta_4 \theta_5$ is detected by
+$\tau h_1^2 x_{76,6}$.  Let $\alpha$ be an element of $\pi_{77,41}$
+that is detected by $h_1 x_{76,6}$.
+If $\eta_4 \theta_5 + \tau \eta \alpha$ is not zero,
+then it is detected in
+higher filtration.  
+\rev{It cannot be detected by $x_{78,9}$ by comparison to $C\tau$, and}
+it cannot be detected by $\tau e_0 A'$
+because of the hidden $2$ extension on $e_0 A'$.
+If it is detected by $\tau M \D h_1^2 h_3$, then we may
+change the choice of $\alpha$ to ensure that
+$\eta_4 \theta_5 + \tau \eta \alpha$ is zero.
+
+We have now shown that $\tau \eta \eta_4 \theta_5$
+equals $\tau^2 \eta^2 \alpha$.
+Shuffle to obtain
+\[
+\tau^2 \eta^2 \alpha =
+\tau \alpha \langle 2, \eta, 2 \rangle =
+\langle \alpha, 2, \eta \rangle 2 \tau.
+\]
+\rev{Here we are using that $2 \alpha$ is zero; the possible
+$2$ extensions on $h_1 x_{76,6}$ are easily eliminated by the presence
+of $\eta$ extensions and by comparison to $\mmf$.}
+
+Table \ref{tab:Toda} shows that
+$\langle \alpha, 2, \eta \rangle$ is detected
+by $h_0 h_2 x_{76,6}$, and Lemma \ref{lem:2-h0h2x76,6}
+shows that this element does not support a hidden $2$ extension.
+Therefore,
+$\langle \alpha, 2, \eta \rangle 2 \tau$ is zero.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h0h2x76,6}
+\revdeg{79, 8, 42}
+There is no hidden $2$ extension on $h_0 h_2 x_{76,6}$.
+\end{lemma}
+
+\begin{proof}
+Let $\alpha$ be an element of $\pi_{76,40}$ that is detected by
+$h_4 A$.  Then $\nu \alpha$ is detected by $h_0 h_2 x_{76,6}$,
+\rev{and $2 \alpha$ is detected by $h_0 h_4 A$.
+We will show that $2 \nu \alpha$ is zero.}
+
+Table \ref{tab:misc-extn} shows that
+$h_0 h_4 A$ also detects 
+\rev{either $\sigma^2 \theta_5$ or $\sigma^2 \theta_5 + \tau^2 \kappa_1 \kappabar_2$.
+Then
+$2 \alpha + \sigma^2 \theta_5$ or $2 \alpha + \sigma^2 \theta_5 + \tau^2 \kappa_1 \kappabar_2$ could be detected in higher filtration.
+However, only $x_{76,9}$ could detect this error term, and
+inclusion of the bottom cell into $C\tau$ rules it out.
+
+We now know that
+$\sigma^2 \theta_5 + 2 \alpha$ is either zero or
+$\tau^2 \kappa_1 \kappabar_2$.
+Multiply by $\nu$ to conclude that
+$2 \nu \alpha$ is either zero or $\tau^2 \nu \kappa_1 \kappabar_2$.
+As in the proof of Lemma \ref{lem:eta-h1h6d0}, this last
+expression is also zero.
+}
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-Ph6c0}
+\revdeg{79, 8, 41}
+There is no hidden $2$ extension on $P h_6 c_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:misc-extn} shows that
+$P h_6 c_0$ detects the product $\rho_{15} \eta_6$.
+Table \ref{tab:Toda} shows that 
+$\eta_6$ is contained in the Toda bracket
+$\langle \eta, 2, \theta_5 \rangle$.
+Now shuffle to obtain
+\[
+2 \rho_{15} \eta_6 =
+2 \rho_{15} \langle \eta, 2, \theta_5 \rangle =
+\rho_{15} \theta_5 \langle 2, \eta, 2 \rangle,
+\]
+which equals $\tau \eta^2 \rho_{15} \theta_5$ by 
+Table \ref{tab:Toda}.
+
+Table \ref{tab:misc-extn} shows that
+$\rho_{15} \theta_5$ is detected by either
+$h_0 x_{77,7}$ or $\tau^2 m_1$.
+First suppose that it is detected by $h_0 x_{77,7}$.
+Table \ref{tab:2-extn} shows that $h_0 x_{77,7}$ is the target
+of a $2$ extension.
+Then $\rho_{15} \theta_5$ equals $2 \alpha$ modulo
+higher filtration.
+In any case,
+$\tau \eta^2 \rho_{15} \theta_5$ is zero.
+
+Next suppose that $\rho_{15} \theta_5$ is detected by
+$\tau^2 m_1$.
+Then $\rho_{15} \theta_5$ equals $\tau^2 \alpha$ modulo
+higher filtration for some element $\alpha$ detected by $m_1$.
+Table \ref{tab:tau-extn}
+shows that there is a hidden $\tau$ extension from $h_1 m_1$
+to $M \D h_1^2 h_3$.  This implies that
+$\tau \eta \alpha$ is detected by $M \D h_1^2 h_3$.
+Finally,
+$\tau^3 \eta^2 \alpha = \tau \eta^2 \rho_{15} \theta_5$
+must be zero.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-DB6}
+\revdeg{79, 11, 42}
+There is no hidden $2$ extension on $\D B_6$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that there is a hidden $\eta$ extension
+from $h_0^6 h_4 h_6$ to $\tau \D B_6$.
+Therefore, $\tau \D B_6$ cannot be the source of a hidden $2$
+extension, so there cannot be a hidden $2$ extension
+from $\D B_6$ to $\tau^2 M e_0^2$.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:2-h5^2g}
+\revdeg{82, 6, 44}
+There is no hidden $2$ extension on $h_5^2 g$.
+\end{lemma}
+
+\begin{proof}
+The element $\tau h_5^2 g$ detects the product
+$\kappabar \theta_5$, so it cannot support a hidden $2$
+extension since $2 \theta_5$ is zero.
+
+If there were a hidden $2$ extension from
+$h_5^2 g$ to $\tau (\D e_1 + C_0) g$, then
+the hidden 
+$\tau$ extension from $\tau (\D e_1 + C_0) g$ to $\D^2 h_2 n$
+would imply that
+there is a hidden $2$ extension from 
+$\tau h_5^2 g$ to $\D^2 h_2 n$.
+\end{proof}
+}
+
+\begin{lemma}
+\label{lem:2-h2^2x76,6}
+\revdeg{82, 8, 44}
+There is no hidden $2$ extension on $h_2^2 x_{76,6}$.
+\end{lemma}
+
+\begin{proof}
+As in the proof of Lemma \ref{lem:2,eta,h2x76,6},
+let $\alpha$ be an element in $\pi_{79,42}$ that is detected by
+$h_2 x_{76,6}$ such that $\eta \alpha$ is zero.
+Then $\nu \alpha$ is detected by $h_2^2 x_{76,6}$, and we wish to show
+that $2 \nu \alpha$ is zero.
+
+Table \ref{tab:Toda} shows that $2 \nu$ is contained in
+$\langle \eta, 2, \eta \rangle$.
+Consider the shuffle
+\[
+2 \nu \alpha = \langle \eta, 2, \eta \rangle \alpha =
+\eta \langle 2, \eta, \alpha \rangle.
+\]
+Table \ref{tab:Toda} shows that the last Toda bracket is zero.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h0^2h6g}
+\revdeg{83, 7, 44}
+There is no hidden $2$ extension on $h_0^2 h_6 g$.
+\end{lemma}
+
+\begin{proof}
+The element $h_0^2 h_6 g$ equals
+$h_2^2 h_6 d_0$, so it detects $\nu^2 \{h_6 d_0\}$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-th2h4Q3}
+\revdeg{85, 7, 45}
+There is no hidden $2$ extension on $\tau h_2 h_4 Q_3$.
+\end{lemma}
+
+\begin{proof}
+There cannot be a hidden $2$ extension from $\tau h_2 h_4 Q_3$
+to $\tau P h_1 x_{76,6}$ because there is no hidden
+$\tau$ extension from $h_0 h_2 h_4 Q_3$ to $P h_1 x_{76,6}$.
+
+Table \ref{tab:eta-extn} shows that 
+$\tau^3 M g^2$ supports a hidden $\eta$ extension.  Therefore, it
+cannot be the target of a hidden $2$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h6hc0d0}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{85, 8, 45}
+There is no hidden $2$ extension on $h_6 c_0 d_0$.
+\item
+\revdeg{85, 9, 44}
+There is no hidden $2$ extension on $P h_6 d_0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that both elements
+are targets of hidden $\eta$ extensions.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h4h6c0}
+\revdeg{86, 5, 45}
+There is no hidden $2$ extension on $h_4 h_6 c_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:misc-extn} shows that
+$h_4 h_6 c_0$ detects the product $\sigma \{h_1 h_4 h_6\}$,
+and the element $h_1 h_4 h_6$ does not support a hidden $2$ extension
+by Lemma \ref{lem:2-h1h4h6}.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-th2gC'}
+\revdeg{86, 12, 47}
+There is no hidden $2$ extension on $\tau h_2 g C'$.
+\end{lemma}
+
+\begin{proof}
+The possible target $\tau^3 e_0^3 m$ is ruled out by comparison
+to $\mmf$.  The possible target $P h_1^7 h_6$ is ruled out by 
+comparison to $C\tau$.
+
+It remains to eliminate the possible target $\tau^2 M h_1 g^2$.
+Table \ref{tab:tau-extn} shows that there are hidden $\tau$
+extensions from
+$\tau h_2 g C'$ and $\tau^2 M h_1 g^2$ to
+$\D^2 h_2^2 d_1$ and $M \D h_0^2 e_0$ respectively.
+However, there is no hidden $2$ extension from
+$\D^2 h_2^2 d_1$ to $M \D h_0^2 e_0$, so there cannot be a
+$2$ extension from $\tau h_2 g C'$ to $\tau^2 M h_1 g^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-h1^2c3}
+\revdeg{87, 5, 46}
+There is no hidden $2$ extension on $h_1^2 c_3$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that the Toda
+bracket $\langle \tau \{h_0 Q_3 + h_0 n_1\}, \nu_4, \eta \rangle$
+is detected by $h_1^2 c_3$.
+Shuffle to obtain
+\[
+\langle \tau \{h_0 Q_3 + h_0 n_1\}, \nu_4, \eta \rangle 2 =
+\tau \{h_0 Q_3 + h_0 n_1\} \langle \nu_4, \eta, 2 \rangle.
+\]
+These expressions have no indeterminacy because
+$\tau \{h_0 Q_3 + h_0 n_1\}$ does not support a $2$ extension.
+Finally, the bracket $\langle \nu_4, \eta, 2 \rangle$
+contains zero by comparison to $\tmf$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:2-P^2h6c0}
+\revdeg{87, 12, 45}
+There is no hidden $2$ extension on $P^2 h_6 c_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:misc-extn} shows that $P^2 h_6 c_0$ detects
+the product $\rho_{23} \eta_6$.
+Table \ref{tab:Toda} shows that $\eta_6$ is contained in the
+Toda bracket $\langle \eta, 2, \theta_5 \rangle$.
+Shuffle to obtain
+\[
+2 \rho_{23} \eta_6 =
+2 \rho_{23} \langle \eta, 2, \theta_5 \rangle =
+\langle 2, \eta, 2 \rangle \rho_{23} \theta_5 =
+\tau \eta^2 \rho_{23} \theta_5.
+\]
+The product $\rho_{23} \theta_5$ is detected in Adams
+filtration at least 13, and then $\tau \eta^2 \rho_{23} \theta_5$
+is detected in filtration at least 16.  This rules out all possible
+targets for a hidden $2$ extension on $P^2 h_6 c_0$.
+\end{proof}
+
+
+\begin{lemma}
+\label{lem:2-M^2}
+\revdeg{90, 12, 48}
+There is no hidden $2$ extension on $M^2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:misc-extn} shows that 
+$M^2$ detects $\theta_{4.5}^2$.
+Graded commutativity implies that $2 \theta_{4.5}^2$ is zero.
+\end{proof}
+
+\section{Hidden $\eta$ extensions}
+\label{sctn:eta-extn}
+
+\begin{thm}
+\label{thm:eta-extn}
+Tables \ref{tab:eta-extn} \rev{and \ref{tab:eta-extn-null}} list some hidden extensions by $\eta$.
+\end{thm}
+
+\begin{proof}
+Many of the hidden extensions follow by comparison to 
+$C\tau$.  For example, there is a hidden $\eta$ extension
+from $\tau h_1 g$ to $c_0 d_0$ in the Adams spectral
+sequence for $C\tau$.
+Pulling back along inclusion of the bottom cell into $C\tau$,
+there must also be a hidden $\eta$ extension from $\tau h_1 g$
+to $c_0 d_0$ in the Adams spectral sequence for the sphere.
+This type of argument is indicated by the notation
+$C\tau$ in the fourth column of Table \ref{tab:eta-extn}.
+
+Next, Table \ref{tab:tau-extn} shows a hidden $\tau$
+extension from $c_0 d_0$ to $P d_0$.
+Therefore, there is also a hidden $\eta$ extension from
+$\tau^2 h_1 g$ to $P d_0$.
+This type of argument is indicated by the notation $\tau$
+in the fourth column of Table \ref{tab:eta-extn}.
+
+The proofs of several of the extensions in Table \ref{tab:eta-extn}
+rely on analogous extensions in $\mmf$.  
+Extensions in $\mmf$ have not been rigorously analyzed \cite{Isaksen18}.
+However, the specific extensions from $\mmf$ that we need
+are easily deduced from extensions in $\tmf$, together
+with the multiplicative structure.
+For example, there is a hidden $\eta$ extension in $\tmf$
+from $a n$ to $\tau d_0^2$.
+Therefore, there is a hidden $\eta$ extension in $\mmf$
+from $a n g$ to $\tau d_0^2 g$, and also a hidden
+$\eta$ extension from $\D h_2^2 e_0$ to $\tau d_0 e_0^2$
+in the homotopy groups of the sphere spectrum.
+Note that $\mmf$ really is required here, since 
+$a n g$ and $d_0^2 g$ equal
+zero in the homotopy of $\tmf$.
+
+
+Many cases require more complicated arguments.  In stems up to
+approximately dimension 62, see 
+\cite{Isaksen14c}*{Section 4.2.3 and Tables 29--30} and
+\cite{WangXu18}.
+The higher-dimensional cases are handled in the following lemmas.
+\end{proof}
+
+\begin{remark}
+\label{rem:eta-tC}
+The hidden $\eta$ extension from $\tau C$ to $\tau^2 g n$
+is proved in \cite{WangXu18}, which uses on the
+``$\R P^\infty$-method" to establish a hidden
+$\sigma$ extension from $\tau h_3 d_1$ to $\D h_2 c_1$
+and a hidden $\eta$ extension from $\tau h_1 g_2$ to $\D h_2 c_1$.
+We now have easier proofs for these $\eta$ and $\sigma$ extensions,
+using the hidden $\tau$ extension from $h_1^2 g_2$ to $\D h_2 c_1$
+given in Table \ref{tab:tau-extn}, as well as the relation
+$h_3^2 d_1 = h_1^2 g_2$.
+\end{remark}
+
+
+
+\rev{
+\begin{remark}
+\label{rem:eta-tDj1+t^2gC'}
+If $h_1 f_2$ survives, then there is a hidden
+$\tau$ extension from $\D h_1 j_1$ to $M \D h_1 d_0$.
+It follows that there must be a hidden
+$\eta$ extension from $\tau \D j_1 + \tau^2 g C'$ to
+$M \D h_1 d_0$.
+\end{remark}
+}
+
+\begin{remark}
+The last column of Table \ref{tab:eta-extn}
+indicates the crossing $\eta$ extensions.
+\end{remark}
+
+\begin{thm}
+\label{thm:eta-extn-possible}
+Table \ref{tab:eta-extn-possible}
+lists all unknown hidden $\eta$ extensions, through
+the $90$-stem. 
+\end{thm}
+
+\begin{proof}
+Many possible extensions can be eliminated by
+comparison to $C\tau$, to $\tmf$, or to $\mmf$.
+For example,
+there cannot be a hidden $\eta$ extension
+from $\tau M d_0$ to $\tau^4 g^3$ because
+$\tau^4 g^3$ maps to a non-zero element
+in $\pi_{60} \tmf$ that is not divisible by $\eta$.
+
+Other possibilities are eliminated by consideration of other
+parts of the multiplicative structure.  For example,
+there cannot be a hidden $\eta$ extension whose target supports
+a multiplication by $2$, since $2 \eta$ equals zero.
+
+Many cases are eliminated by more complicated arguments.
+These are handled in the following lemmas.
+\end{proof}
+
+\rev{
+\begin{remark}
+\label{rem:eta-h2D3}
+There is no hidden $\eta$ extension on $h_2 D_3$.
+The possible target $\tau k_1$ is eliminated by computer
+data recently produced by Dexter Chua on $d_2$ differentials
+the Adams spectral sequence for the cofiber of $\eta$.
+\end{remark}
+}
+
+\begin{remark}
+\label{rem:eta-tgD3}
+There is a hidden $\tau$ extension from
+$\tau (\D e_1 + C_0) g$ to $\D^2 h_2 n$.
+The possible extension from $\tau g D_3$ to 
+$\tau (\D e_1 + C_0) g$ occurs if and only if
+the possible extension from $\tau^2 g D_3$ to
+$\D^2 h_2 n$ occurs.
+\end{remark}
+
+\rev{
+\begin{remark}
+\label{rem:eta-to-gQ3}
+Computer
+data recently produced by Dexter Chua on $d_2$ differentials in
+the Adams spectral sequence for the cofiber of $\eta$
+shows that the classical element $g Q_3$ must be the target
+of a hidden $\eta$ extension.  Therefore,
+there is either a hidden $\eta$ extension from
+$h_1^2 f_2$ to $\tau g Q_3$,
+or from $\tau h_1 x_{85,6}$ to $\tau^2 g Q_3$.
+\end{remark}
+}
+
+\begin{lemma}
+\label{lem:eta-th1Q2}
+\revdeg{58, 8, 30}
+There is no hidden $\eta$ extension on $\tau h_1 Q_2$.
+\end{lemma}
+
+\begin{proof}
+There cannot be a hidden $\eta$ extension from
+$\tau h_1 Q_2$ to $\tau^2 \D h_1 d_0 g$ by comparison to $\tmf$.
+It remains to show that there cannot be a hidden
+$\eta$ extension from $\tau h_1 Q_2$ to $\tau M d_0$.
+
+Note that $h_1 d_0 Q_2 = \tau^3 d_1 g^2$,
+so $\kappa \{h_1 Q_2\}$ is detected by
+$\tau^3 d_1 g^2$.  Therefore,
+$\kappa \{h_1 Q_2\} + \tau \kappa_1 \kappabar^2$
+is detected in higher filtration.
+The only possibility is $\tau^3 e_0 g m$, but that cannot occur
+by comparison to $\mmf$.
+Therefore,
+$\kappa \{h_1 Q_2\} + \tau \kappa_1 \kappabar^2$ is zero.
+
+Now $\tau \eta \kappa_1 \kappabar^2$ is zero because
+$\tau \eta \kappa_1 \kappabar$ cannot be detected by
+$\D h_1 d_0^2$ by comparison to $\tmf$.
+Therefore,
+$\eta \kappa \{h_1 Q_2\}$ is zero,
+so $\tau \eta \kappa \{h_1 Q_2\}$ is also zero.
+
+On the other hand, $\tau \kappa \{M d_0\}$ is non-zero
+because it is detected by $\tau M d_0^2$.
+Therefore $\tau \eta \{h_1 Q_2\}$ cannot be detected
+by $\tau M d_0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-th1^2h5^2}
+\revdeg{64, 4, 33}
+There is no hidden $\eta$ extension on $\tau h_1^2 h_5^2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:2-extn} shows that $\tau h_1^2 h_5^2$ is the
+target of a hidden $2$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-t^2h1X2}
+\revdeg{64, 8, 33}
+There is a hidden $\eta$ extension from $\tau^2 h_1 X_2$
+to $\tau^2 M h_0 g$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that there is a hidden
+$\eta$ extension from $\tau h_1 X_2$ to $c_0 Q_2$.
+Since $c_0 Q_2$ does not support a hidden $\tau$ extension,
+there exists an element $\beta$ in $\pi_{65,35}$ that is 
+detected by $c_0 Q_2$ such that $\tau \beta = 0$.
+
+Projection from $C\tau$ to the top cell takes
+$\ol{c_0 Q_2}$ and $P(A+A')$ to $c_0 Q_2$ and $\tau M h_0 h_2 g$
+respectively.  Since $h_2 \cdot \ol{c_0 Q_2} = P(A+A')$
+in the Adams spectral sequence for $C\tau$, it follows that
+$\nu \beta$ is non-zero and detected by $\tau M h_0 h_2 g$.
+
+Let $\alpha$ be an element of $\pi_{63,33}$ that is detected
+by $\tau X_2 + \tau C'$, and
+consider the sum $\eta^2 \alpha + \beta$.
+Both terms are detected by $c_0 Q_2$, but the sum could be detected
+in higher filtration.  In fact, the sum is non-zero because
+$\nu (\eta^2 \alpha + \beta)$ is non-zero.
+
+It follows that $\eta^2 \alpha + \beta$ is detected by $\tau M h_0 g$,
+and that $\tau \eta^2 \alpha$ is detected by $\tau^2 M h_0 g$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-th1^3h6}
+\revdeg{66, 4, 34}
+There is no hidden $\eta$ extension on $\tau h_1^3 h_6$.
+\end{lemma}
+
+\begin{proof}
+The element $\tau \eta^2 \eta_6$ is detected by
+$\tau h_1^3 h_6$.  Table \ref{tab:Toda} shows that
+$\eta_6$ is contained in the Toda bracket
+$\langle \eta, 2, \theta_5 \rangle$
+Now shuffle to obtain
+\[
+\eta \cdot \tau \eta^2 \eta_6 = 4 \nu \eta_6 = 
+4 \nu \langle \eta, 2, \theta_5 \rangle =
+4 \langle \nu, \eta, 2 \rangle \theta_5,
+\]
+which equals zero because $2 \theta_5$ is zero.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-tD1h3^2}
+\revdeg{66, 6, 35}
+There is no hidden $\eta$ extension from
+$\tau \D_1 h_3^2$ to $h_2^2 A'$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:nu-extn} shows that $h_2^2 A'$
+supports a hidden $\nu$ extension, so it cannot be the
+target of a hidden $\eta$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-th1Q3}
+\revdeg{68, 6, 36}
+There is no hidden $\eta$ extension on $\tau h_1 Q_3$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:nu-extn} shows that $\tau h_1 Q_3$
+is the target of a hidden $\nu$ extension.
+Therefore, it cannot be the source of a hidden $\eta$
+extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h3A'}
+\revdeg{68, 7, 36}
+There is a hidden $\eta$ extension from $h_3 A'$ to
+$h_3 (\D e_1 + C_0)$.
+\end{lemma}
+
+\begin{proof}
+Comparison to $C\tau$ shows that there is a hidden
+$\eta$ extension from $h_3 A'$ to either
+$\tau h_2^2 C' + h_3(\D e_1 + C_0)$ or
+$h_3 (\D e_1 + C_0)$.
+Table \ref{tab:nu-extn} shows that
+$\tau h_2^2 C' + h_3(\D e_1 + C_0)$ supports a hidden
+$\nu$ extension.  Therefore, it cannot be the target of a
+hidden $\eta$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h2^2h6}
+\revdeg{69, 3, 36}
+There is a hidden $\eta$ extension from $h_2^2 h_6$ to
+$\tau h_0 h_2 Q_3$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Massey} gives the Massey product
+$h_0 h_2 = \langle h_1, h_0, h_1 \rangle$.
+Therefore,
+\[
+\langle \tau h_1 Q_3, h_0, h_1 \rangle = 
+\{ \tau h_0 h_2 Q_3, \tau h_0 h_2 Q_3 + \tau h_1 h_3 H_1 \}.
+\]
+Table \ref{tab:nu-extn} shows that
+there is a hidden $\nu$ extension from
+$h_2 h_5^2$ to $\tau h_1 Q_3$, so
+$\nu^2 \theta_5$ is detected by $\tau h_1 Q_3$.
+Therefore,
+the Toda bracket $\langle \nu^2 \theta_5, 2, \eta \rangle$
+is detected by $\tau h_0 h_2 Q_3$ or by 
+$\tau h_0 h_2 Q_3 + \tau h_1 h_3 H_1$.
+
+Now $\langle \nu^2 \theta_5, 2, \eta \rangle$
+contains $\nu^2 \langle \theta_5, 2, \eta \rangle$. This 
+expression 
+equals $\nu \theta_5 \langle 2, \eta, \nu \rangle$, which
+equals zero because $\langle 2, \eta, \nu \rangle$ is contained
+in $\pi_{5,3} = 0$.
+
+We now know that $\langle \nu^2 \theta_5, 2, \eta \rangle$
+equals its own determinacy, so
+$\tau h_0 h_2 Q_3$ or $\tau h_0 h_2 Q_3 + \tau h_1 h_3 H_1$
+detects a multiple of $\eta$.
+The only possibility is that there is a hidden $\eta$
+extension on $h_2^2 h_6$.
+
+The target of this extension cannot be
+$\tau h_0 h_2 Q_3 + \tau h_1 h_3 H_1$ by comparison 
+to $C\tau$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h0^3h3h6}
+\revdeg{70, 5, 36}
+There is no hidden $\eta$ extension on $h_0^3 h_3 h_6$.
+\end{lemma}
+
+\begin{proof}
+There are several possible targets for a hidden
+$\eta$ extension on $h_0^3 h_3 h_6$.
+The element $\tau \D^2 h_2 g$ is ruled out
+because it supports an $h_2$ extension.
+The element $\D^2 h_4 c_0$ is ruled out by comparison to $C\tau$.
+The elements $\tau h_3^2 Q_2$ and $\tau d_0 Q_2$ are ruled out
+because Table \ref{tab:eta-extn}
+shows that they are targets of hidden $\eta$ extensions from
+$\tau^2 h_1 h_3 H_1$ and $\tau^2 h_1 D'_3$ respectively.
+
+The only remaining possibility is $\tau^2 l_1$.  This case is
+more complicated.
+
+Table \ref{tab:Toda} shows that $h_0^3 h_3 h_6$ detects the Toda bracket
+$\langle 8\sigma, 2, \theta_5 \rangle$.
+Now shuffle to obtain
+\[
+\eta \langle 8\sigma, 2, \theta_5 \rangle =
+\langle \eta, 8 \sigma, 2 \rangle \theta_5.
+\]
+Table \ref{tab:Toda} shows that
+$\langle \eta, 8 \sigma, 2 \rangle$ contains $\mu_9$
+and has indeterminacy generated by
+$\tau \eta^2 \sigma$ and $\tau \eta \epsilon$.
+Thus the expression
+$\langle \eta, 8 \sigma, 2 \rangle \theta_5$ contains
+at most four elements.
+
+The product $\mu_9 \theta_5$ is detected in filtration at least $8$,
+so it is not detected by $\tau^2 l_1$.
+The product $(\mu_9 + \tau \eta^2 \sigma) \theta_5$
+is detected by $\tau h_1^2 p'$ because
+Table \ref{tab:misc-extn}
+shows that there is a hidden $\sigma$ extension
+from $h_5^2$ to $p'$.
+The product
+$(\mu_9 + \tau \eta \epsilon) \theta_5$ is also 
+detected by $\tau h_1^2 p' = \tau h_1 h_5^2 c_0$.
+Finally, the product
+$(\mu_9 + +\tau \eta^2 \sigma + \tau \eta \epsilon) \theta_5$
+equals $(\mu_9 + \tau \nu^3) \theta_5$, which also
+must be detected in filtration at least $8$. 
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h2Q3}
+\revdeg{70, 6, 38}
+There is no hidden $\eta$ extension on $h_2 Q_3$.
+\end{lemma}
+
+\begin{proof}
+There cannot be a hidden $\eta$ extension on $\tau h_2 Q_3$
+because it is a multiple of $h_2$.  Therefore, the possible
+targets for an $\eta$ extension on $h_2 Q_3$ must be annihilated
+by $\tau$.
+
+The element $h_1^3 h_3 H_1$ cannot be the target because
+Table \ref{tab:tau-extn} shows that it supports a hidden
+$\tau$ extension.
+The element $\tau M h_2^2 g$ cannot be the target because
+Table \ref{tab:nu-extn} shows that it supports a hidden
+$\nu$ extension to $M h_1 d_0^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-th1h3H1}
+\revdeg{70, 7, 37}
+There is a hidden $\eta$ extension from $\tau h_1 h_3 H_1$ to
+$h_3^2 Q_2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that there is a hidden $\eta$ extension
+from $\tau h_1 H_1$ to $h_3 Q_2$.  Now multiply by $h_3$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h1h3(De1+C0)}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{70, 10, 38}
+There is no hidden $\eta$ extension on $h_1 h_3 (\D e_1 + C_0)$.
+\item
+\revdeg{70, 10, 38}
+There is no hidden $\eta$ extension on 
+$\tau h_2 C'' + h_1 h_3 (\D e_1 + C_0)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The element $\tau M h_2^2 g$ is the 
+only possible target for such hidden $\eta$ extensions.
+However, Table \ref{tab:nu-extn} shows that there is a hidden
+$\nu$ extension from $\tau M h_2^2 g$ to $M h_1 d_0^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-th1^2p'}
+\revdeg{71, 6, 37}
+There is no hidden $\eta$ extension on $\tau h_1^2 p'$.
+\end{lemma}
+
+\begin{proof}
+The element $\tau h_1^2 p'$ detects 
+$\tau \eta^2 \sigma \theta_5$ because Table \ref{tab:misc-extn}
+shows that there is a hidden $\sigma$ extension from
+$h_5^2$ to $p'$.
+Then $\tau \eta^3 \sigma \theta_5$ is zero since
+$\tau \eta^3 \sigma$ is zero.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h1^2h3H1}
+\revdeg{71, 8, 39}
+There is no hidden $\eta$ extension on $h_2^3 H_1$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:misc-extn} shows that $M d_0$ detects the product
+$\kappa \theta_{4.5}$.  Then
+Table \ref{tab:Toda} shows that $h_2^3 H_1$ detects the
+Toda bracket $\langle \nu, \epsilon, \kappa \theta_{4.5} \rangle$.
+Now shuffle to obtain
+\[
+\eta \langle \nu, \epsilon, \kappa \theta_{4.5} \rangle =
+\langle \eta, \nu, \epsilon \rangle \kappa \theta_{4.5},
+\]
+which is zero because $\langle \eta, \nu, \epsilon \rangle$
+is contained in $\pi_{13,8} = 0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-th1h6c0}
+\revdeg{72, 5, 37}
+There is a hidden $\eta$ extension from $\tau h_1 h_6 c_0$ 
+to $\tau^2 h_2^2 Q_3$.
+\end{lemma}
+
+\begin{proof}
+The hidden $\tau$ extension from $h_1^2 h_6 c_0$ to
+$h_0 d_0 D_2$ implies that $\tau h_1 h_6 c_0$ must support a hidden
+$\eta$ extension.  However, this hidden $\tau$ extension crosses
+the $\tau$ extension from $\tau h_2^2 Q_3$ to $\tau^2 h_2^2 Q_3$.
+Therefore, the target of the hidden $\eta$ extension is either
+$\tau^2 h_2^2 Q_3$ or $h_0 d_0 D_2$.
+
+The element $\tau h_1 h_6 c_0$ detects the product 
+$\tau \eta_6 \epsilon$, so we want to compute 
+$\tau \eta \eta_6 \epsilon$.
+Table \ref{tab:Toda} shows that 
+$\eta_6$ belongs to $\langle \theta_5, 2, \eta \rangle$.
+Shuffle to obtain
+\[
+\tau \eta \eta_6 \epsilon = 
+\langle \theta_5, 2, \eta \rangle \tau \eta \epsilon =
+\theta_5 \langle 2, \eta, \tau \eta \epsilon \rangle.
+\]
+Table \ref{tab:Toda} shows that
+$\langle 2, \eta, \tau \eta \epsilon \rangle$
+contains $\zeta_{11}$.
+Finally, $\theta_5 \zeta_{11}$ is detected by
+$\tau^2 h_2^2 Q_3 = h_5^2 \cdot P h_2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h1^3p'}
+\revdeg{72, 7, 39}
+There is no hidden $\eta$ extension on $h_1^3 p'$.
+\end{lemma}
+
+\begin{proof}
+The element $h_1^3 p'$ does not support a hidden $\tau$ extension,
+while Table \ref{tab:tau-extn} shows that
+there is a hidden $\tau$ extension from $\tau h_2^2 C''$ to
+$\D^2 h_1^2 h_4 c_0$.  Therefore, there cannot be a hidden
+$\eta$ extension from $h_1^3 p'$ to $\tau h_2^2 C''$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h0d0D2}
+\revdeg{72, 11, 38}
+There is a hidden $\eta$ extension from $h_0 d_0 D_2$ to
+$\tau M d_0^2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_0 d_0 D_2$ detects the
+Toda bracket $\langle \tau \kappabar \theta_{4.5}, 2 \nu, \nu \rangle$.
+Now shuffle to obtain
+\[
+\langle \tau \kappabar \theta_{4.5}, 2 \nu, \nu \rangle \eta =
+\tau \kappabar \theta_{4.5} \langle 2 \nu, \nu, \eta \rangle.
+\]
+Table \ref{tab:Toda} shows that 
+the Toda bracket $\langle 2 \nu, \nu, \eta \rangle$
+contains $\epsilon$.
+Finally, $\tau \kappabar \theta_{4.5} \epsilon$
+is detected by $\tau M d_0^2$ because
+Table \ref{tab:misc-extn} shows that there 
+is a hidden $\epsilon$ extension from
+$\tau M g$ to $M d_0^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h0h3d2}
+\revdeg{75, 6, 40}
+There is a hidden $\eta$ extension from $h_0 h_3 d_2$ 
+to $\tau d_1 g_2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that the Toda bracket
+$\langle \eta, \sigma^2, \eta, \sigma^2 \rangle$
+equals $\kappa_1$.
+We would like to consider the shuffle
+\[
+\langle \eta, \sigma^2, \eta, \sigma^2 \rangle \tau \kappabar_2 =
+\eta \langle \sigma^2, \eta, \sigma^2, \tau \kappabar_2 \rangle,
+\]
+but we must show that the Toda bracket
+$\langle \eta, \sigma^2, \tau \kappabar_2 \rangle$ is well-defined and
+contains zero.
+It is well-defined because $\sigma^2 \kappabar_2$ is detected by
+$h_3^2 g_2$ in $\pi_{58,32}$, and there are no $\tau$ extensions
+on this group.
+The bracket contains zero by comparison to $\tmf$, since
+all non-zero elements of $\pi_{60,32}$ are detected
+by $\tmf$.
+
+We have now shown that $\tau \kappa_1 \kappabar_2$ is divisible
+by $\eta$.  The only possibility is that 
+there is a hidden $\eta$ extension from $h_0 h_3 d_2$ to
+$\tau d_1 g_2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-tm1}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{77, 3, 40}
+There is no hidden $\eta$ extension on $h_3^2 h_6$.
+\item
+\revdeg{77, 7, 41}
+There is no hidden $\eta$ extension on $\tau m_1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:2-extn} shows that $e_0 A'$ and $\tau e_0 A'$ support hidden $2$ extensions, so they cannot be the targets of hidden
+$\eta$ extensions.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h0x77,7}
+\revdeg{77, 8, 40}
+There is no hidden $\eta$ extension on $h_0 x_{77,7}$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:2-extn} shows that $h_0 x_{77,7}$ is the target
+of a hidden $2$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h1h6d0}
+\revdeg{78, 6, 41}
+There is no hidden $\eta$ extension on $h_1 h_6 d_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_1 h_6$ detects the Toda bracket
+$\langle \theta_5, 2, \eta \rangle$, so
+$h_1 h_6 d_0$ detects
+$\langle \theta_5, 2, \eta \rangle \kappa$.
+Now shuffle to obtain
+\[
+\langle \theta_5, 2, \eta \rangle \eta \kappa = 
+\theta_5 \langle 2, \eta, \eta \kappa \rangle.
+\]
+Table \ref{tab:Toda} shows that the Toda bracket
+$\langle 2, \eta, \eta \kappa \rangle$ equals $\nu \kappa$.
+Thus we need to compute the product
+$\nu \kappa \theta_5$.
+Lemma \ref{lem:sigma^2+kappa-h5^2} shows that this
+product equals 
+\rev{either $\nu \sigma^2 \theta_5$ or
+$\nu (\sigma^2 \theta_5 + \tau^2 \kappa_1 \kappabar_2)$.
+These expressions equal $0$ and $\tau^2 \nu \kappa_1 \kappabar_2$
+respectively since $\nu \sigma = 0$.
+
+It remains to show that $\tau^2 \nu \kappa_1 \kappabar_2$ is zero.
+The proof of Lemma \ref{lem:eta-h0h3d2} shows that
+$\tau \kappa_1 \kappabar_2$ is divisible by $\eta$.
+Therefore, $\tau^2 \nu \kappa_1 \kappabar_2$ is zero
+since $\eta \nu = 0$.
+}
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-th1^2x76,6}
+\revdeg{78, 8, 41}
+There is no hidden $\eta$ extension on $\tau h_1^2 x_{76,6}$.
+\end{lemma}
+
+\begin{proof}
+Let $\alpha$ be an element of $\pi_{77,41}$ that is detected by
+$h_1 x_{76,6}$.
+Then $\tau h_1^2 x_{76,6}$ detects $\tau \eta \alpha$.
+Now consider the shuffle
+\[
+\tau \eta^2 \alpha = \langle 2, \eta, 2 \rangle \alpha =
+2 \langle \eta, 2, \alpha \rangle.
+\]
+Note that $2 \alpha$ is zero because there are no $2$ extensions
+in $\pi_{77,41}$, so the second bracket is well-defined.
+
+Finally, 
+$2 \langle \eta, 2, \alpha \rangle$ must be zero because there are 
+no $2$ extensions in $\pi_{79,42}$ in sufficiently high filtration.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:eta-h0^6h4h6}
+\revdeg{78, 8, 40}
+There is a hidden $\eta$ extension from
+$h_0^6 h_4 h_6$ to $\tau \D B_6$.
+\end{lemma}
+
+\begin{proof}
+In the homotopy of $C\tau$, there is a hidden $\eta$
+extension from $h_0^6 h_4 h_6$ to $\D^2 n$.  Therefore,
+$h_0^6 h_4 h_6$ must support a hidden $\eta$ extension
+whose target lies in Adams filtration 13 or less.
+However, $\D^2 n$ is not the target because it supports an
+$h_2$ extension.  The only remaining possible
+target is $\tau \D B_6$.
+\end{proof}
+
+}
+
+\rev{
+\begin{lemma}
+\label{lem:eta-e0A'}
+\revdeg{78, 10, 42}
+There is a hidden $\eta$ extension from $e_0 A'$ to $\tau M e_0^2$.
+\end{lemma}
+
+\begin{proof}
+The classical relation
+$g C' = e_0 G_0$ implies the $\C$-motivic relation
+$\tau g \cdot C' = e_0 \cdot \tau G_0$ modulo the possible
+error term $\D j_1$.  The
+error term does not appear because of $h_1^2$ extensions.
+
+Table \ref{tab:Massey} shows that
+$\tau G_0$ equals $\langle A', h_1, h_2 \rangle$.
+Therefore, we have
+\[
+\tau g C' = e_0 \langle A', h_1, h_2 \rangle =
+\langle e_0 A', h_1, h_2 \rangle.
+\]
+The second equality holds because there is no indeterminacy by 
+inspection.
+
+Let $\alpha$ be an element of $\pi_{78,44}$ that is detected by
+$e_0 A'$.  If the product $\eta \alpha$ were zero, then the
+Moss Convergence Theorem would imply that
+$\tau g C'$ is a permanent cycle that detects the 
+Toda bracket
+$\langle \alpha, \eta, \nu \rangle$.
+However, $\tau g C'$ supports a $d_4$ differential and does not survive.
+
+We now know that $e_0 A'$ supports a hidden $\eta$ extension.
+After ruling out $\tau^2 \D h_1 e_0^2 g$ by comparison to $\mmf$,
+the only remaininng possible target is $\tau M e_0^2$.
+\end{proof}
+}
+
+\begin{lemma}
+\label{lem:eta-h2h4h6}
+\revdeg{81, 3, 42}
+If $h_2 h_4 h_6$ supports a hidden $\eta$ extension, then its
+target is not $\tau h_2^2 x_{76,6}$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:nu-extn} shows that
+$\tau h_2^2 x_{76,6}$ supports a hidden $\nu$ extension, so
+it cannot be the target of a hidden $\eta$ extension.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:eta-h1^3h4h6}
+\revdeg{81, 5, 43}
+There is no hidden $\eta$ extension on $h_1^3 h_4 h_6$.
+\end{lemma}
+
+\begin{proof}
+The element $\tau h_1^3 h_4 h_6$ is a multiple of $h_0$, so
+it cannot support a hidden $\eta$ extension.
+This eliminates all possible targets except for $\tau (\D e_1 + C_0) g$.
+
+However, 
+$\tau (\D e_1 + C_0) g$ supports a hidden $\tau$ extension.
+As in the previous paragraph, this eliminates
+$\tau (\D e_1 + C_0) g$ as a possible target.
+\end{proof}
+}
+
+\begin{lemma}
+\label{lem:eta-h3^2n1}
+\revdeg{81, 7, 44}
+There is no hidden $\eta$ extension on $h_3^2 n_1$.
+\end{lemma}
+
+\begin{proof}
+The element $\tau h_3^2 n_1 = h_3^2 (\tau Q_3 + \tau n_1)$
+detects $\sigma^2 \{\tau Q_3 + \tau n_1\}$.  Then
+$\eta \sigma^2 \{\tau Q_3 + \tau n_1\}$ is zero because
+$\eta \sigma^2$ is zero.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-D^2p}
+\revdeg{81, 12, 42}
+There is no hidden $\eta$ extension on $\D^2 p$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:nu-extn} shows that
+$\D^2 p$ is the target of a hidden $\nu$ extension, so it cannot
+be the source of an $\eta$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h6c1}
+\revdeg{82, 4, 43}
+There is no hidden $\eta$ extension on $h_6 c_1$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_6 c_1$ detects the Toda
+bracket $\langle \sigmabar, 2, \theta_5 \rangle$.  By inspection,
+all possible indeterminacy is in higher Adams filtration,
+so $h_6 c_1$ detects every element of the Toda bracket.
+
+Shuffle to obtain
+\[
+\eta \langle \sigmabar, 2, \theta_5 \rangle =
+\langle \eta, \sigmabar, 2 \rangle \theta_5.
+\]
+The Toda bracket $\langle \eta, \sigmabar, 2 \rangle$
+is detected in filtration at least $5$ since
+the Massey product $\langle h_1, c_1, h_0 \rangle$
+is zero.
+Therefore, the Toda bracket equals $\{0, \eta \kappabar\}$.
+
+We now know that $\eta \langle \sigmabar, 2, \theta_5 \rangle$
+contains zero, and therefore $h_6 c_1$ does not support
+a hidden $\eta$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h0h6g}
+\revdeg{83, 6, 44}
+There is no hidden $\eta$ extension on $h_0 h_6 g$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_0 h_6 g$ detects the Toda bracket
+$\langle \nu, \eta, \eta_6 \kappa \rangle$.
+Shuffle to obtain
+\[
+\eta \langle \nu, \eta, \eta_6 \kappa \rangle =
+\langle \eta, \nu, \eta \rangle \eta_6 \kappa.
+\]
+Table \ref{tab:Toda} shows that $\langle \eta, \nu, \eta \rangle$
+equals $\nu^2$.
+Finally, 
+\[
+\nu^2 \eta_6 \kappa = \nu^2 \kappa \langle \eta, 2, \theta_5 \rangle =
+\nu \theta_5 \kappa \langle \nu, \eta, 2 \rangle,
+\]
+which equals zero because $\langle \nu, \eta, 2 \rangle$ is contained
+in $\pi_{5,3} = 0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h2h4Q3}
+\revdeg{85, 7, 46}
+There is no hidden $\eta$ extension on $h_2 h_4 Q_3$.
+\end{lemma}
+
+\begin{proof}
+We must eliminate $\tau h_2 g C'$ as a possible target.
+One might hope to use the homotopy of $C\tau$ in order to do this,
+but the homotopy of $C\tau$ has an $\eta$ extension in the
+relevant degree that could possibly detect a hidden extension
+from $h_2 h_4 Q_3$ to $\tau h_2 g C'$.
+
+
+If there were a hidden $\eta$ extension from $h_2 h_4 Q_3$
+to $\tau h_2 g C'$, then the hidden $\tau$ extension
+from $\tau h_2 g C'$ to $\D^2 h_2^2 d_1$ would imply
+that there is a hidden $\eta$ extension from
+$\tau h_2 h_4 Q_3$ to $\D^2 h_2^2 d_1$.
+However, $\tau h_2 h_4 Q_3$ detects the product
+$\nu_4 \{\tau Q_3 + \tau n_1\}$, and $\eta \nu_4$ is zero.
+Therefore,
+$\tau h_2 h_4 Q_3$ cannot support a hidden $\eta$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h1h6c0d0}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{86, 9, 46}
+There is no hidden $\eta$ extension on $h_1 h_6 c_0 d_0$.
+\item
+\revdeg{86, 10, 45}
+There is no hidden $\eta$ extension on $P h_1 h_6 d_0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:2-extn} shows that $h_1 h_6 c_0 d_0$ and
+$P h_1 h_6 d_0$ are targets of hidden $2$ extensions, 
+so they cannot be the sources of hidden $\eta$ extensions.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h0^3h6i}
+\revdeg{86, 11, 44}
+There is a hidden $\eta$ extension from $h_0^3 h_6 i$ to
+$\tau^2 \D^2 c_1 g$.
+\end{lemma}
+
+\begin{proof}
+The Adams differential $d_2(\D^3 h_3^2) = \D^2 h_0^3 x$
+implies that
+$\tau^2 \D^2 c_1 g = h_1 \cdot \D^3 h_3^2$ detects the Toda bracket
+$\langle \eta, 2, \{\D^2 h_0^2 x\} \rangle$.
+However, the later Adams differential $d_5(h_0^2 h_6 i) = \D^2 h_0^2 x$
+implies that $0$ belongs to $\{\D^2 h_0^2 x\}$.
+Therefore,
+$\tau^2 \D^2 c_1 g$ detects $\langle \eta, 2, 0 \rangle$,
+so $\tau^2 \D^2 c_1 g$ detects a multiple of $\eta$.
+The only possibility is that there is a hidden $\eta$ extension
+from $h_0^3 h_6 i$ to $\tau^2 \D^2 c_1 g$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-B6d1}
+\revdeg{87, 11, 48}
+There is no hidden $\eta$ extension on $B_6 d_1$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:2-extn} shows that $B_6 d_1$ is the target of a 
+hidden $2$ extension, so it cannot be the source of a hidden
+$\eta$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-h1^2h4h6c0}
+\revdeg{88, 7, 47}
+There is no hidden $\eta$ extension on $h_1^2 h_4 h_6 c_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:nu-extn} shows that $h_1^2 h_6 h_6 c_0$
+is the target of a hidden $\nu$ extension, so it cannot support
+a hidden $\eta$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:eta-D^2h1f1}
+\revdeg{89, 13, 47}
+There is a hidden $\eta$ extension from $\D^2 h_1 f_1$ to
+the element $\tau \D^2 h_2 c_1 g$.
+\end{lemma}
+
+\begin{proof}
+The element $\tau \D^2 h_2 c_1 g$ detects the product
+$\nu^2 \{\D^2 t\}$.
+Table \ref{tab:Toda} shows that $\nu^2$ equals the Toda bracket
+$\langle \eta, \nu, \eta \rangle$.
+Shuffle to obtain
+\[
+\langle \eta, \nu, \eta \rangle \{\D^2 t\} =
+\eta \langle \nu, \eta, \{\D^2 t\} \rangle.
+\]
+This shows that $\tau \D^2 h_2 c_1 g$ is the target of a hidden
+$\eta$ extension.  The only possible source for this extension
+is $\D^2 h_1 f_1$.
+\end{proof}
+
+\section{Hidden $\nu$ extensions}
+\label{sctn:nu-extn}
+
+\begin{thm}
+\label{thm:nu-extn}
+Tables \ref{tab:nu-extn} \rev{and \ref{tab:nu-extn-null}} list some hidden extensions by $\nu$.
+\end{thm}
+
+\begin{proof}
+Many of the hidden extensions follow by comparison to 
+$C\tau$.  For example, there is a hidden $\nu$ extension
+from $ h_0^2 g$ to $h_1 c_0 d_0$ in the Adams spectral
+sequence for $C\tau$.
+Pulling back along inclusion of the bottom cell into $C\tau$,
+there must also be a hidden $\nu$ extension from $h_0^2 g$
+to $h_1 c_0 d_0$ in the Adams spectral sequence for the sphere.
+This type of argument is indicated by the notation
+$C\tau$ in the fourth column of Table \ref{tab:eta-extn}.
+
+Next, Table \ref{tab:tau-extn} shows a hidden $\tau$
+extension from $h_1 c_0 d_0$ to $P h_1 d_0$.
+Therefore, there is also a hidden $\nu$ extension from
+$\tau h_0^2 g$ to $P h_1 d_0$.
+This type of argument is indicated by the notation $\tau$
+in the fourth column of Table \ref{tab:eta-extn}.
+
+Some extensions can be resolved by comparison to
+$\tmf$ or to $\mmf$.
+For example,
+Table \ref{tab:unit-mmf} shows that 
+the classical unit map $S \map \tmf$
+takes $\{\D h_1 h_3\}$ in $\pi_{32}$ to a non-zero element
+$\alpha$ of $\pi_{32} \tmf$ 
+such that $\nu \alpha = \eta \kappa \kappabar$
+in $\pi_{35} \tmf$.
+Therefore, there must be a hidden $\nu$ extension
+from $\D h_1 h_3$ to $\tau h_1 e_0^2$.
+
+The proofs of several of the extensions in Table \ref{tab:nu-extn}
+rely on analogous extensions in $\mmf$.  
+Extensions in $\mmf$ have not been rigorously analyzed \cite{Isaksen18}.
+However, the specific extensions from $\mmf$ that we need
+are easily deduced from extensions in $\tmf$, together
+with the multiplicative structure.
+For example, there is a hidden $\nu$ extension in $\tmf$
+from $\D h_1$ to $\tau d_0^2$.
+Therefore, there is a hidden $\nu$ extension in $\mmf$
+from $\D h_1 g$ to $\tau d_0^2 g$, and also a hidden
+$\nu$ extension from $\tau \D h_1 g$ to $\tau^2 d_0 e_0^2$
+in the homotopy groups of the sphere spectrum.
+Note that $\mmf$ really is required here, since $d_0^2 g$ equals
+zero in the homotopy of $\tmf$.
+
+Many cases require more complicated arguments.  In stems up to
+approximately dimension 62, see 
+\cite{Isaksen14c}*{Section 4.2.4 and Tables 31--32} and
+\cite{WangXu18}.
+The higher-dimensional cases are handled in the following lemmas.
+\end{proof}
+
+\begin{remark}
+\label{rem:nu-extn-notes}
+The last column of Table \ref{tab:nu-extn} indicates which
+$\nu$ extensions are crossing, as well as which extensions
+have indeterminacy in the sense of Section \ref{subsctn:hid-indet}.
+\end{remark}
+
+\begin{remark}
+\label{rem:nu-h2h5d0}
+The hidden $\nu$ extension from $h_2 h_5 d_0$ to $\tau g n$
+is proved in \cite{WangXu18}, which relies on the
+``$\R P^\infty$-method" to establish a hidden
+$\sigma$ extension from $\tau h_3 d_1$ to $\D h_2 c_1$
+and a hidden $\eta$ extension from $\tau h_1 g_2$ to $\D h_2 c_1$.
+We now have easier proofs for these $\eta$ and $\sigma$ extensions,
+using the hidden $\tau$ extension from $h_1^2 g_2$ to $\D h_2 c_1$
+given in Table \ref{tab:tau-extn}, as well as the relation
+$h_3^2 d_1 = h_1^2 g_2$.
+\end{remark}
+
+\begin{remark}
+\label{rem:nu-t(De1+C0)g}
+If $M \D h_1^2 d_0$ is not hit by a differential, then there is a 
+hidden $\tau$ extension from $\tau M h_0 g^2$ from $M \D h_1^2 d_0$.
+This implies that there must be a hidden
+$\nu$ extension from $\tau (\D e_1 + C_0) g$ to $M \D h_1^2 d_0$.
+\end{remark}
+
+\begin{thm}
+\label{thm:nu-extn-possible}
+Table \ref{tab:nu-extn-possible}
+lists all unknown hidden $\nu$ extensions, through
+the $90$-stem. 
+\end{thm}
+
+\begin{proof}
+Many possible extensions can be eliminated by
+comparison to $C\tau$, to $\tmf$, or to $\mmf$.
+For example,
+there cannot be a hidden $\nu$ extension from $h_0 h_2 h_4$
+to $\tau h_1 g$ by comparison to $C\tau$.
+
+Other possibilities are eliminated by consideration of other
+parts of the multiplicative structure.  For example,
+there cannot be a hidden $\nu$ extension whose target supports
+a multiplication by $\eta$, since $\eta \nu$ equals zero.
+
+Many cases are eliminated by more complicated arguments.
+These are handled in the following lemmas.
+\end{proof}
+
+\begin{remark}
+\label{rem:h2-th1p1}
+Comparison to synthetic homotopy eliminates several
+possible hidden $\nu$ extensions, including:
+\begin{enumerate}
+\item
+from $\tau h_1 p_1$ to $\tau x_{74,8}$.
+\item
+from $\D^2 p$ to $\tau M \D h_1 d_0$.
+\end{enumerate}
+See \cite{BIX} for more details.
+\end{remark}
+
+\begin{remark}
+\label{rem:h0h2h4h6}
+If $M \D h_1^2 d_0$ is not hit by a differential, then
+$M \D h_1 d_0$ supports an $h_1$ extension, and
+there cannot be a hidden $\nu$ extension from
+$h_0 h_2 h_4 h_6$ to $M \D h_1 d_0$.
+\end{remark}
+
+\begin{lemma}
+\label{lem:nu-De1+C0}
+\revdeg{62, 8, 33}
+There is a hidden $\nu$ extension from $\D e_1 + C_0$ to
+$\tau M h_0 g$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that
+$2 \kappabar$ is contained in 
+$\tau \langle \nu, \eta, \eta \kappa \rangle$.
+Shuffle to obtain that
+\[
+\nu \langle \eta, \eta \kappa, \tau \theta_{4.5} \rangle =
+\langle \nu, \eta, \eta \kappa \rangle \tau \theta_{4.5},
+\]
+so $2 \kappabar \theta_{4.5}$ is divisible by $\nu$.
+
+Table \ref{tab:misc-extn} shows that 
+$\tau M g$ detects $\kappabar \theta_{4.5}$, so
+$\tau M h_0 g$ detects 
+$2 \kappabar \theta_{4.5}$.
+Now we know that there is a hidden $\nu$ extension whose target is
+$\tau M h_0 g$, and the only possible source is $\D e_1 + C_0$.
+\end{proof}
+
+\begin{remark}
+\label{rem:eta,etakappa,ttheta4.5}
+One consequence of the proof of Lemma \ref{lem:nu-De1+C0}
+is that $\D e_1 + C_0$ detects the Toda bracket
+$\langle \eta, \eta \kappa, \tau \theta_{4.5} \rangle$.
+\end{remark}
+
+\begin{lemma}
+\label{lem:nu-th1H1}
+\revdeg{63, 6, 33}
+There is a hidden $\nu$ extension from $\tau h_1 H_1$ to
+$\tau^2 M h_1 g$.
+\end{lemma}
+
+\begin{proof}
+Lemma \ref{lem:kappa,2,eta} shows that 
+the bracket $\langle \kappa, 2, \eta \rangle$
+contains zero with indeterminacy generated by $\eta \rho_{15}$.
+The bracket $\langle \tau \eta \theta_{4.5}, \kappa, 2 \rangle$
+equals zero since $\pi_{61,32}$ is zero.
+Therefore, the Toda bracket 
+$\langle \tau \eta \theta_{4.5}, \kappa, 2, \eta \rangle$ is well-defined.
+
+Table \ref{tab:Toda} shows that $\tau g $ detects 
+$\langle \kappa, 2, \eta, \nu \rangle$.
+Therefore, $\tau^2 M h_1 g$ detects
+\[
+\tau \eta \theta_{4.5} \langle \kappa, 2, \eta, \nu \rangle =
+\langle \tau \eta \theta_{4.5}, \kappa, 2, \eta \rangle \nu.
+\]
+This shows that
+$\tau^2 M h_1 g$ is the target of a $\nu$ extension,
+and the only possible source is $\tau h_1 H_1$.
+\end{proof}
+
+\begin{remark}
+\label{rem:tetatheta4.5,kappa,2,eta}
+The proof of Lemma \ref{lem:nu-th1H1} shows that
+$\tau h_1 H_1$ detects 
+the Toda bracket
+$\langle \tau \eta \theta_{4.5}, \kappa, 2, \eta \rangle$.
+\end{remark}
+
+\begin{lemma}
+\label{lem:nu-h1h6}
+\revdeg{64, 2, 33}
+There is no hidden $\nu$ extension on $h_1 h_6$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_1 h_6$ detects the Toda bracket
+$\langle \eta, 2, \theta_5 \rangle$.  Shuffle to obtain
+\[
+\nu \langle \eta, 2, \theta_5 \rangle =
+\langle \nu, \eta, 2 \rangle \theta_5 = 0,
+\]
+since $\langle \nu, \eta, 2 \rangle$ is contained in $\pi_{5,3} = 0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h3Q2}
+\revdeg{64, 8, 34}
+There is no hidden $\nu$ extension on $h_3 Q_2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that 
+$\tau^2 \D h_2^2 e_0 g$ supports a hidden $\eta$ extension.
+Therefore, it cannot be the target of a $\nu$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h2^2A'}
+\revdeg{67, 8, 36}
+There is a hidden $\nu$ extension from
+the element $h_2^2 A'$ to $h_1 h_3 (\D e_1 + C_0)$.
+\end{lemma}
+
+\begin{proof}
+By comparison to $C\tau$, 
+There cannot be a hidden $\nu$ extension from
+$h_2^2 A'$ to $\tau h_2 C'' + h_1 h_3 (\D e_1 + C_0)$
+
+
+Table \ref{tab:Toda} shows that
+$\D e_1 + C_0$ detects the Toda bracket
+$\langle \eta, \eta \kappa, \tau \theta_{4.5} \rangle$,
+and $h_2 A'$ detects the Toda bracket
+$\langle \nu, \eta, \tau \kappa \theta_{4.5} \rangle$.
+Note that $h_2 A'$ also detects
+$\langle \nu, \eta \kappa, \tau \theta_{4.5} \rangle$.
+
+Now shuffle to obtain
+\[
+(\eta \sigma + \epsilon) \langle \eta, \eta \kappa, 
+\tau \theta_{4.5} \rangle +
+\nu^2 \langle \nu, \eta \kappa, \tau \theta_{4.5} \rangle =
+\left\langle
+\left[
+\begin{array}{cc}
+\eta \sigma + \epsilon & \nu^2
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+\eta \\
+\nu 
+\end{array}
+\right],
+\eta \kappa \right\rangle \tau \theta_{4.5}.
+\]
+The matric Toda bracket
+$\displaystyle
+\left\langle
+\left[
+\begin{array}{cc}
+\eta \sigma + \epsilon & \nu^2
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+\eta \\
+\nu 
+\end{array}
+\right],
+\eta \kappa \right\rangle$
+must equal $\{ 0, \nu^2 \sigmabar \}$,
+since $\nu^2 \sigmabar = \{ h_1^2 h_4 c_0 \}$
+is the only non-zero element of $\pi_{25,15}$,
+and that element belongs to the indeterminacy because it is a
+multiple of $\nu^2$.
+
+Next observe that $\tau \nu^2 \sigmabar \theta_{4.5}$ is zero
+because all possible values of
+$\sigmabar \theta_{4.5}$ are multiples of $\eta$.
+This shows that
+\[
+(\eta \sigma + \epsilon) \alpha + \nu^2 \beta = 0,
+\]
+for some $\alpha$ and $\beta$ detected by $\D e_1 + C_0$
+and $h_2 A'$ respectively.
+The product
+$(\eta \sigma + \epsilon) \alpha$ is detected by
+$h_1 h_3 (\D e_1 + C_0)$, so there must be a hidden $\nu$
+extension from $h_2^2 A'$ to $h_1 h_3 (\D e_1 + C_0)$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h3A'}
+\revdeg{68, 7, 36}
+There is no hidden $\nu$ extension on $h_3 A'$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_3 A'$ detects the Toda bracket
+$\langle \sigma, \kappa, \tau \eta \theta_{4.5} \rangle$.
+Now shuffle to obtain
+\[
+\nu \langle \sigma, \kappa, \tau \eta \theta_{4.5} \rangle = 
+\langle \nu, \sigma, \kappa \rangle \tau \eta \theta_{4.5} =
+\langle \eta, \nu, \sigma \rangle \tau \kappa \theta_{4.5}.
+\]
+The Toda bracket
+$\langle \eta, \nu, \sigma \rangle$ is zero because
+it is contained in $\pi_{12,7} = 0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-p'}
+\revdeg{69, 4, 36}
+There is no hidden $\nu$ extension on $p'$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:misc-extn} shows that 
+$p'$ detects the product $\sigma \theta_5$.
+Therefore, it cannot support a hidden $\nu$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h2^2C'}
+\revdeg{69, 9, 38}
+There is a hidden $\nu$ extension from $h_2^2 C'$ to $\tau^2 d_1 g^2$.
+\end{lemma}
+
+\begin{proof}
+Let $\alpha$ be an element of $\pi_{63,33}$ that is detected by
+$\tau X_2 + \tau C'$.
+Table \ref{tab:misc-extn} shows that 
+$\epsilon \alpha$ is detected by $d_0 Q_2$, so
+$\eta \epsilon \alpha$ is detected by $\tau^3 d_1 g^2$.
+On the other hand,
+$\eta \sigma \alpha$ is zero by comparison to $C\tau$.
+
+Now consider the relation $\eta^2 \sigma + \nu^3 = \eta \epsilon$.
+This shows that $\nu^3 \alpha$ is detected by $\tau^3 d_1 g^2$.
+Since $\nu^2 \alpha$ is detected by $\tau h_2^2 C'$,
+there must be a hidden $\nu$ extension from
+$h_2^2 C'$ to $\tau^2 d_1 g^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-th1D3'}
+\revdeg{70, 9, 37}
+There is a hidden $\nu$ extension from $\tau h_1 D'_3$ to
+$\tau M d_0^2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $\tau h_1 D'_3$ detects the 
+Toda bracket $\langle \eta, \nu, \tau \kappabar \theta_{4.5} \rangle$.
+Now shuffle to obtain
+\[
+\nu \langle \eta, \nu, \tau \kappabar \theta_{4.5} \rangle = 
+\langle \nu, \eta, \nu \rangle \tau \kappabar \theta_{4.5}.
+\]
+The bracket $\langle \nu, \eta, \nu \rangle$
+equals $\eta \sigma + \epsilon$ \cite{Toda62}.
+
+Now we must compute 
+$(\eta \sigma + \epsilon) \tau \kappabar \theta_{4.5}$.
+The product $\sigma \kappabar$ is zero, and
+Table \ref{tab:misc-extn} shows that
+$\epsilon \kappabar \theta_{4.5}$ is detected by $M d_0^2$.
+These two observations imply that
+$(\eta \sigma + \epsilon) \tau \kappabar \theta_{4.5}$
+is detected by $\tau M d_0^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h6c0}
+\revdeg{71, 4, 37}
+There is no hidden $\nu$ extension on $h_6 c_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_6 c_0$ detects the Toda bracket
+$\langle \epsilon, 2, \theta_5 \rangle$.  Now shuffle to obtain
+\[
+\nu \langle \epsilon, 2, \theta_5 \rangle = 
+\langle \nu, \epsilon, 2 \rangle \theta_5.
+\]
+Finally, the Toda bracket $\langle \nu, \epsilon, 2 \rangle$ is 
+zero because it is contained in $\pi_{12,7} = 0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h2^2C''}
+\revdeg{73, 11, 41} 
+There is a hidden $\nu$ extension from $h_2^2 C''$ to $\tau g^2 t$.
+\end{lemma}
+
+\begin{proof}
+Let $\alpha$ be an element of $\pi_{53,30}$ that is detected by $i_1$.
+Table \ref{tab:nu-extn} shows $g t$ detects $\nu \alpha$.
+Therefore $\tau g^2 t$ detects $\nu \kappa \alpha$,
+so $\tau g^2 t$ must be the target of a hidden $\nu$ extension.
+The element $h_2^2 C''$ is the only
+possible source for this extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-Mh1h3g}
+\revdeg{73, 12, 41}
+There is no hidden $\nu$ extension on $M h_1 h_3 g$.
+\end{lemma}
+
+\begin{proof}
+If there were a hidden $\nu$ extension from $M h_1 h_3 g$ to
+$\tau g^2 t$, then there would also be a hidden $\nu$ extension
+with target $\tau^2 g^2 t$.  But there is no possible source
+for such an extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h0h3d2}
+\revdeg{75, 6, 40}
+If there is a hidden $\nu$ extension on $h_0 h_3 d_2$, then
+its target is $M \D h_1^2 h_3$.
+\end{lemma}
+
+\begin{proof}
+The only other possible target is $e_0 A'$.
+However, Table \ref{tab:2-extn} shows that $e_0 A'$ supports
+a hidden $2$ extension, while $h_0 h_3 d_2$ does not.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-td1g2}
+\revdeg{76, 8, 41}
+There is no hidden $\nu$ extension on $\tau d_1 g_2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that $\tau d_1 g_2$ is the target
+of a hidden $\eta$ extension.  Therefore, it cannot be the source
+of a hidden $\nu$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h0h4A}
+\revdeg{76, 8, 40}
+There is no hidden $\nu$ extension on $h_0 h_4 A$.
+\end{lemma}
+
+\begin{proof}
+\rev{
+Table \ref{tab:misc-extn} shows that
+$h_0 h_4 A$ detects either $\sigma^2 \theta_5$
+or $\sigma^2 \theta_5 + \tau^2 \kappa_1 \kappabar_2$.
+As in the proof of Lemma \ref{lem:eta-h1h6d0}, both possibilities
+are annihilated by $\nu$.
+}
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h3^2h6}
+\revdeg{77, 3, 40}
+There is a hidden $\nu$ extension from $h_3^2 h_6$ to $\tau h_1 x_1$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that
+$h_3^2 h_6$ detects
+$\langle \theta_5, 2, \sigma^2 \rangle$.
+Let $\alpha$ be an element of $\pi_{77,40}$ that is contained
+in this Toda bracket.
+Then $\nu \alpha$ is an element of
+\[
+\langle \theta_5, 2, \sigma^2 \rangle \nu =
+\langle \theta_5, 2 \sigma, \sigma \rangle \nu =
+\theta_5 \langle 2 \sigma, \sigma, \nu \rangle \subseteq
+\langle 2 \sigma, \sigma \theta_5, \nu \rangle.
+\]
+
+Table \ref{tab:misc-extn} shows that $p'$ detects 
+$\sigma \theta_5$.
+Therefore, the Toda bracket
+$\langle 2 \sigma, \sigma \theta_5, \nu \rangle$
+is detected by an element of the Massey product
+$\langle h_0 h_3, p', h_2 \rangle$.
+Table \ref{tab:Massey} shows that $h_0 e_2$ equals the
+Massey product $\langle h_3, p', h_2\rangle$. 
+By inspection of indeterminacy,
+the Massey product $\langle h_0 h_3, p', h_2 \rangle$
+contains $h_0^2 e_2 = \tau h_1 x_1$ with indeterminacy generated by
+$h_0 h_6 e_0$.
+
+We have now shown that 
+$\nu \alpha$ is detected by either
+$\tau h_1 x_1$ or $\tau h_1 x_1 + h_0 h_6 e_0$.
+But $h_0 h_6 e_0 = h_2 h_6 d_0$ is a multiple of $h_2$,
+so we may add an element in higher Adams filtration to $\alpha$,
+if necessary, to conclude that $\nu \alpha$ is detected by
+$\tau h_1 x_1$. 
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h0^7h4h6}
+\revdeg{78, 9, 40}
+There is a hidden $\nu$ extension from the element $h_0^7 h_4 h_6$ to
+$\tau \D^2 h_1 d_1$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:nu-extn} shows that there is a hidden
+$\nu$ extension from $h_0^6 h_4 h_6$ to $\D^2 p$.
+Therefore, there is also a hidden $\nu$ extension from
+$h_0^7 h_4 h_6$ to $h_0 \cdot \D^2 p = \tau \D^2 h_1 d_1$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-e0A'}
+\revdeg{78, 10, 42}
+There is no hidden $\nu$ extension on $e_0 A'$.
+\end{lemma}
+
+\begin{proof}
+A possible hidden $\nu$ extension from $e_0 A'$ to $\D h_1^2 B_6$
+would be detected by $C\tau$, but we have to be careful with the
+analysis of the homotopy of $C\tau$ because of the $h_2$ extension
+from $\ol{\D h_1 d_1 g}$ to $\D h_1^2 B_6$ in the Adams
+$E_\infty$-page for $C\tau$.
+
+Let $\alpha$ be an element of $\pi_{75,40} C\tau$ that is detected
+by $\ol{h_3 C'}$.  Then $\nu \alpha$ is detected by
+$e_0 A'$, and $\nu \alpha$ maps to zero under projection to the 
+top cell because $h_3 C'$ does not support a $\nu$ extension
+in the homotopy of the sphere.
+
+Therefore, $\nu \alpha$ lies in the image of 
+$e_0 A'$ under inclusion of the bottom
+cell.  Since $\nu^2 \alpha$ is zero, $e_0 A'$ cannot support
+a hidden $\nu$ extension to $\D h_1^2 B_6$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h1h4h6}
+\revdeg{79, 3, 41}
+There is no hidden $\nu$ extension on $h_1 h_4 h_6$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_1 h_4 h_6$
+detects the Toda bracket $\langle \eta_4, 2, \theta_5 \rangle$.
+Shuffle to obtain
+\[
+\nu \langle \eta_4, 2, \theta_5 \rangle =
+\langle \nu, \eta_4, 2 \rangle \theta_5.
+\]
+Finally, $\langle \nu, \eta_4, 2 \rangle$ must contain zero
+in $\pi_{20,11}$ because $\tmf$ detects every element of
+$\pi_{20,11}$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h3^2n1}
+\revdeg{81, 7, 44}
+There is no hidden $\nu$ extension on $h_3^2 n_1$.
+\end{lemma}
+
+\begin{proof}
+The element $h_2 g D_3$ cannot be the target of a hidden
+$\nu$ extension by comparison to $C\tau$.
+
+The element $\tau h_3^2 n_1 = h_3 \cdot h_3 (\tau Q_3 + \tau n_1)$
+detects a multiple of $\sigma$, so it cannot support a hidden
+$\nu$ extension.  This rules out $h_2 g A'$ as a possible target.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-te1g2}
+\revdeg{82, 8, 44}
+There is no hidden $\nu$ extension on $\tau e_1 g_2$.
+\end{lemma}
+
+\begin{proof}
+After eliminating other possibilities by comparison to
+$\tmf$, comparison to $\mmf$, and by inspection of $h_1$
+multiplications, the only possible target for a hidden
+$\nu$ extension is $P h_1 x_{76,6}$.  
+
+Let $\alpha$ be an element of $\pi_{82,45}$ that is detected
+by $e_1 g_2$.  Then $\nu \alpha$ is detected by
+$h_2 e_1 g_2 = h_1^3 h_4 Q_3$.
+Choose an element $\beta$ of $\pi_{83,45}$ that is detected
+by $h_1 h_4 Q_3$ such that $\tau \beta$ is zero.
+Then $\eta^2 \beta$ is also detected by $h_1^3 h_4 Q_3$.
+However, $\nu \alpha + \eta^2 \beta$ is not necessarily zero; 
+it could be detected in Adams filtration at least $13$.
+In any case,
+$\tau \nu \alpha$ equals $\tau \eta^2 \beta = 0$ modulo
+filtration $13$.
+In particular, $\tau \nu \alpha$ cannot be detected by
+$P h_1 x_{76,6}$ in filtration $11$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-Ph0h2h6}
+\revdeg{82, 11, 42}
+There is no hidden $\nu$ extension on $P^2 h_0 h_2 h_6$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:nu-extn} shows that there is a hidden
+$\nu$ extension from $P^2 h_2 h_6$ to $\D^2 h_0 x$.
+The target of a hidden $\nu$ extension
+on $P^2 h_0 h_2 h_6$ must have Adams filtration greater than
+the filtration of $\D^2 h_0 x$.
+The only possibilities are ruled out by comparison to $\tmf$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-(De1+C0)g}
+\revdeg{82, 12, 45}
+There is a hidden $\nu$ extension
+from $(\D e_1 + C_0) g$ to $\tau M h_0 g^2$.
+\end{lemma}
+
+\begin{proof}
+Let $\alpha$ be an element of $\pi_{62,33}$ that is detected
+by $\D e_1 + C_0$.
+Table \ref{tab:Toda} shows that
+$(\D e_1 + C_0) g$ detects $\langle \alpha, \eta^3, \eta_4 \rangle$.
+Then
+\[
+\nu \langle \alpha, \eta^3, \eta_4 \rangle =
+\langle \nu \alpha, \eta^3, \eta_4 \rangle
+\]
+by inspection of indeterminacies.
+Table \ref{tab:nu-extn} shows that $\tau M h_0 g$ detects $\nu \alpha$.
+The Toda bracket
+$\langle \nu \alpha, \eta^3, \eta_4 \rangle$ is detected by
+the Massey product
+\[
+\langle \tau M h_0 g, h_1^3, h_1 h_4 \rangle =
+\langle \tau M h_0 g, h_1^4, h_4 \rangle = 
+M h_0 g \langle \tau, h_1^4, h_4 \rangle =
+\tau M h_0 g^2.
+\]
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h2c1A'}
+\revdeg{83, 10, 45}
+There is no hidden $\nu$ extension on $h_2 c_1 A'$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that 
+$\tau h_2 c_1 A'$ detects 
+$\langle \tau \theta_{4.5} \kappa, \eta, \nu \rangle \tau \sigmabar$.
+Shuffle to obtain
+\[
+\langle \tau \theta_{4.5} \kappa, \eta, \nu \rangle \tau \sigmabar \nu =
+\tau \theta_{4.5} \kappa \langle \eta, \nu, \tau \nu \sigmabar \rangle.
+\]
+The Toda bracket $\langle \eta, \nu, \tau \nu \sigmabar \rangle$
+is zero because $\pi_{27, 15}$ contains only a $v_1$-periodic element
+detected by $P^3 h_1^3$.
+
+We now know that $\tau h_2 c_1 A'$ does not support a hidden
+$\nu$ extension.  In particular, there cannot be a hidden
+$\nu$ extension from $\tau h_2 c_1 A'$ to $M \D h_0^2 e_0$.
+The hidden $\tau$ extension from $\tau^2 M h_1 g^2$ to 
+$M \D h_0^2 e_0$ implies that there cannot be a hidden
+$\nu$ extension from $h_2 c_1 A'$ to $\tau^2 M h_1 g^2$.
+
+Additional cases are ruled out by comparison to $C\tau$ and
+to $\mmf$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-Dj1+tgC'}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{83, 11, 45}
+There is a hidden $\nu$ extension from $\D j_1 + \tau g C'$ to
+$\tau^2 M h_1 g^2$.
+\item
+\revdeg{83, 11, 44}
+There is a hidden $\nu$ extension from $\tau^2 g C'$ to $M \D h_0^2 e_0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:nu-extn} shows that there exists an element
+$\alpha$ in $\pi_{63,33}$ detected by $\tau h_1 H_1$ such that
+$\nu$ is detected by $\tau^2 M h_1 g$.
+(Beware that there is a crossing extension here, so not every
+element detected by $\tau h_1 H_1$ has the desired property.)
+Table \ref{tab:misc-extn} shows that 
+$\tau^2 M h_1 g$ also detects $\tau \theta_{4.5} \eta \kappabar$.
+However, $\nu \alpha$ does not necessarily equal
+$\tau \theta_{4.5} \eta \kappabar$ because the difference could
+be detected in higher filtration by $\D^2 h_1^3 h_4$.
+In any case,
+$\nu \kappabar \alpha$ equals $\tau \theta_{4.5} \eta \kappabar^2$.
+
+The product $\theta_{4.5} \eta \kappabar^2$
+is detected by $\tau^2 M h_1 g^2$.
+The hidden $\tau$ extension from $\tau^2 M h_1 g^2$ to
+$M \D h_0^2 e_0$ then implies that
+$\nu \kappabar \alpha = \tau \theta_{4.5} \eta \kappabar^2$
+is detected by $M \D h_0^2 e_0$.
+
+We now know that $M \D h_0^2 e_0$ is the target of a hidden
+$\nu$ extension.
+The only possible source is $\tau^2 g C'$. (Lemma \ref{lem:nu-h2c1A'}
+eliminates another possible source.)
+This establishes the second extension.
+The first extension follows from onsideration of $\tau$ extensions.
+\end{proof}
+
+\begin{remark}
+\label{rem:nu-Dj1+tgC'}
+The proof of Lemma \ref{lem:nu-Dj1+tgC'} shows that
+$\nu \kappabar \alpha$ is detected by $M \D h_0^2 e_0$,
+where $\alpha$ is detected by $\tau h_1 H_1$.
+Note that $\kappabar \alpha$ is detected by $\tau^2 h_1 H_1 g =
+\tau h_2 c_1 A'$.  But this does not show that 
+$\tau h_2 c_1 A'$ supports a hidden $\nu$ extension.  Rather,
+it shows that the source of the hidden $\nu$ extension is
+either $\tau h_2 c_1 A'$, or a non-zero element in higher filtration.
+\end{remark}
+
+\begin{lemma}
+\label{lem:nu-h2^2h4h6}
+\revdeg{84, 4, 44}
+There is no hidden $\nu$ extension on $h_2^2 h_4 h_6$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_2^2 h_4 h_6$ detects the 
+Toda bracket $\langle \nu \nu_4, 2, \theta_5 \rangle$.
+Shuffle to obtain
+\[
+\nu \langle \nu \nu_4, 2, \theta_5 \rangle = 
+\langle \nu, \nu \nu_4, 2 \rangle \theta_5.
+\]
+The Toda bracket $\langle \nu, \nu \nu_4, 2 \rangle$
+is zero because $\pi_{25,14}$ consists only of a $v_1$-periodic
+element detected by $P^2 h_1 c_0$.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:nu-tx85,6+h0^3c3}
+\revdeg{85, 6, 44}
+If $\tau x_{85,6} + h_0^3 c_3$ survives, then
+it supports a hidden $\nu$ extension to
+$h_1 x_{87,7} + \tau^2 g_2^2$.
+\end{lemma}
+
+\begin{proof}
+By comparison to $C\tau$, there must be a hidden $\nu$ extension
+whose target is either $h_1 x_{87,7}$ or $h_1 x_{87,7} + \tau^2 g_2^2$.
+
+Table \ref{tab:nu-extn} shows that there is a hidden
+$\nu$ extension from $\tau^2 h_2 h_4 Q_3$ to $\tau^2 h_0 g_2^2$.
+This implies that the target of the $\nu$ extension on
+$\tau x_{85,6} + h_0^3 c_3$ must be $h_1 x_{87,7} + \tau^2 g_2^2$.
+\end{proof}
+}
+
+\begin{lemma}
+\label{lem:nu-P^2h6c0}
+\revdeg{87, 12, 45}
+There is no hidden $\nu$ extension on $P^2 h_6 c_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:misc-extn} shows that $P^2 h_6 c_0$ 
+detects the product $\rho_{23} \eta_6$, and
+$\nu \rho_{23} \eta_6$ is zero.
+\end{proof}
+
+\begin{lemma}
+\label{lem:nu-h2^2gA'}
+\revdeg{87, 12, 48}
+There is a hidden $\nu$ extension from
+$h_2^2 g A'$ to $\D h_1^2 g_2 g$.
+\end{lemma}
+
+\begin{proof}
+Comparison to $C\tau$ shows that $h_2^2 g A'$ supports a hidden
+$\nu$ extension whose target is either $\D h_1^2 g_2 g$
+or $\D h_1^2 g_2 g + \tau h_2 g C''$.
+
+Let $\alpha$ be an element of $\pi_{84,46}$ that is detected
+by $h_2 g A'$.  Since $h_2 g A'$ does not support a hidden
+$\eta$ extension, we may choose $\alpha$ such that $\eta \alpha$ is
+zero.  Note that $h_2^2 g A'$ detects $\nu \alpha$.
+
+Shuffle to obtain
+\[
+\nu^2 \alpha = \langle \eta, \nu, \eta \rangle \alpha =
+\eta \langle \nu, \eta, \alpha \rangle.
+\]
+This shows that $\nu^2 \alpha$ must be divisible by $\eta$.
+Consequently, the hidden $\nu$ extension on 
+$h_2^2 g A'$ must have target $\D h_1^2 g_2 g$.
+\end{proof}
+
+\begin{remark}
+\label{rem:nu,eta,h2gA'}
+The proof of Lemma \ref{lem:nu-h2^2gA'} shows that
+$\D h_1 g_2 g$ detects the Toda bracket
+$\langle \nu, \eta, \{h_2 g A'\} \rangle$.
+\end{remark}
+
+\section{Miscellaneous hidden extensions}
+\label{sctn:misc-extn}
+
+\rev{
+\begin{thm}
+\label{thm:misc-extn}
+Tables \ref{tab:misc-extn} \rev{and \ref{tab:misc-extn-null}} list some miscellaneous hidden extensions.
+\end{thm}
+
+\begin{proof}
+Similarly to Theorems \ref{thm:2-extn}, \ref{thm:eta-extn}, and \ref{thm:nu-extn}, some of the extensions follow by comparison to $C\tau$ or to $\tmf$.
+The more difficult cases are handled in the following lemmas.
+\end{proof}
+}
+
+\rev{
+Based on the corrected statement of Lemma~\ref{lem:theta4,2,sigma^2+kappa} (\cite{Xu16}*{Theorem 2.1}) and Lemma~\ref{lem:etakappabar2,2sigma,sigma}, the third author presents the proof of the following Lemma~\ref{lem:theta4-h4^2} (\cite{Xu16}*{Theorem 1.2}), fixing a gap in its original proof. Note that as in the original proof, it only uses classical knowledge back then up to the 60-stem.
+
+\begin{lemma}
+\label{lem:theta4-h4^2}
+\revdeg{30, 2}
+Classically, there is no hidden $\theta_4$ extension on $h_4^2$.
+In other words $\theta_4^2$ is zero in $\pi_{60}$.
+\end{lemma}
+
+\begin{proof}
+We have
+$$\theta_4^2 = \theta_4 \langle 2, \sigma^2 + \kappa, 2\sigma, \sigma \rangle \subseteq \langle \langle \theta_4, 2, \sigma^2 + \kappa \rangle, 2\sigma, \sigma \rangle.$$
+Using \cite{Xu16}*{Theorem~2.2} and Lemma \ref{lem:theta4,2,sigma^2+kappa}, the last expression is contained in the union of 
+$$\langle 0, 2\sigma, \sigma \rangle, \ \langle \eta\kappabar_2, 2\sigma, \sigma \rangle, \ \langle \rho_{15}\theta_4, 2\sigma, \sigma \rangle.$$
+By \cite{Xu16}*{Lemmas~2.3 and 2.4} and Lemma~\ref{lem:etakappabar2,2sigma,sigma}, all three brackets contain a single element 0. Therefore, $\theta_4^2 = 0$.
+\end{proof}
+}
+
+\begin{lemma}
+\label{lem:epsilon-h3^2h5}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{45, 3, 24}
+There is a hidden $\epsilon$ extension from $h_3^2 h_5$ to $M c_0$.
+\item
+\revdeg{45, 3, 23}
+There is a hidden $\epsilon$ extension from $\tau h_3^2 h_5$ to $M P$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that
+$M h_1$ detects the product $\eta \theta_{4.5}$.
+Then $M h_1 c_0$ detects $\eta \epsilon \theta_{4.5}$.
+This implies that $M c_0$ detects $\epsilon \theta_{4.5}$.
+
+This only shows that $M c_0$ is the target of a hidden
+$\epsilon$ extension, whose source could be $h_3^2 h_5$
+or $h_5 d_0$.  However, Lemma \ref{lem:epsilon-h5d0}
+rules out the latter case.
+This establishes the first hidden extension.
+
+Table \ref{tab:tau-extn} shows that there is a hidden
+$\tau$ extension from $M c_0$ to $M P$.  Then the first
+hidden extension implies the second one.
+\end{proof}
+
+\begin{remark}
+We claimed in \cite{Isaksen14c}*{Table 33} that there is a
+hidden $\epsilon$ extension from $h_3^2 h_5$ to $M c_0$.
+However, the argument given in \cite{Isaksen14c}*{Lemma 4.108}
+only implies that $M c_0$ is the target of a hidden extension
+from either $h_3^2 h_5$ or $h_5 d_0$.
+\end{remark}
+
+\begin{lemma}
+\label{lem:kappa-h3^2h5}
+\revdeg{45, 3, 24}
+There is a hidden $\kappa$ extension from $h_3^2 h_5$ to $M d_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that
+$M h_1$ detects the product $\eta \theta_{4.5}$.
+Then $M h_1 d_0$ detects the product $\eta \kappa \theta_{4.5}$,
+so $M d_0$ must detect the product $\kappa \theta_{4.5}$.
+This shows that $M d_0$ is the target of a hidden $\kappa$ extension
+whose source is either $h_3^2 h_5$ or $h_5 d_0$.
+
+We showed in Lemma \ref{lem:epsilon-h5d0}
+that $\epsilon \alpha$ is zero for some element 
+$\alpha$ of $\pi_{45,24}$ that is detected by $h_5 d_0$.
+Then $\epsilon \kappabar \alpha$ is also zero.
+Table \ref{tab:misc-extn} shows that
+$\epsilon \kappabar$ equals $\kappa^2$.
+Therefore,
+$\kappa^2 \alpha$ is zero.
+If $\kappa \alpha$ were detected by $M d_0$, 
+then $\kappa^2 \alpha$ would be detected by $M d_0^2$.
+It follows that there is no hidden $\kappa$ extension
+from $h_5 d_0$ to $M d_0$.
+\end{proof}
+
+\begin{remark}
+We showed in \cite{Isaksen14c}*{Table 33} that there is a 
+hidden $\kappa$ extension from either $h_3^2 h_5$ or $h_5 d_0$
+to $M d_0$. Lemma \ref{lem:kappa-h3^2h5} settles this uncertainty.
+\end{remark}
+
+\begin{lemma}
+\label{lem:kappabar-h3^2h5}
+\revdeg{45, 3, 24}
+There is a hidden $\kappabar$ extension from $h_3^2 h_5$ to
+$\tau M g$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that
+$M h_1$ detects the product $\eta \theta_{4.5}$.
+Then $\tau M h_1 g$ detects the product $\eta \kappabar \theta_{4.5}$,
+so $\tau M g$ must detect the product $\kappabar \theta_{4.5}$.
+This shows that $\tau M g$ is the target of a hidden 
+$\kappabar$ extension
+whose source is either $h_3^2 h_5$ or $h_5 d_0$.
+
+We showed in Lemma \ref{lem:epsilon-h5d0}
+that $\epsilon \alpha$ is zero for some element 
+$\alpha$ of $\pi_{45,24}$ that is detected by $h_5 d_0$.
+If $\kappabar \alpha$ were detected by $\tau M g$,
+then $\epsilon \kappabar \alpha$ would be detected by
+$M d_0^2$ because Table \ref{tab:misc-extn} shows that
+there is a hidden $\epsilon$ extension from $\tau M g$
+to $M d_0^2$.
+Therefore, there is no hidden $\kappabar$ extension
+from $h_5 d_0$ to $\tau M g$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:Dh1h3-h3^2h5}
+\revdeg{45, 3, 24}
+There is a hidden $\{\D h_1 h_3\}$ extension from
+$h_3^2 h_5$ to $M \D h_1 h_3$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that $M h_1$ detects the product
+$\eta \theta_{4.5}$.  Therefore, the element
+$M \D h_1^2 h_3$ detects $\eta \{\D h_1 h_3\} \theta_{4.5}$.
+This shows that $M \D h_1 h_3$ is the target of a hidden
+$\{\D h_1 h_3\}$ extension.
+Lemma \ref{lem:Dh1h3-h5d0} rules out $h_5 d_0$ as a possible source.
+The only remaining possible source is $h_3^2 h_5$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:theta4.5-h3^2h5}
+\revdeg{45, 3, 24}
+There is a hidden $\theta_{4.5}$ extension from
+$h_3^2 h_5$ to $M^2$.
+\end{lemma}
+
+\begin{proof}
+The proof of Lemma \ref{lem:perm-M^2} shows that
+$M^2 h_1$ detects a multiple of $\eta \theta_{4.5}$.
+Therefore, it detects either $\eta \theta_{4.5}^2$
+or $\eta \theta_{4.5} \{h_5 d_0\}$.
+
+Now $h_1 h_5 d_0$ detects $\eta \{h_5 d_0\}$, which also
+detects $\eta_4 \theta_4$ by Table \ref{tab:misc-extn}.
+In fact, the proof of \cite{Isaksen14c}*{Lemma 4.112} shows that
+these two products are equal.
+Then $\eta \theta_{4.5} \{h_5 d_0\}$ equals
+$\eta_4 \theta_4 \theta_{4.5}$.
+Next,
+$\eta_4 \theta_{4.5}$ lies in $\pi_{61,33}$.
+The only non-zero element of $\pi_{61,33}$ is detected by
+$\mmf$, so the product $\eta_4 \theta_{4.5}$ must be zero.
+
+We have now shown that $M^2 h_1$ detects $\eta \theta_{4.5}^2$.
+This implies that $M^2$ detects $\theta_{4.5}^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:epsilon-h5d0}
+\revdeg{45, 5, 24}
+There is no hidden $\epsilon$ extension on $h_5 d_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that
+$h_5 d_0$ detects the Toda bracket $\langle 2, \theta_4, \kappa \rangle$.
+Now shuffle to obtain
+\[
+\epsilon \langle 2, \theta_4, \kappa \rangle =
+\langle \epsilon, 2, \theta_4 \rangle \kappa.
+\]
+Table \ref{tab:Toda} shows that
+$h_5 c_0$ detects the Toda bracket
+$\langle \epsilon, 2, \theta_4 \rangle$, and there is no indeterminacy.
+Let $\alpha$ in $\pi_{39,21}$ be the unique element of this Toda bracket.
+We wish to compute $\alpha \kappa$.
+
+Table \ref{tab:Toda} shows that
+$h_5 c_0$ also detects the Toda bracket 
+$\langle \eta_5, \nu, 2 \nu \rangle$, 
+with indeterminacy generated by $\sigma \eta_5$.
+Let $\beta$ in $\pi_{39,21}$ be an element of
+this Toda bracket.
+Then $\alpha$ and $\beta$ are equal, modulo
+$\sigma \eta_5$ and modulo elements in higher filtration.
+Both $\tau h_3 d_1$ and $\tau^2 c_1 g$ detect multiples of
+$\sigma$.
+Also, the difference between $\alpha$ and $\beta$ cannot be
+detected by $\D h_1 d_0$ by comparison to $\tmf$.
+
+This implies that $\alpha$ equals $\beta + \sigma \gamma$
+for some element $\gamma$ in $\pi_{31,17}$.
+Then
+\[
+\alpha \kappa = (\beta + \sigma \gamma) \kappa = \beta \kappa
+\]
+because $\sigma \kappa$ is zero.
+
+Now shuffle to obtain
+\[
+\beta \kappa = \langle \eta_5, \nu, 2 \nu \rangle \kappa =
+\eta_5 \langle \nu, 2\nu, \kappa \rangle.
+\]
+Table \ref{tab:Toda} shows that
+$\langle \nu, 2\nu, \kappa \rangle$
+contains $\eta \kappabar$, and its indeterminacy is generated by
+$\nu \nu_4$.
+We now need to compute $\eta_5 \eta \kappabar$.
+
+The product $\eta_5 \kappabar$ is detected by
+$\tau h_1 h_3 g_2 = \tau h_1 h_5 g$, so
+$\eta_5 \kappabar$ equals $\tau \eta \sigma \kappabar_2$,
+modulo elements of higher filtration.
+But these elements of higher filtration are either annihilated
+by $\eta$ or detected by $\tmf$, so 
+$\eta_5 \eta \kappabar$ equals
+$\tau \eta^2 \sigma \kappabar_2$.
+By comparison to $\tmf$, this latter expression must be zero.
+\end{proof}
+
+\begin{lemma}
+\label{lem:Dh1h3-h5d0}
+\revdeg{45, 5, 24}
+There is no hidden $\{\D h_1 h_3\}$ extension on 
+$h_5 d_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_5 d_0$ detects the Toda bracket
+$\langle \kappa, \theta_4, 2 \rangle$.  By inspection of 
+indeterminacies, we have
+\[
+\{\D h_1 h_3\} \langle \kappa, \theta_4, 2 \rangle =
+\langle \{\D h_1 h_3\} \kappa, \theta_4, 2 \rangle.
+\]
+Table \ref{tab:misc-extn} shows that
+$\tau d_0 l + \D c_0 d_0$ detects the product
+$\{\D h_1 h_3 \} \kappa$.
+Now apply the Moss Convergence Theorem \ref{thm:Moss}
+with the Adams differential $d_2(h_5) = h_0 h_4^2$
+to determine that the Toda bracket
+$\langle \{\D h_1 h_3\} \kappa, \theta_4, 2 \rangle$ is 
+detected in Adams filtration at least $13$.
+
+The only element in sufficiently high filtration is $\tau^5 e_0 g^3$,
+but comparison to $\mmf$ rules this out.
+Thus the Toda bracket
+$\langle \{\D h_1 h_3\} \kappa, \theta_4, 2 \rangle$ 
+contains zero.
+\end{proof}
+
+\begin{lemma}
+\label{lem:rho15-h5^2}
+\revdeg{62, 2, 32}
+There is a hidden $\rho_{15}$ extension from $h_5^2$ to
+either $h_0 x_{77,7}$ or $\tau^2 m_1$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that the Toda bracket
+$\langle 8, 2 \sigma, \sigma \rangle$ contains
+$\rho_{15}$.
+Then $\rho_{15}$ is also contained in 
+$\langle 2, 8 \sigma, \sigma \rangle$, although the indeterminacy
+increases.
+
+Now shuffle to obtain
+\[
+\rho_{15} \theta_5 = \theta_5 \langle 2, 8\sigma, \sigma \rangle =
+\langle \theta_5, 2, 8 \sigma \rangle \sigma.
+\]
+Table \ref{tab:Toda} shows that $h_0^3 h_3 h_6$
+detects $\langle \theta_5, 2, 8\sigma \rangle$.
+Also, there is a $\sigma$ extension from $h_0^3 h_3 h_6$
+to $h_0 x_{77,7}$ in the homotopy of $C\tau$.
+
+This implies that $\rho_{15} \theta_5$ is non-zero in
+$\pi_{77,40}$, and that it is detected in filtration at most $8$.
+Moreover, it is detected in filtration at least $7$, since
+$\rho_{15}$ and $\theta_5$ are detected in filtrations $4$ and $2$
+respectively.
+
+There are several elements
+in filtration $7$ that could detect $\rho_{15} \theta_5$.
+The element $x_{77,7}$ (if it survives to the $E_\infty$-page)
+is ruled out by comparison to $C\tau$.
+The element $\tau h_1 x_{76,6}$ is ruled out because
+$\eta \rho_{15} \theta_5$ is detected in filtration at least $10$,
+since $\eta \rho_{15}$ is detected in filtration $7$.
+
+The only remaining possibilities are $h_0 x_{77,7}$
+and $\tau^2 m_1$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:rho15-h1h6}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{64, 2, 33}
+There is a hidden $\rho_{15}$ extension from
+$h_1 h_6$ to $P h_6 c_0$.
+\item
+\revdeg{64, 2, 33}
+There is a hidden $\rho_{23}$ extension from
+$h_1 h_6$ to $P^2 h_6 c_0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that
+$h_1 h_6$ detects $\langle \eta, 2, \theta_5 \rangle$.
+Then
+\[
+\rho_{15} \langle \eta, 2, \theta_5 \rangle \subseteq
+\langle \eta \rho_{15}, 2, \theta_5 \rangle.
+\]
+The last bracket is detected by $P h_6 c_0$ because
+$d_2(h_6) = h_0 h_5^2$ and because
+$P c_0$ detects $\eta \rho_{15}$.
+Also, its indeterminacy is in Adams filtration greater than $8$.
+This establishes the first hidden extension.
+
+The proof for the second extension is essentially the same,
+using that 
+$P^2 c_0$ detects $\eta \rho_{23}$ and that
+the indeterminacy of
+$\langle \eta \rho_{23}, 2, \theta_5 \rangle$
+is in Adams filtration greater than $12$.
+\end{proof}
+
+
+\begin{lemma}
+\label{lem:epsilon-tMg}
+\revdeg{65, 10, 35}
+There is a hidden $\epsilon$ extension from $\tau M g$ to
+$M d_0^2$.
+\end{lemma}
+
+\begin{proof}
+First, we have the relation $c_0 \cdot h_1^2 X_2 = M h_1 h_3 g$
+in the Adams $E_2$-page, which is detected in the homotopy of
+$C\tau$.
+Table \ref{tab:tau-extn} shows that there are hidden $\tau$
+extensions from $h_1^2 X_2$ and $M h_1 h_3 g$
+to $\tau M g$ and $M d_0^2$ respectively.
+\end{proof}
+
+\begin{lemma}
+\label{lem:epsilon-MDh1h3}
+\revdeg{77, 12, 41}
+If $M \D h_1^2 d_0$ is non-zero in the $E_\infty$-page, then
+there is a hidden $\epsilon$ extension from $M \D h_1 h_3$
+to $M \D h_1^2 d_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that $M h_1$ detects the 
+product $\eta \theta_{4.5}$.
+Since $M \D h_1^2 d_0$ equals $\D h_1 d_0 \cdot M h_1$, it detects
+$\eta \{\D h_1 d_0\} \theta_{4.5}$.
+
+Table \ref{tab:misc-extn} shows that 
+$\eta \{\D h_1 d_0\}$ equals 
+$\epsilon \{\D h_1 h_3\}$, since they are both
+detected by $\D h_1^2 d_0$ and there are no elements in higher
+Adams filtration.
+Therefore, the product 
+$\epsilon \{\D h_1 h_3\} \theta_{4.5}$ is detected
+by $M \D h_1^2 d_0$.
+In particular, $\{\D h_1 h_3\} \theta_{4.5}$ is non-zero, and
+it can only be detected by $M \D h_1 h_3$.
+\end{proof}
+
+\section{Additional relations}
+
+\begin{lemma}
+\label{lem:nubar-h5^2}
+The product $(\eta \sigma + \epsilon) \theta_5$ is detected by
+$\tau h_0 h_2 Q_3$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} indicates a hidden
+$\eta$ extension from $h_2^2 h_6$ to $\tau h_0 h_2 Q_3$.
+Therefore, there exists an element $\alpha$ in $\pi_{69,36}$
+such that $\tau h_0 h_2 Q_3$ detects $\eta \alpha$.
+(Beware of the crossing extension from $p'$ to $h_1 p'$.
+This means that it is possible to choose such an $\alpha$, but not
+any element detected by $h_2^2 h_6$ will suffice.)
+
+Table \ref{tab:Toda} shows that $h_2^2 h_6$ detects the
+Toda bracket $\langle \nu^2, 2, \theta_5 \rangle$.
+Let $\beta$ be an element of this Toda bracket.
+Since $\alpha$ and $\beta$ are both detected by $h_2^2 h_6$, 
+the difference $\alpha - \beta$ is
+detected in Adams filtration at least $4$.
+
+Table \ref{tab:misc-extn} shows that
+$p'$ detects $\sigma \theta_5$, which belongs to the 
+indeterminacy of $\langle \nu^2, 2, \theta_5 \rangle$.
+Therefore, we may choose $\beta$ such that
+the difference $\alpha - \beta$
+is detected in filtration at least 9.
+Since $\eta \alpha$ is detected by $\tau h_0 h_2 Q_3$ in filtration 7,
+it follows that $\eta \beta$ is also detected by $\tau h_0 h_2 Q_3$.
+
+We now have an element $\beta$ contained in
+$\langle \nu^2, 2, \theta_5 \rangle$ such that
+$\eta \beta$ is detected by $\tau h_0 h_2 Q_3$.
+Now consider the shuffle
+\[
+\eta \langle \nu^2, 2, \theta_5 \rangle =
+\langle \eta, \nu^2, 2 \rangle \theta_5.
+\]
+Table \ref{tab:Toda} shows that the last bracket equals
+$\{ \epsilon, \epsilon + \eta \sigma \}$.
+Therefore, either
+$\epsilon \theta_5$ or
+$(\epsilon + \eta \sigma) \theta_5$ is detected by
+$\tau h_0 h_2 Q_3$.
+But $\epsilon \theta_5$ is detected by $h_1 p' = h_5^2 c_0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:compound-(epsilon+etasigma)-theta5}
+There exists an element $\alpha$ of $\pi_{67,36}$ that is 
+detected by $h_0 Q_3 + h_0 n_1$ such that
+$\tau \nu \alpha$ equals $(\eta \sigma + \epsilon) \theta_5$.
+\end{lemma}
+
+\begin{proof}
+Lemma \ref{lem:nubar-h5^2} shows that
+$\tau h_0 h_2 Q_3$ detects $(\epsilon + \eta \sigma) \theta_5$.
+The element $\tau h_0 h_2 Q_3$ also detects $\tau \nu \alpha$.
+Let $\beta$ be the difference
+$\tau \nu \alpha - (\epsilon + \eta \sigma) \theta_5$,
+which is detected in higher Adams filtration.
+We will show that $\beta$ must equal zero.
+
+First, $\tau h_1 D'_3$ cannot detect $\beta$ because
+$\eta^2 \beta$ is zero, while 
+Table \ref{tab:eta-extn} shows that $\tau^3 d_1 g^2$ detects
+$\eta^2 \{\tau h_1 D'_3\}$.
+Second, Table \ref{tab:nu-extn} shows that $\tau h_1 h_3(\D e_1 + C_0)$
+is the target of a hidden $\nu$ extension.
+Therefore, we may alter the choice of $\alpha$
+to ensure that $\beta$ is not detected by $\tau h_1 h_3(\D e_1 + C_0)$.
+Third, $\D^2 h_2 c_1$ is also the target of a $\nu$ extension.
+Therefore, we may alter the choice of $\alpha$
+to ensure that $\beta$ is not detected by $\D^2 h_2 c_1$.
+Finally, comparison to $\tmf$ implies that
+$\beta$ is not detected by 
+$\tau \D^2 h_1^2 g + \tau^3 \D h_2^2 g^2$. 
+\end{proof}
+
+
+
+\rev{
+\begin{lemma}
+\label{lem:sigma^2+kappa-h5^2}
+The product $(\sigma^2 + \kappa) \theta_5$ is
+zero, or it is equal to $\tau^2 \kappa_1 \kappabar_2$ detected
+by $\tau^2 d_1 g_2$.
+\end{lemma}
+
+
+
+\begin{proof}
+The product
+$(\sigma^2 + \kappa) \theta_5$ maps to zero under
+inclusion of the bottom cell of $C\tau$.
+Therefore, $(\sigma^2 + \kappa) \theta_5$ is divisible
+by $\tau$.  The only two possibilities are $0$ and
+$\tau^2 \kappa_1 \kappabar_2$.
+\end{proof}
+}
+
+\begin{lemma}
+\label{lem:eta-sigma-k1}
+$\eta \sigma \{k_1\} + \nu \{d_1 e_1\} = 0$ in
+$\pi_{73,41}$.
+\end{lemma}
+
+\begin{proof}
+We have the relation $h_1 h_3 k_1 + h_2 d_1 e_1 = 0$
+in the Adams $E_\infty$-page, but
+$\eta \sigma \{k_1\} + \nu\{d_1 e_1\}$ could possibly be 
+detected in higher Adams filtration.
+However, it cannot be detected by
+$h_2^2 C''$ or $M h_1 h_3 g$ by comparison to $C\tau$.
+Also, it cannot be detected by $\D h_1 d_0 e_0^2$ by comparison
+to $\mmf$. 
+\end{proof}

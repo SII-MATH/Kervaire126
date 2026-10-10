@@ -1,0 +1,172 @@
+\pdfoutput=1\relax
+\documentclass[reqno]{amsart}
+
+\input{Preamble.tex}
+
+\usepackage{etoolbox}
+\newtoggle{draft}
+% NB: toggle this to hide comments
+\togglefalse{draft}
+%\toggletrue{draft}
+
+\iftoggle{draft} {
+\usepackage[margin=1.5in]{geometry}
+\newcommand{\NB}[1]{\todo[color=gray!40]{#1}}
+\newcommand{\TODO}[1]{\todo[color=red]{#1}}
+}{ % else
+\usepackage[margin=1.5in]{geometry}
+\newcommand{\NB}[1]{}
+\newcommand{\TODO}[1]{}
+\renewcommand{\todo}[1]{}
+\renewcommand{\todo}[1]{}
+}
+\geometry{a4paper}
+
+\title{On the boundaries of highly connected, almost closed manifolds}
+%\date{\today}
+
+\author{Robert Burklund}
+\address{Department of Mathematics, Massachusetts Institute of Technology, Cambridge, MA, USA}
+\email{burklund@mit.edu}
+
+\author{Jeremy Hahn} 
+%\thanks{During the course of the work, the second author was supported by NSF Grant DMS-1803273.}
+\address{Department of Mathematics, Massachusetts Institute of Technology, Cambridge, MA, USA}
+\email{jhahn01@mit.edu}
+
+\author{Andrew Senger}
+%\thanks{During the course of this work, the third author was supported by an NSF GRFP fellowship under Grant No. 1122374.}
+\address{Department of Mathematics, Harvard University, Cambridge, MA, USA}
+\email{senger@math.harvard.edu}
+
+
+%----------------------------------------------------------------------%
+%----------------------------------------------------------------------%
+
+\begin{document}
+\begin{abstract}
+Building on work of Stolz, we prove for integers $0 \le d \le 3$ and $k>232$ that the boundaries of $(k-1)$-connected, almost closed $(2k+d)$-manifolds also bound parallelizable manifolds.
+Away from finitely many dimensions, this settles longstanding questions of C.T.C. Wall, determines all Stein fillable homotopy spheres, and proves a conjecture of Galatius and Randal-Williams.
+Implications are drawn for both the classification of highly connected manifolds and, via work of Kreck and Krannich, the calculation of their mapping class groups.
+
+Our technique is to recast the Galatius and Randal-Williams conjecture in terms of the vanishing of a certain Toda bracket, and then to analyze this Toda bracket by bounding its $\mathrm{H}\mathbb{F}_p$-Adams filtrations for all primes $p$.
+We additionally prove new vanishing lines in the $\mathrm{H}\mathbb{F}_p$-Adams spectral sequences of spheres and Moore spectra, which are likely to be of independent interest. Several of these vanishing lines rely on an Appendix by Robert Burklund, which answers a question of Mathew about vanishing curves in $\mathrm{BP} \langle n \rangle$-based Adams spectral sequences.
+\end{abstract}
+\maketitle
+
+%\setcounter{tocdepth}{1}
+\tableofcontents
+\vbadness 5000
+
+%----------------------------------------------------------------------%
+
+% \newpage
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+\section{Introduction}
+\input{Introduction2.tex}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+
+\section{The classification of \texorpdfstring{$(n-1)$}{(n-1)}-connected \texorpdfstring{$(2n)$}{(2n)}-manifolds} \label{sec:classification}
+\input{ManifoldClassification2.tex}
+\section{Additional applications} \label{sec:Applications}
+\input{Applications.tex}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+
+\section{Calculations with the Goodwillie TAQ tower} \label{sec:Goodwillie}
+\input{Goodwillie.tex}
+
+\section{\texorpdfstring{$\MO \langle 4n \rangle$}{MO<4n>} as a homotopy cofiber} \label{sec:ThomPushout}
+\input{ThomPushout.tex}
+
+\section{The remaining problem as a Toda bracket} \label{sec:Toda}
+\input{Toda2.tex}
+
+%\section{The bar spectral sequence} \label{sec:BarSS}
+%\input{BarSS.tex}
+
+%\section{Calculating the \texorpdfstring{$\mathrm{E}^2$}{E2}-page} \label{sec:easy-differentials}
+%\input{EasyDifferentialsI.tex}
+%\input{EasyDifferentialsII.tex}
+
+%\section{The \texorpdfstring{$d_2$}{d2} differential as a Toda bracket} \label{sec:Toda}
+%\input{Toda.tex}
+
+\section{The Galatius \& Randal-Williams conjecture} \label{sec:Finale}
+\input{Finale.tex}
+
+\section{The proof of Theorem \ref{thm:mainboundary}} \label{sec:FinishingStolz}
+\input{StolzProof.tex}
+
+\section{Synthetic spectra} \label{sec:SyntheticReview}
+\input{SynRevIntro.tex}
+\input{SynRevBigraded.tex}
+
+\section{A synthetic Toda bracket} \label{sec:SyntheticToda}
+\input{SyntheticToda.tex}
+
+\section{Vanishing lines in synthetic spectra} \label{sec:AppendixVL}
+\input{VanishingLines.tex}
+
+\section{An Adams--Novikov vanishing line} \label{sec:ANvl}
+\input{ANSSLine2.tex}
+
+\section{Banded vanishing lines} \label{sec:BandVan}
+\input{BandedGenericity2.tex}
+
+\section{A banded vanishing line for \texorpdfstring{$Y$}{Y}} \label{sec:Y}
+\input{Y-band.tex}
+
+\section{The mod \texorpdfstring{$8$}{8} Moore spectrum} \label{sec:mod8}
+\input{Mod8.tex}
+
+\appendix
+
+\section{Synthetic homotopy groups} 
+\label{sec:synthetic-appendix}
+
+\input{SynRevHom.tex}
+
+\subsection{The proof of \Cref{thm:synthetic-Adams}}
+\label{sec:proof-synth-Adams}\ 
+
+\input{SynRevAdams.tex}
+  
+\subsection{Bigraded homotopy groups in the Toda range}
+\label{subsec:syn-toda-range}\ 
+
+\input{SyntheticTodaRange.tex}
+
+\section{Vanishing curves in Adams spectral sequences, \texorpdfstring{\\}{} by Robert Burklund} \label{sec:Appendix}
+
+\input{Appendix-s0.tex}
+
+\subsection{Preliminaries and statements}
+\label{app:prelim}\ 
+
+\input{Appendix-s1.tex}
+
+\subsection{Comparing vanishing lines}
+\label{app:ABvl}\ 
+
+\input{Appendix-s4.tex}
+
+\subsection{Comparing vanishing lines (continued)}
+\label{app:blocks}\ 
+
+\input{Appendix-s5-E1.tex}
+
+\subsection{The proof of \Cref{thm:app-main}}
+\label{app:reductions}\ 
+
+\input{Appendix-s2.tex}
+
+
+\bibliographystyle{alpha}
+\bibliography{bibliography}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

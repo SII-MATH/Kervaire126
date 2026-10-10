@@ -1,0 +1,2557 @@
+\chapter{Adams differentials}
+\label{ch:Adams}
+
+The goal of this chapter is to describe the values of the
+Adams differentials in the motivic Adams spectral sequence.
+These values are given in Tables \ref{tab:Adams-d2}, \ref{tab:Adams-d3},
+\ref{tab:Adams-d4}, \ref{tab:Adams-d5}, and \ref{tab:Adams-higher}.
+See also the Adams charts in \cite{Isaksen14a} for a graphical
+representation of the computations.
+\revv{
+For easy reference, the many lemmas in this chapter are labelled with degrees that match the degrees given in the tables.}
+
+\section{The Adams $d_2$ differential}
+\label{sctn:Adams-d2}
+
+\revv{
+Table \ref{tab:Adams-d2} lists all of the multiplicative generators 
+of the Adams $E_2$-page through the 95-stem.  The third column indicates
+the value of the $d_2$ differential, if it is non-zero.
+A blank entry in the third column indicates that the $d_2$ differential
+is zero.
+The fourth column indicates the proof. A blank entry in the fourth column
+indicates that there are no possible values for the differential.
+The fifth column gives alternative names for the element, as used 
+in \cite{Tangora70a}, \cite{Bruner97}, and \cite{Isaksen14c}.
+}
+
+\begin{thm}
+\label{thm:Adams-d2}
+Table \ref{tab:Adams-d2} lists the values of the
+Adams $d_2$ differential on all multiplicative generators
+through the 95-stem.
+\end{thm}
+
+\rev{
+\begin{remark}
+\label{rem:d2}
+A previous version of this manuscript left uncertain the value of
+$d_2$ on three multiplicative generators.  These three values
+have since been determined by Dexter Chua \cite{Chua21}.
+We have included those values here, but we defer to \cite{Chua21}
+and \cite{BF21} for their proofs.
+Also, we are grateful to
+Joey Beauvais-Feisthauer \cite{BF21} for discovering an error
+in our previous calculation of $d_2(x_{85,6})$.
+\end{remark}
+}
+
+\begin{proof}
+The fourth column of Table \ref{tab:Adams-d2} gives information on the
+proof of each differential.
+Most follow immediately by comparison to
+the Adams spectral sequence for $C\tau$
+\revv{\cite{IWX19}}.
+A few additional differentials follow by comparison to the classical
+Adams spectral sequence for $\tmf$ \revv{\cite{BR21}}.
+
+If an element is listed in the fourth column of Table \ref{tab:Adams-d2}, 
+then the corresponding differential can be deduced from a straightforward
+argument using a multiplicative relation.  For example, it is possible
+that $d_2(\D h_1 h_3)$ equals $\tau d_0 e_0$.  However,
+$h_0 \cdot \D h_1 h_3$ is zero, while $h_0 \cdot \tau d_0 e_0$ is non-zero.
+Therefore, $d_2(\D h_1 h_3)$ must equal zero.
+
+In some cases, it is necessary to combine these different techniques to
+establish the differential.
+
+The remaining more difficult computations are carried out in the
+following lemmas.  We refer to \cite{Chua21} and \cite{BF21} in
+a few cases.
+\end{proof}
+
+
+\begin{lemma}
+\label{lem:d2-Dx}
+\revdeg{61, 9, 32}
+$d_2(\D x) = h_0^2 B_4 + \tau M h_1 d_0$.
+\end{lemma}
+
+\begin{proof}
+We have a differential $d_2(\D x) = h_0^2 B_4$ in the
+Adams spectral sequence for $C\tau$.
+Therefore, $d_2(\D x)$ equals either
+$h_0^2 B_4$ or $h_0^2 B_4 + \tau M h_1 d_0$.
+
+We have the relation
+$h_1^2 \cdot \D x = P h_1 \cdot \tau \D_1 h_1^2$
+\revv{(as usual, we rely on complete information about classical products in a large range \cite{Bruner97} \cite{BR20})}, so
+$h_1^2 d_2(\D x) = P h_1 d_2(\tau \D_1 h_1^2) = 
+P h_1 h_3 \cdot M h_1 = \tau M h_1^3 d_0$.
+Therefore, $d_2(\D x)$ must equal
+$h_0^2 B_4 + \tau M h_1 d_0$.
+\end{proof}
+
+\begin{remark}
+The proof of \cite{Isaksen14c}*{Lemma 3.50}
+is incorrect.  We claimed that
+$h_1^2 \cdot \D x$ equals $h_3 \cdot \D^2 h_1 h_3$,
+when in fact
+$h_1^2 \cdot \D x$ equals $\tau h_3 \cdot \D^2 h_1 h_3$.
+\end{remark}
+
+\begin{lemma}
+\label{lem:d2-x77,7}
+\revdeg{77, 7, 40}
+$d_2(x_{77,7}) = \tau M h_1 h_4^2$.
+\end{lemma}
+
+The following proof was suggested to us by Dexter Chua.
+
+\begin{proof}
+This follows from the interaction between algebraic squaring
+operations and classical Adams differentials \cite{Bruner84}*{Theorem 2.2},
+applied to the element $x$ in the $37$-stem.
+The theorem says that
+\[
+d_* \Sq^2 x = \Sq^3 d_2 x \dotplus h_0 \Sq^3 x.
+\]
+The notation means that there is an Adams differential on $\Sq^2 x$
+hitting either $\Sq^3 d_2 x = 0$ or $h_0 \Sq^3 x$,
+depending on which element has lower Adams filtration.
+Therefore
+$d_2 \Sq^2 x = h_0 \Sq^3 x$.
+
+Next, observe from \cite{Bruner04} that
+$\Sq^3 x = h_0^2 x_{76,6} + \tau^2 d_1 g_2$, so
+\[
+h_0 \Sq^3 x = h_0^3 x_{76,6} = \tau M h_1 h_4^2.
+\]
+Therefore, there is a $d_2$ differential whose value is
+$\tau M h_1 h_4^2$, and the possibility is that
+$d_2(x_{77,7})$ equals $\tau M h_1 h_4^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d2-tB5g}
+\revdeg{86, 14, 47}
+$d_2(\tau B_5 g) = \tau M h_0^2 g^2$.
+\end{lemma}
+
+\begin{proof}
+We use the Mahowald operator methods of 
+Section \ref{subsctn:Mahowald-operator}.
+\revv{According to \cite{Isaksen19}*{Table 1}},
+the map $p_*: \Ext_\C \map \Ext_B$ takes
+$d_0 \cdot \tau B_5 g$ to
+$\tau h_0 a g^3 v_3^2$, which is non-zero.
+We deduce that the product $d_0 \cdot \tau B_5 g$ is non-zero
+in $\Ext$.
+\revv{By inspection of motivic weights},
+the only possibility is that it equals $\tau M g \cdot h_0 m$.
+
+Now $d_2(\tau M g \cdot h_0 m)$ equals
+$\tau M g \cdot h_0^2 e_0^2$, which we also know is non-zero
+since it maps to the non-zero element
+$\tau h_0^2 d e g^2 v_3^2$ of $\Ext_B$
+\revv{by \cite{Isaksen19}*{Theorem 1}}.
+It follows that $d_2(\tau B_5 g)$ 
+\revv{is non-zero.  By inspection of motivic weights, the only
+possibility is $\tau M h_0^2 g^2$.}
+\end{proof}
+
+\section{The Adams $d_3$ differential}
+\label{sctn:Adams-d3}
+
+\revv{
+Table \ref{tab:Adams-d3} lists the multiplicative generators 
+of the Adams $E_3$-page through the 95-stem
+whose $d_3$ differentials are non-zero, or whose $d_3$ differentials
+are zero for non-obvious reasons.
+}
+
+\begin{thm}
+\label{thm:Adams-d3}
+Table \ref{tab:Adams-d3} lists some values of the
+Adams $d_3$ differential on multiplicative generators.
+Through the 95-stem, 
+the Adams $d_3$ differential is zero on all multiplicative
+generators not listed in the table.
+\end{thm}
+
+\rev{
+\begin{remark}
+A previous version of this manuscript left uncertain the value of
+$d_3$ on several multiplicative generators.  These values
+have since been determined by Dexter Chua \cite{Chua21}.
+We have included those values here, but we defer to \cite{Chua21}
+for their proofs.
+We are also grateful to Dexter Chua for correcting a few mistakes
+in the values of the $d_3$ differential.
+\end{remark}
+}
+
+\begin{proof}
+The $d_3$ differential on many multiplicative generators is zero.
+A few of these multiplicative generators appear
+in Table \ref{tab:Adams-d3} because their proofs require further
+explanation.
+For the remaining majority of such multiplicative generators,
+the $d_3$ differential is zero
+because there are no possible non-zero
+values, because of comparison to the Adams spectral sequence for $C\tau$,
+or because the element is already known to be a permanent cycle
+as shown in Table \ref{tab:Adams-perm}.
+These cases do not appear in Table \ref{tab:Adams-d3}.
+
+The last column of Table \ref{tab:Adams-d3} gives information on the
+proof of each differential.
+Most follow immediately by comparison to
+the Adams spectral sequence for $C\tau$.  
+A few additional differentials follow by comparison to the classical
+Adams spectral sequence for $\tmf$, or by comparison to the
+$\C$-motivic Adams spectral sequence for $\mmf$.
+
+If an element is listed in the last column of Table \ref{tab:Adams-d3}, 
+then the corresponding differential can be deduced from a straightforward
+argument using a multiplicative relation.  For example, 
+\[
+d_3( h_1 \cdot \tau P d_0 e_0 ) =
+P h_1 \cdot d_3(\tau d_0 e_0) =
+P^2 h_1 c_0 d_0,
+\]
+so $d_3(\tau P d_0 e_0)$ must equal $P^2 c_0 d_0$.
+
+If a $d_4$ differential is listed in the last column of 
+Table \ref{tab:Adams-d3}, then
+the corresponding differential is forced by consistency with
+that later differential.
+In each case,
+a $d_3$ differential on an element $x$
+is forced by the existence of a later
+$d_4$ differential on $\tau x$.
+For example, Table \ref{tab:Adams-d4} shows that
+there is a differential
+$d_4(\tau^2 e_0 g) = P d_0^2$.
+Therefore, $\tau e_0 g$ cannot survive to the $E_4$-page.
+It follows that $d_3(\tau e_0 g) = c_0 d_0^2$.
+
+In some cases, it is necessary to combine these different techniques to
+establish the differential.
+
+The remaining more difficult computations are carried out in the
+following lemmas.  We refer to \cite{Chua21} in
+a few cases.
+\end{proof}
+
+\begin{prop}
+\label{prop:Adams-perm}
+Some permanent cycles in the
+$\C$-motivic Adams spectral sequence are shown in 
+Table \ref{tab:Adams-perm}.
+\end{prop}
+
+\begin{proof}
+The third column of the table gives information on the proof
+for each element.  If a Toda bracket is given in the third
+column, then
+the Moss Convergence Theorem \ref{thm:Moss} implies that the
+element must survive to detect that Toda bracket
+(see Table \ref{tab:Toda} for more information on how each
+Toda bracket is computed).
+If a product is given in the third column, then
+the element must survive to detect that product
+(see Table \ref{tab:misc-extn} for more information
+on how each product is computed).
+In a few cases, the third column refers to a specific lemma
+that gives a more detailed argument.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d3-h2h5}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{34, 2, 18}
+$d_3(h_2 h_5) = \tau h_1 d_1$.
+\item
+\revdeg{74, 6, 38}
+$d_3(P h_2 h_6) = \tau h_1 h_4 Q_2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+In the Adams spectral sequence for $C\tau$, there is an
+$\eta$ extension from $h_2 h_5$ to $\ol{h_1^2 d_1}$.
+The element $\ol{h_1^2 d_1}$ maps to $h_1^2 d_1$ under projection
+from $C\tau$ to the top cell, so
+$h_2 h_5$ must also map non-trivially under projection from
+$C\tau$ to the top cell.
+The only possibility is that $h_2 h_5$ maps to $h_1 d_1$.
+Therefore, $\tau h_1 d_1$ must be hit by a differential.
+This establishes the first differential.
+
+The proof for the second differential is identical, using that
+there is an $\eta$ extension from $P h_2 h_6$ to $\ol{h_1^2 h_4 Q_2}$
+in the Adams spectral sequence for $C\tau$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d3-t^2D1h1^2}
+\revdeg{54, 6, 28}
+$d_3(\tau^2 \D_1 h_1^2) = \tau M c_0$.
+\end{lemma}
+
+\begin{proof}
+The element $M P$ maps to zero under inclusion of the bottom cell into 
+$C \tau$. 
+Therefore,
+$M P$ is either hit by a differential, or it is the target of a 
+hidden $\tau$ extension.  
+\revv{If it is the target of a hidden $\tau$ extension},
+then the only possibility is that $\tau M c_0$ is zero in the
+$E_\infty$-page, and that there is a hidden
+$\tau$ extension from $M c_0$ to $M P$.
+
+\revv{It remains to show that $M P$ cannot be hit by a differential.
+The only possibility is that $d_4(\tau^2 \D_1 h_1^2)$ might
+equal $M P$. 
+Note that $P h_1 \cdot \tau^2 \D_1 h_1^2$ 
+equals $h_1 ( \tau h_1 \cdot \Delta x)$ in the $E_4$-page.
+This means that 
+$d_4(P h_1 \cdot \tau^2 \D_1 h_1^2)$ cannot equal $M P^2 h_1$
+since $M P^2 h_1$ is not divisible by $h_1$.
+In turn, $d_4(\tau^2 \D_1 h_1^2)$ cannot equal $M P$.
+}
+\end{proof}
+
+\begin{lemma}
+\label{lem:d3-tDg2.h0^3}
+\revdeg{68, 11, 35}
+$d_3(\tau h_0^3 \cdot \D g_2) = \tau^3 \D h_2^2 e_0 g$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:unit-mmf} shows that the element
+$h_0 h_5 i$ maps to $\D^2 h_2^2$ in
+the Adams spectral sequence for $\tmf$.
+
+Now $\D^2 h_2^2 d_0$ is not zero and not divisible by $2$ in $\tmf$.
+Therefore, $\kappa \{ h_0 h_5 i\}$ must be non-zero and 
+not divisible by $2$ in $\pi_{68,36}$.
+The only possibility is that
+$\kappa \{h_0 h_5 i\}$ is detected by 
+$P h_2 h_5 j = d_0 \cdot h_0 h_5 i$, and that
+$P h_2 h_5 j$ is not an $h_0$ multiple in the $E_\infty$-page.
+Therefore, $\tau \D g_2 \cdot h_0^3$ cannot survive to the
+$E_\infty$-page.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:d3-tD3'}
+\revdeg{69, 8, 36}
+$d_3(\tau D'_3) = \tau^2 M h_2 g$.
+\end{lemma}
+}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that
+the Toda bracket $\langle 2, 8 \sigma, 2, \sigma^2 \rangle$
+contains $\tau \nu \kappabar$, which is detected by $\tau^2 h_2 g$.
+Table \ref{tab:nu-extn} shows that
+$M h_2$ detects $\nu \alpha$ for some
+$\alpha$ in $\pi_{45,24}$ detected by $h_3^2 h_5$.
+(Beware that there is a crossing extension, $M h_2$ does not
+detect $\nu \alpha$ for every $\alpha$ that is detected by
+$h_3^2 h_5$.)
+It follows that
+$\tau^2 M h_2 g$ detects
+$\langle 2, 8 \sigma, 2, \sigma^2 \rangle \alpha$.
+
+This expression is contained in
+$\langle 2, 8 \sigma, \langle 2, \sigma^2, \alpha \rangle \rangle$.
+Lemma \ref{lem:2,sigma^2,theta4.5} shows that
+the inner bracket equals
+$\{0, 2 \tau \kappabar^3 \}$.
+
+The Toda bracket
+$\langle 2, 8 \sigma, 0 \rangle$ 
+in $\pi_{68,36}$
+consists entirely of multiples of $2$.
+The Toda bracket
+$\langle 2, 8 \sigma, 2 \tau \kappabar^3 \rangle$ contains
+$\langle 2, 8 \sigma, 2 \rangle \tau \kappabar^3$.
+This last expression equals zero because 
+\[
+\langle 2, 8 \sigma, 2 \rangle = \tau \eta \cdot 8 \sigma = 0
+\]
+by Corollary \ref{cor:2-symmetric}.
+Therefore, 
+$\langle 2, 8 \sigma, 2 \tau \kappabar^3 \rangle$ equals
+its indeterminacy, which
+consists entirely of multiples of $2$ in $\pi_{68,36}$.
+
+We conclude that $\tau^2 M h_2 g$ is either hit by a differential, or
+is the target of a hidden $2$ extension.  
+Lemma \ref{lem:2-h3A'} shows that
+there is no hidden $2$ extension from $h_3 A'$ to $\tau^2 M h_2 g$,
+and there are no other possible extensions to $\tau^2 M h_2 g$.
+
+Therefore, $\tau^2 M h_2 g$ must be hit by 
+a differential, and the only possible source of this differential
+is $\tau D'_3$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d3-t^2Mh0l}
+\revdeg{77, 14, 40}
+$d_3(\tau^2 M h_0 l) = \D^2 h_0 d_0^2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Adams-d4} shows that
+$d_4(\tau^2 d_0 e_0 + h_0^7 h_5)$ equals $P^2 d_0$, so
+$d_4(\tau^3 M h_1 d_0 e_0)$ equals $\tau M P^2 h_1 d_0$.
+We have the relation $h_0 \cdot \tau^2 M h_0 l = \tau^3 M h_1 d_0 e_0$,
+but the element $\tau M P^2 h_1 d_0$ is not divisible by $h_0$.
+Therefore, $\tau^2 M h_0 l$ cannot survive to the $E_4$-page.
+
+By comparison to the Adams spectral sequence for $\tmf$,
+the value of $d_3(\tau^2 M h_0 l)$ cannot be
+$\tau^3 \D h_1 e_0^3 + \D^2 h_0 d_0^2$ or
+$\tau^3 \D h_1 e_0^3$.
+The only remaining possibility is that
+$d_3(\tau^2 M h_0 l)$ equals
+$\D^2 h_0 d_0^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d3-h0^3x78,10}
+\revdeg{78, 13, 40}
+$d_3(h_0^3 x_{78,10}) = \tau^6 e_0 g^3$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $h_0^3 x_{78,10}$ were a permanent cycle.
+Then it would map under inclusion of the bottom cell
+to the element $h_0^3 x_{78,10}$ in the 
+Adams $E_\infty$-page for $C\tau$.
+
+There is a hidden $\nu$ extension from $h_0^3 x_{78,10}$
+to $\D^3 h_1^2 h_3$ in the Adams $E_\infty$-page for $C\tau$.
+Then $\D^3 h_1^2 h_3$ would also have to be in the image
+of inclusion of the bottom cell.  
+The only possible pre-image is the element $\D^3 h_1^2 h_3$
+in the Adams spectral sequence for the sphere, but this element
+does not survive by Lemma \ref{lem:d4-D^3h1^2h3}.
+
+By contradiction, we have shown that $h_0^3 x_{78,10}$
+must support a differential.  The only possibility is that
+$d_3(h_0^3 x_{78,10})$ equals $\tau^6 e_0 g^3$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d3-x1}
+\revdeg{79, 5, 42}
+$d_3(x_1) = \tau h_1 m_1$.
+\end{lemma}
+
+\begin{proof}
+This follows from the interaction between algebraic squaring
+operations and classical Adams differentials \cite{Bruner84}*{Theorem 2.2}.
+The theorem says that
+\[
+d_* \Sq^1 e_1 = \Sq^3 d_3 e_1 \dotplus h_1 \Sq^3 e_1.
+\]
+The notation means that there is an Adams differential on $\Sq^1 e_1$
+hitting either $\Sq^3 d_3 e_1$ or $h_1 \Sq^3 e_1$,
+depending on which element has lower Adams filtration.
+Therefore
+$d_3 \Sq^1 e_1 = h_1 \Sq^3 e_1$.
+
+Finally, we observe from \cite{Bruner04} that
+$\Sq^1 e_1 = x_1$ and $\Sq^3 e_1 = m_1$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:perm-D^2d1}
+\revdeg{80, 12, 42}
+The element $\D^2 d_1$ is a permanent cycle.
+\end{lemma}
+
+\begin{proof}
+The element $\D^2 d_1$ in the Adams $E_\infty$-page for $C\tau$
+must map to zero under the projection from $C\tau$ to the top cell.
+The only possible value in sufficiently high filtration is
+$\tau^2 \D h_1 e_0^2 g$.  However, comparison to $\mmf$
+shows that this element is not annihilated by $\tau$, and therefore
+cannot be in the image of projection to the top cell. 
+
+Therefore, $\D^2 d_1$ 
+must be in the image of the inclusion of the bottom cell into $C\tau$.
+The element $\D^2 d_1$ is the 
+only possible pre-image in the Adams $E_\infty$-page for the sphere 
+in sufficiently low filtration.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:d3-D^3h1h3}
+\revdeg{80, 14, 41}
+$d_3(\D^3 h_1 h_3)$ equals either
+$\tau^4 \D h_1 e_0^2 g$, $\tau \D^2 h_0 d_0 e_0$, or
+$\tau^4 \D h_1 e_0^2 g + \tau \D^2 h_0 d_0 e_0$; and it is not equal to
+$d_3(\tau^2 d_0 B_5)$.
+\end{lemma}
+
+\begin{proof}
+There is a relation $P h_1 \cdot \D^3 h_1 h_3 = \tau \D^3 h_1^3 d_0$
+in the Adams $E_2$-page.  Because of the differential
+$d_2(\D^3 h_1 e_0) = \D^3 h_1^3 d_0 + \tau^5 e_0^2 g m$,
+we have the relation
+$P h_1 \cdot \D^3 h_1 h_3 = \tau^6 e_0^2 g m$ in
+the $E_3$-page.
+
+There is a differential $d_4(\tau^6 e_0^2 g m) = \tau^4 d_0^4 l$.
+But $\tau^4 d_0^4 l$ is not divisible by $P h_1$,
+so $\tau^6 e_0^2 g m$ cannot be divisible by $P h_1$
+in the $E_4$-page.  Therefore,
+$d_3(\D^3 h_1 h_3)$ must be non-zero.
+
+The same argument shows that 
+$d_3(\D^3 h_1 h_3 + \tau^3 d_0 B_5)$ must also be non-zero.
+\end{proof}
+
+\begin{remark}
+In fact, Chua has determined that $d_3(\D^3 h_1 h_3)$ equals
+$\tau^4 \D h_1 e_0^2 g$ \cite{Chua21}.
+\end{remark}
+}
+
+\rev{
+\begin{lemma}
+\label{lem:d3-t^2d0B5}
+\revdeg{80, 14, 42}
+$d_3(\tau^2 d_0 B_5)$ equals either $\D^2 h_0 d_0 e_0$
+or $\D^2 h_0 d_0 e_0 + \tau^3 \D h_1 e_0^2 g$.
+\end{lemma}
+
+\begin{proof}
+The element $\D^2 h_0 d_0 e_0$ is a permanent cycle because
+there are no possible differentials that it could support.
+Moreover, 
+it must map to zero under the inclusion of the bottom cell into $C\tau$ because there are no elements in the
+Adams $E_\infty$-page for $C\tau$ of sufficiently high filtration.
+Therefore, $\D^2 h_0 d_0 e_0$ 
+is either hit by a differential, or it is the target of a 
+hidden $\tau$ extension, or it is the target of a non-hidden
+$\tau$ extension.
+
+The only possible hidden $\tau$ extension has source $h_1^3 x_{76,6}$.
+However, Table \ref{tab:hid-proj} shows that
+$h_1^3 x_{76,6}$ is in the image of projection from $C\tau$ to the
+top cell.  Therefore, it cannot support a hidden extension.
+
+We now know that $\D^2 h_0 d_0 e_0$ must be hit by a differential, or
+it is $\tau$-divisible in the $E_\infty$-page.
+Lemma \ref{lem:perm-D^2d1} rules out one possible source for the
+differential.  The only remaining possibilities are that 
+$d_3(\tau^2 d_0 B_5)$ equals
+$\D^2 h_0 d_0 e_0$ or 
+$\D^2 h_0 d_0 e_0 + \tau^3 \D h_1 e_0^2 g$.
+\end{proof} 
+
+\begin{remark}
+We are grateful to Dexter Chua for pointing out an error in a previous
+version of Lemma \ref{lem:d3-t^2d0B5}.  In fact, Chua has determined
+that the value of $d_3(\tau^2 d_0 B_5)$ is 
+$\D^2 h_0 d_0 e_0 + \tau^3 \D h_1 e_0^2 g$ \cite{Chua21}.
+\end{remark}
+}
+
+\begin{lemma}
+\label{lem:d3-h2h4h6}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{81, 3, 42}
+$d_3(h_2 h_4 h_6) = 0$.
+\item
+\revdeg{82, 10, 42}
+$d_3(P^2 h_2 h_6) = 0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The value of $d_3(h_2 h_4 h_6)$ is not $h_2 h_6 d_0$ nor
+$h_2 h_6 d_0 + \tau h_1 x_1$ by comparison to the Adams
+spectral sequence for $C\tau$.
+
+It remains to show that $d_3(h_2 h_4 h_6)$ cannot equal $\tau h_1 x_1$.
+Suppose that the differential did occur.
+Then there would be no possible targets for a 
+hidden $\tau$ extension on $h_1 x_1$,
+so the $\eta$ extension from $h_1 x_1$ to $h_1^2 x_1$ would be detected
+by projection from $C\tau$ to the top cell.  But there 
+is no such $\eta$ extension in the homotopy groups of $C\tau$.
+This establishes the first formula.
+
+The proof of the second formula is essentially the same,
+using that the $\eta$ extension
+from $\D^2 h_1 d_1$ to $\D^2 h_1^2 d_1$ cannot be
+detected by projection from $C\tau$ to the top cell.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d3-D^2p}
+\revdeg{81, 12, 42}
+$d_3(\D^2 p) = 0$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $d_3(\D^2 p)$ were equal to $\tau^3 h_1 M e_0^2$.
+In the Adams $E_4$-page,
+the Massey product $\langle \tau^2 M g, \tau h_1 d_0, d_0 \rangle$
+would equal $\tau^2 M \D h_2^2 g$, with no indeterminacy,
+because of the Adams differential $d_3(\D h_2^2) = \tau h_1 d_0^2$
+and because $d_0 \cdot \D^2 p = 0$.
+By Moss's higher Leibniz rule \ref{thm:Leibniz},
+$d_4(\tau^2 M \D h_2^2 g)$ would be a linear
+combination of multiples of $\tau^2 M g$ and $d_0$.
+But Table \ref{tab:Adams-d4} shows that $d_4(\tau^2 M \D h_2^2 g)$
+equals $M P \D h_0^2 e_0$, which is not such a linear combination
+in the Adams $E_4$-page.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d3-th6g}
+\revdeg{83, 5, 43}
+$d_3(\tau h_6 g + \tau h_2 e_2) = 0$.
+\end{lemma}
+
+\begin{proof}
+In the Adams $E_3$-page, we have the matric Massey product
+\[
+\tau h_6 g + \tau h_2 e_2 =
+\left\langle 
+\left[
+\begin{array}{cc}
+\tau g & \tau h_2
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+h_5^2 \\ x_1
+\end{array}
+\right],
+h_0
+\right\rangle
+\]
+because of the Adams differentials
+$d_2(h_6) = h_0 h_5^2$ and
+$d_2(e_2) = h_0 x_1$, as well as the relation
+$\tau g \cdot h_5^2 + \tau h_2 x_1$ in the Adams $E_2$-page.
+Moss's higher Leibniz rule \ref{thm:Leibniz}
+implies that 
+$d_3(\tau h_6 g + \tau h_2 e_2)$ 
+belongs to
+\[
+\left\langle
+\left[
+0 \enskip 0
+\right],
+\left[
+\begin{array}{c}
+h_5^2 \\ x_1
+\end{array}
+\right],
+h_0 \right\rangle +
+\left\langle
+\left[
+\tau g \enskip \tau h_2
+\right],
+\left[
+\begin{array}{c}
+0 \\ \tau h_1 m_1
+\end{array}
+\right],
+h_0 \right\rangle +
+\left\langle
+\left[
+\tau g \enskip \tau h_2
+\right],
+\left[
+\begin{array}{c}
+h_5^2 \\ x_1
+\end{array}
+\right],
+0 \right\rangle
+\]
+since $d_3(x_1) = \tau h_1 m_1$,
+where the Massey products are formed in the Adams $E_3$-page using
+the $d_2$ differential.
+This expression simplifies to
+$\left\langle
+\left[
+\tau g \enskip \tau h_2
+\right],
+\left[
+\begin{array}{c}
+0 \\ \tau h_1 m_1
+\end{array}
+\right],
+h_0 \right\rangle$,
+which equals $\{0, \tau h_0^2 h_4 Q_3 \}$.
+
+Table \ref{tab:nu-extn} shows that there is a hidden $\nu$
+extension from $h_0^2 h_4 Q_3$ to $P h_1 x_{76,6}$.
+The element $\tau P h_1 x_{76,6}$ is non-zero in the Adams
+$E_\infty$-page.  Therefore,
+$h_0^2 h_4 Q_3$ supports a (hidden or not hidden) 
+$\tau$ extension whose target is in Adams filtration at most $10$.
+The only possibility is that
+$\tau h_0^2 h_4 Q_3$ is non-zero in the Adams 
+$E_\infty$-page.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:d3-f2}
+\revdeg{84, 4, 44}
+$d_3(f_2) = \tau h_1 h_4 Q_3$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:nu-extn} shows that 
+$\tau h_1 Q_3$ detects $\nu^2 \theta_5$, and 
+Table \ref{tab:Toda} shows that
+$\tau h_1 h_4 Q_3$ detects
+$\langle \nu^2 \theta_5, 2, \sigma^2 \rangle$,
+with indeterminacy in strictly higher Adams filtration.
+This bracket contains
+$\nu^2 \langle \theta_5, 2, \sigma \rangle$, so
+$\tau h_1 h_4 Q_3$ detects a multiple of $\nu^2$.
+The only possibility is that $\tau h_1 h_4 Q_3$ is a multiple
+of $h_2^2$ in the $E_\infty$-page.
+This implies that 
+$d_3(f_2)$ equals $\tau h_1 h_4 Q_3$ or $\tau h_1 h_4 Q_3 + h_0^2 h_6 g$.
+The latter possibility is ruled out by comparison to
+$C\tau$.
+\end{proof}
+}
+
+\rev{
+\begin{lemma}
+\label{lem:d3-tx85,6+h0^3c3}
+\revdeg{85, 6, 45}
+$d_3(\tau x_{85,6} + h_0^3 c_3) = 0$.
+\end{lemma}
+
+\begin{proof}
+Let $\alpha$ be an element of $\pi_{66,35}$ that is detected by
+$\tau h_2 C'$.  Then $\nu \alpha$ is detected by $\tau h_2^2 C'$,
+and $\tau \nu \alpha$ is zero.
+
+Let $\ol{\alpha}$
+be an element of $\pi_{70,36} C\tau$ that is detected by $h_0^2 h_3 h_6$.
+Projection from $C\tau$ to the top cell takes $\ol{\alpha}$ to
+$\nu \alpha$.
+Moreover, in the homotopy of $C\tau$, the Toda bracket
+$\langle 2, \sigma^2, \ol{\alpha} \rangle$
+is detected by $h_0^3 c_3$.
+
+Now projection from $C\tau$ to the top cell takes
+$\langle 2, \sigma^2, \ol{\alpha} \rangle$ to 
+$\langle 2, \sigma^2, \nu \alpha \rangle$, which equals zero
+by Lemma \ref{lem:2,sigma^2,th2^2C'}.
+Therefore, $h_0^3 c_3$ maps to zero under projection to the top cell
+of $C\tau$,
+so it must be in the image of inclusion of the bottom cell.
+
+There are two possibilities.
+First, $\tau x_{85,6} + h_0^3 c_3$ could survive, and it could
+map to $h_0^3 c_3$ under inclusion of the bottom cell of $C\tau$.
+Second,
+$\tau h_1 f_2$ could map to $h_0^3 c_3$ under inclusion of the 
+bottom cell.  This could only occur if $d_{10}(h_1 f_2)$ equaled
+$M \D h_1 d_0$
+and $d_9(\tau x_{85,6} + h_0^3 c_3)$ equaled $\tau M \D h_1 d_0$.
+
+In either case, $d_3(\tau x_{85,6} + h_0^3 c_3)$ is zero.
+\end{proof}
+}
+
+\rev{
+\begin{remark}
+\label{rem:d3-tx85,6+h0^3c3}
+In the proof of Lemma \ref{lem:d3-tx85,6+h0^3c3}, we have used that
+$d_5(\tau p_1 + h_0^2 h_3 h_6)$ equals $\tau^2 h_2^2 C'$ in order
+to conclude that $\tau \nu \alpha$ is zero.  This differential
+depends on work in preparation \cite{BIX}.  
+
+However, we can
+also prove Lemma \ref{lem:d3-tx85,6+h0^3c3} independently of \cite{BIX}.
+Lemma \ref{lem:d5-tp1+h0^2h3h6} shows that the other possible value
+of $d_5(\tau p_1 + h_0^2 h_3 h_6)$ is 
+$\tau^2 h_2^2 C' + \tau h_3(\D e_1 + C_0)$.  In this case,
+let $\beta$ be an element of $\pi_{62,33}$ that is detected by
+$\D e_1 + C_0$.  Then $\nu \alpha + \sigma \beta$ is detected by 
+$\tau h_2^2 C' + h_3(\D e_1 + C_0)$, 
+and $\tau (\nu \alpha + \sigma \beta)$ is zero.
+
+Projection from $C\tau$ to the top cell takes 
+$\ol{\alpha}$ to $\nu \alpha + \sigma \beta$, and takes
+$\langle 2, \sigma^2, \ol{\alpha} \rangle$ to 
+$\langle 2, \sigma^2, \nu \alpha + \sigma \beta \rangle$, 
+which equals zero
+by Lemmas \ref{lem:2,sigma^2,th2^2C'} and 
+\ref{lem:2,sigma^2,h3(De1+C0)}.
+As in the proof of Lemma \ref{lem:d3-tx85,6+h0^3c3},
+$h_0^3 c_3$ maps to zero under projection to the top cell of $C\tau$,
+so it must be in the image of inclusion of the bottom cell.
+\end{remark}
+}
+
+\rev{
+\begin{lemma}
+\label{lem:d3-t^2Mh0d0k}
+\revdeg{88, 18, 46}
+$d_3(\tau^2 M h_0 d_0 k) = P \D^2 h_0 d_0 e_0 + \tau^3 \D h_1 d_0^2 e_0^2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Adams-d4} shows that
+$d_4(\tau^2 M h_1 e_0) = M P^2 h_1$.
+Multiply by $\tau d_0^2$ to see that 
+$d_4(\tau^3 M h_1 d_0^2 e_0) = \tau M P^2 h_1 d_0^2$.
+We have the relation $h_2 \cdot \tau^2 M h_0 d_0 k = \tau^3 M h_1 d_0^2 e_0$,
+but $\tau M P^2 h_1 d_0^2$ is not divisible by $h_2$.
+Therefore,
+$\tau^2 M h_0 d_0 k$ cannot survive to the $E_4$-page.
+By comparison to $\mmf$, there is only one possible value for
+$d_3(\tau^2 M h_0 d_0 k)$.
+\end{proof}
+
+\begin{remark}
+We are grateful to Dexter Chua for pointing out a small error in a previous
+version of Lemma \ref{lem:d3-t^2Mh0d0k}.
+\end{remark}
+}
+
+\begin{lemma}
+\label{lem:d3-h2B5g}
+\revdeg{89, 15, 50}
+$d_3(h_2 B_5 g) = M h_1 c_0 e_0^2$.
+\end{lemma}
+
+\begin{proof}
+\revv{We will first establish the relation
+$d_0 \cdot h_2 B_5 g = \tau M h_1 e_0 g^2$.
+We use the map $p_*$ of \cite{Isaksen19}*{Theorem 1.1}.
+We have that $p_*(d_0 \cdot h_2 B_5 g) = p_*(\tau M h_1 e_0 g^2)$.
+Therefore, 
+$d_0 \cdot h_2 B_5 g$ equals $\tau M h_1 e_0 g^2$, modulo a possible
+error term $P h_1^7 h_6 c_0 e_0$ in the kernel of $p_*$.
+However, multiplication by $h_1$ eliminates the error term.
+}
+
+Table \ref{tab:Adams-d3} shows that $d_3(\tau e_0 g^2) = c_0 d_0 e_0^2$.
+Therefore, $d_3(\tau M h_1 e_0 g^2)$ equals
+$M h_1 c_0 d_0 e_0^2$.  Observing
+that $M h_1 c_0 d_0 e_0^2$ is in fact non-zero in the Adams $E_3$-page,
+we conclude that $d_3(h_2 B_5 g)$ must equal $M h_1 c_0 e_0^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:perm-M^2}
+\revdeg{90, 8, 48}
+The element $M^2$ is a permanent cycle.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Massey} shows that the Massey product 
+$\langle M h_1, h_0, h_0^2 g_2 \rangle$ equals $M^2 h_1$.
+Therefore,
+$M^2 h_1$ detects the Toda bracket
+$\langle \eta \theta_{4.5}, 2, \sigma^2 \theta_4 \rangle$.
+The indeterminacy consists entirely
+of multiples of $\eta \theta_{4.5}$.
+The Toda bracket contains
+$\theta_4 \langle \eta \theta_{4.5}, 2, \sigma^2 \rangle$.
+Now 
+$\langle \eta \theta_{4.5}, 2, \sigma^2 \rangle$ is zero because
+$\pi_{61,33}$ is zero.
+
+We have now shown that $M^2 h_1$ detects a multiple
+of $\eta$.  In fact, it detects a non-zero multiple of $\eta$
+because $M^2 h_1$ cannot be hit by a differential by 
+comparison to the Adams spectral sequence for $C\tau$.
+
+Therefore, there exists a non-zero element of $\pi_{90,48}$
+that is detected in Adams fitration at most $12$.
+The only possibility is that $M^2$ survives.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d3-Dh2^2h6}
+\revdeg{93, 7, 48}
+$d_3(\D h_2^2 h_6) = \tau h_1 h_6 d_0^2$.
+\end{lemma}
+
+\begin{proof}
+In the Adams $E_3$-page, 
+$\D h_2^2 h_6$ equals $\langle \D h_2^2, h_5^2, h_0 \rangle$,
+with no indeterminacy, because of the Adams differential
+$d_2(h_6) = h_0 h_5^2$.
+Using that $d_3(\D h_2^2) = \tau h_1 d_0^2$, 
+Moss's higher Leibniz rule \ref{thm:Leibniz}
+implies that $d_3(\D h_2^2 h_6)$ is contained in
+\[
+\langle \tau h_1 d_0^2, h_5^2, h_0 \rangle +
+\langle \D h_2^2, 0, h_0 \rangle +
+\langle \D h_2^2, h_5^2, 0 \rangle.
+\]
+All of these brackets have no indeterminacy, and the last two
+equal zero.
+The first bracket equals $\tau h_1 h_6 d_0^2$, using the
+Adams differential $d_2(h_6) = h_0 h_5^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d3-P^2h6d0}
+\revdeg{93, 13, 48}
+$d_3(P^2 h_6 d_0) = 0$.
+\end{lemma}
+
+\begin{proof}
+In the Adams $E_3$-page, the element $P^2 h_6 d_0$ equals
+the Massey product
+$\langle P^2 d_0, h_5^2, h_0 \rangle$, with no indeterminacy,
+because of the Adams differential $d_2(h_6) = h_0 h_5^2$.
+Moss's higher Leibniz rule \ref{thm:Leibniz} implies
+that $d_3(P^2 h_6 d_0)$ is a linear combination of multiples of
+$h_0$ and of $P^2 d_0$.  The only possibility is that
+$d_3(P^2 h_6 d_0)$ is zero.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:d3-t^2MPh0d0j}
+\revdeg{93, 22, 48}
+$d_3(\tau^2 M P h_0 d_0 j) = P^2 \D^2 h_0 d_0^2 + 
+\tau^3 P \D h_1 d_0^3 e_0$.
+\end{lemma}
+}
+\begin{proof}
+Table \ref{tab:Adams-d4} shows that
+$d_4(\tau^2 P d_0 e_0) = P^3 d_0$.
+Multiplication by $\tau M P h_1$ shows that
+$d_4(\tau^3 M P^2 h_1 d_0 e_0)$ equals
+$\tau M P^4 h_1 d_0$.
+But $\tau^3 M P^2 h_1 d_0 e_0$ equals
+$h_0 \cdot \tau^2 M P h_0 d_0 j$, 
+while $\tau M P^4 h_1 d_0$ is not divisible by $h_0$.
+Therefore,
+$\tau^2 M P h_0 d_0 j$ cannot survive to the $E_4$-page.
+
+The possible values for
+$d_3(\tau^2 M P h_0 d_0 j)$ are
+\revv{the non-zero}
+linear combinations of 
+$P^2 \D^2 h_0 d_0^2$ and
+$\tau^3 P \D h_1 d_0^3 e_0$.
+\revv{The map to the Adams spectral sequence for $\tmf$
+takes both $\tau^2 M P h_0 d_0 j$ and 
+$P^2 \D^2 h_0 d_0^2 + \tau^3 P \D h_1 d_0^3 e_0$ to zero, 
+but it takes each of
+$P^2 \D^2 h_0 d_0^2$ and
+$\tau^3 P \D h_1 d_0^3 e_0$ to the unique non-zero element
+in the appropriate degree.
+Therefore,
+$d_3(\tau^2 M P h_0 d_0 j)$ cannot equal either
+$P^2 \D^2 h_0 d_0^2$ or $\tau^3 P \D h_1 d_0^3 e_0$.
+}
+\end{proof}
+
+\begin{lemma}
+\label{lem:perm-P^3h6c0}
+\revdeg{95, 16, 49}
+The element $P^3 h_6 c_0$ is a permanent cycle.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that
+$P^3 c_0$ detects the product $\eta \rho_{31}$.
+Using the Moss Convergence Theorem \ref{thm:Moss} 
+and the Adams differential $d_2(h_6) = h_0 h_5^2$,
+the element $P^3 h_6 c_0$ must survive to detect the
+Toda bracket
+$\langle \eta \rho_{31}, 2, \theta_5 \rangle$.
+\end{proof}
+
+\begin{remark}
+\label{rem:perm-P^3h6c0}
+We suspect that $P^3 h_6 c_0$ detects the product
+$\eta_6 \rho_{31}$.  However, the argument of
+Lemma \ref{lem:rho15-h1h6} cannot be completed because
+the Toda bracket
+$\langle \eta \rho_{31}, 2, \theta_5 \rangle$ might
+have indeterminacy in lower Adams filtration.
+\end{remark}
+
+\section{The Adams $d_4$ differential}
+\label{sctn:Adams-d4}
+
+\revv{
+Table \ref{tab:Adams-d4} lists the multiplicative generators 
+of the Adams $E_4$-page through the 95-stem
+whose $d_4$ differentials are non-zero, or whose $d_4$ differentials
+are zero for non-obvious reasons.
+}
+
+\begin{thm}
+\label{thm:Adams-d4}
+Table \ref{tab:Adams-d4} lists some values of the
+Adams $d_4$ differential on multiplicative generators.
+Through the 95-stem, 
+the Adams $d_4$ differential is zero on all multiplicative
+generators not listed in the table.
+\end{thm}
+
+\begin{proof}
+The $d_4$ differential on many multiplicative generators is zero.
+A few of these multiplicative generators appear
+in Table \ref{tab:Adams-d4} because their proofs require further
+explanation.
+For the remaining majority of such multiplicative generators,
+the $d_4$ differential is zero
+because there are no possible non-zero values, 
+or because of comparison to the Adams spectral sequences for $C\tau$,
+$\tmf$, or $\mmf$.
+In a few cases, the multiplicative generator
+is already known to be a permanent cycle as shown in
+Table \ref{tab:Adams-perm}.
+These cases do not appear in Table \ref{tab:Adams-d4}.
+
+The last column of Table \ref{tab:Adams-d4} gives information on the
+proof of each differential.
+Most follow immediately by comparison to
+the Adams spectral sequence for $C\tau$, or
+by comparison to the classical Adams spectral sequence for $\tmf$, or
+by comparison to the $\C$-motivic Adams spectral sequence for $\mmf$.
+
+If an element is listed in the last column of Table \ref{tab:Adams-d4}, 
+then the corresponding differential can be deduced from a straightforward
+argument using a multiplicative relation.  For example, 
+\[
+d_4( d_0 \cdot \tau^2 e_0 g^2 ) =
+d_4( e_0^2 \cdot \tau^2 e_0 g) = 
+e_0^2 \cdot P d_0^2 = d_0^5,
+\]
+so $d_4(\tau^2 e_0 g^2)$ must equal $d_0^4$.
+
+The remaining more difficult computations are carried out in the
+following lemmas.
+\end{proof}
+
+
+
+
+\begin{lemma}
+\label{lem:d4-th1.Dx}
+\revdeg{62, 10, 32}
+$d_4(\tau h_1 \cdot \D x) = \tau^2 \D h_2^2 d_0 e_0$.
+\end{lemma}
+
+\revv{This differential was previously proved in
+\cite{WangXu17}*{Remark 11.2}.  We repeat the argument here
+for completeness.
+}
+
+\begin{proof}
+Table \ref{tab:Adams-d4} shows that $\tau^3 \D h_2^2 g^2$ supports a $d_4$ differential, and 
+Table \ref{tab:Adams-perm} shows that 
+$\tau \D^2 h_1^2 g + \tau^3 \D h_2^2 g^2$ is a permanent cycle.
+Therefore,
+$\tau \D^2 h_1^2 g$ also supports a $d_4$ differential.
+
+On the other hand, we have
+\[
+h_1 \cdot \tau \D^2 h_1 g = P h_1 \cdot \D x =
+\D x \langle h_1, h_0^3 h_3, h_0 \rangle.
+\]
+This expression equals $\langle h_1 \cdot \D x, h_0^3 h_3, h_0 \rangle$
+by inspection of indeterminacies.
+Therefore, the Toda bracket
+$\langle \{ \tau h_1 \cdot \D x \}, 8 \sigma, 2 \rangle$
+cannot be well-formed, since otherwise it would be detected
+by $\tau \D^2 h_1^2 g$.
+The only possibility is that 
+$\tau h_1 \cdot \D x$ is not a permanent cycle, and the
+only possible differential is that
+$d_4(\tau h_1 \cdot \D x)$ equals $\tau^2 \D h_2^2 d_0 e_0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-D^2h3^2}
+\revdeg{62, 10, 32}
+$d_4(\D^2 h_3^2) = 0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Adams-d5} shows that 
+$d_5(\tau h_1^2 \cdot \D x)$ equals
+$\tau^3 d_0^2 e_0^2$.  
+The element $\tau^3 d_0^2 e_0^2$ is not divisible by
+$h_1$ in the $E_5$-page, so
+$\tau h_1^2 \cdot \D x$ 
+cannot be divisible by $h_1$ in the $E_4$-page.
+
+If $d_4(\D^2 h_3^2)$ equaled 
+$\tau^2 \D h_2^2 d_0 e_0$, then
+$\D^2 h_3^2 + \tau h_1 \cdot \D x$ would survive to the $E_5$-page, 
+and $\tau^2 h_1^2 \cdot \D x$ would be divisible by $h_1$ in the $E_5$-page.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-tX2}
+\revdeg{63, 7, 33}
+$d_4(\tau X_2) = \tau M h_2 d_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Adams-d4} shows that $d_4(C')$ equals $M h_2 d_0$.
+Therefore, either $\tau X_2$ or $\tau X_2 + \tau C'$ is non-zero on the
+$E_\infty$-page.  The inclusion of the bottom cell into $C\tau$
+takes this element to $\ol{h_5 d_0 e_0}$.
+
+In the homotopy of $C\tau$, there is a $\nu$ extension from
+$\ol{h_5 d_0 e_0}$ to $\tau B_5$, and
+inclusion of the bottom cell into $C\tau$ takes
+$\tau h_2 C'$ to $\tau B_5$.
+
+It follows that there must be a $\nu$ extension with target
+$\tau h_2 C'$.  The only possibility is that
+$\tau X_2 + \tau C'$ is non-zero on the $E_\infty$-page,
+and therefore $d_4(\tau X_2)$ equals $d_4(\tau C')$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-h0d2}
+\revdeg{68, 5, 36}
+$d_4(h_0 d_2) = X_3$.
+\end{lemma}
+
+\begin{proof}
+The element $X_3$ is a permanent cycle.  The only possible target for 
+a differential is $\tau^2 d_0 e_0 m$, but this is ruled out by 
+comparison to $\tmf$.
+
+\revv{
+In the Adams $E_\infty$-page for $C\tau$, there are several elements in stem 67 and weight 36.  However, they all have filtration less than 9.
+Since $X_3$ has filtration $9$, it must map to zero under inclusion
+of the bottom cell into $C\tau$.}
+Therefore, $X_3$ is the target of a hidden
+$\tau$ extension, or it is hit by a differential.
+
+The only possible hidden $\tau$ extension would have source
+$h_1 \cdot \D_1 h_3^2$.  In $C\tau$, there is an $\eta$ extension from
+$h_0 d_2$ to $\ol{h_1^2 \cdot \D_1 h_3^2}$.  
+Since $\ol{h_1^2 \cdot \D_1 h_3^2}$ maps non-trivially 
+(to $h_1^2 \cdot \D_1 h_3^2$) under projection to the top cell of
+$C\tau$, it follows that
+$h_0 d_2$ also maps non-trivially under projection.
+\revv{For degree reasons,}
+the only possibility is that $h_0 d_2$ maps to
+$h_1 \cdot \D_1 h_3^2$, and therefore
+$h_1 \cdot \D_1 h_3^2$ does not support a hidden 
+$\tau$ extension.
+
+Therefore, $X_3$ must be hit by a differential, and there is just
+one possibility.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-Mh2g}
+\revdeg{68, 11, 38}
+$d_4(M h_2 g) = 0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Massey} shows that the Massey product
+$\langle h_2 g, h_0^3, g_2 \rangle$ equals $M h_2 g$.
+The Moss Convergence Theorem \ref{thm:Moss} shows that
+$M h_2 g$ must survive to detect the Toda bracket
+$\langle \{h_2 g\}, 8, \kappabar_2 \rangle$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-h2^2G0}
+\revdeg{72, 9, 40}
+$d_4(h_2^2 G_0) = \tau g^2 n$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:2-extn} shows that
+there is a hidden $2$ extension from 
+$h_0 h_3 g_2$ to $\tau g n$.  Therefore, 
+$\tau g n$ detects $4 \sigma \kappabar_2$.
+
+Table \ref{tab:Massey} shows that
+$\langle h_1^3 h_4, h_1, \tau g n \rangle$ consists of the
+two elements
+$\tau g^2 n$ and $\tau g^2 n + M h_2 g \cdot h_0 h_2$.
+Then the Toda bracket
+$\langle \eta^2 \eta_4, \eta, 4 \sigma \kappabar_2 \rangle$
+is detected by either
+$\tau g^2 n$ or $\tau g^2 n + M h_2 g \cdot h_0 h_2$.
+But $M h_2 g \cdot h_0 h_2$ is hit by an Adams $d_2$ differential,
+so $\tau g^2 n$ detects the Toda bracket.
+
+The Toda bracket has no indeterminacy, so it equals
+$\langle \eta^2 \eta_4, \eta, 2 \rangle 2 \sigma \kappabar_2$.
+This last expression must be zero.
+
+We have shown that $\tau g^2 n$ must be hit by some differential.
+The only possibility is that $d_4(h_2^2 G_0) = \tau g^2 n$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-Dh0^2h3g2}
+\revdeg{75, 11, 40}
+$d_4(\D h_0^2 h_3 g_2) = \tau M h_1 d_0^2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Adams-d5} shows that 
+$d_5(A') = \tau M h_1 d_0$.
+Now $d_0 A'$ is zero in the $E_5$-page, so
+$\tau M h_1 d_0^2$ must also be zero in the $E_5$-page.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-D^2h1h3g}
+\revdeg{76, 14, 41}
+$d_4(\D^2 h_1 h_3 g) = \tau \D h_2^2 d_0^2 e_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that the element
+$\D h_2^2 d_0^2 e_0$ detects the Toda bracket
+$\langle \tau \eta \kappa \kappabar^2, \eta, \eta^2 \eta_4 \rangle$.
+Now shuffle to obtain
+\[
+\tau \langle \tau \eta \kappa \kappabar^2, \eta, \eta^2 \eta_4 \rangle =
+\langle \tau, \tau \eta \kappa \kappabar^2, \eta \rangle \eta^2 \eta_4.
+\]
+Table \ref{tab:Toda} shows that
+$\langle \tau, \tau \eta \kappa \kappabar^2, \eta \rangle$ is detected
+by $h_0 h_2 h_5 i$.
+It follows that the expression
+$\langle \tau, \tau \eta \kappa \kappabar^2, \eta \rangle \eta^2 \eta_4$
+is zero, so $\tau \D h_2^2 d_0^2 e_0$ must be hit by some differential.
+The only possibility is that 
+$d_4(\D^2 h_1 h_3 g)$ equals 
+$\tau \D h_2^2 d_0^2 e_0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-h0e2}
+\revdeg{80, 5, 42}
+$d_4(h_0 e_2) = \tau h_1^3 x_{76,6}$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:misc-extn}
+shows that $\sigma^2 \theta_5$ is detected by
+$h_0 h_4 A$ \rev{or $h_0 h_4 A + \tau^2 d_1 g_2$.
+Note that both $h_2 \cdot h_0 h_4 A$ and 
+$h_2 (h_0 h_4 A + \tau^2 d_1 g_2)$ equal 
+$\tau h_1^3 x_{76,6}$.
+}
+Since $\nu \sigma = 0$, the element
+$\tau h_1^3 x_{76,6}$ must be hit
+by a differential.
+The only possibility is that $d_4(h_0 e_2)$ equals
+$\tau h_1^3 x_{76,6}$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-D^3h1^2h3}
+\revdeg{81, 15, 42}
+$d_4(\D^3 h_1^2 h_3) = \tau^4 d_0 e_0^2 l$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:eta-extn} shows that there is a hidden
+$\eta$ extension from $\tau^2 \D h_1 g^2$ to $\tau^2 d_0 e_0 m$.
+\revv{Multiply by $d_0$ to see that}
+there is also a hidden $\eta$ extension
+from $\tau^2 \D h_1 e_0^2 g$ to $\tau^2 d_0 e_0^2 l$.
+
+Also, $\tau^2 \D h_1 e_0^2 g$ 
+detects an element in $\pi_{79,43}$ that is annihilated by $\tau^2$.
+Therefore, $\tau^4 d_0 e_0^2 l$ must be hit by some
+differential.
+Moreover, comparison to $\mmf$ shows that 
+$\tau^3 d_0 e_0^2 l$ is not hit by a differential.
+
+The hidden $\eta$ extension from $\tau^3 \D h_1 e_0^2 g$
+to $\tau^3 d_0 e_0^2 l$ is detected by projection from
+$C\tau$ to the top cell.
+The only possibility is that this hidden $\eta$ extension is
+the image of the $h_1$ extension
+from $\D^3 h_1 h_3$ to $\D^3 h_1^2 h_3$
+in the Adams $E_\infty$-page for $C\tau$.
+
+Therefore, $\D^3 h_1^2 h_3$ maps non-trivially under projection
+from $C\tau$ to the top cell.
+Consequently,
+$\D^3 h_1^2 h_3$ cannot be a permanent cycle in the
+Adams spectral sequence for the sphere.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-Dj1}
+\revdeg{83, 11, 45}
+$d_4(\D j_1) = \tau M h_0 e_0 g$.
+\end{lemma}
+
+\begin{proof}
+Otherwise, both $\D j_1$ and $\tau g C'$ would survive to the
+$E_\infty$-page, and neither could be the target of a
+hidden $\tau$ extension.  They would both map non-trivially
+under inclusion of the bottom cell into $C\tau$.
+But there are not enough elements in $\pi_{83,45} C\tau$
+for this to occur.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:d4-h1f2}
+\revdeg{85, 5, 45}
+$d_4(h_1 f_2) = 0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:nu-extn} shows that there is a hidden
+$\nu$ extension from $h_2 g D_3$ to $B_6 d_1$.
+If $d_4(h_1 f_2)$ equaled $\tau h_2 g D_3$,
+then this $\nu$ extension would be in the image of
+projection from $C\tau$ to the top cell, since $h_2 g D_3$
+cannot support a hidden $\tau$ extension.
+However, there is no such $\nu$ extension in the homotopy 
+of $C\tau$.
+\end{proof}
+}
+
+\rev{
+\begin{lemma}
+\label{lem:d4-tx85,6+h0^3c3}
+\revdeg{85, 6, 44}
+$d_4(\tau x_{85,6} + h_0^3 c_3) = 0$.
+\end{lemma}
+
+\begin{proof}
+We showed in Lemma \ref{lem:d3-tx85,6+h0^3c3} that
+$h_0^3 c_3$ is in the image of inclusion of the bottom cell of $C\tau$.
+Therefore, $P x_{76,6}$ cannot be in the image of projection from
+$C\tau$ to the top cell.  Since $P x_{76,6}$ cannot support a hidden
+$\tau$ extension, there can be no differential whose value is
+$\tau P x_{76,6}$.
+\end{proof}
+}
+
+\begin{lemma}
+\label{lem:d4-h1c3}
+\revdeg{86, 4, 45}
+$d_4(h_1 c_3) = \tau h_0 h_2 h_4 Q_3$.
+\end{lemma}
+
+\begin{proof}
+Lemma \ref{lem:compound-(epsilon+etasigma)-theta5}
+shows that there exists an element
+$\alpha$ in $\pi_{67,36}$ that is detected by
+$h_0 Q_3 + h_0 n_1$ such that
+$\tau \nu \alpha$ equals
+$(\eta \sigma + \epsilon) \theta_5$.
+
+Table \ref{tab:Toda} shows that the Toda bracket
+$\langle \nu, \sigma, 2\sigma \rangle$ is detected by $h_2 h_4$, so
+the element
+$\tau h_0 h_2 h_4 Q_3$ detects
+$\tau \alpha \langle \nu, \sigma, 2 \sigma \rangle$,
+which is contained in
+$\langle \tau \nu \alpha, \sigma, 2 \sigma \rangle$.
+The indeterminacy in these expressions
+is zero because
+$\tau \nu \alpha \cdot \pi_{15,8}$ and
+$2 \sigma \cdot \pi_{78,41}$ are both zero.
+
+We now know that
+$\tau h_0 h_2 h_4 Q_3$ detects the Toda bracket
+$\langle (\epsilon + \eta \sigma) \theta_5, \sigma, 2 \sigma \rangle$.
+This bracket contains
+$\theta_5 \langle \epsilon + \eta \sigma, \sigma, 2 \sigma \rangle$.
+Lemma \ref{lem:nubar,sigma,2sigma} shows that 
+the bracket
+$\langle \epsilon + \eta \sigma, \sigma, 2 \sigma \rangle$ contains
+$0$, so
+$\theta_5 \langle \epsilon + \eta \sigma, \sigma, 2 \sigma \rangle$
+equals zero.
+
+Finally, we have shown that $\tau h_0 h_2 h_4 Q_3$
+detects zero, so it must be hit by some differential.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-x87,7}
+\revdeg{87, 7, 45}
+$d_4(x_{87,7}) = 0$.
+\end{lemma}
+
+
+\begin{proof}
+Consider the exact sequence
+\[
+\pi_{87,45} \map \pi_{87,45} C\tau \map \pi_{86,46}.
+\]
+The middle term $\pi_{87,45} C\tau$ is isomorphic to $(\Z/2)^4$.
+The elements of $\pi_{87,45}$ that are not divisible by
+$\tau$ are detected by $P^2 h_6 c_0$, and possibly
+$x_{87,7}$ and $\tau \D h_1 H_1$.
+On the other hand, the elements of $\pi_{86,46}$ that are
+annihilated by $\tau$ are detected by
+$\tau^3 \D c_0 e_0^2 g$ and possibly $M \D h_0^2 e_0$.
+
+In order for the possibility $M \D h_0^2 e_0$ to occur,
+either $x_{87,7}$ or $\tau \D h_1 H_1$ would have to support
+a differential hitting $\tau M \D h_0^2 e_0$, in which case
+one of those possibilities could not occur.
+
+If $d_4(x_{87,7})$ equaled $\tau^3 g G_0$, then there would not
+be enough elements to make the above sequence exact.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-tDh1H1}
+\revdeg{87, 10 45}
+$d_4(\tau \D h_1 H_1) = 0$.
+\end{lemma}
+
+\begin{proof}
+The element $\D^2 h_2^2 d_1$ is a permanent cycle
+that cannot be hit by any differential because
+$h_2 \cdot \D^2 h_2^2 d_1$ cannot be hit by a differential.
+The element $\D^2 h_2^2 d_1$ cannot be in the image
+of projection from $C\tau$ to the top cell,
+and it cannot support a hidden $\tau$ extension.
+Therefore,
+$\tau \D^2 h_2^2 d_1$ cannot be hit by a differential.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-th2B5g}
+\revdeg{89, 15, 49}
+$d_4(\tau h_2 B_5 g) = M h_1 d_0^3$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:misc-extn} shows that
+$M d_0$ detects $\kappa \theta_{4.5}$.
+Therefore, $M d_0^3$ detects $\kappa^3 \theta_{4.5}$,
+which equals $\eta^2 \kappabar^2 \theta_{4.5}$ because
+Table \ref{tab:eta-extn} shows that there is a hidden
+$\eta$ extension from $\tau^2 h_1 g^2$ to $d_0^3$.
+
+Now $\eta^2 \kappabar^2 \theta_{4.5}$ is zero because
+$\eta^2 \kappabar \theta_{4.5}$ is zero.
+Therefore, $M d_0^3$ and $M h_1 d_0^3$ must both be hit
+by differentials.
+
+There are several possible differentials that can hit
+$M h_1 d_0^3$.  
+The element $h_1 x_{88,10}$ cannot be the source of this differential
+because Table \ref{tab:Adams-perm} shows that
+$x_{88,10}$ is a permanent cycle.
+The element $\tau h_2^2 g C'$ cannot be the source of the differential
+because $h_2^2 g C'$ is a permanent cycle by comparison to $\mmf$.
+The element $\D h_1 g_2 g$ cannot be the source 
+because it equals $h_3 (\D e_1 + C_0) g$.
+The only remaining possibility is that
+$d_4(\tau h_2 B_5 g)$ equals $M h_1 d_0^3$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-Dh2^2A'}
+\revdeg{91, 12, 48}
+$d_4(\D h_2^2 A') = 0$.
+\end{lemma}
+
+\begin{proof}
+In the Adams $E_4$-page, the element $\D h_2^2 A'$ equals the 
+Massey product $\langle A', h_1, \tau d_0^2 \rangle$,
+with no indeterminacy
+because of the Adams differential $d_3(\D h_2^2) = \tau h_1 d_0^2$.
+Moss's higher Leibniz rule \ref{thm:Leibniz}
+implies that $d_4(\D h_2^2 A')$ is contained in
+\[
+\langle 0, h_1, \tau d_0^2 \rangle + \langle A', 0, \tau d_0^2 \rangle +
+\langle A', h_1, 0 \rangle,
+\]
+so it is
+a linear combination
+of multiples of $A'$ and $\tau d_0^2$.
+The only possibility is that $d_4(\D h_2^2 A')$ is zero.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d4-h4^2h6}
+\revdeg{93, 3, 48}
+$d_4(h_4^2 h_6) = h_0^3 g_3$.
+\end{lemma}
+
+\begin{proof}
+By comparison to 
+the Adams spectral sequence for $C\tau$, the value of 
+$d_4(h_4^2 h_6)$ is either
+$h_0^3 g_3$ or $h_0^3 g_3 + \tau h_1 h_4^2 D_3$.
+
+Table \ref{tab:misc-extn} shows that 
+$h_0^2 g_3$ detects the product $\theta_4 \theta_5$.
+Since $2 \theta_4 \theta_5$ equals zero, 
+$h_0^3 g_3$ must be hit by a differential.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:d4-MD^2h1^2}
+\revdeg{95, 16, 50}
+$d_4(M \D^2 h_1^2) = M P \D h_0^2 e_0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that
+$M \D^2 h_1^2 + \tau^2 M \D h_2^2 g$ detects the Toda bracket
+$\langle \eta, \tau \kappa^2, \tau \theta_{4.5} \kappabar \rangle$.
+Therefore,
+$d_4(M \D^2 h_1^2)$ equals $d_4(\tau^2 M \D h_2^2 g)$.
+\end{proof}
+}
+
+\section{The Adams $d_5$ differential}
+\label{sctn:Adams-d5}
+
+\revv{
+Table \ref{tab:Adams-d5} lists the multiplicative generators 
+of the Adams $E_5$-page through the \rev{92}-stem
+whose $d_5$ differentials are non-zero, or whose $d_5$ differentials
+are zero for non-obvious reasons.
+}
+
+\begin{thm}
+\label{thm:Adams-d5}
+Table \ref{tab:Adams-d5} lists some values of the
+Adams $d_5$ differential on multiplicative generators.
+Through the \rev{92}-stem, 
+the Adams $d_5$ differential is zero on all multiplicative
+generators not listed in the table.
+\end{thm}
+
+\begin{proof}
+The $d_5$ differential on many multiplicative generators is zero.
+For the majority of such multiplicative generators,
+the $d_5$ differential is zero
+because there are no possible non-zero
+values, or by comparison to the Adams spectral sequence for $C\tau$,
+or by comparison to $\tmf$ or $\mmf$.
+In a few cases, the multiplicative generator
+is already known to be a permanent cycle; $h_1 h_6$ is one
+such example.
+A few additional cases appear
+in Table \ref{tab:Adams-d5} because their proofs require further
+explanation.
+
+The last column of Table \ref{tab:Adams-d5} gives information on the
+proof of each differential.
+Many computations follow immediately by comparison to
+the Adams spectral sequence for $C\tau$.
+
+If an element is listed in the last column of Table \ref{tab:Adams-d5}, 
+then the corresponding differential can be deduced from a straightforward
+argument using a multiplicative relation.  For example, 
+\[
+d_5( \tau \cdot g A' ) =
+d_5( \tau g \cdot A') =
+\tau g \cdot \tau M h_1 d_0 = \tau^2 M h_1 e_0^2,
+\]
+so $d_5(g A')$ must equal $\tau M h_1 e_0^2$.
+
+A few of the more difficult computations appear in \cite{BIX}.
+The remaining more difficult computations are carried out in the
+following lemmas.
+\end{proof}
+
+
+
+
+\begin{lemma}
+\label{lem:d5-th1^2.Dx}
+\revdeg{63, 11, 33}
+$d_5(\tau h_1^2 \cdot \D x) = \tau^3 d_0^2 e_0^2$.
+\end{lemma}
+
+\begin{proof}
+The element $\tau^2 d_0^2 e_0^2$ cannot be hit by a differential.
+There is a hidden $\eta$ extension
+from $\tau \D h_2^2 d_0 e_0$ to $\tau^2 d_0^2 e_0^2$
+because of the hidden $\tau$ extensions
+from $\tau h_1 g^3 + h_1^5 h_5 c_0 e_0$ to
+$\D h_2^2 d_0 e_0$ and
+from $h_1^6 h_5 c_0 e_0$ to $d_0^2 e_0^2$.
+This shows that $\tau^3 d_0^2 e_0^2$ must be hit by some differential.
+
+This hidden $\eta$ extension is detected by
+projection from $C\tau$ to the top cell.
+Since $\ol{P h_5 c_0 d_0}$ in $C\tau$ maps to
+$\tau \D h_2^2 d_0 e_0$ under projection to the top cell,
+it follows that $\ol{P h_1 h_5 c_0 d_0}$ in $C\tau$
+maps to $\tau^2 d_0^2 e_0^2$ under projection to the top cell.
+
+If $\tau h_1^2 \cdot \D x$ survived, then it could not be the target of
+a hidden $\tau$ extension and it could not be hit by a differential.
+Also, it could not map non-trivially under inclusion of
+the bottom cell into $C\tau$, since the only possible value
+$\ol{P h_1 h_5 c_0 d_0}$ has already been accounted for 
+in the previous paragraph.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d5-h5d0i}
+\revdeg{68, 12, 36}
+$d_5(h_5 d_0 i) = \tau \D h_1 d_0^3$.
+\end{lemma}
+
+\begin{proof}
+We showed in Lemma \ref{lem:d3-tDg2.h0^3}
+that $P h_2 h_5 j$ cannot be divisible by $h_0$ in the $E_\infty$-page.
+Therefore, $h_5 d_0 i$ must support a differential.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d5-tp1+h0^2h3h6}
+\revdeg{70, 4, 36}
+$d_5(\tau p_1 + h_0^2 h_3 h_6)$ equals either
+$\tau^2 h_2^2 C'$ or $\tau^2 h_2^2 C' + \tau h_3(\D e_1 + C_0)$.
+\end{lemma}
+
+\begin{proof}
+Projection to the top cell of $C\tau$ takes
+$h_4 D_2$ to $\tau^3 d_1 g^2$.
+Moreover,
+there is a $\nu$ extension in the homotopy of $C\tau$
+from $h_0^2 h_3 h_6$ to $h_4 D_2$.
+Therefore, this $\nu$ extension must be in the image of
+projection to the top cell.
+
+Table \ref{tab:nu-extn} shows that there is a hidden
+$\nu$ extension from
+$\tau h_2^2 C'$ to $\tau^3 d_1 g^2$.
+Therefore, either $\tau h_2^2 C'$ or
+$\tau h_2^2 C' + h_3(\D e_1 + C_0)$ is in the image of
+projection to the top cell, so
+$\tau^2 h_2^2 C'$ or $\tau^2 h_2^2 C' + \tau h_2 (\D e_1 + C_0)$
+is hit by a differential.
+The element $\tau p_1 + h_0^2 h_3 h_6$ is the 
+only possible source for this differential.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d5-h1x71,6}
+\revdeg{72, 7, 39}
+$d_5(h_1 x_{71,6}) = 0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:tau-extn} shows that 
+there is a hidden $\tau$ extension from 
+$M h_1^2 h_3 g$ to $M h_1 d_0^2$.
+Therefore, $M h_2^2 g$ must also support a $\tau$ extension.
+This shows that $\tau M h_2^2 g$ cannot be the target of a differential.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d5-h4D2}
+\revdeg{73, 7, 38}
+$d_5(h_4 D_2) = \tau^4 d_1 g^2$.
+\end{lemma}
+
+\begin{proof}
+Suppose for sake of contradiction that $h_4 D_2$ survived, and
+let $\alpha$ be an element of $\pi_{73,38}$ that is detected by it.
+Table \ref{tab:tau-extn} shows that there is a hidden $\tau$ extension
+from $h_1^2 h_6 c_0$ to $h_0 h_4 D_2$.  Therefore,
+$h_0 h_4 D_2$ detects both $2 \alpha$ and $\tau \eta \epsilon \eta_6$.
+However, it is possible that the difference between these two elements
+is detected by $\tau^2 M d_0^2$ or by $\tau^3 \D h_1 d_0 e_0^2$.
+We will handle of each of these cases.
+
+First, suppose that $2 \alpha$ equals $\tau \eta \epsilon \eta_6$.
+Then the Toda bracket
+\[
+\left\langle
+\eta,
+\left[
+\begin{array}{cc}
+2 & \tau \eta \epsilon 
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+\alpha \\ \eta_6 
+\end{array}
+\right]
+\right\rangle
+\]
+is well-defined.  Inclusion of the bottom cell into $C\tau$ takes this
+bracket to
+\[
+\left\langle
+\eta,
+\left[
+\begin{array}{cc}
+2 & 0
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+\alpha \\ \eta_6 
+\end{array}
+\right]
+\right\rangle =
+\langle \eta, 2, \alpha \rangle,
+\]
+so $\langle \eta, 2, \alpha \rangle$ is in the image of inclusion of 
+the bottom cell.
+
+On the other hand,
+in the homotopy of $C\tau$, the bracket 
+$\langle \eta, 2, \alpha \rangle$ is detected by
+$\ol{h_1^3 h_6 c_0}$, with indeterminacy generated by
+$\ol{h_1^2 h_4 Q_2}$.  
+These elements map non-trivially under projection to the top cell,
+which contradicts that they are in the image of inclusion of the 
+bottom cell.  
+
+Next, suppose that $2 \alpha + \tau \eta \epsilon \eta_6$
+is detected by $\tau^3 \D h_1 d_0 e_0^2$.
+Then the Toda bracket
+\[
+\left\langle
+\eta,
+\left[
+\begin{array}{ccc}
+2 & \tau \eta \epsilon & \tau^2 \beta
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+\alpha \\ \eta_6 \\ \kappabar
+\end{array}
+\right]
+\right\rangle
+\]
+is well-defined, where $\beta$ is an element of $\pi_{53,29}$
+that is detected by $\D h_1 d_0^2$.
+The same argument involving inclusion of the bottom cell into
+$C\tau$ applies to this Toda bracket.
+
+Finally, assume that $2 \alpha + \tau \eta \epsilon \eta_6$
+is detected by $\tau^2 M d_0^2$.
+Table \ref{tab:misc-extn} shows that $M d_0$ detects
+$\kappa \theta_{4.5}$, so $\tau^2 M d_0^2$ detects 
+$\tau^2 \kappa^2 \theta_{4.5}$.
+Then $2 \alpha + \tau \eta \epsilon \eta_6$ equals either
+$\tau^2 \kappa^2 \theta_{4.5}$ or 
+$\tau^2 \kappa^2 \theta_{4.5} + \tau^2 \beta \kappabar$.
+We can apply the same argument to the Toda bracket
+\[
+\left\langle
+\eta,
+\left[
+\begin{array}{ccc}
+2 & \tau \eta \epsilon & \tau^2 \kappa \theta_{4.5}
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+\alpha \\ \eta_6 \\ \kappa
+\end{array}
+\right]
+\right\rangle,
+\]
+or to the Toda bracket
+\[
+\left\langle
+\eta,
+\left[
+\begin{array}{cccc}
+2 & \tau \eta \epsilon & \tau^2 \kappa \theta_{4.5} & \tau^2 \beta
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+\alpha \\ \eta_6 \\ \kappa \\ \kappabar
+\end{array}
+\right]
+\right\rangle.
+\]
+
+We have now shown by contradiction that $h_4 D_2$ does not survive.
+After ruling out other possibilities by comparison to $C\tau$
+and to $\mmf$, the only remaining possibility is that 
+$d_5(h_4 D_2)$ equals $\tau^4 d_1 g^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d5-t^3gG0}
+\revdeg{86, 11, 45}
+$d_5(\tau^3 g G_0) = \tau M \D h_1^2 d_0$.
+\end{lemma}
+
+\begin{proof}
+Suppose for sake of contradiction that the element
+$\tau^3 g G_0$ survived.
+It cannot be the target of a hidden $\tau$ extension,
+and it cannot be hit by a differential.
+Therefore, it maps non-trivially under inclusion of the bottom
+cell into $C\tau$, and the only possible image is 
+$\D^2 e_1 + \ol{\tau \D h_2 e_1 g}$.
+
+Let $\alpha$ be an element of $\pi_{86,45}$ that is detected
+by $\tau^3 g G_0$.  
+Consider the Toda bracket
+$\langle \alpha, 2\nu, \nu \rangle$.
+Lemma \ref{lem:t^3gG0,h0h2,h2} implies that this Toda bracket
+is detected by $e_0 x_{76,9}$, or is detected in higher Adams filtration.
+
+On the other hand, 
+under inclusion of the bottom cell into $C\tau$,
+the Toda bracket is detected by $\D^2 h_1 g_2$.
+This is inconsistent with the conclusion of the previous paragraph,
+since inclusion of the bottom cell can only increase
+Adams filtrations.
+
+We now know that $\tau^3 g G_0$ does not survive.
+After eliminating other possibilities by comparison to $\mmf$,
+the only remaining possibility is that $d_5(\tau^3 g G_0)$ equals
+$\tau M \D h_1^2 d_0$.
+\end{proof}
+
+\begin{lemma}
+\revdeg{92, 4, 48}
+\label{lem:d5-g3}
+$d_5(g_3) = h_6 d_0^2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Toda} shows that $h_1 h_6$ detects the Toda bracket
+$\langle \eta, 2, \theta_5 \rangle$.  Therefore,
+$h_1 h_6 d_0^2$ detects $\kappa^2 \langle \eta, 2, \theta_5 \rangle$.
+Now consider the shuffle
+\[
+\tau \kappa^2 \langle \eta, 2, \theta_5 \rangle =
+\langle \tau \kappa^2, \eta, 2 \rangle \theta_5.
+\]
+Lemma \ref{lem:tkappa^2,eta,2} shows that the last bracket is zero.
+Therefore, $h_1 h_6 d_0^2$ does not support a hidden
+$\tau$ extension, so it is either hit by a differential or 
+in the image of projection from $C\tau$ to the top cell.
+
+In the Adams spectral sequence for $C\tau$, the element 
+$h_0^3 h_4^2 h_6$ detects the Toda bracket
+$\langle \theta_4, 2, \theta_5 \rangle$.
+Therefore, $h_0^3 h_4^2 h_6$ must be in the image of
+inclusion of the bottom cell into $C\tau$.
+In particular,
+$h_0^3 h_4^2 h_6$ cannot map to $h_1 h_6 d_0^2$
+under projection from $C\tau$ to the top cell.
+
+Now $h_1 h_6 d_0^2$ cannot be in the image of
+projection from $C\tau$ to the top cell, so it
+must be hit by some differential.
+The only possibility is that $d_5(h_1 g_3)$ equals $h_1 h_6 d_0^2$.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:d5-D^2g2}
+\revdeg{92, 12, 48}
+$d_5(\D^2 g_2) = 0$.
+\end{lemma}
+
+\begin{proof}
+The only possible values for $d_2(\D^2 g_2)$ are the linear combinations
+of $\tau M \D c_0 d_0 + \tau^2 M d_0 l$ 
+and $\tau^2 \D^2 h_2 g^2$.
+The possibilities
+$\tau M \D c_0 d_0 + \tau^2 M d_0 l$ and
+$\tau M \D c_0 d_0 + \tau^2 M d_0 l + \tau^2 \D^2 h_2 g^2$ are
+ruled out by $d_0$ extensions.
+More specifically,
+$d_0 (\tau M \D c_0 d_0 + \tau^2 M d_0 l)$
+and
+$d_0(\tau M \D c_0 d_0 + \tau^2 M d_0 l + \tau^2 \D^2 h_2 g^2)$
+equal the non-zero element $\tau^2 M d_0^2 l$
+in the $E_5$-page, while
+$d_0 \cdot \D^2 g_2$ is zero already in the $E_2$-page.
+
+If $\tau^2 \D^2 h_2 g^2$ were the value of a differential,
+then the $2$ extension from $\tau \D^2 h_2 g^2$ to $\tau \D^2 h_0 h_2 g^2$
+would be detected by the top cell of $C\tau$.
+However, there is no such $2$ extension in the homotopy of $C\tau$.
+\end{proof}
+}
+
+\begin{lemma}
+\label{lem:d5-e0x76,9}
+\revdeg{93, 13, 50}
+$d_5(e_0 x_{76,9}) = M \D h_1 c_0 d_0$.
+\end{lemma}
+
+\begin{proof}
+If $M \D h_1 c_0 d_0$ were a permanent non-zero cycle, then it
+could not support a hidden $\tau$ extension because
+Lemma \ref{lem:hit-MPDh1d0} shows that $M P \D h_1 d_0$
+is hit by some differential.
+Therefore, it would lie in the image of projection from
+$C\tau$ to the top cell, and the only possible pre-image is the
+element $\D^2 h_1 g_2$ in the $E_\infty$-page of the
+Adams spectral sequence for $C\tau$.
+
+There is a $\sigma$ extension from $\D^2 e_1 + \ol{\tau \D h_2 e_1 g}$
+to $\D^2 h_1 g_2$ in the Adams spectral sequence for $C\tau$.
+Then $M \D h_1 c_0 d_0$ would also have to be the target of a 
+$\sigma$ extension.
+The only possible source for this extension would be $M \D h_1^2 d_0$.
+
+Table \ref{tab:eta-extn} shows that $M h_1$
+detects $\eta \theta_{4.5}$, so
+$M \D h_1^2 d_0$ detects $\eta \theta_{4.5} \{\D h_1 d_0\}$.
+The product $\eta \sigma \theta_{4.5} \{\D h_1 d_0\}$ equals zero
+because $\sigma \{\D h_1 d_0\}$ is zero.
+Therefore, $M \D h_1^2 d_0$ cannot support a hidden $\sigma$
+extension to $M \D h_1 c_0 d_0$.
+
+We have now shown that $M \D h_1 c_0 d_0$ must be hit by some
+differential, and the only possibility is that equals 
+$d_5(e_0 x_{76,9})$.
+\end{proof}
+
+\section{Higher differentials}
+\label{sctn:Adams-higher}
+
+\revv{
+Table \ref{tab:Adams-higher} lists the multiplicative generators 
+of the Adams $E_r$-page, for $r \geq 6$, through the 90-stem
+whose $d_r$ differentials are non-zero, or whose $d_r$ differentials
+are zero for non-obvious reasons.
+}
+
+\begin{thm}
+\label{thm:Adams-higher}
+Table \ref{tab:Adams-higher} lists some values of the
+Adams $d_r$ differential on multiplicative generators of the
+$E_r$-page, for $r \geq 6$.
+For $r \geq 6$, 
+the Adams $d_r$ differential is zero on all multiplicative
+generators of the $E_r$-page not listed in the table.
+The list is complete through the 90-stem, except that:
+\rev{
+\begin{enumerate}
+\item
+$d_{10}(h_1 f_2)$ might equal $M \D h_1 d_0$.
+\item
+$d_9(\tau x_{85,6} + h_0^3 c_3)$ might equal $\tau M \D h_1 d_0$.
+\item
+$d_9(h_4^2 D_3)$ might equal $\tau M \D h_1 g$.
+\end{enumerate}
+}
+\end{thm}
+
+\begin{proof}
+The $d_r$ differential on many multiplicative generators is zero.
+For the majority of such multiplicative generators,
+the $d_r$ differential is zero
+because there are no possible non-zero
+values, or by comparison to the Adams spectral sequence for $C\tau$,
+or by comparison to $\tmf$ or $\mmf$.
+In a few cases, the multiplicative generator
+is already known to be a permanent cycle, as shown in 
+Table \ref{tab:Adams-perm}.
+A few additional cases appear
+in Table \ref{tab:Adams-higher} because their proofs require further
+explanation.
+
+Some of the more difficult computations appear in \cite{BIX}.
+The remaining more difficult computations are carried out in the
+following lemmas.
+\end{proof}
+
+
+\begin{lemma}
+\label{lem:d6-tQ3+tn1}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{67, 5, 35}
+$d_6(\tau Q_3 + \tau n_1) = 0$.
+\item
+\revdeg{87, 9, 48}
+$d_6(g Q_3) = 0$
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Several possible differentials on these elements are eliminated
+by comparison to the
+Adams spectral sequences for $C\tau$ and for $\tmf$.
+The only remaining possibility is that $d_6(\tau Q_3 + \tau n_1)$
+might equal $\tau^2 M h_1 g$, and
+that $d_6(g Q_3)$ might equal $\tau M h_1 g^2$.
+
+The element $M \D h_0^2 e_0$ is not hit by any differential because
+Table \ref{tab:Adams-perm} shows that $h_1^2 c_3$ is a permanent cycle,
+and Table \ref{tab:Toda} shows that $\tau^2 g Q_3 = h_4^2 Q_2$
+must survive to detect the Toda bracket
+$\langle \theta_4, \tau \kappabar, \{ t\} \rangle$.
+
+Lemma \ref{lem:tetakappabar^2,2,4kappabar2}
+shows that $M \D h_0^2 e_0$ 
+detects the Toda bracket
+$\langle \tau \eta \kappabar^2, 2, 4 \kappabar_2 \rangle$, which
+contains
+$\tau \kappabar^2 \langle \eta, 2, 4 \kappabar_2 \rangle$.
+Lemma \ref{lem:eta,2,4kappabar2} shows that
+this expression contains zero.
+We now know that $M \D h_0^2 e_0$ detects an element
+in the indeterminacy of the bracket
+$\langle \tau \eta \kappabar^2, 4, 2 \kappabar_2 \rangle$.
+In fact, it must detect a multiple
+of $\tau \eta \kappabar^2$ since
+$2 \kappabar_2 \cdot \pi_{42,22}$ is zero.
+
+The only possibility is that $M \D h_0^2 e_0$
+detects $\kappabar$ times an element detected by $\tau^2 M h_1 g$.
+Therefore, $\tau^2 M h_1 g$ cannot be hit by a differential.
+This shows that $\tau Q_3 + \tau n_1$ is a permanent cycle.
+
+We also know that $M \D h_0^2 e_0$ is the target
+of a hidden $\tau$ extension, since it detects a multiple of $\tau$.
+The element $\tau^2 M h_1 g^2$
+is the only possible source of this hidden $\tau$ extension,
+so it cannot be hit by a differential.
+This shows that $d_6(g Q_3)$ cannot equal $\tau M h_1 g^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d6-h2^2H1}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{68, 7, 37}
+$d_6(h_2^2 H_1) = M c_0 d_0$.
+\item
+\revdeg{68, 7, 36}
+$d_7(\tau h_2^2 H_1) = M P d_0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Massey} shows that 
+$M P d_0$ equals the Massey product $\langle P d_0, h_0^3, g_2 \rangle$.
+This implies that
+$M P d_0$ detects the
+Toda bracket $\langle \tau \eta^2 \kappabar, 8, \kappabar_2 \rangle$.
+Lemma \ref{lem:teta^2kappabar,8,kappabar2} shows that this
+Toda bracket consists entirely of multiples of
+$\tau \eta^2 \kappabar$.
+
+We now know that $M P d_0$ detects a multiple of 
+$\tau \eta^2 \kappabar$.
+The only possibility is that 
+$M P d_0$ detects $\eta$ times an element detected by
+$\tau^2 M h_1 g$.
+
+We will show in Lemma \ref{lem:nu-th1H1}
+that $\tau^2 M h_1 g$ is the target of a $\nu$ extension,
+so $\tau^2 M h_1 g$ cannot support a hidden $\eta$ extension.
+Therefore, $M P d_0$ must be hit by some differential.
+The only possibility is that 
+$d_7(\tau h_2^2 H_1)$ equals $M P d_0$.
+Then $h_2^2 H_1$ cannot survive to the $E_7$-page,
+so $d_6(h_2^2 H_1)$ equals $M c_0 d_0$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:perm-th1p1}
+\revdeg{71, 5, 37}
+The element $\tau h_1 p_1$ is a permanent cycle.
+\end{lemma}
+
+\begin{proof}
+Lemma \ref{lem:d5-tp1+h0^2h3h6}, together with results of
+\cite{BIX}, show that $\tau h_1 p_1$ survives to the $E_6$-page.
+We must eliminate possible higher differentials.
+
+Table \ref{tab:tau-extn} shows that there is a hidden
+$\tau$ extension from $\tau h_2^2 C''$ to $\D^2 h_1^2 h_4 c_0$.
+This means that $\tau h_2 C'' + h_1 h_3(\D e_1 + C_0)$ must 
+also support a hidden $\tau$ extension.
+
+The two possible targets for this hidden $\tau$ extension
+are $\D^2 h_2 c_1$ and $\tau \D^2 h_1^2 g + \tau^3 \D h_2^2 g^2$.
+The second possibility is ruled out by comparison to $\tmf$, so
+$\D^2 h_2 c_1$ cannot be hit by a differential.
+\end{proof}
+
+\begin{lemma}
+\label{lem:perm-Ph0h2h6}
+\revdeg{74, 7, 38}
+The element $P h_0 h_2 h_6$ is a permanent cycle.
+\end{lemma}
+
+\begin{proof}
+First note that projection from $C\tau$ to the top cell
+takes $P h_2 h_6$ to a non-zero element.
+If $P h_0 h_2 h_6$ were not a permanent cycle in the
+Adams spectral sequence for the sphere,
+then projection from $C\tau$ to the top cell would
+also take $P h_0 h_2 h_6$ to a non-zero element.
+Then the $2$ extension from $P h_2 h_6$ to $P h_0 h_2 h_6$
+in $\pi_{74,38} C\tau$ would project to a $2$ extension
+in $\pi_{73,39}$.  However, there are no possible
+$2$ extensions in $\pi_{73,39}$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d7-m1}
+\revdeg{77, 7, 42}
+$d_7(m_1) = 0$.
+\end{lemma}
+
+\begin{proof}
+The only other possibility is that $d_7(m_1)$ equals $\tau^2 g^2 t$.
+If that were the case, then the $\nu$ extension from
+$\tau g^2 t$ to $\tau^2 c_1 g^3$ would be detected by projection
+from $C\tau$ to the top cell.  However, the homotopy groups of
+$C\tau$ have no such $\nu$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d8-h1x1}
+\revdeg{80, 6, 43}
+$d_8(h_1 x_1) = 0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Adams-perm} shows that $\tau h_1 x_1$ is a permanent
+cycle.
+Then $d_8(\tau h_1 x_1)$ cannot equal 
+$\tau^2 M e_0^2$, and $d_8(h_1 x_1)$ cannot equal
+$\tau M e_0^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d6-h2h4h6}
+\revdeg{81, 3, 42}
+$d_6(h_2 h_4 h_6) = 0$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Adams-perm} shows that $h_2^2 h_4 h_6$ is a permanent
+cycle.  Therefore, the Adams differential
+$d_6(h_2^2 h_4 h_6)$ does not equal
+$\tau h_2 c_1 A'$, and $d_6(h_2 h_4 h_6)$ does not equal
+$\tau c_1 A'$.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:d10-h2h6g+h1^2f2}
+\revdeg{86, 6, 46}
+$d_{10}(h_2 h_6 g + h_1^2 f_2) = 0$.
+\end{lemma}
+
+\begin{proof}
+If $d_{10}(h_2 h_6 g + h_1^2 f_2)$ equaled
+$M \D h_1^2 d_0$, then the $\nu$ extension from
+$\tau h_6 g + \tau h_2 e_2$ to $\tau h_2 h_6 g + \tau h_1^2 f_2$
+would be detected by the bottom cell of $C\tau$.
+However, there is no such $\nu$ extension in the homotopy 
+of $C\tau$.
+\end{proof}
+}
+
+
+\begin{lemma}
+\label{lem:d7-x87,7}
+\revdeg{87, 7, 45}
+$d_7(x_{87,7}) = 0$.
+\end{lemma}
+
+\begin{proof}
+If $\tau \D^2 h_2^2 d_1$ were hit by a differential, then
+the $\nu$ extension from $\D^2 h_2^2 d_1$ to $\D^2 h_1^2 h_3 d_1$
+would be detected by projection from $C\tau$ to the top cell.
+But the homotopy of $C\tau$ has no such $\nu$ extension.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:d6-tDh1H1}
+\revdeg{87, 10, 45}
+$d_6(\tau \D h_1 H_1) = \tau M \D h_0^2 e_0$.
+\end{lemma}
+
+\begin{proof}
+Suppose for sake of contradiction that
+$\tau \D h_1 H_1$ survives.
+This element cannot be hit, nor can it be the target of a hidden
+$\tau$ extension.  Therefore, it would have non-zero image 
+under inclusion of the bottom cell into $C\tau$, and it would
+map to $\ol{\D h_1 B_7}$.
+
+In the homotopy of $C\tau$, the Toda bracket
+$\langle \ol{\D h_1 B_7}, h_0, h_2^2 \rangle$
+is detected by the element $M \D^2 h_1$.
+Beware that this bracket has indeterminacy in lower filtration
+since $h_3 \cdot \ol{\D h_1 B_7} = \ol{h_1^2 x_{91,11}}$.
+
+This implies that the Toda bracket
+$\langle \{\tau \D h_1 H_1\}, 2, \nu^2 \rangle$
+would be non-zero in $\pi_{94,49}$, and all of its elements 
+would be detected in Adams filtration at most $15$.
+(Beware that this Toda bracket would have indeterminacy
+detected by $\tau \D h_1 h_3 H_1$.)
+
+On the other hand, the Moss Convergence Theorem \ref{thm:Moss}
+would imply that the Toda bracket is detected in filtration
+at least $12$.
+However, there are no possible elements in filtrations $12$ through $15$.
+
+We have now shown that $\tau \D h_1 H_1$ cannot survive.
+There is only one possible value for a differential on
+$\tau \D h_1 H_1$.
+
+The previous argument assumed that $2 \{\tau \D h_1 H_1\}$ is zero
+in order to form the Toda bracket
+$\langle \{\tau \D h_1 H_1\}, 2, \nu^2 \rangle$.
+However, it is possible that $\tau \D h_1 H_1$ supports a hidden
+$2$ extension to $\tau \D^2 h_3 d_1$ or to $\tau^2 \D^2 c_1 g$.
+Therefore, $2 \{\tau \D h_1 H_1\}$ might equal
+$\tau \sigma \{\D^2 d_1\}$, $\tau \nu \{\D^2 t\}$, or their sum.
+In those cases, we would need to consider the matric Toda brackets
+\[
+\left\langle 
+\left[
+\begin{array}{cc}
+\{ \tau \D h_1 H_1\} & \tau \{\D^2 d_1\}
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+2 \\ \sigma
+\end{array}
+\right],
+\nu^2
+\right\rangle,
+\]
+\[
+\left\langle 
+\left[
+\begin{array}{cc}
+\{ \tau \D h_1 H_1\} & \nu
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+2 \\ \tau \{\D^2 t\}
+\end{array}
+\right],
+\nu^2
+\right\rangle,
+\]
+or
+\[
+\left\langle 
+\left[
+\begin{array}{ccc}
+\{ \tau \D h_1 H_1\} & \tau \{\D^2 d_1\} & \nu
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+2 \\ \sigma \\ \tau \{\D^2 t \}
+\end{array}
+\right],
+\nu^2
+\right\rangle
+\]
+respectively.
+Under inclusion of the bottom cell into $C\tau$, these three brackets
+would map to
+\[
+\left\langle 
+\left[
+\begin{array}{cc}
+\ol{\D h_1 B_7} & 0
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+h_0 \\ h_3
+\end{array}
+\right],
+h_2^2
+\right\rangle,
+\]
+\[
+\left\langle 
+\left[
+\begin{array}{cc}
+\ol{\D h_1 B_7} & h_2
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+h_0 \\ 0
+\end{array}
+\right],
+h_2^2
+\right\rangle,
+\]
+or
+\[
+\left\langle 
+\left[
+\begin{array}{ccc}
+\ol{\D h_1 B_7} & 0 & h_2
+\end{array}
+\right],
+\left[
+\begin{array}{c}
+h_0 \\ h_3 \\ 0
+\end{array}
+\right],
+h_2^2
+\right\rangle
+\]
+respectively.
+All three of these brackets in $C\tau$ equal
+$\langle \ol{\D h_1 B_7}, h_0, h_2^2 \rangle$.
+Beware that the last two could have larger indeterminacy,
+but in fact do not.
+\end{proof}
+}
+
+\begin{lemma}
+\label{lem:perm-x88,10}
+\revdeg{88, 10, 48}
+The element $x_{88,10}$ is a permanent cycle.
+\end{lemma}
+
+\begin{proof}
+In the Adams spectral sequence for $C\tau$, there is a hidden
+$\eta$ extension from $h_1^2 x_{85,6}$ to $x_{88,10}$.
+Therefore, $x_{88,10}$ lies in the image of inclusion of the
+bottom cell into $C\tau$.
+The only possible pre-image is the element $x_{88,10}$ in the
+Adams spectral sequence in the sphere, so $x_{88,10}$ must survive.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d6-h2^2gH1}
+\mbox{}
+\begin{enumerate}
+\item
+\revdeg{88, 11, 49}
+$d_6(h_2^2 g H_1) = M c_0 e_0^2$.
+\item
+\revdeg{88, 11, 48}
+$d_7(\tau h_2^2 g H_1) = 0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+If $M c_0 e_0^2$ is non-zero in the $E_\infty$-page, then it detects
+an element that is annihilated by $\tau$ because Lemma \ref{lem:d6-Dg2g}
+shows that the only possible target of such an extension is hit
+by a differential.
+Then $M c_0 e_0^2$ would be in the image of projection 
+from $C\tau$ to the top cell.
+The only possible pre-image would be the element $\D g_2 g$ of the Adams
+spectral sequence for $C\tau$.
+
+In the Adams spectral sequence for $C\tau$, there is a $\sigma$
+extension from $g A'$ to $\D g_2 g$.  
+Projection from $C\tau$ to the top cell would imply that there
+is a hidden $\sigma$ extension in the homotopy groups of the sphere,
+from $M h_1 e_0^2$ to $M c_0 e_0^2$, because
+$g A'$ maps to $M h_1 e_0^2$ under projection from $C\tau$
+to the top cell.
+
+But $M h_1 e_0^2$ detects $\eta \theta_{4.5} \{ e_0^2 \}$,
+which cannot support a $\sigma$ extension.  This establishes the
+first formula.
+
+For the second formula, 
+if $d_7(\tau h_2^2 g H_1)$ were equal to $\tau^2 \D h_2^2 e_0 g^2$,
+then the same argument would apply,
+with $\tau \D h_2^2 e_0 g^2$ substituted for $M c_0 e_0^2$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d6-Dg2g}
+\revdeg{88, 12, 48}
+$d_6(\D g_2 g) = M d_0^3$.
+\end{lemma}
+
+\begin{proof}
+The proof of Lemma \ref{lem:d4-th2B5g} shows that
+$M d_0^3$ must be hit by a differential.
+The only possibility is that $d_6(\D g_2 g)$ equals
+$M d_0^3$.
+
+Alternatively, Lemma \ref{lem:d6-h2^2H1} shows that
+$d_7(\tau h_2^2 H_1) = M P d_0$.
+Note that $\tau g \cdot \tau h_2^2 H_1 = 0$ in the $E_7$-page.
+Therefore, $\tau M d_0^3 = \tau g \cdot M P d_0$ must already
+be zero in the $E_7$-page.  The only possibility is that
+$d_6(\tau \D g_2 g) = \tau M d_0^3$, and then
+$d_6(\D g_2 g) = M d_0^3$.
+\end{proof}
+
+\rev{
+\begin{remark}
+\label{rem:d6-D^2f1}
+Table \ref{tab:Adams-higher} shows that
+$d_6(\D^2 f_1)$ equals $\tau^2 M d_0^3$.
+The proof relies on $d_6(\tau \D h_1 H_1) = \tau M \D h_0^2 e_0$
+and uses techniques similar to the ones in \cite{Chua21}.
+\end{remark}
+}
+
+\begin{lemma}
+\label{lem:perm-h0g3}
+\revdeg{92, 5, 48}
+The element $h_0 g_3$ is a permanent cycle.
+\end{lemma}
+
+\begin{proof}
+In the homotopy of $C\tau$, the product $\theta_4 \theta_5$ is detected
+by $h_0^2 g_3$.  In the sphere, the product $\theta_4 \theta_5$ 
+is therefore non-zero and detected in Adams filtration at most 6.
+
+Table \ref{tab:Toda} shows that 
+the Toda bracket $\langle 2, \theta_4, \theta_4, 2 \rangle$
+contains $\theta_5$.
+Therefore, the product $\theta_4 \theta_5$ is contained in
+\[
+\theta_4 \langle 2, \theta_4, \theta_4, 2 \rangle =
+\langle \theta_4, 2, \theta_4, \theta_4 \rangle 2.
+\]
+(Note that the sub-bracket $\langle \theta_4, \theta_4, 2 \rangle$
+is zero because $\pi_{61,32}$ is zero.)
+Therefore, $\theta_4 \theta_5$ is divisible by $2$.
+It follows that
+$\theta_4 \theta_5$ is detected by $h_0^2 g_3$, and
+$h_0 g_3$ is a permanent cycle that detects
+$\langle \theta_4, 2, \theta_4, \theta_4 \rangle$.
+\end{proof}
+
+
+\begin{lemma}
+\label{lem:d6-D1h1^2e1}
+\revdeg{92, 10, 51}
+$d_6(\D_1 h_1^2 e_1) = 0$.
+\end{lemma}
+
+\begin{proof}
+Consider the element $\ol{\tau M h_2^2 g^2}$
+in the Adams spectral sequence for $C\tau$.
+This element cannot be in the image of inclusion of the bottom
+cell into $C\tau$.  Therefore,
+it must map non-trivially under projection from $C\tau$
+to the top cell.
+The only possibility is that
+$\tau M h_2^2 g^2$ is the image.
+Therefore, $\tau M h_2^2 g^2$ cannot be the target of a differential.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d7-x92,10}
+\revdeg{92, 10, 48}
+$d_7(x_{92,10})$ does not equal $\tau^2 \D^2 h_2 g^2$.
+\end{lemma}
+
+\begin{proof}
+If $\tau^2 \D^2 h_2 g^2$ were hit by a differential, then
+the $2$ extension from $\tau \D^2 h_2 g^2$ to $\tau \D^2 h_0 h_2 g^2$
+would be detected by projection from $C\tau$ to the top cell.
+But the homotopy of $C\tau$ has no such $2$ extension.
+\end{proof}
+
+\begin{lemma}
+\label{lem:d8-D1h2e1}
+\revdeg{92, 10, 51}
+$d_8(\D_1 h_2 e_1) = 0$.
+\end{lemma}
+
+\begin{proof}
+Consider the element $e_0 x_{76,9}$ in the
+Adams $E_\infty$-page for $C\tau$.
+It cannot be in the image of inclusion of the bottom cell
+into $C\tau$, so it must project to a non-zero element in the
+top cell.  The only possible image is $M \D h_1^3 g$.
+Therefore, $M \D h_1^3 g$ cannot be the target of a differential.
+\end{proof}
+
+\begin{lemma}
+\label{lem:hit-MPDh1d0}
+The element $M P \D h_1 d_0$ is hit by some differential.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:tau-extn} shows that
+there is a hidden $\tau$ extension from
+$\D h_1 c_0 d_0$ to $P \D h_1 d_0$.  Therefore,
+$P \D h_1 d_0$ detects $\tau \epsilon \{\D h_1 d_0\}$.
+On the other hand, Tables \ref{tab:eta-extn} and
+\ref{tab:misc-extn} show that
+$P \D h_1 d_0$ also detects $\tau \eta \kappa \{\D h_1 h_3\}$.
+Since there are no elements in higher Adams filtration, we 
+have that $\tau \epsilon \{\D h_1 d_0\}$ equals
+$\tau \eta \kappa \{\D h_1 h_3\}$.
+
+Table \ref{tab:misc-extn} shows that
+$M P$ detects $\tau \epsilon \theta_{4.5}$,
+so $M P \D h_1 d_0$ detects 
+$\tau \epsilon \{\D h_1 d_0\} \theta_{4.5}$, 
+which equals 
+$\tau \eta \kappa \{\D h_1 h_3\} \theta_{4.5}$.
+But $\tau \eta \kappa \theta_{4.5}$ is zero because
+all elements of $\pi_{60,32}$ are detected by $\tmf$.
+This shows that $M P \D h_1 d_0$ detects zero, so it
+must be hit by a differential.
+\end{proof}
+
+\rev{
+\begin{remark}
+\label{rem:d6-te0x76,9}
+Lemma \ref{lem:hit-MPDh1d0} does not specify the differential that
+hits the element $M P \D h_1 d_0$.  In fact, $d_6(\tau e_0 x_{76,9})$ equals
+$M P \D h_1 d_0$ \cite{BIX}.
+\end{remark}
+}

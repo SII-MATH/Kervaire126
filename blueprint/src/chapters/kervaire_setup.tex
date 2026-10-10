@@ -1,0 +1,146 @@
+\section{Objects and conditions for the $h_6^2$ survival proof}
+\label{chap:kervaire-setup}
+
+This section fixes the near-$126$ predicates, detected representatives, and
+classical--synthetic comparisons used in the $h_6^2$ permanent-survival proof.
+
+\subsection{Objects and representative choices}
+
+% SOURCE: MainPaper/main.tex:2112-2114, Notation 7.2.
+\begin{definition}[Synthetic $\theta_5$ and $\eta$ choices]
+  \label{def:synthetic-theta5-choice}
+  \uses{def:adams-hj,def:synthetic-adams-ss,def:adams-detection}
+  \lean{KIP126.Kervaire.SyntheticTheta5.Theta,KIP126.Kervaire.SyntheticTheta5.Eta}
+  \lean{KIP126.Kervaire.SyntheticTheta5.DetectsTheta,KIP126.Kervaire.SyntheticTheta5.DetectsEta}
+  \notready
+  A synthetic $\theta_5$ is a class in
+  $\pi_{62,64}S^{0,0}$ detected by $h_5^2$; the same symbol denotes each of its
+  quotient images.  Let $\eta=[h_1]\in\pi_{1,2}S^{0,0}$.  Every use records
+  the chosen representative unless choice independence has already been
+  proved. In the actual-object interface, detection means that reduction to
+  the first chosen lambda quotient is sent by the supplied comparison to the
+  standard internal $h_5^2$ or $h_1$, respectively. Canonical comparison and
+  geometric Hopf identification are still obligations, not consequences of
+  accepting an arbitrary additive equivalence.
+\end{definition}
+
+\begin{definition}[Actual first-quotient comparison on the sphere]
+  \label{def:actual-sphere-first-quotient}
+  \lean{KIP126.Comparison.ClassicalSynthetic.FirstQuotientHomotopyComparison}
+  \lean{KIP126.Comparison.ClassicalSynthetic.sphereFirstQuotientComparison}
+  \uses{def:synthetic-context,def:synthetic-sphere,def:classical-adams-ss}
+  \notready
+  A supplied comparison for $\nu S^0$ is specialized to $S^{0,0}$ through the
+  same nu unit isomorphism and actual quotient functor. Cofiber functoriality
+  is an explicit model condition. This construction does not supply the
+  initial comparison, its naturality, or multiplicative compatibility.
+\end{definition}
+
+\begin{definition}[Bigraded expressions and actual total boundary]
+  \label{def:actual-theta5-expressions}
+  \lean{KIP126.Synthetic.Context.sphereProduct,KIP126.Synthetic.Context.quotientClass}
+  \lean{KIP126.Kervaire.SyntheticTheta5.thetaSquare,KIP126.Kervaire.SyntheticTheta5.etaThetaSquare,KIP126.Kervaire.SyntheticTheta5.lambdaEtaThetaSquare}
+  \lean{KIP126.Synthetic.Context.sphereTotalBoundary,KIP126.Kervaire.SyntheticTheta5.deltaH6Square}
+  \lean{KIP126.Synthetic.Context.LambdaInjectiveAt}
+  \uses{def:actual-sphere-first-quotient,def:synthetic-theta5-choice}
+  \notready
+  The degrees of $\theta_5^2$, $\eta\theta_5^2$, and $\lambda\eta\theta_5^2$
+  are $(124,128)$, $(125,130)$, and $(125,129)$.
+  Multiplication is the composition product with the specified suspensions;
+  reduction uses the actual cofiber inclusion. The total boundary of the
+  standard internal $h_6^2$ uses the inverse first-quotient comparison and
+  the actual cofiber boundary, desuspended to $(125,129)$.
+  Compatibility with the geometric multiplication and source conventions
+  remains an explicit model obligation.
+\end{definition}
+
+\begin{lemma}[Vanishing modulo a lambda power is factorization]
+  \label{lem:actual-quotient-zero-factorization}
+  \lean{KIP126.Synthetic.Context.vanishesModLambda_iff_factors}
+  \uses{def:actual-theta5-expressions}
+  \leanok
+  In a supplied synthetic category with the chosen distinguished cofiber
+  triangles, $x:S^{m,n}\to X$ maps to zero in $X/\lambda^r$ precisely when
+  $x=y\lambda^r$ for a map $y:S^{m,n}\to\Sigma^{0,-r}X$.
+\end{lemma}
+\begin{proof}
+  Apply covariant Hom exactness to the actual cofiber triangle of
+  $\lambda^r_X$. The forward direction supplies the factorization; the
+  reverse direction uses the zero composite of consecutive triangle maps.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2181-2204, Proposition prop:possible_h_6_sq, statements (3)-(5).
+\begin{definition}[The three conditions $C_3$, $C_4$, and $C_5$]
+  \label{def:near126-conditions}
+  \uses{def:synthetic-theta5-choice,def:adams-detection}
+  \lean{KIP126.Kervaire.Near126Conditions}
+  \lean{KIP126.Kervaire.Near126Input}
+  \notready
+  Define:
+  \begin{enumerate}
+    \item[$C_3$:] $d_6(x_{126,8,4}+x_{126,8})=0$;
+    \item[$C_4$:] for some $\theta_5$,
+      $\theta_5^2=\lambda^6[h_0^2x_{124,8}]\ne0$ in
+      $\pi_{124,128}S^{0,0}$;
+    \item[$C_5$:] for some detected $[h_0^2x_{124,8}]$,
+      $\lambda^3\eta[h_0^2x_{124,8}]
+       =\lambda^6[h_1h_4x_{109,12}]$ in
+      $\pi_{125,133}S^{0,0}$.
+  \end{enumerate}
+  Quantified detected representatives and nonzero assertions are fields of the
+  propositions, not informal annotations.
+\end{definition}
+
+\subsection{Coherence on the same fixed sphere}
+
+% SOURCE: PROJECT_BOUNDARY.md, Homotopy-theoretic foundation, External inputs,
+% and Conditional final theorems.
+\begin{definition}[Classical--synthetic sphere coherence]
+  \label{def:sphere-adams-coherence}
+  \uses{def:stable-context,def:stable-sphere-suspension,def:synthetic-context,def:synthetic-sphere,def:classical-adams-ss,def:synthetic-adams-ss,def:adams-hj,def:bhs-aim-regrading}
+  \lean{KIP126.Kervaire.SphereAdamsCoherence}
+  \lean{KIP126.Kervaire.SyntheticHomotopyContext}
+  \notready
+  Fix a stable context $\mathcal C$, a synthetic context $\mathcal S$ over
+  $\mathcal C$, a classical Adams sequence $A_{\mathrm{cl}}$ on
+  $S^0_{\mathcal C}$, and a synthetic Adams sequence $A_{\mathrm{syn}}$ on
+  $\nu_{\mathcal S}(S^0_{\mathcal C})=S^{0,0}_{\mathcal S}$.  A sphere
+  coherence datum records the object identifications, the common unit and
+  sphere multiplication, and the grading and naming transports for the classes
+  used below.  It does not assert the classical--synthetic $E_2$ identification
+  or differential comparison: those are carried by the separately named
+  \texttt{syntheticRigidity} external result.  When an object equality is not
+  definitional, its equality or transport is an explicit field.  This datum
+  contains no rigidity, differential, convergence, or computation assertion.
+\end{definition}
+
+% SOURCE: PROJECT_BOUNDARY.md, Appendix data and External inputs;
+% MainPaper/main.tex:2738--3290.
+\begin{definition}[Classical interpretation of the computation catalogue]
+  \label{def:classical-catalogue-coherence}
+  \uses{def:computation-fixed-bindings,def:lin-spectrum-catalogue,def:lin-e2-page-catalogue,def:lin-map-catalogue,def:typed-class-expression,def:appendix-row-status,def:stable-context,def:classical-adams-ss,def:sphere-adams-coherence,thm:adams-external-pairing}
+  \notready
+  Fix the finite graded catalogues above and a stable context $\mathcal C$,
+  the selected sphere sequence $A_{\mathrm{cl}}$, and its sphere coherence.
+  A classical catalogue coherence datum contains:
+  \begin{enumerate}
+    \item for every spectrum identifier in the catalogue, an admissible spectrum of
+      $\mathcal C$ and a chosen classical Adams sequence, with the sphere
+      identifier identified with $S^0_{\mathcal C}$ and its sequence
+      transported to exactly $A_{\mathrm{cl}}$;
+    \item for every typed class expression, an element of the stated spectrum's
+      $E_2$ page in exactly its stored bidegree, preserving zero, sums, named
+      generators, external products, and module actions whenever those
+      operations are present in the catalogue;
+    \item for every map identifier, a stable map with the stored suspension,
+      source, and target, together with its induced page map; identities,
+      compositions, cofiber keys, and the stored linear $E_2$ action commute
+      with these interpretations;
+    \item a typing equality saying that every appendix row, differential key,
+      product record, and finite exclusion condition in the catalogue states its proposition
+      about these interpreted pages and elements.
+  \end{enumerate}
+  These comparisons make each interpreted equation a statement about the
+  specified classical page, and identify the sphere sequence with
+  $A_{\mathrm{cl}}$. Existence of the comparisons remains unfinished.
+\end{definition}

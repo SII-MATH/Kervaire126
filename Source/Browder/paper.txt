@@ -1,0 +1,1287 @@
+The Kervaire Invariant of Framed Manifolds and its Generalization
+                                                                                                       STOR ®
+         William Browder
+
+         The Annals of Mathematics, 2nd Ser., Vol. 90, No. 1 (Jul., 1969), 157-186.
+
+Stable URL:
+http://links.jstor.org/sici?sici=0003-486X%28196907%292%3A90%3Al%3C157%3ATKIOFM%3E2.0.CO%3B2-W
+
+The Annals of Mathematics is currently published by Annals of Mathematics.
+
+
+
+
+Your use of the JSTOR archive indicates your acceptance of JSTOR' s Terms and Conditions of Use, available at
+http://uk.jstor.org/aboutlterms.html. JSTOR's Terms and Conditions of Use provides, in part, that unless you have
+obtained prior permission, you may not download an entire issue of a journal or multiple copies of articles, and you
+may use content in the JSTOR archive only for your personal, non-commercial use.
+
+Please contact the publisher regarding any further use of this work. Publisher contact information may be obtained at
+http://uk.j stor .org/j ournals/annals .html.
+
+Each copy of any part of a JSTOR transmission must contain the same copyright notice that appears on the screen or
+printed page of such transmission.
+
+
+
+
+JSTOR is an independent not-for-profit organization dedicated to creating and preserving a digital archive of
+scholarly journals. For more information regarding JSTOR, please contact support@jstor.org.
+
+
+
+
+                                                                                                  http://uk.j stor.org/
+                                                                                           Mon Jan 307:20:362005
+           The Kervaire invariant of framed
+            manifolds and its generalization*
+                              By WILLIAM BROWDER
+
+
+      In 1960, Kervaire [11] introduced an invariant for almost framed (4k + 2)-
+manifolds, (k "* 0, 1, 3), and proved that it was zero for framed 10-manifolds,
+which was a key step in his construction of a piecewise linear 10-manifold
+which was not the homotopy type of a differential manifold. Haefiiger [9]
+showed that Kervaire's invariant and the invariant of Pontrjagin [17] for 2,
+6, and 14 dimensional framed manifolds, could be defined in a common fashion,
+and this invariant is the surgery obstruction in dimensions 4k + 2 (see [12],
+[15], [6]). A central question has remained, for which dimensions can a framed
+manifold have a non-zero Kervaire invariant. Pontrjagin's invariant is non-
+zero for certain framings on Sl x S\ S3 x S3 and S7 x S7, but until now all
+the results for the Kervaire invariant have been in the negative; Kervaire [11]
+showed it was zero in dimensions 10 and 18, and Brown and Peterson [8] show-
+ed it zero in dimensions 8k + 2.
+      In this paper we will show that the Kervaire invariant is zero for dimen-
+sions "* 2k - 2. For dimension 2k - 2 we show that there is a framed manifold
+of Kervaire invariant 1 if and only if in the Adams spectral sequence for the
+stable homotopy groups of spheres the element hi in E Z persists to Eoo, (see
+[1], [2]). But it is a fact due to Mahowald and Tangora, (Topology 6 (1967)
+349-370, § 8) that h! in dimension 30 persists to Eoo. Hence there is a framed
+30-manifold of Kervaire invariant 1. (We are informed that recently Barratt
+and Mahowald have shown h; persists to Eoo, so there is a framed 62-manifold
+of Kervaire invariant 1.)1
+      Now we list some of the geometric corollaries which follow from our
+result (see [12]).
+       COROLLARY 1. The Pontr}agin construction from the group Fen of
+framed homotopy spheres to the stable n-stem 7r n+k(Sk), k large, is onto if
+n "* 2k - 2. Its cokernel is Zz in dimensions 2, 6, 14, and 30.
+    COROLLARY 2. The group bPn+l of homotopy n-spheres which bound
+parallelizable manifolds is Zz if n = 4k + 1, n "* 21 - 3. It is zero in dimen-
+   * Research supported in part by an NSF grant.
+   1  This implies we may add dimension 62 to the lists in Corollaries 1 and 3 below and
+61 to Corollary 2.
+158                            WILLIAM BROWDER
+
+sions 5, 13, and 29.
+    For the following corollaries see [15], [6].
+     COROLLARY 3. Let X be a 1-connected finite complex satisfying Poin-
+care duality in dimension n, n ~ 5. Suppose that T(~) is the Thom complex
+of a k-plane bundle over X, a E n n+k( T(~)) is such that h( a) is a generator
+of Hn+k(T(~)), where h is the Hurewicz homomorphism. If n = 6,14, or 30,
+then X is the homotopy of a smooth manifold with normal bundle ~. If
+n = 4k + 2, n  "* 21 - 2, and ~ is the trivial bundle, then X has the homotopy
+type of a n-manifold with normal invariant a if and only if the Kervaire
+invariant c(ofF) of (X, a) is zero (see § 3 for definition of C(ofF)).
+     This corollary covers some cases not solved in [15] or [5]. Unfortunately
+there are some difficulties in defining an absolute invariant, analogous to the
+Kervaire invariant, in the case of a general bundle, but one can do this for
+some bundles.
+     Our general approach to the problem of the Kervaire invariant is the
+following. Find the most general possible and simplest situation in which the
+Kervaire invariant can be defined and then study the place of framed mani-
+folds in this situation.
+     The Kervaire invariant is the Arf invariant of a certain quadratic func-
+tion defined in a 2k-connected almost framed (4k + 2)-manifold. In [11] and
+[12] this quadratic function is obtained from the cohomology operation which
+detects the Whitehead product [c,c], while in [7] it was shown that this could
+be used to define a generalization of Kervaire's invariant to Spin-manifolds of
+dimension 8k + 2. In dimensions 8k + 2 the operation is secondary, but in
+other dimensions the operation may have higher order.
+     We define here a quadratic operation in a new way, using a functional
+operation associated with SqHl to define a quadratic operation ofF in a 2q-
+dimensional Poincare duality space M 2q with a certain extra structure. This
+extra structure is a lifting of the classifying map of its normal spherical fibre
+space [21] to a classifying space in which the Wu class v q + 1 = 0. Any M 2 q has
+such a lifting, but it is not unique and different lifts lead to different results.
+A framing induces such a lifting. We note that the definition works for all q,
+not just q odd. The operation ofF is defined on a subgroup of Hq(M 2q; Z2), and
+if this subgroup has certain properties the Arf invariant of ofF can be defined.
+It coincides with the Kervaire invariant for framed manifolds.
+     We show that if M 2 q is a boundary in the cobordism theory above (using
+the theory where V q +1 = 0) and if the Arf invariant is defined, then it is zero.
+Then we study this cobordism theory and the image of framed cobordism in
+                               KERV AIRE INVARIANT                              159
+
+  it to get our results.
+                                                 °
+         In § 1 and 2, the theory in which 'U q +1 = is developed, and the operation
+  ofr defined for a Poincare duality space M 2q which is oriented in this theory.
+         In § 3 it is shown that the Arf invariant which can be described in certain
+  circumstances, coincides in the case of framed manifolds with Kervaire's and
+  Pontrjagin's invariants. Then it is shown that if a framed M 2q is a boundary
+  in the theory based on 'U q + 1 = 0, then the Kervaire invariant of M 2 q is zero.
+  Thus if the image of framed cobordism in this new cobordism theory is zero
+  in dimension 2q, the Kervaire invariant is zero for framed 2q-manifolds. This
+  is shown in §§ 6 and 7 for q =I=- 21 - 1.
+         In § 4, we discuss some general properties of orientations (or "liftings"
+ of the structural group of a bundle). Let n: E ----> B be a principal fibre space
+ with fibre G, where B is the classifying space for a category e of fibre spaces
+ or bundles, 'Y the classifying fibre space or bundle over B, '7 = n*('Y) over
+ E, p: '7 ----> 'Y the induced fibre space or bundle map. Let ~ be in the category
+ e, with base space X. An E-orientation of ~, (or lifting) is a map b: ~ ----> '7 in
+ the category e. We define a natural notion of equivalence of E-orientations,
+ and show that the equivalence classes of E-orientations of ~, are in one-to-one
+ correspondence with cross-sections of the fibre space E' over X induced from
+ E ----> B by the classifying map of~. This generalizes the many well known
+ special cases in the literature, such as Spin structures (see [13]).
+        In § 5, we use the results of § 4 to show how to construct a structure on
+ sq x sq, in the theory with 'U q+1 = 0, which has Arf invariant 1. Then in §§ 6
+ and 7, it is shown that if q = 21 - 1, the image of framed cobordism in our
+ theory is exactly this element if (h Z)2 in the Adams spectral sequence repre-
+sents an element in the stable homotopy group of the sphere.
+        In § 6 it is shown in general how to calculate up to group extensions the
+                                               °
+cobordism groups in the theory with 'U q +1 = in dimensions :;:;;2q, in terms of
+the original theory. We get an exact sequence with the original groups, the
+new groups, and relative groups. It happens to be easy to show that the relative
+groups are the homotopy groups of a space with only one non-zero k-invariant
+in stable dimensions :;:;; 2q + 1.
+       In § 7 the k-invariant is computed and the case where B=Bo is considered.
+In that case it is shown that the image of framed cobordism is zero if q =I=- 21-1
+using Adams results [1], and that if q = 2 z -1 only an element corresponding
+to h~ can go non-trivially. In that case, it will go to the element constructed
+in § 5, which therefore has Kervaire invariant 1.
+       In a later paper we plan to further study the invariants here defined. We
+160                             WILLIAM BROWDER
+
+shall prove a product formula analogous to formulas of Brown-Peterson [8]
+and Sullivan (unpublished), compare our invariant in dimension 8k + 2 to
+Brown's, and study the invariant if q is even.
+     I am indebted to Ed Brown for some illuminating conversations.
+                                1. The operation
+     A cospect'rum X is defined to be a sequence of spaces X = {Xo, Xu X 2, .•• }
+and maps In: X n+l ----> LXn> (where L is the suspension). If A is a space then
+define a cospectrum A, A = {A, LA, L 2 A, ••• }, with In = identity map. If X
+and X' are cospectra, a map g: X ----> X' is a sequence of maps {gk, gk+U ••• } for
+k > l, some l, gi: Xi ----> XI such that the diagram
+                                              fi
+                                   Xi+l - - > LXi
+                                 gi+ll            '       1
+                                                          Lgi
+                                   X Ii+l    fi
+                                            ----jo
+                                                      "'x'
+                                                      ~    i
+is commutative.
+     If g: A ----> B is a map of spaces, g induces g: A ----> B in the obvious way.
+If X = {Xo, Xl' ••• } is a cospectrum we let SkX = {Xk' Xk+U •.. } if k:> 0, SkX =
+{*, "', X o, Xl' ••• } (Xo in the -k + 1 place) if k < O.
+     A cospectrum X = {Xo, Xu X 2, ••• } will be called a Wu (q + 1)-cospectrum
+if the following conditions are satisfied:
+     ( i) X is mod 2 coconnected, i.e., Hi(X; Z2) = lim; Hn+i(Xn; Z2) is zero for
+i > 0 and Hn(Xn; Z2) ~ Hn+l(Xn+l ; Z2) ~ Ho(X; Z2) = Z2'
+     (ii) SqHl: H-q-l(X; Z2)---->HO(X; Z2), is zero (Hj(X; Z2) = lim; Hn+j(Xn; Z2))'
+     We note that if X is a co spectrum satisfying (i) then condition (ii) is equiv-
+alent to the statement:
+     (ii') SqHl: Hn-q-1(Xn; Z2) ----> Hn(xn; Z2) is zero for every n.
+     If A is a space and x E Hj(A) we will denote by x E Hj(A) ~ Hj(A), the
+corresponding element.
+     Let M 2q be a Z2 Poincare duality space of dimension 2q, i.e., there is an
+ element p. E H 2q (M; Z2) such that ---. p.: H8(M; Z2) ----> H 2q_ (M; Z2) is an iso-
+                                                                8
+
+
+ morphism for all s.
+      Let X be a Wu (q + 1)-cospectrum. An X orientation of M 2q is a map of
+ cospectra 1): X ---->S-2 q M+ such that 1)* (a)   =.u
+                                                   where a E Ho(X; Z2) is a generator.
+ That is, there are maps 1]2q+n: X 2q+n ----> Ln M+ for all n > m, some m, such that
+ the diagram
+                               KERV AIRE INVARIANT                                161
+
+commutes and 1}~+n(IX2q+n) = Ln(p) where IX2q+n is a generator of H 2q+n(X2q+n; Z2).
+     Suppose M 2q is X oriented where X is a Wu (q + l)-cospectrum, 7]: X ->
+S-2 qM+, let x E H-q(S-2 qM+; Z2) be such that 1}*(x) = 0.
+                                            °                           °
+      This means that there is an r > such that 1};Q+r(Lr(x») = (which im-
+plies 1}~+8(L8X) = 0, for s ~ r).
+      We define a map ofF: (ker 7])-Q -> Z2 as follows.
+      Take a mapf: M+->K(Z2' q) such thatf*(c) = x, where c E HQ(K(Z2' q); Z2)
+is the fundamental class. Let g = f 07]
+
+                         X ~ S-2 QM+ ~ S-2 QK(Z2' q) .
+     We define ofF(x) = Sqq+lg(l) where
+                                                    HO(X·, Z2)
+                     Sq q+ 1g: (ker 7] *) -Q ~ -,------''----'---,'~-
+                                                im SqHl + im g*
+is the functional Steenrod square (see [22]).
+      It is equivalent to consider a single map 1}2Q+k: X 2Q+k -> LkM+, or suppress-
+ing subscripts 1}: X -> Lk M+. We may assume 1}*(Lk(X») = 0, and we may take
+ofF(x) = Sqq+l g(Lk(C»), where
+                                           H 2Hk(X·, Zz)
+              Sq q+ 1g: (ker g *)H k ~ -,---:-_-'----'-:c---=.:..._   g = (L,kf) 01} •
+                                        im SqHl + im g*
+     These two definitions of y can easily be seen to agree (cf. (1.2»). We
+will use the second for the remainder of this section.
+                                °
+     We note that SqHl(C) = since dim c = q, so SqQ+\(Lk(C») is defined. We
+must take Lk K(Z2' q) on the right, rather than Lk M+ in order to make the
+indeterminacy zero, as indicated in the lemma below.
+      LEMMA 1.1. The indeterminacy (im Sqq+l + im g*)ZHk = 0, so that range
+ofF = ZZ.
+                                                                °
+     PROOF. By hypothesis (im SqHl) n H2Q+k(X; Zz) = so it remains to show
+that (im g*)ZQ+k = 0. But HZHk(Lk K(Z2' q); Zz) =:: H 2Q(K(Zz, q); Zz) =:: (Sl(z)Qc, by
+a theorem of Serre [1], where (Sl(z)Q is the q-dimensional component of
+the Steerod algebra Sl(z. Hence (im g*)Zq+k = (Sl(z)Q(g*(Lkc»), and g*(Lk(C») =
+                                                       °
+1}*(L kf)*(L kc) = 1}*LkX = 0, so (image g*)2Hk = and the lemma follows.
+   LEMMA 1.2. The value of y is independent of k, i.e., if one uses
+LX ~ Lk+1M in place of 1) it defines the same ofF.
+     LEMMA 1.3. IfYand X are WU (q + l)-cospectra and ifY -> X is a map
+of degree 1 (i.e., isomorphism on Ho) then X orientable spaces get a natural
+Y orientation which defines the same function y on the intersection of their
+domains of definition.
+162                                   WILLIAM BROWDER
+
+      THEOREM 1.4. y is quadratic, i.e., if Xl! X2 E (ker r;*)q,
+                        ""'(Xl + X2) = ""'(Xl) + ""'(X2) + r;*(XI '-' X2) •
+      PROOF. Letfi:M-K(Z2,q) such thatfi*(c)=xi' Then
+                t:.     !IX!2                 P-
+              M ~ M x M ~ K(Z2' q) X K(Z2' q) ~ K(Z2' q)
+represents Xl + X 2 , where a is the diagonal, and p is the multiplication in
+K(Z2' q).
+      Let X, Y be connected complexes with base points Xc, Ye,
+      i: X - X x Y, i(x) = (x, Ye)
+      j: Y - X x Y, j(y) = (Xo, y)
+      p: X X Y - X, q: X x Y - Y, the projections,
+      s: X x Y -X 1\ Y = X x Y/X V Y, the natural identification map,
+and
+      h: 1:(X 1\ Y) -     1:(X x Y),      the Hopf construction on the identity map.
+      LEMMA 1.5. 1:i + 1:j + h: 1:X V 1: Y V 1:(X 1\ Y) - 1:(X x Y)
+and
+                    1:p + 1:q + 1:s: 1:(X x Y) --+ 1:X V 1: Y V 1:(X 1\ Y)
+are natural inverse homotopy equivalencBs.
+      For a proof see [10].
+      Applying Lemma 1.5 to our situation we get a commutative diagram:
+            1:M --~~ 1:(M x M) ~(fl ~ 1:(K x K) ~ 1:K
+
+
+             "p + EH E']                        Ep + Eq +   ",1               j
+                                                                              "wClA + E; + h)
+
+   1:M V 1:M V 1:(M 1\ M) ~!1 + ~!2 ~ ~(fl ~ 1:K V 1:K V 1:(K 1\ K) •
+It then follows that the composite map of 1:M --+ 1:K which represents Xl + X2
+is (1:p)(1:i + 1:j + h)(1:fl + 1:f2 + 1:(fl 1\ f2»)(1:P + 1:q + 1:s)(1:a) = 1:r. Now
+(1:p + 1:q + 1:s)(1:a) = 1:11 + 1:12 + 1:A where A: M-M x M-M 1\ M, 1i:M-M
+                                                           "*
+in i th place in M V M. Now 1:fi o1:1 j = 0 if i j and 1:p 0 (1:i + 1:j + h) =
+1:51 + 1:52 + h(p) where 5i is identity on K in the i th place in K V K. Hence
+1:r = 1:f1 + 1:f2 + h(P)(1:(f1 1\ f2»)1:A.
+     LEMMA 1.6. If 1:g: 1:A - 1:B, 1:g = 1:a + 1:b, a*(x) = b*(x) = 0 and
+(im a*)2Hk = (im b*)2Hk = 0, then
+                                    Sq~g = SqL     + Sq~b •
+      PROOF. 1:a + 1:b is defined by
+                     t:.         La V I.b      t:.'
+                 1:A ~ 1:A V 1:A --~ 1:B V 1:B ~ 1:B ,
+                                   KERVAIRE INVARIANT                                       163
+
+where fl.' is the "folding map."
+                          1~~
+  (~B V r.B) ~ (IoH!)' C~A --> (~B V r.B) ~ raV!! C(~A V ~A) = (~B ~ 1:a ~A) V (~B ~!! C~A)
+
+         A'~11                               1~'~1
+                          l~A
+         (~B)~I' C~A      --> (~B)~"('aH" C(~A V ~A)
+
+    The proof is immediate from the above commutative ·diagram and the
+calculation of Sqk(fl.'*(X)) in ('2:,B -~a '2:,A) V ('2:,B -~b '2:,A).
+     LEMMA 1.7. Sqq+\(!')('2:,c) = '2:,(c /\ c).
+     The proof is the same as [23, (5.3)].
+     Then it follows from Lemmas 1.5, 1.6, and 1.7 that
+       y(XI + x 2) = Sqq+\k g = Sqq+l~ktJ'2:,kC) + Sqq+l~kf2('2:,kC) + r;*(XI - x 2)
+                                  =   y(x I ) + y(x 2 ) + r;*(X I -X 2 )
+which proves Theorem 1.4.
+    We shall say that an X oriented Poincare duality space M 2q is an X
+boundary if there is a map i: M 2q -> W 2 HI such that (W, M) is a relative
+Poincare duality pair and the map
+                                        r;       k      Pi      k
+                            X 2q +k --~ '2:, M+ ~ '2:, W+
+is null-homotopic, some k.
+     PROPOSITION 1.8. Image i* c ker r;* and y(x) =                 °for   x E Image i* .
+     The proof is obvious.
+                             2. W u spectra and cospectra
+       Let Y = {Yo, Y" Y 2 , • • • } be a spectrum, i.e., there are maps '2:, Y i -> Y H1 •
+Then Y will be called a Wu (q + l)-spectrum if the following conditions are
+satisfied.
+
+and
+                                                                                   °
+       ( i) H i( Y i ; Z2) ::::=: HHI( Yi+l; Z2) ::::=: Ho(Y; Z2) = Z2 and Hi(Y; Z2) = for i < 0,
+
+       (ii) X(Sqq+I): HO(y; Z2) -> HHI(y; Z2) is zero, (where X is the canonical
+anti-automorphism of the Steenrod algebra, see [23].
+       If Y is a spectrum of cw-complexes of finite type, we may define the
+Spanier-Whitehead dual of Y to be a cospectrum X = {Xo, X" ••• } where X 3i =
+8 4i +1 - (Yi )2i, and X 3H , = '2:,'X3i for c = 1 or 2, (where (Yi )2i is the 2i-skeleton
+of Y;).
+    LEMMA 2.1. If Y is a WU (q + l)-spectrum, the 8panier- Whitehead dual
+of Y is a Wu (q + l)-cospectrum.
+     PROOF. This follows immediately from the fact that Sqq+1 and X(SqHI)
+correspond under Spanier-Whitehead duality.
+164                              WILLIAM BROWDER
+
+    Now let Bn be the classifying space for an (n - I)-spherical fibre space
+theory, n ~2q. (E.g., Bn = B on , BPLn' BG n' B Unf2 , BSPnf4 etc.) Define the Wu class
+V = 1 + V 1 + V2 + ... , Vi E Hi(B n; Z2) by the formula V = Sq-l W- 1, where
+Sq-l = 1 + X(Sql) + X(Sq2) + ... so that SqSq-l = Sq-1Sq = 1 (see [23, p. 36]),
+W = 1 +w 1+ W 2 + ... is the total Stiefel-Whitney class defined by W-U =
+Sq U, (U E Hn(T('Y); Z2) is the Thom class) and W - W- 1 = 1. The following
+propositions give some standard properties of V.
+     PROPOSITION 2.2. Let U E Hn(T('Y n); Z2) be the Thom class. Then V-U =
+Sq-l U, so Vi - U = X(Sqi) U.
+      PROOF. V = Sq-1W-\ so that
+             Sq(V-U) = Sq V-SqU= (SqSq-1W-l)_(W-U)
+                         = W-l_W-U = U.
+Hence applying Sq-\ we get V-U = Sq-1U.
+    Let (X, Y) be a connected Poincare duality pair of dimension N and let
+h: X - Bn be a map which induces the normal spherical fibre space v of X
+from 'Y n (see [21]).
+     PROPOSITION 2.3. The map Sqi: HN-i(X, Y; Z2) -           HN(X, Y; Z2) is equal
+to - h*(v i).
+     PROOF. h*(V)-U = Sq-l U, where U is the Thom class in Hn(T(v); Z2)'
+by naturallity. Now HN+n(T(v), T(v I Y); Z2) is in the image of the Hurewicz
+homomorphism since v is the normal spherical fibre space of X (see [21]).
+Hence, if A = a o + a 1 + ... , a i E Hi( T(v), T(v I Y); Z2)' it follows that
+(Sq-1A)N+n = aN+n, (since no non-trivial cohomology operation can hit the top
+dimension).
+     Note that - U: Hk(X, Y; Z2) - Hn+k(T(v), T(v I Y) ; Z2) is an isomor-
+phism. ThenifxEHN-i(X, Y;Z2),(Sqx-U)N+n = (SqiX)-U. But
+ (Sq-l(Sqx_U»)N+n = (x_Sq-1U)N+n = (x_h*V_U)N+n = X-h*Vi-U,
+but
+             (Sq-l(Sqx_U»)N+n = ((Sqx)_U)N+n = (SqiX)-U.
+Hence x -h *Vi -- U = (Sqi x) - U, and since - U is an isomorphism, x - h *Vi =
+Sqi x.
+                           >                                                  >
+    Definition. Bn<v q +1 is the total space of the fibre space 7r: Bn<v q +1 -Bn
+with K(Z2' q) (the Eilenberg-MacLane space) as fibre induced from the space
+of paths of K(Z2' q + 1) by a map J: Bn - K(Z2' q + 1) such that J*(c) = Vq +1-
+                         >
+    The space Bn<v q +1 and its associated spaces and theories will play a
+central role in this work.
+                                KERVAIRE INVARIANT                             165
+
+    We let '7 n = n*('Yn) be the canonical fibre space pulled back to B n<v q +1) ,
+and we note that since n*(VQ+l) = 0, it follows that X(Sqq+l)U = 0 where
+U E Hn( T('7 n); Z2) is the Thom class. Therefore we have proved
+
+    PROPOSITION 2.4. T('7 n) defines a Wu (q + I)-spectrum, so that the dual
+X of T('7 n) defines a Wu (q + 1)-cospectrum.
+      Since the index n plays no role if it is large enough, we will suppress it
+from now on, i.e., B = B n , 'I' = 'I'M etc.
+      If M 2 is a Poincare duality space (or smooth manifold, PL manifold, etc.),
+          Q
+
+
+a B<v +1)-structure on M 2 will be a map of fibre spaces (or vector bundles, or
+      Q                     Q
+
+
+PL bundles) of v into '7, where v is the normal spherical fibre space (or normal
+bundle) of M 2Qin S2q+n. Then this gives a map of T(v) ---> T('7) and hence the
+S-dual is a map of the Wu (q + 1)-cospectrum X ---> S-2 M+ which gives M an
+                                                           Q
+
+
+X orientation.
+      M 2q is a B<v q + 1)-boundary if there is an i: M ---> W such that (W, M) is
+a relative Poincare duality space and the map V M ---> '7 extends to a map of
+Vw ---> '7, where Vw is the normal spherical fibre space of W 2q+l in D 2q+l+",
+(M 2q C S2q+n = aD2q+l+n).
+    PROPOSITION 2.5. If M2 q is a B<v q + 1)-boundary, then M is an X-bound-
+ary in the sense of § 1, (where X is dual to T('7»).
+    PROOF. Considering the map of Vw as going into '7 X lover B<v q +1) x I
+we get a map of pairs (vw, v M) ---> ('7 x I, '7 x 0), inducing a map
+
+
+such that the diagram commutes:
+                  T(vw)/T(VM)~ T('7)       x 1/* x IU T('7) x 0
+
+                       1
+                     LT(v M)
+                                       1
+                                 ~ LT('7)
+where g: T(v M) ---> T('7) is the map induced by the B(,v q +1)-orientation. Taking
+S-duals and using the Milnor-Spanier-Atiyah theorem [4] that the S-dual of
+T(vw)/T(v M) is Lk+l W+, we get
+
+                                  LX~ L k +1M+
+
+
+                                   1         1
+where Y is the dual of T('7) x 1/ * x I U T('7) x o. But the latter space is
+clearly contractible, so Y is also contractible and the result follows.
+166                              WILLIAM BROWDER
+
+                            3. The Kervaire invariant
+     Using the results of § 1 and 2 we may now define an Arf invariant in
+certain circumstances.
+     Let M 2 q be a B<vq+ 1)-oriented Poincare duality space and suppose that
+the bilinear form given by the - product is symplectic and non-singular on
+a subspace A c (ker r;*)q. Then the Arf invariant [3] of 1fF on A may be defined
+as follows.
+     Let Xi' Yi E A be a symplectic basis, i.e., XiXj = YiYj = 0, all i, J", xiYj = 0ij.
+Then c(1fF, A) = 'E i 1fF(X i)1fF(Yi) is the Arf invariant of 1fF on A and is independent
+of the choice of basis, (see [3]). Note that it is defined this way for any q.
+     In general c(1fF, A) will depend on the choice of A, as well as the B<vq+ 1) -
+orientation of M 2 q.
+    LEMMA 3.1. If M 2 q is B<vq+ 1)-boundary of Wand if (im i*)q n A is a
+submodule of rank = 1/2(rankA), then C(1fF, A) = 0 (i:M~ W is the inclusion).
+     PROOF. (Image i*)q is a self-annihilating subspace, so that a basis of
+(Image i*)q n A is 1/2 a symplectic basis for A. By Proposition 1.8, 1fF = 0 on
+image i* so that c(1fF, A) = O.
+     An important case is when the - product is symplectic and non-singular
+on all of (ker r;*)q. In that case we set c(1fF, (ker r;*)q) = c(1fF). (We emphasize
+again that the definition of 1fF and hence c(1fF) depends strongly on the B<vq+ 1) -
+orientation, as will be demonstrated in § 5.) This will be the case for example
+if (ker r;*)q = Hq(M; Z2)' which will be the case if M is a x-manifold.
+     Now if M 2q is framed, then the framing is a reduction of J)n to the trivial
+bundle, i.e., the fibre over a point of In. Thus a framing induces a B<vq+1)-
+structure of M 2q. (In fact a trivialization over the q-skeleton of J)M induces a
+B<v q +1)-structure on M 2q.) Now we relate the Kervaire invariant (see [11], [9],
+[12]) to c( 1fF).
+    THEOREM 3.2. If (M 2 q, F) is a framed manifold, q odd, and 1fF is defined
+using the induced B<vq+ 1)-structure, then c(1fF) = Kervaire invariant of
+(M,F).
+    (Actually this holds with similar proof if F is a framing on the q-skeleton
+of M.)
+       PROOF. To define the Kervaire invariant, we do framed surgery on M 2q
+to make it (q -l)-connected. By Lemma 3.1, this will not affect the invariant
+c(1fF). Thus we may assume M 2q is (q - l)-connected, and in fact using more
+surgery we may assume Hq(M; Z2) = Z2 + Z2' with generators X, y, such that
+x-x = Y-Y = 0, X-Y = 1, (see [12]).
+                                 KERVAIRE INVARIANT                                 167
+
+            "*
+     Now q 1,3,7 the Kervaire invariant is defined as c(x) c(y) where c(x) =          °
+if the normal bundle of an embedded Sq dual to x is trivial, and c(x) = 1 if
+the normal bundle is non-trivial. Hence to prove the theorem when q"* 1, 3,7,
+it suffices to show that 't(x) = c(x) in this case.
+     Let SqcM 2q be an embedded sphere, ~q its normal bundle and let a: M 2q->
+TW) be the natural collapsing map. Let U E Hq( T(~); Z2) be the Thorn class,
+so that a*U = x, the cohomology class dual to Sq. Then the map f: M->
+K(Z2' q) such that f*c = x may be factored
+                                er     f'
+                              M ~ T(~) ~ K(Z2' q)
+where j'*(c) = U.
+    Now the map T(IJ M ) -> T('7 "') factors through T(IJ,'I) -> s'" -> T('7 n) since it
+comes from a framing, so that the dual map 1) factors
+
+                               X ~ S2Hk ~ LkM+ .
+Hence by Lemma 1.3, 't may be defined using (3 instead of 1).
+   Now suppose ~ is trivial, so that T(~) = Sq V S2 q• Then we have
+
+
+so that we may look at the map
+                                         Per "/3
+                                Sj2Hk   __ ~ LkT(~)
+
+
+                                 g:
+                                  '"       Lkf"
+                                                       Ipp
+                              Lk K(Z2' q) <------- LkSq
+where p: T(~) -> Sq comes from the trivialization of ~ and f": sq -> K(Z2' q) is
+such that f"*(c) = w, generator of Hq(Sq; Z2). It follows easily that
+
+
+where
+
+
+and
+                           g = (L kp).(L ka).(3: S2Hk ~ Sq •
+
+But if SqHlg(Lk(W))   "* 0, then g is a map of Hopf invariant 1, so that is Im-
+possible by the Theorem of Adams [1], if q        "*
+                                                1,3,7. Hence if c(x) = 0, then
+'t(x) = 0.
+      Now suppose c(x) = 1 so that ~q is non-trivial, and since ~q is stably triv-
+ial, it follows that ~q = "sq. So we must consider a map 0,
+168                                 WILLIAM BROWDER
+
+
+
+Set t = (,Lkf').o.
+       If 0 = (~?a) •   .e, then 1fr'(x) = SqH\(Lk(C»). Then the result follows from
+the following.
+       LEMMA 3.3. If ~q = "sq, q     * 1,3,7, and 0: S2Hk    -> T(~)   is any map such
+that
+                        0*: H2q+k("LkT(~); Z2) ~ H 2q+k(S2 q+k; Z2)
+is an isomorphism, then SqH\("Lk(C»)         * 0.
+     PROOF. First let us note that "Sq = normal bundle of the diagonal in
+Sq x Sq. Hence we have the natural map Sq x Sq ~ T(~) such that
+a*( U) = w ® 1 + 1 ® W E Hq(Sq x Sq; Z2)' Hence, if f": T(~) -> K(Z2' q) is
+such that f"*(c) = U, then (f" 0 a)*(c) = W ® 1 + 1 ® w. Embedding sq x Sq
+in S2Hl with trivial normal line bundle, we get
+                                a             I.J
+                           S2Hl ~ "L(sq x sq) ~ "LK(Z2' q)
+where J = f" ·a.
+            a
+     Now is the Hopf construction on the identity sq x Sq -> Sq x sq, and
+J = p(a x a), where a: sq -> K(Z2' q) such that a*(c) = w. Hence "LJ.o =
+h(J), the Hopf construction on 1. But h(J) = h(p)'s, where s: S2Hl->
+"L(K(Z2' q) /\ K(Z2' q») is a map such that s* is an isomorphism on H2H\ so that
+SqH\lfl("L(C») = s* SqH\IPl("L(C»). But SqH\IPl("L(C»)    *°by Lemma 1.7. Hence
+the lemma is proved for 0 = ("La).      a.
+     Now if 0' is another map 0': S2 q+k -> "LkT(~) such that 0'* is an isomorphism
+on H 2q+k, then 0' = 0 + i*(, where (E 1r2q +k(SHk) and i: SHk -> "LkT(~) is the
+suspension of Sq -> T(~), which comes from the inclusion of the fibre. Let
+a = "LkJ.o, l="LkJ.(i.() so that a+l=("LkJ).o'. Then by Lemma 1.6, Sqq+la +l =
+                                        *
+SqH\ + SqH\. But, if Sqq+\("Lk(C») 0, it follows easily that (has Hopf invari-
+ant 1, which is impossible by Adams [1). Hence Sqq+1 1 = and the lemma °
+follows.
+     This completes the proof of Theorem 3.2 if q 1,3,7. *
+     In case q = 1,3 or 7, one may give a similar proof, using the different
+definition of the Kervaire invariant (i.e., the Pontrjagin invariant) in these
+dimensions, which depends on a framing. Here the normal bundle ~q to an
+embedding Sq c M is always trivial, but the map 0: S2 q+k -> T(~) (as in (3.3»)
+plays an important role. We omit the details. (See [6, Ch. Ill, § 4).)
+     COROLLARY 3.4. If (M 2q, F) is a framed manifold and as a B<vq+1>-
+manifold (M, F) is cobordant to zero, then the Kervaire invariant of
+                             KERV AIRE INVARIANT                              169
+
+(M, F) = O.
+     This follows immediately from Theorem 3.2 and Lemma 3.1, using
+Poincare duality.
+     Hence if the image of Q~~amed in B(vq+1>-cobordism of smooth manifolds in
+dimension 2q is zero, then the Kervaire invariant of any framed 2q-manifold
+is zero. We will show in § 7 that this is the case if q *- 2 n - 1.
+                                4. Orientations
+     In this section we discuss some generalities about "orientations" or
+"liftings of the structural group" of a bundle, which will be convenient to
+have. Special cases of these results are well known such as in the case of
+Spin structures [13). We then apply these generalities to the case of B<v q +1 >-
+orientations.
+     Let,n be the canonical bundle over B, the classifying space for "bundles"
+in some category, (such as linear or PL bundles, or even spherical fibre spaces),
+and let '7n = n*(, n), the induced bundle over E, where n: E -> B is a fibre map.
+Let p: '7 ->, be the natural bundle map, and let ~ be a bundle in the category
+over a space X. An E-orientation of ~ is a bundle map b: ~ ->'7. Two E-orienta-
+tions bo, b1: ~ -> '7 are equivalent if there is an orientation b: ~ x 1->'7 where
+~ x I is the induced bundle over X x I and b(x, i) = b,(x), i = 0 or 1, x E~.
+     Let c: ~ ->, be a bundle map, and call an E-orientation b: ~ -> '7 canonical
+(with respect to c) if pb = c. Two canonical orientations bo, b1 will be called
+canonically equivalent if there is an equivalence b: ~ xl->'7 which is canonical
+for each t E 1.
+     Let us denote by 0(~) the set of equivalence classes of E-orientations of
+~, and by 0(~, c) the set of canonical equivalence classes of canonical E-orienta-
+tions of~. There is a natural map r;: 0(~, c) -> 0(~).
+    LEMMA 4.1.    r; is a one-to-one correspondence.
+     PROOF. First we show r; is onto. Let b: ~ -> '7 be an E-orientation of ~.
+Since, is universal, the maps c and pb, on ~ x 0 and ~ x 1 respectively, extend
+to a bundle map e: ~ x 1->,. If h: X x I->B is the map of base spaces covered
+bye, then by the covering homotopy theorem for n: E -> B, h is covered by
+h: X x 1-> E. Then the pair of maps (e, h) defines a map of ~ x I into the
+induced bundle n*(,) = '7 which defines an equivalence of b with a canonical
+orientation.
+     Now we show r; is one-to-one. Let bo, b1 be canonical E-orientations and
+let b: ~ x 1->'7 be an (ordinary) equivalence between them. We must find a
+canonical equivalence.
+170                            WILLIAM BROWDER
+
+     Now we define a bundle map a: ~ x I2 I X x (JI 2- "1 as follows. On
+~ x I x 0 U ~ x 0 x I U ~ x 1 x I we take a(x, t, s) = c(x), x E e, s = 0 or t = 0
+or 1. On ~ x 1 x I define a(x, t, s) = b(x, t). Since "1 is universal, a extends
+to a: ~ x [2-"1. Let h be the map, h: X x I x I -B covered by a, and note
+that if Y = X x I x 0 U X x I x 1 U X x 1 x I, h I Y is covered by a map
+H: Y -E. Since Y is a deformation retract of X x I2, the covering homotopy
+theorem implies that H extends to H: X x I2 - E. Then (a, H) together
+define a map ~ x I2_iJ, and on ; x I x 0 it yields a canonical equivalence be-
+tween bo and b1 •
+     This proves (4.1).
+    THEOREM 4.2. The set (9(~) of E-orientations of ~ is in one-to-one corres-
+pondence with the set of homotopy classes of cross-sections of f*(E), where
+f: X - B is a classifying map for e.
+     PROOF. By Lemma 4.1 it suffices to prove this for (9(~, c), where c covers
+f. Now homotopy classes of cross-sections of f*(E) are in one-to-one corres-
+pondence with homotopy classes of maps g: X - E such that 11:g = f, (where
+the projections of the homotopies are also constantly f). Now a map g: X - E
+such that 11:g = f, together with c:~-'Y, induces a bundle map b:~-iJ = 11:*("1)
+such that pb = c, i.e., a canonical E-orientation. Similarly a homotopy lying
+over f induces a canonical equivalence so that a map is defined from classes
+of cross-sections to (9(~, c). On the other hand, if b E (9(~, c), b covers a map
+g: X - E such that 11:g = f (since pb = c). Similarly, canonical equivalences
+yield homotopies lying over f, so that a map is defined from (9(~, c) to cross-
+sections. It is easy to verify these two maps are inverses, which proves
+Theorem 4.2.
+    COROLLARY 4.3. If 11:: E - B is a principal fibre space with group G,
+and if ~ has an E-orientation, then (9(e) is in one-to-one correspondence with
+[X, G]( = the homotopy classes of maps X-G).
+    For [X, G] is in one-to-one correspondence with sections of a trivial G-
+bundle, and since f*(E) has a section, it is trivial.
+     COROLLARY 4.4. If a bundle ~ over X has a B<vq+1>-structure, then the
+equivalence classes of B<vq+1>-structures are in one-to-one correspondence
+with elements of Hq(X; Z2)'
+     For B<vq+1> - B is a principal fibre space with group K(Z2, q).
+     We note that if f3: X - G and g: X - E such that 11:g = f, the new map
+corresponding to f3 is given by g'(x) = p(f3(x), g(x»), where x E X and p: G x E-
+E is the action of the group on E.
+                                KERV AIRE INVARIANT                                171
+
+                   5. Examples of manifolds with c(ofF) = 1
+     LEMMA 5.1. With any B<vq+1>-orientation on a x-manifold
+(ker r;*)q = Hq(M; Z2).
+    PROOF. Since x: B<vq+1> -> B is a fibre space with K(Z2' q) as fibre, and
+non-zero k-invariant V q + H
+                        x *: Hq(B< vq+1>; Z2) -----" Hq(B; Z2)
+is mono. Since M is a x-manifold, the classifying map c: M -> B is null-homo-
+topic and if a: M -> B<vq+1> is an orientation, xa = c, so x*a* = c*. Hence
+a*: Hq(M; Z2) -> H q(B<vq+1>; Z2) is zero, and by the Thorn isomorphism,
+                    T(b)*: Hq+,,(T(v JI ); Z2) -----" H q+n(T("1,,); Z2)
+is zero. Since for the map of Spanier-Whitehead duals,
+                r;: X -----" 1? M+ ,
+                r;* = (T(b)*)*, r;*: HHk(M; Z2) -----" Hq+k(X; Z2)
+is zero.
+      Let us consider Sq x Sq framed in S2H\ so that it is naturally framed
+cobordant to zero. Then, of course, c(ofF) = 0, for the ofF coming from this
+framing. We will construct a new B<v q + 1>-orientation on sq x sq so that
+c(ofF) = 1, for each q. (Here B may be taken to be B o", B PL", Bc", etc.)
+       Let q: sq x Sq -> B<vq+1> be the map coming from the framing above,
+which we may take to be the constant map, and let d: sq x sq --> K(Z2' q) be
+such that d*(c) = g 01 + 10 g, g = generator of Hq(Sq; Z2). Then let us
+consider the B<v q + 1>-orientation corresponding to q(x) = fl(d(x), q(x)) (see § 4).
+     THEOREM 5.2. With the B<vq+1>-orientation on Sq x Sq corresponding
+to q, c(ofF) = 1.
+      PROOF. By (5.1), ofF is defined on all of Hq(Sq x sq; Z2). We must show
+that ofF(g 01) = ofF(10 g) = 1, for this ofF. Now the map f: sq x Sq --> K(Z2' q)
+such thatf*(c) = g01, factors through the projection p: sq x sq -->sq, p(x, y) =
+x, i.e., f = rp where r: Sq --> K(Z2' q) is such that r*(c) = g. Hence we have
+     r;                   L"p         Lkr
+X -----" '2}(sq X sq)+ -----" "LkS q -----,,"Lk K(Z2' q) and if t = ("Lkp) .r;, and t' =
+("Lkr)·t, then clearly SqH\(("Lkr)*("Lkc)) = SqH\,("Lk(c)), and then ofF(g 01) =
+SqH\("Lk(g) ).
+      Now considering the natural embedding of Sq x Sq in S2H\ one can
+deduce from the Milnor-Spanier theorem that (sq x Sq)+ is stably (2q + 1)-
+dual to itself (see [4]) and that the inclusion in the second factor i: Sq --> Sq x sq
+is S-dual to p. Hence "L"i: "L"sq --> "L"(sq x sq)+ is S-dual to p, and the
+compositel: "L"Sr. --> "L"(sq x sq)+ -> T("1,,) is S-dual to t. It follows from
+172                             WILLIAM BROWDER
+
+[16] (see also [231) that SqH\: HHk('f.kSq; Z2) - H 2q+k(X; Z2) is dual to
+X(SqH l)l: H"'(T('Y",); Z2) - H",+q('f."'St; Z2). We will show X(SqH l)1 is non-zero
+so that SqH\ is onto, and hence SqH\('f.k(g)) *- O. (We use here the fact that
+if f: X - Y, Sqq+1, is calculated from SqHl in the space Y - , cX, and
+(Y-,cX)* = X* -rcY*, where * denot~s S-dual.) _
+     Now the composite map s = qi, sq ~ sq x sq ~ B<vq+1> generates
+the (kernel 7r*)q, 7r*: 7riB<vq+1» -7riB). Hence, 1f: B<vq+1> -. eH1 _ B which
+extends 7r, is an isomorphism on 7ri , i ~ q.
+     If q = 1,3, or 7, then the inclusion j: K(Z2, q) - B<vq+1>, is zero on
+7rq(K(Zu q)) = Z2' while if q *- 1,3,7,
+                         j*: 7rq(K(Z2, q)) ----+ 7rq(B<vq+1»
+is mono. This comes from the fact that there is a spherical fibre space over
+SHl with V q+1 *- 0 if and only if q + 1 = 2,4 or 8, (cf. proof of (5.3)).
+     Hence if q *- 1, 3, 7, then 1f* is onto 7rq+1(B), for any choice of 1f extending
+7r, while if q = 1,3 or 7, then s is homotopic to a constant so that
+                       B<vq+1> -. eH1 ~ B<vq+1> V SHl ,
+and if we choose 1f on SHl to go onto a generator of 7rq+1(B), 1f will map onto
+7rq+1(B). Therefore we may assume 1f *: 7r,(B<vq+1> -. eH1 ) -7r,(B) is an isomor-
+phism for i ~ q and onto for i = q + 1, and hence 7r,(1f) = 0 for i ~ q + 1. By
+the relative Hurewicz theorem, H,(1f) = 0 for i ~ q + 1 so that H,(1f; Z2) = 0
+and H'(1f; Z2) = 0 for i ~ q + 1. Hence 1f*: H'(B; Z2) -+ Hi(B<vq+1> -. eH1 ; Z2)
+is mono for i ~ q + 1, and hence 1f*(vq+1) *- O.
+      Now sq - sq x sq -+ B<vq+1> is covered by a bundle map inducing l,
+                       'f."'St ----+ 'f."'(sq x sq)+ ----+ T('Y",)
+and hence T('Y "') - I e"'+Hl is the Thorn complex of the induced bundle 1f*('Y.. )
+over B<vq+1> -. eH1 • Since1f*(vq +1) *- 0, it follows from (2.2) that X(SqHl) U *- 0
+in T(1f*('Y,,)), and hence X(SqH l)1 *- 0 on H"(T('Y,,); Z2), and SqH\('f.kg) *- 0,
+which completes the proof of Theorem 5.2.
+    We note the following
+    PROPOSITION 5.3. The structure q on Sq x sq comes from a framing if
+and only if q = 1,3, or 7.
+      PROOF. If q comes from a framing,        then q is homotopic to a constant
+map into B<vq+1>' so that if j: K(Zu q) -+ B<vq+1>' j*(7rq(K(Z2' q))) = 0 and
+a: 7rq+1(B) -+ 7rq(K(Z2, q)) is onto, where ais the boundary in the exact sequence
+of the fibre space. By the natural relation between a and the transgression
+in cohomology, since! E Hq(K(Zu q); Z2) transgresses to Vq+1, it follows that if
+                              KERV AIRE INVARIANT                              173
+
+oa generates 7rq(K(Z2' q»), a: SHl - B, then a*(vq+ 1) =1= 0 and a induces a
+spherical fibre space over SHl with V q+ 1 =1= O. But then the Thorn complex has
+two cells and X(SqHl) =1= 0 (by (2.2») so that q = 1,3, or 7 by Adams [1].
+     If q = 1, 3, or 7, then there are linear bundles over SHl with vqH =1= 0,
+and by an argument similar to the above, we may deduce from this that q is
+homotopic to a constant.
+     The structure q on sq x Sq determines an element of B<vq+1>-cobordism
+for any classifying space B, any q, which is non-zero since it has c(ofF) = 1.
+     THEOREM 5.4. The structure q on S q x S q has Thom invariant (in
+7rnHq(T('7))} which is equal to 2*(W), where 2: L. nK(Z2' q)- T('7) coming from
+                                     >,
+the inclusion of K(Z2' q) - B<vq+ 1 and where WE 7rnHq(L. nK(Z2, q») = Z2 is
+a generator.
+         The proof is routine from the definitions, using the fact that the Hopf
+construction on p: K(Z2' q) x K(Z2' q) - K(Z2' q) sends the generator of
+7r 2q + 1(L.K(Z2, q) 1\ K(Z2' q») into the generator of 7r2q + 1(L.K(Z2, q»).
+
+                              6. B<x>-cobordism
+     Let B be a classifying space as usual and let 7r: E - B be a fibre space
+with K(Z2' q) as fibre, induced by f: B - K(Z2' q + 1) such that f*(c) =
+x E HH1(B; Z2). Let '7 = 7r*('). In this section we shall compute 7r i (T('7») for
+i ~ n + 2q up to a group extension in terms of 7r*(T(,») andH*(T(,); Z2). If
+x = Vq-'-l and B is a classifying space for which transversality holds (such as
+BOn' Bson,B PL n , etc.), this gives us a computation ofB<vq+1>-cobordism in dimen-
+sions ~2q in terms of B-cobordism and H*(B; Z2). We will use these results
+in § 7 to prove that the Kervaire invariant of a framed manifold M 2q is zero
+unless q = 2 m - 1, and in that case that the Kervaire invariant is related to
+the element h!. in the Adams spectral sequence.
+     Below we use concepts of "disk" bundle associated with a fibre space with
+some fibre F, etc., notions which are explained in detail in an appendix. In-
+tuitively one may think of the "disk" bundle as the mapping cylinder of the
+projection and make analogous constructions as in the case of linear bundles.
+     Let 7r: E - B be a fibre space with fibre K(Z2' q), let B be connected, and
+let, be an (n - l)-spherical fibre space over B, n very large, '7 = 7r*'. Let
+1f: E - B be the disk bundle associated with 7r, with contractible fibre
+CK(Z2' q), (see appendix) and let it: E - B be the sum of 7r with a trivial So
+bundle, so that the fibre of it is L.K(Z2' q). Let 1f*(,) also be denoted by"
+and let 'Y = it*(,). The fibre space E = E+ U E_, where E+, E_ are two copies
+of E, E+ n E_ = E, and let IT' ,_ be the restrictions of 'Y to E+, E_, (so      '±
+174                             WILLIAM BROWDER
+
+corresponds to 'Y under the identification of E± with E).
+    Now we have the exact sequence of the pair (T('Y), Ten),
+                ••• ~ 7r n+i+l(T('Y), TC'n) ~ 7r n+i(T(,?))
+
+                    ~ 7r n+i(T('Y)) ~ 7r n+i(T('Y), T('?)) ~ ....
+
+    THEOREM 6.1. There is a map h: T('Y)/T('?) ---> K(Z2' q + 1) 1\ T('Y) which
+is an isomorphism on Hn+i( ; Z2) for i ;;;; 2q + 1, and with kernel h * in di-
+mension n + 2q + 2 generated by a single element X.
+    THEOREM 6.2. 7r n+i(T('Y), T('?)) ~ H n+i_q _ 1(T('Y); Z2)' for i;;;; 2q and is
+detected by the Hurewicz homomorphism mod 2, and for i = 2q + 1, the
+sequence
+           o ~ Z2 ~ 7r n+2Q+1(T('Y), T('?)) ~ Hn+Q(T('Y); Z2) ~ 0
+is exact, and the Z2 on the left is the kernel of the Hurewicz homomorphism
+and generated by the image of
+           7r nHQ+1(cLnK(Z2' q), LnK(Z2' q))   = Z2 in7r n+2Q+1(T('Y), T('?)).
+      The first part of (6.2) is equivalent to
+    THEOREM 6.2'. K(Z2' q + 1) 1\ T('Y) is a product of K(Z2' t i ) in dimen-
+sions ;;;;n + 2q + 2, with 7r*(K(Z2' q + 1) 1\ T('Y)) in these dimensions iso-
+morphic to H Q+1(K(Z2' q + 1); Z2) ® H*( T('Y); Z2)'
+      PROOF OF THEOREM 6.1. If we include the pair (E+, E) ---> eE, E_), this is
+an excision map so that it induces an isomorphism on H*( ; Z2)' Hence the
+map of Thom complexes above this inclusion (T('Y +), T('?)) ---> (T('?), T('Y _)) also
+induces an isomorphism in H*( ; Z2)' We are interested in stable homotopy
+groups and since n is assumed very large, we have that (T('Y+), T('?))-->
+ (T('Y+)/T('?), *) and (T('?), T('Y_)) ---> (T(,?)/T('Y_), *) induce isomorphisms on
+stable homotopy groups. Hence we shall deal with T(,?)/T('Y_). But if a: B--+
+E is the canonical cross-section a(B) c E_, then (E, E_) is homotopy equiva-
+lent to (E, a(B)), and T(,?)/T('Y_) is homotopy equivalent to T('?)/T('Y) , where
+'Y is identified with'? I a(B).
+      Now it: E --+ B is a fibre space with LK(Z2' q) as fibre, and with a cross-
+ section a: B ---> E (as above). Hence, it follows that there exists a
+ g' E HH1(E; Z2) such that j*(g') = L(c) the generator of HH1(LK(Z2' q); Z2),
+ where j: LK(Z2' q) ---> E is the inclusion. If g = g' - it*a*(g'), then j*(g) = L(c)
+also, for j*it* = (itj)* = 0 as itj is the constant map. Further
+                a*(g) = a*(g') - a*it*a*(g') = a*g' - a*g' = 0 ,
+since a*it* = (ita)* = (identity) *, (a being a section of it). Let (3: E-+
+                               KERVAIRE INVARIANT                            175
+
+K(Z2 ,q + 1) be such that f3*(c) = g and define
+
+            f: E ~ K(Z2' q + 1) x B        by f(x) = (f3(x), ft(x)) •
+Then the diagram
+                           ~    f
+                           E--~ K(Z2' q       + 1) x B
+                                              1   projection
+
+                                              B
+clearly commutes, so that f is a map of fibre spaces. Now
+                I' = f I ~K(Z2' q): ~K(Z2' q) ~ K(Z2' q + 1)
+is the usual suspension map, so that 1'* is an isomorphism on Hi( ; Z2) for
+i ~ 2q +1, and (kernelf'*)2H2 is generated bySqHl(c q +1 ) E H 2H2(K(Z2,q+1);Z2)'
+(see [19]).
+     Now from the commutative diagram
+
+                                                               ~B
+
+(S)
+
+
+we get a commutative diagram of Thorn complexes
+
+               ~n(~K(Z2' q)+) ~                T('?)            ~ T('Y)
+(T)
+                      7'   1        ~             71                   11
+              ~n(K(Z2' q + 1)+) ~ K(Z2' q + 1)+ 1\ T('Y) ~ T('Y) •
+Now the section a: B -E has the property that pJa is null-homotopic where
+Pl:K(Z2' q + 1) X B-K(Z2' q + 1) is the projection. Hence fa: B-K(Z2' q + 1) x B
+is homotopic to the inclusion of the second factor B-xo x B, XO E K(Z2' q + 1).
+Then we get
+
+
+(R)
+              K(Z2' q + 1)+ 1\ T('Y) ~ K(Z2' q + 1)+ 1\ T('Y)/T('Y)
+
+where T('Y) = Xo x T('Y) C K(Z2' q + 1)+ 1\ T('Y). Hence
+              K(Z2' q + 1)+ 1\ T('Y)/T('Y) = K(Z2' q + 1) 1\ T('Y) •
+      Using diagram (S), the fact that 1'* is an isomorphism on Hi( ; Z2) for
+i ~ 2q + 1, and kernel 1'* C H2H2(K(Z2' q + 1); Z2) is generated by one element
+Sq H l(C q + 1), we get using the spectral sequences of the two fibre maps that
+176                            WILLIAM BROWDER
+
+                 f*: Hi(K(Z2' q + 1) x B; Z2) ~ HiCE; Z2)
+is an isomorphism for i ~ 2q + 1, and j'* maps (kernel f7H2 isomorphically
+onto (kernel f'*)2H2. Hence (kernel f*)2H2 is generated by a single element Y,
+and j'* Y = SqHl(Cq +J. Similarly, it follows that (cokernel f*)2H2 is generated
+by a single element Z and j*(Z) = L(C-Sql c).
+     Then using the Thorn isomorphism for the spherical fibre spaces 'Y, ,?, etc.,
+we find that in diagram (T),
+            J*: Hi+n(K(Z2' q + 1)+ /\ T('Y); Z2) ~ Hi+n(T(,?); Z2)
+is an isomorphism for i ~ 2q + 1, and (kernel J*)2 H 2 is generated by a single
+element X = <I>( Y), (<I> is Thorn isomorphism) and i'*(X) = Ln(SqHl Cq +1) =
+S q H l(L n cq+1). This proves Theorem 6.l.
+      To prove Theorem 6.2 we have to compute H*(K(Z2' q + 1) /\ T('Y); Z2)
+and show that it is a free module over the Steenrod algebra a2 in dimensions
+ ~n + 2q + 2, with basis in dimension l isomorphic to Hl-q-l(T('Y); Z2)'
+l ~ 2q + 2 + n.
+       Now we have the following well known lemma. Let a be a connected,
+locally finitely generated (!.f.g.) Hopf algebra over a field, associative as an
+algebra, (see [14]).
+      LEMMA 6.3. If F is a free !.f.g. module over a in dimensions ~r, Fi = 0
+for i < 0, and M is any !.f.g. module over a, with Mi = 0 for i < n, then
+F 0 M is free over a in dimensions ~ r + n, with basis, V 0 M, where
+F = a 0 V (where 0 is as modules over the Hopf algebra a, see [23]).
+      PROOF. F 0 M is additively isomorphic to a 0 V 0 M in dimensions
+~r    + n, and has the structure of an a-module using the diagonal map, i.e.,
+if ofra = Ei ai 0 a:,
+                      a(a0v0m) = E i a/i0 v 0 a;m
+where ofr: a -> a 0 a is the diagonal of a. We will show that F       0  M is iso-
+morphic as an a-module to a0(V0 M) where a(a0(v 0 m») = aa0(v0 m).
+                                                                    0
+     Since a 0 (V 0 M) is free over a, the inclusion V 0 M -> F M extends
+to a map of a-modules, f: a 0 (V 0 M) -> F       ® M.
+     Now we show that fis onto in dimensions ~r+n. By induction supposef
+isontoEi<",a0Vi0McF®Min dimensions ~r+n, andletx E a0V",0M,
+dimension x = s ~ r + n, (where if m < 0, this is trivial). Assume by a second
+indll'ttion that f is onto ak 0 V", 0 M, k < l, (where for k = 0 this is obvious).
+Let a 0 v 0 mEal 0 V", 0 M. Since a is connected, ofra = a 01 + Ei ai 0 a:,
+dim a i < l. Then
+                                KERVAIRE INVARIANT                              177
+
+    f(a®(v®m)) = a(l®v®m) = Eiai®V®a~m + a®v®m.
+
+Hence a ® v ® m - f(a ® (v ® m)) E Ek<l Ci'k ® Vm ® M, so that
+a ® v ® m - f(a ® (v ® m)) E (image f) by induction, and hence f is onto
+Ci'l ® V m ® M. Hence by induction Ci' ® V m ® M c image f, so by induction f
+is onto.
+      But F ®M and Ci' ® (V ® M) are isomorphic as graded vector spaces, and
+finite dimensional in each dimension (i.e., l.f.g.). Hence f is an isomorphism
+in dimensions ~ r + n.
+      We apply Lemma 6.3 to Ci' = Ci'2' the Steenrod algebra, F =
+H*(K(Z2' q + 1); Z2)' r = 2q + 2, M = H*(T('n); Z2)' n = n.                 Hence
+H*(K(Z2' q + 1) /\ T(,); Z2) is free over Ci'2 in dimensions ~2q + 2 + n,
+so that K(Z2' q + 1) /\ T(,) is homotopy equivalent to a product of
+K(Z20 ki)'s in these dimensions where the homotopy groups are isomorphic to
+HH1(K(Zu q + 1); Z2) ® H*( T(,); Z2) in these dimensions, by Lemma 6.3.
+      Let t: T('?)/T(,) ----> K(Z2' n + 2q + 2) such that t*(c) = <D(Z). Then
+           J x t: T('?)/T(,) ---- (K(Z2' q + 1) /\ T(,)) X K(Z2' n + 2q + 2)
+is a map into a product of K(Z2' kJ's, (J x t)* is an isomorphism on
+Hn+i( ; Z2), i ~ 2q + 1, (J x t)* is onto for i = 2q + 2, and kernel (J x t)2H2
+is generated by X, where
+                 3'*(X) = SqH\Lncq+1) E Hn+2H2(Ln K(Z2' q + 1); Z2) •
+Then in dimensions ~ n + 2q + 2, J x t is the projection into the first stage
+of a generalized Postnikov system for T('?)/T(,) (generalized meaning we
+use products of Eilenberg-MacLane spaces). Using diagram (T), since
+SqHl(L ncQ+1) generates (kernel l't+2H2, it follows that, for a generator
+WE 1r n+2Q+l(Ln+1K(Z2' q)), 3*(W) generates the Z2 subgroup of 1r n+2Q+l( T('?)/T(,))
+detected by the element X, considered as a cohomology operation.
+    This completes the proof of Theorem 6.2.
+
+                  7. The Kervaire invariant of framed manifolds
+    In this section we show that the image of framed cobordism Q~~amed in
+  <v
+B o +1>-cobordism is zero if q *- 21 - 1, so that by Corollary 3.5 the Kervaire
+       Q
+
+
+invariant is zero if q *- 21 - 1.
+    If q = 21 -1, we shall show that image Q~~amed in Blv + 1>-cobordism is the
+                                                               Q
+
+
+subgroup generated by (sq x sq, q) (see § 5) if the element h7 in the Adams
+spectral sequence (see [2]) represents an element in the stable homotopy
+178                              WILLIAM BROWDER
+
+groups of spheres, and the image Q~~amed is 0 otherwise. But for (sq x sq, q),
+c(oJr) = 1, (see (5.2») so that we get
+    THEOREM 7.1. There exists a framed manifold M 2q of Kervaire in-
+variant 1 if and only if q = 21 - 1 and the element h7 in the Adams spectral
+sequence represents an element of the stable homotopy groups of spheres.
+    COROLLARY. There is a framed manifold of dimension 30 with Kervaire
+inva'i'iant 1. Equivalently, the Kervaire manifold of dimension 30 is
+smoothable.
+    It has been proved by Mahowald and Tangora (Topology 6 (1967), 349-
+370 § 8) that hi persists to E= in the Adams spectral sequence. Hence the
+corollary follows from (7.1).
+    Coupling this example with the framed S' x S" S3 X Sa, and S7 x S7 of
+Pontrjagin, we get
+     There are framed manifolds of Kervaire invariant 1 in dimensions
+2,6,14, and 30.
+    Now the inclusion of the fibre of '7 induces the map Sn -> T('7) and the
+                                           <v
+question about the image of Q~~amed in B o q + 1>-cobordism is, by transversality,
+equivalent to the question: "What is the image of 7rn+2q(sn) in 7r n+2q(T('7»)?"
+      Consider the exact sequence of the pair (T('Y), T('7»):
+
+       ... ~ 7r2q+Hn ( T('Y) , T('7») ~7r2q+n( T('7») L   7r2q+n( T('Y»)~ .••
+Since by the theorem of Thom, T('Y) = IT K(Z2' t;), so that the Hurewicz
+homomorphism is mono in T('Y) , it follows that
+                    image (7rn+zisn») C image 0 C 7r n+zq(T('7») .
+We first prove
+    PROPOSITION 7.2. image (7rn+2q(sn»)co(.J*(7rn+2q+l(cLn K(Z2' q), LnK(Z2' q»)))
+so that the only possible non-zero element in image 7rn+2isn) is the Thom
+invariant of (sq x sq, q).
+    Here, i: (cLnK(Zu q), LnK(Z2' q») -> (T('Y), T('7») is the map of Thom com-
+plexes induced by J: (CK(Z2' q), K(Z2' q») -> (E, E), (see § 6).
+     PROOF OF PROPOSITION 7.2. We consider the map of i: Sn -> T('7), and
+suppose a: Sn+2 q -> Sn represents some element of 7rn+2q(sn). Then pia is
+homotopic to zero, so we may factor L(ia) through the map 7): T('Y)/T('7) ->
+LT('Y). Since we are considering a stable homotopy group, it suffices to study
+L(ia) = (Li)(~a).
+     If we set Y = Sn      en +2H " we get a commutative diagram (see [18]),
+                         "-'Cl
+                                KERV AIRE INVARIANT                                    179
+
+                                                          La
+                                                        -->      S n+l - - > ••.
+(S)
+
+
+which yields a map of exact sequences (coefficients Z2 throughout)
+                                 (.1*             il*                    La*
+      Hk(sn+2 Q) ~ Hk(sn) ~ Hk(y) ~                     H"(sn+2Hl)       ~     Hk(sn+l)
+
+(H)                      ri*                ri:                ri:                 r
+                                                                                   (Li)*
+                     Hk( T(?)) ~ Hk( T('Y)) ~ Hk(T('Y)/T(?))             L     Hk(LT(?))
+
+where the horizontal sequences are the usual cohomology exact sequences.
+      Since J*7r n+2Q+l(cLn K(Z2' q), Ln K(Z2' q)) is the kernel of the Hurewicz
+homomorphism mod 2 in (T('Y), T(?)) (by Theorem 6.2), it follows that Proposi-
+                                                            °
+tion 7.2 is equivalent to the statement that i: = in diagram (H). So we
+                                                                     °
+consider, in (H), k = n + 2q + 1, and we note that i:r;* = since (Li)* = in            °
+this dimension, and i:r;* = (La)*(Li)*. Hence, if x E Hk( T('Y)/T(?)), and
+i:(x) =F 0, then (j'*x =F 0. Now T('Y) is (in the stable range) a product of K(Z2' t i ),
+so that (j'*x corresponds to a 1st order cohomology operation mod 2. Now
+(j*: Hk(sn+2Hl) -> Hk( Y) is an isomorphism for k = n + 2q + 1, so that
+i:«(j'*)(x) = (j*i:(x) =F 0, and hence the operation corresponding to (j'*x is non-
+zero in Y. But by the result of Adams [1], the only pt order cohomology
+operations mod 2 which can be non-zero in a space Y with only two cells are
+Sq\ Sq2, Sq4 and Sq8, and since (j'*x changes dimension by an odd integer
+2q + 1 and q > 0, we get a contradiction.
+                                        °
+     Hence it follows that i: == and the Proposition 7.2 is proved.
+     Thus to prove Theorem 7.1 it remains to determine under what conditions
+the element in the kernel of the Hurewicz homomorphism in 7r n+2Q+l( T('Y)/T(?))
+may be in the image of i,*, (where i, is as in diagram (S) above). We will do
+this in a similar fashion to the proof of Proposition 7.2, but in order to do
+this we must identify the k-invariant X of T('?)/T('Y), and find out which
+elements in 7rn+2Q(sn) can be detected by the second order cohomology opera-
+tion which X will determine.
+     Let C E HH1(K(Z2' q + 1); Z2) be the generator, U E Hn( T('Y); Z2) the Thom
+class, and Wi E Hi(Bo; Z2) the Stiefel-Whitney classes of 'Y, Vi E Hi(Bo; Z2) the
+Wu classes, so that Wi'-' U = Sqi U, Vi'-' U = X(Sqi) U, where X: (f2 -> (f2 is the
+canonical anti-automorphism of the Steenrod algebra.
+     PROPOSITION 7.3. The first non-zero k-invariant of T('Y)/T(?) is given
+by
+180                                     WILLIAM BROWDER
+
+            x = SqHl(C'--' U) + c '--' Vq+t '--' U + EO&i&q (SqiC) '--' (W j '--' U)
+                                                       i+j=q+l
+
+                                                                            (see (6.1) and (6.2'») .
+    To prpve this proposition we need the following elementary lemmas,
+which generalize the standard property of the Euler class.
+    LEMMA 7.4. If j: X -> (X, Y) is the inclusion, x E Hn(x, Y; Z2), then
+Sqn(x) = x,--,j*x.
+    PROOF. Sqnx = x 2 = X'--' j*x, by the standard property of relative cup
+product.
+    LEMMA 7.5. If g E HHl(E, E; Z2) is the generator, where E is the total
+                                               >
+space of the fibre space rr: B O<vq+1 -> B o, E is the associated "disk bundle",
+then SqHl(g) = g,--,vq+1 •
+    PROOF. By (7.4) SqHlg = g'--' (j*g) where j: E -> (E, E). But J"*g is the
+lowest dimensional element in kernelrr*,
+                          rr*: HHl(Bo; Z2) ----+ HHl(B o<vq+1>; Z2)
+so j*g = "k-invariant" of rr = Vq+1 •
+    PROOF OF (7.3). By (6.1), (6.2') X is the unique non-zero element in
+(kernel h*)n+2H2, h: T('Y)/T('7)->K(Z2' q + 1) 1\ T('Y). Now h*(c,--,U) = g'--'U
+(where H*( T('Y)/T('7); Z2) is considered as a left H*(E, E; Z2) module). Hence
+          h*(SqHl(c'--' U») = SqHl(g'--' U) = Ei+j=Hl (Sqig)'--'(SqjU)
+                            = g '--' Vq+1 '--' U + Ei+j=Hl (Sqig) '--' (w j '--' U) .
+                                                            i<q+l
+
+But h *(c '--' Vq+1 '--' U) = g '--' Vq+1 '--' U, and h *(Sqic '--' (w j '--' U») = Sqig,--, (w j '--' U)
+(since h * is a map of Ci'2-modules, and also of H*(Bo; Z2) modules)" Hence, it
+follows that h*(X) = 0. But X"* 0, since J'*(X) = ~n(SqHlc)                             "*  0, where
+                                                                           °
+J': ~n K(Z2' q + 1) -> K(Z2' q + 1) 1\ T('Y) (since J'*(I) = where I is the ideal
+generated by H*(Bo; Z2»)' Hence X is the first non-zero k-invariant of
+T('Y)/T('7), and Proposition 7.3 is proved.
+     Now if is: Sn+2Hl -> T('Y)/T('7) (from diagram (S») represents a non-zero
+element in rr n+2q+l(T('Y)/T('7») then it is detected by the functionalI st order
+cohomology operation defined by X. Then we shall show that the composite
+map
+                                  (~i)(~a): S n+2Hl ----+ ~ T('7)
+
+will be detected by a functional 2nd order operation which X defines in a
+natural way, and we shall use the theory of Adams [1] of second order co-
+                              KERVAIRE INVARIANT                             181
+
+homology operations to study it.
+    To define a second order cohomology operation, we consider the composite
+map
+                       0'              h
+                 T(,) ~ T(,)/T('Y) ~ K(Z2' q + 1) /\ T(,) .
+Now T(,) is a product of K(Z2' t.)'s in the stable range, and by (6.2'),
+K(Z2' q + 1) /\ T(,) is a product of K(Z2' t;)'s in these dimensions, so that the
+composite d = hO' is a map of "generalized Eilenberg-MacLane spaces", and
+using the methods of Adams [1], is a universal model for certain 2nd order
+co homology operations. On the other hand (hO')*(X) = 0 since h*(X) = 0 so
+that, in the notation of [1], the pair (d, X) defines a stable 2nd order
+cohomology operation <D. Since K(Z2' q + 1) /\ T(,) is a product of many
+K(Z2' t;)'s, <D is an operation of many variables.
+    PROPOSITION 7.6. The functional operation associated with <D detects the
+element aJ*(w) E 1rn+2i T('Y») , where w generates 1r n+2Q+l(Ln+lK(Z2, q») .
+    PROOF.    First we recall the construction of <D from (d, X) following
+Adams [1].
+     The map d gives us a map of generalized Eilenberg-MacLane spaces which
+is realized geometrically in our context as
+                       0'              h
+                 T(,) ~ T(,)/T('Y) ----+ K(Z2' q + 1) /\ T(,) .
+Then we let p: U ---> T(,) be the induced fibre space from the path fibration
+over K(Z2' q +1)/\ T(,) , so that the fibre F = Q(K(Z21 q + 1) /\ T(,») is a
+generalized Eilenberg-MacLane space. Given a space Y, and a map a: Y--->
+T(,) (which is essentially a collection of elements in H*(Y, Z2») such that
+(hO')a~O (which means that the 1st order operation d is zero on this collection),
+we lift the map a to at: Y ---> U, such that pal = a. The choice of maps a l
+depends on an element of [Y, F].
+    Let X' E Hn+2H'(U; Z2) be such that k*(X')=a*(X), k:F---> U is inclusion,
+             a*: Hn+2H2(K(Z2' q + 1) /\ T(,); Z2) ----+ Hn+2Ht(F; Z2)
+the cohomology suspension. Then <D is defined as at(X') and the ambiguity
+of <D depends on the choice of at and X' with the above properties.
+     We show first that for Y = T('Y), a: Y ---> T(,) the natural map a = 15 in-
+duced from the bundle map p, we can choose a" X' so that <D = O.
+     Since we are dealing with stable operations we consider the suspended
+situation (where we have made obvious identifications which are valid in the
+dimension range of our interest).
+182                              WILLIAM BROWDER
+
+
+
+
+Then a 2 is defined as the map of "fibre spaces" induced by the map h', so that
+h is the map on fibres. Such interpretations are valid in the stable range;
+here U = QU', a 1 = Qa2 • Now k'*(X') = X, and h*(X) = 0 so by exactness,
+a:(X') E image 15'*. Hence X' E H*(U'; Z2) may be changed by an element in
+                                         a:
+image p'*, X" = X' + p'*(a) so that X" = O.
+     On the other hand, since the functional operation associated with X
+detects J*(w), it follows from naturality that the functional operation associ-
+ated with X" detects YJ*J*(w) = 1:(aJ*(w»), which completes the proof of (7.6).
+     Let i: S'" -> T("I) be the inclusion of a fibre. Then from Proposition (7.2),
+and (7.6), it follows that i*7r",+2q{S"') *- 0 if and only if the functional opera-
+tion <I> (using the map S'" ~ T("I) ~ T('Y) to define it) detects an element
+in 7r,,+2q(S"). Such a question can be settled in many cases using the tech-
+niques of Adams [1] and ]2].
+     Now to detect an element of 7r"+2q(S"') the operation <I> reduces to an op-
+eration of one variable 'I" of dimension n. Adams [1] has described such 2nd
+order operations in terms of Ext~2(Z2' Z2), which is the E2 term in the Adams
+spectral sequence. It follows from Adams work that 'I" corresponds to some
+relation in the Steenrod algebra Cl'2' and we will try to identify it.
+     Now the element X E H"+2q+2(K(Z2, q + 1) 1\ T('Y); Z2) can be written in
+the form Eaic. where a. E Cl'2 and Ci are part of an Cl'2-base for the free Cl'2-module
+H*(K(Z2' q + 1) 1\ T('Y); Z2)' We consider the map
+                     d = hO': T('Y) ~ K(Z2' q + 1) 1\ T('Y)
+and a map
+                               .;: K(Z2' n) ~ T('Y)
+where .;*( U) = C E H"'(K(Z2' n); Z2) is the generator, and 'I" is defined on
+                  g = hO'';: K(Z2' n) ~ K(Z2' q + 1) 1\ T('Y) •
+Then g*(c i ) = Mc), bi E Cl'2' and the relation defining 'I" is Ea.b. = O.
+    Since K(Z2! q + 1) 1\ T('Y) is (q + n)-connected, it follows that dimension c.
+~ q + 1 + n for all i. We recall some theorems of Adams (see [1, § 2.1, § 3.8
+and Th. 2.5.1]).
+                              KERVAIRE INVARIANT                                 183
+
+      THEOREM 7.7 (Adams). A basis over (1'2 for stable 2nd order co homology
+operations of one variable is in natural one-to-one correspondence with
+a basis (over Z2) of Ext~: (Zz, Zz). Further there exist elements
+hi E Ext~:i (Z2' Z2) = Primitive elements of (1'; in dimension 2i , so that these
+{hi} are a basis for Ext~: (Z2' Z2) and so that the products hjhi , j ;;;; i ;;;; 0,
+j =1= i + 1, form a basis for Ext~: (Zz, Z2)'
+    The following theorem is also contained in the work of Adams (see [1, in
+particular Lemma 2.2] and [2]).
+     THEOREM 7.8. Let 'I' be a stable 2nd order co homology operation based on
+the relation in the Steenrod algebra Eiaib; = 0, ai, b; E (1'2' Then 'I' detects an
+element in 7r*(S") if and only if (hjh k) (Eaibi) = Eihj(ai)hk(b;) =1= 0 for some
+j,k and (hjh k) is a permanent cycle in the Adams spectral sequence.
+     Here hi E Extt:i (Z2' Z2) is considered as an element of Hom z2 «(1'2;, Z~),
+which annihilates decomposable elements, and hi(Sq2i) =1= O.
+       Now our operation 'I' is based on the relation Eaib; = 0, where dimension b;
+;;;; q + 1, dimension aibi = 2q + 2. Hence for dimension reasons,
+                                                                           if j > k .
+    Hence the only element in Ext~: (Z2' Z2) which may have a non-zero value
+on Ea;b; is M, so that 'I' cannot detect an element in 7r"+2q(S") if q + 1 =1= 2k.
+Hence there is no framed manifold M 2q of Kervaire invariant 1 if q =1= 2k - 1,
+which proves part of Theorem 7.1.
+    Now suppose q = 2k - 1. Consider
+         X= SqHl(t_U) + EHj=qH(Sqit)_(WjU) + t-vqH-U,
+                                  0.:iiii;;:;!q
+
+
+the k-invariant of T('Y)/T("1). Since q + 1 = 2k, SqHl is indecomposable, and it
+follows that X(SqHl) = SqHl + D, where DE subalgebra of (1' generated by
+Sq2\ i < k. Hence VqH = w qH + e, where e E subalgebra of H*(Bo; Z2) generated
+by Wi' i < q + 1, (see [25]). Then X = SqHl(t_U) + EO;:;;i;:;;q'i-Xi-U where
+r.
+~,
+            T.T(Z2, q + 1)', Z)
+   E Hi+Hl( AI                  and x· E HH1-i(B 0,. Z)
+                             2 '"                       2.
+
+     Now t - U goes to X(SqHl)U in H*(TCY); Z2)' so that b1 = X(SqHl) and
+since q = 2k - 1, hk(X(SqHl») = 1. Also a 1 = SqH\ so (M)(a1b1) = 1.
+     Let us write ECj-Xj- U = E i <;;2 aici , a i E (1', Ci are generators of
+H*(K(Z2' q + 1) 1\ T('Y); Z2) over (1', so that dimension Ci ;;;; q + 1. It follows
+that if dimension C2 = q + 1 and dimension C; > q + 1 for i > 2, then
+(hd(Ea;c;) =h k(a 2 ). Now a2 E (1'Hl, so (hi) (Eaici) =1= 0 if and only if a2 =SqHl+D
+where D is a decomposable element in (1'2' But C2 = t - U, so that would mean
+that a2c2 = SqHl(t_ U) + D(c- U) and hence.1'*(a2c2) = SqHl(t,,+q+l) + D(t,,+qH)
+where
+184                              WILLIAM BROWDER
+
+              i': L"(K(Z2' q + 1)) ~ K(Z2' q + 1) 1\ T('Y) •
+Now since dimension Ci > q + 1, for i > 2, it follows that 1'*(ci ) = eiL"cq+1
+where ei E a, so that 1'*(aici) = aieiL"cq+l' Hence 1'*(aici) = SiL"Cq+1 where
+Si is a decomposable element of a when i > 2, while 1'*(a2c2) =
+SqH 1L"c q +1 + DL"c q +1 and SqHl is indecomposable since q + 1 = 2k. Hence
+1'*CLi0i:2aiCi) *0. But Ei<;;2aici = E(j '--' Xj '--' U where (j E H*(K(Z2' q+ 1); Z2)'
+                                              °
+Xj E H*(Bo; Z2)' Now J'*«( '--' x '--' U) = if dimension x > 0, X E H*(Bo; Z2)'
+since l' is induced by the inclusion map K(Z2' q + 1) -- K(Z2' q + 1) x BD, and
+('--' x '--' U = ('--' p*(x) '--' U where p: K(Z., q + 1) x BD -- BD is the projection on
+the second factor. Hence 1'*(E(i '--' Xi '--' u) = 0, and hence hHE(i'--'X i'--' U) =
+0. Therefore, hHX) = h%(SqHl(C'--' U))       *      0, and it follows that the image of
+             <v
+Q~~amed in B o q + 1>-cobordism is non-zero if and only if q = 2k -1 and h% persists
+to E= in the Adams spectral sequence. Then the remainder of Theorem 7.1
+follows from Proposition 7.2 and Theorem 5.2.
+
+                                      Appendix
+
+     "Disk" bundles, etc. In this appendix we describe some constructions of
+fibre spaces which we used in §§ 6 and 7. One could use different construc-
+tions, analogous to those of linear bundle theory, but it is harder to verify
+the necessary facts with this approach. We refer to [20] for the constructions
+used here.
+     Let f: A -> B be a map. Using the mapping cylinder construction we may
+replace f by an equivalent map g: A -> C so that g is an inclusion with the
+homotopy extension property.
+     Consider the function space Cl, and the two projections r, l: Cl -> C,
+r(a) = a(I), l(a) = a(O), for a E Cl. Both rand l are fibre maps, where the
+homotopy lifting is functorial, using the path defined by the homotopy in C
+to define the homotopy in the path space. The fibres of rand l are just the
+path space P of C beginning at a base point, so are contractible.
+     Let r': C' --A be the induced fibre space over A from r: Cl -> C, so C' =
+{(x, a) E A x Cl such that x = r(a) = a(I)}. Then i: A -> C' is defined by
+i(x) = (x, a x) where ax(t) = x all t. Then r' and i are inverse homotopy equiv-
+alences. We have a commutative diagram
+
+
+
+
+where p(x, a) = a.
+                               KERVAIRE INVARIANT                                  185
+
+     Define g': C' -> C by g' = lp. Clearly l is homotopic to r so g' is homotopic
+to gr', and further g' is a fibre map, using the functorial lifting of homo-
+topies.
+    If f: A -> B is a fibre map it is routine to show that there is a homotopy
+equivalence of fibre spaces
+                                      A~C'
+
+
+
+
+so that the new situation is equivalent to the original, for homotopy theory.
+So we replace f by g'.
+     Now C' C Cl, and the fibre of l: Cl -> C is contractible, being the based
+path space of C. Hence we shall call l: Cl -> C the "disk bundle" or "cone
+bundle" of g' (or f) and its fibre is a contractible space containing the fibre of
+g'. Further, the pair (C l, C') satisfies the homotopy extension property, since
+the pair (C, A) does, and (Cl, C') is a fibre pair (under r) over (C, A).
+     Then we may define the "Whitney sum of f: A -> B with a trivial SO-
+bundle" as follows. Take two copies of Cl, call them C~ and C~ and identify
+C~ and C'- to get C. Since the covering homotopies for C~, C~ and C' are all
+given functorially by the same formula, the covering homotopy theorem works
+for C = C~ U C~. Clearly the fibre of g: C-> C is the union of the fibres, so
+it is P+ U P_ with P+ n P_ = fibre of g'. Since P+ and P_ are contractible,
+this is homotopy equivalent to the suspension of the fibre of g'.
+     We will use the following (abuse of) notation.
+     If IT: E -> B with fibre F, 7f: E -> B will be the "disk bundle" of IT with
+fibre cF, ft: E -> B will be the sum of IT with a trivial SO-bundle, with fibre LF
+and E/E = E/E_ is the Thom complex of IT.
+      PRINCETON UNIVERSITY
+
+                                    BIBLIOGRAPHY
+[1] J. F. ADAMS, On the non-existence of elements of Hopf invariant one, Ann. of Math.
+          72 (1960), 20-104.
+[2]         , On the structure and applications of the Steenrod algebra, Comment. Math.
+         Helv. 32 (1958), 180-214.
+[3] C. ARF, Untersuchungen iiber quadratische Formen in Korpern der Charakteristik 2,
+         J. Reine Angew. Math. 183 (1941), 148-167.
+[4] M. ATIYAH, Thom complexes, Proc. L.M.S. 11 (1961), 291-310.
+[5] W. BROWDER, "Homotopy type of differentiable manifolds," in Colloquium of Algebraic
+         Topology, Aarhus, 1962, p. 42-46.
+[ 6]        , Surgery on simply connected manifolds.
+[7] E. H. BROWN, Note on an invariant of Kervaire, Michigan Math. J. 12 (1965), 23-24.
+186                                WILLIAM BROWDER
+
+[8]            and F. P. PETERSON, The Kervaire invariant of (8k + 2)-manifolds, Bull. Amer.
+           Ma th. Soc. 71 (1965), 190-193.
+[9] A. RAEFLIGER, Knotted (4k - I)-spheres in 6k-space, Ann. of Math. 75 (1962), 452-466.
+[10] P. RILTON, Romotopy Theory and Duality, New York, 1965.
+[11] M. KERVAIRE, A manifold which does not admit any differentiable structure, Comment.
+           Math. Relv. 34 (1960), 257-270.
+[12]            and J. MILNOR, Groups of homotopy spheres: I, Ann. of Math. 77 (1963), 504-
+           537.
+[13] J. MILNOR, Spin structures on manifolds, L'Enseignement Math. 9 (1963), 198-203.
+[14]            and J. C. MOORE, On the structure of Hopf algebras, Ann. of Math. 81 (1965),
+           211-264.
+[15] S. P. NOVIKOV, Homotopy equivalent smooth manifolds: I, (in Russian), Izv. Akad. Nauk
+           SSSR, Ser. Mat. 28 (1964), 365-474.
+[16] F. P. PETERSON, Some non-embedding problems, Bol. Soc. Math. Mexicana, (1957),9-15.
+[17] L. PONTRJAGIN, Smooth manifolds and their applications in homotopy theory, Amer.
+           Math. Soc. Translations, Ser 2, II (1959), 1-114.
+[18] D. PUPPE, Homotopiemengen und Ihre Induzierten Abbildungen: I, Math. Z. 69 (1958),
+           299-344.
+[19] J-P. SERRE, Cohomologie modulo 2 des complexes d' Eilenberg-MacLane, Comment. Math.
+           Relv. 27 (1953), 198-232.
+[20]          , Groupes d' homotopie et classes de groupes abeliens, Ann. of Math. 58 (1953),
+           258-294.
+[21] M. SPIVAK, Spaces satisfying Poincare duality, Topology 6 (1967), 77-102.
+[22] N. STEENROD, Cohomology invariants of mappings, Ann. of Math. 50 (1949), 954-988.
+[23] - - - and D. B. A. EpSTEIN, Cohomology operations, Annals of Math. Study No. 50,
+           Princeton, N.J., 1962.
+[24] H. TODA, Composition methods in homotopy groups of spheres, Annals of Math. Study
+           No. 49, Princeton, N.J., 1962.
+[25] W. T. Wu, Les i-carres dans une varietC grassmannienne, C.R. Acad. Sci. Paris, 230
+           (1950), 918-920.
+
+                                (Received August 18, 1967)
+                                (Revised January 30, 1969)
+

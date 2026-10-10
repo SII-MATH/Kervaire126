@@ -1,0 +1,155 @@
+In \Cref{cnstr:barconstruction}, we recalled that $\MO \langle 4n \rangle$ can be computed via a two-sided bar construction.  In this section we give a description of the bar construction, valid through a range of homotopy groups, which is particularly well-suited to the explicit identification of the $d_2$ in the bar spectral sequence as a Toda bracket.  Our main result is \Cref{thm:cofiber}.
+
+\begin{comment}
+In later sections, we combine \Cref{thm:cofiber} with the results of \Cref{sec:Goodwillie} to understand the unit map
+$$\pi_{8n-1} \bS \to \pi_{8n-1} \MO \langle 4n \rangle,$$
+and in particular to prove Theorem \ref{thm:intro-main}.
+\end{comment}
+
+\begin{cnstr} \label{cnstr:square}
+Since $J$ is a map of non-unital rings in the homotopy category of spectra, the following diagram commutes up to homotopy:
+$$
+\begin{tikzcd}
+\sOf^{\otimes 2} \arrow{r}{1 \otimes J} \arrow{d}{m} & \sOf \arrow{d}{J} \\
+\sOf \arrow{r}{J} & \mathbb{S},
+\end{tikzcd}
+$$
+where $m$ is the product map.
+In the $\infty$-category of spectra, the fact that $J$ is a ring map is not a property, but actually additional structure.
+In particular, there is a \emph{canonical homotopy} $a$ filling the above square:
+$$
+\begin{tikzcd}[column sep = huge]
+\sOf^{\otimes 2} \arrow{dd}{m} \arrow{r}{1 \otimes J} & \sOf \arrow{dd}{J} \\ \\
+\sOf \arrow{r}{J} \arrow[Leftrightarrow]{ruu}{a} & \bS.
+\end{tikzcd}
+$$
+This homotopy $a$ may alternatively be viewed as a specific \emph{nullhomotopy} of $J \circ (1 \otimes J-m)$.
+Let $P$ denote the homotopy cofiber of the map
+$$
+\begin{tikzcd}[column sep=huge]
+\sOf^{\otimes 2} \arrow{r}{1 \otimes J-m} & \sOf
+\end{tikzcd}
+$$
+Then the homotopy $a$ provides a canonical factorization
+$$
+\begin{tikzcd}[column sep=huge]
+\sOf^{\otimes 2} \arrow{r}{1 \otimes J-m} & \sOf \arrow{d}{J} \arrow{r} & P \arrow[dashed]{dl} \\
+& \mathbb{S}.
+\end{tikzcd}
+$$
+\end{cnstr}
+
+The main theorem of this section is the identification of the Thom spectrum $\MO \langle 4n \rangle$ with the cofiber of the above map $P \to \Ss$ in a range:
+
+\begin{thm} \label{thm:cofiber}
+Let $C$ denote the  cofiber of the map $P \to \mathbb{S}$ constructed above.
+Then there is an equivalence of spectra $\tau_{\le 12n-2} C \simeq \tau_{\le 12n-2} \MO \langle 4n \rangle$.  Furthermore, the unit map
+$$\tau_{\le 12n-2} \mathbb{S} \to \tau_{\le 12n-2} \MO \langle 4n \rangle$$ agrees with the natural map $\tau_{\le 12n-2} \mathbb{S} \to \tau_{\le 12n-2} C$.
+\end{thm}
+
+Before proving \Cref{thm:cofiber}, let us recall \Cref{cnstr:barconstruction}.  \Cref{cnstr:barconstruction} says that the spectrum $\MO \langle 4n \rangle$ can be calculated as the geometric realization of a two-sided bar construction
+$$\MO \langle 4n \rangle = \left|\sBar(\bS,\spOf, \bS)_{\bullet} \right|.$$
+Here, the action of $\spOf$ on the leftmost $\bS$ is via $\epsilon$, and the action on the rightmost $\bS$ is via $J_+$.
+
+We may display this bar construction as a simplicial object,
+$$
+\begin{tikzcd}
+\cdots \arrow[r,yshift=-3ex] \arrow[r,yshift=-1ex] \arrow[r,yshift=1ex] \arrow[r,yshift=3ex]
+& \spOf^{\otimes 2} \arrow[r,yshift=-2ex,"\epsilon \otimes 1"] \arrow[r,"m"] \arrow[r,yshift=2ex,"1 \otimes J_+"]
+& \spOf \arrow[r,yshift=-1ex,"\epsilon"] \arrow[r,yshift=1ex, "J_+"] 
+& \bS,
+\end{tikzcd}
+$$
+where the leftward degeneracy maps are omitted.  The key point is that, if we only wish to study $\tau_{\le 12n-2} \MO \langle 4n \rangle$, we need only study the partial simplicial diagram
+$$
+\begin{tikzcd}
+\spOf^{\otimes 2} \arrow[r,yshift=-2ex,"\epsilon \otimes 1"] \arrow[r,"m"] \arrow[r,yshift=2ex,"1 \otimes J_+"]
+& \spOf \arrow[r,yshift=-1ex,"\epsilon"] \arrow[r,yshift=1ex, "J_+"] 
+& \bS.
+\end{tikzcd}
+$$
+In the language of \cite[Lemma 1.2.4.17]{HA}, this is a diagram $\Delta^{\text{op}}_{\le 2} \to \Sp$.
+
+\begin{lem} \label{lem:partialbar}
+Let $X$ denote the  colimit of the partial simplicial diagram $\Delta^{\mathrm{op}}_{\le 2} \to \Sp$ given by $\mathrm{Bar}(\bS,\spOf,\bS)_{\le 2}$.  Then there is an equivalence of spectra $$\tau_{\le 12n-2} \MO \langle 4n \rangle \simeq \tau_{\le 12n-2} X.$$
+\end{lem}
+
+\begin{proof}
+    Set $\mathrm{Bar}_{\leq k} = \abs{\sBar(\Ss, \spOf, \Ss)_{\leq k}}$. Then $\Ss = \sBar_{\leq 0}$ and $\MO \langle 4n \rangle$ is the  colimit of the $\sBar_{\leq k}$. We have a diagram
+    \begin{center}
+        \begin{tikzcd}[column sep=tiny]
+            \Ss \arrow[r] & \sBar_{\leq 1} \arrow[r] \arrow[d] & \sBar_{\leq 2} \arrow[r] \arrow[d] & \sBar_{\leq 3} \arrow[r] \arrow[d] & \cdots \arrow[r] & \MO \langle 4n \rangle, \\
+            & \Sigma \sOf & \Sigma^{2} \sOf^{\otimes 2} & \Sigma^{3} \sOf^{\otimes 3} & & 
+        \end{tikzcd}
+    \end{center}
+    where the vertical maps are the  cofibers of the horizontal maps. The result now follows from the fact that, when $k \geq 3$, $\Sigma^{k} \sOf ^{\otimes k}$ is $(12n)$-connective.
+
+%Applying $\pi_*$ to the full bar construction $\mathrm{Bar}(\bS,\spOf,\bS)$ yields a simplicial abelian group with layers
+%$$\pi_*\left( \sBar(\bS,\spOf, \bS)_s \right) \cong \pi_*\left((\spOf)^{\otimes s} \right).$$
+%The normalized chains of this simplicial abelian group form the $\sE^1$-page of the spectral sequence associated to the simplicial object $\sBar(\bS,\spOf, \bS)_\bullet$, which takes the form
+%$$\sE^1_{s,t}=\pi_t\left((\sOf)^{\otimes s} \right) \Rightarrow \pi_{s+t} \MO \langle 4n \rangle.$$
+%If $s \ge 3$, the lowest homotopy group of $\sOf^{\otimes s}$ is in dimension at least $12n-3$, and so nothing survives to the $\sE^2$-page with $s \ge 3$ and $s+t<12n$.  The classes with $s+t=12n$ can be sources of differentials, and so can contribute to the calculation of $\pi_{12n-1} \MO \langle 4n \rangle$.  However, no elements with $s \ge 3$ contribute to the calculation of $\pi_{\le 12n-2} \MO \langle 4n \rangle$.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:cofiber}]
+In \Cref{lem:partialbar}, we established that $\tau_{\le 12n-2} \MO \langle 4n \rangle$ may be calculated as $\tau_{\le 12n-2}$ of the  colimit $X$ of a simplicial diagram
+$$
+\begin{tikzcd}
+\spOf^{\otimes 2} \arrow[r,yshift=-2ex,"\epsilon \otimes 1"] \arrow[r,"m"] \arrow[r,yshift=2ex,"1 \otimes J_+"]
+& \spOf \arrow[r,yshift=-1ex,"\epsilon"] \arrow[r,yshift=1ex, "J_+"] 
+& \bS,
+\end{tikzcd}
+$$
+where we have omitted the degeneracies from the notation.
+%$$
+%\begin{tikzcd}
+%\spOf^{\otimes 2} \arrow[r,yshift=-2ex] \arrow[r] \arrow[r,yshift=2ex]
+%& \spOf \arrow[r,yshift=-1ex] \arrow[l,yshift=1ex] \arrow[r,yshift=1ex] \arrow[l,yshift=-1ex]
+%& \bS \arrow{l}.
+%\end{tikzcd}
+%$$
+According to the cofinality statement of \cite[Lemma 1.2.4.17]{HA}, $X$ may be characterized as the lower right corner of the following cocartesian cube:
+$$
+\begin{tikzcd}[row sep={35,between origins}, column sep={45,between origins}]
+      & \spOf^{\otimes 2} \ar[rr,"1 \otimes J_+"] \ar[dd,"\epsilon \otimes 1" near end] \ar[dl,"m"] & & \spOf \ar[dd,"\epsilon"] \ar[dl,"J_+"] \\
+    \spOf \ar[rr,crossing over, "J_+" near end] \ar[dd,"\epsilon"] & & \mathbb{S}  \\
+      & \spOf  \ar[rr, "J_+" near end] \ar[dl,"\epsilon"] & &  \mathbb{S}  \arrow{dl}  \\
+    \mathbb{S} \arrow[rr,""] & & X. \ar[from=uu,crossing over]
+\end{tikzcd}
+$$
+We finish the proof by showing that the $X$ appearing in the cube is equivalent to the spectrum $C$ from the theorem statement.  Indeed, taking fibers in the vertical direction, we learn that $X$ is the total cofiber of the square
+$$
+\begin{tikzcd}[column sep= huge]
+\mathrm{fiber}(\spOf^{\otimes 2} \stackrel{\epsilon \otimes 1}{\longrightarrow} \spOf) \arrow{r} \arrow{d} &  \mathrm{fiber}(\spOf \stackrel{\epsilon}{\longrightarrow} \mathbb{S}) \arrow{d} \\
+\mathrm{fiber}(\spOf \stackrel{\epsilon}{\longrightarrow} \mathbb{S}) \arrow{r} & \mathbb{S},
+\end{tikzcd}
+$$
+which simplifies to the square
+$$
+\begin{tikzcd}[column sep= huge]
+\sOf \oplus \sOf^{\otimes 2} \arrow{r}{(1,1 \otimes J)} \arrow{d}{(1,m)} &  \sOf \arrow{d}{J} \\
+\sOf \arrow{r}{J} \arrow[Leftrightarrow]{ru}{1\oplus a} & \mathbb{S}.
+\end{tikzcd}
+$$
+The pushout of the arrows $(1,1 \otimes J)$ and $(1,m)$ is calculated as the cofiber of the map
+$$
+\begin{tikzcd} [column sep = huge, ampersand replacement=\&]
+\sOf \oplus \sOf^{\otimes 2} \arrow{r}{\begin{pmatrix} 1 & 1 \otimes J \\ -1 & -m \end{pmatrix}} \& \sOf \oplus \sOf,
+\end{tikzcd}
+$$
+or equivalently the cofiber of the map
+$$
+\begin{tikzcd} [column sep = huge]
+\sOf^{\otimes 2} \arrow{r}{1 \otimes J-m} & \sOf.
+\end{tikzcd}  
+$$
+This cofiber is the spectrum $P$ of the theorem statement.  To obtain the final sentence of the theorem, note that the unit map from $\bS$ to $\MO \langle 4n \rangle$ is the map from $\mathrm{Bar}(\bS,\spOf,\bS)_0$ into the geometric realization of the full bar construction.  This factors through the partial bar construction $|\mathrm{Bar}(\bS,\spOf,\bS)_{\le 2}| \simeq X$, via the map $\bS \to X$ that appears three times in the above cocartesian cube.
+\qedhere
+\end{proof}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Main"
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

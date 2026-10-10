@@ -1,0 +1,1788 @@
+                                               MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND
+                                                 EXTENSION PROBLEMS AMONG CW SPECTRA
+
+
+                                                             WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+arXiv:2412.10876v2 [math.AT] 22 Feb 2025
+
+
+
+
+                                                   Abstract. In this document, we describe the process of obtaining numerous
+                                                   Adams differentials and extensions using computational methods, as well as
+                                                   how to interpret the dataset uploaded to Zenodo [6]. Detailed proofs of the
+                                                   machine-generated results are also provided. The dataset includes information
+                                                   on 49 CW spectra, 180 maps, and 61 cofiber sequences. Leveraging these
+                                                   results, and with the addition of some ad hoc arguments derived through
+                                                   human insight, we successfully resolved the Last Kervaire Invariant Problem
+                                                   in dimension 126 [7].
+
+
+
+
+                                                                              1. Introduction
+                                              In this project, we first compute the Adams E2 -pages and maps for many CW
+                                           spectra using the computer program ./Adams, developed by the first author [4].
+                                           All relevant spectra and maps have been uploaded to the Zenodo repository [6]
+                                           and are described in detail in Section 2. Additionally, another program, ./ss, also
+                                           developed by the first author [4], computes Adams differentials and extensions. The
+                                           resulting data are included in the Zenodo repository and described in Section 3.
+                                              The program ./ss also generates proofs for all computed results, which are or-
+                                           ganized into a comprehensive resource we refer to as the Table of Proofs. This pro-
+                                           gram partially employs the Generalized Leibniz Rule and the Generalized Mahowald
+                                           Trick—two theorems established in the paper [7] addressing the Last Kervaire In-
+                                           variant Problem. These theorems enable the program to derive new differentials
+                                           and extensions from previously computed ones. Detailed instructions on how to
+                                           interpret and navigate the Table of Proofs are provided in Section 4.
+                                              In Section 5, we present several charts and tables of machine-generated Adams
+                                           differentials that are particularly relevant to the solution of the Last Kervaire In-
+                                           variant Problem.
+
+                                                                             2. Adams E2 data
+                                           2.1. Adams E2 -pages. Tables 1 provides a list of 49 CW spectra considered in this
+                                           work, along with the maximum internal degrees computed for the Adams E2 -pages
+                                           of the corresponding spectra.
+
+                                               For a CW spectrum X, the Adams E2 -page data for X is available in the database
+                                           file X_AdamsSS.db within kervaire_database.zip. Alternatively, the data can be
+                                           accessed as three plain-text table files:
+                                                  • X_AdamsE2_generators.csv (for generators),
+                                                  • X_AdamsE2_relations.csv (for relations),
+                                                  • X_AdamsE2_basis.csv (for F2 -basis).
+                                                                                        1
+2                   WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+        CW spectra              max(t)    CW spectra                  max(t)
+        S0                       261      C2h6                         200
+        tmf                      261      DC2h6                        200
+        C2                       200      C2_C2                        180
+        Ceta                     200      Ceta_Ceta                    160
+        Cnu                      200      Cnu_Cnu                      180
+        Csigma                   200      Csigma_Csigma                180
+        CW_2_eta                 200      CW_2sigma_sigma              180
+        CW_eta_2                 200      CW_sigma_2sigma              180
+        CW_eta_nu                200      C2sigma                      200
+        CW_nu_eta                200      CW_2_V_eta                   200
+        CW_sigma_nu              200      CW_2_A_eta                   180
+        CW_nu_sigma              200      Joker                        200
+        CW_2_eta_nu              200      CW_eta_2_eta_Eq_2_nu         200
+        CW_nu_eta_2              200      CW_eta_2_eta_Eq_nu_2         200
+        CW_sigma_nu_eta          200      C2_Ceta                      200
+        CW_eta_nu_sigma          200      RP3_6                        199
+        CW_sigma_nu_eta_2        200      Fphi                         200
+        CW_2_eta_nu_sigma        200      RP1_4                        200
+        Csigmasq                 200      RP1_6                        183
+        C2h4                     200      RP1_8                        180
+        DC2h4                    198      RP1_10                       180
+        Ctheta4                  200      RP1_12                       178
+        C2h5                     200      RP1_256                      200
+        DC2h5                    200      RP3_256                      160
+        Ctheta5                  200
+
+                               Table 1. CW spectra
+
+                          id        name          stem    s
+                           0         [0]            0     0
+                           1      (h_1[1])          2     1
+                           2     (h_2^2[1])         7     2
+                           3   (h_0^3 h_3[1])       8     4
+                           4      (c_0[1])          9     3
+                           5    ((Ph_1)[1])        10     5
+
+                     Table 2. C2_AdamsE2_generators.csv
+
+These files are included in kervaire_csv.rar, available in the Zenodo repository.
+We illustrate these tables with examples. Tables 2–4 present the first few rows of the
+corresponding files for the spectrum C2 (the naming convention will be explained
+later).
+Notation 2.1. In the table of generators, a row with id = i is the i’th generator
+of the E2 -page of X. In this section we will denote this generator by xi if X is a
+ring spectrum or vi if X is a module over some ring spectrum (in our dataset there
+are only two ring spectra S0 and tmf). The columns stem,s are the degrees of
+     MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS                   3
+
+
+                                    rel        stem          s
+                                   0,1,0         0           1
+                                0,1,1;1,2,0      2           2
+                                   2,1,1         5           2
+                                   0,1,2         7           3
+                                1,1,2;4,1,0      8           3
+
+                      Table 3. C2_AdamsE2_relations.csv
+
+                            index    mon      stem       s       d2
+                              0        0        0        0
+                              0      1,1,0      1        1
+                              0        1        2        1
+                              0      1,2,0      2        2
+                              0      2,1,0      3        1
+
+                        Table 4. C2_AdamsE2_basis.csv
+
+the generators. The column name is the latex name we give to the i’th generator.
+However, currently not all generators have latex names. The column name might
+be sometimes vacant (filled with [NULL]).
+Notation 2.2. In the table of relations, consider the column rel for relations. If
+X is a ring spectrum, then 0,1;1,2,5,4 denotes the relation
+                                    x10 + x21 x45 = 0.
+If X is a module over the ring spectra R, then 0,1,3;1,2,5,4,7 denotes the
+relation
+                                  x10 v3 + x21 x45 v7 = 0
+where vi is the i’th generator of X and xj is the j’th generator of the ring spectrum
+R. In summary, the semicolon can be parsed as the plus sign and the monomials
+are sequences of sub- and upper-scripts whose lengths are even if X is a ring or odd
+if X is a module. The columns stem,s are the degrees of the relations which can be
+determined by the degrees of the generators.
+Notation 2.3. In the table of basis, the column mon is parsed in the same way
+as we parse rel for relations. The only difference is that each mon is a monomial
+so there should be no semicolon in the column mon. The columns stem,s are the
+degrees of the monomials. The column index is important. When there are
+multiple monomial basis elements in the same bidegree, they will be indexed by
+0, 1, . . . , k. We write
+                               [i] ∈ Exts,stem+s (X)
+to denote the monomial basis element with index i in Exts,stem+s (X). In the Table
+of Proofs (see Section 4), the element will be written as
+                                 X (stem, s) [i]
+in the info column. We can also write [i1 , i2 , ...] to denote the linear combination
+of monomials with indices i1 , i2 , . . . and [] to denote the zero element. The d2
+4                     WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+                                      keyword      π∗ (S 0 )
+                                        eta           η
+                                         nu           ν
+                                       sigma          σ
+                                        2nu          2ν
+                                       2sigma        2σ
+                                      sigmasq        σ2
+                                       theta4        θ4
+                                       theta5        θ5
+
+                   Table 5. Keywords in the names of CW spectra
+
+column represents the d2 differentials of the basis elements in the format [i1 , i2 , ...]
+we just described but in degree (stem-1,s+2). If it is empty, it means that the d2
+differential is trivial. If it is filled with [NULL], it means that the d2 differential is not
+calculated yet by the program ./Adams using the secondary Steenrod operations.
+   Next we explain our naming scheme for the above CW spectra. We chose to
+use plain text names for these objects because we want to use consistent names for
+computer codes, command-line arguments for ./Adams and ./ss, the website links
+of plots and the plain text machine proofs. Table 5 is a list of keywords we use in
+the name and the corresponding elements in π∗ (S 0 ) the stable homotopy groups of
+spheres.
+Notation 2.4. Let a,b,c,... be keywords, a, b, c, . . . be the corresponding ele-
+ments in π∗ (S 0 ) and |a|, |b|, |c| be the topological degrees of a, b, c, . . . . The following
+examples demonstrate our naming for the CW spectra.
+     • S0 is the sphere spectrum S 0 . tmf is the topological modular form tmf .
+     • Ca is the cofiber of a.
+     • CW_a_b is a three-cell complex such that the following two cofiber sequences
+        exist.
+                                Ca → CW_a_b → Σ|a|+|b|+2 S0
+                            S0 → CW_a_b → Σ|a|+1 Cb
+        The existence of such complex corresponds to a · b = 0 in π∗ (S 0 ).
+      • CW_a_b_c is a four-cell complex such that the following two cofiber se-
+        quences exist.
+                         CW_a_b → CW_a_b_c → Σ|a|+|b|+|c|+3 S0
+                          Ca → CW_a_b_c → Σ|a|+|b|+2 Cc
+        The existence of such complex corresponds to 0 ∈ ⟨a, b, c⟩ in π∗ (S 0 ).
+      • Inductively we can define CW_a_..._z as long as it exists.
+      • Ca_Cb is the smash product of Ca and Cb. tmf_X is the smash product of
+        tmf and X.
+      • CW_a_V_b is a three-cell complex such that the following two cofiber se-
+        quences exist.
+                                                top cell b
+                            Ca → CW_a_V_b −−−−−−→ Σ|b|+1 S0
+                                                top cell a
+                            Cb → CW_a_V_b −−−−−−→ Σ|a|+1 S0
+     MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS                   5
+
+
+     • DX is a k-fold suspension of the Spanier–Whitehead dual of X such that the
+       lowest dimension of the cells is 0.
+     • CW_a_A_b is equivalent to DCW_a_V_b.
+     • C2h4 is the same as CW_2_sigmasq. C2h5 is the same as CW_2_theta4. C2h6
+       is the same as CW_2_theta5.
+     • CW_a_b_V_c is a four-cell complex such that the following two cofiber se-
+       quences exist.
+                        CW_a_b → CW_a_b_V_c → Σ|c|+1 S0
+                        Cc → CW_a_b_V_c → Σ|a|+1 Cb
+     • CW_a_b_c_Eq_d_e is a five-cell complex such that the following two cofiber
+       sequences exist.
+               CW_a_b_V_d → CW_a_b_c_Eq_d_e → Σ|a|+|b|+|c|+3 S0
+             Ca → CW_a_b_c_Eq_d_e → Σmin{|a|+|b|+2,|d|+1} CW_c_A_e
+       The existence of such complex corresponds to d · e ∈ ⟨a, b, c⟩ in π∗ (S 0 ).
+     • Joker is equivalent to CW_2_eta_2_Eq_eta_eta.
+                                                                      n
+     • RPm_n is equivalent to the stunted real projective space RPm     for positive
+       integers m,n.
+     • Fphi is the suspension of F ϕ the fiber of the Kahn-Priddy map ϕ : RP1∞ →
+       S 0 (or the cofiber of ϕ).
+     • Fphik is the suspension of the k-skeleton of F ϕ for an integers k.
+Remark 2.5. All the CW spectra we considered are connective spectra. The
+current programs only work well with connective spectra.
+Remark 2.6. If there are two or more CW spectra with different homotopy types
+that satisfy the same naming condition, then the name represents all choices and
+we do not assume which one we pick. The current important input of the program
+is the existence of these cofiber sequences and the ones derived from these using
+the properties of triangulated categories. We will make assumptions on homotopy
+classes in the future when a new feature of the program is complete and it will enable
+the ./ss program to rigorously determine if there exists at least one homotopy class
+that satisfies multiple constraints.
+  All the CW spectra we consider are known to exist in the literature. One major
+example is the existence of tmf and its 15-skeleton
+                                CW_sigma_nu_eta_2,
+and we can get many subquotients of CW_sigma_nu_eta_2 and duals of these such
+as CW_2_eta_nu. The existence of C2h4, C2h5, C2h6 is due to the strong Kervaire
+invariant problem for σ 2 , θ4 , θ5 (See [1] [9]).
+2.2. Maps between Adams E2 -pages. Tables 6–9 give the list of maps between
+CW spectra we have considered and the maximum computed internal degrees of
+these maps. The maximum computed internal degree of a map f : X → Σk Y refers
+to the maximum T such that such that the induced map
+                                        s+AF(f ),t−k+AF(f )
+                       f : E2s,t (X) → E2                     (Y )
+is computed in the range t ≤ T .
+6     WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+    map                                  max(t)
+    S0__tmf                               261
+    C2__S0                                200
+    Ceta__S0                              200
+    Cnu__S0                               200
+    Csigma__S0                            200
+    C2__CW_2_eta                          180
+    Ceta__CW_eta_2                        180
+    Ceta__CW_eta_nu                       180
+    Cnu__CW_nu_eta                        180
+    Cnu__CW_nu_sigma                      200
+    CW_nu_sigma__Csigma                   199
+    CW_sigma_nu__Cnu                      199
+    CW_2_eta__Ceta                        200
+    CW_eta_2__C2                          180
+    CW_eta_nu__Cnu                        200
+    CW_nu_eta__Ceta                       200
+    C2__Q_CW_nu_eta_2                     194
+    Cnu__Q_CW_2_eta_nu                    197
+    CW_2_eta_nu__CW_eta_nu                190
+    CW_2_eta__CW_2_eta_nu                 200
+    CW_eta_2__Q_CW_nu_eta_2               200
+    CW_eta_nu__Q_CW_2_eta_nu              200
+    CW_nu_eta_2__CW_eta_2                 200
+    CW_nu_eta__CW_nu_eta_2                187
+    C2__CW_sigma_nu_by_eta                179
+    Ceta__Csigma_by_nu                    188
+    Csigma__Ceta_by_nu                    194
+    Csigma__CW_2_eta_by_nu                193
+    CW_2_eta_nu_sigma__CW_eta_nu_sigma    200
+    CW_2_eta_nu__CW_2_eta_nu_sigma        200
+    CW_eta_2__Csigma_by_nu                188
+    CW_eta_nu_sigma__CW_nu_sigma          200
+    CW_eta_nu_sigma__S0_by_2              200
+    CW_eta_nu__CW_eta_nu_sigma            200
+    CW_nu_eta_2__S0_by_sigma              200
+    CW_nu_eta__S0_by_sigma                197
+    CW_nu_sigma__C2_by_eta                197
+    CW_nu_sigma__S0_by_eta                199
+    CW_sigma_nu_eta_2__CW_nu_eta_2        200
+    CW_sigma_nu_eta__CW_nu_eta            200
+    CW_sigma_nu_eta__CW_sigma_nu_eta_2    200
+    Ceta__Q_CW_2_eta                      200
+    Ceta__Q_CW_nu_eta                     200
+    Cnu__Q_CW_eta_nu                      200
+    Cnu__Q_CW_sigma_nu                    200
+
+         Table 6. Maps between CW spectra
+MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS   7
+
+
+       map                                       max(t)
+       Csigma__CW_sigma_nu                        190
+       Csigma__Q_CW_nu_sigma                      200
+       CW_sigma_nu__CW_sigma_nu_eta               200
+       Csigma__Csigmasq                           193
+       Csigmasq__S0                               200
+       C2h4__Csigmasq                             200
+       Csigmasq__DC2h4                            196
+       Csigmasq__Csigma                           200
+       Csigmasq__C2_by_sigmasq                    184
+       Csigmasq__Q_C2h4                           200
+       Csigmasq__S0_by_sigmasq                    200
+       C2__C2h4                                   200
+       DC2h4__C2                                  193
+       C2h4__S0                                   200
+       C2__Q_DC2h4                                200
+       C2h4__S0_by_sigmasq                        199
+       C2__C2h5                                   200
+       C2h5__Ctheta4                              200
+       Ctheta4__DC2h5                             200
+       DC2h5__C2                                  200
+       C2h5__S0                                   200
+       C2__Q_DC2h5                                200
+       C2h5__S0_by_theta4                         200
+       Ctheta4__Q_C2h5                            200
+       Ctheta4__S0                                200
+       Ctheta4__C2_by_theta4                      168
+       Ctheta4__S0_by_theta4                      200
+       C2__C2h6                                   200
+       C2h6__Ctheta5                              200
+       Ctheta5__DC2h6                             200
+       DC2h6__C2                                  200
+       C2h6__S0                                   200
+       C2__Q_DC2h6                                198
+       C2h6__S0_by_theta5                         198
+       Ctheta5__Q_C2h6                            200
+       Ctheta5__S0                                200
+       C2__Q_CW_2_theta5_2_Eq_eta_theta5          136
+       Ctheta5__Q_CW_2_theta5_2_Eq_eta_theta5     198
+       DC2h6__Q_CW_2_theta5_2_Eq_eta_theta5       191
+       C2_C2__C2                                  180
+       C2__C2_C2                                  180
+       CW_2_eta__Q_RP1_6                          180
+       Ceta_Ceta__Ceta                            157
+       Ceta__Ceta_Ceta                            160
+       Cnu_Cnu__Cnu                               180
+
+              Table 7. Maps between CW spectra
+8          WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+    map                                             max(t)
+    Cnu__Cnu_Cnu                                     180
+    Csigma_Csigma__CW_sigma_2sigma                   180
+    Csigma_Csigma__Csigma                            180
+    Csigma__CW_sigma_2sigma                          180
+    Csigma__Csigma_Csigma                            180
+    C2sigma__S0                                      200
+    C2sigma__CW_2sigma_sigma                         160
+    CW_sigma_2sigma__C2sigma                         180
+    C2_C2__CW_2_V_eta                                160
+    C2__Q_CW_2_A_eta                                 139
+    CW_2_A_eta__C2_C2                                160
+    Ceta__Q_CW_2_A_eta                               160
+    Ceta__Q_CW_eta_A_nu                              160
+    Cnu__Q_CW_eta_A_nu                               160
+    Cnu__Q_CW_nu_A_sigma                             160
+    Csigma__Q_CW_nu_A_sigma                          160
+    CW_2_V_eta__S1                                   160
+    CW_2_V_eta__S2                                   160
+    Ceta__Joker                                      193
+    Ceta__Q_Joker                                    198
+    CW_2_eta__Joker                                  200
+    CW_eta_2__Q_Joker                                199
+    Joker__Ceta                                      200
+    Joker__CW_eta_2                                  200
+    C2__Q_Joker                                      197
+    CW_2_V_eta__Joker                                192
+    Joker__CW_2_A_eta                                182
+    CW_2_A_eta__Q_Joker                              180
+    CW_sigma_nu_eta_2__tmf                           200
+    C2_Ceta__C2                                      200
+    C2_Ceta__Ceta                                    200
+    C2__C2_Ceta                                      180
+    Ceta__C2_Ceta                                    180
+    Cnu__Q_CW_eta_nu_eta_Eq_nu_nu                    196
+    Csigma__Q_CW_nu_sigma_nu_Eq_sigma_sigma          192
+    CW_nu_eta__Q_CW_eta_nu_eta_Eq_nu_nu              195
+    CW_sigma_nu__Q_CW_nu_sigma_nu_Eq_sigma_sigma     194
+    C2__CW_eta_2_eta_Eq_2_nu                         193
+    C2__Q_CW_eta_2_eta_Eq_nu_2                       196
+    Cnu__Q_CW_eta_2_eta_Eq_2_nu                      199
+    CW_2_eta__Q_CW_eta_2_eta_Eq_2_nu                 198
+    CW_2_eta__Q_CW_eta_2_eta_Eq_nu_2                 198
+    CW_eta_2_eta_Eq_2_nu__Cnu                        193
+    CW_eta_2_eta_Eq_2_nu__CW_2_eta                   193
+    CW_eta_2_eta_Eq_nu_2__C2                         200
+
+              Table 8. Maps between CW spectra
+MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS   9
+
+
+         map                                  max(t)
+         CW_eta_2_eta_Eq_nu_2__CW_2_eta        200
+         CW_eta_2__CW_eta_2_eta_Eq_2_nu        193
+         CW_eta_2__CW_eta_2_eta_Eq_nu_2        200
+         Cnu__CW_eta_2_eta_Eq_nu_2             200
+         C2__CW_2_V_eta                        177
+         CW_2_V_eta__C2_Ceta                   200
+         CW_2_V_eta__CW_eta_2_eta_Eq_2_nu      200
+         Ceta__CW_2_V_eta                      200
+         C2_Ceta__CW_2_A_eta                   181
+         CW_2_A_eta__C2                        180
+         CW_2_A_eta__Ceta                      180
+         CW_2_A_eta__Q_C2_Ceta                 180
+         CW_2_A_eta__Q_CW_eta_2_eta_Eq_nu_2    180
+         CW_eta_2_eta_Eq_nu_2__CW_2_A_eta      183
+         Ceta__Q_CW_eta_2_eta_Eq_2_nu          197
+         CW_eta_2__Fphi                        199
+         RP5_8__RP3_4                          173
+         CW_eta_2__RP1_6                       180
+         RP1_6__CW_2_eta                       180
+         Fphi__RP1_256                         196
+         RP1_256__S0                           199
+         RP1_4__CP1_2                          200
+         RP1_256__RPm7_0                       172
+         RP1_10__RP7_10                        180
+         RP9_16__RP1_8                         156
+         RP3_4__RP1_2                          198
+         RP5_6__RP3_4                          198
+         RP1_4__RP2_4                          160
+         RP3_5__RP3_6                          160
+         RP3_4__RP3_6                          188
+         RP1_2__RP1_4                          199
+         RP1_4__RP1_6                          183
+         RP1_6__RP1_8                          175
+         RP1_8__RP1_10                         174
+         RP1_10__RP1_12                        178
+         RP1_12__RP1_256                       178
+         RP1_6__RP3_6                          179
+         RP3_6__RP5_6                          191
+         RP1_4__RP3_4                          200
+         RP1_6__RP5_6                          162
+         RP1_8__RP5_8                          176
+         RP1_12__RP9_12                        178
+         RP1_256__RP3_256                      160
+         RP3_6__RP3_256                        140
+         RP3_256__RP1_2                        160
+
+              Table 9. Maps between CW spectra
+10                  WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+                                   id       map
+                                   34        61
+                                   35        62
+                                   36   63;1,1,48,1,0
+                                   37     66;2,1,53
+                                   38        67
+
+                          Table 10. map_C2_to_C2h4.csv
+
+
+   For a map X__Y (we will explain the naming later), the data can be found
+in the database file map_AdamsSS_X_to_Y.db in kervaire_database.zip or in
+the plain-text table file map_X_to_Y.csv. (A few filenames created by a newer
+version of ./Adams drop ‘to’ from the names.) Table 10 lists some rows from
+map_C2_to_C2h4.csv to illustrate the following notation.
+Notation 2.7. In the table of maps, there are only two columns id,map. The map
+column gives us the image of the id’th generator from E2∗,∗ (X) to E2∗,∗ (Y ), which
+is parsed in the same way as we parse rel in the table of relations. For example,
+we can read from Table 10 that the image of v36 ∈ E2∗,∗ (C2) is
+                             v63 + x1 x48 v0 ∈ E2∗,∗ (C2h4).
+     We explain our naming scheme for these maps.
+Notation 2.8. Let X,Y,Z be names of CW spectra. The following examples demon-
+strate our naming for the maps between CW spectra.
+       • If X has strictly fewer cells than Y and there exists a unique k and a unique
+         inclusion (up to homotopy) such that X is a subcomplex of Σk Y, then X__Y
+         denotes this subcomplex map X,→ Σk Y.
+       • If X has strictly more cells than Y and there exists a unique k and a unique
+         quotient such that Σk Y is a quotient complex of X, then X__Y denotes this
+         quotient map X→ Σk Y.
+       • If we have a cofiber sequence
+                               X → Σm Y → Σn Z → ΣX
+         whose first map is a subcomplex inclusion denoted by X__Y and whose
+         second map is a quotient map denoted by Y__Z, then the third boundary
+         map is denoted by Z__Q_Y.
+       • For key words a,b,c,d,e, the map CW_d_e__CW_a_b_by_c is equivalent to
+                             CW_d_e__Q_CW_a_b_c_d_e.
+         Similarly, if we have a map with name X__Y_by_c it means that X has a
+         unique bottom cell and Y has a unique top cell and the map attaches the
+         bottom cell of X to the top cell of Y by c. In other words, these two cells
+         form a subquotient of the cofiber of the map which is equivalent to Cc.
+       • For numbers n,l,p,q where p < q = n − 1 < n < l, the map RPn_l__RPp_q
+         is equivalent to RPn_l__Q_RPp_l. In other words, the following three maps
+         form a cofiber sequence.
+                  (RPp_q__RPp_l, RPp_l__RPn_l, RPn_l__RPp_q)
+        MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS                   11
+
+
+        • In plain-text names, we use the letter m to denote the negative sign. For
+          example, RP1_256__RPm7_0 corresponds to the map
+                             RP1256 → ΣRP−7
+                                         0
+                                            ≃ Σ−7 RP18 .
+        • Note that RP0n ≡ S 0 ∨ RP1n . We use RP1_256__S0 to denote the truncated
+          Kahn-Priddy map, which is a composition of the following maps.
+                                                −1
+                           RP1256 → RP0256 → ΣRP−1 = S0.
+        • S0__tmf and X__tmf_X are the Hurewicz maps.
+    All the maps except the Hurewicz maps S0__tmf and X__tmf_X we considered
+are maps in the cofiber sequences generated by inclusions X ⊂ Y of CW complexes,
+i.e., the homology maps they induce are injective, surjective or trivial.
+
+2.3. Adams d2 differentials. Table 11 demonstrates the range of d2 differentials
+we have computed and used in the computer programs. The maximum internal
+degree refers to the maximum T such that all the d2 differentials of x ∈ E2s,t≤T are
+known for the corresponding CW spectra.
+   We refer the reader to [3] and [8] for the algorithm that computes d2 differentials
+using the secondary Steenrod operations encoded in a differential graded algebra.
+The first author also implement this algorithm in the program ./Adams. The d2
+data we computed is already contained the table of basis (see Notation 2.3).
+
+    3. Adams spectral sequences and Extension spectral sequences
+   In this section we describe how the computer program ./ss organizes the data
+of the Adams spectral sequence and the extension spectral sequence and how to
+read the differentials and extensions generated by the computer program.
+   The program ./ss organizes the Adams spectral sequence by the following.
+                  0 = B1s,t ⊆ B2s,t ⊆ B3s,t ⊆ · · · ⊆ Z3s,t ⊆ Z2s,t ⊆ E2s,t
+where Br is the subgroup of the image of dr differentials and Zr is the subgroup of
+dr -cycles. We can interpret Adams differentials as isomorphisms
+                           s,t          ∼
+                                        =               s+r,t+r−1
+(3.1)                dr : Zr−1 /Zrs,t −−→ Brs+r,t+r−1 /Br−1
+and therefore we can also consider the inverse
+                              s,t        ∼
+                                         =
+                                       s−r,t−r+1
+(3.2)               d−1   s,t
+                     r : Br /Br−1 −−→ Zr−1       /Zrs−r,t−r+1 .
+Table 12 is an illustration of how we store the spectral sequence in memory. In Table
+12 we can directly see that B211,123+11 (S 0 ) = B3 = B4 is generated by h20 x123,9 ,
+B511,123+11 (S 0 ) = B6 is generated by h20 x123,9 and h5 x92,10 , and Z611,123+11 (S 0 ) =
+Z5 = Z4 = Z3 is generated by h20 x123,9 , h5 x92,10 and x123,11,2 + x123,11 + h0 h6 [B4 ],
+etc.
+   We write differentials in terms of elements in E2∗,∗ . The value of d±1  r  should be
+viewed as a coset. By (3.1) and (3.2) we see that
+       • if we get dr (x) = y1 and dr (x) = y2 for two different reasons, then we have
+         y1 − y2 ∈ Br−1 ;
+       • if we get d−1                 −1
+                     r (x) = z1 and dr (x) = z2 for two different reasons, then we
+         have z1 − z2 ∈ Zr .
+12                    WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+                               X                                   max(t)
+                               S0                                   176
+                               C2                                   198
+                               Ceta                                 169
+                               Cnu                                  176
+                               Csigma                               180
+                               C2h4                                 167
+                               C2h5                                 170
+                               C2h6                                 176
+                               DC2h4                                134
+                               DC2h5                                138
+                               DC2h6                                145
+                               CW_2_eta                             159
+                               CW_2_eta_nu                          149
+                               CW_2_eta_nu_sigma                    149
+                               CW_eta_2                             144
+                               CW_eta_nu                            149
+                               CW_eta_nu_sigma                      149
+                               CW_nu_eta                            149
+                               CW_nu_eta_2                          149
+                               CW_nu_sigma                          149
+                               CW_sigma_nu                          148
+                               CW_sigma_nu_eta                      149
+                               CW_sigma_nu_eta_2                    149
+                               Joker                                135
+                               RP1_4                                135
+                               RP1_6                                128
+                               RP1_8                                125
+
+                          Table 11. Computed d2 differentials
+
+                     h20 x123,9                              d−1
+                                                              2    x124,9
+                     h5 x92,10                               d−1
+                                                              5    x124,6
+                11   x123,11,2 + x123,11 + h0 h6 [B4 ]       d7    h1 x121,17
+                     x123,11 + h0 h6 [B4 ]                   d3    h0 x122,13
+                     h0 h6 [B4 ]                             d2    h20 h6 M d0
+                     h0 x123,9                               d−1
+                                                              2    x124,8
+                10   x123,10 + h6 [B4 ]                      d−1
+                                                              3    x124,7
+                     h6 [B4 ]                                d2    h0 h6 M d0
+                     x123,9 + h0 x123,8                      d12   ?
+                9
+                     h0 x123,8                               d3    h0 x122,11 + h0 h6 M d0
+                8    x123,8                                  d3    x122,11 + h6 M d0
+
+                              Table 12. E2∗,∗ (S 0 ) stem=123
+
+
+     Consider a cofiber sequence
+                                              f          g
+                                          X−
+                                           →Y −
+                                              → Z.
+        MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS               13
+
+
+The program ./ss organizes the extension spectral sequence (see [7]) by the fol-
+lowing.
+                    s,t
+                   B∞   ⊆ fB s,t f s,t        g s,t g s,t   s,t
+                             0 ⊆ B 1 ⊆ · · · ⊆ Z 1 ⊆ Z 0 ⊆ Z∞ .
+
+where Br is the subgroup of the image of dr differentials and Zr is the subgroup of
+dr -cycles. We can interpret extensions as isomorphisms
+                                         ∼
+                                         =
+(3.3)         dfr : fZ s,t     f s,t       f s+r,t+r
+                       r−1 (X)/ Z r (X) −−→ B r      (Y )/ fB s+r,t+r
+                                                              r−1     (Y )
+
+when r > 0 and
+                                         ∼
+                                         =
+(3.4)           df0 : Z∞
+                       s,t
+                           (X)/ fZ s,t      f s+r,t+r
+                                   0 (X) −−→ B 0
+                                                            s+r,t+r
+                                                      (Y )/B∞       (Y )
+
+when r = 0.
+   We write differentials in terms of elements in E2∗,∗ . The value of (dfr )±1 should
+be viewed as a coset. By (3.3) and (3.4) we see that
+        • if r > 0 and we get dfr (x) = y1 and dfr (x) = y2 for two different reasons,
+          then we have y1 − y2 ∈ fB r−1 (Y );
+        • if r = 0 and we get df0 (x) = y1 and df0 (x) = y2 for two different reasons,
+          then we have y1 − y2 ∈ B∞ (Y ).
+        • we leave it to the reader to think about what happens to (dfr )−1 in similar
+          situations.
+   The program ./ss can compute a lot differentials and extensions based on the
+data structure we describe above and various theorems such as the Leibniz rule
+and naturality. The proofs are given in the Table of Proofs (Section 4). There are
+three manually added differentials: d5 h24         2 6            55      2
+                                           0 h6 = h0 P d0 and d6 h0 h7 = h0 x126,60 in
+the Adams spectral sequence of S 0 (from the image of J), and d3 v216 = β 5 g in the
+Adams spectral sequence of tmf , derived from power operations (Bruner–Rognes
+[2]).
+   The Adams differentials for a spectrum X produced by the machine are avail-
+able in the database X_AdamsSS.db within kervaire_database.zip. Alternatively,
+the data can be accessed in the plain-text table file X_AdamsE2_ss.csv within
+kervaire_csv.rar.
+   The extensions in a cofiber sequence X__Y__Z are available in the database
+cofseq_X__Y__Z.db within kervaire_database.zip. Alternatively, the data can
+be accessed in the plain-text table file cofseq_X__Y__Z.csv within kervaire_csv.rar.
+
+   For illustration, Table 15 is a table of some rows from the table of Adams spectral
+sequence S0_AdamsE2_ss.csv while Table 16 is a table of some rows from the table
+of extension spectral sequence cofseq_S0__C2__S0.csv.
+
+Notation 3.5. In the table of Adams spectral sequence, columns stem,s refers to
+the degrees of the elements in the base column. The columns base,diff should
+be parsed as linear combinations of the monomial basis in the corresponding bide-
+gree. If level=r<5000, the base column is hit by a dr -differential from diff. If
+level=10000-r>5000, the base column supports a dr -differential hitting diff. If
+level=9000, it means that base is a permanent cycle. If diff is filled with [NULL],
+it means that the value of diff is undetermined. The reader can see that we assume
+that all visible nontrivial differentials in the data are of length shorter than 1000.
+14   WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+     C2__C2_C2__C2
+     C2__C2_Ceta__C2
+     C2__C2h4__S0
+     C2__C2h5__S0
+     C2__C2h6__S0
+     C2__CW_2_V_eta__S2
+     C2__CW_2_eta__S0
+     C2__CW_2_eta_nu__Cnu
+     C2__CW_2_eta_nu_sigma__CW_nu_sigma
+     CW_2_eta__CW_2_eta_nu__S0
+     CW_2_eta__CW_2_eta_nu_sigma__Csigma
+     CW_2_eta__Joker__Ceta
+     CW_2_eta_nu__CW_2_eta_nu_sigma__S0
+     CW_eta_2__RP1_6__CW_2_eta
+     CW_eta_nu__CW_eta_nu_sigma__S0
+     CW_nu_eta__CW_nu_eta_2__S0
+     Ceta__C2_Ceta__Ceta
+     Ceta__CW_2_V_eta__S1
+     Ceta__CW_eta_2__S0
+     Ceta__CW_eta_nu__S0
+     Ceta__CW_eta_nu_sigma__Csigma
+     Ceta__Joker__CW_eta_2
+     Cnu__CW_nu_eta_2__C2
+     Cnu__CW_nu_eta__S0
+     Cnu__CW_nu_sigma__S0
+     Csigma__CW_sigma_2sigma__S0
+     Csigma__CW_sigma_nu__S0
+     Csigmasq__DC2h4__S0
+     Ctheta4__DC2h5__S0
+     Ctheta5__DC2h6__S0
+     Fphi__RP1_256__S0
+     RP1_2__RP1_256__RP3_256
+     RP1_2__RP1_4__RP3_4
+     RP1_2__RP1_6__RP3_6
+     RP3_4__RP3_6__RP5_6
+     S0__C2__S0
+     S0__C2h4__Csigmasq
+     S0__C2h5__Ctheta4
+     S0__C2h6__Ctheta5
+     S0__C2sigma__S0
+     S0__CW_2_A_eta__C2
+     S0__CW_2_eta__Ceta
+     S0__CW_2_eta_nu__CW_eta_nu
+     S0__CW_2_eta_nu_sigma__CW_eta_nu_sigma
+
+     Table 13. Cofiber sequences in the database
+    MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS                15
+
+
+                      S0__CW_eta_2__C2
+                      S0__CW_eta_nu__Cnu
+                      S0__CW_eta_nu_sigma__CW_nu_sigma
+                      S0__CW_nu_eta_2__CW_eta_2
+                      S0__CW_nu_eta__Ceta
+                      S0__CW_nu_sigma__Csigma
+                      S0__CW_sigma_nu__Cnu
+                      S0__Ceta__S0
+                      S0__Cnu__S0
+                      S0__Csigma__S0
+                      S0__Csigmasq__S0
+                      S0__Ctheta4__S0
+                      S0__Ctheta5__S0
+                      S0__DC2h4__C2
+                      S0__DC2h5__C2
+                      S0__DC2h6__C2
+                      S1__CW_2_A_eta__Ceta
+
+                  Table 14. Cofiber sequences in the database
+
+                           stem     s    base      diff       level
+                            15     1      0         0         9998
+                             0     17     0      [NULL]       9000
+                            11     6      0      [NULL]       9000
+                            14     3      0         0           2
+                            15     2      0         0         9997
+
+                           Table 15. S0_AdamsE2_ss.csv
+
+                      iC    stem     s    base         diff     level
+                       1     87     42     0            1         1
+                       1     127    3      0         [NULL]    9996
+                       1     126    7      1         [NULL]    9998
+                       1     118    19     0           1,3     10000
+                       1     134    4      0         [NULL]    9996
+                       1     118    21     0            0      10000
+
+                      Table 16. cofseq_S0__C2__S0.csv
+
+
+Notation 3.6. In the table of extension spectral sequence corresponding to a
+cofiber sequence
+                                         f       g
+                                        X−
+                                         →Y −
+                                            → Z,
+the column iC=0,1,2 refers to X,Y,Z where base lives respectively. The other
+columns are similar to those in Notation 3.5. If iC=1 and level=r<5000, then base
+is hit by an f -extension which jumps filtration by r. If iC=1 and level=10000-r>5000,
+then base supports an g-extension which jumps filtration by r.
+16                      WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+Remark 3.7. All the Adams differentials and extensions can be also visually ac-
+cessed from the website [5].
+
+                                            4. Proofs
+   In this section we explain the structure and notations in our machine generated
+proofs. We call it the Table of Proofs. The Table of Proofs is provided in two
+different forms in the Zenodo repo: a single sqlite3 database file proofs.db and 22
+plain-text tables proofs-part1.csv–proofs-part22.csv. The plain-text table is
+divided into 22 table files because there are more than 21 million rows in the table
+and some table viewers like Microsoft Excel has a row limit of one million. We
+encourage the reader to use the open source software DB Browser for SQLite to
+access the table in proofs.db. This tool can help you quickly search for what you
+want in big tables. You can also execute advanced SQL queries in the software.
+   The following are two typical rows in the Table of Proofs.
+
+     id        depth   reason   name                         stem   s    t     r   x     dx    info
+     248925    0       D        Ceta                         107    16   123   3   0,2   0,1   NULL
+     2042139   0       D        Cnu__CW_nu_eta_2__C2:1       15     2    17    2   0     0     NULL
+
+                       Table 17. Two rows from the Table of Proofs
+
+
+   The first column id refers to the line number in the table. The columns depth
+and reason refer to the structure of the proof which we will explain in more details
+later. The column name refers to the name of a CW spectra or a map in a cofiber
+sequence.
+      • If name is the name of a CW spectrum like the first row, then the columns
+        stem,s,r,x,dx refer to an Adams differential of the spectrum. In our
+        example, this is
+                                  d3 ([0, 2]) = [0, 1]
+           for
+                                     [0, 2] ∈ E216,107+16 (Ceta)
+          where [0, 2] denotes the linear combination of the 0th and 2nd basis ele-
+          ments in E216,107+16 in the basis table of Ceta and [0, 1] denotes the linear
+          combination in the bidegree that this differential hits.
+        • If name is the name of a map in a cofiber sequence, it is of the form
+          X__Y__Z:n where
+                                        f       g        h
+                                      → Σ? Y −
+                                     X−      → Σ? Z −
+                                                    → ΣX
+           is a cofiber sequence and n = 0, 1, 2 correspond to f, g, h respectively. The
+           columns stem,s,r,x,dx refer to an extension of the map. In our example
+           (second row of Table 17), consider the cofiber sequence
+                                 f                   g         h
+                           Cnu −             → Σ6 C2 −
+                               → CW_nu_eta_2 −       → ΣCnu.
+           The second row of the table indicates that there is a g-extension from the
+           permanent cycle
+                                  [0] ∈ E22,15+2 (CW_nu_eta_2)
+     MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS                        17
+
+
+        to the permanent cycle
+                                  [0] ∈ E24,15+4−6 (C2)
+        which jumps filtration by r = 2.
+  Next we explain the structure of the Table of Proofs. A typical proof of an
+Adams differential has the following form.
+Proof Structure 4.1. Assume that the value of an Adams differential dr (x) has
+four candidates y1 , y2 , y3 , y4 . (Usually the number of candidates is a power of two.)
+      • If dr (x) = y1 , propagate (by the Leibniz rule, naturality, ...). Get a contra-
+        diction.
+      • If dr (x) = y2 , propagate. Get a contradiction.
+      • If dr (x) = y3 , propagate. Get a contradiction.
+Then we can conclude that dr (x) = y4 .
+   The following 4 rows from the Table of Proofs is a concrete form of Proof Struc-
+ture 4.1.
+   id        depth   reason    name       stem    s    t       r   x   dx    info
+   325477    1       T         Csigma     116     10   126     4   1   3     1,2 proof1
+   325478    1       T         Csigma     116     10   126     4   1   0     0,2 proof2
+   325479    1       T         Csigma     116     10   126     4   1   0,3   0,1 proof3
+   325480    0       D         Csigma     116     10   126     4   1         NULL
+   Here the depth column can be thought as the nesting level of the latex itemize
+environment. Rows with reason=‘T’ correspond to assumptions (‘T’ is a symbol
+for ‘Try’). Each assumption row has a multi-line proof in the info column which
+explains why the assumption leads to a contradiction. For example, the actual
+content of proof1 is the following.
+  Get Csigma (116,10) d_3[1]=[1,2]. Apply the Leibniz rule with
+  S0 (0,1) d_3[0]=[] and get Csigma (116,11) d_3[]=[1,2].
+  However, Csigma (115,14) [1,2] is not in B_2.
+
+In proof1 the element Csigma (115,14) [1,2] refers to the element
+                              [1, 2] ∈ E214,115+14 (Csigma).
+Rows with reason=‘D’ correspond to the conclusions after we rule out enough
+candidates (‘T’ rows) of the value of Adams differentials or extensions (‘D’ is a
+symbol for ‘Deduction’).
+   Microsoft Excel tip: Since the text in the info column usually contains multiple
+lines, users who view the csv files with Excel should adjust the height of the edit
+box indicated by the following screenshot in order to view the whole content of the
+text.
+18                   WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+     Next we give examples of more complex proofs of Adams differentials.
+Proof Structure 4.2. Assume that the value of an Adams differential dr (x) has
+four candidates 0, y1 , y2 , y3 .
+      • If dr (x) = 0, propagate. Assume that dr+1 (x) has four possible values
+        z1 , z2 , z3 , z4 .
+           – Assume dr+1 (x) = z1 . Propagate. Get a contradiction.
+           – Assume dr+1 (x) = z2 . Propagate. Get a contradiction.
+           – Assume dr+1 (x) = z3 . Propagate. Get a contradiction.
+           – Assume dr+1 (x) = z4 . Propagate. Get a contradiction.
+      • If dr (x) = y1 , propagate. Get a contradiction.
+      • If dr (x) = y2 , propagate. Get a contradiction.
+Then we can conclude that dr (x) = y3 .
+   The following 8 rows from the Table of Proofs is an example of Proof Structure
+4.2.
+
+ id          depth   reason   name           stem   s    t     r   x   dx    info
+ 2463208     1       T        CW_nu_sigma    112    12   124   4   0         proof1
+ 2463209     2       T        CW_nu_sigma    112    12   124   5   0         proof2
+ 2463210     2       T        CW_nu_sigma    112    12   124   5   0   3     proof3
+ 2463211     2       T        CW_nu_sigma    112    12   124   5   0   0     proof4
+ 2463212     2       T        CW_nu_sigma    112    12   124   5   0   0,3   proof5
+ 2463213     1       T        CW_nu_sigma    112    12   124   4   0   0     proof6
+ 2463214     1       T        CW_nu_sigma    112    12   124   4   0   0,3   proof7
+ 2463215     0       D        CW_nu_sigma    112    12   124   4   0   3     NULL
+
+   The reader can imagine that there could be proofs with even more complex
+structure. Consider the following.
+Proof Structure 4.3. Assume that the value of an Adams differential dr (x) has
+four candidates 0, y1 , y2 , y3 .
+      • If dr (x) = 0, propagate. Assume that dr+1 (x) has two possible values z, 0.
+           – Assume dr+1 (x) = z. Propagate. Get a contradiction.
+        We get dr+1 (x) = 0. Assume that dr+2 (x) has two possible values w1 , w2 .
+           – Assume dr+2 (x) = w1 . Propagate. Get a contradiction.
+           – Assume dr+2 (x) = w2 . Propagate. Get a contradiction.
+      • If dr (x) = y1 , propagate. Get a contradiction.
+      • If dr (x) = y2 , propagate. Get a contradiction.
+Then we can conclude that dr (x) = y3 .
+   A proof with the above structure would be 8 rows from the Table of Proofs with
+(depth, reason)=(1,T), (2,T), (1,D), (2,T), (2,T), (1,T), (1,T), (0,D). If at some
+point in the proof we got a permanent cycle, we can even make assumptions about
+the value of extensions. The reader can find such examples in the Table of Proofs.
+   Next we describe other types of rows that can be computed or derived from
+former differentials labeled with different reasons.
+      • Rows with reason=‘d2’. This means that the d2 differential is calculated
+        by ./Adams using secondary Steenrod operation algorithm.
+     MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS                  19
+
+
+     • Rows with reason=‘N’. This means that we get a differential from a pre-
+       vious one by naturality.
+     • Rows with reason=‘G’. This means that we get a trivial differential for
+       degree reason.
+     • Rows with reason=‘XX’. This corresponds to the case that if we have
+       dr−1 (x) = 0 then we automatically get dr (x2 ) = 0.
+     • Rows with reason=‘XY’. This corresponds to the case that if we have
+       dr−1 (x) = 0 then no matter what dr (x) is (when there are two candi-
+       dates or more), we always get the same value for dr (xy) by Leibniz rule or
+       dr (f (x)) by naturality.
+     • Rows with reason=‘ToCs’. This means that in the extension spectral
+       sequence, we have tried all possible values of an extension (linear combina-
+       tions of elements in the E2 -page) and the outcome is that certain element in
+       the Adams spectral sequence should survive to the E∞ -page and it becomes
+       a summand of the value of the extension.
+     • Rows with reason=‘OutCsI’. This means that in the extensions spectral
+       sequence, two permanent cycles should be the same on the E∞ -page. Hence
+       the difference dx should be hit by an Adams differential. In those rows the
+       columns stem,s,t refer to the degree of dx in stead of x.
+     • Rows with reason=‘CsCm’. These are extensions obtained from some sim-
+       ple homotopy relations. For example, if x ∈ E∞ (S 0 ) is the target of an
+       η-extension, then it should detect a ν-torsion (dνn (η) = 0 for all n) because
+       we know that η · ν = 0 ∈ π∗ (S 0 ). The reader can find more property of
+       extensions in [7].
+     • Rows with reason=‘Syn’. This means that the differential is obtained by
+       the Generalized Leibniz Rule from the former row. The map used in the
+       Generalized Leibniz Rule and the conditions that the machine checked is
+       written in the info column.
+     • Rows with reason=‘SynCs’. This means that the row is an extension and
+       is obtained by the Generalized Mahowald Trick. The cofiber sequence used
+       in the Generalized Mahowald Trick and the conditions that the machine
+       checked is written in the info column.
+     • Rows with reason=‘SynIn’. This means that by the Generalized Ma-
+       howald Trick we determine that an element in the Adams spectral sequence
+       should be a permanent cycle and become a summand of an extension.
+     • Rows with reason=‘TI’, ‘DI’, ‘GI’. These are essentially the same as
+       rows with reason=‘T’, ‘D’, ‘G’ except that the columns stem,s,t refer
+       to the degree of dx in stead of x. For consecutive rows with reason=‘TI’
+       the machine are enumerating possible sources of some differential (when we
+       know dx is hit by some dr differential beforehand) instead of the possible
+       targets and the conclusion row is one with reason=‘DI’.
+
+
+Remark 4.4. If the reader wants to search for a proof of certain differential, then
+usually you need to search for the bidegree of the source of the differential with
+reason=‘D’ or reason=‘T’. Occasionally the machine knows the target should
+be hit by a certain differential first and deduces the differential by enumerating the
+possible sources. In this case you also need to search for the bidegree of the target
+of the differential with reason=‘DI’ or reason=‘TI’.
+20                 WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+                             5. Charts and tables
+   In this section we list the Adams differentials of S 0 in the range 122 ≤ stem ≤
+127, 0 ≤ s ≤ 25 and Adams differentials of Cν in the range stem = 126, 9 ≤ s ≤ 14.
+These differentials would play an important role in our solution of the Last Kervaire
+Invariant Problem [7].
+MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS                21
+
+
+     s    Elements                 dr    value
+          e0 g 3 ∆h1 g             d−1
+                                    2    g 2 ∆2 m
+    25
+          d30 g[B4 ]               d4    d40 x65,13
+    24    d0 g∆2 g 2               d2    d0 e0 g 3 ∆h22
+          P h1 x113,18,2           d−1
+                                    3    x123,20
+    23
+          h20 d0 x108,17           d3    d40 M g
+          e0 g 2 M g               d−1
+                                    3    h20 h3 x116,16
+    22    x122,22                  d3    h20 d0 x107,19
+          h0 d0 x108,17            d2    h20 d0 x107,18
+          h20 d0 e0 x91,11               Permanent
+    21
+          d0 x108,17               d2    d0 e0 ∆h22 [B4 ] + h0 d0 x107,18
+          h40 x122,16              d−1
+                                    2    h0 h3 x116,16
+    20    g 3 (C0 + h60 h25 )      d3    g 3 ∆h22 n
+          h0 d0 e0 x91,11          d2    h60 x121,16
+          h30 x122,16              d−1
+                                    2    h3 x116,16
+    19
+          d0 e0 x91,11             d2    h0 d20 x93,12
+          h20 x122,16              d−1
+                                    3    h20 x123,13,2
+    18    h1 x121,17               d−1
+                                    7    x123,11,2 + x123,11 + h0 h6 [B4 ]
+          d0 x108,14               d3    h0 d20 x93,12 + h50 x121,16
+          h0 x122,16               d−1
+                                    3    h0 x123,13,2
+    17
+          g 3 [H1 ]                d−1
+                                    3    ∆h22 x93,8
+          x122,16 + h0 x122,15,2   d−1
+                                    3    x123,13,2
+    16    ∆h22 x92,10              d−1
+                                    3    x123,13
+          h0 x122,15,2                   Permanent
+          x122,15                  d3    g3 A
+    15
+          x122,15,2                d2    h20 h4 x106,14
+    14    h0 x122,13               d−1
+                                    3    x123,11,2
+          h20 h6 M d0              d−1
+                                    2    x123,11
+    13    h21 x120,11                    Permanent
+          x122,13                  d3    h0 h4 x106,14
+          h0 h6 M d0               d−1
+                                    2    x123,10
+    12    h0 x122,11               d−1
+                                    3    h0 x123,8
+          h5 x91,11                      Permanent
+          x122,11 + h6 M d0        d−1
+                                    3    x123,8
+    11
+          h6 M d 0                       Permanent
+   9-10
+    8     h1 x121,7                d6    ?
+   0-7
+
+  Table 18. The classical Adams spectral sequence of S 0 for s ≤ 25
+  in stem 122
+22               WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+        s     Elements                            dr    value
+       25
+              h1 P h1 x113,18,2                   d−1
+                                                   2    x124,22
+       24     d20 ∆h22 M g                        d−1
+                                                   2    d0 x110,18
+              d0 MP x56,10                        d4    MP x69,18
+       23     g 2 ∆2 m                            d2    e0 g 3 ∆h1 g
+      21-22
+       20     x123,20                             d3    P h1 x113,18,2
+              e0 g x66,7 + h60 x123,13,2
+                  2
+                                                  d−1
+                                                   2    x124,17
+              h60 x123,13,2                       d−1
+                                                   2    h30 x124,14,2
+       19
+              h0 e0 x106,14 + h20 h3 x116,16      d−1
+                                                   3    e0 x107,12
+              h20 h3 x116,16                      d3    e0 g 2 M g
+              h50 x123,13,2                       d−1
+                                                   2    h20 x124,14,2
+       18     e0 x106,14 + h0 h3 x116,16                Permanent
+              h0 h3 x116,16                       d2    h40 x122,16
+              h20 x123,15 + h40 x123,13,2         d−1
+                                                   2    h0 x124,14
+              h40 x123,13,2                       d−1
+                                                   2    h0 x124,14,2 + h0 x124,14
+       17
+              d0 x109,13                                Permanent
+              h3 x116,16                          d2    h30 x122,16
+              h0 x123,15 + h30 x123,13,2          d−1
+                                                   2    x124,14
+       16     h30 x123,13,2                       d−1
+                                                   2    x124,14,2 + x124,14
+              h1 x122,15,2                        d−1
+                                                   3    h4 x109,12
+              x123,15                             d−1
+                                                   4    x124,11,2 + x124,11
+       15     h4 x108,14                          d−1
+                                                   5    h0 x124,9
+              h20 x123,13,2                       d3    h20 x122,16
+              h30 x123,11                         d−1
+                                                   2    h0 x124,11
+       14     h0 x123,13,2                        d3    h0 x122,16
+              ∆h22 x93,8                          d3    g 3 [H1 ]
+              h20 x123,11                         d−1
+                                                   2    x124,11
+       13     x123,13,2                           d3    x122,16 + h0 x122,15,2
+              x123,13                             d3    ∆h22 x92,10
+              h0 x123,11 + h20 h6 [B4 ]           d−1
+                                                   3    x124,9,2 + h0 x124,8
+       12     x123,12                             d−1
+                                                   3    x124,9 + h0 x124,8
+              h20 h6 [B4 ]                        d−1
+                                                   5    h6 A
+              h20 x123,9                          d−1
+                                                   2    x124,9
+              h5 x92,10                           d−1
+                                                   5    x124,6
+       11     x123,11,2 + x123,11 + h0 h6 [B4 ]   d7    h1 x121,17
+              x123,11 + h0 h6 [B4 ]               d3    h0 x122,13
+              h0 h6 [B4 ]                         d2    h20 h6 M d0
+              h0 x123,9                           d−1
+                                                   2    x124,8
+       10     x123,10 + h6 [B4 ]                  d−1
+                                                   3    x124,7
+              h6 [B4 ]                            d2    h0 h6 M d0
+              x123,9 + h0 x123,8                  d12   ?
+        9
+              h0 x123,8                           d3    h0 x122,11 + h0 h6 M d0
+        8     x123,8                              d3    x122,11 + h6 M d0
+       0-7
+
+     Table 19. The classical Adams spectral sequence of S 0 for s ≤ 25
+     in stem 123
+MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS                                23
+
+
+s     Elements                         dr    value
+      h11
+       0 x124,14,2                     d−1
+                                        2    h90 x125,14
+25    ix101,18                         d2    d20 ∆h22 x65,13 + h0 P d0 x101,18
+      d0 e0 ∆3 h1 g                    d2    d20 g 3 m
+      h10
+        0 x124,14,2                    d−1
+                                        2    h80 x125,14
+24
+      h20 d0 x110,18                   d−1
+                                        2    h0 e0 x108,17
+      h90 x124,14,2                    d−1
+                                        2    h70 x125,14
+      d0 g∆h22 [B4 ] + h0 d0 x110,18   d−1
+                                        2    e0 x108,17
+23
+      h0 d0 x110,18                    d−1
+                                        3    x125,20
+      d0 x110,19                             Permanent
+      h80 x124,14,2                    d−1
+                                        2    h60 x125,14
+      g 2 ∆2 t                         d−1
+                                        3    gx105,15
+22
+      x124,22                          d2    h1 P h1 x113,18,2
+      d0 x110,18                       d2    d20 ∆h22 M g
+      h70 x124,14,2                    d−1
+                                        2    h50 x125,14
+21
+      h0 d20 [∆∆1 g]                   d−1
+                                        2    d0 gx91,11
+      h60 x124,14,2                    d−1
+                                        2    h40 x125,14
+20
+      d20 [∆∆1 g]                      d−1
+                                        5    h1 x124,14
+      h50 x124,14,2                    d−1
+                                        2    h30 x125,14
+19
+      d0 x110,15                             Permanent
+      h0 x124,17 + h40 x124,14,2       d−1
+                                        2    x125,16
+18
+      h40 x124,14,2                    d−1
+                                        2    h20 x125,14
+      h30 x124,14                      d−1
+                                        2    x125,15
+      h20 x124,15                      d−1
+                                        2    h0 x125,14
+17
+      x124,17                          d2    e0 g 2 x66,7 + h60 x123,13,2
+      h30 x124,14,2                    d2    h60 x123,13,2
+      h0 x124,15                       d−1
+                                        2    x125,14
+      h1 x123,15                       d−1
+                                        3    h3 x118,12
+16    h20 x124,14                            Permanent
+      e0 x107,12                       d3    e0 g 2 x66,7 + h0 e0 x106,14 + h20 h3 x116,16
+      h20 x124,14,2                    d2    h50 x123,13,2
+      x124,15                          d−1
+                                        4    h6 x62,10
+      h23 x110,13 + h0 x124,14               Permanent
+15
+      h0 x124,14                       d2    h20 x123,15 + h40 x123,13,2
+      h0 x124,14,2                     d2    h20 x123,15
+      h1 x123,13                       d−1
+                                        2    x125,12
+      h1 x123,13,2                     d−1
+                                        2    x125,12,2
+14    ∆h22 x94,8                             Permanent
+      x124,14                          d2    h0 x123,15 + h30 x123,13,2
+      x124,14,2                        d2    h0 x123,15
+      h50 x124,8                       d−1
+                                        2    h30 x125,8
+      [H1 ](∆e1 + C0 + h60 h25 )       d−1
+                                        3    x125,10,2
+13
+      e0 ∆h6 g                               Permanent
+      h4 x109,12                       d3    h1 x122,15,2
+
+     Table 20. The classical Adams spectral sequence of S 0 for 13 ≤
+     s ≤ 25 in stem 124
+24                 WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+                    h0 x124,11,2 + h0 x124,11    d−1
+                                                  2    x125,10
+                    h20 x124,10,2 + h40 x124,8   d−1
+                                                  2    h0 x125,9,2
+             12     h40 x124,8                   d−1
+                                                  2    h20 x125,8
+                    h1 x123,11,2                 d−1
+                                                  3    x125,9
+                    h0 x124,11                   d2    h30 x123,11
+                    h0 x124,10,2 + h30 x124,8    d−1
+                                                  2    x125,9,2
+                    h30 x124,8                   d−1
+                                                  2    h0 x125,8
+             11     x124,11,3                    d−1
+                                                  3    x125,8,2
+                    x124,11,2 + x124,11          d4    x123,15
+                    x124,11                      d2    h20 x123,11
+                    h1 x123,9 + h20 x124,8       d−1
+                                                  2    x125,8
+                    x124,10,2 + h0 x124,9        d−1
+                                                  4    h6 [H1 ]
+             10     x124,10 + h20 x124,8         d−1
+                                                  4    h6 [H1 ] + h0 x125,5
+                    h20 x124,8                         Permanent
+                    h0 x124,9                    d5    h4 x108,14
+                    x124,9,2 + h0 x124,8         d3    h0 x123,11 + h20 h6 [B4 ]
+              9     x124,9 + h0 x124,8           d3    x123,12
+                    h0 x124,8                    d2    h20 x123,9
+              8     x124,8                       d2    h0 x123,9
+                    h0 x124,6                    d−1
+                                                  2    x125,5
+              7     h6 A                         d5    h20 h6 [B4 ]
+                    x124,7                       d3    x123,10 + h6 [B4 ]
+              6     x124,6                       d5    h5 x92,10
+             0-5
+
+     Table 21. The classical Adams spectral sequence of S 0 for s ≤ 12
+     in stem 124
+       s    Elements                             dr    value
+            d20 e0 g[B4 ]                        d−1
+                                                  4    h1 x125,20
+            x125,25,2 + x125,25 + g 4 ∆h1 g      d−1
+                                                  4    x126,21 + possibly h1 x125,20
+       25
+            g 4 ∆h1 g                                  Permanent
+            x125,25                              d2    h0 x124,26
+       24   e0 g∆2 g 2                           d2    d0 g 4 ∆h22
+            h20 e0 x108,17                       d3    d30 e0 M g
+       23
+            h90 x125,14                          d2    h11
+                                                         0 x124,14,2
+            g3 M g                               d−1
+                                                  4    x126,18
+            ix102,15 + h80 x125,14               d−1
+                                                  4    gx106,14 + e0 x109,14,2
+       22
+            h80 x125,14                          d2    h10
+                                                         0 x124,14,2
+            h0 e0 x108,17                        d2    h20 d0 x110,18
+            x125,21                              d−1
+                                                  4    d0 x112,13
+       21   h70 x125,14                          d2    h90 x124,14,2
+            e0 x108,17                           d2    d0 g∆h22 [B4 ] + h0 d0 x110,18
+            h0 d0 gx91,11                        d−1
+                                                  2    x126,18,2
+       20   x125,20                              d3    d0 g∆h22 [B4 ]
+            h60 x125,14                          d2    h80 x124,14,2
+
+     Table 22. The classical Adams spectral sequence of S 0 for 20 ≤
+     s ≤ 25 in stem 125
+MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS                              25
+
+
+          gx105,15                    d3    g 2 ∆2 t
+    19    h50 x125,14                 d2    h70 x124,14,2
+          d0 gx91,11                  d2    h0 d20 [∆∆1 g]
+          d20 x97,10                  d−1
+                                       5    h1 x125,12,2
+    18
+          h40 x125,14                 d2    h60 x124,14,2
+          h20 Q2 x68,8                d−1
+                                       2    h0 D2 x68,8
+    17
+          h30 x125,14                 d2    h50 x124,14,2
+          h0 Q2 x68,8                 d−1
+                                       2    D2 x68,8
+          h1 x124,15                  d−1
+                                       4    h20 x126,10
+    16
+          x125,16                     d2    h0 x124,17 + h40 x124,14,2
+          h20 x125,14                 d2    h40 x124,14,2
+          h30 x125,12                 d−1
+                                       2    h0 h3 x119,11
+          Q2 x68,8                    d−1
+                                       4    h1 x125,10
+    15    h1 x124,14                  d5    d20 [∆∆1 g]
+          x125,15                     d2    h30 x124,14
+          h0 x125,14                  d2    h20 x124,15
+          h20 x125,12                 d−1
+                                       2    h3 x119,11
+    14    h1 h4 x109,12                     Permanent
+          x125,14                     d2    h0 x124,15
+          h40 x125,9,2                d−1
+                                       2    x126,11
+          h50 x125,8                  d−1
+                                       2    h0 x126,10
+    13    nx94,8                      d−1
+                                       4    h1 x125,8
+          h0 x125,12                  d−1
+                                       4    h1 x125,8,2
+          h3 x118,12                  d3    h1 x123,15
+          h0 h6 x62,10                d−1
+                                       2    x126,10
+          h30 x125,9,2 + h40 x125,8   d−1
+                                       3    x126,9
+    12    h40 x125,8                  d−1
+                                       3    x126,9 + h0 x126,8,3
+          x125,12                     d2    h1 x123,13
+          x125,12,2                   d2    h1 x123,13,2
+          h1 x124,10,2                d−1
+                                       3    x126,8
+          h1 x124,10                  d−1
+                                       3    x126,8,2
+    11    h20 x125,9,2                d5    ?
+          h6 x62,10                   d4    x124,15
+          h30 x125,8                  d2    h50 x124,8
+          h0 x125,9                   d−1
+                                       2    x126,8,3
+          x125,10,2                   d3    [H1 ](∆e1 + C0 + h60 h25 )
+    10    x125,10                     d2    h0 x124,11,2 + h0 x124,11
+          h0 x125,9,2                 d2    h20 x124,10,2 + h40 x124,8
+          h20 x125,8                  d2    h40 x124,8
+          h6 (∆e1 + C0 + h60 h25 )          Permanent
+          h5 x94,8                    d7    ?
+    9     x125,9                      d3    h1 x123,11,2
+          x125,9,2                    d2    h0 x124,10,2 + h30 x124,8
+          h0 x125,8                   d2    h30 x124,8
+          x125,8,2                    d3    x124,11,3
+    8
+          x125,8                      d2    h1 x123,9 + h20 x124,8
+    7     h20 x125,5                  d−1
+                                       3    x126,4
+          h6 [H1 ]                    d4    x124,10,2 + h0 x124,9
+    6
+          h0 x125,5                   d4    x124,10,2 + x124,10 + h0 x124,9 + h20 x124,8
+     5    x125,5                      d2    h0 x124,6
+    0-4
+
+  Table 23. The classical Adams spectral sequence of S 0 for s ≤ 19
+  in stem 125
+26                       WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+     s     Elements                    dr    value
+     25    h70 x126,18                 d−1
+                                        3    h21
+                                              0 h7
+           d0 e0 ∆h22 M g              d−1
+                                        2    d0 x113,18
+           h60 x126,18                 d−1
+                                        3    h20
+                                               0 h7
+     24
+           g 4 ∆h2 c1                  d−1
+                                        3    g 3 C ′′
+           d0 P d0 M 2                 d−1
+                                        4    d0 e0 [∆∆1 g]
+           h50 x126,18                 d−1
+                                        3    h19
+                                              0 h7
+     23
+           x126,23                     d−1
+                                        4    e0 x110,15
+           h0 x126,21 + h40 x126,18    d−1
+                                        3    h1 x126,18,2
+     22
+           h40 x126,18                 d−1
+                                        3    h18
+                                              0 h7
+           h30 x126,18                 d−1
+                                        3    h17
+                                               0 h7
+     21    h1 x125,20                  d4    d20 e0 g[B4 ]
+           x126,21                     d4    x125,25,2 + x125,25 + g 4 ∆h1 g + possibly d20 e0 gB4
+           h20 x126,18                 d−1
+                                        3    h16
+                                              0 h7
+     20
+           d0 x112,16                  d−1
+                                        5    x127,15
+           h0 x126,18                  d−1
+                                        3    h15
+                                               0 h7
+     19
+           g 3 x66,7                   d−1
+                                        3    gx107,12
+           x126,18 + e0 x109,14,2      d7    ?
+           e0 x109,14,2                d4    g3 M g
+     18
+           gx106,14                    d4    ix102,15 + g 3 M g + h80 x125,14
+           x126,18,2                   d2    h0 d0 gx91,11
+           h15
+             0 h6
+                 2
+                                       d−1
+                                        2    h14
+                                               0 h7
+           h21 x124,15                 d−1
+                                        2    h6 x64,14
+     17
+           x126,17                     d8    ?
+           d0 x112,13                  d4    x125,21
+           h14
+             0 h6
+                 2
+                                       d−1
+                                        2    h13
+                                              0 h7
+     16      2
+           h0 D2 x68,8                 d−1
+                                        3    x127,13
+           h21 x124,14                 d−1
+                                        6    h2 x124,9 + h20 x127,8
+           h13 2
+            0 h6                       d−1
+                                        2    h12
+                                               0 h7
+     15
+           h0 D2 x68,8                 d2    h20 Q2 x68,8
+           h12
+            0 h6
+                2
+                                       d−1
+                                        2    h11
+                                               0 h7
+           x126,14                     d−1
+                                        4    h20 x127,8
+     14
+           h1 h3 x118,12               d−1
+                                        5    h1 x126,8,2
+           D2 x68,8                    d2    h0 Q2 x68,8
+           h11
+            0 h6
+                2
+                                       d−1
+                                        2    h10
+                                               0 h7
+     13    h1 x125,12,2                d5    d20 x97,10
+           h0 h3 x119,11               d2    h30 x125,12
+           d1 x94,8                    d−1
+                                        2    x127,10
+           h0 x126,11                  d−1
+                                        2    h3 x120,9
+     12    h10
+            0 h6
+                2
+                                       d−1
+                                        2    h90 h7
+            2
+           h0 x126,10                  d4    h1 x124,15
+           h3 x119,11                  d2    h20 x125,12
+           h20 x126,9                  d−1
+                                        2    h0 x127,8
+           h90 h26                     d−1
+                                        2    h80 h7
+           h1 x125,10,2 + h1 x125,10         Permanent
+     11
+           h1 x125,10                  d4    Q2 x68,8
+           x126,11                     d2    h40 x125,9,2
+           h0 x126,10                  d2    h50 x125,8
+
+          Table 24. The classical Adams spectral sequence of S 0 for 11 ≤
+          s ≤ 25 in stem 126
+MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS                                27
+
+
+               h0 x126,9                d−1
+                                         2    x127,8
+               h20 x126,8               d−1
+                                         2    h0 x127,7
+      10       h80 h26                  d−1
+                                         2    h70 h7
+               h20 x126,8,3                   Permanent
+               x126,10                  d2    h0 h6 x62,10
+               h0 x126,8                d−1
+                                         2    x127,7
+               h70 h26                  d−1
+                                         2    h60 h7
+               h1 x125,8                d4    nx94,8
+      9
+               h1 x125,8,2              d4    h0 x125,12
+               x126,9                   d3    h30 x125,9,2 + h40 x125,8
+               h0 x126,8,3              d3    h30 x125,9,2
+               h60 h26                  d−1
+                                         2    h50 h7
+               h6 (C ′ + X2 )           d17   ?
+               x126,8,4 + x126,8        d6    ?
+      8
+               x126,8                   d3    h1 x124,10,2
+               x126,8,2                 d3    h1 x124,10
+               x126,8,3                 d2    h0 x125,9
+               h50 h26                  d−1
+                                         2    h40 h7
+      7
+               h1 h6 [H1 ]              d18   ?
+               h40 h26                  d−1
+                                         2    h30 h7
+      6
+               x126,6                   d3    h5 x94,8 + possibly h6 (∆e1 + C0 + h60 h25 )
+      5        h30 h26                  d−1
+                                         2    h20 h7
+               h20 h26                  d−1
+                                         2    h0 h7
+      4
+               x126,4                   d3    h20 x125,5
+      3        h0 h26                   d−1
+                                         2    h7
+      2        h26                      d7    ?
+     0-1
+
+  Table 25. The classical Adams spectral sequence of S 0 for s ≤ 10
+  in stem 126
+           s       Elements                            dr     value
+                   h24
+                    0 h7                               d3     h10
+                                                                0 x126,18
+           25      ix104,18                            d2     d30 x84,15,2 + h0 d0 x112,22
+                   d0 g∆3 h1 g                         d2     d0 e0 g 3 m
+                   h20 d0 x113,18                      d−1
+                                                        2     h0 gx108,17
+           24      h1 x126,23                          d−1
+                                                        3     x128,21
+                   h23
+                     0 h7                              d3     h90 x126,18
+                   e0 g∆h22 [B4 ] + h0 d0 x113,18      d−1
+                                                        2     gx108,17
+                   h0 d0 x113,18                       d4     d30 x84,15,2
+           23
+                   h22
+                    0 h7                               d3     h80 x126,18
+                   d0 P d0 x91,11                      d3     h1 x125,25
+                   d0 x113,18,2                        d−1
+                                                        4     d0 e0 x97,10
+           22      h21
+                    0 h7                               d3     h70 x126,18
+                   d0 x113,18                          d2     d0 e0 ∆h22 M g
+                   h60 x127,15                         d−1
+                                                        2     h50 x128,14
+                   x127,21 + g 3 C ′′                         Permanent
+           21
+                   h20
+                     0 h7                              d3     h60 x126,18
+                   g 3 C ′′                            d3     g 4 ∆h2 c1
+
+  Table 26. The classical Adams spectral sequence of S 0 for 21 ≤
+  s ≤ 25 in stem 127
+28               WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+                 h50 x127,15                  d−1
+                                               2    h40 x128,14
+            20   d0 e0 [∆∆1 g]                d4    d0 P d0 M 2
+                 h19
+                   0 h7                       d3    h50 x126,18
+                 h40 x127,15                  d−1
+                                               2    h30 x128,14
+                 h1 x126,18                         Permanent
+            19   e0 x110,15                   d4    x126,23
+                 h1 x126,18,2                 d3    h0 x126,21 + h40 x126,18
+                 h18
+                   0 h7                       d3    h40 x126,18
+                 h30 x127,15                  d−1
+                                               2    h20 x128,14
+                 h30 h6 x64,14                d−1
+                                               2    h20 h6 x65,13
+            18   g 2 ∆h1 H1                   d−1
+                                               3    gx108,11
+                 h1 x126,17                         Permanent
+                 h17
+                   0 h7                       d3    h30 x126,18
+                 h20 h2 x124,14               d−1
+                                               2    x128,15
+                 h20 x127,15                  d−1
+                                               2    x128,15 + h0 x128,14
+            17   h20 h6 x64,14                d−1
+                                               2    h0 h6 x65,13
+                 gx107,13                     d−1
+                                               4    h0 h3 x121,11
+                 h16
+                  0 h7                        d3    h20 x126,18
+                 h0 x127,15 + h0 h2 x124,14   d−1
+                                               2    x128,14
+                 h0 h6 x64,14                 d−1
+                                               2    h6 x65,13
+                 h0 h2 x124,14                      Permanent
+            16
+                 x127,16                            Permanent
+                 h15
+                  0 h7                        d3    h0 x126,18
+                 gx107,12                     d3    g 3 x66,7
+                 h1 x126,14                   d−1
+                                               2    x128,13,2
+                 h2 x124,14                         Permanent
+            15   x127,15                      d5    d0 x112,16
+                 h14
+                  0 h7                        d2    h15
+                                                     0 h6
+                                                         2
+                                                     2
+                 h6 x64,14                    d2    h1 x124,15
+                 h0 g∆h6 g                    d−1
+                                               2    x128,12,2
+            14   h0 h3 x120,12                d−1
+                                               2    h3 x121,11
+                 h13
+                  0 h7                        d2    h14
+                                                     0 h6
+                                                         2
+
+                 h30 x127,10                  d−1
+                                               2    h0 x128,10
+                 g∆h6 g                       d−1
+                                               3    x128,10,2
+            13   h3 x120,12                   d−1
+                                               4    h2 x125,8,2
+                 x127,13                      d3    h20 D2 x68,8
+                 h12
+                   0 h7                       d2    h13  2
+                                                      0 h6
+                 h20 x127,10                  d−1
+                                               2    x128,10
+            12   h1 x126,11                   d−1
+                                               3    h1 x127,8
+                 h11
+                   0 h7                       d2    h12
+                                                     0 h6
+                                                         2
+
+                 h0 h3 x120,9                 d−1
+                                               3    h3 D2 h6
+                 h0 h2 x124,9                       Permanent
+            11
+                 h0 x127,10                         Permanent
+                 h10
+                   0 h7                       d2    h11
+                                                      0 h6
+                                                          2
+
+                 h21 x125,8                         Permanent
+                 h2 x124,9 + h20 x127,8       d6    h21 x124,14
+                 h20 x127,8                   d4    x126,14
+            10
+                 x127,10                      d2    d1 x94,8
+                 h3 x120,9                    d2    h0 x126,11
+                 h90 h7                       d2    h10
+                                                      0 h6
+                                                          2
+
+
+
+     Table 27. The classical Adams spectral sequence of S 0 for 10 ≤
+     s ≤ 20 in stem 127
+MACHINE PROOFS FOR ADAMS DIFFERENTIALS AND EXTENSION PROBLEMS                                                          29
+
+                               h20 x127,7                              d−1
+                                                                        2     h0 x128,6
+                               h1 x126,8                                      Permanent
+                           9   h1 x126,8,2                             d5     h1 h3 x118,12
+                               h0 x127,8                               d2     h20 x126,9
+                               h80 h7                                  d2     h90 h26
+                               h0 x127,7,2 + h0 x127,7 + h20 x127,6    d−1
+                                                                        2     x128,6
+                               h20 x127,6                              d−1
+                                                                        2     h0 x128,5
+                               h2 h6 A                                        Permanent
+                           8   h2 x124,7                               d9     ?
+                               x127,8                                  d2     h0 x126,9
+                               h0 x127,7                               d2     h20 x126,8
+                               h70 h7                                  d2     h80 h26
+                               h0 x127,6                               d−1
+                                                                        2     x128,5
+                               h1 x126,6                               d10    ?
+                           7   x127,7,2 + x127,7                       d3     ?
+                               x127,7                                  d2     h0 x126,8
+                               h60 h7                                  d2     h70 h26
+                               x127,6                                  d4     ?
+                           6
+                               h50 h7                                  d2     h60 h26
+                           5   h40 h7                                  d2     h50 h26
+                           4   h30 h7                                  d2     h40 h26
+                               h1 h26                                  d14    ?
+                           3
+                               h20 h7                                  d2     h30 h26
+                           2   h0 h7                                   d2     h20 h26
+                           1   h7                                      d2     h0 h26
+                           0
+
+
+      Table 28. The classical Adams spectral sequence of S 0 for s ≤ 9
+      in stem 127
+ s     Elements                                              dr       value
+       h12  2
+        0 h6 [0]                                             d−1
+                                                              2       h11
+                                                                       0 h7 [0]
+       x126,14 [0]                                           d−1
+                                                              3       (((x123,11,2 ) + (x123,11 ) + h0 h6 [B4 ])[4])
+ 14
+       Q2 D2 (h3 [4]) + D2 x68,8 [0]                         d−1
+                                                              3       (((x123,11,2 ) + h5 (x92,10 ))[4])
+       D2 x68,8 [0]                                          d2       h0 Q2 x68,8 [0]
+       h11  2
+        0 h6 [0]                                             d−1
+                                                              2       h10
+                                                                        0 h7 [0]
+       h1 x120,11 (h1 [4])                                   d12      ?
+       h1 x125,12,2 [0]                                      d5       d20 x97,10 [0]
+ 13
+       h6 x56,10 (h0 h2 [4])                                 d3       h1 x124,15 [0]
+       (((x122,13 ) + h21 (x120,11 ) + h20 h6 (M d0 ))[4])   d2       x125,15 [0] + h30 x125,12 [0]
+       h0 h3 x119,11 [0]                                     d2       h30 x125,12 [0]
+       d1 x94,8 [0]                                          d−1
+                                                              2       x127,10 [0]
+       h10   2
+        0 h6 [0]                                             d−1
+                                                              2       h90 h7 [0]
+ 12
+       ((h5 (x91,11 ) + h0 (x122,11 ))[4])                   d3       Q2 x68,8 [0]
+       h3 x119,11 [0]                                        d2       h20 x125,12 [0]
+       h90 h26 [0]                                           d−1
+                                                              2       h80 h7 [0]
+       x126,11 [0]                                           d−1
+                                                              3       x127,8 [0]
+ 11
+       h1 x125,10,2 [0] + h1 x125,10 [0]                              Permanent
+       h1 x125,10 [0]                                        d14      ?
+       h20 x126,8 [0]                                        d−1
+                                                              2       h0 x127,7 [0]
+ 10    h80 h26 [0]                                           d−1
+                                                              2       h70 h7 [0]
+       x126,10 [0]                                           d3       nx94,8 [0]
+       h0 x126,8 [0]                                         d−1
+                                                              2       x127,7 [0]
+       h70 h26 [0]                                           d−1
+                                                              2       h60 h7 [0]
+ 9     h1 x125,8 [0]                                         d16      ?
+       h0 x126,8,3 [0]                                       d4       h0 x125,12 [0]
+       x126,9 [0]                                            d3       h40 x125,8 [0]
+
+
+      Table 29. The classical Adams spectral sequence of S 0 /ν for 9 ≤
+      s ≤ 14 in stem 126
+30                    WEINAN LIN, GUOZHEN WANG AND ZHOULI XU
+
+
+                                       References
+[1] M. G. Barratt, J. D. S. Jones, and M. E. Mahowald. The Kervaire invariant problem. In Pro-
+    ceedings of the Northwestern Homotopy Theory Conference (Evanston, Ill., 1982), volume 19
+    of Contemp. Math., pages 9–22. Amer. Math. Soc., Providence, RI, 1983.
+[2] Robert R. Bruner and John Rognes. The Adams spectral sequence for topological modular
+    forms, volume 253 of Mathematical Surveys and Monographs. American Mathematical Society,
+    Providence, RI, [2021] ©2021.
+[3] Dexter Chua. The E3 page of the Adams spectral sequence. arXiv preprint, arXiv.2105.07628,
+    2021.
+[4] Weinan Lin. Github repo. https://github.com/WayneLin92/SSeqCpp Github Webpage 2024.
+[5] Weinan Lin. Interactive plot of the Adams spectral sequence. https://waynelin92.github.
+    io/ss/kervaire-49.html Github Webpage 2024.
+[6] Weinan Lin, Guozhen Wang, and Zhouli Xu. Machine proofs for Adams differentials and
+    extension problems among CW spectra. Zenodo. https://doi.org/10.5281/zenodo.14272279
+    December 2024.
+[7] Weinan Lin, Guozhen Wang, and Zhouli Xu. On the Last Kervaire Invariant Problem. arXiv
+    Preprint, arXiv:2412.10879, 2024.
+[8] Christian Nassau. On the secondary Steenrod algebra. New York J. Math., 18:679–705, 2012.
+[9] Zhouli Xu. The strong Kervaire invariant problem in dimension 62. Geom. Topol., 20(3):1611–
+    1624, 2016.
+

@@ -1,0 +1,2210 @@
+\section{Adams tower and page foundations}
+\label{chap:adams-tower-foundations}
+
+This section develops the general $H\mathbb F_2$-based Adams tower, its
+smash and pairing constructions, quotient pages, and internal page
+comparisons. These constructions are reusable foundations; they do not
+assert the permanence of a named class.
+
+\begin{definition}[Mod--2 Eilenberg--Mac Lane object and unit]
+  \label{def:h6-em-object}
+  \lean{KIP126.StableHomotopy.Cohomology.Mod2EilenbergMacLane}
+  \lean{KIP126.StableHomotopy.Cohomology.Mod2EilenbergMacLane.unit}
+  \uses{def:stable-homotopy-group,def:mathlib-f2}
+  \notready
+  Fix an object $H$ with an additive isomorphism
+  $\pi_0H\cong\mathbb F_2$ and $\pi_nH=0$ for $n\ne0$.
+  Define $u:S^0\to H$ to be the map corresponding to $1\in\mathbb F_2$.
+  The equation $\pi_nH=0$ means that every element of that group equals its
+  zero element; it does not mean that the group is empty.
+\end{definition}
+
+\begin{definition}[Ring structure and cooperation maps of the chosen object]
+  \label{def:h6-ring-cooperations}
+  \lean{KIP126.StableHomotopy.Cohomology.Mod2RingStructure}
+  \lean{KIP126.StableHomotopy.Cohomology.Mod2Cooperations}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationDiagonalMap}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationCounit}
+  \uses{def:h6-em-object,def:unital-multiplication-data}
+  \leanok
+  Equip the specified $H$ with an associative unital algebra-object
+  structure whose unit is the specified $u$. Define the graded cooperation
+  groups to be $\pi_n(H\wedge H)$. Inserting $u$ between the two factors
+  gives a map to $\pi_n(H\wedge(H\wedge H))$, and multiplication gives
+  the counit to $\pi_nH$. No K\"unneth identification or Milnor polynomial
+  coordinates are part of these definitions.
+\end{definition}
+
+% SOURCE: the Adams resolution in def:hf2-adams-tower, made explicit by
+% iterating the unit and its fiber; MainPaper/main.tex:253-263.
+\begin{definition}[Iterated-fiber Adams tower]
+  \label{def:h6-fiber-tower}
+  \lean{KIP126.Classical.Adams.fiber}
+  \lean{KIP126.Classical.Adams.fiberι}
+  \lean{KIP126.Classical.Adams.adamsUnit}
+  \lean{KIP126.Classical.Adams.adamsTower}
+  \lean{KIP126.Classical.Adams.adamsTowerStep}
+  \lean{KIP126.Classical.Adams.adamsTowerComposite}
+  \lean{KIP126.Classical.Adams.adamsTowerMapAt}
+  \lean{KIP126.Classical.Adams.adamsLayerAt}
+  \uses{def:h6-em-object,def:cofiber-triangle,def:stable-sphere-suspension}
+  \notready
+  For $X$, put $T_0=X$ and
+  \[
+    T_{s+1}=\operatorname{fib}(T_s\longrightarrow H\wedge T_s).
+  \]
+  The displayed map is the unit $u$ smashed with $T_s$, after the unit
+  isomorphism.  Define fibers by desuspending the chosen cofibers.
+  Compose the fiber inclusions to obtain $T_b\to T_a$ for $a\le b$,
+  extend the tower constantly to negative stages, and put
+  $Q_s=\operatorname{cofib}(T_{s+1}\to T_s)$.
+\end{definition}
+
+\begin{proposition}[The Adams unit on the coefficient object splits]
+  \label{prop:h6-unit-splits}
+  \lean{KIP126.StableHomotopy.Cohomology.adamsUnit_mul}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationDiagonal_counit_right}
+  \uses{def:h6-ring-cooperations,def:h6-fiber-tower}
+  \leanok
+  Multiplication $H\wedge H\to H$ retracts the map
+  $H\to H\wedge H$ used in the Adams tower. Multiplying the final two
+  factors also retracts the middle-unit insertion
+  $H\wedge H\to H\wedge(H\wedge H)$.
+\end{proposition}
+\begin{proof}
+  Apply the left unit identity of the algebra object, then tensor that
+  identity with $H$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The tower layers are smashed coefficient objects]
+  \label{prop:h6-tower-layer-comparison}
+  \lean{KIP126.Classical.Adams.cofiberFiberIso,KIP126.Classical.Adams.adamsLayerTriangleIso,KIP126.Classical.Adams.adamsLayerIso,KIP126.Classical.Adams.adamsLayerIso_ι,KIP126.Classical.Adams.adamsLayerIso_δ}
+  \uses{def:h6-fiber-tower,def:cofiber-triangle}
+  \leanok
+  In any of the specified stable contexts, for every unit $u:S^0\to H$,
+  spectrum $X$, and $s\ge0$, the actual tower layer $Q_s$ is isomorphic to
+  $H\wedge T_s$. The comparison sends the chosen map $T_s\to Q_s$ to
+  the Adams unit $T_s\to H\wedge T_s$ and is part of an isomorphism of
+  distinguished triangles, so it also controls the connecting map.
+  This statement uses no Milnor coordinates, Lin data, multiplication on
+  $H$, or convergence assertion.
+\end{proposition}
+\begin{proof}
+  Inverse-rotate the cofiber triangle of the Adams unit. Its first map is
+  $-\mathrm{fiber}\iota$, whereas the implemented tower uses the positive
+  $\mathrm{fiber}\iota$. Complete the negative identity on the fiber and
+  identity on $T_s$ to an isomorphism of distinguished triangles. Its third
+  component is the required layer comparison. The commutative squares give
+  the unit-map equality and the connecting-map equality with its required
+  minus sign.
+  \leanok
+\end{proof}
+
+\begin{definition}[The iterated-smash comparison tower]
+  \label{def:h6-smash-comparison-tower}
+  \lean{KIP126.Classical.Adams.adamsSmashTower,KIP126.Classical.Adams.adamsSmashTowerStep,KIP126.Classical.Adams.adamsSmashTowerComposite}
+  \uses{def:h6-fiber-tower}
+  \leanok
+  Write $\overline H=\operatorname{fib}(S\to H)$ with its existing inclusion
+  $b:\overline H\to S$. Set $P_0X=X$ and $P_{s+1}X=\overline H\wedge P_sX$.
+  The transition $P_{s+1}X\to P_sX$ is $b\wedge\mathrm{id}$ followed by
+  the left unit isomorphism. This comparison model does not replace the
+  actual iterated-fiber tower or its internal spectral sequence.
+\end{definition}
+
+\begin{proposition}[Tensor exactness identifies a fiber step, including its maps]
+  \label{prop:h6-fiber-smash-step}
+  \lean{KIP126.Classical.Adams.adamsTensorFiberTriangleIso,KIP126.Classical.Adams.adamsFiberTensorIso,KIP126.Classical.Adams.adamsTensorFiberTriangleIso_hom₂,KIP126.Classical.Adams.adamsTensorFiberTriangleIso_hom₃,KIP126.Classical.Adams.adamsFiberTensorIso_inv_δ,KIP126.Classical.Adams.adamsFiberTensorIso_inv_ι,KIP126.Classical.Adams.adamsFiberTensorIso_hom_ι}
+  \uses{def:h6-fiber-tower,def:cofiber-triangle}
+  \leanok
+  If $-\wedge X$ is shift-compatible and preserves distinguished triangles,
+  smashing the unit fiber triangle gives an isomorphism of triangles with
+  the fiber triangle of $X\to H\wedge X$. Its second and third components
+  are the left unit isomorphism and identity, respectively. Its first
+  component gives
+  $e_X:\operatorname{fib}(X\to H\wedge X)\simeq\overline H\wedge X$.
+  Under monoidal additivity,
+  $e_X\,(b\wedge\mathrm{id})\,\lambda_X=\mathrm{fiber}\iota$.
+  The connecting-map square is also proved, with the functor's suspension
+  comparison retained. These are consequences of exactness, not extra
+  fiber/tensor comparison assumptions; no ring, Milnor, or Lin data enter.
+\end{proposition}
+\begin{proof}
+  Rotate the two distinguished triangles, complete the unitor and identity
+  to an isomorphism, and inverse-rotate back. The first square and
+  additivity cancel the two inverse-rotation minus signs. The third square
+  supplies the connecting-map identity.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The actual tower agrees with the iterated-smash tower]
+  \label{prop:h6-tower-smash-comparison}
+  \lean{KIP126.Classical.Adams.adamsTowerSmashIso,KIP126.Classical.Adams.adamsTowerSmashIso_step,KIP126.Classical.Adams.adamsTowerSmashIso_composite}
+  \uses{def:h6-smash-comparison-tower,prop:h6-fiber-smash-step}
+  \leanok
+  Assume the preceding exactness and shift structures for every right tensor
+  functor, and monoidal additivity. There are recursively constructed
+  isomorphisms $e_s:T_sX\simeq P_sX$ satisfying
+  $e_{s+1}P_{s+1,s}=T_{s+1,s}e_s$, and the analogous equality for every
+  finite composite transition. Thus this is a comparison of towers and
+  their maps, not just a list of object isomorphisms. These generic
+  statements do not supply the tensor-exactness witnesses on the fixed
+  foundation. These comparisons alone do not establish a multiplicative
+  tower, naturality of the chosen comparisons in $X$, or Leibniz.
+\end{proposition}
+\begin{proof}
+  Iterate $e_{T_sX}$ and tensor the previously constructed comparison by
+  $\overline H$. The transition equality follows from the one-step inclusion
+  comparison and unitor naturality. Induct on the composite's length.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Finite-stage homotopy lifts transfer to the smash model]
+  \label{prop:h6-smash-liftability}
+  \lean{KIP126.Classical.Adams.adamsTowerSmashIso_lift_iff}
+  \uses{prop:h6-tower-smash-comparison}
+  \leanok
+  For $x\in\pi_n(T_sX)$ and $\ell\ge0$, a preimage of $x$ under
+  $\pi_n(T_{s+\ell}X)\to\pi_n(T_sX)$ exists if and only if the image
+  $(e_s)_*x$ has a preimage under
+  $\pi_n(P_{s+\ell}X)\to\pi_n(P_sX)$.
+  This transfers the finite lifting questions used in the cycle definitions;
+  it does not assert that any such lift exists.
+\end{proposition}
+\begin{proof}
+  Compose a lift with $e_{s+\ell}$ in one direction and its inverse in the
+  other. Use preservation of composite transitions and cancel the target
+  isomorphism.
+  \leanok
+\end{proof}
+
+\begin{definition}[Concatenation of sphere smash stages]
+  \label{def:h6-smash-sphere-pairing}
+  \lean{KIP126.Classical.Adams.adamsSmashSphereTensorIso,KIP126.Classical.Adams.adamsSmashTowerNestingIso,KIP126.Classical.Adams.adamsSmashSpherePairingIso}
+  \uses{def:h6-smash-comparison-tower}
+  \leanok
+  Using only associators and the sphere unitor, construct
+  $P_sS\wedge Y\simeq P_sY$ and $P_s(P_tX)\simeq P_{t+s}X$.
+  Their composite gives the concrete concatenation pairing
+  $m_{s,t}:P_sS\wedge P_tS\simeq P_{t+s}S$.
+  The reversed display order of the sum supports recursion in $s$; it is
+  ordinary addition of filtration degrees, not a different grading.
+\end{definition}
+
+\begin{proposition}[Concatenation commutes with the first-input transition]
+  \label{prop:h6-smash-pairing-left-transition}
+  \lean{KIP126.Classical.Adams.adamsSmashSpherePairingIso_zero,KIP126.Classical.Adams.adamsSmashSpherePairingIso_succ,KIP126.Classical.Adams.adamsSmashSpherePairingIso_step_left}
+  \uses{def:h6-smash-sphere-pairing}
+  \leanok
+  The zero-stage pairing is the left unitor; the successor pairing is the
+  associator followed by $\overline H\wedge m_{s,t}$.
+  Writing $p_s:P_{s+1}S\to P_sS$ for the specified transition,
+  $m_{s+1,t}p_{t+s}=(p_s\wedge\mathrm{id})m_{s,t}$.
+  This statement concerns only the first input; the second-input transition
+  law is not claimed here.
+\end{proposition}
+\begin{proof}
+  Reassociate, use the interchange law for the inclusion
+  $\overline H\to S$, and apply associator and unitor naturality.
+  \leanok
+\end{proof}
+
+\begin{definition}[The transported pairing on the existing sphere tower]
+  \label{def:h6-existing-tower-pairing}
+  \lean{KIP126.Classical.Adams.adamsTowerSpherePairingIso}
+  \uses{def:h6-smash-sphere-pairing,prop:h6-tower-smash-comparison}
+  \leanok
+  Under the explicit tensor-exactness and shift structures, transport
+  concatenation through the already constructed comparisons $e_s:T_sS\simeq P_sS$:
+  $\mu_{s,t}=(e_s\wedge e_t)m_{s,t}e_{t+s}^{-1}$.
+  This is a concrete map on the existing iterated-fiber tower; no additional
+  pairing, ring structure, or spectral sequence is postulated.
+\end{definition}
+
+\begin{proposition}[The transported pairing preserves the first-input transition]
+  \label{prop:h6-existing-tower-pairing-left-transition}
+  \lean{KIP126.Classical.Adams.adamsTowerSpherePairingIso_comparison,KIP126.Classical.Adams.adamsTowerSpherePairingIso_step_left}
+  \uses{def:h6-existing-tower-pairing,prop:h6-smash-pairing-left-transition}
+  \leanok
+  With monoidal additivity, the pairing satisfies the defining comparison
+  square and
+  $\mu_{s+1,t}T_{t+s+1,t+s}=(T_{s+1,s}\wedge\mathrm{id})\mu_{s,t}$
+  for the actual sphere tower maps. This does not yet assert a full
+  multiplicative tower: the second-input transition is proved only under the
+  additional condition below; its fixed witness, the full two-term boundary
+  product formula, and comparison with Lin multiplication remain unproved.
+  In particular it is not a witness of \texttt{SecondDifferentialLeibniz}.
+\end{proposition}
+\begin{proof}
+  Postcompose with the target comparison isomorphism. Use its preservation
+  of tower transitions, the smash pairing's first-input law, and tensor
+  functoriality. Cancel the target isomorphism.
+  \leanok
+\end{proof}
+
+\begin{definition}[The two-factor inclusion condition]
+  \label{def:h6-unit-fiber-inclusion-commutes}
+  \lean{KIP126.Classical.Adams.UnitFiberInclusionCommutes}
+  \uses{def:h6-smash-comparison-tower}
+  \leanok
+  Write $B=\overline H$ and $b:B\to S$ for the actual unit-fiber inclusion.
+  The condition is the equality of maps $B\wedge B\to B$
+  \[
+    (b\wedge\mathrm{id}_B)\lambda_B
+      =(\mathrm{id}_B\wedge b)\rho_B.
+  \]
+  This defines a predicate, not an axiom or a witness. It is not currently
+  derived from the specified multiplication on $H$ or tensor exactness.
+  In particular the definition's formalization status does not claim that
+  the condition holds for the fixed sphere foundation.
+\end{definition}
+
+\begin{proposition}[Conditional right-input compatibility in the smash model]
+  \label{prop:h6-smash-pairing-right-transition}
+  \lean{KIP126.Classical.Adams.unitFiberInclusionCommutes_tensor,KIP126.Classical.Adams.adamsSmashTowerStep_succ_of_inclusion_commutes,KIP126.Classical.Adams.adamsSmashSpherePairingNextRight,KIP126.Classical.Adams.adamsSmashSpherePairingNextRight_zero,KIP126.Classical.Adams.adamsSmashSpherePairingNextRight_succ,KIP126.Classical.Adams.adamsSmashSpherePairingIso_step_right}
+  \uses{def:h6-unit-fiber-inclusion-commutes,def:h6-smash-sphere-pairing}
+  \leanok
+  Assume the two-factor inclusion condition. After tensoring by any $X$,
+  \[
+    (b\wedge\mathrm{id}_{B\wedge X})\lambda_{B\wedge X}
+      =B\wedge((b\wedge\mathrm{id}_X)\lambda_X).
+  \]
+  Thus $p_{s+1}=B\wedge p_s$ on the smash tower. Reindex $m_{s,t+1}$
+  along $(t+1)+s=(t+s)+1$, calling the resulting map $m^+_{s,t}$.
+  Then $m^+_{s,t}p_{t+s}=(\mathrm{id}_{P_sS}\wedge p_t)m_{s,t}$
+  for every $s,t$. No new pairing is chosen in this reindexing.
+\end{proposition}
+\begin{proof}
+  Tensor the assumed two-factor equality with $X$ and use associator
+  naturality and the triangle identity. Induct on $s$, using the zero and
+  successor formulas for the reindexed pairing and $p_{s+1}=B\wedge p_s$.
+  These are generic conditional proofs; they do not supply the hypothesis.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Conditional right-input compatibility on the actual tower]
+  \label{prop:h6-existing-tower-pairing-right-transition}
+  \lean{KIP126.Classical.Adams.adamsTowerSpherePairingNextRight,KIP126.Classical.Adams.adamsTowerSpherePairingNextRight_comparison,KIP126.Classical.Adams.adamsTowerSpherePairingIso_step_right}
+  \uses{def:h6-existing-tower-pairing,prop:h6-smash-pairing-right-transition}
+  \leanok
+  Under the preceding tensor-exactness, shift and additivity structures and
+  the two-factor inclusion condition, the existing actual tower pairing
+  satisfies
+  $\mu^+_{s,t}T_{t+s+1,t+s}=(\mathrm{id}_{T_sS}\wedge T_{t+1,t})\mu_{s,t}$.
+  Here $\mu^+$ is the existing pairing with the same successor reindexing,
+  and its comparison square with $m^+$ commutes.
+\end{proposition}
+\begin{proof}
+  Use naturality of the equality transport with respect to $e_s$. Then
+  postcompose with the target comparison, apply its transition law and the
+  conditional smash-model law, and cancel that comparison.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Fiber inclusions are injective on maps under orthogonality]
+  \label{prop:h6-fiber-mapping-injective}
+  \lean{KIP126.Classical.Adams.fiberι_postcomp_injective_of_vanishing}
+  \uses{def:h6-fiber-tower}
+  \leanok
+  For a map $f:X\to Y$ and an object $Z$, suppose every map
+  $Z\to\Sigma^{-1}Y$ is zero. Postcomposition with the actual inclusion
+  $\operatorname{fib}(f)\to X$ is injective on maps out of $Z$.
+  This does not assert that the fiber inclusion is a monomorphism for all
+  source objects.
+\end{proposition}
+\begin{proof}
+  If two maps have equal composites, their difference maps to zero in $X$.
+  The twice inverse-rotated cofiber triangle factors that difference through
+  $\Sigma^{-1}Y$. Apply the vanishing hypothesis. The negative sign on the
+  first map of the fiber triangle is explicitly retained and cancelled.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Deriving the two-factor equality from mapping-group vanishing]
+  \label{prop:h6-unit-fiber-commutes-from-vanishing}
+  \lean{KIP126.Classical.Adams.unitFiberInclusion_postcomp_eq,KIP126.Classical.Adams.unitFiberInclusionCommutes_of_vanishing,KIP126.Classical.Adams.adamsTowerSpherePairingIso_step_right_of_vanishing}
+  \uses{prop:h6-fiber-mapping-injective,def:h6-unit-fiber-inclusion-commutes,prop:h6-existing-tower-pairing-right-transition}
+  \leanok
+  The two elimination maps $B\wedge B\to B$ always have equal composites
+  with $b:B\to S$. If $[B\wedge B,\Sigma^{-1}H]=0$, they are equal
+  already as maps to $B$. Consequently the actual tower's right-input law
+  follows from this vanishing and the previously stated tensor structures,
+  without taking the two-factor equality itself as an input.
+\end{proposition}
+\begin{proof}
+  Unitor naturality and tensor interchange identify the two composites to
+  $S$. Apply the injectivity theorem to $f:S\to H$ and $Z=B\wedge B$,
+  then use the already proved conditional right-input law.
+  \leanok
+\end{proof}
+
+\begin{proposition}[A t-structure criterion for the right-input law]
+  \label{prop:h6-unit-fiber-commutes-from-connectivity}
+  \lean{KIP126.Classical.Adams.unitFiber_mapping_vanishing_of_tStructure,KIP126.Classical.Adams.unitFiberInclusionCommutes_of_tStructure,KIP126.Classical.Adams.adamsTowerSpherePairingIso_step_right_of_tStructure}
+  \uses{prop:h6-unit-fiber-commutes-from-vanishing}
+  \leanok
+  Give $C$ a t-structure in Mathlib's cohomological indexing. If
+  $B\wedge B\in C^{\le0}$ and $H\in C^{\ge0}$, then
+  $[B\wedge B,\Sigma^{-1}H]=0$. In particular, it suffices that
+  $B\in C^{\le0}$ and $C^{\le0}$ is closed under the tensor product.
+  These lower conditions imply the two-factor equality and, with the
+  preceding tensor structures, the right-input law on the actual tower.
+  No t-structure or connectivity witness for the fixed foundation is
+  constructed or postulated by these theorems.
+\end{proposition}
+\begin{proof}
+  The shift convention gives $\Sigma^{-1}H\in C^{\ge1}$. Orthogonality
+  to $C^{\le0}$ makes all maps zero. Apply the preceding proposition.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Homotopy injectivity of the actual unit-fiber inclusion]
+  \label{prop:h6-unit-fiber-homotopy-injective}
+  \lean{KIP126.Classical.Adams.fiberι_homotopy_injective_of_surjective,KIP126.Classical.Adams.mod2Unit_homotopy_surjective,KIP126.Classical.Adams.mod2UnitFiber_homotopy_injective,KIP126.Classical.Adams.mod2UnitFiber_homotopy_subsingleton}
+  \uses{def:h6-fiber-tower,prop:h6-sphere-unit-image}
+  \leanok
+  For any map $f:X\to Y$, surjectivity of $\pi_nf$ implies injectivity of
+  $\pi_{n-1}(\operatorname{fib}(f))\to\pi_{n-1}X$.
+  For the supplied mod--2 Eilenberg--Mac Lane object, the actual unit
+  $S\to H$ is surjective on every homotopy group. Thus
+  $\pi_n(B)\to\pi_n(S)$ is injective for every integer $n$.
+  In particular any vanishing degree of the sphere is also a vanishing
+  degree of $B$. This does not claim that $B\to S$ is a categorical
+  monomorphism or that sphere connectivity is already supplied.
+\end{proposition}
+\begin{proof}
+  Use the long exact sequence of the actual fiber triangle: surjectivity
+  makes the connecting map zero, so the preceding kernel is zero.
+  The mod--2 unit surjectivity follows from the existing sphere unit-image
+  theorem after the right unitor. Apply the general result in degree $n+1$.
+  No ring, tensor exactness, Milnor or Lin input is used in this argument.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Deriving the needed bounds from sphere homotopy]
+  \label{prop:h6-unit-fiber-connectivity-from-sphere}
+  \lean{KIP126.Classical.Adams.mod2UnitFiber_isLE_of_homotopy,KIP126.Classical.Adams.mod2EilenbergMacLane_isGE_of_homotopy,KIP126.Classical.Adams.mod2UnitFiber_inclusionCommutes_of_homotopy,KIP126.Classical.Adams.mod2SpherePairing_step_right_of_homotopy}
+  \uses{prop:h6-unit-fiber-homotopy-injective,prop:h6-unit-fiber-commutes-from-connectivity}
+  \leanok
+  Suppose the t-structure detects bounds from homotopy: vanishing in all
+  negative degrees implies $C^{\le0}$, and vanishing in all positive
+  degrees implies $C^{\ge0}$. Suppose also $\pi_nS=0$ for $n<0$.
+  Then $B\in C^{\le0}$ and $H\in C^{\ge0}$ are derived facts, not
+  separate inputs. With connective tensor closure this proves the
+  two-factor inclusion condition; with the preceding tensor comparison
+  structures it proves the right-input transition law on the actual
+  mod--2 sphere tower. All these lower hypotheses remain explicit; no
+  t-structure or sphere-connectivity witness for the fixed foundation is
+  constructed here.
+\end{proposition}
+\begin{proof}
+  Apply the preceding injectivity to each negative homotopy group and then
+  the connective detection hypothesis. Apply the supplied Eilenberg--Mac Lane
+  vanishing to each positive degree to obtain the other bound. Invoke the
+  previously proved t-structure criterion and tower transport theorem.
+  \leanok
+\end{proof}
+
+\paragraph{Classical interpretation and the missing fixed witnesses.}
+For spectra, $C^{\le0}$ here means connective spectra; it is the reverse
+indexing of the usual homological notation. Smash products preserve this
+class: see Lurie, \emph{Derived Algebraic Geometry II}, Lemma 4.3.5,
+\url{https://arxiv.org/pdf/math/0702299}. In the classical sphere situation,
+the long exact sequence and the surjection $\mathbb Z\to\mathbb F_2$
+make $B=\operatorname{fib}(S\to H\mathbb F_2)$ connective, while
+$H\mathbb F_2$ is in the heart. This explains the intended source of the
+hypotheses. The long-exact-sequence deduction is now formalized above, but
+the current fixed foundation still supplies neither sphere connectivity
+nor a t-structure detecting its bounds from homotopy groups.
+
+\begin{definition}[Mixed pairings on the existing Adams layers]
+  \label{def:h6-mixed-layer-pairings}
+  \lean{KIP126.Classical.Adams.adamsSphereLayerPairingTriangleIso,KIP126.Classical.Adams.adamsSphereLayerPairingIso,KIP126.Classical.Adams.adamsSphereTowerLayerPairingTriangleIso,KIP126.Classical.Adams.adamsSphereTowerLayerPairingIso}
+  \uses{prop:h6-existing-tower-pairing-left-transition,prop:h6-existing-tower-pairing-right-transition,def:h6-fiber-tower}
+  \leanok
+  Let $L_s$ denote the existing layer of the sphere tower, with triangle
+  $T_{s+1}S\to T_sS\xrightarrow{q_s}L_s\xrightarrow{\delta_s}\Sigma T_{s+1}S$.
+  Under right tensor exactness and monoidal additivity, complete the proved
+  first-input tower square to an isomorphism of distinguished triangles.
+  Its third component gives a chosen isomorphism
+  $\ell_{s,t}:L_s\wedge T_tS\simeq L_{t+s}$.
+  With left tensor exactness and the two-factor inclusion condition as well,
+  the second-input square similarly gives
+  $r_{s,t}:T_sS\wedge L_t\simeq L_{t+s}$.
+  These use the existing integer-indexed layers at natural filtration
+  indices, not a replacement layer object. Completion is a theorem of the
+  pretriangulated interface; the choices are not new project axioms.
+  Neither uniqueness nor coherence of these choices is asserted.
+\end{definition}
+
+\begin{proposition}[The mixed pairings preserve inclusions and boundaries]
+  \label{prop:h6-mixed-layer-pairing-boundaries}
+  \lean{KIP126.Classical.Adams.adamsSphereLayerPairingTriangleIso_hom₁,KIP126.Classical.Adams.adamsSphereLayerPairingTriangleIso_hom₂,KIP126.Classical.Adams.adamsSphereLayerPairingIso_ι,KIP126.Classical.Adams.adamsSphereLayerPairingIso_δ,KIP126.Classical.Adams.adamsSphereTowerLayerPairingTriangleIso_hom₁,KIP126.Classical.Adams.adamsSphereTowerLayerPairingTriangleIso_hom₂,KIP126.Classical.Adams.adamsSphereTowerLayerPairingIso_ι,KIP126.Classical.Adams.adamsSphereTowerLayerPairingIso_δ,KIP126.Classical.Adams.adamsSphereMixedLayerPairings_agree}
+  \uses{def:h6-mixed-layer-pairings}
+  \leanok
+  With the hypotheses appropriate to each construction, the first two
+  components are the previously constructed tower pairings, and
+  \[
+    (q_s\wedge\mathrm{id})\ell_{s,t}
+      =\mu_{s,t}q_{t+s}
+      =(\mathrm{id}\wedge q_t)r_{s,t}.
+  \]
+  Write $c^R$ and $c^L$ for the suspension comparisons of the right and
+  left tensor functors at the relevant tower objects. The actual connecting
+  maps satisfy
+  \[
+    \ell_{s,t}\delta_{t+s}
+      =(\delta_s\wedge\mathrm{id})c^R\Sigma\mu_{s+1,t},
+    \qquad
+    r_{s,t}\delta_{t+s}
+      =(\mathrm{id}\wedge\delta_t)c^L\Sigma\mu^+_{s,t}.
+  \]
+  The successor reindexing in $\mu^+$ is the one already defined above.
+  The suspension comparisons are retained explicitly, rather than silently
+  replacing them by identities or prescribing a sign convention.
+\end{proposition}
+\begin{proof}
+  The first two component formulas come from the triangle-completion
+  construction. Its second square proves each $q$ identity, and its third
+  square proves each $\delta$ identity. The common-source equality follows
+  since both maps equal $\mu_{s,t}q_{t+s}$.
+  \leanok
+\end{proof}
+
+\begin{definition}[Coefficient-induced multiplication on actual layers]
+  \label{def:h6-coefficient-layer-product}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2CoefficientPairing,KIP126.Classical.Adams.adamsSphereLayerProduct}
+  \uses{def:h6-ring-cooperations,def:h6-existing-tower-pairing,prop:h6-tower-layer-comparison}
+  \leanok
+  Give the stable category a braiding and the specified $H$ its associative
+  unital multiplication $m_H$. For $f:X\wedge Y\to Z$, define
+  \[
+    c_f:(H\wedge X)\wedge(H\wedge Y)
+       \longrightarrow(H\wedge H)\wedge(X\wedge Y)
+       \xrightarrow{m_H\wedge f}H\wedge Z,
+  \]
+  where the first map uses the braiding and associators to exchange the
+  middle factors. Write $e_s:L_s\simeq H\wedge T_sS$ for the existing layer
+  comparisons. Under the right-tensor structures used to construct $\mu$,
+  define the actual layer product
+  $P_{s,t}=(e_s\wedge e_t)c_{\mu_{s,t}}e_{t+s}^{-1}$.
+  This is a concrete map $L_s\wedge L_t\to L_{t+s}$ using the supplied
+  coefficient multiplication, not a triangle-completion choice or a new
+  spectral-sequence multiplication axiom. No associativity, boundary
+  compatibility or Lin comparison for this product is asserted here.
+\end{definition}
+
+\begin{proposition}[The coefficient product preserves tower images]
+  \label{prop:h6-coefficient-layer-product-unit}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2Unit_tensor_mul,KIP126.StableHomotopy.Cohomology.mod2CoefficientPairing_unit,KIP126.Classical.Adams.adamsSphereLayerProduct_comparison,KIP126.Classical.Adams.adamsSphereLayerProduct_ι}
+  \uses{def:h6-coefficient-layer-product}
+  \leanok
+  Writing $u_X:X\to H\wedge X$ for the actual Adams unit, one has
+  $(u_X\wedge u_Y)c_f=fu_Z$. The defined layer product satisfies its
+  comparison formula $P_{s,t}e_{t+s}=(e_s\wedge e_t)c_{\mu_{s,t}}$ and
+  \[
+    (q_s\wedge q_t)P_{s,t}=\mu_{s,t}q_{t+s}.
+  \]
+  In particular this product agrees with the prescribed tower pairing on
+  pairs of tower-to-layer images. This does not identify its one-sided
+  restrictions with the separately chosen mixed pairings above on all
+  inputs, nor supply the two-term boundary formula.
+\end{proposition}
+\begin{proof}
+  Naturality of the middle-factor exchange moves the two units onto the
+  coefficient factors. The ring unit law and monoidal unitor coherence
+  combine them into one unit. For the layer statement, postcompose with
+  $e_{t+s}$, apply $q_se_s=u_{T_sS}$ and the coefficient-unit formula,
+  then cancel the comparison isomorphism.
+  \leanok
+\end{proof}
+
+\begin{proposition}[One-unit restrictions of the coefficient layer product]
+  \label{prop:h6-coefficient-layer-product-restrictions}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2CoefficientPairing_unit_right,KIP126.StableHomotopy.Cohomology.mod2CoefficientPairing_unit_left,KIP126.Classical.Adams.adamsSphereLayerProduct_ι_right_comparison,KIP126.Classical.Adams.adamsSphereLayerProduct_ι_left_comparison}
+  \uses{def:h6-coefficient-layer-product,prop:h6-coefficient-layer-product-unit}
+  \leanok
+  With the same explicit braiding and coefficient ring structure, the
+  one-unit restrictions are
+  \[
+    (\mathrm{id}_{H\wedge X}\wedge u_Y)c_f
+       =\alpha_{H,X,Y}(H\wedge f),
+  \]
+  \[
+    (u_X\wedge\mathrm{id}_{H\wedge Y})c_f
+       =\alpha_{X,H,Y}^{-1}(\beta_{X,H}\wedge\mathrm{id}_Y)
+          \alpha_{H,X,Y}(H\wedge f).
+  \]
+  Here composition is written in execution order. In particular, after
+  using $e_s^{-1}$ on the layer input and $e_{t+s}$ on the output,
+  $(\mathrm{id}_{L_s}\wedge q_t)P_{s,t}$ has the first formula with
+  $X=T_sS$, $Y=T_tS$, $f=\mu_{s,t}$; using $e_t^{-1}$ instead gives
+  the second formula for $(q_s\wedge\mathrm{id}_{L_t})P_{s,t}$.
+  The right-hand sides no longer involve the coefficient multiplication.
+  These are formulas for the actual coefficient-induced product, not an
+  assertion that its restrictions equal the independently chosen mixed
+  triangle completions, and not a boundary product formula.
+\end{proposition}
+\begin{proof}
+  Naturality of the middle-factor exchange moves the inserted unit to the
+  corresponding coefficient input. Apply the left or right ring unit law
+  and monoidal coherence, retaining the braiding in the left-input case.
+  Transport through the layer comparisons using $q_se_s=u_{T_sS}$ and
+  cancellation of each inverse comparison with its forward map.
+  \leanok
+\end{proof}
+
+\begin{definition}[Right-tensor suspension compatibility]
+  \label{def:h6-right-tensor-suspension-compatibility}
+  \lean{KIP126.StableHomotopy.RightTensorSuspensionCompatibility}
+  \uses{def:stable-context}
+  \leanok
+  For the supplied right-tensor shift structures, write
+  $c_X(B):(\Sigma B)\wedge X\to\Sigma(B\wedge X)$ for their comparison
+  at suspension one. Require naturality in the right variable and
+  compatibility with reassociation:
+  \[
+    (\Sigma B\wedge f)c_Y(B)=c_X(B)\Sigma(B\wedge f),
+  \]
+  \[
+    \alpha_{\Sigma B,X,Y}c_{X\wedge Y}(B)
+       =(c_X(B)\wedge\mathrm{id}_Y)c_Y(B\wedge X)
+         \Sigma\alpha_{B,X,Y}.
+  \]
+  Composition is in execution order. This predicate concerns only the
+  ambient tensor and shift structures; it neither mentions Adams pages
+  nor assumes a differential formula. Individual shift structures on
+  the right-tensor functors do not include these family compatibilities.
+  No witness for the fixed foundation is supplied here.
+\end{definition}
+
+\begin{proposition}[Tensor pairing with a suspended-output map]
+  \label{prop:h6-tensor-suspended-pairing}
+  \lean{KIP126.StableHomotopy.rightTensorSuspension_pairing,KIP126.Classical.Adams.adamsFiberTensorIso_pairing_δ}
+  \uses{def:h6-right-tensor-suspension-compatibility,prop:h6-fiber-smash-step}
+  \leanok
+  For any $d:H\to\Sigma B$ and $f:X\wedge Y\to Z$, the preceding
+  compatibility implies
+  \[
+    \alpha_{H,X,Y}(H\wedge f)(d\wedge\mathrm{id}_Z)c_Z(B)
+      =((d\wedge\mathrm{id}_X)c_X(B)\wedge\mathrm{id}_Y)
+        c_Y(B\wedge X)\Sigma(\alpha_{B,X,Y}(B\wedge f)).
+  \]
+  Put $B=\operatorname{fib}(S\to H)$ and let $d$ be its actual fiber
+  connecting map. Write $F_X:\operatorname{fib}(u_X)\simeq B\wedge X$
+  for the existing fiber comparison and $D_X:H\wedge X\to
+  \Sigma\operatorname{fib}(u_X)$ for the actual connecting map. Then
+  \[
+    \alpha_{H,X,Y}(H\wedge f)D_Z
+       =(D_X\wedge\mathrm{id}_Y)c_Y(\operatorname{fib}(u_X))
+         \Sigma((F_X\wedge\mathrm{id}_Y)\alpha_{B,X,Y}
+                    (B\wedge f)F_Z^{-1}).
+  \]
+\end{proposition}
+\begin{proof}
+  Move $d$ past $f$ and the associator by naturality, and apply the two
+  suspension compatibility identities. For the second formula use
+  $D_X=(d\wedge\mathrm{id}_X)c_X(B)\Sigma F_X^{-1}$, naturality of
+  $c_Y$ in its left variable, and cancellation of $\Sigma F_X^{-1}$
+  with $\Sigma F_X$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Successor tower pairing and its fiber boundary]
+  \label{prop:h6-tower-pairing-fiber-boundary}
+  \lean{KIP126.Classical.Adams.adamsTowerSpherePairingIso_succ_comparison,KIP126.Classical.Adams.adamsTowerSpherePairingIso_δ_left}
+  \uses{def:h6-existing-tower-pairing,prop:h6-tensor-suspended-pairing}
+  \leanok
+  Write $X=T_sS$, $Y=T_tS$, $Z=T_{t+s}S$. The actual tower pairing has
+  successor formula
+  \[
+    \mu_{s+1,t}F_Z=(F_X\wedge\mathrm{id}_Y)
+       \alpha_{B,X,Y}(B\wedge\mu_{s,t}).
+  \]
+  This identity needs only the previously supplied exact right-tensor
+  structures. With right-tensor suspension compatibility it implies
+  \[
+    \alpha_{H,X,Y}(H\wedge\mu_{s,t})D_Z
+       =(D_X\wedge\mathrm{id}_Y)c_Y(T_{s+1}S)\Sigma\mu_{s+1,t}.
+  \]
+\end{proposition}
+\begin{proof}
+  Compare with the iterated-smash tower, expand its successor pairing,
+  and use associator naturality. Substitute this identity into the
+  preceding fiber boundary formula. No new triangle-completion choice
+  is made.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Coefficient-side boundary compatibility]
+  \label{prop:h6-coefficient-side-boundary}
+  \lean{KIP126.Classical.Adams.adamsSphereLayerProduct_ι_right_δ_comparison,KIP126.Classical.Adams.adamsSphereLayerProduct_ι_right_δ}
+  \uses{prop:h6-tower-pairing-fiber-boundary,prop:h6-coefficient-layer-product-restrictions}
+  \leanok
+  Under the preceding suspension compatibility and biadditivity of the
+  tensor product, the actual coefficient-induced product satisfies
+  \[
+    (\mathrm{id}_{L_s}\wedge q_t)P_{s,t}\delta_{t+s}
+       =(\delta_s\wedge\mathrm{id}_{T_tS})c_{T_tS}(T_{s+1}S)
+          \Sigma\mu_{s+1,t}.
+  \]
+  This uses the given coefficient product, rather than replacing it by
+  an independently selected triangle completion. It is only a one-sided
+  formula, not the full two-term Leibniz rule.
+\end{proposition}
+\begin{proof}
+  First precompose the layer input with $e_s^{-1}$ and use its one-unit
+  restriction formula. The existing layer comparison gives
+  $\delta_{t+s}=-e_{t+s}D_Z$, so the preceding tower boundary identity
+  computes this composite, including its minus sign. Since
+  $e_s^{-1}\delta_s=-D_X$, biadditivity cancels the matching sign on the
+  source side. Cancel the isomorphism $e_s^{-1}\wedge\mathrm{id}$.
+  \leanok
+\end{proof}
+
+\begin{definition}[Braiding and tensor suspension comparisons]
+  \label{def:h6-tensor-suspension-braiding}
+  \lean{KIP126.StableHomotopy.TensorSuspensionBraidingCompatibility}
+  \uses{def:h6-right-tensor-suspension-compatibility}
+  \leanok
+  In addition to the right-tensor shift structures, supply left-tensor
+  shift structures, and write their suspension-one comparisons as
+  $c_X^R(B)$ and $c_X^L(B)$. The braiding compatibility condition is
+  \[
+    \beta_{X,\Sigma B}c_X^R(B)=c_X^L(B)\Sigma\beta_{X,B}.
+  \]
+  This concerns the ambient structures. It does not assert that the
+  tower pairing is symmetric, and no fixed-foundation witness is provided.
+\end{definition}
+
+\begin{proposition}[Transporting a boundary past a braiding]
+  \label{prop:h6-braided-boundary-transport}
+  \lean{KIP126.StableHomotopy.braidedTensorPairing_swap,KIP126.StableHomotopy.braidedSuspension_transport}
+  \uses{def:h6-tensor-suspension-braiding}
+  \leanok
+  For $f:X\wedge Y\to Z$, the coefficient-side exchange equals
+  \[
+    \alpha_{X,H,Y}^{-1}(\beta_{X,H}\wedge\mathrm{id}_Y)
+       \alpha_{H,X,Y}(H\wedge f)
+      =\beta_{X,H\wedge Y}\alpha_{H,Y,X}
+         (H\wedge(\beta_{X,Y}^{-1}f)).
+  \]
+  For $d:Y\to\Sigma B$ and $k:B\wedge X\to Z$, the suspension
+  compatibility gives
+  \[
+    \beta_{X,Y}(d\wedge\mathrm{id}_X)c_X^R(B)\Sigma k
+       =(X\wedge d)c_X^L(B)\Sigma(\beta_{X,B}k).
+  \]
+  In particular the braiding on the final fiber-level map must be retained.
+\end{proposition}
+\begin{proof}
+  The first identity is the braiding hexagon followed by cancellation of
+  the inverse braiding. For the second, apply braiding naturality, the
+  displayed suspension compatibility, and functoriality of suspension.
+  \leanok
+\end{proof}
+
+\begin{definition}[The braided right fiber lift]
+  \label{def:h6-braided-right-fiber-lift}
+  \lean{KIP126.Classical.Adams.adamsFiberTensorPairingRight,KIP126.Classical.Adams.adamsTowerSpherePairingBoundaryRight}
+  \uses{prop:h6-fiber-smash-step,def:h6-existing-tower-pairing}
+  \leanok
+  Put $B=\operatorname{fib}(S\to H)$, $B_Y=\operatorname{fib}(u_Y)$,
+  and retain the actual comparisons $F_Y:B_Y\simeq B\wedge Y$.
+  For $f:X\wedge Y\to Z$ define
+  \[
+    g_f=\beta_{X,B_Y}(F_Y\wedge\mathrm{id}_X)\alpha_{B,Y,X}
+        (B\wedge(\beta_{X,Y}^{-1}f))F_Z^{-1}.
+  \]
+  Thus $g_f:X\wedge B_Y\to B_Z$. For $f=\mu_{s,t}$ this defines
+  $g_{s,t}:T_sS\wedge T_{t+1}S\to T_{t+s+1}S$ on the existing tower.
+  It is not a replacement tower pairing and is not identified by definition
+  with the ordered successor $\mu^+_{s,t}$.
+\end{definition}
+
+\begin{proposition}[The actual second-input boundary]
+  \label{prop:h6-braided-right-boundary}
+  \lean{KIP126.Classical.Adams.adamsFiberTensorPairingRight_δ,KIP126.Classical.Adams.adamsTowerSpherePairingBoundaryRight_δ,KIP126.Classical.Adams.adamsSphereLayerProduct_ι_left_δ_comparison,KIP126.Classical.Adams.adamsSphereLayerProduct_ι_left_δ}
+  \uses{def:h6-braided-right-fiber-lift,prop:h6-braided-boundary-transport,prop:h6-tensor-suspended-pairing,prop:h6-coefficient-layer-product-restrictions}
+  \leanok
+  Assume right-tensor suspension compatibility and braiding compatibility
+  of the two tensor suspension structures. With $D_Y:H\wedge Y\to
+  \Sigma B_Y$ as above, the second-input coefficient boundary is
+  \[
+    \alpha_{X,H,Y}^{-1}(\beta_{X,H}\wedge\mathrm{id}_Y)
+       \alpha_{H,X,Y}(H\wedge f)D_Z
+       =(X\wedge D_Y)c_X^L(B_Y)\Sigma g_f.
+  \]
+  For the specified coefficient-induced layer multiplication, and
+  assuming biadditivity of the tensor product, this becomes
+  \[
+    (q_s\wedge\mathrm{id}_{L_t})P_{s,t}\delta_{t+s}
+       =(T_sS\wedge\delta_t)c_{T_sS}^L(T_{t+1}S)\Sigma g_{s,t}.
+  \]
+  There is also the coefficient-coordinate formula, precomposed with
+  $\mathrm{id}_{T_sS}\wedge e_t^{-1}$, with right side
+  $-(T_sS\wedge D_{T_tS})c_{T_sS}^L(T_{t+1}S)\Sigma g_{s,t}$.
+\end{proposition}
+\begin{proof}
+  Exchange the inputs using the first transport identity, apply the
+  first-input fiber boundary calculation to $\beta_{X,Y}^{-1}f$, and
+  use the second transport identity. For the layer statement use its
+  existing comparison and its negative connecting-map formula, then
+  cancel the layer-input isomorphism. The product $P$ is unchanged.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The ordered-successor obstruction]
+  \label{prop:h6-ordered-right-boundary-obstruction}
+  \lean{KIP126.Classical.Adams.adamsTowerSpherePairingBoundaryRight_obstruction,KIP126.Classical.Adams.adamsSphereLayerProduct_ι_left_δ_ordered_iff}
+  \uses{prop:h6-braided-right-boundary,prop:h6-existing-tower-pairing-right-transition}
+  \leanok
+  Write $a_{s,t}=(T_sS\wedge\delta_t)c_{T_sS}^L(T_{t+1}S)$.
+  Under the preceding hypotheses, the morphism-level boundary formula with the
+  ordered successor holds exactly when the following concrete composite
+  vanishes:
+  \[
+    (q_s\wedge\mathrm{id})P_{s,t}\delta_{t+s}
+         =a_{s,t}\Sigma\mu^+_{s,t}
+    \quad\Longleftrightarrow\quad
+    a_{s,t}\Sigma(g_{s,t}-\mu^+_{s,t})=0.
+  \]
+  The same difference criterion compares the two coefficient-side
+  composites with $D_{T_tS}$ in place of $\delta_t$.
+  Neither vanishing nor equality of the two lifts is asserted. Vanishing
+  of this composite is the precise condition for this morphism identity;
+  equality of lifts would be a stronger sufficient condition. Necessity
+  of this global condition for page-level multiplicativity is not asserted.
+\end{proposition}
+\begin{proof}
+  Substitute the proved boundary formula with $g_{s,t}$. Additivity of
+  suspension and composition identifies the difference of the resulting
+  two composites with the displayed obstruction.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Connecting maps on representatives and products of tower images]
+  \label{prop:h6-product-tower-image-cycles}
+  \lean{KIP126.Classical.Adams.adamsK_eq_zero_iff_comp_δ_eq_zero,KIP126.Classical.Adams.adamsCycles_mem_of_comp_δ_eq_zero,KIP126.Classical.Adams.adamsCycleSubmodule_top_mem_of_comp_δ_eq_zero,KIP126.Classical.Adams.adamsSphereLayerProduct_comp_δ_eq_zero,KIP126.Classical.Adams.adamsSphereLayerProduct_mem_cycles}
+  \uses{prop:h6-coefficient-layer-product-unit}
+  \leanok
+  For a homotopy representative $x$ in an actual layer, $Kx=0$ if and
+  only if $x\delta=0$. Such a representative lies in every finite cycle
+  submodule and hence, as a $Z_2$ representative, in the actual $Z_\infty$
+  intersection used by internal SSData. For maps $x:A\to L_s$ and $y:B\to L_t$ with
+  $x\delta_s=y\delta_t=0$, the specified product satisfies
+  $(x\wedge y)P_{s,t}\delta_{t+s}=0$. After any specified sphere
+  precomposition this is an element of every actual $Z_r$.
+  The product assertion assumes only the ambient structures used to
+  construct $P$, not the additional suspension compatibility predicates.
+  No nonvanishing or graded sphere-product construction is asserted.
+\end{proposition}
+\begin{proof}
+  Exactness identifies zero connecting image with a lift through $q$.
+  Lift both inputs, use $(q_s\wedge q_t)P=\mu q_{t+s}$, and use
+  $q_{t+s}\delta_{t+s}=0$. The zero connecting image lifts through every
+  tower transition by the zero element, giving membership in every $Z_r$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The second-input formula evaluated on representatives]
+  \label{prop:h6-right-boundary-representatives}
+  \lean{KIP126.Classical.Adams.adamsSphereLayerProduct_ι_left_δ_representatives,KIP126.Classical.Adams.adamsSphereLayerProduct_ι_left_δ_representatives_ordered_iff}
+  \uses{prop:h6-braided-right-boundary,prop:h6-ordered-right-boundary-obstruction}
+  \leanok
+  Under the hypotheses of the second-input boundary formula, for
+  $x:A\to T_sS$ and $y:B\to L_t$ put
+  $a(x,y)=(x\wedge(y\delta_t))c^L_{T_sS}(T_{t+1}S)$. Then
+  \[
+    ((xq_s)\wedge y)P_{s,t}\delta_{t+s}=a(x,y)\Sigma g_{s,t}.
+  \]
+  Replacing $g_{s,t}$ here by $\mu^+_{s,t}$ is equivalent to
+  $a(x,y)\Sigma(g_{s,t}-\mu^+_{s,t})=0$. This tests the particular
+  decomposable representatives; it does not require the global morphism
+  obstruction to vanish. Taking $A,B$ to be spheres supplies the inputs
+  relevant to homotopy products, still before page quotients.
+\end{proposition}
+\begin{proof}
+  Precompose the layer formula with $x\wedge y$, use tensor functoriality,
+  and subtract the ordered-successor expression.
+  \leanok
+\end{proof}
+
+\paragraph{Remaining multiplicativity boundary.}
+These equalities are in the homotopy-category interface. They do not supply
+coherent tower-level data or the full two-term boundary product formula
+needed for Leibniz. The mixed pairings above supply individual one-sided
+boundary formulas, while the coefficient construction supplies a concrete
+layer-layer product with explicit one-unit restrictions. Under the stated
+ambient suspension compatibility, that specified product now satisfies
+the first-input boundary formula after restriction of the second input to
+the tower image. The other side now has a formula with the explicit braided
+lift. Global comparison with the ordered successor would require the
+morphism-level vanishing condition above, but this is only a stronger
+possible route, not a proved prerequisite for page products. On represented
+inputs the exact condition is the corresponding precomposed obstruction;
+passing to page quotients may weaken it further. Products of two tower
+images are already cycles on every finite page by exactness. The full
+two-term boundary formula for general cycles, coherent
+gluing, passage to spectral-sequence pages, and identification with the
+Lin product remain unproved. Equality
+with the independently chosen mixed triangle completions is not claimed.
+Dugger, \emph{Multiplicative structures on homotopy spectral sequences, Part I},
+\url{https://arxiv.org/pdf/math/0305173}, Sections 1 and 7, explains why pairings
+commuting only up to homotopy need not induce spectral-sequence pairings and
+gives a counterexample. This is a design constraint, not an additional Lean
+axiom or a proved project theorem. The fixed two-factor witness, tensor
+structures and their suspension compatibilities, the full boundary product
+formula, and identification with Lin's product remain separate obligations.
+
+\begin{proposition}[The tower is killed by coefficient homology]
+  \label{prop:h6-tower-homology-zero}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2FreeAction,KIP126.StableHomotopy.Cohomology.mod2FreeAction_unit,KIP126.StableHomotopy.Cohomology.mod2_adamsTowerStep_homology_eq_zero,KIP126.StableHomotopy.Cohomology.mod2_adamsTowerMap_eq_zero,KIP126.StableHomotopy.Cohomology.mod2_homology_eq_zero_of_tower_lift}
+  \uses{def:h6-ring-cooperations,def:h6-fiber-tower}
+  \leanok
+  Suppose $H$ has the specified associative unital multiplication and
+  $H\wedge-$ preserves zero morphisms. Multiplication on the first two
+  factors retracts $H\wedge u_X$. Consequently $H\wedge(T_{s+1}\to T_s)$
+  is the zero map; the same holds for every strictly descending composite
+  of natural-indexed tower maps. If a map $f:X\to Y$ is supplied with a
+  factorization through any positive stage of the actual tower of $Y$,
+  then $H_nf=0$ in every degree $n$.
+\end{proposition}
+\begin{proof}
+  Use the right unit identity for the multiplication, associator naturality,
+  and the triangle identity to construct the retraction. The fiber inclusion
+  composed with the unit is zero. Smash this equality with $H$, then compose
+  with the retraction. Factor a positive-length tower map through one such
+  step, and postcompose representatives of homotopy classes to obtain the
+  homology statement.
+  \leanok
+\end{proof}
+
+These are generic theorems with explicit structural arguments. The selected
+\texttt{standardFoundation} does not yet supply the multiplication and
+tensor-zero-preservation witnesses used in the second proposition. They are
+not added as new global axioms. Neither proposition provides the Milnor
+cooperation coordinates, a concrete model of classical spectra, or permanence
+of the specified square.
+
+\begin{definition}[Quotient pages from the Adams tower]
+  \label{def:h6-tower-pages}
+  \lean{KIP126.Classical.Adams.adamsE1}
+  \lean{KIP126.Classical.Adams.adamsI}
+  \lean{KIP126.Classical.Adams.adamsJ}
+  \lean{KIP126.Classical.Adams.adamsK}
+  \lean{KIP126.Classical.Adams.adamsCycles}
+  \lean{KIP126.Classical.Adams.adamsBoundaries}
+  \lean{KIP126.Classical.Adams.adamsCycleBoundaries}
+  \lean{KIP126.Classical.Adams.adamsPage}
+  \uses{def:h6-fiber-tower,thm:stable-homotopy-long-exact}
+  \notready
+  Write $E_1^{s,t}=\pi_{t-s}Q_s$.  Let $j$ be induced by $T_s\to Q_s$,
+  let $k:E_1^{s,t}\to\pi_{t-s-1}T_{s+1}$ be the connecting map, and
+  write $i_{a,b}$ for the map on a fixed homotopy group induced by
+  $T_b\to T_a$.  For $r\ge1$ define
+  \[
+    Z_r^{s,t}=k^{-1}(\operatorname{im}i_{s+1,s+r}),\qquad
+    B_r^{s,t}=j(\ker i_{s-r+1,s}),\qquad
+    E_r^{s,t}=Z_r^{s,t}/(Z_r^{s,t}\cap B_r^{s,t}).
+  \]
+  These are actual subgroups and quotients of the homotopy groups of the
+  constructed tower.  The exact-couple identities imply $B_r\subseteq Z_r$.
+\end{definition}
+
+\begin{proposition}[The first quotient page is coefficient homology]
+  \label{prop:h6-first-page-homology}
+  \lean{KIP126.Classical.Adams.adamsCycles_one,KIP126.Classical.Adams.adamsBoundaries_one,KIP126.Classical.Adams.adamsPageOneHomologyEquiv,KIP126.Classical.Adams.adamsE1HomologyEquiv_J,KIP126.Classical.Adams.adamsPageOneHomologyEquiv_mkQ}
+  \uses{def:h6-tower-pages,prop:h6-tower-layer-comparison}
+  \leanok
+  At page one, $Z_1=E_1$ and $B_1=0$. For $s\ge0$ the constructed quotient
+  page is therefore integer-linearly isomorphic to
+  $\pi_{t-s}(H\wedge T_s)$, which is $H_{t-s}(T_s;\mathbb F_2)$ when
+  $H=H\mathbb F_2$. The isomorphism sends a quotient representative to
+  its postcomposition with the layer comparison and sends $j(x)$ to the
+  homotopy class induced by the Adams unit. This is the tower's actual
+  first quotient page, not the out-of-range first page of the internal
+  spectral sequence whose starting page is two.
+\end{proposition}
+\begin{proof}
+  The ordered tower map from a stage to itself is the identity. Its image
+  is the full group and its kernel is zero. Remove the zero quotient and
+  compose with the homotopy-group isomorphism induced by the layer comparison.
+  \leanok
+\end{proof}
+
+\begin{definition}[Page differential from a tower lift]
+  \label{def:h6-tower-differential}
+  \lean{KIP126.Classical.Adams.adamsCycleLift}
+  \lean{KIP126.Classical.Adams.adamsDifferentialValue}
+  \lean{KIP126.Classical.Adams.adamsDifferential}
+  \lean{KIP126.Classical.Adams.adamsPageComplex}
+  \uses{def:h6-tower-pages}
+  \notready
+  For $x\in Z_r^{s,t}$, choose $y\in\pi_{t-s-1}T_{s+r}$ with
+  $i_{s+1,s+r}(y)=k(x)$.  Define
+  \[
+    d_r([x])=[j(y)]\in E_r^{s+r,t+r-1}.
+  \]
+  Thus the map is specified on representatives before descending to the
+  quotient.  Its additivity, independence of the lift and representative,
+  and square-zero law are established in Proposition~\ref{prop:h6-tower-differential-laws}; they are not inputs selecting a map.
+\end{definition}
+
+\begin{proposition}[Well-definedness and square-zero of the tower differential]
+  \label{prop:h6-tower-differential-laws}
+  \lean{KIP126.Classical.Adams.adamsDifferentialValue_eq_of_lift}
+  \lean{KIP126.Classical.Adams.adamsDifferentialValue_add}
+  \lean{KIP126.Classical.Adams.adamsDifferentialValue_smul}
+  \lean{KIP126.Classical.Adams.adamsBoundaries_le_differential_ker}
+  \lean{KIP126.Classical.Adams.adamsPageD_comp}
+  \uses{def:h6-tower-differential}
+  \leanok
+  The differential is independent of the chosen lift, is additive and
+  integer-linear, vanishes on cycle boundaries, and satisfies $d_r^2=0$.
+\end{proposition}
+\begin{proof}
+  Two lifts differ by an element in the kernel of the tower composite,
+  so their layer images differ by a boundary. Use sums and scalar multiples
+  of lifts to establish linearity. Exactness gives $kj=0$; hence every
+  layer image has zero next differential, proving both boundary vanishing
+  and square-zero.
+  \leanok
+\end{proof}
+
+\begin{definition}[Long-layer representatives of the existing tower]
+  \label{def:h6-tower-long-layer}
+  \lean{KIP126.StableHomotopy.cofiberFactorizationMap,KIP126.Classical.Adams.adamsLongLayer,KIP126.Classical.Adams.adamsLongLayerProjection,KIP126.Classical.Adams.adamsLongLayerToE1,KIP126.Classical.Adams.adamsLongLayerK}
+  \uses{def:h6-tower-pages}
+  \leanok
+  For $r\ge1$ and integer $s$, put
+  $Q_s^{(r)}=\operatorname{cofib}(T_{s+r}\to T_s)$.
+  The factorization through $T_{s+1}$ and the identity on $T_s$ give a
+  specified map $p_r:Q_s^{(r)}\to Q_s$. Let $k_r$ be the connecting
+  homomorphism of the long cofiber triangle. These use the actual tower
+  and its existing cofiber choices, without any assumed composition law
+  for those choices or replacement of its spectral sequence.
+\end{definition}
+
+\begin{proposition}[All cycles and pages have long-layer representatives]
+  \label{prop:h6-tower-long-layer-cycles}
+  \lean{KIP126.StableHomotopy.cofiberFactorizationMap_ι,KIP126.StableHomotopy.cofiberFactorizationMap_δ,KIP126.StableHomotopy.cofiberFactorizationMap_connecting,KIP126.StableHomotopy.cofiberFactorizationMap_image_iff,KIP126.Classical.Adams.adamsLongLayerK_lift,KIP126.Classical.Adams.adamsCycles_mem_iff_longLayer,KIP126.Classical.Adams.adamsLongLayerToE1_mem_cycles,KIP126.Classical.Adams.adamsCycles_eq_range_longLayer,KIP126.Classical.Adams.adamsLongLayerToCycles,KIP126.Classical.Adams.adamsLongLayerToPage,KIP126.Classical.Adams.adamsLongLayerToCycles_surjective,KIP126.Classical.Adams.adamsLongLayerToPage_surjective}
+  \uses{def:h6-tower-long-layer,thm:stable-homotopy-long-exact}
+  \leanok
+  With $n=t-s$, one has an equality of the existing submodules
+  \[
+    Z_r^{s,t}=\operatorname{im}\bigl(\pi_nQ_s^{(r)}
+        \xrightarrow{(p_r)_*}\pi_nQ_s\bigr).
+  \]
+  Hence the induced linear maps to $Z_r^{s,t}$ and to the already
+  constructed $E_r^{s,t}$ are surjective. Naturality gives
+  $k(p_rz)=i_{s+1,s+r}(k_rz)$, so these statements cover general cycles,
+  not merely representatives with zero connecting image.
+\end{proposition}
+\begin{proof}
+  More generally, for a factorization $A\xrightarrow{a}B\xrightarrow{g}D$
+  with composite $f$, a class $x\in\pi_n\operatorname{cofib}(g)$ is in
+  the image of $\pi_n\operatorname{cofib}(f)$ if and only if its
+  connecting image is in the image of $\pi_{n-1}a$.
+  For the reverse direction choose a lift $y$ of that connecting image.
+  Exactness gives $f_*y=0$, hence a long-cofiber class $z$ with boundary
+  $y$. Then $x-p_*z$ has zero boundary and comes from $\pi_nD$; add
+  the corresponding long-cofiber image to $z$. The forward direction
+  is boundary naturality. Apply this to the tower factorization and
+  then the surjective quotient map. No octahedral or tensor hypothesis
+  is needed.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The existing differential from the long-layer boundary]
+  \label{prop:h6-tower-long-layer-differential}
+  \lean{KIP126.Classical.Adams.adamsDifferential_of_longLayer,KIP126.Classical.Adams.adamsDifferential_longLayerToPage}
+  \uses{prop:h6-tower-long-layer-cycles,prop:h6-tower-differential-laws}
+  \leanok
+  For any $z\in\pi_{t-s}Q_s^{(r)}$, the actual quotient differential is
+  \[
+    d_r([p_rz])=[j(k_rz)]\in E_r^{s+r,t+r-1}.
+  \]
+  In particular the long-cofiber formula computes $d_r$ on every page
+  class, not a newly chosen differential.
+\end{proposition}
+\begin{proof}
+  Boundary naturality makes $k_rz$ a valid lift in the existing
+  definition of $d_r$. Apply its proved independence-of-lift theorem;
+  the homotopy degrees agree since $(t+r-1)-(s+r)=t-s-1$.
+  \leanok
+\end{proof}
+
+\paragraph{Boundary of this representative construction.}
+These results supply all-page relative representatives needed for a
+possible multiplicativity proof. They do not construct pairings between
+the long layers or prove a relative product boundary formula. The conditional
+quotient-descent construction below handles the subsequent algebraic step.
+Neither Leibniz nor compatibility with the Lin multiplication follows from
+the surjectivity statement alone.
+
+\begin{proposition}[Long-layer representatives on the internal SSData page]
+  \label{prop:h6-tower-long-layer-internal}
+  \lean{KIP126.Classical.Adams.adamsLongLayerToInternalPage,KIP126.Classical.Adams.adamsLongLayerToInternalPage_comparison,KIP126.Classical.Adams.adamsLongLayerToInternalPage_surjective,KIP126.Classical.Adams.adamsTowerInternalD_longLayer}
+  \uses{prop:h6-tower-long-layer-differential,prop:h6-tower-internal-laws}
+  \leanok
+  At internal stage $n$ (classical page $n+2$), the long-layer map also
+  surjects onto the existing SSData page, through the inverse of its
+  representative-preserving quotient comparison. Under the target
+  comparison, its actual internal differential is again $[j(k_{n+2}z)]$.
+  This uses KIP126's internal SSData/PreSS, not a Mathlib spectral sequence.
+\end{proposition}
+\begin{proof}
+  Compose the long-layer surjection with the inverse page comparison.
+  Cancel that isomorphism for surjectivity and use the already proved
+  differential comparison and long-layer formula.
+  \leanok
+\end{proof}
+
+\begin{definition}[Inputs for long-layer pairing descent]
+  \label{def:h6-long-pairing-inputs}
+  \lean{KIP126.Classical.Adams.AdamsLongLayerPairing,KIP126.Classical.Adams.AdamsLongLayerPairing.ProjectionCompatible,KIP126.Classical.Adams.AdamsLongLayerPairing.BoundaryCompatible}
+  \uses{def:h6-tower-long-layer,def:h6-tower-pages}
+  \leanok
+  Fix $r\ge1$ and bidegrees $p,q$. A candidate consists of bilinear maps
+  $m_1:E_1^p\times E_1^q\to E_1^{p+q}$ and
+  $m_r:\pi Q_p^{(r)}\times\pi Q_q^{(r)}\to\pi Q_{p+q}^{(r)}$,
+  in the corresponding homotopy degrees. Projection compatibility means
+  $p_rm_r(a,b)=m_1(p_ra,p_rb)$.
+  Boundary compatibility asks that $m_1(j(u),p_rb)$ lie in $B_r^{p+q}$
+  whenever $u$ is killed by the tower map defining $B_r^p$, and analogously
+  for $m_1(p_ra,j(v))$. These are predicates on supplied maps, not axioms
+  asserting their existence. A sphere application must still identify $m_1$
+  with the intended coefficient-induced product.
+\end{definition}
+
+\begin{definition}[Specified sphere representative product]
+  \label{def:h6-specified-sphere-pairing}
+  \lean{KIP126.StableHomotopy.sphereTensorIsoFromRightShift,KIP126.StableHomotopy.tensorHomPairing,KIP126.StableHomotopy.homotopyTensorPairing,KIP126.Classical.Adams.adamsSphereLayerProductOrdered,KIP126.Classical.Adams.adamsSphereE1Product,KIP126.Classical.Adams.adamsSphereLongLayerPairing}
+  \uses{def:h6-coefficient-layer-product,def:h6-long-pairing-inputs}
+  \leanok
+  Assume additive tensor and the given right-tensor shift and exactness
+  structures. The right shift comparison, left unitor and shift-addition
+  comparison specify $S^a\wedge S^b\simeq S^{a+b}$. For an actual map
+  $f:X\wedge Y\to Z$, precompose $(x\wedge y)f$ with its inverse to get
+  an integer-bilinear pairing of homotopy groups. Apply this to the
+  coefficient-induced layer product, reindexed from $t+s$ to $s+t$, to
+  fix $m_1$. Given an actual long-layer map $\mu$, the same construction
+  fixes $m_r$ and hence a candidate with this specified $m_1$.
+  No graded symmetry, sign coherence, or Lin comparison is asserted.
+\end{definition}
+
+\begin{proposition}[Spectrum projection compatibility implies represented compatibility]
+  \label{prop:h6-sphere-pairing-projection}
+  \lean{KIP126.StableHomotopy.tensorHomPairing_apply,KIP126.StableHomotopy.tensorHomPairing_naturality,KIP126.StableHomotopy.homotopyTensorPairing_naturality,KIP126.Classical.Adams.adamsSphereLongLayerPairing_projection}
+  \uses{def:h6-specified-sphere-pairing}
+  \leanok
+  If $\mu p_r=(p_r\wedge p_r)P$ as spectrum maps, the specified
+  representative pairing is projection compatible. This is conditional on
+  the spectrum map and its square, not a construction of them for $r>1$.
+\end{proposition}
+\begin{proof}
+  Tensor respects composition; precompose the assumed square with the
+  tensor of the two representatives and the specified sphere comparison.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Conditional pairing on the actual quotient pages]
+  \label{prop:h6-long-pairing-descent}
+  \lean{KIP126.Classical.Adams.AdamsLongLayerPairing.mem_cycles,KIP126.Classical.Adams.AdamsLongLayerPairing.boundary_left,KIP126.Classical.Adams.AdamsLongLayerPairing.boundary_right,KIP126.Classical.Adams.AdamsLongLayerPairing.onCycles,KIP126.Classical.Adams.AdamsLongLayerPairing.cyclesToPage,KIP126.Classical.Adams.AdamsLongLayerPairing.boundaries_le_left_ker,KIP126.Classical.Adams.AdamsLongLayerPairing.boundaries_le_right_ker,KIP126.Classical.Adams.AdamsLongLayerPairing.onPage,KIP126.Classical.Adams.AdamsLongLayerPairing.onPage_mk,KIP126.Classical.Adams.AdamsLongLayerPairing.onPage_long,KIP126.Classical.Adams.AdamsLongLayerPairing.onPage_unique,KIP126.Classical.Adams.AdamsLongLayerPairing.onInternalPage,KIP126.Classical.Adams.AdamsLongLayerPairing.onInternalPage_comparison,KIP126.Classical.Adams.AdamsLongLayerPairing.onInternalPage_long}
+  \uses{def:h6-long-pairing-inputs,prop:h6-tower-long-layer-cycles,prop:h6-tower-long-layer-internal}
+  \leanok
+  Assume both compatibility predicates. The specified $m_1$ preserves
+  $Z_r\times Z_r$ and sends $B_r\times Z_r$ and $Z_r\times B_r$ into
+  $B_r$. It therefore induces a bilinear map on the existing quotient
+  pages, with $[p_ra]\,[p_rb]=[p_rm_r(a,b)]$.
+  This formula determines that map uniquely. For $r=n+2$ transport through
+  the existing quotient comparisons gives the same pairing on internal
+  SSData pages, preserving the long-layer formula.
+  The statement fixes a page and two bidegrees; it does not assert
+  associativity, a unit, or multiplicative compatibility between pages.
+\end{proposition}
+\begin{proof}
+  Represent both cycles by long-layer classes and apply projection
+  compatibility. Represent a boundary as $j$ of an element killed by the
+  appropriate tower composite, and the other cycle by a long-layer class;
+  apply the corresponding boundary condition. After projecting the output,
+  these give the two kernel inclusions required for bilinear quotient descent.
+  Surjectivity of both long-layer-to-page maps proves uniqueness.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Constructed one-step sphere pairing]
+  \label{prop:h6-sphere-pairing-one}
+  \lean{KIP126.StableHomotopy.cofiberFactorizationMap_isIso,KIP126.Classical.Adams.adamsLongLayerProjection_one_isIso,KIP126.Classical.Adams.adamsSphereLongLayerOneProduct,KIP126.Classical.Adams.adamsSphereLongLayerOnePairing,KIP126.Classical.Adams.AdamsLongLayerPairing.boundaryCompatible_one,KIP126.Classical.Adams.adamsSphereLongLayerOneProduct_projection,KIP126.Classical.Adams.adamsSphereLongLayerOnePairing_projection,KIP126.Classical.Adams.adamsSpherePageOneProduct,KIP126.Classical.Adams.adamsSpherePageOneProduct_long}
+  \uses{prop:h6-sphere-pairing-projection,prop:h6-long-pairing-descent,prop:h6-first-page-homology}
+  \leanok
+  Under the same ambient assumptions, the one-step projection $p_1$ is
+  an isomorphism. Define $\mu_1=(p_1\wedge p_1)Pp_1^{-1}$. Its projection
+  square holds, and its represented pairing is boundary compatible because
+  $B_1=0$. Thus the existing first quotient page has a constructed bilinear
+  product, agreeing with $\mu_1$ on long-layer representatives, without a
+  free pairing or compatibility input. This does not prove a derivation law
+  for $d_1$, descent to $E_2$, or a witness for the fixed standard foundation.
+\end{proposition}
+\begin{proof}
+  The cofiber comparison has isomorphisms on its first two triangle terms;
+  the triangulated five lemma makes the third map an isomorphism as well.
+  This does not require that a chosen cofiber map of identities be identity.
+  Inverse cancellation proves the projection square. A tower-kernel image
+  defining a first-page boundary is zero, so bilinearity proves both boundary
+  conditions. Apply quotient descent and its represented formula.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Exact relative-boundary criterion for the page derivation formula]
+  \label{prop:h6-long-pairing-leibniz-criterion}
+  \lean{KIP126.Classical.Adams.adamsLongLayerBoundaryToPage,KIP126.Classical.Adams.adamsDifferential_longLayerToPage_eq_boundary,KIP126.Classical.Adams.AdamsLongLayerPairing.RelativeBoundaryFormula,KIP126.Classical.Adams.AdamsLongLayerPairing.leibniz_of_relativeBoundary,KIP126.Classical.Adams.AdamsLongLayerPairing.relativeBoundary_iff_leibniz,KIP126.Classical.Adams.AdamsLongLayerPairing.internalD_of_relativeBoundary}
+  \uses{prop:h6-long-pairing-descent,prop:h6-tower-long-layer-differential}
+  \leanok
+  Put $b_r(z)=[j(k_rz)]$. Fix an integer coefficient $e$ and bilinear maps
+  $L:E_r^{dp}\times E_r^q\to E_r^{d(p+q)}$ and
+  $R:E_r^p\times E_r^{dq}\to E_r^{d(p+q)}$, where
+  $d(s,t)=(s+r,t+r-1)$. Then the representative identity
+  \[
+    b_r(m_r(a,b))=L(b_ra,[p_rb])+eR([p_ra],b_rb)
+  \]
+  is equivalent to the page formula
+  $d_r(xy)=L(d_rx,y)+eR(x,d_ry)$ for all $x,y$.
+  For $r=n+2$, the same identity computes the existing internal differential
+  of the descended internal product: compare the output and both input
+  differentials with their existing quotient-page isomorphisms.
+  This is a reduction of the remaining proof obligation, not its discharge:
+  the boundary identity is unproved. One must also construct the intended
+  adjacent-degree pairings $L,R$, supply their target identifications and
+  correct sign, and prove compatibility with Lin multiplication.
+\end{proposition}
+\begin{proof}
+  Lift both page inputs to long-layer representatives. Substitute the proved
+  pairing formula and $d_r[p_rz]=b_r(z)$ in each term. The converse evaluates
+  the page identity on those same representatives.
+  Naturality of the existing internal differential comparison transports
+  the formula to internal pages without replacing their differentials.
+  \leanok
+\end{proof}
+
+\begin{definition}[The three geometric products for the square's second differential]
+  \label{def:h6-three-long-layer-products}
+  \lean{KIP126.Classical.Adams.SphereH6LongLayerMaps,KIP126.Classical.Adams.SphereH6LongLayerMaps.squarePairing,KIP126.Classical.Adams.SphereH6LongLayerMaps.leftPairing,KIP126.Classical.Adams.SphereH6LongLayerMaps.rightPairing,KIP126.Classical.Adams.SphereH6LongLayerMaps.Compatible,KIP126.Classical.Adams.SphereH6LongLayerMaps.Compatible.square,KIP126.Classical.Adams.SphereH6LongLayerMaps.Compatible.left,KIP126.Classical.Adams.SphereH6LongLayerMaps.Compatible.right,KIP126.Classical.Adams.SphereH6LongLayerMaps.RelativeBoundary}
+  \uses{def:h6-specified-sphere-pairing,prop:h6-sphere-pairing-projection,prop:h6-long-pairing-leibniz-criterion}
+  \leanok
+  Write $Q_s=Q_s^{(2)}$. Supply actual spectrum maps
+  $Q_1\wedge Q_1\to Q_2$, $Q_3\wedge Q_1\to Q_4$, and
+  $Q_1\wedge Q_3\to Q_4$. Their representative pairings have input
+  bidegrees respectively $((1,64),(1,64))$, $((3,65),(1,64))$, and
+  $((1,64),(3,65))$. Each first-page product is fixed to the specified
+  coefficient-induced product. Compatibility consists of the three
+  spectrum projection squares and the two-sided tower-kernel boundary
+  conditions for each product. The squares imply represented projection
+  compatibility by tensor naturality.
+  The relative-boundary predicate uses the latter two descended products
+  as the two terms in the first product's boundary identity, with a plus
+  sign on the target page. Thus the adjacent products are no longer free
+  bilinear maps. The plus form is intended for characteristic two, not
+  asserted as a spectrum-level graded-sign rule.
+  These are defined data and predicates; no existence or compatibility
+  witness for the specified fixed sphere is supplied here.
+\end{definition}
+
+\begin{proposition}[Simultaneous cofiber and connecting-map lifting]
+  \label{prop:h6-simultaneous-cofiber-lift}
+  \lean{KIP126.StableHomotopy.cofiberFactorizationMap_lift_of_boundary,KIP126.StableHomotopy.cofiberFactorizationMap_lift_iff,KIP126.Classical.Adams.adamsLongLayerProjection_lift_of_boundary,KIP126.Classical.Adams.adamsLongLayerProjection_lift_iff}
+  \uses{def:h6-tower-long-layer,thm:stable-homotopy-long-exact}
+  \leanok
+  Suppose $f=ga:A\to D$, with $a:A\to B$ and $g:B\to D$,
+  and let $c:\operatorname{cofib}(f)\to\operatorname{cofib}(g)$ be
+  the chosen comparison. For any spectrum $W$, maps
+  $x:W\to\operatorname{cofib}(g)$ and $y:W\to\Sigma A$ satisfying
+  $(\Sigma a)y=\delta_gx$ admit a simultaneous lift
+  $z:W\to\operatorname{cofib}(f)$ with $cz=x$ and $\delta_fz=y$.
+  In particular, $x$ lifts through $c$ if and only if its connecting map
+  lifts through $\Sigma a$. This applies to arbitrary source spectra,
+  not just sphere representatives, and specializes to $Q_s^{(r)}\to L_s$.
+\end{proposition}
+\begin{proof}
+  Since $(\Sigma f)y=0$, exactness of the represented distinguished
+  triangle gives $z_0$ with $\delta_fz_0=y$. The difference $x-cz_0$
+  has zero connecting map and therefore equals $\iota_gb$ for some
+  $b:W\to D$. Then $z=z_0+\iota_fb$ has both required properties.
+  Conversely, a lift $z$ supplies $y=\delta_fz$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Constructed products retain a prescribed lower boundary]
+  \label{prop:h6-product-from-boundary-lift}
+  \lean{KIP126.Classical.Adams.adamsSphereLongLayerProjectedProduct,KIP126.Classical.Adams.adamsSphereLongLayerProductBoundary,KIP126.Classical.Adams.adamsSphereLongLayerProduct_exists_of_boundaryLift,KIP126.Classical.Adams.adamsSphereLongLayerProduct_exists_iff_boundaryLift,KIP126.Classical.Adams.adamsSphereLongLayerProductOfBoundaryLift,KIP126.Classical.Adams.adamsSphereLongLayerProductOfBoundaryLift_projection,KIP126.Classical.Adams.adamsSphereLongLayerProductOfBoundaryLift_boundary,KIP126.Classical.Adams.adamsSphereLongLayerPairingOfBoundaryLift_projection}
+  \uses{prop:h6-simultaneous-cofiber-lift,def:h6-specified-sphere-pairing,prop:h6-sphere-pairing-projection}
+  \leanok
+  Fix the coefficient-induced product $m_1:L_s\wedge L_t\to L_{s+t}$
+  and put $P=m_1(\pi_s\wedge\pi_t)$. A product
+  $\mu:Q_s^{(r)}\wedge Q_t^{(r)}\to Q_{s+t}^{(r)}$ with
+  $\pi_{s+t}\mu=P$ exists if and only if there is a map
+  $y:Q_s^{(r)}\wedge Q_t^{(r)}\to\Sigma T_{s+t+r}$ satisfying
+  \[
+    (\Sigma I_{s+t+1,s+t+r})y=\delta_{s+t}^{(1)}P.
+  \]
+  Given such a $y$, the specified choice of $\mu$ satisfies both
+  $\pi_{s+t}\mu=P$ and $\delta_{s+t}^{(r)}\mu=y$.
+  Its homotopy pairings consequently satisfy projection compatibility
+  in every input bidegree. No existence of $y$ is asserted.
+\end{proposition}
+\begin{proof}
+  Apply simultaneous lifting with source $Q_s^{(r)}\wedge Q_t^{(r)}$
+  and choose a witness retaining both equalities. Tensor naturality
+  gives the representative projection formula.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The supplied lift computes the actual differential]
+  \label{prop:h6-product-lift-differential}
+  \lean{KIP126.StableHomotopy.connectingHomomorphism_eq_desuspend,KIP126.Classical.Adams.adamsSphereLongLayerProductOfBoundaryLift_K,KIP126.Classical.Adams.adamsSphereLongLayerProductOfBoundaryLift_differential}
+  \uses{prop:h6-product-from-boundary-lift,prop:h6-tower-long-layer-differential}
+  \leanok
+  For homotopy representatives $a,b$ in these two long layers, the
+  connecting class of $\mu_*(a,b)$ is the desuspension of $y_*(a,b)$.
+  Thus, with the prescribed degree identifications,
+  \[
+    d_r[\mu_*(a,b)]=j_r\bigl(\operatorname{desusp}(y_*(a,b))\bigr).
+  \]
+  This computes the existing Adams differential, without assuming a
+  Leibniz rule or that the product has descended to quotient pages.
+  The formula does not establish a two-term boundary identity for $y$.
+\end{proposition}
+\begin{proof}
+  Express the connecting homomorphism as postcomposition by the triangle's
+  third map followed by desuspension. Substitute $\delta\mu=y$ and the
+  already proved long-layer formula for the differential.
+  \leanok
+\end{proof}
+
+\begin{definition}[Lower lifts for the three square products]
+  \label{def:h6-three-boundary-lifts}
+  \lean{KIP126.Classical.Adams.SphereH6BoundaryLifts,KIP126.Classical.Adams.SphereH6BoundaryLifts.FitsProducts,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps_boundaries,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps_compatible}
+  \uses{prop:h6-product-from-boundary-lift,def:h6-three-long-layer-products}
+  \leanok
+  At $r=2$, supply three maps
+  $Q_1\wedge Q_1\to\Sigma T_4$,
+  $Q_3\wedge Q_1\to\Sigma T_6$, and
+  $Q_1\wedge Q_3\to\Sigma T_6$. The predicate
+  \texttt{FitsProducts} requires their composites through
+  $\Sigma I_{3,4}$ and $\Sigma I_{5,6}$ to equal the three prescribed
+  first-layer product boundaries. Simultaneous lifting constructs the
+  three long-layer products, proves their projection squares, and retains
+  these exact connecting maps. The two-sided tower-kernel conditions
+  are inputs to the general descent constructor; four of the six are
+  discharged by the next proposition. Neither a value of this structure for the
+  fixed foundation nor the relative-boundary or Lin comparisons is supplied.
+\end{definition}
+
+\begin{proposition}[Filtration-one boundaries and redundant descent conditions]
+  \label{prop:h6-filtration-one-boundaries}
+  \lean{KIP126.Classical.Adams.adamsBoundaries_succ_eq_of_differential_zero,KIP126.Classical.Adams.sphereAdamsBoundaries_filtration_one_succ,KIP126.Classical.Adams.sphereAdamsBoundaries_filtration_one,KIP126.Classical.Adams.adamsJ_eq_zero_of_boundaries_eq_bot,KIP126.Classical.Adams.AdamsLongLayerPairing.boundaryCompatible_of_eq_bot,KIP126.Classical.Adams.SphereH6LongLayerMaps.CrossBoundaryCompatible,KIP126.Classical.Adams.SphereH6LongLayerMaps.square_boundary,KIP126.Classical.Adams.SphereH6LongLayerMaps.CrossBoundaryCompatible.left_boundary,KIP126.Classical.Adams.SphereH6LongLayerMaps.CrossBoundaryCompatible.right_boundary,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps_compatible_of_cross}
+  \uses{prop:h6-sphere-initial-survival,def:h6-three-long-layer-products,def:h6-three-boundary-lifts}
+  \leanok
+  In the actual sphere tower, $B_r^{1,t}=0$ for every $r\ge1$ and
+  every integer $t$. The first incoming differential is zero by the
+  initial-column theorem, and later incoming sources have negative
+  filtration. Thus any bilinear representative pairing kills a boundary
+  input of filtration one. For the three products used for $h_6^2$,
+  this proves both boundary conditions of the square product and the
+  filtration-one condition of each cross product. Only the two conditions
+  with boundary input in bidegree $(3,65)$ remain as descent obligations.
+  They are recorded in \texttt{CrossBoundaryCompatible}; no Lin comparison,
+  fixed-foundation axiom, or relative-boundary formula enters this reduction.
+\end{proposition}
+\begin{proof}
+  A zero incoming differential makes consecutive boundary submodules
+  equal: every new boundary is represented by an image of that differential.
+  Apply this at filtration zero for $r=1$, and use the zero negative
+  source for $r>1$. Induction starts from $B_1=0$.
+  If $I(a)=0$ in filtration one, then $J(a)\in B_r^{1,t}=0$.
+  Bilinearity therefore kills every such boundary input, proving four
+  of the six conditions. Combine these proofs with the two remaining
+  cross conditions and the constructed projection squares.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The remaining descent conditions from local first-differential rules]
+  \label{prop:h6-cross-boundary-from-first-differential}
+  \lean{KIP126.Classical.Adams.adamsPageOneEquiv_d_mem_boundaries,KIP126.Classical.Adams.adamsBoundary_two_exists_first_primitive,KIP126.Classical.Adams.SphereH6FirstCycleProductRule,KIP126.Classical.Adams.SphereH6FirstCycleProductRule.crossBoundaryCompatible}
+  \uses{prop:h6-filtration-one-boundaries,prop:h6-long-pairing-descent}
+  \leanok
+  Fix the already constructed coefficient product on the first quotient
+  page. Assume its two local $d_1$ product identities on an arbitrary
+  input in bidegree $(2,65)$ and a $d_1$ cycle in $(1,64)$, in both
+  orders. Writing these inputs as $x$ and $z$, the identities are
+  \[
+    d_1m_{2,1}(x,z)=m_{3,1}(d_1x,z),\qquad
+    d_1m_{1,2}(z,x)=m_{1,3}(z,d_1x),
+  \]
+  with the specified first-page-to-layer comparisons and the mod-two
+  unsigned convention. Then the two remaining cross boundary conditions follow for
+  every choice of the three long-layer maps. The proof represents a
+  boundary in $(3,65)$ as $d_1$ of an input in $(2,65)$ and uses the
+  identities to exhibit the product as a boundary in $(4,129)$.
+  The local identities themselves remain geometric obligations; neither
+  a global Leibniz theorem nor a new axiom is asserted. This is a sufficient
+  criterion for descent, not a proof of those identities or of the
+  second-differential relative-boundary formula.
+\end{proposition}
+\begin{proof}
+  Use exactness and the first-page quotient comparison to choose a
+  primitive $x$ whose actual $d_1$ representative is the given boundary.
+  Map the other long-layer representative into the actual second-cycle
+  submodule. Apply the appropriate identity: the product is the first-page
+  representative of $d_1m(x,z)$ or $d_1m(z,x)$, hence is in $B_2^{4,129}$.
+  The prescribed first-page component of every long-layer pairing is the
+  same coefficient product, so the conclusion does not depend on its
+  chosen long-layer spectrum map.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Geometric square vanishing from cross-term cancellation]
+  \label{prop:h6-long-layer-cross-cancellation}
+  \lean{KIP126.Classical.Adams.SphereH6LongLayerMaps.internalD_square_eq_zero_of_cross_sum}
+  \uses{def:h6-three-long-layer-products,prop:h6-long-pairing-leibniz-criterion}
+  \leanok
+  Let the three maps satisfy the descent and relative-boundary predicates,
+  and let $x$ be an internal second-page class in bidegree $(1,64)$.
+  If the two descended cross products $m_L(d_2x,x)+m_R(x,d_2x)$ sum to
+  zero, then the existing internal differential of $m_0(x,x)$ is zero.
+  This implication uses no fixed-foundation or Lin axiom.
+\end{proposition}
+\begin{proof}
+  Compare the internal relative-boundary formula with the two internal
+  cross products, apply additivity to their zero sum, and use injectivity
+  of the target page isomorphism.
+  \leanok
+\end{proof}
+
+\begin{definition}[Coefficient-homology resolution differential]
+  \label{def:h6-resolution-differential}
+  \lean{KIP126.Classical.Adams.adamsResolutionConnecting,KIP126.Classical.Adams.adamsResolutionBoundary,KIP126.Classical.Adams.adamsResolutionDifferential}
+  \uses{def:h6-fiber-tower,prop:h6-tower-layer-comparison}
+  \leanok
+  For $s\ge0$, let $\partial_s:H\wedge T_s\to\Sigma T_{s+1}$ be
+  minus the third morphism of the inverse-rotated unit cofiber triangle.
+  The sign is required by the chosen positive fiber inclusion.
+  Its induced connecting homomorphism is
+  $\beta_s:\pi_n(H\wedge T_s)\to\pi_{n-1}T_{s+1}$.
+  Define the integer-linear map
+  \[
+    D_s:\pi_{t-s}(H\wedge T_s)\longrightarrow
+      \pi_{t-s-1}(H\wedge T_{s+1}),\qquad
+    D_s=(\eta_{T_{s+1}})_*\circ\beta_s.
+  \]
+  This definition uses only the unit and its cofiber, not page coordinates
+  or an independently supplied spectral-sequence differential.
+\end{definition}
+
+\begin{proposition}[The actual first differential is the resolution differential]
+  \label{prop:h6-first-differential-homology}
+  \lean{KIP126.Classical.Adams.adamsK_eq_resolutionBoundary,KIP126.Classical.Adams.adamsCycleLift_one,KIP126.Classical.Adams.adamsPageD_one_homology,KIP126.Classical.Adams.adamsResolutionDifferential_comp,KIP126.Classical.Adams.sphereFirstDifferential_homology}
+  \uses{def:h6-resolution-differential,prop:h6-first-page-homology,prop:h6-tower-differential-laws}
+  \leanok
+  Write $e_s:E_1^{s,t}\cong\pi_{t-s}(H\wedge T_s)$ for the constructed
+  first-page comparison. Then $e_{s+1}d_1=D_se_s$ and $D_{s+1}D_s=0$.
+  This applies in particular to the precise \texttt{sphereFirstDifferential}
+  used by the existing Milnor-coordinate interface, without requiring a
+  value of that interface. The comparison with the Milnor coproduct
+  differential is a further, still unproved step.
+\end{proposition}
+\begin{proof}
+  The connecting-map comparison of the layer triangles identifies $k$
+  with $\beta_s$. At page one, the map through which the cycle is lifted
+  is the identity, so the chosen lift equals $k(x)$. The quotient
+  differential is consequently $jk$. Under $e_{s+1}$ the map $j$ is
+  induced by the next unit. Explicit degree transports identify
+  $t-s-1$ with $t-(s+1)$. Finally transport the proved square-zero
+  identity of the actual page differential through these isomorphisms.
+  \leanok
+\end{proof}
+
+\begin{definition}[The smashed unit triangle and its homology maps]
+  \label{def:h6-homology-resolution}
+  \lean{KIP126.Classical.Adams.adamsResolutionTriangle,KIP126.Classical.Adams.adamsResolutionTriangle_distinguished,KIP126.Classical.Adams.adamsHomologySequence,KIP126.Classical.Adams.adamsHomologyUnit,KIP126.Classical.Adams.adamsHomologyAction,KIP126.Classical.Adams.adamsHomologyBoundary}
+  \uses{def:h6-resolution-differential,def:h6-ring-cooperations}
+  \leanok
+  In addition to the specified ring structure on $H$, suppose that
+  $H\wedge-$ commutes coherently with suspension and is a triangulated
+  functor. These are explicit structural parameters, not global instances.
+  For $F(X)=\operatorname{fib}(\eta_X)$, apply this functor to the
+  distinguished triangle
+  $F(X)\to X\to H\wedge X\to\Sigma F(X)$ with the positive fiber
+  inclusion. The sign-corrected triangle is proved distinguished by an
+  isomorphism with the inverse rotation of the unit cofiber triangle.
+  In each degree $n$, write
+  \[
+    U_X:H_n(X)\to H_n(H\wedge X),\qquad
+    A_X:H_n(H\wedge X)\to H_n(X),\qquad
+    b_X:H_n(H\wedge X)\to H_{n-1}(F(X)).
+  \]
+  Here $U_X$ is induced by the unit, $A_X$ by multiplication on the first
+  two factors, and $b_X$ is the connecting map of the smashed triangle.
+  The notation $H_n(Y)$ means $\pi_n(H\wedge Y)$.
+\end{definition}
+
+\begin{proposition}[Derived normalized homology of the next tower stage]
+  \label{prop:h6-homology-normalization}
+  \lean{KIP126.Classical.Adams.adamsHomologyAction_unit,KIP126.Classical.Adams.adamsHomologyUnit_injective,KIP126.Classical.Adams.adamsHomologyBoundary_exact,KIP126.Classical.Adams.adamsHomologyBoundary_surjective,KIP126.Classical.Adams.adamsHomologyKernelEquiv,KIP126.Classical.Adams.adamsHomologyQuotientEquiv,KIP126.Classical.Adams.adamsHomologyQuotientEquiv_mkQ,KIP126.Classical.Adams.adamsHomologyKernelEquiv_symm_boundary}
+  \uses{def:h6-homology-resolution,prop:h6-tower-homology-zero}
+  \leanok
+  The maps satisfy $A_XU_X=1$, $\ker b_X=\operatorname{im}U_X$, and
+  $b_X$ is surjective. Thus there are constructed integer-linear isomorphisms
+  \[
+    H_n(H\wedge X)/\operatorname{im}U_X
+      \ \cong\ H_{n-1}(F(X))
+      \ \cong\ \ker A_X.
+  \]
+  The quotient map sends $[z]$ to $b_X(z)$; the inverse of the restricted
+  boundary sends $b_X(z)$ to $z-U_XA_X(z)$. In particular, setting $X=T_s$
+  gives a recursive description of $H_{n-1}(T_{s+1})$ from $T_s$.
+  No coordinates on Adams pages, K\"unneth isomorphism, or Milnor polynomial
+  algebra are assumed in this construction.
+\end{proposition}
+\begin{proof}
+  The unit law gives the retraction. Apply the homotopy long exact sequence
+  to the smashed triangle. Its first map is zero by
+  Proposition~\ref{prop:h6-tower-homology-zero}, giving surjectivity of $b_X$.
+  Exactness identifies its kernel. Restricting to $\ker A_X$ is injective
+  because $U_X(y)\in\ker A_X$ forces $y=0$. It is surjective because any
+  lift $z$ can be replaced by $z-U_XA_X(z)$ without changing its boundary.
+  These maps, not abstract dimension comparisons, construct the isomorphisms.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Filtration one of the actual first sphere page]
+  \label{prop:h6-first-filtration-cooperations}
+  \lean{KIP126.Classical.Adams.sphereCoefficientHomologyEquiv_map_ker,KIP126.Classical.Adams.sphereFirstTowerHomologyEquiv,KIP126.Classical.Adams.sphereFirstTowerHomologyEquiv_boundary,KIP126.Classical.Adams.sphereFirstPageFiltrationOneEquiv}
+  \uses{prop:h6-homology-normalization,prop:h6-first-page-homology,def:h6-ring-cooperations}
+  \leanok
+  Under the same explicit structural parameters, the right unitor
+  identifies $A_S$ with the cooperation counit
+  $\epsilon_t:\pi_t(H\wedge H)\to\pi_tH$. Therefore
+  \[
+    E_1^{1,t}\cong H_{t-1}(T_1S)\cong\ker\epsilon_t.
+  \]
+  The boundary-class formula agrees with normalization by $z-U_SA_S(z)$.
+  This constructs the first nontrivial filtration of the first-page
+  coordinate comparison, before identifying cooperations with the Milnor
+  algebra. It is not the complete first-page Milnor comparison.
+\end{proposition}
+\begin{proof}
+  Right-unitor naturality and its tensor identity identify multiplication on
+  $H\wedge(H\wedge S)$ with multiplication on $H\wedge H$. Restrict the
+  induced homotopy equivalence to the two kernels and compose with the
+  normalized tower-homology and actual first-page equivalences.
+  \leanok
+\end{proof}
+
+The fixed foundation does not yet supply the ring structure and the coherent
+triangulated structure on $H\wedge-$ used above. These results do not add
+such structures as new fixed axioms. K\"unneth compatibility, the Milnor
+cooperation identification, the higher-filtration coordinate construction,
+and its differential compatibility remain to be derived from the agreed
+lower-level foundations.
+
+\begin{proposition}[Coaction identities before K\"unneth]
+  \label{prop:h6-coaction-identities}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2Coaction,KIP126.StableHomotopy.Cohomology.mod2CoactionMap,KIP126.StableHomotopy.Cohomology.mod2Coaction_naturality,KIP126.StableHomotopy.Cohomology.mod2Coaction_coface,KIP126.StableHomotopy.Cohomology.mod2Coaction_counit,KIP126.StableHomotopy.Cohomology.mod2FreeAction_naturality,KIP126.StableHomotopy.Cohomology.cooperationDiagonal_counit_left,KIP126.StableHomotopy.Cohomology.mod2CoactionMap_coface}
+  \uses{def:h6-ring-cooperations,def:h6-fiber-tower}
+  \leanok
+  Write $\eta_X:X\to H\wedge X$ for the actual Adams unit and
+  $\delta_X=H\wedge\eta_X$. Then $\delta$ is natural in $X$ and satisfies
+  \[
+    \delta_{H\wedge X}\circ\delta_X
+      =(H\wedge\delta_X)\circ\delta_X.
+  \]
+  With the specified ring structure, the free action $a_X$ is natural and
+  $a_X\circ\delta_X=\operatorname{id}$. For $X=H$, this is the left
+  counit identity for the concrete cooperation diagonal; the right counit
+  identity uses $H\wedge\mu$. These identities also hold on represented
+  homology. They do not assert a K\"unneth isomorphism or polynomial coordinates.
+\end{proposition}
+\begin{proof}
+  Unitor naturality and the interchange law prove naturality of $\eta$.
+  Apply it to $\eta_X$, then tensor with $H$, to obtain the coface identity.
+  Associator naturality proves naturality of the free action; the ring unit
+  laws give both counit identities. Postcomposition induces the homology laws.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Natural normalization and actual tower splitting]
+  \label{prop:h6-natural-tower-splitting}
+  \lean{KIP126.Classical.Adams.adamsHomologyUnit_eq_coaction,KIP126.Classical.Adams.adamsHomologyNormalize,KIP126.Classical.Adams.adamsHomologyNormalize_naturality,KIP126.Classical.Adams.adamsHomologyNormalize_idempotent,KIP126.Classical.Adams.adamsHomologyNormalize_range,KIP126.Classical.Adams.adamsHomologyNormalize_ker,KIP126.Classical.Adams.adamsHomologyBoundary_normalize,KIP126.Classical.Adams.adamsHomologySplitEquiv,KIP126.Classical.Adams.adamsHomologySplitEquiv_apply,KIP126.Classical.Adams.adamsHomologySplitEquiv_symm_apply}
+  \uses{prop:h6-coaction-identities,prop:h6-homology-normalization}
+  \leanok
+  The homology unit $U_X$ is the induced coaction. The operator
+  $P_X=\operatorname{id}-U_XA_X$ is natural and idempotent, with image
+  $\ker A_X$ and kernel $\operatorname{im}U_X$.
+  Under the tensor exactness and shift compatibility used above,
+  the actual connecting map $b_X$ satisfies $b_XP_X=b_X$, and
+  \[
+    H_n(H\wedge X;\mathbb F_2)
+      \xrightarrow[\cong]{(A_X,b_X)}
+    H_n(X;\mathbb F_2)\oplus H_{n-1}(\operatorname{fib}\eta_X;\mathbb F_2).
+  \]
+  Here $H_n(Y;\mathbb F_2)=\pi_n(H\wedge Y)$; initially this is an
+  isomorphism of integer modules. It applies in particular to every
+  $X=T_s$, with fiber $T_{s+1}$, without a Milnor-coordinate input.
+\end{proposition}
+\begin{proof}
+  Naturality follows from that of $U$ and $A$, and $AU=1$ proves the
+  projector identities. The inverse of $(A,b)$ sends $(x,y)$ to
+  $U(x)+k^{-1}(y)$, where $k:\ker A\cong H_{n-1}(\operatorname{fib}\eta_X;\mathbb F_2)$
+  is the proved restriction of the actual boundary. The normalization
+  formula for $k^{-1}b$ verifies both inverse identities.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Mod--two scalars derived from the ring object]
+  \label{prop:h6-derived-mod2-scalars}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2Unit_add_self,KIP126.StableHomotopy.Cohomology.mod2_id_add_self,KIP126.StableHomotopy.Cohomology.mod2Homology_two_nsmul_zero,KIP126.StableHomotopy.Cohomology.mod2Cohomology_two_nsmul_zero,KIP126.StableHomotopy.Cohomology.mod2HomologyModule,KIP126.StableHomotopy.Cohomology.mod2CohomologyModule,KIP126.StableHomotopy.Cohomology.mod2HomologyModule_eq,KIP126.StableHomotopy.Cohomology.mod2HomologyF2Functor,KIP126.StableHomotopy.Cohomology.cooperationCounitF2,KIP126.StableHomotopy.Cohomology.cooperationDiagonalF2}
+  \uses{def:h6-ring-cooperations,def:h6-em-object}
+  \leanok
+  Suppose the tensor product is additive in both variables
+  (\texttt{MonoidalPreadditive}) and the chosen $H$ has the specified
+  unital multiplication. Then $2u=0$, $2\operatorname{id}_H=0$, and
+  $2\operatorname{id}_{H\wedge X}=0$. Consequently the existing represented
+  homology and cohomology groups have canonical $\mathbb F_2$-module
+  structures. Homology pushforward, the cooperation counit and diagonal,
+  and the specified $\pi_0H\cong\mathbb F_2$ coordinate are linear for these
+  structures. The underlying groups and maps are unchanged. The homology
+  scalar action is independent of the compatible multiplication used to
+  prove two-torsion.
+\end{proposition}
+\begin{proof}
+  The unit represents $1\in\mathbb F_2$, hence doubles to zero. Tensor
+  additivity and the unit law transfer this to the identity of $H$, and
+  then to the identity of $H\wedge X$. Postcomposition proves two-torsion
+  for homology and cohomology classes. Apply the canonical
+  $\mathbb Z/2$-module construction for an abelian group killed by two.
+  Additive homomorphisms of such modules are automatically linear; the
+  scalar structure is unique on the given additive group.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The constructed finite pages and comparisons are mod--two linear]
+  \label{prop:h6-derived-mod2-pages}
+  \lean{KIP126.Classical.Adams.adamsE1_two_nsmul_zero,KIP126.Classical.Adams.adamsPage_two_nsmul_zero,KIP126.Classical.Adams.adamsInternalPage_two_nsmul_zero,KIP126.Classical.Adams.adamsPageF2Module,KIP126.Classical.Adams.adamsInternalPageF2Module,KIP126.Classical.Adams.adamsDifferentialF2_apply,KIP126.Classical.Adams.adamsInternalDifferentialF2_apply,KIP126.Classical.Adams.adamsInternalDifferentialF2_comp,KIP126.Classical.Adams.adamsPageOneHomologyF2Equiv,KIP126.Classical.Adams.adamsHomologyKernelF2Equiv,KIP126.Classical.Adams.adamsHomologyKernelF2Equiv_apply,KIP126.Classical.Adams.adamsHomologySplitF2Equiv,KIP126.Classical.Adams.adamsHomologySplitF2Equiv_apply}
+  \uses{prop:h6-derived-mod2-scalars,prop:h6-first-page-homology,def:h6-tower-internal-sequence,prop:h6-homology-normalization,prop:h6-natural-tower-splitting}
+  \leanok
+  Under the same ring and additive-tensor parameters, every finite tower
+  quotient page and every finite internal SSData page is killed by two.
+  They carry constructed $\mathbb F_2$-module structures on their existing
+  additive groups. Their differentials are the original maps, now expressed
+  as $\mathbb F_2$-linear maps, and retain the proved square-zero identity.
+  The first-page homology comparison is $\mathbb F_2$-linear; with the
+  additional tensor exactness and suspension compatibility of
+  Proposition~\ref{prop:h6-homology-normalization}, so is the normalized
+  next-stage kernel comparison and the actual tower splitting $(A_X,b_X)$.
+\end{proposition}
+\begin{proof}
+  In nonnegative filtration transport two-torsion through the layer
+  homology equivalence; in negative filtration the layer is zero.
+  Subgroups and quotient groups inherit two-torsion. Transport this
+  through the proved internal finite-page isomorphism. Reinterpret the
+  existing additive maps and equivalences using their automatic
+  $\mathbb F_2$ linearity; the representative maps do not change.
+  \leanok
+\end{proof}
+
+These are explicit local scalar structures. The existing integer-module
+SSData object is retained, and no multiplication or tensor-additivity
+witness has been silently added to the fixed foundation. This proves a
+prerequisite for the graded K\"unneth comparison, not that comparison itself.
+
+\begin{proposition}[Reduced cooperation tensors and their actual counit kernel]
+  \label{prop:h6-graded-tensor-kernel}
+  \lean{KIP126.Core.Algebra.gradedTensor,KIP126.Core.Algebra.gradedTensorKernelEquiv,KIP126.Core.Algebra.gradedTensorKernelEquiv_coe,KIP126.StableHomotopy.Cohomology.cooperationTensorCounit,KIP126.StableHomotopy.Cohomology.reducedCooperationTensorEquiv,KIP126.StableHomotopy.Cohomology.coefficientTensorEquiv,KIP126.StableHomotopy.Cohomology.coefficientTensorEquiv_zero_tmul,KIP126.StableHomotopy.Cohomology.reducedCooperationAugmentationEquiv}
+  \uses{def:h6-ring-cooperations,prop:h6-derived-mod2-scalars}
+  \leanok
+  Put $\mathcal A_i=\pi_i(H\wedge H)$ and
+  $\overline{\mathcal A}_i=\ker(\varepsilon_i:\mathcal A_i\to\pi_iH)$,
+  using the actual multiplication-induced counit. For every graded
+  $\mathbb F_2$-module $V$, define
+  $(\mathcal A\otimes V)_n=\bigoplus_{i\in\mathbb Z}\mathcal A_i\otimes V_{n-i}$.
+  Then
+  \[
+    (\overline{\mathcal A}\otimes V)_n
+      \cong\ker\bigl((\mathcal A\otimes V)_n\longrightarrow V_n\bigr).
+  \]
+  The arrow is $\varepsilon\otimes 1$ followed by the constructed
+  identification $(\pi_*H\otimes V)_n\cong V_n$. The kernel isomorphism
+  preserves the ordinary tensor representatives. No K\"unneth or Milnor
+  identification is required for this algebraic result.
+\end{proposition}
+\begin{proof}
+  Tensoring over a field preserves kernels, and direct sums preserve the
+  componentwise kernel. The coefficient tensor has only its $i=0$ summand:
+  all other $\pi_iH$ vanish. On that summand apply the specified
+  $\pi_0H\cong\mathbb F_2$ and the tensor unitor. This last map is an
+  isomorphism and hence does not change the kernel.
+  \leanok
+\end{proof}
+
+\begin{definition}[Homology-level K\"unneth input]
+  \label{def:h6-homology-kunneth-input}
+  \lean{KIP126.StableHomotopy.Cohomology.Mod2CooperationKunneth}
+  \uses{prop:h6-graded-tensor-kernel,prop:h6-coaction-identities}
+  \leanok
+  A \texttt{Mod2CooperationKunneth} value consists of natural linear
+  isomorphisms, for every spectrum $X$ and integer $n$,
+  \[
+    \kappa_{X,n}:H_n(H\wedge X;\mathbb F_2)
+       \cong(\mathcal A\otimes H_*(X;\mathbb F_2))_n,
+  \]
+  compatible with the specified multiplication: tensor augmentation of
+  $\kappa_{X,n}(z)$ equals the actual free-action image $A_X(z)$.
+  This record contains no Adams pages, coordinates on those pages,
+  differential formula, or permanence assertion. The record is defined,
+  but no value for the fixed foundation is postulated or constructed here.
+  In particular, its existence and the additional diagonal compatibilities
+  needed for a full Milnor differential comparison remain obligations.
+\end{definition}
+
+\begin{definition}[Below-page suspension compatibility of K\"unneth]
+  \label{def:h6-kunneth-suspension-input}
+  \lean{KIP126.StableHomotopy.Cohomology.Mod2KunnethSuspensionCompatible}
+  \uses{def:h6-homology-kunneth-input}
+  \leanok
+  The predicate \texttt{Mod2KunnethSuspensionCompatible} requires that
+  $\kappa$ commute with the actual degree-minus-one desuspension maps:
+  double coefficient homology desuspension on the source corresponds to
+  $1\otimes\sigma_X$ on the target. The degree-$i$ cooperation factor is
+  unchanged. This condition concerns spectra and suspension only; it has
+  no distinguished triangle, Adams boundary, page, or differential field.
+  The predicate is defined, but its satisfaction on the fixed foundation
+  has not been proved or postulated.
+\end{definition}
+
+\begin{proposition}[K\"unneth and the actual coaction commute with boundaries]
+  \label{prop:h6-kunneth-coaction-boundary}
+  \lean{KIP126.StableHomotopy.connectingHomomorphism_map_naturality,KIP126.StableHomotopy.Cohomology.mod2Kunneth_connecting,KIP126.StableHomotopy.Cohomology.mod2TensorCoaction,KIP126.StableHomotopy.Cohomology.mod2TensorCoaction_counit,KIP126.StableHomotopy.Cohomology.mod2TensorCoaction_injective,KIP126.StableHomotopy.Cohomology.mod2TensorCoaction_naturality,KIP126.StableHomotopy.Cohomology.mod2TensorCoaction_connecting}
+  \uses{def:h6-kunneth-suspension-input,prop:h6-coaction-identities}
+  \leanok
+  Assume the explicit ring and additive tensor structures, exactness and
+  suspension compatibility of $H\wedge-$, and the preceding K\"unneth
+  suspension condition. For every distinguished triangle $T$, its actual
+  coefficient-homology connecting map $\partial_T$ satisfies
+  \[
+    \kappa\partial_{H\wedge T}
+       =(1\otimes\partial_T)\kappa.
+  \]
+  Define $\rho_X=\kappa_X U_X$. This is natural, has tensor augmentation
+  as a left inverse, and hence is injective. If the unit natural
+  transformation commutes with suspension, then also
+  \[
+    \rho_{T.X}\partial_T=(1\otimes\partial_T)\rho_{T.Z}.
+  \]
+  These are conditional theorems, not new boundary comparison axioms.
+  A tensor coproduct formula or Milnor identification is not asserted.
+\end{proposition}
+\begin{proof}
+  Factor the actual connecting map into the last arrow of the triangle
+  followed by desuspension. Apply naturality of $\kappa$ to that arrow
+  and the explicit suspension condition to desuspension. Naturality of
+  connecting maps for shift-compatible natural transformations proves
+  that inner-unit insertion commutes with the boundary. Compose the two
+  equalities. The counit identity follows from multiplication compatibility
+  of $\kappa$ and the already proved unit/action identity.
+  \leanok
+\end{proof}
+
+\begin{definition}[Actual tensor diagonal and below-page K\"unneth coherence]
+  \label{def:h6-kunneth-diagonal-input}
+  \lean{KIP126.Core.Algebra.gradedTensorAssoc,KIP126.StableHomotopy.Cohomology.cooperationTensorDiagonal,KIP126.StableHomotopy.Cohomology.cooperationTensorComultiply,KIP126.StableHomotopy.Cohomology.Mod2KunnethDiagonalCompatible}
+  \uses{def:h6-homology-kunneth-input,prop:h6-kunneth-coaction-boundary}
+  \leanok
+  Define the actual tensor-coordinate diagonal
+  $\Delta=\rho_H:\mathcal A\to\mathcal A\otimes\mathcal A$.
+  On $\mathcal A\otimes V$, define $\Delta\otimes1$ followed by the
+  explicit graded tensor reassociation. Its value on an elementary
+  tensor is the ordinary reassociation, with the necessary integer-degree
+  cast; this is constructed using finite-support direct sums.
+  The predicate \texttt{Mod2KunnethDiagonalCompatible} requires, for every
+  spectrum $X$,
+  \[
+    (1\otimes\kappa_X)\rho_{H\wedge X}
+        =(\Delta\otimes1)\kappa_X.
+  \]
+  This is an explicit coherence premise on the homology-level K\"unneth
+  comparison, not an Adams page or differential comparison. No fixed
+  witness is postulated, and no Milnor polynomial formula is part of it.
+\end{definition}
+
+\begin{proposition}[Derived coassociativity of the actual tensor coaction]
+  \label{prop:h6-tensor-coaction-coassoc}
+  \lean{KIP126.Core.Algebra.gradedTensorAssoc_lof_tmul,KIP126.StableHomotopy.Cohomology.cooperationTensorDiagonal_apply,KIP126.StableHomotopy.Cohomology.cooperationTensorDiagonal_counit,KIP126.StableHomotopy.Cohomology.mod2TensorCoaction_coassoc,KIP126.StableHomotopy.Cohomology.cooperationTensorDiagonal_coassoc}
+  \uses{def:h6-kunneth-diagonal-input}
+  \leanok
+  Under that explicit diagonal coherence premise, every actual coaction
+  satisfies $(\Delta\otimes1)\rho_X=(1\otimes\rho_X)\rho_X$.
+  Taking $X=H$ gives coassociativity of $\Delta$. Its left tensor
+  augmentation is the identity, independently of diagonal coherence.
+  The diagonal is exactly the original middle-unit insertion followed
+  by K\"unneth; it is not defined by the desired polynomial formula.
+\end{proposition}
+\begin{proof}
+  Apply naturality of the actual coaction to $\eta_X$. Use diagonal
+  coherence to replace the free-object coaction on one side, then compose
+  the maps on the right tensor factor. The counit is the previously
+  proved tensor-coaction counit specialized to $H$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Derived reduced-tensor recurrence for the actual tower]
+  \label{prop:h6-kunneth-tower-recurrence}
+  \lean{KIP126.Classical.Adams.adamsHomologyKunneth_map_ker,KIP126.Classical.Adams.adamsNextHomologyTensorEquiv,KIP126.Classical.Adams.adamsTowerHomologyTensorEquiv,KIP126.Classical.Adams.adamsNextHomologyTensorEquiv_boundary}
+  \uses{def:h6-homology-kunneth-input,prop:h6-graded-tensor-kernel,prop:h6-derived-mod2-pages}
+  \leanok
+  Given that homology-level input, the explicit ring structure, additive
+  tensor, and the tensor exactness and shift compatibility used in the
+  homology sequence, the actual next fiber satisfies
+  \[
+    H_{n-1}(\operatorname{fib}\eta_X;\mathbb F_2)
+      \cong(\overline{\mathcal A}\otimes H_*(X;\mathbb F_2))_n.
+  \]
+  For an actual boundary $b_X(z)$, its reduced tensor coordinate, included
+  in the unreduced tensor, is $\kappa_{X,n}(z-U_XA_Xz)$.
+  The result applies to every $X=T_s$, so it is a derived recurrence for
+  the existing tower, not extra tower data.
+\end{proposition}
+\begin{proof}
+  The previously constructed boundary isomorphism identifies next-stage
+  homology with $\ker A_X$. Multiplication compatibility restricts
+  $\kappa$ to the tensor augmentation kernel, which is the reduced tensor
+  by Proposition~\ref{prop:h6-graded-tensor-kernel}. The representative
+  formula is the proved normalization formula for the boundary inverse.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Actual next-stage coaction from a normalized lift]
+  \label{prop:h6-next-stage-coaction}
+  \lean{KIP126.Classical.Adams.adamsHomologyBoundary_eq_connecting,KIP126.Classical.Adams.adamsTensorCoaction_boundary,KIP126.Classical.Adams.adamsTensorCoaction_next}
+  \uses{prop:h6-kunneth-coaction-boundary,prop:h6-homology-normalization,prop:h6-kunneth-tower-recurrence}
+  \leanok
+  Under the preceding explicit hypotheses, let $b_X$ be the actual Adams
+  homology boundary. For any $y\in H_{n-1}(\operatorname{fib}\eta_X)$,
+  let $z\in\ker A_X$ be its unique normalized lift, so $b_X(z)=y$.
+  Then
+  \[
+    \rho_{\operatorname{fib}\eta_X}(y)
+       =(1\otimes b_X)\rho_{H\wedge X}(z).
+  \]
+  This holds for every spectrum $X$, in particular every actual tower
+  stage $T_s(S^0)$. The coaction on $H\wedge X$ still needs a compatible
+  tensor coproduct description before this yields the Milnor cobar formula.
+\end{proposition}
+\begin{proof}
+  The previously defined Adams boundary is definitionally the connecting
+  map of its coefficient-homology triangle. Specialize the preceding
+  proposition and use the proved inverse of the normalized boundary
+  isomorphism. No new tower recurrence is assumed.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Next-stage coaction expressed by the actual coproduct]
+  \label{prop:h6-next-stage-coproduct}
+  \lean{KIP126.Classical.Adams.adamsTensorBoundary,KIP126.Classical.Adams.adamsTensorBoundary_comparison,KIP126.Classical.Adams.adamsNextHomologyTensorEquiv_normalized,KIP126.Classical.Adams.adamsTensorBoundary_normalization,KIP126.Classical.Adams.adamsTensorCoaction_next_coproduct}
+  \uses{prop:h6-next-stage-coaction,prop:h6-kunneth-tower-recurrence,def:h6-kunneth-diagonal-input}
+  \leanok
+  Let $e_X$ be the constructed reduced-tensor coordinate on next-stage
+  homology and $\iota$ its inclusion into $\mathcal A\otimes H_*X$.
+  Put $q_X=b_X\kappa_X^{-1}$, using the actual Adams boundary.
+  Without diagonal coherence one already has the normalization formula
+  \[
+    \iota e_Xq_X(w)=w-\rho_X\operatorname{aug}(w).
+  \]
+  Under both K\"unneth suspension and diagonal compatibility, as well as
+  the explicit unit/suspension and tensor exactness hypotheses used above,
+  \[
+    \rho_{\operatorname{fib}\eta_X}(y)
+       =(1\otimes q_X)(\Delta\otimes1)\iota e_X(y).
+  \]
+  The map $1\otimes q_X$ lowers the total degree by one. This applies to
+  every actual tower stage, without a supplied tower coaction recurrence.
+  A compatible Milnor basis and the unit-coordinate comparisons are still
+  needed to expand this into the specified polynomial cobar differential.
+\end{proposition}
+\begin{proof}
+  The earlier normalization theorem gives the first formula after
+  applying K\"unneth; multiplication compatibility identifies the action
+  with tensor augmentation. For the second, use the normalized lift of
+  $y$ in the preceding next-stage coaction theorem. Diagonal coherence
+  replaces its free-object coaction. The equality $q_X\kappa_X=b_X$
+  and the composition law for degree-lowering tensor maps finish the proof.
+  \leanok
+\end{proof}
+
+\begin{proposition}[All-filtration coordinates in genuine reduced cooperations]
+  \label{prop:h6-iterated-cooperation-coordinates}
+  \lean{KIP126.StableHomotopy.Cohomology.iteratedReducedCooperations,KIP126.Classical.Adams.adamsTowerHomologyIteratedEquiv,KIP126.Classical.Adams.adamsTowerHomologyIteratedEquiv_succ,KIP126.Classical.Adams.adamsFirstPageIteratedEquiv,KIP126.Classical.Adams.adamsFirstPageIteratedEquiv_apply}
+  \uses{prop:h6-kunneth-tower-recurrence,prop:h6-first-page-homology}
+  \leanok
+  Under the same explicit hypotheses, set $N_0(n)=H_n(X;\mathbb F_2)$ and
+  \[
+    N_{s+1}(n)=\bigoplus_i\overline{\mathcal A}_i\otimes N_s(n+1-i).
+  \]
+  There are constructed linear isomorphisms
+  $H_n(T_s;\mathbb F_2)\cong N_s(n)$ and
+  $E_1^{s,t}(X)\cong N_s(t-s)$ for every $s\geq0$ and integer $t$.
+  These concern the actual first quotient page, not the out-of-range
+  first page of the internal sequence starting at $r_0=2$.
+\end{proposition}
+\begin{proof}
+  Induct on $s$, using the identity at zero and the actual fiber recurrence
+  at the successor. Transport each remaining tensor factor through the
+  induction isomorphism. Finally compose with the proved first-page layer
+  homology isomorphism, retaining the Adams degree $n=t-s$.
+  \leanok
+\end{proof}
+
+\begin{definition}[Independent reduced cooperation step]
+  \label{def:h6-reduced-cobar-step}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2OuterUnitMap,KIP126.StableHomotopy.Cohomology.mod2CobarDifference,KIP126.StableHomotopy.Cohomology.mod2CobarStep}
+  \uses{def:h6-homology-kunneth-input,prop:h6-graded-tensor-kernel,prop:h6-coaction-identities}
+  \leanok
+  Write $V_X=(\eta_{H\wedge X})_*$ for outer-unit insertion and
+  $U_X=(H\wedge\eta_X)_*$ for inner-unit insertion. Define
+  \[
+    c_{X,n}:H_n(X;\mathbb F_2)
+       \longrightarrow(\overline{\mathcal A}\otimes H_*(X;\mathbb F_2))_n
+  \]
+  as the unique reduced tensor whose unreduced image is
+  $\kappa_{X,n}(V_Xx-U_Xx)$.
+  Both unit insertions split the free action $A_X$, so this difference
+  has zero tensor augmentation. This construction uses the specified
+  ring and homology K\"unneth input, but no Adams page, differential,
+  cofiber exactness, or unit/shift compatibility.
+  It is not yet a formula in Milnor polynomial generators.
+\end{definition}
+
+\begin{proposition}[Actual first differential equals the reduced step]
+  \label{prop:h6-first-differential-cobar-step}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2UnitNatTrans,KIP126.StableHomotopy.Cohomology.mod2Unit_shift,KIP126.StableHomotopy.connectingHomomorphism_naturality,KIP126.Classical.Adams.adamsHomologyD1_eq_boundary_outerUnit,KIP126.Classical.Adams.adamsHomologyD1_eq_cobarStep,KIP126.Classical.Adams.adamsPageD_one_cobarStep}
+  \uses{def:h6-reduced-cobar-step,prop:h6-kunneth-tower-recurrence,prop:h6-first-differential-homology}
+  \leanok
+  In addition to the recurrence hypotheses, assume explicitly that the
+  natural transformation $\eta:\mathrm{id}\to H\wedge-$ commutes with
+  integer suspension. This is extra coherence data, not a consequence
+  here of the functor $H\wedge-$ commuting with suspension.
+  Under the proved next-stage homology isomorphism,
+  \[
+    H_{n-1}(\operatorname{fib}\eta_X;\mathbb F_2)
+       \cong(\overline{\mathcal A}\otimes H_*(X;\mathbb F_2))_n,
+  \]
+  the actual resolution differential $\eta_{\operatorname{fib}\eta_X,*}
+  \partial_X(x)$ maps to $c_{X,n}(x)$.
+  For $X=T_s$ and $n=t-s$, this gives the actual quotient-page
+  $d_1:E_1^{s,t}\to E_1^{s+1,t}$ after the existing first-page
+  homology comparisons and the reindexing $n-1=t-(s+1)$.
+\end{proposition}
+\begin{proof}
+  Naturality of the unit and its suspension coherence identify the last
+  square from the unit-fiber triangle to its smashed triangle.
+  Naturality of connecting homomorphisms therefore gives
+  $\eta_{\operatorname{fib}\eta_X,*}\partial_X(x)=b_X(V_Xx)$.
+  Apply the already proved boundary coordinate formula
+  $\kappa(z-U_XA_Xz)$ and the outer-unit retraction $A_XV_X=1$.
+  Injectivity of reduced-tensor inclusion gives equality with the
+  independently defined step. No first-differential formula is supplied
+  as an input field.
+  \leanok
+\end{proof}
+
+\begin{definition}[Actual cooperation unit and K\"unneth unit coherence]
+  \label{def:h6-kunneth-unit-input}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationUnit,KIP126.StableHomotopy.Cohomology.cooperationTensorUnit,KIP126.StableHomotopy.Cohomology.Mod2KunnethUnitCompatible}
+  \uses{def:h6-homology-kunneth-input,def:h6-reduced-cobar-step}
+  \leanok
+  The degree-zero element $1_{\mathcal A}$ is the specified class
+  $1\in\pi_0H$ followed by $\eta_H:H\to H\wedge H$.
+  For a graded module $V$, the map $u_V:V_n\to(\mathcal A\otimes V)_n$
+  sends $x$ to the elementary tensor $1_{\mathcal A}\otimes x$ in the
+  zero cooperation-degree summand. The degree cast is explicit.
+  The predicate \texttt{Mod2KunnethUnitCompatible} requires
+  $\kappa_X V_X=u_{H_*X}$ for every spectrum $X$, where $V_X$ is the actual
+  outer-unit insertion. It mentions no Adams page, differential, or Milnor
+  basis. No witness for the fixed foundation is supplied or postulated.
+\end{definition}
+
+\begin{proposition}[Counit and group-like properties of the actual unit]
+  \label{prop:h6-cooperation-unit-laws}
+  \lean{KIP126.StableHomotopy.Cohomology.cooperationCounit_unit,KIP126.StableHomotopy.Cohomology.cooperationTensorUnit_augmentation,KIP126.StableHomotopy.Cohomology.cooperationTensorUnit_injective,KIP126.StableHomotopy.Cohomology.cooperationTensorUnit_naturality,KIP126.StableHomotopy.Cohomology.cooperationTensorDiagonal_unit}
+  \uses{def:h6-kunneth-unit-input,def:h6-kunneth-diagonal-input}
+  \leanok
+  Tensor augmentation retracts $u_V$, so $u_V$ is injective, and it is
+  natural in graded linear maps. The actual cooperation counit sends
+  $1_{\mathcal A}$ to the specified class $1\in\pi_0H$.
+  Under K\"unneth unit coherence,
+  $\Delta(1_{\mathcal A})=1_{\mathcal A}\otimes1_{\mathcal A}$.
+  This last statement does not require diagonal or suspension coherence.
+\end{proposition}
+\begin{proof}
+  The ring unit law proves the cooperation counit calculation. Apply it
+  to the zero summand of the graded tensor augmentation. Naturality of
+  the actual unit identifies inner and outer insertion on this class;
+  K\"unneth unit coherence gives the displayed group-like formula.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Unit-minus-coaction formula and the first-cycle criterion]
+  \label{prop:h6-first-cycle-coaction}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2CobarStep_unit_sub_coaction,KIP126.StableHomotopy.Cohomology.mod2CobarStep_eq_zero_iff,KIP126.Classical.Adams.adamsHomologyD1_unit_sub_coaction,KIP126.Classical.Adams.adamsHomologyD1_eq_zero_iff,KIP126.Classical.Adams.adamsPageD_one_eq_zero_iff}
+  \uses{def:h6-kunneth-unit-input,prop:h6-first-differential-cobar-step}
+  \leanok
+  Under the explicit K\"unneth unit coherence, the independently
+  constructed reduced step has unreduced representative
+  $1_{\mathcal A}\otimes x-\rho_X(x)$. Thus the step vanishes exactly when
+  $\rho_X(x)=1_{\mathcal A}\otimes x$.
+  With the exactness and unit/suspension hypotheses of the actual
+  first-differential comparison, this is the representative of the actual
+  $d_1$ in next-stage reduced-tensor coordinates. For the actual quotient
+  page, writing $y$ for the existing first-page homology coordinate of $x$,
+  \[
+    d_1(x)=0\quad\Longleftrightarrow\quad
+    \rho_{T_s}(y)=1_{\mathcal A}\otimes y.
+  \]
+  No Milnor coordinates, Lin table, K\"unneth diagonal coherence, or
+  K\"unneth suspension coherence are required for this first-cycle
+  criterion. It is not a criterion for higher-page or permanent survival.
+\end{proposition}
+\begin{proof}
+  Apply K\"unneth unit coherence to the outer-unit term of the already
+  proved two-unit difference. Reduced-tensor inclusion is injective;
+  the next-stage and first-page homology comparisons are isomorphisms.
+  They therefore detect zero, including after the original degree casts.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Sphere coefficient homology comes from the actual unit]
+  \label{prop:h6-sphere-unit-image}
+  \lean{KIP126.StableHomotopy.Cohomology.adamsUnit_sphere_unitor,KIP126.StableHomotopy.Cohomology.mod2SphereHomology_unit_surjective,KIP126.StableHomotopy.Cohomology.mod2CoactionMap_unit_image,KIP126.StableHomotopy.Cohomology.mod2CoactionMap_sphere}
+  \uses{def:h6-em-object,prop:h6-coaction-identities}
+  \leanok
+  For every integer $n$, the actual unit induces a surjection
+  $\pi_nS^0\to H_n(S^0;\mathbb F_2)$. Consequently inner and outer unit
+  insertions agree on all sphere coefficient classes. Neither a ring
+  structure nor K\"unneth is needed for these statements.
+\end{proposition}
+\begin{proof}
+  The right tensor unitor identifies the target with $\pi_nH$. For
+  $n\ne0$ it vanishes. For $n=0$, its two classes are zero and the image
+  of the identity of the sphere (with the shift-zero identification).
+  Naturality of the actual unit identifies inner and outer insertions
+  on every unit image, hence on every sphere coefficient class.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The sphere is the derived initial coaction for the recurrence]
+  \label{prop:h6-sphere-initial-coaction}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2TensorCoaction_sphere,KIP126.StableHomotopy.Cohomology.mod2CobarStep_sphere_zero}
+  \uses{prop:h6-sphere-unit-image,def:h6-kunneth-unit-input,def:h6-reduced-cobar-step}
+  \leanok
+  Under the homology-level K\"unneth input and unit coherence, the actual
+  initial coaction is $\rho_{S^0}(x)=1_{\mathcal A}\otimes x$.
+  The independent reduced step on sphere homology vanishes even without
+  unit coherence. Thus the initial coaction for the actual tower
+  recurrence is derived, not a separately supplied sphere assumption.
+\end{proposition}
+\begin{proof}
+  Replace inner insertion by outer insertion using the preceding
+  proposition, then apply K\"unneth unit coherence. For the reduced step,
+  their difference is already zero before applying K\"unneth.
+  \leanok
+\end{proof}
+
+These conditional constructions do not remove \texttt{standardMilnor}:
+the fixed ring, exactness, unit/shift coherence and K\"unneth witnesses,
+the identification of genuine reduced cooperations with the Milnor
+polynomial algebra, and the diagonal/coaction comparisons needed to
+express this step as the Milnor cobar differential are still missing.
+
+\begin{proposition}[Page passage for the constructed tower]
+  \label{prop:h6-tower-page-passage}
+  \lean{KIP126.Classical.Adams.adamsCycles_succ_le}
+  \lean{KIP126.Classical.Adams.adamsNextPageToHomology}
+  \lean{KIP126.Classical.Adams.adamsNextPageToHomology_bijective}
+  \lean{KIP126.Classical.Adams.adamsPageHomologyIso}
+  \uses{def:h6-tower-differential}
+  \notready
+  Sending an $(r+1)$-cycle to the homology class of its image in $E_r$
+  induces an isomorphism $E_{r+1}^{s,t}\cong H^{s,t}(E_r,d_r)$.
+\end{proposition}
+\begin{proof}
+  A lift one stage farther gives an $r$-cycle with zero differential.
+  The next-page boundaries become the current-page differential boundaries.
+  Conversely, exactness adjusts the lift of an $r$-cycle with zero
+  differential so that it lifts one stage farther.  The same exactness
+  calculation identifies the kernel with the next-page boundaries.
+  Invert this specified quotient map to obtain page passage in the
+  direction $H(E_r)\to E_{r+1}$.
+\end{proof}
+
+\begin{definition}[Internal nested subobjects of the constructed tower]
+  \label{def:h6-tower-internal-data}
+  \lean{KIP126.Classical.Adams.adamsTowerSSData,KIP126.Classical.Adams.adamsTowerSSDataPageIso}
+  \uses{def:h6-tower-pages}
+  \leanok
+  For any chosen unit and object in the stated stable context, take the
+  ambient module to be $Z_2^{s,t}$ of the constructed tower. Internal stage
+  $n$ consists of the submodules $Z_{n+2}^{s,t}$ and $B_{n+2}^{s,t}$ inside
+  that ambient module. At infinity take the intersection of the cycles
+  and the increasing union of the boundaries. These define an internal
+  SSData object, and its finite quotient page is canonically isomorphic
+  to the tower quotient $E_{n+2}^{s,t}$. No independent spectral-sequence
+  model or Lin-table assumption enters this generic construction.
+\end{definition}
+
+\begin{proposition}[Representative and successor laws for the internal tower]
+  \label{prop:h6-tower-internal-laws}
+  \lean{KIP126.Classical.Adams.adamsTowerSSDataPageIso_π,KIP126.Classical.Adams.adamsTowerInternalD_comparison,KIP126.Classical.Adams.adamsTowerInternalD_comp,KIP126.Classical.Adams.adamsTowerInternalD_kernel,KIP126.Classical.Adams.adamsTowerInternalD_image}
+  \uses{def:h6-tower-internal-data,prop:h6-tower-differential-laws}
+  \leanok
+  The quotient comparison preserves actual representatives. Transporting
+  the tower differential through it gives a square-zero internal map.
+  Its kernel is the image of the next cycle subobject, and its image is
+  the image of the next boundary subobject on the current quotient page.
+\end{proposition}
+\begin{proof}
+  Compare the categorical cokernel projection with the ordinary module
+  quotient. A representative has zero differential exactly when its
+  connecting image lifts one stage farther in the tower. The exact-couple
+  identities likewise characterize differential images as next boundaries.
+  Transport these elementwise facts through the specified quotient map.
+  \leanok
+\end{proof}
+
+\begin{definition}[Internal spectral sequence assembled from the tower]
+  \label{def:h6-tower-internal-sequence}
+  \lean{KIP126.Classical.Adams.adamsTowerInternalSpectralSequence}
+  \uses{prop:h6-tower-internal-laws}
+  \leanok
+  Display the internal tower quotients from page two, with differential
+  degree $(r,r-1)$. The representative, square-zero, kernel, and image laws
+  above supply all fields of KIP126's internal spectral-sequence structure.
+  This construction does not import the Mathlib spectral-sequence type.
+\end{definition}
+
+\begin{definition}[Actual first cycles as internal second-page classes]
+  \label{def:h6-first-cycle-internal-class}
+  \lean{KIP126.Classical.Adams.adamsTowerE2OfFirstCycle}
+  \uses{def:h6-tower-internal-sequence,prop:h6-tower-page-passage}
+  \leanok
+  An actual first-page cycle determines an element of the existing internal
+  $E_2$ page: choose a $Z_2$ lift, take its actual tower quotient class,
+  and use the inverse representative-preserving page comparison.
+  This is not a new spectral sequence or an assumed page identification.
+\end{definition}
+
+\begin{proposition}[Independence and exact vanishing of the internal class]
+  \label{prop:h6-first-cycle-internal-class}
+  \lean{KIP126.Classical.Adams.adamsNextCycle_exists_of_differential_eq_zero,KIP126.Classical.Adams.adamsNextCycle_quotient_eq_of_page_eq,KIP126.Classical.Adams.adamsTowerE2OfFirstCycle_comparison,KIP126.Classical.Adams.adamsTowerE2OfFirstCycle_eq_zero_iff}
+  \uses{def:h6-first-cycle-internal-class,prop:h6-tower-internal-laws}
+  \leanok
+  At every finite page, a cycle has a next-cycle representative, and two
+  such representatives of the same current class have the same next-page
+  quotient. In particular, the internal $E_2$ construction agrees with
+  any actual $Z_2$ lift and vanishes exactly when that lift belongs to
+  the actual $B_2$ submodule.
+\end{proposition}
+\begin{proof}
+  Lift through the quotient map and use the proved differential-kernel
+  criterion. Two lifts differ by a current boundary, hence by a next
+  boundary. Transport the quotient equality through the existing page
+  isomorphism; its injectivity gives the exact vanishing criterion.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Incoming-image test for internal second-page vanishing]
+  \label{prop:h6-internal-first-cycle-image}
+  \lean{KIP126.Classical.Adams.adamsNextBoundary_iff_is_differential,KIP126.Classical.Adams.adamsTowerE2OfFirstCycle_eq_zero_iff_is_differential}
+  \uses{prop:h6-first-cycle-internal-class,prop:h6-tower-internal-laws}
+  \leanok
+  For every $r\geq1$, a next-page cycle belongs to $B_{r+1}$ if and only
+  if its current-page class is an incoming $d_r$ boundary. Consequently
+  the internal $E_2$ class of an $E_1$ cycle $z$ is zero exactly when
+  $z$ lies in the incoming $d_1$ image. The latter criterion has no
+  chosen $Z_2$ representative in its statement.
+\end{proposition}
+\begin{proof}
+  Use the actual next-cycle-to-homology map: its kernel is precisely
+  the next boundaries, and zero in current homology means membership
+  in the incoming image. Combine with the internal quotient vanishing
+  criterion for any next-cycle lift.
+  \leanok
+\end{proof}
+
+\begin{proposition}[All-page comparison of the two tower presentations]
+  \label{prop:h6-tower-internal-comparison}
+  \lean{KIP126.Classical.Adams.adamsTowerPageComparison,KIP126.Classical.Adams.adamsTowerPageComparison_differential,KIP126.Classical.Adams.adamsTowerPageComparison_passage}
+  \uses{def:h6-tower-internal-sequence,prop:h6-tower-page-passage}
+  \leanok
+  On every page $r\ge2$, the representative-preserving quotient isomorphism
+  identifies the internal tower page with the Mathlib tower page. It commutes
+  with the tower differential. Two internal classes satisfy the specified
+  next-page representative relation if and only if their images correspond
+  under the Mathlib homology-to-next-page map. The comparison is constructed
+  for every unit and object in the stated stable context; it does not use
+  a Lin presentation, Milnor coordinates, or a permanence assumption.
+\end{proposition}
+\begin{proof}
+  Reindex internal stage $n$ as classical page $n+2$ and use the proved
+  differential comparison. A next-cycle representative gives both the
+  current quotient class and the next quotient class. The explicitly
+  constructed homology isomorphism sends its homology class to that same
+  next quotient class. Conversely, surjectivity of the quotient projection
+  and the kernel calculation recover such a representative.
+  \leanok
+\end{proof}
+
+\begin{proposition}[A common representative for compatible tower classes]
+  \label{prop:h6-tower-common-representative}
+  \lean{KIP126.Classical.Adams.adamsNextPage_representative_independence,KIP126.Classical.Adams.adamsPages_common_representative,KIP126.Classical.Adams.adamsTower_nonzeroSurvival_iff,KIP126.Classical.Adams.adamsTower_nonzeroSurvival_iff_compatible}
+  \uses{def:h6-tower-internal-sequence,prop:h6-tower-internal-laws}
+  \leanok
+  A compatible family of classes in the actual finite tower quotients
+  has a single representative in $Z_2$ which belongs to every later cycle
+  submodule. Consequently internal nonzero survival is equivalent to a
+  compatible family of nonzero classes in all these quotients, with the
+  prescribed initial class. No convergence or finiteness hypothesis is needed.
+\end{proposition}
+\begin{proof}
+  Choose a representative of the initial class. If it agrees with a
+  next-cycle representative on the current page, their difference is a
+  current boundary. Every boundary lies in every later cycle submodule,
+  and current boundaries are next boundaries. Thus the original representative
+  remains a next cycle and gives the prescribed next class. Induct on the
+  finite page. Membership in $Z_\infty$ is membership in all finite cycles;
+  membership in $B_\infty$ is membership in some finite boundary submodule.
+  These two facts identify nonzero classes at infinity with the stated
+  nonzero compatible family. The entire argument is internal to the tower's
+  SSData and does not import the Mathlib spectral-sequence type.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Comparison of the two nonzero survival predicates]
+  \label{prop:h6-tower-survival-comparison}
+  \lean{KIP126.Classical.Adams.adamsTower_survival_comparison}
+  \uses{prop:h6-tower-common-representative,prop:h6-tower-internal-comparison,def:h6-pagewise-permanence}
+  \leanok
+  For every E$_2$ class of the constructed tower, internal nonzero survival
+  is equivalent to standard pagewise permanence of its image under the same
+  tower comparison. This is a generic theorem, independent of the Lin table,
+  Milnor coordinates, and any assertion of permanence for a specified class.
+\end{proposition}
+\begin{proof}
+  Reindex the standard trajectory's iterated pages as $n+2$. The actual
+  homology-to-next-page isomorphism identifies its cycle and passage conditions
+  with the next-cycle representative relation. Apply the common-representative
+  result and check that its initial quotient map is exactly the E$_2$ component
+  of the fixed tower comparison.
+  \leanok
+\end{proof}

@@ -1,0 +1,123 @@
+\pdfoutput=1\relax
+\documentclass[reqno]{amsart}
+
+\input{Preamble.tex}
+
+\usepackage{etoolbox}
+\newtoggle{draft}
+% NB: toggle this to hide comments
+\togglefalse{draft}
+%\toggletrue{draft}
+
+\iftoggle{draft} {
+\usepackage[margin=1.5in]{geometry}
+\newcommand{\NB}[1]{\todo[color=gray!40]{#1}}
+\newcommand{\TODO}[1]{\todo[color=red]{#1}}
+}{ % else
+\usepackage[margin=1.5in]{geometry}
+\newcommand{\NB}[1]{}
+\newcommand{\TODO}[1]{}
+\renewcommand{\todo}[1]{}
+\renewcommand{\todo}[1]{}
+}
+\geometry{a4paper}
+
+\title{Galois reconstruction of Artin--Tate $\R$-motivic spectra}
+%\date{\today}
+
+\author{Robert Burklund}
+\address{Department of Mathematics, MIT, Cambridge, MA, USA}
+\email{burklund@mit.edu}
+
+\author{Jeremy Hahn}
+\address{Department of Mathematics, MIT, Cambridge, MA, USA}
+\email{jhahn01@mit.edu}
+
+\author{Andrew Senger}
+%\thanks{During the course of this work, the third author was supported by an NSF GRFP fellowship under Grant No. 1122374.}
+\address{Department of Mathematics, Harvard University, Cambridge, MA, USA}
+\email{senger@math.harvard.edu}
+
+
+%----------------------------------------------------------------------%
+%----------------------------------------------------------------------%
+
+\begin{document}
+\begin{abstract}
+We explain how to reconstruct the category of Artin--Tate $\R$-motivic spectra as a deformation of the purely topological $C_2$-equivariant stable category.
+The special fiber of this deformation is algebraic,
+and equivalent to an appropriate category of $C_2$-equivariant sheaves on the moduli stack of formal groups.
+%% and controlled by the $\mathrm{E}_1$-page of the slice spectral sequence for the trigraded homotopy groups of the motivic sphere.
+As such, our results directly generalize the cofiber of $\tau$ philosophy that has revolutionized classical stable homotopy theory.
+
+A key observation is that the Artin--Tate subcategory of $\R$-motivic spectra is easier to understand than the previously studied cellular subcategory.
+In particular, the Artin--Tate category contains a variant of the $\tau$ map, which is a feature conspicuously absent from the cellular category.
+%% We explore a network of functors connecting the Artin--Tate $\R$-motivic, cellular $\C$-motivic, $C_2$-equivariant, and classical stable homotopy theories.
+
+%  We suffer through completion issues. Why colim lim no commute. :(
+\end{abstract}
+\maketitle
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+\vbadness 5000
+
+%----------------------------------------------------------------------%
+
+% \newpage
+\section{Introduction} \label{sec:intro}
+\input{Introduction.tex}
+
+\section{Constructing the element ta} \label{sec:ta}
+\input{Ta.tex}
+
+\section{The ta-local category} \label{sec:homology}
+\input{HZ.tex}
+
+\section{Galois reconstruction} \label{sec:top}
+\input{Top.tex}
+
+\section{Modules over the cofiber of ta} \label{sec:cta}
+\input{Cta3.tex}
+
+\section{The Chow $t$-structure and $\nur$} \label{sec:t-structures}
+\input{tStructures.tex}
+
+\section{The $a$-local category} \label{sec:a-local}
+\input{Alocal.tex}
+
+\section{Completions} \label{sec:completion}
+\input{Completions.tex}
+
+\section{Odd primes} \label{sec:odd}
+\input{Odd.tex}
+
+\section{Examples and computations} \label{sec:computations}
+\input{Computations.tex}
+
+\appendix
+
+\section{Recollections on compact rigid generation} \label{app:boilerplate}
+\input{Boilerplate.tex}
+
+\section{Recollections on filtered objects} \label{app:fil}
+\input{Filtered.tex}
+
+\section{A machine for deforming homotopy theories} \label{app:def}
+\input{Deformation.tex}
+
+%% \section{Comments on $p$-completion} \label{app:completion}
+%% \input{Ind.tex}
+
+%% \section{Misc}
+%% \input{Structure.tex}
+
+\bibliographystyle{alpha}
+\bibliography{bibliography}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

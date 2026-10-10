@@ -1,0 +1,68 @@
+At this point, we have reduced our main theorems to three technical results, which will appear as Theorems \ref{thm:AdamsBound}, \ref{thm:mod8-main-thm} and \ref{thm:app-main}.
+Additionally, in \Cref{sec:Goodwillie} we referred to \Cref{rmk:x2-filt}.
+Each of these results relies on an analysis of Adams filtration.
+
+First, we focus on \Cref{thm:AdamsBound}, which bounds the Adams filtration of the Toda bracket $w \in \pi_{8n-1} \bS$ defined in \Cref{lem:toda-main}.
+To understand why Toda brackets have controllable Adams filtration, it is helpful to consider the following facts:
+\begin{enumerate}
+\item Adams filtration is super-additive under function composition,
+
+  \noindent i.e. $AF(fg) \geq AF(f) + AF(g)$.
+\item Toda brackets are a kind of \emph{secondary} composition operation.
+\end{enumerate}
+These facts suggest that we should be able to compute lower bounds for the Adams filtration of a Toda bracket. In practice, this can be subtle, since such bounds require us to keep track not only of the Adams filtrations of maps but also of the Adams filtrations of homotopies.
+
+We believe that questions involving the Adams filtrations of homotopies are greatly clarified by recent work of Piotr Pstr\k{a}gowski, and in particular his development of the category of \emph{synthetic spectra} \cite{Pstragowski}. For $E$ an Adams-type homology theory, $E$-based synthetic spectra form an $\infty$-category $\mathrm{Syn}_{E}$ of formal $E$-based Adams spectral sequences.  We devote this section to a review of the basic properties of $\mathrm{Syn}_E$, some of which have not appeared in the literature.
+
+\begin{dfn}
+  Suppose that $E$ is a homotopy associative ring spectrum such that $E_*$ and $E_*E$ are graded commutative rings. Following \cite[Definition 3.12]{Pstragowski}, we say that a finite spectrum $X$ is \emph{finite $E_*$-projective} (or simply \emph{finite projective} if $E$ is clear from context) if $E_*X$ is a projective $E_*$-module.
+  We say that $E$ is of \emph{Adams type} if $E$ can be written as a filtered colimit of finite projective spectra $E_\alpha$ such that the natural maps $$E^*E_\alpha \to \Hom_{E_*}(E_*E_\alpha, E_*)$$ are isomorphisms.
+\end{dfn}
+
+\begin{exm}%[{\cite[Example 3.14]{Pstragowski}}] 
+  In this paper, we will make use only of the examples $E=\BP$ and $E=\mathrm{H}\mathbb{F}_p$ for some prime $p$, both of which are of Adams type.
+\end{exm}
+
+\begin{cnstr}[Pstr\k{a}gowski]
+Let $E$ denote an Adams type homology theory.  Then there is a stable, presentably symmetric monoidal $\infty$-category $\mathrm{Syn}_E$ together with a functor
+$$\nu_E:\Sp \to \mathrm{Syn}_E,$$ 
+which is lax symmetric monoidal and preserves filtered colimits \cite[Lemma 4.4]{Pstragowski}.  However, $\nu_E$ does \emph{not} preserve cofiber sequences in general. When $E$ is clear from context, we will often denote $\nu_E$ by $\nu$.
+\end{cnstr}
+
+\begin{rmk}
+The tensor product in synthetic spectra preserves colimits in each variable separately.
+\end{rmk}
+
+\begin{rmk} \label{rmk:strong-monoidal}
+If $X$ and $Y$ are any two spectra, then the lax symmetric monoidal structure on $\nu$ provides us with a natural comparison map
+$$ \nu(X) \otimes \nu(Y) \to \nu(X \otimes Y). $$
+In some cases this comparison map is actually an equivalence.
+For example, $\nu$ is symmetric monoidal when restricted to the full subcategory of finite projectives.
+More generally, \cite[Lemma 4.24]{Pstragowski} proves that the comparison map is an equivalence whenever $X$ is a filtered colimit of finite projectives. Note that this condition is only on $X$, and $Y$ may be arbitrary.
+
+If $E=\mathrm{H}\mathbb{F}_p$, then every finite spectrum is finite projective, and so every spectrum $X$ satisfies the condition above. Thus, $\nu_{\mathrm{H}\mathbb{F}_p}$ is symmetric monoidal, rather than merely lax symmetric monoidal.
+\end{rmk}
+
+\begin{rmk} \label{rmk:dualizable-generators}
+  As proved in \cite[Lemma 3.18]{Pstragowski}, the full subcategory of spectra spanned by the finite projective spectra is rigid symmetric monoidal.
+  Furthermore, \cite[Remark 4.14]{Pstragowski} proves that the set of $\Sigma^k \nu P$ with $k \in \Z$ and $P$ finite projective is a family of compact generators of $\mathrm{Syn}_E$. The fact that $\nu$ is symmetric monoidal when restricted to finite projective spectra implies that this is a family of dualizable compact generators.
+\end{rmk}
+
+If $X$ is a spectrum, then $\nu X$ records detailed information about the $E$-based Adams tower for $X$.  A first hint of this is found in the following proposition:
+
+\begin{lem}[{\cite[Lemma 4.23]{Pstragowski}}]   \label{lemm:syn-cof}
+  Suppose that
+  $$ A \to B \to C $$
+	is a cofiber sequence of spectra. Then
+  $$ \nu A \to \nu B \to \nu C $$
+	is a cofiber sequence of synthetic spectra if and only if
+  $$ 0 \to E_*A \to E_*B \to E_*C \to 0 $$
+  is a short exact sequence of $E_*E$-comodules.\footnote{The condition that a cofiber sequence become short exact on $E$-homology is exactly the condition under which there is a long exact sequence on the level of Adams $\mathrm{E}_2$-pages.}
+\end{lem}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "Main"
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

@@ -1,0 +1,120 @@
+
+In Section \ref{sec:classification}, our theorems were used to classify $(n-1)$-connected $(2n)$-manifolds up to diffeomorphism.
+We explain here how work of Galatius, Krannich, Kreck, Randal-Williams, and Reinhold connects our results to the study of diffeomorphisms of the manifold
+$$W_g = \sharp^{g} \left( S^n \times S^n \right),$$
+with $g \ge 1$.
+This $(n-1)$-connected $(2n)$-manifold is a higher dimensional analog of a genus $g$ surface. 
+As $g$ varies, the $W_g$ play a fundamental role in some approaches to the moduli spaces of manifolds, as outlined in the survey article \cite{GRHandbook}.
+A discussion of how diffeomorphisms of $W_g$ relate to diffeomorphisms of other $(n-1)$-connected $(2n)$-maifolds appears below Theorem G in \cite{KrannichMappingClass}.
+
+We consider in particular the classifying space
+$$\mathcal{M}_{g} = \mathrm{BDiff}^{+}(W_g)$$
+of orientation-preserving diffeomorphisms of $W_{g}$.
+The first homotopy group $\pi_1(\mathcal{M}_{g})$ is an example of a higher dimensional mapping class group; it is the group of isotopy classes of orientation-preserving diffeomorphisms of $W_g$ (so, for example, $\pi_1 \mathcal{M}_0 \cong \Theta_{2n+1}$).  The first homology group $H_1(\mathcal{M}_{g};\mathbb{Z})$ is the abelianization of this mapping class group.  Higher cohomology groups, such as $H^2(\mathcal{M}_g;\mathbb{Z})$, include Miller--Morita--Mumford characteristic classes of bundles with fiber $W_{g}$.  At least for some values of $n$ and $g$, our theorems have something to say about each of these groups.
+
+\begin{rec}
+Suppose $n \ge 3$, and consider the mapping class group $\pi_1(\mathcal{M}_g)$.  This group was determined up to two extension problems by Kreck \cite{Kreck}.  Following Krannich \cite{KrannichMappingClass}, we write these extensions as
+\begin{equation} \label{eq:extension1}
+0 \to \Theta_{2n+1} \to \pi_1(\mathcal{M}_g) \to \pi_1(\mathcal{M}_g)/\Theta_{2n+1} \to 0
+\end{equation} 
+and
+\begin{equation} \label{eq:extension2}
+0 \to H_n(W_g) \otimes S\pi_n SO(n) \to \pi_1(\mathcal{M}_g)/\Theta_{2n+1} \to G_g \to 0.
+\end{equation}
+Here, $\Theta_{2n+1}$ is the Kervaire--Milnor group of homotopy $(2n+1)$-spheres, and $S\pi_n(SO(n))$ is the image of the stabilization map $S:\pi_n SO(n) \to \pi_n SO(n+1)$.  The group $G_g \subset \mathrm{GL}_{2g}(\mathbb{Z})$ is the subgroup of automorphisms of $H_n(W_g) \cong \mathbb{Z}^{2g}$ that are realized by diffeomorphisms.  It is explicitly described in \cite[Section 1.2]{KrannichMappingClass}.
+%and the action of $G_g$ on $S\pi_nSO(n)\otimes H_n(W_g)$ induced by the extension agrees with the one induced by the standard representation of $GL_{2g}(\mathbb{Z})$ on $\mathbb{Z}^{2g}$ \cite[p.7]{KrannichMappingClass}.
+
+The extension problems (\ref{eq:extension1}) and (\ref{eq:extension2}) have proven difficult to resolve, with special cases studied in \cite{Sato, Fried, Kry02, Kry03, Crowley, GRAbelianQuotients,KrannichMappingClass}.
+\end{rec}
+
+Recent work of Krannich resolves these extensions geometrically, in the case of $n$ odd, with the answers phrased in terms of certain elements $\Sigma_P, \Sigma_Q \in \Theta_{2n+1}$.  To be precise, Krannich proves for $n>7$ odd that the extension (\ref{eq:extension2}) splits \cite[Theorem A]{KrannichMappingClass}, and the extension $(\ref{eq:extension1})$ is classified \cite[Theorem B]{KrannichMappingClass} by a certain element
+$$\frac{\mathrm{sgn}}{8} \Sigma_P + \frac{\chi^2}{2} \Sigma_Q \in \mathrm{H}^2\left(\pi_1(\mathcal{M}_g)/\Theta_{2n+1}; \Theta_{2n+1}\right).$$
+The element $\Sigma_P \in \Theta_{2n+1}$ is a generator of $\mathrm{bP}_{2n+2}$.  The element $\Sigma_Q$ is $0$ whenever $n \equiv 1$ modulo $4$, and when $n \equiv 3$ modulo $4$ it is the boundary of the plumbing discussed in Remark \ref{rmk:Qdef}.  A consequence of our work here is a more explicit description of $\Sigma_Q$:
+
+\begin{thm}
+Suppose that $n>123$ is congruent to $3$ modulo $4$, and let $s(Q)_{(n+1)/2}$ denote the integer defined in Definition \ref{dfn:manynumbers}.  Then the element $\Sigma_Q \in \Theta_{2n+1}$ of \cite[Theorem B]{KrannichMappingClass} is equal to $s(Q)_{(n+1)/2} \Sigma_P$.  In particular, $\Sigma_Q$ is an element of the subgroup $\mathrm{bP}_{2n+2}$.
+\end{thm}
+
+\begin{proof}
+  The last sentence of the theorem follows immediately from the definition of $\Sigma_Q$ (see e.g. the paragraph above \cite[Theorem B]{KrannichMappingClass}) and our Theorem \ref{thm:strongmainboundary}.  The exact formula $\Sigma_Q = s(Q)_{(n+1)/2} \Sigma_P$ is a consequence of \cite[Lemma 2.7]{KrannichCharacteristic}.
+\end{proof}
+
+
+The original motivation of Galatius and Randal-Williams in conjecturing \Cref{thm:intro-main} was to study the homology group $H_1(\mathcal{M}_g;\mathbb{Z})$.  It was understood in \cite[Theorem 1.3]{GRAbelianQuotients} and \cite[Corollary E]{KrannichMappingClass} that Theorem \ref{thm:intro-main} would lead to an explicit calculation of $H_1(\mathcal{M}_g;\mathbb{Z})$. By combining these results with our work, we conclude the following corollary:
+
+\begin{cor}
+Suppose that $n>123$ is congruent to $3$ modulo $4$ and $g \ge 3$.  Then
+$$
+H_1(\mathcal{M}_g;\mathbb{Z}) \cong  \left(\mathbb{Z}/4\mathbb{Z} \right) \oplus \mathrm{coker}(J)_{2n+1}.
+$$
+If $n>123$ is congruent to $3$ modulo $4$ and $g=2$, then
+$$
+H_1(\mathcal{M}_g;\mathbb{Z}) \cong  \left(\mathbb{Z}/4\mathbb{Z} \oplus \mathbb{Z}/2\mathbb{Z} \right) \oplus \mathrm{coker}(J)_{2n+1}.
+$$
+\end{cor}
+
+\begin{rmk}
+For the implications of our result when $g=1$, see \cite[Corollary E]{KrannichMappingClass}.
+\end{rmk}
+
+\begin{rmk} \label{rmk:MillerMoritaMumford}
+As pointed out in \cite[Remark 6.2]{GRHandbook}, the universal coefficients formula expresses the finite group $H_1(\mathcal{M}_g;\mathbb{Z})$ as the torsion subgroup of $H^2(\mathcal{M}_g;\mathbb{Z})$. 
+In \cite{KrannichCharacteristic}, Krannich and Reinhold calculated the torsion-free quotient of $H^2(\mathcal{M}_g;\mathbb{Z})$, for $g \ge 7$, in terms of $\Sigma_Q$.
+\end{rmk}
+
+It remains an interesting open question to determine the higher homology and cohomology groups of $\mathcal{M}_g$.  We expect that the methods of this paper have more to say about these groups, especially when $g \gg 0$ so that the work of Galatius and Randal-Williams \cite{GRAbelianQuotients, GRHandbook} applies (when $g \gg 0$, Galatius and Randal-Williams prove these groups isomorphic to the (co)homology groups of $\Omega^{\infty}$ of a Thom spectrum, placing the problem firmly in the realm of stable homotopy theory).
+
+
+\begin{comment}
+\begin{dfn}
+Let $MT\Theta_{n}$ denote the Thom spectrum of the canonical bundle
+$$\tau_{\ge {n+1}} BO(n) \to BO(n) \to BO.$$
+Note that there is a natural comparison map
+$$MT\Theta_n \to MO\langle n+1 \rangle,$$
+where the latter is the Thom spectrum of the map $\tau_{\ge n+1} BO \to BO$.
+\end{dfn}
+
+By combining work of Kreck \cite{} with their own theorems, Galatius and Randal
+-Williams \cite{} \cite{} proved \cite{} the following result:
+
+
+
+By the Hurewicz theorem, there are isomorphisms
+$$H_1(\Omega^{\infty}_0 MT\Theta_n) \cong \pi_1(\Omega^{\infty}_0 MT\Theta) \cong \pi_1 MT\Theta.$$
+Using the natural comparison map $MT\theta_n \to MO \langle n \rangle$, Galatius and Randal-Williams proved
+
+\begin{thm}[Theorem 1.3 of \cite{GRAbelianQuotients}]
+Suppose $g \ge 5$ and $n>2$.  Then
+$$
+H_1(\mathcal{M}_g;\mathbb{Z}) \cong 
+\begin{cases}
+\left(\mathbb{Z}/2\mathbb{Z} \right)^{\oplus 2} \oplus \pi_{2n+1} \MO \langle n+1 \rangle  \text{, if } n \text{ is even,} \\
+\pi_{2n+1} \MO \langle n+1 \rangle  \text{, if } n=1,3, \text{or }7,\\
+\left(\mathbb{Z}/4\mathbb{Z} \right) \oplus \pi_{2n+1} \MO \langle n+1 \rangle \text{, otherwise}.
+\end{cases}
+$$
+\end{thm}
+
+As pointed out by Galatius and Randal-Williams \cite[Theorem 1.4]{GRAbelianQuotients}, Stolz proved that $\pi_{2n+1} \MO \langle n+1 \rangle$ is isomorphic to $\mathrm{coker}(J)_{2n+1}$ if $n \ge 113$ and $n \not \equiv 3$ mod $4$.  A corollary of our Theorem \ref{thm:intro-main} is the following additional computation:
+
+\begin{thm}
+Suppopse $g \ge 5$ and $n>BLAH$ is congruent to $3$ modulo $4$.  Then
+$$
+H_1(\mathcal{M}_g;\mathbb{Z}) \cong  \left(\mathbb{Z}/4\mathbb{Z} \right) \oplus \mathrm{coker}(J)_{2n+1}.
+$$
+\end{thm}
+
+
+
+For odd $n$, Krannich's work \cite{}, building on results of Kreck \cite{}, often allows a complete computation of the mapping class group $\pi_1(\mathcal{M}_g)$, for all $g \ge 1$, and not just its abelianization for $g \ge 5$.  We briefly summarize the results of Krannich in the case $n \equiv 3$ mod $4$ and $n \ge ??$, which is the case in which our results mix well with his:
+
+As \cite{}, Krannich proves that the extension $(2)$ splits.  On the other hand, the extension $(1)$ is known to not split.  Since it is central, it is classified by a class in BLAH.  Krannich describes this class
+$$BLAH,$$
+where $\Sigma_P$ and $\Sigma_Q$ are two particular elements of $\Theta_{??}$.  The element $\Sigma_P$ is the familiar \emph{Milnor $E_8$ sphere}, which is the generator of $bP_{??}$.  On the other hand, Krannich is unable to completely determine $\Sigma_Q$.  As explained in \cite{}, a consequence of our work here is BLAH:
+
+\begin{thm}[Conjecture A of BLAH]
+Suppose $n \equiv 3$ modulo $4$ and BLAH.  Then the sphere $\Sigma_Q$, obtained by BLAH, satisfies the equation
+$$.$$
+Here, $\Sigma_P$ is a generator of $bP_{??}$.
+\end{thm}
+\end{comment}

@@ -1,0 +1,929 @@
+\documentclass{memo-l}
+
+%    For use when working on individual chapters
+%\includeonly{}
+
+%    Include referenced packages here.
+\usepackage{amsrefs,amsmath,amsthm,amssymb}            
+\usepackage{enumerate,lscape,calc}
+\usepackage[all]{xy}   
+\usepackage{longtable,booktabs}
+\usepackage{color,colortbl}
+\usepackage{tikz}
+
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{ex}[thm]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[thm]{Remark}
+
+\numberwithin{section}{chapter}
+\numberwithin{equation}{chapter}
+
+
+%\setcounter{tocdepth}{2}
+
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\D}{\Delta}
+
+\newcommand{\map}{\rightarrow}
+\newcommand{\tmf}{\textit{tmf}}
+\newcommand{\mmf}{\textit{mmf}}
+\newcommand{\ol}{\overline}
+\newcommand{\sigmabar}{\ol{\sigma}}
+\newcommand{\kappabar}{\ol{\kappa}}
+\newcommand{\cl}{\mathrm{cl}}
+
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\Sq}{Sq}
+\DeclareMathOperator{\coker}{coker}
+
+\newcommand{\mydot}{\mathord{\cdot}}
+\newcommand{\rev}[1]{#1} %{{\color{red}{#1}}}
+\newcommand{\revv}[1]{#1} %{{\color{blue}{#1}}}
+
+\definecolor{red}{rgb}{1, 0, 0}
+\definecolor{darkblue}{rgb}{0.1, 0.1, 0.7}
+\definecolor{darkgreen}{rgb}{0.1, 0.8, 0.1}
+\definecolor{midgray}{rgb}{0.5, 0.5, 0.5}
+\definecolor{lightgray}{rgb}{0.8, 0.8, 0.8}
+
+\definecolor{lightred}{rgb}{1, 0.7, 0.7}
+\definecolor{lightblue}{rgb}{0.7, 0.7, 1}
+\newcommand{\revrow}{} %{\color{red}}
+\newcommand{\revvrow}{} %{\color{blue}}
+\newcommand{\revdeg}[1]{{\color{blue}$({#1})$}}
+
+%    For a single index; for multiple indexes, see the manual
+%    "Instructions for preparation of papers and monographs:
+%    AMS-LaTeX" (instr-l.pdf in the AMS-LaTeX distribution).
+%\makeindex
+
+\begin{document}
+
+\frontmatter
+
+\title{\rev{Stable Homotopy Groups of Spheres: From Dimension 0 to 90}}
+
+\author{Daniel C. Isaksen}
+\address{
+Department of Mathematics, 
+Wayne State University, 
+Detroit, MI 48202, USA}
+\email{isaksen@wayne.edu}
+
+\thanks{The first author was supported by NSF grants
+DMS-1606290 and DMS-1904241.
+The second author was supported by grant NSFC-11801082. 
+The third author was supported by NSF grants DMS-1810638 and DMS-2105462.
+Many of the associated machine computations were performed on the
+Wayne State University Grid high performance computing cluster.}
+
+\author{Guozhen Wang}
+\address{Shanghai Center for Mathematical Sciences, Fudan University, Shanghai, China, 200433}
+\email{wangguozhen@fudan.edu.cn}
+
+\author{Zhouli Xu}
+\address{Department of Mathematics, UC San Diego, La Jolla, CA 92093, USA}
+\email{xuzhouli@ucsd.edu}
+
+\subjclass[2010]{Primary 14F42, 55Q45, 55S10, 55T15; 
+Secondary 16T05, 55P42, 55Q10, 55S30 }
+
+\keywords{stable homotopy group, stable motivic homotopy theory,
+May spectral sequence, Adams spectral sequence, cohomology of the Steenrod algebra,
+Adams-Novikov spectral sequence}
+
+\date{}
+
+\begin{abstract}
+\rev{Using techniques in motivic homotopy theory, especially the theorem of Gheorghe, the second and the third author on the isomorphism between motivic Adams spectral sequence for $C\tau$ and the algebraic Novikov spectral sequence for $BP_*$,
+we compute the classical and motivic stable homotopy groups of spheres 
+from dimension 0 to 90},
+except for
+some carefully enumerated uncertainties.
+\end{abstract}
+
+\maketitle
+
+%    Dedication.  If the dedication is longer than a line or two,
+%    remove the centering instructions and the line break.
+%\cleardoublepage
+%\thispagestyle{empty}
+%\vspace*{13.5pc}
+%\begin{center}
+%
+%\end{center}
+%\cleardoublepage
+
+%    Change page number to 6 if a dedication is present.
+\setcounter{page}{4}
+
+\tableofcontents
+
+\listoftables
+
+%    Include unnumbered chapters (preface, acknowledgments, etc.) here.
+%\include{}
+
+\mainmatter
+%    Include main chapters here.
+
+\include{more-stable-stems-intro}
+
+\include{more-stable-stems-background}
+
+\include{more-stable-stems-cofiber-tau}
+
+\include{more-stable-stems-Massey}
+
+\include{more-stable-stems-Adams-diff}
+
+\include{more-stable-stems-Toda}
+
+\include{more-stable-stems-hidden-extn}
+
+\include{more-stable-stems-tables}
+
+
+%\appendix
+%    Include appendix "chapters" here.
+%\include{}
+
+\backmatter
+
+\bibliographystyle{amsalpha}
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{Adams60}{article}{
+   author={Adams, J. F.},
+   title={On the non-existence of elements of Hopf invariant one},
+   journal={Ann. of Math. (2)},
+   volume={72},
+   date={1960},
+   pages={20--104},
+   issn={0003-486X},
+   review={\MR{0141119 (25 \#4530)}},
+}
+
+
+\bib{BJM84}{article}{
+   author={Barratt, M. G.},
+   author={Jones, J. D. S.},
+   author={Mahowald, M. E.},
+   title={Relations amongst Toda brackets and the Kervaire invariant in
+   dimension $62$},
+   journal={J. London Math. Soc. (2)},
+   volume={30},
+   date={1984},
+   number={3},
+   pages={533--550},
+   issn={0024-6107},
+   review={\MR{810962 (87g:55025)}},
+   doi={10.1112/jlms/s2-30.3.533},
+}
+
+\bib{BMT70}{article}{
+   author={Barratt, M. G.},
+   author={Mahowald, M. E.},
+   author={Tangora, M. C.},
+   title={Some differentials in the Adams spectral sequence. II},
+   journal={Topology},
+   volume={9},
+   date={1970},
+   pages={309--316},
+   issn={0040-9383},
+   review={\MR{0266215 (42 \#1122)}},
+}
+
+
+\bib{BF21}{article}{
+	author={Beauvais-Feisthauer, Joey},
+	title={Automated differential computation in the Adams spectral sequence},
+	status={in preparation},
+}
+
+\bib{BBBCX}{article}{
+   author={Beaudry, Agn\`es},
+   author={Behrens, Mark},
+   author={Bhattacharya, Prasit},
+   author={Culver, Dominic},
+   author={Xu, Zhouli},
+   title={The telescope conjecture at height 2 and the tmf resolution},
+   journal={J. Topol.},
+   volume={14},
+   date={2021},
+   number={4},
+   pages={1243--1320},
+   issn={1753-8416},
+   review={\MR{4332490}},
+   doi={10.1112/topo.12208},
+}
+
+
+\bib{Behrens}{article}{
+   author={Behrens, M.},
+   author={Hill, M.},
+   author={Hopkins, M. J.},
+   author={Mahowald, M.},
+   title={Detecting exotic spheres in low dimensions using coker $J$},
+   journal={J. Lond. Math. Soc. (2)},
+   volume={101},
+   date={2020},
+   number={3},
+   pages={1173-1218},
+   issn={0024-6107},
+   review={\MR{4111938}},
+   doi={10.1112/jlms.12301},
+}
+
+\bib{BMQ21}{article}{
+	author={Behrens, M.},
+	author={Mahowald, M.},
+	author={Quigley, J.D.},
+	title={The 2-primary Hurewicz image of tmf},
+	status={to appear in Geometry and Topology},
+	eprint={arXiv:2011.08956v4},
+}
+
+\bib{BK21}{article}{
+	author={Belmont, Eva},
+	author={Kong, Hana Jia},
+	title={A Toda bracket convergence theorem for multiplicative spectral sequences},
+	status={preprint},
+	eprint={arXiv:2112.08689},
+}
+
+	
+
+\bib{Bruner84}{article}{
+   author={Bruner, Robert},
+   title={A new differential in the Adams spectral sequence},
+   journal={Topology},
+   volume={23},
+   date={1984},
+   number={3},
+   pages={271--276},
+   issn={0040-9383},
+   review={\MR{770563 (86c:55016)}},
+   doi={10.1016/0040-9383(84)90010-7},
+}
+
+\bib{Bruner97}{article}{
+   author={Bruner, Robert R.},
+   title={The cohomology of the mod 2 Steenrod algebra: A computer calculation},
+   journal={Wayne State University Research Report},
+   volume={37},
+   date={1997},
+}
+
+\bib{Bruner04}{article}{
+   author={Bruner, Robert R.},
+   title={Squaring operations in $\mathrm{Ext}_{\mathcal{A}}(F_2, F_2)$},
+   status={preprint},
+   date={2004},
+}
+
+\bib{BR20}{article}{
+	author={Bruner, Robert R.},
+	author={Rognes, John},
+	title={The cohomology of the mod 2 Steenrod algebra [Data set]},
+	doi={10.11582/2021.00077},
+	journal={Norstore (2021)},
+	date={{}},
+}
+
+\bib{BR21}{book}{
+   author={Bruner, Robert R.},
+   author={Rognes, John},
+   title={The Adams spectral sequence for topological modular forms},
+   series={Mathematical Surveys and Monographs},
+   volume={253},
+   publisher={American Mathematical Society, Providence, RI},
+   date={[2021] \copyright 2021},
+   pages={xix+690},
+   isbn={978-1-4704-5674-0},
+   review={\MR{4284897}},
+   doi={10.1090/surv/253},
+}
+
+\bib{Burklund21}{article}{
+   author={Burklund, Robert},
+   title={An extension in the Adams spectral sequence in dimension 54},
+   journal={Bull. Lond. Math. Soc.},
+   volume={53},
+   date={2021},
+   number={2},
+   pages={404--407},
+   issn={0024-6093},
+   review={\MR{4239183}},
+   doi={10.1112/blms.12428},
+}
+
+\bib{BIX}{article}{
+	author={Burklund, Robert},
+	author={Isaksen, Daniel C.},
+	author={Xu, Zhouli},
+	title={Classical stable homotopy groups of spheres via $\F_2$-synthetic methods},
+	status={in preparation},
+}
+
+\bib{Chua21}{article}{
+	author={Chua, Dexter},
+	title={Adams differentials via the secondary Steenrod algebra},
+	status={preprint},
+	eprint={arXiv:2105.07628},
+}
+
+\bib{Cohen68}{article}{
+   author={Cohen, Joel M.},
+   title={The decomposition of stable homotopy},
+   journal={Ann. of Math. (2)},
+   volume={87},
+   date={1968},
+   pages={305--320},
+   issn={0003-486X},
+   review={\MR{231377}},
+   doi={10.2307/1970586},
+}
+	
+
+\bib{Gheorghe18}{article}{
+   author={Gheorghe, Bogdan},
+   title={The motivic cofiber of $\tau$},
+   journal={Doc. Math.},
+   volume={23},
+   date={2018},
+   pages={1077--1127},
+   issn={1431-0635},
+   review={\MR{3874951}},
+}
+
+
+\bib{GIKR18}{article}{
+   author={Gheorghe, Bogdan},
+   author={Isaksen, Daniel C.},
+   author={Krause, Achim},
+   author={Ricka, Nicolas},
+   title={$\Bbb{C}$-motivic modular forms},
+   journal={J. Eur. Math. Soc. (JEMS)},
+   volume={24},
+   date={2022},
+   number={10},
+   pages={3597--3628},
+   issn={1435-9855},
+   review={\MR{4432907}},
+   doi={10.4171/jems/1171},
+}
+
+
+\bib{GWX18}{article}{
+   author={Gheorghe, Bogdan},
+   author={Wang, Guozhen},
+   author={Xu, Zhouli},
+   title={The special fiber of the motivic deformation of the stable
+   homotopy category is algebraic},
+   journal={Acta Math.},
+   volume={226},
+   date={2021},
+   number={2},
+   pages={319--407},
+   issn={0001-5962},
+   review={\MR{4281382}},
+   doi={10.4310/acta.2021.v226.n2.a2},
+}
+
+\bib{GI15}{article}{
+   author={Guillou, Bertrand J.},
+   author={Isaksen, Daniel C.},
+   title={The $\eta$-local motivic sphere},
+   journal={J. Pure Appl. Algebra},
+   volume={219},
+   date={2015},
+   number={10},
+   pages={4728--4756},
+   issn={0022-4049},
+   review={\MR{3346515}},
+   doi={10.1016/j.jpaa.2015.03.004},
+}
+
+\bib{Hatcher}{article}{
+	author={Hatcher, Allen},
+	title={Pictures of stable homotopy groups of spheres},
+	date={},
+	eprint={pi.math.cornell.edu/~hatcher/stemfigs/stems.pdf},
+}
+
+\bib{HHR}{article}{
+   author={Hill, M. A.},
+   author={Hopkins, M. J.},
+   author={Ravenel, D. C.},
+   title={On the nonexistence of elements of Kervaire invariant one},
+   journal={Ann. of Math. (2)},
+   volume={184},
+   date={2016},
+   number={1},
+   pages={1--262},
+   issn={0003-486X},
+   review={\MR{3505179}},
+   doi={10.4007/annals.2016.184.1.1},
+}
+
+\bib{Hirsch55}{article}{
+   author={Hirsch, Guy},
+   title={Quelques propri\'{e}t\'{e}s des produits de Steenrod},
+   language={French},
+   journal={C. R. Acad. Sci. Paris},
+   volume={241},
+   date={1955},
+   pages={923--925},
+   issn={0001-4036},
+   review={\MR{73182}},
+}
+
+\bib{Hovey}{article}{
+   author={Hovey, Mark},
+   title={Homotopy theory of comodules over a Hopf algebroid},
+   conference={
+      title={Homotopy theory: relations with algebraic geometry, group
+      cohomology, and algebraic $K$-theory},
+   },
+   book={
+      series={Contemp. Math.},
+      volume={346},
+      publisher={Amer. Math. Soc., Providence, RI},
+   },
+   date={2004},
+   pages={261--304},
+   review={\MR{2066503}},
+   doi={10.1090/conm/346/06291},
+}
+
+\bib{HKO11}{article}{
+   author={Hu, Po},
+   author={Kriz, Igor},
+   author={Ormsby, Kyle},
+   title={Remarks on motivic homotopy theory over algebraically closed
+   fields},
+   journal={J. K-Theory},
+   volume={7},
+   date={2011},
+   number={1},
+   pages={55--89},
+   issn={1865-2433},
+   review={\MR{2774158}},
+   doi={10.1017/is010001012jkt098},
+}
+
+
+\bib{Isaksen09}{article}{
+   author={Isaksen, Daniel C.},
+   title={The cohomology of motivic $A(2)$},
+   journal={Homology Homotopy Appl.},
+   volume={11},
+   date={2009},
+   number={2},
+   pages={251--274},
+   issn={1532-0073},
+   review={\MR{2591921 (2011c:55034)}},
+}
+
+\bib{Isaksen14b}{article}{
+   author={Isaksen, Daniel C.},
+   title={When is a fourfold Massey product defined?},
+   journal={Proc. Amer. Math. Soc.},
+   volume={143},
+   date={2015},
+   number={5},
+   pages={2235--2239},
+   issn={0002-9939},
+   review={\MR{3314129}},
+   doi={10.1090/S0002-9939-2014-12387-2},
+}
+
+\bib{Isaksen14c}{article}{
+   author={Isaksen, Daniel C.},
+   title={Stable stems},
+   journal={Mem. Amer. Math. Soc.},
+   volume={262},
+   date={2019},
+   number={1269},
+   pages={viii+159},
+   issn={0065-9266},
+   isbn={978-1-4704-3788-6},
+   isbn={978-1-4704-5511-8},
+   review={\MR{4046815}},
+   doi={10.1090/memo/1269},
+}
+
+\bib{Isaksen18}{article}{
+	author={Isaksen, Daniel C.},
+	title={The homotopy of $\C$-motivic modular forms},
+%	eprint={arXiv:1811.07937},
+	journal={Zenodo},
+	doi={10.5281/zenodo.6547197},
+}
+
+
+\bib{Isaksen19}{article}{
+	author={Isaksen, Daniel C.},
+	title={The Mahowald operator in the cohomology of the Steenrod algebra},
+	status={to appear},
+	journal={Tbilisi Math.\ J.},
+	date={{}},
+}
+
+\bib{Isaksen14a}{article}{
+   author={Isaksen, Daniel C.},
+   author={Wang, Guozhen},
+   author={Xu, Zhouli},
+   title={Classical and $\C$-motivic Adams charts},
+   date={2022},
+%   status={preprint},
+   doi={doi.org/10.5281/zenodo.6987156},
+}
+
+%\bib{Isaksen14e}{article}{
+%   author={Isaksen, Daniel C.},
+%   author={Wang, Guozhen},
+%   author={Xu, Zhouli},
+%   title={Adams-Novikov charts},
+%   date={2020},
+%   status={preprint},
+%   eprint={s.wayne.edu/isaksen/adams-charts},
+%} 
+
+\bib{IWX19}{article}{
+	author={Isaksen, Daniel C.},
+	author={Wang, Guozhen},
+	author={Xu, Zhouli},
+	title={Classical algebraic Novikov charts and $\C$-motivic Adams charts for the cofiber of $\tau$},
+	date={2022},
+%	status={preprint},
+	doi={doi.org/10.5281/zenodo.6987226},
+}
+
+
+\bib{IX15}{article}{
+   author={Isaksen, Daniel C.},
+   author={Xu, Zhouli},
+   title={Motivic stable homotopy and the stable 51 and 52 stems},
+   journal={Topology Appl.},
+   volume={190},
+   date={2015},
+   pages={31--34},
+   issn={0166-8641},
+   review={\MR{3349503}},
+   doi={10.1016/j.topol.2015.04.008},
+}
+
+\bib{KervaireMilnor}{article}{
+   author={Kervaire, Michel A.},
+   author={Milnor, John W.},
+   title={Groups of homotopy spheres. I},
+   journal={Ann. of Math. (2)},
+   volume={77},
+   date={1963},
+   pages={504--537},
+   issn={0003-486X},
+   review={\MR{148075}},
+   doi={10.2307/1970128},
+}
+
+\bib{Kochman78}{article}{
+   author={Kochman, Stanley O.},
+   title={A chain functor for bordism},
+   journal={Trans. Amer. Math. Soc.},
+   volume={239},
+   date={1978},
+   pages={167--196},
+   issn={0002-9947},
+   review={\MR{488031}},
+   doi={10.2307/1997852},
+}
+
+\bib{Kochman90}{book}{
+   author={Kochman, Stanley O.},
+   title={Stable homotopy groups of spheres},
+   series={Lecture Notes in Mathematics},
+   volume={1423},
+   note={A computer-assisted approach},
+   publisher={Springer-Verlag},
+   place={Berlin},
+   date={1990},
+   pages={viii+330},
+   isbn={3-540-52468-1},
+   review={\MR{1052407 (91j:55016)}},
+}
+
+\bib{Kochman96}{book}{
+   author={Kochman, S. O.},
+   title={Bordism, stable homotopy and Adams spectral sequences},
+   series={Fields Institute Monographs},
+   volume={7},
+   publisher={American Mathematical Society, Providence, RI},
+   date={1996},
+   pages={xiv+272},
+   isbn={0-8218-0600-9},
+   review={\MR{1407034}},
+   doi={10.1090/fim/007},
+}
+
+\bib{KM93}{article}{
+   author={Kochman, Stanley O.},
+   author={Mahowald, Mark E.},
+   title={On the computation of stable stems},
+   conference={
+      title={The \v Cech centennial},
+      address={Boston, MA},
+      date={1993},
+   },
+   book={
+      series={Contemp. Math.},
+      volume={181},
+      publisher={Amer. Math. Soc.},
+      place={Providence, RI},
+   },
+   date={1995},
+   pages={299--316},
+   review={\MR{1320997 (96j:55018)}},
+   doi={10.1090/conm/181/02039},
+}
+
+\bib{Krause18}{thesis}{
+	author={Krause, Achim},
+	title={Periodicity in motivic homotopy theory and over $BP_* BP$},
+	type={Ph.D. thesis},
+	date={2018},
+	organization={Universit{\"a}t Bonn},
+}
+
+\bib{Lin01}{article}{
+   author={Lin, Wen-Hsiung},
+   title={A proof of the strong Kervaire invariant in dimension 62},
+   conference={
+      title={First International Congress of Chinese Mathematicians},
+      address={Beijing},
+      date={1998},
+   },
+   book={
+      series={AMS/IP Stud. Adv. Math.},
+      volume={20},
+      publisher={Amer. Math. Soc., Providence, RI},
+   },
+   date={2001},
+   pages={351--358},
+   review={\MR{1830191}},
+}
+
+\bib{MT67}{article}{
+   author={Mahowald, Mark},
+   author={Tangora, Martin},
+   title={Some differentials in the Adams spectral sequence},
+   journal={Topology},
+   volume={6},
+   date={1967},
+   pages={349--369},
+   issn={0040-9383},
+   review={\MR{0214072 (35 \#4924)}},
+}
+
+\bib{May69}{article}{
+   author={May, J. Peter},
+   title={Matric Massey products},
+   journal={J. Algebra},
+   volume={12},
+   date={1969},
+   pages={533--568},
+   issn={0021-8693},
+   review={\MR{0238929 (39 \#289)}},
+}
+
+\bib{May70}{article}{
+   author={May, J. Peter},
+   title={A general algebraic approach to Steenrod operations},
+   conference={
+      title={The Steenrod Algebra and its Applications (Proc. Conf. to
+      Celebrate N. E. Steenrod's Sixtieth Birthday, Battelle Memorial Inst.,
+      Columbus, Ohio, 1970)},
+   },
+   book={
+      series={Lecture Notes in Mathematics, Vol. 168},
+      publisher={Springer, Berlin},
+   },
+   date={1970},
+   pages={153--231},
+   review={\MR{0281196}},
+}
+
+
+\bib{Miller75}{book}{
+   author={Miller, Haynes Robert},
+   title={SOME ALGEBRAIC ASPECTS OF THE ADAMS-NOVIKOV SPECTRAL SEQUENCE},
+   note={Thesis (Ph.D.)--Princeton University},
+   publisher={ProQuest LLC, Ann Arbor, MI},
+   date={1975},
+   pages={103},
+   review={\MR{2625232}},
+}
+
+\bib{Milnor}{article}{
+   author={Milnor, John},
+   title={Differential topology forty-six years later},
+   journal={Notices Amer. Math. Soc.},
+   volume={58},
+   date={2011},
+   number={6},
+   pages={804--809},
+   issn={0002-9920},
+   review={\MR{2839925}},
+}
+
+\bib{Moss70}{article}{
+   author={Moss, R. Michael F.},
+   title={Secondary compositions and the Adams spectral sequence},
+   journal={Math. Z.},
+   volume={115},
+   date={1970},
+   pages={283--310},
+   issn={0025-5874},
+   review={\MR{0266216 (42 \#1123)}},
+}
+
+\bib{Novikov67}{article}{
+   author={Novikov, S. P.},
+   title={Methods of algebraic topology from the point of view of cobordism
+   theory},
+   language={Russian},
+   journal={Izv. Akad. Nauk SSSR Ser. Mat.},
+   volume={31},
+   date={1967},
+   pages={855--951},
+   issn={0373-2436},
+   review={\MR{0221509}},
+}
+
+\bib{Pstragowski18}{article}{
+	author={Pstragowski, Piotr},
+	title={Synthetic spectra and the cellular motivic category},
+	eprint={arXiv:1803.01804},
+	date={2018},
+	status={preprint},
+}
+
+\bib{Ravenel86}{book}{
+   author={Ravenel, Douglas C.},
+   title={Complex cobordism and stable homotopy groups of spheres},
+   series={Pure and Applied Mathematics},
+   volume={121},
+   publisher={Academic Press, Inc., Orlando, FL},
+   date={1986},
+   pages={xx+413},
+   isbn={0-12-583430-6},
+   isbn={0-12-583431-4},
+   review={\MR{860042 (87j:55003)}},
+}
+
+\bib{Tangora70a}{article}{
+   author={Tangora, Martin C.},
+   title={On the cohomology of the Steenrod algebra},
+   journal={Math. Z.},
+   volume={116},
+   date={1970},
+   pages={18--64},
+   issn={0025-5874},
+   review={\MR{0266205 (42 \#1112)}},
+}
+
+
+\bib{Toda62}{book}{
+   author={Toda, Hirosi},
+   title={Composition methods in homotopy groups of spheres},
+   series={Annals of Mathematics Studies, No. 49},
+   publisher={Princeton University Press},
+   place={Princeton, N.J.},
+   date={1962},
+   pages={v+193},
+   review={\MR{0143217 (26 \#777)}},
+}
+
+\bib{tmf14}{collection}{
+   title={Topological modular forms},
+   series={Mathematical Surveys and Monographs},
+   volume={201},
+   note={Edited by Christopher L. Douglas, John Francis, Andr\'e G.
+   Henriques and Michael A. Hill},
+   publisher={American Mathematical Society, Providence, RI},
+   date={2014},
+   pages={xxxii+318},
+   isbn={978-1-4704-1884-7},
+   review={\MR{3223024}},
+}
+
+\bib{Voevodsky03b}{article}{
+   author={Voevodsky, Vladimir},
+   title={Motivic cohomology with ${\bf Z}/2$-coefficients},
+   journal={Publ. Math. Inst. Hautes \'Etudes Sci.},
+   number={98},
+   date={2003},
+   pages={59--104},
+   issn={0073-8301},
+   review={\MR{2031199 (2005b:14038b)}},
+   doi={10.1007/s10240-003-0010-6},
+}
+
+\bib{Voevodsky10}{article}{
+   author={Voevodsky, Vladimir},
+   title={Motivic Eilenberg-Maclane spaces},
+   journal={Publ. Math. Inst. Hautes \'Etudes Sci.},
+   number={112},
+   date={2010},
+   pages={1--99},
+   issn={0073-8301},
+   review={\MR{2737977 (2012f:14041)}},
+   doi={10.1007/s10240-010-0024-9},
+}
+
+\bib{Wang19}{article}{
+   author={Wang, Guozhen},
+   title={\emph{\texttt{github.com/pouiyter/morestablestems}}},
+}
+
+\bib{Wang20}{article}{
+   author={Wang, Guozhen},
+   title={Computations of the Adams-Novikov $E_2$-term},
+   journal={Chinese Ann. Math. Ser. B},
+   volume={42},
+   date={2021},
+   number={4},
+   pages={551--560},
+   issn={0252-9599},
+   review={\MR{4289191}},
+   doi={10.1007/s11401-021-0277-2},
+}
+
+\bib{WangXu17}{article}{
+   author={Wang, Guozhen},
+   author={Xu, Zhouli},
+   title={The triviality of the 61-stem in the stable homotopy groups of
+   spheres},
+   journal={Ann. of Math. (2)},
+   volume={186},
+   date={2017},
+   number={2},
+   pages={501--580},
+   issn={0003-486X},
+   review={\MR{3702672}},
+   doi={10.4007/annals.2017.186.2.3},
+}
+
+
+\bib{WangXu18}{article}{
+   author={Wang, Guozhen},
+   author={Xu, Zhouli},
+   title={Some extensions in the Adams spectral sequence and the 51--stem},
+   journal={Algebr. Geom. Topol.},
+   volume={18},
+   date={2018},
+   number={7},
+   pages={3887--3906},
+   issn={1472-2747},
+   review={\MR{3892234}},
+   doi={10.2140/agt.2018.18.3887},
+}
+
+\bib{Xu16}{article}{
+   author={Xu, Zhouli},
+   title={The strong Kervaire invariant problem in dimension 62},
+   journal={Geom. Topol.},
+   volume={20},
+   date={2016},
+   number={3},
+   pages={1611--1624},
+   issn={1465-3060},
+   review={\MR{3523064}},
+   doi={10.2140/gt.2016.20.1611},
+}
+
+\end{biblist}
+\end{bibdiv}
+
+% \printindex
+
+%    See note above about multiple indexes.
+
+\end{document}
+

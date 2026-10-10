@@ -1,0 +1,144 @@
+%\pdfoutput=1\relax
+\documentclass[reqno]{amsart}
+
+\input{Preamble.tex}
+
+\usepackage[margin=1.5in]{geometry}
+\geometry{a4paper}
+\usepackage{etoolbox}
+\newtoggle{draft}
+% NB: toggle this to hide comments
+
+\togglefalse{draft}
+%\toggletrue{draft}
+
+\iftoggle{draft} {
+\newcommand{\NB}[1]{\todo[color=gray!40]{#1}}
+\newcommand{\TODO}[1]{\todo[color=red]{#1}}
+}{ % else
+\newcommand{\NB}[1]{}
+\newcommand{\TODO}[1]{}
+\renewcommand{\todo}[1]{}
+\renewcommand{\todo}[1]{}
+}
+
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{rotating}
+
+\title{The Adams differentials on the classes $h_j^3$}
+%\date{\today}
+
+\author{Robert Burklund}
+\address{Department of Mathematical Sciences, University of Copenhagen, Denmark}
+\email{rb@math.ku.dk}
+
+\author{Zhouli Xu}
+\address{UCLA Department of Mathematics, Los Angeles, CA 90095-1555, USA}
+\email{xuzhouli@ucla.edu}
+
+%----------------------------------------------------------------------%
+%----------------------------------------------------------------------%
+
+\begin{document}
+
+\begin{abstract}
+  In filtration 1 of the Adams spectral sequence, using secondary cohomology operations, Adams \cite{Adams} computed the differentials on the classes $h_j$, resolving the Hopf invariant one problem.
+  In Adams filtration 2, using equivariant and chromatic homotopy theory, Hill--Hopkins--Ravenel \cite{HHR} proved that the classes $h_j^2$ support non-trivial differentials for $j 
+  \geq 7$, resolving the celebrated Kervaire invariant one problem.
+  The precise differentials on the classes $h_j^2$ for $j \geq 7$ and the fate of $h_6^2$ remains unknown. 
+
+  In this paper, in Adams filtration 3, we prove an infinite family of non-trivial $d_4$-differentials on the classes $h_j^3$ for $j \geq 6$, confirming a conjecture of Mahowald.
+  Our proof uses two different deformations of stable homotopy theory---$\mathbb{C}$-motivic stable homotopy theory and $\mathbb{F}_2$-synthetic homotopy theory---both in an essential way.
+  Along the way, we also show that $h_j^2$ survives to the Adams $E_5$-page and that $h_6^2$ survives to the Adams $E_9$-page.
+\end{abstract}
+
+\maketitle
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+\vbadness 5000
+
+%\todo{The abstract is a bit long at the moment.}
+%\todo{Citations won't work right in the arxiv version of abstract.}
+%manually delete citations when posting on arXiv
+
+
+\section{Introduction}
+\label{sec:intro}
+\input{introv2.tex}
+
+
+% \section{Outline (temporary)}
+% \label{sec:outline}
+% \input{outline}
+
+
+\section{The Miller square and motivic homotopy theory}
+\label{sec:review}
+\input{reviewv2.tex}
+
+\section{Proof of the main theorem}
+\label{sec:proof}
+\input{proofv2.tex}
+
+%\section{The main argument}
+%\label{sec:main-argument}
+%\input{main-argument.tex}
+
+%\section{The algebraic Novikov $E_2$-page}
+%\label{sec:algN-E2}
+%\input{algnov.tex}
+
+\section{The Cartan--Eilenberg $E_2$-page}
+\label{sec:algAH}
+\input{algAHv2.tex}
+
+\section{The Cartan--Eilenberg spectral sequence}
+\label{sec:cess}
+\input{cess2v2.tex}
+
+% \section{The motivic Cartan--Eilenberg spectral sequence}
+% \label{sec:mcess}
+% \input{mcess.tex}
+
+% \section{Motivic zigzag for $d_2$ and $d_3$-differentials}
+% \label{sec:e4}
+% \input{d2d3.tex}
+
+\section{The key algebraic Novikov differential}
+\label{sec:alg-nov-diff}
+\input{productv2.tex}
+
+% \section{$\F_2$-synthetic homotopy theory and the Miller square revisited}
+
+\section{The inductive approach revisited}
+\label{sec:kervaire}
+\input{kervairev2.tex}
+
+% \section{Eliminating extra terms}
+% \label{sec:syn-refinements}
+% \input{argument.tex}
+
+\appendix
+
+%\section{The Witt vectors on the moduli of formal groups}
+%\label{sec:witt}
+%\input{witt.tex}
+
+\section{Code}
+\label{app:code}
+\input{code.tex}
+
+
+\bibliographystyle{alpha}
+\bibliography{bibliography}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% eval: (visual-line-mode t)
+%%% eval: (auto-fill-mode 0)
+%%% End:

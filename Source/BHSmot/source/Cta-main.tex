@@ -1,0 +1,459 @@
+
+In this subsection, we prove our main lemma, \Cref{lem:main-lem}, and use it to prove Theorems \ref{thm:Cta} and \ref{thm:Cta-homotopy}. This lemma gives us an explicit formula for $\Gr(i_*(\Gamma_*(-)))$ on a restricted class of objects. Once we have this formula the remaining work is relatively easy.
+We begin with a definition and a couple of useful lemmas.
+
+\begin{dfn}\ 
+  \begin{itemize}
+  %\item Let $\Sp_{C_2, i2} ^{\MURev}$ denote the full subcategory of $E \in \Sp_{C_2, i2}$
+  %  for which $\MURu_{n\rho - 1} ^{C_2} E = 0$ for all $n$.
+  \item Let $\Sp_{C_2, i2} ^{\mathrm{proj}}$ denote the full subcategory of $E \in \Sp_{C_2, i2}$ for which $\MU_{\R,2} \otimes E$ is a retract of a sum of pure suspensions of $\MU_{\R,2}$ (a suspension $\Sigma^{a+b\sigma} \MU_{\R,2}$ is said to be pure if $a=b$). 
+    %% $C_2$-spectrum of the form $\bigoplus_{\alpha} \Sigma^{n_\alpha \rho} \MUR$ for some collecion $n_\alpha$ of integers.
+  \item Let $\Sp_{i2} ^{\mathrm{proj}}$ denote the full subcategory of $E \in \Sp_{i2}$ for which $\MU_{2} \otimes E$ is a retract of a sum of even suspensions of $\MU_2$.
+  \end{itemize}
+  Since the underlying spectrum of $\MU_{\R, 2}$ is $\MU_2$, the underlying spectrum of an object of $\Sp_{C_2, i2} ^{\mathrm{proj}}$ is contained in $\Sp_{i2} ^{\mathrm{proj}}$.
+  Note that both $\Sp_{C_2,i2} ^{\mathrm{proj}}$ and $\Sp_{i2} ^{\mathrm{proj}}$ contain units and are closed under tensor product, so each inherits the structure of a symmetric monoidal category.
+\end{dfn}
+
+%% \begin{rec}
+%%   There is an equivalence of Hopf algebroids in $\uAbh$ between $(\underline{\MUR}_{\rho *}, \underline{\MUR}_{\rho *} \MUR)$ and $\underline{(\MU_*, \MU_*\MU)}$.
+%% \end{rec}
+
+
+%% \begin{cnstr}
+%%   We construct a homology functor $h$
+%% \end{cnstr}
+
+%% \begin{lem}
+%%   The homology functor $h$ can be equipped with a symmetric monoidal structure which makes the following diagram of lax monoidal functor commute,
+%%   \begin{center} \begin{tikzcd}
+%%       \Sp_{C_2} \ar[d, "h"] \ar[r, " - \otimes \mathrm{cb}(\MU_\R)"] &
+%%       \Sp_{C_2}^{\Delta} \ar[r, "\piu_0^{\rho}Y"] &
+%%       \Sp_{C_2}^{\Gr, \rho, \heartsuit, \Delta} \ar[r, "\mathrm{Tot}"] &
+%%       \Sp_{C_2}^{\Gr} \ar[d] \\
+%%       (\uAb \otimes_\Z \IndCoh (\Mfg))^{\heartsuit} \ar[r, "p_*"] &
+%%       \uAb^{\Gr} \ar[r, "\twist^{\rho}"] &
+%%       \uAb^{\Gr} \ar[r] &
+%%       \Sp_{C_2}^{\Gr}
+%%   \end{tikzcd} \end{center}
+%% \end{lem}
+
+%% \begin{proof}
+
+%% \end{proof}
+
+
+
+%\begin{lem} \label{lem:MUR-uZ-mod}
+  %Let $E \in \Sp_{C_2} ^{\MURev}$. Then the restriction map on $\MURu_{n\rho} ^{C_2} E$ is injective, which implies that $\MURu_{n\rho} ^{C_2} E$ is a $\uZ$-module.
+%\end{lem}
+%
+%\begin{proof}
+  %Looking at maps out of the cofiber sequence
+  %\[(C_2)_+ \otimes \Ss^{n\rho} \to \Ss^{n\rho} \to \Ss^{n\rho+\sigma}\]
+  %implies that the kernel of the restriction map $(\MUR)_{n\rho} E \to \MU_{2n} \Phi^e(E)$ is equal to the image of a map $(\MUR)_{n\rho+\sigma} E \to (\MUR)_{n\rho} E$.
+  %The domain is zero by assumption.
+  %To show that $\MURu_{n\rho} E$  is a $\uZ$-modules, we must show that $[C_2] = 2$.
+  %This follows from the relation $ r \circ [C_2] = r \circ 2 $
+  %% \[ r \circ [C_2] = r \circ t \circ r = (1+\sigma) \circ r = 2 \circ r = r \circ 2\]
+  %and the fact that $r$ is injective as shown above.
+%\end{proof}
+
+\begin{lem} \label{lem:MUR-uZ-mod}
+  Suppose that $E \in \Sp_{C_2, i2} ^{\mathrm{proj}}$. Then 
+  \[\underline{(\MU_{\R,2})}_{n\rho} ^{C_2} (E) \cong \underline{(\MU_2)_{2*} (E)}.\]
+  As a consequence, $\underline{(\MU_{\R,2})}_{n\rho} ^{C_2} (E)$ acquires the structure of a $\uZt$-module.
+\end{lem}
+
+\begin{proof}
+  By definition of $\Sp_{C_2, i2} ^{\mathrm{proj}}$, it suffices to note that this is true for $E = \Ss_2$, which follows from \cite[Theorem 2.28]{HuKriz}.
+\end{proof}
+
+\begin{lem} \label{lem:main-lem}
+  Let $h$ denote the symmetric monoidal functor $h : \Sp_{i2} ^{\mathrm{proj}} \to \IndCoh(\Mfg)_{i2} ^{\heartsuit}$
+  which sends a spectrum to its associated $((\MU_2)_*, (\MU_2)_*\MU_2 )$-comodule.  
+  There is a commutative diagram of lax symmetric monoidal functors
+  \begin{center}
+    \begin{tikzcd}
+      \Sp_{C_2, i2} ^{\mathrm{proj}} \ar[rrrr,"i_* \circ \Gamma_*"] \ar[d, "\Phi^e"] & & & &
+      \Sp_{C_2, i2} ^{\Fil} \ar[d, "\Gr"] \\
+      \Sp^{\mathrm{proj}} _{i2} \ar[r, "h"] &
+      \IndCoh(\Mfg)_{i2} ^{\heartsuit} \ar[r, "p_*"] &
+      \Ab^{\Gr}_{i2} \ar[r, "\_"] &
+      \uAb^{\Gr}_{i2} \ar[r, "\twist^\rho"] &
+      \Sp_{C_2,i2} ^{\Gr}.
+    \end{tikzcd}
+  \end{center}
+  %% where we have postcomposed $\twist^{\rho}$ with the forgetful functor from $\uAb^{\Gr}$ to $\Sp_{C_2} ^{\Gr}$, and $F$ is the functor $F(E) = \Tot^\bullet (\MURu_{*\rho} E \otimes_{\MURu_{*\rho}} \MURu_{*\rho} \MUR ^{\otimes \bullet +1})$ taking $E$ to the cobar complex of $\MURu_{*\rho} E$ considered as a $\MURu_{*\rho} \MUR$-comodule.
+
+  %% Moreover, $F$ lands in the full subcategory of $\uAb^{\Gr}$ for which the the restriction $r$ is an equivalence, and there is a further diagram
+  %% \begin{center}
+  %%   \begin{tikzcd}
+  %%     \Sp_{C_2} ^{\MURpr} \ar[rr,"\Gamma_*"] \ar[d, "G"] &  & \Sp_{C_2} ^{\Fil} \ar[d, "\Gr"] \\
+  %%     \Ab^{\Gr} \ar[r, "\_"] & \uAb^{\Gr} \ar[r, "\twist^\rho"] & \Sp_{C_2} ^{\Gr},
+  %%   \end{tikzcd}
+  %% \end{center}
+  %% where $G$ is the functor $G(E) = \Tot^{\bullet} (\MU_{2*} E \otimes _{\MU_{2*}} \MU_{2*} \MU^{\otimes \bullet+1})$ taking $E$ to the cobar complex of $\MU_{2*} E$ considered as a $\MU_{2*} \MU$-comodule.
+\end{lem}
+
+\begin{proof}
+  %% Let $\Mod(\Sp_{C_2} ^{\Delta}; \MUR^{\bullet + 1})^{\mathrm{pt-proj}}$ denote the full symmetric monoidal subcategory of $\Mod(\Sp^{\Delta}; \MUR^{\bullet + 1})$ consisting of the objects which are pointwise direct summands of $\bigoplus_\alpha \Sigma^{n_{\alpha} \rho} \MUR^{k+1}$ as $\MUR^{k+1}$-modules.
+
+  %% This is defined so that the $\MUR$-cobar complex defines a symmetric monoidal functor
+  %% \[\Sp_{C_2} ^{\MURpr} \to \Mod(\Sp_{C_2} ^{\Delta}; \MUR^{\bullet + 1})^{\mathrm{pt-proj}}.\]
+
+  %% We claim that the following diagram of lax symmetric monoidal functors commutes:
+
+  Our argument will rest on the existence of the following commuting diagram of lax symmetric monoidal functors.
+  \begin{center}
+    \begin{tikzcd}
+      & \Sp_{i2} ^{\mathrm{proj}} \ar[ddl, "h"] \ar[d, "- \otimes \mathrm{cb}(\MU_2)"] & &
+      \Sp_{C_2,i2} ^{\mathrm{proj}} \ar[d, "- \otimes \mathrm{cb}(\MU_{\R,i2})"] \ar[ddl, dashed, "f"'] \ar[ll, "\Phi^e"] \\
+      & \Sp_{i2}^{\Delta} \ar[d, "\piu_0^2Y"] & &
+      \Sp_{C_2,i2} ^{\Delta} \ar[ll, "\Phi^e"] \ar[r,"\tau_{\geq 0} ^\rho Y"'] \ar[d, "\piu_{0}^{\rho} Y"'] &
+      \Sp_{C_2,i2} ^{\Fil, \Delta} \ar[d, "\Gr"] \\
+      \IndCoh(\Mfg)_{i2}^{\heartsuit} \ar[ddr, "p_*"] & \Ab_{i2}^{\Gr,2,\heartsuit,\Delta} \ar[d, "\twist^{-2}"] &
+      \uAb_{i2} ^{\Gr, \rho,\heartsuit, \Delta} \ar[l, "\Phi^e"] \ar[d, "\twist^{-\rho}"] \ar[r, "\mathrm{forget}"] &
+      \Sp_{C_2,i2} ^{\Gr, \rho, \heartsuit, \Delta} \ar[r] & \Sp_{C_2,i2}^{\Gr, \Delta} \ar[dd, "\Tot"] \\
+      & \Ab_{i2}^{\Gr,\heartsuit,\Delta} \ar[d, "\Tot"] &
+      \uAb_{i2}^{\Gr, \heartsuit, \Delta} \ar[l, "\Phi^e"] \ar[d, "\Tot"] & & \\
+      & \Ab_{i2}^{\Gr} &
+      \uAb_{i2}^{\Gr} \ar[r, "\twist^{\rho}"] \ar[l, "\Phi^e"] &
+      \uAb_{i2}^{\Gr} \ar[r,"\mathrm{forget}"] &
+      \Sp_{C_2, i2} ^{\Gr}.
+    \end{tikzcd}
+  \end{center}
+
+  The squares formed by the underlying functor, $\Phi^e$, commute since underlying commutes with limits and colimits, the underlying of $\Ss_2^\rho$ is $\Ss_2^2$ and the underlying of $\MU_{\R,2}$ is $\MU_2$.
+  In grid position $(4,3)$ we have implicitly made use of the equivalence $\Sp_{C_2} ^{\Fil,\rho,\heartsuit,\Delta} \simeq \Sp_{C_2} ^{\Gr, \rho, \heartsuit, \Delta}$ to identify the target of $\piu_0 ^{\rho}Y$ with the latter. The upper-right square commutes by \Cref{prop:twist-slice}. The dashed arrow, labelled $f$, is unique (and lax symmetric monoidal) if it exists since the forgetful functor is fully-faithful. The dashed arrow then exists by \Cref{lem:MUR-uZ-mod}. The large bottom-right square commutes because $\twist^{\rho}$ commutes with $\Tot$. Finally, the existence of the factorization along the left side is a corollary of our ability to identify the $\mathrm{E}_2$-page of the Adams--Novikov spectral sequence (see \cite{Adams}). %(see \cite{Pstragowski}).
+  %\todo{Seriously? See Piotr for this?}
+
+  Using the fact that $\Gr$ and $\Tot$ commute, we have equivalences
+  \[ \Gr \circ i_* \circ \Gamma_* \simeq \Tot  \Gr ( \tau_{\geq 0}^\rho Y ( - \otimes \mathrm{cb}(\MU_{\R,2}))) \simeq \twist^{\rho} (\Tot (\twist^{-\rho}( f(-)))). \]
+  By \Cref{lem:MUR-uZ-mod}, the functor $f$ (and its composition with the twist) lands in the full subcategory of the target which is spanned, in each grading and cosimplicial degree, by $\uZt$-modules for which the restriction map $r$ is an equivalence. Thus, we have an equivalence of lax symmetric monoidal functors
+  \[ \twist^{\rho} (\Tot (\twist^{-\rho}( f(-)))) \simeq \twist^{\rho} (\Tot (\underline{\Phi^e \twist^{-\rho}( f(-))})). \]
+  Since $\_$ commutes with limits we then have further equivalences,
+  \[ \twist^{\rho} (\Tot (\underline{\Phi^e \twist^{-\rho}( f(-))}))
+  \simeq \twist^{\rho} ( \underline{\Tot (\Phi^e \twist^{-\rho}( f(-))) } )
+  \simeq \twist^{\rho} ( \underline{  p_* h \Phi^e(-) } ). \qedhere \]
+  %% \begin{center}
+  %%   \begin{tikzcd}
+  %%     \Sp_{C_2} ^{\MURpr} \ar[rr, "\MUR\mathrm{-cobar}"] \ar[rddd, bend right, "F"'] & & \Mod(\Sp_{C_2} ^{\Delta}; \MUR^{\bullet + 1})^{\mathrm{pt-proj}} \ar[r,"\tau_{\geq 0} ^\rho"] \ar[d, "\piu_{0}^{\rho}"] \ar[ld, "\{\Sigma^{n\rho} \piu_{n\rho} ^{C_2}\}"'] & \Sp_{C_2} ^{\Fil, \Delta} \ar[d, "\Gr"] \\
+  %%      & \uAb^{\Gr, \rho,\heartsuit, \Delta} \ar[d, "\twist^{-\rho}"] \ar[r, "\mathrm{forget}"] & \Sp_{C_2} ^{\Gr, \rho, \heartsuit, \Delta} \ar[r] & \Sp_{C_2}^{\Gr, \Delta} \ar[dd, "\Tot"] \\
+  %%      & \uAb^{\Gr, \heartsuit, \Delta} \ar[d, "\Tot"] & & \\
+  %%      & \uAb^{\Gr} \ar[r, "\twist^{\rho}"] & \uAb^{\Gr} \ar[r,"\mathrm{forget}"] & \Sp_{C_2} ^{\Gr}
+  %%   \end{tikzcd}
+  %% \end{center}
+  
+  %%   By \Cref{prop:twist-slice} and the fact that $\Gr$ and $\Tot$ commute, we see that the desired commutative square may be obtained by going around the outside of our diagram. It therefore suffices to prove that the above diagram commutes.
+
+  %% The leftmost region of the diagram commutes by the definition of $F$.
+  
+
+  %% , it follows that the composite \[\{\piu_{n\rho} ^{C_2}\} : \Mod(\Sp_{C_2} ^{\Delta}; \MUR^{\bullet + 1})^{\mathrm{pt-proj}} \xrightarrow{\{\Sigma^{n\rho} \piu_{n\rho} ^{C_2}\}} \uAb^{\Gr, \rho, \heartsuit, \Delta} \xrightarrow{\twist^{-\rho}} \uAb^{\Gr, \heartsuit, \Delta}\]
+  
+
+  %% By \Cref{prop:const-mackey}, the composite $\uAb^{\Gr, \heartsuit, \Delta} \xrightarrow{\mathrm{forget}} \Ab^{\Gr, \heartsuit, \Delta} \xrightarrow{\_} \uAb^{\Gr, \heartsuit, \Delta}$ is naturally ismorphic to the identity.
+
+  %% Using the fact that $\_$ and $\mathrm{forget}$ commute with totalizations,\todo{Probably should have recorded this earlier for $\_$... what's the simplest way to get this?} we obtain the second commuting square.
+\end{proof}
+
+Finally, we are able to prove our main theorems:
+
+\begin{proof}[Proof of \Cref{thm:Cta} and \Cref{thm:Cta-homotopy} (part 1).]
+  We have a chain of symmetric monoidal equivalences:
+
+  \begin{align*}
+    \mathrm{Mod}(\SHRat; C\ta)
+    &\xrightarrow[\ref{lem:gr-of-comparison}]{\simeq} \mathrm{Mod}( \Sp_{C_2, i2}^{\Gr}; \Gr(R_{\bullet}) ) 
+    \xrightarrow[\ref{lem:main-lem}]{\simeq} \mathrm{Mod}( \uAb_{i2}^{\Gr}; \twist^{\rho} (\underline{p_*\mathcal{O}_{\Mfg}}) ) \\
+    &\xrightarrow[\twist^{-\rho}]{\simeq} \mathrm{Mod}( \uAb_{i2}^{\Gr}; \underline{p_*\mathcal{O}_{\Mfg}} ) 
+    \xrightarrow[\ref{lem:uMU-koszul}]{\simeq} \uAb_{i2} \otimes_{\Ab} \IndCoh(\Mfg)
+  \end{align*}
+
+  The claim about the $\Sp_{C_2,i2}$-algebra structure follows once we know $\Sp_{C_2,i2}$ acts through the ambient category at each step. 
+  The key points here are
+  that the equivalence from \Cref{lem:main-lem} was induced by an equivalence of algebras and
+  that the twist functor is an $\uAb_{i2}$-algebra map.
+
+  Using the $\Sp_{C_2,i2}$-linearity, the claim about Picard elements reduces to tracking $C\ta \otimes \Ss_2^{0,0,1}$ around the diagram. Under the first equivalence, $C\ta \otimes \Ss_2^{0,0,1}$ goes to $\o (1)$. The twist by $-\rho$ sends this to $\Sigma ^{\rho}\o (1)$. The final equivalence sends $\o(1)$ to $\uZt \otimes \omega_{\mathbb{G}/\Mfg}$. Altogether we learn that $C\ta \otimes \Ss_2^{0,0,1}$ is sent to $\Sigma^{-\rho}\uZ_2 \otimes \omega_{\mathbb{G}/\Mfg}$, as desired.
+
+  Now suppose that $X \in \Sp_{C_2}^{\mathrm{proj}}$.
+  Then, using \Cref{lem:main-lem}, we have
+  \[\Gr(i_* (\Gamma_* X)) \simeq \twist^{\rho} (\underline{p_* h \Phi^e (X) }). \]
+  Continuing along the sequence of equivalences above, we see that this object is sent to
+  $\uZt \otimes h(\Phi^e(X))$, as desired. \qedhere
+
+  %% We learn that, under the equivalence $\Mod(\SHR^{\at}; C\ta) \simeq \Mod(\uAb ^{\Gr}; \underline{\ExtMUt})$, $\Gamma_* (X) \otimes C\ta$ corresponds to $\underline{C^* _{\MU_{2*} \MU} (\MU_{2*} (X))}$.
+  %% Under the equivalence $\Mod(\uAb ^{\Gr}; \underline{\ExtMUt}) \simeq \uAb \otimes_\Ab \IndCoh(\Mfg)$, this corresponds to the comodule $\underline{\MU_{2*} X} \cong \MURu_{*\rho} X$.
+
+  
+  %% From \Cref{lem:gr-of-comparison}, we have an equivalence of symmetric monoidal categoies,
+  %% \[ \mathrm{Mod}(\SHRat_{i2}; C\ta) \simeq \mathrm{Mod}( \Sp_{C_2, i2}^{\Gr}; \Gr(\Gamma_*\Ss_2) ). \] 
+  %% Using \Cref{lem:main-lem}, we have an equivalence of commutative algebra,
+  %% \[\Gr(\Gamma_* \Ss_2) \xrightarrow[\ref{lem:gr-of-comparison}]{\simeq} \twist^{\rho} (\underline{p_*\O_{\Mfg}}).\]
+  
+  %% %% By definition, we have $G(\Ss_2) \simeq \ExtMUt$. It follows that we have equivalences of symmetric monoidal categories,
+  %% %% \[ \Mod (\SHR^{\at}; C\ta) \simeq \Mod(\uAb ^{\Gr}; \twist^{\rho} (\underline{\ExtMUt})). \]
+  %% Finally, applying $\twist^{-\rho}$, we obtain a symmetric monoidal equivalence
+  %% \[\Mod(\uAb ^{\Gr}; \twist^{\rho} (\underline{\ExtMUt})) \simeq \Mod(\uAb ^{\Gr}; \underline{\ExtMUt}).\]
+  %% By \Cref{lem:uMU-koszul}, this is equivalent to $\uAb \otimes_\Ab \IndCoh(\Mfg)$, as desired.
+
+  %% %% \begin{align*}
+  %% %%   \Mod (\SHR^{\at}; C\ta) &\simeq \Mod(\Sp_{C_2} ^{\Gr}; \Gr(\Gamma_* \Ss_2)) \\
+  %% %%   &\simeq \Mod(\Sp_{C_2} ^{\Gr}; \twist^{\rho} (\underline{\ExtMUt})) \\
+  %% %%   &\simeq \Mod(\uAb ^{\Gr}; \twist^{\rho} (\underline{\ExtMUt})).
+  %% %% \end{align*}
+  %% %% Finally, applying $\twist^{-\rho}$, we obtain a symmetric monoidal equivalence
+  %% %% \[\Mod(\uAb ^{\Gr}; \twist^{\rho} (\underline{\ExtMUt})) \simeq \Mod(\uAb ^{\Gr}; \underline{\ExtMUt}).\]
+  %% %% By \Cref{lem:uMU-koszul}, this is equivalent to $\uAb \otimes_\Ab \IndCoh(\Mfg)$, as desired.
+\end{proof}
+
+In order to calculate the homotopy groups of $C\ta$-modules, we begin with a simple lemma.
+
+\begin{lem} \label{lem:underline-homotopy}
+  Given any $A \in \Ab$, we have
+  \[\pi_{p+q\sigma} ^{C_2} \underline{A} \cong \bigoplus_{a} \pi_{p-a} \left(A \otimes \pi_{a+q\sigma} \uZ \right).\]
+\end{lem}
+
+\begin{proof}
+  Consider the composite
+  $ \Ab \to \uAb \to \Ab^{\Gr} $
+  given by
+  $ A \mapsto \underline{A} \mapsto \{\Map(\Ss^{q\sigma}, \underline{A})\} $.
+  This composite is colimit-preserving, hence is equivalent to
+  $ A \mapsto \{A \otimes \Map(\Ss^{q\sigma} , \underline{\Z})\} $.
+  Now, we have
+  \[\Map(\Ss^{q\sigma} , \underline{\Z}) \simeq \bigoplus_a \Sigma^{a} \pi_{a+q\sigma} \uZ \]
+  because it is a $\Z$-module, and the result follows by applying $\pi_p$.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:Cta} and \Cref{thm:Cta-homotopy} (part 2).]
+  We now turn to our assertions about homotopy groups.
+  Tracing through the various equivalences, we find that for $X$ which is $\MU_{\R,2}$-projective
+  \[ \pi_{p,q,w}^\R(C\ta \otimes X) \cong \pi_{(p-w) + (q-w)\sigma}^{C_2} ( (\uZt \otimes_{\Zt} p_*h \Phi^e (X))_w ). \]
+  We can commute taking the $w^{\mathrm{th}}$ component past the tensor product and then apply \Cref{lem:underline-homotopy} and the fact that $p_*h$ computes $\Ext_{(\MU_2)_*\MU_2}$ to conclude that
+  \begin{align*}
+    \pi_{p,q,w}^\R(C\ta \otimes X)
+    &\cong \pi_{(p-w) + (q-w)\sigma}^{C_2} (\uZt \otimes_{\Zt} (p_*h \Phi^e (X))_w ) \\
+    &\cong \bigoplus_a \pi_{p-w-a} (\pi_{a+(q-w)\sigma}\uZt \otimes_{\Zt} \Ext_{(\MU_2)_*\MU_2}^{*,2w}((\MU_2)_*, (\MU_2)_* \Phi^e (X) )) \\
+    &\cong \bigoplus_a \pi_{p-w-a} (\Ext_{(\MU_2)_*\MU_2}^{*,2w}((\MU_2)_*, \pi_{a+(q-w)\sigma}\uZt \otimes_{\Zt} (\MU_2)_* \Phi^e (X) )) \\
+    &\cong \bigoplus_a \Ext_{(\MU_2)_*\MU_2}^{a+w-p,2w}((\MU_2)_*, \pi_{a+(q-w)\sigma}\uZt \otimes_{\Zt} (\MU_2)_* \Phi^e (X) ). 
+  \end{align*}
+  Since $\pi_{a+q\sigma} ^{C_2} \uZt$ is isomorphic to $\Z_2$ or $\F_2$, and $(\MU_2)_* X$ is torsion-free (since it is a projective $(\MU_2)_*$-module), the tensor product inside the Ext can be taken in a $1$-categorical sense.
+  %
+  %% the place where the homotopy groups are most accessible is in the category $\uAb^{\Gr}$ where we are thinking about the object $\uZt \otimes p_*h \Phi^e (X)$. 
+  %
+  %% Finally, we prove the 
+  %% Suppose that $E \in \Mod(\SHR^{\at}; C\ta)$ corresponds to $\{M_w\} \in \Mod(\uAb^{\Gr}; \underline{\ExtMUt})$ under the equivalence defined above.
+  %% Then, tracing through the above equivalences of categories, we find that
+  %% \[\pi_{p,q,w} ^\R E \cong \pi_{(p-w) + (q-w)\sigma}^{C_2} M_w.\]
+  %% When $E = \Gamma_* (X) \otimes C\ta$ for $X \in \Sp_{C_2} ^{\MURpr}$, we find that
+  %% \[M_w \simeq \underline{\Ext^{*, 2w} _{\MU_* \MU} (\MU_* X)},\]
+  %% where
+  %% \[\pi_p \Ext^{*, 2w} _{\MU_* \MU} (\MU_* X) \cong \Ext^{-p, 2w} _{\MU_* \MU} (\MU_* X).\]
+  %% By \Cref{lem:underline-homotopy}, we have
+  %% \[\pi_{(p-w)+(q-w) \sigma} ^{C_2} \underline{\Ext^{*, 2w} _{\MU_* \MU} (\MU_* X)} \cong \bigoplus_{a} \pi_{p-w-a} (\Ext^{*, 2w} _{\MU_* \MU} (\MU_* X) \otimes \pi_{a+(q-w)\sigma} ^{C_2} \uZ).\]
+  %% Since $\pi_{a+q\sigma} ^{C_2} \Z$ is isomorphic to $\Z$ or $\F_2$, and $\MU_* X$ is torsion-free since it is a projective $\MU_*$-module, we find that 
+  %% \[\Ext^{*, 2w} _{\MU_* \MU} (\MU_* X) \otimes \pi_{a+(q-w)\sigma} ^{C_2} \uZ \simeq \Ext^{*, 2w} _{\MU_* \MU} (\MU_* X \otimes \pi_{a+(q-w)\sigma} ^{C_2} \uZ), \]
+  %% from which we deduce that
+  %% \begin{align*}
+  %%   \pi_{p,q,w} ^{\R} \Gamma_* (X) \otimes C\ta &\cong \bigoplus_{a} \pi_{p-w-a} \Ext^{*, 2w} _{\MU_* \MU} (\MU_* X \otimes \pi_{a+(q-w)\sigma} ^{C_2} \uZ) \\
+  %%   &\cong \bigoplus_{a} \Ext^{a+w-p, 2w} _{\MU_* \MU} (\MU_* X \otimes \pi_{a+(q-w)\sigma} ^{C_2} \uZ) \\
+  %%   &\cong \bigoplus_{w+a-s=p} \Ext^{s, 2w} _{\MU_* \MU} (\MU_* X \otimes \pi_{a+(q-w)\sigma} ^{C_2} \uZ),
+  %% \end{align*}
+  %% as desired.
+\end{proof}
+%
+%\begin{lem}\label{lem:gr-R-bullet-computation}
+%  The graded $\mathbb{E}_\infty$-ring in $\Sp_{C_2,i2}$ given by $\Gr(\Gamma_* (\Ss_2))$ is equivalent to the image of $\ExtMUt$ under the composite $\twist^{\rho} \circ \_ : \Ab^{\Gr} \to \uAb^{\Gr} \to \CAlg(\Sp_{C_2}^{\Gr})$.
+%\end{lem}\todo{this needs a twist}
+%
+%The main idea of the proof is simple, and not well represented due to technical details.
+%Upon examining the totalization computing $\Gr(R_\bullet)$ given in [location] directly, one finds that the full subcategory of $\Sp_{C_2}^{\Gr}$ on the relevant objects is a 1-category. This ``collapse of coherences'' allows us to factor the cosimplicial diagram through the right adjoint $- \otimes_{\Z} \uZt$ by hand.
+%
+%\begin{proof}  
+  %% This lemma is the heart of the content of this section.
+  %% For this reason, here and only here, we will need to examine the construction of $R_\bullet$ directly.
+%
+%  We begin by recalling the construction of $R_\bullet$,
+%  \[ R_\bullet \coloneqq \mathrm{Tot}^* \left( P_{2 \bullet} \MU_\R^{\otimes * + 1} \right). \]
+%  Using the material on twisted $t$-structures we can rewrite this as follows,
+%  \[ R_\bullet \coloneqq \mathrm{Tot}^* \tau_{\geq 0}^{\rho} \mathrm{const}_\bullet (\MU_\R^{\otimes * + 1} ). \]
+%  The operation of passing to associated graded commutes with limits and colimits so we have an equivalence of graded $\mathbb{E}_\infty$-rings in $C_2$-spectra,
+%  \[ \Gr_\bullet \mathrm{Tot}^* \tau_{\geq 0}^{\rho} \mathrm{const}_\bullet (\MU_\R^{\otimes * + 1} ) \simeq \mathrm{Tot}^* \Gr_\bullet \tau_{\geq 0}^{\rho} \mathrm{const}_\bullet (\MU_\R^{\otimes * + 1} ). \]
+%  Since $\piu_0^{\rho}$ kills the shift map, there is a natural ring map,\todo{Needs work}
+%  \[ \Gr_\bullet \tau_{\geq 0}^{\rho} \mathrm{const}_\bullet (\MU_\R^{\otimes * + 1} ) \to \piu_{0}^{\rho} \mathrm{const}_\bullet (\MU_\R^{\otimes * + 1} ) \]
+%  which from our knowledge of the slices of $\MU_\R$ we may conclude is an equivalence.
+%  This provides a factorization,
+%  \[ \Delta \xrightarrow{F_{\bullet, *}} \mathrm{CAlg}( \uAb^{\Gr, \heartsuit, \rho} ) \simeq \mathrm{CAlg}(\Sp_{C_2}^{\Gr, \heartsuit, \rho}) \to \mathrm{CAlg}(\Sp_{C_2}^{\Gr}) \]
+%  of the diagram whose totalization we would like to understand.
+%  We can also express $\ExtMU$ as the totalization of a cosimplicial diagram which factors through commutative algebras in the heart---the $\MU$ cobar complex. Thus, in order to prove the lemma it will suffice to show that the left triangle in the diagram below commutes.
+%
+  %% \begin{center}
+  %%   \begin{tikzcd}
+  %%     & \mathrm{CAlg} ( \Ab^{\Gr, \heartsuit}) \ar[d] \ar[r] & \mathrm{CAlg} ( \Ab^{\Gr} ) \ar[d] \\
+  %%     & \mathrm{CAlg} ( \uAb^{\Gr, \heartsuit}) \ar[d, "twist"] \ar[r] & \mathrm{CAlg} ( \uAb^{\Gr} ) \ar[d, "twist"] \\
+  %%     \Delta \ar[uur, "MU cobar"]  \ar[r, "F_{*,\bullet}"]
+  %%     & \mathrm{CAlg} ( \Ab^{\Gr, \heartsuit, \rho}) \ar[d] \ar[r] & \mathrm{CAlg} ( \Ab^{\Gr} ) \ar[d] \\      
+  %%   \end{tikzcd}
+  %% \end{center}
+%
+%  \begin{center}
+%    \begin{tikzcd}
+%      & & \Delta \ar[ddll, "\MU\text{cobar}"] \ar[dd, "F_{*,\bullet}"] \ar[ddr, "\MU \text{cobar}"] \\ \\
+%      \mathrm{CAlg} ( \Ab^{\Gr, \heartsuit} ) \ar[r, "- \otimes_{\Z} \uZ"] &
+%      \mathrm{CAlg} ( \uAb^{\Gr, \heartsuit} ) \ar[r, "\text{twist}"] &
+%      \mathrm{CAlg} ( \uAb^{\Gr, \heartsuit, \rho} ) \ar[r, ] &
+%      \mathrm{CAlg} ( \Ab^{\Gr, \heartsuit} )
+%    \end{tikzcd}
+%  \end{center}
+%
+%  We begin by observing that the big triangle with two legs given by the $\MU$ cobar complex commutes since the horizontal composite accross is the identity.
+%  Since $U \piu_0^\rho(-) \cong \piu_0^{S^2}(U-)$, the right triangle commutes by the definition of the $\MU$ cobar complex.
+%  Now we make an observation that is special to $F_{*,\bullet}$. 
+%  Since the slices of $\MU_\R^{\otimes * + 1}$ are all of the form $\Sigma^{n \rho}\uZt$ the underlying non-equivariant object functor is fully faitful when restricted to relevant objects [ref]. This implies that the 2-out-of-3 property applies to the commutativity of this diagram, so we may conclude the left triangle commutes, as desired.
+%
+%% AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+%
+%  
+%%   Recall that $R_\bullet$ is constructed as the totalization of the cosimplicial CAlg in filtered $C_2$-spectra below,\footnote{Here and below we will use decorations $\bullet$ and $*$ to disambiguate indices.}
+%%   \[ R_\bullet \coloneqq \mathrm{Tot}^* \left( P_{2 \bullet} \MU_\R^{\otimes * + 1} \right). \]  
+%%   The operation of passing to associated graded commutes with limits and colimits so we have an equivalence of graded $\mathbb{E}_\infty$-rings in $C_2$-spectra,
+%%   \[ \Gr_\bullet \mathrm{Tot}^* \left( P_{2\bullet} \MU_\R^{\otimes * + 1} \right) \simeq \mathrm{Tot}^* \left( \Gr_\bullet P_{2\bullet} \MU_\R^{\otimes * + 1} \right). \]
+%%   Using the eveness of $\MU_\R$ we know that for fixed values of $\bullet$ and $*$ these are all just sums of copies of $\Sigma^{n\rho} \uZt$. Moreover, this means all the maps are determined by what they do on the homotopy groups of the underlying spectrum, where we can drop all the $\R$'s. At this level we're just looking at the $\MU$-cobar complex. However, since we need to understand the commutative algebra structure in a very precise way we take more time in coming to this point.
+%
+%  
+%%   In [location] we constructed $R_\bullet$ with its ring structure as follows,
+%%   \[  R_\bullet \coloneqq \mathrm{Tot}^* \tau_{\geq 0}^{\rho} \mathrm{const} ( \MU_\R^{\otimes * + 1} ), \]
+%%   where const refers to the constant filtered object functor.
+%  
+%  
+%
+%%   \[  \Gr_\bullet P_{2\bullet} \MU_\R^{\otimes * + 1} \simeq  P_{2\bullet}^{2\bullet+1} \MU_\R^{\otimes * + 1}  \simeq  P_{2\bullet}^{2\bullet} \MU_\R^{\otimes * + 1}. \]
+%%   In [location] we actually had a more tightly coupled version of this construction there $P_{2\bullet}$ was replaced with the composite of the constant tower functor with $\tau_{\geq 0}^{\mathrm{B}}$, the connective cover the for the slice version of the Beilinson $t$-structure on filtered objects. Using the fact that powers and slices of $\MU$ are so well behaved, we can rewrite things again as
+%%   \[ \Gr R_\bullet \simeq \mathrm{Tot}^* \pi_0^{\mathrm{B}} \mathrm{const} ( \MU_\R^{\otimes * + 1} ). \]
+%
+%  
+%%   \todo{prose here}
+%  
+%
+%
+%%   {\bf De-categorification}
+%%   At this point we make an observation that greatly simplifies our understanding of $\Gr R_\bullet$:  
+%%   Since the $\rho$-twisted $t$-structure on graded $C_2$-spectra is compatible with the tensor product, there is a pullback diagram of categories,
+%%   \begin{center} \begin{tikzcd}
+%%       \mathrm{CAlg}(\Sp_{C_2}^{\Gr,\heartsuit}) \ar[r] \ar[d] & \mathrm{CAlg}(\Sp_{C_2}^{\Gr}) \ar[d] \\
+%%       \Sp_{C_2}^{\Gr,\heartsuit} \ar[r] & \Sp_{C_2}^{\Gr}
+%%   \end{tikzcd} \end{center}
+%%   where both horizontal arrows are fully faithful.
+%%   Since, $F_{\bullet,*}$ lifts along the bottom horizontal arrow as a diagram of objects,
+%%   we learn that it lifts along the upper arrow as a diagram of commutative algebras.
+%%   The improvement here is that we're now working in a 1-category, therefore any sort of coherence statement becomes null. Thus, in order to produce the dashed lift indicated below, we only have to realize that we're working with objects which are sums of copies of $\uZt$.
+%%   \begin{center} \begin{tikzcd}[sep = huge]
+%%       &  \Delta \ar[ddr, "F_{\bullet,*}"] \ar[dl, dashed, bend right] & \\
+%%       \mathrm{CAlg}(\Sp^{\Gr,\heartsuit}) \ar[r, hook] \ar[d, " - \otimes_{\Z} \uZ"] &
+%%       \Z/\mathrm{CAlg}(\Sp^{\Gr}) \ar[d, " - \otimes_{\Z} \uZ"] & \\
+%%       \mathrm{CAlg}(\Sp_{C_2}^{\Gr,\heartsuit}) \ar[r, hook] &
+%%       (\underline{\pi}_0\o)/\mathrm{CAlg}(\Sp_{C_2}^{\Gr}) \ar[r] &
+%%       \mathrm{CAlg}(\Sp_{C_2}^{\Gr})
+%%   \end{tikzcd} \end{center}
+  
+%%   %% \begin{center} \begin{tikzcd}[sep = small]
+%%   %%     & & & \Delta \ar[ddr, "F_{\bullet, *}"] \ar[dlll, dashed, bend right] & \\
+%%   %%     \mathrm{CAlg}(\Sp^{\Gr,\heartsuit}) \ar[dd] \ar[rr, hook] \ar[dr, " - \otimes_{\Z} \uZ"] & &
+%%   %%     \Z/\mathrm{CAlg}(\Sp^{\Gr}) \ar[dd] \ar[dr, " - \otimes_{\Z} \uZ"] \\
+%%   %%     & \mathrm{CAlg}(\Sp_{C_2}^{\Gr,\heartsuit}) \ar[dd] \ar[rr, hook] & &
+%%   %%     \underline{\pi}_0\o/\mathrm{CAlg}(\Sp_{C_2}^{\Gr}) \ar[r] \ar[dd] &
+%%   %%     \mathrm{CAlg}(\Sp_{C_2}^{\Gr}) \ar[dd] \\
+%%   %%     \Sp^{\Gr, \heartsuit} \ar[rr, hook] \ar[dr, " - \otimes_{\Z} \uZ"] & &
+%%   %%     \mathrm{Mod}(\Sp^{\Gr}; \Z) \ar[dr, " - \otimes_{\Z} \uZ"] \\
+%%   %%     & \Sp_{C_2}^{\Gr,\heartsuit} \ar[rr, hook] & &
+%%   %%     \mathrm{Mod}(\Sp_{C_2}^{\Gr}; \underline{\pi}_0\o) \ar[r] &
+%%   %%     \Sp_{C_2}^{\Gr} 
+%%   %% \end{tikzcd} \end{center}
+  
+%%   In this diagram the right horizontal arrow preserves limits.
+%%   We will argue that the right vertical arrow preserves limits as well so that we can evaluate the totalization in commutative algebras under $\Z$.
+%%   Since passing to underlying is conservative and preserves limits it will suffice to show that
+%%   \[ \mathrm{Mod}(\Sp^{\Gr}; \Z) \xrightarrow{- \otimes_{\Z} \uZ} \mathrm{Mod}(\Sp_{C_2}^{\Gr}; \underline{\pi}_0\o) \]
+%%   preserves limits. It will suffice to argue this in the non-graded case.
+%%   This functor can now be rewritten as the pullback functor
+%%   \[ \mathcal{D}(\mathrm{Ab}) \to \mathcal{D}(\mathrm{Mackey}) \]
+%%   induced by the map from the Burnside category to $\Z$ which gives $\uZ$. Since limits and colimits are computed pointwise we learn that this functor preserves all limits and colimits.
+
+%%   Let $G_{\bullet,*}$ denote the cosimplicial diagram in commutative $\Z$-algebras which we wish to totalize. On the one hand the composite of $ - \otimes_{\Z} \uZ $ with the underlying (non-equivariant) spectrum functor is the indentity. On the other hand, as a diagram living in the 1-category $\mathrm{CAlg}(\Sp^{\Gr,\heartsuit})$ the underlying diagram is none other than the $\MU$-cobar complex. The algebra ExtMU was defined as the totalization of the $\MU$-cobar complex, so this proves the lemma.
+%\end{proof}
+%
+%\subsection{Homotopy of $C\ta$-modules}
+%
+%\begin{cnv}
+%  Given $M \in \Ab^{\Gr}$, we let $\pi_{p,w} M = \pi_p M_w$.
+%  Similarly, given $M \in \uAb^{\Gr}$, we let $\pi_{p,q,w} M = \pi_{p + q \sigma} ^{C_2} M_w$.
+%\end{cnv}
+%
+%\begin{lem} \label{lem:underline-homotopy}
+%  Given any abelian group $A$, we have
+%  \[\pi_{p+q\sigma} ^{C_2} \underline{A} \cong \pi_{p} \left( \bigoplus_{a} A \otimes \Sigma^a \pi_{a+q\sigma} \uZ \right).\]
+%\end{lem}
+%
+%\begin{proof}
+%  Consider the composite
+%  \[\Ab \to \uAb \to \Ab^{\Gr}\]
+%  given by
+%  \[A \mapsto \underline{A} \mapsto \{\Map(\Ss^{q\sigma}, \underline{A})\}\]
+%  This composite is colimit-preserving, hence is equivalent to
+%  \[A \mapsto \{A \otimes \Map(\Ss^{q\sigma} , \underline{\Z})\}.\]
+%  Now, we have
+%  \[\Map(\Ss^{q\sigma} , \underline{\Z}) \simeq \bigoplus_a \Sigma^{a} \pi_{a+q\sigma} \uZ \]
+%  because it's a $\Z$-module, so the result follows from applying $\pi_p$.
+%\end{proof}
+%
+%\begin{lem}
+%  Let $M \in \Ab^{\Gr}$. Then the homotopy groups of $\twist^{\rho} (\underline{M}) \in \uAb^{\Gr}$ are given by
+%  \[\pi_{p,q,w} \twist^{\rho} (\underline{M}) \cong \]
+%\end{lem}
+%
+%\begin{proof}
+%  It follows from the fact that $\Z$ is a PID that
+%  \[M_w \simeq \bigoplus_{p \in \Z} \Sigma^p \pi_{p,w} M.\]
+%  It follows that
+%  \[\underline{M}_w \simeq \bigoplus_{p \in \Z} \Sigma^p \underline{\pi_{p,w} M},\]
+%  and hence that
+%  \[(\twist^{\rho} (\underline{M}))_w \simeq \bigoplus_{p \in \Z} \Sigma^{p + w \rho} \underline{\pi_{p,w} M}.\]
+%
+%  The result now follows from
+%\end{proof}
+%
+%
+%
+%
+%
+%Given $M \in \IndCoh(\Mfg)_{i2}$, we set
+%\[\Ext_{\MU_* \MU} ^{s,2w} (\MU_*, M) \coloneqq [\Sigma^{s} \omega_{\mathbb{G}/\Mfg} ^{\otimes w}, M].\]
+%
+%\begin{prop}
+%  Let $E \in \IndCoh(\Mfg)_{i2}$, and let
+%  \[\underline{E} \in \uAb_{i2} \otimes _{\Ab_{i2}} \IndCoh(\Mfg)_{i2}\]
+%  denote the image of $E$ under the twisted underline functor
+%  \[\_ : \IndCoh(\Mfg)_{i2} \to \uAb_{i2} \otimes _{\Ab_{i2}} \IndCoh(\Mfg)_{i2},\]
+%  and further let
+%  \[\underline{E}^{\rho} \in \uAb_{i2} \otimes _{\Ab_{i2}} \IndCoh(\Mfg)_{i2}\]
+%  denote the image of $\underline{E}$ under the $\rho$-twist functor
+%  \[\twist^{\rho} : \uAb_{i2} \otimes_{\Ab_{i2}} \IndCoh(\Mfg)_{i2} \to \uAb_{i2} \otimes _{\Ab_{i2}} \IndCoh(\Mfg)_{i2},\]
+%  Then the homotopy groups of $\underline{E}$, viewed as a $C\ta$-module under the equivalence of categories of \Cref{thm:Cta}, are given by
+%  \[ \pi_{p,q,w}^\R \underline{E}^{\rho} \cong \bigoplus_{w+a-s = p} \Ext_{\MU_*\MU}^{s,2w}(\MU_*, E) \otimes_{\Z_2} \pi_{a + (q-w) \sigma}^{C_2} \uZt, \]
+%  where the tensor product is implicitly derived.
+%\end{prop}
+%
+%\begin{proof}
+%  By [lems], we may view the relevant underline functor as a functor
+%  \[\_ : \Mod(\Ab^{\Gr}; \ExtMUt) \to \Mod(\uAb^{\Gr}; \underline{\ExtMUt}),\]
+%  and view $\twist^{\rho}$ as a functor
+%  \[\twist^{\rho} ; \Mod(\uAb^{\Gr}; \underline{\ExtMUt}) \to \Mod(\uAb^{\Gr}; \underline{\ExtMUt}),\]
+%  To compute the homotopy groups, it suffices to compute the image of $\underline{E}^{\rho}$ under the forgetful functor
+%  \[\uAb \otimes_{\Ab} \IndCoh(\Mfg)_{i2} \simeq \Mod(\uAb^{\Gr}; \ExtMUt) \to \uAb^{\Gr}.\]
+%  This only depends on the image of $E$ under the forgetful functor 
+%  \[\IndCoh(\Mfg)_{i2} \simeq \Mod(\Ab^{\Gr}; \ExtMUt) \to \Ab^{\Gr},\]
+%  which is $\{\bigoplus_{s} \Sigma^{-s} \Ext_{\MU_* \MU} ^{s,2w} (\MU_*, M)\}_{w \in \Z}.$
+%\end{proof}
+%

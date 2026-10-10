@@ -1,0 +1,71 @@
+In this short subsection, we specialize the material from the previous subsection to the case of interest. This means we look at $\Sp_{C_2, i2}$ with Picard element $\Ss_2 ^\rho$.
+In order to connect this with $\MU_{\R,2}$ and the material from \Cref{sec:top}, we relate the $\rho$-twisted $t$-structure to the regular slice filtration.
+
+\begin{exm}
+  If we take $\mathcal{C}= \Sp_{C_2}$, then the following Euler characteristic computations provide the three possible nontrivial twists on graded Mackey functors:
+  \[ \chi(\Ss^{\sigma}) = 1 - [C_2], \qquad \chi(\Ss^1) = -1, \qquad \chi(\Ss^{\rho}) = [C_2] - 1. \]
+  To verify this, one uses the compatibility of the Euler characteristic with the symmetric monoidal functors $\Phi^{e}$ and $\Phi^{C_2}$.
+  %Each of these computations can be accomplished using the compatibility of Euler characteristic with symmetric monoidal functors applied to $\Phi^e$ and $\Phi^{C_2}$.
+\end{exm}
+
+\begin{exm}
+  Write $\uAb_{i2}^{\Gr, \rho, \heartsuit}$ for $\uAb_{i2}^{\Gr, \Sigma^{\rho} \uZt, \heartsuit}$.
+  Then, since the image of $\chi(\Ss^{\rho})$ in $\pi_0 \uZt$ is $1$,
+  there is a symmetric monoidal equivalence
+  \[\twist^{\rho} : \uAb_{i2}^{\Gr, \heartsuit} \xrightarrow{\simeq} \uAb_{i2}^{\Gr, \rho, \heartsuit},\]
+  by \Cref{prop:twist}. Applying \Cref{lem:D-twist}, we can then upgrade this to a diagram of symmetric monoidal functors
+  \begin{center}
+    \begin{tikzcd}
+      \uAb_{i2} ^{\Gr, \heartsuit} \ar[r, "\twist^{\rho}"] \ar[d] & \uAb_{i2} ^{\Gr, \rho, \heartsuit} \ar[d] \\
+      \uAb_{i2} ^{\Gr} \ar[r, "\twist^{\rho}"] & \uAb_{i2} ^{\Gr}.
+    \end{tikzcd}
+  \end{center}
+\end{exm}
+
+\todo{We're gonna need to either explain more about how the slices work, cite somebody or write more shit here.}
+\todo{We need to fix a convention does pi n live in deg n (composite of two truncation functors) or in deg 0.}
+
+\begin{cnv}
+  From this point on, our category $\CC$ will be one of $\Sp_{C_2, i2}$, $M(C_2)_{i2}$, $\uAb_{i2}$ or $\Ab_{i2}$ with its usual $t$-structure, and the Picard element we work with will be $\Ss^{\rho} _2, \Sigma^{\rho} \piu_{0} ^{C_2} \Ss_2, \Sigma^{\rho} \uZt$ or $\Sigma^{2} \Zt$, respectively. In order to reduce the notational burden, we denote the former three Picard objects by $\rho$ and the final Picard object by $2$ in superscripts. So, in the example of $\Sp_{C_2, i2}$, we will write $\tau_{\geq 0} ^\rho$ for the connective cover, $\piu_0 ^\rho$ for the $0^{\mathrm{th}}$ homotopy object and $\Sp_{C_2, i2} ^{\Fil, \rho, \heartsuit}$ for the heart of $\Sp_{C_2, i2} ^{\Fil}$.
+%% We equip the category $\Sp_{C_2, i2} ^{\Fil}$ with the $\Ss^{\rho} _{2}$-twisted $t$-structure, and let 
+%%   We denote the heart by $\Sp_{C_2, i2} ^{\Fil, \rho, \heartsuit}$, and note that this is naturally equivalent to $\Sp_{C_2, i2} ^{\Gr, \rho, \heartsuit}$ by \Cref{prop:twist-1-conn}.
+%%   This is further equivalent to $M(C_2)^{\Gr, \rho, \heartsuit}$, since $M(C_2)$ is equivalent to the category of modules over $\piu_0 ^{C_2} \Ss_2$ in $\Sp_{C_2, i2}$.
+\end{cnv}
+
+This key result of this section is the following:
+
+\begin{lem}\label{prop:twist-slice}
+  Let $E \in \Sp_{C_2, i2}$. Then
+  \[\tau_{\geq 0} ^{\rho} Y(E) \simeq \left( \dots \to P_4 E \to P_2 E \to P_0 E \to P_{-2} E \to P_{-4} E \to \dots \right), \]
+  where $Y$ is the functor that sends an object to the associated constant filtered object. 
+  If we further suppose that $\piu_{n\rho-1} ^{C_2} E = 0$ for all $n$, there is a natural equivalence
+  \[\Gr (\tau_{\geq 0} ^{\rho} Y(E)) \simeq \piu_0 ^{\rho} Y(E) \cong \{\Sigma^{n\rho} \piu_{n\rho} ^{C_2} E\}.\]
+  Finally, if $\piu_{n\rho} E$ is a constant Mackey functor for all $n$, then
+  $ \piu_0 ^{\rho} Y(E) $
+  factors through the full subcategory
+  \[\uAb_{i2} ^{\Gr, \rho, \heartsuit} \subset M(C_2)_{i2} ^{\Gr, \rho, \heartsuit} \simeq \Sp_{C_2, i2} ^{\Fil, \rho, \heartsuit}.\]
+\end{lem}
+
+\begin{proof}
+  This lemma has three statements.
+  For the first statement, it suffices to note the following:
+  \begin{enumerate}
+    \item A $C_2$-spectrum is $t$-structure $0$-connective if and only if it is regular slice $0$-connective.
+\item A $C_2$-spectrum $E$ is regular slice $2n$-connective if and only if $E \otimes \Ss^{-n\rho}$ is regular slice $0$-connective.
+  \end{enumerate}
+
+  For the second statement, since $\Ss^{\rho} _2 \geq 1$, we can use the final statement of \Cref{prop:twist-1-conn} to obtain a canonical map
+  \[\Gr (\tau_{\geq 0} ^{\rho} Y(E)) \to \piu_0 ^{\rho} Y(E).\]
+  On the one hand, we have
+  $ \piu_0 ^\rho Y(E) \cong \{\Sigma^{n\rho} \piu_{n\rho} ^{C_2} E\} $
+  by \Cref{prop:twist-grade}(3'). \todo{I dont 100\% follow this argument.}
+  Since by assumption the odd slices of $E$ vanish, we learn that
+  the $(2n)^{\mathrm{th}}$ slice of $E$ is equivalent to $\Sigma^{n\rho} \piu_{n\rho} ^{C_2} E$ and
+  that there are cofiber sequences
+  \[ P_{2n+2} E \to P_{2n} E \to \Sigma^{n\rho} \piu_{n\rho} ^{C_2} E. \]
+  The desired equivalence now follows from the first statement.
+
+  The third statement now follows from the fact that any discrete $C_2$-Mackey functor which is constant admits a (necessarily unique) $\uZ$-module structure.
+\end{proof}
+
+

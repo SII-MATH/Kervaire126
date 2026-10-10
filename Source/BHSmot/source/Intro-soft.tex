@@ -1,0 +1,122 @@
+%% Motivic homotopy theory, as introduced by Morel and Voevodsky \cite{MorelVoevodsky}, has been a tremendously successful application of abstract homotopy theory to concrete questions of algebraic geometry and number theory. \todo{This sentence is stolen from Gheorghe--Wang--Xu. It should be rewritten.}
+
+A striking surprise of modern computational stable homotopy theory is that the category $\SH(\C)$ of $\C$-motivic spectra, as introduced by Morel and Voevodsky \cite{MorelVoevodsky},
+has found use not only in algebraic geometry, but also in the computation of stable homotopy groups of spheres, a question of purely topological origin.  In particular, the $p$-completed bi-graded homotopy groups of the unit in $\SH(\C)$ record---in a precise sense---the Adams--Novikov spectral sequence for the sphere spectrum, including all differentials and extensions.  The ultimate expression of this connection is the discovery that the \emph{cellular} subcategory of $p$-complete $\C$-motivic spectra is equivalent to a category of \emph{synthetic} Adams--Novikov spectral sequences, and in particular has a purely homotopy theoretic description without reference to algebraic geometry.
+
+%% The relationship between $p$-complete, cellular $\C$-motivic spectra and Adams--Novikov spectral sequences is mediated by a class $\tau:\Ss^1 \to (\G_m)^{\wedge}_p$.  The cofiber of the $\tau$ map (often denoted $C\tau$) is an $\mathbb{E}_\infty$-algebra, with the property that cellular $C\tau$-modules record the purely algebraic derived category of $p$-complete $\BP_*\BP$-comodules.  On the other hand, the full subcategory of $\tau$-invertible, $p$-complete motivic $\C$-spectra is equivalent to the classical category of $p$-complete spectra.  One summarizes the situation by saying that $\SH(\C)^{cell,p}$ is a $\tau$-deformation, with generic fiber the category of $p$-complete spectra and special fiber the derived category of $p$-complete $\BP_*\BP$-comodules.
+
+The first evidence that a large sector of the motivic category contains only topological information appears in the work of Thomason on algebraic K-theory and \'etale cohomology \cite{Thomason}. As a consequence of this work, Thomason proves that for well-behaved $\C$-schemes $X$, there is an equivalence $\mathrm{K}^{\mathrm{alg}} (X) [\beta^{-1}]^{\wedge} _{\ell} \simeq \mathrm{KU} (X(\C))^{\wedge} _{\ell}$, where $\beta$ is a certain Bott element. %% There is a precise sense in which inverting $\beta$ is equivalent to inverting $\tau$.
+These ideas have been refined over the years, culminating in the following theorem.
+
+\begin{thm}[\cite{VoeOpenProbs, DI, LevineComparison, LevineSlicemU, Ctau, ctauactalol, Pstragowski, cmmf}]\label{thm:C-main}\
+
+  In $\SHC$
+  there is a map $\tau : \Ss^1 \to (\G_m)_p$
+  which enjoys the following properties:
+  \begin{enumerate}
+  \item[(1.\hspace{1em}]\hspace{-1.1em}$\mathrm{Generically\ Topological})$ The full subcategory of $\tau$-local objects in $\SHC^{cell}_p$ is equivalent to $\Sp_p$.
+  \item[(2.\hspace{1em}]\hspace{-1.1em}$\mathrm{Algebraic\ Degeneration})$ The cofiber of $\tau$ (often denoted $C\tau$) is a commutative algebra, and the category of dualizable modules over $C\tau$ is equivalent to the category of $p$-completions of dualizable objects in $\QCoh(\mathcal{M}_{\mathrm{fg}})$, where $\Mfg$ is the moduli stack of formal groups.
+  \item[(3.\hspace{1em}]\hspace{-1.1em}$\mathrm{Galois\ Reconstruction})$ There is a purely topological construction of $\SHC_p^{cell}$.
+  \end{enumerate}
+  
+  We summarize this situation by saying that $\SH(\C)_p^{cell}$ is a $1$-parameter deformation of $p$-complete spectra with parameter $\tau$ and a purely algebraic special fiber.
+\end{thm}
+
+Although it does not appear in the statement, understanding the algebraic cobordism spectrum, $\MGL$, is key to proving this theorem. 
+The importance of $\MGL$ to the study of cellular motivic spectra goes back to Voevodsky's work on the effective slice filtration \cite{VoeOpenProbs}.
+In that work, Voevosky conjectured that the effective slice filtration of the unit over an algebraically closed field 
+may be described in terms of the Adams-Novikov spectral sequence. 
+%% may be described in terms of the $\mathrm{E}_2$-page of the Adams-Novikov spectral sequence and further suggested a relationship between the effective slice spectral sequence of the unit over an algebraically closed field and the Adams-Novikov spectral sequence.
+Levine later proved Voevodsky's conjectures \cite{LevineComparison, LevineSlicemU}.
+Voevodsky's notion of ``rigid homotopy groups'' also foreshadowed \emph{algebraic degeneration}.
+In this framework he and Rezk predicted that the rigid Adams spectral sequence is equivalent to the algebraic Novikov spectral sequence \cite[p. 20-21]{VoeOpenProbs}, a result later proven in different language by Gheorghe--Wang--Xu \cite[Theorem 1.17]{ctauactalol}.
+The fact that the category of $p$-complete $\C$-motivic spectra is \emph{generically topological} is strongly suggested by results of Dugger--Isaksen \cite[Section 2.6]{DI}, though to the best of our knowledge the full result did not appear in print until \cite{Pstragowski}.\todo{I can't find an earlier one at least, but that could easily just be me. Piotr does beat Tom's etale rigidity paper.}
+The commutative algebra structure on $C\tau$ was first constructed by Gheorghe \cite{Ctau},
+and the category of modules over $C\tau$ was then identified by Gheorghe--Wang--Xu in \cite{ctauactalol}.
+Finally, % \emph{Galois reconstruction} was accomplished independently by 
+Pstragowski \cite{Pstragowski} and Gheorghe--Isaksen--Krause--Ricka \cite{cmmf}
+independently provided two different \emph{Galois reconstructions} of cellular $p$-complete $\C$-motivic spectra. %% moreover, \cite{Pstragowski} reproves (2) independently of \cite{Ctau} and \cite{ctauactalol}.
+
+%% In SECTION, we show that there is a precise dictionary between Voevodsky's language of the effective slice filtration and rigid homotopy groups, and the language used in \Cref{thm:C-main}.
+
+With the case of $\C$ resolved we raise the following natural question:
+
+\begin{qst}\label{qst:main}
+  To what extent can this theorem be extended to a general field $k$?
+\end{qst}
+
+As stated, this question is too imprecise to admit a definitive answer, so we begin by refining two points of ambiguity: the appropriate subcategory of $\SHk$ one should consider and the meaning of purely topological. In our study of this question we have found that the appropriate subcategory is the category of Artin--Tate motivic spectra (defined below). Notably, over $\R$, if one restricts to the further subcategory of cellular objects, it becomes significantly more difficult to construct a topological model.
+
+\begin{dfn}
+  The category of Artin--Tate motivic spectra over $k$ is the smallest stable full subcategory
+  $\SHkat \subset \SHk$,
+  closed under tensor products and colimits, that contains the motives of finite \'etale $k$-algebras, 
+  $\P_k^1$ and $(\P_k^1)^{-1}$.
+\end{dfn}
+
+The phrase `purely topological' has a double meaning.
+On the one hand it refers to the input to the construction;
+it should not depend directly on the arithmetic of $k$, instead using only the absolute Galois group, $G$, together with the character $G \to \widehat{\Z}^\times$ induced by the maximal cyclotomic extension of $k$ \footnote{More specifically, the $p$-complete category should only depend on the $\Z_p^\times$ component of this map.}.
+On the other hand it asks for a construction which uses only the ``standard machinery of homotopy theory.''
+
+The authors are not the first to take up questions of this nature.
+%% Indeed, beyond the work by many authors in the case $k = \C$ discussed above,
+Positselski has studied the question of Galois reconstruction for the category $\DM(k;\F_\ell)^{\at}$ of mixed Artin-Tate motives with mod $\ell$ coefficients \cite{DMRecon,GalKosz}. With a few exceptions, he has shown that when $k$ is a finite, local or global field, then $\DM(k,\F_\ell)^{\at}$ may be viewed as a derived category of filtered discrete $G$-modules with restricted sub-quotients. %the restriction being given in terms of the cyclotomic character.
+
+In a different direction, work of Bachmann, Elmanto and {\O}stv{\ae}r shows that, up to a completion, $\SH(S)$ is generically \'etale for a wide range of schemes $S$ \cite{TomEtaleI, TomEtaleII}. In particular, Bachmann--Elmanto--{\O}stv{\ae}r show that, after a suitable completion, \'etale localization corresponds to inverting $\tau$. Note that $\tau$ may not exist in the homotopy of the completed unit, so care must be taken to interpret this statement.
+Furthermore, Bachmann showed that, again up to completion, the \'etale motivic category is equivalent to the category of hypercomplete sheaves of spectra on the small \'etale site.
+Specializing to the case $S = \Spec k$, we find that, up to completion, the category of $\tau$-local objects in $\SH(k)$ admits a description in terms of Borel $G$-equivariant spectra.
+
+Previously, work of Behrens and Shah \cite{BehrensShah} had taken up the question of when a suitable map $\tau$ exists over $\R$. 
+Although there is no map $\tau:\Ss^1 \to (\G_m)^{\wedge}_2$ in $\SH(\R)$,
+%% though such a class does exist after tensoring with the spectrum $\HFt$ representing mod $2$ motivic cohomology.
+they prove that $\tau$ exists whenever a different class $\rho:\Ss^0 \to \G_m$ has been killed.
+If only $\rho^2$ is killed, but not $\rho$ itself, then $\tau$ does not necessarily exist, but $\tau^2$ does.
+Continuing in this way, they make sense of inverting $\tau$ in any $\rho$-complete situation.
+%% but the resulting $\tau$-inverted objects are more closely related to Borel $C_2$-spectra than genuine $C_2$-spectra.
+%% Furthermore, there is no way to construct $C\tau$ without first killing $\rho$. This makes it impossible to describe cellular $\R$-motivic spectra as a $\tau$-deformation.
+
+%% \todo{What's below needs to be joined up with what's above.}
+
+%% In recent years the category $\SHR$ of $\R$-motivic spectra has similarly been found to shed light on the genuine $C_2$-equivariant stable homotopy category.  However, the exact relationship between $\R$-motivic stems and any sort of equivariant Adams--Novikov spectral sequence has remained mysterious, and before the present work there has been no purely homotopy theoretic construction of the cellular subcategory of $\SH(\R)$.
+
+In this paper we resolve \Cref{qst:main} in the case $k=\R$.
+This begins with the observation that if one does not insist that the target of $\tau$ must be a completion of $\G_m$, then a suitable replacement can easily be constructed.
+%% The first 
+%% The main moral of this paper is that all of these subtleties disappear so long as one is willing to consider grading $\R$-motivic homotopy groups not just by the Picard elements $\Ss^1$ and $\mathbb{G}_m$, but also by a third Picard element $\Ss^{\C}$.  Here, $\Ss^{\C}$ is the suspension spectrum of the unreduced suspension of $\Spec(\C)$.
+
+\begin{thm}\label{thm:main}
+  In $\SHRat$
+  there is an invertible object $Q$ and a map $\ta : \Ss^1 \to Q_2$
+  which enjoys the following properties:%\footnote{As we will explain in our conventions below, we use $\SHRat$ to denote the category of modules over the $2$-completion of the unit in $\SHR^{\at}$.}
+  \begin{enumerate}
+  \item[(GT)] The full subcategory of $\ta$-local objects in $\SHR^{\at}_{i2}$ is equivalent to $\Sp_{C_2,i2}$.
+  \item[(AD)] The cofiber of $\ta$ (denoted $C\ta$) is a commutative algebra, and the category of dualizable modules over $C\ta$ is equivalent to the category of dualizable objects in the derived category of Mackey-functor $\MU_*\MU$-comodules \footnote{See \Cref{sec:cta} for a precise definition of this category.}.
+  \item[(GR)] There is a purely topological construction of $\SHRat$.
+    In particular, we construct a commutative algebra $R_\bullet$ in filtered, $C_2$-equivariant spectra
+    such that the category of filtered modules over $R_\bullet$ is equivalent to $\SHRat$.
+    The commutative algebra $R_\bullet$ is the even slice--d\'ecalage of the $\MUR$-Adams tower for the sphere \footnote{See \Cref{sec:top} for precise definitions.}.    
+  \end{enumerate}
+  
+  We summarize this by saying that $\SHR^{\at}_{i2}$ is a $1$-parameter deformation of $C_2$-equivariant stable homotopy theory with parameter $\ta$ and purely algebraic special fiber.
+\end{thm}
+
+The romanization of the Devanagari letter $\ta$ is `ta' \footnote{However, the reader who is not familiar with the Devanagari alphabet is advised that the pronunciation of $\ta$ in the majority of South Asian languages using Devanagari is given in IPA by /\textsubbridge{t}\textschwa/, which is closer to `tuh' in English than `ta.'}  and
+our choice of this symbol will be explained in \Cref{rmk:ta-explanation}. As in the case over $\C$, we are also able to give an explicit formula for the homotopy groups of $C\ta$, though since we have not yet set up the appropriate notion of homotopy groups we will defer an explicit statement until later.
+%% Note that the $p$-completions present in the theorem statement are necessary.
+The subscript $i2$ appearing in the theorem statement refers to the category of modules over the $2$-completion of the unit. 
+The reader who is worried by this departure from the norm may wish to read the section on notations and conventions before proceeding.
+%% about the handling of $p$-completion may wish to read \Cref{app:completion} which sets up our general approach to completion issues before proceeding.
+
+\ 
+
+With the resolution of \Cref{qst:main} in the case of $\R$, the authors are hopeful that we might see this question resolved in its entirety in the near future.
+
+%% \begin{cnstr}
+%% There is a canonical class $\ta: \Ss^{\C} \to (\G_m)^{\wedge}_2$.  We will build $\ta$ in \Cref{sec:tau} via the explicit algebraic geometry of the circle $Q=\Spec \R[x,y]/(x^2+y^2-1)$.  A key point is that $\Sigma^{\infty} Q$ is itself a Picard element in $\SHgc$, satisfying a relation $\Ss^{\C} \otimes \Sigma^{\infty} Q \simeq \Ss^1 \otimes \G_m$.
+%% \end{cnstr
+
+%% \begin{rmk}
+%%   The romanization of the Devanagari letter $\ta$ is `ta.' \footnote{However, the reader who does not know Hindi or another language which utilizes the the Devanagari alphabet should be advised that its pronunciation is closer to `tuh.' To be even more correct, the `t' sound should be dental and unaspirated.}  As we will explain in \Cref{sec:homology}, our choice of this character arises from the fact that there is a class $u:\Ss^1 \otimes (\Ss^{\C})^{-1} \to \HFt$ and a product relation $\ta u = \tau \in \pi_{***}^{\R}(\HFt).$    In other words, ta $\cdot$ u is tau.
+	
+%% It follows that inverting $\tau$ is the same as inverting both $\ta$ and $u$.  We have shown that inverting $\ta$ is equivalent to Betti realization, while inverting $u$ Borel completes genuine $C_2$ spectra.

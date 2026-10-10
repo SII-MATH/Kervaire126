@@ -1,0 +1,283 @@
+\begin{thebibliography}{BKWX22}
+
+\bibitem[Ada58]{AdamsSseq}
+J.~F. Adams.
+\newblock On the structure and applications of the {S}teenrod algebra.
+\newblock {\em Comment. Math. Helv.}, 32:180--214, 1958.
+
+\bibitem[Ada60]{Adams}
+J.~F. Adams.
+\newblock On the non-existence of elements of {H}opf invariant one.
+\newblock {\em Ann. of Math. (2)}, 72:20--104, 1960.
+
+\bibitem[AM17]{AndrewsMiller}
+Michael Andrews and Haynes Miller.
+\newblock Inverting the {H}opf map.
+\newblock {\em J. Topol.}, 10(4):1145--1168, 2017.
+
+\bibitem[BHS20]{rmot}
+Robert Burklund, Jeremy Hahn, and Andrew Senger.
+\newblock Galois reconstruction of {A}rtin--{T}ate {$\mathbb{R}$}-motivic
+  spectra.
+\newblock 2020.
+\newblock \href{https://arxiv.org/abs/2010.10325}{arXiv:2010.10325}.
+
+\bibitem[BHS23]{boundaries}
+Robert Burklund, Jeremy Hahn, and Andrew Senger.
+\newblock On the boundaries of highly connected, almost closed manifolds.
+\newblock {\em Acta Math.}, 231(2):205--344, 2023.
+
+\bibitem[BJM83]{Inductive}
+M.~G. Barratt, J.~D.~S. Jones, and M.~E. Mahowald.
+\newblock The {K}ervaire invariant problem.
+\newblock In {\em Proceedings of the {N}orthwestern {H}omotopy {T}heory
+  {C}onference ({E}vanston, {I}ll., 1982)}, volume~19 of {\em Contemp. Math.},
+  pages 9--22. Amer. Math. Soc., Providence, RI, 1983.
+
+\bibitem[BJM84]{BJM62}
+M.~G. Barratt, J.~D.~S. Jones, and M.~E. Mahowald.
+\newblock Relations amongst {T}oda brackets and the {K}ervaire invariant in
+  dimension {$62$}.
+\newblock {\em J. London Math. Soc. (2)}, 30(3):533--550, 1984.
+
+\bibitem[BKWX22]{BKWX}
+Tom Bachmann, Hana~Jia Kong, Guozhen Wang, and Zhouli Xu.
+\newblock The {C}how {$t$}-structure on the {$\infty$}-category of motivic
+  spectra.
+\newblock {\em Ann. of Math. (2)}, 195(2):707--773, 2022.
+
+\bibitem[BMMS86]{BMMS}
+R.~R. Bruner, J.~P. May, J.~E. McClure, and M.~Steinberger.
+\newblock {\em {$H_\infty $} ring spectra and their applications}, volume 1176
+  of {\em Lecture Notes in Mathematics}.
+\newblock Springer-Verlag, Berlin, 1986.
+
+\bibitem[BMT70]{BMT}
+M.~G. Barratt, M.~E. Mahowald, and M.~C. Tangora.
+\newblock Some differentials in the {A}dams spectral sequence. {II}.
+\newblock {\em Topology}, 9:309--316, 1970.
+
+\bibitem[Bro69]{Browder}
+William Browder.
+\newblock The {K}ervaire invariant of framed manifolds and its generalization.
+\newblock {\em Ann. of Math. (2)}, 90:157--186, 1969.
+
+\bibitem[Bru]{Bruner2}
+Robert Bruner.
+\newblock The cohomology of the mod 2 {S}teenrod algebra: A computer
+  calculation.
+\newblock \href{http://www.rrb.wayne.edu/papers/cohom.pdf}{available online}.
+
+\bibitem[Bur23]{cookware}
+Robert Burklund.
+\newblock Synthetic cookware.
+\newblock 2023.
+\newblock To appear.
+
+\bibitem[Che11]{Ext5}
+Tai-Wei Chen.
+\newblock Determination of {${\rm Ext}^{5,*}_{A}(Z/2, Z/2)$}.
+\newblock {\em Topology Appl.}, 158(5):660--689, 2011.
+
+\bibitem[Chu21a]{dexter-chart}
+Dexter Chua.
+\newblock Computer calculated adams $d_2$ differentials.
+\newblock v1.0.0, 2021.
+\newblock DOI: \href{10.5281/zenodo.4766457}{10.5281/zenodo.4766457}.
+
+\bibitem[Chu21b]{dexter}
+Dexter Chua.
+\newblock The ${E}_3$ page of the adams spectral sequence.
+\newblock 2021.
+\newblock \href{https://arxiv.org/abs/2105.07628}{arXiv:2105.07628}.
+
+\bibitem[DFHH14]{TMFbook}
+Christopher~L. Douglas, John Francis, Andr\'e{}~G. Henriques, and Michael~A.
+  Hill, editors.
+\newblock {\em Topological modular forms}, volume 201 of {\em Mathematical
+  Surveys and Monographs}.
+\newblock American Mathematical Society, Providence, RI, 2014.
+
+\bibitem[DI10]{DuggerIsaksen}
+Daniel Dugger and Daniel~C. Isaksen.
+\newblock The motivic {A}dams spectral sequence.
+\newblock {\em Geom. Topol.}, 14(2):967--1014, 2010.
+
+\bibitem[Goe08]{GoerssMfg}
+Paul Goerss.
+\newblock Quasi-coherent sheaves on the moduli stack of formal groups.
+\newblock 2008.
+\newblock \href{https://arxiv.org/pdf/0802.0996}{arXiv:0802.0996}.
+
+\bibitem[GWX21]{GWX}
+Bogdan Gheorghe, Guozhen Wang, and Zhouli Xu.
+\newblock The special fiber of the motivic deformation of the stable homotopy
+  category is algebraic.
+\newblock 2021.
+\newblock Acta Mathematica. Vol. 226, No. 2 (2021), pp. 319-407.
+
+\bibitem[HHR16]{HHR}
+M.~A. Hill, M.~J. Hopkins, and D.~C. Ravenel.
+\newblock On the nonexistence of elements of {K}ervaire invariant one.
+\newblock {\em Ann. of Math. (2)}, 184(1):1--262, 2016.
+
+\bibitem[Hil15]{Hill}
+Michael~A. Hill.
+\newblock On the fate of $\eta^3$ in higher analogues of real bordism.
+\newblock 2015.
+\newblock \href{https://arxiv.org/abs/1507.08083}{arXiv:1507.08083}.
+
+\bibitem[HKO11]{HuKrizOrmsby}
+Po~Hu, Igor Kriz, and Kyle Ormsby.
+\newblock Remarks on motivic homotopy theory over algebraically closed fields.
+\newblock {\em J. K-Theory}, 7(1):55--89, 2011.
+
+\bibitem[Hop99]{HopkinsMfg}
+Mike Hopkins.
+\newblock Complex oriented cohomology theories and the language of stacks.
+\newblock 1999.
+\newblock
+  \href{https://people.math.rochester.edu/faculty/doug/otherpapers/coctalos.pdf}{available
+  at https://people.math.rochester.edu/faculty/doug/otherpapers/coctalos.pdf}.
+
+\bibitem[Hov04]{Hovey}
+Mark Hovey.
+\newblock Homotopy theory of comodules over a {H}opf algebroid.
+\newblock In {\em Homotopy theory: relations with algebraic geometry, group
+  cohomology, and algebraic {$K$}-theory}, volume 346 of {\em Contemp. Math.},
+  pages 261--304. Amer. Math. Soc., Providence, RI, 2004.
+
+\bibitem[Isa19]{Isaksen}
+Daniel~C. Isaksen.
+\newblock Stable stems.
+\newblock {\em Mem. Amer. Math. Soc.}, 262(1269):viii+159, 2019.
+
+\bibitem[IWX20]{IWX2}
+Daniel~C. Isaksen, Guozhen Wang, and Zhouli Xu.
+\newblock Stable homotopy groups of spheres.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  117(40):24757--24763, 2020.
+
+\bibitem[IWX23]{IWX}
+Daniel~C. Isaksen, Guozhen Wang, and Zhouli Xu.
+\newblock Stable homotopy groups of spheres: from dimension 0 to 90.
+\newblock {\em Publ. Math. Inst. Hautes \'Etudes Sci.}, 137:107--243, 2023.
+
+\bibitem[Lau00]{Laures}
+Gerd Laures.
+\newblock On cobordism of manifolds with corners.
+\newblock {\em Trans. Amer. Math. Soc.}, 352(12):5667--5688, 2000.
+
+\bibitem[Lin98]{Lin}
+Wen-Hsiung Lin.
+\newblock A differential in the {A}dams spectral sequence for spheres.
+\newblock In {\em Stable and unstable homotopy ({T}oronto, {ON}, 1996)},
+  volume~19 of {\em Fields Inst. Commun.}, pages 205--239. Amer. Math. Soc.,
+  Providence, RI, 1998.
+
+\bibitem[Lin08]{LinExt}
+Wen-Hsiung Lin.
+\newblock {${\rm Ext}^{4,\ast}_A(\Bbb Z/2,\Bbb Z/2)$} and {${\rm
+  Ext}^{5,\ast}_A(\Bbb Z/2,\Bbb Z/2)$}.
+\newblock {\em Topology Appl.}, 155(5):459--496, 2008.
+
+\bibitem[LSWX19]{LSWX}
+Guchuan Li, XiaoLin~Danny Shi, Guozhen Wang, and Zhouli Xu.
+\newblock Hurewicz images of real bordism theory and real {J}ohnson-{W}ilson
+  theories.
+\newblock {\em Adv. Math.}, 342:67--115, 2019.
+
+\bibitem[Lur15]{rotation}
+Jacob Lurie.
+\newblock Rotation invariance in algebraic {$K$}-theory.
+\newblock 2015.
+\newblock \href{http://www.math.ias.edu/~lurie/}{available online}.
+
+\bibitem[Mah77]{etaj}
+Mark Mahowald.
+\newblock A new infinite family in {${}_{2}\pi_{*}{}^s$}.
+\newblock {\em Topology}, 16(3):249--256, 1977.
+
+\bibitem[May70]{May-power-ops}
+J.~Peter May.
+\newblock A general algebraic approach to {S}teenrod operations.
+\newblock In {\em The {S}teenrod {A}lgebra and its {A}pplications ({P}roc.
+  {C}onf. to {C}elebrate {N}. {E}. {S}teenrod's {S}ixtieth {B}irthday,
+  {B}attelle {M}emorial {I}nst., {C}olumbus, {O}hio, 1970)}, Lecture Notes in
+  Mathematics, Vol. 168, pages 153--231. Springer, Berlin, 1970.
+
+\bibitem[Mil81]{MillerSquare}
+Haynes~R. Miller.
+\newblock On relations between {A}dams spectral sequences, with an application
+  to the stable homotopy of a {M}oore space.
+\newblock {\em J. Pure Appl. Algebra}, 20(3):287--312, 1981.
+
+\bibitem[Mil09]{Miller}
+Haynes~R. Miller.
+\newblock Browder's theorem and manifolds with corners.
+\newblock
+  \href{https://math.mit.edu/~hrm/papers/kervaire-corners.pdf}{available
+  online}, 2009.
+
+\bibitem[Min95]{Minami}
+Norihiko Minami.
+\newblock The {A}dams spectral sequence and the triple transfer.
+\newblock {\em Amer. J. Math.}, 117(4):965--985, 1995.
+
+\bibitem[Nas]{Nassau}
+Christian Nassau.
+\newblock Computer ext calculation.
+\newblock \href{http://www.nullhomotopie.de/charts/bigpng.png}{available
+  online}.
+
+\bibitem[Pst23]{Pstragowski}
+Piotr Pstr\k{a}gowski.
+\newblock Synthetic spectra and the cellular motivic category.
+\newblock {\em Invent. Math.}, 232(2):553--681, 2023.
+
+\bibitem[Rav86]{RavenelGreenBook}
+Douglas~C. Ravenel.
+\newblock {\em Complex cobordism and stable homotopy groups of spheres}, volume
+  121 of {\em Pure and Applied Mathematics}.
+\newblock Academic Press, Inc., Orlando, FL, 1986.
+
+\bibitem[Tan70]{TangoraExt}
+Martin~C. Tangora.
+\newblock On the cohomology of the {S}teenrod algebra.
+\newblock {\em Math. Z.}, 116:18--64, 1970.
+
+\bibitem[Tod62]{TodaBook}
+Hirosi Toda.
+\newblock {\em Composition methods in homotopy groups of spheres}.
+\newblock Annals of Mathematics Studies, No. 49. Princeton University Press,
+  Princeton, N.J., 1962.
+
+\bibitem[Voe03a]{Voe032}
+Vladimir Voevodsky.
+\newblock Motivic cohomology with {${\bf Z}/2$}-coefficients.
+\newblock {\em Publ. Math. Inst. Hautes \'{E}tudes Sci.}, (98):59--104, 2003.
+
+\bibitem[Voe03b]{Voe03}
+Vladimir Voevodsky.
+\newblock Reduced power operations in motivic cohomology.
+\newblock {\em Publ. Math. Inst. Hautes \'{E}tudes Sci.}, (98):1--57, 2003.
+
+\bibitem[Wu13]{Wu}
+Pomin Wu.
+\newblock The differential $d_4(h_6^3)$ in the adams spectral sequence for
+  spheres.
+\newblock 2013.
+\newblock \href{https://arxiv.org/abs/1307.0064}{arXiv:1307.0064}.
+
+\bibitem[WX17]{WX}
+Guozhen Wang and Zhouli Xu.
+\newblock The triviality of the 61-stem in the stable homotopy groups of
+  spheres.
+\newblock {\em Ann. of Math. (2)}, 186(2):501--580, 2017.
+
+\bibitem[Xu16]{Xu}
+Zhouli Xu.
+\newblock The strong {K}ervaire invariant problem in dimension 62.
+\newblock {\em Geom. Topol.}, 20(3):1611--1624, 2016.
+
+\end{thebibliography}

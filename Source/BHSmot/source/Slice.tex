@@ -1,0 +1,165 @@
+%The effective slice filtration is a useful computational tool in the study of motivic spectra. Moreover, Isaksen has suggested that $C_2$-spectra be studied by Betti realization of the effective slice filtration of $\R$-motivic spectra. Isaksen has called the associated spectral sequence the effective spectral sequence of the Betti realization.
+%
+%In this section, we give an explicit description of the effective slice filtration for Artin-Tate $\R$-motivic spectra in terms of the filtered model of \Cref{thm:filt-model}.
+
+%Isaksen has suggested that $C_2$-spectra be studied via the Betti realization of the effective slice filtration of $\R$-motivic spectra. Isaksen has called the associated spectral sequence the $C_2$-effective spectral sequence. \todo{Is it a bad look that I attribute this to Dan even though the first place it appears is a paper of Hana's? What to do here?}
+%As a consequence of our results, we observe that the $\ta$-Bockstein spectral sequence of an Artin-Tate $\R$-motivic spectrum contains equivalent data to the associated $C_2$-effective spectral sequence.
+
+In this section, we relate the functor $i_*$ defined in the previous subsection to Voevodsky's effective slice filtration.
+We begin by recalling the definition of the effective slice filtration \cite{VoeOpenProbs}.
+
+\begin{dfn} \label{dfn:eff-slice}
+  Let $\Sm / \R$ denote the category of smooth and separated $\R$-schemes of finite type.
+  We let $\SHR^{\eff} _{i2, \geq n} \subset \SHR_{i2}$ denote the full subcategory generated under small colimits by the collection $\{\Ss_2^{p,q,q} \otimes X_+ \vert X \in \Sm / \R, p,q \in \Z, q \geq n\}$.
+  We denote the right adjoint of the inclusion by $f_n : \SHR_{i2} \to \SHR^{\eff} _{i2, \geq n}$. There are natural transformations $f_{n+1} \to f_{n}$ and we let $s_n$ denote the cofiber of this map.
+
+  Since $\SHR^{\eff} _{i2, \geq n} \subset \SHR_{i2}$ is a compactly generated stable subcategory, the functors $f_n$ and $s_n$ preserve all colimits. Moreover, the tensor product of an $n$-effective object with an $m$-effective object is $(m+n)$-effective, so that the effective slice tower functor $f_\bullet : \SHR_{i2} \to \SHR_{i2} ^{\Fil}$ is lax symmetric monoidal.
+\end{dfn}
+
+The main result of this section is the following:
+
+\begin{prop} \label{thm:eff-fil}
+  The lax symmetric monoidal functor $i_* : \SHRat \to \Sp_{C_2, i2}^{\Fil}$ of the previous subsection is equivalent to the lax symmetric monoidal functor $\b \circ f_\bullet : \SHRat \to \Sp_{C_2, i2}^{\Fil}$ taking $E \in \SHRat$ to the Betti realization of its effective slice tower
+  \[\dots \to \b (f_{2} E) \to \b (f_1 E) \to \b (f_0 E) \to \b (f_{-1} E) \to \b (f_{-2} E) \to \dots.\]
+\end{prop}
+%
+%\begin{rmk}
+%  Let $X \in \SHRat$. Since $i_* (X \otimes C\ta) \simeq \Gr(i_* (X))$, the $\ta$-Bockstein spectral sequence is simply the usual spectral sequence computing the homotopy of the filtered object $i_* (X)$ from the homotopy of its associated graded.
+%  On the other hand, Isaksen's $C_2$-effective spectral sequence starts from the homotopy of $\Gr(\b(f_* (X)))$ and attempts to compute the homotopy of $\b(X)$.
+%
+%  It follows from \Cref{thm:eff-fil} that, though the target of the $\ta$-Bockstein spectral sequence contains more information than the target of the $C_2$-effective spectral sequence, these spectral sequences ultimately contain the same information: their $\mathrm{E}_1$-pages and differentials may be read off from one another.
+%\end{rmk}
+%
+%\begin{rmk}
+%  In the case that $X \simeq \Gamma_* (Y)$, it follows that we obtain a purely topological description of the tower $\b (f_* (X))$. For example, we have $\kq_2 \simeq \Gamma_* (\ko_{C_2, 2})$ by \Cref{rmk:gamma-nu-same}; this case has been studied by Kong \cite{Kong}.
+%\end{rmk}
+
+As a first step, we rephrase \Cref{dfn:eff-slice} to be more natural in our trigraded context:
+
+\begin{lem}
+  The full subcategory $\SHR^{\eff} _{i2, \geq n} \subset \SHR_{i2}$ is generated under small colimits by the collection $\{\Ss_2 ^{p,q,w} \otimes X_+ \vert X \in \Sm / \R, p,q,w \in \Z, w \geq n\}$.
+  As a consequence, the suspension functors provide equivalences,
+  \[ \Sigma^{p,q,w} : \SHR^{\eff} _{i2, \geq n} \to \SHR^{\eff} _{i2, \geq n+w}. \]
+  %% are equivalences of categories for each $p,q,w \in \Z$.
+\end{lem}
+
+\begin{proof}
+  Since $\Sigma^{0,1,1} : \SHR^{\eff} _{i2, \geq n} \to \SHR^{\eff} _{i2, \geq n+1}$ is clearly an equivalence of categories, it suffices to prove the generation statement in the case that $n = 0$.
+  Since $\SHR^{\eff} _{i2, \geq 0}$ is closed under tensor products, it suffices to show that $\Ss_2^{0,-1,0} \in \SHR^{\eff} _{i2, \geq 0}$.
+
+  Now, $\SHR^{\eff} _{i2, \geq 0}$ is clearly closed under $\Sigma^{-1,0,0}$, so it suffices to show that $\Ss_2 ^{1,-1,0} \in \SHR^{\eff} _{i2, \geq 0}$.
+  This follows from the existence of a cofiber sequence
+  \[ \Ss^{0,0,0} \to \Spec \C \to \Ss^{1,-1,0}. \]
+  The second statement is a clear consequence of the generation statement.
+\end{proof}
+
+We now define an alternative filtration on $\SHRat$ which is easier to analyze; following an argument of Heard \cite{SliceComp}, itself an adaptation of an argument of Pelaez \cite{Pelaez}, we will prove that this filtration is in fact equivalent to the effective slice filtration.
+
+\begin{dfn}
+  We let $\SHR^{\at, \gceff} _{i2, \geq n}$ denote the full subcategory generated under small colimits by the collection $\{\Ss_{2} ^{p,q,w} \vert p,q,w \in \Z, w \geq n\}$.
+  We let
+  \[ f_n ^{\att} : \SHRat \to \SHR^{\at, \gceff}_{i2, \geq n} \]
+  denote the right adjoint of the inclusion. There are natural transformations $f_{n+1} ^{\att} \to f_{n} ^{\att}$, and we denote the cofiber by $s_n ^{\att}$.
+
+  Since $\SHR^{\at, \gceff}_{i2, \geq n} \subset \SHRat$ is a compactly generated stable subcategory, the functors $f_n ^{\att}$ and $s_n ^{\att}$ preserve colimits.
+\end{dfn}
+
+It is clear that $\SHR^{\at,\gceff} _{i2, \geq n} \subset \SHRat \cap \SHR^{\eff} _{i2, \geq n}$.
+%
+%\begin{rmk}
+%  Since the representation spheres $\Ss_2^{p+q\sigma}$ generate $\Sp_{C_2, i2}$ under colimits, $\SHR^{\at, \gceff} _{i2, \geq n}$ may be equivalently described as the full subcategory of $\SHRat$ generated under small colimits by the collection $\{ \Sigma^{0,0,w} c_{\C/\R} (\Sp_{C_2, i2}) \vert w \geq n\}$.
+%\end{rmk}
+
+\begin{lem} \label{lem:susp-slice}
+  Given $E \in \SHR_{i2}$, there are natural equivalences $f_k \Sigma^{p,q,w} E \simeq \Sigma^{p,q,w} f_{k-w} E$ and $s_k \Sigma^{p,q,w} E \simeq \Sigma^{p,q,w} s_{k-w} E$.
+  If $E \in \SHRat$, the analagous fact holds for $f_k ^{\att}$ and $s_k ^{\att}$.
+\end{lem}
+
+\begin{proof}
+  This follows directly from the fact that $\Sigma^{p,q,w} : \SHR^{\eff} _{i2, \geq k} \to \SHR^{\eff}_{i2, \geq k +w}$ and $\Sigma^{p,q,w} : \SHR^{\at, \gceff} _{i2, \geq k} \to \SHR^{\at, \gceff}_{i2, \geq k +w}$ are equivalences of categories.
+\end{proof}
+
+\begin{lem} \label{prop:eff-slice-at-compare}
+  Given  $E \in \SHRat$, there are natural equivalences $f_n E \simeq f_n ^{\att} E$ for all $n \in \Z$.
+\end{lem}
+
+\begin{proof}
+  It is easy to see that the categories $\SHR^{\eff} _{i2, \geq n} \subset \SHR_{i2}$ and $\SHR^{\at, \gceff} _{i2, \geq n} \subset \SHRat$ define slice filtrations in the sense of \cite[Definition 2.1]{SliceComp}.
+  The result will therefore follow from \cite[Theorem 2.20]{SliceComp} if we can verify three conditions. Let $\iota : \SHRat \hookrightarrow \SHR_{i2}$ denote the inclusion. Then we must show that the following hold for all $E \in \SHRat$:
+  \begin{enumerate}
+    \item The natural map $\varinjlim_{n} \iota(f_n ^{\att} E) \to \iota(\varinjlim_{n} f_n ^{\att} E))$ is an equivalence.
+    \item $\iota(f_n ^{\att} E) \in \SHR^{\eff} _{i2, \geq n}$.
+    \item $\Map_{\SHR_{i2} } (X, \iota(s_n ^{\att} E)) \simeq 0$ for all $X \in \SHR^{\eff} _{i2, \geq n+1}$.
+  \end{enumerate}
+  Condition (1) is clear from the fact that $\SHRat$ is closed under colimits in $\SHR_{i2}$, and condition (2) follows from the fact that $\SHR^{\at, \gceff} _{i2, \geq n} \subset \SHR^{\eff} _{i2, \geq n}$.
+
+  To prove condition (3), we note that, since $s_n ^{\att}$ commutes with filtered colimits and $\SHR^{\eff} _{i2, \geq n+1}$ is compactly generated, it suffices to prove the statement for generators of $\SHR^{\at, \gceff} _{i2, \geq n}$, namely the trigraded spheres $\Ss_2 ^{p,q,w}$ where $w \geq n$.
+  Since $s_n ^{\att} \Ss_2^{p,q,w} \simeq \Sigma^{p,q,w} s_{n-w} ^{\att} \Ss_2^{0,0,0}$ by \Cref{lem:susp-slice}, it suffices to show this for $\Ss_2^{0,0,0}$.
+
+  This follows from the equivalence $s_{n} ^{\att} \Ss_2 ^{0,0,0} \simeq s_{n} \Ss_2^{0,0,0}$, which may be proved exactly as in \cite[Theorem 3.15]{SliceComp}.
+\end{proof}
+
+We are now free to use $f_n$ and $f^{\att} _n$ interchangeably. The following proposition gives us the needed control over $f^{\att} _n$:
+
+\begin{prop} \label{prop:eff-condition}
+  Let $E \in \SHRat$. Then $E \in \SHR^{\at, \gceff} _{i2, \geq n}$ if and only if
+  \[ \pi^{\R} _{p,q,w} (C\ta \otimes E) = 0 \]
+  for all $w < n$, i.e. if and only if $\ta : \pi^{\R} _{p,q,w+1} E \to \pi^{\R} _{p,q,w} E$ is an isomorphism for all $w < n$.
+\end{prop}
+
+\begin{proof}
+  To show that $\pi^{\R} _{p,q,w} (C\ta \otimes E) = 0$ for all $w < n$ if $E \in \SHR^{\at, \gceff} _{i2,\geq n}$, it suffices to prove this when $E  = \Ss^{p,q,w}$ for $w \geq n$, which follows from \Cref{prop:weak-one-sided}.
+
+  On the other hand, suppose that $E \in \SHRat$ satisfies $\pi^{\R} _{p,q,w} (C\ta \otimes E) = 0$ for all $w < n$.
+  We will show that $f_n ^{\att} E \to E$ is an equivalence.
+  First, we note that it is an equivalence on $\pi^{\R} _{p,q,w}$ for all $w \geq n$ by definition.
+  By assumption, $\ta : \pi^{\R}_{p,q,w+1} E \to \pi^{\R} _{p,q,w} E$ is an isomorphism for all $w < n$.
+  On the other hand, by the above $\ta : \pi^{\R}_{p,q,w+1} (f_n ^{\att} E) \to \pi^{\R} _{p,q,w}  (f_n ^{\att} E)$ is also an isomorphism for all $w < n$.
+  This implies that $f_n ^{\att} E \to E$ in fact induces an isomorphism on all $\pi_{p,q,w} ^{\R}$, as desired.
+\end{proof}
+%
+%\begin{cor} \label{cor:eff-slice-filt}
+%  Let $E \in \SHRat$, and let
+%  \[i_* (E) = \dots \to X_2 \to X_1 \to X_0 \to X_{-1} \to X_{-2} \to \dots.\]
+%  On the other hand, let
+%  \[i_* (f_{n} ^{\at} E) = \dots \to \overline{X}_2 \to \overline{X}_1 \to \overline{X}_0 \to \overline{X}_{-1} \to \overline{X}_{-2} \to \dots.\]
+%  Then $\overline{X}_{w+1} \to \overline{X}_{w}$ is an equivalence for all $w < n$, and the map $i_* (f_n ^{\at} E) \to i_* (E)$ induces equivalences $X_w \xrightarrow{\sim} \overline{X}_w$ for $w \geq n$.
+%\end{cor}
+%
+%\begin{proof}
+%  This follows directly from \Cref{prop:eff-condition} and the definition of the functor $i_* : \SHRat \to \Fil(\Sp_{C_2,i2})$.
+%\end{proof}
+
+Finally, we are ready to prove \Cref{thm:eff-fil}.
+
+\begin{proof}[Proof of \Cref{thm:eff-fil}]
+  Given a bifiltered object $X_{\bullet, *}$, we let $\diag(X_{\bullet, *}) = X_{\bullet, \bullet}$ denote the filtered object obtained by restricting along the diagonal map $\Z^{\Fil} \hookrightarrow \Z^{\Fil} \times \Z^{\Fil}$.
+  Then there is a span of lax symmetric monoidal functors:
+  \begin{center}
+    \begin{tikzcd}
+      \diag \circ i_* \circ f_\bullet \ar[r] \ar[d] & i_* \\
+      \b \circ f_\bullet, &
+    \end{tikzcd}
+  \end{center}
+  where the horizontal map is induced by the natural transformation $f_\bullet \to Y$ and the vertical map is induced by the natural transformation $i_* \to Y \circ \b$. (Here as in \Cref{app:fil}, $Y$ is the functor taking an object to its constant filtered object.)
+
+  Applied to $E \in \SHRat$, in filtration $n$ this span looks like
+  \begin{center}
+    \begin{tikzcd}
+      \Map_{\SHRat} (\Ss_2 ^{0,0,n}, f_n E) \ar[r] \ar[d] & \Map_{\SHRat} (\Ss_2 ^{0,0,n}, E) \\
+      \b (f_n E). &
+    \end{tikzcd}
+  \end{center}
+  The horizontal map is an equivalence by $n$-effectivity of $\Ss_2 ^{0,0,n}$, and the vertical map is an equivalence by \Cref{thm:comparison-invert-ta} and \Cref{prop:eff-condition}.
+\end{proof}
+%
+%\Cref{thm:eff-fil} now follows from combining \Cref{prop:eff-slice-at-compare} with \Cref{cor:eff-slice-filt}, in light of the fact that $\b (E) \simeq \varinjlim i_* (E)_n$.
+%
+%\begin{cor}
+%  The functor $i_* : \SHR^{gc} _{i2} \to \Fil(\Sp_{C_2, i2})$ is equivalent to the functor $\b \circ f_* : \SHR^{gc} _{i2} \to \Fil(\Sp_{C_2, i2})$ taking $E \in \SHR^{gc} _{i2}$ to the tower
+%  \[\dots \to \b f_{2} E \to \b f_1 E \to \b f_0 E \to \b f_{-1} E \to \b f_{-2} E \to \dots.\]
+%\end{cor}
+%
+%\begin{rmk}
+%  In the cases of interest where the effective spectral sequence has been studied
+%\end{rmk}

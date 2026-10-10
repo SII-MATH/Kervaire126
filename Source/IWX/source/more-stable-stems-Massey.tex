@@ -1,0 +1,350 @@
+\chapter{Massey products}
+\label{ch:Massey}
+
+The purpose of this chapter is to provide some general tools,
+and to give some specific computations, of Massey products in
+$\Ext$.  This material contributes to Table \ref{tab:Massey},
+which lists a number of Massey products in $\Ext$ that we need
+for various specific purposes.  Most commonly, these Massey
+products yield information about Toda brackets via
+the Moss Convergence Theorem \ref{thm:Moss}.
+
+We begin with a $\C$-motivic version of a classical theorem of
+Adams about symmetric Massey products.
+
+
+\begin{thm}
+\label{thm:Massey-symmetric}
+\mbox{}
+\begin{enumerate}
+\item
+If $h_0 x$ is zero, then $\langle h_0, x, h_0 \rangle$ contains 
+$\tau h_1 x$.
+\item
+If $n \geq 1$ and $h_n x$ is zero, then 
+$\langle h_n, x, h_n \rangle$ contains $h_{n+1} x$.
+\end{enumerate}
+\end{thm}
+
+\revv{
+\begin{proof}
+The element $\Sq^0(h_n) x$ is contained in $\langle h_n, x, h_n \rangle$
+\cite{Hirsch55}, where $\Sq^0$ is an algebraic Steenrod operation \cite{May70}.  We compute that $\Sq^0(h_0)$ equals $\tau h_1$
+and $\Sq^0(h_n)$ equals $h_{n+1}$ for $n \geq 1$.  These motivic 
+computations follow from the analogous classical computations
+\cite{Adams60}*{Lemma 2.5.4}.
+\end{proof}
+}
+
+\revv{
+\begin{remark}
+The two parts of Theorem \ref{thm:Massey-symmetric} are less different
+than they appear.  Because of the specific values of the motivic weights,
+we have a factor of $\tau$ in $\Sq^0(h_0)$, while no $\tau$ appears
+in $\Sq^0(h_n)$ for $n \geq 1$.
+\end{remark}
+}
+
+
+
+\section{The operator $g$}
+
+The projection map $p:A_* \map A(2)_*$ induces a map
+$p_*: \Ext_\C \map \Ext_{A(2)}$.
+Because $\Ext_{A(2)}$ is completely known \cite{Isaksen09},
+this map is useful for detecting structure in
+$\Ext_\C$.  Proposition \ref{prop:g-Massey} provides a tool
+for using $p_*$ to compute certain types of Massey products.
+
+\begin{prop}
+\label{prop:g-Massey}
+Let $x$ be an element of $\Ext_\C$ such that $h_1^4 x = 0$.
+Then $p_* \left( \langle h_4, h_1^4, x \rangle \right)$
+equals the element $g p_*(x)$ in $\Ext_{A(2)}$.
+\end{prop}
+
+\begin{proof}
+The idea of the proof is essentially the same as in
+\cite{Isaksen19}*{Proposition 3.1}.
+The $\Ext_\C$-module $\Ext_{A(2)}$ is a ``Toda module", 
+in the sense that Massey products
+$\langle x, a, b \rangle$ are defined for all
+$x$ in $\Ext_{A(2)}$ and all $a$ and $b$ in $\Ext_\C$ such
+that $x \cdot a = 0$ and $ab = 0$.
+In particular, the bracket $\langle 1, h_4, h_1^4 \rangle$
+is defined in $\Ext_{A(2)}$.
+We wish to compute this bracket.
+
+We use the May Convergence Theorem in order to compute the
+bracket.  The crossing differentials condition on the theorem
+is satisfied because there are no possible differentials that 
+could interfere.
+
+The key point is the May differential
+$d_4(b_{21}^2) = h_1^4 h_4$.  
+This shows that $g$ is contained in $\langle 1, h_4, h_1^4 \rangle$.
+Also, the bracket has no indeterminacy by inspection.
+
+Now suppose that $x$ 
+is an element of $\Ext_\C$ such that $h_1^4 x = 0$.
+Then
+\[
+p_* \left( \langle h_4, h_1^4, x \rangle \right) =
+1 \cdot \langle h_4, h_1^4, x \rangle =
+\langle 1, h_4, h_1^4 \rangle \cdot x =
+g p_*(x).
+\]
+\end{proof}
+
+\begin{ex}
+\label{ex:g-Massey}
+We illustrate the practical usefulness of
+Proposition \ref{prop:g-Massey} with a specific
+example.  Consider the Massey product
+$\langle h_1^3 h_4, h_1, h_2 \rangle$.
+The proposition says that
+\[
+p_* \left( \langle h_1^3 h_4, h_1, h_2 \rangle \right) = h_2 g
+\]
+in $\Ext_{A(2)}$.  This implies that
+$\langle h_1^3 h_4, h_1, h_2 \rangle$ equals $h_2 g$ in
+$\Ext_\C$.
+\end{ex}
+
+\begin{remark}
+The Massey product computation in Example \ref{ex:g-Massey}
+is in relatively low dimension, and it can be computed using
+other more direct methods.
+Table \ref{tab:Massey} lists additional examples, including
+some that cannot be determined by more elementary methods.
+\end{remark}
+
+\section{The Mahowald operator}
+\label{subsctn:Mahowald-operator}
+
+We recall some results from \cite{Isaksen19} about the
+Mahowald operator.  The Mahowald operator is defined to be
+$M x = \langle x, h_0^3, g_2 \rangle$ for all $x$ such that $h_0^3 x$
+equals zero.  As always, one must be cautious about indeterminacy
+in $M x$.
+
+There exists a subalgebra $B$ of the $\C$-motivic Steenrod algebra whose
+cohomology
+$\Ext_B(\M_2, \M_2)$ equals $\M_2[v_3] \otimes_{\M_2} \Ext_{A(2)}$.
+The inclusion of $B$ into the $\C$-motivic Steenrod algebra induces a map
+$p_*: \Ext_\C \map \Ext_B$.
+
+\begin{prop} \cite{Isaksen19}*{Theorem 1.1}
+\label{prop:M-Massey}
+The map $p_*: \Ext_\C \map \Ext_B$ takes $M x$ to the product
+$(e_0 v_3^2 + h_1^3 v_3^3) p_*(x)$, whenever $M x$ is defined.
+\end{prop}
+
+Proposition \ref{prop:M-Massey} is useful in practice for detecting
+certain Massey products of the form $\langle x, h_0^3, g_2 \rangle$.
+For example, if $x$ is an element of $\Ext_\C$ such that
+$h_0^3 x$ equals zero and $e_0 p_*(x)$ is non-zero in $\Ext_{A(2)}$,
+then $\langle x, h_0^3, g_2 \rangle$ is non-zero.
+
+\begin{ex}
+\label{ex:Mh1}
+Proposition \ref{prop:M-Massey} shows that
+$\langle h_1, h_0, h_0^2 g_2 \rangle$ is non-zero.  There is
+only one non-zero element in the appropriate degree, so we have
+identified the Massey product.  We give this element the name
+$M h_1$.
+\end{ex}
+
+\begin{ex}
+\label{ex:M^2h1}
+Expanding on Example \ref{ex:Mh1}, 
+Proposition \ref{prop:M-Massey} also shows that 
+$\langle M h_1, h_0, h_0^2 g_2 \rangle$ is non-zero.
+Again, there is only one non-zero element in the appropriate
+degree, so we have identified the Massey product.  We give this
+element the name $M^2 h_1$.
+\end{ex}
+
+\section{Additional computations}
+
+\begin{lemma}
+\label{lem:h1^2,h4^2,h1^2,h4^2}
+\revdeg{66, 6, 36}
+The Massey product $\langle h_1^2, h_4^2, h_1^2, h_4^2 \rangle$
+equals $\D_1 h_3^2$.
+\end{lemma}
+
+\begin{proof}
+Table \ref{tab:Massey} shows that $\D h_2^2$ equals the Massey product
+$\langle h_0^2, h_3^2, h_0^2, h_3^2 \rangle$.
+Recall the isomorphism between classical $\Ext$ groups
+and $\C$-motivic $\Ext$ groups in degrees satisfying $s+f-2w=0$,
+as described in Theorem \ref{thm:Chow-zero}.
+This shows that 
+$\D_1 h_3^2$ equals $\langle h_1^2, h_4^2, h_1^2, h_4^2 \rangle$.
+\end{proof}
+
+\rev{
+\begin{lemma}
+\label{lem:A',h1,h2}
+\revdeg{66, 7, 35}
+The Massey product $\langle A', h_1, h_2 \rangle$
+equals $\tau G_0$.
+\end{lemma}
+
+\begin{proof}
+Consider the shuffle
+\[
+A' \langle h_1, h_2, h_1 \rangle =
+\langle A', h_1, h_2 \rangle h_1.
+\]
+Table \ref{tab:Massey} shows that the left side equals
+$h_2^2 A'$, which equals $h_1 \cdot \tau G_0$.
+This implies that $\langle A', h_1, h_2 \rangle$
+contains $\tau G_0$.
+
+The indeterminacy is zero by inspection.
+\end{proof}
+}
+
+\begin{lemma}
+\label{lem:h1^3h4,h1,tgn}
+\revdeg{71, 13, 40}
+The Massey product $\langle h_1^3 h_4, h_1, \tau g n \rangle$
+equals $\tau g^2 n$, with indeterminacy generated by
+$M h_0 h_2^2 g$.
+\end{lemma}
+
+\begin{proof}
+We start by analyzing the indeterminacy.
+The product $M c_0 \cdot h_1^3 h_4$ equals
+\[
+\langle g_2, h_0^3, c_0 \rangle h_1^3 h_4 = 
+\langle g_2, h_0^3, h_1^3 h_4 c_0 \rangle =
+\langle g_2, h_0^3, h_0 h_2 \cdot h_2 g \rangle =
+\langle g_2, h_0^3, h_2 g \rangle h_0 h_2,
+\]
+which equals $M h_0 h_2^2 g$.
+The equalities hold because the indeterminacies are zero, and
+the first and last brackets in this computation are given by
+Table \ref{tab:Massey}.
+This shows that $M h_0 h_2^2 g$ belongs to the indeterminacy.
+
+Table \ref{tab:Massey} shows that
+\[
+\langle h_2, h_1^3 h_4, h_1 \rangle = 
+\langle h_2, h_1, h_1^3 h_4 \rangle
+\]
+equals $h_2 g$.
+Then 
+\[
+h_2 \langle h_1^3 h_4, h_1, \tau g n \rangle =
+\langle h_2, h_1^3 h_4, h_1 \rangle \tau g n = \tau h_2 g^2 n.
+\]
+This implies that
+$\langle h_1^3 h_4, h_1, \tau g n \rangle$
+contains either $\tau g^2 n$ or \revv{$\D h_3 g^2$}.
+However, the shuffle
+\[
+h_1 \langle h_1^3 h_4, h_1, \tau g n \rangle =
+\langle h_1, h_1^3 h_4, h_1 \rangle \tau g n = 0
+\]
+eliminates \revv{$\D h_3 g^2$}.
+\end{proof}
+
+\begin{lemma}
+\label{lem:h3,p',h2}
+\revdeg{80, 5, 42}
+The Massey product $\langle h_3, p', h_2 \rangle$ equals
+$h_0 e_2$, with no indeterminacy.
+\end{lemma}
+
+\begin{proof}
+We have
+\[
+\langle h_3, p', h_2 \rangle h_4^2 = 
+h_3 \langle p', h_2, h_4^2 \rangle = 
+p' \langle h_2, h_4^2, h_3 \rangle.
+\]
+Table \ref{tab:Massey} shows that the last Massey product
+equals $c_2$.
+Observe that $p' c_2$ equals $h_0 h_4^2 e_2$.
+
+\revv{Since $h_4^2 \cdot h_6 e_0$ is zero (as usual, we rely
+on complete information about classical products in a large range
+\cite{Bruner97} \cite{BR20}),}
+this shows that $\langle h_3, p', h_2 \rangle$ equals
+either $h_0 e_2$ or $h_0 e_2 + h_6 e_0$.
+However, shuffle to obtain
+\[
+\langle h_3, p', h_2 \rangle h_1 = 
+h_3 \langle p', h_2, h_1 \rangle,
+\]
+which must equal zero
+\revv{because multiplication by $h_3$ is zero in the appropriate degree.}
+Since $h_1(h_0 e_2 + h_6 e_0)$ is non-zero, it cannot equal
+$\langle h_3, p', h_2 \rangle$.
+
+The indeterminacy is zero by inspection.
+\end{proof}
+
+\begin{remark}
+\label{rem:h1^3h4,h1,tgn}
+The Massey product of Lemma \ref{lem:h1^3h4,h1,tgn}
+cannot be established with Proposition \ref{prop:g-Massey}
+because $p_*(\tau g n) = 0$ in $\Ext_{A(2)}$.
+\end{remark}
+
+\begin{lemma}
+\label{lem:De1+C0,h1^3,h1h4}
+\revdeg{82, 12, 45}
+The Massey product $\langle \D e_1 + C_0, h_1^3, h_1 h_4 \rangle$
+equals $(\D e_1 + C_0) g$, with no indeterminacy.
+\end{lemma}
+
+\begin{proof}
+Consider the Massey product
+$\langle \tau (\D e_1 + C_0), h_1^4, h_4 \rangle$.
+By inspection, this Massey product has no indeterminacy. 
+Therefore,
+\[
+\langle \tau (\D e_1 + C_0), h_1^4, h_4 \rangle =
+(\D e_1 + C_0) \langle \tau, h_1^4, h_4 \rangle.
+\]
+Table \ref{tab:Massey} shows that the latter bracket equals $\tau g$,
+so the expression equals $\tau (\D e_1 + C_0) g$.
+
+On the other hand, it also equals
+$\tau \langle \D e_1 + C_0, h_1^3, h_1 h_4 \rangle$.
+Therefore, the bracket
+$\langle \D e_1 + C_0, h_1^3, h_1 h_4 \rangle$ must contain
+$(\D e_1 + C_0) g$.  Finally, the indeterminacy can be computed
+by inspection.
+\end{proof}
+
+
+\begin{lemma}
+\label{lem:t^3gG0,h0h2,h2}
+\revdeg{93, 13, 49}
+The Massey product $\langle \tau^3 g G_0, h_0 h_2, h_2 \rangle$
+has indeterminacy generated by $\tau M^2 h_2$, and it either
+contains zero or $\tau e_0 x_{76,9}$.  In particular, it does
+not contain any linear combination of $\D^2 h_1 g_2$
+with other elements.
+\end{lemma}
+
+\begin{proof}
+The indeterminacy can be computed by inspection.
+
+The only possible elements in
+the Massey product $\langle \tau^2 g G_0, h_0 h_2, h_2 \rangle$
+are linear combinations of $e_0 x_{76,9}$ and $M^2 h_2$.
+The inclusion
+\[
+\tau \langle \tau^2 g G_0, h_0 h_2, h_2 \rangle \subseteq
+\langle \tau^3 g G_0, h_0 h_2, h_2 \rangle
+\]
+gives the desired result.
+\end{proof}
+
+

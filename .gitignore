@@ -1,0 +1,37 @@
+.lake/
+**/__pycache__/
+**/*.pyc
+
+# Lean build artifacts
+*.olean
+*.ilean
+*.trace
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.blg
+*.bcf
+*.run.xml
+
+# Lean Blueprint generated output
+blueprint/print/
+blueprint/web/
+blueprint/lean_decls
+blueprint/src/*.paux
+blueprint/src/web.bbl
+
+# Nested doc-gen4 build output
+docbuild/.lake/
+
+# Local timing output (CI uploads the same data as workflow artifacts)
+metrics/
+
+# Local Python environment and crash dumps
+.venv/
+/core.[0-9]*

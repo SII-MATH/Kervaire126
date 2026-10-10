@@ -1,0 +1,540 @@
+In this appendix, we have two goals.
+The first is to identify a technique which produces 1-parameter deformations in homotopy theory.
+This technique is essentially an elaboration of \cite[Definition 3.2]{cmmf}.
+The second goal is to provide a recognition criterion for 1-parameter deformations.
+This criterion will be applied in \Cref{sec:top} of the main paper to identify $\SHRat$ with the category of modules over a commutative algebra in $i2$-complete filtered $C_2$-spectra.
+
+The approach to deforming categories taken here is different than the approach taken in Pstr\k{a}gowski's theory of synthetic spectra \cite{Pstragowski}, which is a theory specifically about deformations of $\Sp$. %Notably, the input to define a category of synthetic spectra is much less rigid.On the other hand, when both are defined we will show that they agree for the most part. This in turn suggests that a far more general version of Pstr\k{a}gowski's approach is possible, where an arbitrary (symmetric monoidal) presentable category is deformed. 
+When our construction here and Pstr\k{a}gowki's construction are both defined, we will show that they are equivalent up to a minor completion issue. This in turn suggests that a more general version of Pstr\k{a}gowski's approach is possible, where an arbitrary (symmetric monoidal) presentable category is deformed. 
+
+This appendix is not intended to be a definitive treatment of deformations.  Instead, we view at as an illustration of a variety of elementary techniques, which in combination produce a large collection of interesting examples.
+%Instead it is supposed to be an illustration of how combining couple elementary techniques in a clever way can produce a large collection of interesting examples.
+
+\subsection{Constructing deformations} \label{app:def-const}\
+
+In this section we will give techniques for producing 1-parameter deformations.
+
+\begin{cnv}
+  In this section, $\CC$ will denote a stable presentably symmetric monoidal category.
+  %% When we ask for $\CC$ to be $\En$-monoidal, we will always assume that it is presentably $\En$-monoidal, i.e. that the tensor product preserves colimits in each variable separately.
+  We will use $\o$ to denote the unit of $\CC$, and assume the notation of \Cref{app:fil} %% when it is $\En$-monoidal.
+\end{cnv}
+
+The deformations we produce will all be of the form
+\[ \Mod ( \CC^{\Fil} ; R ) \]
+for some kind of algebra $R$.\footnote{Although much of the material in this appendix applies for $\En$-algebras in $\En$-monoidal categories, the extra generality was not necessary for this work.}
+Therefore, what we really do is give methods for constructing algebras in filtered objects.
+
+
+
+We will produce commutative algebras in $\CC^{\Fil}$ through the following method.
+Given a lax symmetric monoidal functor $F : \CC \to \CC^{\Fil}$, the image of the unit $F(\o)$ is a commutative algebra in $\CC^{\Fil}$. If we let $L$ denote the composite $\Re \circ F$, then we have the following proposition.
+
+\begin{prop}
+  The presentably symmetric monoidal category $\Mod(\CC^{\Fil}; F(\o))$ is a 1-parameter deformation in the sense that,
+  \begin{enumerate}
+  \item There is a colimit-preserving symmetric monoidal functor out of $\CC^{\Fil}$ with target $\Mod(\CC^{\Fil}; F(\o))$.
+  \item The generic fiber is given by $\Mod(\CC; L(\o))$, in the sense that
+    there is an equivalences of presentably symmetric monoidal categories
+    \[\Mod(\CC^{\Fil}; F(\o)[\tau^{-1}]) \simeq \Mod(\CC; L(\o)). \]
+  \item The special fiber is given by $\Mod(\CC^{\Gr}; \Gr F(\o) )$, in the sense that
+    there is an equivalences of presentably symmetric monoidal categories
+    \[\Mod(\CC^{\Fil}; F(\o) \otimes C\tau) \simeq \Mod(\CC^{\Gr}; \Gr(F(\o))).\]
+  \end{enumerate}
+  Moreover, when viewed as a lax symmetric monoidal functor, $F$ factors as
+  \[ \CC \xrightarrow{G} \Mod(\CC^{\Fil}; F(\o)) \to \CC^{\Fil}. \]
+\end{prop}
+
+\begin{proof}
+  This follows immediately from \Cref{prop:mod-fil} and \Cref{lem:tensor-mod}. \todo{update when this breaks.}
+\end{proof}
+
+We will refer to lax symmetric monoidal functors $T : \CC \to \CC^{\Fil}$ as \emph{tower functors} and give several examples.
+
+\begin{exm}
+  The functors $c$ and $Y$ are tower functors.
+\end{exm}
+
+\begin{exm}
+  The functor $\tau_{\geq \bullet} : \Sp \to \Sp^{\Fil}$ is a tower functor.
+\end{exm}
+
+\begin{exm}
+  If $\CC$ has a $t$-structure which is compatible with the tensor product in the sense that the unit is connective and the tensor product of two connective objects is connective, then
+  \[ \tau_{\geq \bullet} : \CC \to \CC^{\Fil} \]
+  is a tower functor. More generally we have a tower functor
+  $ \tau_{\geq m \bullet} : \CC \to \CC^{\Fil} $ for natural numbers $m$.
+\end{exm}
+
+\begin{cnstr} \label{cnstr:trunc-tower}
+  Suppose we are given a collection $A$ of coreflective subcategories $\CC^A_{\geq k} \subset \CC$,
+  such that
+  \begin{itemize}
+  \item if $X \in \CC^A_{\geq k}$ and $Y \in \CC^A_{\geq \ell}$, then $X \otimes Y \in \CC^A_{\geq k+\ell}$.
+  \item $\CC^A_{\geq k+1} \subset \CC^A_{\geq k}$ and $\o \in \CC^A_{\geq 0}$.
+  \end{itemize}
+
+  Let $\tau_{\geq k} : \CC \to \CC^A_{\geq k}$ denote the right adjoints of the inclusions. 
+  Then, we can assemble these categories into a single coreflective subcategory $\CC_{\geq 0}^{\Fil, A}$
+  consisting of filtered objects
+  \[\dots \to X_2 \to X_1 \to X_0 \to X_{-1} \to X_{-2} \to \dots\]
+  for which $X_i \in \CC^A_{\geq i}$.
+  %% Since the $\CC_{\geq \bullet} \subset \CC$ are coreflective subcategories, it is easy to see that $\CC^{\Fil}_{\geq 0} \subset \CC^{\Fil}$ is coreflective as well.
+  The right adjoint $\tau_{\geq 0}^A : \CC^{\Fil} \to \CC^{\Fil, A}_{\geq 0}$ to the inclusion is given by applying $\tau_{\geq i}$ in position $i$.
+  %% \[\dots \to C_2 \to C_1 \to C_0 \to C_{-1} \to C_{-2} \to \dots\]
+  %% to
+  %% \[\dots \to \tau_{\geq 2} C_2 \to \tau_{\geq 1} C_1 \to \tau_{\geq 0} C_0 \to \tau_{\geq -1} C_{-1} \to \tau_{\geq -2} C_{-2} \to \dots.\]
+
+  Our assumptions guarantee that $\CC_{\geq 0}^{\Fil, A}$ is closed under the tensor product and so admits a natural presentably symmetric monoidal structure, for which the inclusion $\CC^{\Fil, A}_{\geq 0} \subset \CC^{\Fil}$ is a symmetric monoidal functor. As a consequence, we obtain a lax symmetric monoidal endofunctor  
+   \[ \tau^A_{\geq 0} : \CC^{\Fil} \to \CC^{\Fil}. \]
+\end{cnstr}
+
+\begin{exm}
+  If $\CC$ is the category of $G$-equivariant spectra for some finite group $G$, then we can let $\CC^{\mathrm{slice}}_{\geq k}$ be the regular slice $k$-connective $G$-spectra.\footnote{Note that we cannot use the classical slice filtration here, unless $m$ is divisible by $\abs{G}$ in which case it agrees with the regular one, since it is not compatible with the tensor product.} As a variant we could also take the regular slice $mk$-connective subcategories for some positive integer $m$.
+\end{exm}
+
+Each of the above examples of tower functors can be described as a composite of $Y$ with an appropriately chosen $\tau_{\geq 0}$.
+This construction can be considered a generalization of the twisted $t$-structures on filtered objects considered in \Cref{subsec:twists}.
+Thus, so far we have only produced ``truncation type towers.''
+We now give a construction which takes in a tower functor $T$ and a commutative algebra in $\CC$ and produces a new tower functor. This construction will have the effect of shearing the Adams spectral sequence based on $E$ along the tower $T$. To begin, we review the monoidal properties of the cobar construction.
+
+\begin{cnstr}
+  Since the coproduct of commutative algebras in $\CC$ is given by the tensor product, % on underlying.
+  the cobar construction can be upgraded into a functor
+  \[ \mathrm{cb} : \CAlg (\CC) \to \CAlg (\CC^{\Delta}) .\]
+  %% Given a presentably symmetric monoidal categeory $\CC$, there is an $\mathbb{E}_{n-1}$-monoidal functor,
+  %% \[ \mathrm{cb} : \Alg (\CC) \to \CC^{\Delta} \]
+  %% sending an $\mathbb{E}_1$-algebra $E$ to its cobar complex $E^{\otimes \bullet+1}$.  
+  %% Moreover, since underlying semicosimplicial diagram only relies on the $\mathbb{E}_0$-algebra structure the composition 
+  %% \[ \Alg (\CC) \to \CC^{\Delta} \to \CC^{\Delta^s}, \]
+  %% naturally lifts to an $\mathbb{E}_{n-1}$-monoidal functor to $\Alg (\CC^{\Delta^s})$.
+
+  %% Using the fact that $\Alg_{\En} (\CC) \simeq \Alg_{\mathbb{E}_{n-1}} \Alg (\CC)$, we then obtain a semicosimplicial bar construction functor,
+  %% \[ \mathrm{cb}^s : \Alg_{\En} (\CC) \to \Alg_{\En} (\CC^{\Delta^s}). \]
+  
+%% \end{lem}
+
+%% \begin{proof}
+%%   Suffices to show that the cobar complex is defined for $\mathbb{E}_1$ rings and that the semicosimplicial cobar complex for $\mathbb{E}_0$-rings respectively.
+%% \end{proof}
+\end{cnstr}
+
+\begin{cnstr}\label{cnstr:shear}
+  Given a tower functor $T$ and a commutative algebra $E$ in $\CC$, we define a new tower functor $\mathrm{Sh}(T ; E)$ which is the composite,
+  \[\CC \xrightarrow{- \otimes \mathrm{cb}(E)} \CC^{\Delta} \xrightarrow{T} \CC^{\Fil, \Delta} \xrightarrow{\Tot} \CC^{\Fil}.\]
+\end{cnstr}
+
+On spectra, the tower functor $\mathrm{Sh}(\tau_{\geq \bullet} ; \F_p)$ produces the d\'ecalage of the $\F_p$-Adams tower on the input. More generally, given a $t$-structure t that is compatible with the monoidal structure, we can let $\CC^t_{\geq n}$ be the $n$-connective objects.
+Then $\mathrm{Sh}(\tau_{\geq 0}^t ; E)(X)$ captures the $E$-based Adams spectral sequence for the $t$-structure homotopy groups of $X$. As an analog of the fact that the $E$-Adams spectral sequence for $E$ collapses, we have the following:
+
+\begin{exm} \label{exm:E-collapse}
+  The cosimplicial diagram $E \otimes \mathrm{cb}(E)$ admits a contracting homotopy, and therefore the totalization commutes with any functor. In particular, we obtain an equivalence of commutative algebras,
+  $ \mathrm{Sh}(T ; E)(E) \simeq T(E) $.
+  \todo{Is this right?}
+\end{exm}
+
+We close with a simple lemma that lets us identify the generic fiber in certain cases.
+
+\begin{lem}\label{lem:easy-conv}
+  Suppose we are given a collection of coreflective subcategories $A$ that satisfy the conditions of \Cref{cnstr:trunc-tower}, together with a commutative algebra $E \in \CC^A_{\geq 0}$.
+  Then for any $X \in \CC_{\geq k}^A$ there is an equivalence
+  $\Re(\mathrm{Sh}(\tau_{\geq 0}^A ; E)) \simeq X^{\wedge} _E$, where the second object is the $E$-nilpotent completion of $X$.
+\end{lem}
+
+\begin{proof}
+  By construction $\tau^A_{\geq 0}$ comes equipped with a natural transformation $\tau^A_{\geq 0} \to Y$.
+  Since $\mathrm{Sh}(Y ; E) \simeq Y(-)^{\wedge}_E$, we have a natural transformation
+  \[ \mathrm{Sh}(\tau_{\geq 0}^A ; E) \to  Y(X)^{\wedge}_E.\]
+  In sufficiently negative degrees the $\tau_{\geq i}$'s have no effect by hypothesis, so 
+  the totalizations are levelwise equivalences.  There is thus an equivalence
+  \[ \Re(\mathrm{Sh}(\tau_{\geq 0}^A ; E)) \simeq  \Re Y(X)^{\wedge} _E \simeq (X)^{\wedge} _E.\qedhere \]
+  %% It is easily seen from the assumption that the induced maps
+  %% \[\Gamma_{\ell} (X) \to (X)^{\wedge} _E\]
+  %% are an equivalence for $\ell \leq k$, from which the result immediately follows.
+\end{proof}
+
+\begin{rmk}
+ Under the assumptions of \Cref{lem:easy-conv}, we have an equivalence
+\[ \Mod(\CC^{\Fil}; \mathrm{Sh}(\tau_{\geq 0}^A ; E)(\o)[\tau^{-1}]) \simeq \Mod(\CC; \o^{\wedge}_{E}). \]
+\end{rmk}
+
+
+
+%% \subsubsection{The construction}
+
+%% In this section, we give the basic prototype of our construction.
+
+%% Let $\CC$ denote a stable presentably $\En$-monoidal category, and suppose that we are given a lax $\En$-monoidal functor $F : \CC \to \CC^{\Fil}$. Let $L : \CC \to \CC$ denote the composite $\CC \xrightarrow{F} \CC^{\Fil} \xrightarrow{\Re} \CC$.
+
+%% Then, when viewed as a lax $\mathbb{E}_{n-1}$-monoidal functor, $F$ factors as $\CC \xrightarrow{G} \Mod(\CC^{\Fil}; F(\o)) \to \CC^{\Fil}$. The $\mathbb{E}_{n-1}$-monoidal category $\Mod(\CC^{\Fil}; F(\o))$ may be viewed as a deformation of $\Mod(\CC; L(\o))$, as the following proposition shows.
+
+%% \begin{prop}
+%%   There are equivalences of $\mathbb{E}_{n-1}$-monoidal categories
+%%   \[\Mod(\CC^{\Fil}; F(\o)[\tau^{-1}]) \simeq \Mod(\CC; L(\o))\]
+%%   and
+%%   \[\Mod(\CC^{\Fil}; F(\o) \otimes C\tau) \simeq \Mod(\CC^{\Gr}; \Gr(F(\o))).\]
+%% \end{prop}
+
+%% \begin{proof}
+%%   This follows immediately from \Cref{prop:mod-fil}.
+%% \end{proof}
+
+%% The functor $G : \CC \to \Mod(\CC^{\Fil}; F(\o))$ may then be viewed as a deformation with ``generic fiber'' given by $L : \CC \to \Mod(\CC; L(\o))$ and ``special fiber'' given by $\Gr(G) : \CC \to \Mod(\CC^{\Gr}; \Gr(F(\o))$.
+
+
+
+%% \subsubsection{Examples}
+
+%% In this paper, we will be interested in the case when $F : \CC \to \CC^{\Fil}$ is given by the decalage of the Adams tower associated to an $\En$-ring $E$ in $\CC$.
+%% In the case of $\CC = \Sp$, the decalage construction makes use of the canonical $t$-structure on $\Sp$.
+%% For the main application of this paper, which takes place in the context when $\CC = \Sp_{C_2}$, the ``decalage'' construction which interests us will be taken with respect to the slice tower.
+%% Since the slice tower does not arise to a $t$-structure, we will need to work more generally in the following.
+
+%% \begin{dfn} \label{dfn:def-data}
+%%   $\En$-deformation data are a triple $(\CC, E, \CC_{\geq \bullet})$ consisting of the following:
+%%   \begin{itemize}
+%%     \item An $\En$-monoidal category $\CC$.
+%%     \item An $\En$-algebra $E \in \Alg_{\En} (\CC)$.
+%%     \item For each $k \in \Z$, a coreflective subcategory $\CC_{\geq k} \subset \CC$, such that
+%%       \[ \CC_{\geq k-1} \subset \CC_{\geq k}\]
+%%       for all $k$.
+%%   \end{itemize}
+%%   We write $\tau_{\geq k} : \CC \to \CC_{\geq k}$ for the right adjoint of the unit.
+%%   Moreover, we assume that if $X \in \CC_{\geq k}$ and $Y \in \CC_{\geq \ell}$, then $X \otimes Y \in \CC_{\geq k+\ell}$.
+%% \end{dfn}
+
+%% \begin{exm}
+%%   For example, if $\CC$ has a $t$-structure which is compatible with the tensor product in the sense that the tensor product of two connective objects is connective, then we may choose $\CC_{\geq k}$ to be the subcategory of $k$-connective objects. We could equally well set $\CC_{\geq k}$ to be the subcategory of $mk$-connective objects for some positive integer $m$.
+
+%%   However, this is not the only reasonable choice for $\CC_{\geq \bullet}$. For example, if $\CC$ is the category of $G$-equivariant spectra for some finite group $G$, then we can set $\CC_{\geq k}$ to be the regular slice $mk$-connective $G$-spectra for some positive integer $m$.\footnote{Note that we cannot use the classical slice filtration here, unless $m$ is divisible by $\abs{G}$ in which case it agrees with the regular one, since it is not compatible with the tensor product.}
+%% \end{exm}
+
+%% \begin{lem}
+%%   Given an $\En$-monoidal categeory $\CC$, there is a functor
+%%   \[ (-)^{\bullet + 1} : \Alg_{\En} (\CC) \to \Alg_{\mathbb{E}_{n-1}} (\CC^{\Delta})\]
+%%   sending an $\En$-ring to its cobar complex $E^{\bullet+1}$. 
+
+%%   Moreover, the composition $\Alg_{\En} (\CC) \to \Alg_{\mathbb{E}_{n-1}} (\CC^{\Delta}) \to \Alg_{\mathbb{E}_{n-1}} (\CC^{\Delta^s})$, which only remembers the underlying semicosimplicial object, naturally lifts to a functor to $\Alg_{\En} (\CC^{\Delta^s})$.
+%% \end{lem}
+
+%% \begin{proof}
+%%   Suffices to show that the cobar complex is defined for $\mathbb{E}_1$ rings and that the semicosimplicial cobar complex for $\mathbb{E}_0$-rings respectively.
+%% \end{proof}
+
+%% \begin{dfn} \label{dfn:beilinson-trunc}
+%%   Given $\En$-deformation data $(\CC, E, \CC_{\geq \bullet})$, we define $\CC^{\Fil}_{\geq 0} \subset \CC^{\Fil}$ to be the full subcategory consisting of filtered objects
+%%   \[\dots \to C_2 \to C_1 \to C_0 \to C_{-1} \to C_{-2} \to \dots\]
+%%   for which $X_i \in \CC_{\geq i}$.
+%%   Since the $\CC_{\geq \bullet} \subset \CC$ are coreflective subcategories, it is easy to see that $\CC^{\Fil}_{\geq 0} \subset \CC^{\Fil}$ is coreflective as well. The right adjoint $\tau_{\geq 0} : \CC^{\Fil} \to \CC^{\Fil}_{\geq 0}$ to the inclusion is given by sending
+%%   \[\dots \to C_2 \to C_1 \to C_0 \to C_{-1} \to C_{-2} \to \dots\]
+%%   to
+%%   \[\dots \to \tau_{\geq 2} C_2 \to \tau_{\geq 1} C_1 \to \tau_{\geq 0} C_0 \to \tau_{\geq -1} C_{-1} \to \tau_{\geq -2} C_{-2} \to \dots.\]
+
+%%   Moreover, since $\CC_{\geq k} \otimes \CC_{\geq \ell} \subset \CC_{\geq k+\ell}$ by assumption, we learn that $\CC^{\Fil}_{\geq 0}$ is closed under Day convolution and so admits a natural $\En$-monoidal structure for which the inclusion $\CC^{\Fil}_{\geq 0} \subset \CC^{\Fil}$ is an $\En$-monoidal functor.
+%%   As a consequence, the adjoint $\tau_{\geq 0} : \CC^{\Fil} \to \CC^{\Fil}_{\geq 0}$ is lax $\En$-monoidal.
+%% \end{dfn}
+
+%% \begin{cnstr}
+%%   Given $\En$-deformation data $(\CC, E, \CC_{\geq \bullet})$, we define a lax $\En$-monoidal functor
+%%   \[\Gamma_* : \CC \to \CC^{\Fil}\]
+%%   as a composite
+%%   \[\CC \xrightarrow{- \otimes E^{\bullet+1}} \CC^{\Delta^s} \xrightarrow{\tau_{\geq 0}} \CC^{\Fil, \Delta^s} \xrightarrow{\Tot} \CC^{\Fil}.\]
+
+%%   Here,
+%%   \[- \otimes E^{\bullet + 1} : \CC \to \CC^{\Delta^s}\]
+%%   is the functor which regards an element of $\CC$ as a constant semicosimplicial objects and tensors it with the cobar complex $E^{\bullet+1}$, and
+%%   \[\tau_{\geq 0} : \CC^{\Delta^s} \to \CC^{\Fil, \Delta^s}\]
+%%   is the funtor which, levelwise, takes $C \in \CC$ to the constant filtered object
+%%   \[ \dots \xrightarrow{\id} C \xrightarrow{\id} C \xrightarrow{\id} C \xrightarrow{\id} C \xrightarrow{\id} C \xrightarrow{\id} \dots \]
+%%   and then applies the functor $\tau_{\geq 0} : \CC^{\Fil} \to \CC^{\Fil}$, so that we end up with
+%%   \[\dots \to \tau_{\geq 2} C \to \tau_{\geq 1} C \to \tau_{\geq 0} C \to \tau_{\geq -1} C \to \tau_{\geq -2} C \to \dots.\]
+%%   In short, we may write
+%%   \[\Gamma_n (C) = \Tot(\tau_{\geq n} (C \otimes E^{\bullet+1})).\]
+
+%%   Each of the functors in the above composition is lax $\En$-monoidal, so the composite $\Gamma_*$ is as well.
+
+%%   Since $\Gamma_* : \CC \to \CC^{\Fil}$ is lax $\En$-monoidal, as a lax $\E_{n-1}$-monoidal functor it factors as a composite
+%%   \[\CC \to \Mod(\CC^{\Fil}; \Gamma_* (\o)) \to \CC^{\Fil}.\]
+%%   By abuse of notation, we also denote the functor $\CC \to \Mod(\CC^{\Fil}; \Gamma_* (\o))$ by $\Gamma_*$.
+%%   %The image of the unit $\Gamma_*(\o)$ in $\CC^{\Fil}$ is an $\En$-ring, so the category $\Mod(\CC^{\Fil}; \Gamma_* (\o)$ is an $\mathbb{E}_{n-1}$-$\CC$-monoidal category.
+%% \end{cnstr}
+
+%% \begin{lem}\label{lem:easy-conv}
+%%   Suppose that $E \in \CC_{\geq 0}$ and $E \in \CC_{\geq k}$ for some $k$.
+%%   Then $\Re(\Gamma_* (X)) \simeq X^{\wedge} _E$, the $E$-nilpotent completion of $X$.
+%% \end{lem}
+
+%% \begin{proof}
+%%   Using the (co?)unit map $\tau_{\geq 0} \to \id$ in filtered objects, we obtain a natural transformation
+%%   \[\Gamma_* (X) \to (X)^{\wedge} _E,\]
+%%   where $(X)^{\wedge} _E$ is viewed as a constant filtered object.
+%%   It is easily seen from the assumption that the induced maps
+%%   \[\Gamma_{\ell} (X) \to (X)^{\wedge} _E\]
+%%   are an equivalence for $\ell \leq k$, from which the result immediately follows.
+%% \end{proof}
+
+%% In particular, we learn that under the assumptions of \Cref{lem:easy-conv} we have an equivalence
+%% \[\Mod(\CC^{\Fil}; \Gamma_* (\o)[\tau^{-1}]) \simeq \Mod(\CC; \o^{\wedge}_{E}).\]
+
+%% \begin{exm}
+%%   When $\CC_{\geq n}$ is equal to the $n$-connective objects for some $t$-structure, then $\Gamma_* (X)$ captures the $E$-based Adams spectral sequence for the $t$-structure homotopy groups of $X$.
+%% \end{exm}
+
+\subsection{Recognizing Deformations} \label{app:compare}\ 
+
+In this section, we give one answer to the following open-ended question:
+
+\begin{qst}
+  Given a pair of presentably symmetric monoidal categories $\CCdef$ and $\CC$,
+  when can we identify $\CCdef$ with $\Mod(\CC^{\Fil}; R)$ for some commutative algebra $R \in \CC^{\Fil}$?
+\end{qst}
+
+This section grew out of a recognition that our original arguments in \Cref{sec:top}, which related $\SHRat$ and  $\Sp_{C_2,i2}$, used only very general information.\todo{Refine this}
+%% Our main application will be to the pair $(\SHR_{ip}, \Sp_{C_2,ip})$, on whose salient features we based the following definition:
+
+\begin{dfn} \label{dfn:def-pair}
+  A deformation pair consists of the following data:
+  \begin{itemize}
+  \item A diagram of symmetric monoidal left adjoints
+    \begin{center} \begin{tikzcd}
+        & \CCdef \ar[dr, "\Re"] & \\
+        \CC \ar[ur, "c"] \ar[rr, "\mathrm{Id}"] & & \CC.
+    \end{tikzcd} \end{center}
+  \item A map of abelian groups
+    \[ i_0 : \Z \to \ker \left( \pi_0\Pic(\CCdef) \to \pi_0\Pic(\CC) \right). \]
+    We denote the invertible object corresponding to $i_0(n)$ by $\o(n)$.
+  \end{itemize}
+  These data are subject to the following conditions:
+  \begin{itemize}
+  \item For $a \leq b$, the map on mapping spaces
+    \[ \Hom_{\CCdef} (\o(a),\o(b)) \to \Hom_{\CC} (\o,\o) \]
+    induced by $\Re$ is an equivalence.
+  \item The category $\CC$ is rigidly generated, and there is a set
+    $\{C_\alpha\}$ of compact dualizable objects in $\CC$
+    with the property that $\{c(C_{\alpha}) \otimes \o(n)\}$
+    is a set of compact dualizable generators for $\CCdef$.
+  \end{itemize}
+\end{dfn}
+
+%We now give a couple examples of deformation pairs to illustrate the definition.
+
+\begin{exm}
+  Suppose that $\CC$ is a rigidly generated, stable, presentably symmetric monoidal category.
+  Then it is easy to verify that $(\CC^{\Fil}, \CC)$ is a deformation pair where
+  $i_0 : \Z \to \Pic(\CC^{\Fil})$ sends $n$ to $\o(n)$.
+\end{exm}
+
+\begin{exm} \label{exm:syn-part-one}
+  Let $E$ denote an Adams type homology theory, and let $\Syn_E$ denote Pstr\k{a}gowski's category of $E$-synthetic spectra \cite{Pstragowski}.
+  This category is equipped with a natural notion of bigraded sphere, and we let $\Syn_E ^{\cell} \subset \Syn_E$ denote the \emph{cellular} subcategory generated under colimits by $\Ss^{p,q}$.\footnote{ When $E$ is $\F_p$ or $\MU$, then $\Syn_E ^{\cell} = \Syn_E$.}
+  There is a natural realization functor $\Syn_E \to \Sp$, as well as a symmetric monoidal left adjoint $\Sp \to \Syn_E$ provided by \cite[Corollary 4.8.2.19]{HA}.
+	%\todo{commented out `provided by [example],' which should be put back in}% provided by [example]
+  
+  Then $(\Syn_E ^{\cell}, \Sp)$ is a deformation pair, 
+  where the map $i_0$ picks out the spheres $\Ss^{0,n}$.
+  The first condition is satisfied by \cite[Corollary 4.12]{Pstragowski}, and the second is satisfied since we restricted to the full subcategory generated by the bi-graded spheres.
+\end{exm}
+
+%% \begin{exm}
+%%   Consider the pair $(\Sp_{C_2, i2}, \Sp_{i2})$, where the functor $c : \Sp_{i2} \to \Sp_{C_2, i2}$ is given by endowing an $\Ss_2$-module with the trivial action, and the functor $\Re : \Sp_{C_2, i2} \to \Sp_{i2}$ is given by geometric fixed points.
+%%   There is (HOPEFULLY) a monoidal functor $\Z \to \Pic(\Sp_{C_2, i2})$ sending ...
+%%   NOT AN EXAMPLE.
+%% \end{exm}
+
+\begin{exm}
+  Another example is given by $(\SHC^{\cell}_{ip}, \Sp_{ip})$ where the map $i_0$ picks out the Tate twists.
+  The realization functor here is Betti realization, and we set $c$ to be the unital, colimit-preserving map in from $\Sp_{ip}$ as in \Cref{exm:Sp-unit}.
+	%\todo{again, I commented out from [example]}%from [example].
+	By restricting to cellular objects the second condition is automatically satisfied. The first condition is ultimately a corollary of the vanishing of the homotopy of $C\tau$ in positive Chow degrees.
+  This example is discussed at length in \cite{cmmf}.
+
+  %% The main example of interest in this paper is $(\SHR^{gc} _{ip}, \Sp_{C_2,ip})$. We refer thereader to \Cref{sec:top} for more details.
+\end{exm}
+
+Given a deformation pair $(\CCdef, \CC)$, we would like to construct a symmetric monoidal left adjoint
+$ \CC^{\Fil} \to \CCdef $
+to which we may apply \Cref{prop:rigid}.
+We will do this in two steps:
+\begin{enumerate}
+\item We construct a symmetric monoidal functor $i : \Z^{\Fil} \to \CCdef$, which sends $n$ to $\o(n)$.
+\item We tensor $i^{\Fil}$ up to $\CC$ using $c$.
+\end{enumerate}
+%% comparison functor between $\CCdef$ and $\CC^{\Fil}$.
+%% To do this, we will extend the $\E_n$-monoidal functor $i : \Z \to \Pic(\CCdef)$ to an $\En$-monoidal functor $i : \Z^{\Fil} \to \CCdef$.
+%% We may then tensor with $\CC$ to obtain an $\En$-monoidal comparison functor $\CC^{\Fil} \to \CCdef$.
+
+%% \begin{cnstr}\label{cnstr:pic-i}
+%%   Given a deformation pair $(\CCdef, \CC)$ we construct a square of symmetric monoidal functors,
+%%   \begin{center} \begin{tikzcd}
+%%       \Z \ar[r,"i"] \ar[d] & \mathrm{Pic} ( \mathcal{C}_{\mathrm{def}} ) \ar[d, "\mathrm{Pic}(\Re)"] \\
+%%       * \ar[r] & \mathrm{Pic} ( \mathcal{C} )
+%%   \end{tikzcd} \end{center}
+%%   such that $\pi_0i = i_0$.
+%% \end{cnstr}
+
+%% \begin{proof}[Details.]
+%%   Since $\mathrm{Pic}(\CCdef)$ and $\mathrm{Pic}(\CC)$ have no non-invertible morphisms we are working with group-like $\mathbb{E}_\infty$-monoid objects in spaces.
+%%   Consider the fiber sequence
+%%   \[ K \to \mathrm{Pic}(\CCdef) \xrightarrow{\mathrm{Pic}(\Re)} \mathrm{Pic}(\CC) \]
+%%   If we restrict to the connected component of zero, then the right map is equivalent to
+%%   \[ \Map_{\CCdef}(\o, \o) \xrightarrow{\Re} \Map_{\CC}(\o,\o). \]
+%%   By hypothesis this map is an equivalence, so we learn that $K$ is a discrete group-like $\mathbb{E}_\infty$-monoid.
+%%   In particular, the map $i_0 : \Z \to K$ can be upgraded to a map of $\mathbb{E}_\infty$-monoids in a canonical way.
+%% \end{proof}
+
+\begin{cnstr} \label{lem:fil-build}
+  Given a deformation pair $(\CCdef, \CC)$, we construct a square of symmetric monoidal functors,
+  \begin{center} \begin{tikzcd}
+      \Z^{\Fil} \ar[r,"i"] \ar[d] & \mathcal{C}_{\mathrm{def}} \ar[d, "\Re"] \\
+      * \ar[r] & \mathcal{C} 
+  \end{tikzcd} \end{center}
+  such that $i(n) = \o(n)$.
+  %% which refines the construction of $i$ from \Cref{cnstr:pic-i}.
+\end{cnstr}
+  
+%%   Let $n \geq 0$.
+%%   Suppose we are given a pair of $\mathbb{E}_n$-monoidal categories $\mathcal{C}_{\mathrm{def}}$ and $\mathcal{C}$, and a diagram of $\mathbb{E}_n$-moniodal functors
+%%   \begin{center} \begin{tikzcd}
+%%       \Z \ar[r,"i"] \ar[d] & \mathrm{Pic} ( \mathcal{C}_{\mathrm{def}} ) \ar[r] \ar[d] & \mathcal{C}_{\mathrm{def}} \ar[d] \\
+%%       * \ar[r] & \mathrm{Pic} ( \mathcal{C} ) \ar[r] & \mathcal{C}
+%%   \end{tikzcd} \end{center}
+%%   with the property that $\Hom(i(a), i(b)) \to \Hom(\o,\o)$ is an equivalence for every $a \leq b$.
+%%   Then the $\mathbb{E}_n$-monoidal functor $i : \Z \to \mathcal{C}_{\mathrm{def}}$ extends canonically to an $\mathbb{E}_n$-monoidal functor $\Z^{\Fil} \to \mathcal{C}_{\mathrm{def}}$ whose composition $\Z^{\Fil} \to \mathcal{C}_{\mathrm{def}} \to \mathcal{C}$ is canonically trivialized.
+%% \end{lem}
+
+\begin{proof}[Details.]
+  Let $\mathcal{D}$ denote the full subcategory of $\CC$ on the unit.
+  Let $\mathcal{D}_{\mathrm{def}}$ denote the full subcategory of $\mathcal{C}_{\mathrm{def}}$ on the objects $\o(n)$ in the image of $i_0$.
+  Since $\mathcal{D}_{\mathrm{def}}$ and $\mathcal{D}$ are closed under the tensor product they are each symmetric monoidal categories.
+ 
+  %%  and $\mathcal{D}$ denote the full subcategories of $\mathcal{C}_{\mathrm{def}}$ and $\mathcal{C}$, respectively, on the objects in the image of $i_0$ and the unit.
+
+  %% spanned by the image of the composite
+  %% \[ \Z \to \mathrm{Pic}(\CCdef) \to \CCdef \]
+  %% and 
+  %% functor $i$ from $\Z$. Since this is an $\En$-monoidal functor, $\mathcal{D}_{\mathrm{def}}$ and $\mathcal{D}$ are closed under the tensor product and so are themselves $\En$-monoidal categories. We set $\o(n) \coloneqq i(n) \in \mathcal{D}_{\mathrm{def}}$ and $\o \in \mathcal{D}$ to be the unit; these span the objects of $\mathcal{D}_{\mathrm{def}}$ and $\mathcal{D}$.
+
+  %Since the forgetful functor $\mathrm{Alg}_{\mathbb{E}_n} (\mathrm{Cat}) \to \mathrm{Cat}$ preserves limits,
+  We now form the following diagram of symmetric monoidal categories
+  \begin{center} \begin{tikzcd}
+      \mathcal{D}' \ar[r, "f"] &
+      \mathcal{D}_{\mathrm{def}} \times \Z^{\Fil} \ar[r, "\Re \times \mathrm{Id}"] \ar[d, "\pi_1"] &
+      \mathcal{D} \times \Z^{\Fil} \ar[r, "\pi_2"] \ar[d, "\pi_1"] &
+      \Z^{\Fil} \ar[d] \\
+      & \mathcal{D}_{\mathrm{def}} \ar[r, "\Re"] &
+      \mathcal{D} \ar[r] & *,
+  \end{tikzcd} \end{center}
+  where % the vertical functors are projection and
+  $\mathcal{D}'$ is the full subcategory of $\mathcal{D}_{\mathrm{def}} \times \Z^{\Fil}$ spanned by the objects $(\o(n),n)$. Since $\mathcal{D}'$ is closed under the monoidal structure, it canonically inherits a symmetric monoidal structure from $\mathcal{D}_{\mathrm{def}} \times \Z^{\Fil}$.
+
+  We claim that the composite $\mathcal{D}' \to \mathcal{D} \times \Z^{\Fil}$ is an equivalence.
+  The objects of $\mathcal{D}'$ may be identified with pairs $(\o(n),n)$ and the objects of $\mathcal{D} \times \Z^{\Fil}$ may be identified with pairs $(\o, n)$. % The mapping spaces are easy to write down explicitly since mapping spaces in a product of categories are given by products of mapping spaces.
+  The mapping spaces are given by:
+  \[ \Hom_{\mathcal{D}'}((\o(n),n), (\o(m),m)) = \begin{cases} \Hom_{\mathcal{D}_{\mathrm{def}}}(\o(n),\o(m)) & n \leq m \\ \emptyset & n > m \end{cases} \]
+  \[ \Hom_{\mathcal{D}\times \Z^{\Fil}} ((\o,n), (\o,m)) = \begin{cases} \Hom_{\mathcal{D}}(\o,\o) & n \leq m \\ \emptyset & n > m, \end{cases} \]
+  with $\Re$ giving the maps between these mapping spaces.  Each of these maps of mapping spaces is an equivalence, by hypothesis.
+%%  Observe that by hypothesis all of these maps between mapping spaces are equivalences.
+  %% hom spaces is induced by the given functor $\mathcal{C}_{\mathrm{def}} \to \mathcal{C}$, hence it is an equivalence by assumption.
+
+  The composition of symmetric monoidal functors
+  \[ \Z^{\Fil} \xrightarrow{\iota} \mathcal{D} \times \Z^{\Fil} \xleftarrow{\simeq} \mathcal{D}' \to \mathcal{D}_{\mathrm{def}} \times \Z^{\Fil} \to \mathcal{D}_{\mathrm{def}} \subset \CCdef \]
+  is the desired symmetric monoidal functor $\Z^{\Fil} \to \CCdef$, and indeed sends $n$ to $\mathbb{1}(n)$.
+  The square of \Cref{lem:fil-build} commutes, because
+  \[ \Re \circ \pi_1 \circ f \circ (\Re \times \mathrm{Id})^{-1} \circ \iota = \pi_1 \circ (\Re \times \mathrm{Id}) \circ f \circ ((\Re \times \mathrm{Id}) \circ f)^{-1} \circ \iota = \pi_1 \circ \iota = * .\] \qedhere
+
+  %% its precomposition with the symmetric monoidal inclusion functor $\Z \to \Z^{\Fil}$ is the $\mathbb{E}_n$-monoidal functor $i$. By construction, its composite down to $\mathcal{D}$ agrees with the composite $\Z^{\Fil} \to \mathcal{D} \times \Z^{\Fil} \to \mathcal{D}$, which is canonically trivialized.
+  %Finally, note that the $\mathbb{E}_n$-monoidal functor $\Z^{\Fil} \to * \to \mathcal{D}$ provides a section of the projection above. Using the equivalence $\mathcal{D}' \simeq \mathcal{D} \times \Z^{\Fil}$ and then projecting down we obtain the desired $\mathbb{E}_n$-monoidal functor $\Z^{\Fil} \to \mathcal{D}_{\mathrm{def}} \to \mathcal{C}_{\mathrm{def}}$ extending the original functor in from $\Z$.
+  %% if you ever need to be super rigorous with \mathcal{D}' and it's monoidal structure,
+  %% Define Delta as a subobject of X in the category CAlg(Cat)
+  %% Given C we have hom(C, \mathcal{D}') \subset hom(C, X) is just certain conn. components.
+\end{proof}
+
+%% \begin{cor} \label{cor:fil-ext}
+%%   Given an $\En$-deformation pair $(\CCdef, \CC)$, the $\En$-monoidal functor $i : \Z \to \Pic(\CCdef)$ extends canonically to an $\En$-monoidal functor $i : \Z^{\Fil} \to \CCdef$ whose composite $\Z^{\Fil} \xrightarrow{i} \CCdef \xrightarrow{\Re} \CC$ is canonically trivialized.
+%% \end{cor}
+
+\begin{cnstr}\label{cnstr:filt-diagram}
+  Now that we have the symmetric monoidal functor $i : \Z^{\Fil} \to \CCdef$, we may induce it up to a
+  symmetric monoidal left adjoint,
+  $ i^* : \Sp^{\Fil} \to \CCdef $.
+  Tensoring up to $\CC$ using $c$, we can use \Cref{lem:fil-build} to build a diagram of symmetric monoidal left adjoints,
+  \begin{center} \begin{tikzcd}
+      \CC \ar[r, "c"] \ar[d, "\mathrm{Id}"] & \CC^{\Fil} \ar[r, "\Re"] \ar[d, "i^*"] & \CC \ar[d, "\mathrm{Id}"] \\
+      \CC \ar[r, "c"]  & \CCdef \ar[r, "\Re"] & \CC .
+  \end{tikzcd} \end{center}  
+  
+  %% $\En$-$\CC$-monoidal functor $i^* : \CC^{\Fil} \to \CCdef$.
+  %% This functor preserves colimits and so admits a lax $\En$-monoidal right adjoint $i_* : \CCdef \to \CC^{\Fil}$, which satisfies the formula $(i_* X)_n \simeq \Hom_{\CCdef} (\o(n), X)$.
+  %% In particular, $i_* (\o)$ is an $\En$-ring, so we obtain a factorization of $(i^*, i_*)$ as an adjunction with $\mathbb{E}_{n-1}$-monoidal left adjoint into $(- \otimes i_* \o, \mathrm{res})$ and $(j^*,j_*)$ as shown below:
+  %% \[ \CC^{\Fil} \xrightarrow{ - \otimes i_* \o} \mathrm{Mod}(\CC^{\Fil}; i_* \o) \xrightarrow{j^*} \CCdef. \]
+\end{cnstr}
+
+\begin{prop}\label{prop:filt-mod}
+  Suppose that $(\CCdef, \CC)$ is a deformation pair.
+  Then, the symmetric monoidal left adjoint $i^*$ from \Cref{lem:fil-build} is $0$-affine.
+  Stated more explicitly, we have a diagram of symmetric monoidal left adjoints as shown.
+  %% $i^*$ factors as a composition of symmetric monoidal left adjoints
+  %% \[ \CC^{\Fil} \xrightarrow{ - \otimes i_*\o} \Mod ( \CC^{\Fil} ; i_*\o ) \xrightarrow{j^*} \CCdef \]
+  \begin{center} \begin{tikzcd}
+      \CC \ar[r, "c"] \ar[d, "\mathrm{Id}"] &
+      \CC^{\Fil} \ar[dr, "i^*"] \ar[r, "- \otimes i_*\o"] &
+      \Mod ( \CC^{\Fil} ; i_*\o ) \ar[d, "\simeq"] \ar[r, "\Re"] & 
+      \CC \ar[d, "\mathrm{Id}"] \\
+      \CC \ar[rr, "c"]  & &
+      \CCdef \ar[r, "\Re"] & \CC .
+  \end{tikzcd} \end{center}  
+\end{prop}
+
+\begin{proof}
+  \Cref{cnstr:filt-diagram} produces most of the desired diagram.
+  The remaining claims will follow from an application of \Cref{prop:rigid}.
+
+  Recall that by hypothesis $\CC$ and $\CCdef$ are both rigidly generated.
+  Therefore, in order to apply \Cref{prop:rigid} we only need to check that the essential image of $i^*$ contains a family of generators.
+  Since $i^*(C_\alpha \otimes \o(n)) \simeq c(C_\alpha) \otimes \o(n)$, this is true by hypothesis.
+\end{proof}
+
+\begin{rmk} \label{rmk:i-lower-hom}
+  The $n^{\mathrm{th}}$ piece of $i_*X$ can be extracted by taking the $\CC$-enriched mapping object,
+  i.e. there is an equivalence $ (i_*X)_n \simeq \Map^{\CC}( \o(n), i_*X ) $.
+  Now, since the adjunction $i$ is $\CC$-linear, we have an equivalence $\Map^{\CC}( \o(n), i_*X) \simeq \Map^{\CC}( i^*\o(n), X)$.
+\end{rmk}
+
+We close by considering once again the deformation context of synthetic spectra (\Cref{exm:syn-part-one}). Our aim will be to show that we can (nearly) identify $i_*\o$ with a commutative algebra produced via the constructions from the previous subsection.
+
+\begin{prop}\label{prop:syn-to-fil}
+  Given an Adams-type, commutative algebra $E$ in $\Sp$,
+  there is an equivalence of presentably symmetric monoidal categories,
+  \[ \Mod( \Syn_E^{\cell} ; \o_\tau^{\wedge} ) \simeq \Mod( \Sp^{\Fil} ; \mathrm{Sh}(\tau_{\geq \bullet} ; E)(\Ss)). \]
+\end{prop}
+   
+\begin{proof}
+  In \Cref{exm:syn-part-one} we showed that $\Syn_E^{\cell}$ and $\Sp$
+  form a deformation pair. Using \Cref{prop:filt-mod} we obtain an adjunction $i$ and an equivalence,
+  $ \Syn_E^{\cell} \simeq \Mod( \Sp^{\Fil} ; i_*\Ss)$. The proposition will now follow from an identification of the $\tau$-completion of $i_*\Ss$. 
+  
+  The identification of $i_*\Ss$ will follow the pattern established in \Cref{sec:top}.  
+  We begin by identifying $i_* \nu (E^{\otimes k})$.
+  By \cite[Proposition 4.21]{Pstragowski} we know that the $n^{\mathrm{th}}$ piece of this object is $n$-connective. Therefore, the natural comparison map $i_* \nu (E^{\otimes k}) \to Y(E^{\otimes k})$ factors as
+  \[ i_*\nu ( E^{\otimes k} ) \to \tau_{\geq \bullet} E^{\otimes k} \to Y(E^{\otimes k}). \]
+  Examining \cite[Proposition 4.21]{Pstragowski} more closely we can actually conclude that the first map is an equivalence.
+  
+  Now, we can pass to totalizations and observe the chain of equivalences:
+  \begin{align*}
+    (i_*\nu \Ss)_\tau^{\wedge}
+    &\xrightarrow{\simeq} i_*((\nu \Ss)_\tau^{\wedge})
+    \xrightarrow{\simeq} i_* \mathrm{Tot}^* (\mathrm{cb}(\nu E)) 
+    \xrightarrow{\simeq} i_* \mathrm{Tot}^* (\nu (\mathrm{cb}(E))) \\
+    &\xrightarrow{\simeq} \mathrm{Tot}^* (i_* \nu (\mathrm{cb}(E)))
+    \xrightarrow{\simeq} \mathrm{Tot}^* (\tau_{\geq \bullet} \mathrm{cb}(E))
+    \xrightarrow{\simeq} \mathrm{Sh}(\tau_{\geq \bullet} ; E)(\Ss). 
+  \end{align*}  
+  The first equivalence uses that $i_*$ is a right adjoint.
+  The second equivalence follows from \cite[Proposition A.11]{Boundaries}.
+  The third equivalence follows from \cite[Lemma 4.24]{Pstragowski}, together with the assumption that $E$ is Adams type.
+\end{proof}  
+
+
+
+
+

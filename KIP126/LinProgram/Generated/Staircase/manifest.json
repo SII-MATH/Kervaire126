@@ -1,0 +1,19 @@
+{
+  "source": "https://zenodo.org/records/14875701",
+  "version": "v126.3.cw49",
+  "database": "S0_AdamsSS_t261.db",
+  "database_sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+  "table": "S0_AdamsE2_ss",
+  "basis_sha256": "6a337964ad3ac02b729a46fd839dced7cb6764d14d4cea413163987eba8de871",
+  "row_count": 23822,
+  "shard_size": 128,
+  "shard_count": 187,
+  "decoded_kinds": {
+    "boundary-bound": 136,
+    "incoming-equation": 7893,
+    "outgoing-equation": 7893,
+    "reaches-1000": 1621,
+    "reaches-finite": 6279
+  },
+  "scope": "All raw sphere snapshot rows, retaining NULL; mathematical soundness unproved."
+}

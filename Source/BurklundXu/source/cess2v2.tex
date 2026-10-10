@@ -1,0 +1,239 @@
+
+In this section we show that the Cartan--Eilenberg sseq has no differentials in a neighborhood around $h_j^3$ and use this to complete the proof of \Cref{E2 descriptions}.
+
+% The main goal of this section is to set up the Cartan-Eilenberg spectral sequence, and to prove Theorem~\ref{E2 descriptions}~$(1)$. We will also prove Theorem~\ref{diff motivic ctau}~$(3)$ in the end of this section. 
+
+\begin{lem} \label{lem:entering g}
+  Let $j \geq 5$.
+  There are no CE differentials entering the following $(a,t-a)$ degrees\footnote{Recall that $a=s+k$.}
+  $(4, 3 \cdot 2^{j+1}-4)$, $(5, 3 \cdot 2^{j+1}-4)$, $(6, 3 \cdot 2^{j+1}-4)$ or $(7, 3 \cdot 2^{j+1}-4)$.
+\end{lem}
+
+\begin{proof}
+  Recall that Cartan-Eilenberg $d_r$-differentials changes the tri-degrees in the following way
+  $$d_r: E_r^{s,k,t} \to E_r^{s+r, k-r+1, t}.$$
+  Rewriting this in the $(a,s,t-a)$ basis we obtain
+  $$d_r: E_r^{a,s,t-a} \to E_r^{a+1, s+r, t-a-1}.$$
+  
+  From the sparsity of the CE sseq we know that all differentials have odd length.
+  The following table contains a list of each differential we must rule out, and why each differential doesn't occur. 
+  % ---------------------
+  % entering (4 -1)
+  % (1 2 0) --> (4 0 -1)         (zero source)
+  % ---------------------
+  % entering (5 -1)
+  % (1 3 0) --> (4 1 -1)         (zero source)
+  % ---------------------
+  % entering (6 -1)
+  % (1 4 0) --> (4 2 -1)         (zero source)
+  % (3 2 0) --> (6 0 -1)         (perm source)
+  % (1 4 0) --> (6 0 -1)         (zero source)
+  % ---------------------
+  % entering (7 -1)
+  % (1 5 0) --> (4 3 -1)         (zero source)
+  % (3 3 0) --> (6 1 -1)         (perm source)
+  % (1 5 0) --> (6 1 -1)         (zero source)  
+  \begin{center}{\renewcommand{\arraystretch}{1.2}
+      \begin{tabular}{|c|c|}\hline
+        $d_r : E_r^{a,s,t-a} \to E_r^{a+1,s+r,t-a-1}$ & argument \\\hline\hline
+        $d_3 : E_3^{3,1, 3 \cdot 2^{j+1} -3} \to E_3^{4,4, 3 \cdot 2^{j+1} -4}$ & zero source \\\hline
+        $d_3 : E_3^{4,1, 3 \cdot 2^{j+1} -3} \to E_3^{5,4, 3 \cdot 2^{j+1} -4}$ & zero source \\\hline
+        $d_3 : E_3^{5,1, 3 \cdot 2^{j+1} -3} \to E_3^{6,4, 3 \cdot 2^{j+1} -4}$ & zero source \\\hline
+        $d_3 : E_3^{5,3, 3 \cdot 2^{j+1} -3} \to E_3^{6,6, 3 \cdot 2^{j+1} -4}$ & source all permanent cycles \\\hline
+        $d_5 : E_5^{5,1, 3 \cdot 2^{j+1} -3} \to E_5^{6,6, 3 \cdot 2^{j+1} -4}$ & zero source \\\hline
+        $d_3 : E_3^{6,1, 3 \cdot 2^{j+1} -3} \to E_3^{7,4, 3 \cdot 2^{j+1} -4}$ & zero source \\\hline
+        $d_3 : E_3^{6,3, 3 \cdot 2^{j+1} -3} \to E_3^{7,6, 3 \cdot 2^{j+1} -4}$ & source all permanent cycles \\\hline
+        $d_5 : E_5^{6,1, 3 \cdot 2^{j+1} -3} \to E_5^{7,6, 3 \cdot 2^{j+1} -4}$ & zero source \\\hline
+      \end{tabular}}
+  \end{center}
+  In each case \Cref{prop:weak CE E2} provides the required information about the source group.
+\end{proof}
+
+\begin{rec} \label{rec:Chen}
+  Building on Lin's work on the 4-line, in \cite[Theorem~1.2]{Ext5}, Chen gives a complete description of $\Ext_{\A}$ up to Adams filtration 5.
+  In particular, Chen's work provides the following information about $\Ext_{\A}$ in a neighborhood of $h_j^3$:
+  \begin{center}{\renewcommand{\arraystretch}{1.2}
+      \begin{tabular}{|ll|c|}\hline
+        $(a,$ & $t-a)$ & $\Ext^{a,\,t}_{\A}(\mathbb{F}_2,\, \mathbb{F}_2)$ \\\hline\hline
+        $(4,$ & $ 3 \cdot 2^j-4)$ & $\F_2\{g_{j-2}\}$ \\\hline
+        $(5,$ & $ 3 \cdot 2^j-4)$ & $\F_2\{h_0g_{j-2}\}$ \\\hline
+        $(3,$ & $ 3 \cdot 2^j-3)$ & $\F_2\{h_j^3\}$ \\\hline
+        $(4,$ & $ 3 \cdot 2^j-3)$ & $\F_2\{h_0h_j^3\}$ \\\hline
+        $(5,$ & $ 3 \cdot 2^j-3)$ & $\F_2\{h_0^2h_j^3, h_1g_{j-2}\}$ \\\hline    
+      \end{tabular}}
+  \end{center}  
+  for $j \geq 8$.
+  For $j=7$ degree $(a,t-s)=(5,3 \cdot 2^{7} - 3)$ contains the additional class $h_8D_3(1)$.
+  For $j=6$ degree $(a,t-s)=(5,3 \cdot 2^{6} - 4)$ contains the additional class $h_7D_3(0)$.\todo{There's really this extra class and that means for 6,7 we really need to track this through the argument.}
+\end{rec}
+
+\begin{prop} \label{prop:g survives}
+  Let $j \geq 5$.
+  On the $E_2$-page of the classical Adams spectral sequence for $S^{0}$
+  the class $h_0^3g_{j-2}$ is non-zero.
+\end{prop}
+
+\begin{proof}
+  In the cases $j=5,6$, this is known from stemwise calculation of the $\Ext$-groups.
+  See for example \cite{Bruner2, IWX2} for $j=5$ and \cite{Nassau} for $j=6$.
+  We will prove the proposition for $j \geq 6$.
+        
+  %The only remaining claim we must prove is that $h_0^2g_{j-2}$ and $h_0^3g_{j-2}$ are non-zero.
+  %In fact it suffices to prove that $h_0^3g_{j-2}$ is non-zero.
+
+  The class $q_0^3$ survives the algAH sseq and CE sseq, and detects the class $h_0^3$ in the Adams $E_2$-page. From the Frobenius isomorphism between $\Ext_{\mathcal{P}}^{*,2*}(\F_2, \F_2)$ and $\Ext_{\mathcal{A}}^{*,*}(\F_2, \F_2)$, the element $g_n$ in $\Ext_{\mathcal{P}}^{4, 3\cdot 2^{n+3}}(\F_2, \F_2)$ detects $g_{n+1}$ in $\Ext_{\mathcal{A}}^{4, 3\cdot 2^{n+3}}(\F_2, \F_2)$. Therefore, the element $q_0^3 \cdot g_n$ detects the element $h_0^3 g_{n+1}$ in the Adams $E_2$-page.
+  
+  For this we observe that $h_0^3g_{j-2}$ is detected on the Cartan--Eilenberg $E_2$-page by $q_0^3 g_{j-3}$ and that this class is not hit by a CE differential since there are no differential which enter this tridegree by \Cref{lem:entering g}.
+\end{proof}
+
+Together \Cref{rec:Chen} and \Cref{prop:g survives} complete the proof of \Cref{E2 descriptions}(1).
+
+\begin{lem} \label{lem:weak CE E2}
+  Let $j \geq 6$. 
+  The $E_2$-page of the motivic Adams spectral sequence for $S^{0,0}/\tau$
+  takes the following form near $h_{j}^3$:
+  \begin{center}{\renewcommand{\arraystretch}{1.2}
+      \begin{tabular}{|lll|c|}\hline
+        $(a,$ & $s,$ & $t-a)$ & $\Ext^{a,\,t,\,w}_{\A^\textup{mot}}(\mathbb{F}_2[\tau],\, \mathbb{F}_2)$ \\\hline\hline
+        $(4,$ & $4,$ & $ 3 \cdot 2^j-4)$ & $\F_2\{g_{j-2}\}$ \\\hline
+        $(5,$ & $4,$ & $ 3 \cdot 2^j-4)$ & $\F_2\{h_0g_{j-2}\} $ \\\hline
+        $(3,$ & $3,$ & $ 3 \cdot 2^j-3)$ & $\F_2\{h_j^3\}$ \\\hline
+        $(4,$ & $3,$ & $ 3 \cdot 2^j-3)$ & $\F_2\{h_0h_j^3\}$ \\\hline
+        $(5,$ & $3,$ & $ 3 \cdot 2^j-3)$ & $\F_2\{h_0^2h_j^3\}$ \\\hline    
+        $(5,$ & $5,$ & $ 3 \cdot 2^j-3)$ & $\F_2\{h_1g_{j-2}\}$ \\\hline          
+      \end{tabular}}
+  \end{center}
+  For $j=7$ there is an additional class, $h_8D_3(1)$, in degree $(a,s,t-a)=(5,5, 3 \cdot 2^7 - 3)$.
+  For $j=6$ there is possibly an additional class, $h_7D_3(0)$, in degree $(a,s,t-a)=(5,4, 3 \cdot 2^6 - 4)$.
+\end{lem}
+
+\begin{proof}
+  % --------------------------------------
+  % 4 1 -1    contains q0g
+  % 4 2 -1    contains q02g
+  % 4 3 -1    contains q03g
+  % 1 2  0        0
+  % 1 3  0        0
+  % 1 4  0        0
+  % 1 5  0        0
+  % 3 1  0     q0hj3 or 0
+  % 3 2  0     q0hj3 or 0
+  % 3 3  0     q0hj3 or 0
+  % --------------------------------------
+  % 4 0 -1        g                 (chen Ext5)
+  % 4 1 -1       q0g                (chen Ext5 + no fil jump)
+  % 3 0  0       hj3                (chen Ext5)
+  % 3 1  0      q0hj3               (chen Ext5 + no fil jump)
+  % 3 2  0      q02hj3              (chen Ext5 + no fil jump)
+  % 5 0  0       h1g                (chen Ext5)
+  % --------------------------------------
+  Recall from \Cref{tridegree} that there is an isomorphism between the $E_2$-pages of the Cartan-Eilenberg spectral sequence and the motivic Adams spectral sequence for $S^{0,0}/\tau$:
+\[\xymatrix{
+  \Ext^{s,t}_{\P}(\F_2, \Ext_{\mathcal{Q}}^k(\F_2, \F_2)) \ar[rr]^-{\cong} & & \Ext^{s+k, t, \frac{t-k}{2}}_{\A^{\textup{mot}}}(\F_2[\tau], \F_2),
+}\]
+where the element $g_{j-3}$ on the Cartan--Eilenberg $E_2$-page sends to $g_{j-2}$ on the motivic Adams $E_2$-page, and $h_{j-1}^3$ to $h_j^3$.
+We will prove the statement for Cartan--Eilenberg $E_2$-page instead. 
+
+For the information on lines 1, 3 and 6 (these are the cases $k=a-s=0$), they follow from Lin and Chen's computation of $\Ext_{\A}$ through Adams filtration 5 (see \cite[Theorem~1.2]{Ext5}) and the Frobenius isomorphism $\Ext_{\P}^{s,2t} \cong \Ext_{\A}^{s,t}$.
+
+
+For $j \geq 6$ we proved in \Cref{prop:weak CE E2}
+ that the CE $E_2$-page contains a non-trivial class $q_0g_{j-3}$, which corresponds to $h_0g_{j-2}$ in the motivic $E_2$-page. Suppose the CE $E_2$-page had another element $x$ besides $q_0g_{j-3}$
+  in degree $(a,s,t-a) = (5,4, 3 \cdot 2^j - 4)$.
+  This element would be a permanent cycle for degree reasons and would survive to the $E_\infty$-page since no differentials enter this tridegree by \Cref{lem:entering g}.
+  This would imply that the rank of degree $(a,t-a) = (5, 3 \cdot 2^j - 4)$ in the Adams $E_2$-page is at least $2$.
+  This contradicts Lin and Chen's computations of $\Ext_{\A}$, therefore no such $x$ can exist
+  and we obtain the conclusion on line 2. In the $j=6$ case there the rank of $\Ext_{\A}$ is 2 so we may have another class detecting $h_7D_3(0)$.
+
+
+For the claims on lines 4 and 5, by \Cref{prop:weak CE E2} we only need to show that  $q_0^2h_{j-1}^3 \neq 0$ on the CE $E_2$-page for $j \geq 6$.
+  From Lin and Chen's computations we know that $h_0^2h_{j}^3 \neq 0$ for $j \geq 6$ in $\Ext_{\A}$, which
+  would be detected on the CE $E_2$-page by $q_0^2h_{j-1}^3$ if this element was not killed by any CE differential.
+  If this is not the case, then the element $h_0^2h_{j}^3$ in $\Ext_{\A}$ must be detected by some other element in a higher $s$-filtration on the  CE $E_2$-page and the only possibility left is degree $(a,s,t-a) = (5,5, 3\cdot 2^j - 3)$, where $k=a-s=0$.
+  This cannot happen since the only class in this degree is $h_0g_{j-3}$ from $\Ext_{\P}$ which detects $h_1g_{j-2}$ in $\Ext_{\A}$ (in the $j=7$ case there is also $h_7D_3$ in $\Ext_{\P}$, which detects $h_8D_3(1)$ in $\Ext_{\A}$). The conclusion follows.
+\end{proof}
+
+Together \Cref{prop:weak CE E2} and \Cref{lem:weak CE E2} complete the proof of \Cref{E2 descriptions}(3).
+We end the section by using the motivic CE sseq (and \Cref{cor:no entering} in particular) to prove \Cref{E2 descriptions}(2,4).
+
+\begin{lem} \label{lem:entering hj3}
+  Let $j \geq 5$.
+  There are no CE differentials entering the following $(a,t-a)$ degrees
+  $(3, 3 \cdot 2^{j+1}-3)$, $(4, 3 \cdot 2^{j+1}-3)$ and $(5, 3 \cdot 2^{j+1}-3)$.
+\end{lem}
+
+\begin{proof}
+  Convergence of the CE sseq implies that the
+  rank of the CE $E_2$-page is an upper bound on the rank of the Adams $E_2$-page
+  and that this bound is sharp in degree $(a,t-a)$ exactly when there are no differentials entering or leaving degree $(a,t)$.
+  Comparing the ranks from \Cref{E2 descriptions}(3) with the ranks from \Cref{E2 descriptions}(1)
+  we see the bound is sharp and obtain the desired conclusion.    
+  % ---------------------
+  % entering (3 0)
+  % (0 2 1) --> (3 0 0)          
+  % ---------------------
+  % entering (4 0)
+  % (0 3 1) --> (3 1 0)          
+  % ---------------------
+  % entering (5 0)
+  % (0 4 1) --> (3 2 0)
+  % (0 4 1) --> (5 0 0)
+  % (2 2 1) --> (5 0 0)
+\end{proof}
+
+% Now we use motivic Cartan--Eilenberg sseq to finish the proof of \Cref{E2 descriptions}.
+
+\begin{proof}[Proof (of \Cref{E2 descriptions}(2,4)).]
+  Using \Cref{cor:no entering} we combine the statements about Cartan--Eilenberg differentials from
+  Lemmas \ref{lem:entering g} and \ref{lem:entering hj3} with our knowledge of the Cartan--Eilenberg $E_2$-page to prove \Cref{E2 descriptions}(2).
+
+  In order to prove \Cref{E2 descriptions}(4) we begin by observing that \Cref{cor:no entering} lets us match up names of classes with names of lifts, so it suffices to determine where each class goes under Betti realization.
+  For $j \geq 6$, in $(a,t-a)$ degrees 
+  $(4, 3 \cdot 2^j - 4)$, $(5, 3 \cdot 2^j - 4)$, $(3, 3 \cdot 2^j - 3)$ and $(4, 3 \cdot 2^j - 3)$
+  the target of Betti realization is a single $\F_2$ so the conclusion is automatic.
+  In $(a,t-a)$ degrees $(6, 3 \cdot 2^j - 4)$, $(7, 3 \cdot 2^j - 4)$ and $(5, 3 \cdot 2^j - 3)$  we can choose our lifts of Cartan--Eilenberg permanent cycles to be the products
+  $h_0^2 \cdot g_{j-2}$, $h_0^3 \cdot g_{j-2}$, $h_0 \cdot h_j^3$, $h_0^2 \cdot h_j^3$ and $h_1 \cdot g_{j-2}$
+  and the compatibility of Betti realization with products lets us conclude.
+\end{proof}
+
+
+% \begin{thm} \label{Ext h03gn}
+% In the classical Adams $E_2$-page, we have
+% $$h_0^3 g_n \neq 0 \in \Ext^{7,*}_A(\F_2, \F_2)$$
+% for $n \geq 3$, where $g_n$ is the generator of $\Ext^{4, 3\cdot 2^{n+2}}_A(\F_2, \F_2) \cong \F_2$.
+% \end{thm}
+
+% It is known that the statement of Theorem~\ref{Ext h03gn} is not true in the cases $n=1, 2$, and
+% is true
+
+% We recall and explain our notations for the Cartan-Eilenberg spectral sequence in Subsection~\ref{sec CESS}. We set up the algebraic Atiyah-Hirzebruch spectral sequence in Subsection~\ref{sec algAHSS}. We are going to consider the element $q_0^3 \cdot g_n$ in the $E_1$-page of the algebraic Atiyah-Hirzebruch spectral sequence for $n \geq 4$.
+
+% \begin{prop} \label{q03gn algAHSS}
+% The element $q_0^3 \cdot g_n$ survives the algebraic Atiyah-Hirzebruch spectral sequence for $n \geq 4$.
+% \end{prop}
+
+% \begin{prop}  \label{q03gn CESS}
+% The element $q_0^3 \cdot g_n$ survives the Cartan-Eilenberg spectral sequence for $n \geq 4$.
+% \end{prop}
+
+% \begin{prop}  \label{q03gn detection}
+% The element $q_0^3 \cdot g_n$ detects the element $h_0^3 g_{n+1}$ in the classical Adams $E_2$-page for $n \geq 4$.
+% \end{prop}
+
+
+%% An immediate consequence of this double up isomorphism is the following well known sparseness property of CESS.
+
+%% \begin{lem} \label{only odd CE diff}
+%% In CESS, the only nonzero groups on the $E_2$-page have the property that $t-k$ is even,
+%% and all even differentials are zero: $d_{2n} = 0$.
+%% \end{lem}
+
+%% \begin{proof}
+%% The first statement is already true at the $E_1$-page of algAHSS from the double up isomorphism. The second statement follows from the first one and that a $d_r$-differential in CESS is of the form $d_r: E_r^{s,k,t} \to E_r^{s+r, k-r+1, t}$. In fact, a $d_r$-differential preserves the $t$-degree, which comes from the $t$-degree of the $q_i$'s plus the $t$-degree of $a$. The latter is always even and the $t$-degree of any $q_i$ is odd. Therefore, between of source and target of a nonzero differential, the differences of the number of $q_i$'s must be even to preserve the $t$-degree. This number of difference is the difference of the $k$-degree, which is $r-1$. Therefore, for nonzero differentials $d_r$, we must have that $r$ is odd.
+%% \end{proof}
+    
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
