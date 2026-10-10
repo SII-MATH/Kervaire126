@@ -12,7 +12,7 @@ classical--synthetic comparisons used in the $h_6^2$ permanent-survival proof.
   \uses{def:adams-hj,def:synthetic-adams-ss,def:adams-detection}
   \lean{KIP126.Kervaire.SyntheticTheta5.Theta,KIP126.Kervaire.SyntheticTheta5.Eta}
   \lean{KIP126.Kervaire.SyntheticTheta5.DetectsTheta,KIP126.Kervaire.SyntheticTheta5.DetectsEta}
-  \notready
+  \leanok
   A synthetic $\theta_5$ is a class in
   $\pi_{62,64}S^{0,0}$ detected by $h_5^2$; the same symbol denotes each of its
   quotient images.  Let $\eta=[h_1]\in\pi_{1,2}S^{0,0}$.  Every use records
@@ -29,7 +29,7 @@ classical--synthetic comparisons used in the $h_6^2$ permanent-survival proof.
   \lean{KIP126.Comparison.ClassicalSynthetic.FirstQuotientHomotopyComparison}
   \lean{KIP126.Comparison.ClassicalSynthetic.sphereFirstQuotientComparison}
   \uses{def:synthetic-context,def:synthetic-sphere,def:classical-adams-ss}
-  \notready
+  \leanok
   A supplied comparison for $\nu S^0$ is specialized to $S^{0,0}$ through the
   same nu unit isomorphism and actual quotient functor. Cofiber functoriality
   is an explicit model condition. This construction does not supply the
@@ -43,7 +43,7 @@ classical--synthetic comparisons used in the $h_6^2$ permanent-survival proof.
   \lean{KIP126.Synthetic.Context.sphereTotalBoundary,KIP126.Kervaire.SyntheticTheta5.deltaH6Square}
   \lean{KIP126.Synthetic.Context.LambdaInjectiveAt}
   \uses{def:actual-sphere-first-quotient,def:synthetic-theta5-choice}
-  \notready
+  \leanok
   The degrees of $\theta_5^2$, $\eta\theta_5^2$, and $\lambda\eta\theta_5^2$
   are $(124,128)$, $(125,130)$, and $(125,129)$.
   Multiplication is the composition product with the specified suspensions;
@@ -67,14 +67,14 @@ classical--synthetic comparisons used in the $h_6^2$ permanent-survival proof.
   Apply covariant Hom exactness to the actual cofiber triangle of
   $\lambda^r_X$. The forward direction supplies the factorization; the
   reverse direction uses the zero composite of consecutive triangle maps.
+  \leanok
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:2181-2204, Proposition prop:possible_h_6_sq, statements (3)-(5).
 \begin{definition}[The three conditions $C_3$, $C_4$, and $C_5$]
   \label{def:near126-conditions}
   \uses{def:synthetic-theta5-choice,def:adams-detection}
-  \lean{KIP126.Kervaire.Near126Conditions}
-  \lean{KIP126.Kervaire.Near126Input}
+  \lean{KIP126.Kervaire.Route.C3,KIP126.Kervaire.Route.C4,KIP126.Kervaire.Route.C4At,KIP126.Kervaire.Route.C5,KIP126.Kervaire.Route.C5At,KIP126.Kervaire.Route.UChoice}
   \notready
   Define:
   \begin{enumerate}
@@ -89,6 +89,11 @@ classical--synthetic comparisons used in the $h_6^2$ permanent-survival proof.
   \end{enumerate}
   Quantified detected representatives and nonzero assertions are fields of the
   propositions, not informal annotations.
+  The linked actual-object predicates retain an $E_6$ representative for
+  $C_3$, nonzero detection for $C_4$ and its chosen $U$ representative, and
+  leading-term detection for $C_5$ without adding a nonzero target premise.
+  These predicates do not assert any of the three conditions or construct
+  the fixed model.
 \end{definition}
 
 \subsection{Coherence on the same fixed sphere}

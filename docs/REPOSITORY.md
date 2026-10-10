@@ -11,11 +11,11 @@ Blueprint 尚未配置远程网站/API 链接。
 
 ## develop 本地进展整合（2026-10-10）
 
-- 合并旧仓本地开发历史与 Kervaire126 更新，保留本地 KIP126 和 KIPBase 证明进展。
-- 恢复 `KIPBase/`、`KIPBase.lean`、专用工具及历史文档；
-  `lake build KIPBase` 显式构建该组件，`kipbaseAudit` 审计目标保留。
-  默认构建和现行 CI 仍只构建 KIP126，两者的数学信任边界保持独立。
-- 保留 `docs/archive/`、`docs/audits/`、`docs/migration/` 和旧工具作为开发历史。
+- 合并旧仓本地开发历史与 Kervaire126 更新，保留本地 KIP126 证明进展。
+- KIPBase 按远程 `develop` 状态处理：移除 `KIPBase/`、`KIPBase.lean`、
+  专用脚本、测试、进展清单及 `docs/migration/kip-base/` 迁移档案；
+  不恢复 `KIPBase` 和 `kipbaseAudit` 构建目标。相关本地进展仍保留在合并前提交中。
+- 保留通用 `docs/archive/`、`docs/audits/`、其余迁移文档和旧工具作为开发历史。
   历史报告、测试与旧仓配置不代表本仓当前 CI 或已完成证明。
 - 采用新仓精简 `ci.yml`，增加 `develop` 推送触发；
   旧仓的 10 个其他工作流原样移至 [archive/workflows/](archive/workflows/)，

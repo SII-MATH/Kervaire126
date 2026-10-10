@@ -9,11 +9,6 @@
   stage-boundary statement, source provenance, proof status, or mathematical
   strength.
 
-## KIPBase agents
-
-If you are performing a Lean code task under `KIPBase/`, read
-[`docs/KIPBASE_AGENTS.md`](docs/KIPBASE_AGENTS.md) first.
-
 ## KIP126 Blueprint synchronization
 
 For a Lean code task under `KIP126/`, read the relevant Blueprint chapter and

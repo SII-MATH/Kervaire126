@@ -9,6 +9,7 @@ foundations established earlier.
 % SOURCE: MainPaper/main.tex:1606-1652, Theorem thm:e73f481e.
 \begin{theorem}[Generalized Leibniz rule]
   \label{thm:generalized-leibniz}
+  \lean{KIP126.Main.Solution.Tools.generalizedLeibniz}
   \uses{prop:delta-ess-formula-infinite,thm:delta-classical-equivalence,prop:classical-crossing-iff-delta-crossing,def:page-extension,prop:page-crossing-iff-synthetic-crossing,cor:fess-square-naturality}
   \lean{KIP126.Kervaire.Route.Tools.GeneralizedLeibnizLaw}
   \notready
@@ -33,7 +34,9 @@ foundations established earlier.
   \end{enumerate}
   Then $d_{r+l-m}(y)=y_\infty$.
   The linked Lean declaration specifies this law for a fixed actual
-  normalized page family; its validity remains to be established.
+  normalized page family. Its independent Main production theorem
+  retains the model-bound synthetic inputs and still has an unfinished
+  proof; defining the law does not establish its validity.
   It does not assert that arbitrary comparison isomorphisms satisfy the law.
 \end{theorem}
 
@@ -115,6 +118,7 @@ foundations established earlier.
 % SOURCE: MainPaper/main.tex:1780-1917, complete hypotheses and degree package for Theorem thm:158d451a.
 \begin{definition}[Hypotheses of the generalized Mahowald rule]
   \label{def:mahowald-input-data}
+  \lean{KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw,KIP126.Kervaire.Route.NormalizedTriangleCompatible}
   \uses{prop:normalized-synthetic-triangle,def:page-extension,def:classical-differential-crossing}
   \notready
   The Mahowald hypotheses specify a distinguished triangle
@@ -140,6 +144,9 @@ foundations established earlier.
   $E_{r'}$.
   The target of the $h$-extension is an actual $E_2(\Sigma X)$
   label; the following comparison relates it to the displayed $X$ label.
+  These hypotheses occur as quantified premises of the Lean law,
+  including the explicit distinguished-triangle compatibility predicate;
+  no independent input record proves or constructs those premises.
 \end{definition}
 
 \begin{definition}[Actual tower suspension comparison]
@@ -147,7 +154,7 @@ foundations established earlier.
   \uses{def:hf2-adams-tower,def:ss-elementwise-page-presentation}
   \lean{KIP126.Classical.Adams.Suspension.TowerComparison}
   \lean{KIP126.Classical.Adams.Suspension.TowerComparison.DesuspendsClass}
-  \notready
+  \leanok
   A suspension comparison identifies every term of the actual Adams tower
   of $\Sigma X$ with the suspension of the corresponding term for $X$,
   is the identity at stage zero, and commutes with all tower maps. Its
@@ -155,9 +162,10 @@ foundations established earlier.
   the connecting maps, including the suspension sign. Two $E_2$ labels
   are related when they have raw second-cycle representatives whose
   actual first-page maps agree after this desuspension and whose quotient
-  classes are the specified labels. Existence and independence of this
-  comparison have not been constructed; an arbitrary $E_2$ equivalence
-  is not a substitute for these diagrams.
+  classes are the specified labels. These comparison and representative
+  predicates are defined in Lean. Constructing an instance and proving
+  independence of the chosen comparison remain separate obligations;
+  an arbitrary $E_2$ equivalence does not supply these diagrams.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:1780-1917, representative choices in the proof of Theorem thm:158d451a.
@@ -284,6 +292,7 @@ foundations established earlier.
 % SOURCE: MainPaper/main.tex:1780-1917, Theorem thm:158d451a.
 \begin{theorem}[Generalized Mahowald trick]
   \label{thm:generalized-mahowald}
+  \lean{KIP126.Main.Solution.Tools.generalizedMahowald}
   \uses{def:mahowald-input-data,def:mahowald-tower-suspension-comparison,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle,lem:mahowald-synchronized-representatives,lem:mahowald-compatible-quotient-lift,lem:mahowald-quotient-lift-survival,lem:mahowald-lambda-division}
   \lean{KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw}
   \notready
@@ -568,6 +577,7 @@ foundations established earlier.
 % project coherent-tower and untruncated comparison obligations below.
 \begin{corollary}[Page-extension stretching]
   \label{cor:page-extension-stretch}
+  \lean{KIP126.Main.Solution.Tools.finitePageExtensionStretching}
   \uses{def:finite-page-extension-stretching-law,lem:page-extension-first-obstruction,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
   \notready
   The normalized family of the chosen synthetic model satisfies the finite
@@ -590,7 +600,8 @@ foundations established earlier.
   surjectivity or finiteness of those representative sets.
 
   The two root predicates now fix the finite candidate list and the
-  finite law, but the law's proof and its model comparison witnesses
+  finite law. The linked independent Main theorem is the finite production
+  target and still has an unfinished proof; its model comparison witnesses
   remain outstanding.  The untruncated comparison is a further proof
   obligation.  The retired free-operations statement expressed none of
   these conclusions.
@@ -691,29 +702,41 @@ foundations established earlier.
   \uses{def:synthetic-adams-ss,def:synthetic-tridegree,def:hf2-adams-tower}
   \lean{KIP126.Synthetic.SpectralSequence.weightShiftObjectIso,KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient,KIP126.Synthetic.SpectralSequence.CanonicalWeightShift,KIP126.Synthetic.SpectralSequence.canonicalWeightShift_exists,KIP126.Def.standardEInftyWeightShift,KIP126.Main.Solution.Literature.eInfty_shift_natural}
   \notready
-  The actual object weight isomorphism and the fixed tower presentation
-  prescribe the map on permanent cycles and its comparison on $E_\infty$.
-  This fixed comparison is natural on all synthetic objects. Main now proves
-  the quotient-descent step: if the two prescribed ambient composites differ
-  by an initial boundary in $B_0$, their canonical permanent-cycle images
-  agree on $E_\infty$. The two private descent lemmas have closed proofs.
-  The remaining local obligation is precisely this ambient compatibility
-  modulo $B_0$; the full naturality theorem and its dependency cone remain
-  unfinished. Neither the construction nor full-category naturality is an
-  independently selected BHS literature input.
+  The actual object weight isomorphism and a specified tower presentation
+  prescribe the map on permanent cycles. The generic existence theorem
+  proves preservation of cycles and boundaries, descends this map and
+  its inverse to $E_\infty$, and verifies their inverse equations.
+  For the fixed standard model, the tower presentation still depends on
+  the unfinished foundational construction.
+
+  Main proves the quotient-descent step: if the two prescribed ambient
+  composites differ by an initial boundary in $B_0$, their canonical
+  permanent-cycle images agree on $E_\infty$. It also derives the forward
+  presentation comparison modulo $B_0$ from its $E_2$ naturality and
+  transports boundaries through the inverse presentation. These private
+  helper proofs are implemented. The remaining local obligation is that
+  the actual Adams maps of the object weight-naturality square agree
+  modulo $B_0$; this requires comparing the chosen tower/cofiber lifts
+  on $E_2$. Full-category naturality of the fixed comparison and its
+  dependency cone remain unfinished. Neither the construction nor
+  full-category naturality is an independently selected BHS literature input.
 \end{theorem}
 
 \begin{theorem}[BR21 in the chosen tmf coordinates]
   \label{thm:main-tmf-br21-coordinate-differential}
   \uses{thm:literature-br21,def:tmf-csv-coordinate-binding,def:hf2-adams-tower,thm:computation-bindings-tmf-v2Sixteen,thm:computation-bindings-tmf-betaGFour,thm:computation-tmfMultiplicative}
   \lean{KIP126.Main.Solution.Computation.tmf_br21_d3}
+  \lean{KIP126.Classical.Adams.adamsInternalE2Induced_hasDifferential}
   \notready
   Transport the BR21 differential
   $d_3(w_2^2)=\beta g^4$ through its actual detector comparison and use
   its computation coordinates and the proved relation
   $\beta g^4=\beta^5g$. The resulting equation is
   $d_3(v_2^{16})=\beta^5g$ in bidegrees
-  $(16,112)\to(19,114)$. The transport proof is implemented and uses the
-  existing unfinished generic Adams tower naturality theorem. It is not
-  an additional computation input or a completed proof claim.
+  $(16,112)\to(19,114)$. The transport proof and the generic Adams
+  differential-naturality theorem are implemented. The fixed standard
+  foundation on which this theorem is stated still carries unfinished
+  construction dependencies, so the complete fixed-model result remains
+  open. It is derived from the same Challenge2 delivery and adds no
+  independent computation input.
 \end{theorem}

@@ -15,7 +15,6 @@
 - `KIP126/Main/`：论文推导及最终目标。
 - `KIP126/LinProgram/`：固定计算输入、翻译、生成数据、解释和局部证书。
 - `KIP126/Mathlib/`：Mathlib 适配；`KIP126/Checks/`：Lean 回归与边界检查。
-- `KIPBase/`：保留本地证明进展的独立历史组件，与 KIP126 使用相同工具链。
 - `blueprint/src/`：当前数学计划、声明链接、依赖与证明状态。
 - `MainPaper/`：目标论文；`Source/`：外部来源及获取记录。
 - `docs/external-inputs.json`：唯一来源与输入清单。
@@ -37,16 +36,9 @@ lake build KIP126
 bash scripts/check.sh
 ```
 
-默认 `lake build` 和 CI 构建 KIP126。保留的 KIPBase 组件需单独构建：
-
-```sh
-lake build KIPBase
-```
-
-其既有假设与审计边界独立于 KIP126，不计为论文证明完成；
-组件用法和迁移来源见 [KIPBase/README.md](KIPBase/README.md) 与
-[docs/migration/kip-base/README.md](docs/migration/kip-base/README.md)。
-历史报告及旧工具继续保留，旧工作流归档后不在新仓运行。
+默认 `lake build` 和 CI 构建 KIP126。KIPBase 的目录、构建目标及专用工具
+与远程仓库保持一致，不再纳入当前源码树；本地历史提交仍保留其原有进展。
+通用历史报告及旧工具继续保留，旧工作流归档后不在新仓运行。
 
 原始数据库和 CSV 使用 Git LFS，约 618 MiB。普通 Git 文件中的指针不能代替原始输入；
 生成 Lean 数据保留在仓库中，重新翻译原始输入需要实际 LFS 文件。

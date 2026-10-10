@@ -46,8 +46,8 @@ Lean 任务设置 `LEAN_NUM_THREADS=1`，以降低大规模生成证书的并行
 旧仓库的自动合并、合并队列协调、外部审查派发、状态标签、旧迁移检查和
 专用性能工作流归档于 `docs/archive/workflows/`，不在本仓执行。相关 Python 测试
 保留作历史参考，不纳入当前检查入口；它们仍假设旧工作流位于原路径。
-保留全部数学 Lean 回归模块。KIPBase 为独立可选组件，使用 `lake build KIPBase`
-单独验证，不纳入 KIP126 的 CI 构建或数学信任边界。
+保留全部 KIP126 数学 Lean 回归模块。KIPBase 及其专用迁移测试、审计工具
+按远程状态移除，不属于当前源码树或 CI 构建目标。
 
 本地运行 `bash scripts/check.sh`，再运行 `lake build KIP126` 和
 `bash scripts/check-blueprint-decls.sh`。Blueprint 依赖需先按 README 安装。
