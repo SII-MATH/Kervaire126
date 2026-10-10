@@ -1,5 +1,10 @@
 # 仓库起点与核对清单
 
+当前 Lin 证书工作的模块归属见
+[任务归属与继续开发入口](../KIP126/LinProgram/README.md#任务归属与继续开发入口)。
+该入口区分已有文件与规划位置，并将 Blueprint 中 P 的六步构造对应到实现层。
+本文件下文保留仓库迁移历史，历史文件数量不作为当前目录说明。
+
 Kervaire126 从旧仓库 `SII-MATH/KIP126` 的 main 提取，起点提交：
 `9d2601af4529ebcdd353ccc01fe09e0a463ed25a`（PR #157 的合并结果）。
 旧仓库与 Git 历史保留；新仓库采用独立初始提交。Lean 包及公共命名空间保持 `KIP126`。
@@ -14,7 +19,7 @@ Blueprint 尚未配置远程网站/API 链接。
 `Lin-program/` 保持独立。主线原来从该目录使用的 20 个证书模块及其完整
 依赖闭包，已复制到 `KIP126/LinProgram/Certificates/` 和 `Tactic/`，由 KIP126
 维护。根 Lake 配置不再注册该独立目录；四处主线导入改为 KIP126 模块路径。
-原始研究目录保持不变，未增加共享包，也未将其余实验和生成批次纳入主线。
+原始研究 Lean 源码保持不变，仅在其 README 增加主线导航；未增加共享包，也未将其余实验和生成批次纳入主线。
 
 来源提交、目录对应及职责见
 [LinProgram README](../KIP126/LinProgram/README.md#independence-from-the-research-attempt)。

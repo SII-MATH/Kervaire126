@@ -25,6 +25,9 @@
 输入浏览视图见 [docs/challenge-input-inventory.html](docs/challenge-input-inventory.html)。
 开发约束见 [AGENTS.md](AGENTS.md)。
 
+Lin 证书任务从[任务归属与继续开发入口](KIP126/LinProgram/README.md#任务归属与继续开发入口)开始：
+这里对应原生证书、P 的六步构造、实际自然性认证、分支规则和消费者迁移各自的代码位置。
+
 ## 构建与检查
 
 安装 Elan、Git LFS 与 Python 3.10 或以上，从仓库根目录运行：
