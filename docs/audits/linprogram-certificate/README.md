@@ -9,7 +9,8 @@
 
 本记录按用户明确要求的依赖顺序推进。所引用 Page 的 P0–P7 正文尚未能从当前会话读取，已请求正文；以下里程碑不是对未读取的分期验收条款的复述。旧 issue152 工作以现有模块复用，本次新增结果分别核验。
 
-迁移前最新状态见文末“分支迁移交接（2026-10-10）”；前文批次进度为历史记录。
+迁移交接见“分支迁移交接（2026-10-10）”及后续新仓库整合记录；前文批次进度为历史记录。
+原生日志可重放性与 C++ 输出改造建议见文末“proofs.db 的证书输出缺口与 C++ 改造入口”。
 
 ## 固定原生输入与 statement 合同
 
@@ -810,3 +811,337 @@ lake env lean /tmp/LinKervaireMigrationInputs.lean
 leanblueprint web
 lake exe checkdecls blueprint/lean_decls
 ```
+
+## proofs.db 的证书输出缺口与 C++ 改造入口（2026-10-10）
+
+本次只读核对固定 `v126.3.cw49` 数据与源码，不修改 C++、原始数据库或认证状态。
+[结构化证据](proofs-db-trace-audit.json) 保存数据库/源码归档摘要、七个源码成员摘要、
+实际 schema、聚合计数及选定原始行；源码位置以下均相对 `Source/LWXMachine/source-code.zip`
+内的 `SSeqCpp-master/`。已展开的五个 ss 源文件与归档逐字节一致。
+这不是对全部推理规则的逐项正确性审计，也不表示需要保存 C++ 的每个执行细节。
+
+### 已确认的缺口
+
+固定数据库有 2,672,275 行，实际只有 `log` 表。源码虽有 `exclusions` 表创建逻辑，
+此发布快照不含该表；不能据此推断发布前为什么没有保留它。
+深层记录仅有 D 63 行、T 2,076,999 行和 TI 21,357 行。
+根层 D 97,527 行的 `info` 全为 NULL；根层 N 263,264 行的 `info` 均非 NULL，
+但自然性写入点只传递映射名，不能把非空 info 当作完整证明。
+
+| 缺口 | 已核对的 C++ 位置与现象 | 建议新增的可检查输出 |
+| --- | --- | --- |
+| 明确的推理依赖 | `ss/mylog.h:53` 的 schema 无 premise 边；`ss/category.cpp:370,441` 的 N 行只写目标和 map name | 稳定 event ID、完整 rule tag、前提 event ID、源对象/次数/坐标、映射 ID 和偏移、两端映射见证；来源可能是初始状态事实，不强行要求它一定有旧 log 行号。 |
+| 完整分支上下文 | `ss/mylog.cpp:150,181` 在 depth>0 过滤规则；`ss/deduce.cpp:332-386` 回退未矛盾试探并删除日志 | append-only 分支事件，显式 parent、assumption、contradiction 与 discharge；状态回退不删除被引用证据。MAX(log.id) 不能充当持久 proof-event ID。 |
+| 候选覆盖与排除依据 | `ss/deduce.cpp:390-501` 从当时 staircase 的 `nd.first/count` 枚举，跳过缓存 exclusions，结论写空 proof | 候选空间的基、状态版本、覆盖所依赖事实、各候选/族的排除证明引用和剩余结果；可压缩表示，不必展开指数规模列表。Lean 仍须证明候选范围完备。 |
+| 代数约简见证 | `ss/ss.cpp:923-967` 调用 Reduce/Residue 后写结果和可选文字；`src/groebner.cpp:598`、`src/linalg.cpp:46` 的这些入口返回结果而不返回见证 | 多项式/模约简的关系编号与乘数，线性消元的行组合；若使用派生关系，需链接其证明或展开到固定原始关系。现有验证器可以复用。 |
+| 非边界及页状态依据 | `ss/ss.cpp:385-406,1243-1257` 用当前状态约简、IsPossTgt/NextRSrc 后报告 not in B | 初始状态及可重放更新，相关页与次数的矩阵/阶梯、状态行来源、所有可能来向的排除依据。单纯非零余项不能证明实际非边界。 |
+| 初始事实的来源 | `ss/mylog.h:13-40` 包含 manual/migrate/d2，且普通 D 与余纤维 D 共用短标签 | 独立的完整规则枚举及显式根前提；文献根链接既有来源清单，计算种子链接分解/secondary 证书，迁移根链接原运行证明。未认证根保持假设。 |
+
+非边界的线性代数证书可以用消元或分离泛函实现。例如若有矩阵 B 和泛函 λ，
+满足 λB=0、λz=1，可证明 z 不在列张成空间中；要进一步得到实际 `¬IsBoundaryBy`，
+仍须证明所需实际边界都包含在该列空间中。只导出部分已知边界不足以完成这一点。
+同样，候选列表被逐个枚举不等于列表覆盖所有实际可能值。
+
+### 三条已固定目标说明了什么
+
+- 152097 的文字给出了“Leibniz 得到零源微分，但目标不在 B₃”的路线；152098
+  的最终 D 行没有写候选覆盖或父证明。两个商代数乘积已可独立恢复并在 Lean 证明，
+  因而不是每一项都必须重跑 C++。缺少的是结构化分支/状态依据以及实际规则前提。
+- 245131 只写 `Ceta__S0`；245130 是可核对的相邻来源候选。245129 的错误文字
+  又涉及来源上的 Leibniz 冲突。应记录真实依赖边，不能仅以相邻行确立证明关系。
+- 462479→462480→462481 的原生映射端点、局部上下文已经由现有提取器恢复；
+  本次不把它们重新列为“没有数据”。仍缺来源分支完整认证，以及原生映射和实际映射的比较。
+
+### 建议的第一版输出合同
+
+在单独的开发副本中增加可选证书模式，向新的 `certificates.db` 或 NDJSON sidecar 输出，
+保留旧 proofs.db 的日志行为及固定发布输入。结构化事件不受原有 depth 日志过滤控制，
+且数据库 rollback 不能删除证据；可用独立事务/文件配合缓存，避免回退和开销问题。
+
+最小事件合同建议包含：`schema_version`、`run_id`、不可复用的 `event_id`、
+`rule`、`context_id`、`premises`、类型明确的 `conclusion`、`witness_refs`、
+`state_before/state_after`。运行头记录源码/配置/输入哈希、坐标约定和初始假设。
+结论字段显式区分未知、零、方向、页数和次数；rule 区分当前短码合并掉的情况。
+见证表按内容寻址复用矩阵和多项式，避免每条事件复制完整状态。
+
+先实现自然性规则和代数约简的结构化输出，再实现完整 trial 排除与状态证书：
+
+1. 从确定输入运行小型自然性算例，Lean 只读证书包即可核对源事件、映射及端点，
+   不通过相邻行或最终 staircase 推断依赖。语义前提仍显式列出。
+2. 用 152097/152098 的目标尝试分支重放，补齐该上下文的覆盖、排除和状态依据。
+   历史行号在新运行中不要求一致，应以对象、页、次数和坐标固定同一目标。
+3. 检查证书模式开关不改变计算结果；篡改前提 ID、遗漏候选覆盖、错用分支事实、
+   删除关系组合或非边界依据均应使 Lean 检查失败。成功回退分支的记录不能泄漏为根事实。
+
+上述输出只能提供可验证见证。一般规则 soundness、原生分解正确性、P、实际映射识别
+及高页乘法相容性仍由 Lean 证明；不把新增字段直接当作公理或 Challenge2 的新假设。
+本次未实现证书模式，也未重跑发布计算；该设计是后续 C++ 改造的具体起点。
+
+## 245131 两个原生映射端点的可重放证书（2026-10-10）
+
+本次固定目标仍是 `Ceta__S0` 的两端坐标映射：
+`(2,19)[0] → (2,17)[0]` 与 `(5,21)[0] → (5,19)[0]`。
+这里写的是 `(s,t)` 双次数。未修改发布数据库、固定球面 presentation、
+literature 或实际模型，未把 245130 与 245131 相邻当作历史依赖边。
+
+### 已闭合的部分
+
+`KIP126/LinProgram/Translate/replay-naturality-map.py` 从现有 manifest/LFS
+入口认证五项输入，复用 `native-contract.py` 提取真实基底切片、生成元映射和次数，
+输出 `Generated/Naturality/Row245131Map.json` 及同名 Lean 输入。
+JSON 可以单独提交给转译器；转译前与固定输入重建的完整记录比较，包含状态及剩余前提。
+本版本只支持选定的两个单项式目标，拒绝不支持的输入，不把缺值补成零。
+
+| 用途 | Ceta 原始行、单项式、repr | 球面原始行、单项式、repr |
+| --- | --- | --- |
+| 微分源的映射 | 69：`7,1,1`，1048587 | 39：`0,1,7,1`，1048583 |
+| 微分目标的映射 | 80：`8,1,1`，2621447 | 46：`0,1,8,1`，2621443 |
+
+完整原生图中 `v₁ ↦ x₀`；两个源表达式是 `x₇v₁`、`x₈v₁`。
+`Certificates/Naturality/MapCertificate.lean` 定义证书、严格格式/次数检查和
+`check_sound`，复用既有多项式证书正确性与原生模块求值定理。
+`Certificates/Naturality/Row245131Map.lean` 中以下声明已闭合，前缀均为
+`KIP126.LinModule.Naturality245131`：
+
+- `generator_one_image`：完整固定图的第 1 项确实解释为球面 `x₀`。
+- `source_evaluate`、`target_evaluate`：两条自由模块表达式求值等于原有的球面坐标元素。
+- `source_sphere_row_mem`、`target_sphere_row_mem`：目标记录属于已有完整球面目录。
+- `source_desc`、`target_desc`：若全部 76569 条原始 Ceta 关系在同一个完整图下为零，
+  则完整商模块上的诱导映射满足上述两条等式。这两个定理保留该前提。
+
+两份具体证书的关系见证都是空列表：等式已经是形式代入后的多项式等式。
+这不表示完整 Ceta 商映射的关系前提已消去。Ceta 两条原始基底行由提取器核对、
+在 Lean 中固定转录；未新增整张 Ceta 表的 Lean 基底定理或成员性认证。
+
+### 重放与检查
+
+在仓库根目录、恢复已登记的 LFS 实体后运行：
+
+```sh
+python3 -B KIP126/LinProgram/Translate/replay-naturality-map.py --check
+python3 -B KIP126/LinProgram/Translate/replay-naturality-map.py \
+  --certificate KIP126/LinProgram/Generated/Naturality/Row245131Map.json \
+  --output-dir /tmp/lin-naturality245131-replay
+lake build KIP126.Checks.AdamsE2.LinNaturalityMap245131
+lake build +KIP126:olean
+python3 -B scripts/check_source_inventory.py
+python3 -B scripts/check_external_inputs.py --lean-check /tmp/LinNaturality245131Inputs.lean
+lake env lean /tmp/LinNaturality245131Inputs.lean
+python3 -B scripts/blueprint_frontier.py --output-dir /tmp/lin-naturality-frontier
+leanblueprint web
+lake exe checkdecls blueprint/lean_decls
+```
+
+已通过两份输入重建、JSON→Lean 逐字重放、11 项 Lean 篡改拒绝及公理审计。
+两条求值及两条条件下降定理只依赖 `propext`、`Classical.choice`、`Quot.sound`，
+检查同时禁止证书导入 Interface/Main。另验证修改行号、局部坐标、映射值、偏移、
+历史依赖状态、剩余前提或实际认证状态会使 JSON 重建校验失败。
+
+本轮完整库入口构建通过（5012 jobs）；102 项 stage boundary、external inputs、
+source inventory 和 Blueprint 测试通过。来源清单、外部接口的静态及 Lean 核验、
+Blueprint 网页、活动标签/依赖无环检查、全部 Lean 声明链接和差异格式检查均通过。
+Blueprint 使用既有 leanblueprint 0.0.20 环境；新声明已从 `KIP126.lean` 导出。
+这些检查不改变上述实际认证边界。
+
+### 实际比较仍需证明什么
+
+原始 map 数据库只有生成元像，没有链映射 `Q`。
+四个 `repr` 的编码由固定源码 `Adams/main.h` 给出：`id = (s << 19) | v`。
+但对应到同一个实际 cofiber、同一个 `P` 的余链代表元，仍是数学比较任务；
+重新算出相同编号不能代替该比较。
+
+Blueprint 的 `prop:lin-naturality-map-comparison-245131` 记录直接余链路线：
+为实际 `q : Ceta → Σ²S0` 的逆变上同调映射构造
+`Q : R(Σ²S0) → R(Ceta)`，在两个次数逐项证明映射后代表元与目标代表元
+相差一个明确的 coboundary。该路线不用先完成全部 Ceta 商关系，
+但需要真实分解、正合性与次数覆盖、Ceta Steenrod 模块和初始映射的实际识别、
+以及和既有 `P`、两次指定悬移相容的比较。有限截断之外不能默认微分为零。
+
+若改用 `v₁ ↦ x₀` 和模块乘积推导，则还需证明实际模块乘法的比较与映射相容性。
+原有 `SourceEquation` 已包含第三页代表元；不另加一个更强的独立存活前提。
+实际来源微分、历史依赖边及固定模型未完成的基础仍未由本证书解决。
+因此本节交付的是原生表达式证书，`actual_certification` 保持 `false`。
+
+### 补算得到的链级见证候选
+
+本轮还完成了低次数链数据恢复，详见
+[补算审计](naturality245131-chain-reconstruction.json)。这是新的本地研究计算记录，
+当时尚未作为正式 Lean 输入登记；下节批量试验已固定并登记这些新快照，
+保留原始发布数据不变。本节原有两条闭合定理不读取新链数据。
+
+从已登记 Zenodo 元数据所指的 `programs.rar` 提取官方 `Adams.json`，
+先核对 4180266 字节及 MD5 `554d12d6dc6aa61b94a7b9fe85c73f04`。
+配置指定 Ceta 的胞腔 `[0,2]`、操作 `[[0,2]]`，映射 `Ceta__S0`
+为 `from=Ceta,to=S0,images=[2],sus=2`。这仍需与实际 η 余纤维作数学比较。
+使用与固定源码核对过的现有 Release 二进制，在全新临时目录复制已登记球面分解实体，
+运行：
+
+```sh
+Adams res Ceta 21
+Adams map_res Ceta S0 21
+Adams verify_map Ceta S0
+```
+
+球面分解必须按 canonical manifest 核对实际 SQLite 字节，不能复制 LFS 指针；
+审计中记录通用实体定位方法、源码构建入口、下载 URL、输入及输出摘要。
+本机 Ceta 分解耗时约 0.032 秒，链映射约 1.015 秒；保留全部所需同调次数，
+共 Ceta 84 个生成元、球面 48 个生成元，分别覆盖内部次数 21、19。
+
+原 `verify_map` 对新数据库缺失的 `version` 验证状态处理有异常类型不匹配的问题，
+首次执行退出 -6。在**临时数据库**中执行如下元数据初始化后，完整复验通过到 21；
+没有改动链映射数学表或 C++ 源码：
+
+```sql
+insert into version (id,name,value) values (1121750147,'verified',-1);
+```
+
+读取所有相关次数的球面列，增广后的链映射像为：
+
+| 球面分解编号 | Ceta 增广后局部编号 | 对应用途 |
+| --- | --- | --- |
+| 524288 | 1 | `v₁ ↦ x₀` 的候选余链等式 |
+| 1048583 | 11 | 第一条原生坐标映射 |
+| 2621443 | 7 | 第二条原生坐标映射 |
+
+每个选定球面次数仅一列，因而没有遗漏同次数的额外分量。这里表的方向是
+`R(S0) → R(Ceta)`；取对偶预合成后才得到 Ceta→球面的 Ext 映射。
+另外独立解码全部 48 条映射，核对 BLOB 的标量项与 `map_h` 一致；
+范围内分解微分的所有系数都有正 Steenrod 次数，次数及引用行覆盖检查通过。
+在这个原生 Hom 模型中，候选余链等式已相等，可以取边界见证 `h₁=h₂=0`。
+
+上述初次恢复得到的是 Python/C++ 检查结果。下节批量试验进一步在 Lean 中
+认证有限增广余链算子；完整 Steenrod 链方程仍待认证，之后还需完成 Blueprint
+中的分解正确性、原生代表元识别、
+实际 topCell 和同一个 P 的比较。`dQ=Qd` 以及原生 Hom 微分为零，均不证明正合性。
+
+## 82 条自然性映射证书的批量试验（2026-10-10）
+
+固定首批目标为原始 Ceta 基底表中 **所有 `2 ≤ t ≤ 21` 的 82 条记录**，
+保留该范围内全部 `s` 与局部坐标。原有 245131 两个端点包含在本批中。
+没有改变完整原生图、原始商代数/模块、既有公开陈述、literature 或实际模型。
+
+### 从固定输入重建整批
+
+入口为 `KIP126/LinProgram/Translate/replay-naturality-batch.py`。
+它从固定基底和生成元映射表逐条计算目标，并搜索原始关系的单项式倍数见证，
+而非为那条需要约简的目标硬编码输出。结果是 36 条直接单项坐标、45 条空目标列表，
+以及 1 条关系约简；每条原始 ID、双次数、局部坐标、表达式、关系见证及处理状态
+保存在 `Generated/Naturality/Batch21.json`。
+
+关系约简发生在 Ceta 第 43 行 `(3,14)` 的 `2,2,2`。
+原生图把末尾模生成元 2 送到球面 `x₂`，于是得到 `x₂³`。
+固定数据库关系 rowid 7、原始关系 CSV 第 8 行是 `2,3;1,2,3,1`，
+即 `x₂³ + x₁²x₃ = 0`，目标为球面第 25 行 `(3,12)[0]`。
+其余直接求值不使用关系。37 个单项坐标不构成这些商类非零的证明。
+
+新链输入是上一节已补算的两个 SQLite 快照，现保存于
+`Raw/Naturality/Batch21/` 并登记在 `docs/external-inputs.json`；
+球面分解继续复用已登记的 `Raw/Secondary/Seed5487/S0_Adams_res.db`。
+官方配置保存在 `Source/LWXMachine/Adams.json`，记录官方归档的提取定位。
+另将既有、未改动的 `Raw/manifest.json` 自身的哈希登记到唯一来源清单，
+使旧发布输入的哈希索引也可从该清单认证；旧 payload 和旧 pins 均未修改。
+数据库继续使用 Git LFS，缺失实体不能按指针内容计算。
+
+`Generated/Naturality/CochainBatch21.json` 保存完整所用的 84 个 Ceta、
+48 个球面分解生成元、362/162 个微分项和 48 列共 249 个映射项。
+转换器逐项验证引用完整性、次数、原始 `map_h` 与 BLOB 增广一致，
+并用独立 Milnor 乘法计算检查有限范围内的 `d²=0` 和 `dQ=Qd`。
+这些完整 Steenrod 等式目前仍是 Python 检查结果。
+原始表与新链数据的所有 `repr` 及次数匹配也逐项核对；编号相等不代替数学比较。
+
+### Lean 实际证明了什么
+
+`Certificates/Naturality/BatchMapCertificate.lean` 复用原生图和已有多项式
+证书正确性定理，支持明确的零、目标基底值之和以及关系组合见证。
+旧 `MapCertificate` 的单项式合同保持不变。
+`Certificates/Naturality/Batch21.lean` 的 namespace 是
+`KIP126.LinModule.NaturalityBatch21`：
+
+- `relation_mem`、`relations_zero` 从完整原始关系表证明唯一使用的关系为零。
+- `entry_evaluate` 对每个 `e ∈ entries` 给出闭合的原生自由表达式求值等式。
+- `zero_evaluate` 把 45 条空目标列表解释为球面数据商中的零。
+- `target_row_mem` 将所有输出坐标绑定到完整原始球面目录。
+- `entry_desc` 保留全部 76569 条 Ceta 关系消失的原前提，才得到完整商映射上的等式。
+
+`Certificates/Naturality/CochainMapCertificate.lean` 证明通用有限矩阵检查的
+正确性，并证明其对偶作用确实是线性泛函的预合成。
+`Certificates/Naturality/CochainBatch21.lean` 的 namespace 是
+`KIP126.LinModule.NaturalityCochainBatch21`：
+
+- `entry_precomposition`、`entry_pullback` 对全部 `Fin 82` 的请求、全部 48 列
+  给出同一个增广映射的对偶等式。结果为 45 个零向量、37 个标准基向量。
+- `sphere_cochain_differential_zero`、`ceta_cochain_differential_zero` 证明正次数
+  系数增广后为零，从而两个指定有限族上的整个余链算子为零。
+- `entries_cover` 证明这 82 个请求覆盖 84 个 Ceta 记录中所有 `t ≥ 2` 的项；
+  两个低次数记录仍保留在数据族中，没有把缺失记录当作实际零空间。
+- `sphere_differentials_graded`、`ceta_differentials_graded`、`map_columns_graded`
+  检查全部项的双次数；链映射保持 `s`，将内部次数提高 2，对偶方向相反。
+
+两组结果的数学联系仍须独立证明：原生单项式在实际/原生上同调中表示哪些余链类，
+不能仅由这两种计算的坐标一致得出。Lean 此处认证的是译出数据的代数等式；
+SQLite BLOB 到指数项的保真由固定输入哈希与确定性转换核对，尚无 Lean 解码正确性定理。
+
+### 重放入口
+
+在 checkout 根目录恢复登记的 LFS 实体后：
+
+```sh
+python3 -B KIP126/LinProgram/Translate/replay-naturality-batch.py --check
+python3 -B KIP126/LinProgram/Translate/replay-naturality-batch.py \
+  --certificate KIP126/LinProgram/Generated/Naturality/Batch21.json \
+  --output-dir /tmp/lin-naturality-batch21-replay
+python3 -B KIP126/LinProgram/Translate/replay-naturality-batch.py \
+  --certificate KIP126/LinProgram/Generated/Naturality/CochainBatch21.json --check
+python3 -B KIP126/LinProgram/Translate/test-replay-naturality-batch.py
+lake build KIP126.Checks.AdamsE2.LinNaturalityBatch21
+lake build KIP126.Checks.AdamsE2.LinNaturalityCochainBatch21
+lake build +KIP126:olean
+python3 -B scripts/check_source_inventory.py
+python3 -B scripts/check_external_inputs.py --lean-check /tmp/LinNaturalityBatch21Inputs.lean
+lake env lean /tmp/LinNaturalityBatch21Inputs.lean
+python3 -B scripts/blueprint_frontier.py --output-dir /tmp/lin-batch21-frontier
+leanblueprint web
+lake exe checkdecls blueprint/lean_decls
+git diff --check
+```
+
+`--certificate` 也接受完整选定原始 ID 列表；丢项、重排、修改状态或前提不能被默默接受。
+遇到当前格式不能给见证的约简会报错，不把未知结果补为零。
+未来扩大范围需要固定新输入，再共享这些通用定理，不要求为每个条目重写数学规则。
+
+### 保留的证明责任
+
+本批的 `actual_certification` 保持 `false`。尚需在 Lean 中认证完整 Steenrod
+链方程、分解的正合性或与真实分解的比较、原生单项式与余链代表元的对应，
+以及同一个实际 η 余纤维、顶胞腔映射、既有 `P` 和两次悬移的相容性。
+实际来源微分和历史推导边也没有因为批处理而解决。
+这些义务记在原有 Blueprint 构造路线，不成为新的 Challenge2 字段或公理。
+因此本批是 82 条原生映射证书，不是 82 条实际 Adams 微分证明。
+
+### 本批检查结果
+
+原生词证书与有限余链证书的 Lean 检查模块均通过；公理审计只出现
+`propext`、`Classical.choice`、`Quot.sound`，没有新增 `sorryAx` 或项目公理。
+完整主库构建、Blueprint 网页及声明链接检查、来源/接口检查均通过。
+固定生成物重放一致，`--certificate` 的两种 JSON 均可独立重放；
+旧两端点证书重放也通过。仓库规定 `scripts/check.sh` 的 103 项测试、
+两组各 7 项测试及本批新增 10 项导出测试全部通过。
+
+额外执行的全目录 `unittest discover` 不是仓库规定入口：270 项中有
+1 failure、84 errors。逐项核对发现 83 个 errors 和唯一 failure 来自
+HEAD 已缺失的旧 CI/配置文件、已更换的 CI 步骤和路径过滤要求；
+另 1 个是沙箱限制临时目录切换所有者，单独升级权限重跑通过。
+相关旧测试、CI 和脚本与 HEAD 内容完全一致，本批没有修改这些文件。
+因此记录规定检查通过，不声称全目录历史测试全部通过。
+
+在本机已有依赖缓存的情况下，批量词证书及其检查模块重新构建共
+45.34 秒，峰值 RSS 3,466,916 KiB（约 3.31 GiB）；其中具体证明模块
+约 35 秒，检查模块约 8.3 秒。有限余链具体证明模块约 10 秒，
+检查模块约 2.8 秒；这些数字不包括从零构建 Mathlib 和历史输入证书。
+固定输入到四个 JSON/Lean 生成物的单次重放约 1 秒。
+
+试验中发现逐条核验大 CSV 字符串会重复展开长表；改为一次核验原始完整
+chunk 的展开字符见证，再把目录成员结论共享给 37 个目标行。
+见证由现有 tactic 的同类方法生成，原始 chunk 等式仍由 Lean kernel
+检查；未将字符串哈希相同或 Python 检查成功当作该等式的证明。
+这解决了本批的重复核查成本，尚不据此推断更高次数批次的线性耗时。

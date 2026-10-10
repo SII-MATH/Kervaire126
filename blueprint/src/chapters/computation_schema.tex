@@ -735,6 +735,177 @@ comparison dependencies are discharged, the result remains conditional.
   The proofs have only standard logical axioms.
 \end{proof}
 
+\begin{lemma}[Checked native map words for record 245131]
+  \label{lem:lin-naturality-native-map-words}
+  \lean{KIP126.LinModule.NaturalityMapCertificate.check,KIP126.LinModule.NaturalityMapCertificate.check_sound,KIP126.LinModule.NaturalityMapCertificate.check_sound_desc}
+  \lean{KIP126.LinModule.Naturality245131.generator_one_image}
+  \lean{KIP126.LinModule.Naturality245131.source_check,KIP126.LinModule.Naturality245131.target_check,KIP126.LinModule.Naturality245131.source_evaluate,KIP126.LinModule.Naturality245131.target_evaluate,KIP126.LinModule.Naturality245131.source_desc,KIP126.LinModule.Naturality245131.target_desc}
+  \lean{KIP126.LinModule.Naturality245131.source_module_row,KIP126.LinModule.Naturality245131.target_module_row,KIP126.LinModule.Naturality245131.source_sphere_row_mem,KIP126.LinModule.Naturality245131.target_sphere_row_mem}
+  \uses{lem:lin-naturality-native-coordinates,def:lin-native-complete-map-graphs,prop:lin-native-module-map-descent,prop:lin-native-ceta-map-grading}
+  \leanok
+  Let $g$ be the formal generator assignment from the complete fixed
+  Ceta-to-sphere graph. The graph records $g(v_1)=x_0$.
+  The two certificate inputs specify Ceta basis records 69 and 80,
+  with words $x_7v_1$ in $(2,19)$ and $x_8v_1$ in $(5,21)$.
+  Their evaluations under $g$ equal the fixed sphere classes
+  $x_0x_7$ in $(2,17)$ and $x_0x_8$ in $(5,19)$, respectively.
+  Both target classes have the original coordinate $[0]$.
+
+  These are unconditional equalities of free-word evaluations in the
+  unchanged sphere quotient. If evaluation of every one of the original
+  76569 Ceta relations vanishes, the same equations hold for the unique
+  map out of the complete Ceta quotient. That premise has not been
+  discharged. No map from a smaller replacement quotient is asserted.
+  The exporter checks the source row IDs and local indices against the
+  authenticated database; the kernel checks the evaluation and the target
+  sphere catalogue membership. No Ceta basis completeness or actual
+  spectrum-map identification follows from the transcription.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Substitute the complete graph's generator images in each native word.
+  The finite checker verifies degrees and polynomial equality with an
+  empty relation witness, so the result holds already before imposing
+  sphere relations. Its proved soundness transports the equality into
+  the existing sphere quotient. Use the complete module descent theorem
+  only with its full original relation premise explicitly present.
+\end{proof}
+
+\begin{definition}[Fixed finite data for the low-degree native batch]
+  \label{def:lin-naturality-batch21-data}
+  \lean{KIP126.LinModule.BatchMapCertificate.Entry,KIP126.LinModule.RawData.NaturalityBatch21.entries,KIP126.LinModule.RawData.NaturalityBatch21.relationCodes}
+  \lean{KIP126.LinModule.CochainMapCertificate.GeneratorRecord,KIP126.LinModule.CochainMapCertificate.Term,KIP126.LinModule.CochainMapCertificate.Entry,KIP126.LinModule.RawData.NaturalityCochainBatch21.sphereGenerators,KIP126.LinModule.RawData.NaturalityCochainBatch21.cetaGenerators,KIP126.LinModule.RawData.NaturalityCochainBatch21.mapColumns}
+  \uses{def:lin-native-complete-map-graphs}
+  \leanok
+  Fix the original word records in the selected internal-degree window,
+  a list of polynomial relation witnesses, and a separately reconstructed
+  finite family of decoded Milnor terms. Source and target identifiers,
+  local basis indices and resolution-family indices retain distinct roles;
+  resolution-family indices have explicit finite bounds. An empty target list represents zero, while a missing
+  input row or an unknown image is rejected by translation.
+  These definitions specify finite data and do not assert that either
+  family is an actual resolution or mathematical basis. The canonical
+  source manifest pins the original input index, official configuration
+  and the new reconstructed database snapshots separately.
+\end{definition}
+
+\begin{lemma}[Batch word certificates in the fixed low-degree window]
+  \label{lem:lin-naturality-batch21-words}
+  \lean{KIP126.LinModule.BatchMapCertificate.check,KIP126.LinModule.BatchMapCertificate.check_sound,KIP126.LinModule.BatchMapCertificate.check_sound_desc}
+  \lean{KIP126.LinModule.NaturalityBatch21.relation_mem,KIP126.LinModule.NaturalityBatch21.relations_zero,KIP126.LinModule.NaturalityBatch21.all_checks,KIP126.LinModule.NaturalityBatch21.entry_evaluate,KIP126.LinModule.NaturalityBatch21.zero_evaluate,KIP126.LinModule.NaturalityBatch21.entry_desc,KIP126.LinModule.NaturalityBatch21.target_row_mem}
+  \lean{KIP126.LinModule.NaturalityBatch21.entry_count,KIP126.LinModule.NaturalityBatch21.zero_count,KIP126.LinModule.NaturalityBatch21.singleton_count,KIP126.LinModule.NaturalityBatch21.relation_witness_count}
+  \uses{def:lin-naturality-batch21-data,lem:lin-naturality-native-map-words,prop:lin-native-module-map-descent}
+  \leanok
+  Fix the list of all 82 archived Ceta basis records with $2\le t\le21$,
+  retaining every recorded filtration and local coordinate. Evaluation of
+  each native word under the same complete generator graph equals its
+  certified sum of original sphere catalogue values in degree $(s,t-2)$.
+  There are 45 empty target lists, whose evaluations are zero, and 37
+  singleton target lists. A singleton list alone does not prove that its
+  value in the sphere quotient is nonzero.
+
+  Of the singleton targets, 36 follow by direct substitution. The remaining
+  record, number 43 in degree $(3,14)$, uses the original sphere relation
+  $x_2^3+x_1^2x_3=0$. Its target is sphere record 25 in degree $(3,12)$.
+  Each target row belongs to the unchanged complete sphere catalogue.
+  The exporter verifies complete coverage of the selected original Ceta
+  table window; this is not a mathematical basis theorem for Ceta.
+  The same equations descend to the complete Ceta quotient only with
+  vanishing of all 76569 original relation evaluations explicitly supplied.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Use one checker for zero targets, sums of basis monomials and polynomial
+  relation witnesses. Prove the one used relation is a member of the original
+  archived sphere relation list and hence vanishes in its defining quotient.
+  Apply the shared soundness theorem to every entry; original catalogue
+  membership certificates bind the target coordinates independently.
+\end{proof}
+
+\begin{lemma}[A shared finite dual map for the native batch]
+  \label{lem:lin-naturality-batch21-cochains}
+  \lean{KIP126.LinModule.NaturalityCochainBatch21.sphere_differentials_graded,KIP126.LinModule.NaturalityCochainBatch21.ceta_differentials_graded,KIP126.LinModule.NaturalityCochainBatch21.map_columns_graded}
+  \lean{KIP126.LinModule.CochainMapCertificate.pullback,KIP126.LinModule.CochainMapCertificate.augmentedMap,KIP126.LinModule.CochainMapCertificate.functional_pullback,KIP126.LinModule.CochainMapCertificate.check_sound_precomposition,KIP126.LinModule.CochainMapCertificate.pullback_eq_zero_of_minimalCheck}
+  \lean{KIP126.LinModule.NaturalityCochainBatch21.batch_checked,KIP126.LinModule.NaturalityCochainBatch21.entry_pullback,KIP126.LinModule.NaturalityCochainBatch21.entry_precomposition,KIP126.LinModule.NaturalityCochainBatch21.sphere_cochain_differential_zero,KIP126.LinModule.NaturalityCochainBatch21.ceta_cochain_differential_zero,KIP126.LinModule.NaturalityCochainBatch21.entries_cover}
+  \uses{def:lin-naturality-batch21-data}
+  \leanok
+  The separately pinned local reconstruction supplies 48 sphere generator
+  records with $t\le19$, 84 Ceta generator records with $t\le21$, their
+  decoded differential terms, and all 48 map columns. Let
+  $Q_\epsilon:k^{48}\to k^{84}$, for $k=\mathbb F_2$, be the linear map
+  obtained by retaining precisely the constant Milnor coefficient terms
+  in those columns. Every differential term has its specified bidegree,
+  and every map term preserves filtration and raises internal degree by two.
+  For each of the 82 selected Ceta dual basis vectors,
+  the checked output equals precomposition with this same $Q_\epsilon$,
+  as a linear functional on the entire finite sphere space.
+  In this finite model 45 outputs are zero and 37 are single basis vectors.
+  Positive-degree checks for every recorded differential coefficient
+  imply that both corresponding dual differential operators are zero on
+  every cochain of their respective specified finite families.
+
+  These are theorems about the explicitly decoded finite data and their
+  linear interpretation. They do not certify a Steenrod chain map, the
+  exactness of either resolution, or coverage outside the supplied families.
+  Binary decoding and matching the old \texttt{repr} integers with the
+  reconstructed records are checked by deterministic translation; no
+  mathematical identification of their representatives follows merely
+  from matching those integers. The original word interpretation and
+  this finite cochain interpretation still need their comparison.
+  In particular these results do not identify $Q_\epsilon$ with the map
+  induced by the actual top-cell projection through the same $P$.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Form a linear map from the complete augmented columns, and prove that
+  its coordinate action on functionals is actual precomposition. Check
+  each selected dual vector on all 48 columns, then use extensionality.
+  Separately prove that every positive-degree coefficient has zero
+  augmentation and apply this to both full recorded differential families.
+  Full Steenrod equations independently checked during extraction remain
+  separate Lean proof obligations.
+\end{proof}
+
+\begin{proposition}[Actual comparison for the two native top-cell images]
+  \label{prop:lin-naturality-map-comparison-245131}
+  \uses{lem:lin-naturality-native-map-words,lem:lin-naturality-batch21-cochains,prop:lin-native-resolution-correct,prop:lin-native-actual-comparison,prop:internal-page-naturality,lem:adams-double-suspension-differential}
+  \notready
+  For the fixed $C\eta=\operatorname{cofib}(\eta)$ and the actual
+  top-cell map $q:C\eta\to\Sigma^2S^0$, identify the native
+  representatives of records 69 and 80 with actual second-page classes.
+  After the same two tower desuspensions used below, their images under
+  $q_{E_2}$ must equal the same $P$-images of sphere records 39 and 46.
+  These are construction obligations, not new inputs to Challenge2.
+
+  A direct cochain route avoids first constructing the complete native
+  quotient map. Recover the Ceta resolution and a chain map
+  $Q:R(\Sigma^2S^0)\to R(C\eta)$ lifting the contravariant
+  cohomology map $q^*$. With $c_j$ denoting the native cochain decoded
+  from representation ID $j$, check
+  \[
+    c^{C\eta}_{1048587}\circ Q_2-\Sigma^2c^{S^0}_{1048583}=dh_1,
+    \qquad
+    c^{C\eta}_{2621447}\circ Q_5-\Sigma^2c^{S^0}_{2621443}=dh_2.
+  \]
+  Supply all chain terms needed for these equations and for the comparison
+  to genuine resolutions; a finite cutoff is not a zero differential.
+  The cohomology comparison must commute with $Q$ and the actual $q$,
+  and with the specified suspensions. Prove that the native Ceta
+  cohomology module and its initial map are those of this same actual
+  cofiber, including the Steenrod action. The selected sphere classes
+  must agree with the existing $P$, not with a newly chosen identification.
+
+  The released E2 map database contains generator images, not $Q$.
+  Recomputed representation numbers alone do not identify old and new
+  cochains. If instead using $v_1\mapsto x_0$ and module products,
+  additionally prove that the native products agree with the actual
+  module action and that $q_{E_2}$ respects it. The data lemma above
+  proves neither route's actual comparison. The supplied source
+  differential in the following proposition already includes the needed
+  third-page representatives, so no independent survival hypothesis
+  should be added just for this transport.
+\end{proposition}
+
 \begin{proposition}[Conditional replay of native naturality record 245131]
   \label{prop:lin-native-naturality-245131}
   \lean{KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell,KIP126.Interface.Solution.LinProgram.Naturality.row245131,KIP126.Interface.Solution.LinProgram.Naturality.row245131_native,KIP126.Interface.Solution.LinProgram.Naturality.doubleDesuspensionCompatible,KIP126.Interface.Solution.LinProgram.Naturality.topCell_hasDifferential_desuspendTwice,KIP126.Interface.Solution.LinProgram.Naturality.statement_of_hasDifferential}

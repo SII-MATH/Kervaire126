@@ -1613,6 +1613,138 @@
           },
           "notes": "Exact previously audited local output of the unmodified published Adams program, retained so the fixed-byte certificate replay does not depend on /tmp. These are generated resolution/lift data, not a published database or an actual sphere Adams differential proof. Fresh program runs may differ in timestamp bytes; their semantic comparison remains a separate check.",
           "storage": "git-lfs"
+        },
+        {
+          "path": "Source/LWXMachine/Adams.json",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "5a4adf1561832a762b7d3a504f8f2603793855733f549d17d5a9668f6c7935bc",
+          "size": 24455,
+          "extracted_from": {
+            "record": "Source/LWXMachine/zenodo-record.json",
+            "archive": "programs.rar",
+            "archive_size": 4180266,
+            "archive_checksum": "md5:554d12d6dc6aa61b94a7b9fe85c73f04",
+            "member": "programs/Adams.json"
+          },
+          "extraction_command": [
+            "unrar",
+            "p",
+            "-inul",
+            "programs.rar",
+            "programs/Adams.json"
+          ],
+          "notes": "Unmodified official v126.3.cw49 Adams configuration. The Ceta module and Ceta__S0 initial map remain to be compared mathematically with the same fixed eta cofiber and topCell."
+        },
+        {
+          "path": "KIP126/LinProgram/Raw/Naturality/Batch21/Ceta_Adams_res.db",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "93bb0c8c162c6407572d36c22cd2f847c413ff051b22d8e4b9cf3737e7da72c6",
+          "size": 53248,
+          "storage": "git-lfs",
+          "reproduction": {
+            "source_archive": "Source/LWXMachine/source-code.zip",
+            "source_archive_sha256": "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15",
+            "configuration": "Source/LWXMachine/Adams.json",
+            "sphere_resolution": "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+            "existing_extraction_and_rebuild_record": "docs/audits/linprogram-certificate/naturality245131-chain-reconstruction.json",
+            "native_commands_in_fresh_working_directory": [
+              "Adams res Ceta 21",
+              "Adams map_res Ceta S0 21",
+              "Adams verify_map Ceta S0"
+            ],
+            "fresh_map_verification_metadata": "Before verify_map on a fresh map database missing version id 1121750147, insert into version (id,name,value) values (1121750147,'verified',-1). This fixes the recorded exception-type mismatch without changing mathematical rows.",
+            "database_bytes": "These exact locally reconstructed snapshots are pinned. Fresh computations may have different timestamp bytes; semantic equivalence requires a separate full-row check."
+          },
+          "notes": "Locally reconstructed bounded native data, not a released AdamsSS database. The covered Ceta internal degrees are at most 21 and the sphere degrees at most 19, with all recorded homological degrees retained. Finite matrix certification does not prove Steenrod chain equations, resolution exactness, old/new representative identity, or actual-map comparison."
+        },
+        {
+          "path": "KIP126/LinProgram/Raw/Naturality/Batch21/map_Adams_res_Ceta__S0.db",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "78f410b0710d186f566e50293f677a8109ac39d4d24a8b938ae4d02d2acbdffc",
+          "size": 20480,
+          "storage": "git-lfs",
+          "reproduction": {
+            "source_archive": "Source/LWXMachine/source-code.zip",
+            "source_archive_sha256": "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15",
+            "configuration": "Source/LWXMachine/Adams.json",
+            "sphere_resolution": "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+            "existing_extraction_and_rebuild_record": "docs/audits/linprogram-certificate/naturality245131-chain-reconstruction.json",
+            "native_commands_in_fresh_working_directory": [
+              "Adams res Ceta 21",
+              "Adams map_res Ceta S0 21",
+              "Adams verify_map Ceta S0"
+            ],
+            "fresh_map_verification_metadata": "Before verify_map on a fresh map database missing version id 1121750147, insert into version (id,name,value) values (1121750147,'verified',-1). This fixes the recorded exception-type mismatch without changing mathematical rows.",
+            "database_bytes": "These exact locally reconstructed snapshots are pinned. Fresh computations may have different timestamp bytes; semantic equivalence requires a separate full-row check."
+          },
+          "notes": "Locally reconstructed bounded native data, not a released AdamsSS database. The covered Ceta internal degrees are at most 21 and the sphere degrees at most 19, with all recorded homological degrees retained. Finite matrix certification does not prove Steenrod chain equations, resolution exactness, old/new representative identity, or actual-map comparison.",
+          "derived_outputs": {
+            "batch_inputs": [
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/CochainBatch21.json",
+                "size": 181482,
+                "sha256": "4093127d2dbf1821f9a2556f64a7e2c01c919deb0268d261ba76b1e59a64ca7a"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/CochainBatch21.lean",
+                "size": 49027,
+                "sha256": "656a850926400835328c935ccd910bf6bcdd3e563089a938dafbf1b0c970474e"
+              }
+            ],
+            "blueprint_label": "lem:lin-naturality-batch21-cochains",
+            "lean_algebra_statements": [
+              "KIP126.LinModule.NaturalityCochainBatch21.entry_precomposition",
+              "KIP126.LinModule.NaturalityCochainBatch21.sphere_cochain_differential_zero",
+              "KIP126.LinModule.NaturalityCochainBatch21.ceta_cochain_differential_zero"
+            ],
+            "replay_command": [
+              "python3",
+              "-B",
+              "KIP126/LinProgram/Translate/replay-naturality-batch.py",
+              "--check"
+            ],
+            "scope": "Original word evaluations and decoded finite cochain augmentation have separate Lean theorems. No full Ceta quotient descent, Steenrod resolution correctness, old/new representative identification, or actual-map certification is asserted.",
+            "actual_model_comparison_certified": false
+          }
+        },
+        {
+          "path": "KIP126/LinProgram/Raw/manifest.json",
+          "kind": "machine_artifact",
+          "required": true,
+          "size": 3748,
+          "sha256": "c780d3ce45d388deda43db43cac6ab23862f2e295bf0d04826052b5c2f0536c7",
+          "notes": "Existing unchanged native input index used by the deterministic translators. Its individual payload sizes and hashes are now authenticated by the canonical source registry; this adds no new input values or mathematical assertion.",
+          "derived_outputs": {
+            "batch_inputs": [
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Batch21.json",
+                "size": 77158,
+                "sha256": "54d24347b9ea0ef9139adca59d4f39cb71e8843a4017c1dff05ba373622a2a44"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Batch21.lean",
+                "size": 9982,
+                "sha256": "9eeb71ffbb125a8bc1fd3a1ebdb5e82ec7a27d3533bc4e4c7ca995a11a020c82"
+              }
+            ],
+            "blueprint_label": "lem:lin-naturality-batch21-words",
+            "lean_algebra_statements": [
+              "KIP126.LinModule.NaturalityBatch21.entry_evaluate",
+              "KIP126.LinModule.NaturalityBatch21.zero_evaluate",
+              "KIP126.LinModule.NaturalityBatch21.target_row_mem"
+            ],
+            "replay_command": [
+              "python3",
+              "-B",
+              "KIP126/LinProgram/Translate/replay-naturality-batch.py",
+              "--check"
+            ],
+            "scope": "Original word evaluations and decoded finite cochain augmentation have separate Lean theorems. No full Ceta quotient descent, Steenrod resolution correctness, old/new representative identification, or actual-map certification is asserted.",
+            "actual_model_comparison_certified": false
+          }
         }
       ]
     },

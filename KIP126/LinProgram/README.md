@@ -16,6 +16,7 @@ the standard sphere Adams sequence or establish the final survival theorem.
 | `Interpretation/` | Mathematical interpretation parameterized by a supplied model. |
 | `Certificates/Verifier.lean`, `Tactic/LinCert.lean` | Certificate contracts and the generic `lin_cert` tactic. |
 | `Certificates/NamedElements/` | Polynomial and module-expression checkers and their evaluation soundness proofs. |
+| `Certificates/Naturality/`, `Generated/Naturality/` | Fixed map-word and finite cochain batches, with replay via `Translate/replay-naturality-batch.py`; actual-map comparisons remain in Interface. |
 | `Certificates/Milnor/` | Executable Milnor calculations, grading and rank bounds, and their soundness proofs. |
 | Other `Certificates/` and `Tactic/` modules | Local fixed-data certificates and project calculation tactics. |
 

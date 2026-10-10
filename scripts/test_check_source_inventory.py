@@ -236,6 +236,40 @@ class SourceInventoryTests(unittest.TestCase):
                 validator._check_artifacts(source, "sources[0]", False, None)
                 self.assertTrue(any("source directory" in e for e in validator.errors))
 
+    def test_naturality_batch_snapshots_keep_exact_path_and_hash_boundaries(self) -> None:
+        for filename in ("Ceta_Adams_res.db", "map_Adams_res_Ceta__S0.db"):
+            for mutation in (None, "hash", "nearby", "symlink"):
+                with self.subTest(filename=filename, mutation=mutation), tempfile.TemporaryDirectory() as temporary:
+                    root = Path(temporary)
+                    old, payload, artifact, source = self.lfs_fixture(root)
+                    relative = "KIP126/LinProgram/Raw/Naturality/Batch21/" + filename
+                    path = root / relative
+                    path.parent.mkdir(parents=True)
+                    old.rename(path)
+                    artifact["path"] = relative
+                    if mutation == "hash":
+                        artifact["sha256"] = "0" * 64
+                    elif mutation == "nearby":
+                        other = relative.replace("Batch21/", "Batch22/")
+                        (root / other).parent.mkdir(parents=True)
+                        path.rename(root / other)
+                        artifact["path"] = other
+                    elif mutation == "symlink":
+                        outside = root / "outside.db"
+                        outside.write_bytes(payload)
+                        path.unlink()
+                        path.symlink_to(outside)
+                    validator = InventoryValidator(root, root / "unused.json")
+                    with mock.patch("check_source_inventory.subprocess.run", return_value=SimpleNamespace(returncode=1)):
+                        validator._check_artifacts(source, "sources[0]", False, None)
+                    if mutation is None:
+                        self.assertEqual(validator.errors, [])
+                        self.assertEqual(validator.lfs_pointer_only_count, 1)
+                    elif mutation == "hash":
+                        self.assertTrue(any("Git LFS pointer" in e for e in validator.errors))
+                    else:
+                        self.assertTrue(any("source directory" in e for e in validator.errors))
+
     def test_sha256_helper_reads_large_files_incrementally(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / "large.bin"

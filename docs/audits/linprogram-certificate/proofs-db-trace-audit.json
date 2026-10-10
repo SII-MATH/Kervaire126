@@ -1,0 +1,264 @@
+{
+  "scope": "Pinned v126.3.cw49 archive and read-only proofs.db inspection; not a replay, correctness proof, or audit of every rule.",
+  "database": {
+    "path": "KIP126/LinProgram/Raw/proofs.db",
+    "sha256": "3a460683c023ee2d8f7e8f904ecef9044a474d88bb7184731e54978ba7dac248",
+    "schema": [
+      {
+        "name": "log",
+        "sql": "CREATE TABLE log (id INTEGER PRIMARY KEY, depth TINYINT, reason TEXT, name TEXT, stem SMALLINT as (t-s), s SMALLINT, t SMALLINT, r SMALLINT, x TEXT, dx TEXT, info TEXT)"
+      }
+    ],
+    "total_rows": 2672275,
+    "nested_reason_counts": [
+      {
+        "reason": "D",
+        "n": 63
+      },
+      {
+        "reason": "T",
+        "n": 2076999
+      },
+      {
+        "reason": "TI",
+        "n": 21357
+      }
+    ],
+    "root_D_N_counts": [
+      {
+        "reason": "D",
+        "n": 97527,
+        "null_info": 97527
+      },
+      {
+        "reason": "N",
+        "n": 263264,
+        "null_info": 0
+      }
+    ]
+  },
+  "source_archive": {
+    "path": "Source/LWXMachine/source-code.zip",
+    "sha256": "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15",
+    "members": [
+      {
+        "member": "SSeqCpp-master/ss/mylog.h",
+        "sha256": "b34b3c7e5994c58b327407980269ff0afff4df7a41b6334cd3a3db7ab06a569a",
+        "extracted_copy_matches": true
+      },
+      {
+        "member": "SSeqCpp-master/ss/mylog.cpp",
+        "sha256": "a27e5ea37b00aec85f1ad697c86d232de5b39c6e88703500e87da097461e170f",
+        "extracted_copy_matches": true
+      },
+      {
+        "member": "SSeqCpp-master/ss/category.cpp",
+        "sha256": "be9e6cd3632ab6ec3905528b0b30a8c4d0d986c13a318d24a48f3e396bc8ae9a",
+        "extracted_copy_matches": true
+      },
+      {
+        "member": "SSeqCpp-master/ss/deduce.cpp",
+        "sha256": "f299dbdadf8c8efde296adacb048f679fd927d611e910c615775d42ebced3fec",
+        "extracted_copy_matches": true
+      },
+      {
+        "member": "SSeqCpp-master/ss/ss.cpp",
+        "sha256": "2618cbb3906002064ed696e63dd603ab8a8900a55e43a2fb1d980482926353dc",
+        "extracted_copy_matches": true
+      },
+      {
+        "member": "SSeqCpp-master/src/groebner.cpp",
+        "sha256": "a82f8d210926b33c1b88542e7b6d1f5f6e1a47423a96108a67ef6ffff190fff9",
+        "extracted_copy_matches": null
+      },
+      {
+        "member": "SSeqCpp-master/src/linalg.cpp",
+        "sha256": "9065e98fc4352fd2e744ef55c5cb36f33ee722de78ac233128e2eed63da4ca5c",
+        "extracted_copy_matches": null
+      }
+    ]
+  },
+  "examples": {
+    "152096-152098": [
+      {
+        "id": 152096,
+        "depth": 1,
+        "reason": "TI",
+        "name": "S0",
+        "stem": 30,
+        "s": 11,
+        "t": 41,
+        "r": 3,
+        "x": "",
+        "dx": "0",
+        "info": "However, `S0 (30,11) [0]` is not in B_2."
+      },
+      {
+        "id": 152097,
+        "depth": 1,
+        "reason": "T",
+        "name": "S0",
+        "stem": 38,
+        "s": 4,
+        "t": 42,
+        "r": 4,
+        "x": "1",
+        "dx": "0",
+        "info": "Get `S0 (38,4) d_4[1]=[0]`. Apply the Leibniz rule with `S0 (1,1) d_4[0]=[]` and get `S0 (39,5) d_4[]=[0]`.\nHowever, `S0 (38,9) [0]` is not in B_3."
+      },
+      {
+        "id": 152098,
+        "depth": 0,
+        "reason": "D",
+        "name": "S0",
+        "stem": 38,
+        "s": 4,
+        "t": 42,
+        "r": 4,
+        "x": "1",
+        "dx": "",
+        "info": null
+      }
+    ],
+    "245129-245131": [
+      {
+        "id": 245129,
+        "depth": 1,
+        "reason": "T",
+        "name": "Ceta",
+        "stem": 17,
+        "s": 2,
+        "t": 19,
+        "r": 3,
+        "x": "0",
+        "dx": "",
+        "info": "Get `Ceta (17,2) d_3[0]=[]`. Apply the Leibniz rule with `S0 (0,2) d_3[0]=[]` and get `Ceta (17,4) d_3[0]=[]`.\nGet `Ceta (17,4) d_3[0]=[]` where the element on the left-hand side already supports d_3.\nHowever, `Ceta (16,7) [0]` is not in B_2."
+      },
+      {
+        "id": 245130,
+        "depth": 0,
+        "reason": "D",
+        "name": "Ceta",
+        "stem": 17,
+        "s": 2,
+        "t": 19,
+        "r": 3,
+        "x": "0",
+        "dx": "0",
+        "info": null
+      },
+      {
+        "id": 245131,
+        "depth": 0,
+        "reason": "N",
+        "name": "S0",
+        "stem": 15,
+        "s": 2,
+        "t": 17,
+        "r": 3,
+        "x": "0",
+        "dx": "0",
+        "info": "Ceta__S0"
+      }
+    ],
+    "462478-462481": [
+      {
+        "id": 462478,
+        "depth": 1,
+        "reason": "T",
+        "name": "CW_nu_eta",
+        "stem": 129,
+        "s": 15,
+        "t": 144,
+        "r": 3,
+        "x": "1",
+        "dx": "0,2",
+        "info": "Get `CW_nu_eta (129,15) d_3[1]=[0,2]`. Apply the Leibniz rule with `S0 (1,1) d_3[0]=[]` and get `CW_nu_eta (130,16) d_3[]=[5]`.\nHowever, `CW_nu_eta (129,19) [5]` is not in B_2."
+      },
+      {
+        "id": 462479,
+        "depth": 0,
+        "reason": "D",
+        "name": "CW_nu_eta",
+        "stem": 129,
+        "s": 15,
+        "t": 144,
+        "r": 3,
+        "x": "1",
+        "dx": "0",
+        "info": null
+      },
+      {
+        "id": 462480,
+        "depth": 0,
+        "reason": "N",
+        "name": "Ceta",
+        "stem": 125,
+        "s": 15,
+        "t": 140,
+        "r": 3,
+        "x": "1",
+        "dx": "0",
+        "info": "CW_nu_eta__Ceta"
+      },
+      {
+        "id": 462481,
+        "depth": 0,
+        "reason": "N",
+        "name": "S0",
+        "stem": 123,
+        "s": 15,
+        "t": 138,
+        "r": 3,
+        "x": "2",
+        "dx": "2",
+        "info": "Ceta__S0"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "id": "rule_dependencies",
+      "source": "ss/mylog.h:53; ss/category.cpp:441",
+      "observed": "No structured premise edges in log schema; naturality logging passes only map name as info.",
+      "export": "Stable event IDs, tagged rule, premise references, map and endpoint witnesses; do not infer dependencies from adjacent row IDs."
+    },
+    {
+      "id": "branch_lifetime",
+      "source": "ss/mylog.cpp:132,150,181; ss/deduce.cpp:332-386",
+      "observed": "Nested reason filtering; noncontradictory trial log rolled back; native log IDs are not durable proof-event identities.",
+      "export": "Append-only certificate events, explicit branch parent/assumption/discharge, preserved proof dependencies across state rollback."
+    },
+    {
+      "id": "candidate_coverage",
+      "source": "ss/deduce.cpp:390-501",
+      "observed": "Enumeration uses nd.first/count, mutable staircase basis, cached exclusions; resulting D/DI log has empty proof text.",
+      "export": "Versioned candidate span and state, coverage inputs, excluded-candidate proof links and selected result. Coverage requires a Lean invariant, not only candidate counts."
+    },
+    {
+      "id": "algebra_reductions",
+      "source": "ss/ss.cpp:923-967; src/groebner.cpp:598; src/linalg.cpp:46",
+      "observed": "Logged endpoint does not serialize reduction multipliers or row-operation coefficients.",
+      "export": "Relation-index/multiplier combinations, module coefficients, matrix-combination witnesses. Derived relations require their own evidence or original-relation expansion."
+    },
+    {
+      "id": "boundary_state",
+      "source": "ss/ss.cpp:385-406,1243-1257",
+      "observed": "Nonboundary diagnostics depend on reductions and possible-source tests in current mutable state.",
+      "export": "State snapshot/deltas with derivation references, row-span witnesses or separating functionals, all source-exclusion/degree premises. Prove coverage of actual boundaries separately."
+    },
+    {
+      "id": "seed_roots",
+      "source": "ss/mylog.h:13-40",
+      "observed": "Rule vocabulary includes manual, migration and d2 origins; enum tags alone are not root proofs.",
+      "export": "Distinguish assumptions from derivations, link external roots to existing manifest, bind computed seeds to resolution/secondary witnesses; never upgrade tag to proved fact."
+    }
+  ],
+  "unproved_after_export": [
+    "Generic mathematical soundness of each spectral-sequence rule and state invariant",
+    "Native resolution correctness and representative/quotient comparison",
+    "Fixed-model P, map identifications, multiplication compatibility and actual source premises"
+  ],
+  "changes_to_cpp": false,
+  "actual_certification_added": false
+}

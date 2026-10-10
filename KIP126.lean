@@ -28,6 +28,9 @@ import KIP126.Interface.Solution.LinProgram.Products.Trial152097
 import KIP126.LinProgram.Certificates.Products.Trial152097
 import KIP126.LinProgram.Interpretation.Branch.Proofs
 import KIP126.Interface.Solution.LinProgram.Naturality.Row245131
+import KIP126.LinProgram.Certificates.Naturality.Row245131Map
+import KIP126.LinProgram.Certificates.Naturality.Batch21
+import KIP126.LinProgram.Certificates.Naturality.CochainBatch21
 import KIP126.LinProgram.Certificates.BasisCertification.Proofs
 import KIP126.Interface.Challenge.Literature.EtaRows
 import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Data
