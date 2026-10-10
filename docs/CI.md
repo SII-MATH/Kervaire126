@@ -45,7 +45,8 @@ Lean 任务设置 `LEAN_NUM_THREADS=2`，利用公仓 CPU 并限制大规模生�
 才清理闲置的 .NET 和 Android 工具，并增加 8 GiB 交换空间，供生成的有限证书冷构建使用。
 Blueprint 网页使用 MathJax，安装 Graphviz、Python 渲染依赖及提供 `kpsewhich` 的
 `texlive-binaries`。`kpsewhich` 用于找到嵌套的 TeX 源文件；CI 不安装 LaTeX 格式包、
-Ghostscript 或 PDF 转换工具。
+Ghostscript 或 PDF 转换工具。渲染步骤显式设置 `TEXINPUTS=.:`，使精简环境也能找到
+当前目录下的主文件和嵌套章节，不依赖完整 TeX 安装提供的搜索路径默认值。
 Lean 任务上限为 120 分钟，以容纳首次或缓存被清理后的完整冷构建。
 首次公仓试运行确认 16 GB 内存充足，但先前沿用的单线程配置在 90 分钟上限前
 只完成 1331 个 KIP126 模块；7 个平方检测证书批次串行编译共约 24 分钟。

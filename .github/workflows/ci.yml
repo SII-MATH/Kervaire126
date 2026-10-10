@@ -98,6 +98,9 @@ jobs:
           "$RUNNER_TEMP/blueprint-venv/bin/pip" install -r requirements-blueprint.txt
           echo "$RUNNER_TEMP/blueprint-venv/bin" >> "$GITHUB_PATH"
       - name: Render Blueprint and check linked Lean declarations
+        env:
+          # The minimal TeX installation has no texlive-base search-path defaults.
+          TEXINPUTS: '.:'
         run: bash scripts/check-blueprint-decls.sh
       - name: Save successful Lean build when its sources changed
         if: steps.lake-cache.outputs.cache-hit != 'true'
