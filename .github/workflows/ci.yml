@@ -41,6 +41,7 @@ jobs:
     timeout-minutes: 120
     env:
       LEAN_NUM_THREADS: '2'
+      MATHLIB_NO_CACHE_ON_UPDATE: '1'
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -69,7 +70,7 @@ jobs:
         id: lean-inputs
         run: |
           # Include tracked paths and blob hashes, so renames and deletions invalidate too.
-          source_hash=$(git ls-files --stage -z -- '*.lean' lakefile.toml | sha256sum | cut -d ' ' -f 1)
+          source_hash=$(git ls-files --stage -z -- '*.lean' lakefile.toml scripts/mathlib-cache-roots.py | sha256sum | cut -d ' ' -f 1)
           echo "hash=$source_hash" >> "$GITHUB_OUTPUT"
       - name: Start Blueprint environment setup
         run: |
@@ -92,7 +93,7 @@ jobs:
         with:
           # Keep the path and fallback prefix compatible with lean-action's cache.
           path: ./.lake
-          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-sources-v1-${{ steps.lean-inputs.outputs.hash }}
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-sources-v2-${{ steps.lean-inputs.outputs.hash }}
           restore-keys: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-
       - name: Finish Blueprint environment setup
         run: |
@@ -109,16 +110,31 @@ jobs:
           cat "$RUNNER_TEMP/blueprint-setup.log"
           echo 'Blueprint environment setup did not finish within five minutes.' >&2
           exit 1
-      - name: Build the complete Lean library, regression modules and declaration checker
+      - name: Install the pinned Lean toolchain
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
         with:
-          build: true
-          build-args: KIP126 checkdecls
+          auto-config: false
+          build: false
           test: false
           lint: false
-          # Every matching cache contains a successful build with these dependencies.
-          use-mathlib-cache: ${{ steps.lake-cache.outputs.cache-matched-key == '' }}
+          use-mathlib-cache: false
           use-github-cache: false
+      - name: Replace legacy full-Mathlib build artifacts
+        if: steps.lake-cache.outputs.cache-matched-key != '' && !contains(steps.lake-cache.outputs.cache-matched-key, '-sources-v2-')
+        run: |
+          # Keep project artifacts and the cache tool; fetch the required Mathlib closure below.
+          rm -rf .lake/packages/mathlib/.lake/build/lib/lean/Mathlib \
+            .lake/packages/mathlib/.lake/build/ir/Mathlib
+      - name: Fetch the Mathlib dependencies imported by this project
+        if: steps.lake-cache.outputs.cache-hit != 'true'
+        run: |
+          python3 scripts/mathlib-cache-roots.py > "$RUNNER_TEMP/mathlib-roots.txt"
+          mapfile -t mathlib_roots < "$RUNNER_TEMP/mathlib-roots.txt"
+          if (( ${#mathlib_roots[@]} )); then
+            lake exe cache get "${mathlib_roots[@]}"
+          fi
+      - name: Build the complete Lean library, regression modules and declaration checker
+        run: lake build KIP126 checkdecls
       - name: Render Blueprint and check linked Lean declarations
         env:
           # The minimal TeX installation has no texlive-base search-path defaults.

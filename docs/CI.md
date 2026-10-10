@@ -9,8 +9,8 @@
 
 CI 使用只读权限，不接入外部审查服务，不自动合并、发布网站或写 PR 标签/评论。
 Blueprint 网页和依赖报告作为工作流制品供核对，保留 7 天。API 文档、PDF 和性能分析按需手动执行。
-固定版本的 Lean action 负责安装 Lean 环境、在缺少可用缓存时获取 Mathlib 缓存，
-并运行 `lake build KIP126 checkdecls`。显式的 GitHub cache restore/save 步骤管理
+固定版本的 Lean action 负责安装 Lean 环境，随后显式运行
+`lake build KIP126 checkdecls`。GitHub cache restore/save 步骤管理
 整个 `.lake/`；完整构建和 Blueprint 声明核对成功后才保存，包含声明检查器的编译结果。
 每次都执行完整构建和声明核对，由 Lake 决定哪些模块需要重编译。
 
@@ -18,7 +18,13 @@ GitHub 缓存键包含运行平台、架构、`lean-toolchain`、`lake-manifest.
 Lean 源码、Lake 配置和 Lean 脚本的内容摘要。仅修改文档或 CI、Lean 输入不变时，
 直接命中已有缓存并省去再次打包上传；源码变化时恢复同工具链、同依赖的旧缓存，
 完成增量构建后保存新缓存。恢复前缀兼容此前 Lean action 保存的缓存。
-命中同依赖的成功构建缓存后，省去重复执行 Mathlib 缓存下载器。
+精确命中成功构建缓存后，省去重复执行 Mathlib 缓存下载器。
+未精确命中时，`scripts/mathlib-cache-roots.py` 用 Lean 内建的 `--deps-json` 解析
+所有已跟踪 Lean 源文件的导入，再由官方 `lake exe cache get` 获取这些外部模块及
+完整传递依赖。缓存不再包含项目没有使用的整份 Mathlib；迁移旧缓存时只清掉
+旧 Mathlib 模块产物并重新获取所需部分，保留项目编译结果和缓存工具。
+`MATHLIB_NO_CACHE_ON_UPDATE=1` 防止依赖初始化时自动下载全库。
+缓存键还包含上述依赖选择脚本，脚本变更也会触发更新。
 首次运行、缓存被清理或环境变化时，
 可能需要重新编译。PR 可以读取 main 的缓存；PR 专属缓存不能被 main 或其他 PR 读取。
 本地 `.lake/` 不提交到 Git，也不会自动上传到 CI。
@@ -39,7 +45,7 @@ Checks 任务完整检出会下载这些输入；Lean 编译使用已提交的�
 两个任务并行执行，原始输入下载和校验不再延长 Lean 任务。组织的共享 LFS 配额需要单独关注。
 参见 [Git LFS 计费](https://docs.github.com/en/billing/concepts/product-billing/git-lfs)。
 
-缓存使用 GitHub 官方 cache action；Lean 构建仍由 Lean action 执行。
+缓存使用 GitHub 官方 cache action；完整构建由 Lake 执行。
 Lean 任务设置 `LEAN_NUM_THREADS=2`，利用公仓 CPU 并限制大规模生成证书的并行内存占用；
 仍完整构建 KIP126 及其 Lean 回归模块。临时 Ubuntu 机器只有在可用磁盘不足 40 GiB 时
 才清理闲置的 .NET 和 Android 工具，并增加 8 GiB 交换空间，供生成的有限证书冷构建使用。
