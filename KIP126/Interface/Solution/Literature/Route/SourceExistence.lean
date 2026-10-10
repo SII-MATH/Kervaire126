@@ -1,5 +1,7 @@
 import KIP126.Interface.Challenge.Challenge2
 import KIP126.Interface.Solution.Literature.Applications
+import KIP126.Interface.Solution.AdamsOneLine
+import KIP126.Interface.Solution.Literature.Route.Range
 
 /-! Correlated existence of the prior-literature background.
 
@@ -39,6 +41,72 @@ and transport every inventoried prior statement to the shared bindings; it must
 not invoke the aggregate Challenge2 producer or any paper conclusion. -/
 theorem source_background_exists :
     Nonempty KIP126.Challenge2.LiteratureInterface := by
-  sorry
+  refine ⟨{ bindings := ?_, results := ?_ }⟩
+  -- Construct the source objects, labels and comparisons together. The results
+  -- below belong to these exact bindings, not to arbitrary LiteratureBindings.
+  · sorry
+  · exact {
+      -- Source conclusions on the fixed sphere and the same source tmf.
+      br21 := by sorry
+      moss := by sorry
+      sphereVanishing := standard_sphere_vanishing
+      adamsOneLine_d2 := KIP126.Interface.Solution.adamsOneLine_d2
+      -- Classical classes and their common convergence identification.
+      classical_h5Square_permanent := by sorry
+      classical_theta5_detection := by sorry
+      classical_theta5_order_two := by sorry
+      classical_stem62_exponent_two := by sorry
+      classical_theta5_filtration_gap := by sorry
+      classical_two_detection := by sorry
+      classical_eta_detection := by sorry
+      classical_nu_detection := by sorry
+      classical_eta_permanent := by sorry
+      classical_nu_permanent := by sorry
+      -- Prior route results; internal Main applications are not fields here.
+      route_bx := by sorry
+      route_realizationKernel := by sorry
+      route_may := by sorry
+      -- Synthetic source results retain all applicability hypotheses.
+      synthetic_nu_cofiber := by sorry
+      synthetic_lift := by sorry
+      synthetic_triangle_lift := by sorry
+      synthetic_finite_lift := by sorry
+      synthetic_bockstein := by sorry
+      synthetic_permanent_lift := by sorry
+      synthetic_differentials := by sorry
+      synthetic_filtration_lambda := by sorry
+      synthetic_e2_weight_vanishing := by sorry
+      synthetic_finite_quotient_page_vanishing := by sorry
+      -- Comparisons on the same delivered E-infinity coordinates.
+      eInfty_lambda_nu := by sorry
+      eInfty_lambda_finite := by sorry
+      eInfty_rho_finite := by sorry
+      eInfty_rho_nu := by sorry
+      eInfty_labels := by sorry
+      -- Completed-source statements, before selected-object transport.
+      realization_lifetime := by sorry
+      realization_detection := by sorry
+      realization_prescribed_lift := by sorry
+      realization_boundary_lift := by sorry
+      -- Low Toda source facts; secondary-operation applications remain in Main.
+      toda_h0_label := by sorry
+      toda_lambda_h0 := by sorry
+      toda_h0_eta := by sorry
+      toda_low_indeterminacy := by sorry
+      -- The one tmf source, its labels and actual sphere products.
+      tmf_connective := by sorry
+      tmf_finiteMod2Type := by sorry
+      tmf_standard_labels := by sorry
+      tmf_vanishing62 := by sorry
+      tmf_low_filtration63 := by sorry
+      tmf_kappaBar_detection := by sorry
+      tmf_w_detection := by sorry
+      tmf_high125_nonzero := by sorry }
+
+/-- Select the correlated literature delivery once for Interface's producer
+and its literature-only compatibility views. This retains every unfinished
+construction and source premise of `source_background_exists`. -/
+noncomputable def sourceLiterature : KIP126.Challenge2.LiteratureInterface :=
+  Classical.choice source_background_exists
 
 end KIP126.Interface.Solution.Literature.Route

@@ -275,13 +275,28 @@ and Moss convergence used by the later proof tools.
   projections then supplies cycle preservation and the bilinear restriction.
 \end{proof}
 
+\begin{definition}[The fixed sphere mapping context]
+  \label{def:fixed-sphere-moss-context}
+  \uses{def:classical-adams-ss,def:massey-product,def:adams-detection,prop:moss-long-layer-composition-obstruction}
+  \lean{KIP126.Challenge2.MossContext,KIP126.Challenge2.StandardSphereMossContext,KIP126.Def.standardSphereMossContext_exists,KIP126.Def.standardSphereMossContext}
+  \notready
+  On the actual mapping Adams towers of the fixed sphere, choose one
+  composition pairing with coherence, convergence, weak convergence,
+  compatible detection, and the stated Massey indeterminacy law.
+  These data and their internal properties are constructed in Def;
+  their existence remains unfinished. The external Moss conclusion is
+  separately required on this exact fixed context in
+  Theorem~\ref{thm:literature-moss}. Existence of some other context
+  carrying that conclusion does not establish it on this choice.
+\end{definition}
+
 % SOURCE: MainPaper/main.tex:2537--2545; Moss Theorem 1.2.
 % The crossing and weak-convergence conventions have also been checked against
 % Belmont--Kong, arXiv:2112.08689v2, Definitions 2.3--2.4.
 \begin{theorem}[Moss convergence for mapping Adams towers]
   \label{thm:moss-convergence-adapter}
-  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,prop:moss-long-layer-composition-obstruction}
-  \lean{KIP126.Classical.Adams.Moss.PageMassey.Relation,KIP126.Classical.Adams.Moss.PageMassey.Indeterminacy,KIP126.Classical.Adams.Moss.StatementAt,KIP126.Challenge2.MossInterface,KIP126.Challenge2.StandardSphereMossInterface,KIP126.Interface.Solution.sphereMossInterface}
+  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,prop:moss-long-layer-composition-obstruction,def:fixed-sphere-moss-context,thm:literature-moss}
+  \lean{KIP126.Classical.Adams.Moss.PageMassey.Relation,KIP126.Classical.Adams.Moss.PageMassey.Indeterminacy,KIP126.Classical.Adams.Moss.StatementAt,KIP126.Challenge2.MossInterface,KIP126.Challenge2.StandardSphereMossInterface,KIP126.Interface.Solution.sphereMossInterface_of_literature,KIP126.Interface.Solution.sphereMossInterface}
   \notready
   Fix one composition system whose page values are constrained by the actual
   long-layer representatives, with Leibniz, associativity and next-page
@@ -299,11 +314,15 @@ and Moss convergence used by the later proof tools.
   The chosen family controls the convergence range; no convergence of every
   ambient object is asserted.
 
-  The precise interface and its existence obligation for the fixed sphere
-  mapping model are now written. The mapping-sphere comparison with the
-  previously fixed sphere Adams object, the model data, and the convergence
-  proof remain unfinished. This preceding-page definition does not claim to
-  define the separate cobar Massey product on $E_2$.
+  The retained compatibility package is assembled from the context of
+  Definition~\ref{def:fixed-sphere-moss-context} and the literature conclusion
+  on that same context. It makes no further pairing or convergence choice.
+  The unconditional compatibility API uses the same literature producer as
+  the full delivery, so its proof still depends on unfinished source work.
+  The mapping-sphere comparison with the previously fixed sphere Adams
+  object, the model construction, and the source applicability remain
+  unfinished. This preceding-page definition does not claim to define the
+  separate cobar Massey product on $E_2$.
 \end{theorem}
 
 \subsection{Synthetic comparison and normalized lifts}

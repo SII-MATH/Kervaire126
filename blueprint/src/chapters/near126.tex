@@ -721,7 +721,7 @@ own proof, with the stated degree bounds and comparison maps.
 \begin{lemma}[Toda bracket detects the two-extension source]
   \label{lem:toda-two-extension}
   \lean{KIP126.Main.Solution.Route.Section7.main_toda_bracket_detected}
-  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2,lem:computation-sphere-low-degrees,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates}
   \notready
   For the fixed sphere and comparisons above, assuming $C_3$ and the universal
   form of $C_5$, the synthetic Toda bracket
@@ -837,7 +837,7 @@ own proof, with the stated degree bounds and comparison maps.
 \begin{lemma}[The required Hopf extension]
   \label{lem:near126-nu-extension}
   \lean{KIP126.Main.Solution.Route.Section7.nu_extension_lifts_to_fifth_quotient,KIP126.Main.Solution.Route.Section7.nu_extension_in_ninth_quotient}
-  \uses{def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-basis,thm:computation-route-results,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility,thm:computation-route-bottom,thm:computation-route-top,thm:computation-route-products}
+  \uses{def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-basis,thm:computation-route-results,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility,thm:computation-route-bottom,thm:computation-route-top,thm:computation-route-products,prop:internal-finite-page-calculus}
   \notready
   For the fixed sphere and comparisons above, there is a class
   $[\lambda^4h_1x_{121,7}]\in
@@ -901,7 +901,7 @@ own proof, with the stated degree bounds and comparison maps.
   \lean{KIP126.Main.Solution.Route.proposition_7_9,KIP126.Main.Solution.Route.Section7.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.ExcludeEta.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.C3NotC5.c3_excludes_c5}
-  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion,lem:computation-sphere-low-degrees,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates}
   \notready
   For the fixed sphere and comparisons above, if $C_3$ holds, then $C_5$ is false.
 \end{proposition}

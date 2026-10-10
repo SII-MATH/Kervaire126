@@ -5,6 +5,7 @@ import KIP126.Def.ClassicalAdams.PageRepresentatives.Proofs
 import KIP126.Def.ClassicalAdams.PageRepresentatives.Order.Proofs
 import KIP126.Def.SpectralSequence.Basic.Proofs
 import KIP126.Def.SpectralSequence.Computation.Proofs
+import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
 import KIP126.Def.Algebra.NestedQuotient.Proofs
 import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
 import KIP126.Main.Solution.Computation.Route.Consequences
@@ -36,6 +37,8 @@ open KIP126.Synthetic.Context KIP126.Synthetic.SpectralSequence
 open KIP126.Kervaire.Route KIP126.Kervaire.Route.Section7 KIP126.Literature.Route
 open KIP126.Algebra KIP126.LinE2 KIP126.Core.Algebra PageRepresentatives
 open KIP126.Computation.Route KIP126.Computation.Near126
+open KIP126.Core.SpectralSequence.FinitePageCalculus
+  (next_projection_zero_iff_incoming represents_unique differential_target_later_zero represents_d_zero_of_later represents_before represents_add_tail frame_after_second)
 universe u v w
 noncomputable section
 set_option backward.isDefEq.respectTransparency false
@@ -61,74 +64,6 @@ private theorem main_two_layer_strip
     ∃ b : BiHom 125 132 (XModLambdaN (S_0_0:Syn) 9),
       FiltrationAtLeast (nuCoefficientUnit H.unit D'.nu) 11 b ∧ Phi b=Phi a := by
   classical
-  have next_projection_zero_iff_incoming
-      (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
-      (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
-      (z : (Subobject.underlying.obj ((E.ssData (p+E.diffDeg r)).Z
-        ↑((r-E.r₀).toNat+1)) : ModuleCat.{v} ℤ)) :
-      (E.ssData (p+E.diffDeg r)).pageπ ↑((r-E.r₀).toNat+1) z = 0 ↔
-        (Subobject.ofLE _ _ ((E.ssData (p+E.diffDeg r)).Z_anti
-          (by exact_mod_cast Nat.le_succ (r-E.r₀).toNat)) ≫
-            (E.ssData (p+E.diffDeg r)).pageπ ↑(r-E.r₀).toNat) z ∈
-          LinearMap.range (E.d r p).hom := by
-    let D' := E.ssData (p+E.diffDeg r)
-    let n := (r-E.r₀).toNat
-    have hnm : (↑n : WithTop ℕ) ≤ ↑(n+1) := by exact_mod_cast Nat.le_succ n
-    let i := Subobject.ofLE (D'.Z ↑(n+1)) (D'.Z ↑n) (D'.Z_anti hnm)
-    let j := Subobject.ofLE (D'.B ↑(n+1)) (D'.Z ↑n)
-      ((D'.B_le_Z _).trans (D'.Z_anti hnm))
-    rw [← subobjectModule_image, E.B_succ r p hr, subobjectModule_image]
-    change D'.pageπ ↑(n+1) z = 0 ↔ (i ≫ D'.pageπ ↑n) z ∈ LinearMap.range (j ≫ D'.pageπ ↑n).hom
-    constructor
-    · intro hz
-      obtain ⟨v, hv⟩ := (cokernel_π_eq_zero_iff_mem_range
-        (Subobject.ofLE (D'.B ↑(n+1)) (D'.Z ↑(n+1)) (D'.B_le_Z _)) z).mp hz
-      refine ⟨v, ?_⟩
-      rw [← hv]
-      change (j ≫ D'.pageπ ↑n) v =
-        ((Subobject.ofLE (D'.B ↑(n+1)) (D'.Z ↑(n+1)) (D'.B_le_Z _)) ≫ i ≫ D'.pageπ ↑n) v
-      congr 2
-      dsimp only [i,j]
-      rw [← Category.assoc, Subobject.ofLE_comp_ofLE]
-    · rintro ⟨v, hv⟩
-      apply (subobject_cokernel_π_eq_zero_iff (D'.B ↑(n+1)) (D'.Z ↑(n+1)) (D'.B_le_Z _) z).mpr
-      have hz : D'.pageπ ↑n (i z-j v) = 0 := by
-        rw [map_sub]
-        exact sub_eq_zero.mpr hv.symm
-      have hb := (subobject_cokernel_π_eq_zero_iff (D'.B ↑n) (D'.Z ↑n) (D'.B_le_Z _) _).mp hz
-      have hb' := (ModuleCat.subobjectModule D'.V).monotone (D'.B_mono hnm) hb
-      have hv' : (D'.Z ↑n).arrow (j v) ∈ (ModuleCat.subobjectModule D'.V) (D'.B ↑(n+1)) := by
-        change (j ≫ (D'.Z ↑n).arrow) v ∈ _
-        dsimp only [j]
-        rw [Subobject.ofLE_arrow]
-        exact ⟨v, rfl⟩
-      have hh := ((ModuleCat.subobjectModule D'.V) (D'.B ↑(n+1))).add_mem hb' hv'
-      rw [map_sub, sub_add_cancel] at hh
-      change (i ≫ (D'.Z ↑n).arrow) z ∈ _ at hh
-      dsimp only [i] at hh
-      rwa [Subobject.ofLE_arrow] at hh
-  have represents_unique
-      {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p} {a b : E.Page r p}
-      (ha : RepresentsOnPage E r p x a) (hb : RepresentsOnPage E r p x b) : a = b := by
-    obtain ⟨hr, z, hz, hza⟩ := ha
-    obtain ⟨_, z', hz', hzb⟩ := hb
-    let D' := E.ssData p
-    let n : WithTop ℕ := ↑(2 - E.r₀).toNat
-    let m : WithTop ℕ := ↑(r - E.r₀).toNat
-    have hnm : n ≤ m := by
-      dsimp only [n, m]
-      exact_mod_cast (show (2-E.r₀).toNat ≤ (r-E.r₀).toNat by omega)
-    apply sub_eq_zero.mp
-    rw [← hza, ← hzb, ← map_sub]
-    apply (subobject_cokernel_π_eq_zero_iff (D'.B m) (D'.Z m) (D'.B_le_Z m) _).mpr
-    have heq : D'.pageπ n ((Subobject.ofLE _ _ (D'.Z_anti hnm)) (z-z')) = 0 := by
-      change (Subobject.ofLE _ _ (D'.Z_anti hnm) ≫ D'.pageπ n) (z-z') = 0
-      rw [map_sub, hz, hz', sub_self]
-    have hh := (subobject_cokernel_π_eq_zero_iff (D'.B n) (D'.Z n) (D'.B_le_Z n) _).mp heq
-    have he : (D'.Z n).arrow ((Subobject.ofLE _ _ (D'.Z_anti hnm)) (z-z')) =
-        (D'.Z m).arrow (z-z') := ConcreteCategory.congr_hom (Subobject.ofLE_arrow (D'.Z_anti hnm)) _
-    rw [he] at hh
-    exact (ModuleCat.subobjectModule D'.V).monotone (D'.B_mono hnm) hh
   have represents_zero_iff_boundary {H : Mod2EilenbergMacLane (C:=C)} (X : C) (r : ℤ) (hr : 2≤r)
       (p : ℤ×ℤ) (x : PageRepresentatives.Ambient H X p) :
       RepresentsOnPage (adamsTowerInternalSpectralSequence H.unit X) r p x 0 ↔
@@ -274,55 +209,6 @@ private theorem main_two_layer_strip
           exact ⟨a,ha,lambda_multiply_zero_mono (D':=D') (r-1-1) (r-1) (by omega) a hat⟩
         · exact sphere_boundary_torsion_lift R s t r hr2 x
             (PageRepresentatives.boundaries_le_permanentCycles H SphereSpectrum (s,t) r hx) hh
-  have differential_target_later_zero
-      {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r t : ℤ} {p q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
-      (hr0 : E.r₀ ≤ r) (hrt : r < t)
-      (h : HasDifferential E r p q x y) : RepresentsOnPage E t q y 0 := by
-    obtain ⟨rfl, xr, yr, hx, hy, hd⟩ := h
-    simp only [eqToHom_refl, Category.comp_id] at hd
-    obtain ⟨hr, z, hz2, hzr⟩ := hy
-    let A := E.ssData (p + E.diffDeg r)
-    let n : ℕ := (r-E.r₀).toNat
-    let n₀ : WithTop ℕ := ↑(2-E.r₀).toNat
-    let m : WithTop ℕ := ↑(t-E.r₀).toNat
-    have hnm : (↑(n+1) : WithTop ℕ) ≤ m := by
-      dsimp only [n,m]
-      exact_mod_cast (show (r-E.r₀).toNat+1 ≤ (t-E.r₀).toNat by omega)
-    have hn0 : n₀ ≤ ↑n := by
-      dsimp only [n₀,n]
-      exact_mod_cast (show (2-E.r₀).toNat ≤ (r-E.r₀).toNat by omega)
-    have hn1 : (↑n : WithTop ℕ) ≤ ↑(n+1) := by exact_mod_cast Nat.le_succ n
-    have hdmem : yr ∈ LinearMap.range (E.d r p).hom := ⟨xr, hd⟩
-    rw [← subobjectModule_image, E.B_succ r p hr0, subobjectModule_image] at hdmem
-    obtain ⟨b, hb⟩ := hdmem
-    let j := Subobject.ofLE (A.B ↑(n+1)) (A.Z ↑n)
-      ((A.B_le_Z _).trans (A.Z_anti hn1))
-    have hb' : A.pageπ ↑n (j b) = yr := hb
-    have hdif : A.pageπ ↑n (z-j b) = 0 := by rw [map_sub, hzr, hb', sub_self]
-    have hmem := (subobject_cokernel_π_eq_zero_iff (A.B ↑n) (A.Z ↑n) (A.B_le_Z _) _).mp hdif
-    have hmem' := (ModuleCat.subobjectModule A.V).monotone (A.B_mono hn1) hmem
-    have hj : (A.Z ↑n).arrow (j b) ∈ (ModuleCat.subobjectModule A.V) (A.B ↑(n+1)) := by
-      change (j ≫ (A.Z ↑n).arrow) b ∈ _
-      dsimp only [j]
-      rw [Subobject.ofLE_arrow]
-      exact ⟨b,rfl⟩
-    have hzmem := ((ModuleCat.subobjectModule A.V) (A.B ↑(n+1))).add_mem hmem' hj
-    rw [map_sub, sub_add_cancel] at hzmem
-    obtain ⟨b', hb'⟩ := hzmem
-    let i := Subobject.ofLE (A.B ↑(n+1)) (A.Z m) ((A.B_mono hnm).trans (A.B_le_Z _))
-    refine ⟨by omega, i b', ?_, ?_⟩
-    · have he : (Subobject.ofLE (A.Z m) (A.Z n₀) (A.Z_anti (hn0.trans (hn1.trans hnm))))
-          (i b') = (Subobject.ofLE (A.Z ↑n) (A.Z n₀) (A.Z_anti hn0)) z := by
-        apply (ModuleCat.mono_iff_injective (A.Z n₀).arrow).mp inferInstance
-        change (i ≫ Subobject.ofLE (A.Z m) (A.Z n₀) _ ≫ (A.Z n₀).arrow) b' =
-          (Subobject.ofLE (A.Z ↑n) (A.Z n₀) _ ≫ (A.Z n₀).arrow) z
-        simpa only [Category.assoc, i, Subobject.ofLE_arrow] using hb'
-      exact (congrArg (fun v => A.pageπ n₀ v) he).trans hz2
-    · apply (subobject_cokernel_π_eq_zero_iff (A.B m) (A.Z m) (A.B_le_Z _) _).mpr
-      change (i ≫ (A.Z m).arrow) b' ∈ _
-      dsimp only [i]
-      rw [Subobject.ofLE_arrow]
-      exact (ModuleCat.subobjectModule A.V).monotone (A.B_mono hnm) ⟨b',rfl⟩
   have family_map_data {D' : Model H M' Syn} {X Y : Syn} (f : X ⟶ Y) (r : ℤ) (i : Tridegree) :
       familyPageMap D'.family f r i = (D'.family.functor.map f).toSSDataMorphism.pageMap i (↑(r-2).toNat) := by
     let F := (D'.family.functor.map f).toSSDataMorphism
@@ -433,9 +319,7 @@ private theorem main_two_layer_strip
       x=0 ∨ x=I'.realization.basis .sphere 7 132 0 := by
     classical
     obtain ⟨e,he⟩ := I'.basis ⟨.sphere,7,132,["0,2,340,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 149 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 149) rfl)
     change (sequence D' .sphere).Page 2 (7,132) ≃ₗ[ℤ] (Fin 1 →₀ F2) at e
     change ∀i:Fin 1,e.symm (Finsupp.single i 1)=I'.realization.basis .sphere 7 132 i.val at he
     have hf : e x=Finsupp.single (0:Fin 1) ((e x) 0) := by
@@ -462,9 +346,7 @@ private theorem main_two_layer_strip
     have hd : HasDifferential E 3 (4,130) (7,132)
         (I'.realization.basis .sphere 4 130 0) (I'.realization.basis .sphere 7 132 0) := by
       have hrow := I'.results ⟨.sphere,.equation,3,4,130,[0],7,132,[0],"S0_AdamsE2_ss",2437⟩ (by
-        unfold Raw.claims
-        iterate 157 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 157) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨a,ha,b,hb,h⟩ := hrow
       change HasDifferential E 3 (4,130) (7,132) a b at h
@@ -503,49 +385,6 @@ private theorem main_two_layer_strip
     have hq := detected_map (D':=D') .sphere (.quotient 9 .sphere)
       (XModLambdaN.incl (S_0_0:Syn) 9) (7,132,132) _ c hd
     exact ⟨c,hc,ht,hq⟩
-  have represents_d_zero_of_later
-      {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p} {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
-      {a : E.Page r p} (ha : RepresentsOnPage E r p x a)
-      (ht : ReachesPage E t p x) : E.d r p a = 0 := by
-    obtain ⟨b, ht2, z, hz, _⟩ := ht
-    let D' := E.ssData p
-    let nt : WithTop ℕ := ↑(t-E.r₀).toNat
-    let nr : WithTop ℕ := ↑(r-E.r₀).toNat
-    let ns : WithTop ℕ := ↑((r-E.r₀).toNat+1)
-    have hrs : nr ≤ ns := by
-      dsimp only [nr, ns]
-      exact_mod_cast (show (r-E.r₀).toNat ≤ (r-E.r₀).toNat+1 by omega)
-    have hst : ns ≤ nt := by
-      dsimp only [ns, nt]
-      exact_mod_cast (show (r-E.r₀).toNat+1 ≤ (t-E.r₀).toNat by omega)
-    let zr := (Subobject.ofLE (D'.Z nt) (D'.Z nr) (D'.Z_anti (hrs.trans hst))) z
-    have hrep : RepresentsOnPage E r p x (D'.pageπ nr zr) := by
-      refine ⟨ha.1, zr, ?_, rfl⟩
-      dsimp only [zr]
-      rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
-      exact hz
-    rw [represents_unique ha hrep]
-    change D'.pageπ nr zr ∈ LinearMap.ker (E.d r p).hom
-    rw [← subobjectModule_kernel, E.Z_succ r p hr0, subobjectModule_image]
-    refine ⟨(Subobject.ofLE (D'.Z nt) (D'.Z ns) (D'.Z_anti hst)) z, ?_⟩
-    change (Subobject.ofLE (D'.Z ns) (D'.Z nr) (D'.Z_anti hrs) ≫ D'.pageπ nr)
-      ((Subobject.ofLE (D'.Z nt) (D'.Z ns) (D'.Z_anti hst)) z) = D'.pageπ nr zr
-    rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
-    rfl
-  have represents_before
-      {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r t : ℤ} {p : ℤ × ℤ}
-      {x : E.Page 2 p} {xt : E.Page t p}
-      (hr : 2 ≤ r) (hrt : r ≤ t) (ht : RepresentsOnPage E t p x xt) :
-      ∃ xr, RepresentsOnPage E r p x xr := by
-    obtain ⟨_, z, hz, _⟩ := ht
-    let D' := E.ssData p
-    have hrt' : (↑(r-E.r₀).toNat : WithTop ℕ) ≤ ↑(t-E.r₀).toNat := by
-      exact_mod_cast (show (r-E.r₀).toNat ≤ (t-E.r₀).toNat by omega)
-    let zr := (Subobject.ofLE (D'.Z ↑(t-E.r₀).toNat) (D'.Z ↑(r-E.r₀).toNat) (D'.Z_anti hrt')) z
-    refine ⟨D'.pageπ _ zr, hr, zr, ?_, rfl⟩
-    dsimp only [zr]
-    rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
-    exact hz
   have candidates_raw {D' : Model H M' Syn} (I' : Inputs D' L' G) :
       HasNonzeroDifferential (sequence D' .sphere) 3 (6,132) (9,134)
         (I'.realization.basis .sphere 6 132 0) (I'.realization.basis .sphere 9 134 3) ∨
@@ -555,9 +394,7 @@ private theorem main_two_layer_strip
     have h226 : HasDifferential E 3 (9,134) (12,136)
         ((I'.realization.basis .sphere 9 134 1)) ((I'.realization.basis .sphere 12 136 0)) := by
       have hrow := I'.results ⟨.sphere,.equation,3,9,134,[1],12,136,[0],"S0_AdamsE2_ss",2697⟩ (by
-        unfold Raw.claims
-        iterate 226 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 226) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (9,134) (12,136) x y at hd
@@ -570,9 +407,7 @@ private theorem main_two_layer_strip
     have h227 : HasDifferential E 2 (9,134) (11,135)
         ((I'.realization.basis .sphere 9 134 0)) ((I'.realization.basis .sphere 11 135 3) + (I'.realization.basis .sphere 11 135 4)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,9,134,[0],11,135,[3, 4],"S0_AdamsE2_ss",2698⟩ (by
-        unfold Raw.claims
-        iterate 227 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 227) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (9,134) (11,135) x y at hd
@@ -585,9 +420,7 @@ private theorem main_two_layer_strip
     have h228 : HasDifferential E 2 (9,134) (11,135)
         ((I'.realization.basis .sphere 9 134 4)) ((I'.realization.basis .sphere 11 135 4)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,9,134,[4],11,135,[4],"S0_AdamsE2_ss",2699⟩ (by
-        unfold Raw.claims
-        iterate 228 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 228) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (9,134) (11,135) x y at hd
@@ -600,9 +433,7 @@ private theorem main_two_layer_strip
     have h251 : HasDifferential E 2 (8,134) (10,135)
         ((I'.realization.basis .sphere 8 134 1)) ((I'.realization.basis .sphere 10 135 3)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,8,134,[1],10,135,[3],"S0_AdamsE2_ss",2783⟩ (by
-        unfold Raw.claims
-        iterate 251 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 251) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (8,134) (10,135) x y at hd
@@ -615,9 +446,7 @@ private theorem main_two_layer_strip
     have h252 : HasDifferential E 3 (10,135) (13,137)
         ((I'.realization.basis .sphere 10 135 0)) ((I'.realization.basis .sphere 13 137 0)) := by
       have hrow := I'.results ⟨.sphere,.equation,3,10,135,[0],13,137,[0],"S0_AdamsE2_ss",2784⟩ (by
-        unfold Raw.claims
-        iterate 252 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 252) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (10,135) (13,137) x y at hd
@@ -630,9 +459,7 @@ private theorem main_two_layer_strip
     have h253 : HasDifferential E 2 (10,135) (12,136)
         ((I'.realization.basis .sphere 10 135 1)) ((I'.realization.basis .sphere 12 136 1) + (I'.realization.basis .sphere 12 136 2)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[1],12,136,[1, 2],"S0_AdamsE2_ss",2785⟩ (by
-        unfold Raw.claims
-        iterate 253 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 253) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -645,9 +472,7 @@ private theorem main_two_layer_strip
     have h254 : HasDifferential E 2 (10,135) (12,136)
         ((I'.realization.basis .sphere 10 135 2)) ((I'.realization.basis .sphere 12 136 3) + (I'.realization.basis .sphere 12 136 4)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[2],12,136,[3, 4],"S0_AdamsE2_ss",2786⟩ (by
-        unfold Raw.claims
-        iterate 254 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 254) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -660,9 +485,7 @@ private theorem main_two_layer_strip
     have h255 : HasDifferential E 2 (10,135) (12,136)
         ((I'.realization.basis .sphere 10 135 4)) ((I'.realization.basis .sphere 12 136 4)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[4],12,136,[4],"S0_AdamsE2_ss",2787⟩ (by
-        unfold Raw.claims
-        iterate 255 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 255) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -674,9 +497,7 @@ private theorem main_two_layer_strip
       exact hd
     have h174 : ReachesPage E 3 (6,132) (I'.realization.basis .sphere 6 132 0) := by
       have hh := I'.results ⟨.sphere,.reaches,3,6,132,[0],6,132,[],"S0_AdamsE2_ss",2574⟩ (by
-        unfold Raw.claims
-        iterate 174 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 174) rfl)
       dsimp only [Statement] at hh
       obtain ⟨x,hx,hh⟩ := hh
       have vx : Raw.coordinatesValid Raw.degrees .sphere 6 132 [0]=true := rfl
@@ -685,9 +506,7 @@ private theorem main_two_layer_strip
       exact hh
     have h224 : ReachesPage E 1000 (9,134) (I'.realization.basis .sphere 9 134 2) := by
       have hh := I'.results ⟨.sphere,.reaches,1000,9,134,[2],9,134,[],"S0_AdamsE2_ss",2695⟩ (by
-        unfold Raw.claims
-        iterate 224 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 224) rfl)
       dsimp only [Statement] at hh
       obtain ⟨x,hx,hh⟩ := hh
       have vx : Raw.coordinatesValid Raw.degrees .sphere 9 134 [2]=true := rfl
@@ -696,9 +515,7 @@ private theorem main_two_layer_strip
       exact hh
     have h225 : ReachesPage E 7 (9,134) (I'.realization.basis .sphere 9 134 3) := by
       have hh := I'.results ⟨.sphere,.reaches,7,9,134,[3],9,134,[],"S0_AdamsE2_ss",2696⟩ (by
-        unfold Raw.claims
-        iterate 225 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 225) rfl)
       dsimp only [Statement] at hh
       obtain ⟨x,hx,hh⟩ := hh
       have vx : Raw.coordinatesValid Raw.degrees .sphere 9 134 [3]=true := rfl
@@ -706,27 +523,19 @@ private theorem main_two_layer_strip
       rw [←hx] at hh
       exact hh
     obtain ⟨e,he⟩ := I'.basis ⟨.sphere,9,134,["391,1", "390,1", "69,1,82,1", "18,1,190,1", "0,1,375,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 173 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 173) rfl)
     change E.Page 2 (9,134) ≃ₗ[ℤ] (Fin 5 →₀ F2) at e
     change ∀ i : Fin 5, e.symm (Finsupp.single i 1) = I'.realization.basis .sphere 9 134 i.val at he
     obtain ⟨f,hf⟩ := I'.basis ⟨.sphere,11,135,["411,1", "410,1", "409,1", "0,1,389,1", "0,3,367,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 191 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 191) rfl)
     change E.Page 2 (11,135) ≃ₗ[ℤ] (Fin 5 →₀ F2) at f
     change ∀ i : Fin 5, f.symm (Finsupp.single i 1) = I'.realization.basis .sphere 11 135 i.val at hf
     obtain ⟨g,hg⟩ := I'.basis ⟨.sphere,10,135,["413,1", "412,1", "0,1,391,1", "0,1,390,1", "0,2,375,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 182 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 182) rfl)
     change E.Page 2 (10,135) ≃ₗ[ℤ] (Fin 5 →₀ F2) at g
     change ∀ i : Fin 5, g.symm (Finsupp.single i 1) = I'.realization.basis .sphere 10 135 i.val at hg
     obtain ⟨k,hk⟩ := I'.basis ⟨.sphere,12,136,["1,1,387,1", "0,1,410,1", "0,1,409,1", "0,2,389,1", "0,4,367,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 200 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 200) rfl)
     change E.Page 2 (12,136) ≃ₗ[ℤ] (Fin 5 →₀ F2) at k
     change ∀ i : Fin 5, k.symm (Finsupp.single i 1) = I'.realization.basis .sphere 12 136 i.val at hk
     have he0 : e.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 9 134 0 := he 0
@@ -879,9 +688,7 @@ private theorem main_two_layer_strip
       · exact Or.inr (Or.inr (Or.inr (by simpa only [h2,h3,ite_false,add_comm] using hform)))
     have n659 : ¬ HasDifferential E 3 (6,132) (9,134) (I'.realization.basis .sphere 6 132 0) (0) := by
       have hh := I'.results ⟨.sphere,.refutation,3,6,132,[0],9,134,[],"proofs.db/log",2047477⟩ (by
-        unfold Raw.claims
-        iterate 659 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 659) rfl)
       dsimp only [Statement] at hh
       obtain ⟨x,hx,y,hy,hh⟩ := hh
       have vx : Raw.coordinatesValid Raw.degrees .sphere 6 132 [0]=true := rfl
@@ -891,9 +698,7 @@ private theorem main_two_layer_strip
       exact hh
     have n660 : ¬ HasDifferential E 3 (6,132) (9,134) (I'.realization.basis .sphere 6 132 0) (I'.realization.basis .sphere 9 134 2) := by
       have hh := I'.results ⟨.sphere,.refutation,3,6,132,[0],9,134,[2],"proofs.db/log",2047478⟩ (by
-        unfold Raw.claims
-        iterate 660 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 660) rfl)
       dsimp only [Statement] at hh
       obtain ⟨x,hx,y,hy,hh⟩ := hh
       have vx : Raw.coordinatesValid Raw.degrees .sphere 6 132 [0]=true := rfl
@@ -934,9 +739,7 @@ private theorem main_two_layer_strip
     have h226 : HasDifferential E 3 (9,134) (12,136)
         ((I'.realization.basis .sphere 9 134 1)) ((I'.realization.basis .sphere 12 136 0)) := by
       have hrow := I'.results ⟨.sphere,.equation,3,9,134,[1],12,136,[0],"S0_AdamsE2_ss",2697⟩ (by
-        unfold Raw.claims
-        iterate 226 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 226) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (9,134) (12,136) x y at hd
@@ -949,9 +752,7 @@ private theorem main_two_layer_strip
     have h227 : HasDifferential E 2 (9,134) (11,135)
         ((I'.realization.basis .sphere 9 134 0)) ((I'.realization.basis .sphere 11 135 3) + (I'.realization.basis .sphere 11 135 4)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,9,134,[0],11,135,[3, 4],"S0_AdamsE2_ss",2698⟩ (by
-        unfold Raw.claims
-        iterate 227 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 227) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (9,134) (11,135) x y at hd
@@ -964,9 +765,7 @@ private theorem main_two_layer_strip
     have h228 : HasDifferential E 2 (9,134) (11,135)
         ((I'.realization.basis .sphere 9 134 4)) ((I'.realization.basis .sphere 11 135 4)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,9,134,[4],11,135,[4],"S0_AdamsE2_ss",2699⟩ (by
-        unfold Raw.claims
-        iterate 228 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 228) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (9,134) (11,135) x y at hd
@@ -979,9 +778,7 @@ private theorem main_two_layer_strip
     have h251 : HasDifferential E 2 (8,134) (10,135)
         ((I'.realization.basis .sphere 8 134 1)) ((I'.realization.basis .sphere 10 135 3)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,8,134,[1],10,135,[3],"S0_AdamsE2_ss",2783⟩ (by
-        unfold Raw.claims
-        iterate 251 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 251) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (8,134) (10,135) x y at hd
@@ -994,9 +791,7 @@ private theorem main_two_layer_strip
     have h252 : HasDifferential E 3 (10,135) (13,137)
         ((I'.realization.basis .sphere 10 135 0)) ((I'.realization.basis .sphere 13 137 0)) := by
       have hrow := I'.results ⟨.sphere,.equation,3,10,135,[0],13,137,[0],"S0_AdamsE2_ss",2784⟩ (by
-        unfold Raw.claims
-        iterate 252 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 252) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (10,135) (13,137) x y at hd
@@ -1009,9 +804,7 @@ private theorem main_two_layer_strip
     have h253 : HasDifferential E 2 (10,135) (12,136)
         ((I'.realization.basis .sphere 10 135 1)) ((I'.realization.basis .sphere 12 136 1) + (I'.realization.basis .sphere 12 136 2)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[1],12,136,[1, 2],"S0_AdamsE2_ss",2785⟩ (by
-        unfold Raw.claims
-        iterate 253 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 253) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -1024,9 +817,7 @@ private theorem main_two_layer_strip
     have h254 : HasDifferential E 2 (10,135) (12,136)
         ((I'.realization.basis .sphere 10 135 2)) ((I'.realization.basis .sphere 12 136 3) + (I'.realization.basis .sphere 12 136 4)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[2],12,136,[3, 4],"S0_AdamsE2_ss",2786⟩ (by
-        unfold Raw.claims
-        iterate 254 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 254) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -1039,9 +830,7 @@ private theorem main_two_layer_strip
     have h255 : HasDifferential E 2 (10,135) (12,136)
         ((I'.realization.basis .sphere 10 135 4)) ((I'.realization.basis .sphere 12 136 4)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[4],12,136,[4],"S0_AdamsE2_ss",2787⟩ (by
-        unfold Raw.claims
-        iterate 255 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 255) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -1053,9 +842,7 @@ private theorem main_two_layer_strip
       exact hd
     have h174 : ReachesPage E 3 (6,132) (I'.realization.basis .sphere 6 132 0) := by
       have hh := I'.results ⟨.sphere,.reaches,3,6,132,[0],6,132,[],"S0_AdamsE2_ss",2574⟩ (by
-        unfold Raw.claims
-        iterate 174 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 174) rfl)
       dsimp only [Statement] at hh
       obtain ⟨x,hx,hh⟩ := hh
       have vx : Raw.coordinatesValid Raw.degrees .sphere 6 132 [0]=true := rfl
@@ -1064,9 +851,7 @@ private theorem main_two_layer_strip
       exact hh
     have h224 : ReachesPage E 1000 (9,134) (I'.realization.basis .sphere 9 134 2) := by
       have hh := I'.results ⟨.sphere,.reaches,1000,9,134,[2],9,134,[],"S0_AdamsE2_ss",2695⟩ (by
-        unfold Raw.claims
-        iterate 224 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 224) rfl)
       dsimp only [Statement] at hh
       obtain ⟨x,hx,hh⟩ := hh
       have vx : Raw.coordinatesValid Raw.degrees .sphere 9 134 [2]=true := rfl
@@ -1075,9 +860,7 @@ private theorem main_two_layer_strip
       exact hh
     have h225 : ReachesPage E 7 (9,134) (I'.realization.basis .sphere 9 134 3) := by
       have hh := I'.results ⟨.sphere,.reaches,7,9,134,[3],9,134,[],"S0_AdamsE2_ss",2696⟩ (by
-        unfold Raw.claims
-        iterate 225 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 225) rfl)
       dsimp only [Statement] at hh
       obtain ⟨x,hx,hh⟩ := hh
       have vx : Raw.coordinatesValid Raw.degrees .sphere 9 134 [3]=true := rfl
@@ -1085,27 +868,19 @@ private theorem main_two_layer_strip
       rw [←hx] at hh
       exact hh
     obtain ⟨e,he⟩ := I'.basis ⟨.sphere,9,134,["391,1", "390,1", "69,1,82,1", "18,1,190,1", "0,1,375,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 173 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 173) rfl)
     change E.Page 2 (9,134) ≃ₗ[ℤ] (Fin 5 →₀ F2) at e
     change ∀ i : Fin 5, e.symm (Finsupp.single i 1) = I'.realization.basis .sphere 9 134 i.val at he
     obtain ⟨f,hf⟩ := I'.basis ⟨.sphere,11,135,["411,1", "410,1", "409,1", "0,1,389,1", "0,3,367,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 191 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 191) rfl)
     change E.Page 2 (11,135) ≃ₗ[ℤ] (Fin 5 →₀ F2) at f
     change ∀ i : Fin 5, f.symm (Finsupp.single i 1) = I'.realization.basis .sphere 11 135 i.val at hf
     obtain ⟨g,hg⟩ := I'.basis ⟨.sphere,10,135,["413,1", "412,1", "0,1,391,1", "0,1,390,1", "0,2,375,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 182 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 182) rfl)
     change E.Page 2 (10,135) ≃ₗ[ℤ] (Fin 5 →₀ F2) at g
     change ∀ i : Fin 5, g.symm (Finsupp.single i 1) = I'.realization.basis .sphere 10 135 i.val at hg
     obtain ⟨k,hk⟩ := I'.basis ⟨.sphere,12,136,["1,1,387,1", "0,1,410,1", "0,1,409,1", "0,2,389,1", "0,4,367,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 200 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 200) rfl)
     change E.Page 2 (12,136) ≃ₗ[ℤ] (Fin 5 →₀ F2) at k
     change ∀ i : Fin 5, k.symm (Finsupp.single i 1) = I'.realization.basis .sphere 12 136 i.val at hk
     have he0 : e.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 9 134 0 := he 0
@@ -1267,9 +1042,7 @@ private theorem main_two_layer_strip
     let v:Page D' .sphere 9 134:=I'.realization.basis .sphere 9 134 3
     have hu:u+u=0 := by
       obtain ⟨e,he⟩:=I'.basis ⟨.sphere,9,134,["391,1","390,1","69,1,82,1","18,1,190,1","0,1,375,1"]⟩ (by
-        unfold Raw.degrees
-        iterate 173 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.degrees) (i := 173) rfl)
       change E.Page 2 (9,134)≃ₗ[ℤ](Fin 5→₀F2) at e
       apply e.injective
       ext i
@@ -1337,57 +1110,6 @@ private theorem main_two_layer_strip
             _=x-(u+u) := by abel
             _=x := by rw [hu,sub_zero]
         simpa only [he] using B.add_mem hh hv
-  have represents_add_tail
-      {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
-      {r : ℤ} {p : ℤ × ℤ} {x y : E.Page 2 p} {a b : E.Page r p}
-      (hx : RepresentsOnPage E r p x a) (hy : RepresentsOnPage E r p y b) :
-      RepresentsOnPage E r p (x+y) (a+b) := by
-    obtain ⟨hr,z,hz,ha⟩ := hx
-    obtain ⟨_,w,hw,hb⟩ := hy
-    exact ⟨hr,z+w,by rw [map_add,hz,hw],by rw [map_add,ha,hb]⟩
-  have frame_after_second
-      {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
-      {r : ℤ} {p : ℤ × ℤ} (hs : E.r₀≤2) (hr : 3≤r)
-      (e : E.Page 2 p ≃ₗ[ℤ] (Fin 2 →₀ F2))
-      {a : E.Page r p} (ha : RepresentsOnPage E r p (e.symm (Finsupp.single 0 1)) a)
-      (hn : E.d 2 p (e.symm (Finsupp.single 1 1)) ≠ 0) :
-      ∀ q : E.Page r p, q=0 ∨ q=a := by
-    have hz0 : E.d 2 p (e.symm (Finsupp.single 0 1)) = 0 := by
-      obtain ⟨z,hz⟩ := represents_before (by decide : (2:ℤ)≤2) (by omega : (2:ℤ)≤r) ha
-      rw [←hz.eq_on_page_two] at hz
-      exact represents_d_zero_of_later hs (by omega) hz ⟨a,ha⟩
-    intro q
-    let A := E.ssData p
-    haveI : Epi (A.pageπ ↑(r-E.r₀).toNat) := inferInstanceAs (Epi (cokernel.π _))
-    obtain ⟨z,hz⟩ := (ModuleCat.epi_iff_surjective (A.pageπ ↑(r-E.r₀).toNat)).mp inferInstance q
-    let x : E.Page 2 p := (Subobject.ofLE _ _ (A.Z_anti (by
-      exact_mod_cast (show (2-E.r₀).toNat ≤ (r-E.r₀).toNat by omega))) ≫ A.pageπ _) z
-    have hx : RepresentsOnPage E r p x q := ⟨by omega,z,rfl,hz⟩
-    have hc : E.d 2 p x = 0 := by
-      obtain ⟨z,hz⟩ := represents_before (by decide : (2:ℤ)≤2) (by omega : (2:ℤ)≤r) hx
-      rw [←hz.eq_on_page_two] at hz
-      exact represents_d_zero_of_later hs (by omega) hz ⟨q,hx⟩
-    have heq : e x = Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) := by
-      ext i
-      fin_cases i <;> simp [Finsupp.single_apply]
-    have hxe : x=e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
-      rw [←heq,LinearEquiv.symm_apply_apply]
-    generalize h0 : e x 0 = c0 at hxe
-    generalize h1 : e x 1 = c1 at hxe
-    fin_cases c0 <;> fin_cases c1
-    · change x=e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-      simp only [Finsupp.single_zero,zero_add,map_zero] at hxe
-      rw [hxe] at hx
-      exact Or.inl (represents_unique hx (RepresentsOnPage.zero (by omega)))
-    · change x=e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-      simp only [Finsupp.single_zero,zero_add] at hxe
-      exact (hn (by simpa only [hxe] using hc)).elim
-    · change x=e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-      simp only [Finsupp.single_zero,add_zero] at hxe
-      rw [hxe] at hx
-      exact Or.inr (represents_unique hx ha)
-    · change x=e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-      exact (hn (by simpa only [hxe,map_add,hz0,zero_add] using hc)).elim
   have nu_af10_frame {D' : Model H M' Syn} (I' : Inputs D' L' G) :
       ∃ a : (sequence D' .sphere).Page 3 (10,135),
       ∃ b : (sequence D' .sphere).Page 3 (13,137),
@@ -1399,9 +1121,7 @@ private theorem main_two_layer_strip
     have h251 : HasDifferential E 2 (8,134) (10,135)
         (I'.realization.basis .sphere 8 134 1) (I'.realization.basis .sphere 10 135 3) := by
       have hrow := I'.results ⟨.sphere,.equation,2,8,134,[1],10,135,[3],"S0_AdamsE2_ss",2783⟩ (by
-        unfold Raw.claims
-        iterate 251 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 251) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (8,134) (10,135) x y at hd
@@ -1414,9 +1134,7 @@ private theorem main_two_layer_strip
     have h252 : HasDifferential E 3 (10,135) (13,137)
         (I'.realization.basis .sphere 10 135 0) (I'.realization.basis .sphere 13 137 0) := by
       have hrow := I'.results ⟨.sphere,.equation,3,10,135,[0],13,137,[0],"S0_AdamsE2_ss",2784⟩ (by
-        unfold Raw.claims
-        iterate 252 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 252) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (10,135) (13,137) x y at hd
@@ -1429,9 +1147,7 @@ private theorem main_two_layer_strip
     have h253 : HasDifferential E 2 (10,135) (12,136)
         (I'.realization.basis .sphere 10 135 1) (I'.realization.basis .sphere 12 136 1 + I'.realization.basis .sphere 12 136 2) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[1],12,136,[1, 2],"S0_AdamsE2_ss",2785⟩ (by
-        unfold Raw.claims
-        iterate 253 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 253) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -1444,9 +1160,7 @@ private theorem main_two_layer_strip
     have h254 : HasDifferential E 2 (10,135) (12,136)
         (I'.realization.basis .sphere 10 135 2) (I'.realization.basis .sphere 12 136 3 + I'.realization.basis .sphere 12 136 4) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[2],12,136,[3, 4],"S0_AdamsE2_ss",2786⟩ (by
-        unfold Raw.claims
-        iterate 254 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 254) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -1459,9 +1173,7 @@ private theorem main_two_layer_strip
     have h255 : HasDifferential E 2 (10,135) (12,136)
         (I'.realization.basis .sphere 10 135 4) (I'.realization.basis .sphere 12 136 4) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[4],12,136,[4],"S0_AdamsE2_ss",2787⟩ (by
-        unfold Raw.claims
-        iterate 255 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 255) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -1472,9 +1184,7 @@ private theorem main_two_layer_strip
       rw [←hx,←hy] at hd
       simpa only [add_assoc] using hd
     obtain ⟨e,he⟩ := I'.basis ⟨.sphere,10,135,["413,1", "412,1", "0,1,391,1", "0,1,390,1", "0,2,375,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 182 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 182) rfl)
     change E.Page 2 (10,135) ≃ₗ[ℤ] (Fin 5 →₀ F2) at e
     change ∀ i : Fin 5, e.symm (Finsupp.single i 1) = I'.realization.basis .sphere 10 135 i.val at he
     have he0 : e.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 10 135 0 := he 0
@@ -1483,9 +1193,7 @@ private theorem main_two_layer_strip
     have he3 : e.symm (Finsupp.single (3:Fin 5) 1) = I'.realization.basis .sphere 10 135 3 := he 3
     have he4 : e.symm (Finsupp.single (4:Fin 5) 1) = I'.realization.basis .sphere 10 135 4 := he 4
     obtain ⟨f,hf⟩ := I'.basis ⟨.sphere,12,136,["1,1,387,1", "0,1,410,1", "0,1,409,1", "0,2,389,1", "0,4,367,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 200 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 200) rfl)
     change E.Page 2 (12,136) ≃ₗ[ℤ] (Fin 5 →₀ F2) at f
     change ∀ i : Fin 5, f.symm (Finsupp.single i 1) = I'.realization.basis .sphere 12 136 i.val at hf
     have hf0 : f.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 12 136 0 := hf 0
@@ -1781,9 +1489,7 @@ private theorem main_two_layer_strip
     have h279 : HasDifferential E 3 (8,134) (11,136)
         (I'.realization.basis .sphere 8 134 3) (I'.realization.basis .sphere 11 136 1) := by
       have hrow := I'.results ⟨.sphere,.equation,3,8,134,[3],11,136,[1],"S0_AdamsE2_ss",2850⟩ (by
-        unfold Raw.claims
-        iterate 279 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 279) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (8,134) (11,136) x y at hd
@@ -1796,9 +1502,7 @@ private theorem main_two_layer_strip
     have h280 : HasDifferential E 3 (8,134) (11,136)
         (I'.realization.basis .sphere 8 134 2) (I'.realization.basis .sphere 11 136 2) := by
       have hrow := I'.results ⟨.sphere,.equation,3,8,134,[2],11,136,[2],"S0_AdamsE2_ss",2851⟩ (by
-        unfold Raw.claims
-        iterate 280 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 280) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (8,134) (11,136) x y at hd
@@ -1811,9 +1515,7 @@ private theorem main_two_layer_strip
     have h282 : HasDifferential E 4 (11,136) (15,139)
         (I'.realization.basis .sphere 11 136 0) (I'.realization.basis .sphere 15 139 0) := by
       have hrow := I'.results ⟨.sphere,.equation,4,11,136,[0],15,139,[0],"S0_AdamsE2_ss",2853⟩ (by
-        unfold Raw.claims
-        iterate 282 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 282) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 4 (11,136) (15,139) x y at hd
@@ -1826,9 +1528,7 @@ private theorem main_two_layer_strip
     have h283 : HasDifferential E 2 (11,136) (13,137)
         (I'.realization.basis .sphere 11 136 4) (I'.realization.basis .sphere 13 137 3) := by
       have hrow := I'.results ⟨.sphere,.equation,2,11,136,[4],13,137,[3],"S0_AdamsE2_ss",2854⟩ (by
-        unfold Raw.claims
-        iterate 283 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 283) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (11,136) (13,137) x y at hd
@@ -1840,9 +1540,7 @@ private theorem main_two_layer_strip
       simpa only [add_assoc] using hd
     have h281 : ReachesPage E 5 (11,136) (I'.realization.basis .sphere 11 136 3) := by
       have hrow := I'.results ⟨.sphere,.reaches,5,11,136,[3],11,136,[],"S0_AdamsE2_ss",2852⟩ (by
-        unfold Raw.claims
-        iterate 281 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 281) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,hd⟩ := hrow
       change ReachesPage E 5 (11,136) x at hd
@@ -1852,9 +1550,7 @@ private theorem main_two_layer_strip
       rw [←hx] at hd
       simpa only [add_assoc] using hd
     obtain ⟨e,he⟩ := I'.basis ⟨.sphere,13,137,["76,1,82,1", "9,1,251,1", "7,1,275,1", "0,5,367,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 208 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 208) rfl)
     change E.Page 2 (13,137) ≃ₗ[ℤ] (Fin 4 →₀ F2) at e
     change ∀ i : Fin 4, e.symm (Finsupp.single i 1) = I'.realization.basis .sphere 13 137 i.val at he
     have he0 : e.symm (Finsupp.single (0:Fin 4) 1) = I'.realization.basis .sphere 13 137 0 := he 0
@@ -1862,9 +1558,7 @@ private theorem main_two_layer_strip
     have he2 : e.symm (Finsupp.single (2:Fin 4) 1) = I'.realization.basis .sphere 13 137 2 := he 2
     have he3 : e.symm (Finsupp.single (3:Fin 4) 1) = I'.realization.basis .sphere 13 137 3 := he 3
     obtain ⟨f,hf⟩ := I'.basis ⟨.sphere,11,136,["69,1,89,1", "1,1,389,1", "1,1,388,1", "0,2,391,1", "0,3,375,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 192 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 192) rfl)
     change E.Page 2 (11,136) ≃ₗ[ℤ] (Fin 5 →₀ F2) at f
     change ∀ i : Fin 5, f.symm (Finsupp.single i 1) = I'.realization.basis .sphere 11 136 i.val at hf
     have hf0 : f.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 11 136 0 := hf 0
@@ -1974,9 +1668,7 @@ private theorem main_two_layer_strip
     have h200 : HasDifferential E 3 (8,133) (11,135)
         (I'.realization.basis .sphere 8 133 0) (I'.realization.basis .sphere 11 135 0) := by
       have hrow := I'.results ⟨.sphere,.equation,3,8,133,[0],11,135,[0],"S0_AdamsE2_ss",2629⟩ (by
-        unfold Raw.claims
-        iterate 200 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 200) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (8,133) (11,135) x y at hd
@@ -1989,9 +1681,7 @@ private theorem main_two_layer_strip
     have h201 : HasDifferential E 2 (8,133) (10,134)
         (I'.realization.basis .sphere 8 133 1) (I'.realization.basis .sphere 10 134 2 + I'.realization.basis .sphere 10 134 4) := by
       have hrow := I'.results ⟨.sphere,.equation,2,8,133,[1],10,134,[2, 4],"S0_AdamsE2_ss",2630⟩ (by
-        unfold Raw.claims
-        iterate 201 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 201) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (8,133) (10,134) x y at hd
@@ -2004,9 +1694,7 @@ private theorem main_two_layer_strip
     have h226 : HasDifferential E 3 (9,134) (12,136)
         (I'.realization.basis .sphere 9 134 1) (I'.realization.basis .sphere 12 136 0) := by
       have hrow := I'.results ⟨.sphere,.equation,3,9,134,[1],12,136,[0],"S0_AdamsE2_ss",2697⟩ (by
-        unfold Raw.claims
-        iterate 226 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 226) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (9,134) (12,136) x y at hd
@@ -2019,9 +1707,7 @@ private theorem main_two_layer_strip
     have h227 : HasDifferential E 2 (9,134) (11,135)
         (I'.realization.basis .sphere 9 134 0) (I'.realization.basis .sphere 11 135 3 + I'.realization.basis .sphere 11 135 4) := by
       have hrow := I'.results ⟨.sphere,.equation,2,9,134,[0],11,135,[3, 4],"S0_AdamsE2_ss",2698⟩ (by
-        unfold Raw.claims
-        iterate 227 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 227) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (9,134) (11,135) x y at hd
@@ -2034,9 +1720,7 @@ private theorem main_two_layer_strip
     have h228 : HasDifferential E 2 (9,134) (11,135)
         (I'.realization.basis .sphere 9 134 4) (I'.realization.basis .sphere 11 135 4) := by
       have hrow := I'.results ⟨.sphere,.equation,2,9,134,[4],11,135,[4],"S0_AdamsE2_ss",2699⟩ (by
-        unfold Raw.claims
-        iterate 228 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 228) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (9,134) (11,135) x y at hd
@@ -2048,9 +1732,7 @@ private theorem main_two_layer_strip
       simpa only [add_assoc] using hd
     have h224 : ReachesPage E 1000 (9,134) (I'.realization.basis .sphere 9 134 2) := by
       have hrow := I'.results ⟨.sphere,.reaches,1000,9,134,[2],9,134,[],"S0_AdamsE2_ss",2695⟩ (by
-        unfold Raw.claims
-        iterate 224 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 224) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,hd⟩ := hrow
       change ReachesPage E 1000 (9,134) x at hd
@@ -2061,9 +1743,7 @@ private theorem main_two_layer_strip
       simpa only [add_assoc] using hd
     have h225 : ReachesPage E 7 (9,134) (I'.realization.basis .sphere 9 134 3) := by
       have hrow := I'.results ⟨.sphere,.reaches,7,9,134,[3],9,134,[],"S0_AdamsE2_ss",2696⟩ (by
-        unfold Raw.claims
-        iterate 225 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 225) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,hd⟩ := hrow
       change ReachesPage E 7 (9,134) x at hd
@@ -2073,17 +1753,13 @@ private theorem main_two_layer_strip
       rw [←hx] at hd
       simpa only [add_assoc] using hd
     obtain ⟨e,he⟩ := I'.basis ⟨.sphere,8,133,["376,1", "375,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 161 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 161) rfl)
     change E.Page 2 (8,133) ≃ₗ[ℤ] (Fin 2 →₀ F2) at e
     change ∀ i : Fin 2, e.symm (Finsupp.single i 1) = I'.realization.basis .sphere 8 133 i.val at he
     have he0 : e.symm (Finsupp.single (0:Fin 2) 1) = I'.realization.basis .sphere 8 133 0 := he 0
     have he1 : e.symm (Finsupp.single (1:Fin 2) 1) = I'.realization.basis .sphere 8 133 1 := he 1
     obtain ⟨f,hf⟩ := I'.basis ⟨.sphere,9,134,["391,1", "390,1", "69,1,82,1", "18,1,190,1", "0,1,375,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 173 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 173) rfl)
     change E.Page 2 (9,134) ≃ₗ[ℤ] (Fin 5 →₀ F2) at f
     change ∀ i : Fin 5, f.symm (Finsupp.single i 1) = I'.realization.basis .sphere 9 134 i.val at hf
     have hf0 : f.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 9 134 0 := hf 0
@@ -2092,9 +1768,7 @@ private theorem main_two_layer_strip
     have hf3 : f.symm (Finsupp.single (3:Fin 5) 1) = I'.realization.basis .sphere 9 134 3 := hf 3
     have hf4 : f.symm (Finsupp.single (4:Fin 5) 1) = I'.realization.basis .sphere 9 134 4 := hf 4
     obtain ⟨g,hg⟩ := I'.basis ⟨.sphere,11,135,["411,1", "410,1", "409,1", "0,1,389,1", "0,3,367,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 191 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 191) rfl)
     change E.Page 2 (11,135) ≃ₗ[ℤ] (Fin 5 →₀ F2) at g
     change ∀ i : Fin 5, g.symm (Finsupp.single i 1) = I'.realization.basis .sphere 11 135 i.val at hg
     have hg0 : g.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 11 135 0 := hg 0
@@ -2103,9 +1777,7 @@ private theorem main_two_layer_strip
     have hg3 : g.symm (Finsupp.single (3:Fin 5) 1) = I'.realization.basis .sphere 11 135 3 := hg 3
     have hg4 : g.symm (Finsupp.single (4:Fin 5) 1) = I'.realization.basis .sphere 11 135 4 := hg 4
     obtain ⟨k,hk⟩ := I'.basis ⟨.sphere,10,134,["389,1", "388,1", "1,1,366,1", "0,1,373,1", "0,2,367,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 181 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 181) rfl)
     change E.Page 2 (10,134) ≃ₗ[ℤ] (Fin 5 →₀ F2) at k
     change ∀ i : Fin 5, k.symm (Finsupp.single i 1) = I'.realization.basis .sphere 10 134 i.val at hk
     have hk0 : k.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 10 134 0 := hk 0
@@ -3241,9 +2913,7 @@ private theorem main_weak_high_representative
   have h6b_label {D' : Model H M' Syn} (I' : Inputs D' L' G) :
       I'.realization.sphere 9 134 (mulAt dataH6 B) = I'.realization.basis .sphere 9 134 2 := by
     have hc := I'.csv (⟨.sphere,9,134,["391,1", "390,1", "69,1,82,1", "18,1,190,1", "0,1,375,1"]⟩ : Raw.Degree) (by
-      unfold Raw.degrees
-      iterate 173 apply List.mem_cons_of_mem
-      exact List.mem_cons_self) rfl
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 173) rfl) rfl
     obtain ⟨z,hz,he⟩ := hc (2:Fin 5)
     have heq : (mulAt dataH6 B)=z := by
       apply Subtype.ext

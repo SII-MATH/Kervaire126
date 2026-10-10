@@ -726,6 +726,7 @@ foundations established earlier.
   \label{thm:main-tmf-br21-coordinate-differential}
   \uses{thm:literature-br21,def:tmf-csv-coordinate-binding,def:hf2-adams-tower,thm:computation-bindings-tmf-v2Sixteen,thm:computation-bindings-tmf-betaGFour,thm:computation-tmfMultiplicative}
   \lean{KIP126.Main.Solution.Computation.tmf_br21_d3}
+  \lean{KIP126.Interface.Solution.tmfBookDifferentialInterface_of_delivery,KIP126.Interface.Solution.tmfBookDifferentialInterface,KIP126.Interface.Solution.tmfDifferentialInterfaceOfDelivery,KIP126.Interface.Solution.tmfDifferentialInterface,KIP126.Interface.Solution.tmfMultiplicativeInterface_of_delivery,KIP126.Interface.Solution.tmfMultiplicativeInterface}
   \lean{KIP126.Classical.Adams.adamsInternalE2Induced_hasDifferential}
   \notready
   Transport the BR21 differential
@@ -739,4 +740,8 @@ foundations established earlier.
   construction dependencies, so the complete fixed-model result remains
   open. It is derived from the same Challenge2 delivery and adds no
   independent computation input.
+  The retained tmf compatibility interfaces use this same transport and
+  pair its equation with the unit and product comparison already delivered
+  on the same coordinates. Their existence APIs project the one Interface
+  producer; they add no separate tmf choice and do not complete that producer.
 \end{theorem}

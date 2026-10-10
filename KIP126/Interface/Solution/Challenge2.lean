@@ -1,16 +1,19 @@
 import KIP126.Interface.Challenge.Challenge2
+import KIP126.Interface.Solution.Literature.Route.SourceExistence
 
 /-! Construction track for the package Interface must deliver to Main. -/
 namespace KIP126.Interface.Solution
 
 noncomputable def challenge2 : KIP126.Challenge2 := by
   refine {
-    literature := ?_
+    literature := Literature.Route.sourceLiterature
     computation := ?_ }
-  all_goals sorry
+  -- All computation bindings and certificates must use this exact literature
+  -- delivery. The derived Moss/tmf compatibility views are not producer inputs.
+  sorry
 
 /-- The literature part retains its source bindings on Def's fixed model.
-This projection carries the aggregate construction's existing proof debt. -/
+This projection carries the source producer's existing proof debt. -/
 theorem literatureInterface :
     Nonempty KIP126.Challenge2.LiteratureInterface := by
   let input := challenge2

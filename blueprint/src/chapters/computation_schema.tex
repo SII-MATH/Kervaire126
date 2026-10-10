@@ -102,13 +102,23 @@ mathematical objects and conditions.
 
 \begin{lemma}[Finite source-table certificates]
   \label{lem:lin-e2-finite-source-certificates}
+  \lean{KIP126.LinE2.BasisCertificates.zero_unique}
+  \lean{KIP126.LinE2.RelationCertificates.theta_massey_h5_mul_85_zero,KIP126.LinE2.RelationCertificates.theta_massey_h5_mul_84_zero,KIP126.LinE2.RelationCertificates.theta_massey_h5_mul_69_zero}
   \lean{KIP126.LinE2.BasisCertificates.NuLow.nu_low,KIP126.LinE2.BasisCertificates.ThreeCoordinates.three_coordinates,KIP126.LinE2.RelationCertificates.relation_member0,KIP126.LinE2.RelationCertificates.relation_member1,KIP126.LinE2.RelationCertificates.relation_member2,KIP126.LinE2.RelationCertificates.relation_member3,KIP126.LinE2.RelationCertificates.relation_member4,KIP126.LinE2.RelationCertificates.relation_member5,KIP126.LinE2.RelationCertificates.relation_member6,KIP126.LinE2.RelationCertificates.relation_member7,KIP126.LinE2.RelationCertificates.relation_member8,KIP126.LinE2.RelationCertificates.relation_member9,KIP126.LinE2.RelationCertificates.relation_member10,KIP126.LinE2.RelationCertificates.relation_member11,KIP126.LinE2.RelationCertificates.relation_member12,KIP126.LinE2.RelationCertificates.relation_member13,KIP126.LinE2.RelationCertificates.pq_neg_eq_self,KIP126.LinE2.RelationCertificates.pq_relation0,KIP126.LinE2.RelationCertificates.pq_relation1,KIP126.LinE2.RelationCertificates.pq_relation2,KIP126.LinE2.RelationCertificates.pq_relation3,KIP126.LinE2.RelationCertificates.h0_obstruction_rel0,KIP126.LinE2.RelationCertificates.h0_obstruction_rel1,KIP126.LinE2.RelationCertificates.h0_obstruction_rel2,KIP126.LinE2.RelationCertificates.h0_obstruction_rel3,KIP126.LinE2.RelationCertificates.h0_obstruction_mon0,KIP126.LinE2.RelationCertificates.h0_obstruction_mon1,KIP126.LinE2.RelationCertificates.h0_obstruction_mon2,KIP126.LinE2.RelationCertificates.h0_obstruction_mon3,KIP126.LinE2.RelationCertificates.h0_obstruction_mon4,KIP126.LinE2.RelationCertificates.h0_obstruction_monT,KIP126.LinE2.RelationCertificates.h0_obstruction_monTarget2,KIP126.LinE2.RelationCertificates.h2_obstruction_rel0,KIP126.LinE2.RelationCertificates.h2_obstruction_rel1,KIP126.LinE2.RelationCertificates.h2_obstruction_rel2,KIP126.LinE2.RelationCertificates.h2_obstruction_mon0,KIP126.LinE2.RelationCertificates.h2_obstruction_mon1,KIP126.LinE2.RelationCertificates.h2_obstruction_mon2,KIP126.LinE2.RelationCertificates.h2_obstruction_monT}
   \uses{def:lin-e2-catalogue}
   \leanok
   The pinned basis tables have the recorded low-filtration and selected
-  three-coordinate entries. The specified relation rows belong to the
+  three-coordinate entries. Every basis row in degree $(0,0)$ has the
+  empty monomial code, representing the unit, and there is no row in
+  degree $(2,3)$. The latter uses the existing low-degree certificate.
+  These checks share the original character rows and parsing proofs;
+  no duplicate basis table is introduced for Section~7.
+  The specified relation rows belong to the
   pinned relation table and yield the stated equations in its presented
-  algebra. These assertions concern the source artifacts and their own
+  algebra. In particular, the products of generator $18$ with generators
+  $85$, $84$, and $69$ vanish there. These certificates share one checked
+  transcription of the source chunk with the existing relation certificates.
+  These assertions concern the source artifacts and their own
   algebraic interpretation. They do not identify this presentation with an
   actual Adams page or certify a differential on that page.
 \end{lemma}
@@ -176,6 +186,26 @@ mathematical objects and conditions.
   displayed comparisons are proved. Write $\mathcal R_H$ for the
   specified mod--$2$ ring structure on $H$.
 \end{definition}
+
+\begin{lemma}[Low-degree sphere consequences of the common computation delivery]
+  \label{lem:computation-sphere-low-degrees}
+  \lean{KIP126.Main.Solution.Computation.sphere_eta_nonzero_unique,KIP126.Main.Solution.Computation.sphere_e2_two_three_subsingleton,KIP126.Main.Solution.Computation.sphere_zero_nonzero_unique}
+  \uses{def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-sphereBasis-csv-values,lem:lin-e2-finite-source-certificates}
+  \notready
+  On the fixed sphere, the nonzero elements of each of
+  $E_2^{1,2}(S^0)$ and $E_2^{0,0}(S^0)$ are unique: if $x,y$ are
+  nonzero in either of these groups, then $x=y$. Also
+  $E_2^{2,3}(S^0)=0$.
+
+  For $(1,2)$ the selected-degree basis already identifies the actual
+  page with $\mathbb F_2$, so no full-table query is needed. For $(2,3)$
+  use the existing empty-degree certificate and the delivered full-range
+  coordinates. For $(0,0)$ the unit-monomial certificate and the same
+  coordinate/value comparison show uniqueness. All three arguments take
+  one common delivery as a parameter; they introduce no axiom or additional
+  delivery field. Their deductions are implemented, while the fixed model
+  and the assumed computation delivery retain their unfinished obligations.
+\end{lemma}
 
 \begin{theorem}[Bounded actual sphere multiplication comparison]
   \label{thm:bounded-sphere-multiplication}

@@ -1,3 +1,4 @@
+import KIP126.Main.Solution.Computation.LowDegrees
 import KIP126.Main.Solution.Route.Section7.NuNinth
 import KIP126.Main.Solution.Route.Section7.ThetaToda
 import KIP126.Main.Solution.Route.Section7.ThetaShuffle
@@ -26,8 +27,7 @@ local notation "h₀" => routeLiterature.toda.h0
 
 attribute [local irreducible] KIP126.LinE2.homogeneousPart
 
-open private full_basis_eta_low from KIP126.Main.Solution.Route.Section7.LowCsv
-open private anyy_eta_unique_from_coordinates anyy_bracket_exact_target
+open private anyy_eta_unique_from_low_degrees anyy_bracket_exact_target
   from KIP126.Main.Solution.Route.Section7.AnyYHelpers
 open private main_module_toda_nonempty_of_alpha
   from KIP126.Main.Solution.Route.Section7.TodaNonempty
@@ -53,13 +53,10 @@ theorem target_nu_divisible
   obtain ⟨a11,ha⟩ := alpha_one_exists
   obtain ⟨z,hz⟩ := main_module_toda_nonempty_of_alpha D η h₀ ((L).U M) eV
     routeLiterature.toda.eta_squared a11 ha
-  have unique := anyy_eta_unique_from_coordinates routeLiterature.synthetic.eInfty
+  have unique := anyy_eta_unique_from_low_degrees routeLiterature.synthetic.eInfty
     sphereVanishing
-    (computation.bindings.presentation.comparison 1 2 (by decide)).symm
-    (computation.results.sphereBasis.coordinates 1 2 (by decide))
-    (computation.results.sphereBasis.csv_values 1 2 (by decide))
-    (computation.results.sphereBasis.coordinates 2 3 (by decide))
-    full_basis_eta_low.1 full_basis_eta_low.2
+    (KIP126.Main.Solution.Computation.sphere_eta_nonzero_unique KIP126.Main.StageInput.witness)
+    (KIP126.Main.Solution.Computation.sphere_e2_two_three_subsingleton KIP126.Main.StageInput.witness)
   obtain ⟨t,ht,he,_⟩ := anyy_bracket_exact_target I SF
     routeLiterature.synthetic routeLiterature.realization unique η h₀
     routeLiterature.toda.eta_squared routeLiterature.toda.low_indeterminacy

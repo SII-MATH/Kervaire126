@@ -2754,7 +2754,44 @@
           "br21",
           "lwx_machine"
         ],
-        "notes": "Main transports the same literature.results.br21 through that witness’s detectorIso and computation endpoint comparisons, then applies the proved betaGFour=betaFiveG coordinate relation. The theorem has a real proof body but depends on the existing unfinished generic Adams tower differential naturality theorem; it is not a new computation field or proof-completion claim."
+        "notes": "Main transports the same literature.results.br21 through that witness’s detectorIso and computation endpoint comparisons, then applies the proved betaGFour=betaFiveG coordinate relation. The generic Adams differential naturality proof is implemented; the fixed model and delivery premises remain unfinished. This is not a new computation field or proof-completion claim."
+      },
+      {
+        "id": "IA-SPHERE-LOW-DEGREES",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Main/Solution/Computation/LowDegrees.lean",
+        "declarations": [
+          "KIP126.Main.Solution.Computation.sphere_eta_nonzero_unique",
+          "KIP126.Main.Solution.Computation.sphere_e2_two_three_subsingleton",
+          "KIP126.Main.Solution.Computation.sphere_zero_nonzero_unique"
+        ],
+        "sources": [
+          "lwx_machine"
+        ],
+        "blueprint_labels": [
+          "lem:computation-sphere-low-degrees"
+        ],
+        "notes": "Low-degree consequences of one explicit Challenge2 delivery. Degree (1,2) uses its existing selected route basis directly. Degree (2,3) reuses the existing empty-table certificate, and (0,0) uses the shared unit-monomial certificate, both with the same delivered sphere coordinates. No new input field or project axiom is introduced. The fixed foundation and delivery obligations remain unfinished; Section 7 consumes these mathematical conclusions without rescanning the raw table."
+      },
+      {
+        "id": "IA-MOSS-COMPATIBILITY",
+        "role": "internal-adapter",
+        "proof_status": "implemented-adapter",
+        "module": "KIP126/Interface/Solution/Moss.lean",
+        "declarations": [
+          "KIP126.Interface.Solution.sphereMossInterface_of_literature",
+          "KIP126.Interface.Solution.sphereMossInterface"
+        ],
+        "sources": [
+          "moss"
+        ],
+        "blueprint_labels": [
+          "def:fixed-sphere-moss-context",
+          "thm:literature-moss",
+          "thm:moss-convergence-adapter"
+        ],
+        "notes": "Compatibility assembly from Def.standardSphereMossContext and LiteratureResults.moss on that exact context. The existence API uses sourceLiterature, the same literature choice as Challenge2. It does not prove the context construction, source applicability, or Main's concrete Moss application, and retains those unfinished dependencies."
       }
     ],
     "delivery_packages": [
@@ -2801,7 +2838,7 @@
         "declarations": [
           "KIP126.Interface.Solution.Literature.Route.bhs_completed_sources"
         ],
-        "notes": "Independent internal completion/comparison construction for the selected route on the actual HF2-local classical background. Sphere, the actual nu cofiber, the same connective finite-type tmf detector and shifts retain their BHS applicability obligations. No high125 or T premise."
+        "notes": "Parameterized internal completion/comparison construction on the actual HF2-local classical background. It quantifies over the route and realization coordinates, so the fixed literature delivery alone cannot prove it. This helper is not a second fixed-model acceptance target. Sphere, the actual nu cofiber, the same connective finite-type tmf detector and shifts retain their BHS applicability obligations. No high125 or T premise."
       },
       {
         "id": "SP03",
@@ -2838,7 +2875,8 @@
         "proof_status": "proof-placeholder",
         "module": "KIP126/Interface/Solution/Literature/Route/SourceExistence.lean",
         "declarations": [
-          "KIP126.Interface.Solution.Literature.Route.source_background_exists"
+          "KIP126.Interface.Solution.Literature.Route.source_background_exists",
+          "KIP126.Interface.Solution.Literature.Route.sourceLiterature"
         ],
         "sources": [
           "pst",
@@ -2857,7 +2895,7 @@
           "bhs_mot",
           "iwx_data_2022"
         ],
-        "notes": "Correlated source delivery for the route and mathematical background fixed in Def: source objects, their comparisons and literature results must match that one background. Pstr hypercomplete construction and separately inventoried prior results supply the source reasoning; no C, route Application, high125 result, paper tools or final T is inferred."
+        "notes": "Correlated source delivery for the route and mathematical background fixed in Def. The proof exposes one binding-construction goal and the 48 result fields on those same bindings, reusing the independent Hopf differential and vanishing producers. The remaining field proofs are explicit placeholders, not new assumptions about arbitrary bindings. sourceLiterature selects this package once for Challenge2 and literature-only compatibility views. Pstr hypercomplete construction and separately inventoried prior results supply the source reasoning; no computation certification, route Application, derived high125 survival, paper tools or final T is inferred."
       },
       {
         "id": "BR21-book-language",
@@ -2875,15 +2913,17 @@
       {
         "id": "BR21-source-realization",
         "role": "internal-adapter",
-        "proof_status": "proof-placeholder",
+        "proof_status": "implemented-adapter",
         "module": "KIP126/Interface/Solution/Tmf.lean",
         "declarations": [
+          "KIP126.Interface.Solution.tmfModelOfDelivery",
+          "KIP126.Interface.Solution.tmfBookDifferentialInterface_of_delivery",
           "KIP126.Interface.Solution.tmfBookDifferentialInterface"
         ],
         "sources": [
           "br21"
         ],
-        "notes": "Construct actual tmf and identify its source generators and tower with the fixed CSV comparison before invoking the book theorem."
+        "notes": "Transport the same delivery's BR21 source differential through its detector isomorphism and endpoint comparisons to the fixed tmf target and delivered CSV coordinates. The compatibility existence API uses Interface.Solution.challenge2; it no longer chooses an independent model. The fixed construction, literature and computation obligations remain unfinished upstream."
       },
       {
         "id": "BR21-source-adapter",
@@ -2892,12 +2932,15 @@
         "module": "KIP126/Interface/Solution/Tmf.lean",
         "declarations": [
           "KIP126.Interface.Solution.br21Statement_of_book",
-          "KIP126.Interface.Solution.tmfDifferentialInterface"
+          "KIP126.Interface.Solution.tmfDifferentialInterfaceOfDelivery",
+          "KIP126.Interface.Solution.tmfDifferentialInterface",
+          "KIP126.Interface.Solution.tmfMultiplicativeInterface_of_delivery",
+          "KIP126.Interface.Solution.tmfMultiplicativeInterface"
         ],
         "sources": [
           "br21"
         ],
-        "notes": "Pure target equality transport and existential assembly from the same book source model; quotient identity is a proved theorem."
+        "notes": "Target equality transport uses the proved quotient identity. The differential and multiplicative compatibility views retain the same delivery's target and coordinates; multiplicativity projects its existing computation binding. The existence APIs retain the producer's unfinished dependencies and do not establish new source or computation results."
       },
       {
         "id": "BR21-quotient-relations",
