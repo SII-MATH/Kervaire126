@@ -13,7 +13,12 @@ variable {K : Type u} [Field K] (A : Mon (GrVect K))
 is an isomorphism. This is a property obligation on those fixed constructions. -/
 theorem coimageImageComparison_isIso {X Y : LeftModule A} (f : X ⟶ Y) :
     IsIso (Abelian.coimageImageComparison f) := by
-  sorry
+  let F := Monad.forget (leftTensorMonad A)
+  letI : PreservesFiniteColimits F := ⟨fun J _ _ => inferInstance⟩
+  haveI : IsIso (F.map (Abelian.coimageImageComparison f)) := by
+    rw [Arrow.isIso_iff_isIso_of_isIso (Abelian.PreservesCoimageImageComparison.iso F f).hom]
+    infer_instance
+  exact isIso_of_reflects_iso (Abelian.coimageImageComparison f) F
 
 attribute [instance] coimageImageComparison_isIso
 

@@ -1,4 +1,4 @@
-# KIP126 agent guidance
+# Kervaire126 agent guidance
 
 ## Start here
 
@@ -8,11 +8,6 @@
 - A mechanical cleanup must not silently change a public declaration, a
   stage-boundary statement, source provenance, proof status, or mathematical
   strength.
-
-## KIPBase agents
-
-If you are performing a Lean code task under `KIPBase/`, read
-[`docs/KIPBASE_AGENTS.md`](docs/KIPBASE_AGENTS.md) first.
 
 ## KIP126 Blueprint synchronization
 
@@ -32,11 +27,6 @@ chapter files synchronized with the Lean code:
 Blueprint synchronization records the mathematical plan and proof status; it
 does not turn compilation, generated output, or input certification into a
 completed proof.
-
-## Multica agents
-
-If you believe you are an agent from Multica, read `docs/MULTICA_AGENTS.md` before
-working in this repository. Otherwise, ignore that file.
 
 ## Repository architecture
 

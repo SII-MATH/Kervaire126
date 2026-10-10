@@ -35,6 +35,25 @@ theorem standardEtaExponent :
     KIP126.Synthetic.Context.normalizedExponent
       KIP126.Classical.Adams.standardFoundation.hf2
       KIP126.Classical.Adams.standardRouteModel.auxiliary.etaMap = 1 := by
-  sorry
+  exact (open CategoryTheory MonoidalCategory Pretriangulated
+    KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
+    KIP126.Classical.Adams KIP126.Synthetic.Context in by
+    classical
+    have positive {C : Type 1} [StableHomotopyCategory.{1, 0} C]
+        [HasFunctorialCofiber (C := C)] (H : Mod2EilenbergMacLane (C := C))
+        (f : HomotopyGroup 1 (SphereSpectrum (C := C))) : normalizedExponent H f = 1 := by
+      have hz : CategoryStruct.comp f (adamsUnit H.unit SphereSpectrum) = 0 := by
+        apply (cancel_mono (rightUnitor H.HF2).hom).mp
+        letI := H.homotopy_vanishes 1 (by decide)
+        exact Subsingleton.elim _ _
+      obtain ⟨g, hg⟩ := Triangle.coyoneda_exact₂
+        (adamsResolutionTriangle H.unit SphereSpectrum 0)
+        (adamsResolutionTriangle_distinguished H.unit SphereSpectrum 0) f hz
+      have hf : AdamsFiltrationAtLeast H f 1 := by
+        refine ⟨g, ?_⟩
+        simpa [adamsTowerMap, adamsTowerComposite, adamsResolutionTriangle, Triangle.mk, adamsTower]
+          using hg.symm
+      simp only [normalizedExponent, if_pos hf]
+    exact positive standardFoundation.hf2 standardRouteModel.auxiliary.etaMap)
 
 end KIP126.Def

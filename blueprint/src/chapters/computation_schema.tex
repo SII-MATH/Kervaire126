@@ -13,6 +13,7 @@ mathematical objects and conditions.
 \begin{definition}[Finite basis multiplication table]
   \label{def:adams-e2-basis-table}
   \lean{KIP126.AdamsE2.Table}
+  \leanok
   \uses{def:classical-adams-e2-e3-shape-slice}
   A table specifies a finite set $D$ of bidegrees containing $(0,0)$,
   dimensions $n(p)$ for $p\in D$, coordinates for the unit, and coefficients
@@ -24,6 +25,7 @@ mathematical objects and conditions.
 \begin{definition}[Algebra presented by a multiplication table]
   \label{def:adams-e2-table-model}
   \lean{KIP126.AdamsE2.Table.Model,KIP126.AdamsE2.Table.piece}
+  \leanok
   \uses{def:adams-e2-basis-table}
   Introduce a generator $X_{p,i}$ of degree $p$ for each recorded basis
   index.  Let $A_T$ be the polynomial algebra over $\mathbb F_2$ modulo
@@ -39,6 +41,7 @@ mathematical objects and conditions.
 \begin{definition}[Presentation of the actual $E_2$ page]
   \label{def:adams-e2-table-presentation}
   \lean{KIP126.AdamsE2.PageAlgebra,KIP126.AdamsE2.Presentation,KIP126.AdamsE2.Input}
+  \leanok
   \uses{def:adams-e2-table-model,def:classical-adams-e2-e3-shape-slice}
   Fix an existing mod--$2$ Adams-shaped spectral sequence $E$ and a
   degree-preserving commutative algebra structure on the direct sum of its
@@ -53,11 +56,13 @@ mathematical objects and conditions.
 \begin{lemma}[Transporting a table product to the page]
   \label{lem:adams-e2-table-product}
   \lean{KIP126.AdamsE2.Table.generator_mul,KIP126.AdamsE2.Presentation.basis_mul}
+  \leanok
   \uses{def:adams-e2-table-presentation}
   Under a supplied presentation, every covered table relation is an
   equality for the actual $E_2$ multiplication on the specified basis.
 \end{lemma}
 \begin{proof}
+  \leanok
   The polynomial relation is zero in the quotient model.  Apply the
   presentation's algebra homomorphism and use injectivity of the inclusion
   of the target component into the direct sum.
@@ -66,6 +71,7 @@ mathematical objects and conditions.
 \begin{definition}[Classes represented by a table]
   \label{def:adams-e2-imported-h6}
   \lean{KIP126.AdamsE2.Input.h6,KIP126.AdamsE2.Input.h6Square}
+  \leanok
   \uses{def:adams-e2-table-presentation}
   If the table contains $(1,64)$ with dimension one, define $h_6$ as the
   image of its sole basis vector.  Define $h_6^2$ using the actual page
@@ -77,6 +83,7 @@ mathematical objects and conditions.
 \begin{lemma}[Three-cell illustration]
   \label{lem:adams-e2-three-cell-example}
   \lean{KIP126.Examples.AdamsE2Table.x_mul_x,KIP126.Examples.AdamsE2Table.y_ne_zero,KIP126.Examples.AdamsE2Table.x_mul_y_ne_zero,KIP126.Examples.AdamsE2Table.imported_h6_square_ne_zero}
+  \leanok
   \uses{def:adams-e2-imported-h6,lem:adams-e2-table-product}
   Consider the illustrative table with one-dimensional cells at $(0,0)$,
   $(1,64)$ and $(2,128)$, with unit and $x^2=y$.  In its model, $y\ne0$
@@ -85,12 +92,32 @@ mathematical objects and conditions.
   This is not a claim that the illustration is actual sphere Adams data.
 \end{lemma}
 \begin{proof}
+  \leanok
   Map the model to $\mathbb F_2[X]$ by $x\mapsto X$, $y\mapsto X^2$
   and the unit generator to $1$.  All table relations vanish, whereas
   $X^2$ and $X^3$ are nonzero.  On the actual page, the table product is
   the specified basis vector in degree $(2,128)$ and is therefore nonzero.
 \end{proof}
 
+
+\begin{lemma}[Finite source-table certificates]
+  \label{lem:lin-e2-finite-source-certificates}
+  \lean{KIP126.LinE2.BasisCertificates.NuLow.nu_low,KIP126.LinE2.BasisCertificates.ThreeCoordinates.three_coordinates,KIP126.LinE2.RelationCertificates.relation_member0,KIP126.LinE2.RelationCertificates.relation_member1,KIP126.LinE2.RelationCertificates.relation_member2,KIP126.LinE2.RelationCertificates.relation_member3,KIP126.LinE2.RelationCertificates.relation_member4,KIP126.LinE2.RelationCertificates.relation_member5,KIP126.LinE2.RelationCertificates.relation_member6,KIP126.LinE2.RelationCertificates.relation_member7,KIP126.LinE2.RelationCertificates.relation_member8,KIP126.LinE2.RelationCertificates.relation_member9,KIP126.LinE2.RelationCertificates.relation_member10,KIP126.LinE2.RelationCertificates.relation_member11,KIP126.LinE2.RelationCertificates.relation_member12,KIP126.LinE2.RelationCertificates.relation_member13,KIP126.LinE2.RelationCertificates.pq_neg_eq_self,KIP126.LinE2.RelationCertificates.pq_relation0,KIP126.LinE2.RelationCertificates.pq_relation1,KIP126.LinE2.RelationCertificates.pq_relation2,KIP126.LinE2.RelationCertificates.pq_relation3,KIP126.LinE2.RelationCertificates.h0_obstruction_rel0,KIP126.LinE2.RelationCertificates.h0_obstruction_rel1,KIP126.LinE2.RelationCertificates.h0_obstruction_rel2,KIP126.LinE2.RelationCertificates.h0_obstruction_rel3,KIP126.LinE2.RelationCertificates.h0_obstruction_mon0,KIP126.LinE2.RelationCertificates.h0_obstruction_mon1,KIP126.LinE2.RelationCertificates.h0_obstruction_mon2,KIP126.LinE2.RelationCertificates.h0_obstruction_mon3,KIP126.LinE2.RelationCertificates.h0_obstruction_mon4,KIP126.LinE2.RelationCertificates.h0_obstruction_monT,KIP126.LinE2.RelationCertificates.h0_obstruction_monTarget2,KIP126.LinE2.RelationCertificates.h2_obstruction_rel0,KIP126.LinE2.RelationCertificates.h2_obstruction_rel1,KIP126.LinE2.RelationCertificates.h2_obstruction_rel2,KIP126.LinE2.RelationCertificates.h2_obstruction_mon0,KIP126.LinE2.RelationCertificates.h2_obstruction_mon1,KIP126.LinE2.RelationCertificates.h2_obstruction_mon2,KIP126.LinE2.RelationCertificates.h2_obstruction_monT}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  The pinned basis tables have the recorded low-filtration and selected
+  three-coordinate entries. The specified relation rows belong to the
+  pinned relation table and yield the stated equations in its presented
+  algebra. These assertions concern the source artifacts and their own
+  algebraic interpretation. They do not identify this presentation with an
+  actual Adams page or certify a differential on that page.
+\end{lemma}
+\begin{proof}
+  Check each finite table chunk separately in the Lean kernel, retaining
+  equalities with the original source strings. Apply the quotient relations
+  to the indicated algebraic expressions.
+  \leanok
+\end{proof}
 
 \subsection{Coordinates on the fixed Adams pages}
 
@@ -388,6 +415,10 @@ comparison dependencies are discharged, the result remains conditional.
   $(s,t)$, with stem $n=t-s$. Sums have equal degrees; multiplication
   adds degrees. A finite set of candidate expressions represents an
   ambiguity in a differential target without choosing a target.
+  Lean currently implements the expression syntax and its nonempty-name
+  and nonempty-list validation. This syntactic validation does not verify
+  the displayed bidegree rules or interpret the expression on an actual
+  page; those mathematical conditions remain unfinished.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:2738--3290, differential/status columns.
@@ -434,6 +465,7 @@ comparison dependencies are discharged, the result remains conditional.
   \label{def:lin-staircase-states}
   \lean{KIP126.Computation.LinProofs.Raw.StaircaseRow,KIP126.Computation.LinProofs.State.decode,KIP126.Core.SpectralSequence.ReachesPage,KIP126.Core.SpectralSequence.IsBoundaryBy,KIP126.Challenge2.StaircaseClaimStatement}
   \uses{def:computation-fixed-bindings}
+  \notready
   A known outgoing or incoming staircase entry specifies an equation
   for the actual differential. An unknown outgoing value at level
   $10000-r$ asks for a common representative on $E_r$, possibly zero;
@@ -470,6 +502,7 @@ comparison dependencies are discharged, the result remains conditional.
 \begin{definition}[Conditional differential assumptions and candidate coverage]
   \label{def:lin-conditional-branches}
   \lean{KIP126.Computation.LinProofs.Branch.scopeRows,KIP126.Computation.LinProofs.Branch.FiniteEquation,KIP126.Computation.LinProofs.Branch.CandidateWindow.equations,KIP126.Computation.LinProofs.Branch.CandidateCoverage,KIP126.Computation.LinProofs.Branch.CandidateExhaustion,KIP126.Challenge2.LinBranchInterface}
+  \notready
   A trial differential equation is considered under its complete chain
   of ancestor assumptions. A refutation proves that these actual
   differential assumptions imply the negation of the trial equation;
@@ -627,6 +660,7 @@ comparison dependencies are discharged, the result remains conditional.
   \label{def:lin-proofs-sphere-meaning}
   \lean{KIP126.Challenge2.HasCoordinates,KIP126.Challenge2.DifferentialStatement}
   \uses{def:lin-proofs-sphere-table,def:computation-fixed-bindings}
+  \notready
   Interpret each coordinate list as the sum of its specified monomials
   in the fixed quotient. Transport the homogeneous classes through $P$
   to the sphere $E_2$ page and require common-cycle representatives on
@@ -1475,6 +1509,7 @@ comparison dependencies are discharged, the result remains conditional.
 \begin{definition}[Low-degree table extracted from Lin's data]
   \label{def:lin-low-degree-table}
   \lean{KIP126.Examples.AdamsE2LowDegrees.table}
+  \leanok
   \uses{def:adams-e2-basis-table}
   Extract the region $0\le s\le8$, $0\le t-s\le8$, together with
   $(1,64),(2,128),(1,16),(4,18),(5,20)$, from Lin's version
@@ -1492,6 +1527,7 @@ comparison dependencies are discharged, the result remains conditional.
 \begin{lemma}[Low-degree table relations and a two-dimensional component]
   \label{lem:lin-low-degree-table-relations}
   \lean{KIP126.Examples.AdamsE2LowDegrees.h0_h1_zero,KIP126.Examples.AdamsE2LowDegrees.h1_h2_zero,KIP126.Examples.AdamsE2LowDegrees.h0_c0_zero,KIP126.Examples.AdamsE2LowDegrees.h1_cube,KIP126.Examples.AdamsE2LowDegrees.h6_square,KIP126.Examples.AdamsE2LowDegrees.page_two_products_sum_ne_zero}
+  \leanok
   \uses{def:lin-low-degree-table,def:adams-e2-table-presentation}
   In the model algebra, the table implies
   $h_0h_1=h_1h_2=h_0c_0=0$, $h_1^3=h_0^2h_2$, and the specified
@@ -1501,6 +1537,7 @@ comparison dependencies are discharged, the result remains conditional.
   Their sum has coordinates $(1,1)$ and is nonzero.
 \end{lemma}
 \begin{proof}
+  \leanok
   \uses{lem:adams-e2-table-product}
   Evaluate the imported coefficients and impose the corresponding relations
   in the quotient algebra.  Under a presentation, transport these equalities

@@ -32,6 +32,10 @@ docbuild/.lake/
 # Local timing output (CI uploads the same data as workflow artifacts)
 metrics/
 
+# Local Python environment and crash dumps
+.venv/
+/core.[0-9]*
+
 # Repository-private Codex skill runtime caches
 .agents/skills/**/__pycache__/
 .agents/skills/**/*.pyc
@@ -43,6 +47,3 @@ scripts/**/*.pyc
 # Local workflow and helper directories
 /Proof-Workflow/
 /tools/
-
-# Local process crash dumps
-/core.[0-9]*

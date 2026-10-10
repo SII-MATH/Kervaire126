@@ -1,11 +1,10 @@
-"""DAG corruption, status semantics and publication regression checks."""
+"""DAG corruption and proof-status semantics regression checks."""
 import json
 from pathlib import Path
 import tempfile
 import unittest
 
 from scripts.blueprint_frontier import make_report
-from scripts.sync_blueprint_frontier import MARKER, publish
 
 
 class FrontierTests(unittest.TestCase):
@@ -111,67 +110,5 @@ class FrontierTests(unittest.TestCase):
         self.assertEqual(self.report(source)['groups']['frontier'][0]['potential_dependents'], 3)
 
 
-class PublicationTests(unittest.TestCase):
-    SHA = 'a' * 40
-    URL = 'https://github.com/SII-MATH/KIP126/actions/runs/1'
-
-    def run_publish(self, comments, current=True):
-        calls = []
-        def api(repo, endpoint, **kwargs):
-            calls.append((endpoint, kwargs))
-            if endpoint == 'commits/main':
-                return {'sha': self.SHA if current else 'b' * 40}
-            if endpoint.startswith('issues/84/comments?'):
-                return comments
-            return {}
-        outcome = publish('SII-MATH/KIP126', self.SHA, self.URL, 'preview', api=api)
-        return outcome, calls
-
-    def test_stale_revision_never_writes(self):
-        outcome, calls = self.run_publish([], current=False)
-        self.assertIn('stale', outcome)
-        self.assertEqual(len(calls), 1)
-
-    def test_human_comments_are_preserved(self):
-        outcome, calls = self.run_publish([{'id': 1, 'body': MARKER,
-                                           'user': {'login': 'human'}}])
-        self.assertEqual(outcome, 'created')
-        self.assertEqual(calls[-1][1]['method'], 'POST')
-
-    def test_updates_single_bot_comment_and_repeated_run_is_idempotent(self):
-        comment = {'id': 2, 'body': MARKER, 'user': {'login': 'github-actions[bot]'}}
-        outcome, calls = self.run_publish([comment])
-        self.assertEqual(outcome, 'updated')
-        self.assertEqual(calls[-1][0], 'issues/comments/2')
-        comment['body'] = calls[-1][1]['payload']['body']
-        outcome, calls = self.run_publish([comment])
-        self.assertEqual(outcome, 'unchanged')
-        self.assertFalse(any('method' in kwargs for _, kwargs in calls))
-
-    def test_duplicate_bot_comments_are_rejected(self):
-        comment = {'id': 2, 'body': MARKER, 'user': {'login': 'github-actions[bot]'}}
-        with self.assertRaisesRegex(ValueError, 'multiple'):
-            self.run_publish([comment, comment])
-
-
-class WorkflowBoundaryTests(unittest.TestCase):
-    def test_manual_generation_is_optional_and_publication_is_main_only(self):
-        import yaml
-        root = Path(__file__).resolve().parents[1]
-        workflow = yaml.safe_load((root / '.github/workflows/blueprint-frontier.yml').read_text())
-        triggers = workflow.get('on', workflow.get(True))
-        self.assertEqual(set(triggers), {'workflow_dispatch'})
-        self.assertEqual(workflow['jobs']['generate']['permissions']['issues'], 'read')
-        generation = next(step for step in workflow['jobs']['generate']['steps']
-                          if step.get('name') == 'Generate frontier reports')
-        self.assertNotIn('GH_TOKEN', generation.get('env', {}))
-        automation = (root / '.github/workflows/automation-checks.yml').read_text()
-        self.assertNotIn('scripts.test_blueprint_frontier', automation)
-        publish_job = workflow['jobs']['publish']
-        self.assertIn("github.ref == 'refs/heads/main'", publish_job['if'])
-        self.assertIn("github.event_name == 'workflow_dispatch'", publish_job['if'])
-        self.assertEqual(publish_job['needs'], 'generate')
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

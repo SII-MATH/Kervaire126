@@ -46,6 +46,9 @@ import KIP126.LinProgram.Certificates.SquareDetection.Certificate
 import KIP126.Interface.Solution.LinProgram.Basis.Certification
 import KIP126.Def.Comparison.Pages.Proofs
 import KIP126.Def.Comparison.Pages.Naturality.Proofs
+import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Detection.Proofs
+import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Proofs
+import KIP126.Def.Synthetic.Bockstein.Layer.Zero.Proofs
 import KIP126.Def.Comparison.Cobar.Proofs
 import KIP126.Interface.Solution.LinProgram.Multiplication
 import KIP126.Def.Comparison.PageExtension.Solutions.Proofs

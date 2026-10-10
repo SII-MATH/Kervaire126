@@ -34,6 +34,27 @@ the Adams and synthetic arguments.
   maps cannot witness the differential condition.
 \end{definition}
 
+\begin{proposition}[Representative criterion for an internal morphism]
+  \label{prop:internal-representative-morphism-criterion}
+  \lean{KIP126.Core.SpectralSequence.DifferentialMorphismCriterion,KIP126.Core.SpectralSequence.DifferentialMorphismCriterion.toSSDataMorphism,KIP126.Core.SpectralSequence.DifferentialMorphismCriterion.toMorphism,KIP126.Core.SpectralSequence.DifferentialMorphismCriterion.exists_morphism}
+  \uses{def:internal-canonical-page-map}
+  \leanok
+  An ambient map preserving cycle representatives determines boundary
+  preservation when representatives of zero map to zero on the target page.
+  If the resulting quotient maps satisfy the representative differential
+  equation, they assemble into a morphism of the internal spectral sequences.
+  The induced page maps are the canonical cokernel maps already fixed by the
+  internal morphism interface.
+\end{proposition}
+\begin{proof}
+  Use exactness of the target page cokernel to lift the image of each source
+  boundary.  To compare differentials, pull back the two source page
+  projections and apply the representative equation to the universal pair of
+  lifts; epimorphism cancellation then gives commutation of the canonical
+  quotient maps with the page differential.
+  \leanok
+\end{proof}
+
 \begin{proposition}[Derived internal page and representative calculus]
   \label{prop:internal-page-calculus}
   \lean{KIP126.Challenge2.PageCalculus,KIP126.Challenge2.RepresentativeCalculus,KIP126.Def.Comparison.StageInterfaces.pageCalculus,KIP126.Def.Comparison.StageInterfaces.representativeCalculus}
@@ -73,6 +94,25 @@ the Adams and synthetic arguments.
   module kernels and ranges; the quotient zero criterion and differences
   of common cycles prove the equivalences. No separate homology
   identification is supplied as a new premise.
+\end{proof}
+
+\begin{proposition}[Finite-page representatives and complete bases]
+  \label{prop:internal-finite-page-calculus}
+  \lean{KIP126.Core.SpectralSequence.FinitePageCalculus.represents_unique,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_d_zero_of_later,KIP126.Core.SpectralSequence.FinitePageCalculus.next_projection_zero_iff_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.page_generated_from_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_before,KIP126.Core.SpectralSequence.FinitePageCalculus.next_page_two_of_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_later_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_add_tail,KIP126.Core.SpectralSequence.FinitePageCalculus.sixth_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_frame_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_zero_of_all_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.frame_after_second,KIP126.Core.SpectralSequence.FinitePageCalculus.third_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_d_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.vx_nonzero_no_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.pq_rep3zero_boundary,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_sub_tail,KIP126.Core.SpectralSequence.FinitePageCalculus.page_has_representative,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_from_support,KIP126.Core.SpectralSequence.FinitePageCalculus.d_zero_of_second_kernel_extends,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_before,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_frame_of_three_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_single_basis_zero_page,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_next_zero_of_single_frame_nonzero_differential,KIP126.Core.SpectralSequence.FinitePageCalculus.d_zero_of_complete_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.page_eq_sum_of_complete_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.same_boundaries_projection_eq,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_add,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_if,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_rep2,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_earlier,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_sub,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_cycle,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_two_self,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_later_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.page_has_initial_representative,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_transport_eq,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_bit,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_two_direct,KIP126.Core.SpectralSequence.FinitePageCalculus.f2_expand,KIP126.Core.SpectralSequence.FinitePageCalculus.generated_one,KIP126.Core.SpectralSequence.FinitePageCalculus.generated_two,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_zero_of_three_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.next_page_zero_of_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.finite_basis_expansion,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_frame_of_four_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_two_cases,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_zero_at,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_two_cases_at,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_frame_of_four_basis_at,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_not_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_not_incoming_at,KIP126.Core.SpectralSequence.FinitePageCalculus.basis_vector_ne_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.basis_pair_sum_ne_zero}
+  \uses{def:internal-nested-spectral-sequence,prop:internal-page-calculus}
+  \leanok
+  Common initial-page representatives determine a unique class on each later
+  page. A complete finite basis generates those classes, including their
+  sums and differences. Explicit differential equations and the actual
+  incoming boundary subobjects determine kernels, nonvanishing, and page
+  vanishing. These are general deductions for the given spectral sequence;
+  they assume no selected computation delivery.
+\end{proposition}
+\begin{proof}
+  Use the specified quotient projections, finite basis expansion over
+  $\mathbb F_2$, and the canonical successor homology isomorphism. Each
+  nonvanishing deduction retains its incoming-boundary hypotheses.
+  \leanok
 \end{proof}
 
 \begin{proposition}[Naturality of internal pages and representatives]
@@ -596,6 +636,7 @@ the Adams and synthetic arguments.
 \begin{definition}[Finite-page elementwise presentation]
   \label{def:ss-elementwise-page-presentation}
   \uses{def:mathlib-spectral-sequence,def:adams-bidegree,def:ss-page-level,def:adams-complex-shape}
+  \lean{KIP126.Core.SpectralSequence.SSData.page,KIP126.Core.SpectralSequence.SSData.pageπ,KIP126.Classical.Adams.PageRepresentatives.cycles,KIP126.Classical.Adams.PageRepresentatives.boundaries,KIP126.Classical.Adams.PageRepresentatives.isCycle_iff_represents}
   \notready
   An elementwise presentation includes its displayed-page reindexing.  In the
   AIM Adams convention it chooses nested subgroups of the initial page
@@ -627,6 +668,13 @@ the Adams and synthetic arguments.
   stored page reindexing before using these Adams symbols.  This node records
   only finite pages; it makes no assertion about an abutment or about all
   future pages.
+
+  Lean implements the internal quotient pages and the paper's cycle and
+  boundary submodules on the actual Adams $E_2$ page, with the representative
+  criterion for cycles.  A coherent comparison from a concrete Mathlib
+  spectral sequence to this presentation remains the separate obligation in
+  Proposition~\ref{prop:categorical-elementwise-comparison}; the linked
+  internal constructions do not establish that comparison.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:134-151, 827-862, and throughout the appendix.
@@ -646,18 +694,23 @@ the Adams and synthetic arguments.
 \begin{definition}[Finite survival and permanent classes]
   \label{def:ss-cycle-boundary-survival}
   \uses{def:ss-elementwise-page-presentation}
-  \notready
+  \lean{KIP126.Classical.Adams.PageRepresentatives.IsCycle,KIP126.Classical.Adams.PageRepresentatives.IsBoundary,KIP126.Core.SpectralSequence.RepresentsOnPage,KIP126.Core.SpectralSequence.ReachesPage,KIP126.Core.SpectralSequence.SurvivesTo}
+  \leanok
   A representative in the initial $E_2$ page is an $r$-cycle when it lies in
   $Z_r$ and an $r$-boundary when it lies in $B_r$.  An $E_r$ class survives
   through page $R$ when it has a representative in $Z_R$ modulo
   $B_{R-1}$.  This finite survival statement makes no claim about pages after
   $R$ and cannot by itself be upgraded to permanence.
+  The implementation distinguishes \texttt{ReachesPage}, which permits a
+  zero continuation, from \texttt{SurvivesTo}, which requires a nonzero class
+  on that page.
 \end{definition}
 
 \begin{definition}[Permanent representative and nonzero $E_\infty$ class]
   \label{def:ss-permanent-einfty-class}
   \uses{def:ss-einfty-presentation,def:ss-cycle-boundary-survival}
-  \notready
+  \lean{KIP126.Classical.Adams.PageRepresentatives.IsPermanent,KIP126.Core.SpectralSequence.IsPermanentCycle,KIP126.Core.SpectralSequence.IsFinalBoundary,KIP126.Core.SpectralSequence.NonzeroSurvival}
+  \leanok
   A representative is permanent when it lies in $Z_\infty$; its limiting
   class is its coset in $E_\infty=Z_\infty/B_\infty$.  That class is nonzero
   exactly when the representative is not in $B_\infty$.
@@ -901,7 +954,8 @@ the Adams and synthetic arguments.
   \lean{KIP126.Comparison.ClassicalSynthetic.ReindexedSpectralSequenceMap.differential_comm}
   \lean{KIP126.Synthetic.SpectralSequence.fixedWeightPage}
   \lean{KIP126.Comparison.ClassicalSynthetic.forgetWeight_differential_degree}
-  \notready
+  \lean{KIP126.Comparison.ClassicalSynthetic.sourcePageMap,KIP126.Comparison.ClassicalSynthetic.sourceEInftyMap}
+  \leanok
   For every fixed synthetic weight, the internal classical--synthetic
   comparison supplies a map of ambient objects preserving the nested cycle
   and boundary subobjects.  The maps on finite pages and $E_\infty$ are
@@ -919,6 +973,7 @@ the Adams and synthetic arguments.
 \begin{definition}[Multiplicative spectral sequence]
   \label{def:multiplicative-ss}
   \uses{def:ss-elementwise-page-presentation}
+  \lean{KIP126.Classical.Adams.SphereAdamsAlgebraPresentation,KIP126.Classical.Adams.ExternalAdamsPairingLaws,KIP126.Classical.Adams.SphereAdamsModuleLaws}
   \notready
   A pairing of spectral sequences specifies, on every displayed page,
   products $E_{1,r}^i\otimes E_{2,r}^j\to E_{3,r}^{i+j}$.  A multiplicative
@@ -940,6 +995,12 @@ the Adams and synthetic arguments.
   spectral sequences use the analogous action laws and must not be promoted
   to internally multiplicative objects.  This interface is required before
   expressions such as $h_j^2$ or $h_0x$ are meaningful.
+
+  The linked Lean interfaces currently supply the sphere product, external
+  pairings and module laws on $E_2$, including the $d_2$ Leibniz rule for the
+  product and external pairing.  They do not yet supply this node's products
+  on every page, their page-passage compatibility, or the filtered-abutment
+  product and convergence comparison.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:253-263 and all later elementwise arguments.
@@ -1221,6 +1282,7 @@ the Adams and synthetic arguments.
 \begin{definition}[Filtered-complex to spectral-object adapter]
   \label{def:filtered-complex-spectral-object-adapter}
   \uses{def:filtered-complex-cochain-diagram,def:filtered-complex-triangulated-spectral-object,def:filtered-complex-triangulated-spectral-object-morphism,def:filtered-complex-abelian-spectral-object,def:filtered-complex-abelian-spectral-object-morphism,def:filtered-complex-endpoint-extension,def:filtered-complex-endpoint-e2-spectral-sequence,def:filtered-complex-endpoint-extension-morphism,def:mathlib-mapping-cone-spectral-object,def:mathlib-triangulated-spectral-object-precomp,def:homological-image-abelian-spectral-object}
+  \lean{KIP126.Core.SpectralSequence.filteredComplexTriangulatedSpectralObjectFunctor,KIP126.Core.SpectralSequence.filteredComplexAbelianSpectralObjectFunctor,KIP126.Core.SpectralSequence.EndpointExtension.spectralSequence,KIP126.Core.SpectralSequence.EndpointExtension.firstPageXIso}
   \notready
   The core precomposition and homological-image steps are implemented by
   Definitions~\ref{def:filtered-complex-triangulated-spectral-object} and
@@ -1245,7 +1307,7 @@ the Adams and synthetic arguments.
   homological functor on the homotopy category of cochain complexes together
   with its shift sequence, to obtain the required \emph{abelian} spectral
   object.  A degree-zero homology specialization is a later explicit
-  instance, not part of this generic adapter.  A
+  instance, not part of this generic adapter.
   The current implementation reaches functorial morphisms of triangulated and
   abelian spectral objects.  It does not package convergence, an abutment, or
   an elementwise $Z/B$ presentation: those are separate witnesses and the

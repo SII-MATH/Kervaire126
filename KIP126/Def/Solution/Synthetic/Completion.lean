@@ -15,7 +15,7 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 /-- a12: the two genuine residual-tower completeness conditions correspond. -/
 theorem nu_lambdaComplete_iff (I : LambdaAdicCompletenessInterface H N) (X : C) :
     Classical.Adams.IsENilpotentComplete H.unit X ↔ IsLambdaComplete (N.functor.obj X) := by
-  sorry
+  exact I.complete_iff X
 
 /-- a12: the same quotient maps, under the required completeness hypothesis,
 exhibit νX as a sequential homotopy limit. No ordinary limit of homotopy
@@ -23,12 +23,12 @@ groups or unrestricted convergence assertion is substituted here. -/
 theorem nu_lambdaAdicCompletion (I : LambdaAdicCompletenessInterface H N) (X : C)
     (hX : Classical.Adams.IsENilpotentComplete H.unit X) :
     Nonempty (LambdaAdicCompletion (I.tower X)) := by
-  sorry
+  exact ⟨I.completion X hX⟩
 
 /-- The quotient restrictions and the actual residual λ transition form
 the boundary square of the same selected cofiber triangles. -/
 theorem nu_quotientResidualCompatible (I : LambdaAdicCompletenessInterface H N) (X : C) :
     (I.tower X).ResidualCompatible := by
-  sorry
+  exact I.residual_compatible X
 
 end KIP126.Def.Solution

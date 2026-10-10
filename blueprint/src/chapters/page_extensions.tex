@@ -9,7 +9,8 @@ This section contains the definitions of normalized page reductions, page extens
 \begin{definition}[Finite-page normalized map]
   \label{def:hat-map-page-reduction}
   \uses{def:synthetic-hat-map,def:synthetic-lambda-quotient}
-  \notready
+  \lean{KIP126.Synthetic.Context.NormalizedSyntheticMap,KIP126.Synthetic.Context.XModLambdaN.map}
+  \leanok
   For finite $2\le r<\infty$, define
   \[
     \widehat f_{r-1}:\Sigma^{0,e(f)}\nu X/\lambda^{r-1}
@@ -21,12 +22,16 @@ This section contains the definitions of normalized page reductions, page extens
   For $r=\infty$, set $\widehat f_\infty:=\widehat f$ on the untruncated
   synthetic spectra.  This clause has no quotient exponent or arithmetic
   involving $\infty-1$.
+  Lean implements reduction of the supplied normalized map by the
+  functorial cofiber map.  This operation makes no existence claim for a
+  triangle-compatible normalized lift on the selected fixed model.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:1301-1317, Definition def:6c076a33.
 \begin{definition}[$(f,E_r)$-extension]
   \label{def:page-extension}
   \uses{def:hat-map-page-reduction,def:synthetic-extension-ss,def:f-extension-essential,def:ss-elementwise-page-presentation,def:ss-einfty-presentation}
+  \lean{KIP126.Synthetic.PageExtension.NormalizedPageFamily,KIP126.Synthetic.PageExtension.FiniteExtensionWitness,KIP126.Synthetic.PageExtension.InfiniteExtensionWitness,KIP126.Synthetic.PageExtension.FinitePageExtension,KIP126.Synthetic.PageExtension.InfinitePageExtension,KIP126.Synthetic.PageExtension.FiniteExtensionWitness.Essential,KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.Essential}
   \notready
   For finite $2\le r<\infty$, let $x\in Z_{r-1}^{s,t}(X)$ and
   $y\in Z_{r-1-n+e(f)}^{s+n,t+n}(Y)$, with
@@ -46,12 +51,19 @@ This section contains the definitions of normalized page reductions, page extens
   \]
   It has no finite upper page bound.  This is a separate clause, not arithmetic
   with an infinity symbol.
+
+  The finite and infinite Lean predicates use one supplied normalized-map
+  family, its actual ESS, and fixed source and target comparison maps.  Both
+  clauses currently require degreewise bounded convergence through that
+  family.  The predicates do not construct the family or extend the infinite
+  clause to arbitrary unbounded Adams filtrations.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:1386-1389, Remark def:fErextess.
 \begin{definition}[Page-extension target coset]
   \label{def:page-extension-coset}
   \uses{def:page-extension,def:fess-cycles-boundaries}
+  \lean{KIP126.Synthetic.PageExtension.FiniteExtensionWitness.targetCoset,KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.targetCoset,KIP126.Synthetic.PageExtension.FiniteExtensionWitness.targetCoset_eq,KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.targetCoset_eq,KIP126.Synthetic.PageExtension.FiniteExtensionWitness.ClassicalBoundaryKernel,KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.ClassicalBoundaryKernel,KIP126.Synthetic.PageExtension.FiniteExtensionWitness.ShorterImagesCompatible,KIP126.Synthetic.PageExtension.InfiniteExtensionWitness.ShorterImagesCompatible}
   \notready
   The target $y$ of $d_n^{f,E_r}(x)$ is a coset modulo
   $B_{1+n-e(f)}^{s+n,t+n}(Y)$ plus the sum of images of all shorter
@@ -59,6 +71,13 @@ This section contains the definitions of normalized page reductions, page extens
   untruncated $\widehat f$-ESS differentials for $r=\infty$.  The page
   extension is essential if and only if this complete coset does not contain
   zero.
+
+  Lean defines the target coset as the inverse image of the actual ESS
+  boundary coset and proves the displayed boundary-plus-shorter-images
+  formula under the separate \texttt{ClassicalBoundaryKernel} and
+  \texttt{ShorterImagesCompatible} hypotheses.  Establishing these
+  compatibility hypotheses for the supplied comparison family remains
+  necessary; arbitrary top-weight isomorphisms do not prove the formula.
 \end{definition}
 
 \subsection{Crossings and passage to classical extensions}
@@ -67,6 +86,7 @@ This section contains the definitions of normalized page reductions, page extens
 \begin{definition}[Crossing of a page extension]
   \label{def:page-extension-crossing}
   \uses{def:page-extension,def:page-extension-coset}
+  \lean{KIP126.Synthetic.PageExtension.FinitePageExtension.HasCrossing,KIP126.Synthetic.PageExtension.FinitePageExtension.NoCrossing,KIP126.Synthetic.PageExtension.InfinitePageExtension.HasCrossing,KIP126.Synthetic.PageExtension.InfinitePageExtension.NoCrossing}
   \notready
   A crossing of $d_n^{f,E_r}(x)=y$ is an essential
   $(f,E_{r-a})$-extension from
@@ -86,4 +106,10 @@ This section contains the definitions of normalized page reductions, page extens
   $y'\in Z_\infty^{s+n-b,t+n-b}(Y)$, and the same nonzero complete target
   coset modulo $B_{1+n-b-e(f)}$.  A collection of unrelated finite crossing
   candidates is not an $E_\infty$ crossing.
+
+  The linked predicates already distinguish finite crossings from actual
+  untruncated crossings and retain the separate ordinary-boundary exclusion.
+  They depend on the supplied normalized-map family and its ESS essentiality;
+  the comparison with the complete classical target coset and the unbounded
+  construction remain the preceding nodes' obligations.
 \end{definition}

@@ -170,6 +170,7 @@ complete checklist item a09.
 % SOURCE: MainPaper/main.tex:755-758; Pstragowski, construction of Syn_E.
 \begin{definition}[Synthetic context]
   \label{def:synthetic-context}
+  \lean{KIP126.Synthetic.Context.SyntheticCategory,KIP126.Synthetic.Context.NuFunctorData}
   \uses{def:stable-context,def:hf2-homology}
   \notready
   An $H\mathbb F_2$-synthetic context is a stable, presentable, symmetric
@@ -178,11 +179,16 @@ complete checklist item a09.
   $\nu:\operatorname{Sp}\to\operatorname{Syn}_{H\mathbb F_2}$.  It has
   bigraded suspension, bigraded homotopy groups, cofibers, smash products, and
   the coherences required by the constructions below.
+  The linked Lean records implement the stable homotopy-category structural
+  interface and explicit $\nu$ comparison data. They do not construct the
+  presentable synthetic category or its lax symmetric monoidal,
+  filtered-colimit-preserving functor.
 \end{definition}
 
 % SOURCE: Pstragowski Definition 4.6; MainPaper/main.tex:770-772.
 \begin{definition}[Synthetic spheres]
   \label{def:synthetic-sphere}
+  \lean{KIP126.Synthetic.Context.S_0_0,KIP126.Synthetic.Context.Smn,KIP126.Synthetic.Context.BiHom,KIP126.Synthetic.Context.biHomotopyGroup,KIP126.Synthetic.Context.biShift_eq_tensor_Smn,KIP126.Synthetic.Context.NuFunctorData.shiftBiShift}
   \uses{def:synthetic-context}
   \notready
   For integers $s,w$, define the synthetic sphere
@@ -191,11 +197,17 @@ complete checklist item a09.
   \]
   Suspension by $S^{s,w}$ is written $\Sigma^{s,w}$ and the corresponding
   bigraded homotopy group is $\pi_{s,w}$.
+  Lean defines the spheres as bigraded shifts of the specified monoidal
+  unit and their Hom groups, and derives the tensor and iterated $\nu$
+  suspension comparisons from the structural data. Identifying this
+  presentation with the displayed source-model formula and constructing
+  the concrete context remain separate obligations.
 \end{definition}
 
 % SOURCE: Pstragowski Definition 4.27; MainPaper/main.tex:774-782.
 \begin{definition}[The deformation element and its quotients]
   \label{def:synthetic-lambda-quotient}
+  \lean{KIP126.Synthetic.Context.SyntheticCategory.lam,KIP126.Synthetic.Context.lambdaPow,KIP126.Synthetic.Context.XModLambda,KIP126.Synthetic.Context.XModLambdaN,KIP126.Synthetic.Context.XModLambdaN.triangle_distinguished}
   \uses{def:synthetic-sphere}
   \notready
   The comparison map $S^{0,-1}\to S^{0,0}$ is denoted
@@ -203,19 +215,26 @@ complete checklist item a09.
   by $\lambda^n$ is a natural map
   $\Sigma^{0,-n}X\to X$, and $X/\lambda^n$ is its cofiber.  In particular,
   $X/\lambda\simeq(S^{0,0}/\lambda)\mathbin{\wedge}X$.
+  The actual deformation arrow, recursive powers, chosen cofibers and
+  distinguished cofiber triangles are defined in Lean. The displayed
+  smash-product comparison and the concrete synthetic realization are
+  not supplied by these declarations.
 \end{definition}
 
 \begin{definition}[Realizing the fixed first quotient arrow]
   \label{def:lambda-quotient-realization}
   \lean{KIP126.Synthetic.LambdaQuotientRealization}
   \uses{def:synthetic-lambda-quotient,def:operadic-unit-spaces}
+  \leanok
   For a specified functor $L:M\to\operatorname{Syn}$, choose $Q\in M$,
   $q:\mathbf1_M\to Q$, and isomorphisms
   $L\mathbf1_M\cong S^{0,0}$ and $LQ\cong S^{0,0}/\lambda$.
   Require the resulting square to identify $Lq$ with the existing first
   quotient inclusion. The quotient object and its unit are thus bound
   together. This square supplies no localization, derived tensor, or
-  algebra-model comparison for $L$.
+  algebra-model comparison for $L$. The realization record is defined;
+  constructing a realization of the chosen synthetic quotient remains
+  a separate model obligation.
 \end{definition}
 
 \begin{definition}[Relative moduli of quotient algebra structures]
@@ -257,9 +276,10 @@ coherences remain outside the Project Boundary.
 % MainPaper/main.tex:813--823. The arrows use the project's chosen cofibers.
 \begin{definition}[Actual finite $\lambda$-Bockstein maps]
   \label{def:finite-lambda-bockstein-maps}
+  \lean{KIP126.Synthetic.Bockstein.incl_beta,KIP126.Synthetic.Bockstein.beta_naturality,KIP126.Synthetic.Bockstein.betaHom_inclHom,KIP126.Synthetic.Bockstein.restrictionHom_inclHom,KIP126.Synthetic.Bockstein.restrictionHom_self,KIP126.Synthetic.Bockstein.restrictionHom_comp}
   \lean{KIP126.Synthetic.Bockstein.beta,KIP126.Synthetic.Bockstein.betaPostcompose,KIP126.Synthetic.Bockstein.betaHom,KIP126.Synthetic.Bockstein.inclHom,KIP126.Synthetic.Bockstein.restrictionHom,KIP126.Synthetic.Bockstein.firstRestrictionHom,KIP126.Synthetic.Context.biSuspensionHomEquiv,KIP126.Synthetic.Context.lambdaResidualSequence}
   \uses{def:synthetic-lambda-quotient,def:synthetic-sphere,def:cofiber-triangle}
-  \notready
+  \leanok
   Write $\iota_q:A\to A/\lambda^q$ and $\partial_q$ for the inclusion and
   boundary of the actual $\lambda^q$ cofiber triangle. Define
   \[
@@ -277,17 +297,22 @@ coherences remain outside the Project Boundary.
   including restriction to the first quotient, are postcomposition with
   these same arrows. Identity and composition retain the specified cofiber
   coherence hypotheses.
-  The residual tower $\Sigma^{0,-q}A$ and these finite arrows are defined;
-  suspension and naturality properties still carry proof obligations.
+  The residual tower $\Sigma^{0,-q}A$, these finite arrows and the additive
+  suspension transport are constructed. Naturality of the actual
+  Bockstein arrow, its vanishing on quotient inclusions, and identity and
+  composition of restrictions are proved with the stated structural
+  coherence hypotheses. This generic construction does not identify
+  $\beta_q$ with a classical Adams differential.
   Its $E_1$-based tower construction is defined separately in
   Definition~\ref{def:lambda-weightwise-sequence}.
 \end{definition}
 
 \begin{definition}[The represented spectral sequence of an actual descending tower]
   \label{def:represented-tower-sequence}
+  \lean{KIP126.StableHomotopy.TowerSpectralSequence.boundaries_le_differential_ker,KIP126.StableHomotopy.TowerSpectralSequence.differential_comp,KIP126.StableHomotopy.TowerSpectralSequence.preSS_d_comp_d,KIP126.StableHomotopy.TowerSpectralSequence.preSS_Z_succ,KIP126.StableHomotopy.TowerSpectralSequence.preSS_B_succ,KIP126.StableHomotopy.TowerSpectralSequence.firstPageProjection_eq_inv,KIP126.StableHomotopy.TowerSpectralSequence.firstPageIso_projection}
   \lean{KIP126.StableHomotopy.DescendingTower,KIP126.StableHomotopy.DescendingTower.map,KIP126.StableHomotopy.DescendingTower.layer,KIP126.StableHomotopy.ShiftedHom,KIP126.StableHomotopy.connectingHom,KIP126.StableHomotopy.TowerSpectralSequence.cycles,KIP126.StableHomotopy.TowerSpectralSequence.boundaries,KIP126.StableHomotopy.TowerSpectralSequence.differential,KIP126.StableHomotopy.TowerSpectralSequence.ssData,KIP126.StableHomotopy.TowerSpectralSequence.sequence,KIP126.StableHomotopy.TowerSpectralSequence.firstPageIso,KIP126.StableHomotopy.TowerSpectralSequence.firstPageProjection}
   \uses{def:cofiber-triangle,def:ss-elementwise-page-presentation}
-  \notready
+  \leanok
   A descending tower specifies objects $T_k$ and adjacent arrows
   $T_{k+1}\to T_k$; all ordered maps are their finite composites.
   For a fixed representing object $P$, put
@@ -302,25 +327,28 @@ coherences remain outside the Project Boundary.
   \]
   The page is $Z_q/B_q$, and its differential is the quotient class of
   $J$ applied to a lift of $K(x)$, in degree $(k+q,n-1)$.
-  The lift is selected from cycle membership; independence of that selection,
-  descent, square-zero and successor-page laws are explicit proof obligations.
+  The lift is selected from cycle membership. Independence of that
+  selection, descent through the boundary quotient, square-zero and both
+  successor-page laws are proved for this constructed differential.
   The constructed nested-subobject sequence has initial page $1$ and internal
   stage $m$ equal to raw page $m+1$. At stage zero, the actual top cycle
   submodule and zero boundary submodule give a specified isomorphism with
   $E_1^{k,n}$. The representative projection uses the cycle inclusion,
   the actual quotient map \texttt{mkQ}, and the inverse of the categorical
-  quotient comparison. Its inverse and representative identities remain
-  property obligations; this is not yet the first-quotient model comparison.
+  quotient comparison. Its inverse and representative identities are
+  proved. This is the generic represented first page, rather than a
+  first-quotient comparison with a concrete synthetic model.
   Its infinite cycles and boundaries are
   the actual intersection and union of the finite stages. The assembled
-  sequence depends on the pending laws; its definition proves no convergence.
+  sequence uses these proved laws; it asserts no convergence.
 \end{definition}
 
 \begin{definition}[The actual weightwise $\lambda$-tower sequence]
   \label{def:lambda-weightwise-sequence}
+  \lean{KIP126.Synthetic.Bockstein.weightwiseSequence_firstPage,KIP126.Synthetic.Bockstein.weightwiseSequence_diffDeg,KIP126.Synthetic.Bockstein.layerZeroIso,KIP126.Synthetic.Bockstein.layerZeroIso_incl,KIP126.Synthetic.Bockstein.layerZeroIso_boundary}
   \lean{KIP126.Synthetic.Bockstein.lambdaTower,KIP126.Synthetic.Bockstein.representedSphereIso,KIP126.Synthetic.Bockstein.representedHomEquiv,KIP126.Synthetic.Bockstein.weightwiseSequence}
   \uses{def:represented-tower-sequence,def:finite-lambda-bockstein-maps,def:synthetic-lambda-quotient,def:synthetic-sphere}
-  \notready
+  \leanok
   Extend the existing residual $\lambda$ tower constantly to nonpositive
   indices from its actual zeroth object $\Sigma^{0,0}A$. Its negative tail
   is not a family of positive-weight shifts. At weight $w$, apply
@@ -331,17 +359,21 @@ coherences remain outside the Project Boundary.
   the page-$q$ differential has degree $(q,-1)$. Its first layer remains the chosen cofiber
   of the actual tower arrow. Identifying that layer with
   $\Sigma^{0,-k}(A/\lambda)$ at $k\ge0$ requires the relevant exact shift and
-  $\lambda$ coherence comparisons; those are not supplied by this definition.
-  The construction imposes no completeness or convergence hypothesis, and
-  its underlying tower-sequence property proofs remain unfinished.
+  $\lambda$ coherence comparisons. At $k=0$, the actual cofiber-map
+  isomorphism with $A/\lambda$ and its inclusion and boundary squares
+  are already proved. The analogous comparisons at all higher layers
+  and a binding to a specified synthetic Adams family remain separate.
+  The underlying tower-sequence laws and displayed page conventions are
+  proved; the construction imposes no completeness or convergence hypothesis.
 \end{definition}
 
 % SOURCE: BHS SynRevBigraded.tex:123--136, dfn:E-complete and dfn:strong-conv.
 \begin{definition}[Completeness and strong convergence of the actual Adams tower]
   \label{def:actual-adams-strong-convergence}
+  \lean{KIP126.Classical.Adams.adamsHomotopyFiltrationSubmodule_decreasing}
   \lean{KIP126.Classical.Adams.towerAbutment,KIP126.Classical.Adams.adamsTowerToSpectrum,KIP126.Classical.Adams.adamsHomotopyFiltrationSubmodule,KIP126.Classical.Adams.adamsHomotopyFiltration,KIP126.Classical.Adams.IsENilpotentComplete,KIP126.Classical.Adams.IsAdamsTowerStronglyConvergent}
   \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:classical-adams-ss,def:core-filtration}
-  \notready
+  \leanok
   For the same unit and spectrum $X$, use the actual tower-image filtration
   $F^s\pi_nX=\operatorname{im}(\pi_nX_s\to\pi_nX)$, with its constant
   extension at nonpositive levels. Strong convergence requires this
@@ -350,7 +382,9 @@ coherences remain outside the Project Boundary.
   $F^s\pi_{t-s}X/F^{s+1}\pi_{t-s}X$.
   Completeness uses the canonical cone to these filtration quotients;
   no replacement abutment or filtration is chosen. The decreasing-filtration
-  property remains a proof obligation.
+  property is proved from factorization of the actual tower maps.
+  The linked declarations define these convergence conditions; they do
+  not prove that the chosen sphere satisfies them.
   Separately, $E$-nilpotent completeness requires the actual residual Adams
   tower to be acyclic. The finite Bockstein literature input below retains
   both conditions; neither is replaced by eventual page stabilization.
@@ -362,7 +396,7 @@ coherences remain outside the Project Boundary.
   \label{def:first-lambda-quotient-comparison}
   \lean{KIP126.Challenge2.FirstQuotientHomotopyComparison,KIP126.Challenge2.FirstQuotientHomotopyComparison.unshifted,KIP126.Challenge2.FirstQuotientHomotopyComparison.bocksteinTargetClass}
   \uses{def:finite-lambda-bockstein-maps,def:classical-adams-ss}
-  \notready
+  \leanok
   Given the specified first-quotient comparison $Q$, its zero-weight-shift
   component and the actual quotient functor applied to the zero-shift
   isomorphism give
@@ -397,9 +431,10 @@ coherences remain outside the Project Boundary.
 % SOURCE: BHS SynRevAdams.tex:300--304, intrinsic page q versus synthetic page q+1.
 \begin{definition}[The constructed sequence in synthetic Adams degrees]
   \label{def:lambda-normalized-sequence}
+  \lean{KIP126.Synthetic.Bockstein.gradingEquiv_differentialDegree,KIP126.Synthetic.Bockstein.normalizedPreSS_d_comp_d,KIP126.Synthetic.Bockstein.normalizedPreSS_Z_succ,KIP126.Synthetic.Bockstein.normalizedPreSS_B_succ}
   \lean{KIP126.Synthetic.Bockstein.gradingEquiv,KIP126.Synthetic.Bockstein.normalizedSSData,KIP126.Synthetic.Bockstein.normalizedPreSS,KIP126.Synthetic.Bockstein.normalizedSequence,KIP126.Synthetic.Bockstein.normalizedAdamsSS}
   \uses{def:lambda-weightwise-sequence,def:bhs-aim-regrading,def:synthetic-tridegree}
-  \notready
+  \leanok
   The additive grading equivalence and its inverse are
   \[
     (k,n,w)\longmapsto(w+k-n,w+k,w),\qquad
@@ -413,16 +448,18 @@ coherences remain outside the Project Boundary.
   initial-page number: the differential is the earlier constructed map
   at that stage.
   This is the same spectral sequence with the indicated regrading. Its ambient still consists of raw
-  first-layer representatives. The construction depends on unfinished
-  spectral-sequence laws and is not a comparison with a separately supplied
+  first-layer representatives. Its square-zero and successor-page laws
+  are proved and assemble the displayed internal sequence. It is not a
+  comparison with a separately supplied
   synthetic Adams family, a rigidity theorem, or a convergence result.
 \end{definition}
 
 \begin{definition}[Pagewise comparison with the induced successor map]
   \label{def:pagewise-sequence-comparison}
+  \lean{KIP126.Core.SpectralSequence.PagewiseIso.left_middle_comm,KIP126.Core.SpectralSequence.PagewiseIso.middle_right_comm}
   \lean{KIP126.Core.SpectralSequence.PagewiseIso,KIP126.Core.SpectralSequence.PagewiseIso.shortComplexIso,KIP126.Core.SpectralSequence.PagewiseIso.homologyIso,KIP126.Core.SpectralSequence.PagewiseIso.RespectsSuccessor}
   \uses{def:internal-nested-spectral-sequence}
-  \notready
+  \leanok
   For two internal sequences $E,F$ in the same abelian category and grading
   group, specify equal initial pages and differential degrees, together with
   isomorphisms $\phi_{r,k}:E_r^k\cong F_r^k$ on every admissible page.
@@ -437,7 +474,9 @@ coherences remain outside the Project Boundary.
   \[
     H(\phi_r)\circ h_E=h_F\circ\phi_{r+1,k}.
   \]
-  The constructions retain unfinished short-complex compatibility proofs.
+  Both short-complex compatibility squares are proved from the supplied
+  differential squares and degree transports. The induced short-complex
+  and homology isomorphisms and the successor predicate are constructed.
   They require no isomorphism of the two raw ambient objects or their cycle
   subobjects. Applying this interface to the constructed Bockstein sequence
   and a specified synthetic Adams family still requires its page maps and
@@ -492,6 +531,7 @@ coherences remain outside the Project Boundary.
 % torsion remark, and Notation not:fhat.
 \begin{definition}[Chosen normalized synthetic map]
   \label{def:synthetic-hat-map}
+  \lean{KIP126.Synthetic.Context.normalizedExponent,KIP126.Synthetic.Context.NormalizedSyntheticMap}
   \uses{def:synthetic-context,def:synthetic-lambda-quotient,def:adams-filtration,def:cofiber-triangle}
   \notready
   For a selected occurrence of a map $f:X\to Y$ in a distinguished triangle,
@@ -512,6 +552,9 @@ coherences remain outside the Project Boundary.
   arbitrary full lift.  This definition packages the required data but makes
   no existence claim; the located synthetic lift and triangle-lift results in
   the external-results chapter supply instances later.
+  Lean currently defines the actual exponent and a normalized map with
+  its factorization equality. The linked record alone does not include
+  the simultaneous triangle-compatible choice required by this node.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:929-971, the three rotations used in Proposition

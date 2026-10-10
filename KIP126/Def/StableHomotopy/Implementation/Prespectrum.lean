@@ -124,7 +124,19 @@ This proof obligation does not choose a new induced map. -/
 theorem Representative.map_relation {X Y : Prespectrum.{u}} (f : X ⟶ Y) {d : ℤ}
     {a b : Representative X d} (h : StableRelation X d a b) :
     StableRelation Y d (a.map f) (b.map f) := by
-  sorry
+  cases h with
+  | homotopy p h =>
+    exact StableRelation.homotopy (a.map f) _
+      (h.comp_continuousMap (f.level a.stage))
+  | stabilization =>
+    have hm : a.next.map f = (a.map f).next := by
+      unfold Representative.next Representative.map
+      congr 1
+      apply Subtype.ext
+      ext t
+      exact f.bond a.stage _ _
+    rw [hm]
+    exact StableRelation.stabilization (a.map f)
 
 def stableHomotopyMap {X Y : Prespectrum.{u}} (f : X ⟶ Y) (d : ℤ) :
     StableHomotopy X d → StableHomotopy Y d :=

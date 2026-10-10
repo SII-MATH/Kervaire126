@@ -11,7 +11,7 @@ assert the permanence of a named class.
   \lean{KIP126.StableHomotopy.Cohomology.Mod2EilenbergMacLane}
   \lean{KIP126.StableHomotopy.Cohomology.Mod2EilenbergMacLane.unit}
   \uses{def:stable-homotopy-group,def:mathlib-f2}
-  \notready
+  \leanok
   Fix an object $H$ with an additive isomorphism
   $\pi_0H\cong\mathbb F_2$ and $\pi_nH=0$ for $n\ne0$.
   Define $u:S^0\to H$ to be the map corresponding to $1\in\mathbb F_2$.
@@ -48,7 +48,7 @@ assert the permanence of a named class.
   \lean{KIP126.Classical.Adams.adamsTowerMapAt}
   \lean{KIP126.Classical.Adams.adamsLayerAt}
   \uses{def:h6-em-object,def:cofiber-triangle,def:stable-sphere-suspension}
-  \notready
+  \leanok
   For $X$, put $T_0=X$ and
   \[
     T_{s+1}=\operatorname{fib}(T_s\longrightarrow H\wedge T_s).
@@ -990,10 +990,10 @@ formula, and identification with Lin's product remain separate obligations.
   \leanok
 \end{proof}
 
-These are generic theorems with explicit structural arguments. The selected
-\texttt{standardFoundation} does not yet supply the multiplication and
-tensor-zero-preservation witnesses used in the second proposition. They are
-not added as new global axioms. Neither proposition provides the Milnor
+These are generic theorems with explicit structural arguments. The
+multiplication and tensor-zero-preservation witnesses for
+\texttt{standardFoundation} still depend on the unfinished fixed-implementation
+construction. Neither proposition provides the Milnor
 cooperation coordinates, a concrete model of classical spectra, or permanence
 of the specified square.
 
@@ -1008,7 +1008,7 @@ of the specified square.
   \lean{KIP126.Classical.Adams.adamsCycleBoundaries}
   \lean{KIP126.Classical.Adams.adamsPage}
   \uses{def:h6-fiber-tower,thm:stable-homotopy-long-exact}
-  \notready
+  \leanok
   Write $E_1^{s,t}=\pi_{t-s}Q_s$.  Let $j$ be induced by $T_s\to Q_s$,
   let $k:E_1^{s,t}\to\pi_{t-s-1}T_{s+1}$ be the connecting map, and
   write $i_{a,b}$ for the map on a fixed homotopy group induced by
@@ -1050,7 +1050,7 @@ of the specified square.
   \lean{KIP126.Classical.Adams.adamsDifferential}
   \lean{KIP126.Classical.Adams.adamsPageComplex}
   \uses{def:h6-tower-pages}
-  \notready
+  \leanok
   For $x\in Z_r^{s,t}$, choose $y\in\pi_{t-s-1}T_{s+r}$ with
   $i_{s+1,s+r}(y)=k(x)$.  Define
   \[
@@ -2281,7 +2281,7 @@ express this step as the Milnor cobar differential are still missing.
   \lean{KIP126.Classical.Adams.adamsNextPageToHomology_bijective}
   \lean{KIP126.Classical.Adams.adamsPageHomologyIso}
   \uses{def:h6-tower-differential}
-  \notready
+  \leanok
   Sending an $(r+1)$-cycle to the homology class of its image in $E_r$
   induces an isomorphism $E_{r+1}^{s,t}\cong H^{s,t}(E_r,d_r)$.
 \end{proposition}
@@ -2293,6 +2293,7 @@ express this step as the Milnor cobar differential are still missing.
   calculation identifies the kernel with the next-page boundaries.
   Invert this specified quotient map to obtain page passage in the
   direction $H(E_r)\to E_{r+1}$.
+  \leanok
 \end{proof}
 
 \begin{definition}[Internal nested subobjects of the constructed tower]

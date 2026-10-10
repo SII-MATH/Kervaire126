@@ -1,143 +1,107 @@
 name: CI
 
 on:
+  pull_request:
   push:
-    branches: [main]
-    paths:
-      - "KIP126.lean"
-      - "KIP126/**/*.lean"
-      - "KIPBase.lean"
-      - "KIPBase/**/*.lean"
-      - "KIPBase/lakefile.toml"
-      - "docs/migration/kip-base/**"
-      - "scripts/kipbase-migration.py"
-      - "scripts/test_kipbase_migration.py"
-      - "scripts/test_workflow_routing.py"
-      - "lakefile.lean"
-      - "lake-manifest.json"
-      - "lean-toolchain"
-      - "scripts/euler-ci.sh"
-      - "scripts/sandbox-build.sh"
-      - "scripts/perf/**"
-      - "scripts/profile/**"
-      - "scripts/pr_status/**"
-      - "scripts/ci-build-cache-key.sh"
-      - ".github/workflows/ci.yml"
-      # Every main docs consumer needs a producer even after cache eviction.
-      - "blueprint/src/**"
-      - "requirements-blueprint.txt"
-      - "docbuild/**"
-      - "scripts/docs/**"
-      - "scripts/test_lean_cache_wait.py"
-      - ".github/workflows/pages.yml"
+    branches: [main, develop]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: main-ci-cache-publisher
-  cancel-in-progress: false
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build:
-    # A queue commit can become main verbatim. Its post-merge validation
-    # must not create a second check named like the required `build` status.
-    name: main-validation
-    runs-on: ubuntu-latest
+  checks:
+    name: Checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-
-      - name: Compute the committed build-input cache key
-        id: build-cache-key
-        shell: bash
-        run: |
-          set -euo pipefail
-          digest=$(bash scripts/ci-build-cache-key.sh . "$GITHUB_SHA")
-          echo "digest=$digest" >> "$GITHUB_OUTPUT"
-          echo "KIP126 build-input digest: $digest"
-
-      - name: Prepare Lean toolchain and Mathlib cache
-        uses: leanprover/lean-action@v1
+      - name: Check sources, interfaces, Blueprint dependencies and importers
+        run: bash scripts/check.sh
+      - name: Upload Blueprint dependency report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          build: false
+          name: blueprint-dependencies
+          retention-days: 7
+          path: metrics/frontier/
+          if-no-files-found: error
+
+  lean:
+    name: Lean and Blueprint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      LEAN_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          lfs: true
+      - name: Free space from unused runner tools
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android
+      - name: Add swap for the generated finite certificates
+        run: |
+          sudo fallocate -l 8G "$RUNNER_TEMP/lean-swap"
+          sudo chmod 600 "$RUNNER_TEMP/lean-swap"
+          sudo mkswap "$RUNNER_TEMP/lean-swap"
+          sudo swapon "$RUNNER_TEMP/lean-swap"
+      - name: Record and monitor runner resources
+        run: |
+          nproc
+          free -m
+          df -h .
+          python3 -u scripts/monitor-ci-resources.py > "$RUNNER_TEMP/lean-resources.log" 2>&1 < /dev/null &
+          echo "$!" > "$RUNNER_TEMP/lean-resources.pid"
+      - name: Check pinned LFS objects
+        run: git lfs fsck
+      - name: Restore caches and build the complete Lean library and its regression modules
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
+        with:
+          build: true
+          build-args: KIP126
           test: false
           lint: false
           use-mathlib-cache: true
-          use-github-cache: false
-
-      - name: Restore the trusted main compilation baseline
-        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+          use-github-cache: true
+      - name: Install Blueprint dependencies
+        run: |
+          sudo apt-get -o Acquire::Retries=3 update
+          sudo apt-get -o Acquire::Retries=3 install --yes \
+            ghostscript graphviz libgraphviz-dev pdf2svg pkg-config texlive-latex-base
+          python3 -m venv "$RUNNER_TEMP/blueprint-venv"
+          "$RUNNER_TEMP/blueprint-venv/bin/pip" install -r requirements-blueprint.txt
+          echo "$RUNNER_TEMP/blueprint-venv/bin" >> "$GITHUB_PATH"
+      - name: Render Blueprint and check linked Lean declarations
+        run: bash scripts/check-blueprint-decls.sh
+      - name: Upload Blueprint for review
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          path: base/.lake/build
-          key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ steps.build-cache-key.outputs.digest }}
-          restore-keys: |
-            kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-
-
-      - name: Compile all root libraries once
+          name: blueprint-web
+          retention-days: 7
+          path: |
+            blueprint/web/
+            blueprint/lean_decls
+          if-no-files-found: error
+      - name: Stop resource monitor and show final samples
+        if: always()
         run: |
-          mkdir -p .lake/build
-          if [[ -d base/.lake/build ]]; then cp -a base/.lake/build/. .lake/build/; fi
-          lake build
-
-      # Publish compiled outputs before the remaining repository checks.
-      # Successful compilation does not certify mathematical proof completion.
-      - name: Stage trusted build outputs for pull requests
-        run: |
-          mkdir -p base/.lake/build
-          cp -a .lake/build/. base/.lake/build/
-
-      - name: Save trusted build outputs for pull requests
-        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
-        with:
-          # Keep this path identical to pr-build: cache versions include the path as well as the key.
-          path: base/.lake/build
-          key: kip126-main-build-v2-${{ runner.os }}-${{ runner.arch }}-${{ steps.build-cache-key.outputs.digest }}
-
-      - name: Run fixed core and project gates
-        run: bash scripts/euler-ci.sh
-
-      - name: Configure the Lake cache upload
-        id: cachecfg
-        env:
-          LAKE_CACHE_KEY_RAW: ${{ secrets.LAKE_CACHE_KEY }}
-          S3_ARTIFACT_ENDPOINT: ${{ vars.LAKE_CACHE_ARTIFACT_ENDPOINT }}
-          S3_REVISION_ENDPOINT: ${{ vars.LAKE_CACHE_REVISION_ENDPOINT }}
-        run: |
-          if [ -n "$LAKE_CACHE_KEY_RAW" ] && [ -n "$S3_ARTIFACT_ENDPOINT" ] && [ -n "$S3_REVISION_ENDPOINT" ]; then
-            echo "enabled=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "enabled=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Lake cache upload not configured; skipping"
+          if test -f "$RUNNER_TEMP/lean-resources.pid"; then
+            kill "$(cat "$RUNNER_TEMP/lean-resources.pid")" 2>/dev/null || true
           fi
-
-      - name: Publish KIP126 artifacts to the Lake cache
-        if: ${{ steps.cachecfg.outputs.enabled == 'true' }}
-        env:
-          LAKE_ARTIFACT_CACHE: "true"
-          LAKE_RESTORE_ARTIFACTS: "true"
-          LAKE_NO_CACHE: "true"
-          LAKE_CACHE_DIR: ${{ github.workspace }}/.lake/cache
-          S3_ARTIFACT_ENDPOINT: ${{ vars.LAKE_CACHE_ARTIFACT_ENDPOINT }}
-          S3_REVISION_ENDPOINT: ${{ vars.LAKE_CACHE_REVISION_ENDPOINT }}
-          LAKE_CACHE_KEY_RAW: ${{ secrets.LAKE_CACHE_KEY }}
-        run: |
-          export PATH="$HOME/.elan/bin:$PATH"
-          KEY="$(printf %s "$LAKE_CACHE_KEY_RAW" | sed -e 's/[[:space:]]*$//')"
-          echo "::add-mask::$KEY"
-          export LAKE_CACHE_KEY="$KEY"
-          CFG="$RUNNER_TEMP/lake-cache.toml"
-          cat > "$CFG" <<TOML
-          cache.defaultUploadService = "kip126-r2"
-          [[cache.service]]
-          name = "kip126-r2"
-          kind = "s3"
-          artifactEndpoint = "$S3_ARTIFACT_ENDPOINT"
-          revisionEndpoint = "$S3_REVISION_ENDPOINT"
-          TOML
-          export LAKE_CONFIG="$CFG"
-          lake build >/dev/null
-          lake build --no-build -o .lake/outputs.jsonl
-          echo "root-package mapping entries: $(wc -l < .lake/outputs.jsonl)"
-          lake cache put .lake/outputs.jsonl --service kip126-r2 --repo SII-MATH/KIP126
+          if test -f "$RUNNER_TEMP/lean-resources.log"; then
+            tail -n 12 "$RUNNER_TEMP/lean-resources.log"
+          fi
+      - name: Upload resource diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: lean-resources
+          path: ${{ runner.temp }}/lean-resources.log
+          retention-days: 7
+          if-no-files-found: ignore

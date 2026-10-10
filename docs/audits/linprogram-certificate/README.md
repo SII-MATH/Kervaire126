@@ -777,3 +777,32 @@ git diff --check
 ```
 
 本次运行使用 `requirements-blueprint.txt` 指定的 leanblueprint 0.0.20。完整原生批次没有重新启动；不要求在分支迁移前完成尚未解决的数学研究。
+
+## 迁移到 Kervaire126（2026-10-10）
+
+目标仓库为 `https://github.com/SII-MATH/Kervaire126`，目标分支为 `codex/linprogram-certificate`。迁移前旧仓库分支端点为 `364aec38f`，旧仓库最新 main/develop 为 `9d2601af4`；新仓库 develop 的迁移基线为 `e0efff36b`。
+
+新 develop 已包含额外基础证明、Section 7 工作及移除 KIPBase/调整 CI 的提交；旧仓库曾压缩合并历史。因此此次直接合并新 develop，保留双方历史，不向旧 develop 重放它已压缩接收的旧提交。新分支同时包含旧证书分支和新 develop 的全部祖先。旧远程分支保持 `364aec38f`，本地另保留 `codex/backup-linprogram-kip126-20261010`。当前工作分支跟踪 `kervaire126/codex/linprogram-certificate`；`origin` 继续指向旧仓库，以免改变同仓库其他工作区的默认远程。
+
+冲突处理保留以下内容：
+
+- `SphereClasses/Product/Proofs.lean` 同时保留等式运输、cobar 乘积公式和新 develop 的右加法/整数线性引理。
+- `MilnorModule/Resolution/Raw/Proofs.lean` 复用既有对偶通用引理完成三个链等式，并保留新 develop 的全部投射性构造；`TrivialDual/Raw/Proofs.lean` 对相同公开陈述保留原已检查证明。
+- 新增有限基底证书放入整理后的 `BasisCatalogue/FiniteCertificates.lean`，所有新消费者导入同步；未恢复旧目录包装或重复公开声明。
+- Blueprint 保留双方不同的谱序列节点、悬移构造和原生 presentation 路线，修正已经有参数化证明的坐标单射性和系数分解比较说明。固定分解存在性、原生比较及实际认证状态保持独立。
+- 保留新仓库 CI、AGENTS 和 KIPBase 移除范围；保留本分支原生证书所需的三个非默认支持库。`Lin-program`、固定原生数据和 `docs/external-inputs.json` 与迁移前完全一致。
+
+Git LFS 对象已同步到新仓库（本次传输 13 项，约 654 MB；分支引用预检查共 14 项）。已有批次的本机归档及停止状态见上一节；此次没有重启全量原生批次，也没有改变 goal 的暂停状态。
+
+迁移验证全部通过：完整 `lake build +KIP126:olean`（5009 jobs）；新仓库 `scripts/check.sh`（101 项边界/来源/Blueprint 测试、7 项选定行导入测试、7 项原始证明导入自测）；外部来源/接口生成检查及其 Lean 核验；Blueprint web、活动依赖图及全量 Lean 声明链接。相对新 develop 的差异检查通过（`Lin-program` 为逐字保留的既有研究导入，不做格式清理）。
+
+额外以 `lake env lean` 逐个重放的十项现有审计为：`Checks/Steenrod/MilnorDualCobar`；`Checks/ClassicalAdams/` 下的 `LinH6OneLineProducer`、`LinNaturalityCW`、`LinNaturalityReplay`、`LinNaturalityHighStem`、`LinProofs`、`LinSelected`、`LongLayerStageComparison`；`Checks/AdamsE2/` 下的 `LinReplayProducts`、`LinReplayCoordinates`。这些均位于 `KIP126/`，保留完整公开语句与既有依赖边界。条件实际重放仍报告其固定模型的 `sorryAx`，没有因此升级为实际认证。
+
+```sh
+LEAN_NUM_THREADS=4 lake build +KIP126:olean
+bash scripts/check.sh
+python3 -B scripts/check_external_inputs.py --lean-check /tmp/LinKervaireMigrationInputs.lean
+lake env lean /tmp/LinKervaireMigrationInputs.lean
+leanblueprint web
+lake exe checkdecls blueprint/lean_decls
+```
