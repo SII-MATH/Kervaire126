@@ -52,6 +52,12 @@ completed proof.
   tables, including row labels, locators, and recorded statuses. It is independent
   of the mathematical deliveries and does not replace `docs/external-inputs.json`.
   A recorded status is not a proved differential or survival statement.
+- `Lin-program/` is an independent research attempt. The main library must not
+  import its modules or register its directories as Lake source roots. Adopt
+  selected reusable code into `KIP126/LinProgram/Certificates/` or `Tactic/`,
+  recording the original path and revision while preserving mathematical
+  statements and proof status. The independent source tree remains separate;
+  the adopted modules are maintained as part of KIP126.
 - `MainPaper/` owns the paper being formalized. `Source/` owns external
   literature artifacts, acquisition metadata, and the machine-readable source
   artifacts. The canonical source and input manifest is `docs/external-inputs.json`.

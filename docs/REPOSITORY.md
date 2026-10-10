@@ -9,6 +9,18 @@ Blueprint 尚未配置远程网站/API 链接。
 以下迁入清单和本地核对结果记录新仓初始快照；`develop` 后续整合见下一节，
 初始文件数量与核对结果不代表合并后的当前状态。
 
+## 主线证书模块归属（2026-10-10）
+
+`Lin-program/` 保持独立。主线原来从该目录使用的 20 个证书模块及其完整
+依赖闭包，已复制到 `KIP126/LinProgram/Certificates/` 和 `Tactic/`，由 KIP126
+维护。根 Lake 配置不再注册该独立目录；四处主线导入改为 KIP126 模块路径。
+原始研究目录保持不变，未增加共享包，也未将其余实验和生成批次纳入主线。
+
+来源提交、目录对应及职责见
+[LinProgram README](../KIP126/LinProgram/README.md#independence-from-the-research-attempt)。
+此次归属调整保留公开声明名、定理内容、输入制品和证明状态；不构造实际
+E₂ 比较，也不增加已经认证的 Adams 微分。
+
 ## develop 本地进展整合（2026-10-10）
 
 - 合并旧仓本地开发历史与 Kervaire126 更新，保留本地 KIP126 证明进展。

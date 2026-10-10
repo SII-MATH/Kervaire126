@@ -1,4 +1,4 @@
-import MilnorCertificates.PolynomialExtraction
+import KIP126.LinProgram.Certificates.Milnor.PolynomialExtraction
 
 namespace KIP126.Computation.Secondary
 open MilnorCertificates

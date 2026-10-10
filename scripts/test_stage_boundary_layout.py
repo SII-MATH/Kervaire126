@@ -50,6 +50,22 @@ class StageBoundaryLayoutTests(unittest.TestCase):
         for module in self.graph:
             visit(module)
 
+    def test_main_does_not_import_the_independent_lin_program(self):
+        # The public namespaces are preserved by adoption; only imports and
+        # source roots determine whether the research tree is a dependency.
+        self.assertNotIn("Lin-program/", code_only((ROOT / "lakefile.lean").read_text()))
+        research_roots = {"MilnorCertificates", "LinProgramCertificates",
+                          "NamedElementCertificates"}
+        for path in [ROOT / "KIP126.lean", *(ROOT / "KIP126").rglob("*.lean")]:
+            with self.subTest(path=path.relative_to(ROOT)):
+                # A KIP126-owned path can end with the retained library name;
+                # match complete imported module roots, not dotted suffixes.
+                imports = re.findall(r"^\s*(?:public\s+)?import\s+([^\n]+)",
+                                     code_only(path.read_text()), re.M)
+                for line in imports:
+                    for module in line.split():
+                        self.assertNotIn(module.split(".", 1)[0], research_roots)
+
     def test_exact_stage_directories(self):
         for stage, directories in (("Interface", {"Challenge", "Solution"}),
                                    ("Main", {"Axiom", "Challenge", "Solution"})):

@@ -13,7 +13,8 @@
 - `KIP126/Def/`：数学对象、固定模型、通用定义和定理。
 - `KIP126/Interface/`：关联的文献与计算交付，构造唯一 `Challenge2` 见证。
 - `KIP126/Main/`：论文推导及最终目标。
-- `KIP126/LinProgram/`：固定计算输入、翻译、生成数据、解释和局部证书。
+- `KIP126/LinProgram/`：固定计算输入、翻译、生成数据、解释，以及主线维护的证书验证器和局部证书。
+- `Lin-program/`：独立研究尝试；主线采用的成熟模块已移植到 `KIP126/LinProgram/`，不从此目录导入。
 - `KIP126/Mathlib/`：Mathlib 适配；`KIP126/Checks/`：Lean 回归与边界检查。
 - `blueprint/src/`：当前数学计划、声明链接、依赖与证明状态。
 - `MainPaper/`：目标论文；`Source/`：外部来源及获取记录。

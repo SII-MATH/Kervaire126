@@ -14,7 +14,10 @@ the standard sphere Adams sequence or establish the final survival theorem.
 | `Model/BasisCatalogue/`, `Certificates/BasisCertification/` | Imported basis values and coordinates conditional on explicit basis certification. |
 | `Compute/E2/`, `Tactic/Support/`, `Interpretation/Polynomial/`, `Interpretation/Expression/` | Parsing, reduction, expression interpretation and calculation support. |
 | `Interpretation/` | Mathematical interpretation parameterized by a supplied model. |
-| `Certificates/`, `Tactic/` | Local fixed-data certificates and calculation tactics. |
+| `Certificates/Verifier.lean`, `Tactic/LinCert.lean` | Certificate contracts and the generic `lin_cert` tactic. |
+| `Certificates/NamedElements/` | Polynomial and module-expression checkers and their evaluation soundness proofs. |
+| `Certificates/Milnor/` | Executable Milnor calculations, grading and rank bounds, and their soundness proofs. |
+| Other `Certificates/` and `Tactic/` modules | Local fixed-data certificates and project calculation tactics. |
 
 Generic E₂ table, page-algebra, presentation and input definitions belong to
 `KIP126/Def/AdamsE2/`. The program-specific comparison with Def's fixed sphere
@@ -37,6 +40,41 @@ or compilation do not establish their mathematical correctness.
 Source identities, locators, versions and hashes are recorded in the canonical
 `docs/external-inputs.json` manifest; this README introduces no source registry
 or additional assumptions.
+
+## Independence from the research attempt
+
+The top-level `Lin-program/` remains an independent research project. KIP126
+owns the certificate modules it uses; its build does not import modules or
+take source roots from that directory. The adopted modules are ordinary parts
+of the existing `KIP126` Lake library, with no additional shared package.
+
+The initial adoption copies the complete 20-module dependency closure of the
+three certificate libraries used at commit
+`0cacf987437cfeff3f5c067a7a025182648516e0`. The source paths below are relative
+to `Lin-program/program/`; the destination paths are relative to this directory.
+
+| Research source | KIP126-owned location | Responsibility |
+| --- | --- | --- |
+| `LinProgramCertificates/Verifier.lean` | `Certificates/Verifier.lean` | Bind a certificate type, executable check and soundness theorem to a proposition. |
+| `LinProgramCertificates/Tactic.lean` | `Tactic/LinCert.lean` | Apply the checked soundness theorem through `lin_cert`. |
+| `NamedElementCertificates/{Basic,Evaluation,ModuleEvaluation}.lean` | `Certificates/NamedElements/` | Verify relation witnesses and interpret the resulting polynomial or module equalities. |
+| The 15 selected `MilnorCertificates/` modules | `Certificates/Milnor/` | Certify the finite Milnor computations used by the secondary calculation support. |
+
+Only import paths change during adoption. Public declaration names, including
+`LinProgramCertificates`, `NamedElementCertificates` and `MilnorCertificates`
+namespaces, are retained; they do not denote a dependency on the old project.
+The original source tree is unchanged. Later changes in that tree do not
+automatically change the KIP126 copies.
+
+Some data-reconstruction scripts still locate the archived input under
+`Lin-program/program/upstream/`. This adoption removes the Lean source
+dependency; input locations and historical provenance records are unchanged.
+
+These support modules depend only on Lean, Mathlib and one another. Concrete
+inputs and certificates remain in the other LinProgram modules; comparison
+with the fixed mathematical objects remains in Interface. Moving the support
+code does not construct the bounded presentation or prove an actual Adams
+differential. Historical audit paths and proof-completion statuses are retained.
 
 ## Finding a theorem by subject
 
