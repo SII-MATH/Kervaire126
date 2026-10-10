@@ -692,11 +692,15 @@ foundations established earlier.
   \lean{KIP126.Synthetic.SpectralSequence.weightShiftObjectIso,KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient,KIP126.Synthetic.SpectralSequence.CanonicalWeightShift,KIP126.Synthetic.SpectralSequence.canonicalWeightShift_exists,KIP126.Def.standardEInftyWeightShift,KIP126.Main.Solution.Literature.eInfty_shift_natural}
   \notready
   The actual object weight isomorphism and the fixed tower presentation
-  prescribe the map on permanent cycles. The existence theorem
-  must descend this map and its inverse to $E_\infty$. This fixed comparison
-  is natural on all synthetic objects. Neither its
-  construction nor full-category naturality is an independently selected
-  BHS literature input; both property proofs remain unfinished.
+  prescribe the map on permanent cycles and its comparison on $E_\infty$.
+  This fixed comparison is natural on all synthetic objects. Main now proves
+  the quotient-descent step: if the two prescribed ambient composites differ
+  by an initial boundary in $B_0$, their canonical permanent-cycle images
+  agree on $E_\infty$. The two private descent lemmas have closed proofs.
+  The remaining local obligation is precisely this ambient compatibility
+  modulo $B_0$; the full naturality theorem and its dependency cone remain
+  unfinished. Neither the construction nor full-category naturality is an
+  independently selected BHS literature input.
 \end{theorem}
 
 \begin{theorem}[BR21 in the chosen tmf coordinates]

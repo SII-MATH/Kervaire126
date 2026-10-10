@@ -27,7 +27,72 @@ Its source is a reduced suspension, so the two traversals add in homotopy. -/
 theorem doubleSuspension_exists (A : BasedSpace.{0}) :
     ∃! f : A.suspension ⟶ A.suspension, ∀ a t,
       f.map (suspensionProjection A (a,t)) =
-        suspensionProjection A (a,doubleInterval t) := by sorry
+        suspensionProjection A (a,doubleInterval t) := by
+  classical
+  have hzero : doubleInterval 0 = 0 := by
+    apply Subtype.ext
+    norm_num [doubleInterval]
+  have hone : doubleInterval 1 = 1 := by
+    apply Subtype.ext
+    norm_num [doubleInterval]
+  let l (t : I) : I := Set.projIcc 0 1 zero_le_one (2 * (t:ℝ))
+  let r (t : I) : I := Set.projIcc 0 1 zero_le_one (2 * (t:ℝ)-1)
+  have hl : Continuous l := continuous_projIcc.comp (continuous_const.mul continuous_subtype_val)
+  have hr : Continuous r := continuous_projIcc.comp
+    ((continuous_const.mul continuous_subtype_val).sub continuous_const)
+  have hglue : ∀ p : A × I, (p.2:ℝ) = 1/2 →
+      suspensionProjection A (p.1,l p.2) = suspensionProjection A (p.1,r p.2) := by
+    intro p hp
+    have hpl : l p.2 = 1 := by
+      dsimp [l]
+      norm_num [hp]
+    have hpr : r p.2 = 0 := by
+      dsimp [r]
+      norm_num [hp]
+    rw [hpl,hpr]
+    exact (suspensionProjection_collapsed A _ (Or.inr (Or.inr rfl))).trans
+      (suspensionProjection_collapsed A _ (Or.inr (Or.inl rfl))).symm
+  have hc : Continuous (fun p : A × I => suspensionProjection A (p.1,doubleInterval p.2)) := by
+    have heq : (fun p : A × I => suspensionProjection A (p.1,doubleInterval p.2)) =
+        (fun p : A × I => if (p.2:ℝ) ≤ 1/2 then
+          suspensionProjection A (p.1,l p.2) else suspensionProjection A (p.1,r p.2)) := by
+      funext p
+      dsimp only [doubleInterval]
+      split_ifs with h
+      · have hm : 2*(p.2:ℝ) ∈ Set.Icc (0:ℝ) 1 := by
+          constructor <;> nlinarith [p.2.property.1,p.2.property.2]
+        rw [show l p.2 = ⟨2*(p.2:ℝ),hm⟩ from Set.projIcc_of_mem _ hm]
+      · have hm : 2*(p.2:ℝ)-1 ∈ Set.Icc (0:ℝ) 1 := by
+          constructor <;> nlinarith [p.2.property.1,p.2.property.2]
+        rw [show r p.2 = ⟨2*(p.2:ℝ)-1,hm⟩ from Set.projIcc_of_mem _ hm]
+    rw [heq]
+    exact continuous_if_le (continuous_subtype_val.comp continuous_snd) continuous_const
+      ((suspensionProjection A).continuous.comp
+        (continuous_fst.prodMk (hl.comp continuous_snd))).continuousOn
+      ((suspensionProjection A).continuous.comp
+        (continuous_fst.prodMk (hr.comp continuous_snd))).continuousOn hglue
+  let raw : C(A × I,A.suspension) := ⟨_,hc⟩
+  have collapsed (p : A × I) (hp : SuspensionCollapsed A p) : raw p = A.suspension.point := by
+    apply suspensionProjection_collapsed
+    rcases hp with h | h | h
+    · exact Or.inl h
+    · exact Or.inr (Or.inl (by rw [h,hzero]))
+    · exact Or.inr (Or.inr (by rw [h,hone]))
+  have respects : ∀ p q, SuspensionRelation A p q → raw p = raw q :=
+    fun p q hpq => (collapsed p hpq.1).trans (collapsed q hpq.2).symm
+  let f : A.suspension ⟶ A.suspension :=
+    { map := ⟨Quot.lift raw respects,continuous_quot_lift respects raw.continuous⟩
+      point := collapsed (A.point,0) (Or.inl rfl) }
+  refine ⟨f,?_,?_⟩
+  · intro a t
+    rfl
+  · intro g hg
+    apply Hom.ext
+    apply ContinuousMap.ext
+    intro z
+    refine Quot.inductionOn z ?_
+    intro p
+    exact hg p.1 p.2
 
 noncomputable def doubleSuspension (A : BasedSpace.{0}) :
     A.suspension ⟶ A.suspension := (doubleSuspension_exists A).exists.choose
