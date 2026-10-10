@@ -259,11 +259,34 @@ def indexed_terms(decoded, filtration, index, rows, decoder, total_degree):
     return result
 
 
-def rebuild_cochains(word_bundle, selected, all_native_ceta, native_sphere, chain_dir=None):
+def map_h_coordinates(value):
+    """HomToK serializes native chain-term order, unlike sorted log vectors.
+
+    The fixed C++ AdamsProd.cpp calls Serialize(HomToK(...)); AdamsExport.cpp
+    load_map iterates that integer list without requiring ascending order.
+    Keep duplicate and unknown values invalid, then compare its sorted support
+    with augmentation of the independently decoded complete chain column.
+    """
+    require(type(value) is str, 'NULL chain augmentation is unknown')
+    if value == '':
+        return []
+    require(re.fullmatch(r'[0-9]+(?:,[0-9]+)*', value) is not None,
+            'malformed chain augmentation support')
+    result = list(map(int, value.split(',')))
+    require(len(result) == len(set(result)), 'duplicate chain augmentation index')
+    return sorted(result)
+
+
+def rebuild_cochains(word_bundle, selected, all_native_ceta, native_sphere, chain_dir=None,
+                     *, limit=LIMIT, chain_inputs=None, expected_counts=(84, 48),
+                     combination_entries=False):
+    """Reconstruct a complete pinned finite family; defaults preserve Batch21."""
+    require(type(limit) is int and limit >= 2, 'invalid chain degree cutoff')
+    chain_inputs = CHAIN_INPUTS if chain_inputs is None else chain_inputs
     native = load('native-contract.py', 'naturality_chain_native')
     decoder = load('extract-secondary-witness.py', 'naturality_chain_decode')
     paths, identities = {}, []
-    for key, path_name in CHAIN_INPUTS.items():
+    for key, path_name in chain_inputs.items():
         override = chain_dir / Path(path_name).name if chain_dir is not None else None
         paths[key], _, identity = authenticated(path_name, override)
         identities.append(identity)
@@ -278,9 +301,9 @@ def rebuild_cochains(word_bundle, selected, all_native_ceta, native_sphere, chai
         'Ceta': {'cells': [0, 2], 'cells_gen': [0], 'operations': [[0, 2]]},
         'Ceta__S0': {'from': 'Ceta', 'images': [2], 'sus': 2, 'to': 'S0'},
     }), 'official cohomology-module/initial-map configuration changed')
-    ceta = chain_rows(native, decoder, paths['ceta'], 'Ceta', LIMIT)
-    sphere = chain_rows(native, decoder, paths['sphere'], 'S0', LIMIT - 2)
-    require(len(ceta) == 84 and len(sphere) == 48, 'fixed chain family cardinality changed')
+    ceta = chain_rows(native, decoder, paths['ceta'], 'Ceta', limit)
+    sphere = chain_rows(native, decoder, paths['sphere'], 'S0', limit - 2)
+    require((len(ceta), len(sphere)) == expected_counts, 'fixed chain family cardinality changed')
     ci, si = {r['id']: i for i, r in enumerate(ceta)}, {r['id']: i for i, r in enumerate(sphere)}
     cd, sd = [], []
     for records, index, out in ((ceta, ci, cd), (sphere, si, sd)):
@@ -296,14 +319,14 @@ def rebuild_cochains(word_bundle, selected, all_native_ceta, native_sphere, chai
     metadata = {row['name']: row['value'] for row in map_version}
     require(len(metadata) == len(map_version), 'duplicate chain-map version metadata')
     expected_metadata = {'version': 3, 'from': 'Ceta', 'to': 'S0', 'filtration': 0,
-                         'suspension': 2, 't_max': LIMIT}
+                         'suspension': 2, 't_max': limit}
     for key, value in expected_metadata.items():
         require(key in metadata and type(metadata[key]) is type(value) and metadata[key] == value,
                 'chain-map metadata changed: ' + key)
     if 'verified' in metadata:
-        require(type(metadata['verified']) is int and metadata['verified'] == LIMIT,
+        require(type(metadata['verified']) is int and metadata['verified'] == limit,
                 'unexpected native verified-bound metadata')
-    require([r['id'] for r in map_rows] == [r['id'] for r in sphere], 'map must contain every and only the 48 selected sphere columns')
+    require([r['id'] for r in map_rows] == [r['id'] for r in sphere], 'map must contain every and only the selected sphere columns')
     columns, map_terms = [], []
     for row, source in zip(map_rows, sphere):
         require(type(row['map']) is bytes and len(row['map']) % 8 == 0, 'NULL/malformed chain image is not zero')
@@ -311,7 +334,7 @@ def rebuild_cochains(word_bundle, selected, all_native_ceta, native_sphere, chai
         decoded = decoder.decode(row['map'])
         columns.append(indexed_terms(decoded, source['s'], ci, ceta, decoder, source['t'] + 2))
         expected = sorted(v for powers, v in decoded if powers == decoder.ZERO)
-        require(native.coordinates(row['map_h']) == expected, 'stored map_h disagrees with decoded augmentation')
+        require(map_h_coordinates(row['map_h']) == expected, 'stored map_h disagrees with decoded augmentation')
         map_terms.append(decoded)
     # Independent full Milnor products check the finite chain equations. This
     # Python result is explicitly separate from the Lean augmentation theorem.
@@ -331,28 +354,50 @@ def rebuild_cochains(word_bundle, selected, all_native_ceta, native_sphere, chai
                     decoder.compose(row['decoded'], q_by_s[row['s'] - 1]), 'finite chain-map equation fails')
     require(all(any(p != 0 for p in term['powers']) for diff in cd + sd for term in diff),
             'selected differential has nonzero augmentation')
-    # This validates recorded integer identities, not actual Ext identification.
+    # The singleton case is kept byte-for-byte compatible with Batch21.
+    # Larger windows contain native representatives which are sums of dual
+    # generators. Their data support is not an assertion that they form a basis.
     comparison_rows = []
     for old, records, index, label in ((all_native_ceta, ceta, ci, 'Ceta'), (native_sphere, sphere, si, 'S0')):
         require(len(old) == len(records), 'old/new bounded generator counts disagree')
         seen = set()
         for row in old:
-            require(type(row['repr']) is str and re.fullmatch(r'[0-9]+', row['repr']), 'native representative is not a singleton cochain')
-            ident = int(row['repr'])
-            require(ident in index and ident not in seen, 'old/new repr is absent or repeated')
-            seen.add(ident)
-            current = records[index[ident]]
-            require((row['s'], row['t']) == (current['s'], current['t']), 'old/new repr degree mismatch')
-            comparison_rows.append(dict(spectrum=label, native_basis_id=row['id'], native_repr=row['repr'],
-                                        chain_index=index[ident], chain_id=ident, s=row['s'], t=row['t']))
+            if combination_entries:
+                require(type(row['repr']) is str, 'unknown native cochain representative')
+                ids = native.coordinates(row['repr'])
+                require(bool(ids), 'empty native basis representative')
+                require(all(ident in index for ident in ids), 'native cochain term is absent')
+                require(all((row['s'], row['t']) == (records[index[ident]]['s'], records[index[ident]]['t'])
+                            for ident in ids), 'native cochain representative degree mismatch')
+                comparison_rows.append(dict(spectrum=label, native_basis_id=row['id'], native_repr=row['repr'],
+                    chain_indices=[index[ident] for ident in ids], chain_ids=ids, s=row['s'], t=row['t']))
+            else:
+                require(type(row['repr']) is str and re.fullmatch(r'[0-9]+', row['repr']), 'native representative is not a singleton cochain')
+                ident = int(row['repr'])
+                require(ident in index and ident not in seen, 'old/new repr is absent or repeated')
+                seen.add(ident)
+                current = records[index[ident]]
+                require((row['s'], row['t']) == (current['s'], current['t']), 'old/new repr degree mismatch')
+                comparison_rows.append(dict(spectrum=label, native_basis_id=row['id'], native_repr=row['repr'],
+                                            chain_index=index[ident], chain_id=ident, s=row['s'], t=row['t']))
     entries = []
     for row, word_entry in zip(selected, word_bundle['entries']):
-        source = ci[int(row['repr'])]
-        targets = [j for j, terms in enumerate(columns)
-                   if sum(term['generator'] == source and not any(term['powers']) for term in terms) % 2]
-        expected = sorted(si[int(rep)] for rep in word_entry['target_reprs'])
-        require(targets == expected, 'native word result and chain cochain augmentation disagree')
-        entries.append(dict(source=source, targets=targets, native_basis_id=row['id']))
+        if combination_entries:
+            sources = [ci[ident] for ident in native.coordinates(row['repr'])]
+            targets = [j for j, terms in enumerate(columns)
+                       if sum(term['generator'] in sources and not any(term['powers']) for term in terms) % 2]
+            expected = set()
+            for representative in word_entry['target_reprs']:
+                expected.symmetric_difference_update(si[ident] for ident in native.coordinates(representative))
+            require(targets == sorted(expected), 'native word result and chain cochain augmentation disagree')
+            entries.append(dict(sources=sources, targets=targets, native_basis_id=row['id']))
+        else:
+            source = ci[int(row['repr'])]
+            targets = [j for j, terms in enumerate(columns)
+                       if sum(term['generator'] == source and not any(term['powers']) for term in terms) % 2]
+            expected = sorted(si[int(rep)] for rep in word_entry['target_reprs'])
+            require(targets == expected, 'native word result and chain cochain augmentation disagree')
+            entries.append(dict(source=source, targets=targets, native_basis_id=row['id']))
     fields = lambda rows: [dict(id=r['id'], s=r['s'], t=r['t']) for r in rows]
     return dict(schema_version=1, kind='bounded-native-top-cell-cochain-augmentation-batch',
                 canonical_registry='docs/external-inputs.json', inputs=word_bundle['inputs'] + identities,
@@ -402,25 +447,39 @@ def render_words(bundle):
 
 
 def render_cochains(bundle):
+    limit = bundle['selection']['maximum_t']
+    sphere_count = len(bundle['sphere_generators'])
+    ceta_count = len(bundle['ceta_generators'])
+    entry_count = len(bundle['entries'])
     fin = lambda value: '⟨' + str(value) + ', by decide⟩'
     lines = ['import KIP126.LinProgram.Certificates.Naturality.CochainMapCertificate', '',
              '/-! Generated bounded chain terms. Matching original repr integers does not prove basis identification. -/',
-             'namespace KIP126.LinModule.RawData.NaturalityCochainBatch21',
+             f'namespace KIP126.LinModule.RawData.NaturalityCochainBatch{limit}',
              'open KIP126.LinModule.CochainMapCertificate', '']
+    if limit > 21:
+        lines.extend(['set_option maxRecDepth 100000', 'set_option maxHeartbeats 20000000', ''])
     def vector(name, typ, values):
         lines.append('def ' + name + ' : ' + typ + ' := ![')
         for i, value in enumerate(values):
             lines.append('  ' + value + (',' if i + 1 < len(values) else ''))
         lines.extend([']', ''])
-    for key, name, size in [('sphere_generators', 'sphereGenerators', 48), ('ceta_generators', 'cetaGenerators', 84)]:
+    for key, name, size in [('sphere_generators', 'sphereGenerators', sphere_count), ('ceta_generators', 'cetaGenerators', ceta_count)]:
         vector(name, f'Fin {size} → GeneratorRecord', ['⟨' + ', '.join(str(row[k]) for k in ('id', 's', 't')) + '⟩' for row in bundle[key]])
-    for key, name, source, target in [('sphere_differentials', 'sphereDifferentials', 48, 48),
-                                      ('ceta_differentials', 'cetaDifferentials', 84, 84),
-                                      ('map_columns', 'mapColumns', 48, 84)]:
+    for key, name, source, target in [('sphere_differentials', 'sphereDifferentials', sphere_count, sphere_count),
+                                      ('ceta_differentials', 'cetaDifferentials', ceta_count, ceta_count),
+                                      ('map_columns', 'mapColumns', sphere_count, ceta_count)]:
         values = [lean_list(['⟨' + str(term['powers']) + ', ' + fin(term['generator']) + '⟩' for term in terms]) for terms in bundle[key]]
         vector(name, f'Fin {source} → List (Term {target})', values)
-    vector('entries', 'Fin 82 → Entry 48 84', ['⟨' + fin(e['source']) + ', ' + lean_list([fin(i) for i in e['targets']]) + ', ' + str(e['native_basis_id']) + '⟩' for e in bundle['entries']])
-    lines.append('end KIP126.LinModule.RawData.NaturalityCochainBatch21')
+    if bundle['entries'] and 'sources' in bundle['entries'][0]:
+        vector('augmentationColumns', f'Fin {sphere_count} → List (Fin {ceta_count})',
+               [lean_list([fin(i) for i in support]) for support in bundle['augmentation_columns']])
+        vector('entries', f'Fin {entry_count} → CombinationEntry {sphere_count} {ceta_count}',
+               ['⟨' + lean_list([fin(i) for i in e['sources']]) + ', ' +
+                lean_list([fin(i) for i in e['targets']]) + ', ' + str(e['native_basis_id']) + '⟩'
+                for e in bundle['entries']])
+    else:
+        vector('entries', f'Fin {entry_count} → Entry {sphere_count} {ceta_count}', ['⟨' + fin(e['source']) + ', ' + lean_list([fin(i) for i in e['targets']]) + ', ' + str(e['native_basis_id']) + '⟩' for e in bundle['entries']])
+    lines.append(f'end KIP126.LinModule.RawData.NaturalityCochainBatch{limit}')
     return '\n'.join(lines) + '\n'
 
 

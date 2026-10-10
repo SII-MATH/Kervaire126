@@ -31,6 +31,8 @@ import KIP126.Interface.Solution.LinProgram.Naturality.Row245131
 import KIP126.LinProgram.Certificates.Naturality.Row245131Map
 import KIP126.LinProgram.Certificates.Naturality.Batch21
 import KIP126.LinProgram.Certificates.Naturality.CochainBatch21
+import KIP126.LinProgram.Certificates.Naturality.Words200.All
+import KIP126.LinProgram.Certificates.Naturality.CochainBatch40
 import KIP126.LinProgram.Certificates.BasisCertification.Proofs
 import KIP126.Interface.Challenge.Literature.EtaRows
 import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Data

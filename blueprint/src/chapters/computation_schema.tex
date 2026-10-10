@@ -866,6 +866,92 @@ comparison dependencies are discharged, the result remains conditional.
   separate Lean proof obligations.
 \end{proof}
 
+\begin{lemma}[Complete native Ceta word certificates through internal degree 200]
+  \label{lem:lin-naturality-words200}
+  \lean{KIP126.LinModule.NaturalityWords200.CertifiedBatch,KIP126.LinModule.NaturalityWords200.entries}
+  \lean{KIP126.LinModule.NaturalityWords200.entry_evaluate,KIP126.LinModule.NaturalityWords200.zero_evaluate,KIP126.LinModule.NaturalityWords200.entry_desc,KIP126.LinModule.NaturalityWords200.target_row_mem,KIP126.LinModule.NaturalityWords200.entry_count,KIP126.LinModule.NaturalityWords200.source_ids}
+  \uses{lem:lin-naturality-batch21-words,prop:lin-native-module-map-descent}
+  \leanok
+  Fix all 15951 original Ceta basis-table records with $2\le t\le200$,
+  preserving every recorded filtration and local coordinate. Their images
+  under the same complete native generator graph are specified sums of
+  original sphere catalogue values in degree $(s,t-2)$, equal in the
+  unchanged sphere data quotient. Every output row belongs to the original
+  complete sphere catalogue. These are native word equalities, not a basis
+  theorem, nonvanishing theorem, or actual Adams differential assertion.
+
+  The checked certificates have 8126 empty, 7281 singleton and 544
+  multiple-coordinate target lists. There are 13967 direct substitutions,
+  823 one-relation reductions and 1161 reductions with multiple original
+  relation witnesses. All witnesses use the same original sphere ideal;
+  no extra polynomial relation is an assumption. Full Ceta quotient descent
+  still requires vanishing of all 76569 original Ceta relation evaluations.
+  The deterministic translator checks original SQLite provenance and exact
+  source-table coverage; this does not turn source-table labels into a
+  mathematical basis theorem.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Divide the finite list into 125 blocks of at most 128 records. For each
+  block check polynomial relation combinations and apply the common checker
+  soundness theorem. Share original relation and target catalogue membership
+  proofs by archived CSV chunk; exact character transcription equalities
+  are checked by the kernel. Concatenate the certified blocks and apply
+  their equations to arbitrary members of the resulting list.
+\end{proof}
+
+The separate fixed target inventory contains all 408 exported finite-page
+sphere naturality records for \texttt{Ceta\_\_S0}. It finds 324 targets
+with one earlier logged Ceta candidate whose two images agree in native
+$E_2$ coordinates, 11 with candidates requiring page-representative or
+boundary comparison, and 73 without a supported earlier candidate.
+These counts are deterministic input audits, not Lean proofs of the
+candidate differentials. Six formal Ceta target degrees exceed 200, but their logged targets
+are explicitly zero; zero is mapped to zero without reading a basis table
+outside its range. Their full source differential propositions retain those
+formal degrees. Native nonzero-coordinate requirements are reported separately
+from formal endpoint degrees. The log has no source-ID premise edge;
+coordinate agreement alone does not reconstruct one. Each candidate keeps
+its actual source differential, page representatives and the same actual
+top-cell/presentation comparison as explicit remaining obligations.
+
+\begin{lemma}[Finite combinations under the enlarged native dual map]
+  \label{lem:lin-naturality-batch40-cochains}
+  \lean{KIP126.LinModule.CochainMapCertificate.CombinationEntry,KIP126.LinModule.CochainMapCertificate.checkCombination,KIP126.LinModule.CochainMapCertificate.checkCombination_sound,KIP126.LinModule.CochainMapCertificate.checkCombination_sound_precomposition,KIP126.LinModule.CochainMapCertificate.augmentationSupport,KIP126.LinModule.CochainMapCertificate.checkCombination_of_support}
+  \lean{KIP126.LinModule.NaturalityCochainBatch40.augmentation_columns_match,KIP126.LinModule.NaturalityCochainBatch40.batch_checked,KIP126.LinModule.NaturalityCochainBatch40.entry_pullback,KIP126.LinModule.NaturalityCochainBatch40.entry_precomposition,KIP126.LinModule.NaturalityCochainBatch40.native_record_coverage,KIP126.LinModule.NaturalityCochainBatch40.requests_in_range,KIP126.LinModule.NaturalityCochainBatch40.family_bounds}
+  \lean{KIP126.LinModule.NaturalityCochainBatch40.sphere_differentials_graded,KIP126.LinModule.NaturalityCochainBatch40.ceta_differentials_graded,KIP126.LinModule.NaturalityCochainBatch40.map_columns_graded,KIP126.LinModule.NaturalityCochainBatch40.sphere_cochain_differential_zero,KIP126.LinModule.NaturalityCochainBatch40.ceta_cochain_differential_zero}
+  \uses{def:lin-naturality-batch21-data,lem:lin-naturality-batch21-cochains}
+  \leanok
+  The separately pinned reconstruction supplies 261 Ceta generator records
+  through $t=40$, 155 sphere records through $t=38$, every recorded
+  differential term and all 155 map columns. Let
+  $Q_\epsilon:\mathbb F_2^{155}\to\mathbb F_2^{261}$ be their augmented
+  map. Each of the 259 selected native basis-table requests is a specified
+  finite combination of dual generator vectors. Its certified target is
+  equal to precomposition with this same $Q_\epsilon$ on the entire finite
+  sphere space. Both source and target combinations are allowed: twelve
+  requests have multiple source terms, one has two target terms, 137 have
+  zero target, and the remaining 122 have nonempty target.
+
+  Every recorded differential coefficient has positive internal degree,
+  so the two full dual differential operators on these specified finite
+  families vanish. Termwise bidegrees are checked. Exact request-ID coverage
+  and degree bounds refer to the supplied finite data, not to a proof that
+  its representatives form a basis of actual Ext. Matching original
+  \texttt{repr} fields is still a deterministic data comparison. Complete
+  Steenrod chain equations, exactness, representative identification and
+  actual top-cell comparison remain separate obligations.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Extend the existing finite checker to sums on both sides, prove its
+  soundness on every column, and use the same functional-precomposition
+  theorem. First certify the constant-term support of each complete
+  original column, then reuse that checked support across requests.
+  Apply it to all 259 requests without imposing a singleton restriction. Independently apply the existing positive-degree
+  augmentation theorem to the entire supplied differential families.
+\end{proof}
+
 \begin{proposition}[Actual comparison for the two native top-cell images]
   \label{prop:lin-naturality-map-comparison-245131}
   \uses{lem:lin-naturality-native-map-words,lem:lin-naturality-batch21-cochains,prop:lin-native-resolution-correct,prop:lin-native-actual-comparison,prop:internal-page-naturality,lem:adams-double-suspension-differential}

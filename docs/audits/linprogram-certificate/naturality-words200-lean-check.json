@@ -1,0 +1,201 @@
+{
+  "scope": "All 15951 native Ceta word equations for 2 <= t <= 200; not actual Adams certification",
+  "environment": "Measured with existing Mathlib and shared catalogue proof caches; not a clean end-to-end build",
+  "shard_count": 125,
+  "shard_wall_seconds": 263.64211216010153,
+  "shard_groups": [
+    {
+      "group": 0,
+      "modules": [
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard000",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard001",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard002",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard003",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard004",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard005",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard006",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard007",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard008",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard009",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard010",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard011",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard012",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard013",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard014",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard015"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 19.59769855439663
+    },
+    {
+      "group": 1,
+      "modules": [
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard016",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard017",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard018",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard019",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard020",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard021",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard022",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard023",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard024",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard025",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard026",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard027",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard028",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard029",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard030",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard031"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 23.79968400672078
+    },
+    {
+      "group": 2,
+      "modules": [
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard032",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard033",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard034",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard035",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard036",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard037",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard038",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard039",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard040",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard041",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard042",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard043",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard044",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard045",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard046",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard047"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 30.22986619733274
+    },
+    {
+      "group": 3,
+      "modules": [
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard048",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard049",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard050",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard051",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard052",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard053",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard054",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard055",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard056",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard057",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard058",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard059",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard060",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard061",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard062",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard063"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 32.772745959460735
+    },
+    {
+      "group": 4,
+      "modules": [
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard064",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard065",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard066",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard067",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard068",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard069",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard070",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard071",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard072",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard073",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard074",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard075",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard076",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard077",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard078",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard079"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 36.81947859376669
+    },
+    {
+      "group": 5,
+      "modules": [
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard080",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard081",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard082",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard083",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard084",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard085",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard086",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard087",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard088",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard089",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard090",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard091",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard092",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard093",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard094",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard095"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 38.50576379522681
+    },
+    {
+      "group": 6,
+      "modules": [
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard096",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard097",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard098",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard099",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard100",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard101",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard102",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard103",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard104",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard105",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard106",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard107",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard108",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard109",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard110",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard111"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 43.713145373389125
+    },
+    {
+      "group": 7,
+      "modules": [
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard112",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard113",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard114",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard115",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard116",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard117",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard118",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard119",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard120",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard121",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard122",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard123",
+        "KIP126.LinProgram.Certificates.Naturality.Words200.Shard124"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 38.20372967980802
+    }
+  ],
+  "aggregate_and_axiom_audit": {
+    "exit_code": 0,
+    "wall_seconds": 14.70035881921649,
+    "maxrss_kb": 2714400
+  },
+  "replay_command": "LEAN_NUM_THREADS=1 lake build KIP126.Checks.AdamsE2.LinNaturalityWords200",
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "actual_certification": false
+}

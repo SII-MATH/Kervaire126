@@ -1145,3 +1145,177 @@ chunk 的展开字符见证，再把目录成员结论共享给 37 个目标行�
 见证由现有 tactic 的同类方法生成，原始 chunk 等式仍由 Lean kernel
 检查；未将字符串哈希相同或 Python 检查成功当作该等式的证明。
 这解决了本批的重复核查成本，尚不据此推断更高次数批次的线性耗时。
+
+
+## 全范围词证书与自然性目标清单（2026-10-10）
+
+本次固定的词层目标是原 Ceta 基底表中 **全部 `2 ≤ t ≤ 200` 的 15951 条记录**，
+不是从中挑选容易的条目。原始 ID 连续为 2 至 15952；低于 2 的两个记录在本映射
+的既定次数窗口之外。原始 Ceta 模块、球面理想、完整生成元图、literature 和实际模型
+均不改变。旧 Batch21 和 245131 两端点证书继续保留。
+
+### 见证搜索及分块证书
+
+`Translate/replay-naturality-words.py` 从认证的原表重建目标，先搜索单个原关系的
+单项式倍数，再以原关系的首项消去剩余非目录项。每次搜索检查循环和步数，找到后
+独立展开全部关系组合回代。算法不假设原表是 Gröbner 基；没有找到见证会报错，
+不会添加关系或把未知值填成零。本次所有 15951 个目标均找到见证：
+
+| 求证方式 | 条数 |
+| --- | ---: |
+| 直接代入原生生成元图 | 13967 |
+| 使用一个原始关系见证 | 823 |
+| 使用多个原始关系见证 | 1161 |
+
+共使用 1927 个不同原始球面关系；最长见证 65 步。最终目标中，8126 个是空列表
+（零），7281 个是单坐标，544 个是多坐标组合。单坐标或非空列表本身不证明商类非零。
+
+`Generated/Naturality/Words200/Manifest.json` 记录完整有序原始 ID、输入哈希、
+坐标、原始关系 CSV 定位与每个见证。125 个数据块各至多 128 项，关系索引在块内
+重新编号，避免每次核验遍历整个关系库。证明入口为
+`Certificates/Naturality/Words200/All.lean`，其公开接口包括：
+
+- `entry_evaluate`：每个条目的原生自由表达式在同一球面商中等于所列目标之和。
+- `zero_evaluate`：空目标列表求值为零。
+- `target_row_mem`：全部输出坐标属于完整原始球面目录。
+- `entry_desc`：只在全部 76569 个原始 Ceta 关系消失的前提下，推广为完整 Ceta 商映射等式。
+- `entry_count`：固定列表含 15951 项。
+- `source_ids`：该列表的原始 ID 恰为连续 2 至 15952，排除列表内的重复和遗漏。
+
+这些接口的具体核验结果见本节最后的检查记录。生成证明脚本本身不是证明完成依据。
+`Translate/generate-naturality-word-proofs.py` 将共享原始 CSV 成员证明和分块证明
+确定性生成；所提议的字符转录等式仍由 Lean kernel 核验。原始 Ceta SQLite 身份
+仍由认证输入和确定性转译绑定，不据此声称 Lean 已证明该表是实际数学空间的基。
+
+### 408 条真实自然性结论的逐项清单
+
+`Translate/audit-naturality-targets.py` 按现有导入规则重建全部 10907 条球面有限页
+微分记录，再精确选择其中 408 条 `Ceta__S0` 自然性记录。输出
+`Generated/Naturality/Targets200.json` 保留每条原始日志、对应 Lean 数据位置、
+双次数和两个端点，以及较早出现且同页、同次数的真实 Ceta 来源候选。
+不会反求一个虚构的来源，也不使用日志邻接关系作为证据。
+
+| 目标分类 | 条数 | 尚需处理 |
+| --- | ---: | --- |
+| 恰有一个较早来源候选在两端原生 E2 坐标都匹配 | 324 | 证明实际来源微分、页代表元和实际映射比较 |
+| 有真实候选，但原生 E2 坐标未严格匹配 | 11 | 页上的边界/代表元或来源比较；这不是结论不成立的证据 |
+| 没有找到受当前规则支持的较早来源记录 | 73 | 恢复来源 trace 或给出独立来源证明 |
+
+共检查 426 个候选方程，引用 485 个不同词映射。原日志没有 source-ID/premise-edge
+字段，所以即使两端匹配，`historical_premise_edge_certified` 仍为 `false`。
+每个候选的实际来源微分、同一 `P` 下的实际顶胞腔映射、页代表元和基础比较义务
+均保留为准确待证命题。六条记录的形式目标次数超过 Ceta 原表 `t=200`，
+但其目标均明确为空坐标（零），不需在范围外查基底表即可使用“零映到零”。
+实际来源微分的陈述仍保留原始次数，最高至 214；没有将范围外整个空间视为零。
+
+清单区别两种范围统计：形式两端都在 `t≤21/40/60/100/150/200` 的全部目标数
+是 `1/1/5/47/149/402`；已找到严格匹配来源、且非零坐标都在相应范围的目标数
+是 `1/2/8/35/137/324`。后者不把未知来源或未知图像填成零。
+因此 `t≤40` 的现有链族实际支持两个候选的向量比较：245131，以及 51636。
+后者是球面记录 `d₄:(5,36)[0]→0`，真实较早 Ceta 候选是 51635，源次数 `(5,38)`，
+目标形式次数 `(9,41)` 但明确为零。它仍需证明实际 Ceta 来源微分和实际映射比较。
+词层全量核验、有限余链核验与实际微分认证不能混为同一计数。
+
+### 扩大的有限链输入
+
+复用已登记的球面 `t≤45` 分解和同一官方 `Adams.json`，以相同重建二进制补算
+`Adams res Ceta 40`、`Adams map_res Ceta S0 40` 并执行原生 `verify_map`。
+三个步骤实测分别约 0.624、1.616、0.547 秒，峰值 RSS 21176 KiB；不包含重新编译
+C++ 的时间。旧球面输入的哈希在运行前后相同。新数据库固定在 `Raw/Naturality/Batch40/`，
+分别为 217088 和 57344 字节，并以 Git LFS 和唯一来源清单登记。
+
+鲜建 map 数据库仍须补入原程序缺失的 `verified=-1` 版本元数据后才能执行验证；
+该兼容处理不改变数学表。重建命令、二进制/输入/输出哈希、时间和范围边界见
+`naturality40-chain-reconstruction.json`。这些本地重建快照不冒充官方已发布的数据库。
+原生程序核验也不代替 Lean 中的完整 Steenrod 链方程或分解正合性证明。
+
+### 重放入口
+
+```sh
+python3 -B KIP126/LinProgram/Translate/replay-naturality-words.py --check
+python3 -B KIP126/LinProgram/Translate/generate-naturality-word-proofs.py --check
+python3 -B KIP126/LinProgram/Translate/audit-naturality-targets.py --check
+python3 -B KIP126/LinProgram/Translate/test-replay-naturality-words.py
+python3 -B KIP126/LinProgram/Translate/test-audit-naturality-targets.py
+lake build KIP126.Checks.AdamsE2.LinNaturalityWords200
+```
+
+旧 `replay-naturality-batch.py --check` 仍须逐字节通过。新任务不改变旧批次的固定
+合同、公开名称或原始数据。完整商的关系责任、分解比较、实际模型识别和实际来源
+微分继续分别记录；`actual_certification` 保持 `false`。
+
+
+### 有限余链的组合证书
+
+`CochainBatch40` 保留全部 261 个 Ceta 和 155 个球面分解生成元以及 155 列映射；
+处理原基底表中全部 259 个选定请求。包含 4830 个 Ceta 微分项、1899 个球面微分项
+和 3136 个映射项。完整 Milnor 乘法的 `d²=0` 与 `dQ=Qd` 已在 Python 中独立核验；
+Lean 的交付范围则为全部给定项的次数、增广以及同一个有限线性映射的对偶等式。
+
+扩批发现两种首批不包含的真实数据：9 列 `map_h` 中坐标按降序存储，必须按链数据
+自己的序列化规则解析；另有 12 个源 `repr` 表示多个余链基向量的组合。
+因此新增通用 `CombinationEntry`、`checkCombination_sound` 和
+`checkCombination_sound_precomposition`，允许源和目标都为有限和。
+原有单向量接口保留。为避免每个请求重复展开完整链列，另外输出其零次项支持列表，
+并以 `augmentation_columns_match` 对全部 155 列证明该列表恰为原完整列的增广支持。
+随后复用辅助列表检查请求；`entry_precomposition` 的结论仍是原 `augmentedMap`。
+解析器保留原始字段并与完整二进制项的增广比较；没有修改
+proofs 日志的坐标合同。
+
+具体入口是 `Certificates/Naturality/CochainBatch40.lean` 的
+`entry_pullback` 与 `entry_precomposition`。259 个请求的结果含 137 个零、
+122 个非空向量，其中 1 个是两项之和。`native_record_coverage` 保证请求 ID 完整，
+`requests_in_range`、`family_bounds` 记录指定族的范围；这不宣称这些 `repr`
+组合已经构成数学上的基。两个 `cochain_differential_zero` 定理的量词仍覆盖各自
+整个指定有限族的所有余链。
+
+```sh
+python3 -B KIP126/LinProgram/Translate/replay-naturality-cochains.py --check
+python3 -B KIP126/LinProgram/Translate/test-replay-naturality-cochains.py
+lake build KIP126.Checks.AdamsE2.LinNaturalityCochainBatch40
+```
+
+
+### 本轮核验记录
+
+有限余链 `LinNaturalityCochainBatch40` 已完成构建和传递公理/导入边界审计，
+只出现 `propext`、`Classical.choice`、`Quot.sound`。259 条组合等式、全部155列
+辅助支持与原完整列相等、两整个余链零算子、次数、范围及 ID 覆盖均已核验。
+删除真实源项、删除真实目标项的负例与 F₂ 重复项抵消检查也通过。
+有依赖缓存时，该次完整构建墙钟 213.14 秒；通用定理约 3.7 秒、生成数据约58秒、
+具体证书约142秒、检查约5.8秒，峰值RSS 8412776 KiB（约8.02 GiB）。
+这不包括重建 Mathlib，也不代表完整 Steenrod 链方程已在 Lean 中证明。
+
+最终目标清单的11项测试、余链8项测试、词导出10项测试和旧批次10项测试均通过；
+新固定生成物及完整证书 roundtrip 通过，旧 Batch21 四个生成物逐字节保持一致。
+这些 Python 检查和有限代数定理分别记录，不合并为实际微分认证。
+
+
+全量词证书随后完成全部 125 个分片、总表及 `LinNaturalityWords200` 检查模块的
+正式核验。`entry_evaluate`、`entry_desc`、`target_row_mem` 和完整 `source_ids`
+均经传递公理审计，只使用三个标准逻辑公理，没有 `sorryAx` 或项目公理。
+因此本轮词层交付为全部 **15951 条已由 Lean 核验的数据商等式**，不是仅生成候选。
+所有 1927 个用到的原始关系及 7888 个不同输出目录行也已在原始完整表中绑定。
+源 ID 恰为连续 2 至 15952；原始 SQLite 转译身份与数学上的基定理继续区分。
+
+规模核验中消除了两类重复归约：原关系的字符行查找按32行分块共享，
+目标行解码按原始 chunk 批量检查，导出成员证明再共享短块索引界。
+最重的128条词检查分片（包含65步约简）内核检查约29.8秒；原关系首块从约166秒
+降到25秒，原目标目录首块从约285秒降到134秒。所有性能改动均保留原始
+chunk 的内核相等性、完整目录成员关系和同一商理想。
+本机采用先编译共享成员证明、再有界并发核验分片的顺序；从零重放应按机器
+内存限制并发，低并发入口可使用 `LEAN_NUM_THREADS=1 lake build KIP126.Checks.AdamsE2.LinNaturalityWords200`。这些成本是有依赖缓存的实测，
+不包括首次构建 Mathlib。
+
+
+最终集成核验：主库及旧 Batch21 两个检查模块构建通过；Blueprint 网页、活动
+标签/依赖和声明链接检查通过。`scripts/check.sh` 的 103 项及两组各 7 项测试
+通过，来源清单为 26 个来源、127 个工件。最终独立重放核对全部 193 个生成
+证明模块，四组导出测试合计 39 项通过；134 个生成文件均有唯一来源登记，
+哈希及字节数全部一致。旧批次 API 和四个固定生成物保持一致。
+
+已预编共享目录证明后，125 个词证书分片共约 263.64 秒，最终聚合及传递公理
+审计约 14.70 秒。可重放入口与成功运行的分组成本记录于
+`naturality-words200-lean-check.json`；有限余链成本见
+`naturality40-lean-check.json`。这些核验均不消去实际来源微分、完整 Ceta 商
+下降、分解正确性及同一实际模型比较的剩余责任。

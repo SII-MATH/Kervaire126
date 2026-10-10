@@ -29,6 +29,15 @@ structure Entry (m n : Nat) where
   nativeBasisId : Nat
   deriving Repr, DecidableEq
 
+/-- Larger native degree windows use sums of dual generators for both sides.
+Lists are evaluated in F2, so repeated entries cancel; the source decoder
+separately checks the canonical encoding of archived representative lists. -/
+structure CombinationEntry (m n : Nat) where
+  sources : List (Fin n)
+  targets : List (Fin m)
+  nativeBasisId : Nat
+  deriving Repr, DecidableEq
+
 /-- Internal degree of a Milnor exponent vector, beginning at xi_(k+1). -/
 def degreeFrom (k : Nat) : List Nat → Nat
   | [] => 0
@@ -123,6 +132,60 @@ theorem check_sound_precomposition {m n : Nat} (columns : Fin m → List (Term n
     (functional (basis e.source)).comp (augmentedMap columns) =
       functional (targetValue e.targets) := by
   rw [← functional_pullback, check_sound columns e h]
+
+/-- Check a complete linear combination against every column of one map. -/
+def checkCombination {m n : Nat} (columns : Fin m → List (Term n))
+    (e : CombinationEntry m n) : Bool :=
+  (List.finRange m).all (fun j =>
+    decide (columnValue (columns j) (targetValue e.sources) = targetValue e.targets j))
+
+theorem checkCombination_sound {m n : Nat} (columns : Fin m → List (Term n))
+    (e : CombinationEntry m n) (h : checkCombination columns e = true) :
+    pullback columns (targetValue e.sources) = targetValue e.targets := by
+  funext j
+  have hj := (List.all_eq_true.mp h) j (List.mem_finRange j)
+  simpa only [pullback_apply] using (of_decide_eq_true hj)
+
+/-- The sum certificate proves actual equality of finite linear functionals. -/
+theorem checkCombination_sound_precomposition {m n : Nat}
+    (columns : Fin m → List (Term n)) (e : CombinationEntry m n)
+    (h : checkCombination columns e = true) :
+    (functional (targetValue e.sources)).comp (augmentedMap columns) =
+      functional (targetValue e.targets) := by
+  rw [← functional_pullback, checkCombination_sound columns e h]
+
+/-- A reusable auxiliary witness removes positive-degree terms once per column. -/
+def augmentationSupport {n : Nat} : List (Term n) → List (Fin n)
+  | [] => []
+  | t :: ts => if t.scalar then t.generator :: augmentationSupport ts else augmentationSupport ts
+
+def supportValue {n : Nat} (indices : List (Fin n)) (x : Fin n → F2) : F2 :=
+  (indices.map x).sum
+
+theorem columnValue_augmentationSupport {n : Nat} (ts : List (Term n))
+    (x : Fin n → F2) : columnValue ts x = supportValue (augmentationSupport ts) x := by
+  induction ts with
+  | nil => rfl
+  | cons t ts ih =>
+    simp only [columnValue, augmentationSupport]
+    split <;> simp_all [supportValue]
+
+/-- The small support table can be reused only after it has been equated to
+every full native column. It supplies no assumption about omitted generators. -/
+def checkCombinationSupport {m n : Nat} (supports : Fin m → List (Fin n))
+    (e : CombinationEntry m n) : Bool :=
+  (List.finRange m).all (fun j =>
+    decide (supportValue (supports j) (targetValue e.sources) = targetValue e.targets j))
+
+theorem checkCombination_of_support {m n : Nat} (columns : Fin m → List (Term n))
+    (supports : Fin m → List (Fin n)) (e : CombinationEntry m n)
+    (hs : ∀ j, augmentationSupport (columns j) = supports j)
+    (h : checkCombinationSupport supports e = true) : checkCombination columns e = true := by
+  apply List.all_eq_true.mpr
+  intro j _
+  apply decide_eq_true
+  rw [columnValue_augmentationSupport, hs j]
+  exact of_decide_eq_true ((List.all_eq_true.mp h) j (List.mem_finRange j))
 
 private theorem degreeFrom_zero_of_all (k : Nat) (xs : List Nat)
     (h : xs.all (· == 0) = true) : degreeFrom k xs = 0 := by

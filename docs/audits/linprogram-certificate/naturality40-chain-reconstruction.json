@@ -1,0 +1,82 @@
+{
+  "scratch": "/inspire/hdd/global_user/czxs25250150/ops/tmp/lin-ceta40-chain.xvywo0sz",
+  "inputs": [
+    {
+      "path": "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+      "sha256": "808235c2575ca647100975c5bab4a577bd0aa2c718dbbf1521ff60e1ddc3b1ba",
+      "size": 225280
+    },
+    {
+      "path": "Source/LWXMachine/Adams.json",
+      "sha256": "5a4adf1561832a762b7d3a504f8f2603793855733f549d17d5a9668f6c7935bc",
+      "size": 24455
+    }
+  ],
+  "runs": [
+    {
+      "args": [
+        "/tmp/kip126-seed5487-build/bin/Adams",
+        "res",
+        "Ceta",
+        "40"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.6236804239451885,
+      "user_seconds": 0.062775,
+      "system_seconds": 0.039234,
+      "maxrss_kib": 21176,
+      "log": "/inspire/hdd/global_user/czxs25250150/ops/tmp/lin-ceta40-chain.xvywo0sz/res-Ceta-40.log"
+    },
+    {
+      "args": [
+        "/tmp/kip126-seed5487-build/bin/Adams",
+        "map_res",
+        "Ceta",
+        "S0",
+        "40"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.6160309258848429,
+      "user_seconds": 0.993983,
+      "system_seconds": 0.039919,
+      "maxrss_kib": 21176,
+      "log": "/inspire/hdd/global_user/czxs25250150/ops/tmp/lin-ceta40-chain.xvywo0sz/map_res-Ceta-S0-40.log"
+    },
+    {
+      "args": [
+        "/tmp/kip126-seed5487-build/bin/Adams",
+        "verify_map",
+        "Ceta",
+        "S0"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.5471663251519203,
+      "user_seconds": 0.03491599999999995,
+      "system_seconds": 0.023276999999999992,
+      "maxrss_kib": 21176,
+      "log": "/inspire/hdd/global_user/czxs25250150/ops/tmp/lin-ceta40-chain.xvywo0sz/verify_map-Ceta-S0.log"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/inspire/hdd/global_user/czxs25250150/ops/tmp/lin-ceta40-chain.xvywo0sz/Ceta_Adams_res.db",
+      "size": 217088,
+      "sha256": "fa03297c5e579f0e94303dad32ef740e86df9354fd35a5d8123ed9ba29660a39"
+    },
+    {
+      "path": "/inspire/hdd/global_user/czxs25250150/ops/tmp/lin-ceta40-chain.xvywo0sz/map_Adams_res_Ceta__S0.db",
+      "size": 57344,
+      "sha256": "cc347e6fbba016032c046bf2fa2846f224ea13d99b7977fd385b80c27167fb17"
+    }
+  ],
+  "binary_sha256": "8c396b56b79ff11fab881f2e520c45ed90160f05a9867c6907071c57e67543ee",
+  "verified_field_is_metadata_only": true,
+  "actual_certification": false,
+  "fresh_map_verification_metadata_sql": "insert into version (id,name,value) values (1121750147,'verified',-1)",
+  "mathematical_rows_modified_for_verification": false,
+  "source_archive": "Source/LWXMachine/source-code.zip",
+  "source_archive_sha256": "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15",
+  "native_verify_map_passed": true,
+  "full_steenrod_equations_lean_certified": false,
+  "sphere_input_unchanged": true
+}

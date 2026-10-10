@@ -1744,6 +1744,746 @@
             ],
             "scope": "Original word evaluations and decoded finite cochain augmentation have separate Lean theorems. No full Ceta quotient descent, Steenrod resolution correctness, old/new representative identification, or actual-map certification is asserted.",
             "actual_model_comparison_certified": false
+          },
+          "scaled_word_outputs": {
+            "artifacts": [
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Manifest.json",
+                "size": 12150777,
+                "sha256": "bb0a1a296484eea1c968d932e21880324d62c1cc1a953c023558feeb6795a527"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Relations.lean",
+                "size": 50746,
+                "sha256": "3086d324a7a18fece3cb401335a244cb2c74eef262ebdce3940babc31384bf36"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard000.lean",
+                "size": 15691,
+                "sha256": "e20c5be715f0df2ddb3a52e30ee1058f9c33af7bc4dbcb5a6026f7863f708dae"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard001.lean",
+                "size": 16122,
+                "sha256": "18ae433ea7d83d1d9ccead639a0e10447d6478b867cded5cb5633668ac81ec50"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard002.lean",
+                "size": 16671,
+                "sha256": "e68d3c9da0ef67d484dea3479f8649215ae5429d622cde903c127cac2874b6a8"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard003.lean",
+                "size": 16590,
+                "sha256": "e5afb096e6387971d7e850c624b472257bb598faf35ac4271720fa8b63a70d2f"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard004.lean",
+                "size": 16728,
+                "sha256": "6c6bdaf0a9b84e11ef84b020fa143a58af2f31d49fbfdcfd76e4af90b362cf65"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard005.lean",
+                "size": 16513,
+                "sha256": "8a1f6f6027f952356efd4f5785d203c3724ea12d14cf63ccf719a1b72a600ab6"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard006.lean",
+                "size": 16718,
+                "sha256": "2da9e8d65a0a10403d824af1605617310f3ab15ccf34f0717f3dc1b046cb407d"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard007.lean",
+                "size": 17633,
+                "sha256": "efb82d3e566b0ce53e0892ad4ebcd553cb63287a980d818c36892ec6d5dfbf95"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard008.lean",
+                "size": 17211,
+                "sha256": "bec0a76d90f41c2c51ce9c812b860f783917c89df3310fbff6f2529b79b2f27d"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard009.lean",
+                "size": 17372,
+                "sha256": "157b621a8721e566b1ae89c3b81b33b551bf3b544a6e4de42c971c0bced44542"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard010.lean",
+                "size": 17172,
+                "sha256": "906e39f86434e11452fe7eb55cfc3132576b7979824a2ad486e83d5fa0b44e8b"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard011.lean",
+                "size": 17475,
+                "sha256": "dcd2a5fba3eb0f0245178865795179f58682ef9ac1b976154235576b06669ddf"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard012.lean",
+                "size": 17953,
+                "sha256": "ffea5891db99e1eae86962f046c68a64175676b477f34c432f733c778a2787c6"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard013.lean",
+                "size": 18360,
+                "sha256": "7326c8fd50fd9b5d2bb1e4981eacae376be17121ee4fb626001b92feabdde7fe"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard014.lean",
+                "size": 17821,
+                "sha256": "32dc6c314a4b18e14ab2eef86dc323857de37c1417d5c86c6c02736118ac00e1"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard015.lean",
+                "size": 18172,
+                "sha256": "f562379a8e84a5f099cb89ed3cdbc764772ac3ff7ff7c376a7384ecdc97d13d4"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard016.lean",
+                "size": 18183,
+                "sha256": "c3f7262463d8bad07a763df20802cbbc47d6dd0ac262fb5251151f6604bd2d4e"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard017.lean",
+                "size": 18529,
+                "sha256": "b1450328373f189bbde86349c3f2090ba17e315f09ac1d4b949e05ea33d406ec"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard018.lean",
+                "size": 17242,
+                "sha256": "81d6e02aa507078b8abfddc39b498228142c0b921525b0d65fd40c27a1d71569"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard019.lean",
+                "size": 18847,
+                "sha256": "6a10c5daf44cd8c07460b11b6cb124125d224d32637cf15c93169549d6156b9c"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard020.lean",
+                "size": 19211,
+                "sha256": "1c6350f4ec6f30f7486326393451d5836fd5f144002f7dcc29e424c57fd1dfe3"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard021.lean",
+                "size": 18015,
+                "sha256": "5c98ff4869acbca33206f962a4caa14e2b9779ba1e576161e4bdf77f46c9f8cf"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard022.lean",
+                "size": 18844,
+                "sha256": "84265113120887cbbfcbee5e3521679a7a737705f76de3c8210c2c9cfd951299"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard023.lean",
+                "size": 19102,
+                "sha256": "6b9cb9f3320a43ff9f1680cf66c060d7d097ad7b8f9befa98508241cb16a6558"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard024.lean",
+                "size": 18773,
+                "sha256": "9e2ae16113c8e9b3037a5f43bf55dfcb1035a7edf8f1599fa7db00e8e27a7a5c"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard025.lean",
+                "size": 18697,
+                "sha256": "c96c4a9cb239877970c9e6bc18f8da34afcbe69d21d742299e59a0c43f2919d8"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard026.lean",
+                "size": 19464,
+                "sha256": "ad0ff277bd95c134729fec9beaacf064a2cbe6af77469c215a6869be2e05038a"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard027.lean",
+                "size": 17604,
+                "sha256": "01ff5441740cbe50143552a6791ed5dabcf36295f7dba659a75c7d4417802a66"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard028.lean",
+                "size": 19332,
+                "sha256": "97696fe67484368f70ea30494ce328237ea3c81a22821987bb1e847465ad98cc"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard029.lean",
+                "size": 17611,
+                "sha256": "02a6fb4cb4cb34f1e58967208c3ab84816cf58976830826ebafe7f6d2925a7a5"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard030.lean",
+                "size": 19512,
+                "sha256": "a87011e66043f77db4d58a6f382ccad681cdb7fbe220866683dfdada7adcdc03"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard031.lean",
+                "size": 17405,
+                "sha256": "6c7ca147298db342c81781898123b337c572faee29f54ef31efbac74a9d87991"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard032.lean",
+                "size": 19790,
+                "sha256": "0d8baf00032095026040386ab2f367804bf3b24ee28a73241110c52992d89ba9"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard033.lean",
+                "size": 17408,
+                "sha256": "db05fd22fa2baf24d7b250b5568a93ca8546ba402e7ac9f00ed11bd809d4af58"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard034.lean",
+                "size": 18233,
+                "sha256": "9c28f2e21f7654f36649b89df4ff0bc57f1c0b0c7448cfa6ba44a5a1d02d3fc3"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard035.lean",
+                "size": 20797,
+                "sha256": "1ae45828a2df6ee7e4604760ed900a13fce026371d937fa229d04aa9dfb499fe"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard036.lean",
+                "size": 17578,
+                "sha256": "5210a6fe6319ca86b3ca8bb8575526e6ddd0cc366737724457cb9b77b2460276"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard037.lean",
+                "size": 18389,
+                "sha256": "8d784e12053ed258c4ed421223306eee0129ca5dac7c51331593e2c9dd7418e8"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard038.lean",
+                "size": 21024,
+                "sha256": "bb18b562cc2b52188b6442b295c6df9aba9999df1325c085caf22efe97ebdc80"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard039.lean",
+                "size": 17215,
+                "sha256": "7540d7f151ad7ffb04a695196951bbe290ed118469165d105f2c030217e64d73"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard040.lean",
+                "size": 18453,
+                "sha256": "26463f67bd248c11862162328ac0d10cf7f53a50ade4a15c7a11b382e2176211"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard041.lean",
+                "size": 21497,
+                "sha256": "cc7ef82f6ef45a79c0bef1b8187e62d4d4e2cc5d2c381c827f28093d800afd09"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard042.lean",
+                "size": 18620,
+                "sha256": "7266891c673824700826d9d02d7f77b6c0c37f3f1fa333e9a4e3a3ab77a5f0b7"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard043.lean",
+                "size": 18316,
+                "sha256": "ea6bfaf2867fce7e02549d6647e1947091c7ee078d485185d3ebdc04b58a62ee"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard044.lean",
+                "size": 21035,
+                "sha256": "baa6d50dce462bdcfefe40b7061effe821265049f4af22c888d3ad5ad0b3c4d5"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard045.lean",
+                "size": 19533,
+                "sha256": "fa60aa0f4652a6b616bcfefe48d2808020ab74817eb33cea80f91448a926489c"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard046.lean",
+                "size": 17758,
+                "sha256": "1a8533298500ba85828bab5d175ae40851a93ae2db905025cd442a6b8c05c764"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard047.lean",
+                "size": 19996,
+                "sha256": "b262500d2e6ed5cbb214c02130b30f62d3bf7b5f244c031293c010b9c8be0829"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard048.lean",
+                "size": 21225,
+                "sha256": "e0255f6e1d9aee9368fa28101889b04443ca9ecc2ade8c30efffb531266f2f89"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard049.lean",
+                "size": 17549,
+                "sha256": "38638923aed9052ca8dcb28bf56ef824d12a89ba1550fff272896b42160106be"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard050.lean",
+                "size": 19565,
+                "sha256": "0850b573dcf734ec94f6f77cc4923c6fe85f13d240ae7c4472218de1ba213938"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard051.lean",
+                "size": 21031,
+                "sha256": "eb285a80cea47f55d4efe9e88db2e30b33f3cf6d9a337b8bb7a4f587802eef1c"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard052.lean",
+                "size": 18391,
+                "sha256": "079998d12437d97b1692a8e675d7b35878ce72cfb0216244f897516f1cf4c2a9"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard053.lean",
+                "size": 18166,
+                "sha256": "3331f988c70a49074f323eb07649d8f92a2acc23f2f7d38e2901c73540a73f21"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard054.lean",
+                "size": 21068,
+                "sha256": "96fbb48af20171f51a1862ca8ef69a3b7471478d56ea65c43772e1e084ed508c"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard055.lean",
+                "size": 21002,
+                "sha256": "f3c8e6ea35a710dd88401a33e19da5959d6cf7789f0a20db5cfb4a884f51d1aa"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard056.lean",
+                "size": 17071,
+                "sha256": "4a54a30dff4898ac5ba8bcae8c9c4245439c8e711456155849f49f6e6915acd3"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard057.lean",
+                "size": 19942,
+                "sha256": "5c447b74e0226458284805532f179f0381bde4ebdfa02675a6b85b1e60425486"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard058.lean",
+                "size": 22423,
+                "sha256": "e2f9a0f611ddb90030efb11089dd040215af7a9e75547904779cf260dd49be11"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard059.lean",
+                "size": 17978,
+                "sha256": "dedea5ab01bd6b49d98ccd9daf59b12b36c59b8be5e6319543d5b30e0dfb172a"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard060.lean",
+                "size": 20226,
+                "sha256": "cd356cc27f6dea698f2d2c7cc9769fd49eb05aa66a811290eada88c36338b6e0"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard061.lean",
+                "size": 21616,
+                "sha256": "286b5e9676241d7ac4442c099bb64a8622d4021a4701ff83bbd69f0d8337cab8"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard062.lean",
+                "size": 18920,
+                "sha256": "2049b02031f6d257c576c8396466e22374522cb6e2c3c22a2aa8d956a26ac0f5"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard063.lean",
+                "size": 18187,
+                "sha256": "080f30e0f646e4311a1d9d45268cdcf96a49fb7c02b1e75ff5ffa9ab038c0c32"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard064.lean",
+                "size": 19336,
+                "sha256": "988631c55bdf624bcd177592d52f2bddc170dae8e879a9b16c461b4fe2451e46"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard065.lean",
+                "size": 22728,
+                "sha256": "47b90963903bed7ee2f0d3243e14f7be65e2b30cabba15592b79d7a14fca94be"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard066.lean",
+                "size": 17259,
+                "sha256": "ce45266b322e94c922a37423ec14563f2276f0b2f00f47f05471339d17493dc3"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard067.lean",
+                "size": 18358,
+                "sha256": "1453f428dcd50f5d1a96501a5e3879560d9fb857e87c511cc2e6ca32c6ebce96"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard068.lean",
+                "size": 19602,
+                "sha256": "b4250653462d3995e97faa836dbbe56ec06efb36a22bad8f15db7c956750efbc"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard069.lean",
+                "size": 23144,
+                "sha256": "a86a3ae350c59623bc9976d5dd285b60e992209374a0659ce0d9cd8c74548d76"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard070.lean",
+                "size": 17962,
+                "sha256": "c3cdc44fc86a3f4c6ceb27b1bee3d1a9c229e68261fdd6e679a33be92d453a01"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard071.lean",
+                "size": 18822,
+                "sha256": "9960218438c7c18176b3aa69784999b85040974f433e76bc0bae1010e80a3308"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard072.lean",
+                "size": 21220,
+                "sha256": "0cbf7b0468997154dc63e034ba892cc7aea4ec390576b6c2e9991121bdd2fcaf"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard073.lean",
+                "size": 22770,
+                "sha256": "5b65442bfcd641252a2754835bdd3fadfcda112e28fe42e00ed74c95f5d0661a"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard074.lean",
+                "size": 19911,
+                "sha256": "9ac6d4a28c9da65366e5bef89fe738619cceb0fca38616568de6e053fcfa0259"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard075.lean",
+                "size": 17640,
+                "sha256": "d024789df24e49705f34acbbae9cc0f52bb65d718f47ce9ffae56fc7c4e22435"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard076.lean",
+                "size": 19786,
+                "sha256": "856af23efffc07ecfa85cf4b3ddac7ba8fc62805ea33a880135e260c59d073a8"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard077.lean",
+                "size": 19816,
+                "sha256": "97a4a4a9b4720fc342eaddd80fbd89ab5aad95ca071c29244d10be9c0d4b800a"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard078.lean",
+                "size": 24178,
+                "sha256": "37fa8741ad9a7e41a48169ea2fe6428aa17a462289a6e7bab0f4333748827f75"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard079.lean",
+                "size": 17570,
+                "sha256": "d72e063d1d798bde58f73a2840fce726b9328818061f272ee95a30147e400df1"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard080.lean",
+                "size": 18479,
+                "sha256": "af34a3dd7c2b075fbf3aae3d7505ed93564dce596033b0037e2f45f8eac9f2c9"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard081.lean",
+                "size": 21021,
+                "sha256": "d6e8e8b876571021b316a884fea04cb324cb8d25958a70c68a69b0a07372f4a0"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard082.lean",
+                "size": 23320,
+                "sha256": "9f301520830fa0e3472aefe4098588b9af06c954490ee9b75e7f2bed5a02ab15"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard083.lean",
+                "size": 20561,
+                "sha256": "5a024ba375c21d6a6362a11cc207b0e2a23cad322dd60bebb319a0662ca3ff0a"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard084.lean",
+                "size": 17691,
+                "sha256": "ca4a87b9e47838c8c76b06c726e923a5dbb6397079d3347f2997be7f2444bcb1"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard085.lean",
+                "size": 20468,
+                "sha256": "95c6a2ce772f383d42d03abcda6b1a7ceac9492324e3ac04ccb5eabdec24ac22"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard086.lean",
+                "size": 20566,
+                "sha256": "d3b5c887815d0e49e1ff4bf22568fa68dc45b2eadc8de7baf635a851deb0c907"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard087.lean",
+                "size": 24340,
+                "sha256": "deb02b6edee3173c80be6886c2bc0e47dd0a2a364acb15201827a8ce509b3126"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard088.lean",
+                "size": 18338,
+                "sha256": "f61cbb0c6592e1f142d85b12ee065dcdc41454fdce2b9e2ac427b051ccf77a84"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard089.lean",
+                "size": 18932,
+                "sha256": "9ec9b413bbdbe98db9f54db16a083b21a131061f73cdc85b2442bf79374694da"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard090.lean",
+                "size": 22025,
+                "sha256": "d01b9ee24089492454395f315be0e1ea3d2563327530e8a70bb5d97e56c4dc03"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard091.lean",
+                "size": 22200,
+                "sha256": "2236293a01457eaaa9f9bd72ecc0398a0faa508ae58279d6bd5c94b732952f33"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard092.lean",
+                "size": 23304,
+                "sha256": "82fbbd7c4f9997de7535a2fecae8a706e822e40988d4ed1c6ed76b6f475f7788"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard093.lean",
+                "size": 17839,
+                "sha256": "bfe537e40c35153b91e72d89f70ec60974c1cd5cabfaa4f0b98a0eaac4a9858e"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard094.lean",
+                "size": 19442,
+                "sha256": "3a9c434e5f843b8c507dc4e68d2ea78cd8eb08ef2ce788160b76b2183041b7f4"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard095.lean",
+                "size": 21682,
+                "sha256": "229eea831507e38e0dd55e57e23420855a93da288e0990e84f524804e983a756"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard096.lean",
+                "size": 23181,
+                "sha256": "6f8d1deca35e570db9f650c3521b50f42aefeb0d7c4e0fc568b94e453baa6a41"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard097.lean",
+                "size": 21748,
+                "sha256": "4e5bc49d50a61a9439c116ac989ed3fd8bfcbea69cb092de30f14b6316d36a97"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard098.lean",
+                "size": 17283,
+                "sha256": "0fe0de671ebabc92d017ff8392ad0b4af506279c02df689403be9cc4afe4a201"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard099.lean",
+                "size": 19591,
+                "sha256": "2cc84fccf915d43d4d4b3faa04bf1e52c64304fd3a86faaad24eaa51f312aef8"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard100.lean",
+                "size": 22240,
+                "sha256": "7c9a563a958ebe36709899eeef66804c5d2907bb4ee99d99ececbb06de3351ca"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard101.lean",
+                "size": 25251,
+                "sha256": "d451d9561592741a6b97d8ab758b559fb566850ca315f8969ea095cd93627db7"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard102.lean",
+                "size": 20219,
+                "sha256": "a6707a75ea3df7a89bc83e9b3d6d2a9ff69f7a880a556cd7abd3e6b965d8cedc"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard103.lean",
+                "size": 17251,
+                "sha256": "e419b2c4fbcd2a01c47245087a8da27b413b8d72811cf61e3a764e2c31620254"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard104.lean",
+                "size": 21813,
+                "sha256": "a50bf24be562f8d2254ef43dd5c729e1ee67ae7c249a9bc53969b3541e9ae234"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard105.lean",
+                "size": 20161,
+                "sha256": "14eabce2aa8a911a89aa26bb4b56e6e499dcf4a4e679186f973a8972fef78e22"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard106.lean",
+                "size": 25925,
+                "sha256": "b210853f10251499421c217ec806e83fddcf6179c87bdcf1aaff89e0aa6147da"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard107.lean",
+                "size": 18351,
+                "sha256": "68b2a3492b52b4ca40f757c5473b6af73cfef2a39898471afe3d3e51359a87f7"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard108.lean",
+                "size": 17654,
+                "sha256": "31e0464290342f3f8b0e016241be93e3703493aab0e8432f2cc14e74ac91eb0c"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard109.lean",
+                "size": 21795,
+                "sha256": "3047ca7625730f8470ef247b4cf261aed392bea617c947fb84a4abc0b03c67c0"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard110.lean",
+                "size": 20440,
+                "sha256": "46faa30df94ee6677df528d4691d72e8e69b77bd35d6bc017c42a8fd37ffb3c0"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard111.lean",
+                "size": 26239,
+                "sha256": "0ceb9add06586a38a103849590bfd8d5795749745e46cbce27fc45e3a24be698"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard112.lean",
+                "size": 19143,
+                "sha256": "a75fa5f715a979284bb4165964bc5bbf8c5d594466b4d18f090d8daef654c3d8"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard113.lean",
+                "size": 17199,
+                "sha256": "a55eda1d2c34cc1e4a9d219c7d51b71218ccd1807d6cd2903c2d773a05d46525"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard114.lean",
+                "size": 20862,
+                "sha256": "8386004658246a2ad23abd1c130f88c1136edd7fbc17cfd0d9357183c1cee5b2"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard115.lean",
+                "size": 21172,
+                "sha256": "d593eb5592e689be2e75f39fcb9163fb14c3fe848a8582ddd4a954e05d9ddb84"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard116.lean",
+                "size": 23572,
+                "sha256": "e547fcda227da314f1ac6a1f8abdff3115b8d8422e547910d7e8c8121f35d8ff"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard117.lean",
+                "size": 21572,
+                "sha256": "db8bfc1f57071a79280d5149b0e38e32427e0006d19f912c174ed36e21ffa016"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard118.lean",
+                "size": 16937,
+                "sha256": "c0714ce275705c19a268c10c22c7c8e440502a6ba1e40d88201b19df0f6b7639"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard119.lean",
+                "size": 18687,
+                "sha256": "5d0442cedf5911ac9e3a795403cb53c691b5fb0bb2231f7fda6ab946f1c1a9be"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard120.lean",
+                "size": 21924,
+                "sha256": "0ed752a7fb29cb9d99c09ba79e7eb333e358c9b093349565381ab5a551b953c7"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard121.lean",
+                "size": 21529,
+                "sha256": "7d8d05cbcd0373d2250e131c9b05ab38ec00f2fcb12b410d7c17248cff436a7f"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard122.lean",
+                "size": 24092,
+                "sha256": "00e45381a73fb42b8a574cdeb040334151d6ed41554a856a66d75c8662f9833b"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard123.lean",
+                "size": 23448,
+                "sha256": "3f657bef807b220a23835ec7dc49c5f81dd43236282026d273f783a53f733b5e"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/Words200/Shard124.lean",
+                "size": 11942,
+                "sha256": "f9ba3a8f89c44c9715e4ef9c21a818de811a457128d5cc6b4f5b8427cdfc9115"
+              }
+            ],
+            "blueprint_label": "lem:lin-naturality-words200",
+            "lean_algebra_statements": [
+              "KIP126.LinModule.NaturalityWords200.entry_evaluate",
+              "KIP126.LinModule.NaturalityWords200.zero_evaluate",
+              "KIP126.LinModule.NaturalityWords200.entry_desc",
+              "KIP126.LinModule.NaturalityWords200.target_row_mem",
+              "KIP126.LinModule.NaturalityWords200.entry_count",
+              "KIP126.LinModule.NaturalityWords200.source_ids"
+            ],
+            "replay_commands": [
+              "python3 -B KIP126/LinProgram/Translate/replay-naturality-words.py --check",
+              "python3 -B KIP126/LinProgram/Translate/generate-naturality-word-proofs.py --check"
+            ],
+            "scope": "All 15951 original Ceta basis records with 2 <= t <= 200; native word evaluation into the unchanged sphere quotient. Full Ceta quotient descent retains all 76569 original relation hypotheses. Actual-map and representative comparisons remain open.",
+            "actual_model_comparison_certified": false
+          },
+          "naturality_target_inventory": {
+            "artifact": {
+              "path": "KIP126/LinProgram/Generated/Naturality/Targets200.json",
+              "size": 3232088,
+              "sha256": "188200356efc1f928e471ae067314f600fac5c50d3985d4aba1aa16fe4f959bc"
+            },
+            "count": 408,
+            "replay_command": "python3 -B KIP126/LinProgram/Translate/audit-naturality-targets.py --check",
+            "scope": "Inventory of fixed S0 naturality conclusions for Ceta__S0 and genuinely earlier recorded Ceta candidate equations. Native coordinate agreement is neither a proved source differential nor a certified historical premise edge.",
+            "historical_premise_edges_certified": false,
+            "actual_model_comparison_certified": false
+          }
+        },
+        {
+          "path": "KIP126/LinProgram/Raw/Naturality/Batch40/Ceta_Adams_res.db",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "fa03297c5e579f0e94303dad32ef740e86df9354fd35a5d8123ed9ba29660a39",
+          "size": 217088,
+          "storage": "git-lfs",
+          "reproduction": {
+            "source_archive": "Source/LWXMachine/source-code.zip",
+            "source_archive_sha256": "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15",
+            "configuration": "Source/LWXMachine/Adams.json",
+            "sphere_resolution": "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+            "existing_extraction_and_rebuild_record": "docs/audits/linprogram-certificate/naturality40-chain-reconstruction.json",
+            "native_commands_in_fresh_working_directory": [
+              "Adams res Ceta 40",
+              "Adams map_res Ceta S0 40",
+              "Adams verify_map Ceta S0"
+            ],
+            "fresh_map_verification_metadata": "Before verify_map on a fresh map database missing version id 1121750147, insert into version (id,name,value) values (1121750147,'verified',-1). This fixes the recorded exception-type mismatch without changing mathematical rows.",
+            "database_bytes": "These exact locally reconstructed snapshots are pinned. Fresh computations may have different timestamp bytes; semantic equivalence requires a separate full-row check."
+          },
+          "notes": "Locally reconstructed bounded native data, not a released AdamsSS database. The covered Ceta internal degrees are at most 40 and the sphere degrees at most 38, with all recorded homological degrees retained. Finite matrix certification does not prove Steenrod chain equations, resolution exactness, old/new representative identity, or actual-map comparison."
+        },
+        {
+          "path": "KIP126/LinProgram/Raw/Naturality/Batch40/map_Adams_res_Ceta__S0.db",
+          "kind": "machine_artifact",
+          "required": true,
+          "sha256": "cc347e6fbba016032c046bf2fa2846f224ea13d99b7977fd385b80c27167fb17",
+          "size": 57344,
+          "storage": "git-lfs",
+          "reproduction": {
+            "source_archive": "Source/LWXMachine/source-code.zip",
+            "source_archive_sha256": "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15",
+            "configuration": "Source/LWXMachine/Adams.json",
+            "sphere_resolution": "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+            "existing_extraction_and_rebuild_record": "docs/audits/linprogram-certificate/naturality40-chain-reconstruction.json",
+            "native_commands_in_fresh_working_directory": [
+              "Adams res Ceta 40",
+              "Adams map_res Ceta S0 40",
+              "Adams verify_map Ceta S0"
+            ],
+            "fresh_map_verification_metadata": "Before verify_map on a fresh map database missing version id 1121750147, insert into version (id,name,value) values (1121750147,'verified',-1). This fixes the recorded exception-type mismatch without changing mathematical rows.",
+            "database_bytes": "These exact locally reconstructed snapshots are pinned. Fresh computations may have different timestamp bytes; semantic equivalence requires a separate full-row check."
+          },
+          "notes": "Locally reconstructed bounded native data, not a released AdamsSS database. The covered Ceta internal degrees are at most 40 and the sphere degrees at most 38, with all recorded homological degrees retained. Finite matrix certification does not prove Steenrod chain equations, resolution exactness, old/new representative identity, or actual-map comparison.",
+          "derived_outputs": {
+            "batch_inputs": [
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/CochainBatch40.json",
+                "size": 1903266,
+                "sha256": "79d9b5d27fed738f74cb082d74c1ca06b7b73526466de4579f2e70205d7cffcc"
+              },
+              {
+                "path": "KIP126/LinProgram/Generated/Naturality/CochainBatch40.lean",
+                "size": 557423,
+                "sha256": "5b87583a9f64e0e4bf07bad8c6adc7345208029297c95e6bb0a1d056e7076893"
+              }
+            ],
+            "blueprint_label": "lem:lin-naturality-batch40-cochains",
+            "lean_algebra_statements": [
+              "KIP126.LinModule.NaturalityCochainBatch40.entry_precomposition",
+              "KIP126.LinModule.NaturalityCochainBatch40.sphere_cochain_differential_zero",
+              "KIP126.LinModule.NaturalityCochainBatch40.ceta_cochain_differential_zero"
+            ],
+            "replay_command": [
+              "python3",
+              "-B",
+              "KIP126/LinProgram/Translate/replay-naturality-cochains.py",
+              "--check"
+            ],
+            "scope": "All 259 selected native requests with 2 <= t <= 40, interpreted as finite F2 combinations on the complete specified 261 Ceta and 155 sphere generator families. No basis completeness, exactness, full Steenrod chain equation or actual-map comparison is asserted.",
+            "actual_model_comparison_certified": false
           }
         }
       ]
