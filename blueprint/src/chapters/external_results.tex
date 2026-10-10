@@ -1495,7 +1495,7 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   \label{thm:toda-product-identities}
   \uses{def:toda-bracket,prop:generic-toda-coset-juggling}
   \lean{KIP126.Foundation.TodaNaturalityInterface,KIP126.Foundation.TodaFunctorInterface,KIP126.Foundation.TodaTensorInterface,KIP126.Def.Solution.todaNaturalityInterface,KIP126.Def.Solution.todaFunctorInterface,KIP126.Def.Solution.todaTensorInterface}
-  \notready
+  \leanok
   The same cone-defined Toda relation satisfies pre- and postcomposition
   containments, both intermediate-factor absorption containments, suspension
   with the sign $(-1)^n$ and the specified shift comparison, and transport
@@ -1506,10 +1506,21 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
       \quad\Longleftrightarrow\quad
     z\in-(\Sigma f)\langle g,h,d\rangle.
   \]
-  The image sets retain their complete indeterminacy. These nine precise
-  statements remain unfinished. Specific Section~7 bracket values and
-  the vanishing of their indeterminacy require further proofs.
+  The image sets retain their complete indeterminacy. These nine generic
+  statements are proved with the specified shift, exact-functor, and
+  triangulated hypotheses. Specific Section~7 bracket values and the
+  vanishing of their indeterminacy require further proofs.
 \end{theorem}
+\begin{proof}
+  \leanok
+  Complete morphisms between distinguished triangles for precomposition
+  and first-factor absorption, and compose the chosen extension for the
+  other containments. Shift the whole triangle with the prescribed sign
+  and use the shift equivalence for the reverse suspension implication.
+  Exact functors transport the triangle and its representative equations;
+  apply this to the two tensor functors. The full shuffle equivalence
+  follows from juggling and the two indeterminacy actions.
+\end{proof}
 
 % SOURCE: MainPaper/main.tex:2791, citing Bruner--Rognes (BR21).
 % COORDINATES: Zenodo record 14875701, v126.3.cw49, kervaire_csv.rar;

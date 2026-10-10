@@ -1,6 +1,6 @@
-% Route-model refinement, 2026-09-28: the intermediate Lean declarations
-% are pending propositions on Kervaire.Route.Model. They do not assume
-% arbitrary permanence/detection predicates; the sequence and classes are fixed.
+% Intermediate targets and their Main producers use the same fixed route.
+% A completed proof body may still depend on unfinished model construction,
+% computation certification, or internal lemmas.
 \section{The $h_6^2$ differential reduction and permanent cycle}
 \label{chap:near126}
 
@@ -144,6 +144,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2156-2177, Fact fact:theta5sqAF and following remark; Appendix Tables 5,6,7,9.
 \begin{proposition}[Core near-$126$ evidence]
   \label{evidence:near126-core}
+  \lean{KIP126.Computation.Route.Derived.SphereFacts,KIP126.Computation.Route.sphere_facts}
   \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,def:near126-conditions,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:computation-route-labels-h0-square,thm:computation-route-labels-h1,thm:computation-route-labels-h4,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates,prop:internal-sphere-product-linearity}
   \notready
   In the fixed sphere Adams spectral sequence:
@@ -173,6 +174,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2221-2258, proofs of Lemmas lem:equistate4 and lem:equistate5.
 \begin{proposition}[Representative-indeterminacy evidence]
   \label{evidence:near126-indeterminacy}
+  \lean{KIP126.Computation.Route.Derived.SphereFacts,KIP126.Computation.Route.sphere_facts}
   \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,evidence:theta5-order-torsion,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:computation-route-labels-h1,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates,prop:internal-sphere-product-linearity}
   \notready
   Filtration-11 and -12 cycles relevant
@@ -190,6 +192,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2323-2354, exhaustive theta-square and eta-square analysis; tmf citation.
 \begin{proposition}[$\theta_5^2$ and $tmf$ exhaustive evidence]
   \label{evidence:theta5-square-tmf}
+  \lean{KIP126.Main.Solution.Route.Section7.theta5_square_three_cases,KIP126.Main.Solution.Route.detector_injective}
   \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,evidence:near126-core,evidence:near126-indeterminacy,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:literature-tmf-vanishing62,thm:literature-tmf-high125-nonzero,thm:literature-tmf-kappaBar-detection,thm:literature-tmf-w-detection,thm:computation-route-labels-g,thm:computation-route-labels-delta-h-1-mul-g,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates,prop:internal-sphere-product-linearity}
   \notready
   The following alternatives and tmf comparisons hold:
@@ -220,6 +223,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2377-2385, Fact fact:x_123_9; Tables S123 and S125.19.
 \begin{proposition}[$x_{123,9}$ computation evidence]
   \label{evidence:x_123_9}
+  \lean{KIP126.Computation.Route.Derived.SphereFacts,KIP126.Computation.Route.sphere_facts}
   \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:computation-route-labels-h0,thm:computation-route-labels-h1}
   \notready
   On the same sphere and Hopf-cofiber sequences,
@@ -240,6 +244,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2466-2468, Fact fact:h_0_sq_mul_x_125_9_2; Table S125.19.
 \begin{proposition}[$h_0^2x_{125,9,2}$ evidence]
   \label{evidence:h_0_sq_mul_x_125_9_2}
+  \lean{KIP126.Computation.Route.Derived.SphereFacts,KIP126.Computation.Route.sphere_facts}
   \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:computation-route-labels-h0-square}
   \notready
   On the same sphere and Hopf-cofiber sequences,
@@ -257,6 +262,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2613-2615, Fact fact:h_1_mul_x_121_7; Table S122.
 \begin{proposition}[$h_1x_{121,7}$ evidence]
   \label{evidence:h_1_mul_x_121_7}
+  \lean{KIP126.Computation.Route.Derived.SphereFacts,KIP126.Computation.Route.sphere_facts}
   \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,thm:computation-route-products,thm:computation-route-labels-h1}
   \notready
   On the same sphere and Hopf-cofiber sequences,
@@ -612,6 +618,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2181-2204 and 2300-2354, Proposition prop:possible_h_6_sq.
 \begin{proposition}[Only possible differential on $h_6^2$]
   \label{prop:possible-h-6-sq}
+  \lean{KIP126.Main.Solution.Route.proposition_7_8}
   \lean{KIP126.Kervaire.Route.Model}
   \lean{KIP126.Solution.Near126.CandidateReduction.only_d12_differential_reduction}
   \lean{KIP126.Kervaire.Route.Model}
@@ -644,6 +651,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2387-2446, Lemma lem:x_123_9.
 \begin{lemma}[The classes $\alpha_1,\alpha_2,\alpha_3$]
   \label{lem:near126-alpha-relations}
+  \lean{KIP126.Kervaire.Route.Section7.AlphaOneProperties,KIP126.Main.Solution.Route.Section7.alpha_one_exists}
   \uses{def:computation-fixed-bindings,evidence:x_123_9,thm:external-synthetic-einfty-quotient,evidence:near126-indeterminacy,thm:computation-route-basis,thm:computation-route-results,thm:computation-sphereStaircase-rows-sound,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates,prop:internal-sphere-product-linearity}
   \notready
   For the fixed sphere and comparisons above, there exists
@@ -712,6 +720,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2470-2567, Lemma lem:toda2ext; Moss Theorem 1.2 and listed Ext products.
 \begin{lemma}[Toda bracket detects the two-extension source]
   \label{lem:toda-two-extension}
+  \lean{KIP126.Main.Solution.Route.Section7.main_toda_bracket_detected}
   \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2}
   \notready
   For the fixed sphere and comparisons above, assuming $C_3$ and the universal
@@ -777,6 +786,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2478-2480, Remark rem:h_0_sq_mul_x_125_9_2, now deduced after Lemma lem:toda2ext.
 \begin{corollary}[Conditional vanishing of the unresolved $d_5$]
   \label{cor:h02x1259-d5-zero}
+  \lean{KIP126.Main.Solution.Route.Section7.conditional_y_d5_zero}
   \uses{def:computation-fixed-bindings,lem:near126-equiv-c5,lem:toda-two-extension,evidence:h_0_sq_mul_x_125_9_2,thm:external-synthetic-einfty-quotient}
   \notready
   For the fixed sphere and comparisons above, under $C_3$ and $C_5$, the class
@@ -798,6 +808,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2571-2581, Corollary cor:2ext125.
 \begin{corollary}[The required two-extension]
   \label{cor:near126-two-extension}
+  \lean{KIP126.Main.Solution.Route.Section7.any_y_h0_extension}
   \uses{def:computation-fixed-bindings,lem:near126-equiv-c5,lem:toda-two-extension,lem:near126-two-extension-indeterminacy,cor:h02x1259-d5-zero}
   \notready
   For the fixed sphere and comparisons above, under $C_3$ and $C_5$, every class
@@ -825,6 +836,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2617-2673, Lemma lem:nuext125; computed cofiber d_3 and no-crossing evidence.
 \begin{lemma}[The required Hopf extension]
   \label{lem:near126-nu-extension}
+  \lean{KIP126.Main.Solution.Route.Section7.nu_extension_lifts_to_fifth_quotient,KIP126.Main.Solution.Route.Section7.nu_extension_in_ninth_quotient}
   \uses{def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-basis,thm:computation-route-results,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility,thm:computation-route-bottom,thm:computation-route-top,thm:computation-route-products}
   \notready
   For the fixed sphere and comparisons above, there is a class
@@ -886,6 +898,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2208-2210 and 2698-2778, Proposition prop:state5false.
 \begin{proposition}[$C_3$ excludes $C_5$]
   \label{prop:near126-c3-not-c5}
+  \lean{KIP126.Main.Solution.Route.proposition_7_9,KIP126.Main.Solution.Route.Section7.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.ExcludeEta.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.C3NotC5.c3_excludes_c5}
   \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion}
@@ -923,6 +936,7 @@ own proof, with the stated degree bounds and comparison maps.
 \end{theorem}
 
 \begin{proof}
+  \lean{KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent}
   \uses{prop:h6-internal-standard-comparison,prop:fixed-sphere-adams-applicability,prop:fixed-sphere-adams-separated,prop:possible-h-6-sq,prop:near126-c3-not-c5}
   Identify the standard square with the computational square using
   Proposition~\ref{prop:h6-internal-standard-comparison}. Apply the

@@ -8,6 +8,7 @@ This section defines weightwise extension spectral sequences, the basic $\lambda
 % SOURCE: MainPaper/main.tex:998-1007.
 \begin{definition}[Synthetic extension spectral sequence]
   \label{def:synthetic-extension-ss}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticExtensionData,KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.ess,KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.sourceIso,KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.targetIso,KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.ess_firstPage,KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.ess_diffDeg,KIP126.Synthetic.SpectralSequence.SyntheticExtensionData.target_index}
   \uses{def:synthetic-adams-ss,def:f-extension-ss}
   \notready
   For a weight-preserving map $f:X\to Y$ of finite synthetic spectra equipped
@@ -20,6 +21,10 @@ This section defines weightwise extension spectral sequences, the basic $\lambda
     E_\infty^{s,t,w}(Y),
     \qquad d_n^f:(s,t,w)\mapsto(s+n,t+n,w).
   \]
+  The generic Lean construction, its page-zero comparisons and
+  differential degrees are complete for supplied bounded convergence
+  data compatible with this same map. Establishing those bounded data
+  for the finite synthetic objects in the chosen model remains open.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:999-1007, assertion that all Section 2 results remain valid.
@@ -379,6 +384,7 @@ This section defines weightwise extension spectral sequences, the basic $\lambda
 % cofiber presentations, not additional external algebra input.
 \begin{proposition}[Coherence of quotient restrictions]
   \label{prop:lambda-quotient-restriction-coherence}
+  \lean{KIP126.Synthetic.Context.XModLambdaN.restriction,KIP126.Synthetic.Context.XModLambdaN.incl_restriction,KIP126.Synthetic.Context.XModLambdaN.restriction_proj,KIP126.Synthetic.Context.XModLambdaN.restriction_self,KIP126.Synthetic.Context.XModLambdaN.restriction_comp,KIP126.Synthetic.Context.XModLambdaN.restriction_naturality,KIP126.Synthetic.Context.FiniteLambdaQuotientTower.Hom}
   \uses{def:synthetic-lambda-quotient,def:cofiber-triangle,def:lambda-rho-delta-triangle}
   \notready
   For every map of classical spectra $f:X\to Y$ in the stable homotopy
@@ -404,6 +410,12 @@ This section defines weightwise extension spectral sequences, the basic $\lambda
   connecting maps commute in the finite tower, naturally in $f$.  This
   proposition asserts no map of $E_\infty$- or $\mathrm{CAlg}$-objects; the
   $m=\infty$ endpoint is handled separately by the complete-tower statements.
+  Lean proves the inclusion and boundary squares and the restriction
+  identity, composition and naturality laws under explicit bigraded-shift
+  and functorial-cofiber coherence hypotheses. Constructing these
+  hypotheses for the model and the natural finite quotient triangles
+  remains open; their three naturality squares are specified in the
+  tower-morphism interface, rather than constructed by these local laws.
 \end{proposition}
 
 \begin{proof}
@@ -463,11 +475,12 @@ This section defines weightwise extension spectral sequences, the basic $\lambda
   The existing recursively defined $\lambda^n$ is natural. Its chosen
   cofiber maps commute with inclusion and boundary. In a supplied finite
   tower, consecutive arrows in each specified quotient triangle compose
-  to zero. These facts do not provide the missing shift-action coherence,
-  arbitrary power factorization, exactness of bigraded shifts, or identity
-  and composition laws for the chosen cofiber maps; a construction of
-  Proposition~\ref{prop:lambda-quotient-restriction-coherence} still needs
-  those compatible data.
+  to zero. With explicit bigraded-shift and functorial-cofiber coherence
+  hypotheses, the actual power-factorization maps and restriction
+  identity, composition and naturality laws are also proved, as recorded
+  in Proposition~\ref{prop:lambda-quotient-restriction-coherence}.
+  Constructing those coherence data, exactness of bigraded shifts and
+  the natural finite triangles for the chosen model remains separate.
 \end{proposition}
 \begin{proof}
   Express the same recursive powers as natural transformations and prove
@@ -498,6 +511,7 @@ This section defines weightwise extension spectral sequences, the basic $\lambda
 % SOURCE: MainPaper/main.tex:1009-1021, Notation not:deltaandrho.
 \begin{definition}[$\lambda$--$\rho$--$\delta$ quotient triangle]
   \label{def:lambda-rho-delta-triangle}
+  \lean{KIP126.Synthetic.Context.LambdaRhoDeltaTriangle,KIP126.Synthetic.Context.FiniteLambdaQuotientTower,KIP126.Synthetic.Context.XModLambdaN.cofiberTriangle,KIP126.Synthetic.Context.XModLambdaN.cofiberTriangle_distinguished}
   \uses{def:synthetic-lambda-quotient,def:cofiber-triangle}
   \notready
   For $0<n<m\le\infty$, define the distinguished triangle
@@ -511,4 +525,8 @@ This section defines weightwise extension spectral sequences, the basic $\lambda
   For $m=\infty$, the first two terms are
   $\Sigma^{0,-n}\nu X$ and $\nu X$.  Translation in the synthetic category is
   suspension by $S^{1,0}$.
+  Lean specifies the finite distinguished-triangle witness and constructs
+  the infinite-endpoint cofiber triangle of the actual $\lambda^n$ map.
+  Constructing all finite witnesses naturally from the chosen shift and
+  cofiber data, with the displayed bigraded boundary transport, remains open.
 \end{definition}
