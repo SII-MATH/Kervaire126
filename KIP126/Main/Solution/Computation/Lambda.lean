@@ -354,7 +354,6 @@ open CategoryTheory.Limits KIP126.Classical.Adams.PageRepresentatives in
 set_option backward.isDefEq.respectTransparency false in
 set_option backward.defeqAttrib.useBackward true in
 set_option maxRecDepth 10000 in
-set_option maxHeartbeats 1200000 in
 /-- BHS identifies λ with a boundary-quotient map. The given source rules
 out exactly the new boundary, and the actual λ map is injective on homotopy. -/
 private theorem nu_lambda_injective_from_source
@@ -641,7 +640,6 @@ open CategoryTheory.Limits in
 set_option backward.isDefEq.respectTransparency false in
 set_option backward.defeqAttrib.useBackward true in
 set_option maxRecDepth 10000 in
-set_option maxHeartbeats 2000000 in
 /-- The complete stem-63 bases in filtrations 1 through 6 leave only
 permanent classes after d₂; nonpositive filtrations vanish. -/
 private theorem stem63_no_late_differentials (I : Inputs D L G) (V : SphereVanishingLine H)
@@ -1063,7 +1061,6 @@ open CategoryTheory.Limits KIP126.Classical.Adams.PageRepresentatives in
 set_option backward.isDefEq.respectTransparency false in
 set_option backward.defeqAttrib.useBackward true in
 set_option maxRecDepth 10000 in
-set_option maxHeartbeats 2000000 in
 /-- The distinct window needed for the B lift in Lemma 7.16. This is
 NOT injectivity at weight70 or weight71. The selected stem63 sources
 q<=7 include d4 at q7 (row512), d2 at q6 (row494), and the finite

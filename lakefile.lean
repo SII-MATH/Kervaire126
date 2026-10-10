@@ -21,9 +21,9 @@ lean_lib KIP126 where
 
 /-!
 Historical KIP-base, ported to the pinned toolchain. Its inherited assumptions
-are inventoried under migration/kip-base and must not enter KIP126's import graph.
+are inventoried under docs/migration/kip-base and must not enter KIP126's import graph.
+Build this separate, optional component explicitly with `lake build KIPBase`.
 -/
-@[default_target]
 lean_lib KIPBase where
   globs := #[.andSubmodules `KIPBase]
   leanOptions := #[
@@ -37,8 +37,8 @@ lean_lib KIPBase where
     ⟨`maxSynthPendingDepth, .ofNat 3⟩]
 
 /-!
-The trusted compiled-environment audit. Keep this target and its implementation
-outside the worker-editable source overlay used by CI.
+Optional compiled-environment audit for final proof acceptance.
+Development CI checks compilation without treating unfinished proofs as complete.
 -/
 lean_exe axioms where
   root := `scripts.Axioms

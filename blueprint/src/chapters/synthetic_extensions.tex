@@ -477,6 +477,24 @@ This section defines weightwise extension spectral sequences, the basic $\lambda
   \leanok
 \end{proof}
 
+\begin{proposition}[Finite-quotient lift filtration]
+  \label{prop:finite-quotient-lift-filtration}
+  \lean{KIP126.Synthetic.Bockstein.Lift.V,KIP126.Synthetic.Bockstein.Lift.lift,KIP126.Synthetic.Bockstein.Lift.cycles,KIP126.Synthetic.Bockstein.Lift.obstruction,KIP126.Synthetic.Bockstein.Lift.mem_cycles_iff,KIP126.Synthetic.Bockstein.Lift.lift_restrict,KIP126.Synthetic.Bockstein.Lift.cycles_anti}
+  \uses{def:finite-lambda-quotient-witness,prop:finite-lambda-quotient-local-laws}
+  \leanok
+  At each finite stage, the first-quotient classes which admit a lift through
+  $X/\lambda^{i+1}$ form the range of the restriction map.  Restricting a
+  lift through a larger quotient gives the same first-quotient class, so the
+  resulting lift filtration is decreasing.  The connecting composite of a
+  chosen lift is recorded as the raw finite Bockstein obstruction.
+\end{proposition}
+\begin{proof}
+  The range characterization is definitional.  The restriction identity is
+  the tower composition law, and the decreasing property follows by applying
+  it to a range representative.
+  \leanok
+\end{proof}
+
 % SOURCE: MainPaper/main.tex:1009-1021, Notation not:deltaandrho.
 \begin{definition}[$\lambda$--$\rho$--$\delta$ quotient triangle]
   \label{def:lambda-rho-delta-triangle}

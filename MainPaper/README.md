@@ -6,7 +6,7 @@
 文件制品及 SHA-256 记录在 [`docs/external-inputs.json`](../docs/external-inputs.json)。
 规范化前 `main.tex` 的 SHA-256 为
 `1125462bcae4a4ec56e3bfcaad15df4febf98757dfb83462b155af162c99c9e0`；
-`docs/migration/kip-base/original/` 中的历史来源快照保持原样。
+规范化前的历史来源快照留在旧仓库；迁移起点见 [`docs/REPOSITORY.md`](../docs/REPOSITORY.md)。
 
 | 原始标签 | 可读标签 |
 | --- | --- |

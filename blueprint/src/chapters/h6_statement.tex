@@ -2016,6 +2016,21 @@ belong to the later proof.
   \leanok
 \end{proof}
 
+\begin{proposition}[Linearity of the transported internal sphere product]
+  \label{prop:internal-sphere-product-linearity}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.product_add_right,KIP126.Classical.Adams.Sphere.Internal.product_zsmul_right}
+  \uses{prop:milnor-cobar-cup-descent,prop:milnor-cobar-internal-e2}
+  \leanok
+  For a fixed left factor, the prescribed internal sphere product preserves
+  addition and integer multiples in the right factor. This follows by
+  transporting the cobar cohomology product through the same comparison.
+\end{proposition}
+\begin{proof}
+  Apply additivity of the comparison maps and of the descended cup product.
+  Additive maps also preserve integer multiples.
+  \leanok
+\end{proof}
+
 \begin{proposition}[Closedness and quotient-page compatibility of $h_i$]
   \label{prop:milnor-internal-hi-family}
   \lean{KIP126.Steenrod.Milnor.hiCochain_isCycle,KIP126.Steenrod.Milnor.hiSquareCochain_isCycle,KIP126.Classical.Adams.Sphere.Internal.hi_pageIso,KIP126.Classical.Adams.Sphere.Internal.hiSquare_pageIso,KIP126.Classical.Adams.Sphere.Internal.hi_six,KIP126.Classical.Adams.Sphere.Internal.hiSquare_six}

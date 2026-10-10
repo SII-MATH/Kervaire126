@@ -34,6 +34,27 @@ the Adams and synthetic arguments.
   maps cannot witness the differential condition.
 \end{definition}
 
+\begin{proposition}[Representative criterion for an internal morphism]
+  \label{prop:internal-representative-morphism-criterion}
+  \lean{KIP126.Core.SpectralSequence.DifferentialMorphismCriterion,KIP126.Core.SpectralSequence.DifferentialMorphismCriterion.toSSDataMorphism,KIP126.Core.SpectralSequence.DifferentialMorphismCriterion.toMorphism,KIP126.Core.SpectralSequence.DifferentialMorphismCriterion.exists_morphism}
+  \uses{def:internal-canonical-page-map}
+  \leanok
+  An ambient map preserving cycle representatives determines boundary
+  preservation when representatives of zero map to zero on the target page.
+  If the resulting quotient maps satisfy the representative differential
+  equation, they assemble into a morphism of the internal spectral sequences.
+  The induced page maps are the canonical cokernel maps already fixed by the
+  internal morphism interface.
+\end{proposition}
+\begin{proof}
+  Use exactness of the target page cokernel to lift the image of each source
+  boundary.  To compare differentials, pull back the two source page
+  projections and apply the representative equation to the universal pair of
+  lifts; epimorphism cancellation then gives commutation of the canonical
+  quotient maps with the page differential.
+  \leanok
+\end{proof}
+
 \begin{proposition}[Derived internal page and representative calculus]
   \label{prop:internal-page-calculus}
   \lean{KIP126.Challenge2.PageCalculus,KIP126.Challenge2.RepresentativeCalculus,KIP126.Def.Comparison.StageInterfaces.pageCalculus,KIP126.Def.Comparison.StageInterfaces.representativeCalculus}
@@ -48,6 +69,25 @@ the Adams and synthetic arguments.
 \begin{proof}
   Use the canonical quotient homology isomorphism, square-zero, and the same
   cycle representatives in the defining internal relations.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Finite-page representatives and complete bases]
+  \label{prop:internal-finite-page-calculus}
+  \lean{KIP126.Core.SpectralSequence.FinitePageCalculus.represents_unique,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_d_zero_of_later,KIP126.Core.SpectralSequence.FinitePageCalculus.next_projection_zero_iff_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.page_generated_from_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_before,KIP126.Core.SpectralSequence.FinitePageCalculus.next_page_two_of_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_later_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_add_tail,KIP126.Core.SpectralSequence.FinitePageCalculus.sixth_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_frame_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_zero_of_all_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.frame_after_second,KIP126.Core.SpectralSequence.FinitePageCalculus.third_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_d_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.vx_nonzero_no_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.pq_rep3zero_boundary,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_sub_tail,KIP126.Core.SpectralSequence.FinitePageCalculus.page_has_representative,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_from_support,KIP126.Core.SpectralSequence.FinitePageCalculus.d_zero_of_second_kernel_extends,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_before,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_frame_of_three_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_single_basis_zero_page,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_next_zero_of_single_frame_nonzero_differential,KIP126.Core.SpectralSequence.FinitePageCalculus.d_zero_of_complete_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.page_eq_sum_of_complete_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.same_boundaries_projection_eq,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_add,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_if,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_rep2,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_earlier,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_sub,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_cycle,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_two_self,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_later_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.page_has_initial_representative,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_transport_eq,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_bit,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_two_direct,KIP126.Core.SpectralSequence.FinitePageCalculus.f2_expand,KIP126.Core.SpectralSequence.FinitePageCalculus.generated_one,KIP126.Core.SpectralSequence.FinitePageCalculus.generated_two,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_zero_of_three_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.next_page_zero_of_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.finite_basis_expansion,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_frame_of_four_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_two_cases,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_zero_at,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_two_cases_at,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_frame_of_four_basis_at,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_not_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_not_incoming_at,KIP126.Core.SpectralSequence.FinitePageCalculus.basis_vector_ne_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.basis_pair_sum_ne_zero}
+  \uses{def:internal-nested-spectral-sequence,prop:internal-page-calculus}
+  \leanok
+  Common initial-page representatives determine a unique class on each later
+  page. A complete finite basis generates those classes, including their
+  sums and differences. Explicit differential equations and the actual
+  incoming boundary subobjects determine kernels, nonvanishing, and page
+  vanishing. These are general deductions for the given spectral sequence;
+  they assume no selected computation delivery.
+\end{proposition}
+\begin{proof}
+  Use the specified quotient projections, finite basis expansion over
+  $\mathbb F_2$, and the canonical successor homology isomorphism. Each
+  nonvanishing deduction retains its incoming-boundary hypotheses.
   \leanok
 \end{proof}
 

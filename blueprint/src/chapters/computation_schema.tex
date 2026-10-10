@@ -92,6 +92,25 @@ mathematical objects and conditions.
 \end{proof}
 
 
+\begin{lemma}[Finite source-table certificates]
+  \label{lem:lin-e2-finite-source-certificates}
+  \lean{KIP126.LinE2.BasisCertificates.NuLow.nu_low,KIP126.LinE2.BasisCertificates.ThreeCoordinates.three_coordinates,KIP126.LinE2.RelationCertificates.relation_member0,KIP126.LinE2.RelationCertificates.relation_member1,KIP126.LinE2.RelationCertificates.relation_member2,KIP126.LinE2.RelationCertificates.relation_member3,KIP126.LinE2.RelationCertificates.relation_member4,KIP126.LinE2.RelationCertificates.relation_member5,KIP126.LinE2.RelationCertificates.relation_member6,KIP126.LinE2.RelationCertificates.relation_member7,KIP126.LinE2.RelationCertificates.relation_member8,KIP126.LinE2.RelationCertificates.relation_member9,KIP126.LinE2.RelationCertificates.relation_member10,KIP126.LinE2.RelationCertificates.relation_member11,KIP126.LinE2.RelationCertificates.relation_member12,KIP126.LinE2.RelationCertificates.relation_member13,KIP126.LinE2.RelationCertificates.pq_neg_eq_self,KIP126.LinE2.RelationCertificates.pq_relation0,KIP126.LinE2.RelationCertificates.pq_relation1,KIP126.LinE2.RelationCertificates.pq_relation2,KIP126.LinE2.RelationCertificates.pq_relation3,KIP126.LinE2.RelationCertificates.h0_obstruction_rel0,KIP126.LinE2.RelationCertificates.h0_obstruction_rel1,KIP126.LinE2.RelationCertificates.h0_obstruction_rel2,KIP126.LinE2.RelationCertificates.h0_obstruction_rel3,KIP126.LinE2.RelationCertificates.h0_obstruction_mon0,KIP126.LinE2.RelationCertificates.h0_obstruction_mon1,KIP126.LinE2.RelationCertificates.h0_obstruction_mon2,KIP126.LinE2.RelationCertificates.h0_obstruction_mon3,KIP126.LinE2.RelationCertificates.h0_obstruction_mon4,KIP126.LinE2.RelationCertificates.h0_obstruction_monT,KIP126.LinE2.RelationCertificates.h0_obstruction_monTarget2,KIP126.LinE2.RelationCertificates.h2_obstruction_rel0,KIP126.LinE2.RelationCertificates.h2_obstruction_rel1,KIP126.LinE2.RelationCertificates.h2_obstruction_rel2,KIP126.LinE2.RelationCertificates.h2_obstruction_mon0,KIP126.LinE2.RelationCertificates.h2_obstruction_mon1,KIP126.LinE2.RelationCertificates.h2_obstruction_mon2,KIP126.LinE2.RelationCertificates.h2_obstruction_monT}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  The pinned basis tables have the recorded low-filtration and selected
+  three-coordinate entries. The specified relation rows belong to the
+  pinned relation table and yield the stated equations in its presented
+  algebra. These assertions concern the source artifacts and their own
+  algebraic interpretation. They do not identify this presentation with an
+  actual Adams page or certify a differential on that page.
+\end{lemma}
+\begin{proof}
+  Check each finite table chunk separately in the Lean kernel, retaining
+  equalities with the original source strings. Apply the quotient relations
+  to the indicated algebraic expressions.
+  \leanok
+\end{proof}
+
 \subsection{Coordinates on the fixed Adams pages}
 
 \begin{definition}[Shared sphere, cofiber, and tmf coordinates]

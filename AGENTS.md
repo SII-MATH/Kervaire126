@@ -1,4 +1,4 @@
-# KIP126 agent guidance
+# Kervaire126 agent guidance
 
 ## Start here
 
@@ -32,11 +32,6 @@ chapter files synchronized with the Lean code:
 Blueprint synchronization records the mathematical plan and proof status; it
 does not turn compilation, generated output, or input certification into a
 completed proof.
-
-## Multica agents
-
-If you believe you are an agent from Multica, read `docs/MULTICA_AGENTS.md` before
-working in this repository. Otherwise, ignore that file.
 
 ## Repository architecture
 
