@@ -77,6 +77,17 @@ Lean 任务上限为 120 分钟，以容纳首次或缓存被清理后的完整�
 [实测运行](https://github.com/SII-MATH/Kervaire126/actions/runs/38041208111)。
 这份缓存属于 PR #1；合并后的 main 需要建立自己的缓存。
 
+优化前，同日一次仅修改文档的
+[热缓存运行](https://github.com/SII-MATH/Kervaire126/actions/runs/38044227897)
+未重编译任何 KIP126 模块，`lake build KIP126` 用时 2.6 秒，但整个 Lean and Blueprint
+任务仍用时 5 分 23 秒。主要额外开销为固定磁盘清理、完整缓存再次上传、LFS 下载和
+Blueprint 环境安装，以上缓存与环境配置针对这些开销做了调整。
+
+[优化后的首次缓存迁移](https://github.com/SII-MATH/Kervaire126/actions/runs/38045757641)
+完整通过，Lean and Blueprint 用时 2 分 54 秒，含 62 秒的新缓存保存；并行 Checks
+用时 38 秒。后续 Lean 输入不变的提交精确命中同一缓存，不再重复保存。
+两分钟目标针对可复用编译结果的日常运行；首次冷构建或大型证明修改仍需实际编译时间。
+
 移除旧仓库的自动合并、合并队列协调、外部审查派发、状态标签、旧迁移检查、
 专用性能工作流和上述设施的 Python 测试。保留全部数学 Lean 回归模块。
 
