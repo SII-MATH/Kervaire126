@@ -1,4 +1,4 @@
-import MilnorCertificates.FoldEvaluation
+import KIP126.LinProgram.Certificates.Milnor.FoldEvaluation
 
 /-! Characteristic-two binary powers for the existing tensor-list semantics.
 No original coproduct, multiplication, coefficient or product predicate changes. -/

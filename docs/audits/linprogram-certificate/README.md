@@ -1,5 +1,9 @@
 # Lin 原生证书执行记录
 
+查找当前任务应放在哪个模块，先看
+[任务归属与继续开发入口](../../../KIP126/LinProgram/README.md#任务归属与继续开发入口)。
+本记录保存里程碑、重放证据和剩余前提；其中历史批次计数不代表最新运行状态。
+
 日期：2026-10-09。工作分支：`codex/linprogram-certificate`。
 工作区：`/inspire/hdd/global_user/czxs25250150/linprogram-certificate`。
 

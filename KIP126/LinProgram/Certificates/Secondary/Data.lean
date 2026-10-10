@@ -1,4 +1,4 @@
-import MilnorCertificates.StableProduct
+import KIP126.LinProgram.Certificates.Milnor.StableProduct
 
 /-!
 # Coefficient semantics for a finite secondary-resolution input

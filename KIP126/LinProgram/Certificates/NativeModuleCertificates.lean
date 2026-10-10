@@ -1,7 +1,7 @@
 import KIP126.LinProgram.Model.E2.Data
 import KIP126.LinProgram.Model.ModulePresentation.Proofs
 import KIP126.LinProgram.Certificates.SquareDetection.Certificate
-import NamedElementCertificates.ModuleEvaluation
+import KIP126.LinProgram.Certificates.NamedElements.ModuleEvaluation
 import Mathlib.Algebra.Module.RingHom
 import Mathlib.Algebra.CharP.Algebra
 
