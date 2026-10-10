@@ -35,6 +35,7 @@ def snapshot(workspace):
         "time": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "available_memory_mib": round(memory["MemAvailable"] / 1024),
         "swap_used_mib": round((memory["SwapTotal"] - memory["SwapFree"]) / 1024),
+        "swap_free_mib": round(memory["SwapFree"] / 1024),
         "disk_free_mib": round(shutil.disk_usage(workspace).free / 1024**2),
         "load": os.getloadavg(),
         "processes": processes,
@@ -54,7 +55,8 @@ def main():
         print(json.dumps(data), flush=True)
         if args.once:
             return
-        low = data["available_memory_mib"] < 512 or data["disk_free_mib"] < 1024
+        memory_low = data["available_memory_mib"] < 512 and data["swap_free_mib"] < 512
+        low = memory_low or data["disk_free_mib"] < 1024
         low_samples = low_samples + 1 if low else 0
         if low_samples >= 2 and data["processes"]:
             print("Stopping workspace Lean processes: sustained memory or disk pressure", flush=True)

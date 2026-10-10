@@ -44,6 +44,12 @@ jobs:
           lfs: true
       - name: Free space from unused runner tools
         run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android
+      - name: Add swap for the generated finite certificates
+        run: |
+          sudo fallocate -l 8G "$RUNNER_TEMP/lean-swap"
+          sudo chmod 600 "$RUNNER_TEMP/lean-swap"
+          sudo mkswap "$RUNNER_TEMP/lean-swap"
+          sudo swapon "$RUNNER_TEMP/lean-swap"
       - name: Record and monitor runner resources
         run: |
           nproc
