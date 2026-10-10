@@ -1,5 +1,7 @@
 # Kervaire126
 
+仓库：[SII-MATH/Kervaire126](https://github.com/SII-MATH/Kervaire126)。
+
 用 Lean 形式化 *On the Last Kervaire Invariant Problem* 的标准 `h₆²` 非零永久存活结论。
 项目仍在开发中；编译成功、导入计算数据和来源核对均不表示数学证明已经完成。
 
