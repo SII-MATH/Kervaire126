@@ -2,20 +2,24 @@
 
 一个 `ci.yml` 工作流，在 PR、main 推送及手动触发时执行两个任务：
 
-1. **Checks**：来源制品摘要与声明对应、接口分层与唯一见证、公理声明位置、
+1. **Checks**：下载并校验固定 LFS 原始输入，检查来源制品摘要与声明对应、接口分层与唯一见证、公理声明位置、
    Blueprint 标签与依赖图、计算导入边界及相应 Python 回归。
 2. **Lean and Blueprint**：获取固定 Mathlib 缓存，完整构建 `KIP126`（包含所有 Lean Checks），
    渲染当前 Blueprint 并核对每个链接的 Lean 声明。两个步骤使用同一份编译结果。
 
 CI 使用只读权限，不接入外部审查服务，不自动合并、发布网站或写 PR 标签/评论。
 Blueprint 网页和依赖报告作为工作流制品供核对，保留 7 天。API 文档、PDF 和性能分析按需手动执行。
-固定版本的 Lean action 负责恢复 GitHub 缓存、获取 Mathlib 缓存、运行
-`lake build KIP126`，并在构建成功后保存整个 `.lake/`。构建放在 action 内部，
-因此保存的缓存包含本次项目编译结果；后续 Blueprint 步骤直接复用该结果。
+固定版本的 Lean action 负责安装 Lean 环境、在缺少可用缓存时获取 Mathlib 缓存，
+并运行 `lake build KIP126 checkdecls`。显式的 GitHub cache restore/save 步骤管理
+整个 `.lake/`；完整构建和 Blueprint 声明核对成功后才保存，包含声明检查器的编译结果。
+每次都执行完整构建和声明核对，由 Lake 决定哪些模块需要重编译。
 
-GitHub 缓存键包含运行平台、架构、`lean-toolchain`、`lake-manifest.json` 和提交标识。
-当前提交没有缓存时，action 尝试恢复相同平台、工具链和依赖版本下的旧缓存；
-每次仍执行构建，由 Lake 判断需要重编译的模块。首次运行、缓存被清理或环境变化时，
+GitHub 缓存键包含运行平台、架构、`lean-toolchain`、`lake-manifest.json`，以及项目
+Lean 源码、Lake 配置和 Lean 脚本的内容摘要。仅修改文档或 CI、Lean 输入不变时，
+直接命中已有缓存并省去再次打包上传；源码变化时恢复同工具链、同依赖的旧缓存，
+完成增量构建后保存新缓存。恢复前缀兼容此前 Lean action 保存的缓存。
+命中同依赖的成功构建缓存后，省去重复执行 Mathlib 缓存下载器。
+首次运行、缓存被清理或环境变化时，
 可能需要重新编译。PR 可以读取 main 的缓存；PR 专属缓存不能被 main 或其他 PR 读取。
 本地 `.lake/` 不提交到 Git，也不会自动上传到 CI。
 
@@ -31,13 +35,17 @@ GitHub 默认每仓库缓存上限为 10 GB；超过 7 天未访问的缓存会�
 参见 [GitHub runner 规格与计费](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)。
 
 Git LFS 存储与下载仍单独计量，公仓也不例外。当前原始输入合计约 0.603 GiB，
-Lean 任务完整检出会下载这些输入；组织的共享 LFS 配额需要单独关注。
+Checks 任务完整检出会下载这些输入；Lean 编译使用已提交的生成数据，检出时保留 LFS 指针。
+两个任务并行执行，原始输入下载和校验不再延长 Lean 任务。组织的共享 LFS 配额需要单独关注。
 参见 [Git LFS 计费](https://docs.github.com/en/billing/concepts/product-billing/git-lfs)。
 
-缓存使用 action 的内置流程，不额外引入跨工作流缓存协调机制。
+缓存使用 GitHub 官方 cache action；Lean 构建仍由 Lean action 执行。
 Lean 任务设置 `LEAN_NUM_THREADS=2`，利用公仓 CPU 并限制大规模生成证书的并行内存占用；
-仍完整构建 KIP126 及其 Lean 回归模块。临时 Ubuntu 机器先清理闲置的 .NET 和 Android 工具，
-为 Lean 编译产物和缓存打包留出空间，并增加 8 GiB 交换空间，供生成的有限证书冷构建使用。
+仍完整构建 KIP126 及其 Lean 回归模块。临时 Ubuntu 机器只有在可用磁盘不足 40 GiB 时
+才清理闲置的 .NET 和 Android 工具，并增加 8 GiB 交换空间，供生成的有限证书冷构建使用。
+Blueprint 网页使用 MathJax，安装 Graphviz、Python 渲染依赖及提供 `kpsewhich` 的
+`texlive-binaries`。`kpsewhich` 用于找到嵌套的 TeX 源文件；CI 不安装 LaTeX 格式包、
+Ghostscript 或 PDF 转换工具。
 Lean 任务上限为 120 分钟，以容纳首次或缓存被清理后的完整冷构建。
 首次公仓试运行确认 16 GB 内存充足，但先前沿用的单线程配置在 90 分钟上限前
 只完成 1331 个 KIP126 模块；7 个平方检测证书批次串行编译共约 24 分钟。
