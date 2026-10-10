@@ -42,16 +42,15 @@ jobs:
           lfs: true
       - name: Check pinned LFS objects
         run: git lfs fsck
-      - name: Prepare fixed Lean toolchain and Mathlib cache
+      - name: Restore caches and build the complete Lean library and its regression modules
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
         with:
-          build: false
+          build: true
+          build-args: KIP126
           test: false
           lint: false
           use-mathlib-cache: true
-          use-github-cache: false
-      - name: Build the complete Lean library and its regression modules
-        run: lake build KIP126
+          use-github-cache: true
       - name: Install Blueprint dependencies
         run: |
           sudo apt-get -o Acquire::Retries=3 update
