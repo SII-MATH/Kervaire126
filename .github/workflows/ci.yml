@@ -35,11 +35,18 @@ jobs:
     name: Lean and Blueprint
     runs-on: ubuntu-24.04
     timeout-minutes: 90
+    env:
+      LEAN_NUM_THREADS: '1'
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
           lfs: true
+      - name: Record runner resources
+        run: |
+          nproc
+          free -m
+          df -h .
       - name: Check pinned LFS objects
         run: git lfs fsck
       - name: Restore caches and build the complete Lean library and its regression modules

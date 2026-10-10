@@ -3,7 +3,8 @@
 Kervaire126 从旧仓库 `SII-MATH/KIP126` 的 main 提取，起点提交：
 `9d2601af4529ebcdd353ccc01fe09e0a463ed25a`（PR #157 的合并结果）。
 旧仓库与 Git 历史保留；新仓库采用独立初始提交。Lean 包及公共命名空间保持 `KIP126`。
-当前还没有远程仓库，Blueprint 未配置远程网站/API 链接。
+远程仓库为 [SII-MATH/Kervaire126](https://github.com/SII-MATH/Kervaire126)，当前为私有仓库。
+Blueprint 尚未配置远程网站/API 链接。
 
 ## 保留
 
@@ -58,4 +59,5 @@ Kervaire126 从旧仓库 `SII-MATH/KIP126` 的 main 提取，起点提交：
 - 依赖缓存隔离后，10 项依赖版本、37 个独立文件样本、缓存链接及 Lean 搜索路径核对通过。
 - 隔离后 `lake build --no-build KIP126` 确认 4311 项构建任务均为最新状态；没有全量重编译。
 
-远程 CI 尚未运行，网站/API 发布地址尚未配置；本次只建立本地可核对的仓库。
+远程 CI 通过 GitHub Actions 运行，构建缓存由 Lean action 管理；详见 [CI.md](CI.md)。
+网站/API 发布地址尚未配置。
