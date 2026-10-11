@@ -1879,32 +1879,38 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   The first-quotient and suitable finite-lift parts are stated
   separately above. The ``$\tau$'' in
   \texttt{MainPaper/main.tex:819} is corrected to $\lambda$ in this context.
-  The raw and regraded sequences are defined using pending property proofs.
-  Their comparison with the specified synthetic Adams family, the initial
-  page and shifted quotient-layer identifications, and the finite rigidity
-  model comparison remain unfinished. The required comparison must commute
-  with differentials and successor homology maps; agreement of displayed
-  pages does not identify arbitrary raw ambient SSData objects.
+  The Adams-to-Bockstein $E_2$ source comparison is already constructed:
+  the diagonal geometric cap map is an isomorphism, and the quotient
+  identification supplies the admissible free-$\lambda$ weights. Thus
+  constructing the $E_2$ map is not the remaining bridge. The raw and
+  regraded sequences still have pending structural laws, and their comparison
+  with the specified synthetic Adams family and finite rigidity model is
+  unfinished. This comparison must extend the existing $E_2$ maps and
+  geometric boundary maps to one affine-reindexed family on all pages, commute
+  with each differential, and identify each successor map with the map
+  induced on homology. Agreement of displayed pages does not identify
+  arbitrary raw ambient SSData objects.
   Definition~\ref{def:pagewise-sequence-comparison} now supplies this generic
   comparison language, and Proposition~\ref{prop:page-isomorphism-from-initial-page}
   proves that an initial page isomorphism propagates when successor maps are
-  homology-induced. To apply it here still requires the bridge theorem that
-  constructs the actual page-$2$ map from the first-quotient and $\nu$
-  representative comparison, verifies differential compatibility, and
-  identifies each homology-induced successor with the normalized
-  $\lambda$-Bockstein page map. Its indices must also implement the source
-  identification $q\leftrightarrow r-1$ (intrinsic Bockstein page $q$ versus
-  synthetic Adams page $r=q+1$).
+  homology-induced. To apply it here, the bridge theorem must promote the
+  existing page-$2$ comparison to that coherent pagewise morphism and prove
+  successor compatibility with the normalized $\lambda$-Bockstein pages.
+  The legacy fixed-boundary-ESS extension goals for preserving $Z_r$, $B_r$,
+  and commuting with $d_2$ are still unfinished and must not be mistaken for
+  the construction of the already established $E_2$ map. The bridge's page
+  indices must implement $q\leftrightarrow r-1$ (intrinsic Bockstein page
+  $q$ versus synthetic Adams page $r=q+1$).
 \end{theorem}
 
 \begin{proof}
   Use the constructed residual-tower pages, retaining the first differential,
   and establish their pending laws. Transport the located BHS comparison
   to the same synthetic model through the displayed degree and page shifts.
-  Check the initial map against the
-  specified first-quotient comparison and the actual cofiber boundary.
-  These model comparisons remain separate obligations from the finite input
-  and from defining the regraded sequence.
+  Match the existing $E_2$ source map and geometric boundary map inside the
+  pagewise comparison, and prove the induced successor compatibility. These
+  model comparisons remain separate obligations from the finite input and
+  from defining the regraded sequence.
 \end{proof}
 
 % SOURCE: BHS Corollary A.9; MainPaper/main.tex:841-847, Proposition prop:30e8b746.
