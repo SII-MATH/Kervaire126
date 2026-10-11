@@ -10,9 +10,11 @@ from pathlib import Path
 try:
     from .check_external_inputs import blueprint_nodes, blueprint_text
     from .check_source_inventory import strip_unescaped_percent_comments
+    from .milestones import CATALOG, make_schedule, schedule_markdown
 except ImportError:
     from check_external_inputs import blueprint_nodes, blueprint_text
     from check_source_inventory import strip_unescaped_percent_comments
+    from milestones import CATALOG, make_schedule, schedule_markdown
 
 MATH = 'theorem|proposition|lemma|corollary|definition'
 TOKEN = re.compile(r'\\(?:(begin|end)\s*\{(' + MATH + r'|proof)\}|'
@@ -182,10 +184,14 @@ def make_report(root: Path, issues: list | None = None) -> dict:
         })
     for rows in groups.values():
         rows.sort(key=lambda x: (-x['potential_dependents'], x['label']))
-    return {'schema': 1, 'node_count': len(nodes),
-            'completed_by_blueprint_markers': sum(n['complete'] for n in nodes.values()),
-            'ranking': 'distinct transitive dependents, descending; label, ascending',
-            'groups': groups}
+    report = {'schema': 1, 'node_count': len(nodes),
+              'completed_by_blueprint_markers': sum(n['complete'] for n in nodes.values()),
+              'ranking': 'distinct transitive dependents, descending; label, ascending',
+              'groups': groups}
+    if (root / CATALOG).exists():
+        labels = {alias for node in nodes.values() for alias in node['labels']}
+        report['milestone_scheduling'] = make_schedule(root, active_labels=labels)
+    return report
 
 
 def markdown(report, limit=50):
@@ -227,6 +233,11 @@ def main():
     (args.output_dir / 'frontier.json').write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
     (args.output_dir / 'frontier.md').write_text(markdown(report, limit=50))
     (args.output_dir / 'preview.md').write_text(markdown(report, limit=5))
+    if 'milestone_scheduling' in report:
+        scheduling = report['milestone_scheduling']
+        (args.output_dir / 'milestones.json').write_text(
+            json.dumps(scheduling, indent=2, ensure_ascii=False) + '\n')
+        (args.output_dir / 'milestones.md').write_text(schedule_markdown(scheduling))
     print(json.dumps({k: len(v) for k, v in report['groups'].items()}, sort_keys=True))
 
 

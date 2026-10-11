@@ -1,0 +1,1465 @@
+{
+  "schema": 1,
+  "baseline_commit": "1151a405a004d74513f0b788da99a275a8640adf",
+  "milestones": [
+    {
+      "id": "M01",
+      "title": "标准目标与经典基础",
+      "lane": "foundations",
+      "goal": "在同一个指定经典模型上确定标准 Milnor h₆²、实际 Adams 塔及非零永久存活的含义，并兑现固定经典基础的构造义务。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Classical.Adams.standardH6Square",
+          "path": "KIP126/Def/StageInput/StandardSphere/Classes/Data.lean"
+        },
+        {
+          "name": "KIP126.Core.SpectralSequence.NonzeroSurvival",
+          "path": "KIP126/Def/SpectralSequence/Permanence/Predicates.lean"
+        },
+        {
+          "name": "KIP126.Def.Solution.implementation_exists",
+          "path": "KIP126/Def/Solution/Implementation.lean"
+        },
+        {
+          "name": "KIP126.Foundation.CooperationInput",
+          "path": "KIP126/Def/StableHomotopy/Implementation/Data.lean"
+        },
+        {
+          "name": "KIP126.Classical.Adams.MilnorCooperations",
+          "path": "KIP126/Def/ClassicalAdams/MilnorCooperations/Data.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "def:h6-milnor-cooperations",
+        "def:h6-fixed-computation",
+        "def:stage-zero-cooperation-contract",
+        "def:h6-standard-internal-target",
+        "def:ss-permanent-einfty-class"
+      ],
+      "dependencies": [],
+      "definition_files": [
+        "KIP126/Def/StableHomotopy/Implementation/Data.lean",
+        "KIP126/Def/StableHomotopy/Implementation/Fixed.lean",
+        "KIP126/Def/ClassicalAdams/MilnorCooperations/Data.lean",
+        "KIP126/Def/StageInput/StandardSphere/Sequence/Data.lean",
+        "KIP126/Def/StageInput/StandardSphere/Classes/Data.lean",
+        "KIP126/Def/SpectralSequence/Permanence/Predicates.lean",
+        "KIP126/Def/StableHomotopy/Implementation/Completion.lean"
+      ],
+      "source_refs": [],
+      "write_scope": [
+        "KIP126/Def/Solution/Implementation.lean",
+        "KIP126/Def/StableHomotopy/Implementation",
+        "KIP126/Def/ClassicalAdams/TowerHomology/MilnorCoordinates",
+        "KIP126/Def/ClassicalAdams/MilnorCooperations"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "审查 implementation_exists 的合同是否覆盖 sourceComparison/sourceTensor 与指定经典来源的真实识别；一个抽象接口非空不足以冻结该固定实例构造的数学含义。",
+        "MilnorInput 仍明列 coordinates 与 differential_coordinates；必须审查从 ring、Künneth、reduced Milnor basis 和 coproduct compatibility 推导这些字段的合同，不能通过改名或重新包装宣称已消除输入。",
+        "标准 h₆² 是 (s,t)=(2,128) 的 cobar concatenation 类；它与给定 page product 的比较是独立义务。",
+        "implementation_exists 目前没有直接的活跃 Blueprint lean 绑定；相关基础节点不能冒充该构造已被逐项覆盖。"
+      ],
+      "acceptance": [
+        "数学家核对 standardH6Square 的定义链确为 [ξ₁⁶⁴ | ξ₁⁶⁴]，并确认 NonzeroSurvival 要求共同 Z∞ 代表元及非零 E∞ 像。",
+        "固定实例的 foundation、Milnor、tensor、cooperation 和 source comparison 共享同一 H𝔽₂、球面及 shift choices。",
+        "完成对应经典来源与 Milnor 比较证明；最终依赖审计不能保留 implementation_exists 引入的 sorryAx 或新增项目公理。",
+        "现有最终 Challenge/Solution 签名保持配对；任何终点范围或外部前提合同调整由 M20 版本化，不能在本项偷偷加入几何目标。"
+      ],
+      "notes": [
+        "这是当前标准目标与经典基础的联合审核入口；底层 sourceHF2Model_exists、completionModel_exists、completedSphere_twoComplete 和 completedSphere_moore_universal 由同一基础负责人继续细分。",
+        "下游可在已批准的接口假设上并行证明，但该条件进展不等于固定实例已构造。",
+        "dependencies 记录建议调度关系；不是从 Lean proof constants 自动提取的完整依赖证明。",
+        "implementation_exists 的固定实例构造尚未完成；这是证明验收义务，数学合同审核通过后仍可先冻结命题。"
+      ]
+    },
+    {
+      "id": "M02",
+      "title": "Synthetic 背景及适用性",
+      "lane": "foundations",
+      "goal": "在 M01 的同一经典模型上构造选定 synthetic route、结构背景以及标准球谱的 BHS 适用性和 filtration 分离性。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Def.Solution.standardRouteInput",
+          "path": "KIP126/Def/Solution/StandardRoute.lean"
+        },
+        {
+          "name": "KIP126.Def.Solution.standardRouteBackground",
+          "path": "KIP126/Def/Solution/StandardRouteBackground.lean"
+        },
+        {
+          "name": "KIP126.Def.standardSphereApplicability",
+          "path": "KIP126/Def/StageInput/StandardSphere/Sequence/Proofs.lean"
+        },
+        {
+          "name": "KIP126.Def.standardSphereSeparated",
+          "path": "KIP126/Def/StageInput/StandardSphere/Sequence/Proofs.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "prop:fixed-sphere-adams-applicability",
+        "prop:fixed-sphere-adams-separated"
+      ],
+      "dependencies": [
+        "M01"
+      ],
+      "definition_files": [
+        "KIP126/Def/StageInput/StandardSphere/Route/Data.lean",
+        "KIP126/Def/StageInput/StandardSphere/Background/Data.lean",
+        "KIP126/Def/Kervaire/Route/Model/Coherent/Data.lean",
+        "KIP126/Def/ClassicalAdams/Convergence/BHS/Predicates.lean"
+      ],
+      "source_refs": [
+        "/route/model_bindings/11",
+        "/route/source_producers/3"
+      ],
+      "write_scope": [
+        "KIP126/Def/Solution/StandardRoute.lean",
+        "KIP126/Def/Solution/StandardRouteBackground.lean",
+        "KIP126/Def/StageInput/StandardSphere/Sequence/Proofs.lean",
+        "KIP126/Def/StageInput/StandardSphere/Background/Proofs.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "需审查 standardRouteInput 与 standardRouteBackground 是否识别指定来源上的 ν、λ、quotient tower、realization 和 detector，避免以另一个 route 满足抽象字段却改变标准球谱目标。",
+        "BHSObjectApplicability 同时要求 nilpotent completeness 与实际 Adams tower strong convergence；抽象 associated graded 同构不提供这两项。",
+        "两个 route 根构造目前缺少直接的活跃 Blueprint lean 绑定，冻结前需确认其数学节点覆盖。"
+      ],
+      "acceptance": [
+        "审核 route 的实际来源识别与 M01 foundation 的一致性，固定共用对象、映射、悬移和 quotient conventions。",
+        "在同一个 countableProducts 与同一实际球塔上证明标准球谱适用性，并复核到 filtration 分离性的推导。",
+        "将结构构造、文献定理、Main 内部应用的责任区分清楚；适用性/分离性保持 Def 定理，不增加 Challenge2 字段。",
+        "完成依赖审计并同步相关 Blueprint 状态；已有 wrapper 或 proof body 不能替代其依赖闭包的检查。",
+        "完成 standardSphereMooreTower_proZero 的 hconnective 与 hpostnikov 两个局部构造，验证实际 Moore 比较、uniform pro-zero 长度及其到 residual-fiber doubling、nilpotent completeness、strong convergence 的组合；不将这些基础推导设为新的文献字段。"
+      ],
+      "notes": [
+        "本项只给出结构与适用性；48 条文献结论由 M04 管理。",
+        "source_refs 中保留的历史记录 id 只是现有 manifest 指针，不恢复 Challenge1 架构。",
+        "standardRouteInput 与 standardRouteBackground 仍有构造空缺；完成这些构造属于证明验收。",
+        "新基线的 standardSphereApplicability 已有组合证明体；本文件剩余两个局部 sorry 位于 standardSphereMooreTower_proZero，分别是实际 Adams tower 的负同伦消失 hconnective，以及同一 Moore 对象由实际 unital HF₂-module 层组成并检测 π_n 的有限 Postnikov 图 hpostnikov。standardSphereSeparated 仍通过此 applicability 依赖这些义务。"
+      ]
+    },
+    {
+      "id": "M03",
+      "title": "ESS 与代表元接口",
+      "lane": "tools",
+      "goal": "冻结实际 filtered-complex 代表元、有限页 extension 解和 no-crossing 的等价接口，为通用工具及 §7 提供稳定的数学语言。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_iff_representativeRelation",
+          "path": "KIP126/Def/SpectralSequence/FilteredComplex/Solutions/Page/Converse/Proofs.lean"
+        },
+        {
+          "name": "KIP126.Core.SpectralSequence.FilteredComplex.representativeRelation_target_eq_of_not_crossed",
+          "path": "KIP126/Def/SpectralSequence/FilteredComplex/Crossing/Proofs.lean"
+        },
+        {
+          "name": "KIP126.Synthetic.PageExtension.finitePageExtension_iff_solutions",
+          "path": "KIP126/Def/Synthetic/PageExtension/Solutions/Proofs.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "prop:fextension-iff-detected",
+        "prop:no-crossing-iff-uniform-detection",
+        "prop:strict-ess-fiber-page-relation"
+      ],
+      "dependencies": [
+        "M01",
+        "M02"
+      ],
+      "definition_files": [
+        "KIP126/Def/SpectralSequence/FilteredComplex/Data.lean",
+        "KIP126/Def/SpectralSequence/FilteredComplex/Solutions/Data.lean",
+        "KIP126/Def/Synthetic/PageExtension/Predicates.lean",
+        "KIP126/Def/Synthetic/PageExtension/Solutions/Data.lean",
+        "KIP126/Def/Kervaire/Route/Extensions/Crossing/Predicates.lean"
+      ],
+      "source_refs": [],
+      "write_scope": [
+        "KIP126/Def/SpectralSequence/FilteredComplex/Solutions",
+        "KIP126/Def/SpectralSequence/FilteredComplex/Crossing/Proofs.lean",
+        "KIP126/Def/Synthetic/PageExtension/Solutions",
+        "KIP126/Def/Comparison/PageExtension/Solutions"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "审核 page differential 与严格代表元方程之间的 projective test-object、过滤及次数假设，不能用定义相近代替等价证明。",
+        "no-crossing 必须保留实际窗口及其对代表元歧义的限制；目标相等不能无条件推广。",
+        "有限 quotient 的解存在不蕴含 restriction 满射、无限相容解或永久 lift；r≥2、λ 指数及 quotient 长度不等式必须保留。"
+      ],
+      "acceptance": [
+        "精确审核三个公开 theorem 的 universes、typeclasses、次数和隐式前提，并记录其使用同一 filtered complex 与 normalized page family。",
+        "证明体和接口依赖不得读取 Challenge2、计算表或最终 permanence 来建立通用代表元性质。",
+        "明确有限解、有限窗口 no-crossing 与无限/相容解的区分，通用工具只能消费已交付的强度。",
+        "相关局部构建与依赖检查通过，现有公开名称及 Blueprint 标签保持稳定。"
+      ],
+      "notes": [
+        "部分通用 theorem 已有证明体；本登记仍全部 draft/open，未替代数学审核或依赖审计。"
+      ]
+    },
+    {
+      "id": "M04",
+      "title": "文献交付",
+      "lane": "literature",
+      "goal": "冻结一个 LiteratureBindings 及其上 48 条 LiteratureResults 的来源忠实性、适用条件和对象比较，组织关联文献交付。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Challenge2.LiteratureBindings",
+          "path": "KIP126/Interface/Challenge/Literature/Delivery.lean"
+        },
+        {
+          "name": "KIP126.Challenge2.LiteratureResults",
+          "path": "KIP126/Interface/Challenge/Literature/Delivery.lean"
+        },
+        {
+          "name": "KIP126.Challenge2.LiteratureInterface",
+          "path": "KIP126/Interface/Challenge/Literature/Delivery.lean"
+        },
+        {
+          "name": "KIP126.Interface.Solution.Literature.Route.source_background_exists",
+          "path": "KIP126/Interface/Solution/Literature/Delivery.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "thm:external-adams-one-line",
+        "thm:literature-classical-h5Square-permanent",
+        "thm:literature-classical-theta5-detection",
+        "thm:literature-classical-theta5-order-two",
+        "thm:literature-classical-stem62-exponent-two",
+        "thm:literature-classical-theta5-filtration-gap",
+        "thm:literature-classical-two-detection",
+        "thm:literature-classical-eta-detection",
+        "thm:literature-classical-nu-detection",
+        "thm:literature-classical-eta-permanent",
+        "thm:literature-classical-nu-permanent",
+        "thm:literature-route-bx",
+        "thm:literature-route-realizationKernel",
+        "thm:literature-route-may",
+        "thm:literature-synthetic-nu-cofiber",
+        "thm:literature-synthetic-lift",
+        "thm:literature-synthetic-triangle-lift",
+        "thm:literature-synthetic-finite-lift",
+        "thm:literature-synthetic-bockstein",
+        "thm:literature-synthetic-permanent-lift",
+        "thm:literature-synthetic-differentials",
+        "thm:literature-synthetic-filtration-lambda",
+        "thm:literature-synthetic-e2-weight-vanishing",
+        "thm:literature-synthetic-finite-quotient-page-vanishing",
+        "thm:literature-eInfty-lambda-nu",
+        "thm:literature-eInfty-lambda-finite",
+        "thm:literature-eInfty-rho-finite",
+        "thm:literature-eInfty-rho-nu",
+        "thm:literature-eInfty-labels",
+        "thm:literature-realization-lifetime",
+        "thm:literature-realization-detection",
+        "thm:literature-realization-prescribed-lift",
+        "thm:literature-realization-boundary-lift",
+        "thm:literature-toda-h0-label",
+        "thm:literature-toda-lambda-h0",
+        "thm:literature-toda-h0-eta",
+        "thm:literature-toda-low-indeterminacy",
+        "thm:literature-tmf-connective",
+        "thm:literature-tmf-finiteMod2Type",
+        "thm:literature-tmf-standard-labels",
+        "thm:literature-tmf-vanishing62",
+        "thm:literature-tmf-low-filtration63",
+        "thm:literature-tmf-kappaBar-detection",
+        "thm:literature-tmf-w-detection",
+        "thm:literature-tmf-high125-nonzero",
+        "thm:external-sphere-vanishing",
+        "thm:literature-moss",
+        "thm:literature-br21"
+      ],
+      "dependencies": [
+        "M01",
+        "M02"
+      ],
+      "definition_files": [
+        "KIP126/Interface/Challenge/Literature/Source.lean",
+        "KIP126/Interface/Challenge/Literature/Delivery.lean",
+        "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "KIP126/Def/StageInput/StandardSphere/Background/Fixed.lean"
+      ],
+      "source_refs": [
+        "/interface_coverage/0/fields/adamsOneLine_d2",
+        "/interface_coverage/0/fields/classical_h5Square_permanent",
+        "/interface_coverage/0/fields/classical_theta5_detection",
+        "/interface_coverage/0/fields/classical_theta5_order_two",
+        "/interface_coverage/0/fields/classical_stem62_exponent_two",
+        "/interface_coverage/0/fields/classical_theta5_filtration_gap",
+        "/interface_coverage/0/fields/classical_two_detection",
+        "/interface_coverage/0/fields/classical_eta_detection",
+        "/interface_coverage/0/fields/classical_nu_detection",
+        "/interface_coverage/0/fields/classical_eta_permanent",
+        "/interface_coverage/0/fields/classical_nu_permanent",
+        "/interface_coverage/0/fields/route_bx",
+        "/interface_coverage/0/fields/route_realizationKernel",
+        "/interface_coverage/0/fields/route_may",
+        "/interface_coverage/0/fields/synthetic_nu_cofiber",
+        "/interface_coverage/0/fields/synthetic_lift",
+        "/interface_coverage/0/fields/synthetic_triangle_lift",
+        "/interface_coverage/0/fields/synthetic_finite_lift",
+        "/interface_coverage/0/fields/synthetic_bockstein",
+        "/interface_coverage/0/fields/synthetic_permanent_lift",
+        "/interface_coverage/0/fields/synthetic_differentials",
+        "/interface_coverage/0/fields/synthetic_filtration_lambda",
+        "/interface_coverage/0/fields/synthetic_e2_weight_vanishing",
+        "/interface_coverage/0/fields/synthetic_finite_quotient_page_vanishing",
+        "/interface_coverage/0/fields/eInfty_lambda_nu",
+        "/interface_coverage/0/fields/eInfty_lambda_finite",
+        "/interface_coverage/0/fields/eInfty_rho_finite",
+        "/interface_coverage/0/fields/eInfty_rho_nu",
+        "/interface_coverage/0/fields/eInfty_labels",
+        "/interface_coverage/0/fields/realization_lifetime",
+        "/interface_coverage/0/fields/realization_detection",
+        "/interface_coverage/0/fields/realization_prescribed_lift",
+        "/interface_coverage/0/fields/realization_boundary_lift",
+        "/interface_coverage/0/fields/toda_h0_label",
+        "/interface_coverage/0/fields/toda_lambda_h0",
+        "/interface_coverage/0/fields/toda_h0_eta",
+        "/interface_coverage/0/fields/toda_low_indeterminacy",
+        "/interface_coverage/0/fields/tmf_connective",
+        "/interface_coverage/0/fields/tmf_finiteMod2Type",
+        "/interface_coverage/0/fields/tmf_standard_labels",
+        "/interface_coverage/0/fields/tmf_vanishing62",
+        "/interface_coverage/0/fields/tmf_low_filtration63",
+        "/interface_coverage/0/fields/tmf_kappaBar_detection",
+        "/interface_coverage/0/fields/tmf_w_detection",
+        "/interface_coverage/0/fields/tmf_high125_nonzero",
+        "/interface_coverage/0/fields/sphereVanishing",
+        "/interface_coverage/0/fields/moss",
+        "/interface_coverage/0/fields/br21",
+        "/route/model_bindings/12",
+        "/route/source_producers/4"
+      ],
+      "write_scope": [
+        "KIP126/Interface/Solution/Literature",
+        "KIP126/Interface/Solution/AdamsOneLine.lean",
+        "KIP126/Interface/Solution/Moss.lean",
+        "KIP126/Interface/Solution/Tmf.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "48 条字段必须逐条审核来源是否真正蕴含 Lean statement；JSON locator 完整、编译成功或来源已下载不构成该审核。",
+        "BHS 无限结论保留完成/强收敛前提，有限 quotient 的适用范围独立；BR21 微分等式不能加强为未经来源支持的非零存活。",
+        "tmf、θ₅、Hopf maps、realization 与 E∞ 坐标须来自同一 bindings；独立存在性证明不能自由拼接不相同来源对象。"
+      ],
+      "acceptance": [
+        "数学家逐项记录现有 manifest 所指来源到字段的 NL/Lean 对齐结论和剩余适用条件，不在本文件复制第二份来源清单。",
+        "采用同一个 bindings，分组交付 classical、synthetic/BHS、May/BX/Toda 与 tmf/Moss/BR21 结果；总装不重新选择这些对象。",
+        "保留外部命题作为明确数学前提或完成批准的来源适配；不以全局项目 axiom、总包投影或 Main 结论充当来源生产。",
+        "核对 48 条现有字段与活跃 Blueprint 节点、manifest 指针的覆盖，变更命题必须重新审核并同步。"
+      ],
+      "notes": [
+        "当前字段计数来自本 baseline 的 interface_coverage；不是已审核、已证明或已获责任人认领的计数。",
+        "共享 LiteratureBindings 由协调者单独管理，证明任务修改字段类型前须回到合同审核。",
+        "source_background_exists 尚有 bindings 构造与结果证明空缺；复用的 Hopf differential 和 sphere vanishing producer 也不能被当成已验证外部定理。",
+        "新基线仍保留 source_background_exists 的 bindings 构造和结果证明空缺；module/public import 迁移没有改变 48 条文献合同的审核状态。"
+      ]
+    },
+    {
+      "id": "M05",
+      "title": "同一 E₂ 坐标比较",
+      "lane": "computation",
+      "goal": "对同一有界 LinE2Presentation P 交付实际球谱 E₂ 的 CSV basis、真实乘法比较及标准 h₆² 标签识别。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Classical.Adams.LinE2Presentation",
+          "path": "KIP126/Interface/Challenge/Computation/Presentation.lean"
+        },
+        {
+          "name": "KIP126.Challenge2.SphereBasisInterface",
+          "path": "KIP126/Interface/Challenge/Computation/Delivery.lean"
+        },
+        {
+          "name": "KIP126.Challenge2.SphereMultiplicativeInterface",
+          "path": "KIP126/Interface/Challenge/Computation/Delivery.lean"
+        },
+        {
+          "name": "KIP126.Challenge2.SphereSquareInterface",
+          "path": "KIP126/Interface/Challenge/Computation/Delivery.lean"
+        },
+        {
+          "name": "KIP126.Interface.Solution.LinE2.basisTable_correct",
+          "path": "KIP126/Interface/Solution/LinProgram/BasisTable.lean"
+        },
+        {
+          "name": "KIP126.Interface.Solution.sphereBasis",
+          "path": "KIP126/Interface/Solution/LinProgram/SphereBasis.lean"
+        },
+        {
+          "name": "KIP126.Interface.Solution.sphereSquare",
+          "path": "KIP126/Interface/Solution/LinProgram/Square.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "def:computation-fixed-bindings",
+        "thm:bounded-sphere-multiplication",
+        "thm:computation-sphereMultiplicative",
+        "thm:lin-e2-basis-certification",
+        "thm:lin-sphere-basis-interface"
+      ],
+      "dependencies": [
+        "M01"
+      ],
+      "definition_files": [
+        "KIP126/Interface/Challenge/Computation/Presentation.lean",
+        "KIP126/Interface/Challenge/Computation/Delivery.lean",
+        "KIP126/LinProgram/Model/E2/Data.lean",
+        "KIP126/LinProgram/Model/Classes/Data.lean",
+        "KIP126/LinProgram/Certificates/BasisTable/Predicates.lean"
+      ],
+      "source_refs": [
+        "/interface_coverage/1/fields/sphereBasis",
+        "/interface_coverage/1/fields/sphereMultiplicative",
+        "/interface_coverage/1/fields/sphereSquare",
+        "/computation_binding_statements/presentation.comparison_mul"
+      ],
+      "write_scope": [
+        "KIP126/Interface/Solution/LinProgram/BasisTable.lean",
+        "KIP126/Interface/Solution/LinProgram/SphereBasis.lean",
+        "KIP126/Interface/Solution/LinProgram/Multiplication.lean",
+        "KIP126/Interface/Solution/LinProgram/Square.lean",
+        "KIP126/LinProgram/Certificates/BasisTable",
+        "KIP126/LinProgram/Certificates/SquareDetection",
+        "KIP126/LinProgram/Certificates/SquareDimension"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "P 的固定比较覆盖 t≤261；必须同时验证线性无关、生成性和指定 CSV 单项式的值，行互异或哈希不证明 basis。",
+        "现有 multiplication 和 staircase producer 各返回 ∃ presentation；独立存在性不能保证同一个 P，需审核共同 P 上的证明任务入口。",
+        "SphereMultiplicativeInterface 需要实际 first-layer product 的 cycle 闭合及商类比较；不能仅将运算运输到页面后宣称它就是实际球谱乘法。",
+        "sphereSquare(P) 的已有证明体不提供 P 的存在，也不替代一般 cobar/product compatibility。"
+      ],
+      "acceptance": [
+        "一次选择并审定 P；basis、multiplication、square 及 M06 的所有解释都使用该 P 或给出精确 agreement theorem。",
+        "证明每个相关有界次数的 basis 正确性及实际乘法/单位比较，不把证书输入本身当成证书结论。",
+        "确认数据平方非零、(2,128) 分量穷尽与 standard_class 三项同用 comparison，并保留标准类独立于 CSV 的定义。",
+        "局部证书的计算成功、checker soundness 与固定实际模型的 realization 分别提供证据，完成时审计全部声明依赖。"
+      ],
+      "notes": [
+        "正式实现保留在 KIP126/LinProgram 与 Interface/Solution/LinProgram；独立 Lin-program 尝试不是依赖。",
+        "P 和公共定义文件是共享锁定面；write_scope 为建议证明任务范围，未授权并行改写公共合同。",
+        "新基线的 basisTable_correct、sphereMultiplicativeInterface 与 sphereStaircaseInterface 仍有直接 sorry；sphereBasis 和 sphereSquare 的参数化证明体不构成共同 presentation 的存在性证明。"
+      ]
+    },
+    {
+      "id": "M06",
+      "title": "计算解释与认证",
+      "lane": "computation",
+      "goal": "在同一 literature、P 和 Realization R 上验证固定 differential/staircase 解释及 route 的七组证书，并保留它们之间的数学比较。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Challenge2.DifferentialStatement",
+          "path": "KIP126/Interface/Challenge/Computation/Delivery.lean"
+        },
+        {
+          "name": "KIP126.Challenge2.SphereStaircaseInterface",
+          "path": "KIP126/Interface/Challenge/Computation/Delivery.lean"
+        },
+        {
+          "name": "KIP126.Computation.Route.CertifiedRealization",
+          "path": "KIP126/LinProgram/Interpretation/Route/Certification.lean"
+        },
+        {
+          "name": "KIP126.Challenge2.ComputationResults.route_presentation",
+          "path": "KIP126/Interface/Challenge/Computation/Delivery.lean"
+        },
+        {
+          "name": "KIP126.Challenge2.ComputationBindings",
+          "path": "KIP126/Interface/Challenge/Computation/Delivery.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "thm:computation-sphereBasis-csv-values",
+        "thm:computation-sphereMultiplicative",
+        "thm:computation-sphereStaircase-rows-sound",
+        "thm:computation-sphereSquare-nonzero",
+        "thm:computation-sphereSquare-exhaustive",
+        "thm:computation-sphereSquare-standard-class",
+        "thm:computation-sphereTable-sound",
+        "thm:computation-route-basis",
+        "thm:computation-route-csv",
+        "thm:computation-route-products",
+        "thm:computation-route-labels-h0",
+        "thm:computation-route-labels-h1",
+        "thm:computation-route-labels-h2",
+        "thm:computation-route-labels-h4",
+        "thm:computation-route-labels-h5",
+        "thm:computation-route-labels-h6",
+        "thm:computation-route-labels-h0-square",
+        "thm:computation-route-labels-h5-square",
+        "thm:computation-route-labels-h6-square",
+        "thm:computation-route-labels-x-126-8-4",
+        "thm:computation-route-labels-x-126-8",
+        "thm:computation-route-labels-x-124-8",
+        "thm:computation-route-labels-x-109-12",
+        "thm:computation-route-labels-g",
+        "thm:computation-route-labels-delta-h-1-mul-g",
+        "thm:computation-route-results",
+        "thm:computation-route-bottom",
+        "thm:computation-route-top",
+        "thm:computation-route-presentation",
+        "thm:computation-presentation-comparison-mul",
+        "thm:computation-tmfMultiplicative",
+        "thm:computation-bindings-tmf-v2Sixteen",
+        "thm:computation-bindings-tmf-betaGFour",
+        "thm:lin-staircase-delivery",
+        "def:lin-proofs-sphere-meaning"
+      ],
+      "dependencies": [
+        "M04",
+        "M05",
+        "M09",
+        "M10",
+        "M11"
+      ],
+      "definition_files": [
+        "KIP126/Interface/Challenge/Computation/Delivery.lean",
+        "KIP126/LinProgram/Interpretation/Route/Data.lean",
+        "KIP126/LinProgram/Interpretation/Route/Predicates.lean",
+        "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+        "KIP126/LinProgram/Interpretation/State/Data.lean",
+        "KIP126/LinProgram/Interpretation/Branch/Predicates.lean"
+      ],
+      "source_refs": [
+        "/interface_coverage/1/fields/sphereBasis",
+        "/interface_coverage/1/fields/sphereMultiplicative",
+        "/interface_coverage/1/fields/sphereStaircase",
+        "/interface_coverage/1/fields/sphereSquare",
+        "/interface_coverage/1/fields/sphereTable_sound",
+        "/interface_coverage/1/fields/route",
+        "/interface_coverage/1/fields/route_presentation",
+        "/computation_binding_statements/presentation.comparison_mul",
+        "/computation_binding_statements/tmfMultiplicative",
+        "/computation_binding_statements/tmf_v2Sixteen",
+        "/computation_binding_statements/tmf_betaGFour",
+        "/route/model_bindings/13"
+      ],
+      "write_scope": [
+        "KIP126/Interface/Solution/LinProgram/Staircase.lean",
+        "KIP126/Interface/Solution/LinProgram/Route/Certification.lean",
+        "KIP126/Interface/Solution/LinProgram/Rules.lean",
+        "KIP126/LinProgram/Interpretation",
+        "KIP126/LinProgram/Translate"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "equation、reaches、boundaryBy、refutation 和分支祖先条件必须保留不同语义；level 9000 目前只解释为到 E1000，不是非零 E∞ 存活。",
+        "CertifiedRealization 的 basis/csv/products/labels/results/bottom/top 必须指向同一个 R；R.sphere 与 P.comparison 的 agreement 不能省略。",
+        "certify_of_parts 仅拼装输入证明；现有 certification 从尚未完成的 Interface.Solution.challenge2 投影，不能作为独立生产证据。",
+        "重放使用本文规则时，规则必须先独立证明并验证该实例全部前提；不能从待认证 computation、high125 或最终 T 证明规则再回填自身。",
+        "tmf source detector iso、坐标端点和实际 Cν inclusion/boundary/suspension maps 必须真实相容，程序标签同名不等于该比较成立。"
+      ],
+      "acceptance": [
+        "固定共同 literature、P、R、tmf bindings 及数据版本；按七组原子义务提交数学证书，并验证 route_presentation 与四条绑定比较。",
+        "逐行交付要求 lookup 和 decode 成功，再证明解码命题；缺行、越界、unknown 或失败不能默认为零或真。",
+        "区分有限数据处理、checker soundness 和对指定谱对象的真实性证明，并给出每条证书路径的实际依赖。",
+        "对所采用的 M09–M11 规则逐项证明 cycle、extension、no-crossing 等实例前提；若改用直接证明，由数学审核记录所删调度边。",
+        "任何中间 C₂/Cη 对象只按所选认证路径在 Interface 内部引入；不新增根交付、公共中间谱包或额外项目公理。"
+      ],
+      "notes": [
+        "此 baseline 有 7 个结果根字段，展开 29 条 statement，另有 4 条 computation binding statements；本项不把原始每行自动计为独立外部定理。",
+        "M09/M10/M11 是所选 replay 路线的保守调度前置。审核确认的直接证明可移除不需要的边，不能仅因希望提早开始而删边。",
+        "公共解释定义由协调者锁定；证明可按 shard 或规则族并行，数据生产改变时须同步固定制品与来源检查。",
+        "新基线的 certification 仍投影 Interface.Solution.challenge2；七项局部证书及 route_presentation 的同一解释责任未因模块迁移消失。"
+      ]
+    },
+    {
+      "id": "M07",
+      "title": "文献到正文的内部适配",
+      "lane": "literature",
+      "goal": "从同一文献交付构造正文需要的局部 Moss、weight-shift 自然性、Toda 二级比较及 ν 来源应用，不把这些内部推导重新包装为外部输入。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.Literature.route_moss",
+          "path": "KIP126/Main/Solution/Literature/Route/SourceConsequences.lean"
+        },
+        {
+          "name": "KIP126.Main.Solution.Literature.eInfty_shift_natural",
+          "path": "KIP126/Main/Solution/Literature/Route/SourceConsequences.lean"
+        },
+        {
+          "name": "KIP126.Main.StageInput.todaSecondaryComparison",
+          "path": "KIP126/Main/Solution/StageInput.lean"
+        },
+        {
+          "name": "KIP126.Main.StageInput.nuSourceResults",
+          "path": "KIP126/Main/Solution/StageInput.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "def:route-toda-source-application",
+        "thm:main-local-moss-specialization",
+        "thm:main-weight-shift-naturality"
+      ],
+      "dependencies": [
+        "M01",
+        "M02",
+        "M04"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "KIP126/Interface/Challenge/Literature/Delivery.lean",
+        "KIP126/Interface/Solution/Literature/Applications.lean",
+        "KIP126/Def/StageInput/StandardSphere/Background/Data.lean",
+        "KIP126/Main/Solution/StageInput.lean"
+      ],
+      "source_refs": [
+        "/route/internal_adapters/1",
+        "/route/internal_adapters/4",
+        "/route/internal_adapters/12",
+        "/route/internal_adapters/13",
+        "/route/internal_adapters/16"
+      ],
+      "write_scope": [
+        "KIP126/Main/Solution/Literature/Route/SourceConsequences.lean",
+        "KIP126/Main/Solution/StageInput.lean",
+        "KIP126/Def/StageInput/StandardSphere/Background/Proofs.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "TodaSecondaryComparison 和 ν 相容三角是 Main 内部证明责任；source 字段存在不意味着这些应用已完成。",
+        "Moss 的 convergence、defining system、crossing 与不定性以及实际 mapping-tower context 必须保持完整。",
+        "当前部分 StageInput 适配读取全局 witness；提取显式 input 版本时要沿依赖链更换全部投影，不能加一个未使用参数。",
+        "todaSecondaryComparison 与 nuSourceResults 缺少直接活跃 Blueprint lean 绑定；关联源应用节点的覆盖须由审核确认。"
+      ],
+      "acceptance": [
+        "为每项适配明确输入字段、同一 source bindings、实际 maps 和输出 predicate，区分 source result 与 internal application。",
+        "完成固定 Moss context、局部 Moss 应用、weight-shift 的实际 Adams maps 模初始边界比较及 Toda 二级比较；审核已有 ν suspension square/source application 的真实依赖，均不得调用最终 theorem 反哺自身。",
+        "显式 input 版本只从同一个 input 投影 literature、computation 和所有标签，不复制或重新选择背景。",
+        "共享 StageInput 文件变更由协调者串行合并，合同及 Blueprint 状态一并审核。"
+      ],
+      "notes": [
+        "M07 的 broad lane 名称是 literature；其声明仍属于 Main 内部推导，不增加 LiteratureResults 字段。",
+        "新基线的 selected_nu_suspension_square 与 nuSourceResults 已有独立构造体；StageInput 现仅有 TodaSecondaryComparison 的 hlow（低维 η² bracket）及 hsymm（每个二阶 θ 的 λ² 值）两个局部 sorry。ν 方块不再登记为直接证明空缺，但其 Def/文献/计算依赖仍须审核。",
+        "SourceConsequences 中 route_moss 及 eInfty_shift_natural 的 tower_weight_square 仍有直接 sorry；后者需比较实际 Adams/cofiber lifts 在 E₂ 上模初始边界相容，已有对象层自然性方块不足以替代此比较。"
+      ]
+    },
+    {
+      "id": "M08",
+      "title": "§7 局部球谱与 Cν 事实",
+      "lane": "computation",
+      "goal": "由同一计算解释和明确无限范围前提导出 §7 的完整局部 SphereFacts、Cν d₃ 以及 Cν target 的 2–5 页 incoming 排除。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Computation.Route.sphere_facts",
+          "path": "KIP126/Main/Solution/Computation/Route.lean"
+        },
+        {
+          "name": "KIP126.Computation.Route.cnu_d3",
+          "path": "KIP126/Main/Solution/Computation/Route/CofiberAndFiltration.lean"
+        },
+        {
+          "name": "KIP126.Computation.Route.cnu_target_through5",
+          "path": "KIP126/Main/Solution/Computation/Route/CofiberAndFiltration.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "evidence:cnu126-short-incoming-exclusion",
+        "evidence:near126-core",
+        "evidence:near126-indeterminacy",
+        "evidence:x_123_9",
+        "evidence:h_0_sq_mul_x_125_9_2",
+        "evidence:h_1_mul_x_121_7"
+      ],
+      "dependencies": [
+        "M04",
+        "M06"
+      ],
+      "definition_files": [
+        "KIP126/Main/Solution/Computation/Route/Consequences.lean",
+        "KIP126/LinProgram/Interpretation/Route/Certification.lean",
+        "KIP126/Interface/Challenge/Computation/Delivery.lean",
+        "KIP126/Def/SpectralSequence/Computation/Predicates.lean",
+        "KIP126/Def/SpectralSequence/Computation/State/Predicates.lean",
+        "KIP126/Def/ClassicalAdams/PageRepresentatives/Data.lean"
+      ],
+      "source_refs": [
+        "/interface_coverage/1/fields/route",
+        "/interface_coverage/1/fields/sphereStaircase",
+        "/interface_coverage/1/fields/route_presentation",
+        "/interface_coverage/0/fields/sphereVanishing"
+      ],
+      "write_scope": [
+        "KIP126/Main/Solution/Computation/Route.lean",
+        "KIP126/Main/Solution/Computation/Route"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "完整 staircase 的 row 3005 可能提供最后一个 d₂ column 所需的更强 d₂=0，但一般 Inputs 没有完整 staircase 到同一 R 的桥梁；需审核选用的证据路径及其最小输入合同。",
+        "SphereFacts.y_not_hit 是所有 r≥2 的 NeverHit；潜在 d₉:(2,128)→(11,136) 不能仅由 h₆² 到 E₇ 的提升排除。",
+        "有限候选 Y∉B₆ 或 NeverHitOnWindow 2 6 尚未成为批准合同，亦未在本次证明；E₅ 非零不足以直接推出 B₆ 非成员。",
+        "cnu_d3 与 cnu_target_through5 尚无直接活跃 Blueprint lean 绑定；相关数学节点与实际 lemma 的对应需要审核。"
+      ],
+      "acceptance": [
+        "选择并审核 sphere_facts 缺口的路线：保留一般 Inputs 证明 span 条件，或显式从同一个完整 Challenge2 通过 lookup/decode/CSV/route_presentation 运输。",
+        "若采用 row 3005，验证完整 source lookup、decode、rows_sound、CSV 坐标识别和 R=P 比较后再推出早页 differential 为零；禁止从总包结论倒推自身。",
+        "保留原 NeverHit 合同时证明包括 d₉ 在内的全部 incoming 排除；如采用有限 B₆ 合同，必须版本化并审核所有包类型和消费者，原命题的论文覆盖另有明确处理。",
+        "Cν target 的排除覆盖整个相关源格及累计边界；不以某个命名生成元非零或缺少数据库记录代替全空间证明。",
+        "所有局部事实共享同一 R、同一实际 Cν 与同一标签；有限至无限步骤使用独立 vanishing/convergence 前提。",
+        "有限 B₆ 路线可复用新基线已写出的 r≠9 局部分支，再证明所需非零和累计边界结论；不得把局部分支、源格消失或 E₅ 非零直接登记为公开 Y∉B₆ 定理。"
+      ],
+      "notes": [
+        "完整 staircase row 3005 的基线位置是 Generated/Staircase/Shard023.lean 中的 row；供审核的 lookup 为 shard 23、offset 61，解码到 reaches 1000 (14,138) [2]。这只是可用路线线索，不是证明证据。",
+        "NuNinth 中 y_not_hit 的直接使用只需要 Y 不属于 B₆；新基线的 r≠9 局部分支可供提取 r≤6 的有限证明，但还须完成累计边界归纳、公开接口提取和合同审核。有限替代仍是 proposed，绝不视为原 NeverHit 已完成。",
+        "SphereFacts 是完整聚合合同；下游暂未使用某字段不允许把整个包标为已证。",
+        "sphere_facts 的最后一个 d₂ column 落在指定二维 target span 的证明仍须完成；选定并审核输入合同后，这项证明债本身不阻止命题冻结。",
+        "新基线的 sphere_facts 仍定义于 Computation/Route.lean；局部生产代码拆入 Route/SphereIncoming、SphereSurvival、NamedSurvival、SphereDifferentials 等文件，Cν 两个登记 theorem 的实际定义迁至 Route/CofiberAndFiltration.lean。",
+        "sphere_facts.y_not_hit 的新增局部 y_incoming_source_zero_except_nine / y_not_hit_except_nine 已覆盖 r≠9；剩余直接 sorry 精确是 r=9 的 (2,128)→(11,136)。这些是局部证明体，不是新的公开有限接口。"
+      ]
+    },
+    {
+      "id": "M09",
+      "title": "广义 Leibniz",
+      "lane": "tools",
+      "goal": "独立证明广义 Leibniz，保留实际 cycle、extension 与 no-crossing 条件，供正文和计算认证共同使用。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.Tools.generalizedLeibniz",
+          "path": "KIP126/Main/Solution/Tools/GeneralizedLeibniz.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "thm:generalized-leibniz"
+      ],
+      "dependencies": [
+        "M03",
+        "M04"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/Tools/GeneralizedLeibniz.lean",
+        "KIP126/Def/Kervaire/Route/Model/Coherent/Data.lean",
+        "KIP126/Def/Kervaire/Route/Extensions/Predicates.lean",
+        "KIP126/Def/Kervaire/Route/Extensions/Crossing/Predicates.lean"
+      ],
+      "source_refs": [],
+      "write_scope": [
+        "KIP126/Main/Solution/Tools/GeneralizedLeibniz.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "必须核对源/靶次数、微分长度、map filtration 与全部 no-crossing 窗口，不能把普通 Leibniz 类比当作证明。",
+        "须审查通用规则的输入闭包，排除包含待认证计算或 high125 结果的总包，以免该 producer 与其计算消费者形成循环。"
+      ],
+      "acceptance": [
+        "冻结 GeneralizedLeibnizLaw 的完整量词及前提，并用实际代表元/ESS 接口证明。",
+        "明确通用定理与某一 log replay 实例分离：定理完成不自动使实例前提成立。",
+        "依赖审计排除 Challenge2、Main.StageInput.witness、待认证表和 final theorem；只接受明确来源假设。"
+      ],
+      "notes": [
+        "M06 对本项的调度边对应保守 replay 路线；只有经审核选择不使用本工具的直接证明后才能移除。",
+        "现有 Main producer 是独立通用工具所在位置，Interface/Solution/LinProgram/Rules 仅作适配，不表示所有 Main 都必须位于计算交付之后。",
+        "现有 producer 有未完成的论证分支；完成该证明是 acceptance 义务。"
+      ]
+    },
+    {
+      "id": "M10",
+      "title": "广义 Mahowald",
+      "lane": "tools",
+      "goal": "独立证明广义 Mahowald，保持同一规范化三角、实际 suspension comparison 和精确 crossing 条件。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.Tools.generalizedMahowald",
+          "path": "KIP126/Main/Solution/Tools/GeneralizedMahowald.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "def:mahowald-input-data",
+        "def:mahowald-tower-suspension-comparison",
+        "thm:generalized-mahowald"
+      ],
+      "dependencies": [
+        "M03",
+        "M04"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/Tools/GeneralizedMahowald.lean",
+        "KIP126/Def/Kervaire/Route/Model/Coherent/Data.lean",
+        "KIP126/Def/Kervaire/Route/Extensions/Predicates.lean",
+        "KIP126/Def/Kervaire/Route/Extensions/Crossing/Predicates.lean"
+      ],
+      "source_refs": [
+        "/interface_coverage/0/fields/route_may"
+      ],
+      "write_scope": [
+        "KIP126/Main/Solution/Tools/GeneralizedMahowald.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "NormalizedTriangleCompatible、同步代表元及 quotient lift 的全部前提需分别审核，不能只审核最终公式。",
+        "实际 §7 特化使用 n=3、m=l=0、r=r′=3；论文 E₂ 的零长度 top extension 仍须适配到工具所需 E₃。"
+      ],
+      "acceptance": [
+        "审核并证明 GeneralizedMahowaldLaw，保留边界符号、同一三角和 actual desuspension maps。",
+        "从现有 ESS/代表元接口构造需要的相容 lift，不能以存在任意无关 lift 替代。",
+        "通用证明不依赖待认证计算或 §7 最终矛盾；具体 ν-extension 特化由 M17 验证额外前提。",
+        "完成剩余 MH1 非球谱比较和 MH2 May boundary lift，保留有限 B_(n+m+l-(m-e(g))) 歧义；去除 May 符号须用 mod-2 label 比较，不可假定同伦群本身具有特征二。"
+      ],
+      "notes": [
+        "M06 对本项的调度边对应保守 replay 路线；只有经审核选择不使用本工具的直接证明后才能移除。",
+        "现有 Main producer 是独立通用工具所在位置，Interface/Solution/LinProgram/Rules 仅作适配，不表示所有 Main 都必须位于计算交付之后。",
+        "新基线 generalizedMahowald 已增加大段 MH1 代表元比较；剩余两个直接 sorry 是非球谱 T.Z、非零且 q>1 情况的 MH1 比较，以及 MH2 的实际 May boundary lift。此细分只记录当前 proof 工作，不要求先完成证明才可冻结正确命题。"
+      ]
+    },
+    {
+      "id": "M11",
+      "title": "有限页延拓与 stretching",
+      "lane": "tools",
+      "goal": "证明有限页 extension 的 stretching/传播规则，并把可提升性及其 obstruction 保留为精确条件。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.Tools.finitePageExtensionStretching",
+          "path": "KIP126/Main/Solution/Tools/PageExtensionStretching.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "def:finite-page-extension-stretching-law",
+        "cor:page-extension-stretch"
+      ],
+      "dependencies": [
+        "M03",
+        "M04"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/Tools/PageExtensionStretching.lean",
+        "KIP126/Def/Kervaire/Route/Model/Coherent/Data.lean",
+        "KIP126/Def/Kervaire/Route/Extensions/Predicates.lean",
+        "KIP126/Def/Kervaire/Route/Extensions/Crossing/Predicates.lean",
+        "KIP126/Def/Kervaire/Route/Extensions/Stretching/Predicates.lean"
+      ],
+      "source_refs": [],
+      "write_scope": [
+        "KIP126/Main/Solution/Tools/PageExtensionStretching.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "有限代表元解的限制不能无条件假定满射；需审查 obstruction、loss certificate 与 nonliftable crossing 的关系。",
+        "有限 stretching 不提供无限相容解或永久 lift；不能因为每个有限层都有解便略去相容性证明。",
+        "新基线已改变 FiniteExtensionNonliftableCrossing：在同一早期有限商的实际 ESS 中，源不在后商 ρ 的 E∞ 像内、较短 extension 的靶非零，并允许非 essential、b=0 和零长度情形。需重新审核此更强充分条件是否覆盖本文所需应用及 M06 replay；不能沿用只排除 essential crossings 的旧合同或声称与印出推论等价。"
+      ],
+      "acceptance": [
+        "审核 FinitePageExtensionStretchingLaw 的 quotient 长度、后页 source/target cycle 层、map filtration 及现行同商 FiniteExtensionNonliftableCrossing 排除前提，并为每个实际消费者证明这个更强前提。",
+        "通过实际 representative restrictions 和 obstruction 证明有限结论，保留所有边界范围条件。",
+        "定理独立于选定 computation 与最终目标；作为 M06 replay 规则时另行验证每个实例前提。"
+      ],
+      "notes": [
+        "M06 对本项的调度边对应保守 replay 路线；只有经审核选择不使用本工具的直接证明后才能移除。",
+        "现有 Main producer 是独立通用工具所在位置，Interface/Solution/LinProgram/Rules 仅作适配，不表示所有 Main 都必须位于计算交付之后。",
+        "新基线 PageExtensionStretching.lean 已无直接 sorry，并证明现行更强充分条件版本；本登记仍 draft/open，完整依赖闭包、来源适配和数学审核尚未完成，不能由本文件无 sorry 推断 milestone 关闭。"
+      ]
+    },
+    {
+      "id": "M12",
+      "title": "λ、realization 与选择无关性",
+      "lane": "prop78",
+      "goal": "证明 θ₅ 选择与平方所需的精确 λ/realization 单射、有限 BX 规范化及指定权重的二阶扭结论。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Computation.Route.lambda_powers_injective_62_64",
+          "path": "KIP126/Main/Solution/Computation/Lambda.lean"
+        },
+        {
+          "name": "KIP126.Computation.Route.lambda_powers_injective_124_128",
+          "path": "KIP126/Main/Solution/Computation/Lambda.lean"
+        },
+        {
+          "name": "KIP126.Computation.Route.lambda_injective_125_130",
+          "path": "KIP126/Main/Solution/Computation/Lambda.lean"
+        },
+        {
+          "name": "KIP126.Computation.Route.bx_finite_lambda_normalization",
+          "path": "KIP126/Main/Solution/Computation/Lambda.lean"
+        },
+        {
+          "name": "KIP126.Computation.Route.theta5_choice_order_two",
+          "path": "KIP126/Main/Solution/Computation/Lambda.lean"
+        },
+        {
+          "name": "KIP126.Computation.Route.two_torsion_62_70",
+          "path": "KIP126/Main/Solution/Computation/Lambda.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "prop:theta5-choice-independence",
+        "prop:bjm-bx-normalized-criterion"
+      ],
+      "dependencies": [
+        "M02",
+        "M04",
+        "M07",
+        "M08"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/Conditions/Predicates.lean",
+        "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "KIP126/Def/Synthetic/Context/Data.lean",
+        "KIP126/Main/Solution/Computation/Route/Consequences.lean"
+      ],
+      "source_refs": [
+        "/interface_coverage/0/fields/classical_theta5_order_two",
+        "/interface_coverage/0/fields/classical_stem62_exponent_two",
+        "/interface_coverage/0/fields/classical_theta5_filtration_gap",
+        "/interface_coverage/0/fields/route_bx",
+        "/interface_coverage/0/fields/route_realizationKernel"
+      ],
+      "write_scope": [
+        "KIP126/Main/Solution/Computation/Lambda.lean",
+        "KIP126/Main/Solution/ChoiceIndependence"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "(62,64)、(124,128) 的 all-power λ 单射与 (125,130) 的一次 λ 单射强度不同，不能统一加强为全范围单射。",
+        "two_torsion_62_70 不以 (62,70) 的 λ 单射为依据；该加强与选定 d₂ 数据不兼容。",
+        "ChoiceIndependence 中的命题定义不是这些结论的生产者；需追踪实际 Lambda.lean 证明及其前提。",
+        "本项列出的 Lambda theorem 没有直接活跃 Blueprint lean 绑定，选择无关性/有限 criterion 节点与实际生产者的链接需审核。"
+      ],
+      "acceptance": [
+        "逐个冻结准确双次数、权重、λ 幂范围和 actual realization map，证明所用 kernel 与 torsion 排除。",
+        "BX 规范化只交付指定有限 quotient 等价，不加强为未截断或零不定性的命题。",
+        "任意 θ₅ 选择均使用相同 detection 和实际过滤 gap；二阶扭结论保留所需 classical/external 前提。",
+        "区分广义 Inputs 参数中实际使用的投影与另由 M13 生产的高过滤 tmf 结论，审计不得通过总包制造回路。"
+      ],
+      "notes": [
+        "当前 broad Inputs 参数可用于条件 lemma 的并行开发，但不代表整个消费 Inputs 已构造。",
+        "本项与 M13 同处 Lambda.lean 时仅由协调者合并共享文件修改；独立证明文件的提取须保持现有公开名。",
+        "新基线所列 Lambda.lean theorem 均有证明体，本文件无直接 sorry；它们继续是同一文献/计算输入下的条件结论，仍须审计输入闭包及精确 λ 强度。"
+      ]
+    },
+    {
+      "id": "M13",
+      "title": "tmf 高过滤检测",
+      "lane": "prop78",
+      "goal": "由同一 sphere/tmf 计算、来源比较和实际 filtration 尾部证明 high125 存活、weight130 穷尽及 filtration15 detector 单射。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.Computation.high125_nonzero_survival_of_computation",
+          "path": "KIP126/Main/Solution/Computation/Tmf.lean"
+        },
+        {
+          "name": "KIP126.Computation.Route.high125_weight130_exhaustion_of_source",
+          "path": "KIP126/Main/Solution/Computation/High125.lean"
+        },
+        {
+          "name": "KIP126.Computation.Route.detector_injective_125_130_filtration15",
+          "path": "KIP126/Main/Solution/Computation/Lambda.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "evidence:theta5-square-tmf"
+      ],
+      "dependencies": [
+        "M02",
+        "M04",
+        "M06",
+        "M07",
+        "M08",
+        "M12"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/Tmf/Predicates.lean",
+        "KIP126/Def/Kervaire/Route/SourceLanguage.lean",
+        "KIP126/Main/Solution/Computation/Route/Consequences.lean",
+        "KIP126/Interface/Challenge/Computation/Delivery.lean"
+      ],
+      "source_refs": [
+        "/route/source_producers/9",
+        "/route/source_producers/10",
+        "/route/source_producers/11",
+        "/computation_binding_statements/tmfMultiplicative",
+        "/computation_binding_statements/tmf_v2Sixteen",
+        "/computation_binding_statements/tmf_betaGFour",
+        "/interface_coverage/0/fields/tmf_high125_nonzero"
+      ],
+      "write_scope": [
+        "KIP126/Main/Solution/Computation/Tmf.lean",
+        "KIP126/Main/Solution/Computation/Tmf",
+        "KIP126/Main/Solution/Computation/High125.lean",
+        "KIP126/Main/Solution/Computation/Lambda.lean",
+        "KIP126/Main/Solution/Computation/Route/High125.lean",
+        "KIP126/Main/Solution/Computation/Route/CofiberAndFiltration.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "有限 E₅ 计算与实际 π_(125,130) 的 F15=F25、F26=0、λ¹⁰ 可除性和两元素穷尽是不同义务，不能用表名省去尾部证明。",
+        "high125 的 Main 结论不是 Challenge2 字段；来源 high125 非零、其 sphere detector、tmf BR21 坐标与差分运输须分别核对。",
+        "不得把 weight130 的一次 λ 单射加强为 all-power injectivity；detector 单射需要同一 realization/unit 比较和 filtration15 假设。",
+        "若干核心生产者没有直接活跃 Blueprint lean 绑定，evidence:theta5-square-tmf 目前主要链接消费 wrapper，需明确生产链。"
+      ],
+      "acceptance": [
+        "证明 high125 的非零永久存活及其全部有限/无限前提，坐标运输使用 M04/M06 的同一 tmf 对象及端点。",
+        "审核 actual filtration 上的 weight130 穷尽及 G 的检测，不把 E₂ 非零等同 E₅ 或 E∞ 非零。",
+        "给出 filtration15 detector 单射的真实依赖，不从其待证明的 Main-derived TmfInputs 反向取结论。",
+        "与 M12 串行整合 Lambda.lean 变更，并在组合后检查无循环依赖和无新增外部假设。"
+      ],
+      "notes": [
+        "本项依赖 M12 的准确 torsion/normalization 强度；当前登记不证明高过滤结论已经闭合。",
+        "新基线 Tmf.lean、High125.lean 与 Lambda.lean 的登记 theorem 均有证明体且这些文件无直接 sorry；high125 的有限分量、classical filtration tail 等支撑代码现分布于 Computation/Route/High125.lean 与 CofiberAndFiltration.lean，仍须检查条件输入和完整依赖。",
+        "Route/CofiberAndFiltration.lean 与 M08 共享；相关修改同 Lambda.lean 一样由协调者串行整合，子模块拆分不解除 same-I/文献/比较约束。"
+      ]
+    },
+    {
+      "id": "M14",
+      "title": "Proposition 7.8",
+      "lane": "prop78",
+      "goal": "对一个显式 Challenge2 input 证明 h₆² 的 d₁₂ dichotomy 及 C₃/C₄/C₅ 条件等价，完整组合局部计算、λ 与 tmf 推导。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.Route.proposition_7_8",
+          "path": "KIP126/Main/Solution/Route/Selected.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "prop:possible-h-6-sq"
+      ],
+      "dependencies": [
+        "M07",
+        "M08",
+        "M12",
+        "M13"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/Conditions/Predicates.lean",
+        "KIP126/Def/Kervaire/Route/Model/Coherent/Data.lean",
+        "KIP126/Interface/Challenge/Challenge2.lean",
+        "KIP126/Main/Solution/DifferentialReduction/d12_dichotomy_and_condition_equivalence.lean"
+      ],
+      "source_refs": [],
+      "write_scope": [
+        "KIP126/Main/Solution/Route/Selected.lean",
+        "KIP126/Main/Solution/DifferentialReduction",
+        "KIP126/Main/Solution/Route/Selected"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "C₃ 需真实 E₆ 代表元，D₁₂ 需实际 E₁₂ 目标非零；不能将二者简化为原始 E₂ 公式。",
+        "C₄ 的非零 detection 与 C₅ 允许零 leading class 的普通 detection 必须按现有定义区分。",
+        "顶层 proposition_7_8 已有显式 input，但其辅助结果和 source application 的完整前提及同一 input 的使用仍需逐一审计。"
+      ],
+      "acceptance": [
+        "完整 statement 的两部分均经数学家核对：仅剩 d₁₂ 的候选约束和条件等价，不删除候选穷尽、filtration 或 choice 条件。",
+        "所有 literature、computation、labels、tmf 与同一 Def route 来自该 input，并使用 M07/M08/M12/M13 的已批准输出。",
+        "证明完成记录包含实际依赖闭包而非顶层 proof body；不得调用最终 h₆² permanence 反证候选。",
+        "Selected.lean 共享 wrapper 由协调者统一整合，任何签名变化同时审核消费者和 Blueprint。"
+      ],
+      "notes": [
+        "这是明确可用的现有 public input 参数入口，后续 M20 可复用；此登记没有把它计为已完成 milestone。",
+        "proposition_7_8 的实际公开声明仍在 Selected.lean；其 prop78_from_inputs 及 ClassicalData、ThetaData、DetectionData、ChoiceInvariance、Assembly 支撑证明已迁到 Selected 子目录，不能只编辑公开聚合文件。"
+      ]
+    },
+    {
+      "id": "M15",
+      "title": "相容 α₁",
+      "lane": "prop79",
+      "goal": "构造同一个 Q11 α₁ 及其真实 Q9 投影，满足标准标签检测、对每个 U 代表的修正关系和 h₀ 约束。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.Route.Section7.alpha_one_exists",
+          "path": "KIP126/Main/Solution/Route/AlphaOne.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "lem:near126-alpha-relations"
+      ],
+      "dependencies": [
+        "M07",
+        "M08"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/Section7/AlphaOne.lean",
+        "KIP126/Def/Kervaire/Route/Section7/Predicates.lean",
+        "KIP126/Main/Solution/Route/Section7/Common.lean",
+        "KIP126/Main/Solution/Computation/Route/Consequences.lean"
+      ],
+      "source_refs": [
+        "/interface_coverage/1/fields/route",
+        "/interface_coverage/1/fields/sphereStaircase",
+        "/interface_coverage/1/fields/route_presentation"
+      ],
+      "write_scope": [
+        "KIP126/Main/Solution/Route/AlphaOne.lean",
+        "KIP126/Main/Solution/Route/AlphaOne"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "α₁ 必须是一个 Q11 代表，其 Q9 对象由实际 ρ 投影得到；不能独立选择两个具有相同标签的代表。",
+        "AlphaOneProperties 对每个 U 代表分别选择 α₂、α₃；量词次序及 α₂ 的权重137必须保持。"
+      ],
+      "acceptance": [
+        "按 AlphaOneProperties 逐项核对 Q11/Q9 detection、相同投影和 λ 修正等式。",
+        "证明所有候选穷尽与非零条件，保持 α₂ 在 (124,137)、α₃ 在 (125,140) 的次数及实际 λ 幂。",
+        "输入使用同一个 route、η、h₀、U、V 与计算解释，所有来自 M08 的完整事实缺口继续显式跟踪。",
+        "将可供 M16 使用的 α₁ 输出与其内部低维 helper 分开审核，不把 α₁ 性质增设为模型字段。"
+      ],
+      "notes": [
+        "α₁ 的 public theorem 已存在；无需为本项新建 Challenge 镜像或另造 witness。",
+        "需要的低 filtration E∞ 消失、AF10/AF13 全分量生成、θ₅² 三分支和有限 quotient 微分均依赖真实局部事实，不因已有长 proof body而自动闭合。",
+        "alpha_one_exists 的实际公开声明仍在 AlphaOne.lean；低 filtration、有限窗口、AF10/AF13 穷尽、theta frames 与存在性支撑证明已迁入 AlphaOne 子目录。本项写入范围包含这些真实生产模块。"
+      ]
+    },
+    {
+      "id": "M16",
+      "title": "Toda 与弱代表构造",
+      "lane": "prop79",
+      "goal": "沿独立弱代表路线证明 synthetic θ–B Toda 与乘后 shuffle，并构造供 target ν 可除性使用的非零弱代表。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.Route.Section7.synthetic_theta_b_toda",
+          "path": "KIP126/Main/Solution/Route/Section7/ThetaToda.lean"
+        },
+        {
+          "name": "KIP126.Main.Solution.Route.Section7.theta_b_multiplied_shuffle",
+          "path": "KIP126/Main/Solution/Route/Section7/ThetaShuffle.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "lem:toda-h0-leading-nonvanishing",
+        "lem:near126-two-extension-indeterminacy"
+      ],
+      "dependencies": [
+        "M07",
+        "M08",
+        "M12",
+        "M15"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/Section7/Predicates.lean",
+        "KIP126/Def/Kervaire/Route/Section7/AlphaOne.lean",
+        "KIP126/Def/Kervaire/Route/Toda/Predicates.lean",
+        "KIP126/Main/Solution/Route/Section7/Common.lean"
+      ],
+      "source_refs": [
+        "/interface_coverage/0/fields/toda_h0_label",
+        "/interface_coverage/0/fields/toda_lambda_h0",
+        "/interface_coverage/0/fields/toda_h0_eta",
+        "/interface_coverage/0/fields/toda_low_indeterminacy"
+      ],
+      "write_scope": [
+        "KIP126/Main/Solution/Route/Section7/TodaNonempty.lean",
+        "KIP126/Main/Solution/Route/Section7/AnyYHelpers.lean",
+        "KIP126/Main/Solution/Route/Section7/WeakInitialNonzero.lean",
+        "KIP126/Main/Solution/Route/Section7/ThetaToda.lean",
+        "KIP126/Main/Solution/Route/Section7/ThetaShuffle.lean",
+        "KIP126/Main/Solution/Route/Section7/WeakRepresentative.lean",
+        "KIP126/Main/Solution/Route/Section7/WeakYDetection.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "ModuleTripleToda 的实际箭头顺序是 sphere η、sphere h₀、最后到 Q9 的 λ³α₁；反转会改变不定性空间，次数可编译不足以保证语义正确。",
+        "仅需乘以指定 λ²h₀ 后消去 θ–B bracket 不定性，不能加强为原始 bracket 单点。",
+        "main_weak_high_representative 与 weak_y_detected_from_low 当前是 private theorem，不应伪登记为 public 接口；精确输出是否提取为 public 需另行审核。",
+        "MainToda/AnyY 的当前 proof 由 c3_excludes_c5 ex-falso 导出，属于下游 corollary，不能用作本项或 M19 的独立输入。",
+        "synthetic_theta_b_toda 与 theta_b_multiplied_shuffle 目前缺少直接活跃 Blueprint lean 绑定，相关 Toda 数学节点需对齐独立弱代表路线。"
+      ],
+      "acceptance": [
+        "审查 Toda source、目标、(1,0) 悬移、两项 indeterminacy 及消去它们所用的精确 λ/h₀ 乘法。",
+        "沿 α₁→严格目标/初始非零→低 filtration 修正→弱代表→Y detection 证明实际 chain，保留 λ²h₀y≠0。",
+        "若公开 private helper，只提取所需的存在性和检测输出，保留全部参数与同一 quotient，不加强为任意代表元。",
+        "本项 proof 不能依赖 c3_excludes_c5、MainToda、AnyY 或最终 permanence；完成后再据实际 constants 检查依赖方向。"
+      ],
+      "notes": [
+        "现有 private 入口：Section7/WeakRepresentative.lean 的 main_weak_high_representative；Section7/WeakYDetection.lean 的 weak_y_detected_from_low。本次不改变其可见性。",
+        "weak_y_detected_from_low 的 ν 整除应用在 M18 与 M17 汇合；M16 不独立假设 NuExtension9 已成立。",
+        "相关 Blueprint 标签描述数学上下文，不代表当前 MainToda/AnyY 的 proof 被提升为独立生产者。"
+      ]
+    },
+    {
+      "id": "M17",
+      "title": "Q5→Q9 ν-extension",
+      "lane": "prop79",
+      "goal": "在实际 ν-cofiber 与同一 h₂、X、Y 标签上证明第五和第九 λ quotient 中的 ν-extension 及其兼容提升。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.Route.Section7.nu_extension_lifts_to_fifth_quotient",
+          "path": "KIP126/Main/Solution/Route/Section7/NuFifth.lean"
+        },
+        {
+          "name": "KIP126.Main.Solution.Route.Section7.nu_extension_in_ninth_quotient",
+          "path": "KIP126/Main/Solution/Route/Section7/NuNinth.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "lem:near126-nu-extension"
+      ],
+      "dependencies": [
+        "M07",
+        "M08",
+        "M10"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/Section7/Predicates.lean",
+        "KIP126/Def/Kervaire/Route/Triangles/Predicates.lean",
+        "KIP126/Def/Kervaire/Route/Tools/GeneralizedMahowald.lean",
+        "KIP126/Main/Solution/Route/Section7/Common.lean"
+      ],
+      "source_refs": [
+        "/interface_coverage/1/fields/route/statements/bottom",
+        "/interface_coverage/1/fields/route/statements/top"
+      ],
+      "write_scope": [
+        "KIP126/Main/Solution/Route/Section7/NuFifth.lean",
+        "KIP126/Main/Solution/Route/Section7/NuNinth.lean",
+        "KIP126/Main/Solution/Route/Section7/CnuNoCrossing.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "Mahowald 特化的 actual cofiber、悬移、n=3/m=l=0/r=r′=3 和 E₂→E₃ 适配须全部验证。",
+        "NoCrossingOn 3 3 (8,134) 要排除 d₂:(9,135)→(11,136) 的整个五维源空间，不能只核对一个生成元。",
+        "Q9 非零检测当前从 M08 的全 NeverHit 提取 Y∉B₆；有限替代方案尚未批准也未证明。"
+      ],
+      "acceptance": [
+        "证明 M10 在指定相同 triangle/labels 上的全部实例前提，并完成 Q3→Q5 correction 控制。",
+        "构造 NuExtension5 和 NuExtension9 的真实代表元及所需检测/相容关系，不把 quotient 投影零等同于源类为零。",
+        "核对 X、Y、h₂ 与 ν 都来自同一个 Challenge2/route 解释；bottom/top comparisons 与 M06 保持一致。",
+        "M08 若收窄 NeverHit 合同，先证明足够的 Y∉B₆ 并审核本项消费者，再同步接口和 Blueprint。"
+      ],
+      "notes": [
+        "本项可以与 α₁/Toda 弱代表链并行；到 M18 才与 M16 的输出合并。",
+        "Q3 关系提升到 Q5 仍需处理全部 AF10 corrections；已有 Q3 等式不提供该提升。"
+      ]
+    },
+    {
+      "id": "M18",
+      "title": "target ν 可除",
+      "lane": "prop79",
+      "goal": "结合独立弱代表链与 NuExtension9，证明最终指定 target 的 ν 可除性，保持实际 Q9 对象、检测和非零要求。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.Route.Section7.target_nu_divisible",
+          "path": "KIP126/Main/Solution/Route/Section7/NuTarget.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "prop:near126-c3-not-c5"
+      ],
+      "dependencies": [
+        "M16",
+        "M17"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/Section7/Predicates.lean",
+        "KIP126/Main/Solution/Route/Section7/Common.lean"
+      ],
+      "source_refs": [],
+      "write_scope": [
+        "KIP126/Main/Solution/Route/Section7/NuTarget.lean",
+        "KIP126/Main/Solution/Route/Section7/NuTargetHelpers.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "需保留同一弱代表的 λ²h₀ 非零及实际 Y detection，不能以相同 E₂ label 的另一个无关代表替代。",
+        "ν 可除性必须使用实际 h₂/ν normalization 和 Q9 的 maps，不能从形式上的符号乘法直接读出。",
+        "target_nu_divisible 目前没有直接活跃 Blueprint lean 绑定；其独立 proof 路线须与最终矛盾节点的数学依赖对齐。"
+      ],
+      "acceptance": [
+        "将 M16 的精确弱代表输出与 M17 的 NuExtension9 在同一对象/标签上组合，验证全部次数与 λ 指数。",
+        "核查结论是目标在实际 homotopy group 中的 ν 可除性，并保留足以触发 M19 incoming obstruction 的非零检测。",
+        "实际依赖中没有 MainToda/AnyY 的 ex-falso wrapper 或最终 c3_excludes_c5；缺少的上游义务继续显式列出。"
+      ],
+      "notes": [
+        "此项已有 public theorem，建议将其作为 Prop7.9 上游接口；不把 downstream 主 bracket corollary 当作输入。"
+      ]
+    },
+    {
+      "id": "M19",
+      "title": "Cν 矛盾与 Proposition 7.9",
+      "lane": "prop79",
+      "goal": "从 target 的 ν 可除性强制实际 Cν incoming，并与独立短页排除相矛盾，得到 C₃ 排除 C₅ 及 Proposition 7.9。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.Route.Section7.target_divisibility_forces_cnu_incoming",
+          "path": "KIP126/Main/Solution/Route/Section7/CnuRigidity.lean"
+        },
+        {
+          "name": "KIP126.Main.Solution.Route.Section7.c3_excludes_c5",
+          "path": "KIP126/Main/Solution/Route/Section7/Final.lean"
+        },
+        {
+          "name": "KIP126.Main.Solution.Route.proposition_7_9",
+          "path": "KIP126/Main/Solution/Route/Selected.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "prop:near126-c3-not-c5"
+      ],
+      "dependencies": [
+        "M08",
+        "M18"
+      ],
+      "definition_files": [
+        "KIP126/Def/Kervaire/Route/Conditions/Predicates.lean",
+        "KIP126/Def/Kervaire/Route/Section7/Predicates.lean",
+        "KIP126/Main/Solution/Computation/Route/Consequences.lean",
+        "KIP126/Main/Solution/Route/Section7/Common.lean"
+      ],
+      "source_refs": [
+        "/interface_coverage/1/fields/route/statements/results",
+        "/interface_coverage/1/fields/route/statements/bottom",
+        "/interface_coverage/1/fields/route/statements/top"
+      ],
+      "write_scope": [
+        "KIP126/Main/Solution/Route/Section7/CnuRigidity.lean",
+        "KIP126/Main/Solution/Route/Section7/Final.lean",
+        "KIP126/Main/Solution/Route/Selected.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "incoming 强制与 incoming 排除必须针对同一 Cν target、相同代表元和同一页面窗口；不能把只排除命名 source 的结论当作全排除。",
+        "MainToda、AnyY、ConditionalY 的当前证明在本项之后；把它们列为上游会制造数学任务依赖循环。",
+        "proposition_7_9 当前使用全局 StageInput.witness；M20 条件组合要求真正贯穿同一显式 input，不能仅包装一个未使用参数。",
+        "target_divisibility_forces_cnu_incoming 缺少直接活跃 Blueprint lean 绑定，冻结时应核对其与短页排除/最终矛盾的衔接。"
+      ],
+      "acceptance": [
+        "证明 actual Cν incoming 与 M08 的 2–5 页排除具有相同 statement 语义，并在同一 input 上导出矛盾。",
+        "准确保留 C₃ 与 C₅ 的不同 detection/nonzero 条件，完成两个 public c3_excludes_c5 视图的比较。",
+        "将所有论文式 downstream corollary 与独立 proof chain 分开记录，依赖审计不得以最终结论反哺本项。",
+        "若参数化 Prop7.9，同步所需消费投影与 helper；Selected.lean 的共享编辑由协调者统一合并。"
+      ],
+      "notes": [
+        "本项完成后的 ex-falso corollary 可以合法保留，但不能作为此前各项的证明完成证据。"
+      ]
+    },
+    {
+      "id": "M20",
+      "title": "最终条件组合与验收",
+      "lane": "integration",
+      "goal": "组合 Proposition 7.8 与 7.9，并明确外部假设、同一显式输入和无参数开发目标之间的最终验收合同。",
+      "lean_declarations": [
+        {
+          "name": "KIP126.Main.Solution.permanent_of_propositions",
+          "path": "KIP126/Main/Solution/DifferentialReduction/Conclusion.lean"
+        },
+        {
+          "name": "KIP126.Solution.Final.H6SquarePermanent.h6_sq_permanent",
+          "path": "KIP126/Main/Solution/h6_sq_permanent.lean"
+        }
+      ],
+      "blueprint_labels": [
+        "thm:h6-square-permanent"
+      ],
+      "dependencies": [
+        "M01",
+        "M02",
+        "M04",
+        "M06",
+        "M14",
+        "M19"
+      ],
+      "definition_files": [
+        "KIP126/Interface/Challenge/Challenge2.lean",
+        "KIP126/Main/Solution/StageInput.lean",
+        "KIP126/Main/Challenge/h6_sq_permanent.lean",
+        "KIP126/Def/StageInput/StandardSphere/Classes/Data.lean",
+        "KIP126/Def/SpectralSequence/Permanence/Predicates.lean"
+      ],
+      "source_refs": [],
+      "write_scope": [
+        "KIP126/Main/Solution/DifferentialReduction/Conclusion.lean",
+        "KIP126/Main/Solution/h6_sq_permanent.lean",
+        "KIP126/Main/Solution/StageInput.lean",
+        "KIP126/Interface/Solution/Challenge2.lean"
+      ],
+      "owner": null,
+      "statement_status": "draft",
+      "proof_status": "open",
+      "review": null,
+      "proof_evidence": null,
+      "review_blockers": [
+        "当前 public Final pair 无参数，而 PROJECT_BOUNDARY 的最终验收要求保留外部数学 hypotheses 且无项目 axiom/sorryAx；不能仅更换 witness 名称来化解合同差异。",
+        "Prop7.8 已显式接收 input，但 Prop7.9/Section7/StageInput 仍可能读取全局开发 axiom；只在最外层加参数不消除隐藏依赖。",
+        "permanent_of_propositions 没有直接活跃 Blueprint lean 绑定，最终逻辑组合与 public Final pair 的角色需在冻结审查中确认。"
+      ],
+      "acceptance": [
+        "先审核并在 Main/Solution 内部实现真正贯穿同一 Challenge2 input 的条件组合，不新增内部 Challenge 镜像或独立 witness 树。",
+        "冻结最终合同版本：若保留未实例化的外部假设，则验收 theorem 明确带这些假设；若最终坚持无参数，必须真实证明并实例化所需全部输入。",
+        "任何 public Final 签名变更需同步唯一 Challenge/Solution pair 与 PROJECT_BOUNDARY/Blueprint；当前登记本身不授权或实施该变更。",
+        "完成 pinned toolchain 构建、所有 canonical 非 Challenge 证明的 sorry/admit 检查、唯一开发 axiom 消除及最终 #print axioms 审计。",
+        "最终审计仅允许 PROJECT_BOUNDARY 允许的 Lean foundational axioms；外部输入均有明确 mathematical hypotheses 和现有 manifest locator，附录全部编码义务保持。"
+      ],
+      "notes": [
+        "保留 public 无参数 Final pair 只是一项当前开发约定，不意味着带未实例化外部 hypotheses 的条件证明会自动给出无条件定理。",
+        "proof_evidence 在完整、可复查的验收记录出现前保持 null；编译、wrapper、BluePrint leanok 或 registry 校验不构成 proof completion。",
+        "所有 20 项均为 draft/open，owner/review/proof_evidence 未填写；此文件只记录候选任务合同和待审问题。",
+        "建议的 h6_sq_permanent_of_input 尚不存在；本登记不会把建议签名伪列为 Lean declaration。",
+        "即使移除 Main.Axiom.challenge2，结论的固定对象仍可能依赖 M01/M02 的 sorry；这必须单独完成基础构造与依赖审计。",
+        "新基线仍保留固定的 Main.StageInput.witness：Prop7.8 有显式 input，Prop7.9 与 public Final 仍沿固定 witness 取值。新增局部证明和 module/public import 迁移没有实现任意显式 input 的最终条件组合。"
+      ]
+    }
+  ]
+}

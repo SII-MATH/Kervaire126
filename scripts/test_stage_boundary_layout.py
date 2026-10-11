@@ -13,12 +13,41 @@ def code_only(text):
     return re.sub(r"--[^\n]*", "", re.sub(r"/-[\s\S]*?-/", "", text))
 
 
+def internal_imports(text):
+    # Current module headers include public imports, meta imports used by
+    # Checks/tactics, and import all for implementation-only declarations.
+    # This remains a source-level ownership check, not a Lean dependency audit.
+    return re.findall(
+        r"^[ \t]*(?:public[ \t]+)?(?:meta[ \t]+)?import[ \t]+"
+        r"(?:all[ \t]+)?(KIP126(?:\.[\w.]+)?)", text, re.M)
+
+
+class LeanImportHeaderTests(unittest.TestCase):
+    def test_current_module_headers_preserve_internal_edges(self):
+        text = """module
+
+public import KIP126.Def.StageInput.StandardSphere.Classes.Data
+public meta import KIP126.Checks.AxiomInputs
+import all KIP126.Main.Solution.Route.Selected.Assembly
+import KIP126.Main.Challenge.h6_sq_permanent
+public import Mathlib.Algebra.Group.Basic
+
+@[expose] public section
+"""
+        self.assertEqual(internal_imports(text), [
+            "KIP126.Def.StageInput.StandardSphere.Classes.Data",
+            "KIP126.Checks.AxiomInputs",
+            "KIP126.Main.Solution.Route.Selected.Assembly",
+            "KIP126.Main.Challenge.h6_sq_permanent",
+        ])
+
+
 class StageBoundaryLayoutTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.graph = {
             ".".join(path.relative_to(ROOT).with_suffix("").parts):
-                re.findall(r"^import\s+(KIP126(?:\.[\w.]+)?)", path.read_text(), re.M)
+                internal_imports(path.read_text())
             for path in [ROOT / "KIP126.lean", *(ROOT / "KIP126").rglob("*.lean")]
         }
 

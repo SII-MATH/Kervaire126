@@ -108,3 +108,18 @@ Blueprint 环境安装，以上缓存与环境配置针对这些开销做了调�
 
 编译允许现有未完成证明；来源和接口检查不证明引用的数学内容。
 最终验收仍遵守 `PROJECT_BOUNDARY.md`，严格公理审计可通过 `lake exe axioms` 单独执行。
+
+## Milestone 接口调度
+
+`bash scripts/check.sh` 也校验 [milestones.json](milestones.json) 的结构、路径、
+活跃 Blueprint 标签、规范来源引用和无环任务依赖，并运行调度回归。
+审查快照过期会阻塞对应的冻结接口任务队列，普通开发 CI 仍允许通过；
+未冻结接口、未完成证明和未认领任务也不构成新的合并门槛。
+
+现有 frontier 报告保留原 Blueprint 分组，另附 `milestone_scheduling` 视图，
+随已有 `metrics/frontier/` 制品上传。它按已经记录且仍有效的接口审核判定可并行任务，
+不会把 Blueprint 完成标记、编译或元数据校验当成证明验收。
+完整流程与首版整文件快照的限制见 [MILESTONES.md](MILESTONES.md)。
+
+Lean module 迁移后，已有接口分层测试同时识别 `public import`、`public meta import`
+和 `import all`，保留实际内部导入边；原有分层与唯一见证约束继续执行。

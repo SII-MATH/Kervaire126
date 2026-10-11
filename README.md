@@ -22,6 +22,7 @@
 范围、信任与最终验收由 [PROJECT_BOUNDARY.md](PROJECT_BOUNDARY.md) 规定。
 接口与证明责任见 [docs/STAGE0_INTERFACES.md](docs/STAGE0_INTERFACES.md)，
 输入浏览视图见 [docs/challenge-input-inventory.html](docs/challenge-input-inventory.html)。
+Milestone 接口、首轮数学审查与并行分工见 [docs/MILESTONES.md](docs/MILESTONES.md)。
 开发约束见 [AGENTS.md](AGENTS.md)。
 
 ## 构建与检查
