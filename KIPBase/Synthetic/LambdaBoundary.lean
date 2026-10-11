@@ -101,7 +101,6 @@ theorem lambdaPowerStepNatTrans_comp (n : ℕ) :
   conv_rhs => unfold lambdaPowNatTrans
   rw [← transport]
   simp only [Category.assoc]
-  rfl
 
 /-- The natural factor `Σ^{0,-(n+1)}X ⟶ Σ^{0,-1}X` in `λ^(n+1)`.
 Its construction follows the existing power recursion, so no additional

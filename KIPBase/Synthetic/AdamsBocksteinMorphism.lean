@@ -465,7 +465,6 @@ theorem LambdaBocksteinTargetPageRep.eq_zero_of_mem_next
       (↑(r - E.r₀).toNat : WithTop ℕ)).arrow).mp
     rw [hxZ, hxZero, zero_comp]
   rw [← hxClass, hxZZero, zero_comp]
-  rfl
 
 /-- Two target representatives define the same current page class whenever
 their actual λ-boundaries differ by one higher filtration step. -/
@@ -1837,6 +1836,7 @@ structure AffineReindexedSinglePageMap
 
 namespace AffineReindexedPageComplexMap
 
+set_option maxHeartbeats 5000000 in
 /-- The three components of a single-page comparison make a short-complex
 map at every bidegree. The incoming index is identified using the affine
 degree law; both squares are the page's differential equations. -/
