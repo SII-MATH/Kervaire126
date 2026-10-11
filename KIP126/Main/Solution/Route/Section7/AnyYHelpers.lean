@@ -2996,74 +2996,11 @@ private theorem anyy_eta_first_quotient_injective {D : Model H M Syn} (BHS : EIn
   rw [anyy_sphere_one_three_zero BHS V h23 b] at hb
   simp only [lambdaMultiply,comp_zero] at hb
   exact sub_eq_zero.mp hb.symm
-private theorem anyy_eta_coordinates_nonzero_unique
- {A:Type v} [AddCommGroup A] [Module ℤ A]
- (e:A≃ₗ[ℤ] E2At 1 2) (coord:A≃ₗ[ℤ] (BasisIndex 1 2 →₀ F2))
- (values:∀i:BasisIndex 1 2,(e (coord.symm (Finsupp.single i 1))).val=basisValue (basisRowAt 1 2 i))
- (rows : ∀ (r : BasisRow), r ∈ basisRows  →  r.s = 1  →  r.t = 2  →  r.monomial = "1,1") :
- ∀f g:A,f≠0 → g≠0 → f=g := by
-  classical
-  have hi (i:BasisIndex 1 2) : (basisRowAt 1 2 i).monomial="1,1" := by
-    have hm : basisRowAt 1 2 i ∈ basisRows.filter (fun r=>r.s==1 && r.t==2) := by
-      change (basisRows.filter (fun r=>r.s==1 && r.t==2))[i.val] ∈ _
-      exact List.getElem_mem i.isLt
-    obtain ⟨hm,hd⟩:=List.mem_filter.mp hm
-    have hd':(basisRowAt 1 2 i).s=1 ∧ (basisRowAt 1 2 i).t=2 := by simpa using hd
-    exact rows _ hm hd'.1 hd'.2
-  haveI : Subsingleton (BasisIndex 1 2) := ⟨by
-    intro i j
-    have hv : e (coord.symm (Finsupp.single i 1))=e (coord.symm (Finsupp.single j 1)) := by
-      apply Subtype.ext
-      rw [values,values]
-      simp only [basisValue,hi i,hi j]
-    have hs:Finsupp.single i (1:F2)=Finsupp.single j 1 := coord.symm.injective (e.injective hv)
-    by_contra hij
-    have hh:=congrArg (fun f:BasisIndex 1 2 →₀ F2=>f i) hs
-    simpa [Finsupp.single_apply,hij,Ne.symm hij] using hh⟩
-  intro f g hf hg
-  have hfn:coord f≠0 := by intro h; exact hf (coord.injective (h.trans (map_zero coord).symm))
-  obtain ⟨i,hi⟩ : ∃ i, coord f i ≠ 0 := by
-    by_contra h
-    push_neg at h
-    exact hfn (Finsupp.ext h)
-  have hc (a:A) (ha:a≠0) : coord a i=1 := by
-    generalize h:coord a i=c
-    fin_cases c
-    · exfalso
-      apply ha
-      apply coord.injective
-      ext j
-      have hj:j=i:=Subsingleton.elim _ _
-      subst j
-      simpa using h
-    · rfl
-  apply coord.injective
-  ext j
-  have hj:j=i:=Subsingleton.elim _ _
-  subst j
-  rw [hc f hf,hc g hg]
-private theorem anyy_eta_next_coordinates_zero
- {A:Type v} [AddCommGroup A] [Module ℤ A]
- (coord:A≃ₗ[ℤ] (BasisIndex 2 3 →₀ F2))
- (rows:∀ (r : BasisRow), r ∈ basisRows  →  r.s = 2  →  r.t = 3  →  False) : Subsingleton A := by
-  haveI : IsEmpty (BasisIndex 2 3) := ⟨by
-    intro i
-    have hm:basisRowAt 2 3 i ∈ basisRows.filter (fun r=>r.s==2 && r.t==3) := by
-      exact List.getElem_mem i.isLt
-    obtain ⟨hm,hd⟩:=List.mem_filter.mp hm
-    have hd':(basisRowAt 2 3 i).s=2 ∧ (basisRowAt 2 3 i).t=3 := by simpa using hd
-    exact rows _ hm hd'.1 hd'.2⟩
-  exact Function.Injective.subsingleton coord.injective
-private theorem anyy_eta_unique_from_coordinates {D : Model H M Syn} (BHS : EInftyInput D)
+private theorem anyy_eta_unique_from_low_degrees {D : Model H M Syn} (BHS : EInftyInput D)
     (V:SphereVanishingLine H)
-    (e:E2 H SphereSpectrum 1 2≃ₗ[ℤ] E2At 1 2)
-    (coord:E2 H SphereSpectrum 1 2≃ₗ[ℤ] (BasisIndex 1 2 →₀ F2))
-    (values:∀i:BasisIndex 1 2,(e (coord.symm (Finsupp.single i 1))).val=basisValue (basisRowAt 1 2 i))
-    (coord23:E2 H SphereSpectrum 2 3≃ₗ[ℤ] (BasisIndex 2 3 →₀ F2))
-    (rows12:∀ (r : BasisRow), r ∈ basisRows  →  r.s = 1  →  r.t = 2  →  r.monomial = "1,1")
-    (rows23:∀ (r : BasisRow), r ∈ basisRows  →  r.s = 2  →  r.t = 3  →  False) :
+    (eta_nonzero_unique : ∀ x y : E2 H SphereSpectrum 1 2, x ≠ 0 → y ≠ 0 → x = y)
+    (h23 : Subsingleton (E2 H SphereSpectrum 2 3)) :
     ∀x y:BiHom 1 2 (S_0_0:Syn),x≠0 → y≠0 → x=y := by
-  let h23:=anyy_eta_next_coordinates_zero coord23 rows23
   have hi:=anyy_eta_first_quotient_injective BHS V h23
   let f:=fun z:BiHom 1 2 (S_0_0:Syn)=>D.sphereFirstQuotient 1 2 (quotientClass 1 z)
   have hf:Function.Injective f:=(D.sphereFirstQuotient 1 2).injective.comp hi
@@ -3074,7 +3011,7 @@ private theorem anyy_eta_unique_from_coordinates {D : Model H M Syn} (BHS : EInf
     apply hf
     simpa only [f,quotientClass,zero_comp,map_zero] using hh
   apply hf
-  exact anyy_eta_coordinates_nonzero_unique e coord values rows12 _ _ (hn x hx) (hn y hy)
+  exact eta_nonzero_unique _ _ (hn x hx) (hn y hy)
 
 private theorem anyy_from_exact_one_and_kernel
     (Y : E2 H SphereSpectrum 11 136) (T : E2 H SphereSpectrum 14 139)

@@ -115,7 +115,11 @@ This internal producer constructs Q and its comparisons. In the selected
 HF₂-local classical category the chosen sphere, finite Hopf cofiber and
 connective finite-type detector are already local; the identity comparison
 is available after their nilpotent-completeness and convergence are proved.
-No source theorem is inferred for an arbitrary synthetic category here. -/
+No source theorem is inferred for an arbitrary synthetic category here.
+This parameterized construction is broader than the fixed literature delivery;
+it is retained as an internal helper, not a second fixed-model acceptance goal.
+Projecting the fixed delivery's completion fields cannot prove this statement
+for arbitrary `route` and `R`. -/
 theorem bhs_completed_sources
     (route : StandardRouteInput)
     (R : RealizationCoordinates route.model)

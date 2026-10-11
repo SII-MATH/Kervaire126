@@ -22,6 +22,9 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
+          lfs: true
+      - name: Check pinned LFS objects
+        run: git lfs fsck
       - name: Check sources, interfaces, Blueprint dependencies and importers
         run: bash scripts/check.sh
       - name: Upload Blueprint dependency report
@@ -35,16 +38,21 @@ jobs:
   lean:
     name: Lean and Blueprint
     runs-on: ubuntu-24.04
-    timeout-minutes: 90
+    timeout-minutes: 120
     env:
-      LEAN_NUM_THREADS: '1'
+      LEAN_NUM_THREADS: '2'
+      MATHLIB_NO_CACHE_ON_UPDATE: '1'
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-          lfs: true
-      - name: Free space from unused runner tools
-        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android
+      - name: Ensure space for build products, cache extraction and swap
+        run: |
+          available_kib=$(df --output=avail . | tail -n 1)
+          if (( available_kib < 40 * 1024 * 1024 )); then
+            sudo rm -rf /usr/share/dotnet /usr/local/lib/android
+          fi
+          df -h .
       - name: Add swap for the generated finite certificates
         run: |
           sudo fallocate -l 8G "$RUNNER_TEMP/lean-swap"
@@ -58,27 +66,86 @@ jobs:
           df -h .
           python3 -u scripts/monitor-ci-resources.py > "$RUNNER_TEMP/lean-resources.log" 2>&1 < /dev/null &
           echo "$!" > "$RUNNER_TEMP/lean-resources.pid"
-      - name: Check pinned LFS objects
-        run: git lfs fsck
-      - name: Restore caches and build the complete Lean library and its regression modules
+      - name: Identify Lean build inputs
+        id: lean-inputs
+        run: |
+          # Include tracked paths and blob hashes, so renames and deletions invalidate too.
+          source_hash=$(git ls-files --stage -z -- '*.lean' lakefile.toml scripts/mathlib-cache-roots.py | sha256sum | cut -d ' ' -f 1)
+          echo "hash=$source_hash" >> "$GITHUB_OUTPUT"
+      - name: Start Blueprint environment setup
+        run: |
+          (
+            set -euo pipefail
+            finish_setup() {
+              echo "$?" > "$RUNNER_TEMP/blueprint-setup.exit.tmp"
+              mv "$RUNNER_TEMP/blueprint-setup.exit.tmp" "$RUNNER_TEMP/blueprint-setup.exit"
+            }
+            trap finish_setup EXIT
+            sudo apt-get -o Acquire::Retries=3 update
+            sudo apt-get -o Acquire::Retries=3 install --yes --no-install-recommends \
+              graphviz libgraphviz-dev pkg-config texlive-binaries
+            python3 -m venv "$RUNNER_TEMP/blueprint-venv"
+            "$RUNNER_TEMP/blueprint-venv/bin/pip" install -r requirements-blueprint.txt
+          ) > "$RUNNER_TEMP/blueprint-setup.log" 2>&1 < /dev/null &
+      - name: Restore compiled Lean dependencies and project
+        id: lake-cache
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5
+        with:
+          # Keep the path and fallback prefix compatible with lean-action's cache.
+          path: ./.lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-sources-v2-${{ steps.lean-inputs.outputs.hash }}
+          restore-keys: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-
+      - name: Finish Blueprint environment setup
+        run: |
+          for attempt in {1..300}; do
+            if test -f "$RUNNER_TEMP/blueprint-setup.exit"; then
+              cat "$RUNNER_TEMP/blueprint-setup.log"
+              status=$(cat "$RUNNER_TEMP/blueprint-setup.exit")
+              if (( status != 0 )); then exit "$status"; fi
+              echo "$RUNNER_TEMP/blueprint-venv/bin" >> "$GITHUB_PATH"
+              exit 0
+            fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/blueprint-setup.log"
+          echo 'Blueprint environment setup did not finish within five minutes.' >&2
+          exit 1
+      - name: Install the pinned Lean toolchain
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
         with:
-          build: true
-          build-args: KIP126
+          auto-config: false
+          build: false
           test: false
           lint: false
-          use-mathlib-cache: true
-          use-github-cache: true
-      - name: Install Blueprint dependencies
+          use-mathlib-cache: false
+          use-github-cache: false
+      - name: Replace legacy full-Mathlib build artifacts
+        if: steps.lake-cache.outputs.cache-matched-key != '' && !contains(steps.lake-cache.outputs.cache-matched-key, '-sources-v2-')
         run: |
-          sudo apt-get -o Acquire::Retries=3 update
-          sudo apt-get -o Acquire::Retries=3 install --yes \
-            ghostscript graphviz libgraphviz-dev pdf2svg pkg-config texlive-latex-base
-          python3 -m venv "$RUNNER_TEMP/blueprint-venv"
-          "$RUNNER_TEMP/blueprint-venv/bin/pip" install -r requirements-blueprint.txt
-          echo "$RUNNER_TEMP/blueprint-venv/bin" >> "$GITHUB_PATH"
+          # Keep project artifacts and the cache tool; fetch the required Mathlib closure below.
+          rm -rf .lake/packages/mathlib/.lake/build/lib/lean/Mathlib \
+            .lake/packages/mathlib/.lake/build/ir/Mathlib
+      - name: Fetch the Mathlib dependencies imported by this project
+        if: steps.lake-cache.outputs.cache-hit != 'true'
+        run: |
+          python3 scripts/mathlib-cache-roots.py > "$RUNNER_TEMP/mathlib-roots.txt"
+          mapfile -t mathlib_roots < "$RUNNER_TEMP/mathlib-roots.txt"
+          if (( ${#mathlib_roots[@]} )); then
+            lake exe cache get "${mathlib_roots[@]}"
+          fi
+      - name: Build the complete Lean library, regression modules and declaration checker
+        run: lake build KIP126 checkdecls
       - name: Render Blueprint and check linked Lean declarations
+        env:
+          # The minimal TeX installation has no texlive-base search-path defaults.
+          TEXINPUTS: '.:'
         run: bash scripts/check-blueprint-decls.sh
+      - name: Save successful Lean build when its sources changed
+        if: steps.lake-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5
+        with:
+          path: ./.lake
+          key: ${{ steps.lake-cache.outputs.cache-primary-key }}
       - name: Upload Blueprint for review
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
@@ -102,6 +169,8 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: lean-resources
-          path: ${{ runner.temp }}/lean-resources.log
+          path: |
+            ${{ runner.temp }}/lean-resources.log
+            ${{ runner.temp }}/blueprint-setup.log
           retention-days: 7
           if-no-files-found: ignore

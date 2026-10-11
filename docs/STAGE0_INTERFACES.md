@@ -24,13 +24,13 @@ NonzeroSurvival sphereAdamsData (2, 128) standardH6Square
 
 Def 固定经典实现、路线模型和共享数学背景，包括实际完成球、HF₂、Milnor 坐标及 tensor/cooperation 比较。`KIP126.Def.standardSphereApplicability` 对这个固定实现陈述实际球塔的 HF₂ nilpotent completeness 和强收敛，证明保留明确的 `sorry`；下游可直接引用其准确陈述。原 Challenge1 的实质义务仍在，但不是 Challenge2 字段。独立 Challenge1、重复 implementation 和相等运输已删除；countable-products 等结构仍来自固定实现。
 
-Challenge2 顶层恰有 `literature` 和 `computation` 两项。`LiteratureInterface` 包含源对象、E∞ 同构选择及其比较的 `bindings`，以及依赖这些对象的 48 条直接数学声明 `results`；`ComputationInterface literature` 包含程序解释的 `bindings`，以及依赖同一文献包和计算绑定的七个顶层 `results` 字段。展开命题结构后，结果层共有 29 条声明；bindings 中另外有 4 条数学比较条件，坐标对象与包装字段不计为定理。固定 E₂ `presentation` 在计算绑定中，路线模型与其 background 则由 Def 预先固定，不再由 Challenge2 另选。Main 在取得同一见证后证明内部适配。`Interface/Solution/Literature/Route/SourceExistence.lean` 单独列出关联来源责任：从 Pstrągowski 的实际球面谱层构造及各项前人结果得到与固定路线相容的来源和文献结论。它不声称这里已经实现其 ∞-site；构造证明仍待补，不含 C、Application、high125 或本文新工具。
+Challenge2 顶层恰有 `literature` 和 `computation` 两项。`LiteratureInterface` 包含源对象、E∞ 同构选择及其比较的 `bindings`，以及依赖这些对象的 48 条直接数学声明 `results`；`ComputationInterface literature` 包含程序解释的 `bindings`，以及依赖同一文献包和计算绑定的七个顶层 `results` 字段。展开命题结构后，结果层共有 29 条声明；bindings 中另外有 4 条数学比较条件，坐标对象与包装字段不计为定理。固定 E₂ `presentation` 在计算绑定中，路线模型与其 background 则由 Def 预先固定，不再由 Challenge2 另选。Main 在取得同一见证后证明内部适配。`Interface/Solution/Literature/Delivery.lean` 构造整个文献交付（`LiteratureInterface`），逐项列出源对象及模型比较的 `bindings` 和同一绑定上的 `results` 的构造责任：从 Pstrągowski 的实际球面谱层构造及各项前人结果得到与固定路线相容的来源和文献结论。它不声称这里已经实现其 ∞-site；构造证明仍待补，不含 C、Application、high125 或本文新工具。
 
 供人工逐项判断的汇总视图见[统一输入清单](challenge-input-inventory.html)。该 HTML 直接读取唯一机器清单 `external-inputs.json`；数学接口仍以 Lean 结构为准。文献结果只登记 `LiteratureResults` 的 48 条直接命题字段，不再登记 `adamsOneLine`、`route` 等包装字段或重复展开父子结构。Challenge2 文件只陈述两项交付，不定义便利转发或证明适配。正文使用的经典 Hopf 微分直接取对应字段；实际需要的路线消费视图由直接字段与 Main 的内部推论组装，未另选输入。E∞ 的三个 νX/有限商页面同构保留在 bindings；全 synthetic 对象的 weight 同构来自固定 Adams 塔构造，自然性在 Main 证明，不作为独立文献输入。BHS 的 λ/ρ 相容性与标签条件保留在 results。导言不再形式化：Adams 一线分类、完整 Hopf 存活 iff、May 低维乘积和平方存活均已删除；`adamsOneLine_other_degree` 的未使用生产声明也已删除。正文使用的 `adamsOneLine_d2` 保留，经典 `theta_5`/`h_5^2`、η/ν 检测和存活输入保留。参数化命题族按一个字段计数，字段内的合取不再拆分。来源、locator、制品和 declaration 对应关系全部在 JSON 中维护，不再编译一份 Lean 来源目录。Blueprint 已为这 48 条分别补写独立数学节点，保留量词、假设、次数和同一 bindings，并直接链接到相应 Lean 字段。唯一 JSON 清单逐条绑定 48 个不同节点；校验读取活跃章节，拒绝共用概述节点或误连字段。Moss 一般输入与 Main 局部应用、BR21 源方程与 Main 计算坐标推论已分开。该绑定不表示来源核验或证明完成；导言专用分类、几何结论及开放问题已移出当前形式化计划。归档文献制品保留作来源记录，不能当作当前 Challenge2 字段清单或已核实的完整外部定理集合。
 
 计算的逐条 Blueprint 清单位于 `blueprint/src/chapters/computed_inputs.tex`，采用与文献清单相同的平面索引：29 条结果声明、4 条绑定比较条件，各自有独立数学节点和实际 Lean 投影链接。该章只保留这 33 条编号陈述；共享定义和示例在 `computation_schema.tex`，Main 内部推导计划在 `near126.tex`，附录转录和输出覆盖审计在 `coverage.tex`。唯一 JSON 清单在七个结果字段下登记具体 statement，在 `computation_binding_statements` 中登记四条比较；校验同时核对实际 Lean 结构的展开、独立节点和所属字段。人工 HTML 清单读取这些记录逐条展示，不再用七个包装字段代表定理条数。原始表中的每行不是额外的独立定理项，普通合取和参数化命题族仍按一条计算。全部节点保留未完成的交付状态；这次对齐不证明实际谱模型上的计算正确性。
 
-附录的 401 条记录和 9 个空带目前是论文转录。实际数据库审计确认：375 条球谱表范围记录由完整 staircase 覆盖，26 条 Cν 表范围记录由选定路线覆盖，九个空带的全部 35 个双次数在完整 E₂ 数据中为空。但这不是 401 条纸面表达式和状态的逐条语义对应：选定切片只包含其中 376 条记录所在的双次数，且程序的有限页到达、未知目标和反证记录仍需表达式识别、线性代数及 Main 的永久存活证明。不能把纸面状态再作为独立外部输入。[本次核查](audits/linprogram-appendix-20261006.md)记录直接输出与内部推论的界线。
+附录的 401 条记录和 9 个空带目前是论文转录。实际数据库审计确认：375 条球谱表范围记录由完整 staircase 覆盖，26 条 Cν 表范围记录由选定路线覆盖，九个空带的全部 35 个双次数在完整 E₂ 数据中为空。但这不是 401 条纸面表达式和状态的逐条语义对应：选定切片只包含其中 376 条记录所在的双次数，且程序的有限页到达、未知目标和反证记录仍需表达式识别、线性代数及 Main 的永久存活证明。不能把纸面状态再作为独立外部输入。
 
 唯一临时阶段公理直接给出 `Main.Axiom.challenge2 : KIP126.Challenge2`；Main 不再经过 `Nonempty` 或 witness choice。生产者不得使用这一消费公理。完整 Challenge2 的构造须让计算包依赖同一文献来源与 Def 固定模型，不能分别选择不相干的模型或来源。固定球谱适用性与分离性是独立的 Def 证明责任。BHS 完成适用性、完成比较和 realization 比较由 `literature.bindings.route` 明确交付；Main 仍须证明一般 Moss 到局部 sphere 结论的特化、全 synthetic weight shift 自然性、Toda 二级运算比较与 ν 来源结论，再同已有来源陈述组装 `routeApplication`。这些未完成证明不能当作文献结果或程序输出。
 
@@ -52,7 +52,7 @@ Challenge2 顶层恰有 `literature` 和 `computation` 两项。`LiteratureInter
 | 有限至无限 | level9000解释为到E1000。非零永久存活还需有限页非零、入微分排除及实际球塔消失线；滤过尾部还需经典分离性。 |
 | 认证 | `CertifiedRealization` 七项是数学证明目标；接收七项证明的组装、从未完成总目标取字段、原始日志存在都不是认证实现。 |
 
-论文主定理§7的逐段需求映射、原始行定位及覆盖状态见[主定理计算依赖对照](audits/main-paper-computation-inventory-20261003.md)，不纳入引言推论或教学示例。`Main/Solution/Computation/Route/Consequences.lean` 与 `Route.lean` 区分基础 C 和内部派生目标。原 `e5_high125_other` 已删除；AF15 与 AF18 的两个非零 d₅ 现有独立精确声明，保留为 Main 证明责任。`Computation/High125.lean` 改用实际 `π_(125,130)`：F15=F25、F26=0、λ¹⁰ 可除性及 λ²⁰G 的两元素穷尽，保留 BHS 比较、来源得到的 G 永久性和分离性前提。相关 Massey、不定性、crossing、候选穷尽和 quotient-lift 条件不能凭表名省略。
+计算覆盖范围限于论文主定理§7，不纳入引言推论或教学示例。`Main/Solution/Computation/Route/Consequences.lean` 与 `Route.lean` 区分基础 C 和内部派生目标。原 `e5_high125_other` 已删除；AF15 与 AF18 的两个非零 d₅ 现有独立精确声明，保留为 Main 证明责任。`Computation/High125.lean` 改用实际 `π_(125,130)`：F15=F25、F26=0、λ¹⁰ 可除性及 λ²⁰G 的两元素穷尽，保留 BHS 比较、来源得到的 G 永久性和分离性前提。相关 Massey、不定性、crossing、候选穷尽和 quotient-lift 条件不能凭表名省略。
 
 ## 来源适用性与内部推导
 

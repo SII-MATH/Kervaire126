@@ -1,10 +1,7 @@
 module
 
+public import KIP126.Main.Solution.Computation.LowDegrees
 public import KIP126.Main.Solution.Route.Section7.Indeterminacy
-public import KIP126.Main.Solution.Route.Section7.LowCsv
-
--- These proofs use the existing private helpers in these modules.
-import all KIP126.Main.Solution.Route.Section7.LowCsv
 
 @[expose] public section
 
@@ -23,8 +20,6 @@ local notation "L" => routeLabels
 local notation "I" => routeComputation
 local notation "η" => routeEta
 local notation "h₀" => routeLiterature.toda.h0
-
-open private full_basis_eta_low from KIP126.Main.Solution.Route.Section7.LowCsv
 
 section ThetaBShuffleProof
 
@@ -47,14 +42,10 @@ variable {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:
 open KIP126.Literature.Route
 open KIP126.LinE2 KIP126.Core.Algebra KIP126.StableHomotopy.Toda
 set_option maxHeartbeats 4000000 in
-private theorem theta_b_shuffle_from_coordinates (D' : Model H M' Syn)
+private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
     (BHS : EInftyInput D') (V:SphereVanishingLine H)
-    (e:E2 H SphereSpectrum 1 2≃ₗ[ℤ] E2At 1 2)
-    (coord:E2 H SphereSpectrum 1 2≃ₗ[ℤ] (BasisIndex 1 2 →₀ F2))
-    (values:∀i:BasisIndex 1 2,(e (coord.symm (Finsupp.single i 1))).val=basisValue (basisRowAt 1 2 i))
-    (coord23:E2 H SphereSpectrum 2 3≃ₗ[ℤ] (BasisIndex 2 3 →₀ F2))
-    (rows12:∀ (r:BasisRow), r∈basisRows → r.s=1 → r.t=2 → r.monomial="1,1")
-    (rows23:∀ (r:BasisRow), r∈basisRows → r.s=2 → r.t=3 → False)
+    (eta_nonzero_unique : ∀ x y : E2 H SphereSpectrum 1 2, x ≠ 0 → y ≠ 0 → x = y)
+    (h23 : Subsingleton (E2 H SphereSpectrum 2 3))
     (h0:BiHom 0 1 (S_0_0:Syn)) (eta:BiHom 1 2 (S_0_0:Syn))
     (hlambda:lambdaMultiply 1 h0=syntheticTwo)
     (theta:BiHom 62 64 (S_0_0:Syn)) (b:BiHom 62 70 (S_0_0:Syn))
@@ -138,74 +129,11 @@ private theorem theta_b_shuffle_from_coordinates (D' : Model H M' Syn)
     rw [sphere_one_three_zero BHS V h23 b] at hb
     simp only [lambdaMultiply,comp_zero] at hb
     exact sub_eq_zero.mp hb.symm
-  have eta_coordinates_nonzero_unique
-   {A:Type v} [AddCommGroup A] [Module ℤ A]
-   (e:A≃ₗ[ℤ] E2At 1 2) (coord:A≃ₗ[ℤ] (BasisIndex 1 2 →₀ F2))
-   (values:∀i:BasisIndex 1 2,(e (coord.symm (Finsupp.single i 1))).val=basisValue (basisRowAt 1 2 i))
-   (rows : ∀ (r : BasisRow), r ∈ basisRows → r.s = 1 → r.t = 2 → r.monomial = "1,1") :
-   ∀f g:A,f≠0→g≠0→f=g := by
-    classical
-    have hi (i:BasisIndex 1 2) : (basisRowAt 1 2 i).monomial="1,1" := by
-      have hm : basisRowAt 1 2 i ∈ basisRows.filter (fun r=>r.s==1 && r.t==2) := by
-        change (basisRows.filter (fun r=>r.s==1 && r.t==2))[i.val] ∈ _
-        exact List.getElem_mem i.isLt
-      obtain ⟨hm,hd⟩:=List.mem_filter.mp hm
-      have hd':(basisRowAt 1 2 i).s=1 ∧ (basisRowAt 1 2 i).t=2 := by simpa using hd
-      exact rows _ hm hd'.1 hd'.2
-    haveI : Subsingleton (BasisIndex 1 2) := ⟨by
-      intro i j
-      have hv : e (coord.symm (Finsupp.single i 1))=e (coord.symm (Finsupp.single j 1)) := by
-        apply Subtype.ext
-        rw [values,values]
-        simp only [basisValue,hi i,hi j]
-      have hs:Finsupp.single i (1:F2)=Finsupp.single j 1 := coord.symm.injective (e.injective hv)
-      by_contra hij
-      have hh:=congrArg (fun f:BasisIndex 1 2 →₀ F2=>f i) hs
-      simpa [Finsupp.single_apply,hij,Ne.symm hij] using hh⟩
-    intro f g hf hg
-    have hfn:coord f≠0 := by intro h; exact hf (coord.injective (h.trans (map_zero coord).symm))
-    obtain ⟨i,hi⟩ : ∃ i, coord f i ≠ 0 := by
-      by_contra h
-      push_neg at h
-      exact hfn (Finsupp.ext h)
-    have hc (a:A) (ha:a≠0) : coord a i=1 := by
-      generalize h:coord a i=c
-      fin_cases c
-      · exfalso
-        apply ha
-        apply coord.injective
-        ext j
-        have hj:j=i:=Subsingleton.elim _ _
-        subst j
-        simpa using h
-      · rfl
-    apply coord.injective
-    ext j
-    have hj:j=i:=Subsingleton.elim _ _
-    subst j
-    rw [hc f hf,hc g hg]
-  have eta_next_coordinates_zero
-   {A:Type v} [AddCommGroup A] [Module ℤ A]
-   (coord:A≃ₗ[ℤ] (BasisIndex 2 3 →₀ F2))
-   (rows:∀ (r : BasisRow), r ∈ basisRows → r.s = 2 → r.t = 3 → False) : Subsingleton A := by
-    haveI : IsEmpty (BasisIndex 2 3) := ⟨by
-      intro i
-      have hm:basisRowAt 2 3 i ∈ basisRows.filter (fun r=>r.s==2 && r.t==3) := by
-        exact List.getElem_mem i.isLt
-      obtain ⟨hm,hd⟩:=List.mem_filter.mp hm
-      have hd':(basisRowAt 2 3 i).s=2 ∧ (basisRowAt 2 3 i).t=3 := by simpa using hd
-      exact rows _ hm hd'.1 hd'.2⟩
-    exact Function.Injective.subsingleton coord.injective
-  have eta_unique_from_coordinates (BHS : EInftyInput D')
+  have eta_unique_from_low_degrees (BHS : EInftyInput D')
       (V:SphereVanishingLine H)
-      (e:E2 H SphereSpectrum 1 2≃ₗ[ℤ] E2At 1 2)
-      (coord:E2 H SphereSpectrum 1 2≃ₗ[ℤ] (BasisIndex 1 2 →₀ F2))
-      (values:∀i:BasisIndex 1 2,(e (coord.symm (Finsupp.single i 1))).val=basisValue (basisRowAt 1 2 i))
-      (coord23:E2 H SphereSpectrum 2 3≃ₗ[ℤ] (BasisIndex 2 3 →₀ F2))
-      (rows12:∀ (r : BasisRow), r ∈ basisRows → r.s = 1 → r.t = 2 → r.monomial = "1,1")
-      (rows23:∀ (r : BasisRow), r ∈ basisRows → r.s = 2 → r.t = 3 → False) :
+      (eta_nonzero_unique : ∀ x y : E2 H SphereSpectrum 1 2, x ≠ 0 → y ≠ 0 → x = y)
+      (h23 : Subsingleton (E2 H SphereSpectrum 2 3)) :
       ∀x y:BiHom 1 2 (S_0_0:Syn),x≠0→y≠0→x=y := by
-    let h23:=eta_next_coordinates_zero coord23 rows23
     have hi:=eta_first_quotient_injective BHS V h23
     let f:=fun z:BiHom 1 2 (S_0_0:Syn)=>D'.sphereFirstQuotient 1 2 (quotientClass 1 z)
     have hf:Function.Injective f:=(D'.sphereFirstQuotient 1 2).injective.comp hi
@@ -216,7 +144,7 @@ private theorem theta_b_shuffle_from_coordinates (D' : Model H M' Syn)
       apply hf
       simpa only [f,quotientClass,zero_comp,map_zero] using hh
     apply hf
-    exact eta_coordinates_nonzero_unique e coord values rows12 _ _ (hn x hx) (hn y hy)
+    exact eta_nonzero_unique _ _ (hn x hx) (hn y hy)
   have two_shuffle
       {X Y W : Syn} (f : X ⟶ Y) (b : Y ⟶ W)
       (hf : f+f=0) (hb : b+b=0)
@@ -687,7 +615,7 @@ private theorem theta_b_shuffle_from_coordinates (D' : Model H M' Syn)
   letI:=D'.syntheticTriangulated
   letI:=D'.shiftCommShift (62,70)
   letI:=D'.shiftExact (62,70)
-  have huq:=eta_unique_from_coordinates BHS V e coord values coord23 rows12 rows23
+  have huq:=eta_unique_from_low_degrees BHS V eta_nonzero_unique h23
   have hd:=theta_b_shuffle_double D'.shiftCoherence huq eta theta b htheta hb z hz hv
   have ht:sphereAction syntheticTwo z=z+z := by
     dsimp only [sphereAction]
@@ -719,12 +647,10 @@ theorem theta_b_multiplied_shuffle
     lambdaMultiply 2 (sphereProduct h₀ z) =
       lambdaMultiply 3 (sphereProduct η (sphereProduct theta b)) := by
   have horder := KIP126.Computation.Route.theta5_choice_order_two routeLiterature I theta htheta
-  exact theta_b_shuffle_from_coordinates D routeLiterature.synthetic.eInfty sphereVanishing
-    (computation.bindings.presentation.comparison 1 2 (by decide)).symm
-    (computation.results.sphereBasis.coordinates 1 2 (by decide))
-    (computation.results.sphereBasis.csv_values 1 2 (by decide))
-    (computation.results.sphereBasis.coordinates 2 3 (by decide))
-    full_basis_eta_low.1 full_basis_eta_low.2 h₀ η routeLiterature.toda.lambda_h0
+  exact theta_b_shuffle_from_low_degrees D routeLiterature.synthetic.eInfty sphereVanishing
+    (KIP126.Main.Solution.Computation.sphere_eta_nonzero_unique KIP126.Main.StageInput.witness)
+    (KIP126.Main.Solution.Computation.sphere_e2_two_three_subsingleton KIP126.Main.StageInput.witness)
+    h₀ η routeLiterature.toda.lambda_h0
     theta b horder
     (KIP126.Computation.Route.two_torsion_62_70 routeLiterature I sphereVanishing b)
     z hz (routeLiterature.toda.symmetric_two theta horder)

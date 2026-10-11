@@ -1,7 +1,0 @@
- M docs/STAGE0_INTERFACES.md
- M docs/audits/stage0-correction-20261003.md
-?? Proof-Workflow/
-?? core.18
-?? docs/audits/h6-square-proof-explorer/
-?? docs/audits/local-build-20261004/
-?? tools/

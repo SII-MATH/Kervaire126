@@ -1,13 +1,12 @@
 module
 
+public import KIP126.Main.Solution.Computation.LowDegrees
 public import KIP126.Main.Solution.Route.Section7.ThetaMassey
 public import KIP126.Main.Solution.Route.Section7.ThetaNoCrossing
-public import KIP126.Main.Solution.Route.Section7.LowCsv
 public import KIP126.Main.Solution.Computation.Lambda
 
 -- These proofs use the existing private helpers in these modules.
 import all KIP126.Main.Solution.Route.Section7.ThetaMassey
-import all KIP126.Main.Solution.Route.Section7.LowCsv
 
 -- The CSV proofs explicitly unfold these string/list implementations.
 import all Init.Data.String.Legacy
@@ -33,7 +32,6 @@ local notation "η" => routeEta
 local notation "h₀" => routeLiterature.toda.h0
 
 open private h5_square_times_entire_770_zero from KIP126.Main.Solution.Route.Section7.ThetaMassey
-open private full_basis_zero_unique from KIP126.Main.Solution.Route.Section7.LowCsv
 
 section ThetaBSyntheticProof
 
@@ -62,15 +60,12 @@ open CategoryTheory.MonoidalCategory KIP126.StableHomotopy.Toda
 attribute [local irreducible] homogeneousPart
 
 set_option maxHeartbeats 8000000 in
-private theorem theta_b_complete_from_coordinates
+private theorem theta_b_complete_from_low_degrees
  {L':Labels H} {G:TmfLabels H} {etaThetaB:BiHom 1 2 (S_0_0:Syn)}
  (A:KIP126.Literature.Route.Inputs D' etaThetaB G) (I':KIP126.Computation.Route.Inputs D' L' G)
  (V:SphereVanishingLine H)
  (algebra:AlgebraData D') (qb:QuotientAlgebraBinding D' algebra) (ab:AlgebraBinding D' algebra)
- (e:E2 H SphereSpectrum 0 0≃ₗ[ℤ] E2At 0 0)
- (coord:E2 H SphereSpectrum 0 0≃ₗ[ℤ] (BasisIndex 0 0 →₀ F2))
- (values:∀i:BasisIndex 0 0,(e (coord.symm (Finsupp.single i 1))).val=basisValue (basisRowAt 0 0 i))
- (rows : ∀ (r : BasisRow), r ∈ basisRows → r.s = 0 → r.t = 0 → r.monomial = "")
+ (zero_nonzero_unique : ∀ x y : E2 H SphereSpectrum 0 0, x ≠ 0 → y ≠ 0 → x = y)
  (hall:∀a:E2 H SphereSpectrum 7 70,
    Sphere.Internal.product H M' (s:=2) (t:=64) (s':=7) (t':=70) (Sphere.Internal.hiSquare H M' 5) a=0)
  (theta:BiHom 62 64 (S_0_0:Syn)) (htheta:ThetaChoice M' D'.toModelData theta) :
@@ -770,57 +765,8 @@ private theorem theta_b_complete_from_coordinates
         (D'.sphereFirstQuotient 1 64 u) (D'.sphereFirstQuotient 8 70 (quotientClass 1 b)) at hm
     rw [hul] at hm
     exact hm
-  have zero_coordinates_nonzero_unique
-   {A:Type v} [AddCommGroup A] [Module ℤ A]
-   (e:A≃ₗ[ℤ] E2At 0 0) (coord:A≃ₗ[ℤ] (BasisIndex 0 0 →₀ F2))
-   (values:∀i:BasisIndex 0 0,(e (coord.symm (Finsupp.single i 1))).val=basisValue (basisRowAt 0 0 i))
-   (rows : ∀ (r : BasisRow), r ∈ basisRows → r.s = 0 → r.t = 0 → r.monomial = "") :
-   ∀f g:A,f≠0→g≠0→f=g := by
-    classical
-    have hi (i:BasisIndex 0 0) : (basisRowAt 0 0 i).monomial="" := by
-      have hm : basisRowAt 0 0 i ∈ basisRows.filter (fun r=>r.s==0 && r.t==0) := by
-        change (basisRows.filter (fun r=>r.s==0 && r.t==0))[i.val] ∈ _
-        exact List.getElem_mem i.isLt
-      obtain ⟨hm,hd⟩:=List.mem_filter.mp hm
-      have hd':(basisRowAt 0 0 i).s=0 ∧ (basisRowAt 0 0 i).t=0 := by simpa using hd
-      exact rows _ hm hd'.1 hd'.2
-    haveI : Subsingleton (BasisIndex 0 0) := ⟨by
-      intro i j
-      have hv : e (coord.symm (Finsupp.single i 1))=e (coord.symm (Finsupp.single j 1)) := by
-        apply Subtype.ext
-        rw [values,values]
-        simp only [basisValue,hi i,hi j]
-      have hs:Finsupp.single i (1:F2)=Finsupp.single j 1 := coord.symm.injective (e.injective hv)
-      by_contra hij
-      have hh:=congrArg (fun f:BasisIndex 0 0 →₀ F2=>f i) hs
-      simpa [Finsupp.single_apply,hij,Ne.symm hij] using hh⟩
-    intro f g hf hg
-    have hfn:coord f≠0 := by intro h; exact hf (coord.injective (h.trans (map_zero coord).symm))
-    obtain ⟨i,hi⟩ : ∃ i, coord f i ≠ 0 := by
-      by_contra h
-      push_neg at h
-      exact hfn (Finsupp.ext h)
-    have hc (a:A) (ha:a≠0) : coord a i=1 := by
-      generalize h:coord a i=c
-      fin_cases c
-      · exfalso
-        apply ha
-        apply coord.injective
-        ext j
-        have hj:j=i:=Subsingleton.elim _ _
-        subst j
-        simpa using h
-      · rfl
-    apply coord.injective
-    ext j
-    have hj:j=i:=Subsingleton.elim _ _
-    subst j
-    rw [hc f hf,hc g hg]
   have zero_hom_nonzero_unique (D':Model H M' Syn)
-   (e:E2 H SphereSpectrum 0 0≃ₗ[ℤ] E2At 0 0)
-   (coord:E2 H SphereSpectrum 0 0≃ₗ[ℤ] (BasisIndex 0 0 →₀ F2))
-   (values:∀i:BasisIndex 0 0,(e (coord.symm (Finsupp.single i 1))).val=basisValue (basisRowAt 0 0 i))
-   (rows : ∀ (r : BasisRow), r ∈ basisRows → r.s = 0 → r.t = 0 → r.monomial = "") :
+   (zero_nonzero_unique : ∀ x y : E2 H SphereSpectrum 0 0, x ≠ 0 → y ≠ 0 → x = y) :
    ∀f g:(S_0_0:Syn)⟶XModLambdaN (S_0_0:Syn) 1,f≠0→g≠0→f=g := by
     intro f g hf hg
     have hn (x:(S_0_0:Syn)⟶XModLambdaN (S_0_0:Syn) 1) (hx:x≠0) :
@@ -832,7 +778,7 @@ private theorem theta_b_complete_from_coordinates
       simpa only [Limits.comp_zero,map_zero] using h
     apply (cancel_epi (SyntheticCategory.biShift_zero.hom.app (S_0_0:Syn))).mp
     apply (D'.sphereFirstQuotient 0 0).injective
-    exact zero_coordinates_nonzero_unique e coord values rows _ _ (hn f hf) (hn g hg)
+    exact zero_nonzero_unique _ _ (hn f hf) (hn g hg)
   have sphere_first_label_transport {D' : Model H M' Syn} (s t : ℤ)
       (x : E2 H SphereSpectrum s t) :
       D'.sphereFirstQuotient s t
@@ -1453,7 +1399,7 @@ private theorem theta_b_complete_from_coordinates
       (h6b_nonzero_from_inputs I'),htoda⟩
   obtain ⟨b,z,hb,hz⟩:=synthetic_theta_b_first_label_bracket A I' V theta htheta
   obtain ⟨q,hq,hql⟩:=theta_b_algebra_toda_candidate I' algebra qb ab A.may.toMayContext
-    (zero_hom_nonzero_unique D' e coord values rows) A.toda.h0 theta A.toda.h0_label
+    (zero_hom_nonzero_unique D' zero_nonzero_unique) A.toda.h0 theta A.toda.h0_label
     htheta A.toda.lambda_h0 (theta5_choice_order_two A I' theta htheta) b
   let src:=tripleTodaSource (Syn:=Syn) 62 64 0 0 62 70
   let F:=SyntheticCategory.biShift (Syn:=Syn) (62,70)
@@ -1500,13 +1446,11 @@ theorem synthetic_theta_b_toda
       (z : BiHom 125 134 (S_0_0 : KIP126.Def.standardRouteInput.Syn)),
       SphereDetected D 8 70 0 eB b ∧ SphereDetected D 9 134 0 eH6B z ∧
       TripleToda theta syntheticTwo b z := by
-  exact theta_b_complete_from_coordinates routeLiterature I sphereVanishing
+  exact theta_b_complete_from_low_degrees routeLiterature I sphereVanishing
     literature.bindings.route.algebra literature.bindings.route.quotientBinding
     literature.bindings.route.algebraBinding
-    (computation.bindings.presentation.comparison 0 0 (by decide)).symm
-    (computation.results.sphereBasis.coordinates 0 0 (by decide))
-    (computation.results.sphereBasis.csv_values 0 0 (by decide))
-    full_basis_zero_unique (h5_square_times_entire_770_zero I) theta htheta
+    (KIP126.Main.Solution.Computation.sphere_zero_nonzero_unique KIP126.Main.StageInput.witness)
+    (h5_square_times_entire_770_zero I) theta htheta
 
 
 end

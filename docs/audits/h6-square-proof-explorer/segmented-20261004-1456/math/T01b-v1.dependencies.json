@@ -1,6 +1,0 @@
-{
-  "task_id": "T01b",
-  "version": "v1",
-  "dependencies": [],
-  "reason": "仅实例化审定T01a-v1的比较公式和强收敛，不新增外部命题。"
-}

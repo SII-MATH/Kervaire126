@@ -1,8 +1,0 @@
-{
-  "path": "core.19",
-  "size": 12230656,
-  "created_after_initial_baseline": true,
-  "process_from_ELF_PRPSINFO": "chrome-headless",
-  "reason": "本次初始沙箱Chromium失败产生的core；移除意外调试产物，既有core.18保留。",
-  "action": "removed"
-}

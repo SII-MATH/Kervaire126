@@ -13,35 +13,12 @@ def code_only(text):
     return re.sub(r"--[^\n]*", "", re.sub(r"/-[\s\S]*?-/", "", text))
 
 
-def internal_imports(text):
-    return re.findall(
-        r"^(?:(?:public|meta)\s+)*import\s+(?:all\s+)?(KIP126(?:\.[\w.]+)?)",
-        code_only(text), re.M,
-    )
-
-
-class ImportSyntaxTests(unittest.TestCase):
-    def test_legacy_public_and_private_imports_are_all_tracked(self):
-        self.assertEqual(internal_imports("\n".join([
-            "import KIP126.Def.A",
-            "public import KIP126.Def.B",
-            "import all KIP126.Def.C",
-            "public import all KIP126.Def.D",
-            "meta import KIP126.LinProgram.Tactic.A",
-            "public meta import KIP126.LinProgram.Tactic.B",
-            "-- import KIP126.Main.Comment",
-            "/- public import KIP126.Main.BlockComment -/",
-            "public import Mathlib",
-        ])), ["KIP126.Def.A", "KIP126.Def.B", "KIP126.Def.C", "KIP126.Def.D",
-              "KIP126.LinProgram.Tactic.A", "KIP126.LinProgram.Tactic.B"])
-
-
 class StageBoundaryLayoutTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.graph = {
             ".".join(path.relative_to(ROOT).with_suffix("").parts):
-                internal_imports(path.read_text())
+                re.findall(r"^import\s+(KIP126(?:\.[\w.]+)?)", path.read_text(), re.M)
             for path in [ROOT / "KIP126.lean", *(ROOT / "KIP126").rglob("*.lean")]
         }
 

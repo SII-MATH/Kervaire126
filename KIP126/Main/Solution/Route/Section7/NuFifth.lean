@@ -1,5 +1,6 @@
 module
 
+public import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
 public import KIP126.Main.Solution.Route.Section7.Common
 public import KIP126.Main.Solution.Computation.Route
 public import KIP126.Main.Solution.Tools.GeneralizedMahowald
@@ -71,51 +72,7 @@ private theorem nu_three_actual_relation_and_unique
   have differential_target_later_zero {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r t : ℤ} {p q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
       (hr0 : E.r₀ ≤ r) (hrt : r < t)
       (h : HasDifferential E r p q x y) : RepresentsOnPage E t q y 0 := by
-    obtain ⟨rfl, xr, yr, hx, hy, hd⟩ := h
-    simp only [eqToHom_refl, Category.comp_id] at hd
-    obtain ⟨hr, z, hz2, hzr⟩ := hy
-    let A := E.ssData (p + E.diffDeg r)
-    let n : ℕ := (r-E.r₀).toNat
-    let n₀ : WithTop ℕ := ↑(2-E.r₀).toNat
-    let m : WithTop ℕ := ↑(t-E.r₀).toNat
-    have hnm : (↑(n+1) : WithTop ℕ) ≤ m := by
-      dsimp only [n,m]
-      exact_mod_cast (show (r-E.r₀).toNat+1 ≤ (t-E.r₀).toNat by omega)
-    have hn0 : n₀ ≤ ↑n := by
-      dsimp only [n₀,n]
-      exact_mod_cast (show (2-E.r₀).toNat ≤ (r-E.r₀).toNat by omega)
-    have hn1 : (↑n : WithTop ℕ) ≤ ↑(n+1) := by exact_mod_cast Nat.le_succ n
-    have hdmem : yr ∈ LinearMap.range (E.d r p).hom := ⟨xr, hd⟩
-    rw [← subobjectModule_image, E.B_succ r p hr0, subobjectModule_image] at hdmem
-    obtain ⟨b, hb⟩ := hdmem
-    let j := Subobject.ofLE (A.B ↑(n+1)) (A.Z ↑n)
-      ((A.B_le_Z _).trans (A.Z_anti hn1))
-    have hb' : A.pageπ ↑n (j b) = yr := hb
-    have hdif : A.pageπ ↑n (z-j b) = 0 := by rw [map_sub, hzr, hb', sub_self]
-    have hmem := (subobject_cokernel_π_eq_zero_iff (A.B ↑n) (A.Z ↑n) (A.B_le_Z _) _).mp hdif
-    have hmem' := (ModuleCat.subobjectModule A.V).monotone (A.B_mono hn1) hmem
-    have hj : (A.Z ↑n).arrow (j b) ∈ (ModuleCat.subobjectModule A.V) (A.B ↑(n+1)) := by
-      change (j ≫ (A.Z ↑n).arrow) b ∈ _
-      dsimp only [j]
-      rw [Subobject.ofLE_arrow]
-      exact ⟨b,rfl⟩
-    have hzmem := ((ModuleCat.subobjectModule A.V) (A.B ↑(n+1))).add_mem hmem' hj
-    rw [map_sub, sub_add_cancel] at hzmem
-    obtain ⟨b', hb'⟩ := hzmem
-    let i := Subobject.ofLE (A.B ↑(n+1)) (A.Z m) ((A.B_mono hnm).trans (A.B_le_Z _))
-    refine ⟨by omega, i b', ?_, ?_⟩
-    · have he : (Subobject.ofLE (A.Z m) (A.Z n₀) (A.Z_anti (hn0.trans (hn1.trans hnm))))
-          (i b') = (Subobject.ofLE (A.Z ↑n) (A.Z n₀) (A.Z_anti hn0)) z := by
-        apply (ModuleCat.mono_iff_injective (A.Z n₀).arrow).mp inferInstance
-        change (i ≫ Subobject.ofLE (A.Z m) (A.Z n₀) _ ≫ (A.Z n₀).arrow) b' =
-          (Subobject.ofLE (A.Z ↑n) (A.Z n₀) _ ≫ (A.Z n₀).arrow) z
-        simpa only [Category.assoc, i, Subobject.ofLE_arrow] using hb'
-      exact (congrArg (fun v => A.pageπ n₀ v) he).trans hz2
-    · apply (subobject_cokernel_π_eq_zero_iff (A.B m) (A.Z m) (A.B_le_Z _) _).mpr
-      change (i ≫ (A.Z m).arrow) b' ∈ _
-      dsimp only [i]
-      rw [Subobject.ofLE_arrow]
-      exact (ModuleCat.subobjectModule A.V).monotone (A.B_mono hnm) ⟨b',rfl⟩
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_later_zero hr0 hrt h
   have boundary_of_zero_representative {H : Mod2EilenbergMacLane (C:=C)} {X : C}
       {r : ℤ} {p : ℤ×ℤ} {x : Ambient H X p}
       (hx : RepresentsOnPage (adamsTowerInternalSpectralSequence H.unit X) r p x 0) :
@@ -1118,9 +1075,7 @@ private theorem nu_three_actual_relation_and_unique
   have y_basis_label {D' : Model H M' Syn} (I' : Inputs D' L' G) :
       I'.realization.sphere 11 136 KIP126.Computation.Near126.Y=I'.realization.basis .sphere 11 136 3 := by
     have hc := I'.csv (⟨.sphere,11,136,["69,1,89,1","1,1,389,1","1,1,388,1","0,2,391,1","0,3,375,1"]⟩ : Raw.Degree) (by
-      unfold Raw.degrees
-      iterate 192 apply List.mem_cons_of_mem
-      exact List.mem_cons_self) rfl
+      exact List.mem_of_getElem? (i := 192) (by rfl)) rfl
     obtain ⟨z,hz,he⟩ := hc (3:Fin 5)
     have heq : KIP126.Computation.Near126.Y=z := by
       apply Subtype.ext
@@ -1358,25 +1313,7 @@ private theorem nu_three_actual_relation_and_unique
           (D'.family.functor.obj (XModLambdaN (S_0_0 : Syn) q)).ssData (s,t,t-k) ↑(2-2:ℤ).toNat) _
   have represents_unique {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p} {a b : E.Page r p}
       (ha : RepresentsOnPage E r p x a) (hb : RepresentsOnPage E r p x b) : a = b := by
-    obtain ⟨hr, z, hz, hza⟩ := ha
-    obtain ⟨_, z', hz', hzb⟩ := hb
-    let D' := E.ssData p
-    let n : WithTop ℕ := ↑(2 - E.r₀).toNat
-    let m : WithTop ℕ := ↑(r - E.r₀).toNat
-    have hnm : n ≤ m := by
-      dsimp only [n, m]
-      exact_mod_cast (show (2-E.r₀).toNat ≤ (r-E.r₀).toNat by omega)
-    apply sub_eq_zero.mp
-    rw [← hza, ← hzb, ← map_sub]
-    apply (subobject_cokernel_π_eq_zero_iff (D'.B m) (D'.Z m) (D'.B_le_Z m) _).mpr
-    have heq : D'.pageπ n ((Subobject.ofLE _ _ (D'.Z_anti hnm)) (z-z')) = 0 := by
-      change (Subobject.ofLE _ _ (D'.Z_anti hnm) ≫ D'.pageπ n) (z-z') = 0
-      rw [map_sub, hz, hz', sub_self]
-    have hh := (subobject_cokernel_π_eq_zero_iff (D'.B n) (D'.Z n) (D'.B_le_Z n) _).mp heq
-    have he : (D'.Z n).arrow ((Subobject.ofLE _ _ (D'.Z_anti hnm)) (z-z')) =
-        (D'.Z m).arrow (z-z') := ConcreteCategory.congr_hom (Subobject.ofLE_arrow (D'.Z_anti hnm)) _
-    rw [he] at hh
-    exact (ModuleCat.subobjectModule D'.V).monotone (D'.B_mono hnm) hh
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_unique ha hb
   have represents_zero_iff_boundary {H : Mod2EilenbergMacLane (C:=C)} (X : C) (r : ℤ) (hr : 2≤r)
       (p : ℤ×ℤ) (x : PageRepresentatives.Ambient H X p) :
       RepresentsOnPage (adamsTowerInternalSpectralSequence H.unit X) r p x 0 ↔
@@ -1511,15 +1448,11 @@ private theorem nu_three_actual_relation_and_unique
       have hjs : j=9 ∨ j=10 := by omega
       rcases hjs with rfl|rfl
       · obtain ⟨e,_⟩ := I'.basis ⟨.sphere,9,131,[]⟩ (by
-          unfold Raw.degrees
-          iterate 170 apply List.mem_cons_of_mem
-          exact List.mem_cons_self)
+          exact List.mem_of_getElem? (i := 170) (by rfl))
         change E2 H SphereSpectrum 9 131 ≃ₗ[ℤ] (Fin 0 →₀ F2) at e
         exact e.injective.subsingleton
       · obtain ⟨e,_⟩ := I'.basis ⟨.sphere,10,132,[]⟩ (by
-          unfold Raw.degrees
-          iterate 179 apply List.mem_cons_of_mem
-          exact List.mem_cons_self)
+          exact List.mem_of_getElem? (i := 179) (by rfl))
         change E2 H SphereSpectrum 10 132 ≃ₗ[ℤ] (Fin 0 →₀ F2) at e
         exact e.injective.subsingleton
     haveI := hc
@@ -1737,9 +1670,7 @@ private theorem nu_three_actual_relation_and_unique
   have nu_x_label {D' : Model H M' Syn} (I' : Inputs D' L' G) :
       I'.realization.sphere 8 130 (X) = I'.realization.basis .sphere 8 130 0 := by
     have hc := I'.csv (⟨.sphere,8,130,["1,1,323,1"]⟩ : Raw.Degree) (by
-      unfold Raw.degrees
-      iterate 158 apply List.mem_cons_of_mem
-      exact List.mem_cons_self) rfl
+      exact List.mem_of_getElem? (i := 158) (by rfl)) rfl
     obtain ⟨z,hz,he⟩ := hc (0:Fin 1)
     have heq : (X)=z := by
       apply Subtype.ext
@@ -1777,9 +1708,7 @@ private theorem nu_three_actual_relation_and_unique
     have frame : ∀ z : PageRepresentatives.CycleQuotient H SphereSpectrum 3 1 (8,130),
         z=0 ∨ z=NestedQuotient.projection _ _ c := by
       obtain ⟨e,he⟩ := I'.basis ⟨.sphere,8,130,["1,1,323,1"]⟩ (by
-        unfold Raw.degrees
-        iterate 158 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (i := 158) (by rfl))
       change E2 H SphereSpectrum 8 130 ≃ₗ[ℤ] (Fin 1 →₀ F2) at e
       have hb : e.symm (Finsupp.single (0:Fin 1) 1)=I'.realization.sphere 8 130 X := by
         rw [nu_x_label I']
@@ -2398,53 +2327,11 @@ private theorem nu_five_of_three
     NuExtension5 D' (I'.realization.sphere 8 130 X) (I'.realization.sphere 11 136 Y) nu := by
   have represents_unique {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {a b : E.Page r p}
       (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a) (hb : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x b) : a = b := by
-    obtain ⟨hr, z, hz, hza⟩ := ha
-    obtain ⟨_, z', hz', hzb⟩ := hb
-    let D' := E.ssData p
-    let n : WithTop ℕ := ↑(2 - E.r₀).toNat
-    let m : WithTop ℕ := ↑(r - E.r₀).toNat
-    have hnm : n ≤ m := by
-      dsimp only [n, m]
-      exact_mod_cast (show (2-E.r₀).toNat ≤ (r-E.r₀).toNat by omega)
-    apply sub_eq_zero.mp
-    rw [← hza, ← hzb, ← map_sub]
-    apply (subobject_cokernel_π_eq_zero_iff (D'.B m) (D'.Z m) (D'.B_le_Z m) _).mpr
-    have heq : D'.pageπ n ((Subobject.ofLE _ _ (D'.Z_anti hnm)) (z-z')) = 0 := by
-      change (Subobject.ofLE _ _ (D'.Z_anti hnm) ≫ D'.pageπ n) (z-z') = 0
-      rw [map_sub, hz, hz', sub_self]
-    have hh := (subobject_cokernel_π_eq_zero_iff (D'.B n) (D'.Z n) (D'.B_le_Z n) _).mp heq
-    have he : (D'.Z n).arrow ((Subobject.ofLE _ _ (D'.Z_anti hnm)) (z-z')) =
-        (D'.Z m).arrow (z-z') := ConcreteCategory.congr_hom (Subobject.ofLE_arrow (D'.Z_anti hnm)) _
-    rw [he] at hh
-    exact (ModuleCat.subobjectModule D'.V).monotone (D'.B_mono hnm) hh
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_unique ha hb
   have represents_d_zero_of_later {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
       {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a)
       (ht : KIP126.Core.SpectralSequence.ReachesPage E t p x) : E.d r p a = 0 := by
-    obtain ⟨b, ht2, z, hz, _⟩ := ht
-    let D' := E.ssData p
-    let nt : WithTop ℕ := ↑(t-E.r₀).toNat
-    let nr : WithTop ℕ := ↑(r-E.r₀).toNat
-    let ns : WithTop ℕ := ↑((r-E.r₀).toNat+1)
-    have hrs : nr ≤ ns := by
-      dsimp only [nr, ns]
-      exact_mod_cast (show (r-E.r₀).toNat ≤ (r-E.r₀).toNat+1 by omega)
-    have hst : ns ≤ nt := by
-      dsimp only [ns, nt]
-      exact_mod_cast (show (r-E.r₀).toNat+1 ≤ (t-E.r₀).toNat by omega)
-    let zr := (Subobject.ofLE (D'.Z nt) (D'.Z nr) (D'.Z_anti (hrs.trans hst))) z
-    have hrep : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x (D'.pageπ nr zr) := by
-      refine ⟨ha.1, zr, ?_, rfl⟩
-      dsimp only [zr]
-      rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
-      exact hz
-    rw [represents_unique ha hrep]
-    change D'.pageπ nr zr ∈ LinearMap.ker (E.d r p).hom
-    rw [← subobjectModule_kernel, E.Z_succ r p hr0, subobjectModule_image]
-    refine ⟨(Subobject.ofLE (D'.Z nt) (D'.Z ns) (D'.Z_anti hst)) z, ?_⟩
-    change (Subobject.ofLE (D'.Z ns) (D'.Z nr) (D'.Z_anti hrs) ≫ D'.pageπ nr)
-      ((Subobject.ofLE (D'.Z nt) (D'.Z ns) (D'.Z_anti hst)) z) = D'.pageπ nr zr
-    rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
-    rfl
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_d_zero_of_later hr0 hrt ha ht
   have next_projection_zero_iff_incoming 
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
       (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
@@ -2455,112 +2342,23 @@ private theorem nu_five_of_three
           (by exact_mod_cast Nat.le_succ (r-E.r₀).toNat)) ≫
             (E.ssData (p+E.diffDeg r)).pageπ ↑(r-E.r₀).toNat) z ∈
           LinearMap.range (E.d r p).hom := by
-    let D' := E.ssData (p+E.diffDeg r)
-    let n := (r-E.r₀).toNat
-    have hnm : (↑n : WithTop ℕ) ≤ ↑(n+1) := by exact_mod_cast Nat.le_succ n
-    let i := Subobject.ofLE (D'.Z ↑(n+1)) (D'.Z ↑n) (D'.Z_anti hnm)
-    let j := Subobject.ofLE (D'.B ↑(n+1)) (D'.Z ↑n)
-      ((D'.B_le_Z _).trans (D'.Z_anti hnm))
-    rw [← subobjectModule_image, E.B_succ r p hr, subobjectModule_image]
-    change D'.pageπ ↑(n+1) z = 0 ↔ (i ≫ D'.pageπ ↑n) z ∈ LinearMap.range (j ≫ D'.pageπ ↑n).hom
-    constructor
-    · intro hz
-      obtain ⟨v, hv⟩ := (cokernel_π_eq_zero_iff_mem_range
-        (Subobject.ofLE (D'.B ↑(n+1)) (D'.Z ↑(n+1)) (D'.B_le_Z _)) z).mp hz
-      refine ⟨v, ?_⟩
-      rw [← hv]
-      change (j ≫ D'.pageπ ↑n) v =
-        ((Subobject.ofLE (D'.B ↑(n+1)) (D'.Z ↑(n+1)) (D'.B_le_Z _)) ≫ i ≫ D'.pageπ ↑n) v
-      congr 2
-      dsimp only [i,j]
-      rw [← Category.assoc, Subobject.ofLE_comp_ofLE]
-    · rintro ⟨v, hv⟩
-      apply (subobject_cokernel_π_eq_zero_iff (D'.B ↑(n+1)) (D'.Z ↑(n+1)) (D'.B_le_Z _) z).mpr
-      have hz : D'.pageπ ↑n (i z-j v) = 0 := by
-        rw [map_sub]
-        exact sub_eq_zero.mpr hv.symm
-      have hb := (subobject_cokernel_π_eq_zero_iff (D'.B ↑n) (D'.Z ↑n) (D'.B_le_Z _) _).mp hz
-      have hb' := (ModuleCat.subobjectModule D'.V).monotone (D'.B_mono hnm) hb
-      have hv' : (D'.Z ↑n).arrow (j v) ∈ (ModuleCat.subobjectModule D'.V) (D'.B ↑(n+1)) := by
-        change (j ≫ (D'.Z ↑n).arrow) v ∈ _
-        dsimp only [j]
-        rw [Subobject.ofLE_arrow]
-        exact ⟨v, rfl⟩
-      have hh := ((ModuleCat.subobjectModule D'.V) (D'.B ↑(n+1))).add_mem hb' hv'
-      rw [map_sub, sub_add_cancel] at hh
-      change (i ≫ (D'.Z ↑n).arrow) z ∈ _ at hh
-      dsimp only [i] at hh
-      rwa [Subobject.ofLE_arrow] at hh
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.next_projection_zero_iff_incoming E r hr p z
   have represents_before 
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r t : ℤ} {p : ℤ × ℤ}
       {x : E.Page 2 p} {xt : E.Page t p}
       (hr : 2 ≤ r) (hrt : r ≤ t) (ht : KIP126.Core.SpectralSequence.RepresentsOnPage E t p x xt) :
       ∃ xr, KIP126.Core.SpectralSequence.RepresentsOnPage E r p x xr := by
-    obtain ⟨_, z, hz, _⟩ := ht
-    let D' := E.ssData p
-    have hrt' : (↑(r-E.r₀).toNat : WithTop ℕ) ≤ ↑(t-E.r₀).toNat := by
-      exact_mod_cast (show (r-E.r₀).toNat ≤ (t-E.r₀).toNat by omega)
-    let zr := (Subobject.ofLE (D'.Z ↑(t-E.r₀).toNat) (D'.Z ↑(r-E.r₀).toNat) (D'.Z_anti hrt')) z
-    refine ⟨D'.pageπ _ zr, hr, zr, ?_, rfl⟩
-    dsimp only [zr]
-    rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
-    exact hz
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_before hr hrt ht
   have differential_target_later_zero {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {t : ℤ} {q : ℤ×ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
       (hr0 : E.r₀ ≤ r) (hrt : r < t)
       (h : KIP126.Core.SpectralSequence.HasDifferential E r p q x y) : KIP126.Core.SpectralSequence.RepresentsOnPage E t q y 0 := by
-    obtain ⟨rfl, xr, yr, hx, hy, hd⟩ := h
-    simp only [eqToHom_refl, Category.comp_id] at hd
-    obtain ⟨hr, z, hz2, hzr⟩ := hy
-    let A := E.ssData (p + E.diffDeg r)
-    let n : ℕ := (r-E.r₀).toNat
-    let n₀ : WithTop ℕ := ↑(2-E.r₀).toNat
-    let m : WithTop ℕ := ↑(t-E.r₀).toNat
-    have hnm : (↑(n+1) : WithTop ℕ) ≤ m := by
-      dsimp only [n,m]
-      exact_mod_cast (show (r-E.r₀).toNat+1 ≤ (t-E.r₀).toNat by omega)
-    have hn0 : n₀ ≤ ↑n := by
-      dsimp only [n₀,n]
-      exact_mod_cast (show (2-E.r₀).toNat ≤ (r-E.r₀).toNat by omega)
-    have hn1 : (↑n : WithTop ℕ) ≤ ↑(n+1) := by exact_mod_cast Nat.le_succ n
-    have hdmem : yr ∈ LinearMap.range (E.d r p).hom := ⟨xr, hd⟩
-    rw [← subobjectModule_image, E.B_succ r p hr0, subobjectModule_image] at hdmem
-    obtain ⟨b, hb⟩ := hdmem
-    let j := Subobject.ofLE (A.B ↑(n+1)) (A.Z ↑n)
-      ((A.B_le_Z _).trans (A.Z_anti hn1))
-    have hb' : A.pageπ ↑n (j b) = yr := hb
-    have hdif : A.pageπ ↑n (z-j b) = 0 := by rw [map_sub, hzr, hb', sub_self]
-    have hmem := (subobject_cokernel_π_eq_zero_iff (A.B ↑n) (A.Z ↑n) (A.B_le_Z _) _).mp hdif
-    have hmem' := (ModuleCat.subobjectModule A.V).monotone (A.B_mono hn1) hmem
-    have hj : (A.Z ↑n).arrow (j b) ∈ (ModuleCat.subobjectModule A.V) (A.B ↑(n+1)) := by
-      change (j ≫ (A.Z ↑n).arrow) b ∈ _
-      dsimp only [j]
-      rw [Subobject.ofLE_arrow]
-      exact ⟨b,rfl⟩
-    have hzmem := ((ModuleCat.subobjectModule A.V) (A.B ↑(n+1))).add_mem hmem' hj
-    rw [map_sub, sub_add_cancel] at hzmem
-    obtain ⟨b', hb'⟩ := hzmem
-    let i := Subobject.ofLE (A.B ↑(n+1)) (A.Z m) ((A.B_mono hnm).trans (A.B_le_Z _))
-    refine ⟨by omega, i b', ?_, ?_⟩
-    · have he : (Subobject.ofLE (A.Z m) (A.Z n₀) (A.Z_anti (hn0.trans (hn1.trans hnm))))
-          (i b') = (Subobject.ofLE (A.Z ↑n) (A.Z n₀) (A.Z_anti hn0)) z := by
-        apply (ModuleCat.mono_iff_injective (A.Z n₀).arrow).mp inferInstance
-        change (i ≫ Subobject.ofLE (A.Z m) (A.Z n₀) _ ≫ (A.Z n₀).arrow) b' =
-          (Subobject.ofLE (A.Z ↑n) (A.Z n₀) _ ≫ (A.Z n₀).arrow) z
-        simpa only [Category.assoc, i, Subobject.ofLE_arrow] using hb'
-      exact (congrArg (fun v => A.pageπ n₀ v) he).trans hz2
-    · apply (subobject_cokernel_π_eq_zero_iff (A.B m) (A.Z m) (A.B_le_Z _) _).mpr
-      change (i ≫ (A.Z m).arrow) b' ∈ _
-      dsimp only [i]
-      rw [Subobject.ofLE_arrow]
-      exact (ModuleCat.subobjectModule A.V).monotone (A.B_mono hnm) ⟨b',rfl⟩
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_later_zero hr0 hrt h
   have represents_add_tail
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
       {r : ℤ} {p : ℤ × ℤ} {x y : E.Page 2 p} {a b : E.Page r p}
       (hx : RepresentsOnPage E r p x a) (hy : RepresentsOnPage E r p y b) :
       RepresentsOnPage E r p (x+y) (a+b) := by
-    obtain ⟨hr,z,hz,ha⟩ := hx
-    obtain ⟨_,w,hw,hb⟩ := hy
-    exact ⟨hr,z+w,by rw [map_add,hz,hw],by rw [map_add,ha,hb]⟩
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_add_tail hx hy
   have nu_af10_frame (I' : Inputs D' L' G) :
       ∃ a : (sequence D' .sphere).Page 3 (10,135),
       ∃ b : (sequence D' .sphere).Page 3 (13,137),
@@ -2572,9 +2370,7 @@ private theorem nu_five_of_three
     have h251 : HasDifferential E 2 (8,134) (10,135)
         (I'.realization.basis .sphere 8 134 1) (I'.realization.basis .sphere 10 135 3) := by
       have hrow := I'.results ⟨.sphere,.equation,2,8,134,[1],10,135,[3],"S0_AdamsE2_ss",2783⟩ (by
-        unfold Raw.claims
-        iterate 251 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (i := 251) (by rfl))
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (8,134) (10,135) x y at hd
@@ -2587,9 +2383,7 @@ private theorem nu_five_of_three
     have h252 : HasDifferential E 3 (10,135) (13,137)
         (I'.realization.basis .sphere 10 135 0) (I'.realization.basis .sphere 13 137 0) := by
       have hrow := I'.results ⟨.sphere,.equation,3,10,135,[0],13,137,[0],"S0_AdamsE2_ss",2784⟩ (by
-        unfold Raw.claims
-        iterate 252 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (i := 252) (by rfl))
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (10,135) (13,137) x y at hd
@@ -2602,9 +2396,7 @@ private theorem nu_five_of_three
     have h253 : HasDifferential E 2 (10,135) (12,136)
         (I'.realization.basis .sphere 10 135 1) (I'.realization.basis .sphere 12 136 1 + I'.realization.basis .sphere 12 136 2) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[1],12,136,[1, 2],"S0_AdamsE2_ss",2785⟩ (by
-        unfold Raw.claims
-        iterate 253 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (i := 253) (by rfl))
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -2617,9 +2409,7 @@ private theorem nu_five_of_three
     have h254 : HasDifferential E 2 (10,135) (12,136)
         (I'.realization.basis .sphere 10 135 2) (I'.realization.basis .sphere 12 136 3 + I'.realization.basis .sphere 12 136 4) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[2],12,136,[3, 4],"S0_AdamsE2_ss",2786⟩ (by
-        unfold Raw.claims
-        iterate 254 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (i := 254) (by rfl))
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -2632,9 +2422,7 @@ private theorem nu_five_of_three
     have h255 : HasDifferential E 2 (10,135) (12,136)
         (I'.realization.basis .sphere 10 135 4) (I'.realization.basis .sphere 12 136 4) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,135,[4],12,136,[4],"S0_AdamsE2_ss",2787⟩ (by
-        unfold Raw.claims
-        iterate 255 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (i := 255) (by rfl))
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,135) (12,136) x y at hd
@@ -2645,9 +2433,7 @@ private theorem nu_five_of_three
       rw [←hx,←hy] at hd
       simpa only [add_assoc] using hd
     obtain ⟨e,he⟩ := I'.basis ⟨.sphere,10,135,["413,1", "412,1", "0,1,391,1", "0,1,390,1", "0,2,375,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 182 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (i := 182) (by rfl))
     change E.Page 2 (10,135) ≃ₗ[ℤ] (Fin 5 →₀ F2) at e
     change ∀ i : Fin 5, e.symm (Finsupp.single i 1) = I'.realization.basis .sphere 10 135 i.val at he
     have he0 : e.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 10 135 0 := he 0
@@ -2656,9 +2442,7 @@ private theorem nu_five_of_three
     have he3 : e.symm (Finsupp.single (3:Fin 5) 1) = I'.realization.basis .sphere 10 135 3 := he 3
     have he4 : e.symm (Finsupp.single (4:Fin 5) 1) = I'.realization.basis .sphere 10 135 4 := he 4
     obtain ⟨f,hf⟩ := I'.basis ⟨.sphere,12,136,["1,1,387,1", "0,1,410,1", "0,1,409,1", "0,2,389,1", "0,4,367,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 200 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (i := 200) (by rfl))
     change E.Page 2 (12,136) ≃ₗ[ℤ] (Fin 5 →₀ F2) at f
     change ∀ i : Fin 5, f.symm (Finsupp.single i 1) = I'.realization.basis .sphere 12 136 i.val at hf
     have hf0 : f.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 12 136 0 := hf 0
@@ -2954,9 +2738,7 @@ private theorem nu_five_of_three
     have h279 : HasDifferential E 3 (8,134) (11,136)
         (I'.realization.basis .sphere 8 134 3) (I'.realization.basis .sphere 11 136 1) := by
       have hrow := I'.results ⟨.sphere,.equation,3,8,134,[3],11,136,[1],"S0_AdamsE2_ss",2850⟩ (by
-        unfold Raw.claims
-        iterate 279 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (i := 279) (by rfl))
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (8,134) (11,136) x y at hd
@@ -2969,9 +2751,7 @@ private theorem nu_five_of_three
     have h280 : HasDifferential E 3 (8,134) (11,136)
         (I'.realization.basis .sphere 8 134 2) (I'.realization.basis .sphere 11 136 2) := by
       have hrow := I'.results ⟨.sphere,.equation,3,8,134,[2],11,136,[2],"S0_AdamsE2_ss",2851⟩ (by
-        unfold Raw.claims
-        iterate 280 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (i := 280) (by rfl))
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (8,134) (11,136) x y at hd
@@ -2984,9 +2764,7 @@ private theorem nu_five_of_three
     have h282 : HasDifferential E 4 (11,136) (15,139)
         (I'.realization.basis .sphere 11 136 0) (I'.realization.basis .sphere 15 139 0) := by
       have hrow := I'.results ⟨.sphere,.equation,4,11,136,[0],15,139,[0],"S0_AdamsE2_ss",2853⟩ (by
-        unfold Raw.claims
-        iterate 282 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (i := 282) (by rfl))
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 4 (11,136) (15,139) x y at hd
@@ -2999,9 +2777,7 @@ private theorem nu_five_of_three
     have h283 : HasDifferential E 2 (11,136) (13,137)
         (I'.realization.basis .sphere 11 136 4) (I'.realization.basis .sphere 13 137 3) := by
       have hrow := I'.results ⟨.sphere,.equation,2,11,136,[4],13,137,[3],"S0_AdamsE2_ss",2854⟩ (by
-        unfold Raw.claims
-        iterate 283 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (i := 283) (by rfl))
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (11,136) (13,137) x y at hd
@@ -3013,9 +2789,7 @@ private theorem nu_five_of_three
       simpa only [add_assoc] using hd
     have h281 : ReachesPage E 5 (11,136) (I'.realization.basis .sphere 11 136 3) := by
       have hrow := I'.results ⟨.sphere,.reaches,5,11,136,[3],11,136,[],"S0_AdamsE2_ss",2852⟩ (by
-        unfold Raw.claims
-        iterate 281 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (i := 281) (by rfl))
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,hd⟩ := hrow
       change ReachesPage E 5 (11,136) x at hd
@@ -3025,9 +2799,7 @@ private theorem nu_five_of_three
       rw [←hx] at hd
       simpa only [add_assoc] using hd
     obtain ⟨e,he⟩ := I'.basis ⟨.sphere,13,137,["76,1,82,1", "9,1,251,1", "7,1,275,1", "0,5,367,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 208 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (i := 208) (by rfl))
     change E.Page 2 (13,137) ≃ₗ[ℤ] (Fin 4 →₀ F2) at e
     change ∀ i : Fin 4, e.symm (Finsupp.single i 1) = I'.realization.basis .sphere 13 137 i.val at he
     have he0 : e.symm (Finsupp.single (0:Fin 4) 1) = I'.realization.basis .sphere 13 137 0 := he 0
@@ -3035,9 +2807,7 @@ private theorem nu_five_of_three
     have he2 : e.symm (Finsupp.single (2:Fin 4) 1) = I'.realization.basis .sphere 13 137 2 := he 2
     have he3 : e.symm (Finsupp.single (3:Fin 4) 1) = I'.realization.basis .sphere 13 137 3 := he 3
     obtain ⟨f,hf⟩ := I'.basis ⟨.sphere,11,136,["69,1,89,1", "1,1,389,1", "1,1,388,1", "0,2,391,1", "0,3,375,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 192 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (i := 192) (by rfl))
     change E.Page 2 (11,136) ≃ₗ[ℤ] (Fin 5 →₀ F2) at f
     change ∀ i : Fin 5, f.symm (Finsupp.single i 1) = I'.realization.basis .sphere 11 136 i.val at hf
     have hf0 : f.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 11 136 0 := hf 0
@@ -3190,15 +2960,11 @@ private theorem nu_five_of_three
       have hjs : j=9 ∨ j=10 := by omega
       rcases hjs with rfl|rfl
       · obtain ⟨e,_⟩ := I'.basis ⟨.sphere,9,131,[]⟩ (by
-          unfold Raw.degrees
-          iterate 170 apply List.mem_cons_of_mem
-          exact List.mem_cons_self)
+          exact List.mem_of_getElem? (i := 170) (by rfl))
         change E2 H SphereSpectrum 9 131 ≃ₗ[ℤ] (Fin 0 →₀ F2) at e
         exact e.injective.subsingleton
       · obtain ⟨e,_⟩ := I'.basis ⟨.sphere,10,132,[]⟩ (by
-          unfold Raw.degrees
-          iterate 179 apply List.mem_cons_of_mem
-          exact List.mem_cons_self)
+          exact List.mem_of_getElem? (i := 179) (by rfl))
         change E2 H SphereSpectrum 10 132 ≃ₗ[ℤ] (Fin 0 →₀ F2) at e
         exact e.injective.subsingleton
     haveI := hc
@@ -3693,9 +3459,7 @@ private theorem nu_five_of_three
   have hp : Sphere.Internal.product H M' (s:=1) (t:=4) (s':=8) (t':=130)
       (Sphere.Internal.hi H M' 2) (I'.realization.sphere 8 130 X)=0 := by
     have hp := I'.products ⟨1,4,8,130⟩ (by
-      unfold Raw.products
-      iterate 46 apply List.mem_cons_of_mem
-      exact List.mem_cons_self) (atom .h2) X
+      exact List.mem_of_getElem? (i := 46) (by rfl)) (atom .h2) X
     dsimp only at hp
     rw [I'.labels.h2] at hp
     rw [←hp]

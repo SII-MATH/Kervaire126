@@ -1,6 +1,0 @@
-KIP126/Interface/Challenge/Challenge2.lean:1081:structure AdamsOneLineInterface : Prop where
-KIP126/Interface/Challenge/Challenge2.lean:1251:  adamsOneLine : AdamsOneLineInterface
-KIP126/Interface/Challenge/Challenge2.lean:1266:  standard_class : presentation.comparison 2 128 (by decide) LinE2.dataH6Sq =
-KIP126/Interface/Challenge/Challenge2.lean:1295:  sphereApplicability : Classical.Adams.BHSObjectApplicability
-KIP126/Interface/Challenge/Challenge2.lean:1346:def adamsOneLine (input : KIP126.Challenge2) : AdamsOneLineInterface :=
-rg: KIP126/Def/Foundation: No such file or directory (os error 2)

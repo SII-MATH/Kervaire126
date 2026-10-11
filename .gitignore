@@ -35,15 +35,3 @@ metrics/
 # Local Python environment and crash dumps
 .venv/
 /core.[0-9]*
-
-# Repository-private Codex skill runtime caches
-.agents/skills/**/__pycache__/
-.agents/skills/**/*.pyc
-
-# Local provenance-checker test caches
-scripts/**/__pycache__/
-scripts/**/*.pyc
-
-# Local workflow and helper directories
-/Proof-Workflow/
-/tools/

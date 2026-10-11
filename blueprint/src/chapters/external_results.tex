@@ -60,6 +60,15 @@ Each later theorem uses these
 same choices. Their existence and the necessary model comparisons are not
 established by this notation.
 
+The literature delivery construction treats these choices, their model
+comparisons and all their results as one dependent package. Its proof displays
+the individual result obligations,
+reusing the fixed-sphere Hopf differential and vanishing-line producers.
+This decomposition supplies no new literature proof. BHS completion and
+realization transport retain their internal construction obligations and
+their stated hypotheses; a general completion construction is not obtained
+by projecting one fixed source package.
+
 \subsection{Classical Adams differentials, detection and the $62$-stem}
 
 % SOURCE: MainPaper/main.tex:1667--1680, 1697--1705, 2538--2543;
@@ -377,10 +386,12 @@ established by this notation.
 \begin{theorem}[Moss convergence on the fixed sphere mapping model]
   \label{thm:literature-moss}
   \lean{KIP126.Challenge2.LiteratureResults.moss}
-  \uses{def:classical-adams-ss,def:massey-product,def:toda-bracket,def:adams-detection}
+  \uses{def:classical-adams-ss,def:massey-product,def:toda-bracket,def:adams-detection,def:fixed-sphere-moss-context}
   \notready
   Use the specified sphere mapping Adams towers, their composition
-  pairing $P$ and their convergence identifications $c$.
+  pairing $P$ and their convergence identifications $c$, fixed together
+  in Definition~\ref{def:fixed-sphere-moss-context} before the literature
+  conclusion is supplied.
   The object family is $\mathrm{Unit}\to C$, constant at the fixed
   $S^0$; it does not range over arbitrary spectra. Write
   $\mathcal E$ for the actual \emph{mapping} Adams sequence of
@@ -1460,8 +1471,9 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   151 / PDF pp.166 and 168. These coordinate comparisons and the resulting
   fixed-tmf equation $d_3(v_2^{16})=\beta^5g$ are the internal consequence
   in Theorem~\ref{thm:main-tmf-br21-coordinate-differential}, not additional
-  external results. That transport still depends on the unfinished
-  generic Adams tower naturality theorem.
+  external results. The transport uses the implemented generic Adams
+  tower naturality theorem; the source realization, fixed-model
+  construction and coordinate comparisons remain unfinished.
 \end{theorem}
 
 \subsection{Stable operations and comparison lemmas}
@@ -1528,9 +1540,9 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
 \begin{definition}[A multiplicative presentation of the tmf Adams $E_2$ page]
   \label{def:tmf-csv-coordinate-binding}
   \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:adams-hj,def:hf2-adams-tower,def:unital-multiplication-data}
-  \lean{KIP126.Classical.Adams.Tmf.CsvE2.v2Sixteen,KIP126.Classical.Adams.Tmf.CsvE2.betaFiveG,KIP126.Challenge2.TmfDifferentialInterface,KIP126.Interface.Solution.tmfDifferentialInterface}
+  \lean{KIP126.Classical.Adams.Tmf.CsvE2.v2Sixteen,KIP126.Classical.Adams.Tmf.CsvE2.betaFiveG,KIP126.Challenge2.TmfDifferentialInterface,KIP126.Interface.Solution.tmfModelOfDelivery}
   \lean{KIP126.Classical.Adams.Tmf.CsvE2.one,KIP126.Classical.Adams.Tmf.CsvE2.mul,KIP126.Classical.Adams.Tmf.firstMultiplication,KIP126.Classical.Adams.Tmf.unitSecondCycle}
-  \lean{KIP126.Classical.Adams.Tmf.E2Presentation.RespectsMultiplication,KIP126.Classical.Adams.Tmf.E2Presentation.RespectsUnit,KIP126.Challenge2.StandardTmfMultiplicativeInterface,KIP126.Interface.Solution.tmfMultiplicativeInterface}
+  \lean{KIP126.Classical.Adams.Tmf.E2Presentation.RespectsMultiplication,KIP126.Classical.Adams.Tmf.E2Presentation.RespectsUnit,KIP126.Challenge2.StandardTmfMultiplicativeInterface}
   \notready
   The fixed computation coordinate algebra is the polynomial quotient over
   $\mathbb F_2$ with its 13 CSV generators and 72 relations. Its graded
@@ -1552,8 +1564,10 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   coordinate comparison gives
   $d_3(v_2^{16})=\beta^5g$ in
   Theorem~\ref{thm:main-tmf-br21-coordinate-differential} using the
-  relation $\beta g^4=\beta^5g$. No completion of the detector
-  comparison or differential transport is claimed by this definition.
+  relation $\beta g^4=\beta^5g$. The older differential and multiplicative
+  compatibility APIs are derived there from this same delivered target
+  and coordinates, rather than from independently chosen realizations.
+  No completion of the detector comparison is claimed by this definition.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:253-263; bibliography key Adams58.  The local

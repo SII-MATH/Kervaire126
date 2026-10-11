@@ -30,6 +30,13 @@ completed proof.
 
 ## Repository architecture
 
+The extraction boundary recorded on `main` also applies to `develop`.
+Do not restore the removed `KIPBase/` component, historical `docs/archive/`,
+`docs/audits/`, or `docs/migration/` trees, Euler/Multica configuration,
+or the old CI, review, merge, status, cache, performance, and publishing tools.
+When integrating old work, retain concrete KIP126 and Blueprint changes while
+preserving this boundary and the current main CI. Keep existing source attribution.
+
 - `KIP126/Def/` owns common mathematical objects, predicates, constructions,
   the fixed implementation, route and mathematical background, its fixed-sphere
   applicability statement, and reusable theorems. Generic mathematical interfaces

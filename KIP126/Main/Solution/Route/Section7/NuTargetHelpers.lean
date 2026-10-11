@@ -1,5 +1,7 @@
 module
 
+public import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
+public import KIP126.LinProgram.Model.RelationCertificates
 public import Batteries.Tactic.OpenPrivate
 public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
 public import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
@@ -100,115 +102,21 @@ private theorem nu_target_of_finite_nonzero
     (hne : sphereAction nu a0≠0) : TargetNuDivisible D' (L'.target M') nu := by
   have represents_unique {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ×ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {a b : E.Page r p}
       (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a) (hb : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x b) : a = b := by
-    obtain ⟨hr, z, hz, hza⟩ := ha
-    obtain ⟨_, z', hz', hzb⟩ := hb
-    let D' := E.ssData p
-    let n : WithTop ℕ := ↑(2 - E.r₀).toNat
-    let m : WithTop ℕ := ↑(r - E.r₀).toNat
-    have hnm : n ≤ m := by
-      dsimp only [n, m]
-      exact_mod_cast (show (2-E.r₀).toNat ≤ (r-E.r₀).toNat by omega)
-    apply sub_eq_zero.mp
-    rw [← hza, ← hzb, ← map_sub]
-    apply (subobject_cokernel_π_eq_zero_iff (D'.B m) (D'.Z m) (D'.B_le_Z m) _).mpr
-    have heq : D'.pageπ n ((Subobject.ofLE _ _ (D'.Z_anti hnm)) (z-z')) = 0 := by
-      change (Subobject.ofLE _ _ (D'.Z_anti hnm) ≫ D'.pageπ n) (z-z') = 0
-      rw [map_sub, hz, hz', sub_self]
-    have hh := (subobject_cokernel_π_eq_zero_iff (D'.B n) (D'.Z n) (D'.B_le_Z n) _).mp heq
-    have he : (D'.Z n).arrow ((Subobject.ofLE _ _ (D'.Z_anti hnm)) (z-z')) =
-        (D'.Z m).arrow (z-z') := ConcreteCategory.congr_hom (Subobject.ofLE_arrow (D'.Z_anti hnm)) _
-    rw [he] at hh
-    exact (ModuleCat.subobjectModule D'.V).monotone (D'.B_mono hnm) hh
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_unique ha hb
   have represents_d_zero_of_later {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ×ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
       {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a)
       (ht : KIP126.Core.SpectralSequence.ReachesPage E t p x) : E.d r p a = 0 := by
-    obtain ⟨b, ht2, z, hz, _⟩ := ht
-    let D' := E.ssData p
-    let nt : WithTop ℕ := ↑(t-E.r₀).toNat
-    let nr : WithTop ℕ := ↑(r-E.r₀).toNat
-    let ns : WithTop ℕ := ↑((r-E.r₀).toNat+1)
-    have hrs : nr ≤ ns := by
-      dsimp only [nr, ns]
-      exact_mod_cast (show (r-E.r₀).toNat ≤ (r-E.r₀).toNat+1 by omega)
-    have hst : ns ≤ nt := by
-      dsimp only [ns, nt]
-      exact_mod_cast (show (r-E.r₀).toNat+1 ≤ (t-E.r₀).toNat by omega)
-    let zr := (Subobject.ofLE (D'.Z nt) (D'.Z nr) (D'.Z_anti (hrs.trans hst))) z
-    have hrep : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x (D'.pageπ nr zr) := by
-      refine ⟨ha.1, zr, ?_, rfl⟩
-      dsimp only [zr]
-      rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
-      exact hz
-    rw [represents_unique ha hrep]
-    change D'.pageπ nr zr ∈ LinearMap.ker (E.d r p).hom
-    rw [← subobjectModule_kernel, E.Z_succ r p hr0, subobjectModule_image]
-    refine ⟨(Subobject.ofLE (D'.Z nt) (D'.Z ns) (D'.Z_anti hst)) z, ?_⟩
-    change (Subobject.ofLE (D'.Z ns) (D'.Z nr) (D'.Z_anti hrs) ≫ D'.pageπ nr)
-      ((Subobject.ofLE (D'.Z nt) (D'.Z ns) (D'.Z_anti hst)) z) = D'.pageπ nr zr
-    rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
-    rfl
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_d_zero_of_later hr0 hrt ha ht
   have represents_before 
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r t : ℤ} {p : ℤ × ℤ}
       {x : E.Page 2 p} {xt : E.Page t p}
       (hr : 2 ≤ r) (hrt : r ≤ t) (ht : KIP126.Core.SpectralSequence.RepresentsOnPage E t p x xt) :
       ∃ xr, KIP126.Core.SpectralSequence.RepresentsOnPage E r p x xr := by
-    obtain ⟨_, z, hz, _⟩ := ht
-    let D' := E.ssData p
-    have hrt' : (↑(r-E.r₀).toNat : WithTop ℕ) ≤ ↑(t-E.r₀).toNat := by
-      exact_mod_cast (show (r-E.r₀).toNat ≤ (t-E.r₀).toNat by omega)
-    let zr := (Subobject.ofLE (D'.Z ↑(t-E.r₀).toNat) (D'.Z ↑(r-E.r₀).toNat) (D'.Z_anti hrt')) z
-    refine ⟨D'.pageπ _ zr, hr, zr, ?_, rfl⟩
-    dsimp only [zr]
-    rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
-    exact hz
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_before hr hrt ht
   have differential_target_later_zero {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ×ℤ)} {r : ℤ} {p : ℤ×ℤ} {t : ℤ} {q : ℤ×ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
       (hr0 : E.r₀ ≤ r) (hrt : r < t)
       (h : KIP126.Core.SpectralSequence.HasDifferential E r p q x y) : KIP126.Core.SpectralSequence.RepresentsOnPage E t q y 0 := by
-    obtain ⟨rfl, xr, yr, hx, hy, hd⟩ := h
-    simp only [eqToHom_refl, Category.comp_id] at hd
-    obtain ⟨hr, z, hz2, hzr⟩ := hy
-    let A := E.ssData (p + E.diffDeg r)
-    let n : ℕ := (r-E.r₀).toNat
-    let n₀ : WithTop ℕ := ↑(2-E.r₀).toNat
-    let m : WithTop ℕ := ↑(t-E.r₀).toNat
-    have hnm : (↑(n+1) : WithTop ℕ) ≤ m := by
-      dsimp only [n,m]
-      exact_mod_cast (show (r-E.r₀).toNat+1 ≤ (t-E.r₀).toNat by omega)
-    have hn0 : n₀ ≤ ↑n := by
-      dsimp only [n₀,n]
-      exact_mod_cast (show (2-E.r₀).toNat ≤ (r-E.r₀).toNat by omega)
-    have hn1 : (↑n : WithTop ℕ) ≤ ↑(n+1) := by exact_mod_cast Nat.le_succ n
-    have hdmem : yr ∈ LinearMap.range (E.d r p).hom := ⟨xr, hd⟩
-    rw [← subobjectModule_image, E.B_succ r p hr0, subobjectModule_image] at hdmem
-    obtain ⟨b, hb⟩ := hdmem
-    let j := Subobject.ofLE (A.B ↑(n+1)) (A.Z ↑n)
-      ((A.B_le_Z _).trans (A.Z_anti hn1))
-    have hb' : A.pageπ ↑n (j b) = yr := hb
-    have hdif : A.pageπ ↑n (z-j b) = 0 := by rw [map_sub, hzr, hb', sub_self]
-    have hmem := (subobject_cokernel_π_eq_zero_iff (A.B ↑n) (A.Z ↑n) (A.B_le_Z _) _).mp hdif
-    have hmem' := (ModuleCat.subobjectModule A.V).monotone (A.B_mono hn1) hmem
-    have hj : (A.Z ↑n).arrow (j b) ∈ (ModuleCat.subobjectModule A.V) (A.B ↑(n+1)) := by
-      change (j ≫ (A.Z ↑n).arrow) b ∈ _
-      dsimp only [j]
-      rw [Subobject.ofLE_arrow]
-      exact ⟨b,rfl⟩
-    have hzmem := ((ModuleCat.subobjectModule A.V) (A.B ↑(n+1))).add_mem hmem' hj
-    rw [map_sub, sub_add_cancel] at hzmem
-    obtain ⟨b', hb'⟩ := hzmem
-    let i := Subobject.ofLE (A.B ↑(n+1)) (A.Z m) ((A.B_mono hnm).trans (A.B_le_Z _))
-    refine ⟨by omega, i b', ?_, ?_⟩
-    · have he : (Subobject.ofLE (A.Z m) (A.Z n₀) (A.Z_anti (hn0.trans (hn1.trans hnm))))
-          (i b') = (Subobject.ofLE (A.Z ↑n) (A.Z n₀) (A.Z_anti hn0)) z := by
-        apply (ModuleCat.mono_iff_injective (A.Z n₀).arrow).mp inferInstance
-        change (i ≫ Subobject.ofLE (A.Z m) (A.Z n₀) _ ≫ (A.Z n₀).arrow) b' =
-          (Subobject.ofLE (A.Z ↑n) (A.Z n₀) _ ≫ (A.Z n₀).arrow) z
-        simpa only [Category.assoc, i, Subobject.ofLE_arrow] using hb'
-      exact (congrArg (fun v => A.pageπ n₀ v) he).trans hz2
-    · apply (subobject_cokernel_π_eq_zero_iff (A.B m) (A.Z m) (A.B_le_Z _) _).mpr
-      change (i ≫ (A.Z m).arrow) b' ∈ _
-      dsimp only [i]
-      rw [Subobject.ofLE_arrow]
-      exact (ModuleCat.subobjectModule A.V).monotone (A.B_mono hnm) ⟨b',rfl⟩
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_later_zero hr0 hrt h
   have boundary_of_zero_representative
       {r : ℤ} {p : ℤ×ℤ} {x : E2 H SphereSpectrum p.1 p.2}
       (hx : RepresentsOnPage (adamsTowerInternalSpectralSequence H.unit SphereSpectrum) r p x 0) :
@@ -251,9 +159,7 @@ private theorem nu_target_of_finite_nonzero
     have h267 : HasDifferential E 3 (8,131) (11,133)
         ((I'.realization.basis .sphere 8 131 0)) ((I'.realization.basis .sphere 11 133 0) + (I'.realization.basis .sphere 11 133 1)) := by
       have hrow := I'.results ⟨.sphere,.equation,3,8,131,[0],11,133,[0, 1],"S0_AdamsE2_ss",2621⟩ (by
-        unfold Raw.claims
-        iterate 267 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 267) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (8,131) (11,133) x y at hd
@@ -264,9 +170,7 @@ private theorem nu_target_of_finite_nonzero
       rw [←hx,←hy] at hd
       exact hd
     obtain ⟨e,he⟩ := I'.basis ⟨.sphere,11,133,["371,1", "69,1,79,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 189 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 189) rfl)
     change E.Page 2 (11,133) ≃ₗ[ℤ] (Fin 2 →₀ F2) at e
     change ∀ i : Fin 2, e.symm (Finsupp.single i 1)=I'.realization.basis .sphere 11 133 i.val at he
 
@@ -313,9 +217,7 @@ private theorem nu_target_of_finite_nonzero
     have h294 : HasDifferential E 2 (10,133) (12,134)
         ((I'.realization.basis .sphere 10 133 0)) ((I'.realization.basis .sphere 12 134 2)) := by
       have hrow := I'.results ⟨.sphere,.equation,2,10,133,[0],12,134,[2],"S0_AdamsE2_ss",2682⟩ (by
-        unfold Raw.claims
-        iterate 294 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 294) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 2 (10,133) (12,134) x y at hd
@@ -328,9 +230,7 @@ private theorem nu_target_of_finite_nonzero
     have h295 : HasDifferential E 3 (9,132) (12,134)
         ((I'.realization.basis .sphere 9 132 0)) ((I'.realization.basis .sphere 12 134 1)) := by
       have hrow := I'.results ⟨.sphere,.equation,3,9,132,[0],12,134,[1],"S0_AdamsE2_ss",2683⟩ (by
-        unfold Raw.claims
-        iterate 295 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 295) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,y,hy,hd⟩ := hrow
       change HasDifferential E 3 (9,132) (12,134) x y at hd
@@ -341,9 +241,7 @@ private theorem nu_target_of_finite_nonzero
       rw [←hx,←hy] at hd
       exact hd
     obtain ⟨e,he⟩ := I'.basis ⟨.sphere,12,134,["18,1,188,1", "0,1,371,1", "0,1,69,1,79,1"]⟩ (by
-      unfold Raw.degrees
-      iterate 198 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.degrees) (i := 198) rfl)
     change E.Page 2 (12,134) ≃ₗ[ℤ] (Fin 3 →₀ F2) at e
     change ∀ i : Fin 3, e.symm (Finsupp.single i 1)=I'.realization.basis .sphere 12 134 i.val at he
 
@@ -738,9 +636,7 @@ private theorem nu_target_of_finite_nonzero
       I'.realization.sphere 12 134 Q = I'.realization.basis .sphere 12 134 0 := by
     have u_label : I'.realization.sphere 10 134 U = I'.realization.basis .sphere 10 134 4 := by
       have hc := I'.csv (⟨.sphere,10,134,["389,1","388,1","1,1,366,1","0,1,373,1","0,2,367,1"]⟩ : Raw.Degree) (by
-        unfold Raw.degrees
-        iterate 181 apply List.mem_cons_of_mem
-        exact List.mem_cons_self) rfl
+        exact List.mem_of_getElem? (l := Raw.degrees) (i := 181) rfl) rfl
       obtain ⟨z,hz,he⟩ := hc (4 : Fin 5)
       have heq : U=z := by
         apply Subtype.ext
@@ -759,9 +655,7 @@ private theorem nu_target_of_finite_nonzero
       exact he
     have p_label : I'.realization.sphere 11 133 P = I'.realization.basis .sphere 11 133 1 := by
       have hc := I'.csv (⟨.sphere,11,133,["371,1","69,1,79,1"]⟩ : Raw.Degree) (by
-        unfold Raw.degrees
-        iterate 189 apply List.mem_cons_of_mem
-        exact List.mem_cons_self) rfl
+        exact List.mem_of_getElem? (l := Raw.degrees) (i := 189) rfl) rfl
       obtain ⟨z,hz,he⟩ := hc (1 : Fin 2)
       have heq : P=z := by
         apply Subtype.ext
@@ -780,9 +674,7 @@ private theorem nu_target_of_finite_nonzero
       exact he
     have q_label : I'.realization.sphere 12 134 Q = I'.realization.basis .sphere 12 134 0 := by
       have hc := I'.csv (⟨.sphere,12,134,["18,1,188,1","0,1,371,1","0,1,69,1,79,1"]⟩ : Raw.Degree) (by
-        unfold Raw.degrees
-        iterate 198 apply List.mem_cons_of_mem
-        exact List.mem_cons_self) rfl
+        exact List.mem_of_getElem? (l := Raw.degrees) (i := 198) rfl) rfl
       obtain ⟨z,hz,he⟩ := hc (0 : Fin 3)
       have heq : Q=z := by
         apply Subtype.ext
@@ -1571,9 +1463,7 @@ private theorem nu_target_of_finite_nonzero
     have t_label (I' : Inputs D' L' G) :
         I'.realization.sphere 14 139 T = I'.realization.basis .sphere 14 139 1 := by
       have hmem : (⟨.sphere,14,139,["449,1","1,1,7,1,275,1","0,2,425,1"]⟩ : Raw.Degree) ∈ Raw.degrees := by
-        unfold Raw.degrees
-        iterate 217 apply List.mem_cons_of_mem
-        exact List.mem_cons_self
+        exact List.mem_of_getElem? (l := Raw.degrees) (i := 217) rfl
       have hc := I'.csv _ hmem rfl
       obtain ⟨z,hz,he⟩ := hc (1 : Fin 3)
       have heq : T=z := by
@@ -1599,9 +1489,7 @@ private theorem nu_target_of_finite_nonzero
       let E := sequence D' .sphere
       have h342 : ReachesPage E 1000 (14,139) (I'.realization.basis .sphere 14 139 1) := by
         have hrow := I'.results ⟨.sphere,.reaches,1000,14,139,[1],14,139,[],"S0_AdamsE2_ss",3080⟩ (by
-          unfold Raw.claims
-          iterate 342 apply List.mem_cons_of_mem
-          exact List.mem_cons_self)
+          exact List.mem_of_getElem? (l := Raw.claims) (i := 342) rfl)
         dsimp only [Statement] at hrow
         obtain ⟨x,hx,hd⟩ := hrow
         change ReachesPage E 1000 (14,139) x at hd
@@ -1613,9 +1501,7 @@ private theorem nu_target_of_finite_nonzero
       have h341 : HasDifferential E 2 (12,138) (14,139)
           (I'.realization.basis .sphere 12 138 1) (I'.realization.basis .sphere 14 139 2) := by
         have hrow := I'.results ⟨.sphere,.equation,2,12,138,[1],14,139,[2],"S0_AdamsE2_ss",3079⟩ (by
-          unfold Raw.claims
-          iterate 341 apply List.mem_cons_of_mem
-          exact List.mem_cons_self)
+          exact List.mem_of_getElem? (l := Raw.claims) (i := 341) rfl)
         dsimp only [Statement] at hrow
         obtain ⟨x,hx,y,hy,hd⟩ := hrow
         change HasDifferential E 2 (12,138) (14,139) x y at hd
@@ -1628,9 +1514,7 @@ private theorem nu_target_of_finite_nonzero
       have h343 : HasDifferential E 2 (14,139) (16,140)
           (I'.realization.basis .sphere 14 139 0) (I'.realization.basis .sphere 16 140 2) := by
         have hrow := I'.results ⟨.sphere,.equation,2,14,139,[0],16,140,[2],"S0_AdamsE2_ss",3081⟩ (by
-          unfold Raw.claims
-          iterate 343 apply List.mem_cons_of_mem
-          exact List.mem_cons_self)
+          exact List.mem_of_getElem? (l := Raw.claims) (i := 343) rfl)
         dsimp only [Statement] at hrow
         obtain ⟨x,hx,y,hy,hd⟩ := hrow
         change HasDifferential E 2 (14,139) (16,140) x y at hd
@@ -1641,18 +1525,14 @@ private theorem nu_target_of_finite_nonzero
         rw [←hx,←hy] at hd
         simpa only [add_assoc] using hd
       obtain ⟨e,he⟩ := I'.basis ⟨.sphere,14,139,["449,1", "1,1,7,1,275,1", "0,2,425,1"]⟩ (by
-        unfold Raw.degrees
-        iterate 217 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.degrees) (i := 217) rfl)
       change E.Page 2 (14,139) ≃ₗ[ℤ] (Fin 3 →₀ F2) at e
       change ∀ i : Fin 3, e.symm (Finsupp.single i 1) = I'.realization.basis .sphere 14 139 i.val at he
       have he0 : e.symm (Finsupp.single (0:Fin 3) 1) = I'.realization.basis .sphere 14 139 0 := he 0
       have he1 : e.symm (Finsupp.single (1:Fin 3) 1) = I'.realization.basis .sphere 14 139 1 := he 1
       have he2 : e.symm (Finsupp.single (2:Fin 3) 1) = I'.realization.basis .sphere 14 139 2 := he 2
       obtain ⟨f,hf⟩ := I'.basis ⟨.sphere,16,140,["9,1,261,1", "1,1,438,1", "0,1,448,1", "0,2,440,1", "0,2,439,1"]⟩ (by
-        unfold Raw.degrees
-        iterate 231 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.degrees) (i := 231) rfl)
       change E.Page 2 (16,140) ≃ₗ[ℤ] (Fin 5 →₀ F2) at f
       change ∀ i : Fin 5, f.symm (Finsupp.single i 1) = I'.realization.basis .sphere 16 140 i.val at hf
       have hf0 : f.symm (Finsupp.single (0:Fin 5) 1) = I'.realization.basis .sphere 16 140 0 := hf 0
@@ -1753,9 +1633,7 @@ private theorem nu_target_of_finite_nonzero
     let E := sequence D' .sphere
     have h342 : ReachesPage E 1000 (14,139) (I'.realization.basis .sphere 14 139 1) := by
       have hrow := I'.results ⟨.sphere,.reaches,1000,14,139,[1],14,139,[],"S0_AdamsE2_ss",3080⟩ (by
-        unfold Raw.claims
-        iterate 342 apply List.mem_cons_of_mem
-        exact List.mem_cons_self)
+        exact List.mem_of_getElem? (l := Raw.claims) (i := 342) rfl)
       dsimp only [Statement] at hrow
       obtain ⟨x,hx,hd⟩ := hrow
       change ReachesPage E 1000 (14,139) x at hd
@@ -1889,135 +1767,6 @@ private theorem nu_target_of_finite_nonzero
     simp only [Sphere.Internal.product,map_zero]
   exact ⟨t,a,target_first_label_nonzero_detection BHS.eInfty (L'.target M') ht htn t hlt,hltv.symm⟩
 
-set_option maxHeartbeats 4000000 in
-private theorem nu_target_csv_relations :
-      "0,1,24,1" ∈ RawData.relations ∧
-      "0,1,3,1,335,1;0,2,425,1" ∈ RawData.relations ∧
-      "0,5,391,1" ∈ RawData.relations ∧
-      "0,6,375,1" ∈ RawData.relations ∧
-      "2,1,407,1" ∈ RawData.relations ∧
-      "2,1,79,1;0,1,89,1" ∈ RawData.relations ∧
-      "0,3,89,1" ∈ RawData.relations := by
-  have splitOnAux_char (s : String) (c : Char) (b i : String.Pos.Raw)
-      (acc : List String) :
-      s.splitOnAux (String.singleton c) b i 0 acc = s.splitAux (· == c) b i acc := by
-    have hg : String.Pos.Raw.get (String.singleton c) 0 = c := by
-      simp only [String.Pos.Raw.get, String.toList_singleton, String.Pos.Raw.utf8GetAux,
-        ↓reduceIte]
-    have hn : String.Pos.Raw.next (String.singleton c) 0 = ⟨c.utf8Size⟩ := by
-      simp [String.Pos.Raw.next, hg, String.Pos.Raw.ext_iff]
-    have he : String.Pos.Raw.atEnd (String.singleton c) ⟨c.utf8Size⟩ = true := by
-      simp [String.Pos.Raw.atEnd]
-    fun_induction String.splitAux s (· == c) b i acc with
-    | case1 b i acc h => rw [String.splitOnAux, if_pos h]
-    | case2 b i acc h _ h' i' ih =>
-      have hi : String.Pos.Raw.get s i = c := by simpa using h'
-      have hu : (String.Pos.Raw.next s i).unoffsetBy ⟨c.utf8Size⟩ = i := by
-        simp [String.Pos.Raw.next, hi, String.Pos.Raw.unoffsetBy]
-      rw [String.splitOnAux, if_neg h, hg, if_pos h', hn, if_pos he, hu]
-      exact ih
-    | case3 b i acc h _ h' ih =>
-      have hu : i.unoffsetBy 0 = i := by cases i; simp [String.Pos.Raw.unoffsetBy]
-      rw [String.splitOnAux, if_neg h, hg, if_neg h', hu]
-      exact ih
-  have splitOn_char (s : String) (c : Char) :
-      s.splitOn (String.singleton c) = (s.toList.splitOn c).map String.ofList := by
-    have hc : (String.singleton c == "") = false := by simp
-    rw [String.splitOn, hc, if_neg Bool.false_ne_true, splitOnAux_char]
-    change String.splitToList s (· == c) = _
-    rw [String.splitToList_of_valid, List.splitOn_eq_splitOnP]
-  have charlist_middle_member (s code : String) (a c b : List Char)
-      (hs : s=String.ofList (a++'\n'::(c++'\n'::b)))
-      (hc : String.ofList c=code) (hn : '\n'∉c) : code∈s.splitOn "\n" := by
-    rw [hs,show "\n"=String.singleton '\n' from rfl,splitOn_char,String.toList_ofList,
-      List.splitOn_append_cons_self,List.splitOn_append_cons_self_of_not_mem hn]
-    apply List.mem_map.mpr
-    exact ⟨c,List.mem_append.mpr (Or.inr (List.mem_cons_self)),hc⟩
-  have t_relation_members :
-      "0,1,24,1" ∈ RawData.relations ∧
-      "0,1,3,1,335,1;0,2,425,1" ∈ RawData.relations ∧
-      "0,5,391,1" ∈ RawData.relations ∧
-      "0,6,375,1" ∈ RawData.relations ∧
-      "2,1,407,1" ∈ RawData.relations ∧
-      "2,1,79,1;0,1,89,1" ∈ RawData.relations ∧
-      "0,3,89,1" ∈ RawData.relations := by
-    let chars0 : List Char := ['0',',','3',',','2',',','1','\n','0',',','1',',','2',',','2','\n','2',',','1',',','3',',','1','\n','2',',','3',';','1',',','2',',','3',',','1','\n','0',',','1',',','4',',','1','\n','0',',','4',',','3',',','1','\n','2',',','1',',','4',',','1','\n','1',',','2',',','4',',','1','\n','0',',','1',',','5',',','1','\n','1',',','1',',','3',',','2','\n','0',',','2',',','3',',','2','\n','2',',','1',',','5',',','1','\n','1',',','1',',','6',',','1','\n','1',',','2',',','5',',','1',';','0',',','2',',','6',',','1','\n','3',',','1',',','4',',','1','\n','0',',','3',',','6',',','1','\n','2',',','1',',','6',',','1',';','0',',','2',',','8',',','1','\n','0',',','3',',','8',',','1','\n','2',',','1',',','8',',','1',';','0',',','1',',','9',',','1','\n','4',',','2',';','3',',','1',',','5',',','1','\n','3',',','1',',','5',',','1',';','1',',','2',',','8',',','1','\n','0',',','1',',','1','1',',','1','\n','1',',','1',',','9',',','1',';','0',',','1',',','1','0',',','1','\n','3',',','1',',','7',',','1','\n','3',',','3',';','2',',','2',',','7',',','1','\n','1',',','1',',','1','1',',','1','\n','1',',','1',',','1','0',',','1','\n','3',',','1',',','6',',','1','\n','0',',','2',',','1','0',',','1','\n','0',',','1',',','1','2',',','1','\n','0',',','8',',','7',',','1','\n','2',',','1',',','9',',','1',';','0',',','1',',','1','3',',','1','\n','4',',','1',',','5',',','1',';','1',',','1',',','1','2',',','1','\n','0',',','4',',','9',',','1','\n','3',',','1',',','8',',','1','\n','2',',','1',',','1','0',',','1',';','1',',','1',',','1','3',',','1','\n','0',',','3',',','1','3',',','1','\n','4',',','1',',','6',',','1','\n','2',',','1',',','1','2',',','1','\n','1',',','2',',','1','2',',','1','\n','0',',','1',',','1','4',',','1','\n','1',',','2',',','1','3',',','1','\n','5',',','2',';','1',',','1',',','1','4',',','1','\n','3',',','1',',','9',',','1',';','1',',','1',',','4',',','1',',','7',',','1','\n','4',',','1',',','8',',','1','\n','3',',','1',',','1','1',',','1','\n','3',',','1',',','1','0',',','1','\n','2',',','2',',','1','1',',','1','\n','5',',','1',',','7',',','1','\n','0',',','2',',','2',',','1',',','1','3',',','1','\n','5',',','1',',','6',',','1','\n','2',',','1',',','1','4',',','1','\n','1',',','1',',','1','5',',','1','\n','1',',','2',',','1','4',',','1',';','0',',','2',',','1','5',',','1','\n','3',',','1',',','1','2',',','1','\n','0',',','3',',','1','5',',','1','\n','3',',','1',',','1','3',',','1','\n','6',',','1',',','7',',','1',';','2',',','2',',','1','3',',','1','\n','4',',','1',',','9',',','1','\n','1',',','1',',','1','7',',','1','\n','5',',','1',',','8',',','1',';','1',',','1',',','1','6',',','1','\n','6',',','2',';','2',',','1',',','1','5',',','1','\n','2',',','1',',','1','5',',','1',';','0',',','2',',','1','6',',','1','\n','4',',','1',',','1','1',',','1','\n','4',',','1',',','1','0',',','1','\n','0',',','3',',','1','6',',','1','\n','7',',','1',',','8',',','1','\n','2',',','1',',','1','7',',','1',';','0',',','1',',','2','0',',','1','\n','6',',','1',',','8',',','1',';','2',',','1',',','1','6',',','1','\n','2',',','1',',','1','6',',','1',';','0',',','1',',','1','9',',','1','\n','4',',','1',',','1','2',',','1',';','3',',','1',',','1','4',',','1','\n','3',',','1',',','1','4',',','1',';','1',',','2',',','1','6',',','1','\n','4',',','1',',','1','3',',','1','\n','1',',','1',',','2','0',',','1','\n','5',',','1',',','9',',','1',';','1',',','1',',','1','9',',','1','\n','1',',','1',',','1','9',',','1',';','0',',','2',',','2','0',',','1','\n','2',',','1',',','7',',','2','\n','1',',','2',',','7',',','2','\n','0',',','4',',','7',',','2','\n','5',',','1',',','1','1',',','1','\n','5',',','1',',','1','0',',','1','\n','3',',','1',',','1','5',',','1','\n','0',',','3',',','2','0',',','1','\n','0',',','1',',','2','1',',','1','\n','0',',','6',',','1','7',',','1','\n','7',',','1',',','9',',','1','\n','0',',','1',',','2','5',',','1','\n','0',',','1',',','2','4',',','1','\n','2',',','1',',','2','0',',','1',';','0',',','1',',','2','2',',','1','\n','6',',','1',',','9',',','1',';','2',',','1',',','1','9',',','1','\n','2',',','1',',','1','9',',','1',';','0',',','1',',','8',',','2','\n','5',',','1',',','1','2',',','1',';','4',',','1',',','1','4',',','1','\n','4',',','1',',','1','4',',','1',';','1',',','1',',','2','1',',','1','\n','0',',','4',',','1','9',',','1','\n','7',',','1',',','1','1',',','1','\n','7',',','1',',','1','0',',','1','\n','1',',','1',',','2','5',',','1',';','0',',','1',',','2','6',',','1','\n','1',',','1',',','2','4',',','1','\n','1',',','1',',','2','3',',','1','\n','6',',','1',',','1','1',',','1','\n','1',',','1',',','2','2',',','1','\n','3',',','1',',','1','7',',','1',';','0',',','2',',','2','3',',','1','\n','6',',','1',',','1','0',',','1',';','5',',','1',',','1','3',',','1','\n','3',',','1',',','1','6',',','1','\n','5',',','1',',','1','3',',','1',';','1',',','1',',','8',',','2','\n','1',',','1',',','8',',','2',';','0',',','2',',','2','2',',','1','\n','1',',','1',',','2','6',',','1','\n','0',',','2',',','2','6',',','1','\n','0',',','1',',','2','8',',','1','\n','7',',','1',',','1','2',',','1','\n','0',',','3',',','2','2',',','1','\n','6',',','1',',','1','2',',','1','\n','4',',','1',',','1','5',',','1','\n','2',',','1',',','2','1',',','1','\n','1',',','2',',','2','1',',','1','\n','0',',','1',',','2','7',',','1','\n','7',',','1',',','1','3',',','1',';','2',',','1',',','2','5',',','1','\n','8',',','1',',','1','1',',','1','\n','2',',','1',',','2','3',',','1',';','1',',','1',',','2','8',',','1','\n','8',',','1',',','1','0',',','1',';','2',',','1',',','2','2',',','1','\n','2',',','1',',','2','2',',','1',';','0',',','1',',','2','9',',','1','\n','6',',','1',',','1','3',',','1',';','0',',','1',',','8',',','1',',','9',',','1','\n','5',',','1',',','1','4',',','1',';','1',',','1',',','2','7',',','1','\n','2',',','1',',','2','6',',','1','\n','3',',','1',',','2','0',',','1','\n','1',',','1',',','2','9',',','1','\n','3',',','1',',','1','9',',','1','\n','4',',','1',',','1','7',',','1',';','0',',','2',',','8',',','1',',','9',',','1','\n','8',',','1',',','1','2',',','1',';','4',',','1',',','1','6',',','1','\n','4',',','1',',','1','6',',','1',';','0',',','5',',','2','3',',','1','\n','2',',','1',',','2','8',',','1','\n','9',',','2',';','8',',','1',',','1','3',',','1','\n','1',',','2',',','2','8',',','1','\n','7',',','1',',','1','4',',','1','\n','0',',','3',',','2','9',',','1','\n','0',',','6',',','2','3',',','1','\n','6',',','1',',','1','4',',','1','\n','5',',','1',',','1','5',',','1','\n','2',',','1',',','2','7',',','1','\n','1',',','1',',','3','0',',','1','\n','1',',','2',',','2','7',',','1',';','0',',','2',',','3','0',',','1','\n','4',',','1',',','7',',','2','\n','0',',','1',',','3','5',',','1','\n','9',',','1',',','1','1',',','1','\n','0',',','1',',','3','3',',','1','\n','9',',','1',',','1','0',',','1',';','2',',','1',',','2','9',',','1','\n','2',',','1',',','2','9',',','1',';','0',',','1',',','3','2',',','1','\n','3',',','1',',','2','1',',','1','\n','0',',','3',',','3','0',',','1','\n','3',',','1',',','2','5',',','1',';','1',',','1',',','3','5',',','1','\n','1','1',',','2',';','3',',','1',',','2','4',',','1','\n','3',',','1',',','2','4',',','1',';','2',',','2',',','2','5',',','1','\n','2',',','2',',','2','5',',','1',';','1',',','1',',','3','4',',','1','\n','1','0',',','1',',','1','1',',','1',';','2',',','2',',','2','4',',','1','\n','2',',','2',',','2','4',',','1',';','1',',','1',',','3','3',',','1','\n','3',',','1',',','2','3',',','1',';','1',',','1',',','3','3',',','1',';','0',',','2',',','3','4',',','1','\n','1','0',',','2','\n','3',',','1',',','2','2',',','1','\n','1',',','1',',','3','2',',','1','\n','1',',','1',',','8',',','1',',','1','3',',','1',';','0',',','2',',','3','2',',','1','\n','7',',','1',',','1','5',',','1',';','4',',','1',',','2','0',',','1','\n','4',',','1',',','2','0',',','1',';','0',',','2',',','8',',','1',',','1','3',',','1','\n','9',',','1',',','1','2',',','1','\n','4',',','1',',','1','9',',','1','\n','5',',','1',',','1','7',',','1','\n','8',',','1',',','1','4',',','1',';','5',',','1',',','1','6',',','1','\n','5',',','1',',','1','6',',','1',';','1',',','1',',','3','1',',','1','\n','6',',','1',',','1','5',',','1',';','2',',','1',',','3','0',',','1','\n','2',',','1',',','3','0',',','1',';','0',',','2',',','3','1',',','1','\n','3',',','1',',','2','6',',','1',';','0',',','1',',','3','7',',','1','\n','1','1',',','1',',','1','2',',','1','\n','0',',','3',',','3','2',',','1','\n','1','0',',','1',',','1','2',',','1','\n','0',',','3',',','3','1',',','1','\n','1',',','1',',','3','8',',','1','\n','2',',','1',',','3','5',',','1',';','1',',','1',',','3','7',',','1','\n','1',',','1',',','3','7',',','1',';','0',',','2',',','3','8',',','1','\n','2',',','1',',','3','4',',','1','\n','1',',','2',',','3','5',',','1',';','0',',','2',',','3','7',',','1','\n','1','1',',','1',',','1','3',',','1',';','3',',','1',',','2','8',',','1','\n','3',',','1',',','2','8',',','1',';','2',',','1',',','3','3',',','1','\n','2',',','1',',','3','3',',','1',';','1',',','1',',','3','6',',','1','\n','1',',','2',',','3','4',',','1','\n','7',',','1',',','1','7',',','1','\n','1','0',',','1',',','1','3',',','1',';','2',',','1',',','3','2',',','1','\n','1',',','2',',','3','3',',','1','\n','2',',','1',',','3','2',',','1',';','0',',','2',',','3','6',',','1','\n','7',',','1',',','1','6',',','1',';','0',',','1',',','9',',','1',',','1','3',',','1','\n','0',',','1',',','9',',','1',',','1','3',',','1',';','0',',','4',',','3','4',',','1','\n','6',',','1',',','1','7',',','1',';','0',',','1',',','4','0',',','1','\n','8',',','1',',','1','5',',','1',';','6',',','1',',','1','6',',','1','\n','6',',','1',',','1','6',',','1',';','2',',','1',',','3','1',',','1','\n','2',',','1',',','3','1',',','1',';','0',',','1',',','3','9',',','1','\n','1','2',',','2',';','4',',','1',',','2','1',',','1','\n','4',',','1',',','2','1',',','1',';','3',',','1',',','2','7',',','1','\n','3',',','1',',','2','7',',','1',';','1',',','2',',','3','1',',','1','\n','0',',','3',',','3','8',',','1','\n','4',',','1',',','2','5',',','1','\n','0',',','3',',','3','7',',','1','\n','4',',','1',',','2','4',',','1','\n','3',',','1',',','2','9',',','1','\n','4',',','1',',','2','3',',','1',';','0',',','3',',','3','6',',','1','\n','4',',','1',',','2','2',',','1',';','0',',','5',',','3','4',',','1','\n','1','2',',','1',',','1','3',',','1','\n','5',',','1',',','2','0',',','1','\n','1',',','1',',','4','0',',','1','\n','9',',','1',',','1','4',',','1',';','5',',','1',',','1','9',',','1','\n','5',',','1',',','1','9',',','1',';','1',',','1',',','3','9',',','1','\n','1',',','1',',','3','9',',','1',';','0',',','2',',','4','0',',','1','\n','7',',','1',',','1','8',',','1','\n','7',',','3',';','3',',','2',',','1','8',',','1','\n','2',',','1',',','3','8',',','1','\n','2',',','1',',','3','7',',','1','\n','4',',','1',',','2','6',',','1','\n','2',',','1',',','3','6',',','1','\n','1',',','2',',','3','6',',','1','\n','0',',','4',',','3','6',',','1','\n','0',',','6',',','3','4',',','1','\n','1','1',',','1',',','1','4',',','1','\n','1','0',',','1',',','1','4',',','1','\n','3',',','1',',','3','0',',','1','\n','0',',','3',',','4','0',',','1','\n','0',',','1',',','4','1',',','1','\n','0',',','1','6',',','1','8',',','1','\n','7',',','1',',','2','0',',','1','\n','7',',','1',',','1','9',',','1','\n','4',',','1',',','2','8',',','1','\n','0',',','1',',','1','3',',','2','\n','0',',','1',',','4','2',',','1','\n','6',',','1',',','2','0',',','1',';','2',',','1',',','4','0',',','1','\n','2',',','1',',','4','0',',','1',';','0',',','1',',','8',',','1',',','1','7',',','1','\n','9',',','1',',','1','5',',','1',';','6',',','1',',','1','9',',','1','\n','6',',','1',',','1','9',',','1',';','2',',','1',',','3','9',',','1','\n','2',',','1',',','3','9',',','1',';','0',',','1',',','8',',','1',',','1','6',',','1','\n','1','2',',','1',',','1','4',',','1',';','5',',','1',',','2','1',',','1','\n','5',',','1',',','2','1',',','1',';','4',',','1',',','2','7',',','1','\n','4',',','1',',','2','7',',','1',';','1',',','1',',','4','1',',','1','\n','0',',','4',',','3','9',',','1','\n','3',',','1',',','3','5',',','1',';','1',',','1',',','4','3',',','1','\n','3',',','1',',','3','4',',','1',';','0',',','2',',','4','3',',','1','\n','3',',','1',',','3','3',',','1','\n','3',',','1',',','3','2',',','1','\n','5',',','1',',','2','5',',','1','\n','1',',','1',',','1','3',',','2','\n','5',',','1',',','2','4',',','1','\n','4',',','1',',','2','9',',','1','\n','5',',','1',',','2','3',',','1','\n','1','1',',','1',',','1','5',',','1','\n','5',',','1',',','2','2',',','1','\n','1','3',',','1',',','1','4',',','1',';','1','0',',','1',',','1','5',',','1','\n','3',',','1',',','3','1',',','1','\n','1','0',',','1',',','1','5',',','1',';','1',',','1',',','8',',','1',',','1','6',',','1','\n','1',',','1',',','8',',','1',',','1','6',',','1',';','0',',','2',',','8',',','1',',','1','7',',','1','\n','0',',','3',',','4','3',',','1','\n','5',',','1',',','2','6',',','1','\n','9',',','1',',','1','7',',','1',';','8',',','1',',','2','0',',','1','\n','9',',','1',',','1','6',',','1',';','8',',','1',',','1','9',',','1','\n','7',',','1',',','2','1',',','1','\n','1','2',',','1',',','1','5',',','1','\n','6',',','1',',','2','1',',','1','\n','4',',','1',',','3','0',',','1','\n','2',',','1',',','4','1',',','1','\n','1',',','2',',','4','1',',','1','\n','0',',','1',',','4','4',',','1','\n','7',',','1',',','2','5',',','1','\n','3',',','1',',','3','7',',','1',';','2',',','1',',','4','3',',','1','\n','7',',','1',',','2','4',',','1','\n','1',',','2',',','4','3',',','1','\n','7',',','1',',','2','3',',','1','\n','3',',','1',',','3','6',',','1',';','0',',','2',',','8',',','1',',','1','8',',','1','\n','7',',','1',',','2','2',',','1','\n','6',',','1',',','2','5',',','1','\n','2',',','1',',','1','3',',','2','\n','1','1',',','1',',','1','7',',','1','\n','6',',','1',',','2','4',',','1','\n','2',',','1',',','4','2',',','1','\n','0',',','1',',','4','6',',','1','\n','1','1',',','1',',','1','6',',','1','\n','1','0',',','1',',','1','7',',','1',';','6',',','1',',','2','3',',','1','\n','6',',','1',',','2','3',',','1',';','5',',','1',',','2','8',',','1','\n','5',',','1',',','2','8',',','1',';','1',',','2',',','4','2',',','1','\n','1',',','2',',','4','2',',','1',';','0',',','1',',','4','5',',','1','\n','1','0',',','1',',','1','6',',','1',';','6',',','1',',','2','2',',','1','\n','6',',','1',',','2','2',',','1',';','0',',','1',',','8',',','1',',','2','0',',','1','\n','1','3',',','1',',','1','5',',','1',';','0',',','1',',','8',',','1',',','1','9',',','1','\n','1','4',',','2',';','5',',','1',',','2','7',',','1','\n','5',',','1',',','2','7',',','1',';','1',',','1',',','4','4',',','1','\n','7',',','1',',','2','6',',','1','\n','0',',','1',',','3',',','1',',','3','8',',','1','\n','4',',','1',',','3','5',',','1','\n','4',',','1',',','3','4',',','1','\n','6',',','1',',','2','6',',','1','\n','4',',','1',',','3','3',',','1','\n','4',',','1',',','3','2',',','1','\n','1',',','1',',','4','6',',','1','\n','1',',','1',',','4','5',',','1','\n','5',',','1',',','2','9',',','1','\n','3',',','1',',','4','0',',','1','\n','0',',','2',',','4','5',',','1','\n','3',',','1',',','3','9',',','1','\n','1','2',',','1',',','1','7',',','1',';','0',',','2',',','8',',','1',',','1','9',',','1','\n','1','2',',','1',',','1','6',',','1','\n','8',',','1',',','2','1',',','1','\n','4',',','1',',','3','1',',','1','\n','7',',','1',',','2','8',',','1',';','1',',','2',',','8',',','1',',','1','8',',','1','\n','0',',','2',',','2',',','1',',','4','3',',','1','\n','8',',','1',',','2','5',',','1','\n','0',',','1',',','4','8',',','1','\n','8',',','1',',','2','4',',','1','\n','1','3',',','1',',','1','7',',','1',';','9',',','1',',','2','0',',','1','\n','9',',','1',',','2','0',',','1',';','8',',','1',',','2','2',',','1','\n','6',',','1',',','2','8',',','1','\n','1','3',',','1',',','1','6',',','1',';','9',',','1',',','1','9',',','1','\n','9',',','1',',','1','9',',','1',';','8',',','3','\n','7',',','1',',','2','7',',','1','\n','1','4',',','1',',','1','5',',','1','\n','6',',','1',',','2','7',',','1','\n','5',',','1',',','3','0',',','1','\n','2',',','1',',','4','4',',','1','\n','1',',','1',',','4','7',',','1','\n','1',',','2',',','4','4',',','1',';','0',',','2',',','4','7',',','1','\n','4',',','1',',','3','8',',','1','\n','4',',','1',',','3','7',',','1','\n','8',',','1',',','2','6',',','1','\n','7',',','1',',','2','9',',','1','\n','4',',','1',',','3','6',',','1','\n','0',',','1',',','5','2',',','1','\n','1','1',',','1',',','2','0',',','1','\n','2',',','1',',','4','6',',','1','\n','0',',','1',',','5','1',',','1','\n','1','1',',','1',',','1','9',',','1','\n','1','0',',','1',',','2','0',',','1','\n','2',',','1',',','4','5',',','1','\n','0',',','1',',','8',',','1',',','2','3',',','1','\n','1','0',',','1',',','1','9',',','1',';','6',',','1',',','2','9',',','1','\n','6',',','1',',','2','9',',','1',';','0',',','1',',','8',',','1',',','2','2',',','1','\n','3',',','1',',','4','1',',','1','\n','0',',','3',',','4','7',',','1','\n','1','3',',','1',',','1','8',',','1',';','3',',','1',',','4','3',',','1','\n','2',',','2',',','4','3',',','1','\n','0',',','3',',','9',',','1',',','1','8',',','1','\n','5',',','1',',','3','5',',','1','\n','1',',','1',',','5','2',',','1','\n','8',',','1',',','2','8',',','1','\n','5',',','1',',','3','4',',','1','\n','3',',','1',',','4','2',',','1','\n','1',',','1',',','5','1',',','1','\n','5',',','1',',','3','3',',','1','\n','5',',','1',',','3','2',',','1','\n','1','2',',','1',',','2','0',',','1',';','7',',','1',',','3','0',',','1','\n','7',',','1',',','3','0',',','1',';','4',',','1',',','4','0',',','1','\n','4',',','1',',','4','0',',','1',';','0',',','2',',','8',',','3','\n','1','2',',','1',',','1','9',',','1','\n','9',',','1',',','2','1',',','1','\n','4',',','1',',','3','9',',','1','\n','1','4',',','1',',','1','7',',','1','\n','1',',','1',',','5','0',',','1','\n','1','4',',','1',',','1','6',',','1',';','8',',','1',',','2','7',',','1','\n','8',',','1',',','2','7',',','1',';','5',',','1',',','3','1',',','1','\n','5',',','1',',','3','1',',','1',';','1',',','1',',','4','9',',','1','\n','1','5',',','2',';','6',',','1',',','3','0',',','1','\n','6',',','1',',','3','0',',','1',';','2',',','1',',','4','7',',','1','\n','2',',','1',',','4','7',',','1',';','0',',','2',',','4','9',',','1','\n','0',',','1',',','5','4',',','1','\n','9',',','1',',','2','5',',','1','\n','2',',','1',',','4','8',',','1','\n','1',',','1',',','5','3',',','1','\n','9',',','1',',','2','4',',','1','\n','1',',','2',',','4','8',',','1',';','0',',','2',',','5','3',',','1','\n','1','3',',','1',',','2','0',',','1',';','9',',','1',',','2','2',',','1','\n','9',',','1',',','2','2',',','1',';','8',',','1',',','2','9',',','1','\n','1','3',',','1',',','1','9',',','1',';','8',',','2',',','9',',','1','\n','1','1',',','1',',','2','1',',','1','\n','1','0',',','1',',','2','1',',','1','\n','0',',','3',',','4','9',',','1','\n','7',',','1',',','3','5',',','1',';','2',',','1',',','1','1',',','1',',','1','8',',','1','\n','7',',','1',',','3','4',',','1','\n','0',',','1',',','5','7',',','1','\n','1','1',',','1',',','2','5',',','1','\n','7',',','1',',','3','3',',','1','\n','1',',','1',',','5','4',',','1','\n','1','1',',','1',',','2','4',',','1','\n','1','0',',','1',',','2','5',',','1','\n','9',',','1',',','2','6',',','1','\n','7',',','1',',','3','2',',','1','\n','5',',','1',',','3','8',',','1','\n','1','1',',','1',',','2','3',',','1','\n','1','0',',','1',',','2','4',',','1','\n','6',',','1',',','3','5',',','1','\n','5',',','1',',','3','7',',','1','\n','2',',','1',',','5','2',',','1','\n','1','4',',','1',',','1','8',',','1','\n','1','1',',','1',',','2','2',',','1','\n','1','0',',','1',',','2','3',',','1','\n','6',',','1',',','3','4',',','1','\n','2',',','1',',','5','1',',','1','\n','0',',','3',',','5','3',',','1','\n','1','0',',','1',',','2','2',',','1','\n','6',',','1',',','3','3',',','1','\n','5',',','1',',','3','6',',','1','\n','0',',','1',',','9',',','1',',','2','3',',','1','\n','6',',','1',',','3','2',',','1','\n','0',',','1',',','8',',','1',',','2','9',',','1','\n','7',',','1',',','3','1',',','1','\n','0',',','1',',','8',',','2',',','9',',','1','\n','1','5',',','1',',','1','7',',','1',';','2',',','1',',','5','0',',','1','\n','2',',','1',',','5','0',',','1',';','0',',','1',',','5','6',',','1','\n','1','5',',','1',',','1','6',',','1',';','8',',','1',',','3','0',',','1','\n','8',',','1',',','3','0',',','1',';','6',',','1',',','3','1',',','1','\n','6',',','1',',','3','1',',','1',';','2',',','1',',','4','9',',','1','\n','2',',','1',',','4','9',',','1',';','0',',','1',',','5','5',',','1','\n','1','2',',','1',',','2','1',',','1',';','4',',','1',',','4','1',',','1','\n','4',',','1',',','4','1',',','1',';','3',',','1',',','4','4',',','1','\n','3',',','1',',','4','4',',','1',';','1',',','2',',','4','9',',','1','\n','1',',','1',',','5','7',',','1','\n','1','1',',','1',',','2','6',',','1','\n','4',',','1',',','4','3',',','1','\n','1','0',',','1',',','2','6',',','1','\n','9',',','1',',','2','8',',','1','\n','3',',','1',',','4','6',',','1','\n','1','2',',','1',',','2','5',',','1','\n','3',',','1',',','4','5',',','1','\n','1','2',',','1',',','2','4',',','1','\n','4',',','1',',','4','2',',','1','\n','1','2',',','1',',','2','3',',','1','\n','1','2',',','1',',','2','2',',','1','\n','1','3',',','1',',','2','1',',','1','\n','1','4',',','1',',','2','0',',','1','\n','5',',','1',',','4','0',',','1','\n','1',',','1',',','5','6',',','1','\n','1','4',',','1',',','1','9',',','1',';','9',',','1',',','2','7',',','1','\n','9',',','1',',','2','7',',','1',';','5',',','1',',','3','9',',','1','\n','5',',','1',',','3','9',',','1',';','1',',','1',',','5','5',',','1','\n','1',',','1',',','5','5',',','1',';','0',',','2',',','5','6',',','1','\n','7',',','1',',','3','8',',','1','\n','7',',','1',',','3','7',',','1','\n','3',',','2',',','3','8',',','1','\n','7',',','1',',','3','6',',','1','\n','8',',','1',',','3','5',',','1','\n','6',',','1',',','3','8',',','1','\n','1','1',',','1',',','2','8',',','1','\n','8',',','1',',','3','4',',','1','\n','6',',','1',',','3','7',',','1','\n','0',',','1',',','2',',','1',',','5','3',',','1','\n','1','5',',','1',',','1','8',',','1','\n','1','0',',','1',',','2','8',',','1','\n','8',',','1',',','3','3',',','1','\n','1','2',',','1',',','2','6',',','1','\n','1','3',',','1',',','2','2',',','1',';','9',',','1',',','2','9',',','1','\n','9',',','1',',','2','9',',','1',';','8',',','1',',','3','2',',','1','\n','6',',','1',',','3','6',',','1','\n','1','1',',','1',',','2','7',',','1','\n','1','6',',','2',';','8',',','1',',','3','1',',','1','\n','1','0',',','1',',','2','7',',','1','\n','3',',','1',',','4','7',',','1','\n','0',',','3',',','5','6',',','1','\n','0',',','1',',','5','8',',','1','\n','0',',','6',',','5','0',',','1','\n','2',',','1',',','5','7',',','1','\n','0',',','1',',','6','1',',','1','\n','1','3',',','1',',','2','6',',','1','\n','3',',','1',',','4','8',',','1','\n','1','1',',','1',',','2','9',',','1','\n','1','0',',','1',',','2','9',',','1','\n','0',',','1',',','1','3',',','1',',','2','3',',','1','\n','7',',','1',',','4','0',',','1','\n','0',',','1',',','8',',','1',',','3','2',',','1','\n','1','2',',','1',',','2','8',',','1','\n','7',',','1',',','3','9',',','1','\n','0',',','1',',','8',',','2',',','1','3',',','1','\n','0',',','1',',','6','0',',','1',';','0',',','1',',','5','9',',','1','\n','1','5',',','1',',','2','0',',','1',';','6',',','1',',','4','0',',','1','\n','6',',','1',',','4','0',',','1',';','2',',','1',',','5','6',',','1','\n','2',',','1',',','5','6',',','1',';','0',',','1',',','1','6',',','1',',','1','7',',','1','\n','1','5',',','1',',','1','9',',','1',';','9',',','1',',','3','0',',','1','\n','9',',','1',',','3','0',',','1',';','6',',','1',',','3','9',',','1','\n','6',',','1',',','3','9',',','1',';','2',',','1',',','5','5',',','1','\n','2',',','1',',','5','5',',','1',';','0',',','1',',','8',',','1',',','3','1',',','1','\n','1','4',',','1',',','2','1',',','1',';','1','2',',','1',',','2','7',',','1','\n','1','2',',','1',',','2','7',',','1',';','5',',','1',',','4','1',',','1','\n','5',',','1',',','4','1',',','1',';','4',',','1',',','4','4',',','1','\n','4',',','1',',','4','4',',','1',';','1',',','1',',','5','8',',','1','\n','0',',','4',',','5','5',',','1','\n','8',',','1',',','3','8',',','1','\n','8',',','1',',','3','7',',','1','\n','5',',','1',',','4','3',',','1','\n','3',',','1',',','5','2',',','1','\n','1','3',',','1',',','2','8',',','1','\n','8',',','1',',','3','6',',','1','\n','3',',','1',',','5','1',',','1','\n','4',',','1',',','4','6',',','1','\n','1','4',',','1',',','2','5',',','1','\n','4',',','1',',','4','5',',','1','\n','1','4',',','1',',','2','4',',','1','\n','1','2',',','1',',','2','9',',','1','\n','1',',','1',',','6','0',',','1','\n','5',',','1',',','4','2',',','1',';','1',',','1',',','5','9',',','1','\n','1','4',',','1',',','2','3',',','1','\n','1','4',',','1',',','2','2',',','1','\n','1','1',',','1',',','3','0',',','1','\n','3',',','1',',','5','0',',','1',';','0',',','2',',','1','7',',','2','\n','1','3',',','1',',','2','7',',','1',';','1','0',',','1',',','3','0',',','1','\n','3',',','1',',','4','9',',','1','\n','1','0',',','1',',','3','0',',','1',';','1',',','1',',','8',',','1',',','3','1',',','1','\n','1',',','1',',','8',',','1',',','3','1',',','1',';','0',',','2',',','1','6',',','1',',','1','7',',','1','\n','9',',','1',',','3','5',',','1','\n','3',',','1',',','5','3',',','1','\n','9',',','1',',','3','4',',','1','\n','2',',','2',',','5','3',',','1','\n','9',',','1',',','3','3',',','1','\n','0',',','1',',','1','6',',','1',',','1','8',',','1','\n','1','3',',','1',',','2','9',',','1',';','9',',','1',',','3','2',',','1','\n','1','4',',','1',',','2','6',',','1','\n','1','7',',','1',',','1','9',',','1',';','1','6',',','1',',','2','0',',','1','\n','1','6',',','1',',','2','0',',','1',';','8',',','1',',','4','0',',','1','\n','1','6',',','1',',','1','9',',','1',';','9',',','1',',','3','1',',','1','\n','9',',','1',',','3','1',',','1',';','8',',','1',',','3','9',',','1','\n','7',',','1',',','4','1',',','1','\n','1','5',',','1',',','2','1',',','1','\n','1','2',',','1',',','3','0',',','1','\n','6',',','1',',','4','1',',','1','\n','4',',','1',',','4','7',',','1','\n','2',',','1',',','5','8',',','1','\n','1',',','2',',','5','8',',','1','\n','0',',','1',',','6','2',',','1','\n','7',',','1',',','4','3',',','1','\n','3',',','2',',','4','3',',','1','\n','1','1',',','1',',','3','5',',','1','\n','3',',','1',',','5','4',',','1','\n','2',',','1',',','6','1',',','1','\n','1','1',',','1',',','3','4',',','1','\n','1','0',',','1',',','3','5',',','1','\n','2',',','2',',','5','4',',','1','\n','1',',','2',',','6','1',',','1','\n','1','1',',','1',',','3','3',',','1','\n','1','0',',','1',',','3','4',',','1','\n','6',',','1',',','4','3',',','1','\n','2',',','1',',','1','3',',','1',',','2','5',',','1','\n','1','1',',','1',',','3','2',',','1','\n','1','0',',','1',',','3','3',',','1','\n','7',',','1',',','4','2',',','1',';','4',',','1',',','4','8',',','1','\n','2',',','1',',','1','3',',','1',',','2','4',',','1','\n','4',',','1',',','4','8',',','1',';','1',',','1',',','1','6',',','1',',','1','8',',','1','\n','1',',','1',',','1','6',',','1',',','1','8',',','1',';','0',',','2',',','1','7',',','1',',','1','8',',','1','\n','1','0',',','1',',','3','2',',','1','\n','0',',','1',',','9',',','1',',','3','2',',','1','\n','1','5',',','1',',','2','5',',','1','\n','1','5',',','1',',','2','4',',','1','\n','6',',','1',',','4','2',',','1','\n','2',',','1',',','6','0',',','1','\n','2',',','1',',','5','9',',','1','\n','0',',','1',',','6','3',',','1','\n','1','5',',','1',',','2','3',',','1',';','1','4',',','1',',','2','8',',','1','\n','1','1',',','1',',','3','1',',','1','\n','1','4',',','1',',','2','8',',','1',';','1',',','2',',','5','9',',','1','\n','1',',','2',',','5','9',',','1',';','0',',','1',',','1','7',',','1',',','2','0',',','1','\n','1','5',',','1',',','2','2',',','1',';','1','0',',','1',',','3','1',',','1','\n','1','0',',','1',',','3','1',',','1',';','0',',','1',',','8',',','1',',','4','0',',','1','\n','1','3',',','1',',','3','0',',','1',';','0',',','1',',','8',',','1',',','3','9',',','1','\n','1','4',',','1',',','2','7',',','1',';','5',',','1',',','4','4',',','1','\n','5',',','1',',','4','4',',','1',';','1',',','1',',','6','2',',','1','\n','3',',','1',',','5','7',',','1','\n','9',',','1',',','3','8',',','1','\n','9',',','1',',','3','7',',','1','\n','9',',','1',',','3','6',',','1','\n','1','2',',','1',',','3','5',',','1','\n','4',',','1',',','5','2',',','1','\n','0',',','3',',','1','7',',','1',',','1','8',',','1','\n','1','2',',','1',',','3','4',',','1','\n','4',',','1',',','5','1',',','1','\n','1','5',',','1',',','2','6',',','1','\n','1','2',',','1',',','3','3',',','1','\n','1','2',',','1',',','3','2',',','1','\n','5',',','1',',','4','6',',','1','\n','1',',','1',',','6','3',',','1','\n','5',',','1',',','4','5',',','1','\n','1','4',',','1',',','2','9',',','1','\n','3',',','1',',','5','6',',','1','\n','0',',','2',',','1','7',',','1',',','2','0',',','1','\n','3',',','1',',','5','5',',','1','\n','1','7',',','1',',','2','1',',','1',';','4',',','1',',','5','0',',','1','\n','4',',','1',',','5','0',',','1',';','0',',','2',',','8',',','1',',','3','9',',','1','\n','1','6',',','1',',','2','1',',','1',';','1','2',',','1',',','3','1',',','1','\n','1','2',',','1',',','3','1',',','1',';','8',',','1',',','4','1',',','1','\n','8',',','1',',','4','1',',','1',';','4',',','1',',','4','9',',','1','\n','4',',','1',',','4','9',',','1',';','0',',','5',',','1','7',',','2','\n','0',',','1',',','7','0',',','1','\n','1','1',',','1',',','3','8',',','1','\n','1','1',',','1',',','3','7',',','1','\n','1','0',',','1',',','3','8',',','1','\n','1',',','1',',','6','8',',','1','\n','1','3',',','1',',','3','5',',','1','\n','1','0',',','1',',','3','7',',','1','\n','8',',','1',',','4','3',',','1','\n','1',',','1',',','6','7',',','1',';','0',',','2',',','6','8',',','1','\n','1','3',',','1',',','3','4',',','1','\n','1','1',',','1',',','3','6',',','1','\n','1','0',',','1',',','3','6',',','1','\n','4',',','1',',','5','3',',','1','\n','0',',','1',',','1','8',',','1',',','1','9',',','1','\n','1','7',',','1',',','2','5',',','1','\n','1',',','1',',','6','6',',','1','\n','1','7',',','1',',','2','4',',','1','\n','1','6',',','1',',','2','5',',','1','\n','1','6',',','1',',','2','4',',','1','\n','1','7',',','1',',','2','3',',','1',';','8',',','1',',','4','2',',','1',';','0',',','3',',','6','4',',','1','\n','2','0',',','2',';','1','7',',','1',',','2','2',',','1','\n','1','7',',','1',',','2','2',',','1',';','1','6',',','1',',','2','3',',','1','\n','1','9',',','1',',','2','0',',','1',';','1','6',',','1',',','2','2',',','1','\n','1','5',',','1',',','2','8',',','1','\n','1','6',',','1',',','2','2',',','1',';','9',',','1',',','4','0',',','1','\n','9',',','1',',','4','0',',','1',';','8',',','2',',','1','7',',','1','\n','1','9',',','2',';','1','3',',','1',',','3','1',',','1','\n','1','3',',','1',',','3','1',',','1',';','9',',','1',',','3','9',',','1','\n','9',',','1',',','3','9',',','1',';','8',',','2',',','1','6',',','1','\n','7',',','1',',','4','4',',','1','\n','1','5',',','1',',','2','7',',','1','\n','1','4',',','1',',','3','0',',','1','\n','6',',','1',',','4','4',',','1','\n','5',',','1',',','4','7',',','1','\n','2',',','1',',','6','2',',','1','\n','1',',','1',',','6','5',',','1','\n','1',',','2',',','6','2',',','1',';','0',',','2',',','6','5',',','1','\n','4',',','1',',','5','4',',','1','\n','0',',','3',',','6','8',',','1','\n','1','2',',','1',',','3','8',',','1','\n','7',',','1',',','4','6',',','1',';','0',',','2',',','1','8',',','1',',','2','0',',','1','\n','0',',','3',',','6','7',',','1','\n','1','7',',','1',',','2','6',',','1','\n','1','2',',','1',',','3','7',',','1','\n','7',',','1',',','4','5',',','1','\n','2',',','1',',','6','4',',','1',';','0',',','1',',','7','2',',','1','\n','1','8',',','1',',','2','1',',','1','\n','1','6',',','1',',','2','6',',','1','\n','5',',','1',',','4','8',',','1',';','1',',','2',',','6','4',',','1','\n','0',',','1',',','1','3',',','1',',','3','2',',','1','\n','1','2',',','1',',','3','6',',','1','\n','1','1',',','1',',','4','0',',','1','\n','6',',','1',',','4','6',',','1','\n','2',',','1',',','6','3',',','1','\n','1','1',',','1',',','3','9',',','1','\n','1','0',',','1',',','4','0',',','1','\n','6',',','1',',','4','5',',','1','\n','0',',','1',',','1','6',',','1',',','2','3',',','1','\n','1','5',',','1',',','2','9',',','1',';','1','0',',','1',',','3','9',',','1','\n','1','0',',','1',',','3','9',',','1',';','0',',','1',',','8',',','2',',','1','7',',','1','\n','3',',','1',',','5','8',',','1','\n','0',',','3',',','6','5',',','1','\n','1','8',',','1',',','2','5',',','1','\n','0',',','1',',','7','6',',','1','\n','1','8',',','1',',','2','3',',','1','\n','1','3',',','1',',','3','8',',','1','\n','3',',','1',',','6','1',',','1','\n','2',',','1',',','6','8',',','1',';','0',',','1',',','7','5',',','1','\n','1','3',',','1',',','3','7',',','1','\n','4',',','1',',','5','7',',','1','\n','1','8',',','1',',','2','2',',','1',';','2',',','1',',','6','7',',','1','\n','2',',','1',',','6','7',',','1',';','0',',','1',',','7','3',',','1','\n','8',',','2',',','1','8',',','1','\n','1','3',',','1',',','3','6',',','1','\n','2',',','1',',','6','6',',','1',';','1',',','1',',','7','2',',','1','\n','1',',','1',',','1','3',',','1',',','3','3',',','1','\n','1','7',',','1',',','2','8',',','1','\n','1','4',',','1',',','3','5',',','1','\n','5',',','1',',','5','2',',','1','\n','1','6',',','1',',','2','8',',','1','\n','1','4',',','1',',','3','4',',','1','\n','5',',','1',',','5','1',',','1','\n','3',',','1',',','6','0',',','1',';','3',',','1',',','5','9',',','1','\n','1',',','1',',','8',',','1',',','4','2',',','1','\n','3',',','1',',','5','9',',','1',';','0',',','4',',','6','6',',','1','\n','1','4',',','1',',','3','3',',','1','\n','1','4',',','1',',','3','2',',','1','\n','2','0',',','1',',','2','1',',','1',';','1','2',',','1',',','4','0',',','1','\n','1','2',',','1',',','4','0',',','1',';','7',',','1',',','4','7',',','1','\n','7',',','1',',','4','7',',','1',';','4',',','1',',','5','6',',','1','\n','4',',','1',',','5','6',',','1',';','0',',','2',',','8',',','2',',','1','6',',','1','\n','1','9',',','1',',','2','1',',','1','\n','1','2',',','1',',','3','9',',','1','\n','9',',','1',',','4','1',',','1','\n','4',',','1',',','5','5',',','1','\n','1','7',',','1',',','2','7',',','1','\n','5',',','1',',','5','0',',','1','\n','1','6',',','1',',','2','7',',','1',';','1','4',',','1',',','3','1',',','1','\n','1','4',',','1',',','3','1',',','1',';','8',',','1',',','4','4',',','1','\n','8',',','1',',','4','4',',','1',';','5',',','1',',','4','9',',','1','\n','5',',','1',',','4','9',',','1',';','1',',','1',',','7','1',',','1','\n','1','5',',','1',',','3','0',',','1',';','6',',','1',',','4','7',',','1','\n','6',',','1',',','4','7',',','1',';','2',',','1',',','6','5',',','1','\n','2',',','1',',','6','5',',','1',';','0',',','2',',','7','1',',','1','\n','1','8',',','1',',','2','6',',','1','\n','1',',','2',',','7','0',',','1','\n','1',',','1',',','7','5',',','1','\n','1',',','1',',','7','4',',','1','\n','9',',','1',',','4','3',',','1','\n','7',',','1',',','4','8',',','1',';','1',',','1',',','7','3',',','1','\n','1',',','1',',','7','3',',','1',';','0',',','2',',','7','5',',','1','\n','0',',','2',',','7','5',',','1',';','0',',','2',',','7','4',',','1','\n','2','0',',','1',',','2','5',',','1','\n','2','0',',','1',',','2','4',',','1','\n','1','9',',','1',',','2','5',',','1','\n','6',',','1',',','4','8',',','1','\n','5',',','1',',','5','3',',','1','\n','1','9',',','1',',','2','4',',','1','\n','2','0',',','1',',','2','3',',','1',';','9',',','1',',','4','2',',','1','\n','9',',','1',',','4','2',',','1',';','8',',','1',',','4','6',',','1',';','0',',','3',',','7','2',',','1','\n','2','0',',','1',',','2','2',',','1',';','1','9',',','1',',','2','3',',','1','\n','1','9',',','1',',','2','3',',','1',';','1','7',',','1',',','2','9',',','1','\n','1','7',',','1',',','2','9',',','1',';','8',',','1',',','4','5',',','1','\n','1','9',',','1',',','2','2',',','1',';','1','6',',','1',',','2','9',',','1','\n','1','6',',','1',',','2','9',',','1',';','1','3',',','1',',','4','0',',','1','\n','1','3',',','1',',','4','0',',','1',';','8',',','2',',','2','0',',','1','\n','1','3',',','1',',','3','9',',','1',';','8',',','2',',','1','9',',','1','\n','1','1',',','1',',','4','1',',','1','\n','1','0',',','1',',','4','1',',','1','\n','0',',','3',',','7','1',',','1','\n','1','8',',','1',',','2','8',',','1','\n','1','1',',','1',',','4','3',',','1','\n','1','0',',','1',',','4','3',',','1','\n','7',',','1',',','5','2',',','1','\n','0',',','3',',','7','4',',','1','\n','7',',','1',',','5','1',',','1','\n','0',',','3',',','7','3',',','1','\n','2','0',',','1',',','2','6',',','1','\n','5',',','1',',','5','4',',','1','\n','2',',','1',',','7','2',',','1',';','0',',','1',',','7','9',',','1','\n','1','9',',','1',',','2','6',',','1','\n','1','4',',','1',',','3','8',',','1','\n','1','1',',','1',',','4','2',',','1','\n','1',',','2',',','7','2',',','1','\n','1','5',',','1',',','3','5',',','1','\n','1','4',',','1',',','3','7',',','1','\n','1','0',',','1',',','4','2',',','1','\n','6',',','1',',','5','2',',','1','\n','1','8',',','1',',','2','7',',','1','\n','1','5',',','1',',','3','4',',','1','\n','6',',','1',',','5','1',',','1','\n','0',',','4',',','7','2',',','1','\n','1','5',',','1',',','3','3',',','1','\n','1','4',',','1',',','3','6',',','1','\n','0',',','1',',','8',',','1',',','4','5',',','1','\n','7',',','1',',','5','0',',','1','\n','1','5',',','1',',','3','2',',','1',';','0',',','1',',','8',',','2',',','2','0',',','1','\n','0',',','1',',','8',',','2',',','2','0',',','1',';','0',',','6',',','6','6',',','1','\n','7',',','1',',','4','9',',','1',';','0',',','1',',','8',',','2',',','1','9',',','1','\n','0',',','1',',','8',',','2',',','1','9',',','1',';','0',',','7',',','6','4',',','1','\n','1','7',',','1',',','3','0',',','1',';','6',',','1',',','5','0',',','1','\n','6',',','1',',','5','0',',','1',';','0',',','1',',','7','8',',','1','\n','1','6',',','1',',','3','0',',','1',';','1','5',',','1',',','3','1',',','1','\n','1','5',',','1',',','3','1',',','1',';','8',',','1',',','4','7',',','1','\n','8',',','1',',','4','7',',','1',';','6',',','1',',','4','9',',','1','\n','6',',','1',',','4','9',',','1',';','2',',','1',',','7','1',',','1','\n','2',',','1',',','7','1',',','1',';','0',',','1',',','7','7',',','1','\n','2','1',',','2',';','1','2',',','1',',','4','1',',','1','\n','1','2',',','1',',','4','1',',','1',';','4',',','1',',','5','8',',','1','\n','4',',','1',',','5','8',',','1',';','3',',','1',',','6','2',',','1','\n','3',',','1',',','6','2',',','1',';','1',',','2',',','7','1',',','1','\n','1',',','2',',','7','6',',','1','\n','2',',','1',',','7','4',',','1',';','0',',','1',',','8','6',',','1','\n','1','8',',','1',',','2','9',',','1',';','7',',','1',',','5','3',',','1','\n','7',',','1',',','5','3',',','1',';','2',',','1',',','7','3',',','1','\n','2',',','1',',','7','3',',','1',';','0',',','1',',','8','5',',','1','\n','0',',','1',',','8','5',',','1',';','0',',','1',',','8','4',',','1','\n','8',',','1',',','9',',','1',',','1','8',',','1','\n','4',',','1',',','6','1',',','1','\n','0',',','1',',','8','3',',','1',';','0',',','1',',','8','2',',','1','\n','0',',','1',',','8','2',',','1',';','0',',','7',',','1','8',',','2','\n','5',',','1',',','5','7',',','1','\n','1',',','1',',','8','0',',','1','\n','1','2',',','1',',','4','3',',','1','\n','8',',','1',',','4','8',',','1',';','1',',','1',',','7','9',',','1','\n','3',',','1',',','6','4',',','1',';','1',',','1',',','7','9',',','1',';','0',',','2',',','8','0',',','1','\n','6',',','1',',','5','3',',','1',';','0',',','2',',','7','9',',','1','\n','2','0',',','1',',','2','8',',','1','\n','1','9',',','1',',','2','8',',','1','\n','3',',','1',',','6','3',',','1','\n','2','1',',','1',',','2','5',',','1','\n','2','1',',','1',',','2','4',',','1','\n','1','2',',','1',',','4','2',',','1','\n','4',',','1',',','6','0',',','1','\n','4',',','1',',','5','9',',','1','\n','2','1',',','1',',','2','3',',','1',';','0',',','7',',','6','6',',','1','\n','2','1',',','1',',','2','2',',','1',';','0',',','8',',','6','4',',','1','\n','1','3',',','1',',','4','1',',','1','\n','2','0',',','1',',','2','7',',','1','\n','1','4',',','1',',','4','0',',','1','\n','5',',','1',',','5','6',',','1','\n','1',',','1',',','7','8',',','1','\n','1','9',',','1',',','2','7',',','1',';','1','4',',','1',',','3','9',',','1','\n','1','4',',','1',',','3','9',',','1',';','9',',','1',',','4','4',',','1','\n','9',',','1',',','4','4',',','1',';','5',',','1',',','5','5',',','1','\n','5',',','1',',','5','5',',','1',';','1',',','1',',','7','7',',','1','\n','1',',','1',',','7','7',',','1',';','0',',','2',',','7','8',',','1','\n','3',',','1',',','1','8',',','2','\n','2',',','2',',','1','8',',','2','\n','7',',','1',',','5','4',',','1',';','2',',','1',',','1','8',',','1',',','2','4',',','1','\n','1',',','1',',','8','6',',','1','\n','2','5',',','2',';','1','3',',','1',',','4','3',',','1','\n','1','3',',','1',',','4','3',',','1',';','1',',','1',',','8','5',',','1',';','1',',','1',',','8','4',',','1','\n','1',',','1',',','8','5',',','1',';','0',',','1',',','2',',','1',',','7','5',',','1','\n','1',',','1',',','8','4',',','1',';','0',',','2',',','8','6',',','1','\n','2','4',',','1',',','2','5',',','1','\n','1',',','1',',','8','3',',','1','\n','2','4',',','2','\n','2','3',',','1',',','2','5',',','1','\n','0',',','8',',','1','8',',','2','\n','2','2',',','1',',','2','5',',','1','\n','1','7',',','1',',','3','5',',','1','\n','6',',','1',',','5','4',',','1','\n','3',',','1',',','6','6',',','1',';','0',',','2',',','8','1',',','1','\n','2','2',',','1',',','2','4',',','1','\n','1','6',',','1',',','3','5',',','1','\n','1','5',',','1',',','3','8',',','1','\n','2','3',',','2',';','1','7',',','1',',','3','4',',','1',';','1','3',',','3','\n','8',',','1',',','5','2',',','1','\n','1','7',',','1',',','3','4',',','1',';','0',',','3',',','8','0',',','1','\n','1','7',',','1',',','3','3',',','1','\n','1','6',',','1',',','3','4',',','1','\n','1','5',',','1',',','3','7',',','1','\n','2','2',',','1',',','2','3',',','1',';','1','3',',','1',',','4','2',',','1','\n','1','3',',','1',',','4','2',',','1',';','9',',','1',',','4','6',',','1','\n','9',',','1',',','4','6',',','1',';','8',',','1',',','5','1',',','1','\n','0',',','3',',','7','9',',','1','\n','2','2',',','2',';','2','0',',','1',',','2','9',',','1','\n','1','8',',','1',',','3','0',',','1','\n','2','0',',','1',',','2','9',',','1',';','1','7',',','1',',','3','2',',','1','\n','1','6',',','1',',','3','3',',','1','\n','1','7',',','1',',','3','2',',','1',';','9',',','1',',','4','5',',','1','\n','9',',','1',',','4','5',',','1',';','8',',','2',',','2','3',',','1','\n','2','1',',','1',',','2','6',',','1','\n','1','9',',','1',',','2','9',',','1',';','1','6',',','1',',','3','2',',','1','\n','1','5',',','1',',','3','6',',','1','\n','1','6',',','1',',','3','2',',','1',';','8',',','2',',','2','2',',','1','\n','0',',','8',',','6','6',',','1','\n','1','7',',','1',',','3','1',',','1',';','8',',','1',',','5','0',',','1','\n','0',',','9',',','6','4',',','1','\n','1','1',',','1',',','4','4',',','1','\n','1','6',',','1',',','3','1',',','1',';','8',',','1',',','4','9',',','1','\n','1','0',',','1',',','4','4',',','1','\n','3',',','1',',','6','5',',','1','\n','0',',','3',',','7','8',',','1','\n','0',',','1',',','8','7',',','1','\n','0',',','1','2',',','5','9',',','1','\n','3',',','1',',','7','0',',','1',';','0',',','1',',','9','4',',','1','\n','7',',','1',',','5','7',',','1',';','2',',','2',',','7','0',',','1','\n','2',',','2',',','7','0',',','1',';','0',',','1',',','9','3',',','1','\n','2','5',',','1',',','2','6',',','1','\n','2','4',',','1',',','2','6',',','1','\n','0',',','3',',','8','6',',','1','\n','2','3',',','1',',','2','6',',','1','\n','6',',','1',',','5','7',',','1','\n','0',',','3',',','8','4',',','1','\n','2','2',',','1',',','2','6',',','1','\n','8',',','1',',','5','3',',','1',';','2',',','1',',','7','9',',','1','\n','2',',','1',',','7','9',',','1',';','0',',','1',',','8','9',',','1','\n','1','1',',','1',',','4','6',',','1','\n','1',',','2',',','7','9',',','1','\n','1','1',',','1',',','4','5',',','1','\n','1','0',',','1',',','4','6',',','1','\n','1','0',',','1',',','4','5',',','1','\n','7',',','1',',','5','6',',','1','\n','0',',','1',',','8',',','2',',','2','2',',','1','\n','2','1',',','1',',','2','8',',','1','\n','7',',','1',',','5','5',',','1','\n','0',',','1',',','8',',','4','\n','0',',','1',',','8','8',',','1','\n','2','0',',','1',',','3','0',',','1',';','1','5',',','1',',','4','0',',','1','\n','1','5',',','1',',','4','0',',','1',';','6',',','1',',','5','6',',','1','\n','6',',','1',',','5','6',',','1',';','2',',','1',',','7','8',',','1','\n','2',',','1',',','7','8',',','1',';','0',',','1',',','8',',','1',',','5','0',',','1','\n','1','9',',','1',',','3','0',',','1',';','1','5',',','1',',','3','9',',','1','\n','1','5',',','1',',','3','9',',','1',';','9',',','1',',','4','7',',','1','\n','9',',','1',',','4','7',',','1',';','6',',','1',',','5','5',',','1','\n','6',',','1',',','5','5',',','1',';','2',',','1',',','7','7',',','1','\n','2',',','1',',','7','7',',','1',';','0',',','1',',','8',',','1',',','4','9',',','1','\n','2','1',',','1',',','2','7',',','1',';','1','4',',','1',',','4','1',',','1','\n','1','4',',','1',',','4','1',',','1',';','1','2',',','1',',','4','4',',','1','\n','1','2',',','1',',','4','4',',','1',';','5',',','1',',','5','8',',','1','\n','5',',','1',',','5','8',',','1',';','4',',','1',',','6','2',',','1','\n','4',',','1',',','6','2',',','1',';','1',',','1',',','8','7',',','1','\n','0',',','4',',','7','7',',','1','\n','1','8',',','1',',','3','5',',','1','\n','1',',','1',',','9','4',',','1','\n','1','8',',','1',',','3','4',',','1','\n','1',',','1',',','9','3',',','1','\n','0',',','2',',','9','4',',','1','\n','1','8',',','1',',','3','3',',','1','\n','1',',','1',',','9','1',',','1','\n','0',',','2',',','9','3',',','1','\n','2',',','1',',','8','6',',','1',';','0',',','2',',','9','2',',','1','\n','2','6',',','2','\n','1','8',',','1',',','3','2',',','1','\n','2',',','1',',','8','4',',','1','\n','2',',','1',',','8','5',',','1',';','0',',','1',',','9','5',',','1','\n','0',',','2',',','9','1',',','1','\n','2',',','1',',','8','3',',','1',';','2',',','1',',','8','2',',','1',';','0',',','2',',','3',',','1',',','6','8',',','1','\n','1','7',',','1',',','3','8',',','1','\n','8',',','1',',','5','4',',','1','\n','2',',','1',',','8','1',',','1','\n','2','5',',','1',',','2','8',',','1',';','1',',','2',',','8','2',',','1','\n','1',',','2',',','8','2',',','1',';','0',',','2',',','3',',','1',',','6','7',',','1','\n','2','4',',','1',',','2','8',',','1','\n','1','7',',','1',',','3','7',',','1','\n','1','6',',','1',',','3','8',',','1','\n','5',',','1',',','6','1',',','1',';','3',',','1',',','7','2',',','1','\n','9',',','1',',','4','8',',','1',';','1',',','1',',','9','0',',','1','\n','1',',','1',',','9','0',',','1',';','1',',','1',',','8','9',',','1','\n','3',',','1',',','7','2',',','1',';','1',',','2',',','8','1',',','1','\n','1',',','1',',','8','9',',','1',';','0',',','1',',','2',',','1',',','8','0',',','1','\n','2','3',',','1',',','2','8',',','1','\n','1','6',',','1',',','3','7',',','1','\n','2','2',',','1',',','2','8',',','1','\n','1','8',',','1',',','3','1',',','1','\n','1','4',',','1',',','4','3',',','1','\n','1','7',',','1',',','3','6',',','1',';','4',',','1',',','6','4',',','1','\n','4',',','1',',','6','4',',','1',';','0',',','4',',','8','1',',','1','\n','1','6',',','1',',','3','6',',','1','\n','1','2',',','1',',','4','6',',','1','\n','4',',','1',',','6','3',',','1','\n','2','5',',','1',',','2','7',',','1','\n','1','2',',','1',',','4','5',',','1','\n','2','4',',','1',',','2','7',',','1','\n','2','1',',','1',',','2','9',',','1','\n','5',',','1',',','6','0',',','1','\n','1','4',',','1',',','4','2',',','1',';','5',',','1',',','5','9',',','1','\n','5',',','1',',','5','9',',','1',';','1',',','1',',','8','8',',','1','\n','2','3',',','1',',','2','7',',','1','\n','2','2',',','1',',','2','7',',','1','\n','1','1',',','1',',','4','7',',','1','\n','1','3',',','1',',','4','4',',','1',';','1','0',',','1',',','4','7',',','1','\n','3',',','1',',','7','1',',','1','\n','1','0',',','1',',','4','7',',','1',';','1',',','1',',','8',',','1',',','4','9',',','1','\n','1',',','1',',','8',',','1',',','4','9',',','1',';','0',',','2',',','8',',','1',',','5','0',',','1','\n','4',',','1',',','1','8',',','2',';','1',',','1',',','9','6',',','1','\n','0',',','1',',','9','9',',','1','\n','3',',','1',',','7','5',',','1',';','2',',','2',',','7','6',',','1','\n','3',',','1',',','7','3',',','1','\n','2',',','2',',','7','5',',','1',';','1',',','1',',','9','5',',','1','\n','0',',','3',',','9','2',',','1','\n','8',',','1',',','5','7',',','1','\n','4',',','1',',','6','8',',','1','\n','0',',','2',',','9','5',',','1','\n','2','6',',','1',',','2','8',',','1','\n','1','1',',','1',',','4','8',',','1','\n','4',',','1',',','6','7',',','1','\n','2','5',',','1',',','2','9',',','1','\n','2','0',',','1',',','3','5',',','1','\n','1','0',',','1',',','4','8',',','1','\n','0',',','1',',','9','8',',','1','\n','2','4',',','1',',','2','9',',','1','\n','2','0',',','1',',','3','4',',','1','\n','1','9',',','1',',','3','5',',','1','\n','9',',','1',',','5','2',',','1','\n','0',',','2',',','2',',','1',',','8','0',',','1','\n','2','0',',','1',',','3','3',',','1','\n','1','9',',','1',',','3','4',',','1','\n','2','3',',','1',',','2','9',',','1',';','1','3',',','1',',','4','6',',','1','\n','1','3',',','1',',','4','6',',','1',';','9',',','1',',','5','1',',','1','\n','4',',','1',',','6','6',',','1','\n','0',',','3',',','8','9',',','1','\n','2','2',',','1',',','2','9',',','1',';','2','0',',','1',',','3','2',',','1','\n','1','9',',','1',',','3','3',',','1','\n','2','0',',','1',',','3','2',',','1',';','1','3',',','1',',','4','5',',','1','\n','1','3',',','1',',','4','5',',','1',';','8',',','1',',','9',',','1',',','2','3',',','1','\n','0',',','5',',','8','1',',','1','\n','1','9',',','1',',','3','2',',','1',';','8',',','2',',','2','9',',','1','\n','0',',','6',',','8','0',',','1','\n','2','6',',','1',',','2','7',',','1','\n','2','0',',','1',',','3','1',',','1',';','1','7',',','1',',','3','9',',','1','\n','1','7',',','1',',','3','9',',','1',';','1','6',',','1',',','4','0',',','1','\n','1','6',',','1',',','4','0',',','1',';','9',',','1',',','5','0',',','1','\n','9',',','1',',','5','0',',','1',';','8',',','1',',','5','6',',','1','\n','1','9',',','1',',','3','1',',','1',';','1','6',',','1',',','3','9',',','1','\n','1','6',',','1',',','3','9',',','1',';','9',',','1',',','4','9',',','1','\n','9',',','1',',','4','9',',','1',';','8',',','1',',','5','5',',','1','\n','7',',','1',',','5','8',',','1','\n','2','1',',','1',',','3','0',',','1','\n','1','5',',','1',',','4','1',',','1','\n','1','2',',','1',',','4','7',',','1','\n','6',',','1',',','5','8',',','1','\n','4',',','1',',','6','5',',','1','\n','2',',','1',',','8','7',',','1','\n','1',',','2',',','8','7',',','1','\n','0',',','1',',','9','7',',','1','\n','1','8',',','1',',','3','8',',','1','\n','1','8',',','1',',','3','7',',','1','\n','2',',','1',',','9','4',',','1',';','1',',','1',',','9','9',',','1','\n','2',',','1',',','9','3',',','1','\n','1','8',',','1',',','3','6',',','1','\n','7',',','1',',','6','1',',','1',';','4',',','1',',','7','0',',','1','\n','2',',','1',',','9','1',',','1','\n','4',',','1',',','7','0',',','1',';','1',',','2',',','9','2',',','1','\n','1',',','2',',','9','2',',','1',';','0',',','3',',','9','6',',','1','\n','2','6',',','1',',','2','9',',','1','\n','1','1',',','1',',','5','2',',','1','\n','6',',','1',',','6','1',',','1','\n','9',',','1',',','5','3',',','1',';','2',',','1',',','9','0',',','1','\n','2',',','1',',','9','0',',','1',';','2',',','1',',','8','9',',','1','\n','2',',','1',',','8','9',',','1',';','0',',','1',',','1','0','1',',','1','\n','2','8',',','2','\n','1','1',',','1',',','5','1',',','1','\n','1','0',',','1',',','5','2',',','1','\n','1','5',',','1',',','4','3',',','1','\n','1','0',',','1',',','5','1',',','1','\n','1','2',',','1',',','4','8',',','1','\n','7',',','1',',','6','0',',','1',';','7',',','1',',','5','9',',','1','\n','7',',','1',',','5','9',',','1',';','0',',','4',',','9','0',',','1','\n','2','5',',','1',',','3','0',',','1','\n','2','4',',','1',',','3','0',',','1','\n','1','5',',','1',',','4','2',',','1','\n','1','1',',','1',',','5','0',',','1','\n','6',',','1',',','6','0',',','1','\n','6',',','1',',','5','9',',','1','\n','2',',','1',',','8','8',',','1','\n','0',',','1',',','1','0','0',',','1','\n','2','7',',','1',',','2','8',',','1',';','2','3',',','1',',','3','0',',','1','\n','1','1',',','1',',','4','9',',','1','\n','2','3',',','1',',','3','0',',','1',';','1','0',',','1',',','5','0',',','1','\n','1','0',',','1',',','5','0',',','1',';','1',',','2',',','8','8',',','1','\n','1',',','2',',','8','8',',','1',';','0',',','1',',','1','7',',','1',',','4','0',',','1','\n','2','2',',','1',',','3','0',',','1',';','1','0',',','1',',','4','9',',','1','\n','1','0',',','1',',','4','9',',','1',';','0',',','1',',','8',',','1',',','5','6',',','1','\n','1','3',',','1',',','4','7',',','1',';','0',',','1',',','8',',','1',',','5','5',',','1','\n','2','7',',','2',';','1','4',',','1',',','4','4',',','1']
-    have hchars0 : RawData.relationChunks[0]=String.ofList chars0 := rfl
-    let chars10 : List Char := ['2','8',',','1',',','1','7','7',',','1','\n','8','0',',','2',';','2','3',',','1',',','1','8','7',',','1','\n','1','9',',','1',',','2','0','2',',','1','\n','1','0',',','1',',','2','4','9',',','1','\n','6',',','1',',','2','8','0',',','1','\n','2',',','1',',','3','8','3',',','1','\n','2','3',',','1',',','1','8','7',',','1',';','2','2',',','1',',','1','8','8',',','1',';','0',',','1',',','4','2','1',',','1','\n','0',',','1',',','4','2','1',',','1',';','0',',','1',',','1','7',',','1',',','2','0','9',',','1','\n','6','1',',','1',',','1','1','3',',','1','\n','5','4',',','1',',','1','1','9',',','1','\n','5','3',',','1',',','1','2','4',',','1','\n','5','0',',','1',',','1','3','2',',','1','\n','4','5',',','1',',','1','3','9',',','1','\n','2','5',',','1',',','1','8','6',',','1','\n','7','9',',','1',',','8','0',',','1',';','2','2',',','1',',','1','8','7',',','1','\n','2','2',',','1',',','1','8','7',',','1',';','2','0',',','1',',','2','0','1',',','1','\n','2','0',',','1',',','2','0','1',',','1',';','1','7',',','1',',','2','1','2',',','1','\n','1','5',',','1',',','2','2','1',',','1','\n','1','7',',','1',',','2','1','2',',','1',';','1','2',',','1',',','2','4','3',',','1',';','9',',','1',',','2','5','5',',','1','\n','9',',','1',',','2','5','5',',','1',';','8',',','2',',','1','8','8',',','1','\n','8',',','1',',','2','6','6',',','1',';','7',',','1',',','2','7','8',',','1','\n','1','2',',','1',',','2','4','3',',','1',';','6',',','1',',','2','7','9',',','1','\n','6',',','1',',','2','7','9',',','1',';','3',',','1',',','3','3','4',',','1','\n','3',',','1',',','3','3','4',',','1',';','2',',','1',',','3','8','2',',','1','\n','2',',','1',',','3','8','2',',','1',';','1',',','2',',','3','8','3',',','1','\n','1',',','2',',','3','8','3',',','1',';','0',',','1',',','1','6',',','1',',','2','0','9',',','1','\n','0',',','2',',','2',',','1',',','3','5','9',',','1','\n','7','9',',','2',';','7','2',',','1',',','9','0',',','1','\n','7','2',',','1',',','9','0',',','1',';','7','2',',','1',',','8','9',',','1','\n','6','6',',','1',',','9','8',',','1','\n','7','2',',','1',',','8','9',',','1',';','6','4',',','1',',','1','0','1',',','1','\n','6','1',',','1',',','1','1','2',',','1','\n','5','0',',','1',',','1','3','1',',','1','\n','4','9',',','1',',','1','3','2',',','1','\n','4','4',',','1',',','1','4','3',',','1','\n','3','6',',','1',',','1','5','6',',','1','\n','3','5',',','1',',','1','6','2',',','1','\n','2','8',',','1',',','1','7','6',',','1','\n','2','6',',','1',',','1','8','0',',','1','\n','2','4',',','1',',','1','8','6',',','1','\n','6','4',',','1',',','1','0','1',',','1',';','1','9',',','1',',','2','0','1',',','1','\n','1','9',',','1',',','2','0','1',',','1',';','1','6',',','1',',','2','1','2',',','1','\n','1','4',',','1',',','2','2','9',',','1','\n','1','6',',','1',',','2','1','2',',','1',';','9',',','1',',','2','5','4',',','1','\n','9',',','1',',','2','5','4',',','1',';','8',',','2',',','1','8','7',',','1','\n','0',',','1',',','4','2','0',',','1','\n','5','2',',','1',',','1','2','7',',','1','\n','5','2',',','1',',','1','2','6',',','1','\n','5','0',',','1',',','1','3','0',',','1','\n','4','9',',','1',',','1','3','1',',','1','\n','4','4',',','1',',','1','4','2',',','1','\n','4','3',',','1',',','1','4','7',',','1','\n','4','1',',','1',',','1','4','8',',','1','\n','3','4',',','1',',','1','6','2',',','1','\n','2','1',',','1',',','1','9','2',',','1','\n','1','1',',','1',',','2','4','8',',','1','\n','2','3',',','1',',','1','8','6',',','1',';','9',',','1',',','1','3',',','2',',','8','0',',','1','\n','5','1',',','1',',','1','2','6',',','1','\n','5','0',',','1',',','1','2','9',',','1','\n','5','0',',','1',',','1','2','8',',','1','\n','4','9',',','1',',','1','3','0',',','1','\n','4','3',',','1',',','1','4','6',',','1','\n','3','3',',','1',',','1','6','2',',','1','\n','5','1',',','1',',','1','2','7',',','1',';','2','9',',','1',',','1','7','3',',','1','\n','2','9',',','1',',','1','7','2',',','1','\n','2','9',',','1',',','1','7','3',',','1',';','2','2',',','1',',','1','8','6',',','1','\n','1','0',',','1',',','2','4','8',',','1','\n','2','2',',','1',',','1','8','6',',','1',';','8',',','1',',','9',',','1',',','1','3',',','1',',','1','0','1',',','1','\n','0',',','6',',','3','5','9',',','1','\n','0',',','7',',','3','4','9',',','1','\n','4','9',',','1',',','1','2','9',',','1','\n','4','9',',','1',',','1','2','8',',','1','\n','4','0',',','1',',','1','5','5',',','1','\n','6','3',',','1',',','1','0','1',',','1',';','3','2',',','1',',','1','6','2',',','1','\n','2','7',',','1',',','1','7','9',',','1','\n','1','4',',','1',',','2','2','8',',','1','\n','3','2',',','1',',','1','6','2',',','1',';','8',',','2',',','1','8','6',',','1','\n','7',',','1',',','2','7','7',',','1','\n','6',',','1',',','2','7','8',',','1',';','2',',','1',',','3','8','0',',','1','\n','2',',','1',',','3','8','0',',','1',';','0',',','1',',','8',',','1',',','2','6','0',',','1','\n','7','1',',','1',',','9','4',',','1','\n','6','0',',','1',',','1','1','4',',','1','\n','5','9',',','1',',','1','1','4',',','1','\n','3','9',',','1',',','1','5','5',',','1','\n','2','7',',','1',',','1','7','8',',','1','\n','1','1',',','1',',','2','4','7',',','1','\n','1','1',',','1',',','2','4','6',',','1','\n','7','1',',','1',',','9','3',',','1','\n','7','1',',','1',',','9','2',',','1','\n','6','5',',','1',',','9','9',',','1','\n','3','0',',','1',',','1','7','0',',','1','\n','2','7',',','1',',','1','7','7',',','1','\n','2','5',',','1',',','1','8','5',',','1','\n','1','5',',','1',',','2','2','0',',','1','\n','1','1',',','1',',','2','4','5',',','1','\n','1','0',',','1',',','2','4','7',',','1','\n','1','0',',','1',',','2','4','6',',','1','\n','0',',','7',',','3','4','7',',','1','\n','7','1',',','1',',','9','1',',','1','\n','6','9',',','1',',','9','7',',','1','\n','5','9',',','1',',','1','1','3',',','1','\n','6','0',',','1',',','1','1','3',',','1',';','4','6',',','1',',','1','3','8',',','1','\n','4','6',',','1',',','1','3','8',',','1',';','4','2',',','1',',','1','4','7',',','1','\n','3','0',',','1',',','1','6','9',',','1','\n','2','5',',','1',',','1','8','4',',','1','\n','2','4',',','1',',','1','8','5',',','1','\n','1','5',',','1',',','2','1','9',',','1','\n','1','0',',','1',',','2','4','5',',','1','\n','4','2',',','1',',','1','4','7',',','1',';','8',',','4',',','7','2',',','1','\n','0',',','4',',','3','8','0',',','1','\n','7','2',',','1',',','8','8',',','1',';','6','4',',','1',',','1','0','0',',','1','\n','6','4',',','1',',','1','0','0',',','1',';','6','0',',','1',',','1','1','2',',','1','\n','5','9',',','1',',','1','1','2',',','1','\n','6','0',',','1',',','1','1','2',',','1',';','4','6',',','1',',','1','3','7',',','1','\n','4','6',',','1',',','1','3','7',',','1',';','4','5',',','1',',','1','3','8',',','1','\n','4','4',',','1',',','1','4','1',',','1','\n','4','5',',','1',',','1','3','8',',','1',';','4','2',',','1',',','1','4','6',',','1','\n','4','2',',','1',',','1','4','6',',','1',';','4','0',',','1',',','1','5','4',',','1','\n','3','0',',','1',',','1','6','8',',','1','\n','2','7',',','1',',','1','7','6',',','1','\n','2','4',',','1',',','1','8','4',',','1','\n','4','0',',','1',',','1','5','4',',','1',';','2','3',',','1',',','1','8','5',',','1','\n','2','3',',','1',',','1','8','5',',','1',';','1','7',',','2',',','1','1','3',',','1','\n','1','5',',','1',',','2','1','8',',','1','\n','1','1',',','1',',','2','4','4',',','1','\n','6',',','1',',','2','7','7',',','1','\n','0',',','1',',','8',',','1',',','2','5','8',',','1','\n','7','6',',','1',',','8','7',',','1','\n','5','7',',','1',',','1','1','7',',','1','\n','7','8',',','1',',','8','0',',','1',';','5','0',',','1',',','1','2','7',',','1','\n','5','6',',','1',',','1','1','8',',','1',';','5','0',',','1',',','1','2','7',',','1',';','5','0',',','1',',','1','2','6',',','1','\n','5','0',',','1',',','1','2','7',',','1',';','4','5',',','1',',','1','3','7',',','1','\n','5','0',',','1',',','1','2','6',',','1',';','4','5',',','1',',','1','3','7',',','1',';','3','9',',','1',',','1','5','4',',','1','\n','3','9',',','1',',','1','5','4',',','1',';','3','1',',','1',',','1','6','2',',','1','\n','4','5',',','1',',','1','3','7',',','1',';','3','1',',','1',',','1','6','2',',','1',';','3','0',',','1',',','1','6','7',',','1','\n','3','1',',','1',',','1','6','2',',','1',';','3','0',',','1',',','1','6','7',',','1',';','2','3',',','1',',','1','8','4',',','1','\n','3','0',',','1',',','1','6','7',',','1',';','2','3',',','1',',','1','8','4',',','1',';','2','2',',','1',',','1','8','5',',','1','\n','2','3',',','1',',','1','8','4',',','1',';','2','2',',','1',',','1','8','5',',','1',';','1','0',',','1',',','2','4','4',',','1','\n','2','2',',','1',',','1','8','5',',','1',';','8',',','1',',','1','7',',','1',',','1','4','7',',','1','\n','1','0',',','1',',','2','4','4',',','1',';','0',',','1',',','1','7',',','1',',','2','0','6',',','1','\n','0',',','1',',','1','7',',','1',',','2','0','6',',','1',';','0',',','1','0',',','3','1','7',',','1','\n','7','8',',','1',',','7','9',',','1',';','7','7',',','1',',','8','0',',','1','\n','7','5',',','1',',','8','7',',','1','\n','7','4',',','1',',','8','7',',','1','\n','6','2',',','1',',','1','0','7',',','1','\n','6','1',',','1',',','1','1','1',',','1','\n','5','8',',','1',',','1','1','5',',','1','\n','5','7',',','1',',','1','1','6',',','1','\n','5','2',',','1',',','1','2','5',',','1','\n','7','7',',','1',',','8','0',',','1',';','4','9',',','1',',','1','2','7',',','1','\n','5','5',',','1',',','1','1','8',',','1',';','4','9',',','1',',','1','2','7',',','1',';','4','9',',','1',',','1','2','6',',','1','\n','3','5',',','1',',','1','6','1',',','1','\n','4','9',',','1',',','1','2','6',',','1',';','3','0',',','1',',','1','6','6',',','1','\n','4','9',',','1',',','1','2','7',',','1',';','2','2',',','1',',','1','8','4',',','1','\n','3','0',',','1',',','1','6','6',',','1',';','2','2',',','1',',','1','8','4',',','1',';','1','3',',','1',',','2','3','8',',','1','\n','1','3',',','1',',','2','3','8',',','1',';','8',',','2',',','1','8','5',',','1','\n','2','2',',','1',',','1','8','4',',','1',';','8',',','2',',','1','8','5',',','1',';','0',',','1',',','8',',','1',',','2','5','7',',','1','\n','0',',','1',',','8',',','1',',','2','5','7',',','1',';','0',',','1','2',',','3','0','0',',','1','\n','7','3',',','1',',','8','7',',','1','\n','7','7',',','1',',','7','9',',','1',';','7','1',',','1',',','9','0',',','1','\n','7','1',',','1',',','9','0',',','1',';','7','1',',','1',',','8','9',',','1','\n','6','2',',','1',',','1','0','6',',','1','\n','6','2',',','1',',','1','0','5',',','1','\n','6','1',',','1',',','1','1','0',',','1','\n','6','3',',','1',',','1','0','0',',','1',';','5','1',',','1',',','1','2','5',',','1','\n','5','1',',','1',',','1','2','5',',','1',';','4','6',',','1',',','1','3','6',',','1','\n','3','4',',','1',',','1','6','1',',','1','\n','7','1',',','1',',','8','9',',','1',';','1','3',',','1',',','2','3','7',',','1','\n','1','3',',','1',',','2','3','7',',','1',';','8',',','2',',','1','8','4',',','1','\n','4','6',',','1',',','1','3','6',',','1',';','8',',','4',',','1','6',',','1',',','2','3',',','1','\n','6','8',',','1',',','9','7',',','1','\n','6','5',',','1',',','9','8',',','1','\n','6','2',',','1',',','1','0','4',',','1','\n','6','2',',','1',',','1','0','3',',','1','\n','3','3',',','1',',','1','6','1',',','1','\n','4','5',',','1',',','1','3','6',',','1',';','8',',','6',',','1','7',',','1','\n','6','7',',','1',',','9','7',',','1','\n','4','3',',','1',',','1','4','5',',','1','\n','3','2',',','1',',','1','6','1',',','1',';','2','9',',','1',',','1','7','1',',','1','\n','2','9',',','1',',','1','7','1',',','1',';','8',',','6',',','1','6',',','1','\n','5','3',',','1',',','1','2','3',',','1','\n','6','6',',','1',',','9','7',',','1','\n','2','5',',','1',',','1','8','3',',','1','\n','6','0',',','1',',','1','1','1',',','1',';','5','9',',','1',',','1','1','1',',','1',';','5','0',',','1',',','1','2','5',',','1','\n','2','5',',','1',',','1','8','2',',','1','\n','2','4',',','1',',','1','8','3',',','1','\n','5','9',',','1',',','1','1','1',',','1',';','5','0',',','1',',','1','2','5',',','1',';','1','7',',','1',',','2','1','1',',','1','\n','5','0',',','1',',','1','2','5',',','1',';','1','7',',','1',',','2','1','1',',','1',';','1','7',',','1',',','2','1','0',',','1','\n','1','7',',','1',',','2','1','1',',','1',';','1','7',',','1',',','2','1','0',',','1',';','8',',','4',',','7','1',',','1','\n','1','7',',','1',',','2','1','0',',','1',';','0',',','3',',','4','0','3',',','1','\n','7','1',',','1',',','8','8',',','1',';','6','0',',','1',',','1','1','0',',','1','\n','5','9',',','1',',','1','1','0',',','1','\n','6','0',',','1',',','1','1','0',',','1',';','4','9',',','1',',','1','2','5',',','1','\n','4','9',',','1',',','1','2','5',',','1',';','4','2',',','1',',','1','4','5',',','1','\n','4','2',',','1',',','1','4','5',',','1',';','3','1',',','1',',','1','6','1',',','1','\n','2','4',',','1',',','1','8','2',',','1','\n','2','3',',','1',',','1','8','3',',','1',';','1','7',',','2',',','1','1','1',',','1','\n','3','1',',','1',',','1','6','1',',','1',';','1','6',',','1',',','2','1','1',',','1','\n','1','6',',','1',',','2','1','0',',','1','\n','1','6',',','1',',','2','1','1',',','1',';','8',',','1',',','2','6','5',',','1','\n','1','7',',','2',',','1','1','1',',','1',';','8',',','1',',','2','6','5',',','1',';','0',',','3',',','4','0','2',',','1','\n','7','8',',','2',';','5','6',',','1',',','1','1','7',',','1','\n','5','6',',','1',',','1','1','7',',','1',';','4','0',',','1',',','1','5','3',',','1','\n','4','0',',','1',',','1','5','3',',','1',';','2','3',',','1',',','1','8','2',',','1','\n','2','3',',','1',',','1','8','2',',','1',';','2','2',',','1',',','1','8','3',',','1','\n','2','2',',','1',',','1','8','3',',','1',';','2','0',',','1',',','2','0','0',',','1','\n','2','0',',','1',',','2','0','0',',','1',';','1','6',',','1',',','1','7',',','1',',','1','1','1',',','1','\n','7','7',',','1',',','7','8',',','1',';','5','6',',','1',',','1','1','6',',','1','\n','5','6',',','1',',','1','1','6',',','1',';','5','5',',','1',',','1','1','7',',','1','\n','5','5',',','1',',','1','1','7',',','1',';','4','0',',','1',',','1','5','2',',','1','\n','4','0',',','1',',','1','5','2',',','1',';','3','9',',','1',',','1','5','3',',','1','\n','2','8',',','1',',','1','7','5',',','1','\n','3','9',',','1',',','1','5','3',',','1',';','2','2',',','1',',','1','8','2',',','1','\n','2','2',',','1',',','1','8','2',',','1',';','2','0',',','1',',','1','9','9',',','1','\n','2','0',',','1',',','1','9','9',',','1',';','1','9',',','1',',','2','0','0',',','1','\n','1','9',',','1',',','2','0','0',',','1',';','9',',','1',',','2','5','3',',','1','\n','9',',','1',',','2','5','3',',','1',';','8',',','2',',','1','8','3',',','1','\n','7','7',',','2',';','5','5',',','1',',','1','1','6',',','1','\n','5','5',',','1',',','1','1','6',',','1',';','3','9',',','1',',','1','5','2',',','1','\n','3','9',',','1',',','1','5','2',',','1',';','1','9',',','1',',','1','9','9',',','1','\n','1','9',',','1',',','1','9','9',',','1',';','1','3',',','1',',','2','3','6',',','1','\n','1','3',',','1',',','2','3','6',',','1',';','9',',','1',',','2','5','2',',','1','\n','9',',','1',',','2','5','2',',','1',';','8',',','2',',','1','8','2',',','1','\n','7',',','1',',','2','7','6',',','1','\n','6','5',',','1',',','9','7',',','1','\n','6','2',',','1',',','1','0','2',',','1','\n','4','7',',','1',',','1','3','5',',','1','\n','4','4',',','1',',','1','4','0',',','1','\n','3','0',',','1',',','1','6','5',',','1','\n','2','7',',','1',',','1','7','5',',','1','\n','1','5',',','1',',','2','1','7',',','1','\n','1','4',',','1',',','2','2','7',',','1','\n','6',',','1',',','2','7','6',',','1','\n','5',',','1',',','2','9','0',',','1','\n','2',',','1',',','3','7','9',',','1','\n','1',',','1',',','4','1','6',',','1','\n','1',',','2',',','3','7','9',',','1',';','0',',','2',',','4','1','6',',','1','\n','7','0',',','1',',','9','9',',','1',';','1',',','1',',','4','3','0',',','1','\n','3',',','1',',','3','5','3',',','1',';','2',',','2',',','6','9',',','1',',','7','6',',','1',';','1',',','1',',','4','3','0',',','1',';','0',',','1',',','3',',','1',',','3','3','9',',','1','\n','1',',','1',',','4','3','0',',','1',';','0',',','1',',','2',',','1',',','3','9','8',',','1','\n','7','6',',','1',',','9','4',',','1','\n','1',',','1',',','4','2','9',',','1','\n','2',',','2',',','3','5','3',',','1',';','1',',','1',',','6','9',',','1',',','9','5',',','1','\n','2',',','1',',','4','1','5',',','1',';','0',',','1',',','4','4','5',',','1','\n','0',',','1',',','2',',','1',',','3','9','6',',','1','\n','7','6',',','1',',','9','3',',','1','\n','7','6',',','1',',','9','2',',','1',';','7','5',',','1',',','9','4',',','1','\n','7','5',',','1',',','9','4',',','1',';','7','4',',','1',',','9','4',',','1','\n','4','3',',','1',',','1','4','8',',','1','\n','7','4',',','1',',','9','4',',','1',';','7',',','1',',','2','8','9',',','1','\n','7',',','1',',','2','8','9',',','1',';','4',',','1',',','3','2','3',',','1','\n','4',',','1',',','3','2','3',',','1',';','1',',','2',',','4','1','5',',','1','\n','1',',','2',',','4','1','5',',','1',';','0',',','1',',','4','4','4',',','1','\n','2',',','1',',','4','1','4',',','1',';','0',',','1',',','4','4','3',',','1','\n','0',',','1',',','4','4','4',',','1',';','0',',','2',',','4','2','9',',','1','\n','7','5',',','1',',','9','3',',','1','\n','7','6',',','1',',','9','1',',','1',';','7','4',',','1',',','9','3',',','1','\n','7','5',',','1',',','9','2',',','1',';','7','4',',','1',',','9','3',',','1',';','7','4',',','1',',','9','2',',','1','\n','7','3',',','1',',','9','4',',','1','\n','5','7',',','1',',','1','2','2',',','1','\n','5','3',',','1',',','1','3','2',',','1','\n','7','4',',','1',',','9','3',',','1',';','2','6',',','1',',','1','9','1',',','1','\n','6','9',',','1',',','1','0','1',',','1',';','1','8',',','1',',','2','0','9',',','1','\n','7','4',',','1',',','9','2',',','1',';','2','6',',','1',',','1','9','1',',','1',';','7',',','1',',','2','8','8',',','1','\n','2',',','1',',','4','1','3',',','1','\n','2','6',',','1',',','1','9','1',',','1',';','2',',','1',',','4','1','2',',','1','\n','7',',','1',',','2','8','8',',','1',';','2',',','1',',','4','1','2',',','1',';','1',',','1',',','4','2','8',',','1','\n','2',',','1',',','4','1','2',',','1',';','1',',','1',',','4','2','8',',','1',';','0',',','1',',','4','4','2',',','1','\n','1',',','1',',','4','2','8',',','1',';','0',',','1',',','4','4','2',',','1',';','0',',','1',',','4','4','1',',','1','\n','7','5',',','1',',','9','1',',','1','\n','7','3',',','1',',','9','3',',','1','\n','5','7',',','1',',','1','2','1',',','1','\n','5','3',',','1',',','1','3','1',',','1','\n','4','6',',','1',',','1','4','3',',','1','\n','7','4',',','1',',','9','1',',','1',';','2','6',',','1',',','1','9','0',',','1','\n','7','3',',','1',',','9','2',',','1',';','7',',','2',',','2','0','9',',','1','\n','7',',','2',',','2','0','9',',','1',';','4',',','1',',','3','2','2',',','1','\n','2','6',',','1',',','1','9','0',',','1',';','4',',','1',',','3','2','2',',','1',';','3',',','1',',','3','5','1',',','1','\n','2',',','1',',','4','1','1',',','1','\n','2',',','1',',','4','1','0',',','1','\n','4',',','1',',','3','2','2',',','1',';','3',',','1',',','3','5','1',',','1',';','2',',','1',',','4','0','9',',','1','\n','3',',','1',',','3','5','1',',','1',';','2',',','1',',','4','0','9',',','1',';','1',',','1',',','4','2','7',',','1','\n','1',',','2',',','4','1','3',',','1','\n','1',',','2',',','4','1','2',',','1','\n','2',',','1',',','4','0','9',',','1',';','0',',','2',',','4','2','8',',','1','\n','0',',','2',',','3',',','1',',','3','3','3',',','1','\n','7','3',',','1',',','9','1',',','1','\n','5','7',',','1',',','1','2','0',',','1','\n','5','3',',','1',',','1','3','0',',','1','\n','4','6',',','1',',','1','4','2',',','1','\n','4','5',',','1',',','1','4','3',',','1','\n','4',',','1',',','3','2','1',',','1','\n','2',',','1',',','4','0','8',',','1','\n','3',',','1',',','6','7',',','1',',','7','6',',','1',';','1',',','1',',','4','2','5',',','1','\n','1',',','1',',','4','2','5',',','1',';','0',',','1',',','3',',','1',',','3','3','6',',','1','\n','0',',','2',',','4','2','7',',','1','\n','0',',','3',',','4','1','9',',','1','\n','7','2',',','1',',','9','6',',','1','\n','5','3',',','1',',','1','2','9',',','1','\n','5','3',',','1',',','1','2','8',',','1','\n','4','5',',','1',',','1','4','2',',','1','\n','3','5',',','1',',','1','6','4',',','1','\n','2','8',',','1',',','1','8','1',',','1','\n','2','5',',','1',',','1','9','2',',','1','\n','2','0',',','1',',','2','0','4',',','1','\n','2','0',',','1',',','2','0','3',',','1','\n','7','0',',','1',',','9','8',',','1',';','7',',','1',',','2','8','7',',','1','\n','6',',','1',',','2','8','9',',','1','\n','7',',','1',',','2','8','7',',','1',';','4',',','1',',','3','2','0',',','1','\n','2',',','1',',','4','0','7',',','1','\n','1',',','1',',','7','6',',','1',',','8','2',',','1','\n','4',',','1',',','3','2','0',',','1',';','1',',','1',',','7',',','1',',','2','7','5',',','1','\n','2','6',',','1',',','1','8','9',',','1',';','0',',','1',',','3',',','1',',','3','3','5',',','1','\n','0',',','1',',','3',',','1',',','3','3','5',',','1',';','0',',','2',',','4','2','5',',','1','\n','0',',','5',',','3','9','1',',','1','\n','0',',','6',',','3','7','5',',','1','\n','8','0',',','1',',','8','6',',','1','\n','7','6',',','1',',','8','9',',','1','\n','4','2',',','1',',','1','4','8',',','1','\n','3','4',',','1',',','1','6','4',',','1','\n','2','6',',','1',',','1','8','8',',','1','\n','2','4',',','1',',','1','9','2',',','1','\n','1','9',',','1',',','2','0','4',',','1','\n','1','9',',','1',',','2','0','3',',','1','\n','1','7',',','1',',','2','1','6',',','1','\n','7','6',',','1',',','9','0',',','1',';','7',',','1',',','2','8','6',',','1',';','7',',','1',',','2','8','5',',','1','\n','6',',','1',',','2','8','8',',','1','\n','7',',','1',',','2','8','6',',','1',';','7',',','1',',','2','8','5',',','1',';','3',',','2',',','2','8','7',',','1','\n','2',',','1',',','4','0','6',',','1','\n','7',',','1',',','2','8','5',',','1',';','0',',','1',',','4','3','9',',','1','\n','0',',','1',',','2','3',',','1',',','1','9','0',',','1','\n','8','0',',','1',',','8','5',',','1','\n','8','0',',','1',',','8','4',',','1','\n','7','9',',','1',',','8','6',',','1','\n','7','5',',','1',',','9','0',',','1','\n','7','5',',','1',',','8','9',',','1','\n','7','4',',','1',',','8','9',',','1','\n','6','8',',','1',',','1','0','1',',','1','\n','6','1',',','1',',','1','1','5',',','1','\n','5','2',',','1',',','1','3','4',',','1','\n','3','3',',','1',',','1','6','4',',','1','\n','2','6',',','1',',','1','8','7',',','1','\n','2','3',',','1',',','1','9','2',',','1','\n','1','6',',','1',',','2','1','6',',','1','\n','1','3',',','1',',','2','4','3',',','1','\n','1','2',',','1',',','2','5','1',',','1','\n','8',',','2',',','2','9',',','1',',','6','9',',','1','\n','8',',','1',',','2','7','5',',','1',';','7',',','1',',','2','8','4',',','1','\n','7',',','1',',','2','8','4',',','1',';','4',',','1',',','3','1','9',',','1','\n','3',',','1',',','3','5','0',',','1','\n','7','4',',','1',',','9','0',',','1',';','3',',','2',',','2','8','5',',','1','\n','4',',','1',',','3','1','9',',','1',';','1',',','1',',','4','2','4',',','1','\n','1',',','1',',','4','2','3',',','1','\n','3',',','1',',','3','4','9',',','1',';','3',',','2',',','2','8','5',',','1',';','0',',','1',',','4','3','8',',','1','\n','3',',','2',',','2','8','5',',','1',';','0',',','1',',','4','3','8',',','1',';','0',',','3',',','4','1','8',',','1','\n','8','0',',','1',',','8','2',',','1','\n','7','9',',','1',',','8','5',',','1','\n','7','9',',','1',',','8','4',',','1','\n','7','3',',','1',',','9','0',',','1','\n','7','3',',','1',',','8','9',',','1','\n','7','2',',','1',',','9','5',',','1','\n','8','0',',','1',',','8','3',',','1',';','6','7',',','1',',','1','0','1',',','1','\n','6','7',',','1',',','1','0','1',',','1',';','5','2',',','1',',','1','3','3',',','1','\n','5','2',',','1',',','1','3','3',',','1',';','5','1',',','1',',','1','3','4',',','1','\n','5','1',',','1',',','1','3','4',',','1',';','3','2',',','1',',','1','6','4',',','1','\n','2','9',',','1',',','1','7','9',',','1','\n','2','2',',','1',',','1','9','2',',','1','\n','3','2',',','1',',','1','6','4',',','1',';','1','3',',','3',',','7','6',',','1','\n','3',',','1',',','3','4','8',',','1','\n','1',',','1',',','4','2','2',',','1','\n','1',',','1',',','8',',','1',',','2','6','1',',','1','\n','0',',','1',',','2','3',',','1',',','1','8','9',',','1','\n','0',',','2',',','4','2','4',',','1','\n','7','9',',','1',',','8','3',',','1','\n','7','9',',','1',',','8','2',',','1','\n','8','0',',','1',',','8','1',',','1',';','6','4',',','1',',','1','0','7',',','1','\n','5','7',',','1',',','1','1','9',',','1','\n','5','4',',','1',',','1','2','4',',','1','\n','4','0',',','1',',','1','5','8',',','1','\n','2','9',',','1',',','1','7','8',',','1','\n','2','1',',','1',',','1','9','8',',','1','\n','6','9',',','1',',','1','0','0',',','1',';','1','8',',','1',',','2','0','8',',','1','\n','1','8',',','1',',','2','0','8',',','1',';','1','4',',','1',',','2','3','5',',','1','\n','5','1',',','1',',','1','3','3',',','1',';','1','3',',','3',',','7','5',',','1','\n','1','1',',','1',',','2','5','5',',','1','\n','6',',','1',',','2','8','7',',','1','\n','1','4',',','1',',','2','3','5',',','1',';','5',',','1',',','2','9','4',',','1','\n','5',',','1',',','2','9','4',',','1',';','1',',','1',',','4','2','1',',','1','\n','1',',','1',',','4','2','1',',','1',';','0',',','1',',','4','3','6',',','1','\n','6','4',',','1',',','1','0','7',',','1',';','0',',','1',',','2','3',',','1',',','1','8','8',',','1','\n','0',',','1',',','4','3','6',',','1',';','0',',','1',',','2','3',',','1',',','1','8','8',',','1',';','0',',','2',',','4','2','2',',','1','\n','7','9',',','1',',','8','1',',','1','\n','6','4',',','1',',','1','0','5',',','1','\n','4','6',',','1',',','1','4','1',',','1','\n','3','9',',','1',',','1','5','8',',','1','\n','3','8',',','1',',','1','6','0',',','1','\n','2','9',',','1',',','1','7','7',',','1','\n','2','6',',','1',',','1','8','6',',','1','\n','2','1',',','1',',','1','9','7',',','1','\n','1','8',',','1',',','2','0','7',',','1',';','1','7',',','1',',','4','0',',','1',',','6','9',',','1','\n','1','7',',','1',',','4','0',',','1',',','6','9',',','1',';','1','2',',','1',',','2','5','0',',','1','\n','1','1',',','1',',','2','5','4',',','1','\n','1','2',',','1',',','2','5','0',',','1',';','1','0',',','1',',','2','5','5',',','1','\n','6',',','1',',','2','8','6',',','1',';','6',',','1',',','2','8','5',',','1','\n','1','0',',','1',',','2','5','5',',','1',';','4',',','1',',','3','1','8',',','1','\n','6','4',',','1',',','1','0','6',',','1',';','3',',','1',',','3','4','7',',','1','\n','3',',','1',',','3','4','6',',','1','\n','6',',','1',',','2','8','5',',','1',';','2',',','1',',','4','0','5',',','1','\n','4',',','1',',','3','1','8',',','1',';','1',',','1',',','1','6',',','1',',','2','0','9',',','1','\n','1',',','1',',','1','6',',','1',',','2','0','9',',','1',';','0',',','1',',','2','2',',','1',',','1','8','8',',','1','\n','2',',','1',',','4','0','5',',','1',';','0',',','1',',','2','2',',','1',',','1','8','8',',','1',';','0',',','1',',','8',',','1',',','2','6','7',',','1','\n','3',',','1',',','3','4','7',',','1',';','0',',','1',',','2','2',',','1',',','1','8','8',',','1',';','0',',','2',',','1','7',',','1',',','2','0','9',',','1','\n','6','6',',','1',',','1','0','1',',','1',';','6','4',',','1',',','1','0','4',',','1','\n','6','4',',','1',',','1','0','4',',','1',';','6','4',',','1',',','1','0','3',',','1',';','5','3',',','1',',','1','2','7',',','1','\n','6','4',',','1',',','1','0','3',',','1',';','5','3',',','1',',','1','2','6',',','1','\n','4','5',',','1',',','1','4','1',',','1','\n','3','7',',','1',',','1','6','0',',','1','\n','5','3',',','1',',','1','2','7',',','1',';','1','0',',','1',',','2','5','4',',','1','\n','5','3',',','1',',','1','2','6',',','1',';','1','0',',','1',',','2','5','4',',','1',';','8',',','1',',','5','6',',','1',',','6','9',',','1','\n','1','0',',','1',',','2','5','4',',','1',';','8',',','1',',','5','6',',','1',',','6','9',',','1',';','6',',','1',',','2','8','4',',','1','\n','6',',','1',',','2','8','4',',','1',';','2',',','2',',','3','4','6',',','1','\n','5',',','1',',','2','9','3',',','1',';','1',',','1',',','4','2','0',',','1','\n','8',',','1',',','5','6',',','1',',','6','9',',','1',';','2',',','2',',','3','4','6',',','1',';','0',',','1',',','8',',','2',',','1','8','8',',','1','\n','2',',','2',',','3','4','6',',','1',';','0',',','1',',','7',',','1',',','2','7','8',',','1','\n','0',',','2',',','1','6',',','1',',','2','0','9',',','1','\n','6','3',',','1',',','1','0','7',',','1','\n','5','6',',','1',',','1','2','2',',','1','\n','4','0',',','1',',','1','5','7',',','1','\n','3','0',',','1',',','1','7','4',',','1','\n','2','9',',','1',',','1','7','6',',','1','\n','2','7',',','1',',','1','8','1',',','1','\n','2','1',',','1',',','1','9','6',',','1','\n','1','2',',','1',',','2','4','9',',','1','\n','1','8',',','1',',','2','0','6',',','1',';','8',',','1',',','5','5',',','1',',','6','9',',','1','\n','4',',','1',',','3','1','7',',','1','\n','4',',','1',',','3','1','6',',','1','\n','8',',','1',',','5','5',',','1',',','6','9',',','1',';','0',',','1',',','8',',','2',',','1','8','7',',','1','\n','7','6',',','1',',','8','8',',','1','\n','6','3',',','1',',','1','0','6',',','1','\n','6','3',',','1',',','1','0','5',',','1','\n','5','6',',','1',',','1','2','1',',','1','\n','5','5',',','1',',','1','2','2',',','1','\n','3','9',',','1',',','1','5','7',',','1','\n','3','6',',','1',',','1','6','0',',','1','\n','3','1',',','1',',','1','6','4',',','1','\n','2','8',',','1',',','1','8','0',',','1','\n','1','7',',','1',',','2','1','5',',','1','\n','1','4',',','1',',','2','3','4',',','1','\n','5',',','1',',','2','9','2',',','1','\n','0',',','1',',','4','3','5',',','1','\n','7','5',',','1',',','8','8',',','1','\n','7','4',',','1',',','8','8',',','1','\n','6','8',',','1',',','1','0','0',',','1','\n','6','3',',','1',',','1','0','4',',','1','\n','6','3',',','1',',','1','0','3',',','1','\n','6','0',',','1',',','1','1','5',',','1','\n','5','9',',','1',',','1','1','5',',','1','\n','5','6',',','1',',','1','2','0',',','1','\n','5','5',',','1',',','1','2','1',',','1','\n','5','0',',','1',',','1','3','4',',','1','\n','2','1',',','1',',','1','9','5',',','1','\n','1','6',',','1',',','2','1','5',',','1',';','8',',','1',',','2','7','4',',','1','\n','8',',','1',',','2','7','4',',','1',';','5',',','1',',','2','9','1',',','1','\n','5',',','1',',','2','9','1',',','1',';','2',',','1',',','4','0','4',',','1','\n','2',',','1',',','4','0','4',',','1',';','1',',','1',',','8',',','1',',','2','6','0',',','1','\n','1',',','1',',','8',',','1',',','2','6','0',',','1',';','0',',','1',',','4','3','4',',','1','\n','7','3',',','1',',','8','8',',','1','\n','7','1',',','1',',','9','6',',','1','\n','6','7',',','1',',','1','0','0',',','1','\n','5','5',',','1',',','1','2','0',',','1','\n','5','0',',','1',',','1','3','3',',','1','\n','4','9',',','1',',','1','3','4',',','1','\n','1','5',',','1',',','2','2','6',',','1',';','0',',','2',',','8',',','1',',','2','6','0',',','1','\n','7','8',',','1',',','8','6',',','1','\n','4','9',',','1',',','1','3','3',',','1','\n','4','0',',','1',',','1','5','6',',','1','\n','2','6',',','1',',','1','8','5',',','1','\n','1','2',',','1',',','2','4','8',',','1','\n','7','8',',','1',',','8','5',',','1','\n','7','8',',','1',',','8','4',',','1','\n','7','7',',','1',',','8','6',',','1','\n','4','7',',','1',',','1','3','9',',','1','\n','3','9',',','1',',','1','5','6',',','1','\n','2','6',',','1',',','1','8','4',',','1','\n','3',',','1',',','3','4','5',',','1','\n','7','8',',','1',',','8','3',',','1','\n','7','8',',','1',',','8','2',',','1','\n','7','7',',','1',',','8','5',',','1','\n','7','7',',','1',',','8','4',',','1','\n','7','1',',','1',',','9','5',',','1','\n','6','6',',','1',',','1','0','0',',','1','\n','6','2',',','1',',','1','0','9',',','1','\n','4','1',',','1',',','1','5','1',',','1','\n','2','1',',','1',',','1','9','4',',','1','\n','1','4',',','1',',','2','3','3',',','1','\n','3',',','1',',','3','4','4',',','1','\n','7','8',',','1',',','8','1',',','1','\n','7','7',',','1',',','8','3',',','1','\n','7','7',',','1',',','8','2',',','1','\n','5','6',',','1',',','1','1','9',',','1','\n','5','3',',','1',',','1','2','5',',','1','\n','4','1',',','1',',','1','5','0',',','1','\n','3','0',',','1',',','1','7','3',',','1','\n','3','0',',','1',',','1','7','2',',','1','\n','2','1',',','1',',','1','9','3',',','1','\n','1','4',',','1',',','2','3','2',',','1','\n','1','2',',','1',',','2','4','7',',','1','\n','1','2',',','1',',','2','4','6',',','1','\n','4',',','1',',','3','1','5',',','1','\n','0',',','1',',','1','7',',','2',',','1','1','3',',','1','\n','7','7',',','1',',','8','1',',','1',';','7','0',',','1',',','9','7',',','1','\n','7','0',',','1',',','9','7',',','1',';','6','2',',','1',',','1','0','8',',','1','\n','6','2',',','1',',','1','0','8',',','1',';','4','4',',','1',',','1','4','4',',','1','\n','5','5',',','1',',','1','1','9',',','1',';','2','7',',','1',',','1','8','0',',','1','\n','4','4',',','1',',','1','4','4',',','1',';','2','7',',','1',',','1','8','0',',','1',';','1','2',',','1',',','2','4','5',',','1','\n','2','7',',','1',',','1','8','0',',','1',';','1','2',',','1',',','2','4','5',',','1',';','3',',','1',',','3','4','3',',','1','\n','1','2',',','1',',','2','4','5',',','1',';','0',',','1',',','8',',','1',',','1','7',',','1',',','1','4','7',',','1','\n','3',',','1',',','3','4','3',',','1',';','0',',','1',',','8',',','1',',','1','7',',','1',',','1','4','7',',','1',';','0',',','1','1',',','3','1','7',',','1','\n','6','5',',','1',',','1','0','1',',','1',';','4','1',',','1',',','1','4','9',',','1','\n','4','1',',','1',',','1','4','9',',','1',';','1','2',',','1',',','2','4','4',',','1','\n','1','2',',','1',',','2','4','4',',','1',';','0',',','1',',','8',',','2',',','1','8','4',',','1','\n','5','4',',','1',',','1','2','3',',','1','\n','3','8',',','1',',','1','5','9',',','1','\n','4','7',',','1',',','1','3','8',',','1',';','1','5',',','1',',','2','2','5',',','1','\n','7',',','1',',','2','8','3',',','1','\n','1','5',',','1',',','2','2','5',',','1',';','2',',','1',',','4','0','3',',','1','\n','2',',','1',',','4','0','3',',','1',';','0',',','1',',','4','3','3',',','1','\n','6','4',',','1',',','1','0','2',',','1',';','4','7',',','1',',','1','3','7',',','1','\n','3','7',',','1',',','1','5','9',',','1','\n','2','6',',','1',',','1','8','3',',','1','\n','4','7',',','1',',','1','3','7',',','1',';','1','5',',','1',',','2','2','4',',','1','\n','1','5',',','1',',','2','2','4',',','1',';','2',',','1',',','4','0','2',',','1','\n','2',',','1',',','4','0','2',',','1',';','0',',','1',',','4','3','2',',','1','\n','2','6',',','1',',','1','8','2',',','1','\n','1','8',',','1',',','2','0','5',',','1','\n','4','8',',','1',',','1','3','5',',','1',';','1',',','2',',','4','0','2',',','1','\n','3','6',',','1',',','1','5','9',',','1','\n','6','5',',','1',',','1','0','0',',','1','\n','6','3',',','1',',','1','0','2',',','1','\n','4','7',',','1',',','1','3','6',',','1','\n','4','6',',','1',',','1','4','0',',','1','\n','3','0',',','1',',','1','7','1',',','1','\n','1','5',',','1',',','2','2','3',',','1','\n','1','1',',','1',',','2','5','3',',','1','\n','6',',','1',',','2','8','3',',','1','\n','2',',','1',',','4','0','1',',','1','\n','4','5',',','1',',','1','4','0',',','1','\n','1','1',',','1',',','2','5','2',',','1','\n','1','0',',','1',',','2','5','3',',','1','\n','0',',','1',',','1','6',',','1',',','1','7',',','1',',','1','1','1',',','1','\n','2','9',',','1',',','1','7','5',',','1',';','1','0',',','1',',','2','5','2',',','1','\n','1','0',',','1',',','2','5','2',',','1',';','0',',','1',',','8',',','2',',','1','8','3',',','1','\n','3',',','1',',','3','4','2',',','1','\n','0',',','3',',','4','1','6',',','1','\n','3','8',',','1',',','1','6','3',',','1','\n','3','7',',','1',',','1','6','3',',','1','\n','1','8',',','1',',','2','1','4',',','1',';','0',',','2',',','3',',','1',',','3','4','0',',','1','\n','7','6',',','1',',','9','6',',','1','\n','7','5',',','1',',','9','6',',','1','\n','7','4',',','1',',','9','6',',','1','\n','6','9',',','1',',','1','0','6',',','1','\n','5','4',',','1',',','1','3','2',',','1','\n','3','6',',','1',',','1','6','3',',','1','\n','6','9',',','1',',','1','0','5',',','1',';','1','8',',','1',',','2','1','3',',','1','\n','1',',','1',',','4','4','4',',','1','\n','1',',','1',',','4','4','3',',','1',';','0',',','2',',','4','4','5',',','1','\n','7','3',',','1',',','9','6',',','1','\n','6','9',',','1',',','1','0','3',',','1','\n','5','4',',','1',',','1','3','1',',','1','\n','2','5',',','1',',','1','9','8',',','1','\n','9',',','1',',','2','6','4',',','1',';','2',',','1',',','4','1','9',',','1','\n','1',',','1',',','4','4','1',',','1','\n','2',',','1',',','4','1','9',',','1',';','0',',','1',',','4','5','0',',','1','\n','0',',','3',',','4','2','9',',','1','\n','8','6',',','2','\n','5','4',',','1',',','1','3','0',',','1','\n','2','5',',','1',',','1','9','7',',','1','\n','2','4',',','1',',','1','9','8',',','1','\n','4',',','1',',','3','3','3',',','1',';','0',',','1',',','1','8',',','1',',','2','0','9',',','1','\n','0',',','2',',','4','4','2',',','1','\n','0',',','2',',','4','4','1',',','1','\n','8','5',',','1',',','8','6',',','1','\n','8','4',',','1',',','8','6',',','1','\n','7','4',',','1',',','9','5',',','1','\n','5','4',',','1',',','1','2','9',',','1','\n','5','4',',','1',',','1','2','8',',','1','\n','2','8',',','1',',','1','9','1',',','1','\n','2','4',',','1',',','1','9','7',',','1',';','2','3',',','1',',','1','9','8',',','1','\n','7','5',',','1',',','9','5',',','1',';','1','8',',','1',',','2','1','2',',','1','\n','2','3',',','1',',','1','9','8',',','1',';','1','8',',','1',',','2','1','2',',','1',';','1','3',',','1',',','2','5','1',',','1','\n','8',',','1',',','2','8','2',',','1','\n','4',',','1',',','3','3','2',',','1','\n','3',',','1',',','3','6','4',',','1','\n','1','8',',','1',',','2','1','2',',','1',';','1','3',',','1',',','2','5','1',',','1',';','0',',','3',',','4','2','8',',','1','\n','8','5',',','2','\n','8','4',',','1',',','8','5',',','1','\n','8','4',',','2','\n','8','3',',','1',',','8','6',',','1','\n','8','2',',','1',',','8','6',',','1','\n','7','3',',','1',',','9','5',',','1','\n','7','2',',','1',',','9','9',',','1','\n','7','0',',','1',',','1','0','1',',','1','\n','2','6',',','1',',','1','9','2',',','1','\n','2','5',',','1',',','1','9','6',',','1','\n','2','3',',','1',',','1','9','7',',','1','\n','2','2',',','1',',','1','9','8',',','1','\n','1','7',',','1',',','2','2','2',',','1','\n','1','4',',','1',',','2','4','2',',','1','\n','9',',','1',',','2','6','3',',','1','\n','8',',','1',',','2','8','1',',','1','\n','4',',','1',',','3','3','1',',','1','\n','2',',','1',',','4','1','8',',','1','\n','2','8',',','1',',','1','9','0',',','1',';','2',',','1',',','4','1','7',',','1','\n','2',',','1',',','4','1','7',',','1',';','1',',','1',',','3',',','1',',','3','3','5',',','1','\n','0',',','2',',','3',',','1',',','3','3','6',',','1','\n','8','3',',','1',',','8','5',',','1','\n','8','3',',','1',',','8','4',',','1','\n','8','2',',','1',',','8','5',',','1','\n','8','2',',','1',',','8','4',',','1',';','8','1',',','1',',','8','6',',','1','\n','8','1',',','1',',','8','6',',','1',';','6','8',',','1',',','1','0','6',',','1','\n','6','8',',','1',',','1','0','5',',','1','\n','5','3',',','1',',','1','3','4',',','1','\n','2','9',',','1',',','1','8','1',',','1','\n','2','4',',','1',',','1','9','6',',','1','\n','2','2',',','1',',','1','9','7',',','1','\n','1','6',',','1',',','2','2','2',',','1','\n','1','5',',','1',',','2','3','1',',','1','\n','1','4',',','1',',','2','4','1',',','1','\n','9',',','1',',','2','6','2',',','1','\n','4',',','1',',','3','3','0',',','1','\n','3',',','1',',','3','6','2',',','1','\n','3',',','1',',','3','6','1',',','1','\n','1',',','1',',','4','4','0',',','1','\n','1',',','2',',','4','1','8',',','1','\n','6','8',',','1',',','1','0','6',',','1',';','1',',','2',',','4','1','7',',','1','\n','1',',','2',',','4','1','7',',','1',';','0',',','3',',','4','2','5',',','1','\n','8','3',',','2','\n','8','2',',','1',',','8','3',',','1','\n','8','1',',','1',',','8','5',',','1','\n','8','1',',','1',',','8','4',',','1','\n','6','8',',','1',',','1','0','4',',','1',';','6','8',',','1',',','1','0','3',',','1','\n','6','7',',','1',',','1','0','6',',','1','\n','6','7',',','1',',','1','0','5',',','1','\n','6','4',',','1',',','1','0','9',',','1','\n','5','3',',','1',',','1','3','3',',','1','\n','4','8',',','1',',','1','3','9',',','1','\n','8','2',',','2',';','4','3',',','1',',','1','5','1',',','1','\n','4','3',',','1',',','1','5','1',',','1',';','3','5',',','1',',','1','7','0',',','1','\n','3','5',',','1',',','1','7','0',',','1',';','2','8',',','1',',','1','8','9',',','1','\n','2','8',',','1',',','1','8','9',',','1',';','2','5',',','1',',','1','9','5',',','1','\n','2','3',',','1',',','1','9','6',',','1','\n','1','5',',','1',',','2','3','0',',','1','\n','1','4',',','1',',','2','4','0',',','1','\n','1','3',',','1',',','2','5','0',',','1',';','9',',','1',',','2','6','1',',','1','\n','5',',','1',',','3','1','0',',','1','\n','4',',','1',',','3','2','9',',','1','\n','2','5',',','1',',','1','9','5',',','1',';','3',',','1',',','3','6','0',',','1','\n','3',',','1',',','3','6','0',',','1',';','1',',','1',',','4','3','8',',','1','\n','1',',','1',',','7',',','1',',','2','7','9',',','1','\n','6','8',',','1',',','1','0','3',',','1',';','0',',','2',',','4','3','9',',','1','\n','8','1',',','1',',','8','3',',','1','\n','8','1',',','1',',','8','2',',','1',';','6','7',',','1',',','1','0','4',',','1','\n','6','7',',','1',',','1','0','3',',','1','\n','5','7',',','1',',','1','2','4',',','1','\n','6','7',',','1',',','1','0','4',',','1',';','4','3',',','1',',','1','5','0',',','1','\n','4','3',',','1',',','1','5','0',',','1',';','3','5',',','1',',','1','6','9',',','1','\n','3','5',',','1',',','1','6','9',',','1',';','3','4',',','1',',','1','7','0',',','1','\n','3','4',',','1',',','1','7','0',',','1',';','2','8',',','1',',','1','8','8',',','1','\n','2','8',',','1',',','1','8','8',',','1',';','2','4',',','1',',','1','9','5',',','1','\n','2','2',',','1',',','1','9','6',',','1','\n','2','0',',','1',',','2','0','9',',','1',';','1','7',',','1',',','2','2','1',',','1',';','8',',','1',',','2','8','0',',','1','\n','5',',','1',',','3','0','9',',','1','\n','2','4',',','1',',','1','9','5',',','1',';','1',',','1',',','4','3','7',',','1','\n','1','7',',','1',',','2','2','1',',','1',';','1',',','1',',','4','3','7',',','1',';','0',',','2',',','4','3','8',',','1','\n','1',',','1',',','4','3','7',',','1',';','0',',','2',',','4','3','8',',','1',';','0',',','4',',','4','1','8',',','1','\n','8','1',',','2',';','6','6',',','1',',','1','0','7',',','1',';','6','4',',','1',',','1','0','8',',','1','\n','3','5',',','1',',','1','6','8',',','1','\n','6','6',',','1',',','1','0','7',',','1',';','3','4',',','1',',','1','6','9',',','1','\n','3','3',',','1',',','1','7','0',',','1','\n','6','4',',','1',',','1','0','8',',','1',';','2','8',',','1',',','1','8','7',',','1','\n','3','4',',','1',',','1','6','9',',','1',';','2','3',',','1',',','1','9','5',',','1','\n','1','6',',','1',',','2','2','1',',','1','\n','2','8',',','1',',','1','8','7',',','1',';','1','4',',','1',',','2','3','9',',','1','\n','1','3',',','1',',','2','4','9',',','1','\n','1','9',',','1',',','2','0','9',',','1',';','1','4',',','1',',','2','3','9',',','1',';','8',',','1',',','2','7','9',',','1','\n','1','4',',','1',',','2','3','9',',','1',';','5',',','1',',','3','0','8',',','1','\n','5',',','1',',','3','0','7',',','1','\n','4',',','1',',','3','2','8',',','1','\n','2','3',',','1',',','1','9','5',',','1',';','3',',','1',',','3','5','8',',','1','\n','3',',','1',',','3','5','7',',','1','\n','2',',','2',',','3','5','9',',','1','\n','5',',','1',',','3','0','8',',','1',';','1',',','1',',','4','3','6',',','1','\n','3',',','1',',','3','5','8',',','1',';','0',',','2',',','4','3','7',',','1','\n','6','6',',','1',',','1','0','5',',','1','\n','6','3',',','1',',','1','0','9',',','1','\n','5','4',',','1',',','1','2','7',',','1','\n','5','4',',','1',',','1','2','6',',','1','\n','3','8',',','1',',','1','6','2',',','1','\n','3','5',',','1',',','1','6','7',',','1','\n','3','4',',','1',',','1','6','8',',','1','\n','3','3',',','1',',','1','6','9',',','1','\n','3','2',',','1',',','1','7','0',',','1','\n','2','2',',','1',',','1','9','5',',','1','\n','5',',','1',',','3','0','6',',','1','\n','6','6',',','1',',','1','0','6',',','1',';','3',',','1',',','3','5','6',',','1','\n','3',',','1',',','3','5','6',',','1',';','3',',','1',',','3','5','5',',','1','\n','3',',','1',',','3','5','5',',','1',';','0',',','2',',','2','3',',','1',',','1','8','8',',','1','\n','0',',','2',',','2','3',',','1',',','1','8','8',',','1',';','0',',','3',',','4','2','2',',','1','\n','6','6',',','1',',','1','0','4',',','1','\n','7','2',',','1',',','9','8',',','1',';','6','6',',','1',',','1','0','3',',','1','\n','4','7',',','1',',','1','4','3',',','1','\n','3','7',',','1',',','1','6','2',',','1','\n','3','5',',','1',',','1','6','6',',','1','\n','4','3',',','1',',','1','4','9',',','1',';','3','4',',','1',',','1','6','7',',','1','\n','6','6',',','1',',','1','0','3',',','1',';','3','3',',','1',',','1','6','8',',','1','\n','3','2',',','1',',','1','6','9',',','1','\n','2','7',',','1',',','1','9','1',',','1','\n','3','3',',','1',',','1','6','8',',','1',';','2','5',',','1',',','1','9','4',',','1','\n','1','5',',','1',',','2','2','9',',','1','\n','2','5',',','1',',','1','9','4',',','1',';','1','3',',','2',',','1','5','1',',','1','\n','1','3',',','2',',','1','5','1',',','1',';','5',',','1',',','3','0','5',',','1','\n','5',',','1',',','3','0','5',',','1',';','5',',','1',',','3','0','4',',','1','\n','2',',','2',',','3','5','5',',','1','\n','5',',','1',',','3','0','4',',','1',';','1',',','1',',','7',',','1',',','2','7','8',',','1','\n','0',',','2',',','2','2',',','1',',','1','8','8',',','1','\n','1',',','1',',','7',',','1',',','2','7','8',',','1',';','0',',','2',',','8',',','1',',','2','6','7',',','1','\n','3','4',',','1',',','1','6','7',',','1',';','0',',','3',',','1','7',',','1',',','2','0','9',',','1','\n','7','0',',','1',',','1','0','0',',','1','\n','6','3',',','1',',','1','0','8',',','1','\n','4','7',',','1',',','1','4','2',',','1','\n','4','6',',','1',',','1','4','4',',','1','\n','4','2',',','1',',','1','5','1',',','1','\n','3','4',',','1',',','1','6','6',',','1','\n','3','3',',','1',',','1','6','7',',','1',';','3','2',',','1',',','1','6','8',',','1','\n','2','8',',','1',',','1','8','6',',','1','\n','2','7',',','1',',','1','9','0',',','1','\n','2','5',',','1',',','1','9','3',',','1','\n','3','2',',','1',',','1','6','8',',','1',';','2','4',',','1',',','1','9','4',',','1','\n','2','1',',','1',',','2','0','2',',','1','\n','2','4',',','1',',','1','9','4',',','1',';','1','3',',','2',',','1','5','0',',','1','\n','5',',','1',',','3','0','3',',','1','\n','5',',','1',',','3','0','2',',','1','\n','0',',','1',',','4','4','7',',','1','\n','0',',','2',',','7',',','1',',','2','7','8',',','1','\n','4','5',',','1',',','1','4','4',',','1','\n','4','2',',','1',',','1','5','0',',','1','\n','3','6',',','1',',','1','6','2',',','1','\n','3','3',',','1',',','1','6','6',',','1','\n','2','4',',','1',',','1','9','3',',','1','\n','3','2',',','1',',','1','6','7',',','1',';','2','3',',','1',',','1','9','4',',','1','\n','2','3',',','1',',','1','9','4',',','1',';','1','3',',','1',',','2','4','8',',','1','\n','1','2',',','1',',','2','5','5',',','1','\n','5',',','1',',','3','0','1',',','1','\n','9',',','1',',','2','6','0',',','1',';','8',',','1',',','2','7','8',',','1',';','5',',','1',',','3','0','0',',','1','\n','4',',','1',',','3','2','7',',','1','\n','5',',','1',',','3','0','0',',','1',';','1',',','1',',','4','3','5',',','1','\n','0',',','2',',','8',',','2',',','1','8','7',',','1','\n','3','0',',','1',',','1','7','9',',','1','\n','3','2',',','1',',','1','6','6',',','1',';','2','9',',','1',',','1','8','0',',','1','\n','2','7',',','1',',','1','8','9',',','1','\n','2','9',',','1',',','1','8','0',',','1',';','2','3',',','1',',','1','9','3',',','1','\n','2','3',',','1',',','1','9','3',',','1',';','2','2',',','1',',','1','9','4',',','1','\n','2','1',',','1',',','2','0','1',',','1','\n','1','7',',','1',',','2','2','0',',','1','\n','1','5',',','1',',','2','2','8',',','1','\n','1','2',',','1',',','2','5','4',',','1','\n','2','2',',','1',',','1','9','4',',','1',';','8',',','1',',','1','3',',','1',',','1','6','7',',','1','\n','1',',','1',',','4','3','4',',','1','\n','7','1',',','1',',','9','9',',','1','\n','4','8',',','1',',','1','3','8',',','1','\n','3','1',',','1',',','1','7','0',',','1','\n','3','0',',','1',',','1','7','8',',','1','\n','2','7',',','1',',','1','8','8',',','1','\n','2','2',',','1',',','1','9','3',',','1',';','2','0',',','1',',','2','0','8',',','1','\n','2','0',',','1',',','2','0','8',',','1',';','1','7',',','1',',','2','1','9',',','1','\n','1','6',',','1',',','2','2','0',',','1','\n','1','7',',','1',',','2','1','9',',','1',';','8',',','2',',','1','9','4',',','1','\n','5',',','1',',','2','9','9',',','1','\n','0',',','2',',','4','3','4',',','1','\n','3','1',',','1',',','1','6','9',',','1','\n','3','0',',','1',',','1','7','7',',','1','\n','4','8',',','1',',','1','3','7',',','1',';','2','7',',','1',',','1','8','7',',','1','\n','4','2',',','1',',','1','4','9',',','1',';','2','7',',','1',',','1','8','7',',','1',';','2','0',',','1',',','2','0','7',',','1','\n','2','0',',','1',',','2','0','7',',','1',';','1','9',',','1',',','2','0','8',',','1','\n','1','9',',','1',',','2','0','8',',','1',';','1','7',',','1',',','2','1','8',',','1','\n','1','7',',','1',',','2','1','8',',','1',';','1','6',',','1',',','2','1','9',',','1','\n','1','6',',','1',',','2','1','9',',','1',';','1','3',',','1',',','2','4','7',',','1','\n','1','3',',','1',',','2','4','6',',','1','\n','1','3',',','1',',','2','4','7',',','1',';','9',',','1',',','2','5','9',',','1','\n','9',',','1',',','2','5','9',',','1',';','8',',','2',',','1','9','3',',','1','\n','2','7',',','1',',','1','8','7',',','1',';','5',',','1',',','6','4',',','2','\n','6','9',',','1',',','1','0','2',',','1','\n','3','1',',','1',',','1','6','8',',','1','\n','1','9',',','1',',','2','0','7',',','1',';','1','6',',','1',',','2','1','8',',','1','\n','1','6',',','1',',','2','1','8',',','1',';','1','3',',','1',',','2','4','5',',','1','\n','1','3',',','1',',','2','4','5',',','1',';','9',',','1',',','2','5','8',',','1','\n','9',',','1',',','2','5','8',',','1',';','8',',','1',',','2','7','7',',','1','\n','5','6',',','1',',','1','2','4',',','1','\n','5','4',',','1',',','1','2','5',',','1','\n','4','7',',','1',',','1','4','1',',','1','\n','4','1',',','1',',','1','5','5',',','1','\n','4','0',',','1',',','1','6','0',',','1',';','3','1',',','1',',','1','6','7',',','1','\n','3','0',',','1',',','1','7','6',',','1','\n','2','8',',','1',',','1','8','5',',','1','\n','3','1',',','1',',','1','6','7',',','1',';','2','0',',','1',',','2','0','6',',','1','\n','2','0',',','1',',','2','0','6',',','1',';','8',',','1',',','1','7',',','1',',','1','4','9',',','1','\n','5','5',',','1',',','1','2','4',',','1','\n','4','8',',','1',',','1','3','6',',','1','\n','3','8',',','1',',','1','6','1',',','1','\n','3','9',',','1',',','1','6','0',',','1',';','3','1',',','1',',','1','6','6',',','1','\n','2','8',',','1',',','1','8','4',',','1','\n','2','7',',','1',',','1','8','6',',','1','\n','3','1',',','1',',','1','6','6',',','1',';','1','9',',','1',',','2','0','6',',','1','\n','1','9',',','1',',','2','0','6',',','1',';','1','3',',','1',',','2','4','4',',','1','\n','1','3',',','1',',','2','4','4',',','1',';','9',',','1',',','2','5','7',',','1','\n','9',',','1',',','2','5','7',',','1',';','8',',','1',',','1','6',',','1',',','1','4','9',',','1','\n','6','5',',','1',',','1','0','7',',','1','\n','3','7',',','1',',','1','6','1',',','1','\n','7','1',',','1',',','9','8',',','1','\n','6','5',',','1',',','1','0','6',',','1','\n','6','5',',','1',',','1','0','5',',','1','\n','1','8',',','1',',','2','1','1',',','1','\n','1','8',',','1',',','2','1','0',',','1','\n','0',',','1','2',',','3','1','7',',','1','\n','6','8',',','1',',','1','0','2',',','1',';','6','5',',','1',',','1','0','4',',','1','\n','6','5',',','1',',','1','0','3',',','1','\n','6','5',',','1',',','1','0','4',',','1',';','4','1',',','1',',','1','5','4',',','1','\n','3','6',',','1',',','1','6','1',',','1','\n','4','1',',','1',',','1','5','4',',','1',';','0',',','2',',','8',',','2',',','1','8','5',',','1','\n','0',',','1','4',',','3','0','0',',','1','\n','8','0',',','1',',','8','7',',','1','\n','6','7',',','1',',','1','0','2',',','1','\n','6','2',',','1',',','1','1','4',',','1','\n','5','8',',','1',',','1','1','8',',','1','\n','5','7',',','1',',','1','2','3',',','1','\n','0',',','2',',','8',',','2',',','1','8','4',',','1','\n','7','9',',','1',',','8','7',',','1','\n','6','2',',','1',',','1','1','3',',','1','\n','4','4',',','1',',','1','4','7',',','1','\n','2','7',',','1',',','1','8','5',',','1','\n','1','4',',','1',',','2','3','8',',','1','\n','5',',','1',',','2','9','8',',','1','\n','1',',','1',',','4','3','3',',','1','\n','7','2',',','1',',','9','7',',','1',';','6','6',',','1',',','1','0','2',',','1','\n','6','6',',','1',',','1','0','2',',','1',';','6','2',',','1',',','1','1','2',',','1','\n','6','2',',','1',',','1','1','2',',','1',';','4','4',',','1',',','1','4','6',',','1','\n','4','4',',','1',',','1','4','6',',','1',';','2','7',',','1',',','1','8','4',',','1','\n','2','7',',','1',',','1','8','4',',','1',';','1','4',',','1',',','2','3','7',',','1','\n','1','4',',','1',',','2','3','7',',','1',';','5',',','1',',','2','9','7',',','1','\n','5',',','1',',','2','9','7',',','1',';','1',',','1',',','4','3','2',',','1','\n','1',',','1',',','4','3','2',',','1',';','0',',','2',',','4','3','3',',','1','\n','5','2',',','1',',','1','3','5',',','1','\n','3','5',',','1',',','1','6','5',',','1','\n','2','8',',','1',',','1','8','3',',','1','\n','5','1',',','1',',','1','3','5',',','1','\n','3','4',',','1',',','1','6','5',',','1','\n','2','8',',','1',',','1','8','2',',','1','\n','3',',','1',',','3','5','4',',','1','\n','1',',','1',',','8',',','1',',','2','6','5',',','1','\n','3','3',',','1',',','1','6','5',',','1','\n','3','2',',','1',',','1','6','5',',','1','\n','7','8',',','1',',','8','7',',','1',';','5','8',',','1',',','1','1','7',',','1','\n','5','8',',','1',',','1','1','7',',','1',';','5','6',',','1',',','1','2','3',',','1','\n','5','6',',','1',',','1','2','3',',','1',';','4','1',',','1',',','1','5','3',',','1','\n','4','1',',','1',',','1','5','3',',','1',';','4','0',',','1',',','1','5','9',',','1','\n','4','0',',','1',',','1','5','9',',','1',';','2','1',',','1',',','2','0','0',',','1','\n','2','1',',','1',',','2','0','0',',','1',';','2','0',',','1',',','2','0','5',',','1','\n','2','0',',','1',',','2','0','5',',','1',';','1','2',',','1',',','2','5','3',',','1','\n','1','2',',','1',',','2','5','3',',','1',';','7',',','1',',','2','9','0',',','1','\n','7',',','1',',','2','9','0',',','1',';','4',',','1',',','3','2','6',',','1','\n','4',',','1',',','3','2','6',',','1',';','0',',','2',',','8',',','2',',','1','8','2',',','1','\n','7','7',',','1',',','8','7',',','1','\n','5','8',',','1',',','1','1','6',',','1','\n','5','5',',','1',',','1','2','3',',','1','\n','4','1',',','1',',','1','5','2',',','1','\n','3','9',',','1',',','1','5','9',',','1','\n','2','1',',','1',',','1','9','9',',','1','\n','1','9',',','1',',','2','0','5',',','1','\n','1','2',',','1',',','2','5','2',',','1','\n','9',',','1',',','2','5','6',',','1','\n','4',',','1',',','3','2','5',',','1','\n','6','2',',','1',',','1','1','1',',','1','\n','5','0',',','1',',','1','3','5',',','1','\n','2','7',',','1',',','1','8','3',',','1','\n','1','7',',','1',',','2','1','7',',','1','\n','5',',','1',',','2','9','6',',','1','\n','7','1',',','1',',','9','7',',','1',';','6','2',',','1',',','1','1','0',',','1','\n','6','2',',','1',',','1','1','0',',','1',';','4','9',',','1',',','1','3','5',',','1','\n','4','9',',','1',',','1','3','5',',','1',';','4','4',',','1',',','1','4','5',',','1','\n','4','4',',','1',',','1','4','5',',','1',';','3','1',',','1',',','1','6','5',',','1','\n','3','1',',','1',',','1','6','5',',','1',';','2','7',',','1',',','1','8','2',',','1','\n','2','7',',','1',',','1','8','2',',','1',';','1','6',',','1',',','2','1','7',',','1','\n','1','6',',','1',',','2','1','7',',','1',';','1','4',',','1',',','2','3','6',',','1','\n','1','4',',','1',',','2','3','6',',','1',';','8',',','1',',','2','7','6',',','1','\n','8',',','1',',','2','7','6',',','1',';','5',',','1',',','2','9','5',',','1','\n','5',',','1',',','2','9','5',',','1',';','1',',','1',',','4','3','1',',','1','\n','6','5',',','1',',','1','0','2',',','1',';','4','7',',','1',',','1','4','0',',','1','\n','4','7',',','1',',','1','4','0',',','1',';','3','0',',','1',',','1','7','5',',','1','\n','3','0',',','1',',','1','7','5',',','1',';','1','5',',','1',',','2','2','7',',','1','\n','1','5',',','1',',','2','2','7',',','1',';','6',',','1',',','2','9','0',',','1','\n','6',',','1',',','2','9','0',',','1',';','2',',','1',',','4','1','6',',','1','\n','2',',','1',',','4','1','6',',','1',';','0',',','2',',','4','3','1',',','1','\n','4',',','1',',','3','4','1',',','1','\n','6','9',',','1',',','1','0','9',',','1',';','3',',','1',',','3','7','7',',','1','\n','0',',','1',',','4','6','8',',','1','\n','4',',','1',',','3','4','0',',','1','\n','2',',','1',',','4','3','0',',','1','\n','0',',','1',',','4','6','7',',','1','\n','7','6',',','1',',','9','9',',','1','\n','6','9',',','1',',','1','0','8',',','1','\n','5','7',',','1',',','1','3','2',',','1','\n','4',',','1',',','3','3','9',',','1','\n','1','8',',','1',',','2','1','6',',','1',';','2',',','1',',','6','9',',','1',',','9','5',',','1','\n','1',',','1',',','4','5','1',',','1','\n','0',',','1',',','4','6','6',',','1','\n','2',',','1',',','4','2','9',',','1',';','0',',','1',',','4','6','5',',','1','\n','3',',','1',',','3','7','5',',','1',';','2',',','1',',','6','9',',','1',',','9','5',',','1',';','0',',','1',',','4','6','5',',','1',';','0',',','3',',','4','4','6',',','1','\n','7','5',',','1',',','9','9',',','1','\n','7','4',',','1',',','9','9',',','1','\n','5','7',',','1',',','1','3','1',',','1','\n','4','8',',','1',',','1','4','3',',','1','\n','9',',','1',',','2','7','3',',','1','\n','1','1',',','1',',','2','6','4',',','1',';','3',',','1',',','3','7','3',',','1','\n','3',',','1',',','3','7','3',',','1',';','2',',','2',',','3','7','6',',','1','\n','3',',','1',',','3','7','4',',','1',';','0',',','1',',','4','6','4',',','1','\n','0',',','1',',','6','9',',','1',',','1','0','7',',','1',';','0',',','1',',','3',',','1',',','3','6','7',',','1','\n','0',',','1',',','3',',','1',',','3','6','7',',','1',';','0',',','2',',','4','5','1',',','1','\n','7','3',',','1',',','9','9',',','1','\n','5','7',',','1',',','1','3','0',',','1','\n','4','8',',','1',',','1','4','2',',','1','\n','2','6',',','1',',','1','9','8',',','1','\n','3',',','1',',','3','7','2',',','1','\n','2',',','1',',','4','2','8',',','1','\n','1','0',',','1',',','2','6','4',',','1',';','2',',','2',',','3','7','3',',','1','\n','2',',','2',',','3','7','3',',','1',';','1',',','1',',','4','5','0',',','1','\n','0',',','1',',','4','6','3',',','1','\n','0',',','1',',','3',',','1',',','3','6','6',',','1','\n','0',',','3',',','4','4','5',',','1','\n','7','0',',','1',',','1','0','7',',','1',';','6','8',',','1',',','1','0','9',',','1','\n','5','7',',','1',',','1','2','9',',','1','\n','5','7',',','1',',','1','2','8',',','1','\n','6','8',',','1',',','1','0','9',',','1',';','3','5',',','1',',','1','7','4',',','1','\n','3','5',',','1',',','1','7','4',',','1',';','2','6',',','1',',','1','9','7',',','1','\n','9',',','1',',','2','7','2',',','1','\n','2','6',',','1',',','1','9','7',',','1',';','3',',','1',',','3','7','1',',','1','\n','2',',','1',',','4','2','7',',','1','\n','4',',','1',',','3','3','8',',','1',';','1',',','1',',','1','8',',','1',',','2','0','9',',','1','\n','3',',','1',',','3','7','1',',','1',';','1',',','1',',','1','8',',','1',',','2','0','9',',','1',';','0',',','1',',','4','6','2',',','1','\n','0',',','1',',','4','6','1',',','1','\n','1',',','1',',','1','8',',','1',',','2','0','9',',','1',';','0',',','1',',','6','9',',','1',',','1','0','4',',','1','\n','0',',','1',',','6','9',',','1',',','1','0','4',',','1',';','0',',','2',',','4','5','0',',','1','\n','0',',','3',',','4','4','3',',','1','\n','8','0',',','1',',','9','4',',','1','\n','7','0',',','1',',','1','0','6',',','1','\n','7','0',',','1',',','1','0','5',',','1','\n','6','7',',','1',',','1','0','9',',','1','\n','3','8',',','1',',','1','6','4',',','1','\n','3','4',',','1',',','1','7','4',',','1','\n','1','1',',','1',',','2','6','3',',','1','\n','9',',','1',',','2','7','1',',','1','\n','9',',','1',',','2','7','0',',','1','\n','8',',','1',',','2','8','9',',','1','\n','4',',','1',',','3','3','7',',','1','\n','2',',','1',',','4','2','6',',','1','\n','1',',','2',',','4','2','7',',','1','\n','0',',','1',',','4','5','9',',','1','\n','2',',','1',',','4','2','5',',','1',';','0',',','1',',','3',',','1',',','3','6','5',',','1','\n','0',',','2',',','1','8',',','1',',','2','0','9',',','1','\n','8','0',',','1',',','9','3',',','1','\n','8','0',',','1',',','9','2',',','1','\n','7','9',',','1',',','9','4',',','1','\n','7','0',',','1',',','1','0','4',',','1','\n','6','8',',','1',',','1','0','8',',','1','\n','7','0',',','1',',','1','0','3',',','1',';','5','4',',','1',',','1','3','4',',','1','\n','3','7',',','1',',','1','6','4',',','1','\n','5','4',',','1',',','1','3','4',',','1',';','3','3',',','1',',','1','7','4',',','1','\n','3','3',',','1',',','1','7','4',',','1',';','2','9',',','1',',','1','9','1',',','1','\n','2','6',',','1',',','1','9','6',',','1','\n','2','9',',','1',',','1','9','1',',','1',';','2','5',',','1',',','2','0','2',',','1','\n','2','0',',','1',',','2','1','4',',','1','\n','2','5',',','1',',','2','0','2',',','1',';','1','1',',','1',',','2','6','2',',','1','\n','1','1',',','1',',','2','6','2',',','1',';','1','0',',','1',',','2','6','3',',','1','\n','9',',','1',',','2','6','9',',','1','\n','1','0',',','1',',','2','6','3',',','1',';','8',',','1',',','2','8','8',',','1','\n','8',',','1',',','2','8','8',',','1',';','7',',','1',',','2','9','4',',','1','\n','5',',','1',',','3','1','4',',','1','\n','7',',','1',',','2','9','4',',','1',';','5',',','1',',','3','1','3',',','1','\n','4',',','1',',','3','3','6',',','1','\n','5',',','1',',','3','1','3',',','1',';','2',',','1',',','7','6',',','1',',','8','2',',','1','\n','2',',','1',',','7','6',',','1',',','8','2',',','1',';','2',',','1',',','7',',','1',',','2','7','5',',','1','\n','2',',','1',',','7',',','1',',','2','7','5',',','1',';','1',',','2',',','4','2','6',',','1','\n','1',',','2',',','4','2','6',',','1',';','0',',','1',',','4','5','8',',','1','\n','0',',','1',',','4','5','8',',','1',';','0',',','1',',','1','3',',','1',',','2','5','1',',','1','\n','0',',','4',',','4','2','8',',','1','\n','8','0',',','1',',','9','1',',','1','\n','7','9',',','1',',','9','3',',','1','\n','7','9',',','1',',','9','2',',','1','\n','7','6',',','1',',','9','8',',','1','\n','6','7',',','1',',','1','0','8',',','1','\n','5','4',',','1',',','1','3','3',',','1','\n','4','0',',','1',',','1','6','3',',','1','\n','3','2',',','1',',','1','7','4',',','1','\n','2','9',',','1',',','1','9','0',',','1','\n','2','4',',','1',',','2','0','2',',','1','\n','1','9',',','1',',','2','1','4',',','1','\n','1','1',',','1',',','2','6','1',',','1','\n','1','0',',','1',',','2','6','2',',','1','\n','5',',','1',',','3','1','2',',','1','\n','5',',','1',',','3','1','1',',','1','\n','4',',','1',',','3','3','5',',','1','\n','1',',','1',',','4','4','9',',','1','\n','0',',','1',',','4','5','7',',','1','\n','3',',','1',',','3','7','0',',','1',';','0',',','1',',','6','8',',','1',',','1','0','7',',','1','\n','7','9',',','1',',','9','1',',','1','\n','7','5',',','1',',','9','8',',','1','\n','7','4',',','1',',','9','8',',','1','\n','6','6',',','1',',','1','0','9',',','1','\n','3','9',',','1',',','1','6','3',',','1','\n','3','6',',','1',',','1','6','4',',','1','\n','2','8',',','1',',','1','9','2',',','1','\n','4','3',',','1',',','1','5','5',',','1',';','2','6',',','1',',','1','9','5',',','1','\n','2','5',',','1',',','2','0','1',',','1','\n','2','3',',','1',',','2','0','2',',','1','\n','2','0',',','1',',','2','1','3',',','1']
-    have hchars10 : RawData.relationChunks[10]=String.ofList chars10 := rfl
-    have relation_member10 : "0,1,24,1" ∈ RawData.relations := by
-      apply List.mem_append.mpr
-      right
-      apply List.mem_flatMap.mpr
-      refine ⟨RawData.relationChunks[0],Array.getElem_mem_toList (by decide),?_⟩
-      apply charlist_middle_member _ "0,1,24,1" (chars0.take 940) ['0',',','1',',','2','4',',','1'] (chars0.drop 950)
-      · rw [hchars0]
-        rfl
-      · rfl
-      · decide
-    have relation_member11 : "0,1,3,1,335,1;0,2,425,1" ∈ RawData.relations := by
-      apply List.mem_append.mpr
-      right
-      apply List.mem_flatMap.mpr
-      refine ⟨RawData.relationChunks[10],Array.getElem_mem_toList (by decide),?_⟩
-      apply charlist_middle_member _ "0,1,3,1,335,1;0,2,425,1" (chars10.take 5166) ['0',',','1',',','3',',','1',',','3','3','5',',','1',';','0',',','2',',','4','2','5',',','1'] (chars10.drop 5191)
-      · rw [hchars10]
-        rfl
-      · rfl
-      · decide
-    have relation_member8 : "0,5,391,1" ∈ RawData.relations := by
-      apply List.mem_append.mpr
-      right
-      apply List.mem_flatMap.mpr
-      refine ⟨RawData.relationChunks[10],Array.getElem_mem_toList (by decide),?_⟩
-      apply charlist_middle_member _ "0,5,391,1" (chars10.take 5190) ['0',',','5',',','3','9','1',',','1'] (chars10.drop 5201)
-      · rw [hchars10]
-        rfl
-      · rfl
-      · decide
-    have relation_member9 : "0,6,375,1" ∈ RawData.relations := by
-      apply List.mem_append.mpr
-      right
-      apply List.mem_flatMap.mpr
-      refine ⟨RawData.relationChunks[10],Array.getElem_mem_toList (by decide),?_⟩
-      apply charlist_middle_member _ "0,6,375,1" (chars10.take 5200) ['0',',','6',',','3','7','5',',','1'] (chars10.drop 5211)
-      · rw [hchars10]
-        rfl
-      · rfl
-      · decide
-    have relation_member12 : "2,1,407,1" ∈ RawData.relations := by
-      apply List.mem_append.mpr
-      right
-      apply List.mem_flatMap.mpr
-      refine ⟨RawData.relationChunks[10],Array.getElem_mem_toList (by decide),?_⟩
-      apply charlist_middle_member _ "2,1,407,1" (chars10.take 5093) ['2',',','1',',','4','0','7',',','1'] (chars10.drop 5104)
-      · rw [hchars10]
-        rfl
-      · rfl
-      · decide
-    have relation_member0 : "2,1,79,1;0,1,89,1" ∈ RawData.relations := by
-      apply List.mem_append.mpr
-      right
-      apply List.mem_flatMap.mpr
-      refine ⟨RawData.relationChunks[0],Array.getElem_mem_toList (by decide),?_⟩
-      apply charlist_middle_member _ "2,1,79,1;0,1,89,1" (chars0.take 10762) ['2',',','1',',','7','9',',','1',';','0',',','1',',','8','9',',','1'] (chars0.drop 10781)
-      · rw [hchars0]
-        rfl
-      · rfl
-      · decide
-    have relation_member13 : "0,3,89,1" ∈ RawData.relations := by
-      apply List.mem_append.mpr
-      right
-      apply List.mem_flatMap.mpr
-      refine ⟨RawData.relationChunks[0],Array.getElem_mem_toList (by decide),?_⟩
-      apply charlist_middle_member _ "0,3,89,1" (chars0.take 12141) ['0',',','3',',','8','9',',','1'] (chars0.drop 12151)
-      · rw [hchars0]
-        rfl
-      · rfl
-      · decide
-    exact ⟨relation_member10,relation_member11,relation_member8,relation_member9,relation_member12,relation_member0,relation_member13⟩
-  exact t_relation_members
-
 private theorem nu_target_h0_af13_image_boundary_two
     {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:=C)]
     {Syn : Type w} [SyntheticCategory.{w,v} Syn] [HasFunctorialCofiber (C:=Syn)]
@@ -2029,54 +1778,8 @@ private theorem nu_target_h0_af13_image_boundary_two
   have differential_target_later_zero {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ×ℤ)} {r : ℤ} {p : ℤ×ℤ} {t : ℤ} {q : ℤ×ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
       (hr0 : E.r₀ ≤ r) (hrt : r < t)
       (h : KIP126.Core.SpectralSequence.HasDifferential E r p q x y) : KIP126.Core.SpectralSequence.RepresentsOnPage E t q y 0 := by
-    obtain ⟨rfl, xr, yr, hx, hy, hd⟩ := h
-    simp only [eqToHom_refl, Category.comp_id] at hd
-    obtain ⟨hr, z, hz2, hzr⟩ := hy
-    let A := E.ssData (p + E.diffDeg r)
-    let n : ℕ := (r-E.r₀).toNat
-    let n₀ : WithTop ℕ := ↑(2-E.r₀).toNat
-    let m : WithTop ℕ := ↑(t-E.r₀).toNat
-    have hnm : (↑(n+1) : WithTop ℕ) ≤ m := by
-      dsimp only [n,m]
-      exact_mod_cast (show (r-E.r₀).toNat+1 ≤ (t-E.r₀).toNat by omega)
-    have hn0 : n₀ ≤ ↑n := by
-      dsimp only [n₀,n]
-      exact_mod_cast (show (2-E.r₀).toNat ≤ (r-E.r₀).toNat by omega)
-    have hn1 : (↑n : WithTop ℕ) ≤ ↑(n+1) := by exact_mod_cast Nat.le_succ n
-    have hdmem : yr ∈ LinearMap.range (E.d r p).hom := ⟨xr, hd⟩
-    rw [← subobjectModule_image, E.B_succ r p hr0, subobjectModule_image] at hdmem
-    obtain ⟨b, hb⟩ := hdmem
-    let j := Subobject.ofLE (A.B ↑(n+1)) (A.Z ↑n)
-      ((A.B_le_Z _).trans (A.Z_anti hn1))
-    have hb' : A.pageπ ↑n (j b) = yr := hb
-    have hdif : A.pageπ ↑n (z-j b) = 0 := by rw [map_sub, hzr, hb', sub_self]
-    have hmem := (subobject_cokernel_π_eq_zero_iff (A.B ↑n) (A.Z ↑n) (A.B_le_Z _) _).mp hdif
-    have hmem' := (ModuleCat.subobjectModule A.V).monotone (A.B_mono hn1) hmem
-    have hj : (A.Z ↑n).arrow (j b) ∈ (ModuleCat.subobjectModule A.V) (A.B ↑(n+1)) := by
-      change (j ≫ (A.Z ↑n).arrow) b ∈ _
-      dsimp only [j]
-      rw [Subobject.ofLE_arrow]
-      exact ⟨b,rfl⟩
-    have hzmem := ((ModuleCat.subobjectModule A.V) (A.B ↑(n+1))).add_mem hmem' hj
-    rw [map_sub, sub_add_cancel] at hzmem
-    obtain ⟨b', hb'⟩ := hzmem
-    let i := Subobject.ofLE (A.B ↑(n+1)) (A.Z m) ((A.B_mono hnm).trans (A.B_le_Z _))
-    refine ⟨by omega, i b', ?_, ?_⟩
-    · have he : (Subobject.ofLE (A.Z m) (A.Z n₀) (A.Z_anti (hn0.trans (hn1.trans hnm))))
-          (i b') = (Subobject.ofLE (A.Z ↑n) (A.Z n₀) (A.Z_anti hn0)) z := by
-        apply (ModuleCat.mono_iff_injective (A.Z n₀).arrow).mp inferInstance
-        change (i ≫ Subobject.ofLE (A.Z m) (A.Z n₀) _ ≫ (A.Z n₀).arrow) b' =
-          (Subobject.ofLE (A.Z ↑n) (A.Z n₀) _ ≫ (A.Z n₀).arrow) z
-        simpa only [Category.assoc, i, Subobject.ofLE_arrow] using hb'
-      exact (congrArg (fun v => A.pageπ n₀ v) he).trans hz2
-    · apply (subobject_cokernel_π_eq_zero_iff (A.B m) (A.Z m) (A.B_le_Z _) _).mpr
-      change (i ≫ (A.Z m).arrow) b' ∈ _
-      dsimp only [i]
-      rw [Subobject.ofLE_arrow]
-      exact (ModuleCat.subobjectModule A.V).monotone (A.B_mono hnm) ⟨b',rfl⟩
-  have t_relation_members := nu_target_csv_relations
+    exact KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_later_zero hr0 hrt h
   classical
-  obtain ⟨hc0,hc1,hc2,hc3,_,_,_⟩ := t_relation_members
   have expand {A : Type v} [AddCommGroup A] [Module ℤ A] {N : ℕ}
       (e : A ≃ₗ[ℤ] (Fin N →₀ F2)) (a : A) :
       a=∑ i : Fin N, if (e a) i=0 then 0 else e.symm (Finsupp.single i 1) := by
@@ -2093,172 +1796,58 @@ private theorem nu_target_h0_af13_image_boundary_two
       · simp [hc,Finsupp.single_apply,hji]
     · simp
   have negself (x : KIP126.LinE2.E2) : -x=x := by
-    obtain ⟨p,rfl⟩ := Ideal.Quotient.mk_surjective x
-    change -(projection p)=projection p
-    rw [←map_neg]
-    exact congrArg projection (CharTwo.neg_eq p)
+    exact RelationCertificates.pq_neg_eq_self x
   let E := sequence D' .sphere
   have rel0 : (generator ⟨0,by decide⟩)*(generator ⟨24,by decide⟩)=0 := by
-    have hr := csv_relation_zero "0,1,24,1" hc0
-    have hs : "0,1,24,1".splitOn ";"=["0,1,24,1"] := by
-      simp +decide [String.splitOn,String.splitOnAux]
-    have hp00 : "0,1,24,1"≠"" := by decide
-    have hp0 : (("0,1,24,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,1,24,1] := by
-      have hs : "0,1,24,1".splitOn ","=["0", "1", "24", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [relationPolynomial,hs,monomialOfString,hp0,hp00,polynomialOfPowers,
-      RawData.generatorCount,generator,map_add,map_mul,map_pow,mul_assoc] at hr
-    exact hr
+    exact RelationCertificates.h0_obstruction_rel0
   have rel1 : (generator ⟨0,by decide⟩)*(generator ⟨3,by decide⟩)*(generator ⟨335,by decide⟩)=(generator ⟨0,by decide⟩^2)*(generator ⟨425,by decide⟩) := by
-    have hr := csv_relation_zero "0,1,3,1,335,1;0,2,425,1" hc1
-    have hs : "0,1,3,1,335,1;0,2,425,1".splitOn ";"=["0,1,3,1,335,1", "0,2,425,1"] := by
-      simp +decide [String.splitOn,String.splitOnAux]
-    have hp00 : "0,1,3,1,335,1"≠"" := by decide
-    have hp0 : (("0,1,3,1,335,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,1,3,1,335,1] := by
-      have hs : "0,1,3,1,335,1".splitOn ","=["0", "1", "3", "1", "335", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    have hp10 : "0,2,425,1"≠"" := by decide
-    have hp1 : (("0,2,425,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,2,425,1] := by
-      have hs : "0,2,425,1".splitOn ","=["0", "2", "425", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [relationPolynomial,hs,monomialOfString,hp0,hp00,hp1,hp10,polynomialOfPowers,
-      RawData.generatorCount,generator,map_add,map_mul,map_pow,mul_assoc] at hr
-    simpa [mul_assoc,generator,RawData.generatorCount] using (eq_neg_of_add_eq_zero_left hr).trans (negself _)
+    exact RelationCertificates.h0_obstruction_rel1
   have rel2 : (generator ⟨0,by decide⟩^5)*(generator ⟨391,by decide⟩)=0 := by
-    have hr := csv_relation_zero "0,5,391,1" hc2
-    have hs : "0,5,391,1".splitOn ";"=["0,5,391,1"] := by
-      simp +decide [String.splitOn,String.splitOnAux]
-    have hp00 : "0,5,391,1"≠"" := by decide
-    have hp0 : (("0,5,391,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,5,391,1] := by
-      have hs : "0,5,391,1".splitOn ","=["0", "5", "391", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [relationPolynomial,hs,monomialOfString,hp0,hp00,polynomialOfPowers,
-      RawData.generatorCount,generator,map_add,map_mul,map_pow,mul_assoc] at hr
-    exact hr
+    exact RelationCertificates.h0_obstruction_rel2
   have rel3 : (generator ⟨0,by decide⟩^6)*(generator ⟨375,by decide⟩)=0 := by
-    have hr := csv_relation_zero "0,6,375,1" hc3
-    have hs : "0,6,375,1".splitOn ";"=["0,6,375,1"] := by
-      simp +decide [String.splitOn,String.splitOnAux]
-    have hp00 : "0,6,375,1"≠"" := by decide
-    have hp0 : (("0,6,375,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,6,375,1] := by
-      have hs : "0,6,375,1".splitOn ","=["0", "6", "375", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [relationPolynomial,hs,monomialOfString,hp0,hp00,polynomialOfPowers,
-      RawData.generatorCount,generator,map_add,map_mul,map_pow,mul_assoc] at hr
-    exact hr
+    exact RelationCertificates.h0_obstruction_rel3
   obtain ⟨e13_138,he13_138⟩ := I'.basis ⟨.sphere, 13, 138, ["24,1,190,1", "3,1,335,1", "0,1,425,1", "0,4,391,1", "0,5,375,1"]⟩ (by
-    unfold Raw.degrees
-    iterate 209 apply List.mem_cons_of_mem
-    exact List.mem_cons_self)
+    exact List.mem_of_getElem? (l := Raw.degrees) (i := 209) rfl)
   change E2 H SphereSpectrum 13 138 ≃ₗ[ℤ] (Fin 5 →₀ F2) at e13_138
   change ∀i : Fin 5, e13_138.symm (Finsupp.single i 1) = I'.realization.basis .sphere 13 138 i.val at he13_138
   obtain ⟨e14_139,he14_139⟩ := I'.basis ⟨.sphere, 14, 139, ["449,1", "1,1,7,1,275,1", "0,2,425,1"]⟩ (by
-    unfold Raw.degrees
-    iterate 217 apply List.mem_cons_of_mem
-    exact List.mem_cons_self)
+    exact List.mem_of_getElem? (l := Raw.degrees) (i := 217) rfl)
   change E2 H SphereSpectrum 14 139 ≃ₗ[ℤ] (Fin 3 →₀ F2) at e14_139
   change ∀i : Fin 3, e14_139.symm (Finsupp.single i 1) = I'.realization.basis .sphere 14 139 i.val at he14_139
   have hcsv := I'.csv ⟨.sphere, 13, 138, ["24,1,190,1", "3,1,335,1", "0,1,425,1", "0,4,391,1", "0,5,375,1"]⟩ (by
-    unfold Raw.degrees
-    iterate 209 apply List.mem_cons_of_mem
-    exact List.mem_cons_self) rfl
+    exact List.mem_of_getElem? (l := Raw.degrees) (i := 209) rfl) rfl
   choose z hz he using hcsv
   change Fin 5 → E2At 13 138 at z
   change ∀ i : Fin 5, I'.realization.sphere 13 138 (z i) = I'.realization.basis .sphere 13 138 i.val at he
   have mon0 : projection (monomialOfString "24,1,190,1") = (generator ⟨24,by decide⟩)*(generator ⟨190,by decide⟩) := by
-    have hp0 : "24,1,190,1"≠"" := by decide
-    have hp : (("24,1,190,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[24,1,190,1] := by
-      have hs : "24,1,190,1".splitOn ","=["24", "1", "190", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [monomialOfString,hp,hp0,polynomialOfPowers,RawData.generatorCount,
-      generator,map_mul,map_pow,mul_assoc]
+    exact RelationCertificates.h0_obstruction_mon0
   have zv0 : (z (0 : Fin 5)).val = (generator ⟨24,by decide⟩)*(generator ⟨190,by decide⟩) := by
     rw [hz]
     exact mon0
   have mon1 : projection (monomialOfString "3,1,335,1") = (generator ⟨3,by decide⟩)*(generator ⟨335,by decide⟩) := by
-    have hp0 : "3,1,335,1"≠"" := by decide
-    have hp : (("3,1,335,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[3,1,335,1] := by
-      have hs : "3,1,335,1".splitOn ","=["3", "1", "335", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [monomialOfString,hp,hp0,polynomialOfPowers,RawData.generatorCount,
-      generator,map_mul,map_pow,mul_assoc]
+    exact RelationCertificates.h0_obstruction_mon1
   have zv1 : (z (1 : Fin 5)).val = (generator ⟨3,by decide⟩)*(generator ⟨335,by decide⟩) := by
     rw [hz]
     exact mon1
   have mon2 : projection (monomialOfString "0,1,425,1") = (generator ⟨0,by decide⟩)*(generator ⟨425,by decide⟩) := by
-    have hp0 : "0,1,425,1"≠"" := by decide
-    have hp : (("0,1,425,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,1,425,1] := by
-      have hs : "0,1,425,1".splitOn ","=["0", "1", "425", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [monomialOfString,hp,hp0,polynomialOfPowers,RawData.generatorCount,
-      generator,map_mul,map_pow,mul_assoc]
+    exact RelationCertificates.h0_obstruction_mon2
   have zv2 : (z (2 : Fin 5)).val = (generator ⟨0,by decide⟩)*(generator ⟨425,by decide⟩) := by
     rw [hz]
     exact mon2
   have mon3 : projection (monomialOfString "0,4,391,1") = (generator ⟨0,by decide⟩^4)*(generator ⟨391,by decide⟩) := by
-    have hp0 : "0,4,391,1"≠"" := by decide
-    have hp : (("0,4,391,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,4,391,1] := by
-      have hs : "0,4,391,1".splitOn ","=["0", "4", "391", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [monomialOfString,hp,hp0,polynomialOfPowers,RawData.generatorCount,
-      generator,map_mul,map_pow,mul_assoc]
+    exact RelationCertificates.h0_obstruction_mon3
   have zv3 : (z (3 : Fin 5)).val = (generator ⟨0,by decide⟩^4)*(generator ⟨391,by decide⟩) := by
     rw [hz]
     exact mon3
   have mon4 : projection (monomialOfString "0,5,375,1") = (generator ⟨0,by decide⟩^5)*(generator ⟨375,by decide⟩) := by
-    have hp0 : "0,5,375,1"≠"" := by decide
-    have hp : (("0,5,375,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,5,375,1] := by
-      have hs : "0,5,375,1".splitOn ","=["0", "5", "375", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [monomialOfString,hp,hp0,polynomialOfPowers,RawData.generatorCount,
-      generator,map_mul,map_pow,mul_assoc]
+    exact RelationCertificates.h0_obstruction_mon4
   have zv4 : (z (4 : Fin 5)).val = (generator ⟨0,by decide⟩^5)*(generator ⟨375,by decide⟩) := by
     rw [hz]
     exact mon4
   have monT : projection (monomialOfString "1,1,7,1,275,1") = (generator ⟨1,by decide⟩)*(generator ⟨7,by decide⟩)*(generator ⟨275,by decide⟩) := by
-    have hp0 : "1,1,7,1,275,1"≠"" := by decide
-    have hp : (("1,1,7,1,275,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[1,1,7,1,275,1] := by
-      have hs : "1,1,7,1,275,1".splitOn ","=["1", "1", "7", "1", "275", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [monomialOfString,hp,hp0,polynomialOfPowers,RawData.generatorCount,
-      generator,map_mul,map_pow,mul_assoc]
+    exact RelationCertificates.h0_obstruction_monT
   have targetCSV := I'.csv ⟨.sphere, 14, 139, ["449,1", "1,1,7,1,275,1", "0,2,425,1"]⟩ (by
-    unfold Raw.degrees
-    iterate 217 apply List.mem_cons_of_mem
-    exact List.mem_cons_self) rfl
+    exact List.mem_of_getElem? (l := Raw.degrees) (i := 217) rfl) rfl
   have labelT : I'.realization.sphere 14 139 T = I'.realization.basis .sphere 14 139 1 := by
     obtain ⟨y,hy,heq⟩ := targetCSV (1 : Fin 3)
     have hyT : T=y := by
@@ -2285,15 +1874,7 @@ private theorem nu_target_h0_af13_image_boundary_two
     exact (I'.products ⟨1,1,13,138⟩ (by simp [Raw.products]) (dataH0) (z i)).symm
   obtain ⟨y2,hy2,hey2⟩ := targetCSV (2 : Fin 3)
   have monTarget2 : projection (monomialOfString "0,2,425,1") = (generator ⟨0,by decide⟩^2)*(generator ⟨425,by decide⟩) := by
-    have hp0 : "0,2,425,1"≠"" := by decide
-    have hp : (("0,2,425,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,2,425,1] := by
-      have hs : "0,2,425,1".splitOn ","=["0", "2", "425", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [monomialOfString,hp,hp0,polynomialOfPowers,RawData.generatorCount,
-      generator,map_mul,map_pow,mul_assoc]
+    exact RelationCertificates.h0_obstruction_monTarget2
   have mul0 : mulAt dataH0 (z (0 : Fin 5))=0 := by
     apply Subtype.ext
     change generator ⟨0,by decide⟩*(z (0 : Fin 5)).val=0
@@ -2329,9 +1910,7 @@ private theorem nu_target_h0_af13_image_boundary_two
   have h341 : HasDifferential E 2 (12,138) (14,139)
       (I'.realization.basis .sphere 12 138 1) (I'.realization.basis .sphere 14 139 2) := by
     have hrow := I'.results ⟨.sphere,.equation,2,12,138,[1],14,139,[2],"S0_AdamsE2_ss",3079⟩ (by
-      unfold Raw.claims
-      iterate 341 apply List.mem_cons_of_mem
-      exact List.mem_cons_self)
+      exact List.mem_of_getElem? (l := Raw.claims) (i := 341) rfl)
     dsimp only [Statement] at hrow
     obtain ⟨x,hx,y,hy,hd⟩ := hrow
     change HasDifferential E 2 (12,138) (14,139) x y at hd
@@ -2386,9 +1965,7 @@ private theorem nu_target_h2_af13_product_zero
     : ∀ a : E2 H SphereSpectrum 13 135,
       Sphere.Internal.product H M' (s := 1) (t := 4) (s' := 13) (t' := 135)
         (Sphere.Internal.hi H M' 2) a = 0 := by
-  have t_relation_members := nu_target_csv_relations
   classical
-  obtain ⟨_,_,_,_,hc0,hc1,hc2⟩ := t_relation_members
   have expand {A : Type v} [AddCommGroup A] [Module ℤ A] {N : ℕ}
       (e : A ≃ₗ[ℤ] (Fin N →₀ F2)) (a : A) :
       a=∑ i : Fin N, if (e a) i=0 then 0 else e.symm (Finsupp.single i 1) := by
@@ -2405,132 +1982,46 @@ private theorem nu_target_h2_af13_product_zero
       · simp [hc,Finsupp.single_apply,hji]
     · simp
   have negself (x : KIP126.LinE2.E2) : -x=x := by
-    obtain ⟨p,rfl⟩ := Ideal.Quotient.mk_surjective x
-    change -(projection p)=projection p
-    rw [←map_neg]
-    exact congrArg projection (CharTwo.neg_eq p)
+    exact RelationCertificates.pq_neg_eq_self x
   let E := sequence D' .sphere
   have rel0 : (generator ⟨2,by decide⟩)*(generator ⟨407,by decide⟩)=0 := by
-    have hr := csv_relation_zero "2,1,407,1" hc0
-    have hs : "2,1,407,1".splitOn ";"=["2,1,407,1"] := by
-      simp +decide [String.splitOn,String.splitOnAux]
-    have hp00 : "2,1,407,1"≠"" := by decide
-    have hp0 : (("2,1,407,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[2,1,407,1] := by
-      have hs : "2,1,407,1".splitOn ","=["2", "1", "407", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [relationPolynomial,hs,monomialOfString,hp0,hp00,polynomialOfPowers,
-      RawData.generatorCount,generator,map_add,map_mul,map_pow,mul_assoc] at hr
-    exact hr
+    exact RelationCertificates.h2_obstruction_rel0
   have rel1 : (generator ⟨2,by decide⟩)*(generator ⟨79,by decide⟩)=(generator ⟨0,by decide⟩)*(generator ⟨89,by decide⟩) := by
-    have hr := csv_relation_zero "2,1,79,1;0,1,89,1" hc1
-    have hs : "2,1,79,1;0,1,89,1".splitOn ";"=["2,1,79,1", "0,1,89,1"] := by
-      simp +decide [String.splitOn,String.splitOnAux]
-    have hp00 : "2,1,79,1"≠"" := by decide
-    have hp0 : (("2,1,79,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[2,1,79,1] := by
-      have hs : "2,1,79,1".splitOn ","=["2", "1", "79", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    have hp10 : "0,1,89,1"≠"" := by decide
-    have hp1 : (("0,1,89,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,1,89,1] := by
-      have hs : "0,1,89,1".splitOn ","=["0", "1", "89", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [relationPolynomial,hs,monomialOfString,hp0,hp00,hp1,hp10,polynomialOfPowers,
-      RawData.generatorCount,generator,map_add,map_mul,map_pow,mul_assoc] at hr
-    simpa [mul_assoc,generator,RawData.generatorCount] using (eq_neg_of_add_eq_zero_left hr).trans (negself _)
+    exact RelationCertificates.h2_obstruction_rel1
   have rel2 : (generator ⟨0,by decide⟩^3)*(generator ⟨89,by decide⟩)=0 := by
-    have hr := csv_relation_zero "0,3,89,1" hc2
-    have hs : "0,3,89,1".splitOn ";"=["0,3,89,1"] := by
-      simp +decide [String.splitOn,String.splitOnAux]
-    have hp00 : "0,3,89,1"≠"" := by decide
-    have hp0 : (("0,3,89,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,3,89,1] := by
-      have hs : "0,3,89,1".splitOn ","=["0", "3", "89", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [relationPolynomial,hs,monomialOfString,hp0,hp00,polynomialOfPowers,
-      RawData.generatorCount,generator,map_add,map_mul,map_pow,mul_assoc] at hr
-    exact hr
+    exact RelationCertificates.h2_obstruction_rel2
   obtain ⟨e13_135,he13_135⟩ := I'.basis ⟨.sphere, 13, 135, ["407,1", "1,2,351,1", "0,2,69,1,79,1"]⟩ (by
-    unfold Raw.degrees
-    iterate 206 apply List.mem_cons_of_mem
-    exact List.mem_cons_self)
+    exact List.mem_of_getElem? (l := Raw.degrees) (i := 206) rfl)
   change E2 H SphereSpectrum 13 135 ≃ₗ[ℤ] (Fin 3 →₀ F2) at e13_135
   change ∀i : Fin 3, e13_135.symm (Finsupp.single i 1) = I'.realization.basis .sphere 13 135 i.val at he13_135
   obtain ⟨e14_139,he14_139⟩ := I'.basis ⟨.sphere, 14, 139, ["449,1", "1,1,7,1,275,1", "0,2,425,1"]⟩ (by
-    unfold Raw.degrees
-    iterate 217 apply List.mem_cons_of_mem
-    exact List.mem_cons_self)
+    exact List.mem_of_getElem? (l := Raw.degrees) (i := 217) rfl)
   change E2 H SphereSpectrum 14 139 ≃ₗ[ℤ] (Fin 3 →₀ F2) at e14_139
   change ∀i : Fin 3, e14_139.symm (Finsupp.single i 1) = I'.realization.basis .sphere 14 139 i.val at he14_139
   have hcsv := I'.csv ⟨.sphere, 13, 135, ["407,1", "1,2,351,1", "0,2,69,1,79,1"]⟩ (by
-    unfold Raw.degrees
-    iterate 206 apply List.mem_cons_of_mem
-    exact List.mem_cons_self) rfl
+    exact List.mem_of_getElem? (l := Raw.degrees) (i := 206) rfl) rfl
   choose z hz he using hcsv
   change Fin 3 → E2At 13 135 at z
   change ∀ i : Fin 3, I'.realization.sphere 13 135 (z i) = I'.realization.basis .sphere 13 135 i.val at he
   have mon0 : projection (monomialOfString "407,1") = (generator ⟨407,by decide⟩) := by
-    have hp0 : "407,1"≠"" := by decide
-    have hp : (("407,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[407,1] := by
-      have hs : "407,1".splitOn ","=["407", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [monomialOfString,hp,hp0,polynomialOfPowers,RawData.generatorCount,
-      generator,map_mul,map_pow,mul_assoc]
+    exact RelationCertificates.h2_obstruction_mon0
   have zv0 : (z (0 : Fin 3)).val = (generator ⟨407,by decide⟩) := by
     rw [hz]
     exact mon0
   have mon1 : projection (monomialOfString "1,2,351,1") = (generator ⟨1,by decide⟩^2)*(generator ⟨351,by decide⟩) := by
-    have hp0 : "1,2,351,1"≠"" := by decide
-    have hp : (("1,2,351,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[1,2,351,1] := by
-      have hs : "1,2,351,1".splitOn ","=["1", "2", "351", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [monomialOfString,hp,hp0,polynomialOfPowers,RawData.generatorCount,
-      generator,map_mul,map_pow,mul_assoc]
+    exact RelationCertificates.h2_obstruction_mon1
   have zv1 : (z (1 : Fin 3)).val = (generator ⟨1,by decide⟩^2)*(generator ⟨351,by decide⟩) := by
     rw [hz]
     exact mon1
   have mon2 : projection (monomialOfString "0,2,69,1,79,1") = (generator ⟨0,by decide⟩^2)*(generator ⟨69,by decide⟩)*(generator ⟨79,by decide⟩) := by
-    have hp0 : "0,2,69,1,79,1"≠"" := by decide
-    have hp : (("0,2,69,1,79,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[0,2,69,1,79,1] := by
-      have hs : "0,2,69,1,79,1".splitOn ","=["0", "2", "69", "1", "79", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [monomialOfString,hp,hp0,polynomialOfPowers,RawData.generatorCount,
-      generator,map_mul,map_pow,mul_assoc]
+    exact RelationCertificates.h2_obstruction_mon2
   have zv2 : (z (2 : Fin 3)).val = (generator ⟨0,by decide⟩^2)*(generator ⟨69,by decide⟩)*(generator ⟨79,by decide⟩) := by
     rw [hz]
     exact mon2
   have monT : projection (monomialOfString "1,1,7,1,275,1") = (generator ⟨1,by decide⟩)*(generator ⟨7,by decide⟩)*(generator ⟨275,by decide⟩) := by
-    have hp0 : "1,1,7,1,275,1"≠"" := by decide
-    have hp : (("1,1,7,1,275,1".splitOn ",").map (fun n => n.toNat?.getD 0))=[1,1,7,1,275,1] := by
-      have hs : "1,1,7,1,275,1".splitOn ","=["1", "1", "7", "1", "275", "1"] := by
-        simp +decide [String.splitOn,String.splitOnAux]
-      rw [hs]
-      simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
-    norm_num [monomialOfString,hp,hp0,polynomialOfPowers,RawData.generatorCount,
-      generator,map_mul,map_pow,mul_assoc]
+    exact RelationCertificates.h2_obstruction_monT
   have targetCSV := I'.csv ⟨.sphere, 14, 139, ["449,1", "1,1,7,1,275,1", "0,2,425,1"]⟩ (by
-    unfold Raw.degrees
-    iterate 217 apply List.mem_cons_of_mem
-    exact List.mem_cons_self) rfl
+    exact List.mem_of_getElem? (l := Raw.degrees) (i := 217) rfl) rfl
   have labelT : I'.realization.sphere 14 139 T = I'.realization.basis .sphere 14 139 1 := by
     obtain ⟨y,hy,heq⟩ := targetCSV (1 : Fin 3)
     have hyT : T=y := by
@@ -3265,15 +2756,11 @@ private theorem nu_target_full_of_nonzero
       have hjs : j=9 ∨ j=10 := by omega
       rcases hjs with rfl|rfl
       · obtain ⟨e,_⟩ := I'.basis ⟨.sphere,9,131,[]⟩ (by
-          unfold Raw.degrees
-          iterate 170 apply List.mem_cons_of_mem
-          exact List.mem_cons_self)
+          exact List.mem_of_getElem? (l := Raw.degrees) (i := 170) rfl)
         change E2 H SphereSpectrum 9 131 ≃ₗ[ℤ] (Fin 0 →₀ F2) at e
         exact e.injective.subsingleton
       · obtain ⟨e,_⟩ := I'.basis ⟨.sphere,10,132,[]⟩ (by
-          unfold Raw.degrees
-          iterate 179 apply List.mem_cons_of_mem
-          exact List.mem_cons_self)
+          exact List.mem_of_getElem? (l := Raw.degrees) (i := 179) rfl)
         change E2 H SphereSpectrum 10 132 ≃ₗ[ℤ] (Fin 0 →₀ F2) at e
         exact e.injective.subsingleton
     haveI := hc

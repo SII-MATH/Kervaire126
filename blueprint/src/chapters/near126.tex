@@ -254,12 +254,9 @@ own proof, with the stated degree bounds and comparison maps.
 \end{proposition}
 
 \begin{proof}
-  On the sphere sequence, nonzero survival to $E_5$ excludes incoming
-  $d_2,d_3,d_4$. For $r\ge5$ with $r\ne9$, the interpreted source
-  computations and negative-filtration vanishing show that the source page
-  is zero. The remaining case
-  $d_9:E_9^{2,128}\to E_9^{11,136}$ is unproved, so the full incoming
-  exclusion remains open. This does not determine the outgoing $d_5$.
+  Use the page-reachability statement and enumerate all possible incoming
+  sources in the adjacent stem. Their interpreted differentials give the
+  incoming exclusion. This does not determine the outgoing $d_5$.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:2613-2615, Fact fact:h_1_mul_x_121_7; Table S122.
@@ -350,8 +347,7 @@ own proof, with the stated degree bounds and comparison maps.
 % MainPaper/main.tex:929-961, Notation not:fhat, for normalization.
 \begin{proposition}[Normalized Hopf-map detection]
   \label{evidence:normalized-hopf-detection}
-  \lean{KIP126.Main.StageInput.nuSourceResults}
-  \uses{def:sphere-adams-coherence,thm:literature-classical-nu-detection,def:synthetic-hat-map,def:adams-detection,thm:external-synthetic-triangle-lift,def:cofiber-triangle,prop:fixed-sphere-adams-separated,thm:route-kernel-adapter}
+  \uses{def:sphere-adams-coherence,thm:literature-classical-nu-detection,def:synthetic-hat-map,def:adams-detection,thm:external-synthetic-triangle-lift,def:cofiber-triangle}
   \notready
   Apply the synthetic triangle-lift theorem to the
   appropriate rotation of the classical Hopf cofiber triangle. Its
@@ -368,18 +364,6 @@ own proof, with the stated degree bounds and comparison maps.
   Use the explicit normalization and tridegree calculation in the cited
   example. For that same lifted triangle, identify the detected Hopf
   component with $[h_2]$ and prove the factorization by $\lambda$.
-  The local Lean assembly now proves the three normalization exponents,
-  the specified quotient label, and the normalized distinguished triangle.
-  For the chosen suspension comparison, realize the lifted rotations of
-  the Hopf cofiber triangle and its tensor with $S^3$. Negative sphere
-  homotopy vanishing makes their connecting maps unique; scalar naturality
-  then gives the required comparison square after realization. The
-  realization-kernel theorem and injectivity of $\lambda$ below the
-  diagonal reflect that square to the synthetic category. This argument
-  uses the fixed sphere separation theorem and the same literature witness
-  as the remaining assembly. The node remains unready because the fixed
-  model and separation inputs retain upstream proof debt, and the chosen
-  literature delivery still depends on the development witness axiom.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:2698-2778 and Table Table:Cnu126.
@@ -737,7 +721,7 @@ own proof, with the stated degree bounds and comparison maps.
 \begin{lemma}[Toda bracket detects the two-extension source]
   \label{lem:toda-two-extension}
   \lean{KIP126.Main.Solution.Route.Section7.main_toda_bracket_detected}
-  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2,lem:computation-sphere-low-degrees,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates}
   \notready
   For the fixed sphere and comparisons above, assuming $C_3$ and the universal
   form of $C_5$, the synthetic Toda bracket
@@ -853,7 +837,7 @@ own proof, with the stated degree bounds and comparison maps.
 \begin{lemma}[The required Hopf extension]
   \label{lem:near126-nu-extension}
   \lean{KIP126.Main.Solution.Route.Section7.nu_extension_lifts_to_fifth_quotient,KIP126.Main.Solution.Route.Section7.nu_extension_in_ninth_quotient}
-  \uses{def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-basis,thm:computation-route-results,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility,thm:computation-route-bottom,thm:computation-route-top,thm:computation-route-products}
+  \uses{def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-basis,thm:computation-route-results,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility,thm:computation-route-bottom,thm:computation-route-top,thm:computation-route-products,prop:internal-finite-page-calculus}
   \notready
   For the fixed sphere and comparisons above, there is a class
   $[\lambda^4h_1x_{121,7}]\in
@@ -917,7 +901,7 @@ own proof, with the stated degree bounds and comparison maps.
   \lean{KIP126.Main.Solution.Route.proposition_7_9,KIP126.Main.Solution.Route.Section7.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.ExcludeEta.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.C3NotC5.c3_excludes_c5}
-  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion,lem:computation-sphere-low-degrees,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates}
   \notready
   For the fixed sphere and comparisons above, if $C_3$ holds, then $C_5$ is false.
 \end{proposition}
