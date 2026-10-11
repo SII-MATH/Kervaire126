@@ -1,0 +1,112 @@
+name = "KIPBase"
+srcDir = ".."
+version = "0.1.0"
+defaultTargets = ["KIPBase", "KIPBaseDefEqCompat"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.32.2"
+
+[[lean_lib]]
+name = "KIPBase"
+moreLeanArgs = [
+  "-Dpp.unicode.fun=true",
+  "-DrelaxedAutoImplicit=false",
+  "-Dweak.linter.mathlibStandardSet=true",
+  "-DmaxSynthPendingDepth=3",
+]
+roots = [
+  "KIPBase.Mathlib",
+  "KIPBase.StableHomotopy.Adams",
+  "KIPBase.StableHomotopy.Basic",
+  "KIPBase.StableHomotopy.Cohomology",
+  "KIPBase.StableHomotopy.TensorTriangulatedCategory",
+  "KIPBase.Synthetic.Adams",
+  "KIPBase.Synthetic.AdamsConvergentDivisibility",
+  "KIPBase.Synthetic.PageTail",
+  "KIPBase.Synthetic.AdamsBocksteinMorphism",
+  "KIPBase.Synthetic.ErPageExtension",
+  "KIPBase.Synthetic.GeometricAdamsLegacy",
+  "KIPBase.Synthetic.GeometricAdams",
+  "KIPBase.Synthetic.GeometricAdamsFree",
+  "KIPBase.Synthetic.GeometricAdamsCofiber",
+  "KIPBase.Synthetic.GeometricAdamsRealization",
+  "KIPBase.Synthetic.GeometricAdamsPending",
+  "KIPBase.Synthetic.GeometricAdamsBoundaryComparison",
+  "KIPBase.Synthetic.GeometricAdamsCapPage",
+  "KIPBase.Synthetic.GeometricAdamsShift",
+  "KIPBase.Synthetic.GeometricAdamsPageShift",
+  "KIPBase.Synthetic.ShiftCofiber",
+  "KIPBase.Synthetic.StableLambda",
+  "KIPBase.Synthetic.AdamsVanishing",
+  "KIPBase.Synthetic.Basic",
+  "KIPBase.Synthetic.LambdaBoundary",
+  "KIPBase.Synthetic.LambdaE2",
+  "KIPBase.Synthetic.ExtensionSS",
+  "KIPBase.Synthetic.LambdaBoundaryESSFormula",
+  "KIPBase.Synthetic.ESSNaturality",
+  "KIPBase.Synthetic.LambdaBoundaryNaturality",
+  "KIPBase.Synthetic.FESS",
+  "KIPBase.Synthetic.SolutionTower",
+  "KIPBase.Synthetic.QuotientExtensionSS",
+  "KIPBase.Synthetic.PageExtension",
+  "KIPBase.Synthetic.WeightwiseTransport",
+  "KIPBase.Synthetic.GeneralizedRules",
+  "KIPBase.Synthetic.WeightwiseShift",
+  "KIPBase.Synthetic.Lift",
+  "KIPBase.Synthetic.Nu",
+  "KIPBase.Synthetic.Rigidity",
+  "KIPBase.Synthetic.Sphere",
+  "KIPBase.multiplicativeSS.Adams",
+  "KIPBase.multiplicativeSS.AdamsDetection",
+  "KIPBase.multiplicativeSS.AdamsEnriched",
+  "KIPBase.multiplicativeSS.AdamsMasseyProduct",
+  "KIPBase.multiplicativeSS.Basic",
+  "KIPBase.multiplicativeSS.CategoricalTodaBracket",
+  "KIPBase.multiplicativeSS.DGA",
+  "KIPBase.multiplicativeSS.MasseyProduct",
+  "KIPBase.multiplicativeSS.ModuleCat",
+  "KIPBase.multiplicativeSS.Monoidal",
+  "KIPBase.multiplicativeSS.Moss",
+  "KIPBase.multiplicativeSS.MossCrossing",
+  "KIPBase.multiplicativeSS.TodaBracket",
+  "KIPBase.multiplicativeSS.TriangulatedTodaBracket",
+  "KIPBase.multiplicativeSS.adamsdata.adamsE2",
+  "KIPBase.multiplicativeSS.adamsdata.homotopy",
+  "KIPBase.Basic",
+  "KIPBase.Standalone",
+]
+
+[[lean_lib]]
+name = "KIPBaseDefEqCompat"
+moreLeanArgs = [
+  "-Dpp.unicode.fun=true",
+  "-DrelaxedAutoImplicit=false",
+  "-Dweak.linter.mathlibStandardSet=true",
+  "-Dbackward.defeqAttrib.useBackward=true",
+  "-Dbackward.isDefEq.respectTransparency=false",
+  "-DmaxSynthPendingDepth=3",
+]
+roots = [
+  "KIPBase.SpectralSequence.Basic",
+  "KIPBase.SpectralSequence.PageComparison",
+  "KIPBase.SpectralSequence.BoundedExtension",
+  "KIPBase.SpectralSequence.Commutativity",
+  "KIPBase.SpectralSequence.Completion",
+  "KIPBase.SpectralSequence.Convergence",
+  "KIPBase.SpectralSequence.Crossing",
+  "KIPBase.SpectralSequence.FilteredComplex",
+  "KIPBase.SpectralSequence.MorphismCriterion",
+  "KIPBase.SpectralSequence.Truncation",
+  "KIPBase.SpectralSequence.UnboundedExtension",
+  "KIPBase.SpectralSequence.UnboundedCommutativity",
+  "KIPBase.SpectralSequence.ExtensionAbutment",
+  "KIPBase.SpectralSequence.Exactness",
+  "KIPBase.SpectralSequence.ShiftedMorphism",
+  "KIPBase.SpectralSequence.ShiftedDifferential",
+  "KIPBase.SpectralSequence.Blueprint",
+  "KIPBase.SpectralSequence.Elementwise",
+  "KIPBase.SpectralSequence.StablePage",
+  "KIPBase.Synthetic.QuotientTower",
+]

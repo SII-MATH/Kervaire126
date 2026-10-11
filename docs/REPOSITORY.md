@@ -16,9 +16,11 @@ Blueprint 尚未配置远程网站/API 链接。
 - 当前接口说明和输入清单浏览页。
 - 核心来源/接口/依赖/数据导入检查及测试；严格最终验收工具 `scripts/Axioms.lean`。
 
-## 留在旧仓库
+## 基准提取中留在旧仓库
 
-- `KIPBase/`、`KIPBase.lean`、KIPBase 专用工具和测试。
+- `KIPBase/`、`KIPBase.lean`、KIPBase 专用工具和测试。`integrate/kipbase-progress`
+  分支另外恢复了最新 KIPBase 快照，作为独立 Lean 库维护，不进入 KIP126 的
+  import 图。
 - `docs/archive/`、`docs/audits/`、`docs/migration/`，旧进度/迁移摘要和日期化复查报告。
 - Multica/Euler 初始化、外部审查、自动合并、状态标签和缓存协调设施。
 - 旧 CI/性能/文档发布设施的 Python 测试及运行日志。
@@ -26,7 +28,8 @@ Blueprint 尚未配置远程网站/API 链接。
 
 ## 调整
 
-- `lakefile.lean` 只默认构建 KIP126，移除 KIPBase 及其审计目标。
+- `lakefile.lean` 仍只默认构建 KIP126；集成分支额外暴露独立的 KIPBase 库，
+  不把它加入 KIP126 的 import 图。
 - CI 从 11 个工作流缩减为 1 个、2 个任务，详见 [CI.md](CI.md)。
 - scripts 从 59 个受版本管理的文件缩减为 14 个（含云端资源监控）；来源和数学接口测试保留。
 - 全部 KIP126 源码、Lin 制品、数学声明、Blueprint 数学内容及证明状态未修改。

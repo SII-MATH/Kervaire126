@@ -20,6 +20,21 @@ lean_lib KIP126 where
   globs := #[.andSubmodules `KIP126]
 
 /-!
+Historical KIPBase is carried here as an isolated library so its latest
+development can be audited without adding it to KIP126's import graph.
+The Kervaire126 proof target remains the default library above.
+-/
+lean_lib KIPBase where
+  globs := #[.andSubmodules `KIPBase]
+  leanOptions := #[
+    ⟨`pp.unicode.fun, true⟩,
+    ⟨`relaxedAutoImplicit, false⟩,
+    ⟨`weak.linter.mathlibStandardSet, true⟩,
+    ⟨`backward.defeqAttrib.useBackward, true⟩,
+    ⟨`backward.isDefEq.respectTransparency, false⟩,
+    ⟨`maxSynthPendingDepth, .ofNat 3⟩]
+
+/-!
 Optional compiled-environment audit for final proof acceptance.
 Development CI checks compilation without treating unfinished proofs as complete.
 -/
