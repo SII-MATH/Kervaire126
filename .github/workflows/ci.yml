@@ -177,7 +177,7 @@ jobs:
         run: bash scripts/check-blueprint-decls.sh
       - name: Package the successful PR build for its eventual merge
         id: build-handoff
-        timeout-minutes: 5
+        timeout-minutes: 10
         continue-on-error: true
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: python3 scripts/ci_build_artifact.py pack --output "$RUNNER_TEMP/lean-build-handoff" --os '${{ runner.os }}' --arch '${{ runner.arch }}'
