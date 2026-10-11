@@ -2873,7 +2873,7 @@
         "id": "SP04",
         "role": "internal-adapter",
         "proof_status": "proof-placeholder",
-        "module": "KIP126/Interface/Solution/Literature/Route/SourceExistence.lean",
+        "module": "KIP126/Interface/Solution/Literature/Delivery.lean",
         "declarations": [
           "KIP126.Interface.Solution.Literature.Route.source_background_exists",
           "KIP126.Interface.Solution.Literature.Route.sourceLiterature"

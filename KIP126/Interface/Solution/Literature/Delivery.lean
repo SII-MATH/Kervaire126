@@ -3,7 +3,11 @@ import KIP126.Interface.Solution.Literature.Applications
 import KIP126.Interface.Solution.AdamsOneLine
 import KIP126.Interface.Solution.Literature.Route.Range
 
-/-! Correlated existence of the prior-literature background.
+/-! Construction of the correlated literature delivery on Def's fixed model.
+
+The construction target is `Challenge2.LiteratureInterface`: source objects
+and their model comparisons in `bindings`, together with the mathematical
+results on those exact bindings in `results`.
 
 The classical category, its actual HF₂-local sphere, HF₂, Milnor coordinates,
 synthetic category, ν, λ, Adams family and classical detector are fixed by
@@ -35,7 +39,7 @@ Those subsequent internal obligations must use this SAME route witness.
 -/
 namespace KIP126.Interface.Solution.Literature.Route
 
-/-- Produce the prior-source background on Def's one fixed actual route.
+/-- Construct the literature delivery on Def's one fixed actual route.
 The proof must establish source applicability of that explicit construction
 and transport every inventoried prior statement to the shared bindings; it must
 not invoke the aggregate Challenge2 producer or any paper conclusion. -/
