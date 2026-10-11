@@ -1,7 +1,7 @@
 import KIP126.Def.StableHomotopy.Implementation.Data
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald
-import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Predicates
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Predicates
+import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching.Predicates
 import Lean.Elab.Command
 
 /-! Foundation and paper-tool statements must not consume computed facts or

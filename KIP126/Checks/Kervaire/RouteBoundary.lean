@@ -1,8 +1,8 @@
 import KIP126.Interface.Challenge.Challenge2
 import KIP126.Interface.Solution.Literature.Applications
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald
-import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Predicates
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Predicates
+import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching.Predicates
 import Lean.Elab.Command
 
 /-! Compilation/audit boundary for the selected complete route language.

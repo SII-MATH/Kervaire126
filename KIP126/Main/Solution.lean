@@ -8,9 +8,9 @@ import KIP126.Main.Solution.ChoiceIndependence.c4_c5_choice_equivalence
 import KIP126.Main.Solution.DifferentialReduction.d12_dichotomy_and_condition_equivalence
 import KIP126.Main.Solution.DifferentialReduction.only_d12_differential_reduction
 import KIP126.Main.Solution.ExtensionObstruction.c3_excludes_c5
-import KIP126.Main.Solution.Tools.GeneralizedLeibniz
-import KIP126.Main.Solution.Tools.GeneralizedMahowald
-import KIP126.Main.Solution.Tools.PageExtensionStretching
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Proofs
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Proofs
+import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching.Proofs
 import KIP126.Main.Solution.DifferentialReduction.Conclusion
 import KIP126.Interface.Challenge.Challenge2
 import KIP126.Main.Solution.Route.Predicates

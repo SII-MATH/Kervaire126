@@ -3,7 +3,7 @@ import KIP126.Def.Kervaire.Route.Extensions.Crossing.Predicates
 
 /-! 本文待证工具；所有对象、代表和扩张均从同一个 Route.Model 派生。
 这里只定义模型上的性质；定义该命题不把它作为 M 的字段或 A(M) 的输入。
-独立的本文证明目标位于 Main/Solution/Tools。 -/
+独立的本文证明及剩余义务位于同目录的 Proofs.lean。 -/
 namespace KIP126.Kervaire.Route.Tools
 
 open CategoryTheory CategoryTheory.MonoidalCategory

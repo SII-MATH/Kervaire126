@@ -2,7 +2,14 @@
 \label{chap:generalized-tools}
 
 This section develops the generalized proof rules that consume the comparison
-foundations established earlier.
+foundations established earlier. The mathematical premise packages, law
+predicates, and proof implementations are owned by
+\texttt{KIP126/Def/Kervaire/Route/Tools/}. Literature bindings and the
+construction of the premise packages remain in Interface; both Interface
+certification and Main consumers import the Def proofs. Public Lean names
+are retained, including the historical Main namespace of the three proof
+declarations. The relocation changes neither their statements nor their
+unfinished proof status.
 
 \subsection{Generalized Leibniz and Mahowald rules}
 
@@ -34,7 +41,7 @@ foundations established earlier.
   \end{enumerate}
   Then $d_{r+l-m}(y)=y_\infty$.
   The linked Lean declaration specifies this law for a fixed actual
-  normalized page family. Its independent Main production theorem
+  normalized page family. Its reusable Def proof theorem
   retains the model-bound synthetic inputs and still has an unfinished
   proof; defining the law does not establish its validity.
   It does not assert that arbitrary comparison isomorphisms satisfy the law.

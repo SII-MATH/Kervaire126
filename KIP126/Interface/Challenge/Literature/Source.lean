@@ -1,4 +1,5 @@
 import KIP126.Def.StageInput.StandardSphere.Background.Data
+import KIP126.Def.Kervaire.Route.Tools.Inputs.Data
 import KIP126.Def.StageInput.StandardSphere.Classes.Family
 
 /-! Parameterized literature statements and correlated source bindings.
@@ -16,15 +17,6 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)]
   {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H} (D : Model H M Syn)
-
-/-- BHS A.9/A.11 with the compatible E∞ formulas on the SAME family.
-All label, λ and ρ compatibility is part of the supplied source application.
-No unrelated E∞ equivalences may be inserted as substitutes. -/
-structure EInftyInput where
-  presentation : KIP126.Literature.Route.EInftyFormulaInput D
-  weightShift : EInftyWeightShift D.family
-  maps : KIP126.Literature.Route.EInftyCompatibilityInput D presentation weightShift
-  labels : KIP126.Literature.Route.EInftyLabelAgreement D presentation
 
 /-- External BHS inputs excluding the internal full-to-selected-model kernel transport. -/
 structure SyntheticSourceInputs where

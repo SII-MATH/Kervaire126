@@ -146,28 +146,26 @@ class StageBoundaryLayoutTests(unittest.TestCase):
                 self.assertEqual(forbidden, [])
 
     def test_certification_does_not_consume_its_own_output(self):
-        # Independent paper-rule proofs may be reused. Selected Main deductions
-        # and the Main witness may not feed back into C's producer.
+        # Reusable paper-rule proofs now live in Def. No Main dependency may
+        # feed back into computation or literature certification.
         for module in self.graph:
             if module.startswith("KIP126.Interface.Solution."):
                 forbidden = [m for m in self.dependencies(module)
-                             if m.startswith(("KIP126.Main.Axiom", "KIP126.Main.Challenge",
-                                              "KIP126.Main.Solution.StageInput",
-                                              "KIP126.Main.Solution.Computation",
-                                              "KIP126.Main.Solution.Route"))]
+                             if m.startswith("KIP126.Main.")]
                 self.assertEqual(forbidden, [], module)
 
     def test_independent_rules_do_not_use_numerical_or_stage_inputs(self):
-        for module in self.graph:
-            if module.startswith("KIP126.Main.Solution.Tools."):
-                forbidden = [m for m in self.dependencies(module)
-                             if m.startswith(("KIP126.Main.Axiom", "KIP126.Main.Challenge",
-                                              "KIP126.Main.Solution.StageInput",
-                                              "KIP126.Main.Solution.Computation",
-                                              "KIP126.Interface.Solution.LinProgram"))]
-                self.assertEqual(forbidden, [], module)
-                code = code_only((ROOT / Path(*module.split('.'))).with_suffix('.lean').read_text())
-                self.assertNotRegex(code, r"\b(KIP126\.Challenge2|routeComputation|routeLiterature)\b")
+        modules = {f"KIP126.Def.Kervaire.Route.Tools.{rule}.Proofs" for rule in
+                   ("GeneralizedLeibniz", "GeneralizedMahowald", "PageExtensionStretching")}
+        self.assertTrue(modules <= self.graph.keys())
+        self.assertFalse(any(m.startswith("KIP126.Main.Solution.Tools.") for m in self.graph))
+        for module in modules:
+            forbidden = [m for m in self.dependencies(module)
+                         if m.startswith(("KIP126.Main.", "KIP126.Interface.",
+                                          "KIP126.LinProgram."))]
+            self.assertEqual(forbidden, [], module)
+            code = code_only((ROOT / Path(*module.split('.'))).with_suffix('.lean').read_text())
+            self.assertNotRegex(code, r"\b(KIP126\.Challenge2|routeComputation|routeLiterature)\b")
 
     def test_main_computation_reuses_only_explicit_row_proof(self):
         # The migrated 5541 consumer supplies literature and presentation from

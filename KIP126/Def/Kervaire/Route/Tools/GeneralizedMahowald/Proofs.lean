@@ -1,13 +1,14 @@
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald
-import KIP126.Interface.Solution.Literature.Applications
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Predicates
+import KIP126.Def.Kervaire.Route.Tools.Inputs.Data
 
 import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
 import KIP126.Def.Synthetic.Detection.Proofs
 import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Proofs
 
-/-! Independent paper-tool proof target. No computation delivery or selected
-stage witness is a premise. The theorem remains to be proved from the displayed
-source-to-model comparisons on the same model; declaring it does not certify log rows. -/
+/-! Reusable paper-rule proof and explicit unfinished obligations.
+No computation delivery or selected stage witness is a premise. The theorem
+retains the displayed mathematical comparison premises on the same model; source-to-model assembly remains in Interface. Existing public theorem
+names are retained for compatibility. The remaining proof gaps certify no log rows. -/
 namespace KIP126.Main.Solution.Tools
 
 open CategoryTheory CategoryTheory.Limits

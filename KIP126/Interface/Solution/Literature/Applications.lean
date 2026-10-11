@@ -38,18 +38,6 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H} (D : Model H M Syn)
 
-structure SyntheticInputs where
-  lifts : KIP126.Literature.Route.SyntheticLiftInput D
-  finite_lift : FiniteLiftCriterion D
-  bockstein : BocksteinDifferential D
-  permanent_lift : PermanentLiftCriterion D
-  differentials : DifferentialRigidity D
-  eInfty : EInftyInput D
-  realization_kernel : RealizationKernel D
-  filtration_lambda : FiltrationLambda D
-  e2_weight_vanishing : E2WeightVanishing D
-  finite_quotient_page_vanishing : FiniteQuotientPageVanishing D
-
 /-- Pure assembly; source-to-model localization is supplied separately. -/
 def SyntheticSourceInputs.toInputs (S : SyntheticSourceInputs D)
     (Q : BHSCompletionData D) (hQ : BHSCompletionApplicability D Q)
@@ -113,22 +101,6 @@ def classicalInputsOfSource (D : Model H M Syn) (η : BiHom 1 2 (S_0_0 : Syn))
     refine ⟨?_, ?_, B.normalized_eta⟩
     · simpa [B.convergence, B.eta, ClassicalObject.obj] using hS.eta_detection
     · simpa [B.convergence, B.nu, ClassicalObject.obj] using hS.nu_detection
-
-
-end KIP126.Literature.Route
-
-namespace KIP126.Literature.Route
-open CategoryTheory CategoryTheory.MonoidalCategory KIP126.StableHomotopy
-open KIP126.Synthetic.Context
-universe u v
-variable (Syn : Type u) [SyntheticCategory.{u, v} Syn]
-
-/-- Applied May input, retaining the source sign and the fixed conventions.
-Consumers may remove the sign only after proving the required exponent-two
-condition. Mod-two E₂ coordinates alone do not prove such a condition on
-homotopy groups. -/
-structure MayInput extends MayContext Syn where
-  boundary : toMayContext.SignedBoundary
 
 
 end KIP126.Literature.Route

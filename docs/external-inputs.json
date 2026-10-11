@@ -3006,7 +3006,10 @@
         ],
         "proof_status": "external-statement-unproved",
         "role": "source-result",
-        "notes": "BHS input scope is νX and its finite λ-quotients, including their λ/ρ formulas and common-label agreement. Full synthetic weight-shift naturality is an internal Main theorem on the fixed tower construction, not a BHS input."
+        "notes": "BHS input scope is νX and its finite λ-quotients, including their λ/ρ formulas and common-label agreement. Full synthetic weight-shift naturality is an internal Main theorem on the fixed tower construction, not a BHS input.",
+        "declaration_modules": {
+          "KIP126.Literature.Route.EInftyInput": "KIP126/Def/Kervaire/Route/Tools/Inputs/Data.lean"
+        }
       },
       {
         "input_field": "synthetic",
@@ -3049,7 +3052,7 @@
           "KIP126.Literature.Route.SyntheticInputs.finite_quotient_page_vanishing"
         ],
         "declaration_modules": {
-          "KIP126.Literature.Route.SyntheticInputs.finite_quotient_page_vanishing": "KIP126/Interface/Solution/Literature/Applications.lean"
+          "KIP126.Literature.Route.SyntheticInputs.finite_quotient_page_vanishing": "KIP126/Def/Kervaire/Route/Tools/Inputs/Data.lean"
         }
       },
       {

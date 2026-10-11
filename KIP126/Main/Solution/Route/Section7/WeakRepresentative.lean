@@ -1,5 +1,5 @@
 import KIP126.Def.Synthetic.Context.Coherence.Proofs
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Predicates
 import KIP126.Interface.Solution.Literature.Applications
 import KIP126.Def.ClassicalAdams.PageRepresentatives.Proofs
 import KIP126.Def.ClassicalAdams.PageRepresentatives.Order.Proofs

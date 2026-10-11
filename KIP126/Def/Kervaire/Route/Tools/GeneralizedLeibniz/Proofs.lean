@@ -1,9 +1,10 @@
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz
-import KIP126.Interface.Solution.Literature.Applications
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Predicates
+import KIP126.Def.Kervaire.Route.Tools.Inputs.Data
 
-/-! Independent paper-tool proof target. No computation delivery or selected
-stage witness is a premise. The theorem remains to be proved from the displayed
-source-to-model comparisons on the same model; declaring it does not certify log rows. -/
+/-! Reusable paper-rule proof and explicit unfinished obligations.
+No computation delivery or selected stage witness is a premise. The theorem
+retains the displayed mathematical comparison premises on the same model; source-to-model assembly remains in Interface. Existing public theorem
+names are retained for compatibility. The remaining proof gaps certify no log rows. -/
 namespace KIP126.Main.Solution.Tools
 
 open CategoryTheory

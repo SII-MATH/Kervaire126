@@ -1434,3 +1434,50 @@ lake exe checkdecls blueprint/lean_decls
 `lake exe checkdecls blueprint/lean_decls` 全部通过；`git diff --check` 通过。
 这些构建结果不消去上文的实际数学责任，最终定理仍有既有 Challenge2 输入及
 未完成模型依赖，不能标记为无前提的实际认证。
+
+
+## 2026-10-11：通用论文规则归属 Def
+
+广义 Leibniz、广义 Mahowald 和有限页 stretching 的 law 与已有部分证明
+统一归入 `KIP126/Def/Kervaire/Route/Tools/`。每项规则分别采用
+`Predicates.lean` 与 `Proofs.lean`；`Inputs/Data.lean` 接收原有
+`EInftyInput`、`SyntheticInputs`、`MayInput` 的定义。其字段、模型参数、
+符号约定和数学前提保持不变，文献来源绑定及输入组装仍在 Interface。
+历史公开 Lean 名称保留，包括三个证明的 `KIP126.Main.Solution.Tools`
+namespace；这不构成 Main 模块导入。旧 Main 证明文件和空目录已移除，
+下游直接导入 Def 的具体证明模块，没有旧路径的单模块转发包装。
+
+迁移前后的源码核对确认：三个 law 定义、定理参数和证明主体未变；
+三项前提结构的字段及字段类型未变。Leibniz、Mahowald、stretching
+分别保留两处、两处、一处直接 `sorry`，其传递依赖仍须单独闭合。
+Blueprint 的 `thm:generalized-leibniz`、`thm:generalized-mahowald`、
+`cor:page-extension-stretch` 标签和 `notready` 状态保持不变。
+旧审计快照中的历史文件路径不重写，当前实现位置见 Def 的 Tools README。
+
+源码依赖审计确认三个证明闭包分别包含472、479、474个 Def 项目模块，
+均不导入 Interface、Main 或 LinProgram。编译环境的导入及公理检查通过：
+三个规则只含标准逻辑公理及既有 `sorryAx`，未增加项目公理。
+Interface 的回归检查已收紧为不允许任何 Main 模块依赖，取消原有一般规则例外。
+
+定向构建完成3808个任务，包含全部三个规则证明、Interface 规则适配器及
+既有规则/来源边界检查。`scripts/check.sh` 的105项及两组各7项测试通过。
+来源审计仍覆盖26个来源、127个工件、55个接口字段、29个计算 statement、
+5个比较证明字段、42个 route 审计组及238组声明/模块对应；生成的
+Lean 声明所属模块检查通过。固定版本的 `leanblueprint web` 与活动标签、
+依赖前沿检查通过。编译和文件归属迁移不完成任何尚缺的数学证明。
+
+重放入口：
+
+```sh
+LEAN_NUM_THREADS=4 lake build
+bash scripts/check.sh
+python3 -B scripts/check_external_inputs.py --lean-check /tmp/kip126-tools-def-source-check.lean
+lake env lean /tmp/kip126-tools-def-source-check.lean
+leanblueprint web
+lake exe checkdecls blueprint/lean_decls
+```
+
+最终集成构建已完成全部5790个任务，包含直接调用 Mahowald 的 `NuFifth`、
+完整 §7 证明链和标准最终目标。`lake exe checkdecls blueprint/lean_decls`
+通过，`git diff --check` 通过。此处记录的是归属及集成验证成功；三个规则的
+五处直接证明缺口与其他既有数学依赖仍未闭合。

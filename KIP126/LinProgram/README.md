@@ -130,9 +130,11 @@ differential. Historical audit paths and proof-completion statuses are retained.
 构造 P 并得到实际球面上的对应等式在后者。使用给定 P 的条件定理不等于构造 P。
 
 证明责任按“数据 → 固定模型认证 → 论文消费”推进，通用数学支持前面各层。
-这不是声称现有 import 图完全是一条链：`Interface/Solution/LinProgram/Rules.lean`
-仍引用 `Main/Solution/Tools/` 中不读取计算交付的论文规则。
-若后续抽取其中可复用的通用证明，应放回 Def；不能让计算认证依赖消费同一交付的结论。
+广义 Leibniz、广义 Mahowald 和有限页 stretching 的规则陈述与证明统一位于
+`Def/Kervaire/Route/Tools/`：`Inputs/Data.lean` 保存不变的数学比较前提，
+各规则的 `Predicates.lean` 定义 law，`Proofs.lean` 保存部分证明和明确剩余义务。
+Interface 的规则适配器与 Main 直接导入 Def；文献来源绑定及前提组装仍在 Interface。
+历史公开 namespace 保留，不表示仍有 Main 模块依赖。路径迁移不补齐五处证明缺口。
 
 ### 每项后续工作放在哪里
 
@@ -147,7 +149,7 @@ differential. Historical audit paths and proof-completion statuses are retained.
 | secondary 5487 | `L/Certificates/Secondary/`、`Translate/secondary-seed5487-certificates/` | 固定复合式和辅助见证留在 L；一般 secondary 运算定理按主题放 Def；与实际球面 d₂ 的接入放 I（规划 `Secondary/`）。 |
 | 自然性 245131、462481 | `L/Certificates/Naturality/`；`I/Naturality/Row245131.lean`、`Row462481.lean`、`CWModel.lean`、`CWToCeta.lean` | 坐标等式留在 L；实际对象、来源微分、映射比较和整条认证链留在 I。Cη、CW 是认证过程的对象，不增加 Challenge2 根字段。 |
 | 分支 152097→152098 | `L/Interpretation/Branch/`、`Certificates/Products/Trial152097*.lean`；`I/Products/Trial152097.lean` | 通用候选覆盖/排除解释留在 L；固定球面上的覆盖、非边界性、到达 E₄ 和最终排除放 I（规划 `Branch/`）。 |
-| 高页乘法与高级规则 | `Def/ClassicalAdams/TowerLongLayer/Pairing/`；`I/Rules.lean` | 通用乘法、边界相容性与 Leibniz 证明放 Def；对固定日志的前提核实与规则应用放 I。已有规则适配器不等于前提已落实。 |
+| 高页乘法与高级规则 | `Def/ClassicalAdams/TowerLongLayer/Pairing/`、`Def/Kervaire/Route/Tools/`；`I/Rules.lean` | 通用乘法、边界相容性与 Leibniz 证明放 Def；对固定日志的前提核实与规则应用放 I。已有规则适配器不等于前提已落实。 |
 | 消费者迁移和总交付 | `I/AdamsOneLine/H6.lean`、`I/Route/Certification.lean`；`Main/Solution/StageInput.lean`、`Main/Solution/Route/` | Interface 生产原生结论；Main 从同一 Challenge2 取出数据并推导论文结果；最终在 `Interface/Solution/Challenge2.lean` 组装。生产者不能读取待构造的总交付。 |
 
 ### P 的六步构造如何落到模块

@@ -3,7 +3,7 @@ import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
 import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
 import Init.Data.String.Lemmas.Splits
 import KIP126.Def.SpectralSequence.FilteredComplex.Crossing.Proofs
-import KIP126.Main.Solution.Tools.GeneralizedMahowald
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Proofs
 import KIP126.Def.Kervaire.Route.Section7.AlphaOne
 import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
 import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Proofs
