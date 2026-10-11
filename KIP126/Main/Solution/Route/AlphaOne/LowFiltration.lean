@@ -6,7 +6,7 @@ public import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
 public import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
 public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
 public import KIP126.Interface.Challenge.Computation.Delivery
-public import KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 
 
 @[expose] public section

@@ -3,7 +3,7 @@ module
 public import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
 public import KIP126.Main.Solution.Route.Section7.Common
 public import KIP126.Main.Solution.Computation.Route
-public import KIP126.Main.Solution.Tools.GeneralizedMahowald
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Proofs
 
 -- The CSV proofs explicitly unfold these string/list implementations.
 import all Init.Data.String.Legacy

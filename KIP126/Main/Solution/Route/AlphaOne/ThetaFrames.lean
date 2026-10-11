@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.Kervaire.Route.Section7.AlphaOne
 public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
-public import KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 public import KIP126.Main.Solution.Computation.Lambda
 
 

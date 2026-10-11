@@ -204,6 +204,18 @@ the subsequent spectral-sequence constructions.
   of a monoidal product with distinguished triangles.
 \end{definition}
 
+% SOURCE: Mathlib/CategoryTheory/Triangulated/Triangulated.lean, declarations CategoryTheory.IsTriangulated and CategoryTheory.Triangulated.Octahedron.
+\begin{definition}[Mathlib octahedron axiom]
+  \label{def:mathlib-octahedron}
+  \lean{CategoryTheory.IsTriangulated,CategoryTheory.Triangulated.Octahedron}
+  \mathlibok
+  \uses{def:mathlib-pretriangulated}
+  A triangulated category supplies an octahedron for each composable pair
+  and the three specified distinguished cofiber triangles. Its two new
+  maps satisfy four compatibility squares and form a distinguished triangle.
+  This is additional structure beyond a pretriangulated category.
+\end{definition}
+
 % SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:82, declaration CategoryTheory.Functor.IsHomological.
 \begin{definition}[Mathlib homological functor]
   \label{def:mathlib-homological-functor}

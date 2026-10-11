@@ -23,6 +23,14 @@ Blueprint 尚未配置远程网站/API 链接。
 - 同步最新 `main` 的精简 CI 与编译缓存优化，保留 `develop` 推送触发。
   当前验证入口为来源、接口、Blueprint 检查及完整 KIP126 构建。
 
+## LinProgram 进展整合
+
+当前整合以 Kervaire126 的 `develop` 为基础，保留其 Lean `module` / `public import` 布局、文献关联交付和新增数学证明。无截断原生代数、全局分次 presentation 及局部证书迁入主库；通用 Leibniz、Mahowald 和有限 stretching 规则位于 `Def/Kervaire/Route/Tools/`，供 Interface 与 Main 共同使用。stretching 的实际同商障碍条件及其与旧普通 crossing 条件的比较责任保持明确。
+
+独立 `Lin-program/` 研究树不进入本仓源码或构建依赖。现用原始数据库归档保留在 `Source/LWXMachine/kervaire_database.rar`，原始 DB/CSV 与有限重建快照保留在 `KIP126/LinProgram/Raw/`。当前确定性重放所需的四份提取记录放在 `KIP126/LinProgram/Generated/Provenance/`；它们是有具体消费者的来源制品，不恢复历史 `docs/audits/` 目录。来源、原始哈希、派生产物和声明绑定统一登记于 `docs/external-inputs.json`。
+
+目录整合、局部数据证书和可重放生成不解除实际模型、比较映射及论文证明的未完成义务。下列数量与检查结果继续只描述初始迁入快照。
+
 ## 初始迁入：保留
 
 - 完整 `KIP126/` 与 `KIP126.lean`，包括 109 个 Lean Checks 模块。

@@ -1536,8 +1536,11 @@ belong to the later proof.
   \uses{def:adams-bidegree,def:mathlib-f2}
   \leanok
   Use the fixed Zenodo 14875701 dataset, version v126.3.cw49.
-  Its quotient algebra has 2914 algebra
-  generators and 231848 relations and is truncated above internal degree 261.
+  Its legacy quotient $D$ has 2914 algebra generators, the 231848
+  original relations and additional truncation above internal degree 261.
+  The new actual-page comparison instead starts from the quotient $A$
+  by original relations only, defined in
+  Definition~\ref{def:lin-e2-native-algebra}.
   The separate additive catalogue has 23822 monomials, indexed by $(s,t,k)$;
   these indices are not algebra-generator numbers. The catalogue entry
   $(2,128,0)$ is generator 69 squared. Lookup rejects absent coordinates.
@@ -1570,7 +1573,7 @@ belong to the later proof.
 \begin{proposition}[The square-degree component has at most two elements]
   \label{prop:lin-square-component-two-elements}
   \lean{KIP126.LinE2.homogeneousPart_square_eq_span,KIP126.LinE2.E2At_square_eq_zero_or}
-  \uses{prop:lin-square-degree-unique}
+  \uses{prop:lin-square-degree-unique,lem:lin-singleton-exhaustion-transport}
   \leanok
   The actual homogeneous submodule of the archived quotient in bidegree
   $(2,128)$ is the $\mathbb F_2$-span of \texttt{dataH6Sq}. Consequently
@@ -1580,7 +1583,8 @@ belong to the later proof.
 \end{proposition}
 \begin{proof}
   Replace every monomial in the defining spanning set by the unique
-  monomial just proved. The two possible scalar coefficients are zero and one.
+  monomial just proved. The shared singleton-span exhaustion lemma uses the
+  two possible scalar coefficients, zero and one.
   \leanok
 \end{proof}
 
@@ -1977,9 +1981,23 @@ belong to the later proof.
   rather than chosen independently.
 \end{definition}
 
+\begin{definition}[Uniform list notation for nonempty $h_i$ products]
+  \label{def:milnor-h-word-product}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.hWordDegree,KIP126.Classical.Adams.Sphere.Internal.hProduct,KIP126.Classical.Adams.Sphere.Internal.hMonomial,KIP126.Classical.Adams.StandardSphere.standardHProduct}
+  \uses{def:milnor-internal-hi-family}
+  \leanok
+  A nonempty list $[i_1,\ldots,i_n]$ is interpreted as the iterated
+  product $h_{i_1}\cdots h_{i_n}$ on the actual internal second page. Its
+  filtration is $n$ and its internal degree is
+  $\sum_k 2^{i_k}$. Repeated entries are repeated factors, so `[0,3,3]`
+  denotes $h_0h_3^2$ and `[0,0,3,5]` denotes $h_0^2h_3h_5$.
+  The empty list is excluded because this interface describes nonempty
+  monomials and does not silently choose a unit class.
+\end{definition}
+
 \begin{proposition}[Cobar multiplication descends to cohomology]
   \label{prop:milnor-cobar-cup-descent}
-  \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.cup_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Challenge2.CobarCupCalculus}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.cup_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Classical.Adams.Sphere.Internal.hiProduct_eq_product,KIP126.Classical.Adams.Sphere.Internal.hiSquare_eq_product,KIP126.Challenge2.CobarCupCalculus}
   \uses{def:milnor-cobar-cohomology,def:milnor-internal-hi-family}
   \leanok
   Cobar concatenation induces an actual $\mathbb F_2$-bilinear product
@@ -1987,8 +2005,10 @@ belong to the later proof.
   \to H^{s+s',t+t'}_{\mathrm{cobar}}$.
   Products of cocycle classes are the classes of their concatenations.
   The specified $h_i^2$ is the cup square of $h_i$, transported along
-  $2^i+2^i=2^{i+1}$. This does not yet assert multiplicativity of the
-  comparison with the Adams page pairing.
+  $2^i+2^i=2^{i+1}$. The corresponding named internal sphere classes satisfy
+  the same equation through the cobar-transported product; this does not yet
+  assert multiplicativity of that comparison with an independently constructed
+  tower pairing.
 \end{proposition}
 \begin{proof}
   The actual Leibniz identity makes cycles closed under concatenation and
@@ -1997,6 +2017,28 @@ belong to the later proof.
   quotient maps and evaluate it on the specified cocycles.
   \leanok
 \end{proof}
+
+\begin{proposition}[Cobar commutators are boundaries]
+  \label{prop:milnor-cobar-cup-commutator}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cup_commutator_mem_boundaries,KIP126.Classical.Adams.MilnorCohomology.cup_comm}
+  \uses{prop:milnor-cobar-cup-descent}
+  \notready
+  For all natural bidegrees and all normalized Milnor cobar cycles
+  $x\in C^{s,t}$ and $y\in C^{s',t'}$, the difference
+  \[
+    x\mathbin{\smile}y-
+      \operatorname{reindex}(y\mathbin{\smile}x)
+       \in B^{s+s',t+t'}
+  \]
+  is a boundary. Reindexing only identifies the two equal sum
+  bidegrees; over $\mathbb F_2$ there is no remaining Koszul sign.
+  In total cochain degree zero the boundary space is zero, and in
+  positive degree it is the image of the preceding actual differential.
+  This is the explicit remaining homotopy obligation. Quotienting
+  gives commutativity of the cobar cohomology cup product, and the
+  fixed canonical comparison transports it to the actual sphere page.
+  There is no native presentation or bound on internal degree here.
+\end{proposition}
 
 \begin{proposition}[Canonical cobar comparison with the internal second page]
   \label{prop:milnor-cobar-internal-e2}

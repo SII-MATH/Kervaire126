@@ -13,8 +13,8 @@ public import KIP126.Interface.Solution.AdamsOneLine
 public import KIP126.Interface.Solution.Moss
 public import KIP126.Def.Comparison.PageExtension.Solutions.Finiteness.Proofs
 public import KIP126.Def.Comparison.PageExtension.Solutions.Coherence.Proofs
-public import KIP126.Interface.Solution.LinProgram.BasisTable
-public import KIP126.Interface.Solution.LinProgram.SphereBasis
+public import KIP126.Interface.Solution.LinProgram.Basis.Certification
+public import KIP126.Interface.Solution.LinProgram.Basis.Comparison
 public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch0
 public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch1
 public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch2

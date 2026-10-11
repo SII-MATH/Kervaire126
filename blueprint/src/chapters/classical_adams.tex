@@ -189,8 +189,8 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   $W_s\otimes C$, with the last, full coalgebra factor retaining constants.
   Polynomial coordinates concatenate the normalized word with this final
   factor, degree by degree across the Cauchy direct sum.
-  Injectivity of these polynomial coordinates is a separate, currently
-  unproved statement.
+  Injectivity of these polynomial coordinates is proved by the supplied
+  coordinate construction; this does not construct the injective resolution.
   A cobar resolution is an injective resolution of $\mathbb F_2[0]$ with
   comodule isomorphisms from its terms to these specified cofree terms.
   In these coordinates its differential is
@@ -241,13 +241,19 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
 \begin{theorem}[Coefficient Ext comparison with prescribed representatives]
   \label{thm:milnor-coefficient-module-comparison}
   \lean{KIP126.Steenrod.Milnor.Module.dualCobarResolution}
+  \lean{KIP126.Steenrod.Milnor.Module.dualLeftMap_comp,KIP126.Steenrod.Milnor.Module.dualLeftMap_zero,KIP126.Steenrod.Milnor.Module.dualCobarDifferential_shape,KIP126.Steenrod.Milnor.Module.dualCobarDifferential_comp,KIP126.Steenrod.Milnor.Module.dualCobarDifferential_augmentation}
   \lean{KIP126.Steenrod.Milnor.Module.PreservesDualCobarRepresentatives,KIP126.Steenrod.Milnor.Module.exists_dualCobarComparison}
   \uses{def:milnor-cofree-resolution,def:milnor-derived-ext,def:milnor-contravariant-dualization}
   \notready
   Given a prescribed cofree resolution $R$, form the actual chain complex
   $P_s=D(R^s)$ with differential $D(d_R)$ and augmentation $D(\iota_R)$
-  followed by $D(k[0])\cong k[0]$. Its projectivity and resolution
-  properties remain proof obligations for these specified terms and maps.
+  followed by $D(k[0])\cong k[0]$. Reversal of composition and preservation
+  of zero by the specified transpose now prove the chain-shape, square-zero
+  and augmentation identities for these exact maps. The merged foundation
+  supplies proofs of projectivity, the augmentation quasi-isomorphism, and
+  the representative-preserving coefficient comparison for a supplied $R$.
+  This parameterized construction does not construct the prescribed cofree
+  resolution $R$ or discharge the fixed-model comparison obligations.
   There exists a family of linear equivalences
   \[
     e_{s,t}:\operatorname{Ext}_C^s(k[t],k)
@@ -260,8 +266,10 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
       =P.\operatorname{extMk}\bigl(D(f)\,;\,(D(k[t])\cong k[t])\bigr).
   \]
   The target map must be a cocycle for this actual dual differential.
-  The all-representatives condition determines the comparison; its
-  existence is stated but not proved. This coefficient comparison does not
+  The all-representatives condition determines the comparison. Its Lean
+  construction takes the prescribed resolution $R$ as input; the complete
+  route retains the existence obligation for that same $R$.
+  This coefficient comparison does not
   supply the general-spectrum coaction bridge or
   multiplication compatibility.
 \end{theorem}
@@ -516,6 +524,30 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   \]
   The applicability proof for this fixed object remains unfinished.
 \end{proposition}
+
+\begin{lemma}[Full-stem second-page vanishing and separated homotopy]
+  \label{lem:adams-e2-vanishing-separated}
+  \lean{KIP126.Classical.Adams.TowerDetection.filtration_raise_of_pageTwo_subsingleton,KIP126.Classical.Adams.TowerDetection.mem_all_filtrations_of_pageTwo_zero,KIP126.Classical.Adams.TowerDetection.homotopy_eq_zero_of_pageTwo_zero_of_separated}
+  \uses{def:adams-tower-filtration,def:h6-tower-internal-data,def:h6-tower-internal-sequence,prop:h6-tower-differential-laws}
+  \leanok
+  For any object $X$ and unit in the stated stable context, vanishing of
+  the entire $E_2^{s,t}(X)$ with $s\ge0$ implies
+  $F^s\pi_{t-s}X\subseteq F^{s+1}\pi_{t-s}X$.
+  Fix any integer $n$. If $E_2^{s,s+n}(X)=0$ for every $s\in\mathbb N$,
+  then every $x\in\pi_nX$ lies in every nonnegative filtration stage.
+  If this filtration is separated in degree $n$, then every such $x$ is zero.
+  Separation is an explicit premise; no finite window or additional
+  associated-graded convergence comparison replaces it.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Apply the actual quotient-page zero criterion to the image of a tower
+  lift. It supplies a next-stage lift with equal image at stage $s-1$.
+  Compose down to stage $-1$, which is the same constant tower object
+  as stage zero, to retain the image in $X$, including when $s=0$.
+  Starting from $F^0\pi_nX=\pi_nX$, induction reaches every natural stage;
+  the supplied separation property then gives zero.
+\end{proof}
 
 \begin{proposition}[Separation of the fixed sphere Adams filtration]
   \label{prop:fixed-sphere-adams-separated}

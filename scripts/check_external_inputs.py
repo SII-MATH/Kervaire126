@@ -67,7 +67,7 @@ def computation_structure_contracts():
             "g", "delta_h_1_mul_g",
         }),
         "KIP126.Classical.Adams.LinE2Presentation": (PRESENTATION_MODULE, {
-            "comparison", "product", "comparison_mul",
+            "toActual", "preservesDegree", "component_bijective",
         }),
     }
 
@@ -184,8 +184,11 @@ def computation_statements(root):
         else:
             results[field] = {"": projection(COMPUTATION_RESULTS, field, COMPUTATION_MODULE)}
     bindings = {
-        "presentation.comparison_mul": projection(
-            "KIP126.Classical.Adams.LinE2Presentation", "comparison_mul", PRESENTATION_MODULE),
+        **{
+            "presentation." + field: projection(
+                "KIP126.Classical.Adams.LinE2Presentation", field, PRESENTATION_MODULE)
+            for field in ("preservesDegree", "component_bijective")
+        },
         **{
             field: projection(COMPUTATION_BINDINGS, field, COMPUTATION_MODULE)
             for field in ("tmfMultiplicative", "tmf_v2Sixteen", "tmf_betaGFour")
@@ -199,6 +202,15 @@ def computation_statements(root):
 def validate_computation_coverage(root, document, labels, nodes, used_labels, reference):
     """Bind each computation conclusion and comparison to its actual projection."""
     expected, expected_bindings = computation_statements(root)
+    # The global algebra map is data, not a proposition. Require its own
+    # provenance row and check its exact source/target in the generated Lean
+    # audit; the two proof fields below remain proposition-only obligations.
+    global_map = "KIP126.Classical.Adams.LinE2Presentation.toActual"
+    global_rows = [row for row in document["declaration_sources"]
+                   if row["declaration"] == global_map]
+    require(len(global_rows) == 1 and global_rows[0]["module"] == PRESENTATION_MODULE
+            and global_rows[0]["sources"] == ["lwx_machine"],
+            "missing or incorrect global presentation map provenance")
     item = next(c for c in document["interface_coverage"] if c["structure"] == COMPUTATION_RESULTS)
     leaves = {row["declaration"] for rows in expected.values() for row in rows.values()}
     leaves.update(row["declaration"] for row in expected_bindings.values())
@@ -511,6 +523,7 @@ def lean_check(document, declarations):
         (COMPUTATION_RESULTS + ".route", "KIP126.Computation.Route.CertifiedRealization"),
         ("KIP126.Computation.Route.CertifiedRealization.labels", "KIP126.Computation.Route.LabelsCorrect"),
         (COMPUTATION_BINDINGS + ".presentation", "KIP126.Classical.Adams.LinE2Presentation"),
+        ("KIP126.Classical.Adams.LinE2Presentation.toActual", "AlgHom"),
     )
     pairs = ", ".join(f"(`{projection}, `{target})" for projection, target in wrapper_types)
     checks += f"  for (name, expected) in [{pairs}] do\n"
@@ -527,6 +540,10 @@ def lean_check(document, declarations):
     checks += '    let some info := env.find? name | throwError "missing computation leaf: {name}"\n'
     checks += '    unless ← liftTermElabM (Lean.Meta.isProp info.type) do\n'
     checks += '      throwError "computation statement is data rather than a proposition: {name}"\n'
+    checks += "\n-- The one global map has the untruncated source and the fixed actual target.\n"
+    checks += "example (P : KIP126.Classical.Adams.LinE2Presentation) :\n"
+    checks += "    KIP126.LinE2.NativeAlgebra →ₐ[KIP126.Core.Algebra.F2]\n"
+    checks += "      KIP126.Classical.Adams.Sphere.Internal.ActualE2Total := P.toActual\n"
     return checks
 
 

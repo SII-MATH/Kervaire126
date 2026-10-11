@@ -20,6 +20,7 @@ import hashlib
 import json
 import re
 import sys
+import subprocess
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable, Mapping
 
@@ -143,6 +144,8 @@ class InventoryValidator:
         self.source_count = 0
         self.artifact_count = 0
         self.artifact_paths: dict[str, str] = {}
+        self.lfs_pointer_only_count = 0
+        self.lfs_cached_payload_count = 0
 
     def error(self, where: str, message: str) -> None:
         self.errors.append(f"{where}: {message}")
@@ -508,6 +511,58 @@ class InventoryValidator:
             return "metadata_only"
         return "partial"
 
+    def _check_lin_lfs_artifact(self, path: Path, artifact: Mapping[str, Any], where: str) -> bool:
+        """Handle strict pointers separately from verified payload bytes.
+
+        The caller restricts this to the registered Lin native artifact paths, after
+        ordinary source-directory checks. Only a parsed SHA-256 OID constructs
+        a standard Git-LFS cache path; arbitrary source path escapes get no
+        exemption. A missing cache is reported as pointer metadata, never a
+        successful content hash check. Native extraction still requires bytes.
+        """
+        size = artifact.get("size")
+        if artifact.get("storage") != "git-lfs" or type(size) is not int or size <= 0:
+            self.error(where, "registered Lin native artifact requires git-lfs storage and positive size")
+            return True
+        try:
+            with path.open("rb") as stream:
+                prefix = stream.read(1025)
+            if not prefix.startswith(b"version https://git-lfs.github.com/spec/v1"):
+                if path.stat().st_size != size:
+                    self.error(f"{where}.size", "physical Lin native artifact size mismatch")
+                return False  # The ordinary artifact SHA-256 check follows.
+            pointer = re.fullmatch(
+                rb"version https://git-lfs.github.com/spec/v1\noid sha256:([0-9a-f]{64})\nsize ([0-9]+)\n",
+                prefix,
+            )
+            if pointer is None:
+                self.error(f"{where}.path", "malformed Git LFS pointer")
+                return True
+            oid, pointer_size = pointer[1].decode("ascii"), int(pointer[2])
+            if oid != artifact.get("sha256") or pointer_size != size:
+                self.error(f"{where}.sha256", "Git LFS pointer OID/size differs from registered artifact")
+                return True
+            try:
+                git = subprocess.run(
+                    ["git", "rev-parse", "--path-format=absolute", "--git-common-dir"],
+                    cwd=self.root, capture_output=True, text=True, check=False,
+                )
+                common = Path(git.stdout.strip()) if git.returncode == 0 else None
+            except OSError:
+                common = None
+            payload = common / "lfs/objects" / oid[:2] / oid[2:4] / oid if common else None
+            if payload is not None and payload.exists():
+                if not payload.is_file() or payload.stat().st_size != size or _sha256_file(payload) != oid:
+                    self.error(f"{where}.sha256", "cached Git LFS payload hash/size mismatch")
+                else:
+                    self.lfs_cached_payload_count += 1
+            else:
+                self.lfs_pointer_only_count += 1
+            return True
+        except (OSError, UnicodeError, ValueError) as exc:
+            self.error(where, f"cannot check Lin LFS artifact: {exc}")
+            return True
+
     def _check_artifacts(
         self,
         source: Mapping[str, Any],
@@ -544,6 +599,26 @@ class InventoryValidator:
                 self.error(f"{artifact_where}.path", f"duplicate artifact path {path_value!r}")
             seen.add(path_value)
             directory = str(source.get("directory", "")).rstrip("/")
+            # The architecture keeps native Lin inputs under LinProgram, while
+            # their provenance belongs to the existing LWX machine source.
+            # Only these exact registered configuration/source-map artifacts
+            # have a location exception; hash, required-file, safe-path and
+            # resolved-directory checks stay in force.
+            if source.get("id") == "lwx_machine" and artifact_kind == "machine_artifact" and path_value in {
+                "KIP126/LinProgram/Raw/ss.json",
+                "KIP126/LinProgram/Raw/manifest.json",
+                "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+                "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_d2.db",
+                "KIP126/LinProgram/Raw/Naturality/Batch21/Ceta_Adams_res.db",
+                "KIP126/LinProgram/Raw/Naturality/Batch40/Ceta_Adams_res.db",
+                "KIP126/LinProgram/Raw/Naturality/Batch21/map_Adams_res_Ceta__S0.db",
+                "KIP126/LinProgram/Raw/Naturality/Batch40/map_Adams_res_Ceta__S0.db",
+                "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
+                "KIP126/LinProgram/Raw/CW_nu_eta_AdamsSS_t200.db",
+                "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
+                "KIP126/LinProgram/Raw/map_AdamsSS_CW_nu_eta_to_Ceta_t200.db",
+            }:
+                directory = "KIP126/LinProgram/Raw"
             if directory and not path_value.startswith(directory + "/"):
                 self.error(
                     f"{artifact_where}.path",
@@ -598,6 +673,25 @@ class InventoryValidator:
                     f"{artifact_where}.path",
                     f"artifact must be a regular file: {path_value}",
                 )
+                self.artifact_count += 1
+                continue
+            registered_lin_artifact = (
+                source.get("id") == "lwx_machine" and artifact_kind == "machine_artifact" and
+                path_value in {
+                    "Source/LWXMachine/kervaire_database.rar",
+                    "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+                    "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_d2.db",
+                    "KIP126/LinProgram/Raw/Naturality/Batch21/Ceta_Adams_res.db",
+                    "KIP126/LinProgram/Raw/Naturality/Batch40/Ceta_Adams_res.db",
+                    "KIP126/LinProgram/Raw/Naturality/Batch21/map_Adams_res_Ceta__S0.db",
+                    "KIP126/LinProgram/Raw/Naturality/Batch40/map_Adams_res_Ceta__S0.db",
+                    "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
+                    "KIP126/LinProgram/Raw/CW_nu_eta_AdamsSS_t200.db",
+                    "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
+                    "KIP126/LinProgram/Raw/map_AdamsSS_CW_nu_eta_to_Ceta_t200.db",
+                }
+            )
+            if registered_lin_artifact and self._check_lin_lfs_artifact(path, artifact, artifact_where):
                 self.artifact_count += 1
                 continue
             if valid_hash:
@@ -742,7 +836,13 @@ def validate_inventory(
     root: Path,
     inventory_path: Path | None = None,
 ) -> list[str]:
-    """Return validation errors for callers that want a library API."""
+    """Return inventory/source-metadata validation errors for library callers.
+
+    A strict registered LFS pointer without cached payload is valid metadata,
+    not a content hash verification. Callers needing payload availability must
+    inspect InventoryValidator's LFS counts or use the native input loader.
+    Available physical/cached bytes are always checked against their digest.
+    """
 
     root = root.resolve()
     if inventory_path is None:
@@ -777,6 +877,11 @@ def main(argv: list[str] | None = None) -> int:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
     print(f"source inventory: OK ({validator.source_count} sources, {validator.artifact_count} artifacts)")
+    if validator.lfs_cached_payload_count:
+        print(f"LFS: {validator.lfs_cached_payload_count} cached payload(s) checked by size and SHA-256")
+    if validator.lfs_pointer_only_count:
+        print(f"LFS: {validator.lfs_pointer_only_count} pointer(s) match registered OID/size; "
+              "payload unavailable locally, metadata only (content not verified)")
     return 0
 
 

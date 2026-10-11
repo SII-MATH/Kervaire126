@@ -5,6 +5,7 @@ public import Mathlib.Algebra.Order.Monoid.Prod
 
 @[expose] public section
 
+
 namespace KIP126.LinE2
 
 open KIP126.Core.Algebra
@@ -92,17 +93,8 @@ theorem homogeneousPart_square_eq_span : homogeneousPart 2 128 =
 
 /-- There are at most two elements in the `(2,128)` component. Combined
 with the independent nonvanishing certificate, there are exactly two. -/
-theorem E2At_square_eq_zero_or (x : E2At 2 128) : x = 0 ∨ x = dataH6Sq := by
-  have hx : (x : E2) ∈ Submodule.span F2 ({generator h6Generator ^ 2} : Set E2) :=
-    (le_of_eq homogeneousPart_square_eq_span) x.property
-  obtain ⟨r, hr⟩ := Submodule.mem_span_singleton.mp hx
-  have h : ∀ a : F2, a = 0 ∨ a = 1 := by decide
-  rcases h r with rfl | rfl
-  · left
-    apply Subtype.ext
-    simpa using hr.symm
-  · right
-    apply Subtype.ext
-    simpa [dataH6Sq] using hr.symm
+theorem E2At_square_eq_zero_or (x : E2At 2 128) : x = 0 ∨ x = dataH6Sq :=
+  E2At_eq_zero_or_of_span dataH6Sq
+    (by simpa only [dataH6Sq] using homogeneousPart_square_eq_span) x
 
 end KIP126.LinE2

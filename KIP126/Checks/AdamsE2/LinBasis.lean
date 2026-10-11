@@ -3,7 +3,7 @@ module
 public import KIP126.Main.Solution.Computation.LinProgram.E2
 public import Lean.Elab.Command
 public meta import KIP126.LinProgram.Generated.E2
-public meta import KIP126.LinProgram.Model.BasisTable.Data
+public meta import KIP126.LinProgram.Model.BasisCatalogue.Data
 
 @[expose] public section
 

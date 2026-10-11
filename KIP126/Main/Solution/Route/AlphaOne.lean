@@ -1,6 +1,6 @@
 module
 
-public import KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 public import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
 public import KIP126.Interface.Challenge.Computation.Delivery
 public import Batteries.Data.String.Lemmas
@@ -146,7 +146,6 @@ private theorem sphere_quotient_page_zero (q : ℕ) (hq : 0 < q)
   simpa only [KIP126.Core.SpectralSequence.Page, (D).family.firstPage,
       SyntheticAdamsFamily.nuQuotient, SyntheticAdamsFamily.quotient,
       SyntheticAdamsFamily.obj, SyntheticAdamsSS.Page, ClassicalObject.obj] using hz'
-
 
 /-- In Q9 both preceding targets have exponent10, so this WHOLE component
 vanishes on every finite page. Transport of the BHS nu(S) statement uses

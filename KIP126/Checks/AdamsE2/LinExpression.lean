@@ -4,7 +4,7 @@ public import KIP126.Checks.AxiomInputs
 public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Expressions.Proofs
 public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Expressions.Predicates
 public import Lean.Elab.Command
-public meta import KIP126.LinProgram.Model.BasisTable.Data
+public meta import KIP126.LinProgram.Model.BasisCatalogue.Data
 public meta import KIP126.Checks.AxiomInputs
 public meta import KIP126.LinProgram.Interpretation.Expression.Data
 
