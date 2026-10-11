@@ -1017,8 +1017,12 @@ comparison dependencies are discharged, the result remains conditional.
   block check polynomial relation combinations and apply the common checker
   soundness theorem. Share original relation and target catalogue membership
   proofs by archived CSV chunk; exact character transcription equalities
-  are checked by the kernel. Concatenate the certified blocks and apply
-  their equations to arbitrary members of the resulting list.
+  are checked by the kernel. Within each target catalogue chunk, check at
+  most 32 selected row bindings at a time and use that batch certificate
+  directly for each row membership. This bounds each reduction without
+  changing the original row values or the complete target coverage.
+  Concatenate the certified blocks and apply their equations to arbitrary
+  members of the resulting list.
 \end{proof}
 
 The separate fixed target inventory contains all 408 exported finite-page
@@ -1861,7 +1865,7 @@ top-cell/presentation comparison as explicit remaining obligations.
 \begin{proposition}[Three closed coefficient identities in the seed 5487 input]
   \label{prop:lin-secondary-5487-selected-equalities}
   \lean{KIP126.Computation.Secondary.Seed5487.row1048577_d_squared,KIP126.Computation.Secondary.Seed5487.row1572866_d_f,KIP126.Computation.Secondary.Seed5487.row3145729_d_f}
-  \uses{def:lin-secondary-native-composition}
+  \uses{def:lin-secondary-native-composition,lem:lin-secondary-fast-milnor-checker}
   \leanok
   In the selected native eight-coordinate data, row 1048577 at
   $(s,v,t)=(2,1,4)$ has square-zero differential. For row 1572866 at
@@ -1878,9 +1882,10 @@ top-cell/presentation comparison as explicit remaining obligations.
 \begin{proof}
   \leanok
   Resolve all paths: two for each original expression and one for the
-  additional lift. The existing Milnor checker proves five products in
-  small rank; its degree-support
-  theorem and rank stability extend them to all monomials at rank eight.
+  additional lift. The proved exact-degree Milnor checker verifies the
+  five products in small rank, with the checks elaborated sequentially.
+  Its soundness theorem retains all monomials in that rank; rank stability
+  then extends the same identities to all monomials at rank eight.
   The two paths of the first expression cancel coefficientwise in
   $\mathbb F_2$; the second and third yield their three and two specified
   terms, respectively.
