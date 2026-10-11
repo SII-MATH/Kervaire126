@@ -5274,21 +5274,36 @@
       ],
       "locator": "Corollaries A.9/A.11 on the SAME family; presentation remains an explicit source/application obligation.",
       "status": "statement-or-data-only"
-    }
-  ],
-  "computation_binding_statements": {
-    "presentation.comparison_mul": {
+    },
+    {
+      "declaration": "KIP126.Classical.Adams.LinE2Presentation.toActual",
+      "module": "KIP126/Interface/Challenge/Computation/Presentation.lean",
+      "sources": [
+        "lwx_machine"
+      ],
+      "locator": "Fixed original S0 Adams E2 generator and relation archive, v126.3.cw49: a global graded algebra map to the same actual sphere E2 is a construction obligation, not a consequence of the archive hash or of a truncated model.",
+      "status": "statement-or-data-only"
+    },
+    {
       "declaration": "KIP126.Classical.Adams.LinE2Presentation.comparison_mul",
       "module": "KIP126/Interface/Challenge/Computation/Presentation.lean",
       "sources": [
         "lwx_machine"
       ],
-      "locator": "Fixed Lin sphere quotient products through the same bounded presentation (t+t′≤261). Identification with the actual sphere-layer product remains a separate result obligation.",
-      "proof_status": "comparison-obligation",
-      "blueprint_labels": [
-        "thm:computation-presentation-comparison-mul"
-      ]
+      "locator": "Internal derived compatibility theorem: transport bounded products of the legacy truncated quotient using the same global map and the proved low-degree truncation equivalence. This is no longer an independent presentation field; actual tower-product comparison remains separate.",
+      "status": "statement-or-data-only"
     },
+    {
+      "declaration": "KIP126.LinE2.csv_relation_isWeightedHomogeneous",
+      "module": "KIP126/LinProgram/Certificates/RelationCatalogue/Homogeneity.lean",
+      "sources": [
+        "lwx_machine"
+      ],
+      "locator": "Every one of the 231848 rows of S0_AdamsE2_relations.csv in the unchanged v126.3.cw49 archive, with the original generator bidegrees. Deterministic replay: python3 -B KIP126/LinProgram/Translate/generate-relation-homogeneity.py --check. This certifies syntactic homogeneity, not vanishing on the actual Adams page.",
+      "status": "statement-or-data-only"
+    }
+  ],
+  "computation_binding_statements": {
     "tmfMultiplicative": {
       "declaration": "KIP126.Challenge2.ComputationBindings.tmfMultiplicative",
       "module": "KIP126/Interface/Challenge/Computation/Delivery.lean",
@@ -5325,6 +5340,30 @@
       "proof_status": "comparison-obligation",
       "blueprint_labels": [
         "thm:computation-bindings-tmf-betaGFour"
+      ]
+    },
+    "presentation.preservesDegree": {
+      "declaration": "KIP126.Classical.Adams.LinE2Presentation.preservesDegree",
+      "module": "KIP126/Interface/Challenge/Computation/Presentation.lean",
+      "sources": [
+        "lwx_machine"
+      ],
+      "locator": "The single global F2 algebra map from the quotient by all original sphere CSV relations to the direct sum of the fixed actual E2 pages preserves every natural bidegree; no internal-degree cutoff.",
+      "proof_status": "comparison-obligation",
+      "blueprint_labels": [
+        "thm:computation-presentation-graded"
+      ]
+    },
+    "presentation.component_bijective": {
+      "declaration": "KIP126.Classical.Adams.LinE2Presentation.component_bijective",
+      "module": "KIP126/Interface/Challenge/Computation/Presentation.lean",
+      "sources": [
+        "lwx_machine"
+      ],
+      "locator": "The components of that same global map are bijective for every s,t in N with t<=261, including all empty-table degrees; no global bijectivity above 261 is required.",
+      "proof_status": "comparison-obligation",
+      "blueprint_labels": [
+        "thm:computation-presentation-bijective"
       ]
     }
   }

@@ -1,7 +1,7 @@
 \section{Finite Adams presentations and coordinate conditions}
 \label{chap:computation-schema}
 % Certificate support now lives in KIP126/LinProgram/Certificates and Tactic.
-% Public Lean names, dependency labels and proof statuses are unchanged.
+% The native comparison now uses an untruncated source and one global map.
 
 Finite generator, relation, and basis tables describe graded algebras and
 coordinate expressions. To obtain conclusions about Adams spectral sequences,
@@ -121,12 +121,95 @@ mathematical objects and conditions.
   \leanok
 \end{proof}
 
+\subsection{Untruncated native algebra and the fixed global target}
+
+\begin{definition}[The quotient by original native relations only]
+  \label{def:lin-e2-native-algebra}
+  \lean{KIP126.LinE2.NativeAlgebra,KIP126.LinE2.nativeProjection,KIP126.LinE2.NativeAt}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  Let $A=\mathbb F_2[x_0,\ldots,x_{2913}]/I$, where $I$ is generated
+  by all 231848 original relation polynomials. No additional relation
+  sets monomials of internal degree above $261$ to zero. Its degree
+  $(s,t)$ part is the image of the weighted homogeneous polynomials.
+  It is a data algebra and does not assert a sphere comparison.
+\end{definition}
+
+\begin{theorem}[Native grading and low-degree truncation equivalence]
+  \label{thm:lin-e2-truncation-comparison}
+  \lean{KIP126.LinE2.csv_relation_isWeightedHomogeneous,KIP126.LinE2.nativeIdeal_isHomogeneous,KIP126.LinE2.nativeGradedAlgebra,KIP126.LinE2.nativeProjectionGraded,KIP126.LinE2.truncate,KIP126.LinE2.truncateAtEquiv,KIP126.LinE2.nativeHomogeneousPart_eq_span,KIP126.LinE2.truncate_basisRowAt}
+  \uses{def:lin-e2-native-algebra}
+  \leanok
+  All original relations are homogeneous for the recorded generator
+  bidegrees. Their quotient $A$ is genuinely bigraded. The natural
+  quotient $q:A\to D$ induces linear equivalences
+  $A^{s,t}\simeq_{\mathbb F_2}D^{s,t}$ for every $s,t\in\mathbb N$
+  with $t\le261$, compatible with the native monomials and with every
+  product whose total internal degree is at most $261$.
+\end{theorem}
+\begin{proof}
+  Check the original relation list in the Lean kernel. Homogeneous
+  components descend through the homogeneous relation ideal. By
+  nonnegative grading, the high-degree ideal has zero homogeneous
+  components through $261$; thus it introduces no new low-degree
+  relations. This proof uses neither a basis-table correctness input
+  nor a comparison with actual Adams pages.
+  \leanok
+\end{proof}
+
+\begin{lemma}[The square remains nonzero without the artificial cutoff]
+  \label{lem:lin-native-square-nonzero}
+  \lean{KIP126.LinE2.SquareDetection.nativeDetector,KIP126.LinE2.SquareDetection.native_h6_square_ne_zero,KIP126.LinE2.SquareDetection.truncate_h6_square}
+  \uses{def:lin-e2-native-algebra,def:lin-square-detector,prop:lin-square-detector-sound,thm:lin-square-certified}
+  \leanok
+  In $A$, the square of native generator 69 is nonzero. The original
+  detector kills every original CSV relation and hence descends to $A$;
+  it sends that square to the same nonzero detector element. Under
+  $q:A\to D$, this is the existing value \texttt{dataH6Sq}.
+  No actual-page nonvanishing or permanent survival follows yet.
+\end{lemma}
+
+\begin{lemma}[All selected native word certificates in the untruncated algebra]
+  \label{lem:lin-naturality-words200-native}
+  \lean{KIP126.LinModule.NativeWordCertificate.check_sound_evaluate,KIP126.LinModule.NaturalityWords200.entry_native_evaluate,KIP126.LinModule.NaturalityWords200.zero_native_evaluate,KIP126.LinModule.NaturalityWords200.entry_truncate_compatible,KIP126.LinModule.NaturalityWords200.native_source_ids,KIP126.LinModule.NaturalityWords200.native_entry_count}
+  \uses{def:lin-e2-native-algebra,lem:lin-naturality-words200}
+  \leanok
+  The same 15951 selected Ceta-to-sphere free-word evaluations, with
+  native IDs $2,\ldots,15952$ and internal degrees through 200, equal
+  the same fixed target-coordinate expressions in $A$. The proof
+  reinterprets the original relation-combination witnesses, using their
+  membership in the original relation list. It does not infer an
+  $A$-equality from an equality in $D$. Applying $q$ to both sides
+  recovers exactly the old evaluations and catalogue values.
+  Full Ceta quotient descent and actual-map comparison remain separate;
+  this does not make $A$ into a module over the old truncated $D$.
+\end{lemma}
+
+\begin{definition}[The fixed global sphere second-page algebra]
+  \label{def:sphere-global-e2-algebra}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.ActualE2Total,KIP126.Classical.Adams.Sphere.Internal.embed,KIP126.Classical.Adams.Sphere.Internal.actualE2Product}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.actualE2_one_mul,KIP126.Classical.Adams.Sphere.Internal.actualE2_mul_assoc,KIP126.Classical.Adams.Sphere.Internal.actualE2_mul_comm}
+  \uses{prop:milnor-cobar-internal-e2,prop:milnor-cobar-cup-descent,prop:milnor-cobar-cup-commutator,def:hf2-adams-tower}
+  \notready
+  Form $T=\bigoplus_{(s,t)\in\mathbb N^2}E_2^{s,t}(S^0)$ on the
+  same fixed actual page groups. Transport the $\mathbb F_2$ action
+  and cobar cup product through the fixed Milnor comparison, independently
+  of all Lin data. The unit is the class of the sphere identity.
+  Unit and associativity laws are named mathematical obligations.
+  Commutativity is derived from the explicit cobar commutator-boundary
+  obligation in Proposition~\ref{prop:milnor-cobar-cup-commutator};
+  cochain concatenation is not itself assumed commutative. Until those dependencies are closed, the packaged
+  algebra and its consumers remain conditional. The fixed foundation
+  and Milnor cooperations also retain their existing unfinished
+  fixed-implementation dependencies.
+\end{definition}
+
 \subsection{Coordinates on the fixed Adams pages}
 
 \begin{definition}[Shared sphere, cofiber, and tmf coordinates]
   \label{def:computation-fixed-bindings}
   \lean{KIP126.Classical.Adams.LinE2Presentation,KIP126.Computation.Route.Realization,KIP126.Classical.Adams.Tmf.E2Presentation,KIP126.Challenge2.ComputationBindings.routeLabels}
-  \uses{def:classical-adams-ss,def:h6-milnor-cooperations,def:hf2-adams-tower,def:adams-hj,def:lin-e2-catalogue}
+  \uses{def:classical-adams-ss,def:h6-milnor-cooperations,def:hf2-adams-tower,def:adams-hj,def:lin-e2-catalogue,thm:lin-e2-truncation-comparison,def:sphere-global-e2-algebra}
   \notready
   Fix the mod--$2$ object $H$ and Milnor cooperations $M$ of
   Definition~\ref{def:h6-milnor-cooperations}, the sphere Adams tower
@@ -135,23 +218,30 @@ mathematical objects and conditions.
   $C\nu=\operatorname{cofib}(\nu)$. All pages below are the actual
   $H$-unit Adams pages of these objects.
 
-  Write $A^{s,t}=\mathrm{LinE2.E2At}(s,t)$ for the homogeneous part of
-  the fixed sphere generator--relation quotient, and $|x|$ for its
-  underlying quotient value. A bounded presentation $P$ gives
-  integer-linear equivalences
+  Write $A=\mathrm{LinE2.NativeAlgebra}$ for the quotient by all original
+  CSV relations only, and $D=\mathrm{LinE2.E2}$ for its legacy truncation.
+  Put $D^{s,t}=\mathrm{LinE2.E2At}(s,t)$. A presentation $P$ supplies
+  one global graded $\mathbb F_2$-algebra homomorphism
   \[
-    P_{s,t}:A^{s,t}\simeq_{\mathbb Z}E_2^{s,t}(S^0),
-       \qquad s,t\in\mathbb N,\quad t\le261,
+    F:A\longrightarrow T=\bigoplus_{(s,t)\in\mathbb N^2}E_2^{s,t}(S^0),
   \]
-  and a bilinear operation $P.\operatorname{product}$ for all nonnegative
-  input bidegrees; its comparison with the data multiplication is required
-  only when the sum internal degree is at most $261$.
+  bijective on each component with $t\le261$. All $s\in\mathbb N$
+  are quantified, including degrees with empty native tables.
+  The canonical quotient $q:A\to D$ has proved component equivalences
+  $q_{s,t}$ in that range. The compatibility API is the derived map
+  \[
+    P_{s,t}=F_{s,t}\circ q_{s,t}^{-1}:
+      D^{s,t}\simeq_{\mathbb Z}E_2^{s,t}(S^0).
+  \]
+  The operation $P.\operatorname{product}$ is the fixed actual product
+  defining $T$, independent of $P$. Its data compatibility follows from
+  the global map; it is no longer an independent presentation field.
   Also fix coordinate equivalences
   $\chi_{s,t}:E_2^{s,t}(S^0)\cong
   (\mathrm{BasisIndex}(s,t)\to_0\mathbb F_2)$ over this range;
   their compatibility with the specified monomial values is a separate
   assertion. Fix linear maps
-  $R_{s,t}:A^{s,t}\to E_2^{s,t}(S^0)$ and vectors
+  $R_{s,t}:D^{s,t}\to E_2^{s,t}(S^0)$ and vectors
   $R_{o,s,t,i}\in E_2^{s,t}(o)$ for $o=S^0,C\nu$, indexed by the
   selected degree and monomial lists. Equality of $R$ with $P$, and the
   basis and multiplication properties of these vectors, are separate
@@ -175,9 +265,9 @@ mathematical objects and conditions.
 
   Write $C_X^{s,t}$ for the actual second-cycle group of the $H$-Adams
   tower of $X$, and $[a]$ for its image in $E_2^{s,t}(X)$.
-  The prescribed sphere first-layer product, the Milnor/cobar product,
-  and $P.\operatorname{product}$ are distinct operations until their
-  displayed comparisons are proved. Write $\mathcal R_H$ for the
+  The operation $P.\operatorname{product}$ is the fixed transported
+  Milnor/cobar product. Its comparison with the prescribed sphere
+  first-layer product remains a separate mathematical obligation. Write $\mathcal R_H$ for the
   specified mod--$2$ ring structure on $H$.
 \end{definition}
 
@@ -188,7 +278,8 @@ mathematical objects and conditions.
   \lean{KIP126.Interface.Solution.sphereMultiplicativeInterface}
   \uses{def:hf2-adams-tower,def:lin-e2-catalogue}
   \notready
-  There is a bounded presentation $P$ on the fixed sphere Adams
+  There is a global graded presentation $P$, bijective through internal
+  degree $261$, on the fixed sphere Adams
   sequence whose coordinate unit maps to the second-cycle class of the
   sphere identity. For all $s,t,s',t'\in\mathbb N$ with
   $t+t'\le261$ and all actual second-cycle representatives $a,b$ in
@@ -204,8 +295,8 @@ mathematical objects and conditions.
   It quantifies over all representatives. The condition for a specified
   $P$ is Theorem~\ref{thm:computation-sphereMultiplicative}.
   This existence theorem remains unproved. It supplies neither a
-  higher-page Leibniz rule, a product outside the bound, nor a comparison
-  with the cobar cup product.
+  higher-page Leibniz rule nor a tower-pairing comparison outside the
+  bound. The global target product itself is fixed from cobar cup.
 \end{theorem}
 
 \begin{proof}
@@ -227,8 +318,9 @@ mathematical objects and conditions.
 The following nodes refine the construction of $P$ in
 Definition~\ref{def:computation-fixed-bindings}. They are open proof
 obligations, not additional inputs to Challenge2. In particular, recovering
-all native representatives is still to be established. No new Lean
-implementation is claimed for these nodes. All comparisons use the existing
+all native representatives is still to be established. The data algebra,
+truncation compatibility and global presentation contract are implemented
+separately; they do not close these actual comparison obligations. All comparisons use the existing
 literature bindings, Milnor cooperations, and fixed sphere tower; the
 construction must not read $P$ back from the delivery it is meant to produce.
 
@@ -324,31 +416,30 @@ construction must not read $P$ back from the delivery it is meant to produce.
 
 \begin{proposition}[Descent and bijectivity of the native quotient comparison]
   \label{prop:lin-native-quotient-comparison}
-  \uses{prop:lin-native-generator-classes,prop:lin-native-actual-comparison,thm:lin-e2-basis-certification}
+  \uses{prop:lin-native-generator-classes,prop:lin-native-actual-comparison,thm:lin-e2-basis-certification,def:lin-e2-native-algebra,def:sphere-global-e2-algebra,thm:lin-e2-truncation-comparison}
   \notready
-  Put $D=\mathrm{LinE2.E2}$ and form the truncated graded algebra
+  Put $A=\mathrm{LinE2.NativeAlgebra}$, with only the original CSV
+  relations, and use the fixed untruncated target algebra
+  $T=\bigoplus_{(s,t)\in\mathbb N^2}E_2^{s,t}(S^0)$.
+  Evaluation $x_i\mapsto\alpha_i$ descends to a global graded
+  $\mathbb F_2$-algebra homomorphism $F:A\to T$, with
   \[
-    H_{\le261}=\bigoplus_{s\in\mathbb N,\ 0\le t\le261}H^{s,t}(C),
+    F_{s,t}:A^{s,t}\simeq_{\mathbb F_2}E_2^{s,t}(S^0)
+      \qquad(s,t\in\mathbb N,\ t\le261).
   \]
-  with products of sum internal degree greater than $261$ set to zero
-  in this truncated target. Evaluation $x_i\mapsto[c_i]$ descends to
-  a graded algebra map $F:D\to H_{\le261}$, whose restrictions
-  \[
-    F_{s,t}:\mathrm{LinE2.E2At}(s,t)\simeq_{\mathbb F_2}H^{s,t}(C)
-      \qquad(s,t\in\mathbb N,\ t\le261)
-  \]
-  are linear equivalences.
+  For each original CSV relation, give a cochain witness that its
+  evaluated cycle is a boundary, or derive one using a proved general
+  rule. No high-degree monomial is forced to vanish merely by the
+  archive cutoff. The universal property then supplies the global map;
+  it does not require enumerating an infinite high-degree basis.
 
-  For each CSV relation in a covered degree, give a cochain witness that
-  its evaluated cycle is a boundary, or derive such a witness using a
-  proved general rule. Truncation relations vanish in $H_{\le261}$;
-  they do not assert vanishing in the untruncated actual $E_2$.
-  Prove that the images of the specified CSV basis monomials span and
-  are linearly independent in native cohomology, then combine this with
-  Theorem~\ref{thm:lin-e2-basis-certification}. Neither matching dimensions
-  nor the data-side basis theorem alone proves these two assertions.
-  Thus $P_{s,t}=\Phi_{s,t}\circ F_{s,t}$ gives the required additive
-  comparison in every covered degree, including those with empty tables.
+  Prove that the images of the specified basis monomials span and are
+  linearly independent in the actual groups throughout $t\le261$,
+  including empty-table degrees and all filtrations. Neither matching
+  dimensions nor the data-side basis theorem proves these assertions.
+  Bijectivity is not required above $261$. The same $F$, together with
+  the proved low-degree equivalences of $q:A\to D$, gives the legacy
+  coordinate comparison $P_{s,t}=F_{s,t}\circ q_{s,t}^{-1}$.
 \end{proposition}
 
 \begin{proposition}[Native product comparison on actual representatives]
@@ -369,9 +460,9 @@ construction must not read $P$ back from the delivery it is meant to produce.
   tower maps before passing to quotient classes; additive equivalences
   alone do not establish them.
 
-  Taking $P.\operatorname{product}=\star$ retains the full field type of
-  the existing presentation, although its data comparison and the actual
-  representative comparison here have the stated sum-degree bound.
+  The compatibility definition $P.\operatorname{product}=\star$ is
+  fixed independently of $P$. Global multiplicativity of $F$ does not
+  discharge the stated comparison with actual tower representatives.
   No higher-page product or differential follows from this step.
 \end{proposition}
 
@@ -1079,7 +1170,7 @@ top-cell/presentation comparison as explicit remaining obligations.
   \uses{def:lin-e2-catalogue}
   \leanok
   In the original sphere quotient on all 2914 generators, for every
-  natural $s<4$, the entire homogeneous component $A^{s,s+4}$ is zero.
+  natural $s<4$, the entire legacy homogeneous component $D^{s,s+4}$ is zero.
   This is the span of all homogeneous monomials, not the archived basis span.
 \end{lemma}
 \begin{proof}
@@ -1209,15 +1300,15 @@ top-cell/presentation comparison as explicit remaining obligations.
   \lean{KIP126.LinModule.Ceta.Model,KIP126.LinModule.Ceta.generator,KIP126.LinModule.Ceta.monomial,KIP126.LinModule.CWNuEta.Model,KIP126.LinModule.CWNuEta.generator,KIP126.LinModule.CWNuEta.monomial}
   \uses{def:lin-e2-catalogue}
   \leanok
-  Let $A=\mathrm{LinE2.E2}$ be the same fixed sphere quotient as in
+  Let $D=\mathrm{LinE2.E2}$ be the same fixed sphere quotient as in
   Definition~\ref{def:lin-e2-catalogue}, with all 2914 sphere generators
   and 231848 sphere relations. For a finite native module generator set
   of size $n$ and its complete ordered relation list $\mathcal R$, put
   \[
-    F_n=\bigoplus_{j\in\operatorname{Fin}(n)}A e_j,
+    F_n=\bigoplus_{j\in\operatorname{Fin}(n)}D e_j,
     \qquad
     M_{\mathcal R}=F_n/
-      \langle\operatorname{relationVector}(r):r\in\mathcal R\rangle_A.
+      \langle\operatorname{relationVector}(r):r\in\mathcal R\rangle_D.
   \]
   A native term $i_1,a_1,\ldots,i_k,a_k,j$ denotes
   $x_{i_1}^{a_1}\cdots x_{i_k}^{a_k}e_j$; semicolons separate the
@@ -1236,7 +1327,9 @@ top-cell/presentation comparison as explicit remaining obligations.
   recorded $d_2$ limits are 170 and 150 respectively. These bounds
   are metadata only: no additional high-degree zero relation is imposed
   on either module. The sphere coefficient algebra's existing degree-261
-  truncation is unchanged. Neither module definition asserts an
+  truncation is retained for this compatibility layer; these complete
+  modules are not claimed to be globally equivalent to modules over the
+  new untruncated $A$. Neither module definition asserts an
   identification with actual Ext or with an actual Adams page.
 \end{definition}
 

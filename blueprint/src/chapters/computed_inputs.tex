@@ -43,7 +43,7 @@ certification remains unfinished.
 
 Use $P,R,L,G,U,I,H,M$ and $C_X^{s,t}$ as in
 Definition~\ref{def:computation-fixed-bindings}. Write
-$A(s,t)=A^{s,t}$ and $\mathcal R_H$ for the specified mod--$2$ ring
+$D(s,t)=D^{s,t}$ and $\mathcal R_H$ for the specified mod--$2$ ring
 structure on $H$. The symbol $\operatorname{atom}(a)$ denotes the
 specified homogeneous sphere quotient generator named by $a$.
 The sphere and tmf presentations, their monomial lists, and the staircase
@@ -112,22 +112,45 @@ incoming boundaries and does not imply nonzero permanent survival.
   bound.
 \end{theorem}
 
+\begin{theorem}[The global native sphere map preserves every bidegree]
+  \label{thm:computation-presentation-graded}
+  \lean{KIP126.Classical.Adams.LinE2Presentation.preservesDegree,KIP126.Challenge2.ComputationBindings.presentation}
+  \uses{def:computation-fixed-bindings}
+  \notready
+  For every $s,t\in\mathbb N$ and $x\in A^{s,t}$, the single global
+  algebra map $F$ sends $x$ into the embedded actual component
+  $E_2^{s,t}(S^0)\subset T$. There is no internal-degree restriction.
+\end{theorem}
+
+\begin{theorem}[The same global map is bijective through degree 261]
+  \label{thm:computation-presentation-bijective}
+  \lean{KIP126.Classical.Adams.LinE2Presentation.component_bijective,KIP126.Challenge2.ComputationBindings.presentation}
+  \uses{def:computation-fixed-bindings}
+  \notready
+  For every $s,t\in\mathbb N$ with $t\le261$, the component map
+  $F_{s,t}:A^{s,t}\to E_2^{s,t}(S^0)$ obtained by restricting that
+  same $F$ is bijective. In particular $261$ is included; $262$ and
+  higher degrees have no bijectivity requirement.
+\end{theorem}
+
 \begin{theorem}[The sphere presentation transports its bounded quotient products]
   \label{thm:computation-presentation-comparison-mul}
   \lean{KIP126.Classical.Adams.LinE2Presentation.comparison_mul,KIP126.Challenge2.ComputationBindings.presentation}
   \notready
   \uses{def:computation-fixed-bindings}
   For all $s,t,s',t'\in\mathbb N$ with $t+t'\le261$, every
-  $x\in A(s,t)$, $y\in A(s',t')$ and
-  $z\in A(s+s',t+t')$, if $|x|\,|y|=|z|$ in the same fixed quotient
+  $x\in D(s,t)$, $y\in D(s',t')$ and
+  $z\in D(s+s',t+t')$, if $|x|\,|y|=|z|$ in the same fixed quotient
   algebra, then
   \[
     P_{s+s',t+t'}(z)
       =P.\mathrm{product}_{s,t,s',t'}(P_{s,t}x,P_{s',t'}y).
   \]
   The sum-degree bound supplies the two input-degree bounds as well.
-  This condition compares the quotient multiplication with the specified
-  bilinear operation. Its agreement with the actual sphere-layer product
+  This is now a derived theorem: apply the global algebra map's
+  multiplication law and the proved low-degree truncation equivalence.
+  It is not an independent presentation assumption. Its agreement with
+  the actual sphere-layer product
   is separately the condition of
   Theorem~\ref{thm:computation-sphereMultiplicative}.
 \end{theorem}
@@ -139,7 +162,7 @@ incoming boundaries and does not imply nonzero permanent survival.
   \notready
   \uses{def:computation-fixed-bindings}
   The following two clauses hold together for this same $P$.
-  There exists $x_0\in A(0,0)$ with $|x_0|=1$ and
+  There exists $x_0\in D(0,0)$ with $|x_0|=1$ and
   \[
     P_{0,0}(x_0)=[\mathrm{unitSecondCycle}_H(S^0)].
   \]
@@ -187,7 +210,7 @@ incoming boundaries and does not imply nonzero permanent survival.
   For every $d\in\mathrm{Raw.degrees}$, if
   $d.\mathrm{spectrum}=S^0$, then for every
   $i\in\mathrm{Fin}(\operatorname{length}(d.\mathrm{monomials}))$
-  there exists $z\in A(d.s,d.t)$ such that
+  there exists $z\in D(d.s,d.t)$ such that
   \[
     |z|=\operatorname{projection}
        (\operatorname{monomialOfString}(d.\mathrm{monomials}[i])),
@@ -202,7 +225,7 @@ incoming boundaries and does not imply nonzero permanent survival.
   \lean{KIP126.Challenge2.ComputationResults.route_presentation}
   \notready
   \uses{def:computation-fixed-bindings}
-  For all $s,t\in\mathbb N$ with $t\le261$ and every $x\in A(s,t)$,
+  For all $s,t\in\mathbb N$ with $t\le261$ and every $x\in D(s,t)$,
   \[
     R.\mathrm{sphere}_{s,t}(x)=P_{s,t}(x)
        \quad\text{in }E_2^{s,t}(S^0).
@@ -217,7 +240,7 @@ incoming boundaries and does not imply nonzero permanent survival.
   \notready
   \uses{def:computation-fixed-bindings}
   For every product record $p\in\mathrm{Raw.products}$, every
-  $x\in A(p.s,p.t)$ and every $y\in A(p.sp,p.tp)$,
+  $x\in D(p.s,p.t)$ and every $y\in D(p.sp,p.tp)$,
   \[
   \begin{aligned}
     &R.\mathrm{sphere}_{p.s+p.sp,p.t+p.tp}(\mathrm{mulAt}(x,y))\\
@@ -498,8 +521,8 @@ incoming boundaries and does not imply nonzero permanent survival.
   row $w$, if the fixed differential-table lookup returns $w$, there exist
   witnesses $w.t\le261$ and $w.t+w.r-1\le261$, and elements
   \[
-    x\in A(w.s,w.t),\qquad
-    y\in A(w.s+w.r,w.t+w.r-1),
+    x\in D(w.s,w.t),\qquad
+    y\in D(w.s+w.r,w.t+w.r-1),
   \]
   whose literal CSV coordinates are respectively $w.x$ and $w.dx$,
   such that
@@ -529,16 +552,16 @@ incoming boundaries and does not imply nonzero permanent survival.
   through the same $P$:
   \begin{enumerate}
     \item For $c=\mathrm{equation}(r,s,t,I,J)$, there exist witnesses
-      $t\le261$, $t+r-1\le261$, $x\in A(s,t)$ and
-      $y\in A(s+r,t+r-1)$ such that
+      $t\le261$, $t+r-1\le261$, $x\in D(s,t)$ and
+      $y\in D(s+r,t+r-1)$ such that
       $\operatorname{CSV}_{s,t}(x,I)$,
       $\operatorname{CSV}_{s+r,t+r-1}(y,J)$, and
       $\mathcal D_r^{S^0}((s,t),(s+r,t+r-1);P_{s,t}x,P_{s+r,t+r-1}y)$.
     \item For $c=\mathrm{reaches}(r,s,t,I)$, there exist $t\le261$
-      and $x\in A(s,t)$ with $\operatorname{CSV}_{s,t}(x,I)$ and
+      and $x\in D(s,t)$ with $\operatorname{CSV}_{s,t}(x,I)$ and
       $\operatorname{Reach}_r^{S^0}((s,t),P_{s,t}x)$.
     \item For $c=\mathrm{boundaryBy}(r,s,t,I)$, there exist $t\le261$
-      and $x\in A(s,t)$ with $\operatorname{CSV}_{s,t}(x,I)$ and
+      and $x\in D(s,t)$ with $\operatorname{CSV}_{s,t}(x,I)$ and
       $\operatorname{Bound}_r^{S^0}((s,t),P_{s,t}x)$.
   \end{enumerate}
   The claim indices are natural numbers. Both decoding success and the

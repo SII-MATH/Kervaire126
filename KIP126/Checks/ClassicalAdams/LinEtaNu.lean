@@ -128,9 +128,10 @@ run_cmd do
   unless hasProjection value `KIP126.Challenge2.LiteratureResults.sphereVanishing
       `KIP126.Challenge2.LiteratureResults 2 do
     throwError "eta-nu no longer uses the supplied literature vanishing result"
-  unless hasProjection value `KIP126.Classical.Adams.LinE2Presentation.comparison
-      `KIP126.Classical.Adams.LinE2Presentation 0 do
-    throwError "eta-nu no longer uses the supplied presentation comparison"
+  -- The comparison is now derived from one global map, not field zero.
+  unless value.getUsedConstants.contains
+      ``KIP126.Classical.Adams.LinE2Presentation.comparison do
+    throwError "eta-nu no longer uses the derived presentation comparison"
   checkValueEdges ``pageTwo_stemFour_subsingleton
     [``KIP126.LinE2.StemFour.component_subsingleton]
   checkValueEdges ``homotopy_four_zero

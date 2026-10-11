@@ -1536,8 +1536,11 @@ belong to the later proof.
   \uses{def:adams-bidegree,def:mathlib-f2}
   \leanok
   Use the fixed Zenodo 14875701 dataset, version v126.3.cw49.
-  Its quotient algebra has 2914 algebra
-  generators and 231848 relations and is truncated above internal degree 261.
+  Its legacy quotient $D$ has 2914 algebra generators, the 231848
+  original relations and additional truncation above internal degree 261.
+  The new actual-page comparison instead starts from the quotient $A$
+  by original relations only, defined in
+  Definition~\ref{def:lin-e2-native-algebra}.
   The separate additive catalogue has 23822 monomials, indexed by $(s,t,k)$;
   these indices are not algebra-generator numbers. The catalogue entry
   $(2,128,0)$ is generator 69 squared. Lookup rejects absent coordinates.
@@ -2014,6 +2017,28 @@ belong to the later proof.
   quotient maps and evaluate it on the specified cocycles.
   \leanok
 \end{proof}
+
+\begin{proposition}[Cobar commutators are boundaries]
+  \label{prop:milnor-cobar-cup-commutator}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cup_commutator_mem_boundaries,KIP126.Classical.Adams.MilnorCohomology.cup_comm}
+  \uses{prop:milnor-cobar-cup-descent}
+  \notready
+  For all natural bidegrees and all normalized Milnor cobar cycles
+  $x\in C^{s,t}$ and $y\in C^{s',t'}$, the difference
+  \[
+    x\mathbin{\smile}y-
+      \operatorname{reindex}(y\mathbin{\smile}x)
+       \in B^{s+s',t+t'}
+  \]
+  is a boundary. Reindexing only identifies the two equal sum
+  bidegrees; over $\mathbb F_2$ there is no remaining Koszul sign.
+  In total cochain degree zero the boundary space is zero, and in
+  positive degree it is the image of the preceding actual differential.
+  This is the explicit remaining homotopy obligation. Quotienting
+  gives commutativity of the cobar cohomology cup product, and the
+  fixed canonical comparison transports it to the actual sphere page.
+  There is no native presentation or bound on internal degree here.
+\end{proposition}
 
 \begin{proposition}[Canonical cobar comparison with the internal second page]
   \label{prop:milnor-cobar-internal-e2}

@@ -32,6 +32,9 @@ import KIP126.LinProgram.Certificates.Naturality.Row245131Map
 import KIP126.LinProgram.Certificates.Naturality.Batch21
 import KIP126.LinProgram.Certificates.Naturality.CochainBatch21
 import KIP126.LinProgram.Certificates.Naturality.Words200.All
+import KIP126.LinProgram.Certificates.Naturality.Words200.Native
+import KIP126.LinProgram.Model.E2.Native.Basis
+import KIP126.LinProgram.Model.E2.Native.Descent
 import KIP126.LinProgram.Certificates.Naturality.CochainBatch40
 import KIP126.LinProgram.Certificates.BasisCertification.Proofs
 import KIP126.Interface.Challenge.Literature.EtaRows

@@ -10,7 +10,9 @@ the standard sphere Adams sequence or establish the final survival theorem.
 | `Generated/` | Lean encodings of the imported records. |
 | `Route/` | Selection of the fixed records used by the proof route. |
 | `SourceMetadata/AppendixTable/` | Typed transcription of the paper tables, with row labels and locators; recorded statuses require mathematical justification. |
-| `Model/E2/`, `Model/Classes/`, `Model/Product/` | The fixed truncated CSV quotient and its mathematical operations and elements. |
+| `Model/E2/Native/` | The quotient by all original CSV relations, its full grading, and the proved comparison with the legacy truncation through degree 261. |
+| `Model/E2/`, `Model/Classes/`, `Model/Product/` | The legacy truncated quotient and its existing coordinate operations and elements. |
+| `Certificates/RelationCatalogue/` | Kernel-checked homogeneity of every original sphere relation. |
 | `Model/BasisCatalogue/`, `Certificates/BasisCertification/` | Imported basis values and coordinates conditional on explicit basis certification. |
 | `Compute/E2/`, `Tactic/Support/`, `Interpretation/Polynomial/`, `Interpretation/Expression/` | Parsing, reduction, expression interpretation and calculation support. |
 | `Interpretation/` | Mathematical interpretation parameterized by a supplied model. |
@@ -27,10 +29,20 @@ page is `KIP126/Interface/Challenge/Computation/Presentation.lean`.
 and results; `Interface/Solution/LinProgram/` constructs their certificates.
 Main consumes those results from the same Challenge2 witness.
 
-The quotient `KIP126.LinE2.E2` truncates internal degrees above 261. This is a
-data algebra; its name does not identify it with the actual sphere E₂ page.
-The bounded comparison, basis, actual multiplication, differential, staircase
-and route conditions remain explicit mathematical obligations. In particular,
+`KIP126.LinE2.NativeAlgebra` quotients by the original CSV relations only;
+it adds no high-degree zeros. The old `KIP126.LinE2.E2` retains its degree-261
+truncation as a compatibility model. The natural quotient between them is
+proved to be an isomorphism on every component with internal degree at most 261.
+Neither algebra is defined to be the actual sphere E₂ page.
+
+The sphere presentation now contains one global graded F₂ algebra map from
+`NativeAlgebra` to the direct sum of the same fixed actual E₂ groups, and
+bijectivity through degree 261. Its old `comparison`, `product`, and
+`comparison_mul` APIs are derived from this map and the truncation comparison.
+The actual target product is fixed independently in Def; its named unfinished
+ring-law proofs remain explicit. The construction of the global comparison,
+basis, actual tower-product comparison, differential, staircase and route
+conditions remain mathematical obligations. In particular,
 a staircase threshold alone does not prove nonzero permanent survival.
 
 The relocation from `Def/AdamsE2/Lin*` preserves public declaration names and
@@ -150,11 +162,11 @@ differential. Historical audit paths and proof-completion statuses are retained.
 | `prop:lin-native-resolution-correct` | 固定分解证书规划在 `L/Certificates/Resolution/`；通用分解比较复用 `Def/Steenrod/MilnorModule/` | 自由/投射性、微分平方零、增广、正合性和所需全部次数的覆盖。 |
 | `prop:lin-native-generator-classes` | 原生类与运算放 `L/Model/Resolution/`，固定循环及乘法见证放 `L/Certificates/Resolution/`（规划） | 统一构造生成元的上同调类并认证乘法，不靠论文名称指定对应物。 |
 | `prop:lin-native-actual-comparison` | 通用链比较放 Def；固定原生分解到指定球面的组装规划在 `I/Presentation/` | 对所有所需次数、所有循环成立的 Φ，以及代表元公式。 |
-| `prop:lin-native-quotient-comparison` | 关系边界见证、数据基底及原生上同调比较放 L；复合 Φ 并构造 P 放 `I/Presentation/`（规划） | 商映射良定义、满射、单射，覆盖全部 `s ∈ ℕ, t ≤ 261`，包括空表次数。 |
+| `prop:lin-native-quotient-comparison` | 关系边界见证、数据基底及原生上同调比较放 L；复合 Φ 并构造 P 放 `I/Presentation/`（规划） | 从无截断 A 构造全局分次代数同态；同一个映射在全部 `s ∈ ℕ, t ≤ 261` 逐次满射、单射，包括空表次数。旧 D 坐标由已证低次等价派生。 |
 | `prop:lin-native-actual-product` | 通用乘法比较复用 Def；固定球面相容性证明放 `I/Presentation/`（规划），接入现有 `I/Multiplication.lean` | 单位以及所有约定范围内实际代表元的乘法相容性。 |
 
 不能把整个 P 构造都塞进 `Presentation.lean` 合同文件，也不能把实际球面比较放进 L。
-对 `t > 261` 的数据截断不能用来证明实际 E₂ 消失。新仓已有的通用比较结果应复用，
+旧 D 对 `t > 261` 的截断不能用来证明实际 E₂ 消失；新 A 的全局比较保乘性没有这个上界。新仓已有的通用比较结果应复用，
 但其前提和固定模型依赖仍要逐项落实。
 
 ### 两个 Lin 目录、生成结果与历史记录

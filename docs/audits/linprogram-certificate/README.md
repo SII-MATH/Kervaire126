@@ -1319,3 +1319,118 @@ chunk 的内核相等性、完整目录成员关系和同一商理想。
 `naturality-words200-lean-check.json`；有限余链成本见
 `naturality40-lean-check.json`。这些核验均不消去实际来源微分、完整 Ceta 商
 下降、分解正确性及同一实际模型比较的剩余责任。
+
+## 全局原生代数迁移（2026-10-11）
+
+本轮的目标是一个全局分次代数同态，而同构范围仍精确为内部次数
+`t ≤ 261`。`LinE2.NativeAlgebra` 记为 A，只对全部原始 CSV 关系取商；
+既有 `LinE2.E2` 记为 D，定义及旧定理的含义保持不变。
+实际目标是原有固定球面第二页在全部自然数双次数上的直和，乘法取自固定
+Milnor/cobar 比较，不从待构造的 presentation 反向定义。
+
+### 里程碑与数学边界
+
+| 层次 | 具体声明与实现位置 | 交付内容及剩余前提 |
+| --- | --- | --- |
+| 原始关系 | `Certificates/RelationCatalogue/Homogeneity.lean` 的 `csv_relation_isWeightedHomogeneous` | 覆盖全部 231,848 条关系；核查双次数而非普通多项式次数。确定性生成器与 Lean 元程序仅提出字符见证，Lean 内核核验每一块并绑定原始归档。 |
+| 真正分次及截断兼容 | `Model/E2/Native/Grading.lean` 的 `nativeGradedAlgebra`、`nativeProjectionGraded`、`truncateAtEquiv`、`truncateAtEquiv_mul` | A 的有限齐次分解和 `q : A →ₐ[F2] D`；对所有自然数 s、t 且 t≤261，q 的分量为线性同构。证明不依赖基底表正确性或实际比较。 |
+| 原生坐标 | `Native/Compatibility.lean` 的 `nativeHomogeneousPart_eq_span`；`Native/Basis.lean` 的 `truncate_basisValue`、`truncate_basisRowAt` | 齐次部分等于指定次数单项式的张成空间；q 保留同一生成元、原生次数局部索引及单项式。没有把目录自动当成已证明的基。 |
+| 原有证书 | `Certificates/Naturality/Words200/Native.lean` 的 `entry_native_evaluate`、`entry_truncate_compatible`、`native_source_ids` | 全部 15,951 条原始目标、同一关系组合见证在 A 内解释；使用“所用关系属于原始关系集”，未从 D 内等式倒推。q 的像正是旧等式。 |
+| 平方检测 | `Certificates/SquareDetection/Native.lean` 的 `native_h6_square_ne_zero`、`truncate_h6_square` | 原关系检测器下降到 A，原生 h6 平方非零且映到旧 `dataH6Sq`；尚未宣称实际页面或永久存活。 |
+| 固定实际目标 | `Def/StageInput/StandardSphere/Algebra/` 的 `ActualE2Total`、`embed_product` | 固定原有页面、F2 作用和乘法；实际环律及既有固定模型基础责任仍未全部闭合，见下文。 |
+| 新合同与消费者 | `Interface/Challenge/Computation/Presentation.lean` | 仅保存 `toActual`、`preservesDegree`、`component_bijective`。旧 `comparison` 为 F 的分量复合 q 的逆；`product` 返回固定乘法；`comparison_mul` 是派生定理。 |
+
+通用数学在 `Def/Algebra/GradedQuotient/`：齐次理想的商具有真正分次，
+`PolynomialTruncation.low_mem_sup_iff` 利用非负分次证明截断理想没有低次分量。
+数据层的这些声明和新本地证书由检查模块执行传递公理白名单审计，
+允许标准逻辑公理 `propext`、`Classical.choice`、`Quot.sound`，拒绝
+`sorryAx`、项目公理及 Interface/Main 反向依赖。
+
+`LinNativeAlgebra` 的小例子比较 `F2[X]` 与超过 261 次为零的商：
+`X^262` 在前者非零、在后者为零。它同时核验 260 和 261 的等价入口。
+`LinNativePresentation` 在 262 次仍使用全局分量及保度，不要求其双射；
+全局保乘性对任意 A 元素成立，无次数限制。不同 presentation 的 `product`
+定义相同，旧三个兼容入口不得再次变成独立输入字段。
+
+### 保留的实际数学责任
+
+本轮没有构造实际 F，也没有证明其范围内双射；构造仍由
+`Interface.Solution.sphereMultiplicativeInterface` 的明确未完成定理承担，
+其 Blueprint 路线包括原生分解正确性、生成元代表、原关系成为边界及逐次数比较。
+不得通过读取待构造的 Challenge2 交付取得 F。
+
+固定目标的 `actualE2_one_mul`、`actualE2_mul_assoc` 以及
+`MilnorCohomology.cup_commutator_mem_boundaries` 仍是明确的未完成定理。
+`cup_comm` 和 `actualE2_mul_comm` 已沿商上同调及固定比较从后者导出，
+没有增加另一条独立的交换律前提。
+交换律必须在上同调中证明；余链串接本身没有被当作交换乘法。
+既有固定实现、Milnor/coefficient 比较和实际塔的基础依赖继续保留。
+因此实际目标、presentation 存在性及其消费者仍按 `notready` 记录。
+
+`SphereMultiplicativeInterface` 和 computation 的 `sphereMultiplicative` 字段
+仍要求指定实际塔首层乘法与固定目标乘法比较；全局 F 保乘不能代替它。
+`route_presentation` 仍是 t≤261 的 D 坐标关联。Challenge2 仍只有
+`literature`、`computation` 两个根字段，并使用同一 correlated bindings。
+Ceta/CW 的旧商模和有限余链证书保持原数学含义；本轮未声称它们整体成为
+与旧模型全局同构的 A 模。tmf 的专用合同未修改。
+
+### 重放入口
+
+```sh
+python3 -B KIP126/LinProgram/Translate/generate-relation-homogeneity.py --check
+python3 -B KIP126/LinProgram/Translate/generate-native-word-replay.py --check
+python3 -B KIP126/LinProgram/Translate/test_relation_homogeneity.py
+lake build KIP126.Checks.AdamsE2.LinNativeAlgebra
+lake build KIP126.Checks.AdamsE2.LinNativeWords200
+lake build KIP126.Checks.AdamsE2.LinNativePresentation
+python3 -B KIP126/LinProgram/Translate/replay-naturality-words.py --check
+python3 -B KIP126/LinProgram/Translate/generate-naturality-word-proofs.py --check
+python3 -B KIP126/LinProgram/Translate/replay-naturality-cochains.py --check
+python3 -B KIP126/LinProgram/Translate/replay-naturality-batch.py --check
+python3 -B KIP126/LinProgram/Translate/audit-naturality-targets.py --check
+LEAN_NUM_THREADS=4 lake build
+bash scripts/check.sh
+python3 -B scripts/check_external_inputs.py --lean-check /tmp/kip126-global-e2-input-check.lean
+lake env lean /tmp/kip126-global-e2-input-check.lean
+leanblueprint web
+lake exe checkdecls blueprint/lean_decls
+```
+
+关系检查按原来的 227 个归档块及首三条记录组合。为控制构建体积，字符提案
+声明为 `noncomputable`，避免无用的原生代码生成；每块布尔结果仍由
+`decide +kernel` 证明，提案与原归档的绑定仍由内核定义相等性检查。
+冷构建时应按机器内存限制并发；本机预编共享模块后分批构建归档块，随后构建
+总表、分次与消费者。这个构建优化不减少关系数、改变输入哈希或增加信任前提。
+
+### 数据层与合同核验记录
+
+全部 227 个关系块及首三条记录的内核证明通过；齐次性总表用时约3.6秒。
+复用已有依赖、以24块为一批重建归档证书共152.0秒，含总表累计156.8秒；
+其中两个试验块已缓存。这不是全仓库冷启动耗时。最终227块的 `.olean`
+总计115346264字节（约110 MiB），最大单块636184字节。
+
+`LinNativeAlgebra` 构建及自动传递公理审计通过；分次、张成空间、q 的低次同构、
+乘法、原生局部坐标和小型截断反例均只依赖三项标准逻辑公理。
+`LinNativeWords200` 的全量构建与审计同样通过：全部15951条 A 等式、原关系
+成员资格、源ID、旧D等式相容及平方检测均通过。该次命令实测54.084秒，
+峰值RSS约2.67 GiB；包含新词模块约36秒、检查模块约15秒。
+两个新生成器、旧193个证明模块生成器的 `--check` 及8项拒绝/边界测试通过。
+
+`LinNativePresentation` 已构建通过：新结构字段恰为全局映射、保度、低次双射；
+旧比较、乘法和保乘性都不是投影字段，也没有直接使用新增占位证明。
+保乘性定理的传递依赖仍含实际目标的 `sorryAx`，因此这里只确认接口迁移和
+派生证明，不能据此标记实际认证完成。交换律已由明确的 cobar 边界责任经
+上同调及固定比较导出；单位、结合及该边界责任继续 `notready`。
+
+最终集成验收已通过：`LEAN_NUM_THREADS=4 lake build` 完成全部5789个构建任务，
+包括原生微分、自然性、CW/Ceta、staircase、平方识别及最终 Main 消费者。
+`scripts/check.sh` 的105项及两组各7项回归通过；新齐次性导出器的8项测试通过。
+原 Words200、有限余链、Batch21 和目标清单的重放及原证明生成物检查均通过。
+原始 Raw/Generated 数据没有修改；来源清单仍对应26个来源、127个工件。
+
+来源与接口审计覆盖55个接口字段、29个计算 statement、5个比较证明字段、
+42个 route 审计组和238组声明/模块对应，生成的 Lean 类型检查成功。
+使用仓库固定版本 leanblueprint 0.0.20 的网页构建、活动标签/依赖检查和
+`lake exe checkdecls blueprint/lean_decls` 全部通过；`git diff --check` 通过。
+这些构建结果不消去上文的实际数学责任，最终定理仍有既有 Challenge2 输入及
+未完成模型依赖，不能标记为无前提的实际认证。
