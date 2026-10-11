@@ -1467,8 +1467,10 @@ top-cell/presentation comparison as explicit remaining obligations.
 \begin{proof}
   \leanok
   Prove parsing and evaluation agree for every string, with the native zero
-  convention explicit. The kernel checks every monomial in all original
-  images against the original generator degrees. Polynomial evaluation lies
+  convention explicit. Bounded batches let the kernel check every monomial
+  in all 887 original images against the original generator degrees without
+  retaining one whole-graph reduction. The batch proofs combine to the same
+  complete-graph statement. Polynomial evaluation lies
   in the corresponding span. Apply homogeneous descent and the equality
   with the original nonnegative sphere submodules.
 \end{proof}
@@ -1519,7 +1521,8 @@ top-cell/presentation comparison as explicit remaining obligations.
   \leanok
   Prove that each native coefficient monomial shifts a full module span by
   its recorded degree. Summation gives soundness of the module-term degree
-  checker. Kernel computation checks every term in the entire official graph.
+  checker. Bounded kernel computations cover every term in all 844 original
+  graph entries, and their proofs combine to the same complete-graph statement.
   The all-string parser evaluation theorem identifies those terms with the
   full target quotient images. Apply homogeneous descent to the original
   source relation list and restrict at nonnegative target indices.

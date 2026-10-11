@@ -15,6 +15,7 @@ import all Init.Data.List.SplitOn.Basic
 original bidegree shifted by (0,-4). The complete original source and target
 quotients are retained. This degree proof does not supply either the source
 relation certificates or comparison with an actual spectrum map. -/
+set_option Elab.async false
 set_option maxRecDepth 100000
 set_option maxHeartbeats 16000000
 set_option cbv.maxSteps 10000000
@@ -40,8 +41,125 @@ def cwDegreeCheck (i : Nat) : Bool :=
       (CWNuEta.generatorDegree ⟨i,h⟩ + (0,-4))
   else false
 
+-- Keep each kernel computation small; the checked ranges still cover every original index.
+private theorem all_range'_join (start left right : Nat) (p : Nat → Bool)
+    (hl : (List.range' start left).all p = true)
+    (hr : (List.range' (start + left) right).all p = true) :
+    (List.range' start (left + right)).all p = true := by
+  rw [← List.range'_append_1, List.all_append, hl, hr]
+  rfl
+
+private theorem cw_degree_chunk_000 :
+    ((List.range' 0 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_001 :
+    ((List.range' 32 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_002 :
+    ((List.range' 64 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_003 :
+    ((List.range' 96 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_004 :
+    ((List.range' 128 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_005 :
+    ((List.range' 160 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_006 :
+    ((List.range' 192 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_007 :
+    ((List.range' 224 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_008 :
+    ((List.range' 256 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_009 :
+    ((List.range' 288 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_010 :
+    ((List.range' 320 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_011 :
+    ((List.range' 352 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_012 :
+    ((List.range' 384 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_013 :
+    ((List.range' 416 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_014 :
+    ((List.range' 448 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_015 :
+    ((List.range' 480 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_016 :
+    ((List.range' 512 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_017 :
+    ((List.range' 544 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_018 :
+    ((List.range' 576 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_019 :
+    ((List.range' 608 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_020 :
+    ((List.range' 640 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_021 :
+    ((List.range' 672 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_022 :
+    ((List.range' 704 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_023 :
+    ((List.range' 736 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_024 :
+    ((List.range' 768 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_025 :
+    ((List.range' 800 32).all cwDegreeCheck) = true := by cbv
+
+private theorem cw_degree_chunk_026 :
+    ((List.range' 832 12).all cwDegreeCheck) = true := by cbv
+
 theorem cw_degree_all :
-    ((List.range RawData.CWNuEta.generatorCount).all cwDegreeCheck) = true := by cbv
+    ((List.range RawData.CWNuEta.generatorCount).all cwDegreeCheck) = true := by
+  rw [List.range_eq_range']
+  refine all_range'_join 0 32 812 cwDegreeCheck cw_degree_chunk_000 ?_
+  refine all_range'_join 32 32 780 cwDegreeCheck cw_degree_chunk_001 ?_
+  refine all_range'_join 64 32 748 cwDegreeCheck cw_degree_chunk_002 ?_
+  refine all_range'_join 96 32 716 cwDegreeCheck cw_degree_chunk_003 ?_
+  refine all_range'_join 128 32 684 cwDegreeCheck cw_degree_chunk_004 ?_
+  refine all_range'_join 160 32 652 cwDegreeCheck cw_degree_chunk_005 ?_
+  refine all_range'_join 192 32 620 cwDegreeCheck cw_degree_chunk_006 ?_
+  refine all_range'_join 224 32 588 cwDegreeCheck cw_degree_chunk_007 ?_
+  refine all_range'_join 256 32 556 cwDegreeCheck cw_degree_chunk_008 ?_
+  refine all_range'_join 288 32 524 cwDegreeCheck cw_degree_chunk_009 ?_
+  refine all_range'_join 320 32 492 cwDegreeCheck cw_degree_chunk_010 ?_
+  refine all_range'_join 352 32 460 cwDegreeCheck cw_degree_chunk_011 ?_
+  refine all_range'_join 384 32 428 cwDegreeCheck cw_degree_chunk_012 ?_
+  refine all_range'_join 416 32 396 cwDegreeCheck cw_degree_chunk_013 ?_
+  refine all_range'_join 448 32 364 cwDegreeCheck cw_degree_chunk_014 ?_
+  refine all_range'_join 480 32 332 cwDegreeCheck cw_degree_chunk_015 ?_
+  refine all_range'_join 512 32 300 cwDegreeCheck cw_degree_chunk_016 ?_
+  refine all_range'_join 544 32 268 cwDegreeCheck cw_degree_chunk_017 ?_
+  refine all_range'_join 576 32 236 cwDegreeCheck cw_degree_chunk_018 ?_
+  refine all_range'_join 608 32 204 cwDegreeCheck cw_degree_chunk_019 ?_
+  refine all_range'_join 640 32 172 cwDegreeCheck cw_degree_chunk_020 ?_
+  refine all_range'_join 672 32 140 cwDegreeCheck cw_degree_chunk_021 ?_
+  refine all_range'_join 704 32 108 cwDegreeCheck cw_degree_chunk_022 ?_
+  refine all_range'_join 736 32 76 cwDegreeCheck cw_degree_chunk_023 ?_
+  refine all_range'_join 768 32 44 cwDegreeCheck cw_degree_chunk_024 ?_
+  refine all_range'_join 800 32 12 cwDegreeCheck cw_degree_chunk_025 ?_
+  exact cw_degree_chunk_026
 
 /-- Every image in the complete 844-entry original graph has degree shift
 (0,-4), including the empty image at a negative shifted target degree. -/
