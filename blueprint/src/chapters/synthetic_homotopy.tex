@@ -445,6 +445,25 @@ coherences remain outside the Project Boundary.
   and $\nu$ datum; those bindings are not supplied by this definition.
 \end{definition}
 
+\begin{proposition}[Isomorphisms propagate from the initial page]
+  \label{prop:page-isomorphism-from-initial-page}
+  \lean{KIPBase.Synthetic.AffineReindexedSpectralSequenceMorphism.pageMap_isIso_of_initial}
+  \uses{def:pagewise-sequence-comparison}
+  \leanok
+  Let $\Phi$ be an affine reindexed morphism of spectral sequences, with
+  maps on every page from an initial page $r_0$. Assume that its page maps
+  commute with the differentials and that the map on page $r+1$ is the map
+  induced on homology by the page-$r$ map. If every component of
+  $\Phi_{r_0}$ is an isomorphism, then every component of $\Phi_r$ is an
+  isomorphism for all $r\ge r_0$.
+
+  At each step the three maps in the centered page complex are isomorphisms;
+  hence the map of short complexes is an isomorphism, and its homology map
+  is an isomorphism. The successor condition identifies this homology map
+  with the already specified next-page map. For the Adams--Bockstein
+  comparison, take $r_0=2$.
+\end{proposition}
+
 % SOURCE: MainPaper/main.tex:799-807, definition implicit in Theorem thm:rigid.
 \begin{definition}[Synthetic Adams spectral sequence]
   \label{def:synthetic-adams-ss}

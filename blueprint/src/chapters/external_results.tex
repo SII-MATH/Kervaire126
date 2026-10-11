@@ -1867,7 +1867,7 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
 % MainPaper line 819's tau denotes the deformation map called lambda here.
 \begin{theorem}[$\lambda$-Bockstein comparison]
   \label{thm:external-lambda-bockstein}
-  \uses{thm:external-synthetic-rigidity,thm:external-finite-lambda-bockstein,def:lambda-normalized-sequence,def:pagewise-sequence-comparison,def:bhs-aim-regrading,def:synthetic-lambda-quotient}
+  \uses{thm:external-synthetic-rigidity,thm:external-finite-lambda-bockstein,def:lambda-normalized-sequence,def:pagewise-sequence-comparison,prop:page-isomorphism-from-initial-page,def:bhs-aim-regrading,def:synthetic-lambda-quotient}
   \notready
   Under the preceding source hypotheses, for $q\ge1$ the intrinsic $\lambda$-Bockstein
   page $q$ corresponds to synthetic Adams page $q+1$, compatibly with
@@ -1886,8 +1886,15 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   with differentials and successor homology maps; agreement of displayed
   pages does not identify arbitrary raw ambient SSData objects.
   Definition~\ref{def:pagewise-sequence-comparison} now supplies this generic
-  comparison language, but not its first-quotient and $\nu$ representative
-  comparisons in the specified model.
+  comparison language, and Proposition~\ref{prop:page-isomorphism-from-initial-page}
+  proves that an initial page isomorphism propagates when successor maps are
+  homology-induced. To apply it here still requires the bridge theorem that
+  constructs the actual page-$2$ map from the first-quotient and $\nu$
+  representative comparison, verifies differential compatibility, and
+  identifies each homology-induced successor with the normalized
+  $\lambda$-Bockstein page map. Its indices must also implement the source
+  identification $q\leftrightarrow r-1$ (intrinsic Bockstein page $q$ versus
+  synthetic Adams page $r=q+1$).
 \end{theorem}
 
 \begin{proof}

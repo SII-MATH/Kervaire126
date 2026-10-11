@@ -465,6 +465,7 @@ theorem LambdaBocksteinTargetPageRep.eq_zero_of_mem_next
       (↑(r - E.r₀).toNat : WithTop ℕ)).arrow).mp
     rw [hxZ, hxZero, zero_comp]
   rw [← hxClass, hxZZero, zero_comp]
+  rfl
 
 /-- Two target representatives define the same current page class whenever
 their actual λ-boundaries differ by one higher filtration step. -/
@@ -1950,6 +1951,157 @@ noncomputable def AffineReindexedSpectralSequenceMorphism.succPageMap
     { degree_compat := Φ.degree_compat r
       pageMap := Φ.pageMap r hr
       differential_comm := Φ.differential_comm r hr } hE hB sk)
+
+/-- If the current-page maps are isomorphisms, their induced map on the
+successor page is an isomorphism. The proof is the homology map of the
+three-term page-complex map. -/
+theorem AffineReindexedSinglePageMap.succPageMap_isIso
+    {E : SpectralSequence AddCommGrpCat.{0} (ℤ × ℤ × ℤ)}
+    {B : SpectralSequence AddCommGrpCat.{0} (ℤ × ℤ)}
+    {reindex : ℤ × ℤ → ℤ × ℤ × ℤ}
+    {r : ℤ}
+    (Φ : AffineReindexedSinglePageMap E B reindex r)
+    (hE : E.r₀ ≤ r) (hB : B.r₀ ≤ r)
+    (hmap : ∀ sk, IsIso (Φ.pageMap sk)) (sk : ℤ × ℤ) :
+    IsIso (Φ.succPageMap hE hB sk) := by
+  let ψ := AffineReindexedPageComplexMap.ofSinglePageMap Φ sk
+  let f := ψ.toShortComplexHom
+  have hsub : reindex (sk - B.diffDeg r) =
+      reindex sk - E.diffDeg r := by
+    have h := Φ.degree_compat (sk - B.diffDeg r)
+    have h' := congrArg (fun k => k - E.diffDeg r) h
+    simpa using h'.symm
+  haveI : IsIso f.τ₁ := by
+    change IsIso ψ.left
+    have hleft : ψ.left =
+        eqToHom (congrArg (E.Page r) hsub.symm) ≫
+          Φ.pageMap (sk - B.diffDeg r) := by
+      apply AddCommGrpCat.hom_ext
+      apply AddMonoidHom.ext
+      intro x
+      simp [ψ, AffineReindexedPageComplexMap.ofSinglePageMap, hsub,
+        sub_add_cancel]
+    haveI : IsIso (Φ.pageMap (sk - B.diffDeg r)) := hmap _
+    rw [hleft]
+    infer_instance
+  haveI : IsIso f.τ₂ := by
+    change IsIso ψ.middle
+    have hsource :
+        ((reindex sk - E.diffDeg r) + E.diffDeg r) = reindex sk :=
+      sub_add_cancel _ _
+    have htarget : ((sk - B.diffDeg r) + B.diffDeg r) = sk :=
+      sub_add_cancel _ _
+    have hmiddleHEq : ψ.middle ≍ Φ.pageMap sk := by
+      dsimp [ψ, AffineReindexedPageComplexMap.ofSinglePageMap]
+      exact (cast_heq_iff_heq _ _ _).2 HEq.rfl
+    have hmiddle :=
+      (conj_eqToHom_iff_heq ψ.middle (Φ.pageMap sk)
+        (congrArg (E.Page r) hsource) (congrArg (B.Page r) htarget)).2
+          hmiddleHEq
+    haveI : IsIso (Φ.pageMap sk) := hmap sk
+    rw [hmiddle]
+    infer_instance
+  haveI : IsIso f.τ₃ := by
+    change IsIso ψ.right
+    have hsource :
+        ((reindex sk - E.diffDeg r) + E.diffDeg r + E.diffDeg r) =
+          reindex (sk + B.diffDeg r) := by
+      rw [sub_add_cancel]
+      rw [Φ.degree_compat sk]
+    have htarget :
+        ((sk - B.diffDeg r) + B.diffDeg r + B.diffDeg r) =
+          sk + B.diffDeg r := by
+      rw [sub_add_cancel]
+    have hrightHEq : ψ.right ≍ Φ.pageMap (sk + B.diffDeg r) := by
+      dsimp [ψ, AffineReindexedPageComplexMap.ofSinglePageMap]
+      exact (cast_heq_iff_heq _ _ _).2
+        ((cast_heq_iff_heq _ _ _).2 HEq.rfl)
+    have hright :=
+      (conj_eqToHom_iff_heq ψ.right (Φ.pageMap (sk + B.diffDeg r))
+        (congrArg (E.Page r) hsource) (congrArg (B.Page r) htarget)).2
+          hrightHEq
+    haveI : IsIso (Φ.pageMap (sk + B.diffDeg r)) := hmap _
+    rw [hright]
+    infer_instance
+  haveI : IsIso f := by
+    apply ShortComplex.isIso_of_isIso f
+  haveI : IsIso (ShortComplex.homologyMap f) :=
+    (ShortComplex.homologyMapIso (asIso f)).isIso_hom
+  change IsIso
+    ((E.pageHomologyIso r (reindex sk) hE).hom ≫
+      ShortComplex.homologyMap f ≫ (B.pageHomologyIso r sk hB).inv)
+  infer_instance
+
+/-- The page maps form a genuine spectral-sequence morphism only when the
+map on page `r+1` is the one induced from page `r` by the homology quotient.
+This condition is essential: pagewise differential squares alone do not
+constrain a separately chosen map on the next page. -/
+def AffineReindexedSpectralSequenceMorphism.RespectsSuccessor
+    {E : SpectralSequence AddCommGrpCat.{0} (ℤ × ℤ × ℤ)}
+    {B : SpectralSequence AddCommGrpCat.{0} (ℤ × ℤ)}
+    {reindex : ℤ × ℤ → ℤ × ℤ × ℤ} {firstPage : ℤ}
+    (Φ : AffineReindexedSpectralSequenceMorphism E B reindex firstPage) : Prop :=
+  ∀ (r : ℤ) (hr : firstPage ≤ r)
+    (hE : E.r₀ ≤ r) (hB : B.r₀ ≤ r) (sk : ℤ × ℤ),
+      Φ.pageMap (r + 1) (by omega) sk =
+        Φ.succPageMap r hr hE hB sk
+
+/-- An isomorphism on the first page propagates to every later page, provided
+the page maps are the canonical homology-induced successor maps. -/
+theorem AffineReindexedSpectralSequenceMorphism.pageMap_isIso_of_initial
+    {E : SpectralSequence AddCommGrpCat.{0} (ℤ × ℤ × ℤ)}
+    {B : SpectralSequence AddCommGrpCat.{0} (ℤ × ℤ)}
+    {reindex : ℤ × ℤ → ℤ × ℤ × ℤ} {firstPage : ℤ}
+    (Φ : AffineReindexedSpectralSequenceMorphism E B reindex firstPage)
+    (hE₀ : E.r₀ ≤ firstPage) (hB₀ : B.r₀ ≤ firstPage)
+    (hInitial : ∀ sk, IsIso (Φ.pageMap firstPage le_rfl sk))
+    (hSuccessor : Φ.RespectsSuccessor) :
+    ∀ (n : ℕ) (sk : ℤ × ℤ),
+      IsIso (Φ.pageMap (firstPage + n) (by omega) sk) := by
+  intro n
+  induction n with
+  | zero =>
+      intro sk
+      let P : ℤ → Prop := fun i =>
+        ∀ hi : firstPage ≤ i, IsIso (Φ.pageMap i hi sk)
+      have hzero : firstPage + (0 : ℕ) = firstPage := by omega
+      have hP : P firstPage := by
+        intro hi
+        exact hInitial sk
+      have hPzero : P (firstPage + (0 : ℕ)) := hzero.symm ▸ hP
+      exact hPzero (by omega)
+  | succ n ih =>
+      intro sk
+      let r := firstPage + (n : ℤ)
+      have hr : firstPage ≤ r := by dsimp [r]; omega
+      have hE : E.r₀ ≤ r := le_trans hE₀ hr
+      have hB : B.r₀ ≤ r := le_trans hB₀ hr
+      have hcur : ∀ sj, IsIso (Φ.pageMap r hr sj) := by
+        intro sj
+        simpa only [r] using ih sj
+      have hnext := AffineReindexedSinglePageMap.succPageMap_isIso
+        (E := E) (B := B) (reindex := reindex)
+        { degree_compat := Φ.degree_compat r
+          pageMap := Φ.pageMap r hr
+          differential_comm := Φ.differential_comm r hr }
+        hE hB hcur sk
+      have hcompat := hSuccessor r hr hE hB sk
+      have hnextIso : IsIso (Φ.pageMap (r + 1) (by omega) sk) := by
+        rw [hcompat]
+        exact hnext
+      have hindex : r + 1 = firstPage + ((n : ℤ) + 1) := by
+        dsimp [r]
+        omega
+      have hnat : firstPage + ((n : ℤ) + 1) = firstPage + (↑(n + 1) : ℤ) := by
+        congr 1
+      let P : ℤ → Prop := fun i =>
+        ∀ hi : firstPage ≤ i, IsIso (Φ.pageMap i hi sk)
+      have hP : P (r + 1) := by
+        intro hi
+        exact hnextIso
+      have hPnext : P (firstPage + (↑(n + 1) : ℤ)) :=
+        (hindex.trans hnat) ▸ hP
+      exact hPnext (by omega)
 
 /-- The type of the desired comparison at one fixed homotopy bidegree. -/
 abbrev CanonicalAdamsLambdaBocksteinEquivalence
