@@ -133,6 +133,66 @@ This section defines the stable-homotopy language required by the paper.  Locate
   are still required.
 \end{definition}
 
+\begin{proposition}[Extension along a shifted cofiber inclusion]
+  \label{prop:shifted-cofiber-extension}
+  \lean{KIP126.StableHomotopy.CofiberExtension.shiftedCofiberTriangle,KIP126.StableHomotopy.CofiberExtension.shiftedCofiberTriangle_distinguished,KIP126.StableHomotopy.CofiberExtension.exists_extension_of_shift_comp_zero,KIP126.StableHomotopy.CofiberExtension.exists_eta_nu_extension}
+  \uses{def:cofiber-triangle,def:stable-sphere-suspension,def:mathlib-pretriangulated}
+  \leanok
+  In any supplied stable-homotopy context with the chosen cofibers, let
+  $f:X\to Y$, $n\in\mathbb Z$, and $a:\Sigma^nY\to Z$. If
+  $a\circ\Sigma^nf=0$, there exists $g:\Sigma^nC(f)\to Z$ with
+  $g\circ\Sigma^n\iota_f=a$. All integers and all objects are retained.
+  In particular, for the same maps $\eta:S^1\to S^0$ and
+  $\nu:S^3\to S^0$, the explicit premise
+  $\nu\circ\Sigma^3\eta=0$ gives an extension
+  $\Sigma^3C\eta\to S^0$ restricting to $\nu$.
+  This does not prove the composite-zero premise for the fixed model,
+  choose an actual CW comparison, or identify native coordinates.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Shift the chosen distinguished cofiber triangle, then use the triangle
+  isomorphism with components $1,(-1)^n,1$ to make its first two arrows
+  positive while retaining the signed connecting map. Contravariant
+  representable exactness at the middle term gives the extension.
+  No additional sign compatibility is assumed.
+\end{proof}
+
+\begin{proposition}[Cofiber comparison of an extension and its restriction]
+  \label{prop:cofiber-extension-octahedron}
+  \lean{KIP126.StableHomotopy.CofiberExtension.cofiber_triangle_of_extension,KIP126.StableHomotopy.CofiberExtension.exists_eta_nu_cofiber_triangles,KIP126.StableHomotopy.CofiberExtension.sphereSixIso,KIP126.StableHomotopy.CofiberExtension.shiftFourIso}
+  \uses{prop:shifted-cofiber-extension,def:mathlib-octahedron}
+  \leanok
+  In the same category with the octahedron axiom, let
+  $g:\Sigma^n C(f)\to Z$ restrict along the positive shifted inclusion
+  to $a:\Sigma^nY\to Z$. There are maps
+  $m:\Sigma^{n+1}X\to C(a)$ and $j:C(a)\to C(g)$ from one octahedron.
+  They give the distinguished triangle
+  \[
+    C(a)\xrightarrow{j} C(g)
+      \xrightarrow{(\Sigma\delta_{f,n})\delta_g}
+      \Sigma^{n+2}X\xrightarrow{-\Sigma m}\Sigma C(a),
+  \]
+  where $\delta_{f,n}$ is the signed connecting map of the normalized
+  shifted cofiber triangle. All four octahedron squares are retained,
+  including $j\iota_a=\iota_g$ and
+  $\delta_gj=(\Sigma^{n+1}\iota_f)\delta_a$.
+  No independent choice of a cofiber map replaces $j$.
+  For $f=\eta:S^1\to S^0$, $n=3$ and $a=\nu$, the explicit composite-zero
+  premise supplies one $g,m,j$ and both triangles
+  $S^0\to C(g)\to\Sigma^4C\eta$ and
+  $C\nu\to C(g)\to S^6$. The former's second map is exactly
+  $\delta_g$ followed by the canonical shift-composition isomorphism.
+  Actual composite vanishing and native-module comparisons remain separate.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Apply the octahedron axiom to the rotated normalized shifted triangle,
+  the chosen cofiber triangle of $g$, and the chosen cofiber triangle of
+  $a$. Rotate its new distinguished triangle and keep the same two maps
+  and four squares. The final connecting arrow is $-\Sigma m$.
+\end{proof}
+
 % SOURCE: MainPaper/main.tex:253-271, 648-664, and 929-971; exactness used repeatedly.
 \begin{theorem}[Stable homotopy long exact sequence]
   \label{thm:stable-homotopy-long-exact}

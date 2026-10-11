@@ -72,6 +72,30 @@ the Adams and synthetic arguments.
   \leanok
 \end{proof}
 
+\begin{proposition}[Third-page labels, cycles and incoming images]
+  \label{prop:internal-page-three-representatives}
+  \lean{KIP126.Core.SpectralSequence.PageThree.exists_representative,KIP126.Core.SpectralSequence.PageThree.reachesPage_iff_d2_eq_zero,KIP126.Core.SpectralSequence.PageThree.isBoundaryBy_iff_mem_d2_range,KIP126.Core.SpectralSequence.PageThree.represents_iff_sub_mem_d2_range,KIP126.Core.SpectralSequence.PageThree.equal_iff_sub_mem_d2_range}
+  \uses{def:internal-nested-spectral-sequence,prop:internal-page-calculus}
+  \leanok
+  For an internal spectral sequence in modules over any ring, every
+  $E_3$ element has an $E_2$ label represented by the same cycle.
+  If the starting page is at most two, an $E_2$ label reaches $E_3$
+  exactly when its actual $d_2$ vanishes. Its cumulative boundary
+  condition after $d_2$ is precisely membership in the actual incoming
+  $d_2$ image. Given a common representative, another label represents
+  that same $E_3$ element exactly when their difference lies in this image.
+  The same criterion detects equality of two represented $E_3$ elements.
+  All degrees, labels and page elements remain quantified.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Use the canonical quotient epimorphisms and the spectral sequence's
+  successor kernel and image identities. Transport the subobjects to
+  module kernels and ranges; the quotient zero criterion and differences
+  of common cycles prove the equivalences. No separate homology
+  identification is supplied as a new premise.
+\end{proof}
+
 \begin{proposition}[Finite-page representatives and complete bases]
   \label{prop:internal-finite-page-calculus}
   \lean{KIP126.Core.SpectralSequence.FinitePageCalculus.represents_unique,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_d_zero_of_later,KIP126.Core.SpectralSequence.FinitePageCalculus.next_projection_zero_iff_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.page_generated_from_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_before,KIP126.Core.SpectralSequence.FinitePageCalculus.next_page_two_of_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_later_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_add_tail,KIP126.Core.SpectralSequence.FinitePageCalculus.sixth_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_frame_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fifth_zero_of_all_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.frame_after_second,KIP126.Core.SpectralSequence.FinitePageCalculus.third_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_d_zero_of_second_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.vx_nonzero_no_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.pq_rep3zero_boundary,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_sub_tail,KIP126.Core.SpectralSequence.FinitePageCalculus.page_has_representative,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_from_support,KIP126.Core.SpectralSequence.FinitePageCalculus.d_zero_of_second_kernel_extends,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_before,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_frame_of_three_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_single_basis_zero_page,KIP126.Core.SpectralSequence.FinitePageCalculus.choice_next_zero_of_single_frame_nonzero_differential,KIP126.Core.SpectralSequence.FinitePageCalculus.d_zero_of_complete_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.page_eq_sum_of_complete_representatives,KIP126.Core.SpectralSequence.FinitePageCalculus.same_boundaries_projection_eq,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_add,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_if,KIP126.Core.SpectralSequence.FinitePageCalculus.middle_rep2,KIP126.Core.SpectralSequence.FinitePageCalculus.reaches_earlier,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_sub,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_target_cycle,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_two_self,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_later_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.page_has_initial_representative,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_transport_eq,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_bit,KIP126.Core.SpectralSequence.FinitePageCalculus.differential_two_direct,KIP126.Core.SpectralSequence.FinitePageCalculus.f2_expand,KIP126.Core.SpectralSequence.FinitePageCalculus.generated_one,KIP126.Core.SpectralSequence.FinitePageCalculus.generated_two,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_zero_of_three_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.next_page_zero_of_kernel,KIP126.Core.SpectralSequence.FinitePageCalculus.finite_basis_expansion,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_frame_of_four_basis,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_two_cases,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_zero_at,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_incoming_two_cases_at,KIP126.Core.SpectralSequence.FinitePageCalculus.fourth_frame_of_four_basis_at,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_not_incoming,KIP126.Core.SpectralSequence.FinitePageCalculus.represents_next_nonzero_of_not_incoming_at,KIP126.Core.SpectralSequence.FinitePageCalculus.basis_vector_ne_zero,KIP126.Core.SpectralSequence.FinitePageCalculus.basis_pair_sum_ne_zero}
@@ -93,12 +117,17 @@ the Adams and synthetic arguments.
 
 \begin{proposition}[Naturality of internal pages and representatives]
   \label{prop:internal-page-naturality}
-  \lean{KIP126.Core.SpectralSequence.SSDataMorphism.pageMap_unique,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.representsOnPage,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.hasDifferential,KIP126.Challenge2.MorphismCalculus,KIP126.Def.Comparison.StageInterfaces.internalNaturality}
+  \lean{KIP126.Core.SpectralSequence.SSDataMorphism.hasDifferential_reindexed,KIP126.Core.SpectralSequence.SSDataMorphism.representsOnPage_reindexed,KIP126.Core.SpectralSequence.SSDataMorphism.pageMap_unique,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.representsOnPage,KIP126.Core.SpectralSequence.SpectralSequenceMorphism.hasDifferential,KIP126.Challenge2.MorphismCalculus,KIP126.Def.Comparison.StageInterfaces.internalNaturality}
   \uses{def:internal-canonical-page-map,prop:internal-page-calculus}
   \leanok
   The induced finite and infinite page maps preserve identity and composition.
-  They carry common representatives and differential equalities to those of
-  the target sequence. Preservation of nonzero classes requires an additional
+  Common representatives also transport through an arbitrary reindexing of
+  degrees when the starting pages agree, using the same ambient morphism
+  and its canonical quotient maps. No additivity of the reindexing is needed.
+  Differential equalities require the actual differential commutation and
+  compatibility of the reindexing with the differential-degree translation.
+  This applies to affine shifts as well as ordinary degree-preserving maps.
+  Ordinary morphisms carry both to those of the target sequence. Preservation of nonzero classes requires an additional
   hypothesis and is not asserted here.
 \end{proposition}
 \begin{proof}

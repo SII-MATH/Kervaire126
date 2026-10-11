@@ -1,6 +1,6 @@
 module
 
-public import KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 public import KIP126.Main.Axiom.Challenge2
 public import KIP126.Main.Solution.Computation.Tmf
 public import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
@@ -27,6 +27,7 @@ public import KIP126.Interface.Challenge.Computation.Delivery
 public import Batteries.Data.String.Lemmas
 
 @[expose] public section
+
 
 /-! Consumer projections from the sole correlated Challenge2 witness. -/
 namespace KIP126.Main.StageInput
@@ -1272,7 +1273,6 @@ private theorem nu_source_from_suspension_square
     exact nu_coordinates_nonzero_unique e coord values rows _ _ hl hn
   · intro he
     exact source_triangle_of_rotation_and_square D S hf hg hh R hs he
-
 
 set_option backward.defeqAttrib.useBackward true in
 set_option maxHeartbeats 4000000 in

@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
 public import KIP126.Def.Synthetic.Context.Coherence.Proofs
-public import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Predicates
 public import KIP126.Interface.Solution.Literature.Applications
 public import KIP126.Def.ClassicalAdams.PageRepresentatives.Proofs
 public import KIP126.Def.ClassicalAdams.PageRepresentatives.Order.Proofs
@@ -38,6 +38,8 @@ import all Init.Data.String.Search
 import all Init.Data.String.Slice
 
 @[expose] public section
+
+
 namespace KIP126.Main.Solution.Route.Section7
 open CategoryTheory CategoryTheory.Limits CategoryTheory.Pretriangulated
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
@@ -2417,8 +2419,6 @@ private theorem theta_b_eta_fifth_mod_nine_zero_from_choice
     refine ⟨b ≫ D'.nu.unitIso.hom,?_⟩
     simpa [lambdaMultiply,Category.assoc] using congrArg (fun q => q ≫ D'.nu.unitIso.hom) hb
 
-
-
   have eta_weight129_branches_filtration_fifteen
       (I' : Inputs D' L' G) (SF : Derived.SphereFacts I'.realization)
       (etaAux : BiHom 1 2 (S_0_0 : Syn)) (hη : EtaChoice M' D'.toModelData etaAux)
@@ -2567,7 +2567,6 @@ private theorem theta_b_eta_fifth_mod_nine_zero_from_choice
     erw [reassoc_of% ha]
     erw [← reassoc_of% ((SyntheticCategory.biShift_comp (124,134) (0,-5)).inv.naturality etaAux)]
     rfl
-
 
   have lambda_filtration_preserved {A : Syn} {m w : ℤ}
       (k : ℕ) (s : ℤ) (a : BiHom m w A)

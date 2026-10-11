@@ -40,8 +40,11 @@ bash scripts/check.sh
 KIPBase、旧审计与迁移档案、Euler/Multica 配置及旧工作流和工具留在旧仓库，
 后续同步不重新引入。已有代码的来源标注继续保留。
 
-原始数据库和 CSV 使用 Git LFS，约 618 MiB。普通 Git 文件中的指针不能代替原始输入；
+原始数据库、CSV 和 `Source/LWXMachine/kervaire_database.rar` 使用 Git LFS。
+普通 Git 文件中的指针不能代替原始输入；
 生成 Lean 数据保留在仓库中，重新翻译原始输入需要实际 LFS 文件。
+当前重放使用的提取与重建记录位于 `KIP126/LinProgram/Generated/Provenance/`；
+[LinProgram 说明](KIP126/LinProgram/README.md) 列出局部证书与实际比较的职责。
 
 Blueprint 需要 Graphviz、LaTeX、Ghostscript、pdf2svg 和 `requirements-blueprint.txt` 中的固定 Python 依赖：
 

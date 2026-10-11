@@ -1,12 +1,18 @@
 import KIP126.Interface.Challenge.Challenge2
 import KIP126.Interface.Solution.Literature.Applications
 import KIP126.Interface.Solution.Challenge2
-import KIP126.Interface.Solution.LinProgram.BasisTable
+import KIP126.Interface.Solution.LinProgram.Basis.Certification
 import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
 import KIP126.Def.StageInput.Milnor
 import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Certificate
 import Lean.Elab.Command
+
+/-! This audit intentionally uses non-module imports so that Lean loads proof
+bodies and private helpers throughout the dependency closure. Public module
+imports alone omit those values and would leave the audit incomplete. -/
+
+
 
 /-!
 Check the single direct Challenge2 input and its independent producer. The

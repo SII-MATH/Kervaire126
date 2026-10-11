@@ -5,7 +5,7 @@ public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
 public import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
 public import Init.Data.String.Lemmas.Splits
 public import KIP126.Def.SpectralSequence.FilteredComplex.Crossing.Proofs
-public import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Proofs
 public import KIP126.Def.Kervaire.Route.Section7.AlphaOne
 public import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
 public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Proofs

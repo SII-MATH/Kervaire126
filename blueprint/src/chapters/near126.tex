@@ -98,15 +98,16 @@ own proof, with the stated degree bounds and comparison maps.
 
 \begin{theorem}[Differentials of extracted sphere records]
   \label{thm:lin-proofs-sphere-sound}
-  \lean{KIP126.Computation.LinProofs.sphereTable_sound,KIP126.Computation.LinProofs.differential_of_lookup,KIP126.Computation.LinProofs.row5541}
+  \lean{KIP126.Computation.LinProofs.sphereTable_sound,KIP126.Computation.LinProofs.differential_of_lookup}
   \uses{def:sphere-adams-coherence,def:lin-proofs-sphere-table,def:lin-proofs-sphere-meaning,thm:computation-sphereTable-sound}
   \notready
   Suppose every record of the fixed sphere differential table satisfies
   the interpreted equation of Theorem~\ref{thm:computation-sphereTable-sound}.
   Each successful lookup then gives that differential on the same sphere
   sequence, with the source and target representatives of
-  Definition~\ref{def:lin-proofs-sphere-meaning}. In particular, the extracted
-  record numbered 5541 satisfies its displayed equation.
+  Definition~\ref{def:lin-proofs-sphere-meaning}. The concrete consumer of
+  record 5541 instead uses the independent one-line literature construction
+  in Proposition~\ref{prop:lin-h6-one-line-producer}.
 \end{theorem}
 
 % SOURCE: MainPaper/main.tex:2796--2800 and repeated rows at lines

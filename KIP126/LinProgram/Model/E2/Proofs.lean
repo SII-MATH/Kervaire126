@@ -1,8 +1,10 @@
 module
 
 public import KIP126.LinProgram.Model.E2.Data
+public import KIP126.Def.Algebra.TwoElement.Proofs
 
 @[expose] public section
+
 
 namespace KIP126.LinE2
 
@@ -74,5 +76,17 @@ theorem generator_pow_mem (i : Generator) (n : ℕ) :
 theorem generator_mem (i : Generator) :
     generator i ∈ homogeneousPart (generatorDegree i).1 (generatorDegree i).2 := by
   simpa using generator_pow_mem i 1
+
+/-- Exhaust an entire homogeneous component from its singleton-span equality.
+The span equality must be proved separately; no basis or differential is assumed. -/
+theorem E2At_eq_zero_or_of_span {s t : ℕ} (a : E2At s t)
+    (hspan : homogeneousPart s t =
+      Submodule.span KIP126.Core.Algebra.F2 ({a.val} : Set E2)) (x : E2At s t) :
+    x = 0 ∨ x = a := by
+  have hx : x.val ∈ Submodule.span KIP126.Core.Algebra.F2 ({a.val} : Set E2) :=
+    (le_of_eq hspan) x.property
+  rcases KIP126.Core.Algebra.eq_zero_or_of_span_singleton a.val x.val hx with h | h
+  · exact Or.inl (Subtype.ext h)
+  · exact Or.inr (Subtype.ext h)
 
 end KIP126.LinE2

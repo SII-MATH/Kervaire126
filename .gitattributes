@@ -1,3 +1,9 @@
 KIP126/LinProgram/Raw/*.db filter=lfs diff=lfs merge=lfs -text
 KIP126/LinProgram/Raw/*.csv filter=lfs diff=lfs merge=lfs -text
 *.pdf binary
+Source/LWXMachine/kervaire_database.rar filter=lfs diff=lfs merge=lfs -text
+KIP126/LinProgram/Raw/Secondary/Seed5487/*.db filter=lfs diff=lfs merge=lfs -text
+KIP126/LinProgram/Raw/Naturality/Batch21/*.db filter=lfs diff=lfs merge=lfs -text
+KIP126/LinProgram/Raw/Naturality/Batch40/*.db filter=lfs diff=lfs merge=lfs -text
+# Preserve the pinned upstream configuration bytes, including CRLF endings.
+Source/LWXMachine/Adams.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

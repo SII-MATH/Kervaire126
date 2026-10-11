@@ -1,9 +1,10 @@
 module
 
 public import KIP126.LinProgram.Tactic.Support.Data
-public import KIP126.LinProgram.Model.BasisTable.Data
+public import KIP126.LinProgram.Model.BasisCatalogue.Data
 
 @[expose] public section
+
 
 /-! Degree-indexed expressions ported from KIPBase at 639057b.
 Strict decoding returns errors; it makes no claim about reduction soundness.

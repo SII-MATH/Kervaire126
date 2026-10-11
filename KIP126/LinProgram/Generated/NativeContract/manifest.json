@@ -1,0 +1,775 @@
+{
+  "schema_version": 1,
+  "kind": "rebuildable-native-target-and-witness-snapshot",
+  "provenance": {
+    "canonical_registry": "docs/external-inputs.json",
+    "pinned_inputs": "KIP126/LinProgram/Raw/manifest.json",
+    "checked_raw_inputs": [
+      "proofs.db",
+      "S0_AdamsE2_generators.csv",
+      "S0_AdamsE2_relations.csv",
+      "S0_AdamsE2_basis.csv",
+      "S0_AdamsSS_t261.db",
+      "ss.json",
+      "Ceta_AdamsSS_t200.db",
+      "map_AdamsSS_Ceta_to_S0_t200.db",
+      "CW_nu_eta_AdamsSS_t200.db",
+      "map_AdamsSS_CW_nu_eta_to_Ceta_t200.db"
+    ],
+    "native_map_catalogue": "KIP126/LinProgram/Raw/ss.json"
+  },
+  "contract": {
+    "raw_log_type": "KIP126.Computation.LinProofs.Raw.LogRow",
+    "raw_columns": [
+      "id",
+      "depth",
+      "reason",
+      "name",
+      "stem",
+      "s",
+      "t",
+      "r",
+      "x",
+      "dx",
+      "info"
+    ],
+    "coordinate_index_base": 0,
+    "degrees": "s is Adams filtration; t is internal degree; stem=t-s; d_r:(s,t)->(s+r,t+r-1)",
+    "sql_null": "unknown or absent, preserved as null",
+    "empty_coordinate_string": "known zero vector",
+    "minus_one_or_bracket_null": "unknown sentinel, never an empty vector",
+    "finite_page_range": "2 <= r < 999; 999,1000,1001 are not finite differential pages",
+    "target_policy": "native coordinates determine the statement; auxiliary witnesses do not change it",
+    "generated_proof_status": "unverified",
+    "actual_certification": false
+  },
+  "algebra": {
+    "target_log": {
+      "id": 152098,
+      "depth": 0,
+      "reason": "D",
+      "name": "S0",
+      "stem": 38,
+      "s": 4,
+      "t": 42,
+      "r": 4,
+      "x": "1",
+      "dx": "",
+      "info": null
+    },
+    "retained_trial_log": {
+      "id": 152097,
+      "depth": 1,
+      "reason": "T",
+      "name": "S0",
+      "stem": 38,
+      "s": 4,
+      "t": 42,
+      "r": 4,
+      "x": "1",
+      "dx": "0",
+      "info": "Get `S0 (38,4) d_4[1]=[0]`. Apply the Leibniz rule with `S0 (1,1) d_4[0]=[]` and get `S0 (39,5) d_4[]=[0]`.\nHowever, `S0 (38,9) [0]` is not in B_3."
+    },
+    "native_row_equation": {
+      "spectrum": "S0",
+      "page": 4,
+      "source": {
+        "degree": [
+          4,
+          42
+        ],
+        "coordinates": [
+          1
+        ]
+      },
+      "target": {
+        "degree": [
+          8,
+          45
+        ],
+        "coordinates": []
+      }
+    },
+    "diagnostic_equations": [
+      {
+        "name": "S0",
+        "s": 4,
+        "t": 42,
+        "r": 4,
+        "x": [
+          1
+        ],
+        "dx": [
+          0
+        ]
+      },
+      {
+        "name": "S0",
+        "s": 1,
+        "t": 2,
+        "r": 4,
+        "x": [
+          0
+        ],
+        "dx": []
+      },
+      {
+        "name": "S0",
+        "s": 5,
+        "t": 44,
+        "r": 4,
+        "x": [],
+        "dx": [
+          0
+        ]
+      }
+    ],
+    "data_algebra": "KIP126.LinE2.E2",
+    "product_witnesses": [
+      {
+        "input": [
+          [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              18,
+              1
+            ]
+          ]
+        ],
+        "output": [],
+        "trace": [
+          {
+            "factor": [
+              [
+                0,
+                1
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                18,
+                1
+              ]
+            ],
+            "relation": "0,1,1,1",
+            "csv_ordinal_zero_based": 0,
+            "relation_degree": [
+              2,
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "input": [
+          [
+            [
+              1,
+              1
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              13,
+              1
+            ]
+          ]
+        ],
+        "output": [
+          [
+            [
+              0,
+              3
+            ],
+            [
+              36,
+              1
+            ]
+          ]
+        ],
+        "trace": [
+          {
+            "factor": [
+              [
+                13,
+                1
+              ]
+            ],
+            "relation": "1,1,9,1;0,1,10,1",
+            "csv_ordinal_zero_based": 25,
+            "relation_degree": [
+              5,
+              23
+            ]
+          },
+          {
+            "factor": [
+              [
+                0,
+                1
+              ]
+            ],
+            "relation": "10,1,13,1;2,1,32,1",
+            "csv_ordinal_zero_based": 187,
+            "relation_degree": [
+              8,
+              46
+            ]
+          },
+          {
+            "factor": [
+              [
+                0,
+                1
+              ]
+            ],
+            "relation": "2,1,32,1;0,2,36,1",
+            "csv_ordinal_zero_based": 189,
+            "relation_degree": [
+              8,
+              46
+            ]
+          }
+        ]
+      }
+    ],
+    "witness_declarations": [
+      "Replay152098.productWitness0",
+      "Replay152098.productWitness1"
+    ],
+    "fixed_quotient_statement_declarations": [
+      {
+        "product_witness_index": 0,
+        "declaration": "KIP126.LinE2.ReplayProducts.native_source_product_zero"
+      },
+      {
+        "product_witness_index": 1,
+        "declaration": "KIP126.LinE2.ReplayProducts.native_target_product"
+      }
+    ],
+    "generated_lean_sha256": "9318f71579ea7dd05de961f98a937491d9c1944af6b7c66ce9c807376cd111e1",
+    "status": "unverified-auxiliary-witnesses",
+    "actual_row_certified": false,
+    "remaining_actual_row_obligations": [
+      "Prove the source coordinate [1] at S0 (4,42) reaches E4 through the same presentation.",
+      "Prove the source multiplier [0] at S0 (1,2) reaches E4 and has d4=0.",
+      "Construct actual E4 multiplication and prove the Leibniz equation on all required representatives.",
+      "Prove exhaustive actual d4 candidates for the source, with the retained trial's complete context.",
+      "Prove S0 (9,47) coordinate [0] is not in the actual B3 space, including certified earlier boundaries."
+    ]
+  },
+  "naturality": {
+    "source_candidate_log": {
+      "id": 245130,
+      "depth": 0,
+      "reason": "D",
+      "name": "Ceta",
+      "stem": 17,
+      "s": 2,
+      "t": 19,
+      "r": 3,
+      "x": "0",
+      "dx": "0",
+      "info": null
+    },
+    "target_log": {
+      "id": 245131,
+      "depth": 0,
+      "reason": "N",
+      "name": "S0",
+      "stem": 15,
+      "s": 2,
+      "t": 17,
+      "r": 3,
+      "x": "0",
+      "dx": "0",
+      "info": "Ceta__S0"
+    },
+    "raw_transcription": "KIP126/LinProgram/Raw/Naturality.lean",
+    "raw_declarations": {
+      "source": "KIP126.Computation.LinProofs.Raw.Naturality.sourceCandidate245130",
+      "target": "KIP126.Computation.LinProofs.Raw.Naturality.target245131",
+      "output": "KIP126.Computation.LinProofs.Raw.Naturality.output245131"
+    },
+    "conditional_statement_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.row245131_native",
+    "general_conditional_statement_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.row245131",
+    "fixed_sphere_coordinate_declarations": [
+      "KIP126.LinE2.NaturalityCoordinates.source",
+      "KIP126.LinE2.NaturalityCoordinates.target",
+      "KIP126.Interface.Solution.LinProgram.NaturalityCoordinates.source_hasCoordinates",
+      "KIP126.Interface.Solution.LinProgram.NaturalityCoordinates.target_hasCoordinates"
+    ],
+    "constructed_top_cell_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.topCell",
+    "conditional_top_cell_naturality_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell",
+    "generic_double_desuspension_declaration": "KIP126.Classical.Adams.Suspension.TowerComparison.hasDifferential_desuspendTwice",
+    "fixed_double_desuspension_declaration": "KIP126.Interface.Solution.LinProgram.Naturality.doubleDesuspensionCompatible",
+    "source_equation": {
+      "spectrum": "Ceta",
+      "page": 3,
+      "source": {
+        "degree": [
+          2,
+          19
+        ],
+        "coordinates": [
+          0
+        ]
+      },
+      "target": {
+        "degree": [
+          5,
+          21
+        ],
+        "coordinates": [
+          0
+        ]
+      }
+    },
+    "target_equation": {
+      "spectrum": "S0",
+      "page": 3,
+      "source": {
+        "degree": [
+          2,
+          17
+        ],
+        "coordinates": [
+          0
+        ]
+      },
+      "target": {
+        "degree": [
+          5,
+          19
+        ],
+        "coordinates": [
+          0
+        ]
+      }
+    },
+    "source_candidate_relation": "adjacent log only; an actual source-to-target trace still needs witnesses",
+    "native_map": {
+      "from": "Ceta",
+      "name": "Ceta__S0",
+      "path": "map_AdamsSS_Ceta_to_S0_t200.db",
+      "sus": 2,
+      "t_max": 200,
+      "to": "S0",
+      "type": "top_cell"
+    },
+    "native_source_module": {
+      "deduce": "on",
+      "name": "Ceta",
+      "over": "S0",
+      "path": "Ceta_AdamsSS_t200.db"
+    },
+    "sphere_coordinates": {
+      "source": [
+        {
+          "id": 39,
+          "mon": "0,1,7,1",
+          "repr": "1048583",
+          "s": 2,
+          "t": 17,
+          "d2": "",
+          "local_index": 0
+        }
+      ],
+      "target": [
+        {
+          "id": 46,
+          "mon": "0,1,8,1",
+          "repr": "2621443",
+          "s": 5,
+          "t": 19,
+          "d2": "",
+          "local_index": 0
+        }
+      ]
+    },
+    "bulk_lookup": {
+      "shard": 51,
+      "offset": 43
+    },
+    "status": "unverified-conditional-replay-target",
+    "actual_row_certified": false,
+    "archive_inputs": [
+      {
+        "role": "source_page_database",
+        "path_named_by_ss_json": "Ceta_AdamsSS_t200.db",
+        "present_in_raw": true,
+        "pinned_by_raw_manifest": true,
+        "selected_rows_extracted": true
+      },
+      {
+        "role": "map_matrix_database",
+        "path_named_by_ss_json": "map_AdamsSS_Ceta_to_S0_t200.db",
+        "present_in_raw": true,
+        "pinned_by_raw_manifest": true,
+        "selected_rows_extracted": true
+      }
+    ],
+    "native_data_map": {
+      "scope": "selected native data map only; no actual Adams map comparison or source differential proof",
+      "schema": {
+        "Ceta_AdamsE2_basis": "CREATE TABLE Ceta_AdamsE2_basis (id INTEGER PRIMARY KEY, mon TEXT, repr TEXT, s SMALLINT, t SMALLINT, d2 TEXT)",
+        "Ceta_AdamsE2_generators": "CREATE TABLE Ceta_AdamsE2_generators (id INTEGER PRIMARY KEY, name TEXT UNIQUE, repr SMALLINT, s SMALLINT, t SMALLINT, cell SMALLINT, cell_coeff TEXT)",
+        "Ceta_AdamsE2_ss": "CREATE TABLE Ceta_AdamsE2_ss (id INTEGER PRIMARY KEY, s SMALLINT, t SMALLINT, base TEXT, diff TEXT, level SMALLINT)",
+        "map_AdamsE2_Ceta_to_S0": "CREATE TABLE map_AdamsE2_Ceta_to_S0 (id INTEGER PRIMARY KEY, map TEXT)",
+        "source_version": "CREATE TABLE version (id INTEGER PRIMARY KEY, name TEXT, value)",
+        "map_version": "CREATE TABLE version (id INTEGER PRIMARY KEY, name TEXT, value)"
+      },
+      "source_database_version": [
+        {
+          "id": 0,
+          "name": "version",
+          "value": 3
+        },
+        {
+          "id": 1,
+          "name": "change notes",
+          "value": "Add fil,from,to in version table of maps."
+        },
+        {
+          "id": 817812698,
+          "name": "t_max",
+          "value": 200
+        },
+        {
+          "id": 964058258,
+          "name": "d2_t_max",
+          "value": 170
+        },
+        {
+          "id": 1954841564,
+          "name": "timestamp",
+          "value": 1734870285
+        }
+      ],
+      "map_database_version": [
+        {
+          "id": 0,
+          "name": "version",
+          "value": 3
+        },
+        {
+          "id": 1,
+          "name": "change notes",
+          "value": "Add fil,from,to in version table of maps."
+        },
+        {
+          "id": 446174262,
+          "name": "from",
+          "value": "Ceta"
+        },
+        {
+          "id": 651971502,
+          "name": "filtration",
+          "value": 0
+        },
+        {
+          "id": 817812698,
+          "name": "t_max",
+          "value": 200
+        },
+        {
+          "id": 1585932889,
+          "name": "suspension",
+          "value": 2
+        },
+        {
+          "id": 1713085477,
+          "name": "to",
+          "value": "S0"
+        }
+      ],
+      "module_generators": [
+        {
+          "id": 1,
+          "name": "(h_0[2])",
+          "repr": 524289,
+          "s": 1,
+          "t": 3,
+          "cell": 2,
+          "cell_coeff": "0,1"
+        }
+      ],
+      "generator_images": [
+        {
+          "id": 1,
+          "map": "0,1"
+        }
+      ],
+      "coefficient_generators": [
+        {
+          "id": 0,
+          "name": "h_0",
+          "repr": 524288,
+          "s": 1,
+          "t": 1
+        },
+        {
+          "id": 7,
+          "name": "h_4",
+          "repr": 524292,
+          "s": 1,
+          "t": 16
+        },
+        {
+          "id": 8,
+          "name": "d_0",
+          "repr": 2097155,
+          "s": 4,
+          "t": 18
+        }
+      ],
+      "degree_slices": {
+        "source": {
+          "source_degree": [
+            2,
+            19
+          ],
+          "target_degree": [
+            2,
+            17
+          ],
+          "source_basis": [
+            {
+              "id": 69,
+              "mon": "7,1,1",
+              "repr": "1048587",
+              "s": 2,
+              "t": 19,
+              "d2": "",
+              "local_index": 0
+            }
+          ],
+          "target_basis": [
+            {
+              "id": 39,
+              "mon": "0,1,7,1",
+              "repr": "1048583",
+              "s": 2,
+              "t": 17,
+              "d2": "",
+              "local_index": 0
+            }
+          ],
+          "columns_as_target_coordinates": [
+            [
+              0
+            ]
+          ],
+          "matrix_rows": [
+            [
+              1
+            ]
+          ],
+          "source_log_coordinates": [
+            0
+          ],
+          "mapped_coordinates": [
+            0
+          ]
+        },
+        "target": {
+          "source_degree": [
+            5,
+            21
+          ],
+          "target_degree": [
+            5,
+            19
+          ],
+          "source_basis": [
+            {
+              "id": 80,
+              "mon": "8,1,1",
+              "repr": "2621447",
+              "s": 5,
+              "t": 21,
+              "d2": "",
+              "local_index": 0
+            }
+          ],
+          "target_basis": [
+            {
+              "id": 46,
+              "mon": "0,1,8,1",
+              "repr": "2621443",
+              "s": 5,
+              "t": 19,
+              "d2": "",
+              "local_index": 0
+            }
+          ],
+          "columns_as_target_coordinates": [
+            [
+              0
+            ]
+          ],
+          "matrix_rows": [
+            [
+              1
+            ]
+          ],
+          "source_log_coordinates": [
+            0
+          ],
+          "mapped_coordinates": [
+            0
+          ]
+        }
+      },
+      "source_staircase": {
+        "outgoing": {
+          "id": 69,
+          "s": 2,
+          "t": 19,
+          "base": "0",
+          "diff": "0",
+          "level": 9997
+        },
+        "incoming": {
+          "id": 80,
+          "s": 5,
+          "t": 21,
+          "base": "0",
+          "diff": "0",
+          "level": 3
+        }
+      },
+      "interpretation": "formal S0-linear extension of stored module-generator images; direct target monomial matches only",
+      "proof_status": "unverified-data-extraction"
+    },
+    "missing_trace": [
+      "The complete derivation of source log245130 is not replayed; reciprocal source staircase rows are recorded results.",
+      "Stored module-generator images and the two raw coordinate matrices are not comparisons with the actual topCell and fixed tower desuspensions."
+    ],
+    "remaining_premises": [
+      "Identify KIP126.Interface.Solution.LinProgram.Naturality.CetaCoordinates at (2,19)[0] and (5,21)[0] with the now-pinned Ceta basis rows id69 and id80 in native_data_map; extracted records and a supplied coordinate function alone do not prove that actual identification.",
+      "Prove KIP126.Interface.Solution.LinProgram.Naturality.SourceEquation coordinates: HasDifferential cetaSequence 3 (2,19) (5,21) (coordinates 2 19 0) (coordinates 5 21 0); the source D log alone is not a proof.",
+      "Prove row245131 premise source_first: the existing shifted-sphere classicalSuspension desuspends the actual topCell image of coordinates 2 19 0 to x1 at (2,18).",
+      "Prove row245131 premise target_first: that same shifted-sphere classicalSuspension desuspends the actual topCell image of coordinates 5 21 0 to y1 at (5,20).",
+      "Prove row245131 premise source_second: the existing sphere classicalSuspension desuspends x1 at (2,18) to P.comparison 2 17 KIP126.LinE2.NaturalityCoordinates.source.",
+      "Prove row245131 premise target_second: that same sphere classicalSuspension desuspends y1 at (5,20) to P.comparison 5 19 KIP126.LinE2.NaturalityCoordinates.target."
+    ]
+  },
+  "additional_missing_trace": {
+    "target_log": {
+      "id": 462481,
+      "depth": 0,
+      "reason": "N",
+      "name": "S0",
+      "stem": 123,
+      "s": 15,
+      "t": 138,
+      "r": 3,
+      "x": "2",
+      "dx": "2",
+      "info": "Ceta__S0"
+    },
+    "native_equation": {
+      "spectrum": "S0",
+      "page": 3,
+      "source": {
+        "degree": [
+          15,
+          138
+        ],
+        "coordinates": [
+          2
+        ]
+      },
+      "target": {
+        "degree": [
+          18,
+          140
+        ],
+        "coordinates": [
+          2
+        ]
+      }
+    },
+    "selected_record_snapshot": "KIP126/LinProgram/Generated/Selected/records.json",
+    "sphere_coordinates": {
+      "source": [
+        {
+          "id": 3002,
+          "mon": "0,2,418,1",
+          "repr": "7864432",
+          "s": 15,
+          "t": 138,
+          "d2": "",
+          "local_index": 2
+        }
+      ],
+      "target": [
+        {
+          "id": 3140,
+          "mon": "0,2,437,1",
+          "repr": "9437294",
+          "s": 18,
+          "t": 140,
+          "d2": "",
+          "local_index": 2
+        }
+      ]
+    },
+    "bulk_lookup": {
+      "shard": 57,
+      "offset": 55
+    },
+    "source_candidate_log": {
+      "id": 462480,
+      "depth": 0,
+      "reason": "N",
+      "name": "Ceta",
+      "stem": 125,
+      "s": 15,
+      "t": 140,
+      "r": 3,
+      "x": "1",
+      "dx": "0",
+      "info": "CW_nu_eta__Ceta"
+    },
+    "native_trace": {
+      "path": "KIP126/LinProgram/Generated/Provenance/row462481-trace.json",
+      "sha256": "a42f7784ef265eee50815e1989c947bc714937f03aef0846e54afc18faa522ea",
+      "kind": "derived-native-context; not an independent source registry or mathematical proof",
+      "replay": "python3 -B KIP126/LinProgram/Translate/extract-row462481-trace.py --check"
+    },
+    "status": "recovered-native-context-with-unproved-actual-source-and-comparisons",
+    "actual_row_certified": false,
+    "missing": "The native source N462480, complete local branch context and map-coordinate preimages are extracted. The actual Ceta source differential, actual top-cell coordinate comparisons and upstream CW branch interpretation remain unproved.",
+    "remaining_premises": [
+      "Prove the exact actual Ceta source differential at (15,140)[1] -> (18,142)[0], without using the target sphere differential or total computation delivery.",
+      "If replaying the local ancestor branch, construct the actual CW_nu_eta object and shift-four map to the same Ceta; compare the displayed source and target images.",
+      "Prove actual E3 candidate coverage and the three trial exclusions using the same CW_nu_eta model, genuine page/module Leibniz, multiplier cycles and actual earlier-boundary nonmembership.",
+      "For the historical state, prove actual D461961: CW_nu_eta d3(15,137)[0]=(18,139)[0], actual D153861: S0 d3(15,138)[0]=0, and d3-cycles for S0(1,8)[0] and CW_nu_eta(1,7)[0]; then use actual module Leibniz and the historical_h3_source/target coordinate comparisons to add source[2,3]+[2]=[3] and target[1]+0=[1]. These are sufficient reconstructed dependencies, not recorded parent edges.",
+      "Certify the Ceta module reduction at rowids13125+13126 and the historical CW module reduction at rowid13675. Sphere quotient reductions at rowids10210,13637,10936 are kernel-certified separately; actual module and map comparisons remain unproved. Selected map vectors themselves require no quotient reduction.",
+      "Compare both selected Ceta-to-S0 images with the actual topCell and the same two proved tower desuspensions, preserving the existing literature/bindings/model."
+    ]
+  },
+  "replay_commands": [
+    "python3 KIP126/LinProgram/Translate/native-contract.py --check",
+    "python3 -B KIP126/LinProgram/Translate/extract-row462481-trace.py --check",
+    "python3 KIP126/LinProgram/Translate/replay-lowstem.py --row 152098 --certificate-only --output-dir /tmp/lin-native-products",
+    "lake env lean /tmp/lin-native-products/GeneratedProductWitnesses.lean"
+  ]
+}
