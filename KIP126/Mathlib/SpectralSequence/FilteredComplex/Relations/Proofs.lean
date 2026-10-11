@@ -1,5 +1,9 @@
-import KIP126.Mathlib.SpectralSequence.FilteredComplex.Relations.Predicates
-import KIP126.Def.SpectralSequence.FilteredDifferential.Proofs
+module
+
+public import KIP126.Mathlib.SpectralSequence.FilteredComplex.Relations.Predicates
+public import KIP126.Def.SpectralSequence.FilteredDifferential.Proofs
+
+@[expose] public section
 
 /-!
 # Proofs for filtered-complex/page relations

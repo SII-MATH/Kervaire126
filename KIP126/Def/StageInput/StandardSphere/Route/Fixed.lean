@@ -1,4 +1,8 @@
-import KIP126.Def.Solution.StandardRoute
+module
+
+public import KIP126.Def.Solution.StandardRoute
+
+@[expose] public section
 
 /-! The one synthetic route selected by the explicit Def construction.
 The construction remains unfinished in `Def/Solution/StandardRoute`; these

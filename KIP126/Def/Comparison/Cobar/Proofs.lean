@@ -1,19 +1,23 @@
-import KIP126.Def.Comparison.Cobar.Data
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Proofs
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Proofs
-import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
-import KIP126.Def.Steenrod.MilnorExt.Cofree.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Realization.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Normalization.Proofs
-import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Multiplication.Proofs
-import Mathlib.Algebra.CharP.Lemmas
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Algebra.Module.ZMod
-import Mathlib.Algebra.Category.ModuleCat.Injective
-import Mathlib.RingTheory.SimpleModule.InjectiveProjective
-import Mathlib.CategoryTheory.Limits.FunctorCategory.EpiMono
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
+module
+
+public import KIP126.Def.Comparison.Cobar.Data
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Proofs
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Proofs
+public import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+public import KIP126.Def.Steenrod.MilnorExt.Cofree.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Realization.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Normalization.Proofs
+public import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Multiplication.Proofs
+public import Mathlib.Algebra.CharP.Lemmas
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Algebra.Module.ZMod
+public import Mathlib.Algebra.Category.ModuleCat.Injective
+public import Mathlib.RingTheory.SimpleModule.InjectiveProjective
+public import Mathlib.CategoryTheory.Limits.FunctorCategory.EpiMono
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
+
+@[expose] public section
 
 namespace KIP126.Def.Comparison.StageInterfaces
 

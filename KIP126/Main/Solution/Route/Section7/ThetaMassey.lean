@@ -1,4 +1,14 @@
-import KIP126.Main.Solution.Route.Section7.Common
+module
+
+public import KIP126.Main.Solution.Route.Section7.Common
+
+-- The CSV proofs explicitly unfold these string/list implementations.
+import all Init.Data.List.SplitOn.Basic
+import all Init.Data.String.Legacy
+import all Init.Data.String.Search
+import all Init.Data.String.Slice
+
+@[expose] public section
 
 namespace KIP126.Main.Solution.Route.Section7
 open CategoryTheory

@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.Data
-import KIP126.Mathlib.SpectralSequence.SpectralObject.HomologicalImage.Data
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.Data
+public import KIP126.Mathlib.SpectralSequence.SpectralObject.HomologicalImage.Data
+
+@[expose] public section
 
 /-!
 # Spectral-object adapter for filtered complexes

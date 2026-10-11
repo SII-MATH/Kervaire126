@@ -1,6 +1,10 @@
-import KIP126.Def.Algebra.GradedModule.Tensor.Linear.Proofs
-import Mathlib.CategoryTheory.Preadditive.EilenbergMoore
-import Mathlib.CategoryTheory.Monad.Limits
+module
+
+public import KIP126.Def.Algebra.GradedModule.Tensor.Linear.Proofs
+public import Mathlib.CategoryTheory.Preadditive.EilenbergMoore
+public import Mathlib.CategoryTheory.Monad.Limits
+
+@[expose] public section
 
 /-!
 The existing Eilenberg--Moore addition, ordinary scalar multiplication on

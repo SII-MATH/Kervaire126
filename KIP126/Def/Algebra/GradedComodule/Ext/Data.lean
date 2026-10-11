@@ -1,6 +1,10 @@
-import KIP126.Def.Algebra.GradedComodule.Shift.Data
-import KIP126.Def.Algebra.GradedComodule.Structure.Data
-import Mathlib.Algebra.Homology.DerivedCategory.Ext.Linear
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Shift.Data
+public import KIP126.Def.Algebra.GradedComodule.Structure.Data
+public import Mathlib.Algebra.Homology.DerivedCategory.Ext.Linear
+
+@[expose] public section
 
 /-!
 Derived Ext in the actual abelian category of graded right comodules.

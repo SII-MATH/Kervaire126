@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.Cohomology.Coaction.Data
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Basic.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Coaction.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Basic.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

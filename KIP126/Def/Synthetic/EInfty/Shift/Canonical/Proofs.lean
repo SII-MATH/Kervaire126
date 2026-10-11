@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.EInfty.Shift.Canonical.Predicates
-import KIP126.Def.ClassicalAdams.TowerNaturality.Isomorphism.Proofs
-import KIP126.Def.SpectralSequence.ModuleQuotient.Proofs
+module
+
+public import KIP126.Def.Synthetic.EInfty.Shift.Canonical.Predicates
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Isomorphism.Proofs
+public import KIP126.Def.SpectralSequence.ModuleQuotient.Proofs
+
+@[expose] public section
 
 /-! Internal construction obligations for weight reindexing. These are
 properties of the actual tower maps, not statements supplied by BHS. -/

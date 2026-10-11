@@ -1,7 +1,11 @@
-import KIP126.Def.Algebra.Coefficients.Data
-import Mathlib.Algebra.Homology.ConcreteCategory
-import Mathlib.Algebra.Homology.SpectralSequence.Basic
-import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+module
+
+public import KIP126.Def.Algebra.Coefficients.Data
+public import Mathlib.Algebra.Homology.ConcreteCategory
+public import Mathlib.Algebra.Homology.SpectralSequence.Basic
+public import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+
+@[expose] public section
 
 /-!
 # Permanent classes in a concrete Mathlib spectral sequence

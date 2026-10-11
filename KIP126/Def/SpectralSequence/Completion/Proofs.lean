@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Completion.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.Completion.Predicates
+
+@[expose] public section
 
 /-!
 # Basic completion proofs

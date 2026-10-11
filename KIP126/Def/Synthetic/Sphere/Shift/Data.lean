@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Sphere.Shift.Raw.Proofs
+module
+
+public import KIP126.Def.Synthetic.Sphere.Shift.Raw.Proofs
+
+@[expose] public section
 
 /-! Additive bigraded suspension equivalences, with the existing underlying
 Hom maps and separately stated additivity properties. -/

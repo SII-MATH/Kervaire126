@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Data
-import KIP126.Def.StableHomotopy.Context.Proofs
-import Mathlib.LinearAlgebra.Finsupp.Pi
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Data
+public import KIP126.Def.StableHomotopy.Context.Proofs
+public import Mathlib.LinearAlgebra.Finsupp.Pi
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

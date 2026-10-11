@@ -1,12 +1,16 @@
-import KIP126.Def.Synthetic.Bockstein.Regrading.Sequence.Data
-import KIP126.Def.Synthetic.EInfty.Shift.Canonical.Proofs
-import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Proofs
-import KIP126.Def.Synthetic.Bockstein.Regrading.Proofs
-import KIP126.Def.StableHomotopy.InverseSequence.Proofs
-import KIP126.Def.StableHomotopy.DescendingTower.Layer.Proofs
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Proofs
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.FirstPage.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Regrading.Sequence.Data
+public import KIP126.Def.Synthetic.EInfty.Shift.Canonical.Proofs
+public import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Proofs
+public import KIP126.Def.Synthetic.Bockstein.Regrading.Proofs
+public import KIP126.Def.StableHomotopy.InverseSequence.Proofs
+public import KIP126.Def.StableHomotopy.DescendingTower.Layer.Proofs
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Proofs
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.FirstPage.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-!
 Dependency regression for the tower-page proof migration. Check every completed

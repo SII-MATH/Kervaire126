@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedComodule.Shift.TensorLine.Raw.Data
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Shift.TensorLine.Raw.Data
+
+@[expose] public section
 
 /-! Inverse and coaction identities for the prescribed degree-line maps. -/
 

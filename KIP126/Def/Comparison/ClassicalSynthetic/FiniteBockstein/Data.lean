@@ -1,10 +1,14 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.Data
-import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Data
-import KIP126.Def.Synthetic.Bockstein.Hom.Data
-import KIP126.Def.Synthetic.QuotientFunctor.Data
-import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
-import KIP126.Def.ClassicalAdams.Completion.Predicates
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.Data
+public import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Data
+public import KIP126.Def.Synthetic.Bockstein.Hom.Data
+public import KIP126.Def.Synthetic.QuotientFunctor.Data
+public import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
+public import KIP126.Def.ClassicalAdams.Completion.Predicates
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
+
+@[expose] public section
 /-!
 # Classical/synthetic comparison and finite Bockstein interfaces
 

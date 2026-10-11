@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.NextCycles.Proofs
-import KIP126.Def.ClassicalAdams.TowerSequence.NextHomology.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.NextCycles.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSequence.NextHomology.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

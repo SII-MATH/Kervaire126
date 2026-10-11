@@ -1,5 +1,9 @@
-import KIP126.Interface.Challenge.Literature.Delivery
-import KIP126.Interface.Challenge.Computation.Delivery
+module
+
+public import KIP126.Interface.Challenge.Literature.Delivery
+public import KIP126.Interface.Challenge.Computation.Delivery
+
+@[expose] public section
 
 /-! Challenge2 has exactly two correlated deliveries on Def's fixed model.
 Literature includes source statements and source-to-model comparisons;

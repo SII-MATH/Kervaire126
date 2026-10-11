@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Basic.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Basic.Proofs
+
+@[expose] public section
 
 /-! The reduced tensor recurrence is derived from homology-level Künneth and
 the actual fiber triangle. Neither tower coordinates nor later pages are inputs. -/

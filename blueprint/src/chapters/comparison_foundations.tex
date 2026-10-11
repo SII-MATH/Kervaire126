@@ -937,23 +937,31 @@ and Moss convergence used by the later proof tools.
   \uses{def:page-extension-crossing,def:finite-page-extension-nonliftable-crossing,thm:external-adams-one-line,def:ss-elementwise-page-presentation,def:ss-cycle-boundary-survival,evidence:normalized-hopf-detection}
   \notready
   For the candidate Hopf relation of length two from
-  $h_0h_4^2$ to $h_0p$, a finite evidence record enumerates every
+  $h_0h_4^2$ to $h_0p$, the required, not yet constructed, certificate must
+  enumerate every
   degree-allowed crossing tuple and every tuple satisfying the
   nonliftable-crossing bounds of
   Definition~\ref{def:finite-page-extension-nonliftable-crossing} between
-  $E_3$ and any finite page.  The list is
-  empty.  A separate part enumerates every permanent source and target in the
+  $E_3$ and any finite page and prove that none occurs.  In the corrected
+  condition this includes actual same-quotient extensions with nonzero
+  target even when they are nonessential or have synthetic length zero.
+  The old smaller-quotient enumeration does not establish this claim.
+  A separate part must enumerate every permanent source and target in the
   same forced bidegrees and excludes every actual shorter
   $(\nu_{\mathrm{Hopf}},E_\infty)$-extension; this is not inferred from the
   finite list.  Both the finite-page reductions and this permanent-candidate
   enumeration use the Hopf component of the single stored normalized
   triangle lift from Proposition~\ref{evidence:normalized-hopf-detection},
   together with its retained equality
-  $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$.  Its decisive typed product check is
+  $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$.  One relevant typed product check is
   \[
     h_0^2h_4^2h_2=0\ne h_0p.
   \]
-  The same record supplies the independent typing facts
+  This single product inequality does not by itself exclude every
+  same-quotient candidate: the candidate target need not be $h_0p$, and
+  its $\lambda$ layer and the source's failure to lie in the $\rho$ image
+  must be checked.  The same required record must supply the independent
+  typing facts
   \[
     h_0h_4^2\in Z_\infty(S^3),
     \qquad h_0p\in Z_\infty(S^0).
@@ -976,10 +984,12 @@ and Moss convergence used by the later proof tools.
   nonliftable-crossing inequalities and then enumerate the Ext groups in their
   forced source and target bidegrees.  Intersect the same finite bidegree lists
   with $Z_\infty$ to obtain the independent untruncated-candidate list.  The
-  stored equality $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$ identifies, on every
-  finite reduction and on the untruncated list, the only possible shorter Hopf
-  product with the displayed zero class, whereas the proposed target is
-  nonzero.  Store
+  stored equality $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$ supplies the actual
+  map used in these checks.  For each finite candidate, retain its
+  $\lambda$ layer, determine the actual $\rho$ image, and exclude every
+  possible nonzero extension target.  This strengthened enumeration
+  remains to be proved, including its zero-length and nonessential cases;
+  it is not supplied by the displayed product inequality alone.  Store
   the degree bounds, cycle-range checks, complete incoming/outgoing target
   search, and typed product inequality in the evidence record.  The source cycle fact is
   also obtained from the one-line differential and the inclusion of boundaries
@@ -1125,21 +1135,22 @@ and Moss convergence used by the later proof tools.
 \end{proposition}
 
 \begin{proof}
-  A synthetic crossing necessarily has the form
+  This is the printed comparison claim, not an established project lemma.
+  A same-quotient synthetic crossing has the form
   $d_{n-a-b}^{\widehat f_{r-1}}(\lambda^ax')
-   =\lambda^{n-b-e(f)}y'$.  Compare the quotient of exponent $r-1$ with that
-  of exponent $r-1-a$.  Dividing by $\lambda^a$ introduces exactly
-  $B_{1+n-b-e(f)}$; therefore essentiality is equivalent to the nonboundary
-  condition in the finite page-crossing definition.
+   =\lambda^{n-b-e(f)}y'$.  The proposed reverse comparison divides by
+  $\lambda^a$ and moves to the smaller quotient $r-1-a$.
+  Multiplication by $\lambda^a$ can kill a lower-filtration image; that
+  term reappears in the smaller quotient and can prevent the claimed
+  extension there.  Neither essentiality nor excluding an ordinary Adams
+  boundary by itself justifies this cancellation.
 
-  At $r=\infty$, start with an actual untruncated shorter page extension on
-  permanent representatives.  The infinite-endpoint clause of
-  Proposition~\ref{prop:synthetic-einfty-map-compatibility} identifies
-  multiplication by $\lambda^a$ with the corresponding boundary-cutoff
-  quotient on $Z_\infty/B_j$.  This converts that actual page witness to an
-  actual crossing in the untruncated $\widehat f$-ESS, and the same quotient
-  calculation gives the converse.  No finite solution tower is promoted to an
-  infinite witness in this argument.
+  A valid comparison would need additional verified hypotheses controlling
+  these kernels, or a formulation that retains the layer.  This node stays
+  unproved and must not be used as an established equivalence, at either
+  endpoint.  The corrected finite stretching statement instead uses actual
+  nonliftable extensions in the original quotient, as defined in
+  Definition~\ref{def:finite-page-extension-nonliftable-crossing}.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:1541-1579, Example exam:Ercross.

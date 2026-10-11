@@ -1,6 +1,10 @@
-import KIP126.Mathlib.ClassicalAdams.Comparison.Data
-import KIP126.Mathlib.ClassicalAdams.TowerComparison.Page.Proofs
-import KIP126.Mathlib.ClassicalAdams.TowerComparison.Passage.Proofs
+module
+
+public import KIP126.Mathlib.ClassicalAdams.Comparison.Data
+public import KIP126.Mathlib.ClassicalAdams.TowerComparison.Page.Proofs
+public import KIP126.Mathlib.ClassicalAdams.TowerComparison.Passage.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerSequence.PagePassage.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSequence.PagePassage.Proofs
+
+@[expose] public section
 
 /-!
 # Homology of the actual Adams quotient pages

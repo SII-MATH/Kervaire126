@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
-import KIP126.Def.Synthetic.EInfty.Shift.Data
+module
+
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
+public import KIP126.Def.Synthetic.EInfty.Shift.Data
+
+@[expose] public section
 
 namespace KIP126.Synthetic.SpectralSequence
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

@@ -1,5 +1,9 @@
-import Mathlib.CategoryTheory.Monoidal.Comon_
-import Mathlib.CategoryTheory.Monad.Algebra
+module
+
+public import Mathlib.CategoryTheory.Monoidal.Comon_
+public import Mathlib.CategoryTheory.Monad.Algebra
+
+@[expose] public section
 
 /-!
 The actual component maps of the right-tensor comonad attached to a comonoid

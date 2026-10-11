@@ -1,5 +1,11 @@
-import KIP126.Def.StableHomotopy.Context.Proofs
-import KIP126.Def.StableHomotopy.Context.Suspension.Data
+module
+
+public import KIP126.Def.StableHomotopy.Context.Proofs
+public import KIP126.Def.StableHomotopy.Context.Suspension.Data
+
+import all KIP126.Def.StableHomotopy.Context.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy
 

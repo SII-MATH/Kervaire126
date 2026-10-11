@@ -1,5 +1,9 @@
-import Mathlib.Algebra.DirectSum.Module
-import Mathlib.RingTheory.Flat.Basic
+module
+
+public import Mathlib.Algebra.DirectSum.Module
+public import Mathlib.RingTheory.Flat.Basic
+
+@[expose] public section
 
 /-! Kernel preservation needed for the normalized Adams tensor comparison. -/
 

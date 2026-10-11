@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.SphereClasses.Product.Data
+module
+
+public import KIP126.Def.ClassicalAdams.SphereClasses.Product.Data
+
+@[expose] public section
 
 /-! Linearity of the fixed sphere product, transported from cobar cohomology. -/
 namespace KIP126.Classical.Adams.Sphere.Internal

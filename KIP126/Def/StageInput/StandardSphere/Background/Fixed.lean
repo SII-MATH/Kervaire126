@@ -1,4 +1,8 @@
-import KIP126.Def.StageInput.StandardSphere.Background.Proofs
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Background.Proofs
+
+@[expose] public section
 
 /-! Fix one fully specified comparison context from Def's construction
 obligations. All consumers use these same choices. The explicit existence

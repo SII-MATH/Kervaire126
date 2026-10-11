@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.WeakConvergence.Comparison.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.SpectralSequenceConstruction.Data
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.WeakConvergence.Comparison.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.SpectralSequenceConstruction.Data
+
+@[expose] public section
 
 /-!
 # Weak convergence of a bounded filtered complex

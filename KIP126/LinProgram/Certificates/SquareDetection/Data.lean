@@ -1,6 +1,10 @@
-import KIP126.LinProgram.Model.Classes.Data
-import Mathlib.Algebra.Polynomial.Basic
-import Mathlib.Algebra.MvPolynomial.Eval
+module
+
+public import KIP126.LinProgram.Model.Classes.Data
+public import Mathlib.Algebra.Polynomial.Basic
+public import Mathlib.Algebra.MvPolynomial.Eval
+
+@[expose] public section
 
 namespace KIP126.LinE2.SquareDetection
 

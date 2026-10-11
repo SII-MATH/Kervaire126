@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Value.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Value.Proofs
+
+@[expose] public section
 
 /-! Bundle the specified quotient-valued differential formula on cycles
 using its separately stated linearity properties. -/

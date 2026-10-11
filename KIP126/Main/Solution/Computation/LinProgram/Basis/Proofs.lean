@@ -1,6 +1,10 @@
-import KIP126.Main.Solution.Computation.LinProgram.Basis.Data
-import KIP126.LinProgram.Certificates.BasisTable.Predicates
-import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.Basis.Data
+public import KIP126.LinProgram.Certificates.BasisTable.Predicates
+public import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
+
+@[expose] public section
 
 /-! The original basis properties, now consequences of the delivered actual
 E₂ coordinates and their CSV compatibility in the one Challenge2 witness. -/

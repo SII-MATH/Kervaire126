@@ -1,8 +1,15 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Proofs
-import KIP126.Main.Solution.Computation.Reduction
-import KIP126.LinProgram.Certificates.SquareDetection.Certificate
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Proofs
+public import KIP126.Main.Solution.Computation.Reduction
+public import KIP126.LinProgram.Certificates.SquareDetection.Certificate
+public import Lean.Elab.Command
+public meta import KIP126.Checks.AxiomInputs
+public meta import KIP126.LinProgram.Certificates.SquareDetection.Data
+import all Init.Data.List.SplitOn.Basic
+
+@[expose] public section
 
 /-! Kernel-proved algebraic soundness, the full finite certificate, and the
 fixed E₂ nonvanishing/reduction interfaces. No native evaluation axiom is allowed.

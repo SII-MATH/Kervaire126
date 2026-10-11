@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Tmf.Multiplication.Proofs
-import KIP126.Def.ClassicalAdams.TowerDifferential.Value.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Tmf.Multiplication.Proofs
+public import KIP126.Def.ClassicalAdams.TowerDifferential.Value.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Tmf
 

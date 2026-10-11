@@ -1,8 +1,12 @@
-import KIP126.Def.Algebra.Filtration.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.Data
-import KIP126.Def.SpectralSequence.FilteredPage.Data
-import KIP126.Mathlib.SpectralSequence.FilteredComplex.Assembly.Data
-import KIP126.Mathlib.SpectralSequence.PageDifferential.Proofs
+module
+
+public import KIP126.Def.Algebra.Filtration.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.Data
+public import KIP126.Def.SpectralSequence.FilteredPage.Data
+public import KIP126.Mathlib.SpectralSequence.FilteredComplex.Assembly.Data
+public import KIP126.Mathlib.SpectralSequence.PageDifferential.Proofs
+
+@[expose] public section
 
 /-!
 # Data for Mathlib-page/filtered-complex comparison

@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Primitive.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Primitive.Proofs
+
+@[expose] public section
 
 /-! A concrete polynomial coproduct calculation now implies a vanishing
 actual tower differential. This does not use the fixed MilnorCooperations

@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedModule.Tensor.Data
+module
+
+public import KIP126.Def.Algebra.GradedModule.Tensor.Data
+
+@[expose] public section
 
 /-! The trivial left action is restriction along an actual augmentation.
 Its underlying object and action are specified before their laws. -/

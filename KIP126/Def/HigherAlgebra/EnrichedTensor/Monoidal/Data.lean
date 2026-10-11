@@ -1,4 +1,8 @@
-import KIP126.Def.HigherAlgebra.EnrichedTensor.Data
+module
+
+public import KIP126.Def.HigherAlgebra.EnrichedTensor.Data
+
+@[expose] public section
 
 /-!
 Concrete low-arity comparison paths for a finite tensor presentation. These

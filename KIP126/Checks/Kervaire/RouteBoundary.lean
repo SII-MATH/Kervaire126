@@ -1,9 +1,13 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Literature.Applications
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald
-import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching
-import Lean.Elab.Command
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Interface.Solution.Literature.Applications
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald
+public import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Compilation/audit boundary for the selected complete route language.
 The flat Challenge2 contract uses the implementation already fixed in Def, but

@@ -1,6 +1,10 @@
-import KIP126.Main.Solution.DifferentialReduction.Conclusion
-import KIP126.Main.Solution.ChoiceIndependence.any_choice_criterion
-import Lean.Elab.Command
+module
+
+public import KIP126.Main.Solution.DifferentialReduction.Conclusion
+public import KIP126.Main.Solution.ChoiceIndependence.any_choice_criterion
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Check the active paper propositions and the conditional final inference;
 its premises remain pending. -/

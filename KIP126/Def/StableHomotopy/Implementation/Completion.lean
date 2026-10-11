@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Implementation.Generators
-import Mathlib.Data.ZMod.Basic
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Generators
+public import Mathlib.Data.ZMod.Basic
+
+@[expose] public section
 
 /-! A concrete HF₂-local source. Ordinary sequential spectra and stable
 weak equivalences are already fixed. An Eilenberg–Mac Lane spectrum is

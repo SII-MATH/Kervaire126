@@ -1,5 +1,10 @@
-import KIP126.Main.Solution.Computation.Tmf
-import Lean.Elab.Command
+module
+
+public import KIP126.Main.Solution.Computation.Tmf
+public import Lean.Elab.Command
+import all KIP126.Main.Solution.Computation.Tmf
+
+@[expose] public section
 
 /-! Guard the distinction between the prior tmf source and Main's deduction
 of nonzero associated grade. Pending proofs are allowed; a stage consumer

@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Data
-import KIP126.Def.StableHomotopy.Context.MappingProofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+public import KIP126.Def.StableHomotopy.Context.MappingProofs
+
+@[expose] public section
 
 /-! Derived representability and functoriality facts for mod-2 theories. -/
 namespace KIP126.StableHomotopy.Cohomology

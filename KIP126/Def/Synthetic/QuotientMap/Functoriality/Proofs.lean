@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.QuotientMap.Data
-import KIP126.Def.StableHomotopy.Context.CofiberCoherence.Proofs
+module
+
+public import KIP126.Def.Synthetic.QuotientMap.Data
+public import KIP126.Def.StableHomotopy.Context.CofiberCoherence.Proofs
+
+@[expose] public section
 
 /-! Functor laws for the original `XModLambdaN.map`, conditional on the exact
 identity and composition equations for the chosen cofiber construction. -/

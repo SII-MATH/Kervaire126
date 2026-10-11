@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Data
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Homotopy.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Data
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Homotopy.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

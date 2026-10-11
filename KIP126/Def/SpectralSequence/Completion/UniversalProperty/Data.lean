@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Completion.Comparison.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Completion.Comparison.Proofs
+
+@[expose] public section
 
 /-!
 # Universal-property lift data

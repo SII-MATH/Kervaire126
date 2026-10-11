@@ -1,8 +1,12 @@
-import KIP126.Def.Algebra.GradedVectorSpace.Data
-import Mathlib.CategoryTheory.Linear.LinearFunctor
-import Mathlib.CategoryTheory.Limits.Preserves.Finite
-import Mathlib.LinearAlgebra.Dimension.LinearMap
-import Mathlib.CategoryTheory.Preadditive.LeftExact
+module
+
+public import KIP126.Def.Algebra.GradedVectorSpace.Data
+public import Mathlib.CategoryTheory.Linear.LinearFunctor
+public import Mathlib.CategoryTheory.Limits.Preserves.Finite
+public import Mathlib.LinearAlgebra.Dimension.LinearMap
+public import Mathlib.CategoryTheory.Preadditive.LeftExact
+
+@[expose] public section
 
 /-! Properties of the actual Cauchy tensor functor over a field. Its finite
 limit preservation uses flatness of vector spaces and exactness of direct

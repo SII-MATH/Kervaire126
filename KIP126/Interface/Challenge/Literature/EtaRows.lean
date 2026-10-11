@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalESS.Eta.Data
+module
+
+public import KIP126.Def.ClassicalESS.Eta.Data
+
+@[expose] public section
 
 
 /-!

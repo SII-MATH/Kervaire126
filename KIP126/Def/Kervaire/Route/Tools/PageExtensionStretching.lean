@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
-import KIP126.Def.Kervaire.Route.Extensions.Stretching.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
+public import KIP126.Def.Kervaire.Route.Extensions.Stretching.Predicates
+
+@[expose] public section
 
 /-! 本文待证工具；所有对象、代表和扩张均从同一个 Route.Model 派生。
 这里只定义模型上的性质；定义该命题不把它作为 M 的字段或 A(M) 的输入。
@@ -19,10 +23,13 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H}
   (D : Model H M Syn)
 
-/-- 本文待证工具（原 am7）：有限页 relation 的 stretching 交付命题。
-参考 MainPaper Proposition `prop:dec738d3` 及 Corollary `cor:dfc6043e`。
-本项目要求源、靶都已属于后页所需的 cycle 层，并排除上述含 b=0 的
-障碍候选；这是明确的充分条件版本；模型相容条件已有类型，比较输入与证明仍待交付。
+/-- 本文待证工具（原 am7）：保留 λ 层数的有限页 stretching 充分条件。
+参考 MainPaper Proposition `prop:dec738d3` 中同一有限商内的修正过程。
+源、靶须属于后页所需的 cycle 层；排除的障碍是在早页同一个有限商中，
+源不属于后页 ρ 的 E∞ 像、目标非零的实际较短扩张（包括非 essential 的扩张）。
+不能改为只排除较小商中的无层扩张：乘 λ 可能杀掉低滤过项。
+这比只排除 essential crossings 更强，不声称等价于原跨页候选或印出的推论。
+模型相容条件已有类型，有限滤过修正的证明仍待交付。
 结论只给出后页 extension 的存在，不声称任意指定的早期严格解可提升，
 也不蕴含相容解塔或未截断 extension 的存在。 -/
 def FinitePageExtensionStretchingLaw (X Y : ClassicalObject) (f : X.obj D.auxiliary ⟶ Y.obj D.auxiliary) : Prop :=

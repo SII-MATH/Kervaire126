@@ -1,4 +1,8 @@
-import KIP126.Def.HigherAlgebra.EnrichedTensor.Monoidal.Data
+module
+
+public import KIP126.Def.HigherAlgebra.EnrichedTensor.Monoidal.Data
+
+@[expose] public section
 
 /-!
 Explicit equations for finite tensor presentations and their endomorphism

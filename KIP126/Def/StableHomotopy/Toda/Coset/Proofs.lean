@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Toda.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Toda.Proofs
+
+@[expose] public section
 
 /-! These proofs use the current cone-based `Relation` and Mathlib's
 triangulated-category API. They adapt the corresponding historical proofs

@@ -1,4 +1,8 @@
-import KIP126.Mathlib.SpectralSequence.PageDifferential.Proofs
+module
+
+public import KIP126.Mathlib.SpectralSequence.PageDifferential.Proofs
+
+@[expose] public section
 
 /-! Essentiality concerns a differential value, including for nonzero maps. -/
 

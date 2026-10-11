@@ -1,6 +1,10 @@
-import KIP126.Def.Steenrod.MilnorModule.Comparison.Multiplication.Predicates
-import Mathlib.CategoryTheory.Shift.ShiftedHomOpposite
-import Mathlib.CategoryTheory.Triangulated.Opposite.Functor
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Comparison.Multiplication.Predicates
+public import Mathlib.CategoryTheory.Shift.ShiftedHomOpposite
+public import Mathlib.CategoryTheory.Triangulated.Opposite.Functor
+
+@[expose] public section
 
 /-!
 # Yoneda and unit laws for the prescribed dual-cobar comparison

@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.Interface.Data
-import KIP126.Def.SpectralSequence.Permanence.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Interface.Data
+public import KIP126.Def.SpectralSequence.Permanence.Predicates
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss.PageMassey
 

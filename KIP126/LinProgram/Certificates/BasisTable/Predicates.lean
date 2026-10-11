@@ -1,4 +1,8 @@
-import KIP126.LinProgram.Model.BasisTable.Data
+module
+
+public import KIP126.LinProgram.Model.BasisTable.Data
+
+@[expose] public section
 
 namespace KIP126.LinE2
 open KIP126.Core.Algebra

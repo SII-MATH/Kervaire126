@@ -1,46 +1,50 @@
-import KIP126.Def.Comparison.PageExtension.Solutions.Finiteness.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Cycles.Data
-import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Boundary.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Vanishing.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
-import KIP126.Def.Comparison.PageExtension.Solutions.Coherence.Proofs
-import KIP126.Def.Solution.FoundationConsequences
-import KIP126.Def.Solution.Toda
-import KIP126.Def.Comparison.Pages.Proofs
-import KIP126.Def.Comparison.Pages.Naturality.Proofs
-import KIP126.Def.Comparison.Cobar.Proofs
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Proofs
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
-import KIP126.Def.Synthetic.QuotientTower.Proofs
-import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Detection.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Crossing.Proofs
-import KIP126.Def.Synthetic.PageExtension.Proofs
-import KIP126.Def.Solution.Synthetic.Localization
-import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Proofs
-import KIP126.Def.Comparison.PageExtension.Ambiguity.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Internal.Proofs
-import KIP126.Def.Synthetic.PageExtension.Crossing.Proofs
-import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
-import KIP126.Def.Comparison.PageExtension.Targets.Proofs
-import KIP126.Def.Synthetic.QuotientFunctor.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.One.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Proofs
-import KIP126.Def.SpectralSequence.BoundedExtension.Square.Construction.Data
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Obstruction.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Page.Converse.Proofs
-import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
-import KIP126.Def.Synthetic.ExtensionSS.Solutions.Proofs
-import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
-import KIP126.Def.Synthetic.PageExtension.Solutions.Coset.Proofs
-import KIP126.Def.Comparison.PageExtension.Solutions.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.Comparison.PageExtension.Solutions.Finiteness.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Cycles.Data
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Boundary.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Vanishing.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
+public import KIP126.Def.Comparison.PageExtension.Solutions.Coherence.Proofs
+public import KIP126.Def.Solution.FoundationConsequences
+public import KIP126.Def.Solution.Toda
+public import KIP126.Def.Comparison.Pages.Proofs
+public import KIP126.Def.Comparison.Pages.Naturality.Proofs
+public import KIP126.Def.Comparison.Cobar.Proofs
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Proofs
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
+public import KIP126.Def.Synthetic.QuotientTower.Proofs
+public import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Detection.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Crossing.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Proofs
+public import KIP126.Def.Solution.Synthetic.Localization
+public import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Proofs
+public import KIP126.Def.Comparison.PageExtension.Ambiguity.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Internal.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Crossing.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
+public import KIP126.Def.Comparison.PageExtension.Targets.Proofs
+public import KIP126.Def.Synthetic.QuotientFunctor.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.One.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Proofs
+public import KIP126.Def.SpectralSequence.BoundedExtension.Square.Construction.Data
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Obstruction.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Page.Converse.Proofs
+public import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
+public import KIP126.Def.Synthetic.ExtensionSS.Solutions.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Coset.Proofs
+public import KIP126.Def.Comparison.PageExtension.Solutions.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! These particular generic obligations are proved from explicit mathematical
 data. They must not acquire a Challenge placeholder, a fixed-model axiom or a

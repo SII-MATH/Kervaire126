@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Computation.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+
+@[expose] public section
 
 /-!
 # Mathematical state predicates for computation interfaces

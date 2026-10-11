@@ -1,5 +1,9 @@
-import KIP126.Mathlib.SpectralSequence.FilteredComplex.Relations.Data
-import KIP126.Def.SpectralSequence.FilteredComplex.SSData.Predicates
+module
+
+public import KIP126.Mathlib.SpectralSequence.FilteredComplex.Relations.Data
+public import KIP126.Def.SpectralSequence.FilteredComplex.SSData.Predicates
+
+@[expose] public section
 
 /-! Predicates for filtered-complex/page relations. -/
 

@@ -1,6 +1,10 @@
-import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
-import KIP126.Def.SpectralSequence.Basic.Category.Proofs
-import KIP126.Def.SpectralSequence.Basic.MorphismCriterion
+module
+
+public import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
+public import KIP126.Def.SpectralSequence.Basic.Category.Proofs
+public import KIP126.Def.SpectralSequence.Basic.MorphismCriterion
+
+@[expose] public section
 
 /-!
 # Nested-subobject spectral sequences

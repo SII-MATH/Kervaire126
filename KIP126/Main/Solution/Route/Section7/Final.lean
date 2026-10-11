@@ -1,5 +1,9 @@
-import KIP126.Main.Solution.Route.Section7.NuTarget
-import KIP126.Main.Solution.Route.Section7.CnuRigidity
+module
+
+public import KIP126.Main.Solution.Route.Section7.NuTarget
+public import KIP126.Main.Solution.Route.Section7.CnuRigidity
+
+@[expose] public section
 
 /-! Internal obligations in the second half of LWX Section 7.
 

@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.NestedQuotient.Data
+module
+
+public import KIP126.Def.Algebra.NestedQuotient.Data
+
+@[expose] public section
 
 namespace KIP126.Algebra.NestedQuotient
 

@@ -1,5 +1,9 @@
-import KIP126.Def.Kervaire.Route.Conditions.Predicates
-import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+module
+
+public import KIP126.Def.Kervaire.Route.Conditions.Predicates
+public import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+
+@[expose] public section
 
 open KIP126.Classical.Adams
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

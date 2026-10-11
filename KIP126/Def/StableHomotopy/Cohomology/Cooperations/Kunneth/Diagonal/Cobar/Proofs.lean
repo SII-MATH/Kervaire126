@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Cobar.Data
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Primitive.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Cobar.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Primitive.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

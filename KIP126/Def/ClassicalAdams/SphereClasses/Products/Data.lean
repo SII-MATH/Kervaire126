@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Data
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Data
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+
+@[expose] public section
 
 /-! Specified products of the standard Milnor classes on the actual internal E₂.
 The product is the existing cobar cup product followed by its canonical

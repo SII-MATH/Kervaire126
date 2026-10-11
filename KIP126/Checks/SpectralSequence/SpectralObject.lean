@@ -1,5 +1,9 @@
-import KIP126.Mathlib.SpectralSequence.SpectralObject.Data
-import Mathlib.Algebra.Category.ModuleCat.Abelian
+module
+
+public import KIP126.Mathlib.SpectralSequence.SpectralObject.Data
+public import Mathlib.Algebra.Category.ModuleCat.Abelian
+
+@[expose] public section
 
 /-!
 # Regression checks for the spectral-object adapter

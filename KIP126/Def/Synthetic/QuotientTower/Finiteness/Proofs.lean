@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.QuotientTower.Data
-import KIP126.Def.Synthetic.Sphere.Data
-import KIP126.Def.StableHomotopy.Context.Finiteness.Proofs
+module
+
+public import KIP126.Def.Synthetic.QuotientTower.Data
+public import KIP126.Def.Synthetic.Sphere.Data
+public import KIP126.Def.StableHomotopy.Context.Finiteness.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.Context
 

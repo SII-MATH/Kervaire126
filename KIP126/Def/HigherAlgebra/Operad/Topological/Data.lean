@@ -1,7 +1,11 @@
-import KIP126.Def.HigherAlgebra.Operad.Arity.Data
-import Mathlib.Topology.Category.TopCat.Basic
-import Mathlib.Topology.ContinuousMap.Basic
-import Mathlib.Topology.Homeomorph.Defs
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.Arity.Data
+public import Mathlib.Topology.Category.TopCat.Basic
+public import Mathlib.Topology.ContinuousMap.Basic
+public import Mathlib.Topology.Homeomorph.Defs
+
+@[expose] public section
 
 /-!
 A unital symmetric operad in topological spaces, indexed by finite sets.

@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Basic
+module
+
+public import KIP126.Def.SpectralSequence.Basic
+
+@[expose] public section
 
 /-!
 # API regression checks for nested-subobject spectral sequences

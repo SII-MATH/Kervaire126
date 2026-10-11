@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Detection.Convergence.Data
-import KIP126.Def.SpectralSequence.Computation.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.Detection.Convergence.Data
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.TowerDetection
 open CategoryTheory CategoryTheory.MonoidalCategory KIP126.StableHomotopy

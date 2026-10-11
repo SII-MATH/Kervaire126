@@ -1,7 +1,12 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.LinProgram.Certificates.SquareDimension.Proofs
-import KIP126.Main.Solution.Computation.Dimension
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.LinProgram.Certificates.SquareDimension.Proofs
+public import KIP126.Main.Solution.Computation.Dimension
+public import Lean.Elab.Command
+public meta import KIP126.Checks.AxiomInputs
+
+@[expose] public section
 
 /-! The small degree argument is kernel-checked, not an additive-basis
 certification axiom. The internal transfer uses the foundation projection and

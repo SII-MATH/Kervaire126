@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.QuotientTower.Predicates
-import KIP126.Def.Synthetic.QuotientMap.Proofs
+module
+
+public import KIP126.Def.Synthetic.QuotientTower.Predicates
+public import KIP126.Def.Synthetic.QuotientMap.Proofs
+
+@[expose] public section
 
 /-! Local laws of a supplied coherent tower. No tower inhabitant is assumed globally. -/
 

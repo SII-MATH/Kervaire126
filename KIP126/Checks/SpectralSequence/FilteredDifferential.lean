@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.FilteredDifferential.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.FilteredDifferential.Proofs
+
+@[expose] public section
 
 /-! Regression checks for the canonical finite-page differential. -/
 

@@ -1,4 +1,8 @@
-import KIP126.Main.Solution.Literature.HopfCofiber.Predicates
+module
+
+public import KIP126.Main.Solution.Literature.HopfCofiber.Predicates
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 open CategoryTheory KIP126.StableHomotopy

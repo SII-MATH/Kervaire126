@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Data
+module
+
+public import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Data
+
+@[expose] public section
 
 /-! Detection on one synthetic Adams family. All indeterminacy is retained:
 there must be a common infinite-cycle representative and equality only in

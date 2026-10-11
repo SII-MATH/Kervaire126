@@ -1,6 +1,12 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Construction.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Boundary.Proofs
-import KIP126.Def.StableHomotopy.Context.Connecting.Desuspension.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Construction.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Boundary.Proofs
+public import KIP126.Def.StableHomotopy.Context.Connecting.Desuspension.Proofs
+
+import all KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Construction.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

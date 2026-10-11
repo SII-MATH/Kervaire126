@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Proofs
+
+@[expose] public section
 
 /-! The next-cycle and next-boundary arguments on the existing actual tower.
 These are the exact-couple representative arguments used in KIPBase's

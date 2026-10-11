@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.Interface.Predicates
-import KIP126.Def.ClassicalAdams.Moss.Crossing.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Interface.Predicates
+public import KIP126.Def.ClassicalAdams.Moss.Crossing.Predicates
+
+@[expose] public section
 
 /-!
 Moss convergence in the currently constructed mapping model, for the

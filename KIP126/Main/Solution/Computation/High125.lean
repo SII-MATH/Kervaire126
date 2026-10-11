@@ -1,8 +1,14 @@
-import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
-import KIP126.Main.Solution.Computation.Tmf
-import KIP126.Interface.Solution.Literature.Applications
-import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
-import KIP126.Def.SpectralSequence.Basic.Category.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
+public import KIP126.Main.Solution.Computation.Tmf
+public import KIP126.Main.Solution.Computation.Route.High125
+public import KIP126.Main.Solution.Computation.Route.Stem125Differentials
+public import KIP126.Interface.Solution.Literature.Applications
+public import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
+public import KIP126.Def.SpectralSequence.Basic.Category.Proofs
+
+@[expose] public section
 
 /-!
 # The weight130 high-filtration argument of Proposition 7.8

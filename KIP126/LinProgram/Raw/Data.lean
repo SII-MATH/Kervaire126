@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-!
 # Lossless rows and syntactic codes of the pinned Lin log
 

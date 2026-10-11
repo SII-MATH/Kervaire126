@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerDifferential.Cycles.Proofs
-import KIP126.Def.ClassicalAdams.Grading.Data
-import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+module
+
+public import KIP126.Def.ClassicalAdams.TowerDifferential.Cycles.Proofs
+public import KIP126.Def.ClassicalAdams.Grading.Data
+public import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+
+@[expose] public section
 
 /-!
 # Quotient-page differential data

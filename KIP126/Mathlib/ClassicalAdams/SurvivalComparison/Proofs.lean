@@ -1,5 +1,9 @@
-import KIP126.Mathlib.ClassicalAdams.StandardPage.Data
-import KIP126.Mathlib.ClassicalAdams.TowerComparison.Permanence.Proofs
+module
+
+public import KIP126.Mathlib.ClassicalAdams.StandardPage.Data
+public import KIP126.Mathlib.ClassicalAdams.TowerComparison.Permanence.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

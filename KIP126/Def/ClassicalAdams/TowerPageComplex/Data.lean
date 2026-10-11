@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerDifferential.Proofs
-import Mathlib.Algebra.Homology.ShortComplex.HomologicalComplex
+module
+
+public import KIP126.Def.ClassicalAdams.TowerDifferential.Proofs
+public import Mathlib.Algebra.Homology.ShortComplex.HomologicalComplex
+
+@[expose] public section
 
 /-!
 # Adams quotient pages as homological complexes

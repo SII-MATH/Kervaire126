@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Pages.Data
-import Mathlib.Order.WithBot
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Pages.Data
+public import Mathlib.Order.WithBot
+
+@[expose] public section
 
 /-! The intrinsic E₁-based nested cycles and boundaries. Internal stage m
 is raw page m+1; the infinite stages are their actual infimum and supremum. -/

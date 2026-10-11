@@ -1,4 +1,9 @@
-import KIP126.LinProgram.Tactic.LinSquareCertificate
+module
+
+public import KIP126.LinProgram.Tactic.LinSquareCertificate
+import all Init.Data.List.SplitOn.Basic
+
+@[expose] public section
 
 /-! Kernel certificates for archived chunks 128 through 159.
 The original strings and their order are unchanged. -/

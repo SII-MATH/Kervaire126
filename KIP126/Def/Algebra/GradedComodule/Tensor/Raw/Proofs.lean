@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedComodule.Tensor.Raw.Data
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Tensor.Raw.Data
+
+@[expose] public section
 
 /-! Naturality and laws of the explicitly given right-tensor maps. These
 generic statements are separated from the data; their proofs are not part

@@ -1,6 +1,10 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Lifting.Construction.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Boundary.FirstDifferential.Proofs
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Lifting.Construction.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Boundary.FirstDifferential.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

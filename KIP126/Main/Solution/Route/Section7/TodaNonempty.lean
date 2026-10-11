@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.Context.Coherence.Proofs
-import KIP126.Def.StableHomotopy.Toda.Law.Proofs
-import KIP126.Def.Kervaire.Route.Section7.AlphaOne
+module
+
+public import KIP126.Def.Synthetic.Context.Coherence.Proofs
+public import KIP126.Def.StableHomotopy.Toda.Law.Proofs
+public import KIP126.Def.Kervaire.Route.Section7.AlphaOne
+
+@[expose] public section
 
 namespace KIP126.Main.Solution.Route.Section7
 open CategoryTheory CategoryTheory.Limits CategoryTheory.Pretriangulated

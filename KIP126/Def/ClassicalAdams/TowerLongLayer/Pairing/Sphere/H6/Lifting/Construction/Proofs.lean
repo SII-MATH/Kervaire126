@@ -1,7 +1,13 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Lifting.Construction.Data
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Construction.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Predicates
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Boundary.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Lifting.Construction.Data
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Construction.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Predicates
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Boundary.Proofs
+
+import all KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Construction.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

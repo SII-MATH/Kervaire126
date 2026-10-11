@@ -1,6 +1,10 @@
-import KIP126.Def.Steenrod.MilnorCoalgebra.Raw.Proofs
-import KIP126.Def.Algebra.GradedVectorSpace.Data
-import Mathlib.CategoryTheory.Monoidal.Comon_
+module
+
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Raw.Proofs
+public import KIP126.Def.Algebra.GradedVectorSpace.Data
+public import Mathlib.CategoryTheory.Monoidal.Comon_
+
+@[expose] public section
 
 /-!
 The actual Milnor graded comultiplication. Every supported monomial in

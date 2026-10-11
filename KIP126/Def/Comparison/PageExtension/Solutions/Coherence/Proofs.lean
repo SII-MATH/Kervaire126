@@ -1,6 +1,10 @@
-import KIP126.Def.Comparison.PageExtension.Solutions.Data
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
-import KIP126.Def.Algebra.InverseSequence.Proofs
+module
+
+public import KIP126.Def.Comparison.PageExtension.Solutions.Data
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
+public import KIP126.Def.Algebra.InverseSequence.Proofs
+
+@[expose] public section
 
 /-! Compatible finite solution towers from an initial solution and actual
 surjective restrictions. This makes no untruncated ESS recovery claim. -/

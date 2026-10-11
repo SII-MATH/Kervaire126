@@ -1,5 +1,9 @@
-import KIP126.Def.Algebra.Graded.Data
-import Mathlib.Algebra.Homology.ShortComplex.HomologicalComplex
+module
+
+public import KIP126.Def.Algebra.Graded.Data
+public import Mathlib.Algebra.Homology.ShortComplex.HomologicalComplex
+
+@[expose] public section
 
 /-!
 # Filtered graded objects

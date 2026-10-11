@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Parity.Data
-import Mathlib.Data.Nat.Choose.Lucas
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Parity.Data
+public import Mathlib.Data.Nat.Choose.Lucas
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor
 

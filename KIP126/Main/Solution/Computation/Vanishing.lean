@@ -1,5 +1,9 @@
-import KIP126.Def.StageInput.StandardSphere.Sequence.Data
-import KIP126.Def.ClassicalAdams.SphereVanishing.Proofs
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+public import KIP126.Def.ClassicalAdams.SphereVanishing.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

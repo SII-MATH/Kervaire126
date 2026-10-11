@@ -1,6 +1,10 @@
-import KIP126.Def.StageInput.Milnor
-import KIP126.Def.ClassicalAdams.SphereClasses.Data
-import KIP126.Def.ClassicalAdams.Mod2Sphere.Data
+module
+
+public import KIP126.Def.StageInput.Milnor
+public import KIP126.Def.ClassicalAdams.SphereClasses.Data
+public import KIP126.Def.ClassicalAdams.Mod2Sphere.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

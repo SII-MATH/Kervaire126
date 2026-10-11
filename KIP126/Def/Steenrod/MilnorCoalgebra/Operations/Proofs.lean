@@ -1,9 +1,13 @@
-import KIP126.Def.Steenrod.MilnorCoalgebra.Operations.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Full.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Normalization.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Multiplication.Proofs
-import Mathlib.Algebra.CharP.Lemmas
-import Mathlib.Algebra.BigOperators.Intervals
+module
+
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Operations.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Full.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Normalization.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Multiplication.Proofs
+public import Mathlib.Algebra.CharP.Lemmas
+public import Mathlib.Algebra.BigOperators.Intervals
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor.Coalgebra
 

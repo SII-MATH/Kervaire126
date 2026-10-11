@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Suspension.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Suspension.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Suspension
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

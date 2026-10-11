@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Boundary.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Sphere.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Primitive.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Boundary.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Sphere.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Primitive.Proofs
+
+@[expose] public section
 
 /-! A primitive cooperation carries an actual first-cycle coefficient to
 an actual first cycle in the next tower stage. No Milnor or Lin input is

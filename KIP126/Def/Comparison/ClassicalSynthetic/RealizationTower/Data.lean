@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerLayer.Proofs
-import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLayer.Proofs
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
+
+@[expose] public section
 
 /-! A realization map on Adams pages, induced by the ACTUAL exact strong
 monoidal functor. The layer map is a formula in F.map, F's monoidal maps,

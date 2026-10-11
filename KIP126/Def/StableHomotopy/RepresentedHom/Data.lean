@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Context.Data
-import Mathlib.Algebra.Module.LinearMap.Defs
+module
+
+public import KIP126.Def.StableHomotopy.Context.Data
+public import Mathlib.Algebra.Module.LinearMap.Defs
+
+@[expose] public section
 
 /-!
 # Shifted morphisms represented by an arbitrary object

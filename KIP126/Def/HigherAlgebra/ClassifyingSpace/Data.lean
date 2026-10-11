@@ -1,7 +1,11 @@
-import Mathlib.AlgebraicTopology.SimplicialSet.Nerve
-import Mathlib.AlgebraicTopology.SingularSet
-import Mathlib.CategoryTheory.Widesubcategory
-import KIP126.Def.Topology.HomotopyFiber.Data
+module
+
+public import Mathlib.AlgebraicTopology.SimplicialSet.Nerve
+public import Mathlib.AlgebraicTopology.SingularSet
+public import Mathlib.CategoryTheory.Widesubcategory
+public import KIP126.Def.Topology.HomotopyFiber.Data
+
+@[expose] public section
 
 /-!
 # Classifying spaces and fibers of structure-forgetting functors

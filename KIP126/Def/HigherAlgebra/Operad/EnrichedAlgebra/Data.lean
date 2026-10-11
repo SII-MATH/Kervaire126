@@ -1,4 +1,8 @@
-import KIP126.Def.HigherAlgebra.Operad.Endomorphism.Data
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.Endomorphism.Data
+
+@[expose] public section
 
 /-!
 # Operadic algebras on enriched tensor objects

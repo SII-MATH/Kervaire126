@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Normalized.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Normalized.Proofs
+
+@[expose] public section
 
 /-! Explicit splitting and normalization of the actual smashed unit sequence.
 These are constructions from its proved exactness, not Künneth inputs. -/

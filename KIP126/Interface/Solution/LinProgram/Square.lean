@@ -1,7 +1,11 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Proofs
-import KIP126.LinProgram.Certificates.SquareDimension.Proofs
-import KIP126.Def.StageInput.StandardSphere.Classes.Proofs
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Proofs
+public import KIP126.LinProgram.Certificates.SquareDimension.Proofs
+public import KIP126.Def.StageInput.StandardSphere.Classes.Proofs
+
+@[expose] public section
 
 namespace KIP126.Interface.Solution
 

@@ -1,4 +1,8 @@
-import KIP126.Mathlib.SpectralSequence.SSData.Assembly.Data
+module
+
+public import KIP126.Mathlib.SpectralSequence.SSData.Assembly.Data
+
+@[expose] public section
 
 /-!
 # Finite-page comparison for the generic SSData adapter

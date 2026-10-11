@@ -1,5 +1,9 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Data
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Data
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+
+@[expose] public section
 
 /-!
 # Bigraded θ₅ expressions on the actual synthetic sphere

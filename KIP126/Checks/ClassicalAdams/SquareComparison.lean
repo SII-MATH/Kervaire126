@@ -1,6 +1,12 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.Mathlib.ClassicalAdams.FinalComparison.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.Mathlib.ClassicalAdams.FinalComparison.Proofs
+public import Lean.Elab.Command
+public meta import KIP126.Checks.AxiomInputs
+import all KIP126.Mathlib.ClassicalAdams.FinalComparison.Proofs
+
+@[expose] public section
 
 /-! Guard the theorem form and the three disclosed fixed inputs. Development
 checks report inherited Challenge2 type debt; strict proof completion remains

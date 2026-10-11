@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.FilteredPage.Data
+module
+
+public import KIP126.Def.SpectralSequence.FilteredPage.Data
+
+@[expose] public section
 
 /-!
 # Differential on quotient pages
@@ -68,7 +72,7 @@ set_option backward.isDefEq.respectTransparency false in
       `Z_n = { x ∈ F^s | dx ∈ F^{s+n} }` and `B_n = { dz | z ∈ F^{s-n+1}, dz ∈ F^s }`
     - Target: `E_n^{s+n,k-1} = Z_n^{s+n,k-1} / B_n^{s+n,k-1}`
     - Map: send class of x to class of dx -/
-noncomputable def pageDifferential (FC : FilteredComplex C)
+@[no_expose] noncomputable def pageDifferential (FC : FilteredComplex C)
     (s k : ℤ) (n : ℕ) :
     FC.pageObj s k ↑n ⟶ FC.pageObj (s + ↑n) (k - 1) ↑n := by
   set ι_s := Subobject.ofLE (FC.filtration.F (s + 1) k) (FC.filtration.F s k) (FC.filtration.decreasing s k) with hι_s_def

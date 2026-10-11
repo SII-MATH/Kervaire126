@@ -1,40 +1,44 @@
-import KIP126.Def.StageInput
-import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
-import KIP126.Interface.Solution.Literature.Route.BHS
-import KIP126.Interface.Solution.Literature.Route.Range
-import KIP126.Interface.Solution.Literature.Route.SourceExistence
-import KIP126.Interface.Solution.LinProgram.Staircase
-import KIP126.Interface.Solution.LinProgram.Square
-import KIP126.Interface.Solution.LinProgram.Multiplication
-import KIP126.Interface.Solution.Tmf
-import KIP126.Interface.Solution.AdamsOneLine
-import KIP126.Interface.Solution.Moss
-import KIP126.Def.Comparison.PageExtension.Solutions.Finiteness.Proofs
-import KIP126.Def.Comparison.PageExtension.Solutions.Coherence.Proofs
-import KIP126.Interface.Solution.LinProgram.BasisTable
-import KIP126.Interface.Solution.LinProgram.SphereBasis
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch0
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch1
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch2
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch3
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch4
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch5
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch6
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch7
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Proofs
-import KIP126.LinProgram.Certificates.SquareDetection.Certificate
-import KIP126.LinProgram.Certificates.SquareDetection.Parsing
-import KIP126.LinProgram.Certificates.SquareDetection
-import KIP126.LinProgram.Certificates.SquareDimension.Generators.Proofs
-import KIP126.LinProgram.Certificates.SquareDimension.Proofs
-import KIP126.Interface.Solution.Challenge2
-import KIP126.Def.Comparison.Pages.Proofs
-import KIP126.Def.Comparison.Cobar.Proofs
-import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Proofs
-import KIP126.Def.Comparison.PageExtension.Ambiguity.Proofs
-import KIP126.Def.Comparison.PageExtension.Kernel.Proofs
-import KIP126.Def.Comparison.PageExtension.Targets.Proofs
-import KIP126.Def.Comparison.PageExtension.Solutions.Proofs
-import KIP126.Def.Comparison.Pages.Naturality.Proofs
-import KIP126.Interface.Solution.Literature.Route.Adapters
-import KIP126.Interface.Solution.LinProgram.Route.Certification
+module
+
+public import KIP126.Def.StageInput
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
+public import KIP126.Interface.Solution.Literature.Route.BHS
+public import KIP126.Interface.Solution.Literature.Route.Range
+public import KIP126.Interface.Solution.Literature.Route.SourceExistence
+public import KIP126.Interface.Solution.LinProgram.Staircase
+public import KIP126.Interface.Solution.LinProgram.Square
+public import KIP126.Interface.Solution.LinProgram.Multiplication
+public import KIP126.Interface.Solution.Tmf
+public import KIP126.Interface.Solution.AdamsOneLine
+public import KIP126.Interface.Solution.Moss
+public import KIP126.Def.Comparison.PageExtension.Solutions.Finiteness.Proofs
+public import KIP126.Def.Comparison.PageExtension.Solutions.Coherence.Proofs
+public import KIP126.Interface.Solution.LinProgram.BasisTable
+public import KIP126.Interface.Solution.LinProgram.SphereBasis
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch0
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch1
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch2
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch3
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch4
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch5
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch6
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch7
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Proofs
+public import KIP126.LinProgram.Certificates.SquareDetection.Certificate
+public import KIP126.LinProgram.Certificates.SquareDetection.Parsing
+public import KIP126.LinProgram.Certificates.SquareDetection
+public import KIP126.LinProgram.Certificates.SquareDimension.Generators.Proofs
+public import KIP126.LinProgram.Certificates.SquareDimension.Proofs
+public import KIP126.Interface.Solution.Challenge2
+public import KIP126.Def.Comparison.Pages.Proofs
+public import KIP126.Def.Comparison.Cobar.Proofs
+public import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Proofs
+public import KIP126.Def.Comparison.PageExtension.Ambiguity.Proofs
+public import KIP126.Def.Comparison.PageExtension.Kernel.Proofs
+public import KIP126.Def.Comparison.PageExtension.Targets.Proofs
+public import KIP126.Def.Comparison.PageExtension.Solutions.Proofs
+public import KIP126.Def.Comparison.Pages.Naturality.Proofs
+public import KIP126.Interface.Solution.Literature.Route.Adapters
+public import KIP126.Interface.Solution.LinProgram.Route.Certification
+
+@[expose] public section

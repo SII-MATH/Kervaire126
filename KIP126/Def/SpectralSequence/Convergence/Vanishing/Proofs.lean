@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Truncation.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Truncation.Proofs
+
+@[expose] public section
 
 /-! Vanishing of associated grades raises the filtration of the same
 object. This extracts the filtration argument from the historical Adams

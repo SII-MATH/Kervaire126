@@ -1,5 +1,9 @@
-import KIP126.LinProgram.Certificates.BasisTable.Data
-import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
+module
+
+public import KIP126.LinProgram.Certificates.BasisTable.Data
+public import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
+
+@[expose] public section
 
 namespace KIP126.LinE2
 

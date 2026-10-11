@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Sphere.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Sphere.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Audit the actual cooperation unit and the below-page unit/coaction
 formula. Unit coherence is an explicit premise, not a new fixed axiom. -/

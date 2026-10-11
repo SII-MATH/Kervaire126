@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorModule.Resolution.Complex.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Resolution.Complex.Proofs
+
+@[expose] public section
 
 /-!
 The projective resolution formed from the specified dual cobar complex.

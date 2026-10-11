@@ -1,5 +1,9 @@
-import KIP126.Mathlib.SpectralSequence.Permanence.Data
-import KIP126.Def.SpectralSequence.Permanence.Proofs
+module
+
+public import KIP126.Mathlib.SpectralSequence.Permanence.Data
+public import KIP126.Def.SpectralSequence.Permanence.Proofs
+
+@[expose] public section
 
 /-! Type-level regressions for the elementwise permanence interface. -/
 

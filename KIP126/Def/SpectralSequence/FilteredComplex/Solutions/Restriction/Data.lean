@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Affine.Data
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Morphism.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Affine.Data
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Morphism.Proofs
+
+@[expose] public section
 
 namespace KIP126.Core.SpectralSequence.FilteredComplex.Solutions
 

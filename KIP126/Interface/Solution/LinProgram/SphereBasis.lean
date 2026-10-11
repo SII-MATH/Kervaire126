@@ -1,6 +1,10 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.LinProgram.Certificates.BasisTable.Proofs
-import KIP126.Interface.Solution.LinProgram.BasisTable
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.LinProgram.Certificates.BasisTable.Proofs
+public import KIP126.Interface.Solution.LinProgram.BasisTable
+
+@[expose] public section
 
 namespace KIP126.Interface.Solution
 

@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.Filtration.Predicates
+module
+
+public import KIP126.Def.Algebra.Filtration.Predicates
+
+@[expose] public section
 
 namespace KIP126.Core.Algebra
 

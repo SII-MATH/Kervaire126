@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.Data
+module
+
+public import KIP126.Def.StableHomotopy.Context.Data
+
+@[expose] public section
 
 /-! An isomorphism square induces an isomorphism through the specified
 cofiber map, by the actual morphism of distinguished triangles. -/

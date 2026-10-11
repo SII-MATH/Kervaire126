@@ -1,7 +1,11 @@
-import KIP126.Def.Synthetic.MapFiltration.Proofs
-import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Data
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Data
-import KIP126.Def.Synthetic.PageExtension.Relation.Data
+module
+
+public import KIP126.Def.Synthetic.MapFiltration.Proofs
+public import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Data
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Data
+public import KIP126.Def.Synthetic.PageExtension.Relation.Data
+
+@[expose] public section
 
 /-! The actual two-term filtered complex of a synthetic map, without a
 globally bounded filtration. Finite extension equations and their complete

@@ -1,5 +1,9 @@
-import KIP126.Def.Algebra.GradedModule.Structure.Basic.Data
-import Mathlib.CategoryTheory.Abelian.Basic
+module
+
+public import KIP126.Def.Algebra.GradedModule.Structure.Basic.Data
+public import Mathlib.CategoryTheory.Abelian.Basic
+
+@[expose] public section
 
 namespace KIP126.Algebra.GradedModule
 

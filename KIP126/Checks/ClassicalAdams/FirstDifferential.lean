@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Image.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Image.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Audit the derived comparison with the actual first quotient-page differential.
 Ring structure, homology Künneth, tensor exactness, and unit/shift coherence

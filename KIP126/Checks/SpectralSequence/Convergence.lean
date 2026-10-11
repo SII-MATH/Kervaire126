@@ -1,5 +1,9 @@
-import KIP126.Mathlib.SpectralSequence.Endpoint.Convergence.Proofs
-import Mathlib.Algebra.Category.ModuleCat.Abelian
+module
+
+public import KIP126.Mathlib.SpectralSequence.Endpoint.Convergence.Proofs
+public import Mathlib.Algebra.Category.ModuleCat.Abelian
+
+@[expose] public section
 
 /-!
 # Regression checks for endpoint-extended spectral sequences

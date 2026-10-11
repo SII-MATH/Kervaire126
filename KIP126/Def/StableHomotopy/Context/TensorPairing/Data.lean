@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Context.Data
-import Mathlib.CategoryTheory.Monoidal.Preadditive
+module
+
+public import KIP126.Def.StableHomotopy.Context.Data
+public import Mathlib.CategoryTheory.Monoidal.Preadditive
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy
 

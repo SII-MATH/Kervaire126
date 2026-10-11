@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.Convergence.Proofs
-import KIP126.Def.SpectralSequence.PageLevel.Proofs
-import KIP126.Def.ClassicalAdams.SphereSequence.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Convergence.Proofs
+public import KIP126.Def.SpectralSequence.PageLevel.Proofs
+public import KIP126.Def.ClassicalAdams.SphereSequence.Data
+
+@[expose] public section
 
 /-!
 # Regression checks for classical Adams pages and sphere multiplication

@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.EInfty.Shift.Canonical.Data
+module
+
+public import KIP126.Def.Synthetic.EInfty.Shift.Canonical.Data
+
+@[expose] public section
 
 namespace KIP126.Synthetic.SpectralSequence
 

@@ -1,10 +1,14 @@
-import KIP126.Interface.Solution.Literature.Route.BHS
-import KIP126.Interface.Solution.Literature.Route.Moss
-import KIP126.Interface.Solution.Literature.Route.RealizationKernel
-import KIP126.Interface.Solution.Literature.Route.Toda
-import KIP126.Interface.Solution.Literature.Route.May
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Literature.Applications
+module
+
+public import KIP126.Interface.Solution.Literature.Route.BHS
+public import KIP126.Interface.Solution.Literature.Route.Moss
+public import KIP126.Interface.Solution.Literature.Route.RealizationKernel
+public import KIP126.Interface.Solution.Literature.Route.Toda
+public import KIP126.Interface.Solution.Literature.Route.May
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Interface.Solution.Literature.Applications
+
+@[expose] public section
 
 namespace KIP126.Interface.Solution.Literature.Route
 open CategoryTheory CategoryTheory.Pretriangulated

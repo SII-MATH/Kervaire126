@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Data
-import KIP126.Def.StableHomotopy.Cohomology.Coaction.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Coaction.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

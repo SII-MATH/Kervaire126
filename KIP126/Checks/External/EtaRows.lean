@@ -1,4 +1,8 @@
-import KIP126.Main.Solution.Literature.EtaRows.Proofs
+module
+
+public import KIP126.Main.Solution.Literature.EtaRows.Proofs
+
+@[expose] public section
 
 /-!
 # Regression checks for typed classical eta data

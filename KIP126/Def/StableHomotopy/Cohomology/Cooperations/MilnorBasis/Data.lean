@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Equiv.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Equiv.Data
+
+@[expose] public section
 
 /-! A below-page Milnor basis input, and the algebraic tensor conversion it
 supports. No value for the fixed sphere foundation is postulated. A basis

@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.SSData.Data
-import KIP126.Def.Algebra.Filtration.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.SSData.Data
+public import KIP126.Def.Algebra.Filtration.Predicates
+
+@[expose] public section
 
 /-!
 # Predicates for the historical filtered-complex API

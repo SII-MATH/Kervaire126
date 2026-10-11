@@ -1,4 +1,8 @@
-import KIP126.Mathlib.SpectralSequence.FilteredComplex.FinitePage.Proofs
+module
+
+public import KIP126.Mathlib.SpectralSequence.FilteredComplex.FinitePage.Proofs
+
+@[expose] public section
 
 /-! Assemble the proved internal `Z/B` pages as a Mathlib spectral sequence. -/
 

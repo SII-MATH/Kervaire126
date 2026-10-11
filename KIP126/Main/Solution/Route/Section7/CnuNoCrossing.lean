@@ -1,4 +1,8 @@
-import KIP126.Main.Solution.Route.Section7.Common
+module
+
+public import KIP126.Main.Solution.Route.Section7.Common
+
+@[expose] public section
 
 namespace KIP126.Main.Solution.Route.Section7
 open CategoryTheory

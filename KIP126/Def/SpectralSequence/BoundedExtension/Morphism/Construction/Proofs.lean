@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.BoundedExtension.Morphism.Construction.Data
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension.Morphism.Construction.Data
+
+@[expose] public section
 
 /-!
 # Properties of the historical morphism constructor

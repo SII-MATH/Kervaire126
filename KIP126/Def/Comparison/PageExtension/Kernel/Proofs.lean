@@ -1,7 +1,11 @@
-import KIP126.Def.Comparison.PageExtension.Targets.Data
-import KIP126.Def.Comparison.PageExtension.Ambiguity.Predicates
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Proofs
-import KIP126.Def.Synthetic.PageExtension.Target.Proofs
+module
+
+public import KIP126.Def.Comparison.PageExtension.Targets.Data
+public import KIP126.Def.Comparison.PageExtension.Ambiguity.Predicates
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Target.Proofs
+
+@[expose] public section
 
 namespace KIP126.Def.Comparison.StageInterfaces
 

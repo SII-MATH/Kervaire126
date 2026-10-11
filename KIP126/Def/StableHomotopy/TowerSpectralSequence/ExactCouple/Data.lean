@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.DescendingTower.Layer.Data
-import KIP126.Def.StableHomotopy.RepresentedHom.Data
+module
+
+public import KIP126.Def.StableHomotopy.DescendingTower.Layer.Data
+public import KIP126.Def.StableHomotopy.RepresentedHom.Data
+
+@[expose] public section
 
 /-! The actual exact-couple arrows of a descending tower, tested against
 ordinary suspensions of a specified object. Exactness is a property of the

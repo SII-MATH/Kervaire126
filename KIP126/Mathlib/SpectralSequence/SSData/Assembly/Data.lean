@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
-import Mathlib.Algebra.Homology.SpectralSequence.Basic
+module
+
+public import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
+public import Mathlib.Algebra.Homology.SpectralSequence.Basic
+
+@[expose] public section
 
 /-!
 # Adapting nested-subobject spectral sequences to Mathlib

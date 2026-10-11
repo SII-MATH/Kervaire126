@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Pairing.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Pairing.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

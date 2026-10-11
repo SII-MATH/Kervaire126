@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Convergence.Tower.Raw.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Convergence.Tower.Raw.Proofs
+
+@[expose] public section
 
 /-! Bundle the specified image filtration on the same spectrum's homotopy. -/
 

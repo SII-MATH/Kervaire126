@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.SSData.Page.Data
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.SSData.Page.Data
+
+@[expose] public section
 
 /-!
 The actual first quotient page equals the original layer Hom group: its

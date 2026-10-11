@@ -1,7 +1,11 @@
-import Mathlib.Algebra.Category.Grp.Abelian
-import Mathlib.CategoryTheory.Monoidal.Braided.Basic
-import Mathlib.CategoryTheory.Monoidal.Closed.Basic
-import Mathlib.CategoryTheory.Triangulated.Functor
+module
+
+public import Mathlib.Algebra.Category.Grp.Abelian
+public import Mathlib.CategoryTheory.Monoidal.Braided.Basic
+public import Mathlib.CategoryTheory.Monoidal.Closed.Basic
+public import Mathlib.CategoryTheory.Triangulated.Functor
+
+@[expose] public section
 
 /-!
 # Stable-homotopy context interfaces

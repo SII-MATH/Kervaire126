@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Detection.Predicates
-import KIP126.Def.SpectralSequence.Convergence.Vanishing.Proofs
+module
+
+public import KIP126.Def.Synthetic.Detection.Predicates
+public import KIP126.Def.SpectralSequence.Convergence.Vanishing.Proofs
+
+@[expose] public section
 
 /-! The graded-vanishing argument on the same actual Adams tower used by
 detection. Finite intervals need only convergence; a zero tail additionally

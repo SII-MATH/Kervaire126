@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Context.Coherence.Data
+module
+
+public import KIP126.Def.Synthetic.Context.Coherence.Data
+
+@[expose] public section
 
 /-! Exact coherence conditions on the *specified* `biShift`, comparisons,
 and deformation transformation. The record supplies no replacement data. -/

@@ -1,5 +1,9 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Pages.Data
-import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Pages.Data
+public import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+
+@[expose] public section
 
 /-! Same-model binding of the route's nu E2 labels to actual realization.
 The weight-base isomorphisms are explicit parameters: the source model

@@ -1,6 +1,10 @@
-import Mathlib.Topology.Homotopy.HomotopyGroup
-import Mathlib.Topology.Category.TopCat.Basic
-import Mathlib.CategoryTheory.Localization.Construction
+module
+
+public import Mathlib.Topology.Homotopy.HomotopyGroup
+public import Mathlib.Topology.Category.TopCat.Basic
+public import Mathlib.CategoryTheory.Localization.Construction
+
+@[expose] public section
 
 /-!
 # A point-set source for the classical implementation

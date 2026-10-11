@@ -1,4 +1,8 @@
-import KIP126.Def.StageInput.Foundation
+module
+
+public import KIP126.Def.StageInput.Foundation
+
+@[expose] public section
 
 /-! Compatibility name for the Milnor coordinates in the same fixed Def implementation. -/
 namespace KIP126.Classical.Adams

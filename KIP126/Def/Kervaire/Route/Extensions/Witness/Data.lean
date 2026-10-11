@@ -1,5 +1,9 @@
-import KIP126.Def.Kervaire.Route.Extensions.Data
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
+module
+
+public import KIP126.Def.Kervaire.Route.Extensions.Data
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
+
+@[expose] public section
 
 /-! Page extensions in the shared model, with no separate ESS, filtration,
 source/target operators, or arbitrary quotient comparisons as parameters. -/

@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.InverseSequence.Data
+module
+
+public import KIP126.Def.StableHomotopy.InverseSequence.Data
+
+@[expose] public section
 
 /-!
 Integer-indexed descending towers with their actual finite composites.

@@ -1,5 +1,9 @@
-import KIP126.Mathlib.SpectralSequence.Endpoint.Convergence.Predicates
-import KIP126.Def.Algebra.Completion.Proofs
+module
+
+public import KIP126.Mathlib.SpectralSequence.Endpoint.Convergence.Predicates
+public import KIP126.Def.Algebra.Completion.Proofs
+
+@[expose] public section
 
 /-! Derived completion and detection properties for strong convergence. -/
 namespace KIP126.Core.SpectralSequence

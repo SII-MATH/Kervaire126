@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.PreSS.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.PreSS.Proofs
+
+@[expose] public section
 
 /-! Assemble the actual tower spectral sequence from its constructed
 kernel/image pages and quotient differential, using the separately stated

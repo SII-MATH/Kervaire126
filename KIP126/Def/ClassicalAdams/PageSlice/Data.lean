@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.SphereSequence.Data
+module
+
+public import KIP126.Def.ClassicalAdams.SphereSequence.Data
+
+@[expose] public section
 
 /-!
 # Classical spectral-sequence basics

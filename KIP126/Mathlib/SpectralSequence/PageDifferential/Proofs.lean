@@ -1,4 +1,8 @@
-import KIP126.Mathlib.SpectralSequence.PageDifferential.Predicates
+module
+
+public import KIP126.Mathlib.SpectralSequence.PageDifferential.Predicates
+
+@[expose] public section
 
 /-! Basic, proof-carrying facts for page differential relations. -/
 

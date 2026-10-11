@@ -1,4 +1,8 @@
-import KIP126.Mathlib.SpectralSequence.Permanence.Data
+module
+
+public import KIP126.Mathlib.SpectralSequence.Permanence.Data
+
+@[expose] public section
 
 namespace KIP126.Core.SpectralSequence
 

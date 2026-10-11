@@ -1,5 +1,9 @@
-import KIP126.Def.Algebra.GradedComodule.Shift.Data
-import KIP126.Def.Algebra.GradedComodule.Structure.Data
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Shift.Data
+public import KIP126.Def.Algebra.GradedComodule.Structure.Data
+
+@[expose] public section
 
 /-!
 Properties of the prescribed internal suspension, which tensors on the left

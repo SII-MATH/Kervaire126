@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalESS.Eta.Predicates
+module
+
+public import KIP126.Def.ClassicalESS.Eta.Predicates
+
+@[expose] public section
 
 namespace KIP126.Classical.ExtensionSS
 

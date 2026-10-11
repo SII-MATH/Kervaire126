@@ -1,8 +1,12 @@
-import KIP126.Def.StableHomotopy.Implementation.Prespectrum
-import Mathlib.Topology.Piecewise
-import Mathlib.Analysis.Normed.Group.Constructions
-import Mathlib.Analysis.Normed.Field.Basic
-import Mathlib.Analysis.Normed.Group.Continuity
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum
+public import Mathlib.Topology.Piecewise
+public import Mathlib.Analysis.Normed.Group.Constructions
+public import Mathlib.Analysis.Normed.Field.Basic
+public import Mathlib.Analysis.Normed.Group.Continuity
+
+@[expose] public section
 
 /-! Explicit point-set spheres, suspension, and mapping cones. All quotient
 relations and maps are fixed below; unfinished obligations are continuity,

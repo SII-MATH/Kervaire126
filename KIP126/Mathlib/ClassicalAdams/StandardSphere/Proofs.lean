@@ -1,5 +1,9 @@
-import KIP126.Mathlib.ClassicalAdams.StandardSphere.Data
-import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
+module
+
+public import KIP126.Mathlib.ClassicalAdams.StandardSphere.Data
+public import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

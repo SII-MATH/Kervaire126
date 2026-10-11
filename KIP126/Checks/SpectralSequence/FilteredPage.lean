@@ -1,5 +1,9 @@
-import KIP126.Mathlib.SpectralSequence.FilteredComplex.FinitePage.Proofs
-import KIP126.Mathlib.SpectralSequence.FilteredComplex.Assembly.Data
+module
+
+public import KIP126.Mathlib.SpectralSequence.FilteredComplex.FinitePage.Proofs
+public import KIP126.Mathlib.SpectralSequence.FilteredComplex.Assembly.Data
+
+@[expose] public section
 
 /-! Regression checks for the canonical filtered-complex quotient pages. -/
 

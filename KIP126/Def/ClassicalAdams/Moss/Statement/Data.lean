@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.Moss.Massey.Data
-import KIP126.Def.ClassicalAdams.Moss.Detection.Predicates
-import KIP126.Def.StableHomotopy.Toda.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Massey.Data
+public import KIP126.Def.ClassicalAdams.Moss.Detection.Predicates
+public import KIP126.Def.StableHomotopy.Toda.Predicates
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

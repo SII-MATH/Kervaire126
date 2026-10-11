@@ -1,5 +1,12 @@
-import KIP126.Main.Solution.Route.Section7.Indeterminacy
-import KIP126.Main.Solution.Route.Section7.LowCsv
+module
+
+public import KIP126.Main.Solution.Route.Section7.Indeterminacy
+public import KIP126.Main.Solution.Route.Section7.LowCsv
+
+-- These proofs use the existing private helpers in these modules.
+import all KIP126.Main.Solution.Route.Section7.LowCsv
+
+@[expose] public section
 
 namespace KIP126.Main.Solution.Route.Section7
 open CategoryTheory

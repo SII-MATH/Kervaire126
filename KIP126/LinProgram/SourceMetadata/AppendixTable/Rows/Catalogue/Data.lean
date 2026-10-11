@@ -1,6 +1,10 @@
-import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Rows001To160
-import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Rows161To320
-import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Rows321To401
+module
+
+public import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Rows001To160
+public import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Rows161To320
+public import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Rows321To401
+
+@[expose] public section
 
 /-!
 # Transcribed Appendix catalogue

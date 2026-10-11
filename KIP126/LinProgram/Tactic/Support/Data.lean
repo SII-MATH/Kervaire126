@@ -1,5 +1,9 @@
-import KIP126.LinProgram.Model.E2.Data
-import KIP126.LinProgram.Compute.E2.Data
+module
+
+public import KIP126.LinProgram.Model.E2.Data
+public import KIP126.LinProgram.Compute.E2.Data
+
+@[expose] public section
 
 /-! Executable quotation and checking, ported from PR #110 at ff39e951.
 No correctness theorem is assumed in this module. -/
@@ -30,6 +34,7 @@ private def bounded (p : PolynomialF2) : Calc PolynomialF2 := do
   return p
 
 /-- 逐节点检查范围；计算中间的幂也不会静默截断。 -/
+@[no_expose]
 def expand : Code → Calc PolynomialF2
   | .scalar n => .ok (if n % 2 == 0 then [] else [[]])
   | .gen i => if i < RawData.generatorCount then .ok [[(i, 1)]]

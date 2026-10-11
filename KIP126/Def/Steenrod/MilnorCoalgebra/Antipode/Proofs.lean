@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCoalgebra.Antipode.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Full.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Antipode.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Full.Proofs
+
+@[expose] public section
 
 /-! Exact compatibility of the constructed graded map with its polynomial
 formula and the existing coalgebra operations. No Hopf structure or module

@@ -1,6 +1,10 @@
-import KIP126.Def.Steenrod.MilnorExt.Data
-import KIP126.Def.Steenrod.MilnorExt.Cofree.Data
-import Mathlib.CategoryTheory.Abelian.Injective.Ext
+module
+
+public import KIP126.Def.Steenrod.MilnorExt.Data
+public import KIP126.Def.Steenrod.MilnorExt.Cofree.Data
+public import Mathlib.CategoryTheory.Abelian.Injective.Ext
+
+@[expose] public section
 
 /-!
 An injective resolution identified with the prescribed normalized Milnor

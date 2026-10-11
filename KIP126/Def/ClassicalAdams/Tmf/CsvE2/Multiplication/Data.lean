@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Proofs
+
+@[expose] public section
 
 /-! The homogeneous operations are restrictions of the fixed coordinate
 quotient's ring operations. Their preservation proofs remain explicit

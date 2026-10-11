@@ -1,4 +1,8 @@
-import KIP126.Mathlib.SpectralSequence.PageDifferential.Data
+module
+
+public import KIP126.Mathlib.SpectralSequence.PageDifferential.Data
+
+@[expose] public section
 
 /-!
 # Page-level differential and crossing predicates

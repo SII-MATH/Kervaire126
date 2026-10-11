@@ -1,5 +1,9 @@
-import KIP126.Def.StageInput.StandardSphere.Background.Data
-import KIP126.Def.StageInput.StandardSphere.Classes.Family
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Background.Data
+public import KIP126.Def.StageInput.StandardSphere.Classes.Family
+
+@[expose] public section
 
 /-! Parameterized literature statements and correlated source bindings.
 These describe prior results on specified objects; model applications and

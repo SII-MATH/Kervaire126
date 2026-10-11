@@ -1,8 +1,12 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Data
-import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
-import KIP126.Def.ClassicalAdams.TowerSequence.PageHomology.Data
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
-import Mathlib.Algebra.Homology.ConcreteCategory
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Data
+public import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSequence.PageHomology.Data
+public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+public import Mathlib.Algebra.Homology.ConcreteCategory
+
+@[expose] public section
 
 /-!
 # The canonical map from Milnor cocycles to the actual internal second page

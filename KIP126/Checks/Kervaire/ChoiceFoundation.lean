@@ -1,5 +1,9 @@
-import KIP126.Def.Kervaire.Theta5.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.Kervaire.Theta5.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Generic transport in Def must not require project delivery or source packages. -/
 open Lean Elab Command in

@@ -1,9 +1,13 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Reduced.Data
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Square.Data
-import KIP126.Def.Algebra.Graded.Tensor.Lowering.Equiv.Data
-import KIP126.Def.Algebra.Graded.Tensor.Associator.Data
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Data
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Lowering.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Reduced.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Square.Data
+public import KIP126.Def.Algebra.Graded.Tensor.Lowering.Equiv.Data
+public import KIP126.Def.Algebra.Graded.Tensor.Associator.Data
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Lowering.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

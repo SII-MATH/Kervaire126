@@ -1,6 +1,10 @@
-import KIP126.Main.Solution.Tools.GeneralizedLeibniz
-import KIP126.Main.Solution.Tools.GeneralizedMahowald
-import KIP126.Main.Solution.Tools.PageExtensionStretching
+module
+
+public import KIP126.Main.Solution.Tools.GeneralizedLeibniz
+public import KIP126.Main.Solution.Tools.GeneralizedMahowald
+public import KIP126.Main.Solution.Tools.PageExtensionStretching
+
+@[expose] public section
 
 /-!
 # Independently proved paper rules available to computation certification
@@ -43,7 +47,9 @@ theorem generalizedMahowald (synthetic : SyntheticInputs D) (may : MayInput Syn)
     KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw D T :=
   KIP126.Main.Solution.Tools.generalizedMahowald D synthetic may T
 
-/-- This finite rule supplies no infinite or coherent lift. -/
+/-- This finite rule requires the same-quotient, layer-preserving obstruction
+exclusion (including nonessential nonzero extensions). A replay must prove
+that stronger premise; the rule supplies no infinite or coherent lift. -/
 theorem finitePageExtensionStretching (synthetic : SyntheticInputs D)
     (X Y : ClassicalObject) (f : X.obj D.auxiliary ⟶ Y.obj D.auxiliary) :
     KIP126.Kervaire.Route.Tools.FinitePageExtensionStretchingLaw D X Y f :=

@@ -1,5 +1,9 @@
-import KIP126.LinProgram.Model.E2.Data
-import KIP126.LinProgram.Compute.E2.Data
+module
+
+public import KIP126.LinProgram.Model.E2.Data
+public import KIP126.LinProgram.Compute.E2.Data
+
+@[expose] public section
 
 namespace KIP126.LinE2
 

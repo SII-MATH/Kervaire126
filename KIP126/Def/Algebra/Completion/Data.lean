@@ -1,5 +1,9 @@
-import KIP126.Def.Algebra.Filtration.Proofs
-import Mathlib.CategoryTheory.Limits.Constructions.EventuallyConstant
+module
+
+public import KIP126.Def.Algebra.Filtration.Proofs
+public import Mathlib.CategoryTheory.Limits.Constructions.EventuallyConstant
+
+@[expose] public section
 
 /-!
 # Degreewise completion of a decreasing filtration

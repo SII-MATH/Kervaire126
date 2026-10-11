@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Data
+module
+
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Data
+
+@[expose] public section
 
 /-! Compatibility of the standard family with the existing `h₆` and square. -/
 

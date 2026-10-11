@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.MappingProofs
+module
+
+public import KIP126.Def.StableHomotopy.Context.MappingProofs
+
+@[expose] public section
 
 /-! Regression checks for sphere-smash and mapping-spectrum interfaces. -/
 namespace KIP126.Checks.StableHomotopy

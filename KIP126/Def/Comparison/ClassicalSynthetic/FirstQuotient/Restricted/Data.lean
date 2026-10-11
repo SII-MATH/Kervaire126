@@ -1,5 +1,9 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Data
-import KIP126.Def.Synthetic.QuotientFunctor.Restricted.Construction.Data
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Data
+public import KIP126.Def.Synthetic.QuotientFunctor.Restricted.Construction.Data
+
+@[expose] public section
 
 namespace KIP126.Comparison.ClassicalSynthetic
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

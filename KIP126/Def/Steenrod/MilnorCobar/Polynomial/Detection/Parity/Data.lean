@@ -1,6 +1,10 @@
-import KIP126.Def.Algebra.Coefficients.Data
-import Mathlib.Data.Nat.Choose.Basic
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+module
+
+public import KIP126.Def.Algebra.Coefficients.Data
+public import Mathlib.Data.Nat.Choose.Basic
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor
 

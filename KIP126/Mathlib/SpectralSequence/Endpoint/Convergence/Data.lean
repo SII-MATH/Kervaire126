@@ -1,5 +1,9 @@
-import KIP126.Mathlib.SpectralSequence.Endpoint.Extension.Data
-import KIP126.Def.Algebra.Completion.Data
+module
+
+public import KIP126.Mathlib.SpectralSequence.Endpoint.Extension.Data
+public import KIP126.Def.Algebra.Completion.Data
+
+@[expose] public section
 
 /-! Mathlib-facing convergence and detection witnesses for an endpoint-extended spectral sequence. -/
 namespace KIP126.Core.SpectralSequence

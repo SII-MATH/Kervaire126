@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Context.Data
-import Mathlib.CategoryTheory.ObjectProperty.FullSubcategory
+module
+
+public import KIP126.Def.Synthetic.Context.Data
+public import Mathlib.CategoryTheory.ObjectProperty.FullSubcategory
+
+@[expose] public section
 
 /-! λ-invertibility of the already specified deformation map.
 This is the ordinary categorical property used in the abstract homotopy

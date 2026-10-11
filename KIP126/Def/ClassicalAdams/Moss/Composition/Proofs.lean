@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.Data
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Proofs
-import KIP126.Def.StableHomotopy.Context.Mapping.Composition.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Data
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Proofs
+public import KIP126.Def.StableHomotopy.Context.Mapping.Composition.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

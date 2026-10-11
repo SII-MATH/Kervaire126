@@ -171,7 +171,7 @@ foundations established earlier.
 % SOURCE: MainPaper/main.tex:1780-1917, representative choices in the proof of Theorem thm:158d451a.
 \begin{lemma}[Synchronized Mahowald representatives]
   \label{lem:mahowald-synchronized-representatives}
-  \uses{def:mahowald-input-data,prop:no-crossing-iff-uniform-detection,prop:classical-crossing-iff-delta-crossing,prop:page-crossing-iff-synthetic-crossing,thm:delta-classical-equivalence}
+  \uses{def:mahowald-input-data,prop:no-crossing-iff-uniform-detection,prop:classical-crossing-iff-delta-crossing,prop:page-crossing-iff-synthetic-crossing,thm:delta-classical-equivalence,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-map-compatibility}
   \notready
   Under the Mahowald hypotheses, one can choose
   \[
@@ -192,6 +192,37 @@ foundations established earlier.
   of at least one extension invokes uniform detection for every representative
   chosen to realize the other.  Hence one representative realizes both
   leading terms simultaneously.
+  In the current Lean proof, the finite-lift criterion constructs an actual
+  source representative $a_0$ with the specified first-quotient label. The
+  finite-window representative construction used in the proof of
+  Lemma~\ref{lem:page-extension-first-obstruction}, together with
+  convergence naturality and graded injectivity of $\rho$, proves that this
+  first-quotient equality gives the required source detection. This part
+  is complete. The boundary obligation asks for
+  $c\in\ker\rho_{1,r'-1}$ such that $\delta(a_0+c)$ has the specified
+  target detection; every such correction preserves that source detection.
+  This obligation is now proved when $m_1=0$, using one Bockstein lift,
+  comparison of its target with $\bar y$ modulo $B_{r-1}$, and an actual
+  $\rho$-kernel correction. The correction theorem uses the finite
+  $E_\infty$ window and a proved $\delta$--$\lambda$ square for the same
+  selected quotient triangles; it applies to arbitrary positive target
+  quotient lengths. The case $\bar y\in B_{m_1+1}$ is also proved: its
+  page-$r$ differential target is zero, so the source lifts one stage farther
+  and its restriction has zero actual boundary. The original target label
+  detects zero because its finite $E_\infty$ model is $Z_1/B_{m_1+1}$;
+  the $E_2$ label itself need not be zero. The boundary obligation is also
+  proved for the selected sphere object $Z=S^0$, for every positive quotient length. Apply
+  the adjacent case at source length $r-1$, identify its first-quotient
+  boundary with a permanent lift of the same $\bar y$, and restrict to
+  the desired source length. A proved cross-index square for the selected
+  $\delta$ maps and the actual suspension comparison identify this
+  boundary with the required $\lambda^{m_1}$ multiple. The sphere's
+  homotopy-label compatibility and convergence naturality supply its
+  specified target label. All three cases preserve the original $a_0$
+  by taking $c=a-a_0$. For other selected objects, with $m_1>0$ and
+  $\bar y\notin B_{m_1+1}$, the required nonzero target-label comparison
+  remains unproved. Synchronization with the
+  $h$-extension and the subsequent May-compatible lift also remain open.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:1886-1907, the representative for y, degree-uniqueness, and the application of May's pullback lemma.
@@ -443,43 +474,47 @@ foundations established earlier.
   lifting all solutions is equivalent to lifting all displacements.
 \end{proof}
 
-% SOURCE: MainPaper/main.tex:1437-1441,
-% Definition def:41d51149; 1515-1536, Proposition prop:cross-f-Er; and
-% 1981-2081, Proposition prop:dec738d3 and Corollary cor:dfc6043e.
-% This definition includes b=0 and uses the larger ordinary boundary cutoff.
+% SOURCE: MainPaper/main.tex:1981-2068, Proposition prop:dec738d3.
+% Corrected sufficient condition: retain the original quotient and lambda layers.
+% Do not use the smaller-quotient cancellation in prop:cross-f-Er.
 \begin{definition}[Finite nonliftable crossing candidate]
   \label{def:finite-page-extension-nonliftable-crossing}
-  \uses{def:page-extension,def:page-extension-crossing,def:page-extension-coset}
+  \uses{def:page-extension,prop:synthetic-einfty-map-compatibility}
   \lean{KIP126.Kervaire.Route.FiniteExtensionNonliftableCrossing}
   \leanok
-  Fix a normalized family $P$, finite pages $r',r$, and integers $n,s,t$.
-  A nonliftable crossing candidate consists of natural numbers $a,b$ with
+  Fix the shared model, finite pages $r'\le r$, and integers $n,s,t$.
+  Set $q=r'-1$, $e=e(f)$ and
+  $A_q=\Sigma^{0,e}\nu X/\lambda^q$,
+  $B_q=\nu Y/\lambda^q$.
+  A candidate consists of natural numbers $a,b$ with
   \[
-    0<a\le r'-2,\qquad 0\le b\le n-a-e(f),
+    0<a\le r'-2,\qquad a+b\le n,
   \]
-  classes
+  actual classes
   \[
-    x'\in Z_{r'-1-a}^{s+a,t+a}(X)
-       \setminus Z_{r-1-a}^{s+a,t+a}(X),\qquad
-    y'\in Z_{r'-1-n+b+e(f)}^{s+n-b,t+n-b}(Y),
+    u\in E_\infty^{s+a,t+a,t+e}(A_q),\qquad
+    0\ne v\in E_\infty^{s+n-b,t+n-b,t+e}(B_q),
   \]
-  and an actual essential shorter extension in the same family,
+  and an actual extension equation in this same quotient,
   \[
-    d_{n-a-b}^{f,E_{r'-a}}(x')=y',\qquad
-    y'\notin B_{1+n-b-e(f)}^{s+n-b,t+n-b}(Y).
+    d_{n-a-b}^{\widehat f_q}(u)=v,
   \]
-  The last exclusion is the larger ordinary boundary cutoff from the
-  crossing definition; essentiality alone does not supply it.
-  The source and target cycle conditions are those of the actual shorter
-  extension witness.  The bound on $b$ also gives $a\le n-e(f)$.
+  such that $u$ is not in the image of the actual map
+  \[
+    (\rho_X)_*:E_\infty^{s+a,t+a,t+e}(A_{r-1})
+       \longrightarrow E_\infty^{s+a,t+a,t+e}(A_q).
+  \]
+  Under the finite-window comparisons, the source retains its $\lambda^a$
+  layer and the target its $\lambda^{n-b-e}$ layer.  No extension in the
+  smaller quotient $q-a$ is required, and no separate ordinary Adams
+  boundary exclusion is imposed.
 
-  This predicate does not relate $y'$ to a chosen original target $y$.
-  It enumerates all candidates in these degrees and is used only through
-  their exclusion.  It is not an equivalence characterizing loss of
-  essentiality, and does not describe the cokernel of a raw strict-solution
-  restriction.  The project includes $b=0$ as well as $b>0$: the first
-  branch of the printed proposition allows $b=0$, whereas the printed
-  corollary excludes only $b>0$.
+  This condition includes nonessential extensions with nonzero target.
+  Its exclusion is deliberately stronger than excluding only essential
+  crossings.  The bound is $a+b\le n$, allowing synthetic length zero even
+  when $e=1$; a lowest-layer classical bound cannot be imposed after moving
+  to a positive $\lambda$ layer.  The candidate does not contain the desired
+  later-page relation or identify $v$ with a chosen original target.
 \end{definition}
 
 \begin{definition}[Finite page-extension stretching law]
@@ -487,7 +522,8 @@ foundations established earlier.
   \uses{def:finite-page-extension-nonliftable-crossing,def:page-extension}
   \lean{KIP126.Kervaire.Route.Tools.FinitePageExtensionStretchingLaw}
   \leanok
-  A normalized family $P$ satisfies the finite stretching law if, for every
+  The shared model satisfies the corrected finite stretching law if, for
+  every
   \[
     2\le r'\le r<\infty,\qquad e(f)\le n\le r'-2+e(f),
   \]
@@ -499,77 +535,87 @@ foundations established earlier.
   the earlier relation $d_n^{f,E_{r'}}(x)=y$ and the absence of a candidate
   from Definition~\ref{def:finite-page-extension-nonliftable-crossing}
   imply $d_n^{f,E_r}(x)=y$.
-  This is the precise proposition to deliver for the chosen model; defining
-  it does not prove that an arbitrary normalized family satisfies it.
-  Its later-page target hypothesis and its exclusion of $b=0$ candidates
-  make the project statement more restrictive than printed Corollary 6.21.
-  The conclusion asserts existence of a later relation, without prescribing
-  the reduction of every later representative to a specified earlier pair.
+  This is a sufficient-condition formulation with a stronger, explicitly
+  layer-preserving obstruction exclusion.  It is not an assertion that the
+  old smaller-quotient candidates exhaust the obstructions, nor a verbatim
+  formalization of printed Corollary 6.21.  The conclusion gives existence
+  of a later relation without prescribing the restriction of every later
+  representative to a specified earlier pair.
 \end{definition}
 
-% SOURCE: MainPaper/main.tex:1981-2068,
-% Proposition prop:dec738d3; necessary-candidate direction only, with the
-% shorter-page interpretation from Proposition prop:cross-f-Er.
+% SOURCE: MainPaper/main.tex:1981-2068.  Necessary-candidate direction,
+% formulated inside the original quotient without cancelling lambda.
 \begin{proposition}[Certificate for loss of essentiality on an earlier page]
   \label{prop:page-extension-loss-certificate}
-  \uses{prop:page-extension-restrict,def:finite-page-extension-nonliftable-crossing,prop:page-crossing-iff-synthetic-crossing}
+  \uses{prop:page-extension-restrict,def:finite-page-extension-nonliftable-crossing,lem:page-extension-first-obstruction}
   \notready
-  For the normalized family of the chosen synthetic model, suppose an
-  essential $(f,E_r)$ extension of length $n$, with source degree $(s,t)$,
-  becomes inessential on $E_{r'}$, where
+  For the shared synthetic model, suppose an essential $(f,E_r)$ extension
+  of length $n$, with source degree $(s,t)$, becomes inessential on
+  $E_{r'}$, where
   \[
     2\le r'<r<\infty,\qquad e(f)\le n\le r'-2+e(f).
   \]
-  Then there is a nonliftable crossing candidate from
+  Then there is a candidate from
   Definition~\ref{def:finite-page-extension-nonliftable-crossing}.
-  This is only a necessary-candidate conclusion.  An arbitrary candidate
-  in those degrees is not asserted to cause loss of essentiality of the
-  chosen original extension.
+  An arbitrary candidate is not asserted to cause loss of essentiality of
+  the chosen original extension.
 \end{proposition}
 
 \begin{proof}
-  The planned proof follows the printed finite descent through essential
-  shorter extensions.  The first branch gives a nonliftable source with
-  $b=0$; later branches may give $b>0$.  The $\lambda$ comparison converts
-  the essential contribution in the fixed quotient to an actual extension
-  on page $r'-a$.  This conversion must retain the larger ordinary
-  boundary exclusion in
-  Proposition~\ref{prop:page-crossing-iff-synthetic-crossing}.
-  The model comparisons and finite descent still require canonical Lean
-  proofs.  No condition identifying the arbitrary candidate target with
-  the original target has been added to the candidate definition.
+  The planned argument uses the shorter actual relation witnessing
+  inessentiality in the same earlier quotient.  If all required source
+  corrections lift, the corresponding later relation would contradict
+  essentiality there.  Otherwise, the first nonliftable correction with
+  nonzero image gives a candidate.  This argument must be proved using
+  the actual filtered solution fibers; it does not cancel $\lambda^a$,
+  and it does not assume that essentializing a relation preserves
+  nonliftability of its source.
 \end{proof}
 
-% SOURCE: MainPaper/main.tex:1981-2081,
-% Proposition prop:dec738d3 and Corollary cor:dfc6043e; project finite,
-% later-typed formulation with the stronger b>=0 crossing exclusion.
+% Corrected finite, later-typed statement with same-quotient obstructions.
 \begin{lemma}[First obstruction to a later page relation]
   \label{lem:page-extension-first-obstruction}
-  \uses{def:finite-page-extension-nonliftable-crossing,def:finite-page-extension-stretching-law,prop:page-extension-loss-certificate,prop:page-crossing-iff-synthetic-crossing}
-  \notready
-  For the normalized family of the chosen synthetic model, take the ranges
-  and later-page labels of
+  \lean{KIP126.Main.Solution.Tools.finitePageExtensionStretching}
+  \uses{def:finite-page-extension-nonliftable-crossing,def:finite-page-extension-stretching-law,prop:synthetic-einfty-map-compatibility}
+  \leanok
+  For the shared synthetic model, take the ranges and later-page labels of
   Definition~\ref{def:finite-page-extension-stretching-law}.  If
   $d_n^{f,E_{r'}}(x)=y$ holds but $d_n^{f,E_r}(x)=y$ does not, then there
   is a candidate from
   Definition~\ref{def:finite-page-extension-nonliftable-crossing}.
-  This is a relation-level claim.  It neither asserts that every failure
-  to lift a specified strict solution produces such a candidate nor
-  identifies the strict-solution cokernel with the candidate list.
+  This is a relation-level claim, not a claim about every specified strict
+  solution or an identification of a strict-solution cokernel.
 \end{lemma}
 
 \begin{proof}
-  The required argument is the finite descent through shorter essential
-  extensions in the actual $\widehat f$-ESS, using the $\rho$ and
-  $\lambda$ comparison maps.  The comparison with a shorter page must
-  preserve the larger ordinary boundary exclusion, as in
-  Proposition~\ref{prop:page-crossing-iff-synthetic-crossing}.
-  The canonical proof of this relation-level implication remains to be
-  supplied.  Proposition 6.20 discusses loss of essentiality of a known
-  later relation, and the printed Corollary 6.21 states existence of a
-  later relation; their passage must be checked with the stated ranges.
-  The generic cokernel criterion does not prove this step, and no
-  surjectivity assertion about raw strict representatives is used here.
+  Choose a later source representative and subtract its restriction from
+  an earlier solution.  Their equal source labels place the difference
+  in filtration at least $s+1$.  When its leading class lies in the image
+  of $(\rho_X)_*$, lift that class, correct the later representative, and
+  increase the filtration of the remaining difference.
+
+  If the leading class is not in that image and its actual image has a
+  first nonzero term in filtration at most $s+n$, the difference itself
+  supplies the extension equation in the corrected candidate.  Otherwise
+  its image is in filtration at least $s+n+1$, so the required target
+  agrees after restriction.  Injectivity of $(\rho_Y)_*$ in the common
+  finite window then gives the later target label.  The Lean declaration
+  proves the equivalent finite stretching law directly.  Its source
+  correction is a finite filtration induction, starting at $s+1$ so that
+  the prescribed source label is unchanged.
+
+  More precisely, the later source representative is obtained from
+  differential rigidity and vanishing outside the finite quotient window,
+  including the normalized weight shift.  Naturality of convergence
+  identifies membership in the actual $E_\infty$ image with lifting an
+  actual homotopy representative modulo the next filtration.  A nonliftable
+  leading class is nonzero; vanishing above the source window supplies the
+  required bound on $a$.  Finally, reflect the difference between the
+  corrected image and a fixed later target representative through the
+  filtration levels $s,\ldots,s+n$.  This puts the difference in
+  $F^{s+n+1}$ and proves both target membership and its prescribed label.
+  All these steps are implemented in Lean for the same model and actual
+  quotient maps; no smaller-quotient crossing equivalence is used.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:2074-2081,
@@ -577,7 +623,6 @@ foundations established earlier.
 % project coherent-tower and untruncated comparison obligations below.
 \begin{corollary}[Page-extension stretching]
   \label{cor:page-extension-stretch}
-  \lean{KIP126.Main.Solution.Tools.finitePageExtensionStretching}
   \uses{def:finite-page-extension-stretching-law,lem:page-extension-first-obstruction,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
   \notready
   The normalized family of the chosen synthetic model satisfies the finite
@@ -600,16 +645,19 @@ foundations established earlier.
   surjectivity or finiteness of those representative sets.
 
   The two root predicates now fix the finite candidate list and the
-  finite law. The linked independent Main theorem is the finite production
-  target and still has an unfinished proof; its model comparison witnesses
-  remain outstanding.  The untruncated comparison is a further proof
-  obligation.  The retired free-operations statement expressed none of
-  these conclusions.
+  finite law. The independent Main theorem linked at
+  Lemma~\ref{lem:page-extension-first-obstruction} proves this finite law
+  from the displayed synthetic comparisons on the same model.  It adds no
+  proof-route assumption and does not construct those comparisons for the
+  selected global witness.  The untruncated comparison remains a separate
+  proof obligation, so this combined finite/untruncated node remains open.
+  The retired free-operations statement expressed none of these conclusions.
 \end{corollary}
 
 \begin{proof}
-  The finite law is the contrapositive of the first-obstruction lemma,
-  whose model proof remains open.  The resulting finite relations give
+  The finite law and the first-obstruction lemma are contrapositives;
+  the finite Lean proof is complete under its displayed hypotheses.
+  The resulting finite relations give
   nonempty strict solution fibers.  To pass to $E_\infty$, construct a
   coherent tower using a separately justified compatibility argument and
   then prove that its limit gives an untruncated solution for $\widehat f$.
@@ -632,8 +680,11 @@ foundations established earlier.
 \end{proposition}
 
 \begin{proof}
-  The independent finite Hopf certificate excludes the degree-allowed
-  crossing candidates.  It also supplies that $h_0h_4^2$ and $h_0p$ are
+  The independent finite Hopf certificate must exclude all same-quotient
+  candidates of Definition~\ref{def:finite-page-extension-nonliftable-crossing},
+  including nonessential nonzero extensions; excluding only the old
+  smaller-quotient candidates is insufficient.  It must also establish that
+  $h_0h_4^2$ and $h_0p$ are
   permanent representatives, giving both later-page label types.
   Once the finite stretching law is proved, these facts give an extension
   on every finite page.  To obtain the displayed untruncated conclusion,

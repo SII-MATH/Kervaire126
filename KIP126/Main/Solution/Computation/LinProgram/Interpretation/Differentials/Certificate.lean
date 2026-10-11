@@ -1,5 +1,9 @@
-import KIP126.Main.Solution.StageInput
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Predicates
+module
+
+public import KIP126.Main.Solution.StageInput
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Predicates
+
+@[expose] public section
 
 namespace KIP126.Computation.LinProofs
 

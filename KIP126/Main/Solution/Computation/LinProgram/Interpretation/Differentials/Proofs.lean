@@ -1,5 +1,9 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Certificate
-import KIP126.Def.SpectralSequence.Computation.Proofs
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Certificate
+public import KIP126.Def.SpectralSequence.Computation.Proofs
+
+@[expose] public section
 
 namespace KIP126.Computation.LinProofs
 

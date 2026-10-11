@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Sphere.Data
+module
+
+public import KIP126.Def.Synthetic.Sphere.Data
+
+@[expose] public section
 
 /-!
 The actual reindexing maps for suspended bigraded Hom. These use the existing

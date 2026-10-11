@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
-import KIP126.Def.ClassicalAdams.Tower.Proofs
-import Mathlib.Algebra.Category.ModuleCat.Subobject
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+public import KIP126.Def.ClassicalAdams.Tower.Proofs
+public import Mathlib.Algebra.Category.ModuleCat.Subobject
+
+@[expose] public section
 
 /-!
 Mapping Adams objects from the existing tower of the actual internal hom.

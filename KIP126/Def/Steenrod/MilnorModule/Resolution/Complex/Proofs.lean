@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorModule.Resolution.Complex.Data
-import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Resolution.Complex.Data
+public import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+
+@[expose] public section
 
 /-! Exactness of this actual augmented dual complex remains a proof
 obligation. It is not deduced from an unrestricted categorical duality. -/

@@ -48,7 +48,7 @@ SHA-256 of the original CSV bytes:
 for k in ['generators','relations','basis']:
  p=src/f'S0_AdamsE2_{k}.csv'; header+=f'{p.name}: {hashlib.sha256(p.read_bytes()).hexdigest()}\n'
 header+='-/'
-parts=[header,'namespace KIP126.LinE2.RawData',f'def generatorCount : Nat := {len(gens)}',f'def relationCount : Nat := {len(rels)}',f'def basisCount : Nat := {len(basis)}']
+parts=['module','@[expose] public section',header,'namespace KIP126.LinE2.RawData',f'def generatorCount : Nat := {len(gens)}',f'def relationCount : Nat := {len(rels)}',f'def basisCount : Nat := {len(basis)}']
 generator_rows = list(zip(gens,deg))
 generator_chunks = [generator_rows[i:i+32] for i in range(0,len(generator_rows),32)]
 parts.append('/-- (name, cohomological degree s, internal degree t), indexed by CSV id. -/')

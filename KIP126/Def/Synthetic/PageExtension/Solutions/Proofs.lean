@@ -1,7 +1,11 @@
-import KIP126.Def.Synthetic.PageExtension.Solutions.Data
-import Mathlib.Algebra.Category.ModuleCat.Projective
-import KIP126.Def.Synthetic.PageExtension.Predicates
-import KIP126.Def.Synthetic.ExtensionSS.Solutions.Proofs
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Data
+public import Mathlib.Algebra.Category.ModuleCat.Projective
+public import KIP126.Def.Synthetic.PageExtension.Predicates
+public import KIP126.Def.Synthetic.ExtensionSS.Solutions.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.PageExtension
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Detection.Convergence.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Detection.Convergence.Proofs
+
+@[expose] public section
 
 /-! A canonical convergence cannot be reselected independently to alter
 detection. Every filtration class comes from an actual tower lift and

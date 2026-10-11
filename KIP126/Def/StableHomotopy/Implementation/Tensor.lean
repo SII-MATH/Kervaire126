@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.Implementation.Comparison
-import KIP126.Def.StableHomotopy.Implementation.Smash
-import Mathlib.CategoryTheory.Limits.Shapes.Products
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Comparison
+public import KIP126.Def.StableHomotopy.Implementation.Smash
+public import Mathlib.CategoryTheory.Limits.Shapes.Products
+
+@[expose] public section
 
 /-! Recognition of the HF₂-local derived smash. Suspension spectra use the
 actual based-space smash; exactness and countable coproducts extend across

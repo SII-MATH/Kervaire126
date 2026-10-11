@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.CofiberMap.Iso.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Context.CofiberMap.Iso.Proofs
+
+@[expose] public section
 
 /-! Bundle the actual cofiber map of an isomorphism square as an iso. -/
 

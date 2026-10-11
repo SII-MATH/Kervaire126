@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCoalgebra.Raw.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Grading.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Raw.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Grading.Proofs
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor.Coalgebra
 

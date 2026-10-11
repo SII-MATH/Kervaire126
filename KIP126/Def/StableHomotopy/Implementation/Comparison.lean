@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Implementation.Completion
-import KIP126.Def.StableHomotopy.Cohomology.Data
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Completion
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+
+@[expose] public section
 
 /-! Recognition of the selected classical implementation by an explicit
 point-set stable localization. The source sphere, suspension, cone and maps

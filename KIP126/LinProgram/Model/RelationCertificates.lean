@@ -1,5 +1,14 @@
-import KIP126.LinProgram.Model.Classes.Proofs
-import Batteries.Data.String.Lemmas
+module
+
+public import KIP126.LinProgram.Model.Classes.Proofs
+public import Batteries.Data.String.Lemmas
+
+import all Init.Data.List.SplitOn.Basic
+import all Init.Data.String.Legacy
+import all Init.Data.String.Search
+import all Init.Data.String.Slice
+
+@[expose] public section
 
 /-! Literal membership certificates in the pinned relation table. Each
 certificate is independently checked and supplies no model interpretation. -/

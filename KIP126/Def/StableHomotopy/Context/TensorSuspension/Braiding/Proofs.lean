@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.TensorSuspension.Braiding.Predicates
+module
+
+public import KIP126.Def.StableHomotopy.Context.TensorSuspension.Braiding.Predicates
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy
 

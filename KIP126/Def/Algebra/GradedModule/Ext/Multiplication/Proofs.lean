@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedModule.Ext.Multiplication.Data
+module
+
+public import KIP126.Def.Algebra.GradedModule.Ext.Multiplication.Data
+
+@[expose] public section
 
 /-! The precise derived composition defining the left-module product. -/
 

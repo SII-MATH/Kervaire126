@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedModule.Shift.Raw.Data
+module
+
+public import KIP126.Def.Algebra.GradedModule.Shift.Raw.Data
+
+@[expose] public section
 
 /-! Laws of the actual action on the shifted left module. -/
 

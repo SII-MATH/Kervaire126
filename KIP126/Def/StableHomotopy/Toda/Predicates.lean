@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Context.Data
-import Mathlib.CategoryTheory.Triangulated.Triangulated
+module
+
+public import KIP126.Def.StableHomotopy.Context.Data
+public import Mathlib.CategoryTheory.Triangulated.Triangulated
+
+@[expose] public section
 
 /-!
 # The shifted Toda relation

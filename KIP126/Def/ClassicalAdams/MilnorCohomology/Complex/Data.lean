@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorCobar.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Data
+
+@[expose] public section
 
 /-! Cycles and incoming boundaries of the actual normalized Milnor cobar differential. -/
 

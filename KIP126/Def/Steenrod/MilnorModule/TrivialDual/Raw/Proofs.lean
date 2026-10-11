@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorModule.TrivialDual.Raw.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.TrivialDual.Raw.Data
+
+@[expose] public section
 
 /-! Evaluation on the specified degree-line generator is an isomorphism
 of the actual left modules, not an additional choice of coefficient object. -/

@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Basic.Data
+module
+
+public import KIP126.Def.SpectralSequence.Basic.Data
+
+@[expose] public section
 
 /-!
 # Predicates for nested-subobject spectral sequences

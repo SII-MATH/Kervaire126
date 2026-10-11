@@ -1,4 +1,8 @@
-import KIP126.LinProgram.Certificates.SquareDetection.Data
+module
+
+public import KIP126.LinProgram.Certificates.SquareDetection.Data
+
+@[expose] public section
 
 namespace KIP126.LinE2.SquareDetection
 

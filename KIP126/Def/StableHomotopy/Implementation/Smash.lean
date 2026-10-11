@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Implementation.Generators
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Generators
+
+@[expose] public section
 
 /-! A genuine sequential model of the derived smash. The even level 2n is
 Xₙ∧Yₙ, and the intervening odd level is its suspension. Thus both suspension

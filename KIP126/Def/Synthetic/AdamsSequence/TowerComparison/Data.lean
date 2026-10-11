@@ -1,7 +1,11 @@
-import KIP126.Def.Synthetic.AdamsSequence.Maps.Data
-import KIP126.Def.Synthetic.AdamsFiltration.Data
-import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
-import KIP126.Def.Comparison.ClassicalSynthetic.Data
+module
+
+public import KIP126.Def.Synthetic.AdamsSequence.Maps.Data
+public import KIP126.Def.Synthetic.AdamsFiltration.Data
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
+public import KIP126.Def.Comparison.ClassicalSynthetic.Data
+
+@[expose] public section
 
 /-! Bind a trigraded synthetic family to actual νHF₂ Adams towers.
 The fixed-weight sequence has abutment π_(t-s)(Σ^(0,-w) X).

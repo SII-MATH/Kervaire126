@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Sphere.Homotopy.Data
+module
+
+public import KIP126.Def.Synthetic.Sphere.Homotopy.Data
+
+@[expose] public section
 
 namespace KIP126.Synthetic.Context
 open CategoryTheory

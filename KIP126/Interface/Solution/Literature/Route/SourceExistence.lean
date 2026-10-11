@@ -1,5 +1,9 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Literature.Applications
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Interface.Solution.Literature.Applications
+
+@[expose] public section
 
 /-! Correlated existence of the prior-literature background.
 

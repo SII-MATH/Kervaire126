@@ -1,7 +1,11 @@
-import Mathlib.Algebra.Homology.HomotopyCategory.SpectralObject
-import Mathlib.Algebra.Homology.HomotopyCategory.HomologicalFunctor
-import Mathlib.Algebra.Homology.HomotopyCategory.ShiftSequence
-import Mathlib.Algebra.Homology.SpectralObject.Basic
+module
+
+public import Mathlib.Algebra.Homology.HomotopyCategory.SpectralObject
+public import Mathlib.Algebra.Homology.HomotopyCategory.HomologicalFunctor
+public import Mathlib.Algebra.Homology.HomotopyCategory.ShiftSequence
+public import Mathlib.Algebra.Homology.SpectralObject.Basic
+
+@[expose] public section
 
 /-!
 # Mathlib homological image of a triangulated spectral object

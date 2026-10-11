@@ -1,5 +1,9 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.Data
-import KIP126.Def.Synthetic.AdamsSequence.Proofs
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.Data
+public import KIP126.Def.Synthetic.AdamsSequence.Proofs
+
+@[expose] public section
 
 namespace KIP126.Comparison.ClassicalSynthetic
 

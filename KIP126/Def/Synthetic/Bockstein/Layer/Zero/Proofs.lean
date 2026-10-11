@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Bockstein.Layer.Zero.Data
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Layer.Zero.Data
+
+@[expose] public section
 
 /-! The same actual inclusion and boundary squares for the zeroth layer
 identification. These formulas retain both endpoint identifications. -/

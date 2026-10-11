@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Truncation.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Truncation.Proofs
+
+@[expose] public section
 
 /-!
 # Completion tower data

@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerLayer.Basic.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLayer.Basic.Proofs
+
+@[expose] public section
 
 /-! Constructed layer and first-page comparisons. No Milnor coordinates,
 Lin presentation, ring structure, or convergence assumption is used here. -/

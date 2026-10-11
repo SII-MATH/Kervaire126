@@ -1,7 +1,11 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.SSDataConstruction.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.SpectralSequenceConstruction.Data
-import KIP126.Mathlib.SpectralSequence.FilteredComplex.Assembly.Data
-import KIP126.Def.SpectralSequence.Crossing.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.SSDataConstruction.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.SpectralSequenceConstruction.Data
+public import KIP126.Mathlib.SpectralSequence.FilteredComplex.Assembly.Data
+public import KIP126.Def.SpectralSequence.Crossing.Predicates
+
+@[expose] public section
 
 /-!
 # Finite-page comparison with Mathlib's spectral sequence

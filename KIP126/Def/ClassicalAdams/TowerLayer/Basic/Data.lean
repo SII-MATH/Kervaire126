@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Tower.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Tower.Data
+
+@[expose] public section
 
 /-! Triangles used to compare the chosen tower layers with `H ⊗ Tₛ`.
 Inverse rotation uses the negative of the existing positive `fiberι`. -/

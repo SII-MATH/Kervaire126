@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
-import KIP126.Def.ClassicalAdams.TowerSSData.Page.Proofs
-import KIP126.Def.SpectralSequence.Basic.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
+public import KIP126.Def.ClassicalAdams.TowerSSData.Page.Proofs
+public import KIP126.Def.SpectralSequence.Basic.Proofs
+
+@[expose] public section
 
 /-! Naturality on the existing quotient pages. The proof transports a chosen
 lift and uses independence of that lift, as in the representative argument of

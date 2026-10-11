@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSequence.Data
-import Mathlib.Algebra.Homology.ConcreteCategory
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSequence.Data
+public import Mathlib.Algebra.Homology.ConcreteCategory
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

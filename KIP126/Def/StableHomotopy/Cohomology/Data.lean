@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.Context.Data
-import Mathlib.Algebra.Category.Grp.Abelian
-import Mathlib.Algebra.Field.ZMod
+module
+
+public import KIP126.Def.StableHomotopy.Context.Data
+public import Mathlib.Algebra.Category.Grp.Abelian
+public import Mathlib.Algebra.Field.ZMod
+
+@[expose] public section
 
 /-!
 # Explicit mod-2 cohomology and homology data

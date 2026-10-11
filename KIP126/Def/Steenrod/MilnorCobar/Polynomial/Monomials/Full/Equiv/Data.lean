@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Full.Proofs
-import Mathlib.LinearAlgebra.Finsupp.Pi
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Full.Proofs
+public import Mathlib.LinearAlgebra.Finsupp.Pi
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor
 

@@ -1,6 +1,10 @@
-import KIP126.Main.Solution.Route.Selected
-import KIP126.Def.StageInput.StandardSphere.Classes.Data
-import KIP126.Def.SpectralSequence.Permanence.Predicates
+module
+
+public import KIP126.Main.Solution.Route.Selected
+public import KIP126.Def.StageInput.StandardSphere.Classes.Data
+public import KIP126.Def.SpectralSequence.Permanence.Predicates
+
+@[expose] public section
 
 /-! The single final proof obligation T(M), paired with
 Main/Challenge/h6_sq_permanent.lean.

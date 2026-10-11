@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedModule.Trivial.Raw.Data
+module
+
+public import KIP126.Def.Algebra.GradedModule.Trivial.Raw.Data
+
+@[expose] public section
 
 /-! Unit and associativity of restriction along the specified augmentation. -/
 

@@ -1,6 +1,10 @@
-import KIP126.Def.Algebra.GradedModule.Trivial.Data
-import KIP126.Def.Algebra.GradedModule.Structure.Data
-import Mathlib.Algebra.Homology.DerivedCategory.Ext.Linear
+module
+
+public import KIP126.Def.Algebra.GradedModule.Trivial.Data
+public import KIP126.Def.Algebra.GradedModule.Structure.Data
+public import Mathlib.Algebra.Homology.DerivedCategory.Ext.Linear
+
+@[expose] public section
 
 /-! Actual derived Ext of graded left modules. The coefficient convention
 is `Ext^s(k,k[t])`, so contravariant same-degree dualization reverses the

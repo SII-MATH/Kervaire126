@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.QuotientRestrictions.Data
-import KIP126.Def.Synthetic.Context.Coherence.Restrictions.Proofs
-import KIP126.Def.StableHomotopy.Context.CofiberCoherence.Proofs
+module
+
+public import KIP126.Def.Synthetic.QuotientRestrictions.Data
+public import KIP126.Def.Synthetic.Context.Coherence.Restrictions.Proofs
+public import KIP126.Def.StableHomotopy.Context.CofiberCoherence.Proofs
+
+@[expose] public section
 
 /-! Identity, composition, and object naturality for the already defined
 quotient restrictions. The hypotheses constrain the original suspension and

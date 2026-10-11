@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedModule.Shift.Raw.Proofs
+module
+
+public import KIP126.Def.Algebra.GradedModule.Shift.Raw.Proofs
+
+@[expose] public section
 
 /-! Internal shifts in the actual category of graded left modules. -/
 

@@ -1,4 +1,8 @@
-import KIP126.Mathlib.SpectralSequence.FilteredComplex.Relations.Proofs
+module
+
+public import KIP126.Mathlib.SpectralSequence.FilteredComplex.Relations.Proofs
+
+@[expose] public section
 
 /-! Regression check for the canonical filtered-complex page view. -/
 

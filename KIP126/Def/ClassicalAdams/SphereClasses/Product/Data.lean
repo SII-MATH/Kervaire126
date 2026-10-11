@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Data
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Data
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
+
+@[expose] public section
 
 /-! The standard product on the *existing* internal sphere E₂ page.
 It is cobar concatenation transported through the fixed Milnor coordinates.

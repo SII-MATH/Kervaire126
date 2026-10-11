@@ -1,4 +1,8 @@
-import KIP126.Def.HigherAlgebra.EnrichedTensor.Predicates
+module
+
+public import KIP126.Def.HigherAlgebra.EnrichedTensor.Predicates
+
+@[expose] public section
 
 /-! Property statements for the actual enriched finite tensor operations.
 The proofs remain separate from the data; they do not select a model. -/

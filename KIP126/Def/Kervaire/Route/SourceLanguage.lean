@@ -1,52 +1,56 @@
-import KIP126.Def.Comparison.Interfaces
-import KIP126.Def.ClassicalAdams.Convergence.BHS.Predicates
-import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
-import KIP126.Def.Synthetic.EInfty.Presentation.Predicates
-import KIP126.Def.SpectralSequence.Computation.State.Predicates
-import KIP126.Def.SpectralSequence.Computation.Predicates
-import KIP126.Def.Comparison.ClassicalSynthetic.Data
-import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Data
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
-import KIP126.Def.ClassicalAdams.SphereClasses.Products.Data
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Data
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
-import KIP126.Def.Kervaire.Theta5.Predicates
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
-import KIP126.Def.Synthetic.EInfty.Shift.Predicates
-import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Data
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Data
-import KIP126.Def.ClassicalAdams.Suspension.Predicates
-import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
-import KIP126.Def.Synthetic.PageExtension.Solutions.Data
-import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
-import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
-import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
-import KIP126.Def.ClassicalAdams.Tmf.Model.Data
-import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
-import KIP126.Def.ClassicalAdams.SphereMultiplication.Data
-import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
-import KIP126.Def.Synthetic.Bockstein.Hom.Data
-import KIP126.Def.Synthetic.QuotientFunctor.Data
-import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
-import KIP126.Def.ClassicalAdams.Completion.Predicates
-import KIP126.Def.Kervaire.Route.Extensions.Data
-import KIP126.Def.Kervaire.Route.Hopf.Data
-import KIP126.Def.Kervaire.Route.Conditions.Predicates
-import KIP126.Def.Kervaire.Route.Massey.Predicates
-import KIP126.Def.Kervaire.Route.Toda.Predicates
-import KIP126.Def.Synthetic.Computation.Predicates
-import KIP126.Def.Kervaire.Route.Labels.Tmf.Data
-import Mathlib.CategoryTheory.Adjunction.Additive
-import KIP126.Def.Kervaire.Route.Multiplication.Comparison
-import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
-import KIP126.Def.StableHomotopy.FiniteType.Predicates
-import Mathlib.CategoryTheory.Monoidal.Mon
-import KIP126.Def.Kervaire.Route.Triangles.Predicates
-import KIP126.Def.Comparison.ClassicalSynthetic.RealizationWeights.Data
-import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Route.Data
-import KIP126.Def.StableHomotopy.Implementation.Data
+module
+
+public import KIP126.Def.Comparison.Interfaces
+public import KIP126.Def.ClassicalAdams.Convergence.BHS.Predicates
+public import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
+public import KIP126.Def.Synthetic.EInfty.Presentation.Predicates
+public import KIP126.Def.SpectralSequence.Computation.State.Predicates
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+public import KIP126.Def.Comparison.ClassicalSynthetic.Data
+public import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Data
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+public import KIP126.Def.ClassicalAdams.SphereClasses.Products.Data
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Data
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
+public import KIP126.Def.Kervaire.Theta5.Predicates
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
+public import KIP126.Def.Synthetic.EInfty.Shift.Predicates
+public import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Data
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Data
+public import KIP126.Def.ClassicalAdams.Suspension.Predicates
+public import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Data
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
+public import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
+public import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Data
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
+public import KIP126.Def.ClassicalAdams.SphereMultiplication.Data
+public import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
+public import KIP126.Def.Synthetic.Bockstein.Hom.Data
+public import KIP126.Def.Synthetic.QuotientFunctor.Data
+public import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
+public import KIP126.Def.ClassicalAdams.Completion.Predicates
+public import KIP126.Def.Kervaire.Route.Extensions.Data
+public import KIP126.Def.Kervaire.Route.Hopf.Data
+public import KIP126.Def.Kervaire.Route.Conditions.Predicates
+public import KIP126.Def.Kervaire.Route.Massey.Predicates
+public import KIP126.Def.Kervaire.Route.Toda.Predicates
+public import KIP126.Def.Synthetic.Computation.Predicates
+public import KIP126.Def.Kervaire.Route.Labels.Tmf.Data
+public import Mathlib.CategoryTheory.Adjunction.Additive
+public import KIP126.Def.Kervaire.Route.Multiplication.Comparison
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
+public import KIP126.Def.StableHomotopy.FiniteType.Predicates
+public import Mathlib.CategoryTheory.Monoidal.Mon
+public import KIP126.Def.Kervaire.Route.Triangles.Predicates
+public import KIP126.Def.Comparison.ClassicalSynthetic.RealizationWeights.Data
+public import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Route.Data
+public import KIP126.Def.StableHomotopy.Implementation.Data
+
+@[expose] public section
 
 /-! Mathematical language for source comparisons on one actual route model.
 

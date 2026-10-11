@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Route.Triangles.Data
+module
+
+public import KIP126.Def.Kervaire.Route.Triangles.Data
+
+@[expose] public section
 
 namespace KIP126.Kervaire.Route
 open CategoryTheory CategoryTheory.Pretriangulated

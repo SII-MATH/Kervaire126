@@ -1,6 +1,10 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Detection.Predicates
-import KIP126.Def.Synthetic.Detection.Proofs
-import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Detection.Predicates
+public import KIP126.Def.Synthetic.Detection.Proofs
+public import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
+
+@[expose] public section
 
 /-! Detection determines a homotopy representative only when the next
 actual Adams filtration vanishes. For the first lambda quotient, BHS

@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Convergence.Data
+module
+
+public import KIP126.Def.SpectralSequence.Convergence.Data
+
+@[expose] public section
 
 /-!
 # Convergence predicates for nested-subobject spectral sequences

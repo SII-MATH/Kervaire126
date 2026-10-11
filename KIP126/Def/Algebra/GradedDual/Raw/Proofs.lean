@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedDual.Raw.Data
+module
+
+public import KIP126.Def.Algebra.GradedDual.Raw.Data
+
+@[expose] public section
 
 /-! Associativity and unit properties of the prescribed convolution maps.
 They use the same coalgebra's coassociativity and counitality; no algebra

@@ -1,5 +1,9 @@
-import KIP126.Mathlib.SpectralSequence.FilteredComplex.FinitePage.Data
-import Mathlib.CategoryTheory.Abelian.Pseudoelements
+module
+
+public import KIP126.Mathlib.SpectralSequence.FilteredComplex.FinitePage.Data
+public import Mathlib.CategoryTheory.Abelian.Pseudoelements
+
+@[expose] public section
 
 /-! Adjacent-page homology and assembly of the canonical finite quotient pages. -/
 namespace KIP126.Core.SpectralSequence.FilteredComplex
@@ -202,6 +206,7 @@ private noncomputable def nestedSubobjectHomologyIso {V : C}
 
 /-- The homology of the canonical finite page at one bidegree is the next
 canonical quotient page. -/
+@[no_expose]
 noncomputable def pageHomologyIso (FC : FilteredComplex C)
     (n : ℕ) (p : ℤ × ℤ) :
     (FC.pageComplex n).homology p ≅

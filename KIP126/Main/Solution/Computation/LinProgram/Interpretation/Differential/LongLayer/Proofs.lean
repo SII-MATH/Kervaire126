@@ -1,8 +1,12 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Predicates
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Cancellation.Proofs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Leibniz.Proofs
-import KIP126.Def.ClassicalAdams.TowerSSData.Differential.Second.Proofs
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Predicates
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Cancellation.Proofs
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Leibniz.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSSData.Differential.Second.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

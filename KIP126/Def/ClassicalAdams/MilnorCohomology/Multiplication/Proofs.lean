@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
+
+@[expose] public section
 
 /-! Representative formulas and the specified hᵢ cup squares. -/
 

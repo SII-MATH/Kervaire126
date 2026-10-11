@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerPages.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerPages.Proofs
+
+@[expose] public section
 
 /-!
 # The differential formula on cycle representatives

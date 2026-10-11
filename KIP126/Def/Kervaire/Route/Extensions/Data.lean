@@ -1,6 +1,10 @@
-import KIP126.Def.Kervaire.Route.Model.Coherent.Data
-import KIP126.Def.Synthetic.ExtensionRelation.Predicates
-import KIP126.Def.Synthetic.Detection.Predicates
+module
+
+public import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+public import KIP126.Def.Synthetic.ExtensionRelation.Predicates
+public import KIP126.Def.Synthetic.Detection.Predicates
+
+@[expose] public section
 
 /-! Actual normalized maps used throughout the Section 7 route.
 No NormalizedPageFamily with a globally bounded infinite ESS is required. -/

@@ -1,7 +1,11 @@
-import KIP126.Def.Algebra.GradedModule.Ext.Data
-import KIP126.Def.Algebra.GradedModule.Shift.TensorLine.Data
-import KIP126.Def.Algebra.GradedModule.Shift.Structure.Proofs
-import Mathlib.Algebra.Homology.DerivedCategory.Ext.Map
+module
+
+public import KIP126.Def.Algebra.GradedModule.Ext.Data
+public import KIP126.Def.Algebra.GradedModule.Shift.TensorLine.Data
+public import KIP126.Def.Algebra.GradedModule.Shift.Structure.Proofs
+public import Mathlib.Algebra.Homology.DerivedCategory.Ext.Map
+
+@[expose] public section
 
 /-!
 # Yoneda multiplication for actual graded left-module Ext

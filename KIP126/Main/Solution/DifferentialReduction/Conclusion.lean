@@ -1,7 +1,11 @@
-import KIP126.Main.Solution.DifferentialReduction.d12_dichotomy_and_condition_equivalence
-import KIP126.Main.Solution.ExtensionObstruction.c3_excludes_c5
-import KIP126.Def.Kervaire.Route.Conditions.Predicates
-import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+module
+
+public import KIP126.Main.Solution.DifferentialReduction.d12_dichotomy_and_condition_equivalence
+public import KIP126.Main.Solution.ExtensionObstruction.c3_excludes_c5
+public import KIP126.Def.Kervaire.Route.Conditions.Predicates
+public import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+
+@[expose] public section
 
 open KIP126.Classical.Adams
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

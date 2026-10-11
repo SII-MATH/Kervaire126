@@ -1,6 +1,11 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
+public import Lean.Elab.Command
+public meta import KIP126.Checks.AxiomInputs
+
+@[expose] public section
 
 /-! The generic standard-square proof must remain independent of Lin data
 and stage witnesses. Check its own import closure before the fixed

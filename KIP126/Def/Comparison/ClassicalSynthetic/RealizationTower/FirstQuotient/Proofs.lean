@@ -1,5 +1,9 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.FirstQuotient.Predicates
-import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Proofs
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.FirstQuotient.Predicates
+public import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Proofs
+
+@[expose] public section
 
 /-! The first-quotient comparison, pinned to realization and actual tower
 arrows. Realization of nu X/lambda itself is zero, so applying realization

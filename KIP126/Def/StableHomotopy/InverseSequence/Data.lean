@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Context.Data
-import Mathlib.CategoryTheory.Limits.Shapes.Products
+module
+
+public import KIP126.Def.StableHomotopy.Context.Data
+public import Mathlib.CategoryTheory.Limits.Shapes.Products
+
+@[expose] public section
 
 /-!
 # Sequential homotopy limits in the stable background

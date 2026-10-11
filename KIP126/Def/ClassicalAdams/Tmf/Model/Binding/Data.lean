@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Tmf.Model.Data
-import Mathlib.CategoryTheory.Monoidal.Mon
+module
+
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Data
+public import Mathlib.CategoryTheory.Monoidal.Mon
+
+@[expose] public section
 /-!
 # Chosen tmf algebra and coordinates
 

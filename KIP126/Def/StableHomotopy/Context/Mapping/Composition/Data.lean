@@ -1,4 +1,8 @@
-import Mathlib.CategoryTheory.Monoidal.Closed.Basic
+module
+
+public import Mathlib.CategoryTheory.Monoidal.Closed.Basic
+
+@[expose] public section
 
 /-!
 Composition for the selected closed structure. These operations are Mathlib's

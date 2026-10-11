@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.DescendingTower.Data
+module
+
+public import KIP126.Def.StableHomotopy.DescendingTower.Data
+
+@[expose] public section
 
 /-! The actual cofiber layers and triangle maps of the specified adjacent
 tower arrows. No comparison with a different chosen cofiber is implicit. -/

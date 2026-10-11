@@ -1,4 +1,8 @@
-import KIP126.Mathlib.ClassicalAdams.TowerComparison.Page.Data
+module
+
+public import KIP126.Mathlib.ClassicalAdams.TowerComparison.Page.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.Tower.Data
-import KIP126.Def.StableHomotopy.Context.Proofs
-import Mathlib.LinearAlgebra.Quotient.Basic
+module
+
+public import KIP126.Def.ClassicalAdams.Tower.Data
+public import KIP126.Def.StableHomotopy.Context.Proofs
+public import Mathlib.LinearAlgebra.Quotient.Basic
+
+@[expose] public section
 
 /-!
 # Quotient pages and lifts of the Adams tower

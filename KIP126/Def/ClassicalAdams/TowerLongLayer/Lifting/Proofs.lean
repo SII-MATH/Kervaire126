@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Data
-import KIP126.Def.StableHomotopy.Context.CofiberFactorization.Lifting.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Data
+public import KIP126.Def.StableHomotopy.Context.CofiberFactorization.Lifting.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

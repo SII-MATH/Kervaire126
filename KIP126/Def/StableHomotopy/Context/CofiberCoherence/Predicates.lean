@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.Data
+module
+
+public import KIP126.Def.StableHomotopy.Context.Data
+
+@[expose] public section
 
 /-! Functoriality conditions on the already chosen cofiber maps.
 The minimal cofiber class only supplies the inclusion and boundary squares;

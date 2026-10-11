@@ -1,6 +1,12 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Data
-import KIP126.Def.StableHomotopy.Cohomology.Coaction.Unit.Proofs
-import KIP126.Def.StableHomotopy.Context.Connecting.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Coaction.Unit.Proofs
+public import KIP126.Def.StableHomotopy.Context.Connecting.Proofs
+
+import all KIP126.Def.StableHomotopy.Context.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

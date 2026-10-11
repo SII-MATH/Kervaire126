@@ -1,7 +1,11 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Data
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Data
-import KIP126.Def.Synthetic.EInfty.Shift.Predicates
-import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Data
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Data
+public import KIP126.Def.Synthetic.EInfty.Shift.Predicates
+public import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
+
+@[expose] public section
 /-!
 # Canonical page-extension target comparisons
 

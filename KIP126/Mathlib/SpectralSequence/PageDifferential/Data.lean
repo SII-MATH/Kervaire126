@@ -1,4 +1,8 @@
-import Mathlib.Algebra.Homology.SpectralSequence.Basic
+module
+
+public import Mathlib.Algebra.Homology.SpectralSequence.Basic
+
+@[expose] public section
 
 /-!
 # Page-level differential data

@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Data
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.H6.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Data
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.H6.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

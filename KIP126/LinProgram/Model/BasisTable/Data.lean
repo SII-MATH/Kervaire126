@@ -1,5 +1,9 @@
-import KIP126.LinProgram.Model.E2.Data
-import Mathlib.LinearAlgebra.Basis.Basic
+module
+
+public import KIP126.LinProgram.Model.E2.Data
+public import Mathlib.LinearAlgebra.Basis.Basic
+
+@[expose] public section
 
 /-! Raw additive-basis catalogue from PR #110, ff39e951, Zenodo 14875701.
 Rows are not yet a certified `Module.Basis`. The strict parser reports malformed

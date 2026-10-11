@@ -1,5 +1,9 @@
-import KIP126.LinProgram.Interpretation.Route.Predicates
-import KIP126.Def.Kervaire.Route.Labels.Tmf.Data
+module
+
+public import KIP126.LinProgram.Interpretation.Route.Predicates
+public import KIP126.Def.Kervaire.Route.Labels.Tmf.Data
+
+@[expose] public section
 
 /-! Parameterized computation certificates on one interpretation and shared labels. -/
 

@@ -1,4 +1,8 @@
-import KIP126.LinProgram.Tactic.Support.Data
+module
+
+public import KIP126.LinProgram.Tactic.Support.Data
+
+@[expose] public section
 
 namespace KIP126.LinE2.Automation
 

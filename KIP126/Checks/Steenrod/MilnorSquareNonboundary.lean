@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Boundary.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Boundary.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! The non-boundary calculation is pure algebra and kernel-checked.
 It must not acquire Adams, Lin-table, or project-axiom dependencies. -/

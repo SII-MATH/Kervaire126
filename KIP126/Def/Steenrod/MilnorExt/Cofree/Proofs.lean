@@ -1,6 +1,10 @@
-import KIP126.Def.Steenrod.MilnorExt.Cofree.Data
-import Mathlib.RingTheory.MvPolynomial.Basic
-import Mathlib.LinearAlgebra.TensorProduct.Basis
+module
+
+public import KIP126.Def.Steenrod.MilnorExt.Cofree.Data
+public import Mathlib.RingTheory.MvPolynomial.Basic
+public import Mathlib.LinearAlgebra.TensorProduct.Basis
+
+@[expose] public section
 
 /-! The prescribed polynomial coordinates do not forget comodule elements. -/
 

@@ -1,8 +1,12 @@
-import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Classes.Data
-import KIP126.Def.StableHomotopy.Cohomology.Data
-import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
-import KIP126.Def.Synthetic.Sphere.Data
-import Mathlib.CategoryTheory.Monoidal.Mon
+module
+
+public import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Classes.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
+public import KIP126.Def.Synthetic.Sphere.Data
+public import Mathlib.CategoryTheory.Monoidal.Mon
+
+@[expose] public section
 
 /-!
 # A parameterized realization of the tmf coordinate input

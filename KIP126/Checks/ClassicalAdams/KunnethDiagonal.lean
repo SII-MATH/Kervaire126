@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! The actual tensor diagonal and conditional coassociativity use no Adams
 page, fixed foundation, Milnor formula, Lin comparison, or project axiom. -/

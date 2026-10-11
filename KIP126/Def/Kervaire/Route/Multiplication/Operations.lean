@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Sphere.Actions.Data
-import Mathlib.CategoryTheory.Monoidal.Mon
+module
+
+public import KIP126.Def.Synthetic.Sphere.Actions.Data
+public import Mathlib.CategoryTheory.Monoidal.Mon
+
+@[expose] public section
 
 /-! Homotopy multiplication induced by a specified monoid object.
 This is the single operation used by quotient algebras and their comparisons. -/

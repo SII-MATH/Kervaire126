@@ -1,9 +1,13 @@
-import KIP126.Def.Steenrod.MilnorCoalgebra.Antipode.Raw.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Grading.Proofs
-import Mathlib.Algebra.CharP.Two
-import Mathlib.Algebra.CharP.Algebra
-import Mathlib.LinearAlgebra.Matrix.SemiringInverse
-import Mathlib.Algebra.CharP.Lemmas
+module
+
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Antipode.Raw.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Grading.Proofs
+public import Mathlib.Algebra.CharP.Two
+public import Mathlib.Algebra.CharP.Algebra
+public import Mathlib.LinearAlgebra.Matrix.SemiringInverse
+public import Mathlib.Algebra.CharP.Lemmas
+
+@[expose] public section
 
 /-! Properties of the fixed recursive polynomial maps. These are explicit
 proof obligations, not additional choices of an antipode or its inverse. -/

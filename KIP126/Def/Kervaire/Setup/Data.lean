@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.SphereSequence.Data
-import KIP126.Def.Algebra.Coefficients.Data
-import KIP126.Def.Synthetic.AdamsSequence.Data
-import KIP126.Def.StableHomotopy.Context.Data
+module
+
+public import KIP126.Def.ClassicalAdams.SphereSequence.Data
+public import KIP126.Def.Algebra.Coefficients.Data
+public import KIP126.Def.Synthetic.AdamsSequence.Data
+public import KIP126.Def.StableHomotopy.Context.Data
+
+@[expose] public section
 
 /-!
 # Stable and synthetic data used by the Kervaire endpoint

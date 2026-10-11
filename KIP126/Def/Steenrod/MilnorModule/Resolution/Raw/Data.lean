@@ -1,6 +1,10 @@
-import KIP126.Def.Steenrod.MilnorModule.TrivialDual.Data
-import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
-import Mathlib.CategoryTheory.Preadditive.Projective.Resolution
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.TrivialDual.Data
+public import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
+public import Mathlib.CategoryTheory.Preadditive.Projective.Resolution
+
+@[expose] public section
 
 /-!
 The specified terms, reversed differentials and augmentation obtained by

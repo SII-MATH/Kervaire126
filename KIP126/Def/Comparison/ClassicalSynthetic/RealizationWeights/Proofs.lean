@@ -1,5 +1,9 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.RealizationWeights.Data
-import KIP126.Def.Synthetic.Localization.Proofs
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.RealizationWeights.Data
+public import KIP126.Def.Synthetic.Localization.Proofs
+
+@[expose] public section
 
 /-! Weight comparisons for the SAME lambda-inversion realization.
 Their zero value and every successive weight map are fixed, so this is

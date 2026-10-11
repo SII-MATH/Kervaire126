@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorModule.Comparison.Predicates
-import Mathlib.Algebra.Module.ZMod
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Comparison.Predicates
+public import Mathlib.Algebra.Module.ZMod
+
+@[expose] public section
 
 /-!
 The prescribed Ext comparison is induced by the actual transpose on the fixed

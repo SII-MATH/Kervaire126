@@ -1,5 +1,9 @@
-import KIP126.Def.StageInput.StandardSphere.Sequence.Data
-import KIP126.LinProgram.Model.Classes.Data
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+public import KIP126.LinProgram.Model.Classes.Data
+
+@[expose] public section
 
 /-! Bounded mathematical sphere E₂ comparison data.
 No raw differential row or certification result is supplied by this object. -/

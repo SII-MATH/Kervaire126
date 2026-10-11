@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerSmash.Step.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSmash.Step.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

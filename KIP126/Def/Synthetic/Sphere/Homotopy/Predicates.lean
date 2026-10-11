@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Sphere.Actions.Data
+module
+
+public import KIP126.Def.Synthetic.Sphere.Actions.Data
+
+@[expose] public section
 
 namespace KIP126.Synthetic.Context
 open KIP126.StableHomotopy

@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Data
-import Mathlib.Algebra.CharP.Two
-import Mathlib.Algebra.CharP.Algebra
-import Mathlib.Tactic.Ring
+module
+
+public import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Data
+public import Mathlib.Algebra.CharP.Two
+public import Mathlib.Algebra.CharP.Algebra
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-! Homogeneity obligations for the fixed coordinate expressions.
 These elementary proofs are deferred in the statement-only milestone. -/

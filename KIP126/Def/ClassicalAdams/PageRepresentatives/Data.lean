@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
-import KIP126.Def.StableHomotopy.Cohomology.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+
+@[expose] public section
 
 /-!
 # The paper's cycle and boundary submodules of actual Adams E₂

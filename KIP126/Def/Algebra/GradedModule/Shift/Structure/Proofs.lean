@@ -1,6 +1,10 @@
-import KIP126.Def.Algebra.GradedModule.Shift.Data
-import KIP126.Def.Algebra.GradedModule.Structure.Data
-import KIP126.Def.Algebra.GradedVectorSpace.Proofs
+module
+
+public import KIP126.Def.Algebra.GradedModule.Shift.Data
+public import KIP126.Def.Algebra.GradedModule.Structure.Data
+public import KIP126.Def.Algebra.GradedVectorSpace.Proofs
+
+@[expose] public section
 
 /-!
 Linearity and exactness of the specified internal shift.  These properties

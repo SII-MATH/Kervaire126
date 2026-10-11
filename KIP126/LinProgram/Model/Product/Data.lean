@@ -1,4 +1,8 @@
-import KIP126.LinProgram.Model.E2.Proofs
+module
+
+public import KIP126.LinProgram.Model.E2.Proofs
+
+@[expose] public section
 
 namespace KIP126.LinE2
 

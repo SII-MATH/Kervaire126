@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.PageExtension.Predicates
-import KIP126.Def.Synthetic.PageExtension.Relation.Proofs
-import KIP126.Def.Synthetic.PageExtension.Lambda.Proofs
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Predicates
+public import KIP126.Def.Synthetic.PageExtension.Relation.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Lambda.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.PageExtension
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

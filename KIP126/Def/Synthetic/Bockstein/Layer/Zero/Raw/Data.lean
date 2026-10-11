@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Bockstein.Tower.Data
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Tower.Data
+
+@[expose] public section
 
 /-! The actual source and target identifications for the zeroth residual
 arrow. The target retains the specified zero-shift isomorphism. -/

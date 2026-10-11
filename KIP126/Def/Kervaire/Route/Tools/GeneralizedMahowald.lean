@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
-import KIP126.Def.Kervaire.Route.Extensions.Crossing.Predicates
-import KIP126.Def.ClassicalAdams.Suspension.Predicates
-import KIP126.Def.Kervaire.Route.Triangles.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
+public import KIP126.Def.Kervaire.Route.Extensions.Crossing.Predicates
+public import KIP126.Def.ClassicalAdams.Suspension.Predicates
+public import KIP126.Def.Kervaire.Route.Triangles.Predicates
+
+@[expose] public section
 
 /-! 本文待证工具；所有对象、代表和扩张均从同一个 Route.Model 派生。
 这里只定义模型上的性质；定义该命题不把它作为 M 的字段或 A(M) 的输入。

@@ -1,6 +1,10 @@
-import KIP126.Def.SpectralSequence.UnboundedExtension.TruncatedComplex.Data
-import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Proofs
-import KIP126.Def.SpectralSequence.Truncation.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.UnboundedExtension.TruncatedComplex.Data
+public import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Proofs
+public import KIP126.Def.SpectralSequence.Truncation.Proofs
+
+@[expose] public section
 
 /-!
 # Boundedness of truncated extension complexes

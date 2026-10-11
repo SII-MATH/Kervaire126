@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSequence.PageHomology.Data
-import KIP126.Def.ClassicalAdams.Page.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSequence.PageHomology.Data
+public import KIP126.Def.ClassicalAdams.Page.Data
+
+@[expose] public section
 
 /-!
 # The spectral sequence assembled from the Adams tower

@@ -1,7 +1,11 @@
-import KIP126.Def.Algebra.Coefficients.Data
-import Mathlib.Algebra.MvPolynomial.Eval
-import Mathlib.RingTheory.Ideal.Quotient.Operations
-import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous
+module
+
+public import KIP126.Def.Algebra.Coefficients.Data
+public import Mathlib.Algebra.MvPolynomial.Eval
+public import Mathlib.RingTheory.Ideal.Quotient.Operations
+public import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous
+
+@[expose] public section
 
 /-!
 # An E₂ multiplication table and its presented algebra

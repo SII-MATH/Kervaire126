@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedModule.Shift.TensorLine.Raw.Data
+module
+
+public import KIP126.Def.Algebra.GradedModule.Shift.TensorLine.Raw.Data
+
+@[expose] public section
 
 /-! Compatibility of scalar multiplication with the actual augmentation action. -/
 

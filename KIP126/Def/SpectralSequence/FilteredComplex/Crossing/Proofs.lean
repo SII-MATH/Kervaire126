@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.Crossing.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Page.Converse.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Crossing.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Page.Converse.Proofs
+
+@[expose] public section
 
 /-!
 # 过滤复形的代表元 crossing

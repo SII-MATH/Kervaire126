@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedModule.Tensor.Raw.Data
+module
+
+public import KIP126.Def.Algebra.GradedModule.Tensor.Raw.Data
+
+@[expose] public section
 
 /-! Monad and action laws for the prescribed left-tensor maps. -/
 

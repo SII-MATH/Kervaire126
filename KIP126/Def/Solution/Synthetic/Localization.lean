@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Implementation.Data
-import KIP126.Def.Synthetic.Localization.Recovery.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Data
+public import KIP126.Def.Synthetic.Localization.Recovery.Proofs
+
+@[expose] public section
 
 namespace KIP126.Def.Solution
 

@@ -1,6 +1,10 @@
-import KIP126.Main.Solution.Literature.Route.Applicability
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Literature.Applications
+module
+
+public import KIP126.Main.Solution.Literature.Route.Applicability
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Interface.Solution.Literature.Applications
+
+@[expose] public section
 
 namespace KIP126.Literature.Route
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology KIP126.Classical.Adams

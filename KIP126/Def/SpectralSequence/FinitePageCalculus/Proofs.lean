@@ -1,9 +1,13 @@
-import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
-import KIP126.Def.SpectralSequence.Computation.Proofs
-import KIP126.Def.SpectralSequence.Permanence.Proofs
-import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
-import KIP126.Def.SpectralSequence.ModuleQuotient.Proofs
-import KIP126.Def.Algebra.Coefficients.Data
+module
+
+public import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+public import KIP126.Def.SpectralSequence.Computation.Proofs
+public import KIP126.Def.SpectralSequence.Permanence.Proofs
+public import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
+public import KIP126.Def.SpectralSequence.ModuleQuotient.Proofs
+public import KIP126.Def.Algebra.Coefficients.Data
+
+@[expose] public section
 
 /-! Generic representative and finite-page generation lemmas for internal
 spectral sequences. These use the specified cycle and boundary subobjects;

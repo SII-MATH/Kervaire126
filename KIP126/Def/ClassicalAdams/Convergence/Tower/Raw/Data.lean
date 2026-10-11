@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.Tower.Data
-import KIP126.Def.Algebra.Filtration.Data
-import Mathlib.Algebra.Category.ModuleCat.Subobject
+module
+
+public import KIP126.Def.ClassicalAdams.Tower.Data
+public import KIP126.Def.Algebra.Filtration.Data
+public import Mathlib.Algebra.Category.ModuleCat.Subobject
+
+@[expose] public section
 
 /-! The actual Adams filtration on the homotopy groups of the specified
 spectrum. Every level is the image of the existing tower map to that spectrum. -/

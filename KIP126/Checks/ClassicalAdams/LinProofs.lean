@@ -1,6 +1,11 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.Differentials
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.Main.Solution.Computation.LinProgram.Differentials
+public import Lean.Elab.Command
+public meta import KIP126.Checks.AxiomInputs
+
+@[expose] public section
 
 open Lean Elab Command in
 run_cmd do

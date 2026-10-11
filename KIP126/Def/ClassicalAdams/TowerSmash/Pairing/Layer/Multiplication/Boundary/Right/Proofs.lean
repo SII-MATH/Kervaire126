@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Boundary.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Right.Boundary.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Boundary.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Right.Boundary.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,4 +1,8 @@
-import KIP126.Def.HigherAlgebra.Operad.Topological.Data
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.Topological.Data
+
+@[expose] public section
 
 /-!
 Algebras over the actual topological operad in Cartesian topological spaces.

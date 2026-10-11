@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Value.Data
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Value.Data
+
+@[expose] public section
 
 /-!
 Independence of the witnessed lift and linearity of the actual J(lift(K(x)))

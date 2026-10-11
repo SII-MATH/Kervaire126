@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Iterated.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Iterated.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Audit the derivation from explicitly parameterized, homology-level Künneth.
 The input has no Adams pages, differentials, or permanence claims. No value

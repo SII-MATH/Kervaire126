@@ -1,8 +1,12 @@
-import KIP126.Def.Algebra.GradedModule.Tensor.Data
-import KIP126.Def.Algebra.GradedVectorSpace.Data
-import KIP126.Def.Algebra.GradedVectorSpace.Proofs
-import Mathlib.CategoryTheory.Linear.LinearFunctor
-import Mathlib.CategoryTheory.Limits.Preserves.Finite
+module
+
+public import KIP126.Def.Algebra.GradedModule.Tensor.Data
+public import KIP126.Def.Algebra.GradedVectorSpace.Data
+public import KIP126.Def.Algebra.GradedVectorSpace.Proofs
+public import Mathlib.CategoryTheory.Linear.LinearFunctor
+public import Mathlib.CategoryTheory.Limits.Preserves.Finite
+
+@[expose] public section
 
 /-!
 Properties of the specified Cauchy left-tensor monad over a field. These are

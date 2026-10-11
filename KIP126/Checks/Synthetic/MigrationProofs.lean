@@ -1,8 +1,12 @@
-import KIP126.Def.Synthetic.Completion.Proofs
-import KIP126.Def.Synthetic.Bockstein.Layer.Zero.Raw.Proofs
-import KIP126.Def.Synthetic.Bockstein.Maps.Proofs
-import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.Synthetic.Completion.Proofs
+public import KIP126.Def.Synthetic.Bockstein.Layer.Zero.Raw.Proofs
+public import KIP126.Def.Synthetic.Bockstein.Maps.Proofs
+public import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Strict dependency regression for the extracted proofs. Unlike the
 unfinished Main applications, every declaration below must be independent

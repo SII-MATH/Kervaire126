@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Theta5.Predicates
+module
+
+public import KIP126.Def.Kervaire.Theta5.Predicates
+
+@[expose] public section
 
 /-!
 # Project transport for the BJM/BX criterion

@@ -1,6 +1,10 @@
-import KIP126.Checks.ClassicalAdams.StandardSquareGeneric
-import KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.ClassicalAdams.StandardSquareGeneric
+public import KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! The fixed specialization uses the existing foundation and Milnor
 coordinates projected from Def's fixed implementation. Its Mathlib sphere-page

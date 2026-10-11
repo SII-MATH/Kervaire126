@@ -1,6 +1,10 @@
-import Mathlib.Data.Nat.Init
-import Mathlib.Data.Finite.Prod
-import Mathlib.Order.KonigLemma
+module
+
+public import Mathlib.Data.Nat.Init
+public import Mathlib.Data.Finite.Prod
+public import Mathlib.Order.KonigLemma
+
+@[expose] public section
 
 namespace KIP126.Core.InverseSequence
 

@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorCoalgebra.Raw.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Raw.Data
+
+@[expose] public section
 
 /-!
 The recursive polynomial Milnor antipode, in the existing coproduct order

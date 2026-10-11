@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Coordinates.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Coordinates.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

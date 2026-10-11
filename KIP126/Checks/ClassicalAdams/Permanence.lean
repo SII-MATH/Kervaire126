@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Permanence.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Permanence.Data
+
+@[expose] public section
 
 /-! The sphere `h₆²` permanence statement uses its actual `E₂` representative. -/
 

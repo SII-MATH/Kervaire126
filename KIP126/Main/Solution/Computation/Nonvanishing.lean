@@ -1,5 +1,9 @@
-import KIP126.LinProgram.Certificates.SquareDetection.Data
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
+module
+
+public import KIP126.LinProgram.Certificates.SquareDetection.Data
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,12 +1,27 @@
-import KIP126.Main.Solution.Route.Section7.NuNinth
-import KIP126.Main.Solution.Route.Section7.ThetaToda
-import KIP126.Main.Solution.Route.Section7.ThetaShuffle
-import KIP126.Main.Solution.Route.Section7.AnyYHelpers
-import KIP126.Main.Solution.Route.Section7.TodaNonempty
-import KIP126.Main.Solution.Route.Section7.WeakInitialNonzero
-import KIP126.Main.Solution.Route.Section7.WeakRepresentative
-import KIP126.Main.Solution.Route.Section7.WeakYDetection
-import KIP126.Main.Solution.Route.Section7.NuTargetHelpers
+module
+
+public import KIP126.Main.Solution.Route.Section7.NuNinth
+public import KIP126.Main.Solution.Route.Section7.ThetaToda
+public import KIP126.Main.Solution.Route.Section7.ThetaShuffle
+public import KIP126.Main.Solution.Route.Section7.AnyYHelpers
+public import KIP126.Main.Solution.Route.Section7.TodaNonempty
+public import KIP126.Main.Solution.Route.Section7.WeakInitialNonzero
+public import KIP126.Main.Solution.Route.Section7.WeakRepresentative
+public import KIP126.Main.Solution.Route.Section7.WeakYDetection
+public import KIP126.Main.Solution.Route.Section7.NuTargetHelpers
+public import KIP126.Main.Solution.Route.AlphaOne
+public import KIP126.Main.Solution.Route.Section7.LowCsv
+
+-- These proofs use the existing private helpers in these modules.
+import all KIP126.Main.Solution.Route.Section7.LowCsv
+import all KIP126.Main.Solution.Route.Section7.AnyYHelpers
+import all KIP126.Main.Solution.Route.Section7.TodaNonempty
+import all KIP126.Main.Solution.Route.Section7.WeakInitialNonzero
+import all KIP126.Main.Solution.Route.Section7.WeakRepresentative
+import all KIP126.Main.Solution.Route.Section7.WeakYDetection
+import all KIP126.Main.Solution.Route.Section7.NuTargetHelpers
+
+@[expose] public section
 
 namespace KIP126.Main.Solution.Route.Section7
 open CategoryTheory

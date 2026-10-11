@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.SphereSequence.Data
-import KIP126.Mathlib.SpectralSequence.Permanence.Data
+module
+
+public import KIP126.Def.ClassicalAdams.SphereSequence.Data
+public import KIP126.Mathlib.SpectralSequence.Permanence.Data
+
+@[expose] public section
 
 /-! Permanence predicates for actual classes in a classical Adams sequence. -/
 

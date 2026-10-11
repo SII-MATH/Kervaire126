@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorModule.Dualization.Raw.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Dualization.Raw.Data
+
+@[expose] public section
 
 /-! Precise properties of the prescribed transpose-conjugation action.
 These statements do not assert an equivalence of unrestricted categories. -/

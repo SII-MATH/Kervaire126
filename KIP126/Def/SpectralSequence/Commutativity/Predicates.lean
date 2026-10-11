@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.Commutativity.Square.Data
-import KIP126.Def.SpectralSequence.Crossing.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.Commutativity.Square.Data
+public import KIP126.Def.SpectralSequence.Crossing.Predicates
+
+@[expose] public section
 
 /-!
 # Crossing predicates for extension spectral sequences

@@ -1,6 +1,10 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Def.StageInput.StandardSphere.EInfty.Data
-import KIP126.Def.ClassicalAdams.TowerNaturality.Morphism.Proofs
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Def.StageInput.StandardSphere.EInfty.Data
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Morphism.Proofs
+
+@[expose] public section
 
 private theorem kip126_helper_page_eq_of_boundary : (
 ∀ (D : KIP126.Core.SpectralSequence.SSData (ModuleCat.{_} ℤ)) (a b : (CategoryTheory.Subobject.underlying.obj (D.Z ⊤) : ModuleCat ℤ)), (D.Z ⊤).arrow a - (D.Z ⊤).arrow b ∈ (ModuleCat.subobjectModule D.V) (D.B 0) → D.pageπ ⊤ a = D.pageπ ⊤ b

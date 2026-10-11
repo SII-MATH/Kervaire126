@@ -1,5 +1,9 @@
-import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Proofs
-import Mathlib.CategoryTheory.Comma.Over.Basic
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Proofs
+public import Mathlib.CategoryTheory.Comma.Over.Basic
+
+@[expose] public section
 
 /-! The actual category of enriched operadic algebras and its forgetful
 functors, including the unit arrow. Category composition is the composition

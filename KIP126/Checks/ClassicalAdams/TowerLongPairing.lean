@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Leibniz.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Leibniz.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! This audits conditional quotient descent, not the existence of geometric
 pairing witnesses, their signs, or their compatibility with Lin multiplication. -/

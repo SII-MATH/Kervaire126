@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Homotopy.Data
-import KIP126.Def.ClassicalAdams.TowerDifferential.Value.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Homotopy.Data
+public import KIP126.Def.ClassicalAdams.TowerDifferential.Value.Data
+
+@[expose] public section
 
 /-!
 The existing actual sphere-layer product in the natural-number bidegrees

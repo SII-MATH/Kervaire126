@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Commutativity
+module
+
+public import KIP126.Def.SpectralSequence.Commutativity
+
+@[expose] public section
 
 /-!
 # Regression checks for extension-square commutativity

@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Square.Data
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Elementary.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Square.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Elementary.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

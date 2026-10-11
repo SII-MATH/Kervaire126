@@ -1,7 +1,14 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Expressions.Proofs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Expressions.Predicates
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Expressions.Proofs
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Expressions.Predicates
+public import Lean.Elab.Command
+public meta import KIP126.LinProgram.Model.BasisTable.Data
+public meta import KIP126.Checks.AxiomInputs
+public meta import KIP126.LinProgram.Interpretation.Expression.Data
+
+@[expose] public section
 
 /-! Executable migration regressions. Runtime checks are not proofs of the
 CSV basis theorem or of Gröbner reduction soundness. -/

@@ -1,11 +1,16 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Page.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Page.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 
 noncomputable section
 open CategoryTheory MonoidalCategory KIP126.StableHomotopy
 universe u v
+set_option backward.proofsInPublic true
 variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)] {H : C} {unit : 𝟙_ C ⟶ H} {X Y Z : C}
   {n : ℕ} {p q : ℤ × ℤ}
@@ -14,6 +19,7 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 /-- The same descended pairing on the three existing internal SSData pages.
 The raw finite SSData level `n` is the Adams page `n+2`, so the input uses
 long layers of length `n+2`; no additional reindexing choice is made. -/
+@[no_expose]
 def MixedAdamsLongLayerPairing.onInternalPage (hP : P.ProjectionCompatible)
     (hB : P.BoundaryCompatible) :
     (adamsTowerSSData unit X p.1 p.2).page (n : WithTop ℕ) →ₗ[ℤ]

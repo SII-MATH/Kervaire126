@@ -1,7 +1,11 @@
-import KIP126.Def.StageInput.StandardSphere.Background.Data
-import KIP126.Def.StageInput.Milnor
-import KIP126.Def.Comparison.Cobar.Proofs
-import KIP126.Def.Solution.StandardRouteBackground
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Background.Data
+public import KIP126.Def.StageInput.Milnor
+public import KIP126.Def.Comparison.Cobar.Proofs
+public import KIP126.Def.Solution.StandardRouteBackground
+
+@[expose] public section
 
 /-! Internal construction obligations for the one standard sphere background.
 Their proof status is independent of the external literature and computation

@@ -1,6 +1,13 @@
-import KIP126.LinProgram.Certificates.SquareDetection.Certificate.Data
-import KIP126.LinProgram.Certificates.SquareDetection.Parsing
-import Init.Data.String.Lemmas.Iterate
+module
+
+public import KIP126.LinProgram.Certificates.SquareDetection.Certificate.Data
+public import KIP126.LinProgram.Certificates.SquareDetection.Parsing
+public import Init.Data.String.Lemmas.Iterate
+import all Init.Data.String.Search
+import all Init.Data.String.Slice
+import all Init.Data.List.SplitOn.Basic
+
+@[expose] public section
 
 namespace KIP126.LinE2.SquareDetection
 
@@ -71,7 +78,7 @@ theorem charsChunkCheck_of_join (s a b : String) (hs : s = a ++ ("\n" ++ b))
   rw [hs]
   exact charsChunkCheck_join a b ha hb
 
-attribute [local cbv_eval] splitOn_comma splitOn_semicolon splitOn_newline
+attribute [local cbv_eval] splitOn_comma splitOn_semicolon splitOn_newline toNat?_eq_chars
 
 /-- A kernel-checked initial piece of the archived certificate. The remaining
 227 chunks are not assumed to have been certified by this theorem. -/

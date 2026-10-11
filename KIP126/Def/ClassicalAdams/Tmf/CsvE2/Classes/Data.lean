@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Proofs
+
+@[expose] public section
 
 /-! Typed classes from the fixed tmf coordinate algebra, without fresh choices. -/
 namespace KIP126.Classical.Adams.Tmf.CsvE2

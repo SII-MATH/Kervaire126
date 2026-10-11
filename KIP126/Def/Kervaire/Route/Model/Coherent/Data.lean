@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Canonical.Predicates
-import KIP126.Def.Kervaire.Route.Model.Predicates
+module
+
+public import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Canonical.Predicates
+public import KIP126.Def.Kervaire.Route.Model.Predicates
+
+@[expose] public section
 
 namespace KIP126.Kervaire.Route
 open KIP126.Classical.Adams

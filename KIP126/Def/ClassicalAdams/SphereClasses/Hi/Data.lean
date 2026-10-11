@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.SphereClasses.Data
-import KIP126.Def.Steenrod.MilnorCobar.Hi.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.SphereClasses.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Hi.Proofs
+
+@[expose] public section
 
 /-! The standard `hᵢ` family on the actual sphere Adams second page. -/
 

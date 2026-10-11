@@ -1,5 +1,9 @@
-import KIP126.Def.Kervaire.Route.Model.Data
-import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
+module
+
+public import KIP126.Def.Kervaire.Route.Model.Data
+public import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
+
+@[expose] public section
 
 /-! C₃, C₄, C₅ in LWX Proposition 7.8, on one actual classical/synthetic
 model. A definition is not an assertion of any of these conditions. -/

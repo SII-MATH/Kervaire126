@@ -1,6 +1,12 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.Vanishing
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.Main.Solution.Computation.Vanishing
+public import Lean.Elab.Command
+public meta import KIP126.Checks.AxiomInputs
+import all KIP126.Main.Solution.Computation.Vanishing
+
+@[expose] public section
 
 /-! The no-incoming-differential argument is internal and independent of the Lin
 table and Milnor coordinates. Its generic form uses the Eilenberg--Mac Lane

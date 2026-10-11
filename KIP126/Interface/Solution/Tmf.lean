@@ -1,9 +1,13 @@
-import KIP126.Def.SpectralSequence.Computation.Predicates
-import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
-import KIP126.Def.StageInput.StandardSphere.Tmf.Predicates
-import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Def.ClassicalAdams.Tmf.Br21.Data
+module
+
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
+public import KIP126.Def.StageInput.StandardSphere.Tmf.Predicates
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Def.ClassicalAdams.Tmf.Br21.Data
+
+@[expose] public section
 
 /-! Coordinate-bound tmf comparison contracts and the combined consumer adapter. -/
 

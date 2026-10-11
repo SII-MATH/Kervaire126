@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Representatives.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Representatives.Proofs
+
+@[expose] public section
 
 /-!
 # Regression checks for filtered representatives

@@ -1,5 +1,9 @@
-import KIP126.Interface.Challenge.Literature.Source
-import KIP126.Def.Kervaire.Route.Tmf.Predicates
+module
+
+public import KIP126.Interface.Challenge.Literature.Source
+public import KIP126.Def.Kervaire.Route.Tmf.Predicates
+
+@[expose] public section
 
 /-! Application obligations and consumer views of the literature sources.
 These are internal construction/transport goals, not additional source inputs. -/

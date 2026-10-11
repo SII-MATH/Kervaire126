@@ -1,7 +1,13 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.Mathlib.ClassicalAdams.Comparison.Construction.Data
-import KIP126.Mathlib.ClassicalAdams.SurvivalComparison.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.Mathlib.ClassicalAdams.Comparison.Construction.Data
+public import KIP126.Mathlib.ClassicalAdams.SurvivalComparison.Proofs
+public import Lean.Elab.Command
+public meta import KIP126.Checks.AxiomInputs
+import all KIP126.Mathlib.ClassicalAdams.SurvivalComparison.Proofs
+
+@[expose] public section
 
 /-! Audit the all-page and survival comparisons separately from the Lin
 presentation, Milnor coordinates, and the remaining class comparison assumption. -/

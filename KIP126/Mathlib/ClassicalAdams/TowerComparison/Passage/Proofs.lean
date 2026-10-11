@@ -1,8 +1,12 @@
-import KIP126.Mathlib.ClassicalAdams.TowerComparison.Page.Data
-import KIP126.Mathlib.ClassicalAdams.TowerComparison.Homology.Proofs
-import KIP126.Def.ClassicalAdams.TowerSSData.PagePassage.Proofs
-import KIP126.Def.SpectralSequence.Permanence.Predicates
-import KIP126.Mathlib.SpectralSequence.Permanence.Data
+module
+
+public import KIP126.Mathlib.ClassicalAdams.TowerComparison.Page.Data
+public import KIP126.Mathlib.ClassicalAdams.TowerComparison.Homology.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSSData.PagePassage.Proofs
+public import KIP126.Def.SpectralSequence.Permanence.Predicates
+public import KIP126.Mathlib.SpectralSequence.Permanence.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

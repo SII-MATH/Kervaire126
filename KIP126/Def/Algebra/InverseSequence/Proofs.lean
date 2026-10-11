@@ -1,5 +1,9 @@
-import Mathlib.Data.Nat.Init
-import Mathlib.Logic.Function.Defs
+module
+
+public import Mathlib.Data.Nat.Init
+public import Mathlib.Logic.Function.Defs
+
+@[expose] public section
 
 namespace KIP126.Core.InverseSequence
 

@@ -1,6 +1,20 @@
-import KIP126.Main.Solution.Route.Section7.ThetaMassey
-import KIP126.Main.Solution.Route.Section7.ThetaNoCrossing
-import KIP126.Main.Solution.Route.Section7.LowCsv
+module
+
+public import KIP126.Main.Solution.Route.Section7.ThetaMassey
+public import KIP126.Main.Solution.Route.Section7.ThetaNoCrossing
+public import KIP126.Main.Solution.Route.Section7.LowCsv
+public import KIP126.Main.Solution.Computation.Lambda
+
+-- These proofs use the existing private helpers in these modules.
+import all KIP126.Main.Solution.Route.Section7.ThetaMassey
+import all KIP126.Main.Solution.Route.Section7.LowCsv
+
+-- The CSV proofs explicitly unfold these string/list implementations.
+import all Init.Data.String.Legacy
+import all Init.Data.String.Search
+import all Init.Data.String.Slice
+
+@[expose] public section
 
 namespace KIP126.Main.Solution.Route.Section7
 open CategoryTheory

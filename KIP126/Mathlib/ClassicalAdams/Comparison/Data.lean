@@ -1,7 +1,11 @@
-import KIP126.Mathlib.ClassicalAdams.StandardSphere.Data
-import KIP126.Def.StageInput.StandardSphere.Sequence.Data
-import KIP126.Def.SpectralSequence.Permanence.Predicates
-import KIP126.Mathlib.SpectralSequence.Permanence.Data
+module
+
+public import KIP126.Mathlib.ClassicalAdams.StandardSphere.Data
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+public import KIP126.Def.SpectralSequence.Permanence.Predicates
+public import KIP126.Mathlib.SpectralSequence.Permanence.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

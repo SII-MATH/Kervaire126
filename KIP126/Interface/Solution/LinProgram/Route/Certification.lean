@@ -1,5 +1,9 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Challenge2
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Interface.Solution.Challenge2
+
+@[expose] public section
 namespace KIP126.Interface.Solution.LinProgram.Route
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
 open KIP126.Classical.Adams KIP126.Synthetic.Context KIP126.Kervaire.Route

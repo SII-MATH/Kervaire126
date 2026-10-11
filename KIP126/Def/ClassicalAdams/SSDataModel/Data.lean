@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.Basic.Data
-import Mathlib.Algebra.Category.ModuleCat.Abelian
+module
+
+public import KIP126.Def.SpectralSequence.Basic.Data
+public import Mathlib.Algebra.Category.ModuleCat.Abelian
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,8 +1,12 @@
-import KIP126.Def.ClassicalAdams.SphereClasses.Data
-import KIP126.Def.ClassicalAdams.Mod2Sphere.Data
-import KIP126.Def.Steenrod.MilnorCobar.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.SphereClasses.Data
+public import KIP126.Def.ClassicalAdams.Mod2Sphere.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-!
 # Axiom regression for the completed Adams construction lemmas

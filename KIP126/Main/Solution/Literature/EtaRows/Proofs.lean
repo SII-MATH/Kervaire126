@@ -1,4 +1,8 @@
-import KIP126.Interface.Challenge.Literature.EtaRows
+module
+
+public import KIP126.Interface.Challenge.Literature.EtaRows
+
+@[expose] public section
 
 namespace KIP126.Classical.ExtensionSS
 

@@ -1,5 +1,9 @@
-import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Data
-import Mathlib.Topology.Homotopy.Contractible
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Data
+public import Mathlib.Topology.Homotopy.Contractible
+
+@[expose] public section
 
 namespace KIP126.HigherAlgebra.Operad.TopologicalOperad
 

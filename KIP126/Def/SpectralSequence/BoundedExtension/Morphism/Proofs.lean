@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.BoundedExtension.Morphism.Data
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension.Morphism.Data
+
+@[expose] public section
 
 /-!
 # Properties of the historical filtered-complex morphism API

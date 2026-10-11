@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.BoundedExtension
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension
+
+@[expose] public section
 
 /-!
 # Regression checks for the historical bounded-extension API

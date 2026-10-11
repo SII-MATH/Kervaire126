@@ -1,5 +1,9 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Expressions.Data
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Proofs
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Expressions.Data
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Proofs
+
+@[expose] public section
 
 set_option maxRecDepth 16384
 

@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalESS.Eta.Proofs
+module
+
+public import KIP126.Def.ClassicalESS.Eta.Proofs
+
+@[expose] public section
 
 /-!
 # Regression checks for the concrete classical eta-ESS

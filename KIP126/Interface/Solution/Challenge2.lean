@@ -1,4 +1,8 @@
-import KIP126.Interface.Challenge.Challenge2
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+
+@[expose] public section
 
 /-! Construction track for the package Interface must deliver to Main. -/
 namespace KIP126.Interface.Solution

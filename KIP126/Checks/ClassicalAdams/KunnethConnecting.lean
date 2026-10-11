@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Coaction.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Coaction.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Audit the general homology comparison before specializing to an Adams
 triangle. Künneth suspension compatibility is an explicit premise, not a

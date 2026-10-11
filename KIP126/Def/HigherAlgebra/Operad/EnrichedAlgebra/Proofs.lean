@@ -1,4 +1,8 @@
-import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Data
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Data
+
+@[expose] public section
 
 /-! Properties needed to form the category and its unit-forgetting functor.
 Proofs may remain unfinished during the interface-definition milestone. -/

@@ -1,8 +1,12 @@
-import KIP126.Def.StableHomotopy.Implementation.PointSet
-import Mathlib.Topology.Compactness.CompactlyGeneratedSpace
-import Mathlib.Topology.CWComplex.Classical.Basic
-import Mathlib.Topology.DiscreteSubset
-import Mathlib.Analysis.Normed.Module.Connected
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.PointSet
+public import Mathlib.Topology.Compactness.CompactlyGeneratedSpace
+public import Mathlib.Topology.CWComplex.Classical.Basic
+public import Mathlib.Topology.DiscreteSubset
+public import Mathlib.Analysis.Normed.Module.Connected
+
+@[expose] public section
 
 /-! Suspension spectra and free sequential prespectra. These give the
 point-set generators used in the tensor recognition and telescope interface. -/

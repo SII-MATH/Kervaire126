@@ -1,4 +1,8 @@
-import KIP126.Main.Solution.Literature.Near126.Sphere.Predicates
+module
+
+public import KIP126.Main.Solution.Literature.Near126.Sphere.Predicates
+
+@[expose] public section
 
 namespace KIP126.Computation.Near126.Sphere
 open KIP126.Classical.Adams KIP126.Core.SpectralSequence

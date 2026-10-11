@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
-import KIP126.Def.ClassicalAdams.TowerSequence.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+public import KIP126.Def.ClassicalAdams.TowerSequence.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

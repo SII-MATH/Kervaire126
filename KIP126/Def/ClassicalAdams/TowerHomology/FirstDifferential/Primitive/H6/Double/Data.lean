@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Data
+
+@[expose] public section
 
 /-! One and two applications of the actual tensor boundary to a degree-64
 cooperation. No assertion about products or fixed standard classes is built

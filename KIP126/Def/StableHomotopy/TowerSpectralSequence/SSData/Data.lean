@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Filtration.Proofs
-import KIP126.Def.SpectralSequence.Basic.Data
-import Mathlib.Algebra.Category.ModuleCat.Subobject
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Filtration.Proofs
+public import KIP126.Def.SpectralSequence.Basic.Data
+public import Mathlib.Algebra.Category.ModuleCat.Subobject
+
+@[expose] public section
 
 /-! The tower's actual E₁-based nested-subobject data. It is defined before
 the differential and neither consumes a spectral sequence nor selects one. -/

@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Boundary.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Nonvanishing.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Coordinates.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Boundary.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Nonvanishing.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Coordinates.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Audit the actual next-stage coaction formula. It is a consequence of
 general homology coherence and the already constructed normalized boundary. -/

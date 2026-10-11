@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.EInfty.Presentation.Data
-import KIP126.Def.Synthetic.EInfty.Shift.Predicates
+module
+
+public import KIP126.Def.Synthetic.EInfty.Presentation.Data
+public import KIP126.Def.Synthetic.EInfty.Shift.Predicates
+
+@[expose] public section
 
 namespace KIP126.Synthetic.SpectralSequence
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

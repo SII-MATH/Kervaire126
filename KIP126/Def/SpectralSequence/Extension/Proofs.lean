@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Extension.Data
+module
+
+public import KIP126.Def.SpectralSequence.Extension.Data
+
+@[expose] public section
 
 /-!
 # Proofs for two-term extension data

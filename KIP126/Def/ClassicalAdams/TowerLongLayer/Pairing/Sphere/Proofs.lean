@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Data
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Predicates
-import KIP126.Def.StableHomotopy.Context.TensorPairing.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Data
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Predicates
+public import KIP126.Def.StableHomotopy.Context.TensorPairing.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

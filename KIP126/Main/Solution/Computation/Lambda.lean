@@ -1,11 +1,15 @@
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Proofs
-import KIP126.Def.Algebra.Filtration.Proofs
-import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
-import KIP126.Def.ClassicalAdams.SphereVanishing.Proofs
-import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Main.Solution.Computation.Route
-import KIP126.Main.Solution.Computation.High125
+module
+
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Proofs
+public import KIP126.Def.Algebra.Filtration.Proofs
+public import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
+public import KIP126.Def.ClassicalAdams.SphereVanishing.Proofs
+public import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Main.Solution.Computation.Route
+public import KIP126.Main.Solution.Computation.High125
+
+@[expose] public section
 
 /-! Precise finite/weight-window derivations. The relevant raw degrees are
 already selected, including empty bases. No new permanent-cycle claim is

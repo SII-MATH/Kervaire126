@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Obstruction.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Obstruction.Proofs
+
+@[expose] public section
 
 namespace KIP126.Core.SpectralSequence.FilteredComplex.Solutions
 

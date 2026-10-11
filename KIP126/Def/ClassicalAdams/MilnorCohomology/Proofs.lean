@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Boundary.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Boundary.Proofs
+
+@[expose] public section
 
 /-! Exact quotient criteria and the existing h₆² detector on cobar cohomology. -/
 

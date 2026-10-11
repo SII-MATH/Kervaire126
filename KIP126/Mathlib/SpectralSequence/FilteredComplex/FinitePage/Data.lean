@@ -1,5 +1,9 @@
-import Mathlib.Algebra.Homology.SpectralSequence.Basic
-import KIP126.Def.SpectralSequence.FilteredDifferential.Proofs
+module
+
+public import Mathlib.Algebra.Homology.SpectralSequence.Basic
+public import KIP126.Def.SpectralSequence.FilteredDifferential.Proofs
+
+@[expose] public section
 
 /-!
 # Mathlib homological complexes from finite quotient pages

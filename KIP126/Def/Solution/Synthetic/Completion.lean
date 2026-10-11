@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Implementation.Data
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Data
+
+@[expose] public section
 
 namespace KIP126.Def.Solution
 

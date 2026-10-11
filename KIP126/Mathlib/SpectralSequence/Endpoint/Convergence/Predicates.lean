@@ -1,4 +1,8 @@
-import KIP126.Mathlib.SpectralSequence.Endpoint.Convergence.Data
+module
+
+public import KIP126.Mathlib.SpectralSequence.Endpoint.Convergence.Data
+
+@[expose] public section
 
 /-! Detection is a separately named relation on strong convergence data. -/
 namespace KIP126.Core.SpectralSequence

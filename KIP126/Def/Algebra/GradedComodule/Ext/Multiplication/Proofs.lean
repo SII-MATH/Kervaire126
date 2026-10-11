@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedComodule.Ext.Multiplication.Data
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Ext.Multiplication.Data
+
+@[expose] public section
 
 /-! The precise Ext composition underlying coefficient Yoneda multiplication. -/
 

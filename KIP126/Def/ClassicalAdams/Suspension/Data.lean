@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerLayer.Basic.Data
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Data
-import KIP126.Def.StableHomotopy.Context.Suspension.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLayer.Basic.Data
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Data
+public import KIP126.Def.StableHomotopy.Context.Suspension.Data
+
+@[expose] public section
 
 /-!
 # Suspension comparison for the actual Adams tower

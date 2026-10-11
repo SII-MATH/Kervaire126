@@ -1,5 +1,9 @@
-import KIP126.Def.Algebra.Graded.Tensor.Associator.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Coaction.Data
+module
+
+public import KIP126.Def.Algebra.Graded.Tensor.Associator.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Coaction.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

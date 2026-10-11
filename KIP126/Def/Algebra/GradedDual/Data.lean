@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedDual.Raw.Proofs
+module
+
+public import KIP126.Def.Algebra.GradedDual.Raw.Proofs
+
+@[expose] public section
 
 /-! The actual graded convolution algebra of a graded coalgebra. Its
 underlying maps were defined before the law statements; this bundle does

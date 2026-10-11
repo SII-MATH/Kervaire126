@@ -1,4 +1,8 @@
-import KIP126.Main.Solution.StageInput
+module
+
+public import KIP126.Main.Solution.StageInput
+
+@[expose] public section
 
 /-! Compatibility name for the unique presentation indexing the computation group
 in the shared Challenge 2 witness. -/

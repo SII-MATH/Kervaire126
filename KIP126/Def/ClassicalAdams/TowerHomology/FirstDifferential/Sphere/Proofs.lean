@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Sphere.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Sphere.Proofs
+
+@[expose] public section
 
 /-! The actual initial sphere boundary and first differential vanish.
 No ring, Künneth, Milnor, or extra tensor exactness witness is needed. -/

@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Route.SourceLanguage
+module
+
+public import KIP126.Def.Kervaire.Route.SourceLanguage
+
+@[expose] public section
 
 /-! Concrete language for the second half of LWX Section 7.
 

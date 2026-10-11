@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Context.LambdaPowers.Data
+module
+
+public import KIP126.Def.Synthetic.Context.LambdaPowers.Data
+
+@[expose] public section
 
 /-! Comparisons of the existing bigraded suspension functors, with explicit
 degree equalities. No suspension functor or comparison is chosen afresh. -/

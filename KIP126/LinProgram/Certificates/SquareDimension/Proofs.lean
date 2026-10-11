@@ -1,5 +1,9 @@
-import KIP126.LinProgram.Certificates.SquareDimension.Generators.Proofs
-import Mathlib.Algebra.Order.Monoid.Prod
+module
+
+public import KIP126.LinProgram.Certificates.SquareDimension.Generators.Proofs
+public import Mathlib.Algebra.Order.Monoid.Prod
+
+@[expose] public section
 
 namespace KIP126.LinE2
 

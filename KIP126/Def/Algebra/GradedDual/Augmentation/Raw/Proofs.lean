@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedDual.Augmentation.Raw.Data
+module
+
+public import KIP126.Def.Algebra.GradedDual.Augmentation.Raw.Data
+
+@[expose] public section
 
 /-! The prescribed evaluation preserves the convolution unit and product
 because the specified coaugmentation is a comonoid morphism. -/

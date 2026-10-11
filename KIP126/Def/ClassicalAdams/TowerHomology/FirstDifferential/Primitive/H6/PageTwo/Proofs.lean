@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Nonvanishing.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Sphere.PageTwo.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Nonvanishing.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Sphere.PageTwo.Proofs
+
+@[expose] public section
 
 /-! The primitive h-six polynomial gives a nonzero actual second-page
 class. Its first-page provenance is part of the statement. -/

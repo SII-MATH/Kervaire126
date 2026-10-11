@@ -1,12 +1,16 @@
-import KIP126.Def.Steenrod.MilnorModule.Resolution.Raw.Data
-import Mathlib.Algebra.Category.ModuleCat.Products
-import Mathlib.Algebra.Category.ModuleCat.Projective
-import Mathlib.LinearAlgebra.Contraction
-import Mathlib.LinearAlgebra.Finsupp.VectorSpace
-import Mathlib.LinearAlgebra.TensorProduct.Basis
-import Mathlib.LinearAlgebra.Basis.VectorSpace
-import Mathlib.CategoryTheory.Limits.FunctorCategory.EpiMono
-import Mathlib.Algebra.Order.BigOperators.Group.Finset
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Resolution.Raw.Data
+public import Mathlib.Algebra.Category.ModuleCat.Products
+public import Mathlib.Algebra.Category.ModuleCat.Projective
+public import Mathlib.LinearAlgebra.Contraction
+public import Mathlib.LinearAlgebra.Finsupp.VectorSpace
+public import Mathlib.LinearAlgebra.TensorProduct.Basis
+public import Mathlib.LinearAlgebra.Basis.VectorSpace
+public import Mathlib.CategoryTheory.Limits.FunctorCategory.EpiMono
+public import Mathlib.Algebra.Order.BigOperators.Group.Finset
+
+@[expose] public section
 
 /-!
 Properties of the prescribed dual maps. Projectivity is asserted only for

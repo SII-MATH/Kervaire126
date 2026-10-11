@@ -1,7 +1,11 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Data
-import KIP126.Def.ClassicalAdams.TowerVanishing.Proofs
-import KIP126.Def.StableHomotopy.Context.Suspension.Proofs
-import KIP126.Def.StableHomotopy.Context.Connecting.Desuspension.Proofs
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Data
+public import KIP126.Def.ClassicalAdams.TowerVanishing.Proofs
+public import KIP126.Def.StableHomotopy.Context.Suspension.Proofs
+public import KIP126.Def.StableHomotopy.Context.Connecting.Desuspension.Proofs
+
+@[expose] public section
 /-! A realization map on Adams pages, induced by the ACTUAL exact strong
 monoidal functor. The layer map is a formula in F.map, F's monoidal maps,
 the coefficient identification and the tower identification. There is no

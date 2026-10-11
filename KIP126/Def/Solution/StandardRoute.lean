@@ -1,4 +1,8 @@
-import KIP126.Def.StageInput.StandardSphere.Route.Data
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Route.Data
+
+@[expose] public section
 
 /-! Construction of the selected synthetic route on the fixed classical
 implementation.

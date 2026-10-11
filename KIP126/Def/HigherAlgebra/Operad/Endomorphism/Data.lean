@@ -1,4 +1,8 @@
-import KIP126.Def.HigherAlgebra.EnrichedTensor.Proofs
+module
+
+public import KIP126.Def.HigherAlgebra.EnrichedTensor.Proofs
+
+@[expose] public section
 
 /-!
 The topological endomorphism operad of an object in a point-set model with

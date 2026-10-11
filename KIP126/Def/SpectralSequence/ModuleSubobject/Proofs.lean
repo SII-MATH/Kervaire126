@@ -1,7 +1,11 @@
-import Mathlib.Algebra.Category.ModuleCat.Subobject
-import Mathlib.Algebra.Category.ModuleCat.Abelian
-import Mathlib.Algebra.Category.ModuleCat.Images
-import Mathlib.LinearAlgebra.Quotient.Basic
+module
+
+public import Mathlib.Algebra.Category.ModuleCat.Subobject
+public import Mathlib.Algebra.Category.ModuleCat.Abelian
+public import Mathlib.Algebra.Category.ModuleCat.Images
+public import Mathlib.LinearAlgebra.Quotient.Basic
+
+@[expose] public section
 
 namespace KIP126.Core.SpectralSequence
 

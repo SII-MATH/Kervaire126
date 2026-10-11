@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Bockstein.Lift.Data
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Lift.Data
+
+@[expose] public section
 
 /-! Elementary finite-lift filtration laws. -/
 

@@ -1,7 +1,11 @@
-import KIP126.Def.Algebra.GradedComodule.Tensor.Data
-import KIP126.Def.Algebra.GradedVectorSpace.Proofs
-import Mathlib.CategoryTheory.Preadditive.EilenbergMoore
-import Mathlib.CategoryTheory.Monad.Limits
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Tensor.Data
+public import KIP126.Def.Algebra.GradedVectorSpace.Proofs
+public import Mathlib.CategoryTheory.Preadditive.EilenbergMoore
+public import Mathlib.CategoryTheory.Monad.Limits
+
+@[expose] public section
 
 /-!
 Linear operations and finite limits/colimits for the actual category of

@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Step.Suspension.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Pairing.Restrictions.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Step.Suspension.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Pairing.Restrictions.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

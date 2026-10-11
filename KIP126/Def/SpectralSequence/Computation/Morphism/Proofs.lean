@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.Computation.Proofs
-import KIP126.Def.SpectralSequence.Basic.Category.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Computation.Proofs
+public import KIP126.Def.SpectralSequence.Basic.Category.Proofs
+
+@[expose] public section
 
 /-!
 # Naturality of common representatives and differential equations

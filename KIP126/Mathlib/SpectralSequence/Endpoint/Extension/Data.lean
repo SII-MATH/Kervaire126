@@ -1,6 +1,10 @@
-import KIP126.Mathlib.SpectralSequence.SpectralObject.Data
-import KIP126.Def.Algebra.Completion.Data
-import Mathlib.Algebra.Homology.SpectralObject.FirstPage
+module
+
+public import KIP126.Mathlib.SpectralSequence.SpectralObject.Data
+public import KIP126.Def.Algebra.Completion.Data
+public import Mathlib.Algebra.Homology.SpectralObject.FirstPage
+
+@[expose] public section
 
 /-!
 # Endpoint data and spectral sequences of filtered complexes

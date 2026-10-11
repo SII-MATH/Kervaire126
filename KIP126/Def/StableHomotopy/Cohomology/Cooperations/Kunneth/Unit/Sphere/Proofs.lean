@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Sphere.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Sphere.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

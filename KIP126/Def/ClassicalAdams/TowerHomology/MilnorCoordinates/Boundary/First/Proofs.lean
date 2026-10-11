@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Boundary.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Single.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Boundary.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Single.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

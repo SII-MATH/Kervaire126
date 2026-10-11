@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Data
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Data
+
+@[expose] public section
 
 namespace KIP126.Core.SpectralSequence.FilteredComplex.Solutions
 

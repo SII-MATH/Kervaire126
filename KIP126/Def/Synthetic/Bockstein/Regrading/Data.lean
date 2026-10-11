@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Bockstein.Tower.Data
-import KIP126.Def.Synthetic.AdamsSequence.Data
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Tower.Data
+public import KIP126.Def.Synthetic.AdamsSequence.Data
+
+@[expose] public section
 
 /-!
 # Regrading the actual λ tower into synthetic Adams conventions

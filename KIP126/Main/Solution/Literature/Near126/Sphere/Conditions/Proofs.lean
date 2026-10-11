@@ -1,6 +1,10 @@
-import KIP126.Main.Solution.Literature.Near126.Sphere.Conditions.Predicates
-import KIP126.Main.Solution.Literature.Near126.Sphere.Data
-import KIP126.Def.SpectralSequence.Computation.Proofs
+module
+
+public import KIP126.Main.Solution.Literature.Near126.Sphere.Conditions.Predicates
+public import KIP126.Main.Solution.Literature.Near126.Sphere.Data
+public import KIP126.Def.SpectralSequence.Computation.Proofs
+
+@[expose] public section
 
 namespace KIP126.Computation.Near126
 open CategoryTheory KIP126.Classical.Adams KIP126.Core.SpectralSequence

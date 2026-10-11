@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.BoundedExtension.Morphism.Construction.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.SSData.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension.Morphism.Construction.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.SSData.Predicates
+
+@[expose] public section
 
 /-!
 # Bounded filtered complexes

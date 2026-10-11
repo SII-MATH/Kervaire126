@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Data
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Lowering.Data
-import KIP126.Def.StableHomotopy.Cohomology.Suspension.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Lowering.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Suspension.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

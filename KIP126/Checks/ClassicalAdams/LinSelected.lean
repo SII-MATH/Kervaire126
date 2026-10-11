@@ -1,6 +1,10 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Selected.Proofs
-import KIP126.Checks.ClassicalAdams.LinProofs
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Selected.Proofs
+public import KIP126.Checks.ClassicalAdams.LinProofs
+
+@[expose] public section
 
 open Lean Elab Command in
 run_cmd do

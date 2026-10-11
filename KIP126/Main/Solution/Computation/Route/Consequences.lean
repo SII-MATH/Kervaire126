@@ -1,6 +1,10 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Def.ClassicalAdams.Detection.Predicates
-import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Def.ClassicalAdams.Detection.Predicates
+public import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
+
+@[expose] public section
 
 /-!
 # Derived, same-realization computation language

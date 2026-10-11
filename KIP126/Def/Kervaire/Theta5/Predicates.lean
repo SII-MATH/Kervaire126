@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Theta5.Data
+module
+
+public import KIP126.Def.Kervaire.Theta5.Data
+
+@[expose] public section
 
 /-!
 # Mathematical predicates for the `theta_5` choice prototype

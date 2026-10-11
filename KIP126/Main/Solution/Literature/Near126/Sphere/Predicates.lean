@@ -1,6 +1,10 @@
-import KIP126.LinProgram.Interpretation.Near126.Classes.Data
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
-import KIP126.Def.SpectralSequence.Computation.Predicates
+module
+
+public import KIP126.LinProgram.Interpretation.Near126.Classes.Data
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+
+@[expose] public section
 
 /-! All predicates below concern the *fixed* tower-derived internal sphere
 sequence, via its existing Lin comparison. None asserts an external fact. -/

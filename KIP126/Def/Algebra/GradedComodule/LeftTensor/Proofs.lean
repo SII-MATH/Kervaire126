@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedComodule.LeftTensor.Data
+module
+
+public import KIP126.Def.Algebra.GradedComodule.LeftTensor.Data
+
+@[expose] public section
 
 /-! Properties of the prescribed left-tensored coaction. -/
 

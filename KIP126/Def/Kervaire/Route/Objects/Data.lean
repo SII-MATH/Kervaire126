@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Sphere.Data
-import KIP126.Def.StableHomotopy.Context.Proofs
+module
+
+public import KIP126.Def.Synthetic.Sphere.Data
+public import KIP126.Def.StableHomotopy.Context.Proofs
+
+@[expose] public section
 
 /-! Object closure for the selected proof route. Auxiliary objects are
 parameters with explicit maps, not asserted to have tmf's properties by

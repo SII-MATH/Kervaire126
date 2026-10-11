@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.QuotientMap.Data
-import KIP126.Def.Synthetic.Context.Proofs
+module
+
+public import KIP126.Def.Synthetic.QuotientMap.Data
+public import KIP126.Def.Synthetic.Context.Proofs
+
+@[expose] public section
 
 /-! Naturality and local triangle laws for the specified quotient maps. -/
 

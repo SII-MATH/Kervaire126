@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Route.Toda.Data
+module
+
+public import KIP126.Def.Kervaire.Route.Toda.Data
+
+@[expose] public section
 
 namespace KIP126.Kervaire.Route
 open CategoryTheory KIP126.StableHomotopy
