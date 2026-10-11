@@ -18,9 +18,8 @@ Blueprint 尚未配置远程网站/API 链接。
 
 ## 基准提取中留在旧仓库
 
-- `KIPBase/`、`KIPBase.lean`、KIPBase 专用工具和测试。`integrate/kipbase-progress`
-  分支另外恢复了最新 KIPBase 快照，作为独立 Lean 库维护，不进入 KIP126 的
-  import 图。
+- `KIPBase/`、`KIPBase.lean`、KIPBase 专用工具和测试。当前合并提交恢复了最新
+  KIPBase 快照，作为独立 Lean 库维护，不进入 KIP126 的 import 图。
 - `docs/archive/`、`docs/audits/`、`docs/migration/`，旧进度/迁移摘要和日期化复查报告。
 - Multica/Euler 初始化、外部审查、自动合并、状态标签和缓存协调设施。
 - 旧 CI/性能/文档发布设施的 Python 测试及运行日志。
