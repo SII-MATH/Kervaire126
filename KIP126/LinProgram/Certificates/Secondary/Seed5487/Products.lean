@@ -1,6 +1,7 @@
 module
 
 public import KIP126.LinProgram.Certificates.Secondary.Seed5487.Input
+public import KIP126.LinProgram.Certificates.Secondary.Milnor.Products
 
 @[expose] public section
 
@@ -8,22 +9,24 @@ public import KIP126.LinProgram.Certificates.Secondary.Seed5487.Input
 /-! Five checked products from the selected native paths. Rank stability
 proves their coefficients at every original eight-coordinate monomial. -/
 
+set_option Elab.async false
 set_option maxRecDepth 100000
 set_option maxHeartbeats 0
 namespace KIP126.Computation.Secondary.Seed5487
 open MilnorCertificates
 
 private theorem product01_10 : IsMilnorProductAll 2 [[0,1]] [[1,0]] [[1,1]] := by
-  milnor_cert_all using (⟨generate ⟨2,4⟩,3,1⟩ : AllCertificate)
+  exact fastSingletonProductCheck_sound 2 [0,1] [1,0] [[1,1]] (by decide +kernel)
 
 private theorem product20_20 : IsMilnorProductAll 2 [[2,0]] [[2,0]] [[1,1]] := by
-  milnor_cert_all using (⟨generate ⟨2,4⟩,2,2⟩ : AllCertificate)
+  exact fastSingletonProductCheck_sound 2 [2,0] [2,0] [[1,1]] (by decide +kernel)
 
 private theorem product001_200 : IsMilnorProductAll 3 [[0,0,1]] [[2,0,0]] [[2,0,1]] := by
-  milnor_cert_all using (⟨generate ⟨3,9⟩,7,2⟩ : AllCertificate)
+  exact fastSingletonProductCheck_sound 3 [0,0,1] [2,0,0] [[2,0,1]] (by decide +kernel)
 
 private theorem product800_100 : IsMilnorProductAll 3 [[8,0,0]] [[1,0,0]] [[6,1,0],[9,0,0]] := by
-  milnor_cert_all using (⟨generate ⟨3,9⟩,8,1⟩ : AllCertificate)
+  exact fastSingletonProductCheck_sound 3 [8,0,0] [1,0,0] [[6,1,0],[9,0,0]]
+    (by decide +kernel)
 
 theorem product01_10_rank8 : IsMilnorProductAll 8
     [[0,1,0,0,0,0,0,0]] [[1,0,0,0,0,0,0,0]] [[1,1,0,0,0,0,0,0]] := by
@@ -60,7 +63,8 @@ theorem product800_100_rank8 : IsMilnorProductAll 8
 
 private theorem product401_100 : IsMilnorProductAll 3
     [[4,0,1]] [[1,0,0]] [[2,1,1],[5,0,1]] := by
-  milnor_cert_all using (⟨generate ⟨3,12⟩,11,1⟩ : AllCertificate)
+  exact fastSingletonProductCheck_sound 3 [4,0,1] [1,0,0] [[2,1,1],[5,0,1]]
+    (by decide +kernel)
 
 /-- The single native path for row3145729 expands into two distinct terms.
 Rank stability retains all eight-coordinate monomials, without a degree cutoff. -/

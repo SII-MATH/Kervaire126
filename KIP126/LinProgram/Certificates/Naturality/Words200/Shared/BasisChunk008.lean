@@ -899,2732 +899,2645 @@ private def bindings27 : List (Nat × BasisRow) := [(1017, ⟨25, 197, 4, "0,3,1
   (1021, ⟨24, 197, 2, "8,1,89,1,209,1"⟩),
   (1022, ⟨24, 197, 3, "0,1,1105,1"⟩),
   (1023, ⟨24, 197, 4, "0,1,67,1,359,1"⟩)]
-private def bindingBlocks : List (List (Nat × BasisRow)) := [bindings0, bindings1, bindings2, bindings3, bindings4, bindings5, bindings6, bindings7, bindings8, bindings9, bindings10, bindings11, bindings12, bindings13, bindings14, bindings15, bindings16, bindings17, bindings18, bindings19, bindings20, bindings21, bindings22, bindings23, bindings24, bindings25, bindings26, bindings27]
-private def bindings : List (Nat × BasisRow) := bindingBlocks.flatten
-private theorem checked : bindings.all (basisBindingCheck rows) = true := by cbv
-private theorem bindings0_mem : bindings0 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 0) (by decide)
-private theorem bindings0_subset (b : Nat × BasisRow) (hb : b ∈ bindings0) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings0, bindings0_mem, hb⟩
-private theorem bindings1_mem : bindings1 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 1) (by decide)
-private theorem bindings1_subset (b : Nat × BasisRow) (hb : b ∈ bindings1) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings1, bindings1_mem, hb⟩
-private theorem bindings2_mem : bindings2 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 2) (by decide)
-private theorem bindings2_subset (b : Nat × BasisRow) (hb : b ∈ bindings2) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings2, bindings2_mem, hb⟩
-private theorem bindings3_mem : bindings3 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 3) (by decide)
-private theorem bindings3_subset (b : Nat × BasisRow) (hb : b ∈ bindings3) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings3, bindings3_mem, hb⟩
-private theorem bindings4_mem : bindings4 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 4) (by decide)
-private theorem bindings4_subset (b : Nat × BasisRow) (hb : b ∈ bindings4) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings4, bindings4_mem, hb⟩
-private theorem bindings5_mem : bindings5 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 5) (by decide)
-private theorem bindings5_subset (b : Nat × BasisRow) (hb : b ∈ bindings5) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings5, bindings5_mem, hb⟩
-private theorem bindings6_mem : bindings6 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 6) (by decide)
-private theorem bindings6_subset (b : Nat × BasisRow) (hb : b ∈ bindings6) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings6, bindings6_mem, hb⟩
-private theorem bindings7_mem : bindings7 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 7) (by decide)
-private theorem bindings7_subset (b : Nat × BasisRow) (hb : b ∈ bindings7) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings7, bindings7_mem, hb⟩
-private theorem bindings8_mem : bindings8 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 8) (by decide)
-private theorem bindings8_subset (b : Nat × BasisRow) (hb : b ∈ bindings8) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings8, bindings8_mem, hb⟩
-private theorem bindings9_mem : bindings9 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 9) (by decide)
-private theorem bindings9_subset (b : Nat × BasisRow) (hb : b ∈ bindings9) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings9, bindings9_mem, hb⟩
-private theorem bindings10_mem : bindings10 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 10) (by decide)
-private theorem bindings10_subset (b : Nat × BasisRow) (hb : b ∈ bindings10) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings10, bindings10_mem, hb⟩
-private theorem bindings11_mem : bindings11 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 11) (by decide)
-private theorem bindings11_subset (b : Nat × BasisRow) (hb : b ∈ bindings11) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings11, bindings11_mem, hb⟩
-private theorem bindings12_mem : bindings12 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 12) (by decide)
-private theorem bindings12_subset (b : Nat × BasisRow) (hb : b ∈ bindings12) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings12, bindings12_mem, hb⟩
-private theorem bindings13_mem : bindings13 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 13) (by decide)
-private theorem bindings13_subset (b : Nat × BasisRow) (hb : b ∈ bindings13) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings13, bindings13_mem, hb⟩
-private theorem bindings14_mem : bindings14 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 14) (by decide)
-private theorem bindings14_subset (b : Nat × BasisRow) (hb : b ∈ bindings14) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings14, bindings14_mem, hb⟩
-private theorem bindings15_mem : bindings15 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 15) (by decide)
-private theorem bindings15_subset (b : Nat × BasisRow) (hb : b ∈ bindings15) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings15, bindings15_mem, hb⟩
-private theorem bindings16_mem : bindings16 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 16) (by decide)
-private theorem bindings16_subset (b : Nat × BasisRow) (hb : b ∈ bindings16) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings16, bindings16_mem, hb⟩
-private theorem bindings17_mem : bindings17 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 17) (by decide)
-private theorem bindings17_subset (b : Nat × BasisRow) (hb : b ∈ bindings17) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings17, bindings17_mem, hb⟩
-private theorem bindings18_mem : bindings18 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 18) (by decide)
-private theorem bindings18_subset (b : Nat × BasisRow) (hb : b ∈ bindings18) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings18, bindings18_mem, hb⟩
-private theorem bindings19_mem : bindings19 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 19) (by decide)
-private theorem bindings19_subset (b : Nat × BasisRow) (hb : b ∈ bindings19) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings19, bindings19_mem, hb⟩
-private theorem bindings20_mem : bindings20 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 20) (by decide)
-private theorem bindings20_subset (b : Nat × BasisRow) (hb : b ∈ bindings20) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings20, bindings20_mem, hb⟩
-private theorem bindings21_mem : bindings21 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 21) (by decide)
-private theorem bindings21_subset (b : Nat × BasisRow) (hb : b ∈ bindings21) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings21, bindings21_mem, hb⟩
-private theorem bindings22_mem : bindings22 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 22) (by decide)
-private theorem bindings22_subset (b : Nat × BasisRow) (hb : b ∈ bindings22) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings22, bindings22_mem, hb⟩
-private theorem bindings23_mem : bindings23 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 23) (by decide)
-private theorem bindings23_subset (b : Nat × BasisRow) (hb : b ∈ bindings23) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings23, bindings23_mem, hb⟩
-private theorem bindings24_mem : bindings24 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 24) (by decide)
-private theorem bindings24_subset (b : Nat × BasisRow) (hb : b ∈ bindings24) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings24, bindings24_mem, hb⟩
-private theorem bindings25_mem : bindings25 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 25) (by decide)
-private theorem bindings25_subset (b : Nat × BasisRow) (hb : b ∈ bindings25) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings25, bindings25_mem, hb⟩
-private theorem bindings26_mem : bindings26 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 26) (by decide)
-private theorem bindings26_subset (b : Nat × BasisRow) (hb : b ∈ bindings26) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings26, bindings26_mem, hb⟩
-private theorem bindings27_mem : bindings27 ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := 27) (by decide)
-private theorem bindings27_subset (b : Nat × BasisRow) (hb : b ∈ bindings27) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings27, bindings27_mem, hb⟩
+private theorem checked0 : bindings0.all (basisBindingCheck rows) = true := by cbv
+private theorem checked1 : bindings1.all (basisBindingCheck rows) = true := by cbv
+private theorem checked2 : bindings2.all (basisBindingCheck rows) = true := by cbv
+private theorem checked3 : bindings3.all (basisBindingCheck rows) = true := by cbv
+private theorem checked4 : bindings4.all (basisBindingCheck rows) = true := by cbv
+private theorem checked5 : bindings5.all (basisBindingCheck rows) = true := by cbv
+private theorem checked6 : bindings6.all (basisBindingCheck rows) = true := by cbv
+private theorem checked7 : bindings7.all (basisBindingCheck rows) = true := by cbv
+private theorem checked8 : bindings8.all (basisBindingCheck rows) = true := by cbv
+private theorem checked9 : bindings9.all (basisBindingCheck rows) = true := by cbv
+private theorem checked10 : bindings10.all (basisBindingCheck rows) = true := by cbv
+private theorem checked11 : bindings11.all (basisBindingCheck rows) = true := by cbv
+private theorem checked12 : bindings12.all (basisBindingCheck rows) = true := by cbv
+private theorem checked13 : bindings13.all (basisBindingCheck rows) = true := by cbv
+private theorem checked14 : bindings14.all (basisBindingCheck rows) = true := by cbv
+private theorem checked15 : bindings15.all (basisBindingCheck rows) = true := by cbv
+private theorem checked16 : bindings16.all (basisBindingCheck rows) = true := by cbv
+private theorem checked17 : bindings17.all (basisBindingCheck rows) = true := by cbv
+private theorem checked18 : bindings18.all (basisBindingCheck rows) = true := by cbv
+private theorem checked19 : bindings19.all (basisBindingCheck rows) = true := by cbv
+private theorem checked20 : bindings20.all (basisBindingCheck rows) = true := by cbv
+private theorem checked21 : bindings21.all (basisBindingCheck rows) = true := by cbv
+private theorem checked22 : bindings22.all (basisBindingCheck rows) = true := by cbv
+private theorem checked23 : bindings23.all (basisBindingCheck rows) = true := by cbv
+private theorem checked24 : bindings24.all (basisBindingCheck rows) = true := by cbv
+private theorem checked25 : bindings25.all (basisBindingCheck rows) = true := by cbv
+private theorem checked26 : bindings26.all (basisBindingCheck rows) = true := by cbv
+private theorem checked27 : bindings27.all (basisBindingCheck rows) = true := by cbv
 theorem row8192_mem : (⟨20, 189, 3, "0,1,984,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[0]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[0]'(by decide)) (List.getElem_mem _)
 theorem row8193_mem : (⟨19, 189, 0, "1000,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[1]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[1]'(by decide)) (List.getElem_mem _)
 theorem row8194_mem : (⟨18, 189, 0, "1001,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[2]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[2]'(by decide)) (List.getElem_mem _)
 theorem row8195_mem : (⟨18, 189, 1, "0,1,8,1,31,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[3]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[3]'(by decide)) (List.getElem_mem _)
 theorem row8196_mem : (⟨18, 189, 2, "0,2,965,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[4]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[4]'(by decide)) (List.getElem_mem _)
 theorem row8197_mem : (⟨17, 189, 0, "1003,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[5]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[5]'(by decide)) (List.getElem_mem _)
 theorem row8198_mem : (⟨17, 189, 1, "1002,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[6]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[6]'(by decide)) (List.getElem_mem _)
 theorem row8199_mem : (⟨17, 189, 2, "0,1,987,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[7]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[7]'(by decide)) (List.getElem_mem _)
 theorem row8200_mem : (⟨17, 189, 3, "0,1,16,1,17,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[8]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[8]'(by decide)) (List.getElem_mem _)
 theorem row8203_mem : (⟨16, 189, 2, "0,1,17,2,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[9]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[9]'(by decide)) (List.getElem_mem _)
 theorem row8204_mem : (⟨15, 189, 0, "1005,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[10]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[10]'(by decide)) (List.getElem_mem _)
 theorem row8205_mem : (⟨15, 189, 1, "1,1,69,1,287,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[11]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[11]'(by decide)) (List.getElem_mem _)
 theorem row8206_mem : (⟨15, 189, 2, "0,1,59,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[12]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[12]'(by decide)) (List.getElem_mem _)
 theorem row8207_mem : (⟨14, 189, 0, "1007,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[13]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[13]'(by decide)) (List.getElem_mem _)
 theorem row8208_mem : (⟨14, 189, 1, "1006,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[14]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[14]'(by decide)) (List.getElem_mem _)
 theorem row8209_mem : (⟨13, 189, 0, "1008,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[15]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[15]'(by decide)) (List.getElem_mem _)
 theorem row8210_mem : (⟨13, 189, 1, "1,1,3,1,884,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[16]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[16]'(by decide)) (List.getElem_mem _)
 theorem row8211_mem : (⟨13, 189, 2, "0,1,18,1,615,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[17]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[17]'(by decide)) (List.getElem_mem _)
 theorem row8212_mem : (⟨12, 189, 0, "1,1,968,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[18]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[18]'(by decide)) (List.getElem_mem _)
 theorem row8213_mem : (⟨12, 189, 1, "0,1,993,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[19]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[19]'(by decide)) (List.getElem_mem _)
 theorem row8214_mem : (⟨9, 189, 0, "0,1,18,1,617,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[20]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[20]'(by decide)) (List.getElem_mem _)
 theorem row8215_mem : (⟨8, 189, 0, "1,1,4,1,849,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[21]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[21]'(by decide)) (List.getElem_mem _)
 theorem row8216_mem : (⟨8, 189, 1, "0,1,994,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[22]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[22]'(by decide)) (List.getElem_mem _)
 theorem row8217_mem : (⟨7, 189, 0, "1,1,4,1,850,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[23]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[23]'(by decide)) (List.getElem_mem _)
 theorem row8218_mem : (⟨190, 190, 0, "0,190"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[24]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[24]'(by decide)) (List.getElem_mem _)
 theorem row8219_mem : (⟨63, 190, 0, "0,62,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[25]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[25]'(by decide)) (List.getElem_mem _)
 theorem row8221_mem : (⟨61, 190, 0, "0,1,995,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[26]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[26]'(by decide)) (List.getElem_mem _)
 theorem row8222_mem : (⟨60, 190, 0, "0,1,996,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[27]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[27]'(by decide)) (List.getElem_mem _)
 theorem row8223_mem : (⟨57, 190, 0, "0,7,916,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[28]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[28]'(by decide)) (List.getElem_mem _)
 theorem row8224_mem : (⟨56, 190, 0, "0,7,917,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[29]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[29]'(by decide)) (List.getElem_mem _)
 theorem row8225_mem : (⟨51, 190, 0, "0,1,16,1,635,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[30]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[30]'(by decide)) (List.getElem_mem _)
 theorem row8226_mem : (⟨50, 190, 0, "0,1,16,1,636,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings0[31]'(by decide)) (bindings0_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings0 checked0
+    (bindings0[31]'(by decide)) (List.getElem_mem _)
 theorem row8227_mem : (⟨50, 190, 1, "0,2,969,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[0]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[0]'(by decide)) (List.getElem_mem _)
 theorem row8229_mem : (⟨49, 190, 1, "0,1,17,1,636,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[1]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[1]'(by decide)) (List.getElem_mem _)
 theorem row8230_mem : (⟨47, 190, 0, "0,1,8,3,402,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[2]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[2]'(by decide)) (List.getElem_mem _)
 theorem row8232_mem : (⟨46, 190, 1, "0,1,8,3,403,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[3]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[3]'(by decide)) (List.getElem_mem _)
 theorem row8233_mem : (⟨42, 190, 0, "1,1,5,1,64,1,224,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[4]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[4]'(by decide)) (List.getElem_mem _)
 theorem row8234_mem : (⟨41, 190, 0, "0,1,64,1,297,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[5]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[5]'(by decide)) (List.getElem_mem _)
 theorem row8235_mem : (⟨40, 190, 0, "0,1,64,1,298,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[6]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[6]'(by decide)) (List.getElem_mem _)
 theorem row8236_mem : (⟨40, 190, 1, "0,2,8,1,759,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[7]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[7]'(by decide)) (List.getElem_mem _)
 theorem row8237_mem : (⟨39, 190, 0, "0,1,8,1,778,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[8]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[8]'(by decide)) (List.getElem_mem _)
 theorem row8238_mem : (⟨39, 190, 1, "0,2,17,1,623,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[9]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[9]'(by decide)) (List.getElem_mem _)
 theorem row8239_mem : (⟨38, 190, 0, "0,6,149,2"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[10]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[10]'(by decide)) (List.getElem_mem _)
 theorem row8240_mem : (⟨37, 190, 0, "0,6,927,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[11]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[11]'(by decide)) (List.getElem_mem _)
 theorem row8241_mem : (⟨36, 190, 0, "0,8,64,1,260,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[12]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[12]'(by decide)) (List.getElem_mem _)
 theorem row8242_mem : (⟨35, 190, 0, "0,6,64,1,274,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[13]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[13]'(by decide)) (List.getElem_mem _)
 theorem row8243_mem : (⟨35, 190, 1, "0,8,897,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[14]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[14]'(by decide)) (List.getElem_mem _)
 theorem row8244_mem : (⟨34, 190, 0, "0,7,919,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[15]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[15]'(by decide)) (List.getElem_mem _)
 theorem row8246_mem : (⟨33, 190, 1, "0,8,898,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[16]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[16]'(by decide)) (List.getElem_mem _)
 theorem row8247_mem : (⟨32, 190, 0, "16,1,642,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[17]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[17]'(by decide)) (List.getElem_mem _)
 theorem row8248_mem : (⟨31, 190, 0, "17,1,642,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[18]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[18]'(by decide)) (List.getElem_mem _)
 theorem row8249_mem : (⟨31, 190, 1, "0,1,64,3"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[19]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[19]'(by decide)) (List.getElem_mem _)
 theorem row8250_mem : (⟨30, 190, 0, "8,1,784,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[20]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[20]'(by decide)) (List.getElem_mem _)
 theorem row8251_mem : (⟨30, 190, 1, "0,1,64,1,299,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[21]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[21]'(by decide)) (List.getElem_mem _)
 theorem row8252_mem : (⟨30, 190, 2, "0,2,16,1,627,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[22]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[22]'(by decide)) (List.getElem_mem _)
 theorem row8253_mem : (⟨29, 190, 0, "13,1,715,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[23]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[23]'(by decide)) (List.getElem_mem _)
 theorem row8254_mem : (⟨29, 190, 1, "0,2,17,1,627,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[24]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[24]'(by decide)) (List.getElem_mem _)
 theorem row8255_mem : (⟨29, 190, 2, "0,3,963,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[25]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[25]'(by decide)) (List.getElem_mem _)
 theorem row8256_mem : (⟨28, 190, 0, "13,1,716,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[26]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[26]'(by decide)) (List.getElem_mem _)
 theorem row8257_mem : (⟨28, 190, 1, "13,5,83,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[27]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[27]'(by decide)) (List.getElem_mem _)
 theorem row8258_mem : (⟨28, 190, 2, "0,1,64,1,301,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[28]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[28]'(by decide)) (List.getElem_mem _)
 theorem row8259_mem : (⟨28, 190, 3, "0,2,974,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[29]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[29]'(by decide)) (List.getElem_mem _)
 theorem row8260_mem : (⟨28, 190, 4, "0,2,973,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[30]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[30]'(by decide)) (List.getElem_mem _)
 theorem row8261_mem : (⟨27, 190, 0, "1010,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings1[31]'(by decide)) (bindings1_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings1 checked1
+    (bindings1[31]'(by decide)) (List.getElem_mem _)
 theorem row8262_mem : (⟨27, 190, 1, "9,1,13,4,95,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[0]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[0]'(by decide)) (List.getElem_mem _)
 theorem row8263_mem : (⟨27, 190, 2, "0,2,977,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[1]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[1]'(by decide)) (List.getElem_mem _)
 theorem row8264_mem : (⟨27, 190, 3, "0,2,976,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[2]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[2]'(by decide)) (List.getElem_mem _)
 theorem row8265_mem : (⟨26, 190, 0, "1,1,975,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[3]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[3]'(by decide)) (List.getElem_mem _)
 theorem row8267_mem : (⟨26, 190, 2, "0,2,978,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[4]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[4]'(by decide)) (List.getElem_mem _)
 theorem row8268_mem : (⟨26, 190, 3, "0,2,13,1,690,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[5]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[5]'(by decide)) (List.getElem_mem _)
 theorem row8270_mem : (⟨25, 190, 1, "0,1,8,1,17,1,475,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[6]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[6]'(by decide)) (List.getElem_mem _)
 theorem row8271_mem : (⟨25, 190, 2, "0,1,2,1,941,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[7]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[7]'(by decide)) (List.getElem_mem _)
 theorem row8272_mem : (⟨24, 190, 0, "1,1,979,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[8]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[8]'(by decide)) (List.getElem_mem _)
 theorem row8273_mem : (⟨23, 190, 0, "0,1,999,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[9]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[9]'(by decide)) (List.getElem_mem _)
 theorem row8275_mem : (⟨22, 190, 1, "13,1,23,1,335,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[10]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[10]'(by decide)) (List.getElem_mem _)
 theorem row8276_mem : (⟨22, 190, 2, "0,2,982,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[11]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[11]'(by decide)) (List.getElem_mem _)
 theorem row8277_mem : (⟨21, 190, 0, "9,1,75,1,188,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[12]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[12]'(by decide)) (List.getElem_mem _)
 theorem row8278_mem : (⟨21, 190, 1, "0,2,984,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[13]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[13]'(by decide)) (List.getElem_mem _)
 theorem row8279_mem : (⟨20, 190, 0, "75,1,286,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[14]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[14]'(by decide)) (List.getElem_mem _)
 theorem row8280_mem : (⟨20, 190, 1, "0,1,1000,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[15]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[15]'(by decide)) (List.getElem_mem _)
 theorem row8283_mem : (⟨19, 190, 2, "18,1,628,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[16]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[16]'(by decide)) (List.getElem_mem _)
 theorem row8284_mem : (⟨19, 190, 3, "9,1,23,1,373,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[17]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[17]'(by decide)) (List.getElem_mem _)
 theorem row8286_mem : (⟨19, 190, 5, "0,2,8,1,31,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[18]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[18]'(by decide)) (List.getElem_mem _)
 theorem row8287_mem : (⟨19, 190, 6, "0,3,965,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[19]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[19]'(by decide)) (List.getElem_mem _)
 theorem row8290_mem : (⟨18, 190, 2, "0,1,1002,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[20]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[20]'(by decide)) (List.getElem_mem _)
 theorem row8291_mem : (⟨18, 190, 3, "0,2,987,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[21]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[21]'(by decide)) (List.getElem_mem _)
 theorem row8292_mem : (⟨18, 190, 4, "0,2,16,1,17,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[22]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[22]'(by decide)) (List.getElem_mem _)
 theorem row8294_mem : (⟨17, 190, 1, "1015,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[23]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[23]'(by decide)) (List.getElem_mem _)
 theorem row8295_mem : (⟨17, 190, 2, "1,1,987,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[24]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[24]'(by decide)) (List.getElem_mem _)
 theorem row8296_mem : (⟨17, 190, 3, "0,2,17,2,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[25]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[25]'(by decide)) (List.getElem_mem _)
 theorem row8298_mem : (⟨16, 190, 1, "1018,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[26]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[26]'(by decide)) (List.getElem_mem _)
 theorem row8300_mem : (⟨16, 190, 3, "75,1,288,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[27]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[27]'(by decide)) (List.getElem_mem _)
 theorem row8301_mem : (⟨16, 190, 4, "1,1,989,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[28]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[28]'(by decide)) (List.getElem_mem _)
 theorem row8303_mem : (⟨16, 190, 6, "0,1,1005,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[29]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[29]'(by decide)) (List.getElem_mem _)
 theorem row8304_mem : (⟨16, 190, 7, "0,2,59,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[30]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[30]'(by decide)) (List.getElem_mem _)
 theorem row8306_mem : (⟨15, 190, 1, "1021,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings2[31]'(by decide)) (bindings2_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings2 checked2
+    (bindings2[31]'(by decide)) (List.getElem_mem _)
 theorem row8307_mem : (⟨15, 190, 2, "1020,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[0]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[0]'(by decide)) (List.getElem_mem _)
 theorem row8309_mem : (⟨15, 190, 4, "1,1,990,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[1]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[1]'(by decide)) (List.getElem_mem _)
 theorem row8310_mem : (⟨15, 190, 5, "1,1,59,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[2]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[2]'(by decide)) (List.getElem_mem _)
 theorem row8311_mem : (⟨15, 190, 6, "0,1,1006,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[3]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[3]'(by decide)) (List.getElem_mem _)
 theorem row8312_mem : (⟨14, 190, 0, "1024,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[4]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[4]'(by decide)) (List.getElem_mem _)
 theorem row8314_mem : (⟨14, 190, 2, "1,1,992,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[5]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[5]'(by decide)) (List.getElem_mem _)
 theorem row8315_mem : (⟨14, 190, 3, "0,1,1008,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[6]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[6]'(by decide)) (List.getElem_mem _)
 theorem row8316_mem : (⟨14, 190, 4, "0,2,18,1,615,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[7]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[7]'(by decide)) (List.getElem_mem _)
 theorem row8317_mem : (⟨13, 190, 0, "1025,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[8]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[8]'(by decide)) (List.getElem_mem _)
 theorem row8318_mem : (⟨13, 190, 1, "2,1,76,1,264,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[9]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[9]'(by decide)) (List.getElem_mem _)
 theorem row8319_mem : (⟨13, 190, 2, "0,2,993,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[10]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[10]'(by decide)) (List.getElem_mem _)
 theorem row8322_mem : (⟨10, 190, 0, "1028,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[11]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[11]'(by decide)) (List.getElem_mem _)
 theorem row8324_mem : (⟨9, 190, 0, "17,1,18,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[12]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[12]'(by decide)) (List.getElem_mem _)
 theorem row8325_mem : (⟨9, 190, 1, "0,2,994,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[13]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[13]'(by decide)) (List.getElem_mem _)
 theorem row8326_mem : (⟨8, 190, 0, "1,1,61,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[14]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[14]'(by decide)) (List.getElem_mem _)
 theorem row8327_mem : (⟨191, 191, 0, "0,191"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[15]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[15]'(by decide)) (List.getElem_mem _)
 theorem row8328_mem : (⟨64, 191, 0, "0,63,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[16]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[16]'(by decide)) (List.getElem_mem _)
 theorem row8330_mem : (⟨62, 191, 0, "0,2,995,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[17]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[17]'(by decide)) (List.getElem_mem _)
 theorem row8331_mem : (⟨61, 191, 0, "0,2,996,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[18]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[18]'(by decide)) (List.getElem_mem _)
 theorem row8332_mem : (⟨58, 191, 0, "0,8,916,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[19]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[19]'(by decide)) (List.getElem_mem _)
 theorem row8333_mem : (⟨57, 191, 0, "0,8,917,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[20]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[20]'(by decide)) (List.getElem_mem _)
 theorem row8334_mem : (⟨52, 191, 0, "0,2,16,1,635,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[21]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[21]'(by decide)) (List.getElem_mem _)
 theorem row8335_mem : (⟨51, 191, 0, "0,2,16,1,636,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[22]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[22]'(by decide)) (List.getElem_mem _)
 theorem row8336_mem : (⟨51, 191, 1, "0,3,969,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[23]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[23]'(by decide)) (List.getElem_mem _)
 theorem row8337_mem : (⟨50, 191, 0, "0,2,17,1,636,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[24]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[24]'(by decide)) (List.getElem_mem _)
 theorem row8339_mem : (⟨47, 191, 0, "0,2,8,3,403,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[25]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[25]'(by decide)) (List.getElem_mem _)
 theorem row8340_mem : (⟨46, 191, 0, "1031,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[26]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[26]'(by decide)) (List.getElem_mem _)
 theorem row8341_mem : (⟨45, 191, 0, "1032,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[27]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[27]'(by decide)) (List.getElem_mem _)
 theorem row8342_mem : (⟨44, 191, 0, "8,2,595,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[28]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[28]'(by decide)) (List.getElem_mem _)
 theorem row8343_mem : (⟨43, 191, 0, "8,1,17,1,488,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[29]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[29]'(by decide)) (List.getElem_mem _)
 theorem row8345_mem : (⟨42, 191, 1, "8,2,596,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[30]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[30]'(by decide)) (List.getElem_mem _)
 theorem row8346_mem : (⟨41, 191, 0, "8,2,597,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings3[31]'(by decide)) (bindings3_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings3 checked3
+    (bindings3[31]'(by decide)) (List.getElem_mem _)
 theorem row8347_mem : (⟨41, 191, 1, "0,2,64,1,298,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[0]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[0]'(by decide)) (List.getElem_mem _)
 theorem row8348_mem : (⟨40, 191, 0, "8,4,257,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[1]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[1]'(by decide)) (List.getElem_mem _)
 theorem row8349_mem : (⟨39, 191, 0, "8,3,17,1,206,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[2]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[2]'(by decide)) (List.getElem_mem _)
 theorem row8351_mem : (⟨38, 191, 1, "8,4,258,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[3]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[3]'(by decide)) (List.getElem_mem _)
 theorem row8352_mem : (⟨37, 191, 0, "8,1,17,1,491,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[4]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[4]'(by decide)) (List.getElem_mem _)
 theorem row8353_mem : (⟨37, 191, 1, "8,4,259,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[5]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[5]'(by decide)) (List.getElem_mem _)
 theorem row8354_mem : (⟨36, 191, 0, "1034,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[6]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[6]'(by decide)) (List.getElem_mem _)
 theorem row8355_mem : (⟨36, 191, 1, "8,5,180,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[7]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[7]'(by decide)) (List.getElem_mem _)
 theorem row8357_mem : (⟨35, 191, 1, "8,1,796,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[8]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[8]'(by decide)) (List.getElem_mem _)
 theorem row8358_mem : (⟨35, 191, 2, "8,4,9,1,167,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[9]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[9]'(by decide)) (List.getElem_mem _)
 theorem row8359_mem : (⟨35, 191, 3, "0,8,919,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[10]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[10]'(by decide)) (List.getElem_mem _)
 theorem row8360_mem : (⟨34, 191, 0, "8,2,64,1,149,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[11]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[11]'(by decide)) (List.getElem_mem _)
 theorem row8361_mem : (⟨34, 191, 1, "8,3,9,1,248,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[12]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[12]'(by decide)) (List.getElem_mem _)
 theorem row8362_mem : (⟨34, 191, 2, "8,4,260,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[13]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[13]'(by decide)) (List.getElem_mem _)
 theorem row8363_mem : (⟨34, 191, 3, "0,9,898,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[14]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[14]'(by decide)) (List.getElem_mem _)
 theorem row8364_mem : (⟨33, 191, 0, "8,2,598,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[15]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[15]'(by decide)) (List.getElem_mem _)
 theorem row8365_mem : (⟨33, 191, 1, "8,2,16,1,292,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[16]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[16]'(by decide)) (List.getElem_mem _)
 theorem row8366_mem : (⟨33, 191, 2, "8,2,9,1,13,1,219,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[17]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[17]'(by decide)) (List.getElem_mem _)
 theorem row8367_mem : (⟨32, 191, 0, "8,1,9,1,13,2,194,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[18]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[18]'(by decide)) (List.getElem_mem _)
 theorem row8368_mem : (⟨32, 191, 1, "8,2,599,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[19]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[19]'(by decide)) (List.getElem_mem _)
 theorem row8369_mem : (⟨32, 191, 2, "8,2,17,1,292,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[20]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[20]'(by decide)) (List.getElem_mem _)
 theorem row8370_mem : (⟨32, 191, 3, "0,2,64,3"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[21]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[21]'(by decide)) (List.getElem_mem _)
 theorem row8371_mem : (⟨31, 191, 0, "9,1,13,3,167,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[22]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[22]'(by decide)) (List.getElem_mem _)
 theorem row8372_mem : (⟨31, 191, 1, "8,2,602,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[23]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[23]'(by decide)) (List.getElem_mem _)
 theorem row8373_mem : (⟨31, 191, 2, "8,3,420,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[24]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[24]'(by decide)) (List.getElem_mem _)
 theorem row8375_mem : (⟨31, 191, 4, "0,2,64,1,299,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[25]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[25]'(by decide)) (List.getElem_mem _)
 theorem row8376_mem : (⟨30, 191, 0, "8,2,13,1,346,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[26]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[26]'(by decide)) (List.getElem_mem _)
 theorem row8377_mem : (⟨30, 191, 1, "8,3,16,1,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[27]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[27]'(by decide)) (List.getElem_mem _)
 theorem row8378_mem : (⟨30, 191, 2, "0,4,963,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[28]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[28]'(by decide)) (List.getElem_mem _)
 theorem row8379_mem : (⟨29, 191, 0, "8,1,13,2,292,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[29]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[29]'(by decide)) (List.getElem_mem _)
 theorem row8380_mem : (⟨29, 191, 1, "8,3,17,1,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[30]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[30]'(by decide)) (List.getElem_mem _)
 theorem row8381_mem : (⟨29, 191, 2, "0,2,64,1,301,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings4[31]'(by decide)) (bindings4_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings4 checked4
+    (bindings4[31]'(by decide)) (List.getElem_mem _)
 theorem row8382_mem : (⟨29, 191, 3, "0,3,974,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[0]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[0]'(by decide)) (List.getElem_mem _)
 theorem row8383_mem : (⟨28, 191, 0, "13,1,23,1,346,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[1]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[1]'(by decide)) (List.getElem_mem _)
 theorem row8385_mem : (⟨28, 191, 2, "8,4,261,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[2]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[2]'(by decide)) (List.getElem_mem _)
 theorem row8387_mem : (⟨28, 191, 4, "0,3,977,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[3]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[3]'(by decide)) (List.getElem_mem _)
 theorem row8388_mem : (⟨28, 191, 5, "0,3,976,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[4]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[4]'(by decide)) (List.getElem_mem _)
 theorem row8389_mem : (⟨27, 191, 0, "17,1,655,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[5]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[5]'(by decide)) (List.getElem_mem _)
 theorem row8390_mem : (⟨27, 191, 1, "8,3,423,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[6]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[6]'(by decide)) (List.getElem_mem _)
 theorem row8391_mem : (⟨27, 191, 2, "2,1,963,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[7]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[7]'(by decide)) (List.getElem_mem _)
 theorem row8392_mem : (⟨27, 191, 3, "0,3,978,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[8]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[8]'(by decide)) (List.getElem_mem _)
 theorem row8393_mem : (⟨26, 191, 0, "1035,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[9]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[9]'(by decide)) (List.getElem_mem _)
 theorem row8394_mem : (⟨26, 191, 1, "64,1,318,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[10]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[10]'(by decide)) (List.getElem_mem _)
 theorem row8395_mem : (⟨26, 191, 2, "8,2,13,2,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[11]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[11]'(by decide)) (List.getElem_mem _)
 theorem row8396_mem : (⟨25, 191, 0, "72,1,293,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[12]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[12]'(by decide)) (List.getElem_mem _)
 theorem row8397_mem : (⟨25, 191, 1, "8,1,13,2,294,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[13]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[13]'(by decide)) (List.getElem_mem _)
 theorem row8398_mem : (⟨25, 191, 2, "1,1,998,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[14]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[14]'(by decide)) (List.getElem_mem _)
 theorem row8399_mem : (⟨24, 191, 0, "13,3,261,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[15]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[15]'(by decide)) (List.getElem_mem _)
 theorem row8400_mem : (⟨24, 191, 1, "8,1,72,1,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[16]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[16]'(by decide)) (List.getElem_mem _)
 theorem row8401_mem : (⟨24, 191, 2, "1,1,64,1,308,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[17]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[17]'(by decide)) (List.getElem_mem _)
 theorem row8402_mem : (⟨23, 191, 0, "13,3,262,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[18]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[18]'(by decide)) (List.getElem_mem _)
 theorem row8403_mem : (⟨23, 191, 1, "8,1,798,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[19]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[19]'(by decide)) (List.getElem_mem _)
 theorem row8404_mem : (⟨22, 191, 0, "1036,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[20]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[20]'(by decide)) (List.getElem_mem _)
 theorem row8405_mem : (⟨22, 191, 1, "9,1,761,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[21]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[21]'(by decide)) (List.getElem_mem _)
 theorem row8407_mem : (⟨21, 191, 1, "1,2,964,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[22]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[22]'(by decide)) (List.getElem_mem _)
 theorem row8408_mem : (⟨20, 191, 0, "1038,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[23]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[23]'(by decide)) (List.getElem_mem _)
 theorem row8409_mem : (⟨20, 191, 1, "0,1,1011,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[24]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[24]'(by decide)) (List.getElem_mem _)
 theorem row8410_mem : (⟨20, 191, 2, "0,4,965,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[25]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[25]'(by decide)) (List.getElem_mem _)
 theorem row8411_mem : (⟨19, 191, 0, "1041,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[26]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[26]'(by decide)) (List.getElem_mem _)
 theorem row8412_mem : (⟨19, 191, 1, "1040,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[27]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[27]'(by decide)) (List.getElem_mem _)
 theorem row8413_mem : (⟨19, 191, 2, "1039,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[28]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[28]'(by decide)) (List.getElem_mem _)
 theorem row8414_mem : (⟨19, 191, 3, "0,1,1014,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[29]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[29]'(by decide)) (List.getElem_mem _)
 theorem row8415_mem : (⟨19, 191, 4, "0,3,987,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[30]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[30]'(by decide)) (List.getElem_mem _)
 theorem row8416_mem : (⟨18, 191, 0, "1044,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings5[31]'(by decide)) (bindings5_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings5 checked5
+    (bindings5[31]'(by decide)) (List.getElem_mem _)
 theorem row8419_mem : (⟨18, 191, 3, "0,1,1016,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[0]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[0]'(by decide)) (List.getElem_mem _)
 theorem row8420_mem : (⟨18, 191, 4, "0,1,1015,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[1]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[1]'(by decide)) (List.getElem_mem _)
 theorem row8421_mem : (⟨18, 191, 5, "0,3,17,2,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[2]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[2]'(by decide)) (List.getElem_mem _)
 theorem row8422_mem : (⟨17, 191, 0, "1045,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[3]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[3]'(by decide)) (List.getElem_mem _)
 theorem row8423_mem : (⟨17, 191, 1, "8,1,39,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[4]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[4]'(by decide)) (List.getElem_mem _)
 theorem row8424_mem : (⟨17, 191, 2, "1,1,1004,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[5]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[5]'(by decide)) (List.getElem_mem _)
 theorem row8425_mem : (⟨17, 191, 3, "1,1,122,1,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[6]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[6]'(by decide)) (List.getElem_mem _)
 theorem row8426_mem : (⟨17, 191, 4, "0,1,1018,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[7]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[7]'(by decide)) (List.getElem_mem _)
 theorem row8427_mem : (⟨17, 191, 5, "0,1,1017,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[8]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[8]'(by decide)) (List.getElem_mem _)
 theorem row8428_mem : (⟨17, 191, 6, "0,2,1005,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[9]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[9]'(by decide)) (List.getElem_mem _)
 theorem row8429_mem : (⟨17, 191, 7, "0,3,59,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[10]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[10]'(by decide)) (List.getElem_mem _)
 theorem row8431_mem : (⟨16, 191, 1, "8,1,40,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[11]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[11]'(by decide)) (List.getElem_mem _)
 theorem row8432_mem : (⟨16, 191, 2, "2,1,967,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[12]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[12]'(by decide)) (List.getElem_mem _)
 theorem row8433_mem : (⟨16, 191, 3, "0,1,1021,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[13]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[13]'(by decide)) (List.getElem_mem _)
 theorem row8434_mem : (⟨16, 191, 4, "0,1,1020,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[14]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[14]'(by decide)) (List.getElem_mem _)
 theorem row8435_mem : (⟨15, 191, 0, "17,1,20,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[15]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[15]'(by decide)) (List.getElem_mem _)
 theorem row8436_mem : (⟨15, 191, 1, "13,1,734,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[16]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[16]'(by decide)) (List.getElem_mem _)
 theorem row8437_mem : (⟨15, 191, 2, "0,1,1024,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[17]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[17]'(by decide)) (List.getElem_mem _)
 theorem row8439_mem : (⟨14, 191, 1, "63,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[18]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[18]'(by decide)) (List.getElem_mem _)
 theorem row8440_mem : (⟨13, 191, 0, "8,1,9,1,13,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[19]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[19]'(by decide)) (List.getElem_mem _)
 theorem row8441_mem : (⟨12, 191, 0, "9,1,32,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[20]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[20]'(by decide)) (List.getElem_mem _)
 theorem row8442_mem : (⟨12, 191, 1, "0,1,1027,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[21]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[21]'(by decide)) (List.getElem_mem _)
 theorem row8444_mem : (⟨11, 191, 1, "0,1,1028,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[22]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[22]'(by decide)) (List.getElem_mem _)
 theorem row8445_mem : (⟨10, 191, 0, "0,1,17,1,18,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[23]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[23]'(by decide)) (List.getElem_mem _)
 theorem row8446_mem : (⟨192, 192, 0, "0,192"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[24]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[24]'(by decide)) (List.getElem_mem _)
 theorem row8447_mem : (⟨63, 192, 0, "0,3,995,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[25]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[25]'(by decide)) (List.getElem_mem _)
 theorem row8449_mem : (⟨59, 192, 0, "8,1,804,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[26]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[26]'(by decide)) (List.getElem_mem _)
 theorem row8451_mem : (⟨56, 192, 0, "8,3,431,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[27]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[27]'(by decide)) (List.getElem_mem _)
 theorem row8452_mem : (⟨55, 192, 0, "8,2,16,1,296,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[28]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[28]'(by decide)) (List.getElem_mem _)
 theorem row8453_mem : (⟨54, 192, 0, "8,2,17,1,296,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[29]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[29]'(by decide)) (List.getElem_mem _)
 theorem row8454_mem : (⟨53, 192, 0, "8,2,607,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[30]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[30]'(by decide)) (List.getElem_mem _)
 theorem row8455_mem : (⟨52, 192, 0, "8,5,182,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings6[31]'(by decide)) (bindings6_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings6 checked6
+    (bindings6[31]'(by decide)) (List.getElem_mem _)
 theorem row8456_mem : (⟨52, 192, 1, "0,4,969,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[0]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[0]'(by decide)) (List.getElem_mem _)
 theorem row8457_mem : (⟨51, 192, 0, "8,5,183,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[1]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[1]'(by decide)) (List.getElem_mem _)
 theorem row8458_mem : (⟨51, 192, 1, "0,3,17,1,636,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[2]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[2]'(by decide)) (List.getElem_mem _)
 theorem row8460_mem : (⟨50, 192, 1, "8,3,16,1,17,1,111,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[3]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[3]'(by decide)) (List.getElem_mem _)
 theorem row8462_mem : (⟨49, 192, 0, "8,1,806,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[4]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[4]'(by decide)) (List.getElem_mem _)
 theorem row8463_mem : (⟨49, 192, 1, "8,4,265,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[5]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[5]'(by decide)) (List.getElem_mem _)
 theorem row8464_mem : (⟨49, 192, 2, "0,1,1030,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[6]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[6]'(by decide)) (List.getElem_mem _)
 theorem row8465_mem : (⟨48, 192, 0, "17,1,663,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[7]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[7]'(by decide)) (List.getElem_mem _)
 theorem row8466_mem : (⟨48, 192, 1, "8,7,71,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[8]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[8]'(by decide)) (List.getElem_mem _)
 theorem row8467_mem : (⟨47, 192, 0, "8,6,16,1,50,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[9]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[9]'(by decide)) (List.getElem_mem _)
 theorem row8468_mem : (⟨47, 192, 1, "0,1,1031,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[10]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[10]'(by decide)) (List.getElem_mem _)
 theorem row8469_mem : (⟨46, 192, 0, "8,3,432,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[11]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[11]'(by decide)) (List.getElem_mem _)
 theorem row8470_mem : (⟨46, 192, 1, "8,6,17,1,50,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[12]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[12]'(by decide)) (List.getElem_mem _)
 theorem row8471_mem : (⟨45, 192, 0, "8,3,433,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[13]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[13]'(by decide)) (List.getElem_mem _)
 theorem row8472_mem : (⟨45, 192, 1, "8,6,125,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[14]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[14]'(by decide)) (List.getElem_mem _)
 theorem row8473_mem : (⟨44, 192, 0, "8,2,17,1,298,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[15]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[15]'(by decide)) (List.getElem_mem _)
 theorem row8474_mem : (⟨44, 192, 1, "8,9,16,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[16]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[16]'(by decide)) (List.getElem_mem _)
 theorem row8475_mem : (⟨43, 192, 0, "8,1,17,2,238,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[17]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[17]'(by decide)) (List.getElem_mem _)
 theorem row8476_mem : (⟨43, 192, 1, "8,9,17,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[18]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[18]'(by decide)) (List.getElem_mem _)
 theorem row8477_mem : (⟨43, 192, 2, "0,1,1033,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[19]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[19]'(by decide)) (List.getElem_mem _)
 theorem row8478_mem : (⟨42, 192, 0, "8,5,184,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[20]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[20]'(by decide)) (List.getElem_mem _)
 theorem row8479_mem : (⟨42, 192, 1, "8,7,16,1,23,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[21]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[21]'(by decide)) (List.getElem_mem _)
 theorem row8480_mem : (⟨41, 192, 0, "8,5,185,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[22]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[22]'(by decide)) (List.getElem_mem _)
 theorem row8481_mem : (⟨41, 192, 1, "8,8,42,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[23]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[23]'(by decide)) (List.getElem_mem _)
 theorem row8483_mem : (⟨40, 192, 1, "8,4,17,1,147,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[24]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[24]'(by decide)) (List.getElem_mem _)
 theorem row8484_mem : (⟨40, 192, 2, "8,8,13,2"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[25]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[25]'(by decide)) (List.getElem_mem _)
 theorem row8485_mem : (⟨39, 192, 0, "8,1,64,1,225,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[26]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[26]'(by decide)) (List.getElem_mem _)
 theorem row8486_mem : (⟨39, 192, 1, "8,3,17,2,113,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[27]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[27]'(by decide)) (List.getElem_mem _)
 theorem row8487_mem : (⟨39, 192, 2, "8,7,13,1,32,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[28]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[28]'(by decide)) (List.getElem_mem _)
 theorem row8488_mem : (⟨39, 192, 3, "0,1,8,1,16,1,491,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[29]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[29]'(by decide)) (List.getElem_mem _)
 theorem row8489_mem : (⟨38, 192, 0, "8,1,138,2"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[30]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[30]'(by decide)) (List.getElem_mem _)
 theorem row8490_mem : (⟨38, 192, 1, "8,6,13,2,23,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings7[31]'(by decide)) (bindings7_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings7 checked7
+    (bindings7[31]'(by decide)) (List.getElem_mem _)
 theorem row8491_mem : (⟨38, 192, 2, "8,7,72,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[0]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[0]'(by decide)) (List.getElem_mem _)
 theorem row8492_mem : (⟨38, 192, 3, "0,1,8,1,17,1,491,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[1]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[1]'(by decide)) (List.getElem_mem _)
 theorem row8493_mem : (⟨37, 192, 0, "8,1,808,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[2]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[2]'(by decide)) (List.getElem_mem _)
 theorem row8494_mem : (⟨37, 192, 1, "8,5,13,2,51,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[3]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[3]'(by decide)) (List.getElem_mem _)
 theorem row8495_mem : (⟨37, 192, 2, "8,6,127,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[4]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[4]'(by decide)) (List.getElem_mem _)
 theorem row8496_mem : (⟨36, 192, 0, "8,2,16,1,64,2"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[5]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[5]'(by decide)) (List.getElem_mem _)
 theorem row8497_mem : (⟨36, 192, 1, "8,4,13,5"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[6]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[6]'(by decide)) (List.getElem_mem _)
 theorem row8498_mem : (⟨36, 192, 2, "8,5,20,1,80,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[7]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[7]'(by decide)) (List.getElem_mem _)
 theorem row8499_mem : (⟨36, 192, 3, "0,9,919,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[8]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[8]'(by decide)) (List.getElem_mem _)
 theorem row8500_mem : (⟨35, 192, 0, "8,2,16,1,299,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[9]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[9]'(by decide)) (List.getElem_mem _)
 theorem row8501_mem : (⟨35, 192, 1, "8,3,13,4,32,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[10]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[10]'(by decide)) (List.getElem_mem _)
 theorem row8502_mem : (⟨35, 192, 2, "8,5,186,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[11]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[11]'(by decide)) (List.getElem_mem _)
 theorem row8503_mem : (⟨35, 192, 3, "0,10,898,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[12]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[12]'(by decide)) (List.getElem_mem _)
 theorem row8504_mem : (⟨34, 192, 0, "8,2,13,5,23,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[13]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[13]'(by decide)) (List.getElem_mem _)
 theorem row8505_mem : (⟨34, 192, 1, "8,3,434,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[14]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[14]'(by decide)) (List.getElem_mem _)
 theorem row8506_mem : (⟨34, 192, 2, "8,4,9,1,13,1,101,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[15]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[15]'(by decide)) (List.getElem_mem _)
 theorem row8508_mem : (⟨33, 192, 0, "8,1,13,5,51,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[16]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[16]'(by decide)) (List.getElem_mem _)
 theorem row8509_mem : (⟨33, 192, 1, "8,3,435,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[17]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[17]'(by decide)) (List.getElem_mem _)
 theorem row8510_mem : (⟨33, 192, 2, "8,3,9,1,13,2,80,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[18]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[18]'(by decide)) (List.getElem_mem _)
 theorem row8511_mem : (⟨33, 192, 3, "0,3,64,3"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[19]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[19]'(by decide)) (List.getElem_mem _)
 theorem row8512_mem : (⟨32, 192, 0, "13,8"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[20]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[20]'(by decide)) (List.getElem_mem _)
 theorem row8513_mem : (⟨32, 192, 1, "8,2,9,1,13,1,23,1,101,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[21]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[21]'(by decide)) (List.getElem_mem _)
 theorem row8514_mem : (⟨32, 192, 2, "8,5,187,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[22]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[22]'(by decide)) (List.getElem_mem _)
 theorem row8515_mem : (⟨32, 192, 3, "0,3,64,1,299,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[23]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[23]'(by decide)) (List.getElem_mem _)
 theorem row8516_mem : (⟨31, 192, 0, "13,5,23,1,24,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[24]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[24]'(by decide)) (List.getElem_mem _)
 theorem row8517_mem : (⟨31, 192, 1, "8,1,9,1,13,2,23,1,80,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[25]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[25]'(by decide)) (List.getElem_mem _)
 theorem row8518_mem : (⟨31, 192, 2, "8,5,188,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[26]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[26]'(by decide)) (List.getElem_mem _)
 theorem row8519_mem : (⟨31, 192, 3, "0,5,963,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[27]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[27]'(by decide)) (List.getElem_mem _)
 theorem row8521_mem : (⟨30, 192, 1, "9,1,13,4,101,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[28]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[28]'(by decide)) (List.getElem_mem _)
 theorem row8522_mem : (⟨30, 192, 2, "8,4,267,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[29]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[29]'(by decide)) (List.getElem_mem _)
 theorem row8523_mem : (⟨30, 192, 3, "0,3,64,1,301,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[30]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[30]'(by decide)) (List.getElem_mem _)
 theorem row8524_mem : (⟨30, 192, 4, "0,4,974,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings8[31]'(by decide)) (bindings8_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings8 checked8
+    (bindings8[31]'(by decide)) (List.getElem_mem _)
 theorem row8525_mem : (⟨29, 192, 0, "64,1,327,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[0]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[0]'(by decide)) (List.getElem_mem _)
 theorem row8526_mem : (⟨29, 192, 1, "8,3,23,1,188,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[1]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[1]'(by decide)) (List.getElem_mem _)
 theorem row8527_mem : (⟨29, 192, 2, "0,1,8,1,797,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[2]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[2]'(by decide)) (List.getElem_mem _)
 theorem row8528_mem : (⟨29, 192, 3, "0,4,976,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[3]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[3]'(by decide)) (List.getElem_mem _)
 theorem row8529_mem : (⟨28, 192, 0, "8,1,812,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[4]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[4]'(by decide)) (List.getElem_mem _)
 theorem row8530_mem : (⟨28, 192, 1, "8,2,13,2,212,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[5]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[5]'(by decide)) (List.getElem_mem _)
 theorem row8531_mem : (⟨28, 192, 2, "0,1,17,1,655,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[6]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[6]'(by decide)) (List.getElem_mem _)
 theorem row8532_mem : (⟨28, 192, 3, "0,1,2,1,963,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[7]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[7]'(by decide)) (List.getElem_mem _)
 theorem row8533_mem : (⟨28, 192, 4, "0,4,978,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[8]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[8]'(by decide)) (List.getElem_mem _)
 theorem row8534_mem : (⟨27, 192, 0, "13,3,266,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[9]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[9]'(by decide)) (List.getElem_mem _)
 theorem row8535_mem : (⟨27, 192, 1, "8,1,813,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[10]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[10]'(by decide)) (List.getElem_mem _)
 theorem row8536_mem : (⟨27, 192, 2, "8,1,13,3,188,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[11]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[11]'(by decide)) (List.getElem_mem _)
 theorem row8537_mem : (⟨27, 192, 3, "2,1,973,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[12]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[12]'(by decide)) (List.getElem_mem _)
 theorem row8538_mem : (⟨27, 192, 4, "0,1,1035,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[13]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[13]'(by decide)) (List.getElem_mem _)
 theorem row8539_mem : (⟨27, 192, 5, "0,1,64,1,318,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[14]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[14]'(by decide)) (List.getElem_mem _)
 theorem row8540_mem : (⟨26, 192, 0, "13,3,267,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[15]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[15]'(by decide)) (List.getElem_mem _)
 theorem row8541_mem : (⟨26, 192, 1, "9,1,13,2,286,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[16]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[16]'(by decide)) (List.getElem_mem _)
 theorem row8542_mem : (⟨26, 192, 2, "8,2,610,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[17]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[17]'(by decide)) (List.getElem_mem _)
 theorem row8543_mem : (⟨26, 192, 3, "1,2,978,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[18]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[18]'(by decide)) (List.getElem_mem _)
 theorem row8544_mem : (⟨25, 192, 0, "13,3,268,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[19]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[19]'(by decide)) (List.getElem_mem _)
 theorem row8545_mem : (⟨25, 192, 1, "8,1,80,1,201,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[20]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[20]'(by decide)) (List.getElem_mem _)
 theorem row8546_mem : (⟨25, 192, 2, "2,1,978,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[21]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[21]'(by decide)) (List.getElem_mem _)
 theorem row8547_mem : (⟨24, 192, 0, "9,1,80,1,188,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[22]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[22]'(by decide)) (List.getElem_mem _)
 theorem row8549_mem : (⟨24, 192, 2, "3,1,929,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[23]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[23]'(by decide)) (List.getElem_mem _)
 theorem row8550_mem : (⟨23, 192, 0, "1049,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[24]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[24]'(by decide)) (List.getElem_mem _)
 theorem row8551_mem : (⟨23, 192, 1, "13,2,23,1,213,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[25]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[25]'(by decide)) (List.getElem_mem _)
 theorem row8553_mem : (⟨23, 192, 3, "0,1,1036,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[26]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[26]'(by decide)) (List.getElem_mem _)
 theorem row8554_mem : (⟨22, 192, 0, "65,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[27]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[27]'(by decide)) (List.getElem_mem _)
 theorem row8555_mem : (⟨22, 192, 1, "9,1,13,2,288,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[28]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[28]'(by decide)) (List.getElem_mem _)
 theorem row8556_mem : (⟨22, 192, 2, "0,1,1037,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[29]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[29]'(by decide)) (List.getElem_mem _)
 theorem row8559_mem : (⟨21, 192, 2, "0,2,1011,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[30]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[30]'(by decide)) (List.getElem_mem _)
 theorem row8561_mem : (⟨20, 192, 1, "0,1,1040,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings9[31]'(by decide)) (bindings9_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings9 checked9
+    (bindings9[31]'(by decide)) (List.getElem_mem _)
 theorem row8562_mem : (⟨20, 192, 2, "0,1,1039,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[0]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[0]'(by decide)) (List.getElem_mem _)
 theorem row8563_mem : (⟨20, 192, 3, "0,2,1014,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[1]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[1]'(by decide)) (List.getElem_mem _)
 theorem row8564_mem : (⟨20, 192, 4, "0,4,987,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[2]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[2]'(by decide)) (List.getElem_mem _)
 theorem row8566_mem : (⟨19, 192, 1, "1,1,1014,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[3]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[3]'(by decide)) (List.getElem_mem _)
 theorem row8567_mem : (⟨19, 192, 2, "1,1,1013,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[4]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[4]'(by decide)) (List.getElem_mem _)
 theorem row8568_mem : (⟨19, 192, 3, "0,2,1015,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[5]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[5]'(by decide)) (List.getElem_mem _)
 theorem row8569_mem : (⟨19, 192, 4, "0,4,17,2,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[6]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[6]'(by decide)) (List.getElem_mem _)
 theorem row8571_mem : (⟨18, 192, 1, "0,1,8,1,39,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[7]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[7]'(by decide)) (List.getElem_mem _)
 theorem row8572_mem : (⟨18, 192, 2, "0,2,1017,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[8]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[8]'(by decide)) (List.getElem_mem _)
 theorem row8573_mem : (⟨18, 192, 3, "0,4,59,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[9]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[9]'(by decide)) (List.getElem_mem _)
 theorem row8574_mem : (⟨17, 192, 0, "1,1,1019,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[10]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[10]'(by decide)) (List.getElem_mem _)
 theorem row8575_mem : (⟨17, 192, 1, "0,1,1046,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[11]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[11]'(by decide)) (List.getElem_mem _)
 theorem row8576_mem : (⟨17, 192, 2, "0,1,8,1,40,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[12]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[12]'(by decide)) (List.getElem_mem _)
 theorem row8577_mem : (⟨17, 192, 3, "0,2,1021,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[13]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[13]'(by decide)) (List.getElem_mem _)
 theorem row8578_mem : (⟨16, 192, 0, "1054,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[14]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[14]'(by decide)) (List.getElem_mem _)
 theorem row8579_mem : (⟨16, 192, 1, "3,2,843,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[15]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[15]'(by decide)) (List.getElem_mem _)
 theorem row8580_mem : (⟨16, 192, 2, "1,1,1022,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[16]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[16]'(by decide)) (List.getElem_mem _)
 theorem row8581_mem : (⟨16, 192, 3, "1,1,43,1,485,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[17]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[17]'(by decide)) (List.getElem_mem _)
 theorem row8582_mem : (⟨16, 192, 4, "0,1,17,1,20,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[18]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[18]'(by decide)) (List.getElem_mem _)
 theorem row8583_mem : (⟨15, 192, 0, "2,1,991,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[19]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[19]'(by decide)) (List.getElem_mem _)
 theorem row8584_mem : (⟨15, 192, 1, "2,1,990,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[20]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[20]'(by decide)) (List.getElem_mem _)
 theorem row8585_mem : (⟨15, 192, 2, "1,1,1023,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[21]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[21]'(by decide)) (List.getElem_mem _)
 theorem row8589_mem : (⟨13, 192, 1, "1,1,1026,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[22]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[22]'(by decide)) (List.getElem_mem _)
 theorem row8590_mem : (⟨13, 192, 2, "0,2,1027,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[23]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[23]'(by decide)) (List.getElem_mem _)
 theorem row8591_mem : (⟨12, 192, 0, "1,1,1027,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[24]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[24]'(by decide)) (List.getElem_mem _)
 theorem row8592_mem : (⟨12, 192, 1, "0,1,64,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[25]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[25]'(by decide)) (List.getElem_mem _)
 theorem row8593_mem : (⟨12, 192, 2, "0,2,1028,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[26]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[26]'(by decide)) (List.getElem_mem _)
 theorem row8594_mem : (⟨11, 192, 0, "66,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[27]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[27]'(by decide)) (List.getElem_mem _)
 theorem row8595_mem : (⟨11, 192, 1, "0,2,17,1,18,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[28]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[28]'(by decide)) (List.getElem_mem _)
 theorem row8596_mem : (⟨9, 192, 0, "2,1,18,1,617,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[29]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[29]'(by decide)) (List.getElem_mem _)
 theorem row8598_mem : (⟨8, 192, 1, "2,1,994,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[30]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[30]'(by decide)) (List.getElem_mem _)
 theorem row8599_mem : (⟨7, 192, 0, "68,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings10[31]'(by decide)) (bindings10_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings10 checked10
+    (bindings10[31]'(by decide)) (List.getElem_mem _)
 theorem row8602_mem : (⟨193, 193, 0, "0,193"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[0]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[0]'(by decide)) (List.getElem_mem _)
 theorem row8603_mem : (⟨64, 193, 0, "1,1,1029,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[1]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[1]'(by decide)) (List.getElem_mem _)
 theorem row8604_mem : (⟨61, 193, 0, "0,1,8,1,803,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[2]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[2]'(by decide)) (List.getElem_mem _)
 theorem row8605_mem : (⟨60, 193, 0, "0,1,8,1,804,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[3]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[3]'(by decide)) (List.getElem_mem _)
 theorem row8606_mem : (⟨53, 193, 0, "0,5,969,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[4]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[4]'(by decide)) (List.getElem_mem _)
 theorem row8607_mem : (⟨52, 193, 0, "0,4,17,1,636,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[5]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[5]'(by decide)) (List.getElem_mem _)
 theorem row8608_mem : (⟨51, 193, 0, "0,1,8,1,805,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[6]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[6]'(by decide)) (List.getElem_mem _)
 theorem row8609_mem : (⟨50, 193, 0, "0,1,8,1,806,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[7]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[7]'(by decide)) (List.getElem_mem _)
 theorem row8610_mem : (⟨50, 193, 1, "0,2,1030,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[8]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[8]'(by decide)) (List.getElem_mem _)
 theorem row8611_mem : (⟨49, 193, 0, "0,1,17,1,663,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[9]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[9]'(by decide)) (List.getElem_mem _)
 theorem row8612_mem : (⟨44, 193, 0, "0,2,1033,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[10]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[10]'(by decide)) (List.getElem_mem _)
 theorem row8613_mem : (⟨43, 193, 0, "1059,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[11]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[11]'(by decide)) (List.getElem_mem _)
 theorem row8615_mem : (⟨41, 193, 0, "0,1,8,1,64,1,224,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[12]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[12]'(by decide)) (List.getElem_mem _)
 theorem row8616_mem : (⟨40, 193, 0, "0,1,8,1,64,1,225,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[13]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[13]'(by decide)) (List.getElem_mem _)
 theorem row8617_mem : (⟨40, 193, 1, "0,2,8,1,16,1,491,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[14]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[14]'(by decide)) (List.getElem_mem _)
 theorem row8619_mem : (⟨39, 193, 1, "0,2,8,1,17,1,491,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[15]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[15]'(by decide)) (List.getElem_mem _)
 theorem row8620_mem : (⟨37, 193, 0, "0,10,919,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[16]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[16]'(by decide)) (List.getElem_mem _)
 theorem row8622_mem : (⟨36, 193, 1, "0,11,898,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[17]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[17]'(by decide)) (List.getElem_mem _)
 theorem row8624_mem : (⟨34, 193, 1, "0,4,64,3"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[18]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[18]'(by decide)) (List.getElem_mem _)
 theorem row8625_mem : (⟨33, 193, 0, "1061,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[19]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[19]'(by decide)) (List.getElem_mem _)
 theorem row8626_mem : (⟨33, 193, 1, "0,4,64,1,299,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[20]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[20]'(by decide)) (List.getElem_mem _)
 theorem row8627_mem : (⟨32, 193, 0, "8,1,820,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[21]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[21]'(by decide)) (List.getElem_mem _)
 theorem row8629_mem : (⟨32, 193, 2, "0,6,963,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[22]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[22]'(by decide)) (List.getElem_mem _)
 theorem row8630_mem : (⟨31, 193, 0, "8,1,821,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[23]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[23]'(by decide)) (List.getElem_mem _)
 theorem row8631_mem : (⟨31, 193, 1, "0,4,64,1,301,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[24]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[24]'(by decide)) (List.getElem_mem _)
 theorem row8632_mem : (⟨31, 193, 2, "0,5,974,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[25]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[25]'(by decide)) (List.getElem_mem _)
 theorem row8633_mem : (⟨30, 193, 0, "9,1,784,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[26]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[26]'(by decide)) (List.getElem_mem _)
 theorem row8634_mem : (⟨30, 193, 1, "0,2,8,1,797,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[27]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[27]'(by decide)) (List.getElem_mem _)
 theorem row8635_mem : (⟨30, 193, 2, "0,5,976,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[28]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[28]'(by decide)) (List.getElem_mem _)
 theorem row8636_mem : (⟨29, 193, 0, "0,2,17,1,655,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[29]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[29]'(by decide)) (List.getElem_mem _)
 theorem row8637_mem : (⟨29, 193, 1, "0,2,2,1,963,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[30]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[30]'(by decide)) (List.getElem_mem _)
 theorem row8638_mem : (⟨29, 193, 2, "0,5,978,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings11[31]'(by decide)) (bindings11_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings11 checked11
+    (bindings11[31]'(by decide)) (List.getElem_mem _)
 theorem row8639_mem : (⟨27, 193, 0, "13,5,95,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[0]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[0]'(by decide)) (List.getElem_mem _)
 theorem row8640_mem : (⟨26, 193, 0, "13,4,164,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[1]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[1]'(by decide)) (List.getElem_mem _)
 theorem row8641_mem : (⟨26, 193, 1, "0,1,2,1,978,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[2]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[2]'(by decide)) (List.getElem_mem _)
 theorem row8642_mem : (⟨25, 193, 0, "0,1,3,1,929,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[3]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[3]'(by decide)) (List.getElem_mem _)
 theorem row8643_mem : (⟨24, 193, 0, "0,1,1049,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[4]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[4]'(by decide)) (List.getElem_mem _)
 theorem row8644_mem : (⟨23, 193, 0, "1063,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[5]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[5]'(by decide)) (List.getElem_mem _)
 theorem row8645_mem : (⟨23, 193, 1, "1062,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[6]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[6]'(by decide)) (List.getElem_mem _)
 theorem row8646_mem : (⟨23, 193, 2, "0,1,65,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[7]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[7]'(by decide)) (List.getElem_mem _)
 theorem row8647_mem : (⟨22, 193, 0, "23,1,618,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[8]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[8]'(by decide)) (List.getElem_mem _)
 theorem row8648_mem : (⟨22, 193, 1, "0,1,1051,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[9]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[9]'(by decide)) (List.getElem_mem _)
 theorem row8649_mem : (⟨22, 193, 2, "0,3,1011,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[10]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[10]'(by decide)) (List.getElem_mem _)
 theorem row8650_mem : (⟨21, 193, 0, "76,1,302,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[11]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[11]'(by decide)) (List.getElem_mem _)
 theorem row8651_mem : (⟨21, 193, 1, "18,1,655,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[12]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[12]'(by decide)) (List.getElem_mem _)
 theorem row8652_mem : (⟨21, 193, 2, "13,1,75,1,188,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[13]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[13]'(by decide)) (List.getElem_mem _)
 theorem row8656_mem : (⟨20, 193, 2, "13,1,75,1,189,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[14]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[14]'(by decide)) (List.getElem_mem _)
 theorem row8657_mem : (⟨20, 193, 3, "0,3,1015,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[15]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[15]'(by decide)) (List.getElem_mem _)
 theorem row8658_mem : (⟨20, 193, 4, "0,5,17,2,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[16]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[16]'(by decide)) (List.getElem_mem _)
 theorem row8660_mem : (⟨19, 193, 1, "13,1,23,1,373,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[17]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[17]'(by decide)) (List.getElem_mem _)
 theorem row8661_mem : (⟨19, 193, 2, "1,1,1043,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[18]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[18]'(by decide)) (List.getElem_mem _)
 theorem row8662_mem : (⟨19, 193, 3, "1,1,1042,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[19]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[19]'(by decide)) (List.getElem_mem _)
 theorem row8663_mem : (⟨19, 193, 4, "0,2,8,1,39,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[20]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[20]'(by decide)) (List.getElem_mem _)
 theorem row8664_mem : (⟨19, 193, 5, "0,5,59,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[21]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[21]'(by decide)) (List.getElem_mem _)
 theorem row8666_mem : (⟨18, 193, 1, "1067,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[22]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[22]'(by decide)) (List.getElem_mem _)
 theorem row8667_mem : (⟨18, 193, 2, "13,1,75,1,190,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[23]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[23]'(by decide)) (List.getElem_mem _)
 theorem row8668_mem : (⟨18, 193, 3, "13,1,23,1,376,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[24]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[24]'(by decide)) (List.getElem_mem _)
 theorem row8669_mem : (⟨18, 193, 4, "2,1,1002,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[25]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[25]'(by decide)) (List.getElem_mem _)
 theorem row8670_mem : (⟨18, 193, 5, "0,2,8,1,40,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[26]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[26]'(by decide)) (List.getElem_mem _)
 theorem row8671_mem : (⟨17, 193, 0, "9,1,787,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[27]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[27]'(by decide)) (List.getElem_mem _)
 theorem row8672_mem : (⟨17, 193, 1, "2,1,1004,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[28]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[28]'(by decide)) (List.getElem_mem _)
 theorem row8675_mem : (⟨16, 193, 1, "1069,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[29]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[29]'(by decide)) (List.getElem_mem _)
 theorem row8676_mem : (⟨16, 193, 2, "67,1,333,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[30]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[30]'(by decide)) (List.getElem_mem _)
 theorem row8678_mem : (⟨15, 193, 1, "1071,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings12[31]'(by decide)) (bindings12_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings12 checked12
+    (bindings12[31]'(by decide)) (List.getElem_mem _)
 theorem row8679_mem : (⟨15, 193, 2, "1,1,1047,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[0]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[0]'(by decide)) (List.getElem_mem _)
 theorem row8680_mem : (⟨15, 193, 3, "0,1,1056,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[1]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[1]'(by decide)) (List.getElem_mem _)
 theorem row8681_mem : (⟨15, 193, 4, "0,1,1055,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[2]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[2]'(by decide)) (List.getElem_mem _)
 theorem row8682_mem : (⟨14, 193, 0, "1073,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[3]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[3]'(by decide)) (List.getElem_mem _)
 theorem row8683_mem : (⟨14, 193, 1, "2,1,1008,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[4]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[4]'(by decide)) (List.getElem_mem _)
 theorem row8684_mem : (⟨14, 193, 2, "0,1,1057,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[5]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[5]'(by decide)) (List.getElem_mem _)
 theorem row8685_mem : (⟨13, 193, 0, "7,1,860,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[6]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[6]'(by decide)) (List.getElem_mem _)
 theorem row8686_mem : (⟨13, 193, 1, "0,2,64,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[7]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[7]'(by decide)) (List.getElem_mem _)
 theorem row8687_mem : (⟨12, 193, 0, "1074,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[8]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[8]'(by decide)) (List.getElem_mem _)
 theorem row8689_mem : (⟨12, 193, 2, "0,1,66,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[9]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[9]'(by decide)) (List.getElem_mem _)
 theorem row8690_mem : (⟨11, 193, 0, "70,1,323,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[10]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[10]'(by decide)) (List.getElem_mem _)
 theorem row8691_mem : (⟨11, 193, 1, "18,2,333,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[11]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[11]'(by decide)) (List.getElem_mem _)
 theorem row8692_mem : (⟨10, 193, 0, "18,1,659,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[12]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[12]'(by decide)) (List.getElem_mem _)
 theorem row8694_mem : (⟨9, 193, 0, "18,1,20,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[13]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[13]'(by decide)) (List.getElem_mem _)
 theorem row8695_mem : (⟨9, 193, 1, "0,1,67,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[14]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[14]'(by decide)) (List.getElem_mem _)
 theorem row8696_mem : (⟨8, 193, 0, "0,1,68,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[15]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[15]'(by decide)) (List.getElem_mem _)
 theorem row8699_mem : (⟨5, 193, 1, "0,1,1058,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[16]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[16]'(by decide)) (List.getElem_mem _)
 theorem row8700_mem : (⟨4, 193, 0, "0,1,18,2,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[17]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[17]'(by decide)) (List.getElem_mem _)
 theorem row8701_mem : (⟨194, 194, 0, "0,194"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[18]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[18]'(by decide)) (List.getElem_mem _)
 theorem row8703_mem : (⟨62, 194, 0, "0,2,8,1,803,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[19]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[19]'(by decide)) (List.getElem_mem _)
 theorem row8704_mem : (⟨61, 194, 0, "0,2,8,1,804,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[20]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[20]'(by decide)) (List.getElem_mem _)
 theorem row8706_mem : (⟨54, 194, 0, "0,6,969,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[21]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[21]'(by decide)) (List.getElem_mem _)
 theorem row8707_mem : (⟨53, 194, 0, "0,5,17,1,636,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[22]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[22]'(by decide)) (List.getElem_mem _)
 theorem row8708_mem : (⟨52, 194, 0, "0,2,8,1,805,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[23]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[23]'(by decide)) (List.getElem_mem _)
 theorem row8709_mem : (⟨51, 194, 0, "0,2,8,1,806,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[24]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[24]'(by decide)) (List.getElem_mem _)
 theorem row8710_mem : (⟨51, 194, 1, "0,3,1030,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[25]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[25]'(by decide)) (List.getElem_mem _)
 theorem row8712_mem : (⟨47, 194, 0, "17,1,685,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[26]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[26]'(by decide)) (List.getElem_mem _)
 theorem row8713_mem : (⟨46, 194, 0, "16,1,686,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[27]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[27]'(by decide)) (List.getElem_mem _)
 theorem row8714_mem : (⟨45, 194, 0, "8,1,829,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[28]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[28]'(by decide)) (List.getElem_mem _)
 theorem row8715_mem : (⟨45, 194, 1, "0,3,1033,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[29]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[29]'(by decide)) (List.getElem_mem _)
 theorem row8716_mem : (⟨44, 194, 0, "8,3,452,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[30]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[30]'(by decide)) (List.getElem_mem _)
 theorem row8717_mem : (⟨44, 194, 1, "0,1,1059,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings13[31]'(by decide)) (bindings13_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings13 checked13
+    (bindings13[31]'(by decide)) (List.getElem_mem _)
 theorem row8718_mem : (⟨43, 194, 0, "8,1,16,1,17,1,244,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[0]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[0]'(by decide)) (List.getElem_mem _)
 theorem row8720_mem : (⟨42, 194, 1, "8,2,31,1,245,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[1]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[1]'(by decide)) (List.getElem_mem _)
 theorem row8721_mem : (⟨41, 194, 0, "8,3,453,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[2]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[2]'(by decide)) (List.getElem_mem _)
 theorem row8722_mem : (⟨41, 194, 1, "0,2,8,1,64,1,225,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[3]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[3]'(by decide)) (List.getElem_mem _)
 theorem row8723_mem : (⟨40, 194, 0, "8,4,16,1,149,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[4]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[4]'(by decide)) (List.getElem_mem _)
 theorem row8724_mem : (⟨39, 194, 0, "8,4,17,1,149,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[5]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[5]'(by decide)) (List.getElem_mem _)
 theorem row8727_mem : (⟨38, 194, 2, "8,4,277,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[6]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[6]'(by decide)) (List.getElem_mem _)
 theorem row8728_mem : (⟨38, 194, 3, "0,11,919,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[7]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[7]'(by decide)) (List.getElem_mem _)
 theorem row8729_mem : (⟨37, 194, 0, "113,1,244,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[8]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[8]'(by decide)) (List.getElem_mem _)
 theorem row8730_mem : (⟨37, 194, 1, "8,1,17,1,516,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[9]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[9]'(by decide)) (List.getElem_mem _)
 theorem row8731_mem : (⟨37, 194, 2, "8,5,193,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[10]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[10]'(by decide)) (List.getElem_mem _)
 theorem row8732_mem : (⟨37, 194, 3, "0,12,898,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[11]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[11]'(by decide)) (List.getElem_mem _)
 theorem row8733_mem : (⟨36, 194, 0, "17,2,380,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[12]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[12]'(by decide)) (List.getElem_mem _)
 theorem row8734_mem : (⟨36, 194, 1, "8,1,830,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[13]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[13]'(by decide)) (List.getElem_mem _)
 theorem row8735_mem : (⟨36, 194, 2, "8,5,194,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[14]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[14]'(by decide)) (List.getElem_mem _)
 theorem row8736_mem : (⟨35, 194, 0, "42,1,516,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[15]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[15]'(by decide)) (List.getElem_mem _)
 theorem row8737_mem : (⟨35, 194, 1, "8,1,831,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[16]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[16]'(by decide)) (List.getElem_mem _)
 theorem row8738_mem : (⟨35, 194, 2, "8,4,13,1,167,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[17]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[17]'(by decide)) (List.getElem_mem _)
 theorem row8739_mem : (⟨35, 194, 3, "0,1,1060,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[18]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[18]'(by decide)) (List.getElem_mem _)
 theorem row8740_mem : (⟨35, 194, 4, "0,5,64,3"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[19]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[19]'(by decide)) (List.getElem_mem _)
 theorem row8741_mem : (⟨34, 194, 0, "8,2,64,1,160,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[20]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[20]'(by decide)) (List.getElem_mem _)
 theorem row8742_mem : (⟨34, 194, 1, "8,3,13,1,248,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[21]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[21]'(by decide)) (List.getElem_mem _)
 theorem row8743_mem : (⟨34, 194, 2, "8,4,278,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[22]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[22]'(by decide)) (List.getElem_mem _)
 theorem row8744_mem : (⟨34, 194, 3, "0,5,64,1,299,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[23]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[23]'(by decide)) (List.getElem_mem _)
 theorem row8745_mem : (⟨33, 194, 0, "8,2,624,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[24]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[24]'(by decide)) (List.getElem_mem _)
 theorem row8746_mem : (⟨33, 194, 1, "8,2,13,2,219,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[25]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[25]'(by decide)) (List.getElem_mem _)
 theorem row8747_mem : (⟨33, 194, 2, "8,3,454,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[26]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[26]'(by decide)) (List.getElem_mem _)
 theorem row8748_mem : (⟨32, 194, 0, "8,1,13,3,194,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[27]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[27]'(by decide)) (List.getElem_mem _)
 theorem row8749_mem : (⟨32, 194, 1, "8,2,20,1,292,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[28]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[28]'(by decide)) (List.getElem_mem _)
 theorem row8750_mem : (⟨32, 194, 2, "8,3,455,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[29]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[29]'(by decide)) (List.getElem_mem _)
 theorem row8751_mem : (⟨32, 194, 3, "0,5,64,1,301,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[30]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[30]'(by decide)) (List.getElem_mem _)
 theorem row8752_mem : (⟨31, 194, 0, "13,4,167,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings14[31]'(by decide)) (bindings14_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings14 checked14
+    (bindings14[31]'(by decide)) (List.getElem_mem _)
 theorem row8753_mem : (⟨31, 194, 1, "8,2,625,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[0]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[0]'(by decide)) (List.getElem_mem _)
 theorem row8754_mem : (⟨31, 194, 2, "8,2,9,1,420,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[1]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[1]'(by decide)) (List.getElem_mem _)
 theorem row8755_mem : (⟨31, 194, 3, "0,6,976,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[2]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[2]'(by decide)) (List.getElem_mem _)
 theorem row8756_mem : (⟨30, 194, 0, "13,4,168,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[3]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[3]'(by decide)) (List.getElem_mem _)
 theorem row8757_mem : (⟨30, 194, 1, "8,1,9,1,13,1,346,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[4]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[4]'(by decide)) (List.getElem_mem _)
 theorem row8758_mem : (⟨30, 194, 2, "8,4,279,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[5]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[5]'(by decide)) (List.getElem_mem _)
 theorem row8760_mem : (⟨29, 194, 1, "9,1,13,2,292,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[6]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[6]'(by decide)) (List.getElem_mem _)
 theorem row8761_mem : (⟨29, 194, 2, "8,4,280,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[7]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[7]'(by decide)) (List.getElem_mem _)
 theorem row8764_mem : (⟨28, 194, 2, "8,3,9,1,261,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[8]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[8]'(by decide)) (List.getElem_mem _)
 theorem row8765_mem : (⟨28, 194, 3, "2,1,1010,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[9]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[9]'(by decide)) (List.getElem_mem _)
 theorem row8766_mem : (⟨27, 194, 0, "138,1,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[10]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[10]'(by decide)) (List.getElem_mem _)
 theorem row8767_mem : (⟨27, 194, 1, "17,1,690,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[11]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[11]'(by decide)) (List.getElem_mem _)
 theorem row8769_mem : (⟨27, 194, 3, "8,2,9,1,423,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[12]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[12]'(by decide)) (List.getElem_mem _)
 theorem row8770_mem : (⟨26, 194, 0, "1078,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[13]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[13]'(by decide)) (List.getElem_mem _)
 theorem row8771_mem : (⟨26, 194, 1, "64,1,348,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[14]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[14]'(by decide)) (List.getElem_mem _)
 theorem row8772_mem : (⟨26, 194, 2, "23,1,627,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[15]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[15]'(by decide)) (List.getElem_mem _)
 theorem row8773_mem : (⟨26, 194, 3, "8,1,9,1,13,2,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[16]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[16]'(by decide)) (List.getElem_mem _)
 theorem row8775_mem : (⟨25, 194, 1, "1079,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[17]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[17]'(by decide)) (List.getElem_mem _)
 theorem row8776_mem : (⟨25, 194, 2, "64,1,349,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[18]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[18]'(by decide)) (List.getElem_mem _)
 theorem row8777_mem : (⟨25, 194, 3, "9,1,13,2,294,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[19]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[19]'(by decide)) (List.getElem_mem _)
 theorem row8778_mem : (⟨25, 194, 4, "8,1,834,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[20]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[20]'(by decide)) (List.getElem_mem _)
 theorem row8779_mem : (⟨25, 194, 5, "0,2,1049,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[21]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[21]'(by decide)) (List.getElem_mem _)
 theorem row8781_mem : (⟨24, 194, 1, "23,1,628,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[22]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[22]'(by decide)) (List.getElem_mem _)
 theorem row8782_mem : (⟨24, 194, 2, "8,1,79,1,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[23]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[23]'(by decide)) (List.getElem_mem _)
 theorem row8783_mem : (⟨24, 194, 3, "0,1,1063,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[24]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[24]'(by decide)) (List.getElem_mem _)
 theorem row8784_mem : (⟨24, 194, 4, "0,2,65,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[25]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[25]'(by decide)) (List.getElem_mem _)
 theorem row8786_mem : (⟨23, 194, 1, "24,1,628,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[26]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[26]'(by decide)) (List.getElem_mem _)
 theorem row8787_mem : (⟨23, 194, 2, "8,1,80,1,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[27]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[27]'(by decide)) (List.getElem_mem _)
 theorem row8788_mem : (⟨23, 194, 3, "0,2,1051,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[28]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[28]'(by decide)) (List.getElem_mem _)
 theorem row8789_mem : (⟨22, 194, 0, "1084,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[29]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[29]'(by decide)) (List.getElem_mem _)
 theorem row8791_mem : (⟨22, 194, 2, "23,1,629,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[30]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[30]'(by decide)) (List.getElem_mem _)
 theorem row8792_mem : (⟨22, 194, 3, "13,1,761,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings15[31]'(by decide)) (bindings15_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings15 checked15
+    (bindings15[31]'(by decide)) (List.getElem_mem _)
 theorem row8793_mem : (⟨22, 194, 4, "1,1,1051,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[0]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[0]'(by decide)) (List.getElem_mem _)
 theorem row8797_mem : (⟨21, 194, 2, "24,1,629,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[1]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[1]'(by decide)) (List.getElem_mem _)
 theorem row8799_mem : (⟨21, 194, 4, "0,1,1064,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[2]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[2]'(by decide)) (List.getElem_mem _)
 theorem row8800_mem : (⟨21, 194, 5, "0,4,1015,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[3]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[3]'(by decide)) (List.getElem_mem _)
 theorem row8801_mem : (⟨20, 194, 0, "3,1,960,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[4]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[4]'(by decide)) (List.getElem_mem _)
 theorem row8803_mem : (⟨20, 194, 2, "0,1,1066,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[5]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[5]'(by decide)) (List.getElem_mem _)
 theorem row8804_mem : (⟨20, 194, 3, "0,6,59,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[6]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[6]'(by decide)) (List.getElem_mem _)
 theorem row8805_mem : (⟨19, 194, 0, "8,1,841,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[7]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[7]'(by decide)) (List.getElem_mem _)
 theorem row8806_mem : (⟨19, 194, 1, "0,1,1068,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[8]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[8]'(by decide)) (List.getElem_mem _)
 theorem row8807_mem : (⟨19, 194, 2, "0,1,1067,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[9]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[9]'(by decide)) (List.getElem_mem _)
 theorem row8808_mem : (⟨19, 194, 3, "0,1,2,1,1002,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[10]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[10]'(by decide)) (List.getElem_mem _)
 theorem row8810_mem : (⟨18, 194, 1, "1085,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[11]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[11]'(by decide)) (List.getElem_mem _)
 theorem row8811_mem : (⟨18, 194, 2, "67,1,336,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[12]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[12]'(by decide)) (List.getElem_mem _)
 theorem row8812_mem : (⟨18, 194, 3, "8,1,842,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[13]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[13]'(by decide)) (List.getElem_mem _)
 theorem row8814_mem : (⟨17, 194, 1, "0,1,1069,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[14]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[14]'(by decide)) (List.getElem_mem _)
 theorem row8815_mem : (⟨17, 194, 2, "0,1,67,1,333,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[15]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[15]'(by decide)) (List.getElem_mem _)
 theorem row8817_mem : (⟨16, 194, 1, "8,2,17,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[16]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[16]'(by decide)) (List.getElem_mem _)
 theorem row8818_mem : (⟨16, 194, 2, "0,1,1071,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[17]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[17]'(by decide)) (List.getElem_mem _)
 theorem row8819_mem : (⟨16, 194, 3, "0,2,1056,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[18]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[18]'(by decide)) (List.getElem_mem _)
 theorem row8820_mem : (⟨16, 194, 4, "0,2,1055,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[19]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[19]'(by decide)) (List.getElem_mem _)
 theorem row8822_mem : (⟨15, 194, 1, "16,1,23,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[20]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[20]'(by decide)) (List.getElem_mem _)
 theorem row8824_mem : (⟨15, 194, 3, "0,1,1073,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[21]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[21]'(by decide)) (List.getElem_mem _)
 theorem row8825_mem : (⟨15, 194, 4, "0,2,1057,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[22]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[22]'(by decide)) (List.getElem_mem _)
 theorem row8828_mem : (⟨14, 194, 2, "8,1,42,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[23]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[23]'(by decide)) (List.getElem_mem _)
 theorem row8830_mem : (⟨14, 194, 4, "0,3,64,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[24]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[24]'(by decide)) (List.getElem_mem _)
 theorem row8831_mem : (⟨13, 194, 0, "1091,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[25]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[25]'(by decide)) (List.getElem_mem _)
 theorem row8832_mem : (⟨13, 194, 1, "8,1,13,2,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[26]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[26]'(by decide)) (List.getElem_mem _)
 theorem row8833_mem : (⟨13, 194, 2, "0,2,66,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[27]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[27]'(by decide)) (List.getElem_mem _)
 theorem row8834_mem : (⟨12, 194, 0, "13,1,32,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[28]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[28]'(by decide)) (List.getElem_mem _)
 theorem row8835_mem : (⟨12, 194, 1, "0,1,18,2,333,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[29]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[29]'(by decide)) (List.getElem_mem _)
 theorem row8837_mem : (⟨11, 194, 1, "13,1,33,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[30]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[30]'(by decide)) (List.getElem_mem _)
 theorem row8838_mem : (⟨11, 194, 2, "0,1,18,1,659,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings16[31]'(by decide)) (bindings16_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings16 checked16
+    (bindings16[31]'(by decide)) (List.getElem_mem _)
 theorem row8839_mem : (⟨10, 194, 0, "0,1,18,1,20,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[0]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[0]'(by decide)) (List.getElem_mem _)
 theorem row8840_mem : (⟨10, 194, 1, "0,2,67,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[1]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[1]'(by decide)) (List.getElem_mem _)
 theorem row8841_mem : (⟨9, 194, 0, "0,2,68,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[2]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[2]'(by decide)) (List.getElem_mem _)
 theorem row8842_mem : (⟨7, 194, 0, "0,1,18,1,660,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[3]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[3]'(by decide)) (List.getElem_mem _)
 theorem row8843_mem : (⟨6, 194, 0, "18,2,341,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[4]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[4]'(by decide)) (List.getElem_mem _)
 theorem row8844_mem : (⟨6, 194, 1, "0,2,1058,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[5]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[5]'(by decide)) (List.getElem_mem _)
 theorem row8846_mem : (⟨5, 194, 1, "0,2,18,2,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[6]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[6]'(by decide)) (List.getElem_mem _)
 theorem row8848_mem : (⟨195, 195, 0, "0,195"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[7]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[7]'(by decide)) (List.getElem_mem _)
 theorem row8850_mem : (⟨59, 195, 0, "8,1,852,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[8]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[8]'(by decide)) (List.getElem_mem _)
 theorem row8851_mem : (⟨58, 195, 0, "17,1,701,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[9]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[9]'(by decide)) (List.getElem_mem _)
 theorem row8852_mem : (⟨57, 195, 0, "1092,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[10]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[10]'(by decide)) (List.getElem_mem _)
 theorem row8853_mem : (⟨56, 195, 0, "8,3,469,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[11]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[11]'(by decide)) (List.getElem_mem _)
 theorem row8854_mem : (⟨55, 195, 0, "8,3,470,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[12]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[12]'(by decide)) (List.getElem_mem _)
 theorem row8855_mem : (⟨54, 195, 0, "8,2,17,1,326,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[13]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[13]'(by decide)) (List.getElem_mem _)
 theorem row8856_mem : (⟨53, 195, 0, "8,2,634,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[14]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[14]'(by decide)) (List.getElem_mem _)
 theorem row8857_mem : (⟨52, 195, 0, "8,5,199,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[15]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[15]'(by decide)) (List.getElem_mem _)
 theorem row8858_mem : (⟨51, 195, 0, "8,5,200,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[16]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[16]'(by decide)) (List.getElem_mem _)
 theorem row8860_mem : (⟨50, 195, 1, "8,4,17,1,153,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[17]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[17]'(by decide)) (List.getElem_mem _)
 theorem row8861_mem : (⟨49, 195, 0, "8,2,636,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[18]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[18]'(by decide)) (List.getElem_mem _)
 theorem row8862_mem : (⟨49, 195, 1, "8,4,283,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[19]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[19]'(by decide)) (List.getElem_mem _)
 theorem row8863_mem : (⟨49, 195, 2, "0,1,16,1,685,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[20]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[20]'(by decide)) (List.getElem_mem _)
 theorem row8864_mem : (⟨48, 195, 0, "16,1,17,1,403,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[21]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[21]'(by decide)) (List.getElem_mem _)
 theorem row8865_mem : (⟨48, 195, 1, "8,7,77,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[22]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[22]'(by decide)) (List.getElem_mem _)
 theorem row8866_mem : (⟨48, 195, 2, "0,1,17,1,685,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[23]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[23]'(by decide)) (List.getElem_mem _)
 theorem row8868_mem : (⟨47, 195, 1, "17,2,403,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[24]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[24]'(by decide)) (List.getElem_mem _)
 theorem row8869_mem : (⟨47, 195, 2, "8,7,78,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[25]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[25]'(by decide)) (List.getElem_mem _)
 theorem row8870_mem : (⟨46, 195, 0, "8,3,16,1,224,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[26]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[26]'(by decide)) (List.getElem_mem _)
 theorem row8871_mem : (⟨46, 195, 1, "8,6,17,1,56,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[27]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[27]'(by decide)) (List.getElem_mem _)
 theorem row8872_mem : (⟨46, 195, 2, "0,4,1033,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[28]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[28]'(by decide)) (List.getElem_mem _)
 theorem row8873_mem : (⟨45, 195, 0, "8,3,16,1,225,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[29]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[29]'(by decide)) (List.getElem_mem _)
 theorem row8874_mem : (⟨45, 195, 1, "8,6,136,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[30]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[30]'(by decide)) (List.getElem_mem _)
 theorem row8875_mem : (⟨45, 195, 2, "0,2,1059,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings17[31]'(by decide)) (bindings17_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings17 checked17
+    (bindings17[31]'(by decide)) (List.getElem_mem _)
 theorem row8876_mem : (⟨44, 195, 0, "8,3,17,1,225,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[0]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[0]'(by decide)) (List.getElem_mem _)
 theorem row8877_mem : (⟨44, 195, 1, "8,9,19,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[1]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[1]'(by decide)) (List.getElem_mem _)
 theorem row8879_mem : (⟨43, 195, 0, "8,2,42,1,224,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[2]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[2]'(by decide)) (List.getElem_mem _)
 theorem row8880_mem : (⟨43, 195, 1, "8,9,20,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[3]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[3]'(by decide)) (List.getElem_mem _)
 theorem row8881_mem : (⟨43, 195, 2, "0,1,1076,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[4]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[4]'(by decide)) (List.getElem_mem _)
 theorem row8882_mem : (⟨42, 195, 0, "1093,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[5]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[5]'(by decide)) (List.getElem_mem _)
 theorem row8883_mem : (⟨42, 195, 1, "8,6,137,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[6]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[6]'(by decide)) (List.getElem_mem _)
 theorem row8884_mem : (⟨42, 195, 2, "8,8,45,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[7]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[7]'(by decide)) (List.getElem_mem _)
 theorem row8885_mem : (⟨41, 195, 0, "8,6,138,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[8]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[8]'(by decide)) (List.getElem_mem _)
 theorem row8886_mem : (⟨41, 195, 1, "8,8,46,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[9]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[9]'(by decide)) (List.getElem_mem _)
 theorem row8887_mem : (⟨40, 195, 0, "8,1,64,1,237,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[10]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[10]'(by decide)) (List.getElem_mem _)
 theorem row8888_mem : (⟨40, 195, 1, "8,4,16,1,154,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[11]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[11]'(by decide)) (List.getElem_mem _)
 theorem row8889_mem : (⟨40, 195, 2, "8,7,9,1,13,2"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[12]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[12]'(by decide)) (List.getElem_mem _)
 theorem row8890_mem : (⟨40, 195, 3, "1,1,5,1,64,1,244,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[13]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[13]'(by decide)) (List.getElem_mem _)
 theorem row8891_mem : (⟨39, 195, 0, "8,1,64,1,238,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[14]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[14]'(by decide)) (List.getElem_mem _)
 theorem row8892_mem : (⟨39, 195, 1, "8,4,17,1,154,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[15]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[15]'(by decide)) (List.getElem_mem _)
 theorem row8893_mem : (⟨39, 195, 2, "8,6,9,1,13,1,32,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[16]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[16]'(by decide)) (List.getElem_mem _)
 theorem row8894_mem : (⟨39, 195, 3, "0,1,8,2,623,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[17]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[17]'(by decide)) (List.getElem_mem _)
 theorem row8895_mem : (⟨39, 195, 4, "0,12,919,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[18]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[18]'(by decide)) (List.getElem_mem _)
 theorem row8896_mem : (⟨38, 195, 0, "8,2,637,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[19]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[19]'(by decide)) (List.getElem_mem _)
 theorem row8897_mem : (⟨38, 195, 1, "8,5,9,1,13,2,23,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[20]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[20]'(by decide)) (List.getElem_mem _)
 theorem row8898_mem : (⟨38, 195, 2, "8,7,79,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[21]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[21]'(by decide)) (List.getElem_mem _)
 theorem row8899_mem : (⟨38, 195, 3, "0,1,8,1,17,1,516,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[22]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[22]'(by decide)) (List.getElem_mem _)
 theorem row8900_mem : (⟨38, 195, 4, "0,13,898,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[23]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[23]'(by decide)) (List.getElem_mem _)
 theorem row8901_mem : (⟨37, 195, 0, "8,1,17,1,529,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[24]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[24]'(by decide)) (List.getElem_mem _)
 theorem row8902_mem : (⟨37, 195, 1, "8,4,9,1,13,2,51,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[25]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[25]'(by decide)) (List.getElem_mem _)
 theorem row8903_mem : (⟨37, 195, 2, "8,7,80,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[26]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[26]'(by decide)) (List.getElem_mem _)
 theorem row8904_mem : (⟨37, 195, 3, "0,1,17,2,380,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[27]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[27]'(by decide)) (List.getElem_mem _)
 theorem row8905_mem : (⟨36, 195, 0, "8,3,64,1,112,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[28]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[28]'(by decide)) (List.getElem_mem _)
 theorem row8906_mem : (⟨36, 195, 1, "8,3,9,1,13,5"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[29]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[29]'(by decide)) (List.getElem_mem _)
 theorem row8907_mem : (⟨36, 195, 2, "8,5,22,1,80,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[30]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[30]'(by decide)) (List.getElem_mem _)
 theorem row8908_mem : (⟨36, 195, 3, "0,6,64,3"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings18[31]'(by decide)) (bindings18_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings18 checked18
+    (bindings18[31]'(by decide)) (List.getElem_mem _)
 theorem row8909_mem : (⟨35, 195, 0, "8,2,9,1,13,4,32,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[0]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[0]'(by decide)) (List.getElem_mem _)
 theorem row8910_mem : (⟨35, 195, 1, "8,3,64,1,113,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[1]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[1]'(by decide)) (List.getElem_mem _)
 theorem row8911_mem : (⟨35, 195, 2, "8,5,23,1,80,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[2]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[2]'(by decide)) (List.getElem_mem _)
 theorem row8912_mem : (⟨35, 195, 3, "0,6,64,1,299,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[3]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[3]'(by decide)) (List.getElem_mem _)
 theorem row8913_mem : (⟨34, 195, 0, "8,1,9,1,13,5,23,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[4]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[4]'(by decide)) (List.getElem_mem _)
 theorem row8914_mem : (⟨34, 195, 1, "8,3,471,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[5]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[5]'(by decide)) (List.getElem_mem _)
 theorem row8915_mem : (⟨34, 195, 2, "8,4,13,2,101,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[6]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[6]'(by decide)) (List.getElem_mem _)
 theorem row8916_mem : (⟨33, 195, 0, "9,1,13,5,51,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[7]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[7]'(by decide)) (List.getElem_mem _)
 theorem row8917_mem : (⟨33, 195, 1, "8,2,9,1,435,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[8]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[8]'(by decide)) (List.getElem_mem _)
 theorem row8918_mem : (⟨33, 195, 2, "8,3,13,3,80,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[9]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[9]'(by decide)) (List.getElem_mem _)
 theorem row8919_mem : (⟨33, 195, 3, "0,6,64,1,301,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[10]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[10]'(by decide)) (List.getElem_mem _)
 theorem row8920_mem : (⟨32, 195, 0, "8,2,13,2,23,1,101,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[11]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[11]'(by decide)) (List.getElem_mem _)
 theorem row8921_mem : (⟨32, 195, 1, "8,5,201,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[12]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[12]'(by decide)) (List.getElem_mem _)
 theorem row8923_mem : (⟨31, 195, 1, "8,1,13,3,23,1,80,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[13]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[13]'(by decide)) (List.getElem_mem _)
 theorem row8924_mem : (⟨31, 195, 2, "8,4,9,1,188,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[14]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[14]'(by decide)) (List.getElem_mem _)
 theorem row8925_mem : (⟨30, 195, 0, "16,1,64,1,187,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[15]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[15]'(by decide)) (List.getElem_mem _)
 theorem row8926_mem : (⟨30, 195, 1, "13,5,101,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[16]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[16]'(by decide)) (List.getElem_mem _)
 theorem row8927_mem : (⟨30, 195, 2, "8,3,9,1,267,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[17]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[17]'(by decide)) (List.getElem_mem _)
 theorem row8928_mem : (⟨29, 195, 0, "16,1,64,1,188,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[18]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[18]'(by decide)) (List.getElem_mem _)
 theorem row8929_mem : (⟨29, 195, 1, "8,2,9,1,23,1,188,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[19]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[19]'(by decide)) (List.getElem_mem _)
 theorem row8930_mem : (⟨29, 195, 2, "0,1,64,1,347,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[20]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[20]'(by decide)) (List.getElem_mem _)
 theorem row8931_mem : (⟨29, 195, 3, "0,1,8,2,627,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[21]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[21]'(by decide)) (List.getElem_mem _)
 theorem row8933_mem : (⟨28, 195, 1, "8,1,854,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[22]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[22]'(by decide)) (List.getElem_mem _)
 theorem row8934_mem : (⟨28, 195, 2, "8,1,9,1,13,2,212,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[23]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[23]'(by decide)) (List.getElem_mem _)
 theorem row8935_mem : (⟨28, 195, 3, "0,1,138,1,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[24]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[24]'(by decide)) (List.getElem_mem _)
 theorem row8936_mem : (⟨28, 195, 4, "0,1,17,1,690,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[25]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[25]'(by decide)) (List.getElem_mem _)
 theorem row8937_mem : (⟨28, 195, 5, "0,1,8,1,832,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[26]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[26]'(by decide)) (List.getElem_mem _)
 theorem row8938_mem : (⟨27, 195, 0, "9,1,13,3,188,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[27]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[27]'(by decide)) (List.getElem_mem _)
 theorem row8939_mem : (⟨27, 195, 1, "8,2,638,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[28]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[28]'(by decide)) (List.getElem_mem _)
 theorem row8940_mem : (⟨27, 195, 2, "0,1,1078,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[29]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[29]'(by decide)) (List.getElem_mem _)
 theorem row8941_mem : (⟨27, 195, 3, "0,1,23,1,627,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[30]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[30]'(by decide)) (List.getElem_mem _)
 theorem row8942_mem : (⟨26, 195, 0, "13,3,286,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings19[31]'(by decide)) (bindings19_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings19 checked19
+    (bindings19[31]'(by decide)) (List.getElem_mem _)
 theorem row8943_mem : (⟨26, 195, 1, "8,2,640,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[0]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[0]'(by decide)) (List.getElem_mem _)
 theorem row8944_mem : (⟨26, 195, 2, "0,1,1079,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[1]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[1]'(by decide)) (List.getElem_mem _)
 theorem row8945_mem : (⟨26, 195, 3, "0,1,64,1,349,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[2]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[2]'(by decide)) (List.getElem_mem _)
 theorem row8946_mem : (⟨25, 195, 0, "13,3,287,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[3]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[3]'(by decide)) (List.getElem_mem _)
 theorem row8947_mem : (⟨25, 195, 1, "8,1,80,1,212,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[4]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[4]'(by decide)) (List.getElem_mem _)
 theorem row8948_mem : (⟨25, 195, 2, "0,1,1081,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[5]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[5]'(by decide)) (List.getElem_mem _)
 theorem row8949_mem : (⟨25, 195, 3, "0,2,1063,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[6]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[6]'(by decide)) (List.getElem_mem _)
 theorem row8950_mem : (⟨24, 195, 0, "13,1,80,1,188,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[7]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[7]'(by decide)) (List.getElem_mem _)
 theorem row8953_mem : (⟨24, 195, 3, "0,1,1082,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[8]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[8]'(by decide)) (List.getElem_mem _)
 theorem row8954_mem : (⟨24, 195, 4, "0,3,1051,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[9]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[9]'(by decide)) (List.getElem_mem _)
 theorem row8955_mem : (⟨23, 195, 0, "3,2,877,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[10]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[10]'(by decide)) (List.getElem_mem _)
 theorem row8956_mem : (⟨23, 195, 1, "0,1,1084,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[11]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[11]'(by decide)) (List.getElem_mem _)
 theorem row8957_mem : (⟨23, 195, 2, "0,1,1083,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[12]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[12]'(by decide)) (List.getElem_mem _)
 theorem row8958_mem : (⟨22, 195, 0, "13,3,288,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[13]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[13]'(by decide)) (List.getElem_mem _)
 theorem row8959_mem : (⟨22, 195, 1, "1,1,7,1,857,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[14]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[14]'(by decide)) (List.getElem_mem _)
 theorem row8960_mem : (⟨22, 195, 2, "0,1,71,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[15]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[15]'(by decide)) (List.getElem_mem _)
 theorem row8961_mem : (⟨22, 195, 3, "0,2,1064,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[16]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[16]'(by decide)) (List.getElem_mem _)
 theorem row8962_mem : (⟨21, 195, 0, "13,2,532,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[17]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[17]'(by decide)) (List.getElem_mem _)
 theorem row8964_mem : (⟨21, 195, 2, "0,1,3,1,960,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[18]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[18]'(by decide)) (List.getElem_mem _)
 theorem row8965_mem : (⟨21, 195, 3, "0,7,59,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[19]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[19]'(by decide)) (List.getElem_mem _)
 theorem row8966_mem : (⟨20, 195, 0, "1,1,1066,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[20]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[20]'(by decide)) (List.getElem_mem _)
 theorem row8967_mem : (⟨20, 195, 1, "0,2,1068,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[21]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[21]'(by decide)) (List.getElem_mem _)
 theorem row8968_mem : (⟨19, 195, 0, "0,1,1086,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[22]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[22]'(by decide)) (List.getElem_mem _)
 theorem row8969_mem : (⟨19, 195, 1, "0,1,67,1,336,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[23]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[23]'(by decide)) (List.getElem_mem _)
 theorem row8971_mem : (⟨18, 195, 1, "0,1,8,2,16,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[24]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[24]'(by decide)) (List.getElem_mem _)
 theorem row8972_mem : (⟨18, 195, 2, "0,2,1069,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[25]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[25]'(by decide)) (List.getElem_mem _)
 theorem row8974_mem : (⟨17, 195, 1, "3,1,965,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[26]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[26]'(by decide)) (List.getElem_mem _)
 theorem row8976_mem : (⟨17, 195, 3, "0,1,8,2,17,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[27]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[27]'(by decide)) (List.getElem_mem _)
 theorem row8977_mem : (⟨17, 195, 4, "0,3,1055,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[28]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[28]'(by decide)) (List.getElem_mem _)
 theorem row8978_mem : (⟨16, 195, 0, "1,1,1072,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[29]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[29]'(by decide)) (List.getElem_mem _)
 theorem row8979_mem : (⟨16, 195, 1, "0,1,1088,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[30]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[30]'(by decide)) (List.getElem_mem _)
 theorem row8980_mem : (⟨16, 195, 2, "0,3,1057,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings20[31]'(by decide)) (bindings20_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings20 checked20
+    (bindings20[31]'(by decide)) (List.getElem_mem _)
 theorem row8981_mem : (⟨15, 195, 0, "67,1,352,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[0]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[0]'(by decide)) (List.getElem_mem _)
 theorem row8982_mem : (⟨15, 195, 1, "0,1,1090,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[1]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[1]'(by decide)) (List.getElem_mem _)
 theorem row8983_mem : (⟨15, 195, 2, "0,4,64,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[2]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[2]'(by decide)) (List.getElem_mem _)
 theorem row8986_mem : (⟨14, 195, 2, "0,1,1091,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[3]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[3]'(by decide)) (List.getElem_mem _)
 theorem row8987_mem : (⟨14, 195, 3, "0,3,66,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[4]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[4]'(by decide)) (List.getElem_mem _)
 theorem row8989_mem : (⟨13, 195, 1, "1099,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[5]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[5]'(by decide)) (List.getElem_mem _)
 theorem row8990_mem : (⟨13, 195, 2, "1,2,64,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[6]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[6]'(by decide)) (List.getElem_mem _)
 theorem row8991_mem : (⟨12, 195, 0, "0,1,72,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[7]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[7]'(by decide)) (List.getElem_mem _)
 theorem row8992_mem : (⟨12, 195, 1, "0,2,18,1,659,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[8]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[8]'(by decide)) (List.getElem_mem _)
 theorem row8993_mem : (⟨11, 195, 0, "0,2,18,1,20,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[9]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[9]'(by decide)) (List.getElem_mem _)
 theorem row8996_mem : (⟨8, 195, 1, "0,2,18,1,660,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[10]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[10]'(by decide)) (List.getElem_mem _)
 theorem row8997_mem : (⟨7, 195, 0, "75,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[11]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[11]'(by decide)) (List.getElem_mem _)
 theorem row8998_mem : (⟨7, 195, 1, "74,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[12]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[12]'(by decide)) (List.getElem_mem _)
 theorem row9000_mem : (⟨7, 195, 3, "0,3,1058,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[13]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[13]'(by decide)) (List.getElem_mem _)
 theorem row9002_mem : (⟨6, 195, 1, "1,1,70,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[14]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[14]'(by decide)) (List.getElem_mem _)
 theorem row9003_mem : (⟨6, 195, 2, "0,3,18,2,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[15]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[15]'(by decide)) (List.getElem_mem _)
 theorem row9004_mem : (⟨196, 196, 0, "0,196"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[16]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[16]'(by decide)) (List.getElem_mem _)
 theorem row9006_mem : (⟨65, 196, 0, "1101,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[17]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[17]'(by decide)) (List.getElem_mem _)
 theorem row9007_mem : (⟨61, 196, 0, "0,1,8,1,851,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[18]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[18]'(by decide)) (List.getElem_mem _)
 theorem row9008_mem : (⟨60, 196, 0, "0,1,8,1,852,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[19]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[19]'(by decide)) (List.getElem_mem _)
 theorem row9009_mem : (⟨59, 196, 0, "0,1,17,1,701,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[20]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[20]'(by decide)) (List.getElem_mem _)
 theorem row9010_mem : (⟨51, 196, 0, "0,1,8,2,635,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[21]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[21]'(by decide)) (List.getElem_mem _)
 theorem row9011_mem : (⟨50, 196, 0, "0,1,8,2,636,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[22]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[22]'(by decide)) (List.getElem_mem _)
 theorem row9012_mem : (⟨50, 196, 1, "0,2,16,1,685,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[23]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[23]'(by decide)) (List.getElem_mem _)
 theorem row9013_mem : (⟨49, 196, 0, "0,1,16,1,17,1,403,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[24]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[24]'(by decide)) (List.getElem_mem _)
 theorem row9014_mem : (⟨49, 196, 1, "0,2,17,1,685,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[25]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[25]'(by decide)) (List.getElem_mem _)
 theorem row9015_mem : (⟨48, 196, 0, "0,1,17,2,403,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[26]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[26]'(by decide)) (List.getElem_mem _)
 theorem row9016_mem : (⟨47, 196, 0, "0,5,1033,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[27]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[27]'(by decide)) (List.getElem_mem _)
 theorem row9017_mem : (⟨46, 196, 0, "0,3,1059,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[28]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[28]'(by decide)) (List.getElem_mem _)
 theorem row9018_mem : (⟨44, 196, 0, "0,2,1076,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[29]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[29]'(by decide)) (List.getElem_mem _)
 theorem row9019_mem : (⟨43, 196, 0, "0,1,1093,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[30]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[30]'(by decide)) (List.getElem_mem _)
 theorem row9020_mem : (⟨40, 196, 0, "0,2,8,2,623,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings21[31]'(by decide)) (bindings21_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings21 checked21
+    (bindings21[31]'(by decide)) (List.getElem_mem _)
 theorem row9021_mem : (⟨40, 196, 1, "0,13,919,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[0]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[0]'(by decide)) (List.getElem_mem _)
 theorem row9022_mem : (⟨39, 196, 0, "0,2,8,1,17,1,516,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[1]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[1]'(by decide)) (List.getElem_mem _)
 theorem row9023_mem : (⟨39, 196, 1, "0,14,898,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[2]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[2]'(by decide)) (List.getElem_mem _)
 theorem row9024_mem : (⟨34, 196, 0, "1102,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[3]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[3]'(by decide)) (List.getElem_mem _)
 theorem row9025_mem : (⟨33, 196, 0, "8,1,863,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[4]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[4]'(by decide)) (List.getElem_mem _)
 theorem row9027_mem : (⟨32, 196, 0, "8,2,642,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[5]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[5]'(by decide)) (List.getElem_mem _)
 theorem row9028_mem : (⟨31, 196, 0, "8,1,864,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[6]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[6]'(by decide)) (List.getElem_mem _)
 theorem row9029_mem : (⟨30, 196, 0, "13,1,784,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[7]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[7]'(by decide)) (List.getElem_mem _)
 theorem row9031_mem : (⟨30, 196, 2, "0,2,64,1,347,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[8]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[8]'(by decide)) (List.getElem_mem _)
 theorem row9032_mem : (⟨30, 196, 3, "0,2,8,2,627,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[9]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[9]'(by decide)) (List.getElem_mem _)
 theorem row9033_mem : (⟨29, 196, 0, "1103,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[10]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[10]'(by decide)) (List.getElem_mem _)
 theorem row9034_mem : (⟨29, 196, 1, "13,2,537,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[11]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[11]'(by decide)) (List.getElem_mem _)
 theorem row9035_mem : (⟨29, 196, 2, "13,5,105,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[12]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[12]'(by decide)) (List.getElem_mem _)
 theorem row9037_mem : (⟨29, 196, 4, "0,2,138,1,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[13]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[13]'(by decide)) (List.getElem_mem _)
 theorem row9038_mem : (⟨29, 196, 5, "0,2,8,1,832,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[14]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[14]'(by decide)) (List.getElem_mem _)
 theorem row9039_mem : (⟨28, 196, 0, "9,1,13,3,23,1,75,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[15]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[15]'(by decide)) (List.getElem_mem _)
 theorem row9040_mem : (⟨28, 196, 1, "0,2,1078,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[16]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[16]'(by decide)) (List.getElem_mem _)
 theorem row9041_mem : (⟨28, 196, 2, "0,2,23,1,627,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[17]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[17]'(by decide)) (List.getElem_mem _)
 theorem row9042_mem : (⟨27, 196, 0, "0,2,1079,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[18]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[18]'(by decide)) (List.getElem_mem _)
 theorem row9043_mem : (⟨27, 196, 1, "0,2,64,1,349,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[19]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[19]'(by decide)) (List.getElem_mem _)
 theorem row9045_mem : (⟨26, 196, 1, "0,2,1081,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[20]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[20]'(by decide)) (List.getElem_mem _)
 theorem row9046_mem : (⟨26, 196, 2, "0,3,1063,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[21]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[21]'(by decide)) (List.getElem_mem _)
 theorem row9048_mem : (⟨25, 196, 1, "0,2,1082,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[22]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[22]'(by decide)) (List.getElem_mem _)
 theorem row9049_mem : (⟨25, 196, 2, "0,4,1051,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[23]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[23]'(by decide)) (List.getElem_mem _)
 theorem row9050_mem : (⟨24, 196, 0, "1104,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[24]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[24]'(by decide)) (List.getElem_mem _)
 theorem row9052_mem : (⟨24, 196, 2, "0,2,1084,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[25]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[25]'(by decide)) (List.getElem_mem _)
 theorem row9053_mem : (⟨24, 196, 3, "0,2,1083,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[26]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[26]'(by decide)) (List.getElem_mem _)
 theorem row9054_mem : (⟨23, 196, 0, "1105,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[27]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[27]'(by decide)) (List.getElem_mem _)
 theorem row9056_mem : (⟨23, 196, 2, "13,1,23,1,417,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[28]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[28]'(by decide)) (List.getElem_mem _)
 theorem row9057_mem : (⟨23, 196, 3, "1,1,1083,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[29]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[29]'(by decide)) (List.getElem_mem _)
 theorem row9058_mem : (⟨23, 196, 4, "0,2,71,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[30]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[30]'(by decide)) (List.getElem_mem _)
 theorem row9059_mem : (⟨23, 196, 5, "0,3,1064,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings22[31]'(by decide)) (bindings22_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings22 checked22
+    (bindings22[31]'(by decide)) (List.getElem_mem _)
 theorem row9060_mem : (⟨22, 196, 0, "68,1,359,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[0]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[0]'(by decide)) (List.getElem_mem _)
 theorem row9061_mem : (⟨22, 196, 1, "9,1,75,1,212,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[1]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[1]'(by decide)) (List.getElem_mem _)
 theorem row9063_mem : (⟨22, 196, 3, "1,1,64,1,351,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[2]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[2]'(by decide)) (List.getElem_mem _)
 theorem row9064_mem : (⟨22, 196, 4, "1,1,3,1,959,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[3]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[3]'(by decide)) (List.getElem_mem _)
 theorem row9065_mem : (⟨22, 196, 5, "0,8,59,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[4]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[4]'(by decide)) (List.getElem_mem _)
 theorem row9067_mem : (⟨21, 196, 1, "18,1,690,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[5]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[5]'(by decide)) (List.getElem_mem _)
 theorem row9068_mem : (⟨21, 196, 2, "3,1,982,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[6]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[6]'(by decide)) (List.getElem_mem _)
 theorem row9069_mem : (⟨21, 196, 3, "0,3,1068,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[7]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[7]'(by decide)) (List.getElem_mem _)
 theorem row9070_mem : (⟨20, 196, 0, "1108,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[8]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[8]'(by decide)) (List.getElem_mem _)
 theorem row9072_mem : (⟨20, 196, 2, "9,1,13,1,569,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[9]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[9]'(by decide)) (List.getElem_mem _)
 theorem row9073_mem : (⟨20, 196, 3, "3,1,984,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[10]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[10]'(by decide)) (List.getElem_mem _)
 theorem row9074_mem : (⟨20, 196, 4, "2,1,1052,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[11]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[11]'(by decide)) (List.getElem_mem _)
 theorem row9075_mem : (⟨19, 196, 0, "1109,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[12]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[12]'(by decide)) (List.getElem_mem _)
 theorem row9076_mem : (⟨19, 196, 1, "67,1,363,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[13]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[13]'(by decide)) (List.getElem_mem _)
 theorem row9078_mem : (⟨19, 196, 3, "0,1,1096,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[14]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[14]'(by decide)) (List.getElem_mem _)
 theorem row9079_mem : (⟨19, 196, 4, "0,2,8,2,16,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[15]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[15]'(by decide)) (List.getElem_mem _)
 theorem row9080_mem : (⟨18, 196, 0, "1110,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[16]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[16]'(by decide)) (List.getElem_mem _)
 theorem row9081_mem : (⟨18, 196, 1, "0,1,1097,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[17]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[17]'(by decide)) (List.getElem_mem _)
 theorem row9082_mem : (⟨18, 196, 2, "0,1,3,1,965,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[18]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[18]'(by decide)) (List.getElem_mem _)
 theorem row9083_mem : (⟨18, 196, 3, "0,2,8,2,17,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[19]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[19]'(by decide)) (List.getElem_mem _)
 theorem row9084_mem : (⟨18, 196, 4, "0,4,1055,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[20]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[20]'(by decide)) (List.getElem_mem _)
 theorem row9085_mem : (⟨17, 196, 0, "1111,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[21]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[21]'(by decide)) (List.getElem_mem _)
 theorem row9086_mem : (⟨17, 196, 1, "13,1,787,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[22]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[22]'(by decide)) (List.getElem_mem _)
 theorem row9087_mem : (⟨17, 196, 2, "2,1,1054,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[23]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[23]'(by decide)) (List.getElem_mem _)
 theorem row9088_mem : (⟨17, 196, 3, "1,1,1087,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[24]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[24]'(by decide)) (List.getElem_mem _)
 theorem row9089_mem : (⟨17, 196, 4, "0,2,1088,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[25]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[25]'(by decide)) (List.getElem_mem _)
 theorem row9090_mem : (⟨17, 196, 5, "0,4,1057,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[26]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[26]'(by decide)) (List.getElem_mem _)
 theorem row9091_mem : (⟨16, 196, 0, "1113,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[27]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[27]'(by decide)) (List.getElem_mem _)
 theorem row9093_mem : (⟨16, 196, 2, "2,2,990,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[28]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[28]'(by decide)) (List.getElem_mem _)
 theorem row9095_mem : (⟨16, 196, 4, "1,2,1055,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[29]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[29]'(by decide)) (List.getElem_mem _)
 theorem row9096_mem : (⟨16, 196, 5, "0,1,67,1,352,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[30]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[30]'(by decide)) (List.getElem_mem _)
 theorem row9097_mem : (⟨16, 196, 6, "0,5,64,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings23[31]'(by decide)) (bindings23_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings23 checked23
+    (bindings23[31]'(by decide)) (List.getElem_mem _)
 theorem row9098_mem : (⟨15, 196, 0, "43,1,543,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[0]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[0]'(by decide)) (List.getElem_mem _)
 theorem row9099_mem : (⟨15, 196, 1, "3,1,990,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[1]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[1]'(by decide)) (List.getElem_mem _)
 theorem row9100_mem : (⟨15, 196, 2, "2,1,1055,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[2]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[2]'(by decide)) (List.getElem_mem _)
 theorem row9103_mem : (⟨15, 196, 5, "0,1,1098,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[3]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[3]'(by decide)) (List.getElem_mem _)
 theorem row9104_mem : (⟨15, 196, 6, "0,2,1091,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[4]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[4]'(by decide)) (List.getElem_mem _)
 theorem row9105_mem : (⟨15, 196, 7, "0,4,66,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[5]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[5]'(by decide)) (List.getElem_mem _)
 theorem row9106_mem : (⟨14, 196, 0, "1115,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[6]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[6]'(by decide)) (List.getElem_mem _)
 theorem row9107_mem : (⟨14, 196, 1, "1114,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[7]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[7]'(by decide)) (List.getElem_mem _)
 theorem row9108_mem : (⟨14, 196, 2, "43,1,544,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[8]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[8]'(by decide)) (List.getElem_mem _)
 theorem row9109_mem : (⟨14, 196, 3, "2,1,1057,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[9]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[9]'(by decide)) (List.getElem_mem _)
 theorem row9110_mem : (⟨14, 196, 4, "0,1,1099,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[10]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[10]'(by decide)) (List.getElem_mem _)
 theorem row9111_mem : (⟨13, 196, 0, "1117,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[11]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[11]'(by decide)) (List.getElem_mem _)
 theorem row9112_mem : (⟨13, 196, 1, "1116,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[12]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[12]'(by decide)) (List.getElem_mem _)
 theorem row9113_mem : (⟨13, 196, 2, "0,2,72,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[13]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[13]'(by decide)) (List.getElem_mem _)
 theorem row9114_mem : (⟨12, 196, 0, "1119,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[14]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[14]'(by decide)) (List.getElem_mem _)
 theorem row9116_mem : (⟨12, 196, 2, "1,1,72,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[15]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[15]'(by decide)) (List.getElem_mem _)
 theorem row9118_mem : (⟨9, 196, 0, "0,1,73,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[16]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[16]'(by decide)) (List.getElem_mem _)
 theorem row9119_mem : (⟨8, 196, 0, "0,1,75,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[17]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[17]'(by decide)) (List.getElem_mem _)
 theorem row9120_mem : (⟨8, 196, 1, "0,1,74,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[18]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[18]'(by decide)) (List.getElem_mem _)
 theorem row9121_mem : (⟨8, 196, 2, "0,4,1058,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[19]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[19]'(by decide)) (List.getElem_mem _)
 theorem row9122_mem : (⟨7, 196, 0, "18,1,24,1,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[20]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[20]'(by decide)) (List.getElem_mem _)
 theorem row9123_mem : (⟨7, 196, 1, "0,4,18,2,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[21]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[21]'(by decide)) (List.getElem_mem _)
 theorem row9125_mem : (⟨5, 196, 0, "2,1,1058,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[22]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[22]'(by decide)) (List.getElem_mem _)
 theorem row9127_mem : (⟨4, 196, 0, "2,1,18,2,324,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[23]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[23]'(by decide)) (List.getElem_mem _)
 theorem row9128_mem : (⟨197, 197, 0, "0,197"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[24]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[24]'(by decide)) (List.getElem_mem _)
 theorem row9129_mem : (⟨66, 197, 0, "0,1,1101,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[25]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[25]'(by decide)) (List.getElem_mem _)
 theorem row9130_mem : (⟨62, 197, 0, "0,2,8,1,851,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[26]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[26]'(by decide)) (List.getElem_mem _)
 theorem row9131_mem : (⟨61, 197, 0, "0,2,8,1,852,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[27]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[27]'(by decide)) (List.getElem_mem _)
 theorem row9133_mem : (⟨52, 197, 0, "0,2,8,2,635,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[28]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[28]'(by decide)) (List.getElem_mem _)
 theorem row9134_mem : (⟨51, 197, 0, "0,2,8,2,636,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[29]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[29]'(by decide)) (List.getElem_mem _)
 theorem row9135_mem : (⟨50, 197, 0, "0,3,17,1,685,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[30]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[30]'(by decide)) (List.getElem_mem _)
 theorem row9136_mem : (⟨49, 197, 0, "0,2,17,2,403,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings24[31]'(by decide)) (bindings24_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings24 checked24
+    (bindings24[31]'(by decide)) (List.getElem_mem _)
 theorem row9139_mem : (⟨48, 197, 2, "0,6,1033,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[0]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[0]'(by decide)) (List.getElem_mem _)
 theorem row9140_mem : (⟨47, 197, 0, "17,1,722,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[1]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[1]'(by decide)) (List.getElem_mem _)
 theorem row9141_mem : (⟨47, 197, 1, "0,4,1059,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[2]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[2]'(by decide)) (List.getElem_mem _)
 theorem row9142_mem : (⟨46, 197, 0, "8,1,872,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[3]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[3]'(by decide)) (List.getElem_mem _)
 theorem row9143_mem : (⟨45, 197, 0, "8,1,873,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[4]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[4]'(by decide)) (List.getElem_mem _)
 theorem row9144_mem : (⟨45, 197, 1, "0,3,1076,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[5]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[5]'(by decide)) (List.getElem_mem _)
 theorem row9145_mem : (⟨44, 197, 0, "8,3,488,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[6]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[6]'(by decide)) (List.getElem_mem _)
 theorem row9146_mem : (⟨43, 197, 0, "8,2,17,1,343,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[7]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[7]'(by decide)) (List.getElem_mem _)
 theorem row9148_mem : (⟨42, 197, 1, "8,3,489,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[8]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[8]'(by decide)) (List.getElem_mem _)
 theorem row9149_mem : (⟨41, 197, 0, "17,1,725,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[9]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[9]'(by decide)) (List.getElem_mem _)
 theorem row9150_mem : (⟨41, 197, 1, "8,3,490,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[10]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[10]'(by decide)) (List.getElem_mem _)
 theorem row9151_mem : (⟨41, 197, 2, "0,14,919,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[11]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[11]'(by decide)) (List.getElem_mem _)
 theorem row9152_mem : (⟨40, 197, 0, "8,5,206,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[12]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[12]'(by decide)) (List.getElem_mem _)
 theorem row9154_mem : (⟨39, 197, 1, "8,4,17,1,160,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[13]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[13]'(by decide)) (List.getElem_mem _)
 theorem row9155_mem : (⟨38, 197, 0, "8,1,64,1,244,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[14]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[14]'(by decide)) (List.getElem_mem _)
 theorem row9156_mem : (⟨38, 197, 1, "8,3,491,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[15]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[15]'(by decide)) (List.getElem_mem _)
 theorem row9157_mem : (⟨38, 197, 2, "8,5,207,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[16]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[16]'(by decide)) (List.getElem_mem _)
 theorem row9158_mem : (⟨37, 197, 0, "8,1,138,1,149,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[17]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[17]'(by decide)) (List.getElem_mem _)
 theorem row9159_mem : (⟨37, 197, 1, "8,1,16,1,17,1,260,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[18]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[18]'(by decide)) (List.getElem_mem _)
 theorem row9160_mem : (⟨37, 197, 2, "8,5,208,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[19]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[19]'(by decide)) (List.getElem_mem _)
 theorem row9161_mem : (⟨36, 197, 0, "8,1,64,1,245,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[20]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[20]'(by decide)) (List.getElem_mem _)
 theorem row9162_mem : (⟨36, 197, 1, "8,1,17,2,260,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[21]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[21]'(by decide)) (List.getElem_mem _)
 theorem row9163_mem : (⟨36, 197, 2, "8,4,9,1,194,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[22]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[22]'(by decide)) (List.getElem_mem _)
 theorem row9164_mem : (⟨35, 197, 0, "8,1,60,1,260,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[23]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[23]'(by decide)) (List.getElem_mem _)
 theorem row9165_mem : (⟨35, 197, 1, "8,2,653,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[24]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[24]'(by decide)) (List.getElem_mem _)
 theorem row9166_mem : (⟨35, 197, 2, "8,3,9,1,13,1,167,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[25]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[25]'(by decide)) (List.getElem_mem _)
 theorem row9167_mem : (⟨34, 197, 0, "8,2,16,1,347,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[26]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[26]'(by decide)) (List.getElem_mem _)
 theorem row9168_mem : (⟨34, 197, 1, "8,2,9,1,13,1,248,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[27]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[27]'(by decide)) (List.getElem_mem _)
 theorem row9169_mem : (⟨34, 197, 2, "8,4,291,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[28]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[28]'(by decide)) (List.getElem_mem _)
 theorem row9170_mem : (⟨33, 197, 0, "8,1,9,1,13,2,219,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[29]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[29]'(by decide)) (List.getElem_mem _)
 theorem row9171_mem : (⟨33, 197, 1, "8,2,17,1,347,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[30]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[30]'(by decide)) (List.getElem_mem _)
 theorem row9172_mem : (⟨33, 197, 2, "8,4,292,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings25[31]'(by decide)) (bindings25_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings25 checked25
+    (bindings25[31]'(by decide)) (List.getElem_mem _)
 theorem row9174_mem : (⟨32, 197, 1, "9,1,13,3,194,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[0]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[0]'(by decide)) (List.getElem_mem _)
 theorem row9175_mem : (⟨32, 197, 2, "8,2,22,1,292,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[1]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[1]'(by decide)) (List.getElem_mem _)
 theorem row9176_mem : (⟨32, 197, 3, "8,3,492,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[2]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[2]'(by decide)) (List.getElem_mem _)
 theorem row9178_mem : (⟨31, 197, 0, "113,1,260,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[3]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[3]'(by decide)) (List.getElem_mem _)
 theorem row9179_mem : (⟨31, 197, 1, "8,2,23,1,292,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[4]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[4]'(by decide)) (List.getElem_mem _)
 theorem row9180_mem : (⟨31, 197, 2, "8,4,293,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[5]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[5]'(by decide)) (List.getElem_mem _)
 theorem row9181_mem : (⟨31, 197, 3, "0,3,64,1,347,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[6]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[6]'(by decide)) (List.getElem_mem _)
 theorem row9182_mem : (⟨30, 197, 0, "8,1,13,2,346,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[7]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[7]'(by decide)) (List.getElem_mem _)
 theorem row9183_mem : (⟨30, 197, 1, "8,5,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[8]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[8]'(by decide)) (List.getElem_mem _)
 theorem row9184_mem : (⟨30, 197, 2, "0,1,1103,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[9]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[9]'(by decide)) (List.getElem_mem _)
 theorem row9185_mem : (⟨30, 197, 3, "0,3,138,1,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[10]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[10]'(by decide)) (List.getElem_mem _)
 theorem row9186_mem : (⟨29, 197, 0, "13,3,292,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[11]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[11]'(by decide)) (List.getElem_mem _)
 theorem row9187_mem : (⟨29, 197, 1, "8,4,294,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[12]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[12]'(by decide)) (List.getElem_mem _)
 theorem row9188_mem : (⟨29, 197, 2, "1,1,1095,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[13]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[13]'(by decide)) (List.getElem_mem _)
 theorem row9189_mem : (⟨29, 197, 3, "0,3,23,1,627,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[14]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[14]'(by decide)) (List.getElem_mem _)
 theorem row9192_mem : (⟨28, 197, 2, "8,3,13,1,261,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[15]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[15]'(by decide)) (List.getElem_mem _)
 theorem row9193_mem : (⟨28, 197, 3, "0,3,1079,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[16]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[16]'(by decide)) (List.getElem_mem _)
 theorem row9194_mem : (⟨28, 197, 4, "0,3,64,1,349,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[17]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[17]'(by decide)) (List.getElem_mem _)
 theorem row9195_mem : (⟨27, 197, 0, "64,1,383,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[18]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[18]'(by decide)) (List.getElem_mem _)
 theorem row9196_mem : (⟨27, 197, 1, "8,1,874,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[19]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[19]'(by decide)) (List.getElem_mem _)
 theorem row9197_mem : (⟨27, 197, 2, "8,2,13,1,423,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[20]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[20]'(by decide)) (List.getElem_mem _)
 theorem row9198_mem : (⟨27, 197, 3, "0,3,1081,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[21]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[21]'(by decide)) (List.getElem_mem _)
 theorem row9199_mem : (⟨27, 197, 4, "0,4,1063,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[22]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[22]'(by decide)) (List.getElem_mem _)
 theorem row9200_mem : (⟨26, 197, 0, "23,1,655,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[23]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[23]'(by decide)) (List.getElem_mem _)
 theorem row9201_mem : (⟨26, 197, 1, "8,1,64,1,250,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[24]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[24]'(by decide)) (List.getElem_mem _)
 theorem row9202_mem : (⟨26, 197, 2, "8,1,13,3,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[25]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[25]'(by decide)) (List.getElem_mem _)
 theorem row9203_mem : (⟨26, 197, 3, "0,1,3,1,978,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[26]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[26]'(by decide)) (List.getElem_mem _)
 theorem row9204_mem : (⟨26, 197, 4, "0,5,1051,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[27]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[27]'(by decide)) (List.getElem_mem _)
 theorem row9205_mem : (⟨25, 197, 0, "1122,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[28]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[28]'(by decide)) (List.getElem_mem _)
 theorem row9206_mem : (⟨25, 197, 1, "13,3,294,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[29]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[29]'(by decide)) (List.getElem_mem _)
 theorem row9207_mem : (⟨25, 197, 2, "8,1,878,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[30]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[30]'(by decide)) (List.getElem_mem _)
 theorem row9208_mem : (⟨25, 197, 3, "0,1,1104,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings26[31]'(by decide)) (bindings26_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings26 checked26
+    (bindings26[31]'(by decide)) (List.getElem_mem _)
 theorem row9209_mem : (⟨25, 197, 4, "0,3,1084,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings27[0]'(by decide)) (bindings27_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings27 checked27
+    (bindings27[0]'(by decide)) (List.getElem_mem _)
 theorem row9210_mem : (⟨25, 197, 5, "0,3,1083,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings27[1]'(by decide)) (bindings27_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings27 checked27
+    (bindings27[1]'(by decide)) (List.getElem_mem _)
 theorem row9211_mem : (⟨24, 197, 0, "1123,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings27[2]'(by decide)) (bindings27_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings27 checked27
+    (bindings27[2]'(by decide)) (List.getElem_mem _)
 theorem row9212_mem : (⟨24, 197, 1, "13,4,181,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings27[3]'(by decide)) (bindings27_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings27 checked27
+    (bindings27[3]'(by decide)) (List.getElem_mem _)
 theorem row9213_mem : (⟨24, 197, 2, "8,1,89,1,209,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings27[4]'(by decide)) (bindings27_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings27 checked27
+    (bindings27[4]'(by decide)) (List.getElem_mem _)
 theorem row9214_mem : (⟨24, 197, 3, "0,1,1105,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings27[5]'(by decide)) (bindings27_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings27 checked27
+    (bindings27[5]'(by decide)) (List.getElem_mem _)
 theorem row9215_mem : (⟨24, 197, 4, "0,1,67,1,359,1"⟩ : BasisRow) ∈ basisRows :=
-  basisBindings_mem 8 chunkBound rows transcription bindings checked
-    (bindings27[6]'(by decide)) (bindings27_subset _ (List.getElem_mem _))
+  basisBindings_mem 8 chunkBound rows transcription bindings27 checked27
+    (bindings27[6]'(by decide)) (List.getElem_mem _)
 end KIP126.LinModule.NaturalityWords200.Shared.BasisChunk008

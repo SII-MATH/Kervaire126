@@ -118,20 +118,16 @@ private theorem transcription : LinE2.RawData.basisChunks[{ci}]'chunkBound =
         for bi in range((len(records)+31)//32):
             selected=records[32*bi:32*(bi+1)]
             parts.append(f'private def bindings{bi} : List (Nat × BasisRow) := ['+',\n  '.join('('+str(i%1024)+', '+row(r)+')' for i,r in selected)+']\n')
-        parts.append('private def bindingBlocks : List (List (Nat × BasisRow)) := ['+', '.join('bindings'+str(i) for i in range((len(records)+31)//32))+']\n')
-        parts.append('private def bindings : List (Nat × BasisRow) := bindingBlocks.flatten\n')
-        parts.append('private theorem checked : bindings.all (basisBindingCheck rows) = true := by cbv\n')
+        # Check one existing 32-row list at a time. Each public row theorem
+        # uses the same soundness theorem on its own complete checked list;
+        # no flattening forces every certificate into one large cbv proof.
         for bi in range((len(records)+31)//32):
-            parts.append(f'''private theorem bindings{bi}_mem : bindings{bi} ∈ bindingBlocks :=
-  List.getElem_mem (l := bindingBlocks) (n := {bi}) (by decide)
-private theorem bindings{bi}_subset (b : Nat × BasisRow) (hb : b ∈ bindings{bi}) : b ∈ bindings :=
-  List.mem_flatten.mpr ⟨bindings{bi}, bindings{bi}_mem, hb⟩
-''')
+            parts.append(f'private theorem checked{bi} : bindings{bi}.all (basisBindingCheck rows) = true := by cbv\n')
         for j,(i,r) in enumerate(records):
             bi,k=divmod(j,32)
             parts.append(f'''theorem row{i}_mem : ({row(r)} : BasisRow) ∈ basisRows :=
-  basisBindings_mem {ci} chunkBound rows transcription bindings checked
-    (bindings{bi}[{k}]'(by decide)) (bindings{bi}_subset _ (List.getElem_mem _))
+  basisBindings_mem {ci} chunkBound rows transcription bindings{bi} checked{bi}
+    (bindings{bi}[{k}]'(by decide)) (List.getElem_mem _)
 ''')
         parts.append(f'end {NS}.Shared.{name}\n');emit('Shared/'+name,''.join(parts))
     for shard in p['shards']:
