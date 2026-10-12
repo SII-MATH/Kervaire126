@@ -36,6 +36,7 @@ theorem may_signed_boundary_of_source (B : MayContext Syn)
       simp only [Preadditive.comp_neg, Category.assoc]
     rw [connectingHomomorphism_eq_desuspend, connectingHomomorphism_eq_desuspend,
       hs, map_neg]
+    rfl
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Remove the sign only after an explicit additive projection whose image
