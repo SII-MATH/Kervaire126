@@ -940,7 +940,7 @@ private theorem alpha_exists_from_finite_frames_sphere_quotient_label_to_nu {D :
     have hc : familyPageMap D.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k) nx =
         D.sphereE2 s t k x := by
-      convert D.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
     calc
       _ = familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k)
           (familyPageMap D.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k)
@@ -1497,6 +1497,7 @@ private def alpha_exists_from_finite_frames_shiftSwap (a b : ℤ × ℤ) (A : Sy
     ((biShiftAddIso b a (a+b) (add_comm _ _)).app A).symm
 
 
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem alpha_exists_from_finite_frames_shiftSwap_add (coh : BiShiftCoherence Syn)
     (a b c : ℤ × ℤ) (A : Syn) :
     (alpha_exists_from_finite_frames_shiftSwap a (b+c) A).hom ≫
@@ -1538,6 +1539,7 @@ private theorem alpha_exists_from_finite_frames_shiftSwap_add (coh : BiShiftCohe
   rfl
 
 
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem alpha_exists_from_finite_frames_shiftSwap_add_eq (coh : BiShiftCoherence Syn)
     (a b c d : ℤ × ℤ) (h : b+c=d) (A : Syn) :
     (alpha_exists_from_finite_frames_shiftSwap a d A).hom ≫
@@ -1550,6 +1552,7 @@ private theorem alpha_exists_from_finite_frames_shiftSwap_add_eq (coh : BiShiftC
   exact alpha_exists_from_finite_frames_shiftSwap_add coh a b c A
 
 
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem alpha_exists_from_finite_frames_shiftSwap_natural (a b : ℤ × ℤ) {A B : Syn} (f : A ⟶ B) :
     (SyntheticCategory.biShift b).map ((SyntheticCategory.biShift a).map f) ≫
       (alpha_exists_from_finite_frames_shiftSwap a b B).hom =
@@ -1560,6 +1563,7 @@ private theorem alpha_exists_from_finite_frames_shiftSwap_natural (a b : ℤ × 
     (biShiftAddIso b a (a+b) (add_comm _ _)).symm).hom.naturality f
 
 
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem alpha_exists_from_finite_frames_shiftSwap_hom_eq (a b d : ℤ × ℤ)
     (hab : a+b=d) (hba : b+a=d) (A : Syn) :
     (alpha_exists_from_finite_frames_shiftSwap a b A).hom =
@@ -1569,6 +1573,7 @@ private theorem alpha_exists_from_finite_frames_shiftSwap_hom_eq (a b d : ℤ ×
   rfl
 
 
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem alpha_exists_from_finite_frames_lambda_pow_shift (coh : BiShiftCoherence Syn)
     (n : ℕ) (a : ℤ × ℤ) (A : Syn) :
     lambdaPow n ((SyntheticCategory.biShift a).obj A) =
@@ -1613,6 +1618,7 @@ private theorem alpha_exists_from_finite_frames_lambda_pow_shift (coh : BiShiftC
     rfl
 
 
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem alpha_exists_from_finite_frames_shift_assoc_inv (coh : BiShiftCoherence Syn)
     (a b c ab bc total : ℤ × ℤ) (hab : a+b=ab) (hbc : b+c=bc)
     (habc : ab+c=total) (habc' : a+bc=total) (A : Syn) :
@@ -1700,7 +1706,7 @@ private theorem alpha_exists_from_finite_frames_cycle_quotient_zero_of_page {H :
     Subsingleton (CycleQuotient H SphereSpectrum c b p) := by
   classical
   have hall (x : cycles H SphereSpectrum c p) : NestedQuotient.projection _ (boundaries H SphereSpectrum b p) x=0 := by
-    obtain ⟨x',hx'⟩ := (isCycle_iff_represents H SphereSpectrum (c+1) (by omega) p x.val).mp ⟨by omega,by simpa using x.property⟩
+    obtain ⟨x',hx'⟩ := (isCycle_iff_represents H SphereSpectrum (c+1) (by omega) p x.val).mp ⟨by omega,by simp⟩
     obtain ⟨xr,hxr⟩ := represents_before hr hc hx'
     rw [hz.elim xr 0] at hxr
     exact (NestedQuotient.projection_eq_zero x).mpr
@@ -1921,16 +1927,16 @@ private theorem alpha_exists_from_finite_frames_lambda_one_division_of_quotient_
   let F := SyntheticCategory.biShift (Syn:=Syn) (0,-1)
   let e : F.obj (Smn m w : Syn) ≅ Smn m (w-1) :=
     (SyntheticCategory.biShift_comp (m,w) (0,-1)).app S_0_0 ≪≫
-      eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+      eqToIso (by congr 1; simp [sub_eq_add_neg])
   let b := (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (0,-1)).preimage (e.hom≫a)
   have hb : F.map b=e.hom≫a :=
     (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (0,-1)).map_preimage _
   refine ⟨b,?_⟩
   have he : lambdaMultiply 1 b=e.inv≫lambdaPow 1 (Smn m w)≫b := by
     unfold lambdaMultiply
-    change eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
+    change eqToHom (by congr 1; simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
       lambdaPow 1 (Smn m w) ≫ b =
-      (eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
+      (eqToHom (by congr 1; simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
       lambdaPow 1 (Smn m w) ≫ b
     exact (Category.assoc _ _ _).symm
   rw [he]

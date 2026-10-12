@@ -277,7 +277,7 @@ private theorem nu_three_actual_relation_and_unique
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)
@@ -358,7 +358,7 @@ private theorem nu_three_actual_relation_and_unique
       (D'.family.functor.obj (XModLambdaN ((SyntheticCategory.biShift (0,0)).obj A) q)).ssData (8,134,134-(0:ℕ))
       ↑(2-2:ℤ).toNat) _
   have zero_shift_finite_infinity_exists_8 {D' : Model H M' Syn}
-      (BHS : EInftyInput D') (X : ClassicalObject) (q : ℕ) (hq : 0<q) 
+      (BHS : EInftyInput D') (X : ClassicalObject) (q : ℕ) (hq : 0<q)
       (x : E2 H (X.obj D'.auxiliary) 8 134)
       (hx : x∈PageRepresentatives.cycles H (X.obj D'.auxiliary) q (8,134)) :
       ∃ e : ((D'.family.obj ((SyntheticObject.quotient q (.shift (0,0) (.nu X))).obj D'.nu D'.auxiliary)).sequence.ssData (8,134,134-(0:ℕ))).eInfty,
@@ -423,7 +423,7 @@ private theorem nu_three_actual_relation_and_unique
       (D'.family.functor.obj (XModLambdaN ((SyntheticCategory.biShift (0,0)).obj A) q)).ssData (11,136,136-(0:ℕ))
       ↑(2-2:ℤ).toNat) _
   have zero_shift_finite_infinity_exists_11 {D' : Model H M' Syn}
-      (BHS : EInftyInput D') (X : ClassicalObject) (q : ℕ) (hq : 0<q) 
+      (BHS : EInftyInput D') (X : ClassicalObject) (q : ℕ) (hq : 0<q)
       (x : E2 H (X.obj D'.auxiliary) 11 136)
       (hx : x∈PageRepresentatives.cycles H (X.obj D'.auxiliary) q (11,136)) :
       ∃ e : ((D'.family.obj ((SyntheticObject.quotient q (.shift (0,0) (.nu X))).obj D'.nu D'.auxiliary)).sequence.ssData (11,136,136-(0:ℕ))).eInfty,
@@ -447,7 +447,7 @@ private theorem nu_three_actual_relation_and_unique
   have elementMap_comp {A B : ModuleCat.{v} ℤ} (x : A) (f : A ⟶ B) :
       elementMap x ≫ f = elementMap (f x) := by
     ext a
-    simpa [elementMap] using f.hom.map_smul a.down x
+    simp [elementMap]
   have strict_fiber_elements (FC : FilteredComplex (ModuleCat.{v} ℤ))
       (n s k : ℤ) (x : FC.assocGraded s k) (y : FC.assocGraded (s+n) (k-1)) :
       Nonempty (FilteredComplex.Solutions.Fiber FC n s k (elementMap x) (elementMap y)) ↔
@@ -1283,7 +1283,7 @@ private theorem nu_three_actual_relation_and_unique
         a≫g=b ∧ Detects (D'.convergence (.quotient 3 (.nu .sphere))) (11,136,133+n)
           (regradeE2 (A:=D'.family.obj (XModLambdaN (D'.nu.functor.obj SphereSpectrum) 3))
             (i:=(11,136,136-(3-(n:ℤ)).toNat)) (j:=(11,136,133+n))
-            (by ext <;> simp only [Int.toNat_of_nonneg (sub_nonneg.mpr hlower)] <;> omega)
+            (by ext <;> simp only [Int.toNat_of_nonneg (sub_nonneg.mpr hlower)]; omega)
             (finiteTargetLabel D' .sphere 3 11 136 (3-(n:ℤ)).toNat y)) b) :
       ∃ (a : BiHom 125 134 A)
         (b : BiHom 125 134 (XModLambdaN (D'.nu.functor.obj SphereSpectrum) 3)),
@@ -2331,7 +2331,7 @@ private theorem nu_five_of_three
       {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a)
       (ht : KIP126.Core.SpectralSequence.ReachesPage E t p x) : E.d r p a = 0 := by
     exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_d_zero_of_later hr0 hrt ha ht
-  have next_projection_zero_iff_incoming 
+  have next_projection_zero_iff_incoming
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
       (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
       (z : (Subobject.underlying.obj ((E.ssData (p+E.diffDeg r)).Z
@@ -2342,7 +2342,7 @@ private theorem nu_five_of_three
             (E.ssData (p+E.diffDeg r)).pageπ ↑(r-E.r₀).toNat) z ∈
           LinearMap.range (E.d r p).hom := by
     exact KIP126.Core.SpectralSequence.FinitePageCalculus.next_projection_zero_iff_incoming E r hr p z
-  have represents_before 
+  have represents_before
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r t : ℤ} {p : ℤ × ℤ}
       {x : E.Page 2 p} {xt : E.Page t p}
       (hr : 2 ≤ r) (hrt : r ≤ t) (ht : KIP126.Core.SpectralSequence.RepresentsOnPage E t p x xt) :
@@ -3072,7 +3072,7 @@ private theorem nu_five_of_three
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)

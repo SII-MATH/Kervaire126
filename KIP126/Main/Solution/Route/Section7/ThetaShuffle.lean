@@ -62,16 +62,16 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
     let F := SyntheticCategory.biShift (Syn:=Syn) (0,-1)
     let e : F.obj (Smn m w : Syn) ≅ Smn m (w-1) :=
       (SyntheticCategory.biShift_comp (m,w) (0,-1)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+        eqToIso (by congr 1; simp [sub_eq_add_neg])
     let b := (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (0,-1)).preimage (e.hom≫a)
     have hb : F.map b=e.hom≫a :=
       (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (0,-1)).map_preimage _
     refine ⟨b,?_⟩
     have he : lambdaMultiply 1 b=e.inv≫lambdaPow 1 (Smn m w)≫b := by
       unfold lambdaMultiply
-      change eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
+      change eqToHom (by congr 1; simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
         lambdaPow 1 (Smn m w) ≫ b =
-        (eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
+        (eqToHom (by congr 1; simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
         lambdaPow 1 (Smn m w) ≫ b
       exact (Category.assoc _ _ _).symm
     rw [he]
@@ -287,7 +287,7 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
       a.hom≫lambdaMultiply k f=lambdaMultiply k f := by
     let F:=SyntheticCategory.biShift (Syn:=Syn) (0,-(k:ℤ))
     let d:Smn (Syn:=Syn) m (n-k)≅F.obj (Smn m n) :=
-      eqToIso (by congr 1 <;> simp) ≪≫
+      eqToIso (by congr 1; simp) ≪≫
         ((SyntheticCategory.biShift_comp (m,n) (0,-(k:ℤ))).app (S_0_0:Syn)).symm
     have he:lambdaMultiply k f=d.hom≫F.map f≫lambdaPow k X := by
       dsimp only [lambdaMultiply,d,Iso.trans_hom,Iso.symm_hom,Iso.app_inv,eqToIso.hom]

@@ -27,16 +27,18 @@ theorem triangle_sum_reindex {R : Type*} [AddCommMonoid R] (k : Nat) (f : Nat �
   · intro a ha b hb he
     have h1 := congrArg Prod.fst he
     have h2 := congrArg Prod.snd he
-    apply Prod.ext <;> simp_all <;> omega
+    apply Prod.ext <;> simp_all
   · intro q hq
     simp only [rightTriangle,Finset.mem_filter,Finset.product_eq_sprod,Finset.mem_product,Finset.mem_range] at hq
     refine ⟨(q.2,q.1-q.2),?_,?_⟩
     · simp only [leftTriangle,Finset.mem_filter,Finset.product_eq_sprod,Finset.mem_product,Finset.mem_range]
       omega
-    · apply Prod.ext <;> simp <;> omega
+    · apply Prod.ext <;> simp; omega
   · intro p hp
     simp
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- The two normal-form triple monomials agree after the explicit triangular
 index change, including the iterated Frobenius exponent. -/
 theorem triple_term_reindex {R : Type*} [CommRing R]

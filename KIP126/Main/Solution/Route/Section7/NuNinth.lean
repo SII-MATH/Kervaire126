@@ -69,7 +69,7 @@ private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
   have nhb_represents_smul {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a) (c : ℤ) :
       KIP126.Core.SpectralSequence.RepresentsOnPage E r p (c • x) (c • a) := by
     obtain ⟨hr, z, hz, hza⟩ := ha
-    refine ⟨hr, c • z, ?_, ?_⟩ <;> simpa only [map_zsmul, hz, hza]
+    refine ⟨hr, c • z, ?_, ?_⟩ <;> simp only [map_zsmul, hz, hza]
   have nhb_represents_d_zero_of_later {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
       {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a)
       (ht : KIP126.Core.SpectralSequence.ReachesPage E t p x) : E.d r p a = 0 := by
@@ -98,7 +98,7 @@ private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
       ((Subobject.ofLE (D'.Z nt) (D'.Z ns) (D'.Z_anti hst)) z) = D'.pageπ nr zr
     rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
     rfl
-  have nhb_next_projection_zero_iff_incoming 
+  have nhb_next_projection_zero_iff_incoming
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
       (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
       (z : (Subobject.underlying.obj ((E.ssData (p+E.diffDeg r)).Z
@@ -144,7 +144,7 @@ private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
       change (i ≫ (D'.Z ↑n).arrow) z ∈ _ at hh
       dsimp only [i] at hh
       rwa [Subobject.ofLE_arrow] at hh
-  have nhb_zero_successor_has_incoming 
+  have nhb_zero_successor_has_incoming
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
       (r : ℤ) (hr : 2 ≤ r) (hr0 : E.r₀ ≤ r)
       (p : ℤ × ℤ) (x : E.Page 2 p)
@@ -189,7 +189,7 @@ private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
     obtain ⟨v,hv⟩ := (nhb_next_projection_zero_iff_incoming E r hr0 q z).mp hzero
     refine ⟨a,ha,q,rfl,v,?_⟩
     simpa only [eqToHom_refl,Category.comp_id,a,zr,A,nr,ns,CategoryTheory.comp_apply] using hv
-  have nhb_never_hit_representative_nonzero 
+  have nhb_never_hit_representative_nonzero
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)) (hs : E.r₀=2)
       (p : ℤ × ℤ) (x : E.Page 2 p) (hx : x≠0) (hn : KIP126.Core.SpectralSequence.NeverHit E p x) :
       ∀ n : ℕ, ∀ a : E.Page ((n:ℤ)+2) p,
@@ -295,7 +295,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
   have represents_smul {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a) (c : ℤ) :
       KIP126.Core.SpectralSequence.RepresentsOnPage E r p (c • x) (c • a) := by
     obtain ⟨hr, z, hz, hza⟩ := ha
-    refine ⟨hr, c • z, ?_, ?_⟩ <;> simpa only [map_zsmul, hz, hza]
+    refine ⟨hr, c • z, ?_, ?_⟩ <;> simp only [map_zsmul, hz, hza]
   have represents_d_zero_of_later {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
       {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a)
       (ht : KIP126.Core.SpectralSequence.ReachesPage E t p x) : E.d r p a = 0 := by
@@ -324,7 +324,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
       ((Subobject.ofLE (D'.Z nt) (D'.Z ns) (D'.Z_anti hst)) z) = D'.pageπ nr zr
     rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
     rfl
-  have next_projection_zero_iff_incoming 
+  have next_projection_zero_iff_incoming
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
       (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
       (z : (Subobject.underlying.obj ((E.ssData (p+E.diffDeg r)).Z
@@ -370,7 +370,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
       change (i ≫ (D'.Z ↑n).arrow) z ∈ _ at hh
       dsimp only [i] at hh
       rwa [Subobject.ofLE_arrow] at hh
-  have page_generated_from_representatives 
+  have page_generated_from_representatives
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} (hr : 2 ≤ r)
       {N : ℕ} (e : E.Page 2 p ≃ₗ[ℤ] (Fin N →₀ KIP126.Core.Algebra.F2))
       (v : Fin N → E.Page r p)
@@ -426,7 +426,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
     refine ⟨c, represents_unique hxa ?_⟩
     have hh := hsum Finset.univ
     simpa only [hx] using hh
-  have represents_before 
+  have represents_before
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r t : ℤ} {p : ℤ × ℤ}
       {x : E.Page 2 p} {xt : E.Page t p}
       (hr : 2 ≤ r) (hrt : r ≤ t) (ht : KIP126.Core.SpectralSequence.RepresentsOnPage E t p x xt) :
@@ -440,7 +440,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
     dsimp only [zr]
     rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
     exact hz
-  have next_page_two_of_kernel 
+  have next_page_two_of_kernel
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)) (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
       (v : (Subobject.underlying.obj ((E.ssData p).Z ↑((r-E.r₀).toNat+1)) : ModuleCat.{v} ℤ))
       (hcases : ∀ a : E.Page r p, E.d r p a = 0 → a = 0 ∨
@@ -476,7 +476,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
       rw [← map_sub]
       apply hzero
       rw [map_sub,hz,sub_self]
-  have represents_next_nonzero_of_incoming_zero 
+  have represents_next_nonzero_of_incoming_zero
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ}
       (hr0 : E.r₀ ≤ r) (hr : 2 ≤ r)
       (hin : E.d r (p-E.diffDeg r) = 0)
@@ -1305,7 +1305,7 @@ private theorem nu_ninth_of_fifth_complete
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)

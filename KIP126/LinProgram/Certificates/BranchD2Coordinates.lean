@@ -63,7 +63,7 @@ def decodeMatrix (m n : ℕ) (raw : List (Option String)) :
     Except MatrixIssue (Matrix (Fin m) (Fin n) F2) := do
   let columns ← raw.mapM (decodeColumn m)
   if h : columns.length = n then
-    return fun i j => columns.get ⟨j.val, by simpa [h] using j.isLt⟩ i
+    return fun i j => columns.get ⟨j.val, by simp [h]⟩ i
   else throw .columnCount
 
 /-- Columns are respectively [1,3], [], [], [], []. -/

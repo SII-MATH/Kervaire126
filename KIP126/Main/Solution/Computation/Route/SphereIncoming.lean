@@ -1074,7 +1074,7 @@ private theorem t_incoming_t_incoming3_zero (I : Inputs D L G) : (sequence D .sp
       simp only [map_add,←he1,←he2,LinearEquiv.apply_symm_apply]
       apply Finsupp.ext
       intro i
-      fin_cases i <;> norm_num [Finsupp.add_apply,Finsupp.single_apply,Fin.ext_iff] <;> decide
+      fin_cases i <;> norm_num [Finsupp.add_apply,Finsupp.single_apply,Fin.ext_iff]; decide
     exact ⟨a+b,by simpa only [heq] using hab⟩
   have hr4 : ReachesPage E 4 (11,137) (I.realization.basis .sphere 11 137 4) :=
     ⟨0,differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide) h284⟩
@@ -1820,7 +1820,7 @@ private theorem t_incoming_t_d4_targets_independent (I : Inputs D L G)
       simp only [map_add,←he1,←he2,LinearEquiv.apply_symm_apply]
       apply Finsupp.ext
       intro i
-      fin_cases i <;> norm_num [Finsupp.add_apply,Finsupp.single_apply,Fin.ext_iff] <;> decide
+      fin_cases i <;> norm_num [Finsupp.add_apply,Finsupp.single_apply,Fin.ext_iff]; decide
     exact ⟨a+b,by simpa only [heq] using hab⟩
   have hr4 : ReachesPage E 4 (11,137) (I.realization.basis .sphere 11 137 4) :=
     ⟨0,differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide) h284⟩
@@ -2266,7 +2266,7 @@ private theorem t_incoming_t_incoming6_image (I : Inputs D L G) :
     simp only [map_add,←he0,←he3,LinearEquiv.apply_symm_apply]
     apply Finsupp.ext
     intro i
-    fin_cases i <;> norm_num [Finsupp.add_apply,Finsupp.sub_apply,Finsupp.single_apply,Fin.ext_iff] <;> decide
+    fin_cases i <;> norm_num [Finsupp.add_apply,Finsupp.sub_apply,Finsupp.single_apply,Fin.ext_iff]; decide
   have ha0 : RepresentsOnPage E 3 (8,134) (I.realization.basis .sphere 8 134 0) (w3+a3) := by
     simpa only [heq] using represents_add_tail hw3 ha3
   have hd0' : E.d 3 (8,134) (w3+a3)=y1 := by rw [map_add,hdw3,hd3a,zero_add]
@@ -2751,7 +2751,7 @@ private theorem t_incoming_t_incoming8_source_four (I : Inputs D L G) :
         simp only [map_add,←he0,←he1,LinearEquiv.apply_symm_apply]
         apply Finsupp.ext
         intro i
-        fin_cases i <;> norm_num [Finsupp.add_apply,Finsupp.single_apply,Fin.ext_iff] <;> decide
+        fin_cases i <;> norm_num [Finsupp.add_apply,Finsupp.single_apply,Fin.ext_iff]; decide
       rw [heq,add_zero] at hh
       exact False.elim (hn hh)
   exact ⟨fun a b=>(hall a).trans (hall b).symm⟩

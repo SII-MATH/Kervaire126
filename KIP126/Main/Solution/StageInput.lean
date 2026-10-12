@@ -59,11 +59,11 @@ noncomputable def routeComputation :
   computation.route
 
 /-- Independent infinite-range premises on the same actual standard sphere. -/
-noncomputable def sphereVanishing :
+theorem sphereVanishing :
     KIP126.Classical.Adams.SphereVanishingLine KIP126.Classical.Adams.standardFoundation.hf2 :=
   literature.results.sphereVanishing
 
-noncomputable def sphereSeparated :
+theorem sphereSeparated :
     KIP126.Classical.Adams.ClassicalSphereSeparated KIP126.Classical.Adams.standardFoundation.hf2 :=
   KIP126.Def.standardSphereSeparated
 
@@ -432,16 +432,16 @@ private theorem nu_source_from_suspension_square
     let F := SyntheticCategory.biShift (Syn:=Syn) (0,-1)
     let e : F.obj (Smn m w : Syn) ≅ Smn m (w-1) :=
       (SyntheticCategory.biShift_comp (m,w) (0,-1)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+        eqToIso (by congr 1; simp [sub_eq_add_neg])
     let b := (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (0,-1)).preimage (e.hom≫a)
     have hb : F.map b=e.hom≫a :=
       (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (0,-1)).map_preimage _
     refine ⟨b,?_⟩
     have he : lambdaMultiply 1 b=e.inv≫lambdaPow 1 (Smn m w)≫b := by
       unfold lambdaMultiply
-      change eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
+      change eqToHom (by congr 1; simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
         lambdaPow 1 (Smn m w) ≫ b =
-        (eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
+        (eqToHom (by congr 1; simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
         lambdaPow 1 (Smn m w) ≫ b
       exact (Category.assoc _ _ _).symm
     rw [he]
@@ -520,7 +520,7 @@ private theorem nu_source_from_suspension_square
     have hin (r : ℤ) (hr : 2 ≤ r) : E.d r ((1,t)-E.diffDeg r)=0 := by
       have hdeg : (1,t)-E.diffDeg r = ((1-r,t-r+1) : ℤ × ℤ) := by
         change (1,t)-(r,r-1)=_
-        ext <;> dsimp <;> omega
+        ext <;> dsimp; omega
       haveI : Subsingleton (E.Page r ((1,t)-E.diffDeg r)) := by
         rw [hdeg]
         exact adamsTowerInternal_page_subsingleton_of_negative H.unit X r
@@ -578,12 +578,12 @@ private theorem nu_source_from_suspension_square
       have hs:Finsupp.single i (1:F2)=Finsupp.single j 1 := coord.symm.injective (e.injective hv)
       by_contra hij
       have hh:=congrArg (fun f:BasisIndex 1 4 →₀ F2=>f i) hs
-      simpa [Finsupp.single_apply,hij,Ne.symm hij] using hh⟩
+      simp [hij] at hh⟩
     intro f g hf hg
     have hfn:coord f≠0 := by intro h; exact hf (coord.injective (h.trans (map_zero coord).symm))
     obtain ⟨i,hi⟩ : ∃ i, coord f i ≠ 0 := by
       by_contra h
-      push_neg at h
+      push Not at h
       exact hfn (Finsupp.ext h)
     have hc (a:A) (ha:a≠0) : coord a i=1 := by
       generalize h:coord a i=c
@@ -947,12 +947,12 @@ private theorem nu_source_from_suspension_square
     let T := XModLambdaN.cofiberTriangle (S_0_0 : Syn) 1
     let e₀ : U ≅ Smn (Syn := Syn) m (wt-1) :=
       (SyntheticCategory.biShift_comp (m,wt) (0,-1)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+        eqToIso (by congr 1; simp [sub_eq_add_neg])
     let e₁ : U⟦(1 : ℤ)⟧ ≅ Smn (Syn := Syn) (m+1) (wt-1) :=
       (shiftFunctor Syn (1 : ℤ)).mapIso e₀ ≪≫
         (SyntheticCategory.biShift_compat (Syn := Syn) 1).symm.app _ ≪≫
         (SyntheticCategory.biShift_comp (m,wt-1) (1,0)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp)
+        eqToIso (by congr 1; simp)
     have hQ : ∀ q : U⟦(1 : ℤ)⟧ ⟶ T.obj₃, q = 0 := by
       intro q
       haveI : Subsingleton (PageRepresentatives.Ambient H SphereSpectrum (wt-m-2,wt-1)) :=
@@ -1451,12 +1451,12 @@ private theorem selected_nu_suspension_square (D : Model H M Syn)
     let T := XModLambdaN.cofiberTriangle (S_0_0 : Syn) 1
     let e₀ : U ≅ Smn (Syn := Syn) m (wt-1) :=
       (SyntheticCategory.biShift_comp (m,wt) (0,-1)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+        eqToIso (by congr 1; simp [sub_eq_add_neg])
     let e₁ : U⟦(1 : ℤ)⟧ ≅ Smn (Syn := Syn) (m+1) (wt-1) :=
       (shiftFunctor Syn (1 : ℤ)).mapIso e₀ ≪≫
         (SyntheticCategory.biShift_compat (Syn := Syn) 1).symm.app _ ≪≫
         (SyntheticCategory.biShift_comp (m,wt-1) (1,0)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp)
+        eqToIso (by congr 1; simp)
     have hQ : ∀ q : U⟦(1 : ℤ)⟧ ⟶ T.obj₃, q = 0 := by
       intro q
       haveI : Subsingleton (PageRepresentatives.Ambient H SphereSpectrum (wt-m-2,wt-1)) :=
@@ -2082,7 +2082,7 @@ theorem routeApplication :
 
 /-- Main derives the tmf consumer facts from the same source, C(M) and tail
 premises. In particular high125 survival is not a Challenge2 field. -/
-noncomputable def routeTmf :
+theorem routeTmf :
     KIP126.Literature.Route.TmfInputs routeModel tmfLabels :=
   KIP126.Main.Solution.Computation.tmf_inputs_of_computation routeModel
     routeComputation sphereVanishing sphereSeparated

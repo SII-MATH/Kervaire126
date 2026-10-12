@@ -251,6 +251,8 @@ def IsGood (A : BasedSpace.{u}) : Prop :=
 
 def zeroSphere : BasedSpace.{0} := Prespectrum.sphereLevel 0
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 theorem smashUnit_exists (A : BasedSpace.{0}) (hA : A.IsGood) :
     ∃! f : zeroSphere.smash A ⟶ A,
       ∀ a, f.map (smashPoint zeroSphere A (show zeroSphere from (1 : Fin 2)) a) = a := by
@@ -4136,6 +4138,8 @@ theorem good_suspension {A : BasedSpace.{u}} (hA : A.IsGood) : A.suspension.IsGo
   exact ⟨suspension_compactlyGenerated A,
     suspension_wellBased_of_wellBased A hA.2.1,suspension_hasCWType A hA.2.2⟩
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- Moving the suspension coordinate past the second smash factor. The
 formula fixes the comparison and its sign before stable localization. -/
 theorem suspensionSmash_exists (A B : BasedSpace.{0})
@@ -4243,7 +4247,7 @@ namespace Prespectrum
 
 def suspensionSpectrum (A : BasedSpace.{u}) : Prespectrum.{u} where
   level := A.iterateSuspension
-  bond n := BasedSpace.suspensionProjection _
+  bond _n := BasedSpace.suspensionProjection _
   bond_point _ _ := BasedSpace.suspensionProjection_collapsed _ _ (Or.inl rfl)
   bond_zero _ _ := BasedSpace.suspensionProjection_collapsed _ _ (Or.inr (Or.inl rfl))
   bond_one _ _ := BasedSpace.suspensionProjection_collapsed _ _ (Or.inr (Or.inr rfl))

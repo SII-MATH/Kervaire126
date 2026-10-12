@@ -87,7 +87,7 @@ variable {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C 
 /-- Ordinary transport along the displayed source equalities. The sole
 synthetic premise is supplied separately, so the classical source theorem
 does not assert it or normalized-map compatibility. -/
-def classicalInputsOfSource (D : Model H M Syn) (η : BiHom 1 2 (S_0_0 : Syn))
+theorem classicalInputsOfSource (D : Model H M Syn) (η : BiHom 1 2 (S_0_0 : Syn))
     (S : ClassicalSourceData H) (hS : ClassicalSourceResults M S)
     (B : ClassicalSourceBinding D η S) (hη : EtaChoice M D.toModelData η) :
     ClassicalInputs D η where

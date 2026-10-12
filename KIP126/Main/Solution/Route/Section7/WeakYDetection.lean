@@ -72,7 +72,7 @@ private theorem weaky0_represents_unique {a b : E.Page r p}
 private theorem weaky0_represents_smul {a : E.Page r p} (ha : RepresentsOnPage E r p x a) (c : R) :
     RepresentsOnPage E r p (c • x) (c • a) := by
   obtain ⟨hr, z, hz, hza⟩ := ha
-  refine ⟨hr, c • z, ?_, ?_⟩ <;> simpa only [map_smul, hz, hza]
+  refine ⟨hr, c • z, ?_, ?_⟩ <;> simp only [map_smul, hz, hza]
 
 private theorem weaky0_represents_d_zero_of_later {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
     {a : E.Page r p} (ha : RepresentsOnPage E r p x a)
@@ -1124,7 +1124,7 @@ private theorem weaky0_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
     have hc : familyPageMap D.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k) nx =
         D.sphereE2 s t k x := by
-      convert D.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
     calc
       _ = familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k)
           (familyPageMap D.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k)
@@ -1352,7 +1352,7 @@ private theorem weaky1_represents_unique {a b : E.Page r p}
 private theorem weaky1_represents_smul {a : E.Page r p} (ha : RepresentsOnPage E r p x a) (c : R) :
     RepresentsOnPage E r p (c • x) (c • a) := by
   obtain ⟨hr, z, hz, hza⟩ := ha
-  refine ⟨hr, c • z, ?_, ?_⟩ <;> simpa only [map_smul, hz, hza]
+  refine ⟨hr, c • z, ?_, ?_⟩ <;> simp only [map_smul, hz, hza]
 
 private theorem weaky1_represents_d_zero_of_later {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
     {a : E.Page r p} (ha : RepresentsOnPage E r p x a)
@@ -2305,7 +2305,7 @@ private theorem weaky1_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
     have hc : familyPageMap D.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k) nx =
         D.sphereE2 s t k x := by
-      convert D.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
     calc
       _ = familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k)
           (familyPageMap D.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k)

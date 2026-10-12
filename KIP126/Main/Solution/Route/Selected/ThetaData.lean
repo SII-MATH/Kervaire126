@@ -419,7 +419,7 @@ private theorem stem124_finite_pages_low124_af8_three (I : KIP126.Computation.Ro
     rw [← hf2]
     intro hzero
     have hz := congrArg (fun y => f y 2) hzero
-    simpa using hz
+    simp at hz
   have hde : ∀ z, E.d 2 (8,132) (e.symm z) = 0 → z = 0 := by
     intro z hz
     have hzrepr : z = Finsupp.single 0 (z 0) := by
@@ -443,7 +443,7 @@ private theorem stem124_finite_pages_low124_af8_three (I : KIP126.Computation.Ro
   have hsex : S.Exact := S.moduleCat_exact_iff.mpr (by
     intro z hz
     have hz0 : z = 0 := hs (hz.trans (map_zero _).symm)
-    exact ⟨0, by simpa [hz0]⟩)
+    exact ⟨0, by simp [hz0]⟩)
   have hzero := (S.exact_iff_isZero_homology).mp hsex
   exact ModuleCat.subsingleton_of_isZero ((pageHomologyIso E 2 (8,132)
     (by change (2:ℤ)≤2; omega)).isZero_iff.mpr hzero)
@@ -787,7 +787,7 @@ private theorem stem124_weight128_filtration_ten_nu124_low_zero
     have hin (r : ℤ) (hr : s-2 ≤ r) : E.d r ((s,124+s)-E.diffDeg r) = 0 := by
       have hi : (s,124+s)-E.diffDeg r = (s-r,(s-r)+125) := by
         change (s,124+s)-(r,r-1) = _
-        ext <;> dsimp <;> omega
+        ext <;> dsimp; omega
       rw [hi]
       apply ModuleCat.hom_ext
       apply LinearMap.ext

@@ -118,7 +118,6 @@ set_option maxRecDepth 10000
 private theorem h125_page15 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 6 (15,140)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 6 (15,140))
   let E := sequence D .sphere
   have h354 : HasDifferential E 2 (13,139) (15,140)
       (I.realization.basis .sphere 13 139 1) (I.realization.basis .sphere 15 140 4) := by
@@ -468,7 +467,6 @@ private theorem h125_page15 (I : Inputs D L G) :
 private theorem h125_page16 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 6 (16,141)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 6 (16,141))
   let E := sequence D .sphere
   have h371 : HasDifferential E 2 (16,141) (18,142)
       (I.realization.basis .sphere 16 141 0) (I.realization.basis .sphere 18 142 0 + I.realization.basis .sphere 18 142 1) := by
@@ -677,7 +675,6 @@ private theorem h125_page16 (I : Inputs D L G) :
 private theorem h125_page17 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 6 (17,142)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 6 (17,142))
   let E := sequence D .sphere
   have h387 : HasDifferential E 2 (17,142) (19,143)
       (I.realization.basis .sphere 17 142 1) (I.realization.basis .sphere 19 143 1) := by
@@ -767,7 +764,6 @@ private theorem h125_page17 (I : Inputs D L G) :
 private theorem h125_page18 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 6 (18,143)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 6 (18,143))
   let E := sequence D .sphere
   have h398 : HasDifferential E 2 (18,143) (20,144)
       (I.realization.basis .sphere 18 143 1) (I.realization.basis .sphere 20 144 1) := by
@@ -857,7 +853,6 @@ private theorem h125_page18 (I : Inputs D L G) :
 private theorem h125_page19 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 6 (19,144)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 6 (19,144))
   apply adamsTowerInternal_page_subsingleton_of_le H.unit SphereSpectrum 4 6 19 144 (by decide) (by decide)
   let E := sequence D .sphere
   have h408 : HasDifferential E 3 (19,144) (22,146)
@@ -1125,7 +1120,6 @@ private theorem stem125_sixth_pages_15_19 (I : Inputs D L G)
 private theorem h125_page20 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 6 (20,145)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 6 (20,145))
   apply adamsTowerInternal_page_subsingleton_of_le H.unit SphereSpectrum 4 6 20 145 (by decide) (by decide)
   let E := sequence D .sphere
   have h418 : HasDifferential E 2 (18,144) (20,145)
@@ -1389,7 +1383,6 @@ private theorem h125_page20 (I : Inputs D L G) :
 private theorem h125_page21 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 6 (21,146)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 6 (21,146))
   let E := sequence D .sphere
   have h428 : HasDifferential E 2 (21,146) (23,147)
       (I.realization.basis .sphere 21 146 1) (I.realization.basis .sphere 23 147 1 + I.realization.basis .sphere 23 147 2) := by
@@ -1526,7 +1519,6 @@ private theorem h125_page21 (I : Inputs D L G) :
 private theorem h125_page22 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 6 (22,147)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 6 (22,147))
   let E := sequence D .sphere
   have h439 : HasDifferential E 2 (22,147) (24,148)
       (I.realization.basis .sphere 22 147 2) (I.realization.basis .sphere 24 148 0) := by
@@ -1745,7 +1737,6 @@ private theorem h125_page22 (I : Inputs D L G) :
 private theorem h125_page23 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 6 (23,148)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 6 (23,148))
   apply adamsTowerInternal_page_subsingleton_of_le H.unit SphereSpectrum 4 6 23 148 (by decide) (by decide)
   let E := sequence D .sphere
   have h445 : HasDifferential E 3 (23,148) (26,150)
@@ -1910,7 +1901,6 @@ private theorem h125_page23 (I : Inputs D L G) :
 private theorem h125_page24 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 6 (24,149)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 6 (24,149))
   let E := sequence D .sphere
   have h453 : HasDifferential E 2 (24,149) (26,150)
       (I.realization.basis .sphere 24 149 0) (I.realization.basis .sphere 26 150 1) := by
@@ -1949,7 +1939,7 @@ private theorem h125_page24 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp
+    fin_cases i; simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
@@ -1986,6 +1976,8 @@ private theorem stem125_sixth_pages_20_24 (I : Inputs D L G)
   · exact h125_page24 I
 
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 theorem stem125_weight130_filtration15_eq25
     (I : Inputs D L G) (BHS : SyntheticInputs D) (V : SphereVanishingLine H)
     (a : BiHom 125 130 (S_0_0 : Syn)) :

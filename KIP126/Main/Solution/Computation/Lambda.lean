@@ -518,6 +518,8 @@ theorem lambda_powers_injective_of_source_halfplane
   simpa only [show wt - m - 2 + m + 1 = wt - 1 by omega] using
     hsource (wt-m-2) (by omega)
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- The exact all-power torsion exclusion used for arbitrary theta5 choices. -/
 theorem lambda_powers_injective_62_64
     (A : KIP126.Literature.Route.Inputs D η G) (I : Inputs D L G) :
@@ -558,6 +560,8 @@ theorem realization_injective_124_128
   exact realization_injective_of_lambda_powers A.synthetic.realization_kernel
     .sphere 124 128 (lambda_powers_injective_124_128 A I)
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- The exact quotient-zero equivalence sufficient to normalize BX.
 The proof uses the actual lambda cofiber triangles and one-step injectivity
 at (125,130). It does not strengthen the source finite criterion to an
@@ -619,6 +623,8 @@ theorem bx_finite_lambda_normalization
       rfl
 
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- The genuine synthetic order-two assertion is a derived theorem. It
 uses IWX's classical exponent-two result, the realization comparison and
 62/64 injectivity; it is not identified with Xu's distinguished existence. -/
@@ -1130,7 +1136,7 @@ theorem lambda_kills_realization_kernel_62_71
           apply LinearMap.ext
           intro z
           exact stem63_no_late_differentials I V (wt-62-2) (by omega) (2+(62+s)-wt) (by omega) z
-        have hpair : (wt-62-2,wt-62-2+63)=(wt-62-2,wt-1) := by ext <;> dsimp <;> omega
+        have hpair : (wt-62-2,wt-62-2+63)=(wt-62-2,wt-1) := by ext <;> dsimp; omega
         rw [hpair] at hout
         exact ConcreteCategory.congr_hom hout y
       have hB := paper_boundaries_step H (SphereSpectrum) (2+(62+s)-wt) hr (s,62+s) hd

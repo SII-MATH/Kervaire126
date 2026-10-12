@@ -244,7 +244,7 @@ private theorem u_survives1000
       rw [←he7_131_2]
       intro h
       have hh := congrArg (fun x => e7_131 x 2) h
-      simpa using hh
+      simp at hh
     have ker (x : E.Page 2 (5,130)) (hx : E.d 2 (5,130) x=0) : x=0 := by
       rcases generated_one (by decide : (2:ℤ)≤2) e5_130 _ (by rw [he5_130_0]; exact hrep2 _) x with h|h
       · exact h
@@ -255,7 +255,7 @@ private theorem u_survives1000
     have hsex : S.Exact := S.moduleCat_exact_iff.mpr (by
       intro z hz
       have hz0 : z=0 := hs (hz.trans (map_zero _).symm)
-      exact ⟨0,by simpa [hz0]⟩)
+      exact ⟨0,by simp [hz0]⟩)
     have hzero := (S.exact_iff_isZero_homology).mp hsex
     exact ModuleCat.subsingleton_of_isZero ((pageHomologyIso E 2 (5,130)
       (by change (2:ℤ)≤2; omega)).isZero_iff.mpr hzero)
@@ -280,7 +280,7 @@ private theorem u_survives1000
         Int.toNat_of_nonneg (by omega : 0≤10-r),Int.toNat_of_nonneg (by omega : 0≤135-r)] using he
     have hp : (10,134)-E.diffDeg r=(10-r,135-r) := by
       change (10-r,134-(r-1))=(10-r,135-r)
-      congr 1 <;> omega
+      congr 1; omega
     rw [hp]
     ext x
     change E.d r (10-r,135-r) x=0
@@ -612,7 +612,7 @@ private theorem p_survives1000
       rw [←he11_133_1]
       intro h
       have hh := congrArg (fun x => e11_133 x 1) h
-      simpa using hh) hp3
+      simp at hh) hp3
     have pt : p3≠t3 := by
       intro h
       have hn := nonzero3 (by
@@ -632,7 +632,7 @@ private theorem p_survives1000
   have incoming_late (r : ℤ) (hr : 4≤r) : E.d r ((11,133)-E.diffDeg r)=0 := by
     have hp : (11,133)-E.diffDeg r=(11-r,(11-r)+123) := by
       change (11-r,133-(r-1))=(11-r,(11-r)+123)
-      congr 1 <;> omega
+      congr 1; omega
     rw [hp]
     have hz := low123 r (11-r) (by omega) (by omega)
     ext x
@@ -988,7 +988,7 @@ private theorem q_survives1000_source8
   have hsex : S.Exact := S.moduleCat_exact_iff.mpr (by
     intro z hz
     have hz0 : z=0 := hs (hz.trans (map_zero _).symm)
-    exact ⟨0,by simpa [hz0]⟩)
+    exact ⟨0,by simp [hz0]⟩)
   have hzero := (S.exact_iff_isZero_homology).mp hsex
   exact ModuleCat.subsingleton_of_isZero ((pageHomologyIso E 3 (8,131)
     (by change (2:ℤ)≤3;omega)).isZero_iff.mpr hzero)
@@ -1020,7 +1020,7 @@ private theorem q_survives1000
   have incoming_late (r : ℤ) (hr : 4≤r) : E.d r ((12,134)-E.diffDeg r)=0 := by
     have hp : (12,134)-E.diffDeg r=(12-r,(12-r)+123) := by
       change (12-r,134-(r-1))=(12-r,(12-r)+123)
-      congr 1 <;> omega
+      congr 1; omega
     rw [hp]
     have hz : Subsingleton (E.Page r (12-r,(12-r)+123)) := by
       by_cases he : r=4
@@ -1600,7 +1600,6 @@ private theorem correction_source9_d4_zero (I : Inputs D L G) :
           fin_cases i
           · change g (E.d 2 (10,135) (f.symm (Finsupp.single 0 1))) 0=0
             simp only [hf0,df0,map_zero,Finsupp.zero_apply]
-            skip
           · change g (E.d 2 (10,135) (f.symm (Finsupp.single 1 1))) 0=0
             simp only [hf1,df1,map_add,←hg1,←hg2,LinearEquiv.apply_symm_apply,Finsupp.add_apply]
             norm_num [Finsupp.single_apply,Fin.ext_iff]
@@ -1609,7 +1608,6 @@ private theorem correction_source9_d4_zero (I : Inputs D L G) :
             norm_num [Finsupp.single_apply,Fin.ext_iff]
           · change g (E.d 2 (10,135) (f.symm (Finsupp.single 3 1))) 0=0
             simp only [hf3,df3,map_zero,Finsupp.zero_apply]
-            skip
           · change g (E.d 2 (10,135) (f.symm (Finsupp.single 4 1))) 0=0
             simp only [hf4,df4,←hg4,LinearEquiv.apply_symm_apply]
             norm_num [Finsupp.single_apply,Fin.ext_iff]
@@ -2740,7 +2738,7 @@ private theorem stem125_af6_e5_zero (I : Inputs D L G) :
   have hsex : S.Exact := S.moduleCat_exact_iff.mpr (by
     intro z hz
     have hz0 : z=0 := hs (hz.trans (map_zero _).symm)
-    exact ⟨0,by simpa [hz0]⟩)
+    exact ⟨0,by simp [hz0]⟩)
   have hzero := (S.exact_iff_isZero_homology).mp hsex
   exact ModuleCat.subsingleton_of_isZero ((pageHomologyIso E 4 (6,131)
     (by change (2:ℤ)≤4;omega)).isZero_iff.mpr hzero)
@@ -2786,7 +2784,7 @@ private theorem tail_af5 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp
+    fin_cases i; simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0

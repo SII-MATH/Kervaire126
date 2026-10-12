@@ -1899,7 +1899,7 @@ private theorem main_two_layer_strip
     subst j
     exact finite_sphere_zero_of_classical_quotient BHS 9 (by decide) s (125+s) 132
       (by rcases hs with rfl|rfl <;> norm_num)
-      (by convert main_low_even_quotient_zero I' s hs using 1 <;> congr 1 <;> omega)
+      (by convert main_low_even_quotient_zero I' s hs using 1; congr 1 <;> omega)
   have sphere_quotient_label_to_nu {D' : Model H M' Syn} (q k : ℕ) (s t : ℤ)
       (x : E2 H SphereSpectrum s t) :
       familyPageMap D'.family (XModLambdaN.map D'.nu.unitIso.inv q) 2 (s,t,t-k)
@@ -1913,7 +1913,7 @@ private theorem main_two_layer_strip
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)
@@ -2004,27 +2004,27 @@ private theorem main_two_layer_strip
       intro hb
       have hz:NestedQuotient.projection _ (boundaries H SphereSpectrum (1+t-(t-k)) (s,t)) c=0:= by
         apply (NestedQuotient.projection_eq_zero c).mpr
-        convert hb using 1 <;> congr 1 <;> omega
+        convert hb using 1; congr 1; omega
       have hzP:P ((D'.family.functor.map g).eInftyMap (s,t,t-k) e)=0:=hc.symm.trans hz
       have hzE:(D'.family.functor.map g).eInftyMap (s,t,t-k) e=0:=P.injective (hzP.trans (map_zero P).symm)
       apply hne
       rw [←heq,hzE,map_zero]
     have hcq : c.val∈cycles H SphereSpectrum ((q:ℤ)-k) (s,t) := by
-      convert c.property using 1 <;> congr 1 <;> omega
+      convert c.property using 1; congr 1; omega
     have hb:= (hframe c.val hcq).resolve_left hn
     have hY:y0∈cycles H SphereSpectrum ((q:ℤ)-k) (s,t) := by
       have hh:=(cycles H SphereSpectrum ((q:ℤ)-k) (s,t)).sub_mem hcq
         (boundaries_le_cycles H SphereSpectrum (s,t) (k+1) ((q:ℤ)-k) hb)
       simpa only [sub_sub_cancel] using hh
     let y:cycles H SphereSpectrum (q-t+(t-k)) (s,t):=⟨y0,by
-      convert hY using 1 <;> congr 1 <;> omega⟩
+      convert hY using 1; congr 1; omega⟩
     have hcy:NestedQuotient.projection _ _ c=NestedQuotient.projection
         (cycles H SphereSpectrum (q-t+(t-k)) (s,t))
         (boundaries H SphereSpectrum (1+t-(t-k)) (s,t)) y := by
       apply sub_eq_zero.mp
       rw [←map_sub]
       apply (NestedQuotient.projection_eq_zero (c-y)).mpr
-      convert hb using 1 <;> congr 1 <;> omega
+      convert hb using 1 <;> congr 1; omega
     have hy:HasInfinityRepresentative (D'.family.nuQuotient D'.nu SphereSpectrum q) 2 (s,t,t-k)
         (finiteTargetLabel D' .sphere q s t k y0)
         ((D'.family.functor.map g).eInftyMap (s,t,t-k) e) := by
@@ -2792,7 +2792,7 @@ private theorem main_weak_high_representative
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)

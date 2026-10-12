@@ -93,7 +93,7 @@ private theorem prop78_detection_data_bridge_sphere_quotient_label_to_nu {D : Mo
     have hc : familyPageMap D.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k) nx =
         D.sphereE2 s t k x := by
-      convert D.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
     calc
       _ = familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k)
           (familyPageMap D.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k)
@@ -226,6 +226,7 @@ private theorem prop78_detection_data_bridge_sphere_zero_weight_label_10_134 {D 
   exact (sub_eq_zero.mp hm).symm
 
 
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem prop78_detection_data_bridge_shift_assoc_inv (coh : BiShiftCoherence Syn)
     (a b c ab bc total : ℤ × ℤ) (hab : a+b=ab) (hbc : b+c=bc)
     (habc : ab+c=total) (habc' : a+bc=total) (A : Syn) :
@@ -400,14 +401,14 @@ private theorem prop78_detection_data_bridge_vanishes_mod_lambda_iff_multiple
   let F := SyntheticCategory.biShift (Syn:=Syn) (0,-(n:ℤ))
   let e : F.obj (Smn m w : Syn) ≅ Smn m (w-(n:ℤ)) :=
     (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).app S_0_0 ≪≫
-      eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+      eqToIso (by congr 1; simp [sub_eq_add_neg])
   have he (b : BiHom m w X) : lambdaMultiply n b=e.inv≫F.map b≫lambdaPow n X := by
     have he' : lambdaMultiply n b=e.inv≫lambdaPow n (Smn m w)≫b := by
       unfold lambdaMultiply
-      change eqToHom (by congr 1 <;> simp) ≫
+      change eqToHom (by congr 1; simp) ≫
         (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0 ≫
         lambdaPow n (Smn m w) ≫ b =
-        (eqToHom (by congr 1 <;> simp) ≫
+        (eqToHom (by congr 1; simp) ≫
           (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0) ≫
         lambdaPow n (Smn m w) ≫ b
       exact (Category.assoc _ _ _).symm
@@ -1005,7 +1006,7 @@ private theorem prop78_detection_data_bridge_sphere_label_to_nu {D : Model H M S
     have hc : familyPageMap D.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k) nx =
         D.sphereE2 s t k x := by
-      convert D.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
     calc
       _ = familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k)
           (familyPageMap D.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k)

@@ -68,7 +68,7 @@ private theorem anyexact0_represents_unique {a b : E.Page r p}
 private theorem anyexact0_represents_smul {a : E.Page r p} (ha : RepresentsOnPage E r p x a) (c : R) :
     RepresentsOnPage E r p (c • x) (c • a) := by
   obtain ⟨hr, z, hz, hza⟩ := ha
-  refine ⟨hr, c • z, ?_, ?_⟩ <;> simpa only [map_smul, hz, hza]
+  refine ⟨hr, c • z, ?_, ?_⟩ <;> simp only [map_smul, hz, hza]
 
 private theorem anyexact0_represents_d_zero_of_later {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
     {a : E.Page r p} (ha : RepresentsOnPage E r p x a)
@@ -1318,7 +1318,7 @@ private theorem anyexact0_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
     have hc : familyPageMap D.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k) nx =
         D.sphereE2 s t k x := by
-      convert D.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
     calc
       _ = familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k)
           (familyPageMap D.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k)
@@ -1382,7 +1382,7 @@ private theorem anyexact0_finite_sphere_infinity_cycle_label_exists
   have h := anyexact0_family_infinity_representative_map f (s,t,t-k) _ _ hn
   rw [hl,heq] at h
   refine ⟨c.val,?_,h⟩
-  convert c.property using 1 <;> congr 1 <;> omega
+  convert c.property using 1; congr 1; omega
 
 private theorem anyexact0_finite_sphere_filtration_has_cycle_label
     (BHS : EInftyInput D) (q k : ℕ) (hq : 0<q) (hkq : k<q) (s t : ℤ)
@@ -1591,12 +1591,14 @@ private theorem anyexact0_anyy_af16_source_boundary (I : Inputs D L G) :
   · exact hb1
   · exact hb2
   · exact Submodule.add_mem _ hb1 hb2
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem anyexact0_lambda_multiply_zero_precomp {A : Syn} {m w m' w' : ℤ}
     (b : ℕ) (f : Smn (Syn:=Syn) m' w' ⟶ Smn m w) (x : BiHom m w A)
     (hx : lambdaMultiply b x=0) : lambdaMultiply b (f≫x)=0 := by
   simp only [lambdaMultiply,comp_eq_zero_iff_of_epi] at hx ⊢
   rw [←Category.assoc,←lambdaPow_naturality b f,Category.assoc,hx,Limits.comp_zero]
 
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem anyexact0_lambda_multiply_zero_iterated {A : Syn} {m w : ℤ}
     (a b : ℕ) (x : BiHom m w A) (hx : lambdaMultiply b x=0) :
     lambdaMultiply b (lambdaMultiply a x)=0 := by
@@ -1629,7 +1631,6 @@ private theorem anyexact0_boundary_filtration_peel
     simpa only [a0,quotientClass,lambdaMultiply,Category.assoc,Limits.zero_comp] using
       congrArg (fun f=>f≫XModLambdaN.incl (S_0_0 : Syn) 9) hb6k
   refine ⟨a-a0,detects_sub_filtration (D.quotientConvergence 9 (by decide)) (s,t,t-k) hxa ha0,?_⟩
-  change lambdaMultiply 6 (a-a0)=lambdaMultiply 6 a
   have hdist : lambdaMultiply 6 (a-a0)=lambdaMultiply 6 a-lambdaMultiply 6 a0 := by
     simp only [lambdaMultiply,Preadditive.comp_sub]
   rw [hdist,ha0zero,sub_zero]
@@ -1952,6 +1953,7 @@ open KIP126.Kervaire.Route
 universe uc
 variable {C:Type uc} [StableHomotopyCategory.{uc,v} C] [HasFunctorialCofiber (C:=C)]
   [HasFunctorialCofiber (C:=Syn)] {H:Mod2EilenbergMacLane (C:=C)} {M:MilnorCooperations H}
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem anyexact1_shift_assoc_inv (coh : BiShiftCoherence Syn)
     (a b c ab bc total : ℤ × ℤ) (hab : a+b=ab) (hbc : b+c=bc)
     (habc : ab+c=total) (habc' : a+bc=total) (A : Syn) :
@@ -2004,6 +2006,7 @@ private theorem anyexact1_eta_action_right_three (D : Model H M Syn)
   rfl
 
 
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem anyexact1_eta_double_action (coh:BiShiftCoherence Syn)
     (eta:BiHom 1 2 (S_0_0:Syn)) {X:Syn} (a:BiHom 123 129 X) :
     sphereAction (sphereProduct (m:=1) (n:=2) (k:=1) (l:=2) eta eta) a =
@@ -2322,7 +2325,7 @@ private theorem anyexact1_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
     have hc : familyPageMap D.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k) nx =
         D.sphereE2 s t k x := by
-      convert D.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
     calc
       _ = familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k)
           (familyPageMap D.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k)
@@ -2686,14 +2689,14 @@ private theorem anyexact2_vanishes_mod_lambda_iff_multiple
   let F := SyntheticCategory.biShift (Syn:=Syn) (0,-(n:ℤ))
   let e : F.obj (Smn m w : Syn) ≅ Smn m (w-(n:ℤ)) :=
     (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).app S_0_0 ≪≫
-      eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+      eqToIso (by congr 1; simp [sub_eq_add_neg])
   have he (b : BiHom m w X) : lambdaMultiply n b=e.inv≫F.map b≫lambdaPow n X := by
     have he' : lambdaMultiply n b=e.inv≫lambdaPow n (Smn m w)≫b := by
       unfold lambdaMultiply
-      change eqToHom (by congr 1 <;> simp) ≫
+      change eqToHom (by congr 1; simp) ≫
         (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0 ≫
         lambdaPow n (Smn m w) ≫ b =
-        (eqToHom (by congr 1 <;> simp) ≫
+        (eqToHom (by congr 1; simp) ≫
           (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0) ≫
         lambdaPow n (Smn m w) ≫ b
       exact (Category.assoc _ _ _).symm
@@ -2723,6 +2726,7 @@ private theorem anyexact2_map_filtration {X Y : Syn} (f : X ⟶ Y) {m w s : ℤ}
   rw [Category.assoc,adamsTowerInduced_map,←Category.assoc,hz]
   rfl
 
+omit [HasFunctorialCofiber (C := Syn)] in
 private theorem anyexact2_shift_assoc_inv (coh : BiShiftCoherence Syn)
     (a b c ab bc total : ℤ × ℤ) (hab : a+b=ab) (hbc : b+c=bc)
     (habc : ab+c=total) (habc' : a+bc=total) (A : Syn) :
@@ -2921,16 +2925,16 @@ private theorem anyy_lambda_one_division_of_quotient_zero
   let F := SyntheticCategory.biShift (Syn:=Syn) (0,-1)
   let e : F.obj (Smn m w : Syn) ≅ Smn m (w-1) :=
     (SyntheticCategory.biShift_comp (m,w) (0,-1)).app S_0_0 ≪≫
-      eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+      eqToIso (by congr 1; simp [sub_eq_add_neg])
   let b := (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (0,-1)).preimage (e.hom≫a)
   have hb : F.map b=e.hom≫a :=
     (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (0,-1)).map_preimage _
   refine ⟨b,?_⟩
   have he : lambdaMultiply 1 b=e.inv≫lambdaPow 1 (Smn m w)≫b := by
     unfold lambdaMultiply
-    change eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
+    change eqToHom (by congr 1; simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
       lambdaPow 1 (Smn m w) ≫ b =
-      (eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
+      (eqToHom (by congr 1; simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
       lambdaPow 1 (Smn m w) ≫ b
     exact (Category.assoc _ _ _).symm
   rw [he]

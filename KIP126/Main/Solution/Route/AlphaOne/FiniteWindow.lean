@@ -955,7 +955,7 @@ private theorem stem123_weight130_finite_quotients_cycle_quotient_zero_of_page
     Subsingleton (CycleQuotient H SphereSpectrum c b p) := by
   classical
   have hall (x : cycles H SphereSpectrum c p) : NestedQuotient.projection _ (boundaries H SphereSpectrum b p) x=0 := by
-    obtain ⟨x',hx'⟩ := (isCycle_iff_represents H SphereSpectrum (c+1) (by omega) p x.val).mp ⟨by omega,by simpa using x.property⟩
+    obtain ⟨x',hx'⟩ := (isCycle_iff_represents H SphereSpectrum (c+1) (by omega) p x.val).mp ⟨by omega,by simp⟩
     obtain ⟨xr,hxr⟩ := represents_before hr hc hx'
     rw [hz.elim xr 0] at hxr
     exact (NestedQuotient.projection_eq_zero x).mpr
@@ -1356,7 +1356,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     have hw3 := cycles_antitone H SphereSpectrum (11,134) (by decide : (3:ℤ)≤7-1) hw.2
     have hx3 := cycles_antitone H SphereSpectrum (11,134) (by decide : (3:ℤ)≤7) hx
     have hh := (cycles H SphereSpectrum 3 (11,134)).sub_mem hw3 hx3
-    convert hh using 1 <;> first | rfl | abel
+    convert hh using 1; first | rfl | abel
   have hd3 : E.d 2 (11,134) (I.realization.basis .sphere 11 134 3)=I.realization.basis .sphere 13 135 2 := h273.eq_on_page_two.2
   have hdA : E.d 2 (11,134) (I.realization.basis .sphere 11 134 1)+E.d 2 (11,134) (I.realization.basis .sphere 11 134 3)=0 := by
     obtain ⟨_,a3,_,ha3,_,_⟩ := h272

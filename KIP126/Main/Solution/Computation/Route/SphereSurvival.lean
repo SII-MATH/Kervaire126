@@ -1054,7 +1054,7 @@ private theorem sphere_basic_survival_hd2h6 (I : Inputs D L G) : Derived.Differe
   rw [←hy.eq_on_page_two,←he0]
   intro h
   have hh := congrArg (fun x => e x 0) h
-  simpa using hh
+  simp at hh
 
 private theorem sphere_basic_survival_hd2x_h201 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (8,133) (10,134)
     (I.realization.basis .sphere 8 133 1) (I.realization.basis .sphere 10 134 2 + I.realization.basis .sphere 10 134 4) := by
@@ -1150,7 +1150,7 @@ private theorem sphere_basic_survival_hd2x (I : Inputs D L G) : Derived.Differen
   rw [←hy.eq_on_page_two,←he2,←he4]
   intro h
   have hh := congrArg (fun x => e x 2) h
-  simpa using hh
+  simp at hh
 
 private theorem sphere_basic_survival_hVX (I : Inputs D L G) : Derived.Survival I.realization 12 KIP126.Computation.Near126.V ∧ Derived.NotHit I.realization KIP126.Computation.Near126.V ∧
   Derived.Survival I.realization 6 X ∧ Derived.NotHit I.realization X := by
@@ -2150,7 +2150,7 @@ private theorem sphere_low_page_vanishing_hAF11 (I : Inputs D L G) : Subsingleto
     rw [←he15_138_0]
     intro h
     have hh := congrArg (fun z => e15_138 z 0) h
-    simpa using hh) ht0
+    simp at hh) ht0
   have hnext := next_page_two_of_kernel E 4 (by change (2:ℤ)≤4;omega) (11,135) 0 (by
     intro a ha
     rcases kernel_11 a with h|h
@@ -2382,7 +2382,7 @@ private theorem sphere_low_page_vanishing (I : Inputs D L G) :
     (Subsingleton ((sequence D .sphere).Page 5 (11,135))) ∧
     (Subsingleton ((sequence D .sphere).Page 4 (12,136))) ∧
     (I.realization.sphere 9 134 (mulAt X (atom .h2)) = 0) ∧
-    (∀ (s : ℕ) (hs : s≤4),
+    (∀ (s : ℕ) (_hs : s≤4),
       Subsingleton ((sequence D .sphere).Page 2 (s,(s:ℤ)+125))) := by
   classical
   exact ⟨(sphere_low_page_vanishing_hMiddle125 I), (sphere_low_page_vanishing_hAF11 I), (sphere_low_page_vanishing_hAF12 I), (sphere_low_page_vanishing_hxH2 I), stem125_e2_low I⟩

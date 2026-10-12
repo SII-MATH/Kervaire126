@@ -95,9 +95,7 @@ private theorem target_monomial :
       (Finsupp.single (0 : Generator) 1 + Finsupp.single (3 : Generator) 2) (1 : F2) =
       MvPolynomial.X (0 : Generator) * MvPolynomial.X (3 : Generator) ^ 2 := by
   rw [MvPolynomial.X_pow_eq_monomial]
-  simpa [MvPolynomial.X] using
-    (MvPolynomial.monomial_mul (Finsupp.single (0 : Generator) 1)
-      (Finsupp.single (3 : Generator) 2) (1 : F2) (1 : F2)).symm
+  simp [MvPolynomial.X]
 
 /-- The degree component is spanned by the exact target data element. -/
 theorem homogeneousPart_h0h3Sq_eq_span : homogeneousPart 3 17 =

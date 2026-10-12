@@ -264,7 +264,7 @@ theorem product_padMany (rank extra : Nat) (left right : Polynomial) (m : Monomi
       (coproduct (rank+extra) (padMany extra m)) =
       pairTensor left right (coproduct rank m) := by
   induction extra with
-  | zero => simpa [padMany]
+  | zero => simp [padMany]
   | succ n ih =>
     have hl : left.map (padMany (n+1)) = (left.map (padMany n)).map pad := by
       simp [List.map_map,padMany,Function.comp_def]

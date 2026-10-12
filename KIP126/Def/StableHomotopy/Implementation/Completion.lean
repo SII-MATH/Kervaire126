@@ -163,7 +163,7 @@ noncomputable def sourceHF2Shift (d : ℤ) : SourceCategory.{0} :=
 cohomology detects exactly HF₂-homology equivalences, without a boundedness
 restriction. The target HF₂ here was fixed before choosing any implementation. -/
 def HF2Equivalences : MorphismProperty SourceCategory.{0} :=
-  fun X Y f => ∀ d : ℤ,
+  fun _X Y f => ∀ d : ℤ,
     Function.Bijective (fun a : Y ⟶ sourceHF2Shift d => f ≫ a)
 
 namespace Prespectrum

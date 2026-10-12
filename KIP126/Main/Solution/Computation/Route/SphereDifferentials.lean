@@ -1194,7 +1194,7 @@ private theorem sphere_product_obstructions_hD2H0six
   rw [←hy.eq_on_page_two,←he0]
   intro h
   have hh := congrArg (fun x => e x 0) h
-  simpa using hh
+  simp at hh
 
 private theorem sphere_product_obstructions_hH5B
     (I : Inputs D L G) : I.realization.sphere 10 134 (mulAt h5Sq B)=0  := by

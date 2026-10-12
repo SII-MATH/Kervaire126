@@ -714,9 +714,9 @@ def sphereLevel : ℕ → BasedSpace
 def sphere : Prespectrum where
   level := sphereLevel
   bond n := BasedSpace.suspensionProjection (sphereLevel n)
-  bond_point n t := BasedSpace.suspensionProjection_collapsed _ _ (Or.inl rfl)
-  bond_zero n x := BasedSpace.suspensionProjection_collapsed _ _ (Or.inr (Or.inl rfl))
-  bond_one n x := BasedSpace.suspensionProjection_collapsed _ _ (Or.inr (Or.inr rfl))
+  bond_point _n _t := BasedSpace.suspensionProjection_collapsed _ _ (Or.inl rfl)
+  bond_zero _n _x := BasedSpace.suspensionProjection_collapsed _ _ (Or.inr (Or.inl rfl))
+  bond_one _n _x := BasedSpace.suspensionProjection_collapsed _ _ (Or.inr (Or.inr rfl))
 
 /-- The positive generator of π₀ of the ordinary sphere: the non-basepoint
 of S⁰, viewed as a zero-dimensional cubical loop. -/
@@ -1315,10 +1315,12 @@ def cone {X Y : Prespectrum.{u}} (f : X ⟶ Y) : Prespectrum.{u} where
       exact Quot.sound (ConeRelation.point t)
 
 def coneInclusion {X Y : Prespectrum.{u}} (f : X ⟶ Y) : Y ⟶ cone f where
-  level n := ⟨fun y => Quot.mk _ (.inl y), continuous_quot_mk.comp continuous_inl⟩
+  level _n := ⟨fun y => Quot.mk _ (.inl y), continuous_quot_mk.comp continuous_inl⟩
   point := fun _ => rfl
   bond := fun _ _ _ => rfl
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 def coneBoundaryRepresentative {X Y : Prespectrum.{u}} (f : X ⟶ Y) (n : ℕ) :
     Y.level n ⊕ (X.level n × I) → (X.level n).suspension
   | .inl _ => (X.level n).suspension.point

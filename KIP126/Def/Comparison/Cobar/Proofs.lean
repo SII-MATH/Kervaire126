@@ -701,7 +701,7 @@ private theorem actualCobarResolution_exists {C : Type u} [StableHomotopyCategor
             splitSlot i.castSucc.castSucc (coproductGenerator (Fin.last s) n)
           symm
           apply split_coproduct_other
-          · exact ne_of_gt (by simpa using i.castSucc_lt_last)
+          · exact ne_of_gt (by simp)
           · exact ne_of_gt (by change i.val < s+1; omega)
           · rw [if_neg (not_lt_of_ge (by simpa using i.castSucc_lt_last.le))]
             rfl

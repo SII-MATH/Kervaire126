@@ -241,7 +241,7 @@ private theorem target_divisibility_contradiction
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)
@@ -381,10 +381,10 @@ private theorem target_divisibility_contradiction
     have hs : familyPageMap D'.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (14,139,139-(4:ℕ)) nx =
         D'.sphereE2 14 139 4 x := by
-      convert D'.comparisonCompatible.sphere_nu 14 139 4 x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D'.comparisonCompatible.sphere_nu 14 139 4 x using 1; simp [nx,ClassicalObject.obj]
     have hn : familyPageMap D'.family ((SyntheticCategory.biShift (0,0)).map (D'.nu.functor.map f))
         2 (14,139,139-(4:ℕ)) nx = ny := by
-      convert D'.comparisonCompatible.nu_natural .sphere X f 0 14 139 4 x using 1 <;> simp [nx,ny,ClassicalObject.obj] <;> rfl
+      convert D'.comparisonCompatible.nu_natural .sphere X f 0 14 139 4 x using 1 <;> simp [nx,ny,ClassicalObject.obj]
     rw [← hs]
     have hc := ConcreteCategory.congr_hom
       (family_page_comp

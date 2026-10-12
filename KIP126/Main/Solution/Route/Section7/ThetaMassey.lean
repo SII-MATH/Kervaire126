@@ -260,7 +260,7 @@ private theorem theta_b_massey_from_inputs
     rw [←hy.eq_on_page_two,←he0]
     intro h
     have hh := congrArg (fun x => e x 0) h
-    simpa using hh
+    simp at hh
   have hD2H0six : Derived.Differential I'.realization 2 (mulAt h0Six dataH6) (mulAt dataH0 B) := by
     have hmem := RelationCertificates.relation_member5
     let E := sequence D' .sphere
@@ -363,7 +363,7 @@ private theorem theta_b_massey_from_inputs
     rw [←hy.eq_on_page_two,←he0]
     intro h
     have hh := congrArg (fun x => e x 0) h
-    simpa using hh
+    simp at hh
   have h5label : I'.realization.sphere 2 64 (h5Sq) = I'.realization.basis .sphere 2 64 0 := by
     have hc := I'.csv (⟨.sphere, 2, 64, ["18,2"]⟩ : Raw.Degree) (by
       unfold Raw.degrees

@@ -423,7 +423,7 @@ private theorem dualShift_exists_unique :
       have hz : (𝟙 L : L ⟶ L)=0 := by
         rw [← e.hom_inv_id, he, Limits.zero_comp]
       have heq := congrArg (fun f:L⟶L => (E.inv ≫ f t ≫ E.hom).hom (1:F2)) hz
-      have hzero : (1:F2)=0 := by simpa using heq
+      have hzero : (1:F2)=0 := by simp at heq
       exact False.elim (one_ne_zero hzero)
     · apply hj
       have hg : g=𝟙 (ModuleCat.of F2 F2) := by
@@ -1646,6 +1646,8 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
         intro s t u y
         exact dualCoefficientShift s t u y (dualExt_internalShift y t))
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- The same representative constraint also preserves the actual identity
 class, with the same comparison family and source resolution. -/
 theorem preservesUnit_of_preservesDualCobarRepresentatives (R : Ext.CobarResolution)
@@ -1691,7 +1693,7 @@ theorem preservesUnit_of_preservesDualCobarRepresentatives (R : Ext.CobarResolut
       have hid : (CategoryStruct.id L : L ⟶ L) ≠ 0 := by
         intro h
         have h' := congrArg (fun f : L ⟶ L => (CategoryStruct.comp E.inv (CategoryStruct.comp (f 0) E.hom)).hom (1 : F2)) h
-        have hz : (1 : F2) = 0 := by simpa using h'
+        have hz : (1 : F2) = 0 := by simp at h'
         exact one_ne_zero hz
       have hu : Ext.unit ≠ 0 := by
         intro h

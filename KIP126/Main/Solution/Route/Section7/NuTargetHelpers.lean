@@ -107,7 +107,7 @@ private theorem nu_target_of_finite_nonzero
       {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a)
       (ht : KIP126.Core.SpectralSequence.ReachesPage E t p x) : E.d r p a = 0 := by
     exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_d_zero_of_later hr0 hrt ha ht
-  have represents_before 
+  have represents_before
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r t : ℤ} {p : ℤ × ℤ}
       {x : E.Page 2 p} {xt : E.Page t p}
       (hr : 2 ≤ r) (hrt : r ≤ t) (ht : KIP126.Core.SpectralSequence.RepresentsOnPage E t p x xt) :
@@ -332,7 +332,7 @@ private theorem nu_target_of_finite_nonzero
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)
@@ -395,7 +395,7 @@ private theorem nu_target_of_finite_nonzero
     have h := family_infinity_representative_map f (s,t,t-k) _ _ hn
     rw [hl,heq] at h
     refine ⟨c.val,?_,h⟩
-    convert c.property using 1 <;> congr 1 <;> omega
+    convert c.property using 1; congr 1; omega
   have finite_sphere_filtration_has_cycle_label
       (BHS : EInftyInput D') (q k : ℕ) (hq : 0<q) (hkq : k<q) (s t : ℤ)
       (a : BiHom (t-s) (t-k) (XModLambdaN (S_0_0 : Syn) q))
@@ -571,13 +571,13 @@ private theorem nu_target_of_finite_nonzero
         NestedQuotient.projection _ _ z=NestedQuotient.projection _ _ c
       rcases hcoset z.val with hz | hz
       · left
-        exact (NestedQuotient.projection_eq_zero z).mpr (by convert hz using 1 <;> congr 1 <;> omega)
+        exact (NestedQuotient.projection_eq_zero z).mpr (by convert hz using 1; congr 1; omega)
       · right
         apply sub_eq_zero.mp
         rw [←map_sub]
         apply (NestedQuotient.projection_eq_zero (z-c)).mpr
         change z.val-x ∈ boundaries H SphereSpectrum (1+t-(t-k)) (s,t)
-        convert hz using 1 <;> congr 1 <;> omega
+        convert hz using 1; congr 1; omega
     have frame := finite_sphere_frame BHS q k hq hk s t c hframe
     have hc := D'.comparisonCompatible.homotopy_lambda s t k c0
     rw [hc0] at hc
@@ -745,7 +745,7 @@ private theorem nu_target_of_finite_nonzero
     have hc : familyPageMap D'.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
         D'.sphereE2 s t k x := by
-      convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
     calc
       _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
           (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)
@@ -765,7 +765,7 @@ private theorem nu_target_of_finite_nonzero
     let z : permanentCycles H SphereSpectrum (s,t) := ⟨x,boundaries_le_permanentCycles H SphereSpectrum (s,t) (1+k) hx⟩
     have hz : NestedQuotient.projection _ (boundaries H SphereSpectrum (1+t-(t-k)) (s,t)) z=0 := by
       apply (NestedQuotient.projection_eq_zero z).mpr
-      convert hx using 1 <;> congr 1 <;> omega
+      convert hx using 1; congr 1; omega
     have hn : HasInfinityRepresentative (D'.family.nu D'.nu SphereSpectrum) 2 (s,t,t-k)
         (targetNuLabel D' .sphere s t k x) 0 := by
       apply (BHS.labels.2 .sphere (s,t) k z 0).mpr
@@ -1037,7 +1037,7 @@ private theorem nu_target_of_finite_nonzero
       ⟨x,boundaries_le_cycles H SphereSpectrum (s,t) (1+k) _ hx⟩
     have hz : NestedQuotient.projection _ (boundaries H SphereSpectrum (1+t-(t-k)) (s,t)) z=0 := by
       apply (NestedQuotient.projection_eq_zero z).mpr
-      convert hx using 1 <;> congr 1 <;> omega
+      convert hx using 1; congr 1; omega
     have hn : HasInfinityRepresentative (D'.family.nuQuotient D'.nu SphereSpectrum q) 2 (s,t,t-k)
         (finiteTargetLabel D' .sphere q s t k x) 0 := by
       apply (BHS.labels.1 .sphere q hq (s,t) k hk z 0).mpr
@@ -1233,14 +1233,14 @@ private theorem nu_target_of_finite_nonzero
     let F := SyntheticCategory.biShift (Syn:=Syn) (0,-(n:ℤ))
     let e : F.obj (Smn m w : Syn) ≅ Smn m (w-(n:ℤ)) :=
       (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+        eqToIso (by congr 1; simp [sub_eq_add_neg])
     have he (b : BiHom m w X) : lambdaMultiply n b=e.inv≫F.map b≫lambdaPow n X := by
       have he' : lambdaMultiply n b=e.inv≫lambdaPow n (Smn m w)≫b := by
         unfold lambdaMultiply
-        change eqToHom (by congr 1 <;> simp) ≫
+        change eqToHom (by congr 1; simp) ≫
           (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0 ≫
           lambdaPow n (Smn m w) ≫ b =
-          (eqToHom (by congr 1 <;> simp) ≫
+          (eqToHom (by congr 1; simp) ≫
             (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0) ≫
           lambdaPow n (Smn m w) ≫ b
         exact (Category.assoc _ _ _).symm
@@ -1748,7 +1748,6 @@ private theorem nu_target_of_finite_nonzero
       change zq' ≫ _=sphereProduct (lambdaMultiply 1 nu) (lambdaMultiply 2 q) at hzq
       rw [Preadditive.add_comp,hzp,hzq]
       simp only [sphereProduct,Preadditive.comp_add,Nat.cast_ofNat,Int.natCast_one,Int.reduceSub]
-      all_goals rfl
   have hl := (weak_route_expression_labels I').2.2
   have ht : L'.target M'∈permanentCycles H SphereSpectrum (14,139) := by
     rw [←hl]
@@ -2178,7 +2177,7 @@ private theorem nu_target_full_of_nonzero
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)
@@ -2241,7 +2240,7 @@ private theorem nu_target_full_of_nonzero
     have h := family_infinity_representative_map f (s,t,t-k) _ _ hn
     rw [hl,heq] at h
     refine ⟨c.val,?_,h⟩
-    convert c.property using 1 <;> congr 1 <;> omega
+    convert c.property using 1; congr 1; omega
   have finite_sphere_filtration_has_cycle_label
       (BHS : EInftyInput D') (q k : ℕ) (hq : 0<q) (hkq : k<q) (s t : ℤ)
       (a : BiHom (t-s) (t-k) (XModLambdaN (S_0_0 : Syn) q))
@@ -2348,7 +2347,7 @@ private theorem nu_target_full_of_nonzero
       ⟨x,boundaries_le_cycles H SphereSpectrum (s,t) (1+k) _ hx⟩
     have hz : NestedQuotient.projection _ (boundaries H SphereSpectrum (1+t-(t-k)) (s,t)) z=0 := by
       apply (NestedQuotient.projection_eq_zero z).mpr
-      convert hx using 1 <;> congr 1 <;> omega
+      convert hx using 1; congr 1; omega
     have hn : HasInfinityRepresentative (D'.family.nuQuotient D'.nu SphereSpectrum q) 2 (s,t,t-k)
         (finiteTargetLabel D' .sphere q s t k x) 0 := by
       apply (BHS.labels.1 .sphere q hq (s,t) k hk z 0).mpr
@@ -2577,12 +2576,12 @@ private theorem nu_target_full_of_nonzero
     let T := XModLambdaN.cofiberTriangle (S_0_0 : Syn) 1
     let e₀ : U ≅ Smn (Syn := Syn) m (wt-1) :=
       (SyntheticCategory.biShift_comp (m,wt) (0,-1)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+        eqToIso (by congr 1)
     let e₁ : U⟦(1 : ℤ)⟧ ≅ Smn (Syn := Syn) (m+1) (wt-1) :=
       (shiftFunctor Syn (1 : ℤ)).mapIso e₀ ≪≫
         (SyntheticCategory.biShift_compat (Syn := Syn) 1).symm.app _ ≪≫
         (SyntheticCategory.biShift_comp (m,wt-1) (1,0)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp)
+        eqToIso (by congr 1)
     have hQ : ∀ q : U⟦(1 : ℤ)⟧ ⟶ T.obj₃, q = 0 := by
       intro q
       haveI : Subsingleton (PageRepresentatives.Ambient H SphereSpectrum (wt-m-2,wt-1)) :=
@@ -2678,7 +2677,6 @@ private theorem nu_target_full_of_nonzero
       (hh0 : lambdaMultiply 1 h0=syntheticTwo) :
       sphereAction h0 ν=sphereAction ν h0 := by
     apply lambda_injective_three_five D'
-    change lambdaAction 3 5 _ (sphereAction h0 ν)=lambdaAction 3 5 _ (sphereAction ν h0)
     have hm (z : BiHom 3 5 (S_0_0 : Syn)) : lambdaAction 3 5 _ z=lambdaMultiply 1 z := by
       unfold lambdaAction lambdaMultiply
       rw [lambdaPow_one D'.shiftCoherence]

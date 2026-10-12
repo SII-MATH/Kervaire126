@@ -716,7 +716,7 @@ private theorem finite_last_nonzero_sphere_quotient_label_to_nu {D : Model H M S
     have hc : familyPageMap D.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k) nx =
         D.sphereE2 s t k x := by
-      convert D.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
     calc
       _ = familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k)
           (familyPageMap D.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k)
