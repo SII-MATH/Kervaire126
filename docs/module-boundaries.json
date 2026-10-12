@@ -1586,13 +1586,133 @@
         "note": "The original type and namespace are preserved. Fixed input : Challenge2 parameterization and actualE2Product signature are still a proposal."
       },
       "build_isolation": {
-        "status": "not_measured",
-        "evidence": []
+        "status": "measured_pass",
+        "scope": "Three warm incremental-build mutations for the named production consumer only. Checks/PublicHandoffs is not an incremental consumer in these experiments; other consumers and project-wide isolation were not measured. No old/new speedup is claimed.",
+        "evidence": [
+          {
+            "kind": "ci_incremental_build",
+            "run_url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758",
+            "run_id": 38275571758,
+            "run_attempt": 1,
+            "job_url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758/job/114900083902",
+            "tested_commit": "05567bafde33ff58b041c4d1f5137799a2fac38e",
+            "tested_tree": "92897caa0223b5162f7f7a39cad88d1861d83335",
+            "pr_head_commit": "ffbb489844ce2c28dba1a443eec5a57352b2bb0b",
+            "artifact": {
+              "name": "module-boundary-benchmark",
+              "id": 11759503617,
+              "url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758/artifacts/11759503617",
+              "digest": "sha256:a4e948c816458ce5f4983a0a6a77be3fd5046e4d86928ea32bb26d58a622835c",
+              "report_path": "report.json",
+              "report_sha256": "682199b26577a3e468ea0b28589f26c883f2f8cf5fe0ce97a0eff61608ef68cd"
+            },
+            "report_schema_version": 1,
+            "environment": {
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "cpuCount": 4,
+              "leanNumThreads": "2",
+              "artifactCache": false,
+              "externalCacheDownloads": false,
+              "leanVersion": "Lean (version 4.32.2, x86_64-unknown-linux-gnu, commit f3b06c705e6c85f5314019d5d3baab0fec5b580c, Release)",
+              "lakeVersion": "Lake version 5.0.0-src+f3b06c7 (Lean version 4.32.2)"
+            },
+            "build_command": [
+              "lake",
+              "--no-ansi",
+              "--no-cache",
+              "-v",
+              "build",
+              "KIP126.Main.Solution.Route.Section7.NuTarget",
+              "KIP126.Main.Solution.Route.Section7.ThetaToda"
+            ],
+            "consumer": "KIP126.Main.Solution.Route.Section7.ThetaToda",
+            "consumer_artifact_kinds": [
+              "olean",
+              "olean.server",
+              "olean.private",
+              "ir",
+              "ilean",
+              "trace"
+            ],
+            "measurement_notes": {
+              "elapsed_seconds": "Elapsed wall-clock seconds of the case lake build subprocess; excludes expression probes, hashing and snapshot restoration.",
+              "recompiled_count": "Number of distinct Lake Built labels in actual_built; all labels in this run are Lean modules.",
+              "consumer_artifacts_unchanged": "All six recorded artifact SHA-256 hashes, nanosecond timestamps and sizes equal the warm baseline."
+            },
+            "suite_passed": true,
+            "sources_restored": true,
+            "artifacts_restored": true,
+            "baseline_noop_recompiled_count": 0,
+            "restored_noop_recompiled_count": 0,
+            "cases": [
+              {
+                "id": "M08-public-proof",
+                "kind": "public-proof",
+                "passed": true,
+                "elapsed_seconds": 59.672,
+                "recompiled_count": 1,
+                "actual_built": [
+                  "KIP126.Main.Solution.Route.Section7.ThetaMassey"
+                ],
+                "provider_public_olean_unchanged": true,
+                "consumer_recompiled": false,
+                "consumer_artifacts_unchanged": true,
+                "baseline_restored": true
+              },
+              {
+                "id": "M08-internal-proof",
+                "kind": "internal-proof",
+                "passed": true,
+                "elapsed_seconds": 61.075,
+                "recompiled_count": 1,
+                "actual_built": [
+                  "KIP126.Main.Solution.Route.Section7.ThetaMassey"
+                ],
+                "provider_public_olean_unchanged": true,
+                "consumer_recompiled": false,
+                "consumer_artifacts_unchanged": true,
+                "baseline_restored": true
+              },
+              {
+                "id": "M08-public-statement",
+                "kind": "public-statement",
+                "passed": true,
+                "elapsed_seconds": 118.326,
+                "recompiled_count": 3,
+                "actual_built": [
+                  "KIP126.Main.Solution.Route.Section7.ThetaMassey",
+                  "KIP126.Main.Solution.Route.Section7.ThetaToda",
+                  "KIP126.Main.Solution.Route.Section7.WeakY"
+                ],
+                "provider_public_olean_unchanged": false,
+                "consumer_recompiled": true,
+                "consumer_artifacts_unchanged": false,
+                "baseline_restored": true
+              }
+            ]
+          }
+        ]
       },
       "public_import_check": {
         "path": "KIP126/Checks/ModuleBoundaries/PublicHandoffs.lean",
-        "status": "present_not_yet_compiled",
-        "scope": "Elaborates the complete public type using ordinary imports; not proof-completion or build-isolation evidence."
+        "status": "compiled_pass",
+        "scope": "Elaborates the complete public type using ordinary imports; not proof-completion or build-isolation evidence.",
+        "evidence": {
+          "kind": "ci_complete_library_build",
+          "run_url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758",
+          "run_id": 38275571758,
+          "run_attempt": 1,
+          "job_url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758/job/114900083902",
+          "tested_commit": "05567bafde33ff58b041c4d1f5137799a2fac38e",
+          "tested_tree": "92897caa0223b5162f7f7a39cad88d1861d83335",
+          "pr_head_commit": "ffbb489844ce2c28dba1a443eec5a57352b2bb0b",
+          "command": [
+            "lake",
+            "build",
+            "KIP126",
+            "checkdecls"
+          ]
+        }
       }
     },
     {
@@ -1640,13 +1760,133 @@
         "note": "Source implementation keeps the existing witness and upstream proof obligations; it does not implement the website’s arbitrary-input FL."
       },
       "build_isolation": {
-        "status": "not_measured",
-        "evidence": []
+        "status": "measured_pass",
+        "scope": "Three warm incremental-build mutations for the named production consumer only. Checks/PublicHandoffs is not an incremental consumer in these experiments; other consumers and project-wide isolation were not measured. No old/new speedup is claimed.",
+        "evidence": [
+          {
+            "kind": "ci_incremental_build",
+            "run_url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758",
+            "run_id": 38275571758,
+            "run_attempt": 1,
+            "job_url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758/job/114900083902",
+            "tested_commit": "05567bafde33ff58b041c4d1f5137799a2fac38e",
+            "tested_tree": "92897caa0223b5162f7f7a39cad88d1861d83335",
+            "pr_head_commit": "ffbb489844ce2c28dba1a443eec5a57352b2bb0b",
+            "artifact": {
+              "name": "module-boundary-benchmark",
+              "id": 11759503617,
+              "url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758/artifacts/11759503617",
+              "digest": "sha256:a4e948c816458ce5f4983a0a6a77be3fd5046e4d86928ea32bb26d58a622835c",
+              "report_path": "report.json",
+              "report_sha256": "682199b26577a3e468ea0b28589f26c883f2f8cf5fe0ce97a0eff61608ef68cd"
+            },
+            "report_schema_version": 1,
+            "environment": {
+              "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+              "cpuCount": 4,
+              "leanNumThreads": "2",
+              "artifactCache": false,
+              "externalCacheDownloads": false,
+              "leanVersion": "Lean (version 4.32.2, x86_64-unknown-linux-gnu, commit f3b06c705e6c85f5314019d5d3baab0fec5b580c, Release)",
+              "lakeVersion": "Lake version 5.0.0-src+f3b06c7 (Lean version 4.32.2)"
+            },
+            "build_command": [
+              "lake",
+              "--no-ansi",
+              "--no-cache",
+              "-v",
+              "build",
+              "KIP126.Main.Solution.Route.Section7.NuTarget",
+              "KIP126.Main.Solution.Route.Section7.ThetaToda"
+            ],
+            "consumer": "KIP126.Main.Solution.Route.Section7.NuTarget",
+            "consumer_artifact_kinds": [
+              "olean",
+              "olean.server",
+              "olean.private",
+              "ir",
+              "ilean",
+              "trace"
+            ],
+            "measurement_notes": {
+              "elapsed_seconds": "Elapsed wall-clock seconds of the case lake build subprocess; excludes expression probes, hashing and snapshot restoration.",
+              "recompiled_count": "Number of distinct Lake Built labels in actual_built; all labels in this run are Lean modules.",
+              "consumer_artifacts_unchanged": "All six recorded artifact SHA-256 hashes, nanosecond timestamps and sizes equal the warm baseline."
+            },
+            "suite_passed": true,
+            "sources_restored": true,
+            "artifacts_restored": true,
+            "baseline_noop_recompiled_count": 0,
+            "restored_noop_recompiled_count": 0,
+            "cases": [
+              {
+                "id": "M16-public-proof",
+                "kind": "public-proof",
+                "passed": true,
+                "elapsed_seconds": 13.994,
+                "recompiled_count": 1,
+                "actual_built": [
+                  "KIP126.Main.Solution.Route.Section7.WeakY"
+                ],
+                "provider_public_olean_unchanged": true,
+                "consumer_recompiled": false,
+                "consumer_artifacts_unchanged": true,
+                "baseline_restored": true
+              },
+              {
+                "id": "M16-internal-proof",
+                "kind": "internal-proof",
+                "passed": true,
+                "elapsed_seconds": 253.962,
+                "recompiled_count": 2,
+                "actual_built": [
+                  "KIP126.Main.Solution.Route.Section7.WeakRepresentative",
+                  "KIP126.Main.Solution.Route.Section7.WeakY"
+                ],
+                "provider_public_olean_unchanged": true,
+                "consumer_recompiled": false,
+                "consumer_artifacts_unchanged": true,
+                "baseline_restored": true
+              },
+              {
+                "id": "M16-public-statement",
+                "kind": "public-statement",
+                "passed": true,
+                "elapsed_seconds": 17.202,
+                "recompiled_count": 2,
+                "actual_built": [
+                  "KIP126.Main.Solution.Route.Section7.NuTarget",
+                  "KIP126.Main.Solution.Route.Section7.WeakY"
+                ],
+                "provider_public_olean_unchanged": false,
+                "consumer_recompiled": true,
+                "consumer_artifacts_unchanged": false,
+                "baseline_restored": true
+              }
+            ]
+          }
+        ]
       },
       "public_import_check": {
         "path": "KIP126/Checks/ModuleBoundaries/PublicHandoffs.lean",
-        "status": "present_not_yet_compiled",
-        "scope": "Elaborates the complete public type using ordinary imports; not proof-completion or build-isolation evidence."
+        "status": "compiled_pass",
+        "scope": "Elaborates the complete public type using ordinary imports; not proof-completion or build-isolation evidence.",
+        "evidence": {
+          "kind": "ci_complete_library_build",
+          "run_url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758",
+          "run_id": 38275571758,
+          "run_attempt": 1,
+          "job_url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758/job/114900083902",
+          "tested_commit": "05567bafde33ff58b041c4d1f5137799a2fac38e",
+          "tested_tree": "92897caa0223b5162f7f7a39cad88d1861d83335",
+          "pr_head_commit": "ffbb489844ce2c28dba1a443eec5a57352b2bb0b",
+          "command": [
+            "lake",
+            "build",
+            "KIP126",
+            "checkdecls"
+          ]
+        }
       }
     },
     {
@@ -1692,8 +1932,24 @@
       },
       "public_import_check": {
         "path": "KIP126/Checks/ModuleBoundaries/PublicHandoffs.lean",
-        "status": "present_not_yet_compiled",
-        "scope": "Elaborates the complete public type using ordinary imports; not proof-completion or build-isolation evidence."
+        "status": "compiled_pass",
+        "scope": "Elaborates the complete public type using ordinary imports; not proof-completion or build-isolation evidence.",
+        "evidence": {
+          "kind": "ci_complete_library_build",
+          "run_url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758",
+          "run_id": 38275571758,
+          "run_attempt": 1,
+          "job_url": "https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758/job/114900083902",
+          "tested_commit": "05567bafde33ff58b041c4d1f5137799a2fac38e",
+          "tested_tree": "92897caa0223b5162f7f7a39cad88d1861d83335",
+          "pr_head_commit": "ffbb489844ce2c28dba1a443eec5a57352b2bb0b",
+          "command": [
+            "lake",
+            "build",
+            "KIP126",
+            "checkdecls"
+          ]
+        }
       }
     },
     {

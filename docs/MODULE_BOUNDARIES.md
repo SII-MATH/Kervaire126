@@ -26,9 +26,10 @@ Each registered delivery records three separate states:
 | `public_boundary` | Which public name and file currently provide the handoff | A public theorem may retain unfinished upstream obligations |
 | `build_isolation` | Recorded evidence from an actual incremental-build experiment | Import statistics do not measure time saved or files reused |
 
-Mathematical reviews remain pending. Build isolation remains unmeasured unless
-the registry cites a completed experiment. The implementation status describes the
-source change and distinguishes it from unimplemented parts of the website
+Mathematical reviews remain pending. The registry records measured build
+isolation for the named M08 and M16 production consumers in the six experiments
+below; the other four registered deliveries remain unmeasured. The implementation
+status describes the source change and distinguishes it from unimplemented parts of the website
 proposal. A supporting implementation formula is explicitly marked as such; it is
 not presented as the identical statement of a broader NL–FL entry.
 
@@ -173,6 +174,10 @@ access, public bridge leakage, hidden-definition exposure, and audit backdoors.
 check complete public types by ordinary imports. A passing compilation verifies
 that those signatures can be consumed. It does not prove the absence of
 `sorryAx`, validate NL–FL alignment, or measure incremental build reuse.
+The complete build in the cited CI run compiled all four examples, including
+the May signed-boundary adapter. The registered `public_import_check` entries
+record `compiled_pass` with that build evidence. This Checks module is not an
+incremental consumer in the experiments below.
 
 The six warm-build experiments are implemented in
 [`scripts/benchmark_module_boundaries.py`](../scripts/benchmark_module_boundaries.py).
@@ -193,12 +198,50 @@ expression hashes, artifact hashes and timestamps, Lake build/replay actions,
 elapsed time, and exact patches. These measurements distinguish public
 interface reuse from legitimate invalidation after a statement changes.
 
-CI runs these experiments and uploads their report and logs as the
-`module-boundary-benchmark` artifact. The experiments are implemented, but their
-compilation results remain pending CI; the registry's `build_isolation` status
-therefore remains `not_measured` until evidence from that run is recorded.
-Failed or unavailable experiments must stay explicit. Historical cold-build
-and cache-hit times are not evidence from this experiment.
+All six experiments passed in
+[CI run 38275571758, attempt 1](https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758),
+in the [Lean and Blueprint job](https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758/job/114900083902).
+The tested checkout was the PR merge commit
+[`05567baf`](https://github.com/SII-MATH/Kervaire126/commit/05567bafde33ff58b041c4d1f5137799a2fac38e),
+with tree `92897caa0223b5162f7f7a39cad88d1861d83335` and PR head
+[`ffbb4898`](https://github.com/SII-MATH/Kervaire126/commit/ffbb489844ce2c28dba1a443eec5a57352b2bb0b).
+The report and logs are in
+[`module-boundary-benchmark`, artifact 11759503617](https://github.com/SII-MATH/Kervaire126/actions/runs/38275571758/artifacts/11759503617).
+The registry binds the results to these identifiers, the archive SHA-256, and
+the SHA-256 of the raw `report.json` bytes.
+
+| Case | Incremental `lake build` time (seconds) | Recompiled modules | Production consumer |
+| --- | ---: | --- | --- |
+| M08 public proof | 59.672 | 1: `ThetaMassey` | `ThetaToda` reused |
+| M08 internal proof | 61.075 | 1: `ThetaMassey` | `ThetaToda` reused |
+| M08 public statement | 118.326 | 3: `ThetaMassey`, `ThetaToda`, `WeakY` | `ThetaToda` recompiled |
+| M16 public proof | 13.994 | 1: `WeakY` | `NuTarget` reused |
+| M16 internal proof | 253.962 | 2: `WeakRepresentative`, `WeakY` | `NuTarget` reused |
+| M16 public statement | 17.202 | 2: `NuTarget`, `WeakY` | `NuTarget` recompiled |
+
+Names in this table share the prefix `KIP126.Main.Solution.Route.Section7`.
+Counts are the distinct Lake `Built` labels, all of which are Lean modules in
+this run. Case times measure the `lake build` subprocess alone. The complete
+benchmark step took 19 minutes 5 seconds (16:15:29–16:34:34 UTC), including
+expression probes, hashing, and full build-artifact snapshots and restoration;
+the six case times do not represent that total. The recorded environment used
+Lean 4.32.2 with two Lean threads, with artifact-cache restoration and external
+cache downloads disabled during the incremental experiments.
+
+In all four proof-only cases, the compiled proof expression and private artifact
+changed while the provider's public `.olean` remained unchanged. The named
+consumer was not rebuilt, and all six of its recorded artifacts (`olean`,
+`olean.server`, `olean.private`, `ir`, `ilean`, and `trace`) retained their hashes,
+nanosecond timestamps, and sizes. Both public-statement changes modified the
+provider's public `.olean` and rebuilt the intended consumer. Source and build
+artifacts were restored after every case; the final no-op build recompiled zero
+modules and preserved the baseline artifacts.
+
+Accordingly, only M08 and M16 have `build_isolation.status = measured_pass`.
+The other four deliveries remain `not_measured`, and mathematical approval
+remains pending. These results establish reuse for the named consumers and
+tested changes; they do not measure an old/new speedup or isolation of every
+public consumer. Historical cold-build and cache-hit times are separate evidence.
 
 Unimplemented proposal work is also listed in the JSON. In particular, standard
 E₂ unfolding policies, arbitrary-input parameterization, M03's narrower premise,
