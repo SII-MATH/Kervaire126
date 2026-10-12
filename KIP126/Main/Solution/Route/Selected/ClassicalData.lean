@@ -1,8 +1,8 @@
 module
 
-public import KIP126.Def.Kervaire.Route.Section7.AlphaOne
-public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
-public import KIP126.Main.Solution.Computation.Route.CofiberAndFiltration
+import KIP126.Def.Kervaire.Route.Section7.AlphaOne
+import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
+import KIP126.Main.Solution.Computation.Route.CofiberAndFiltration
 
 
 import all Init.Data.String.Search
@@ -10,7 +10,7 @@ import all Init.Data.String.Slice
 
 import all Init.Data.String.Legacy
 
-@[expose] public section
+section
 
 namespace KIP126.Main.Solution.Route
 open KIP126.Core.SpectralSequence.FinitePageCalculus

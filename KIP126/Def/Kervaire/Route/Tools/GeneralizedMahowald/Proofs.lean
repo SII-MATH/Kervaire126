@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Predicates
 public import KIP126.Def.Kervaire.Route.Tools.Inputs.Data
-import all KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching.Proofs
+import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching.Proofs
 import KIP126.Def.Synthetic.QuotientTower.Proofs
 import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
 import KIP126.Def.SpectralSequence.Basic.Category.Proofs
@@ -41,7 +41,6 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 
 open KIP126.Synthetic.SpectralSequence KIP126.Classical.Adams.PageRepresentatives
 open KIP126.Core.SpectralSequence KIP126.Synthetic.PageExtension
-open private shifted_finite_source_exists from KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching.Proofs
 
 /- In the top nonzero weight of a finite quotient, two detected targets
 coincide as actual homotopy classes. Thus an extension gives a strict

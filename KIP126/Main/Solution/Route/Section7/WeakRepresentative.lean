@@ -1,43 +1,43 @@
 module
 
-public import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
-public import KIP126.Def.Synthetic.Context.Coherence.Proofs
-public import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Predicates
-public import KIP126.Interface.Solution.Literature.Applications
-public import KIP126.Def.ClassicalAdams.PageRepresentatives.Proofs
-public import KIP126.Def.ClassicalAdams.PageRepresentatives.Order.Proofs
-public import KIP126.Def.SpectralSequence.Basic.Proofs
-public import KIP126.Def.SpectralSequence.Computation.Proofs
-public import KIP126.Def.Algebra.NestedQuotient.Proofs
-public import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
-public import KIP126.Main.Solution.Computation.Route.Consequences
-public import KIP126.Def.ClassicalAdams.TowerVanishing.Proofs
-public import KIP126.Def.SpectralSequence.Permanence.Proofs
-public import KIP126.Def.Kervaire.Route.Section7.AlphaOne
-public import KIP126.Def.Synthetic.Detection.Proofs
-public import KIP126.Def.SpectralSequence.Basic.Category.Proofs
-public import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
-public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Proofs
-public import KIP126.Def.Synthetic.QuotientTower.Proofs
-public import Mathlib.CategoryTheory.Triangulated.Functor
-public import KIP126.Interface.Challenge.Computation.Delivery
-public import Batteries.Data.String.Lemmas
-public import KIP126.Def.ClassicalAdams.TowerNaturality.Proofs
-public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
-public import KIP126.Def.Synthetic.Context.LambdaPowers.Proofs
-public import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Proofs
-public import KIP126.Def.Algebra.Filtration.Proofs
-public import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
-public import KIP126.Def.ClassicalAdams.SphereVanishing.Proofs
-public import KIP126.Interface.Challenge.Challenge2
-public import KIP126.Interface.Solution.Literature.Route.Adapters
+import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
+import KIP126.Def.Synthetic.Context.Coherence.Proofs
+import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Predicates
+import KIP126.Interface.Solution.Literature.Applications
+import KIP126.Def.ClassicalAdams.PageRepresentatives.Proofs
+import KIP126.Def.ClassicalAdams.PageRepresentatives.Order.Proofs
+import KIP126.Def.SpectralSequence.Basic.Proofs
+import KIP126.Def.SpectralSequence.Computation.Proofs
+import KIP126.Def.Algebra.NestedQuotient.Proofs
+import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
+import KIP126.Main.Solution.Computation.Route.Consequences
+import KIP126.Def.ClassicalAdams.TowerVanishing.Proofs
+import KIP126.Def.SpectralSequence.Permanence.Proofs
+import KIP126.Def.Kervaire.Route.Section7.AlphaOne
+import KIP126.Def.Synthetic.Detection.Proofs
+import KIP126.Def.SpectralSequence.Basic.Category.Proofs
+import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
+import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Proofs
+import KIP126.Def.Synthetic.QuotientTower.Proofs
+import Mathlib.CategoryTheory.Triangulated.Functor
+import KIP126.Interface.Challenge.Computation.Delivery
+import Batteries.Data.String.Lemmas
+import KIP126.Def.ClassicalAdams.TowerNaturality.Proofs
+import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
+import KIP126.Def.Synthetic.Context.LambdaPowers.Proofs
+import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Proofs
+import KIP126.Def.Algebra.Filtration.Proofs
+import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
+import KIP126.Def.ClassicalAdams.SphereVanishing.Proofs
+import KIP126.Interface.Challenge.Challenge2
+import KIP126.Interface.Solution.Literature.Route.Adapters
 
 -- The CSV proofs explicitly unfold these string/list implementations.
 import all Init.Data.String.Legacy
 import all Init.Data.String.Search
 import all Init.Data.String.Slice
 
-@[expose] public section
+section
 
 
 namespace KIP126.Main.Solution.Route.Section7

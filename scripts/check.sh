@@ -5,8 +5,10 @@ export PYTHONDONTWRITEBYTECODE=1
 
 python3 scripts/check_source_inventory.py
 python3 scripts/check_external_inputs.py
+python3 scripts/module_boundaries.py --check
 python3 -m unittest \
   scripts.test_stage_boundary_layout \
+  scripts.test_module_boundaries \
   scripts.test_external_inputs \
   scripts.test_check_source_inventory \
   scripts.test_blueprint_frontier \

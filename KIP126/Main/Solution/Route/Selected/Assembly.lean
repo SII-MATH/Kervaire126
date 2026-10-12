@@ -1,15 +1,15 @@
 module
 
-public import KIP126.Def.Kervaire.Route.Section7.AlphaOne
-public import KIP126.Main.Solution.Computation.Lambda
-public import KIP126.Main.Solution.DifferentialReduction.d12_dichotomy_and_condition_equivalence
+import KIP126.Def.Kervaire.Route.Section7.AlphaOne
+import KIP126.Main.Solution.Computation.Lambda
+import KIP126.Main.Solution.DifferentialReduction.d12_dichotomy_and_condition_equivalence
 
 import all KIP126.Main.Solution.Route.Selected.ThetaData
 import all KIP126.Main.Solution.Route.Selected.ClassicalData
 import all KIP126.Main.Solution.Route.Selected.ChoiceInvariance
 import all KIP126.Main.Solution.Route.Selected.DetectionData
 
-@[expose] public section
+section
 
 namespace KIP126.Main.Solution.Route
 

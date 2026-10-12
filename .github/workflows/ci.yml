@@ -39,7 +39,7 @@ jobs:
     name: Lean and Blueprint
     runs-on: ubuntu-24.04
     # The build is capped separately; allow cache transfers and checks to finish.
-    timeout-minutes: 135
+    timeout-minutes: 165
     permissions:
       contents: read
       actions: read
@@ -175,6 +175,18 @@ jobs:
           # The minimal TeX installation has no texlive-base search-path defaults.
           TEXINPUTS: '.:'
         run: bash scripts/check-blueprint-decls.sh
+      - name: Verify incremental compilation at the M08 and M16 handoffs
+        id: module-boundaries
+        timeout-minutes: 30
+        run: python3 scripts/benchmark_module_boundaries.py --output "$RUNNER_TEMP/module-boundary-benchmark"
+      - name: Upload module boundary compilation evidence
+        if: always() && steps.module-boundaries.outcome != 'skipped'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: module-boundary-benchmark
+          retention-days: 7
+          path: ${{ runner.temp }}/module-boundary-benchmark/
+          if-no-files-found: error
       - name: Package the successful PR build for its eventual merge
         id: build-handoff
         timeout-minutes: 10

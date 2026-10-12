@@ -1,13 +1,13 @@
 module
 
-public import KIP126.Main.Solution.Computation.Route.Bounds
+import KIP126.Main.Solution.Computation.Route.Bounds
 import all Init.Data.String.Search
 import all Init.Data.String.Slice
 import all Init.Data.String.Legacy
 
 /-! Private named sphere differentials and product obstructions. -/
 
-@[expose] public section
+section
 
 namespace KIP126.Computation.Route
 open CategoryTheory.Limits KIP126.Core.Algebra

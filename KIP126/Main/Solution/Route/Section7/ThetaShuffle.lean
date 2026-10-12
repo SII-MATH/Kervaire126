@@ -1,5 +1,7 @@
 module
 
+import KIP126.Main.Solution.Route.Section7.ProofSupport
+
 public import KIP126.Main.Solution.Computation.LowDegrees
 public import KIP126.Main.Solution.Route.Section7.Indeterminacy
 

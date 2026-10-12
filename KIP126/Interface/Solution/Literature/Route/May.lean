@@ -3,7 +3,7 @@ module
 public import KIP126.Interface.Challenge.Challenge2
 public import KIP126.Interface.Solution.Literature.Applications
 
-import all KIP126.Def.StableHomotopy.Context.Proofs
+import KIP126.Def.StableHomotopy.Context.Connecting.Desuspension.Proofs
 
 @[expose] public section
 
@@ -34,9 +34,8 @@ theorem may_signed_boundary_of_source (B : MayContext Syn)
         -((z ≫ P.j3) ≫ (T.map (tensorRight U.X)).h) := by
       rw [← hza, Category.assoc, P.boundary]
       simp only [Preadditive.comp_neg, Category.assoc]
-    simp only [connectingHomomorphism, AddMonoidHom.coe_mk, ZeroHom.coe_mk,
-      hs, Functor.map_neg, Preadditive.comp_neg, Preadditive.neg_comp]
-    rfl
+    rw [connectingHomomorphism_eq_desuspend, connectingHomomorphism_eq_desuspend,
+      hs, map_neg]
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Remove the sign only after an explicit additive projection whose image

@@ -1,0 +1,2150 @@
+{
+  "schema_version": 1,
+  "scope": "Maintenance ownership, NL–FL design references, public Lean handoffs, and source import modes. This registry does not freeze interfaces, certify mathematical alignment, or replace the provenance manifest.",
+  "design_snapshot": {
+    "url": "https://kip126-milestones.surenny233.chatgpt.site/",
+    "data_url": "https://kip126-milestones.surenny233.chatgpt.site/review-data.json",
+    "source_commit": "85d7138146745476fb7e01dcb5cbfcf2bcd8d378",
+    "schema": 6,
+    "sha256": "5ee5cda26a4d7aef1088854768844152fbea0d77b5acaff046be026bb23a786b",
+    "status": "proposal_not_approved"
+  },
+  "implementation_base": "cea451f2c4b29a966bffa43bce3ca9438f8e5565",
+  "owners": [
+    {
+      "id": "steenrod",
+      "title": "Steenrod 与 cobar 代数",
+      "public_boundary": "分次 Steenrod 代数与对偶余代数；Milnor cochains、differential、cup、指定 cocycle；纯代数 d²=0、上同调及 cup 的良定义。模与余模的 derived Ext 约定分别说明。"
+    },
+    {
+      "id": "spectral",
+      "title": "谱序列与过滤代表元",
+      "public_boundary": "SpectralSequence、Page、d、RepresentsOnPage、SurvivesTo、NonzeroSurvival；过滤代表元等价和无 crossing 的唯一性。SSData 的 Z/B 可以保留为该模型的数学定义，正文优先调用操作定理。"
+    },
+    {
+      "id": "adams",
+      "title": "标准 Adams 与 synthetic 系统",
+      "public_boundary": "固定 sphereAdamsData、standardHi / standardHiSquare / standardH6Square；现有 ActualE2At、actualE2Product、ActualE2Total 与各分量嵌入和乘法比较。再提供实际 Adams 代表元、零/边界判据，以及同一 standardRouteModel 的 ν、λ、商塔、检测和收敛比较。"
+    },
+    {
+      "id": "literature",
+      "title": "文献绑定与来源前提",
+      "public_boundary": "现有 LiteratureBindings / LiteratureResults 的逐项数学陈述，按来源分为九组共 48 个结果字段。外部性由来源政策决定，不能从 Input 名称判断。"
+    },
+    {
+      "id": "computation",
+      "title": "计算解释与证书",
+      "public_boundary": "NativeAlgebra、NativeAt 分量、LinE2Presentation.toActual 与分次保持/分量双射；标准平方识别、实际塔乘法兼容；同一 P/R 上的证书、staircase 和 agreement；SphereFacts 与整格 h₅² 乘法消灭。"
+    },
+    {
+      "id": "rules",
+      "title": "一般 extension 规则与运输",
+      "public_boundary": "泛型模型上的 SyntheticInputs、MayInput 及实际规则谓词；Leibniz、Mahowald、stretching 的通用定理与共享代表元工具。标准实例的来源比较在调用端另行供给。"
+    },
+    {
+      "id": "main",
+      "title": "Kervaire 主证明",
+      "public_boundary": "固定标准模型上的 C3/C4/C5、α₁ 与 AF13、同一个非零弱代表、Q₅/Q₉ 的 ν 延拓、ν 可除性与 rigidity，以及现有标准 h₆² 目标。拟议普通条件入口使用同一个 Challenge2。"
+    }
+  ],
+  "ownership_note": "Longest matching source path gives an administrative default, not a theorem-dependency theorem. The contract owner below is the mathematical owner; some existing implementation files still contain work assigned to more than one maintenance owner. Checks and the repository root are audit/aggregation infrastructure, not an eighth maintenance module.",
+  "ownership": [
+    {
+      "path": "KIP126/Def/",
+      "owner": "adams"
+    },
+    {
+      "path": "KIP126/Def/Steenrod/",
+      "owner": "steenrod"
+    },
+    {
+      "path": "KIP126/Def/Algebra/",
+      "owner": "steenrod"
+    },
+    {
+      "path": "KIP126/Def/SpectralSequence/",
+      "owner": "spectral"
+    },
+    {
+      "path": "KIP126/Def/Kervaire/Route/Tools/",
+      "owner": "rules"
+    },
+    {
+      "path": "KIP126/Def/Kervaire/Route/Conditions/",
+      "owner": "main"
+    },
+    {
+      "path": "KIP126/Def/Kervaire/Route/Section7/",
+      "owner": "main"
+    },
+    {
+      "path": "KIP126/Interface/",
+      "owner": "literature"
+    },
+    {
+      "path": "KIP126/Interface/Challenge/Computation/",
+      "owner": "computation"
+    },
+    {
+      "path": "KIP126/Interface/Solution/LinProgram/",
+      "owner": "computation"
+    },
+    {
+      "path": "KIP126/Interface/Solution/AdamsOneLine.lean",
+      "owner": "computation"
+    },
+    {
+      "path": "KIP126/Interface/Solution/Literature/Route/",
+      "owner": "rules"
+    },
+    {
+      "path": "KIP126/LinProgram/",
+      "owner": "computation"
+    },
+    {
+      "path": "KIP126/Main/",
+      "owner": "main"
+    },
+    {
+      "path": "KIP126/Main/Solution/Computation/",
+      "owner": "computation"
+    },
+    {
+      "path": "KIP126/Main/Solution/Literature/",
+      "owner": "literature"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "M01",
+      "title": "标准 E₂ 及其代数来源",
+      "contracts": [
+        "M01.steenrod",
+        "M01.cobar",
+        "M01.standard_objects",
+        "M01.standard_h6_sq",
+        "M01.foundation_exists",
+        "M01.e2_comparison",
+        "M01.e2_product"
+      ]
+    },
+    {
+      "id": "M02",
+      "title": "指定 synthetic 模型与球谱收敛",
+      "contracts": [
+        "M02.synthetic_objects",
+        "M02.applicability",
+        "M02.separated",
+        "M02.detection_calculus",
+        "M02.nu_cofiber_comparison"
+      ]
+    },
+    {
+      "id": "M03",
+      "title": "页、代表元与 extension 语言",
+      "contracts": [
+        "M03.page_api",
+        "M03.representatives",
+        "M03.adams_representatives",
+        "M03.zero_boundary",
+        "M03.finite_extensions",
+        "M03.infinite_extensions",
+        "M03.extension_crossings",
+        "M03.ambiguity",
+        "M03.shifted_finite_source"
+      ]
+    },
+    {
+      "id": "M04",
+      "title": "同一来源对象上的文献前提",
+      "contracts": [
+        "M04.bindings",
+        "M04.classical",
+        "M04.synthetic",
+        "M04.moss",
+        "M04.may",
+        "M04.toda",
+        "M04.tmf",
+        "M04.realization",
+        "M04.bx",
+        "M04.vanishing"
+      ]
+    },
+    {
+      "id": "M05",
+      "title": "标准 E₂ 的共同坐标、基与乘法",
+      "contracts": [
+        "M05.presentation",
+        "M05.basis",
+        "M05.products",
+        "M05.square"
+      ]
+    },
+    {
+      "id": "M06",
+      "title": "同一解释上的逐项计算证书",
+      "contracts": [
+        "M06.interpretation",
+        "M06.basis",
+        "M06.csv",
+        "M06.products",
+        "M06.labels",
+        "M06.claims",
+        "M06.bottom",
+        "M06.top",
+        "M06.differential_table",
+        "M06.staircase",
+        "M06.agreement",
+        "M06.tmf_comparison",
+        "M06.assembly"
+      ]
+    },
+    {
+      "id": "M07",
+      "title": "Moss、Toda 与标准合成球谱比较",
+      "contracts": [
+        "M07.moss",
+        "M07.naturality",
+        "M07.nu_source",
+        "M07.toda",
+        "M07.realization",
+        "M07.application"
+      ]
+    },
+    {
+      "id": "M08",
+      "title": "球谱与 Cν 的逐消费者局部事实",
+      "contracts": [
+        "M08.differentials",
+        "M08.finite_survival",
+        "M08.no_incoming",
+        "M08.permanence",
+        "M08.high125",
+        "M08.cnu_d3",
+        "M08.cnu_survival",
+        "M08.products",
+        "M08.vanishing",
+        "M08.xy_finite_no_boundary",
+        "M08.theta_massey_annihilation"
+      ]
+    },
+    {
+      "id": "M09",
+      "title": "有限与无限延拓的广义 Leibniz 公式",
+      "contracts": [
+        "M09.leibniz"
+      ]
+    },
+    {
+      "id": "M10",
+      "title": "规范化三角的广义 Mahowald 公式",
+      "contracts": [
+        "M10.mahowald"
+      ]
+    },
+    {
+      "id": "M11",
+      "title": "有限页延拓的 stretching",
+      "contracts": [
+        "M11.stretching"
+      ]
+    },
+    {
+      "id": "M12",
+      "title": "λ 单射、实现比较与二阶性",
+      "contracts": [
+        "M12.lambda_injective",
+        "M12.realization",
+        "M12.theta_order",
+        "M12.two_torsion",
+        "M12.normalization"
+      ]
+    },
+    {
+      "id": "M13",
+      "title": "tmf 非零检测与高过滤两元素结构",
+      "contracts": [
+        "M13.tmf_inputs",
+        "M13.high125",
+        "M13.detector"
+      ]
+    },
+    {
+      "id": "M14",
+      "title": "条件定义与 Proposition 7.8",
+      "contracts": [
+        "M14.conditions",
+        "M14.prop78"
+      ]
+    },
+    {
+      "id": "M15",
+      "title": "相容 α₁ 与 AF13 整格生成性",
+      "contracts": [
+        "M15.alpha",
+        "M15.af13"
+      ]
+    },
+    {
+      "id": "M16",
+      "title": "Toda、shuffle 与同一个非零弱代表",
+      "contracts": [
+        "M16.toda",
+        "M16.shuffle",
+        "M16.weak_y"
+      ]
+    },
+    {
+      "id": "M17",
+      "title": "实际 Q5 与 Q9 的 ν 延拓",
+      "contracts": [
+        "M17.nu5",
+        "M17.nu9"
+      ]
+    },
+    {
+      "id": "M18",
+      "title": "标准 target 在 sphere 中的 ν 可除性",
+      "contracts": [
+        "M18.nu_divisible"
+      ]
+    },
+    {
+      "id": "M19",
+      "title": "Cν 刚性障碍与 Proposition 7.9",
+      "contracts": [
+        "M19.rigidity",
+        "M19.prop79"
+      ]
+    },
+    {
+      "id": "M20",
+      "title": "固定标准目标与同一 input 的条件组合",
+      "contracts": [
+        "M20.composition",
+        "M20.conditional_final"
+      ]
+    }
+  ],
+  "contracts": [
+    {
+      "id": "M01.steenrod",
+      "milestone": "M01",
+      "owner": "steenrod",
+      "title": "可复用的分次 Steenrod 代数规范",
+      "nlfl_entry_ids": [
+        "I-2c6674c9c5c0",
+        "I-cff046264562",
+        "I-c38df16b5130",
+        "I-87725a1fd707",
+        "I-0ff71538562c",
+        "I-1faa9bb45235",
+        "I-7643c855a6fa",
+        "I-d3f58068cb3e",
+        "I-cac945ce5488",
+        "I-60202bacd73b"
+      ]
+    },
+    {
+      "id": "M01.cobar",
+      "milestone": "M01",
+      "owner": "steenrod",
+      "title": "独立 normalized cobar、d²=0 与同调乘法",
+      "nlfl_entry_ids": [
+        "I-1013fa2fe996",
+        "I-d45df82efa71",
+        "I-b8539e4459d4",
+        "I-1480b5aed6ca",
+        "I-549813df1cc0",
+        "I-64b5be09ae14",
+        "I-a3d043eee740",
+        "I-7e11c530d379",
+        "I-9743b1c37728",
+        "I-4102ed17d4d7",
+        "I-6f95b19cb864",
+        "I-4eb34237767c"
+      ]
+    },
+    {
+      "id": "M01.standard_objects",
+      "milestone": "M01",
+      "owner": "adams",
+      "title": "固定标准球谱的 Adams 页与微分",
+      "nlfl_entry_ids": [
+        "I-61468b0b8089"
+      ]
+    },
+    {
+      "id": "M01.standard_h6_sq",
+      "milestone": "M01",
+      "owner": "adams",
+      "title": "标准 hᵢ、标准平方与 h₆² 的目标语义",
+      "nlfl_entry_ids": [
+        "I-04b9c39dc941",
+        "I-6f2d26c4e854",
+        "I-752a95e1933b",
+        "I-660d999d5d92",
+        "I-c98c4eb0def0",
+        "I-4f5939290487"
+      ]
+    },
+    {
+      "id": "M01.foundation_exists",
+      "milestone": "M01",
+      "owner": "adams",
+      "title": "指定经典基础的实现与来源比较",
+      "nlfl_entry_ids": [
+        "I-5437734d0dd9",
+        "I-08363adcc5fc"
+      ]
+    },
+    {
+      "id": "M01.e2_comparison",
+      "milestone": "M01",
+      "owner": "adams",
+      "title": "cobar 到同一标准 Adams E₂ 的语义桥",
+      "nlfl_entry_ids": [
+        "I-6f2d26c4e854",
+        "I-752a95e1933b",
+        "I-7917050c6f64",
+        "I-0e0c21620a08",
+        "I-a149582b1ea4",
+        "I-114adea76c8c",
+        "I-a352cfc39626",
+        "I-c17ac5cf15cc",
+        "I-3c5ee20befe0",
+        "I-25195ba6a527",
+        "I-dfbd9ee5d1fb",
+        "I-1ad4662d33f2",
+        "I-a6eeee6f0888",
+        "I-329b0ab8e64f",
+        "I-d79394653858"
+      ]
+    },
+    {
+      "id": "M01.e2_product",
+      "milestone": "M01",
+      "owner": "adams",
+      "title": "固定实际 E₂ 的 F₂ 双线性乘法与全次数总代数",
+      "nlfl_entry_ids": [
+        "I-9347b8f04a26",
+        "I-4d0bec509224",
+        "I-7baa679fee22",
+        "I-cec1429c71dd",
+        "I-ad45d6933c95",
+        "I-9a1744019298",
+        "I-d74b73ff6a89",
+        "I-23fbec58bbf1",
+        "I-5fb0275ef029",
+        "I-5c283fa874b2",
+        "I-63f7fdfc5d6a",
+        "I-2c59193eead0",
+        "I-a69755cb06d1",
+        "I-d6bc2c184fe3",
+        "I-67b63a35edff"
+      ]
+    },
+    {
+      "id": "M02.synthetic_objects",
+      "milestone": "M02",
+      "owner": "adams",
+      "title": "同一经典基础上的 synthetic 对象与比较",
+      "nlfl_entry_ids": [
+        "I-d6d0ee841173",
+        "I-13625d2bd930",
+        "I-30071f2db16c",
+        "I-00ef3618b17a",
+        "I-e932976c51d8",
+        "I-b01143af62c1",
+        "I-e0efd319adae",
+        "I-74f702a929d1",
+        "I-47bc2c6ced8a",
+        "I-993134c1c82b",
+        "I-d2c33cc09750"
+      ]
+    },
+    {
+      "id": "M02.applicability",
+      "milestone": "M02",
+      "owner": "adams",
+      "title": "实际标准球谱的 BHS 适用性",
+      "nlfl_entry_ids": [
+        "I-62c4c3689586",
+        "I-405318c5d2af"
+      ]
+    },
+    {
+      "id": "M02.separated",
+      "milestone": "M02",
+      "owner": "adams",
+      "title": "标准球谱 Adams filtration 分离",
+      "nlfl_entry_ids": [
+        "I-607060e85967",
+        "I-e6d11c883d65"
+      ]
+    },
+    {
+      "id": "M02.detection_calculus",
+      "milestone": "M02",
+      "owner": "adams",
+      "title": "同一合成 Adams family 的检测、E∞ 运输与有限 ρ 运算",
+      "nlfl_entry_ids": [
+        "I-04e4efde171c",
+        "I-48fffdd3ef4d",
+        "I-26a7aff1b3e8",
+        "I-87f62010ca55",
+        "I-4216e4ea3f4a",
+        "I-4a94ad8b9a41",
+        "I-d28c13d66e34",
+        "I-e84b3bfd7e19",
+        "I-13548cc60575",
+        "I-5cb14cc14439",
+        "I-33749a02c165",
+        "I-6a685e953a75",
+        "I-256b96fe09b2",
+        "I-c1a108c95449"
+      ]
+    },
+    {
+      "id": "M02.nu_cofiber_comparison",
+      "milestone": "M02",
+      "owner": "adams",
+      "title": "标准 ν 的悬挂方块与源余纤维比较",
+      "nlfl_entry_ids": [
+        "I-a13da973a9b6",
+        "I-813b74238ffe",
+        "I-b4f73ec4f0f3",
+        "I-149a25388c8d",
+        "I-bb6cca4ac09d",
+        "I-602a709527da",
+        "I-07348e3cf365",
+        "I-9a1da31386c3",
+        "I-a863abce828f",
+        "I-bc7a53dd9537",
+        "I-411178ad38db"
+      ]
+    },
+    {
+      "id": "M03.page_api",
+      "milestone": "M03",
+      "owner": "spectral",
+      "title": "本地谱序列的页、延续与微分公共语言",
+      "nlfl_entry_ids": [
+        "I-95aa55260354",
+        "I-15b6cbfd5d4d",
+        "I-a4f5066de049",
+        "I-36c737fdbe18",
+        "I-07b3bae4f851",
+        "I-ec1bca2a3faa",
+        "I-7f7aa993773e",
+        "I-89c99795d490",
+        "I-b0b7e3abba02",
+        "I-8fac1330d6dc",
+        "I-9c16f86810c3",
+        "I-ecea56a6d27e",
+        "I-402c9f245fde",
+        "I-373536c726c8",
+        "I-b97d6d6c030d",
+        "I-ea79ecfa3cbe",
+        "I-b8ce4fff7567"
+      ]
+    },
+    {
+      "id": "M03.representatives",
+      "milestone": "M03",
+      "owner": "spectral",
+      "title": "通用过滤复形：页关系与严格代表元等价",
+      "nlfl_entry_ids": [
+        "I-1fb413690b36",
+        "I-24a88bf3d7ee",
+        "I-c4fbf8e828ff",
+        "I-cd657b0c57ed",
+        "I-019a2b17308f",
+        "I-ea671f86c55e"
+      ]
+    },
+    {
+      "id": "M03.adams_representatives",
+      "milestone": "M03",
+      "owner": "adams",
+      "title": "实际 Adams 页的循环、边界、代表与微分语言",
+      "nlfl_entry_ids": [
+        "I-e8b15bf3d8ef",
+        "I-2cecd0e60068",
+        "I-e1d9c9a12631",
+        "I-10e6eb71ed3c",
+        "I-a850b164f943",
+        "I-70019c5a5a91",
+        "I-d526edbae8ff",
+        "I-b0f823ead4aa",
+        "I-b337b9644caf",
+        "I-cb12c2b0bb5b",
+        "I-8ffc5ab5f664",
+        "I-cdfbf7474743",
+        "I-034312f9696e",
+        "I-550e1dc9e599",
+        "I-648a1883adc3"
+      ]
+    },
+    {
+      "id": "M03.zero_boundary",
+      "milestone": "M03",
+      "owner": "adams",
+      "title": "实际 Adams 零代表、boundary 与同余运输",
+      "nlfl_entry_ids": [
+        "I-36c737fdbe18",
+        "I-07b3bae4f851",
+        "I-2cecd0e60068",
+        "I-e1d9c9a12631",
+        "I-a850b164f943",
+        "I-b337b9644caf",
+        "I-cf0647af0daf",
+        "I-a081c6027598",
+        "I-8051c37a327c",
+        "I-0c4063ea5ed3"
+      ]
+    },
+    {
+      "id": "M03.finite_extensions",
+      "milestone": "M03",
+      "owner": "adams",
+      "title": "有限 quotient extension 与严格解",
+      "nlfl_entry_ids": [
+        "I-20b0fb9bef9a",
+        "I-3af60bb7c410",
+        "I-cec01886af51",
+        "I-d1e7a0bc41f2",
+        "I-97d387376e11",
+        "I-4e36fdab9a58",
+        "I-55b9112bc9cd",
+        "I-94970062fa06"
+      ]
+    },
+    {
+      "id": "M03.infinite_extensions",
+      "milestone": "M03",
+      "owner": "adams",
+      "title": "未截断 extension 与严格解",
+      "nlfl_entry_ids": [
+        "I-9151769db408",
+        "I-28e4fa86f7e4",
+        "I-b26cfe465ec5",
+        "I-d7a49366b85c",
+        "I-b7864d94e321",
+        "I-d87e062d9af6",
+        "I-ed9ca9a038d7"
+      ]
+    },
+    {
+      "id": "M03.extension_crossings",
+      "milestone": "M03",
+      "owner": "adams",
+      "title": "实际有限／无限 extension 的 crossing 条件",
+      "nlfl_entry_ids": [
+        "I-0381164cb6f5",
+        "I-9850503d65ca",
+        "I-1d2b730b583b",
+        "I-10f5241ddae4"
+      ]
+    },
+    {
+      "id": "M03.ambiguity",
+      "milestone": "M03",
+      "owner": "spectral",
+      "title": "通用过滤复形：无 crossing 时目标代表元唯一",
+      "nlfl_entry_ids": [
+        "I-f839fee6bb12",
+        "I-32a51fa7673b"
+      ]
+    },
+    {
+      "id": "M03.shifted_finite_source",
+      "milestone": "M03",
+      "owner": "rules",
+      "title": "移位有限 λ 商中的 E∞ 代表元",
+      "nlfl_entry_ids": [
+        "I-04d3f44f5b4b"
+      ]
+    },
+    {
+      "id": "M04.bindings",
+      "milestone": "M04",
+      "owner": "literature",
+      "title": "文献来源对象与同一模型的比较",
+      "nlfl_entry_ids": [
+        "I-583616ccae54",
+        "I-eca72d25880d",
+        "I-890ab1400155",
+        "I-8e19b22084e9",
+        "I-01b4d6d00b0d",
+        "I-2300a5fd2882",
+        "I-9bd75d917883",
+        "I-b40beee5be43",
+        "I-8a84912174e9",
+        "I-de76d67d0af7",
+        "I-9549ba67d885",
+        "I-8347d801e32e",
+        "I-6c427044d25e",
+        "I-c47ee21d0607",
+        "I-b24eaf55b322",
+        "I-2219c125d748",
+        "I-511b3dfaa074",
+        "I-1a2754ac0f50",
+        "I-5cad8b24d0a3",
+        "I-e8fcf43f2863",
+        "I-0af7fbb4c019",
+        "I-2650f3b4415b",
+        "I-3df9223fb411",
+        "I-9b5ff23f1323",
+        "I-d9d2c093b5c4",
+        "I-3cb6c15e9f60"
+      ]
+    },
+    {
+      "id": "M04.classical",
+      "milestone": "M04",
+      "owner": "literature",
+      "title": "经典低维类、检测与 θ₅",
+      "nlfl_entry_ids": [
+        "I-f3c65743a308",
+        "I-952df84bbccc",
+        "I-7903468c3e28",
+        "I-561f0021d273",
+        "I-e8945486ca93",
+        "I-185ca8d4689d",
+        "I-670d831282cb",
+        "I-d8f7922da93c",
+        "I-6fb7d81ba598",
+        "I-26b17bb886e0",
+        "I-405c58b8051f"
+      ]
+    },
+    {
+      "id": "M04.synthetic",
+      "milestone": "M04",
+      "owner": "literature",
+      "title": "ν、有限 λ 商及 E∞ 比较",
+      "nlfl_entry_ids": [
+        "I-30d9198f3bbe",
+        "I-b8865fec1c06",
+        "I-e6d55f40f29b",
+        "I-0f6d25906278",
+        "I-64e9aa3ee4ab",
+        "I-7e290bea7ae9",
+        "I-098748af90aa",
+        "I-59979e2975b5",
+        "I-e389074b9c85",
+        "I-0ee8bbf64f1c",
+        "I-bd85c240d1ed",
+        "I-96512088d289",
+        "I-c674247380e0",
+        "I-4e060bd59243",
+        "I-a99ada510b01"
+      ]
+    },
+    {
+      "id": "M04.moss",
+      "milestone": "M04",
+      "owner": "literature",
+      "title": "实际球谱塔上的 Moss 定理",
+      "nlfl_entry_ids": [
+        "I-76fe0bd9e38f"
+      ]
+    },
+    {
+      "id": "M04.may",
+      "milestone": "M04",
+      "owner": "literature",
+      "title": "带符号的 May push–pull 结论",
+      "nlfl_entry_ids": [
+        "I-bcb8dfa9ec4f"
+      ]
+    },
+    {
+      "id": "M04.toda",
+      "milestone": "M04",
+      "owner": "literature",
+      "title": "synthetic 低维环与 Toda 的来源事实",
+      "nlfl_entry_ids": [
+        "I-40a7fc01620a",
+        "I-3fab728a63f2",
+        "I-fb3b01e362a1",
+        "I-893b8eab20b9"
+      ]
+    },
+    {
+      "id": "M04.tmf",
+      "milestone": "M04",
+      "owner": "literature",
+      "title": "同一 tmf 来源的 BR21 微分与检测",
+      "nlfl_entry_ids": [
+        "I-63f2b1e8d188",
+        "I-421fac9be583",
+        "I-184f361f2f1f",
+        "I-75f86b326278",
+        "I-16d66bc0972a",
+        "I-295c39834a5b",
+        "I-96c2b44cbe57",
+        "I-3dd94fa1ab62",
+        "I-604db86f5013"
+      ]
+    },
+    {
+      "id": "M04.realization",
+      "milestone": "M04",
+      "owner": "literature",
+      "title": "λ 核与 realization 检测来源",
+      "nlfl_entry_ids": [
+        "I-96d9de596e1c",
+        "I-2ce7e5af38ea",
+        "I-1ff777d74dd4",
+        "I-563cac1dc923",
+        "I-1fdae6bbccd4"
+      ]
+    },
+    {
+      "id": "M04.bx",
+      "milestone": "M04",
+      "owner": "literature",
+      "title": "一个 distinguished θ₅ 的 BX 判据",
+      "nlfl_entry_ids": [
+        "I-aebb51ceaf17"
+      ]
+    },
+    {
+      "id": "M04.vanishing",
+      "milestone": "M04",
+      "owner": "literature",
+      "title": "标准球谱的正 stem Adams 消失线",
+      "nlfl_entry_ids": [
+        "I-825e982103c7"
+      ]
+    },
+    {
+      "id": "M05.presentation",
+      "milestone": "M05",
+      "owner": "computation",
+      "title": "一次选定 native Lin 代数到实际 E₂ 的全局比较",
+      "nlfl_entry_ids": [
+        "I-a710ab924fe6",
+        "I-f96d875cf5de",
+        "I-c8e045f6ec57",
+        "I-a1e9cd7fe6a9",
+        "I-f297eef30677",
+        "I-14c4e167d18a",
+        "I-1ce8ab24f3b2",
+        "I-449d8ca9c2bb",
+        "I-10607be30711",
+        "I-9208275a1d13",
+        "I-26a81dab4ef5",
+        "I-9d35d52189e5",
+        "I-2dddc3fc75c3",
+        "I-c1e016f7db7d",
+        "I-6d12db9019c4",
+        "I-c510e1a65ece",
+        "I-3de31f976b82",
+        "I-afca6379d77b",
+        "I-72b06110c8ed"
+      ]
+    },
+    {
+      "id": "M05.basis",
+      "milestone": "M05",
+      "owner": "computation",
+      "title": "CSV 单项式确为同一 E₂ 的基",
+      "nlfl_entry_ids": [
+        "I-047c92d9c240",
+        "I-51bad0ced2f9",
+        "I-d15132b41988",
+        "I-437c51bd5293"
+      ]
+    },
+    {
+      "id": "M05.products",
+      "milestone": "M05",
+      "owner": "computation",
+      "title": "实际球谱单位与乘法的坐标比较",
+      "nlfl_entry_ids": [
+        "I-afca6379d77b",
+        "I-e2213ac51334",
+        "I-f406241fac5f",
+        "I-df793972147e"
+      ]
+    },
+    {
+      "id": "M05.square",
+      "milestone": "M05",
+      "owner": "computation",
+      "title": "程序平方与标准 h₆² 的识别",
+      "nlfl_entry_ids": [
+        "I-c6a0e043d036",
+        "I-94519abe38a1",
+        "I-f1adeec2e277",
+        "I-d3690fbf9146",
+        "I-12d3a8dbe4e9"
+      ]
+    },
+    {
+      "id": "M06.interpretation",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "同一 P 上的实际程序解释与标签",
+      "nlfl_entry_ids": [
+        "I-a1ca670978c5",
+        "I-da92771faabf",
+        "I-c0c5f721846b",
+        "I-36dbaef9f0aa",
+        "I-ab3d9697a545"
+      ]
+    },
+    {
+      "id": "M06.basis",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "选定目录向量构成真实 E₂ 基",
+      "nlfl_entry_ids": [
+        "I-23ab158111db",
+        "I-a29af8f648c4",
+        "I-b4d7e8c141cb"
+      ]
+    },
+    {
+      "id": "M06.csv",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "目录单项式与同一球谱解释一致",
+      "nlfl_entry_ids": [
+        "I-839c0fe751e0",
+        "I-6281dead4db4",
+        "I-9fba583a3fc7"
+      ]
+    },
+    {
+      "id": "M06.products",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "选定球谱乘积的实际比较",
+      "nlfl_entry_ids": [
+        "I-6f634f54b1bb",
+        "I-31c67413992b",
+        "I-9e2657f9666e"
+      ]
+    },
+    {
+      "id": "M06.labels",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "标准 h_i 与正文标签的同一识别",
+      "nlfl_entry_ids": [
+        "I-ac75d5929526",
+        "I-03655f31aae0",
+        "I-ec1720c2f176",
+        "I-9f23c37ec429",
+        "I-8633fac16d82",
+        "I-69f495e7a029",
+        "I-9cdc45c69c11",
+        "I-40166e7beef5",
+        "I-0aba1db639ed",
+        "I-63dac2434201",
+        "I-66fceaf66c12",
+        "I-be4eb014bf32",
+        "I-f59573e0bf1c",
+        "I-e1a8ba56c2f1",
+        "I-81e2ed510ec7",
+        "I-1ed8d3359180",
+        "I-30188e173a74",
+        "I-ccff87738b39"
+      ]
+    },
+    {
+      "id": "M06.claims",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "选定 route 记录的数学命题",
+      "nlfl_entry_ids": [
+        "I-1ff693a64f06",
+        "I-463dd0952a0e",
+        "I-b89d40098b68",
+        "I-02ae8f859c40",
+        "I-da902610331b"
+      ]
+    },
+    {
+      "id": "M06.bottom",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "Cν 底胞包含的实际 E₂ 像",
+      "nlfl_entry_ids": [
+        "I-c69ce292ebaf",
+        "I-419836b5a53f",
+        "I-94f4df0497c4"
+      ]
+    },
+    {
+      "id": "M06.top",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "Cν 顶胞边界与四次解悬移",
+      "nlfl_entry_ids": [
+        "I-58e5308960a4",
+        "I-60d68f3bbfa6",
+        "I-4f0efcb60a0c"
+      ]
+    },
+    {
+      "id": "M06.differential_table",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "固定球谱微分表的逐行解释",
+      "nlfl_entry_ids": [
+        "I-2a0fb3b4c649",
+        "I-4108a720d71d",
+        "I-a59765668aef",
+        "I-b91f49c49055"
+      ]
+    },
+    {
+      "id": "M06.staircase",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "固定 staircase 的逐行 cycle/boundary 语义",
+      "nlfl_entry_ids": [
+        "I-4747da613c5c",
+        "I-a477ef5e0e15",
+        "I-e9891779bad0",
+        "I-db05496496c5",
+        "I-e46bb6a66a13",
+        "I-2cc94d1ce59b"
+      ]
+    },
+    {
+      "id": "M06.agreement",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "选定解释与共同 P 的逐元素比较",
+      "nlfl_entry_ids": [
+        "I-a1ca670978c5",
+        "I-32e93dd9227c",
+        "I-1e7a0c09c01d"
+      ]
+    },
+    {
+      "id": "M06.tmf_comparison",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "固定 tmf 坐标、真实乘法与 BR21 端点",
+      "nlfl_entry_ids": [
+        "I-150eae07f83c",
+        "I-97e28d1929fb",
+        "I-0d8ae6f36437",
+        "I-a08594eff118",
+        "I-721b48a38b26",
+        "I-9d43defc636d",
+        "I-556443efa596"
+      ]
+    },
+    {
+      "id": "M06.assembly",
+      "milestone": "M06",
+      "owner": "computation",
+      "title": "同一 literature、P、R 的相关计算交付",
+      "nlfl_entry_ids": [
+        "I-c0c5f721846b",
+        "I-382632883180",
+        "I-61b274edd387",
+        "I-622417cb5f21",
+        "I-99e44b2d154b"
+      ]
+    },
+    {
+      "id": "M07.moss",
+      "milestone": "M07",
+      "owner": "rules",
+      "title": "球谱 θ₅–B 的局部 Moss 比较",
+      "nlfl_entry_ids": [
+        "I-0532dd4aed31",
+        "I-fdb7a9a46927"
+      ]
+    },
+    {
+      "id": "M07.naturality",
+      "milestone": "M07",
+      "owner": "rules",
+      "title": "合成 Adams E∞ 权移的自然性",
+      "nlfl_entry_ids": [
+        "I-007bb8e678f3"
+      ]
+    },
+    {
+      "id": "M07.nu_source",
+      "milestone": "M07",
+      "owner": "main",
+      "title": "同一规范化 ν 的 h₂ 标签与余纤维三角",
+      "nlfl_entry_ids": [
+        "I-a13da973a9b6",
+        "I-17553a5b38fa",
+        "I-43b15b85d705"
+      ]
+    },
+    {
+      "id": "M07.toda",
+      "milestone": "M07",
+      "owner": "rules",
+      "title": "η² 与二阶 θ 的二级 Toda 关系",
+      "nlfl_entry_ids": [
+        "I-1d50b8420814",
+        "I-867d9d285885",
+        "I-fd4874f7d771",
+        "I-b6357d6411b9",
+        "I-4bd2f1c3f650"
+      ]
+    },
+    {
+      "id": "M07.realization",
+      "milestone": "M07",
+      "owner": "rules",
+      "title": "完备源到标准模型的提升与实现比较",
+      "nlfl_entry_ids": [
+        "I-3c49997a4c4c",
+        "I-1ba503c86664",
+        "I-bd7ef9996cfe"
+      ]
+    },
+    {
+      "id": "M07.application",
+      "milestone": "M07",
+      "owner": "main",
+      "title": "同一绑定上的窄适配与投影入口",
+      "nlfl_entry_ids": [
+        "I-160937cc76be",
+        "I-a73fec1740ef",
+        "I-af94c7ae7ae8",
+        "I-716276974d85",
+        "I-2b1b73b4df59"
+      ]
+    },
+    {
+      "id": "M08.differentials",
+      "milestone": "M08",
+      "owner": "computation",
+      "title": "§7 所需的八组非零微分",
+      "nlfl_entry_ids": [
+        "I-ff5c7f31de5e",
+        "I-f140f1e86eee",
+        "I-1e41c0a6be8a",
+        "I-0ddf31fa3875",
+        "I-de2b1633fe14",
+        "I-333491986208",
+        "I-16a2d265904d",
+        "I-c8bbec843608"
+      ]
+    },
+    {
+      "id": "M08.finite_survival",
+      "milestone": "M08",
+      "owner": "computation",
+      "title": "W、V、X、Y 的指定有限页非零存活",
+      "nlfl_entry_ids": [
+        "I-c4f50611bd75",
+        "I-620a6dfece73",
+        "I-a6883415d1ff",
+        "I-0004c5756c58"
+      ]
+    },
+    {
+      "id": "M08.no_incoming",
+      "milestone": "M08",
+      "owner": "computation",
+      "title": "T 的入微分候选与 V、X、Y 的不被击中",
+      "nlfl_entry_ids": [
+        "I-90a6442ff738",
+        "I-3a0da5397ac4",
+        "I-210155efafc7",
+        "I-bbd16e7e6976",
+        "I-141a63218a2b"
+      ]
+    },
+    {
+      "id": "M08.permanence",
+      "milestone": "M08",
+      "owner": "computation",
+      "title": "T 的永久 cycle 与 U、修正类、P、Q 的非零永久性",
+      "nlfl_entry_ids": [
+        "I-29e81a17536e",
+        "I-3d5cc9dd2670",
+        "I-2abeeff56791",
+        "I-a1ab44fd6e93",
+        "I-3fe4f667ab94"
+      ]
+    },
+    {
+      "id": "M08.high125",
+      "milestone": "M08",
+      "owner": "computation",
+      "title": "high125 的 E₅ 整格两元素穷尽",
+      "nlfl_entry_ids": [
+        "I-648382dbc0a3"
+      ]
+    },
+    {
+      "id": "M08.cnu_d3",
+      "milestone": "M08",
+      "owner": "computation",
+      "title": "Cν 的指定三胞腔组合 d₃",
+      "nlfl_entry_ids": [
+        "I-06cbe0c9ec04",
+        "I-2c4363525cb5"
+      ]
+    },
+    {
+      "id": "M08.cnu_survival",
+      "milestone": "M08",
+      "owner": "computation",
+      "title": "Cν 同一底胞腔靶的 E₆ 存活与短页排除",
+      "nlfl_entry_ids": [
+        "I-470213ac92fe",
+        "I-d7d16062eaed"
+      ]
+    },
+    {
+      "id": "M08.products",
+      "milestone": "M08",
+      "owner": "computation",
+      "title": "§7 的乘积消失、不可整除性与 d₂ 边界",
+      "nlfl_entry_ids": [
+        "I-cb4cb0c995f6",
+        "I-079b54c2b93e",
+        "I-450ffedd58e3",
+        "I-ce5df34c8635",
+        "I-fc14e4ed8639",
+        "I-670e29a5a493",
+        "I-ce28c8fca7c9",
+        "I-2dc6bbb99d6e"
+      ]
+    },
+    {
+      "id": "M08.vanishing",
+      "milestone": "M08",
+      "owner": "computation",
+      "title": "α₁ 与 ν 可除性需要的五类空页",
+      "nlfl_entry_ids": [
+        "I-124106f0392b",
+        "I-edb22a250cd3",
+        "I-c187f6a14b5f",
+        "I-2bddb0abd1fa",
+        "I-dd92e849bf60"
+      ]
+    },
+    {
+      "id": "M08.xy_finite_no_boundary",
+      "milestone": "M08",
+      "owner": "computation",
+      "title": "ν9 所需的 X、Y 有限边界排除",
+      "nlfl_entry_ids": [
+        "I-550e1dc9e599",
+        "I-4742e86aaf16",
+        "I-9ba5b8fe3477"
+      ]
+    },
+    {
+      "id": "M08.theta_massey_annihilation",
+      "milestone": "M08",
+      "owner": "computation",
+      "title": "h₅² 消去整个 E₂(7,70) 分量",
+      "nlfl_entry_ids": [
+        "I-8b5db474016d"
+      ]
+    },
+    {
+      "id": "M09.leibniz",
+      "milestone": "M09",
+      "owner": "rules",
+      "title": "沿 f 的有限—无限延拓传递微分",
+      "nlfl_entry_ids": [
+        "I-bd999f6f06da",
+        "I-483a197b6aa2",
+        "I-c2333a0c5683",
+        "I-e622a572686c"
+      ]
+    },
+    {
+      "id": "M10.mahowald",
+      "milestone": "M10",
+      "owner": "rules",
+      "title": "从三角与微分得到第三条有限延拓",
+      "nlfl_entry_ids": [
+        "I-d47fd45cebd9",
+        "I-6a506ec2495b",
+        "I-9dad028b3722"
+      ]
+    },
+    {
+      "id": "M11.stretching",
+      "milestone": "M11",
+      "owner": "rules",
+      "title": "排除不可提升 crossing 后提升有限延拓",
+      "nlfl_entry_ids": [
+        "I-2e001dfe211f",
+        "I-173b5af10475",
+        "I-edf4ea5d56ff"
+      ]
+    },
+    {
+      "id": "M12.lambda_injective",
+      "milestone": "M12",
+      "owner": "main",
+      "title": "三个精确次数的 λ 单射范围",
+      "nlfl_entry_ids": [
+        "I-66855c6a1abb",
+        "I-8d54d9ce47dd",
+        "I-20c6094dd2ba",
+        "I-92041d4b723a",
+        "I-4d9192c2827e",
+        "I-5a17c3d020c3",
+        "I-8f6b199ed0fe",
+        "I-16223bc6512a"
+      ]
+    },
+    {
+      "id": "M12.realization",
+      "milestone": "M12",
+      "owner": "main",
+      "title": "θ 与 θ² 所在次数的 realization 单射",
+      "nlfl_entry_ids": [
+        "I-6e2889dbe3f7",
+        "I-0be86383d793",
+        "I-f9aff56c46f9",
+        "I-7595e7822536"
+      ]
+    },
+    {
+      "id": "M12.theta_order",
+      "milestone": "M12",
+      "owner": "main",
+      "title": "每个允许的 θ₅ 选择都是二阶",
+      "nlfl_entry_ids": [
+        "I-3cd4c334d1ee",
+        "I-e0697c5435a4"
+      ]
+    },
+    {
+      "id": "M12.two_torsion",
+      "milestone": "M12",
+      "owner": "main",
+      "title": "π_(62,70) 中每个类都是二阶",
+      "nlfl_entry_ids": [
+        "I-51816a7f404f",
+        "I-edb993be8fc3"
+      ]
+    },
+    {
+      "id": "M12.normalization",
+      "milestone": "M12",
+      "owner": "main",
+      "title": "BX 所需的相邻 λ 商零判据",
+      "nlfl_entry_ids": [
+        "I-83219d37dc1f",
+        "I-f641a9e3d5c1"
+      ]
+    },
+    {
+      "id": "M13.tmf_inputs",
+      "milestone": "M13",
+      "owner": "main",
+      "title": "tmf 对 θ₅、high125 与 stem63 的三个事实",
+      "nlfl_entry_ids": [
+        "I-65a6b72da30c",
+        "I-570dea28bf95",
+        "I-47eb652231ec",
+        "I-14c0cf1b7c88",
+        "I-627187cad4e7"
+      ]
+    },
+    {
+      "id": "M13.high125",
+      "milestone": "M13",
+      "owner": "main",
+      "title": "π_(125,130) 的 F15 两元素结构与非零类检测",
+      "nlfl_entry_ids": [
+        "I-c8c9151f3d8b",
+        "I-69b1c4ca15ca"
+      ]
+    },
+    {
+      "id": "M13.detector",
+      "milestone": "M13",
+      "owner": "main",
+      "title": "detector 在 π_(125,130) 的 F15 子群上核为零",
+      "nlfl_entry_ids": [
+        "I-b3d17a1047f4",
+        "I-0ef2c479018b",
+        "I-0a70d1abcc1a"
+      ]
+    },
+    {
+      "id": "M14.conditions",
+      "milestone": "M14",
+      "owner": "main",
+      "title": "C₃、C₄、C₅ 与 d₁₂ 的精确定义",
+      "nlfl_entry_ids": [
+        "I-e80e6b02c280",
+        "I-b3741dd77669",
+        "I-492c0778a085",
+        "I-935a2a5c50bb",
+        "I-1943a0ad56e6",
+        "I-23b18909fb0b",
+        "I-ce2b0ba63132",
+        "I-bd7dbb37273b",
+        "I-7abb1d9431ea",
+        "I-48c0f94f3487"
+      ]
+    },
+    {
+      "id": "M14.prop78",
+      "milestone": "M14",
+      "owner": "main",
+      "title": "h₆² 的 d₁₂ 二分及三个条件等价",
+      "nlfl_entry_ids": [
+        "I-31ef4ddd57d8",
+        "I-8d6c400b00d5"
+      ]
+    },
+    {
+      "id": "M15.alpha",
+      "milestone": "M15",
+      "owner": "main",
+      "title": "同一个 Q11 α₁ 及其 Q9 投影",
+      "nlfl_entry_ids": [
+        "I-899e9ec6ca2c",
+        "I-9808ad289646",
+        "I-a2cd76dea3ef"
+      ]
+    },
+    {
+      "id": "M15.af13",
+      "milestone": "M15",
+      "owner": "main",
+      "title": "AF13 correction 生成整个经典 E∞ 分量",
+      "nlfl_entry_ids": [
+        "I-808809cf95c1",
+        "I-1b5a67c5789d",
+        "I-d831ca6c366c"
+      ]
+    },
+    {
+      "id": "M16.toda",
+      "milestone": "M16",
+      "owner": "main",
+      "title": "检测 B 与 h₆B 的 θ–B Toda 成员",
+      "nlfl_entry_ids": [
+        "I-8a883873d55e",
+        "I-efe9d3446dfb",
+        "I-fb06d8d8d4bb",
+        "I-576c11cdcc72"
+      ]
+    },
+    {
+      "id": "M16.shuffle",
+      "milestone": "M16",
+      "owner": "main",
+      "title": "Toda 成员的 λ²h₀ 乘后 shuffle",
+      "nlfl_entry_ids": [
+        "I-9c5f3770f25b",
+        "I-3609677b0716",
+        "I-d08e2a8f8949",
+        "I-a730668797e4"
+      ]
+    },
+    {
+      "id": "M16.weak_y",
+      "milestone": "M16",
+      "owner": "main",
+      "title": "同一个 Y 弱代表及其 λ²h₀ 非零性",
+      "nlfl_entry_ids": [
+        "I-13548cc60575",
+        "I-81ecf4ddd9fa"
+      ]
+    },
+    {
+      "id": "M17.nu5",
+      "milestone": "M17",
+      "owner": "main",
+      "title": "Q5 中检测 X、λ²Y 的精确 ν 等式",
+      "nlfl_entry_ids": [
+        "I-67cc101cb040",
+        "I-bc3db2fb9293",
+        "I-a714039dc7aa"
+      ]
+    },
+    {
+      "id": "M17.nu9",
+      "milestone": "M17",
+      "owner": "main",
+      "title": "Q9 中检测 λ⁴X、λ⁵Y 的 ν 延拓",
+      "nlfl_entry_ids": [
+        "I-a3c79fe06579",
+        "I-190d7fb68691",
+        "I-1c1b62a5a235"
+      ]
+    },
+    {
+      "id": "M18.nu_divisible",
+      "milestone": "M18",
+      "owner": "main",
+      "title": "未截断 target 的 ν 可除性",
+      "nlfl_entry_ids": [
+        "I-4cb731d01128",
+        "I-801f798658dd",
+        "I-a495f2a02d12"
+      ]
+    },
+    {
+      "id": "M19.rigidity",
+      "milestone": "M19",
+      "owner": "main",
+      "title": "Cν 的 E₆ 存活排除 target ν 可除",
+      "nlfl_entry_ids": [
+        "I-07b3bae4f851",
+        "I-801f798658dd",
+        "I-6be3672c2f4e",
+        "I-b7d463582bfd"
+      ]
+    },
+    {
+      "id": "M19.prop79",
+      "milestone": "M19",
+      "owner": "main",
+      "title": "同一 delivery 上的 C₃ 排除 C₅",
+      "nlfl_entry_ids": [
+        "I-6b59d5c60a7c",
+        "I-bb292357ceb6",
+        "I-20f1382f17d7",
+        "I-ee820c98052f",
+        "I-f43555e16d95"
+      ]
+    },
+    {
+      "id": "M20.composition",
+      "milestone": "M20",
+      "owner": "main",
+      "title": "由两条 Proposition 排除 d₁₂ 分支",
+      "nlfl_entry_ids": [
+        "I-8d6c400b00d5",
+        "I-20f1382f17d7",
+        "I-bfdfde4d3d7e"
+      ]
+    },
+    {
+      "id": "M20.conditional_final",
+      "milestone": "M20",
+      "owner": "main",
+      "title": "现有无参标准目标与拟议同一 input 条件入口",
+      "nlfl_entry_ids": [
+        "I-622417cb5f21",
+        "I-abf19f560d27",
+        "I-e23dfce93950",
+        "I-44395d6d1d45"
+      ]
+    }
+  ],
+  "deliveries": [
+    {
+      "id": "m08_entire_770",
+      "contract": "M08.theta_massey_annihilation",
+      "nlfl_entry_ids": [
+        "I-8b5db474016d"
+      ],
+      "binding_relation": "Original generic theorem supplies the full-grid mathematical result; not a claim that the proposed fixed-signature FL was implemented verbatim.",
+      "provider": "KIP126/Main/Solution/Route/Section7/ThetaMassey.lean",
+      "declarations": [
+        {
+          "name": "KIP126.Main.Solution.Route.Section7.h5_square_times_entire_770_zero",
+          "kind": "theorem"
+        }
+      ],
+      "nl": "For every b in actual E2^(7,70), h5 squared times b is zero in E2^(9,134), on the same generic Inputs realization. This is distinct from h5Sq_B_zero, whose named input B has degree (8,70).",
+      "public_environment": [
+        "The existing H, MilnorCooperations M, Model H M Syn, Labels, TmfLabels and Inputs D L G bind the same realization.",
+        "Actual E2 groups and Sphere.Internal.product/hiSquare retain their original definitions and typeclass context."
+      ],
+      "unfolding_policy": {
+        "kind": "theorem",
+        "body": "hidden_by_module",
+        "description": "Consumers use the theorem statement. CSV parsing, basis enumeration and the cobar linear-map proof remain proof-only implementation. No new definitional equality is promised."
+      },
+      "consumers": [
+        "KIP126/Main/Solution/Route/Section7/ThetaToda.lean",
+        "KIP126/Checks/ModuleBoundaries/PublicHandoffs.lean"
+      ],
+      "private_implementation": [],
+      "mathematical_review": {
+        "status": "pending",
+        "note": "No expert approval is inferred from the website proposal or successful compilation."
+      },
+      "public_boundary": {
+        "status": "implemented_in_source",
+        "note": "The original type and namespace are preserved. Fixed input : Challenge2 parameterization and actualE2Product signature are still a proposal."
+      },
+      "build_isolation": {
+        "status": "not_measured",
+        "evidence": []
+      },
+      "public_import_check": {
+        "path": "KIP126/Checks/ModuleBoundaries/PublicHandoffs.lean",
+        "status": "present_not_yet_compiled",
+        "scope": "Elaborates the complete public type using ordinary imports; not proof-completion or build-isolation evidence."
+      }
+    },
+    {
+      "id": "m16_joint_weak_y",
+      "contract": "M16.weak_y",
+      "nlfl_entry_ids": [
+        "I-81ecf4ddd9fa"
+      ],
+      "binding_relation": "New public theorem realizes the joint-witness part of the candidate contract on the existing fixed input; arbitrary-input generalization remains pending.",
+      "provider": "KIP126/Main/Solution/Route/Section7/WeakY.lean",
+      "declarations": [
+        {
+          "name": "KIP126.Main.Solution.Route.Section7.weak_y_exists",
+          "kind": "theorem"
+        }
+      ],
+      "nl": "Under the current C3 and C5, one y : BiHom 125 132 Q9 simultaneously has FiniteDetected D 9 11 136 4 eY y and nonzero lambdaMultiply 2 (sphereAction h0 y).",
+      "public_environment": [
+        "Common publicly provides the fixed StageInput and Section7 predicates.",
+        "D, M, L, eY, h0 and the realization are projected from the existing single fixed Challenge2 witness.",
+        "FiniteDetected and Q9 retain their existing definitions; both conjuncts share the bound y."
+      ],
+      "unfolding_policy": {
+        "kind": "theorem",
+        "body": "hidden_by_module",
+        "description": "The downstream consumer destructs one existential pair. It does not unfold the weak-representative construction or import its helper modules."
+      },
+      "consumers": [
+        "KIP126/Main/Solution/Route/Section7/NuTarget.lean",
+        "KIP126/Checks/ModuleBoundaries/PublicHandoffs.lean"
+      ],
+      "private_implementation": [
+        "KIP126.Main.Solution.Route.Section7.AnyYHelpers",
+        "KIP126.Main.Solution.Route.Section7.TodaNonempty",
+        "KIP126.Main.Solution.Route.Section7.WeakInitialNonzero",
+        "KIP126.Main.Solution.Route.Section7.WeakRepresentative",
+        "KIP126.Main.Solution.Route.Section7.WeakYDetection"
+      ],
+      "mathematical_review": {
+        "status": "pending",
+        "note": "No expert approval is inferred from the website proposal or successful compilation."
+      },
+      "public_boundary": {
+        "status": "implemented_in_source",
+        "note": "Source implementation keeps the existing witness and upstream proof obligations; it does not implement the website’s arbitrary-input FL."
+      },
+      "build_isolation": {
+        "status": "not_measured",
+        "evidence": []
+      },
+      "public_import_check": {
+        "path": "KIP126/Checks/ModuleBoundaries/PublicHandoffs.lean",
+        "status": "present_not_yet_compiled",
+        "scope": "Elaborates the complete public type using ordinary imports; not proof-completion or build-isolation evidence."
+      }
+    },
+    {
+      "id": "m03_shifted_finite_source",
+      "contract": "M03.shifted_finite_source",
+      "nlfl_entry_ids": [
+        "I-04d3f44f5b4b"
+      ],
+      "binding_relation": "Promotes the existing generic theorem without changing its SyntheticInputs premise; the website’s narrower premise is not claimed.",
+      "provider": "KIP126/Def/Kervaire/Route/Tools/PageExtensionStretching/Proofs.lean",
+      "declarations": [
+        {
+          "name": "KIP126.Main.Solution.Tools.shifted_finite_source_exists",
+          "kind": "theorem"
+        }
+      ],
+      "nl": "The existing generic Model and SyntheticInputs produce an infinity representative of the shifted finite-quotient label from the specified classical cycle.",
+      "public_environment": [
+        "The original Model H M Syn, SyntheticInputs D, q > 0, cycle membership, degree shifts and finiteNuLabel are preserved.",
+        "The compatibility namespace KIP126.Main.Solution.Tools remains; the declaration is physically owned by Def."
+      ],
+      "unfolding_policy": {
+        "kind": "theorem",
+        "body": "hidden_by_module",
+        "description": "Mahowald imports only the public statement; quotient_shift_exists and other stretching proof details stay private."
+      },
+      "consumers": [
+        "KIP126/Def/Kervaire/Route/Tools/GeneralizedMahowald/Proofs.lean",
+        "KIP126/Checks/ModuleBoundaries/PublicHandoffs.lean"
+      ],
+      "private_implementation": [],
+      "mathematical_review": {
+        "status": "pending",
+        "note": "No expert approval is inferred from the website proposal or successful compilation."
+      },
+      "public_boundary": {
+        "status": "implemented_in_source",
+        "note": "The public source boundary is implemented. Reducing SyntheticInputs to the two proposed predicates requires a separate statement review."
+      },
+      "build_isolation": {
+        "status": "not_measured",
+        "evidence": []
+      },
+      "public_import_check": {
+        "path": "KIP126/Checks/ModuleBoundaries/PublicHandoffs.lean",
+        "status": "present_not_yet_compiled",
+        "scope": "Elaborates the complete public type using ordinary imports; not proof-completion or build-isolation evidence."
+      }
+    },
+    {
+      "id": "may_connecting_formula",
+      "contract": "M04.may",
+      "nlfl_entry_ids": [
+        "I-bcb8dfa9ec4f"
+      ],
+      "binding_relation": "Supporting public operation formula for the source adaptation of route_may; not the NL–FL statement of route_may itself.",
+      "provider": "KIP126/Def/StableHomotopy/Context/Connecting/Desuspension/Proofs.lean",
+      "declarations": [
+        {
+          "name": "KIP126.StableHomotopy.connectingHomomorphism_eq_desuspend",
+          "kind": "theorem"
+        }
+      ],
+      "nl": "Use the existing public desuspension formula for the connecting homomorphism while retaining May’s signed boundary and its hypotheses.",
+      "public_environment": [
+        "HoCofiberSequence, HomotopyGroup, the original shifts, connectingHomomorphism and map_neg are unchanged."
+      ],
+      "unfolding_policy": {
+        "kind": "theorem",
+        "body": "hidden_by_module",
+        "description": "May rewrites by connectingHomomorphism_eq_desuspend. Only the owning stable-homotopy implementation unfolds the hidden connectingHomomorphism definition."
+      },
+      "consumers": [
+        "KIP126/Interface/Solution/Literature/Route/May.lean"
+      ],
+      "private_implementation": [],
+      "mathematical_review": {
+        "status": "pending",
+        "note": "No expert approval is inferred from the website proposal or successful compilation."
+      },
+      "public_boundary": {
+        "status": "implemented_in_source",
+        "note": "The formula already existed. The May consumer now imports this public theorem instead of reading Context.Proofs private data."
+      },
+      "build_isolation": {
+        "status": "not_measured",
+        "evidence": []
+      }
+    },
+    {
+      "id": "filtered_differential_hidden_data",
+      "contract": "M03.page_api",
+      "nlfl_entry_ids": [
+        "I-95aa55260354"
+      ],
+      "binding_relation": "Supporting existing implementation of the SpectralSequence candidate; the website does not contain a separate paired entry for this definition.",
+      "provider": "KIP126/Def/SpectralSequence/FilteredDifferential/Data.lean",
+      "declarations": [
+        {
+          "name": "KIP126.Core.SpectralSequence.FilteredComplex.pageDifferential",
+          "kind": "def",
+          "require_no_expose": true
+        }
+      ],
+      "nl": "The filtered-complex page differential is available by name and type; its kernel, image and cokernel construction is hidden.",
+      "public_environment": [
+        "FilteredComplex C with Category C and Abelian C.",
+        "pageObj, filtration and the existing integer/natural page indexing retain their definitions."
+      ],
+      "unfolding_policy": {
+        "kind": "definition",
+        "body": "explicit_no_expose",
+        "description": "Keep the existing explicit @[no_expose]. Component-internal proofs may use registered import all; ordinary downstream consumers use the exported operation and its theorems."
+      },
+      "consumers": [],
+      "private_implementation": [],
+      "mathematical_review": {
+        "status": "pending",
+        "note": "No expert approval is inferred from the website proposal or successful compilation."
+      },
+      "public_boundary": {
+        "status": "implemented_in_source",
+        "note": "Existing working encapsulation pattern; no proof-completion claim follows from the hidden definition."
+      },
+      "build_isolation": {
+        "status": "not_measured",
+        "evidence": []
+      }
+    },
+    {
+      "id": "filtered_differential_formula",
+      "contract": "M03.page_api",
+      "nlfl_entry_ids": [
+        "I-95aa55260354"
+      ],
+      "binding_relation": "Supporting representative formulas for the existing SpectralSequence implementation; not a new paired mathematical contract.",
+      "provider": "KIP126/Def/SpectralSequence/FilteredDifferential/Proofs.lean",
+      "declarations": [
+        {
+          "name": "KIP126.Core.SpectralSequence.FilteredComplex.pageDifferential_on_cycle_kernel",
+          "kind": "theorem"
+        },
+        {
+          "name": "KIP126.Core.SpectralSequence.FilteredComplex.pageDifferential_of_strict_lifts",
+          "kind": "theorem"
+        }
+      ],
+      "nl": "The public representative formulas compute pageDifferential from a cycle-kernel representative or strict filtered lifts.",
+      "public_environment": [
+        "The same FilteredComplex, pageObj, pageDifferential, cycle objects and category instances.",
+        "SquareZero, Cycles and Boundaries public theorem modules are reexported."
+      ],
+      "unfolding_policy": {
+        "kind": "theorem",
+        "body": "hidden_by_module",
+        "description": "Clients use the representative equations and the reexported pageDifferential_comp/successor laws. The hidden pageDifferential construction is opened only inside the component."
+      },
+      "consumers": [
+        "KIP126/Def/SpectralSequence/FilteredComplex/SpectralSequenceConstruction/Data.lean"
+      ],
+      "private_implementation": [],
+      "mathematical_review": {
+        "status": "pending",
+        "note": "No expert approval is inferred from the website proposal or successful compilation."
+      },
+      "public_boundary": {
+        "status": "implemented_in_source",
+        "note": "Existing public example retained as a regression boundary."
+      },
+      "build_isolation": {
+        "status": "not_measured",
+        "evidence": []
+      }
+    }
+  ],
+  "private_imports": [
+    {
+      "consumer": "KIP126.Checks.ClassicalAdams.Vanishing",
+      "provider": "KIP126.Main.Solution.Computation.Vanishing",
+      "classification": "audit",
+      "component": "checks",
+      "reason": "Audit-only inspection of implementation details. Production transitive imports of Checks are prohibited."
+    },
+    {
+      "consumer": "KIP126.Checks.Kervaire.High125Boundary",
+      "provider": "KIP126.Main.Solution.Computation.Tmf",
+      "classification": "audit",
+      "component": "checks",
+      "reason": "Audit-only inspection of implementation details. Production transitive imports of Checks are prohibited."
+    },
+    {
+      "consumer": "KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Proofs",
+      "provider": "KIP126.Def.StableHomotopy.Context.Proofs",
+      "classification": "existing_debt",
+      "component": "adams_connecting",
+      "reason": "Retained baseline unfolding of the stable-homotopy connecting construction. No general isolation claim is made; migrate each consumer to an adequate public operation formula before removing this edge."
+    },
+    {
+      "consumer": "KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Proofs",
+      "provider": "KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Data",
+      "classification": "component_internal",
+      "component": "adams_tower_pairing",
+      "reason": "Build and verify the same tower-pairing implementation using its private construction; its public consumers use proved formulas."
+    },
+    {
+      "consumer": "KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Internal.Proofs",
+      "provider": "KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Internal.Data",
+      "classification": "component_internal",
+      "component": "adams_tower_pairing",
+      "reason": "Build and verify the same tower-pairing implementation using its private construction; its public consumers use proved formulas."
+    },
+    {
+      "consumer": "KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Leibniz.Proofs",
+      "provider": "KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Data",
+      "classification": "component_internal",
+      "component": "adams_tower_pairing",
+      "reason": "Build and verify the same tower-pairing implementation using its private construction; its public consumers use proved formulas."
+    },
+    {
+      "consumer": "KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Lifting.Construction.Proofs",
+      "provider": "KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Construction.Proofs",
+      "classification": "component_internal",
+      "component": "adams_tower_pairing",
+      "reason": "Build and verify the same tower-pairing implementation using its private construction; its public consumers use proved formulas."
+    },
+    {
+      "consumer": "KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Differential.Proofs",
+      "provider": "KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Construction.Proofs",
+      "classification": "component_internal",
+      "component": "adams_tower_pairing",
+      "reason": "Build and verify the same tower-pairing implementation using its private construction; its public consumers use proved formulas."
+    },
+    {
+      "consumer": "KIP126.Def.ClassicalAdams.TowerResolution.Proofs",
+      "provider": "KIP126.Def.StableHomotopy.Context.Proofs",
+      "classification": "existing_debt",
+      "component": "adams_connecting",
+      "reason": "Retained baseline unfolding of the stable-homotopy connecting construction. No general isolation claim is made; migrate each consumer to an adequate public operation formula before removing this edge."
+    },
+    {
+      "consumer": "KIP126.Def.SpectralSequence.FilteredDifferential.Boundaries",
+      "provider": "KIP126.Def.SpectralSequence.FilteredDifferential.Data",
+      "classification": "component_internal",
+      "component": "filtered_differential",
+      "reason": "Prove square-zero, cycle/boundary or representative laws from the component’s explicitly hidden pageDifferential construction."
+    },
+    {
+      "consumer": "KIP126.Def.SpectralSequence.FilteredDifferential.Cycles",
+      "provider": "KIP126.Def.SpectralSequence.FilteredDifferential.Data",
+      "classification": "component_internal",
+      "component": "filtered_differential",
+      "reason": "Prove square-zero, cycle/boundary or representative laws from the component’s explicitly hidden pageDifferential construction."
+    },
+    {
+      "consumer": "KIP126.Def.SpectralSequence.FilteredDifferential.Proofs",
+      "provider": "KIP126.Def.SpectralSequence.FilteredDifferential.Data",
+      "classification": "component_internal",
+      "component": "filtered_differential",
+      "reason": "Prove square-zero, cycle/boundary or representative laws from the component’s explicitly hidden pageDifferential construction."
+    },
+    {
+      "consumer": "KIP126.Def.SpectralSequence.FilteredDifferential.SquareZero",
+      "provider": "KIP126.Def.SpectralSequence.FilteredDifferential.Data",
+      "classification": "component_internal",
+      "component": "filtered_differential",
+      "reason": "Prove square-zero, cycle/boundary or representative laws from the component’s explicitly hidden pageDifferential construction."
+    },
+    {
+      "consumer": "KIP126.Def.StableHomotopy.Cohomology.Connecting.Proofs",
+      "provider": "KIP126.Def.StableHomotopy.Context.Proofs",
+      "classification": "existing_debt",
+      "component": "adams_connecting",
+      "reason": "Retained baseline unfolding of the stable-homotopy connecting construction. No general isolation claim is made; migrate each consumer to an adequate public operation formula before removing this edge."
+    },
+    {
+      "consumer": "KIP126.Def.StableHomotopy.Context.Connecting.Desuspension.Proofs",
+      "provider": "KIP126.Def.StableHomotopy.Context.Proofs",
+      "classification": "existing_debt",
+      "component": "adams_connecting",
+      "reason": "Retained baseline unfolding of the stable-homotopy connecting construction. No general isolation claim is made; migrate each consumer to an adequate public operation formula before removing this edge."
+    },
+    {
+      "consumer": "KIP126.Def.StableHomotopy.Context.Connecting.Proofs",
+      "provider": "KIP126.Def.StableHomotopy.Context.Proofs",
+      "classification": "existing_debt",
+      "component": "adams_connecting",
+      "reason": "Retained baseline unfolding of the stable-homotopy connecting construction. No general isolation claim is made; migrate each consumer to an adequate public operation formula before removing this edge."
+    },
+    {
+      "consumer": "KIP126.LinProgram.Certificates.BasisTable.LowDegrees",
+      "provider": "KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates",
+      "classification": "component_internal",
+      "component": "lin_certificates",
+      "reason": "Replay the pinned algebra/basis certificate inside the computation component; the resulting theorem is public."
+    },
+    {
+      "consumer": "KIP126.LinProgram.Certificates.Relations.ThetaMassey",
+      "provider": "KIP126.LinProgram.Model.RelationCertificates",
+      "classification": "component_internal",
+      "component": "lin_certificates",
+      "reason": "Replay the pinned algebra/basis certificate inside the computation component; the resulting theorem is public."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Computation.Route",
+      "provider": "KIP126.Main.Solution.Computation.Route.SphereSurvival",
+      "classification": "component_internal",
+      "component": "sphere_facts",
+      "reason": "Assemble the public sphere-computation delivery from its private incoming, differential and survival proofs."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Computation.Route",
+      "provider": "KIP126.Main.Solution.Computation.Route.SphereDifferentials",
+      "classification": "component_internal",
+      "component": "sphere_facts",
+      "reason": "Assemble the public sphere-computation delivery from its private incoming, differential and survival proofs."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Computation.Route",
+      "provider": "KIP126.Main.Solution.Computation.Route.SphereIncoming",
+      "classification": "component_internal",
+      "component": "sphere_facts",
+      "reason": "Assemble the public sphere-computation delivery from its private incoming, differential and survival proofs."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Computation.Route.SphereIncoming",
+      "provider": "KIP126.Main.Solution.Computation.Route.SphereDifferentials",
+      "classification": "component_internal",
+      "component": "sphere_facts",
+      "reason": "Assemble the public sphere-computation delivery from its private incoming, differential and survival proofs."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.AlphaOne",
+      "provider": "KIP126.Main.Solution.Route.AlphaOne.LowFiltration",
+      "classification": "component_internal",
+      "component": "alpha_one",
+      "reason": "Assemble the same alpha-one existence and filtration proof; private stages are not reexported to downstream clients."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.AlphaOne",
+      "provider": "KIP126.Main.Solution.Route.AlphaOne.FiltrationTen",
+      "classification": "component_internal",
+      "component": "alpha_one",
+      "reason": "Assemble the same alpha-one existence and filtration proof; private stages are not reexported to downstream clients."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.AlphaOne",
+      "provider": "KIP126.Main.Solution.Route.AlphaOne.Exhaustion",
+      "classification": "component_internal",
+      "component": "alpha_one",
+      "reason": "Assemble the same alpha-one existence and filtration proof; private stages are not reexported to downstream clients."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.AlphaOne",
+      "provider": "KIP126.Main.Solution.Route.AlphaOne.ThetaFrames",
+      "classification": "component_internal",
+      "component": "alpha_one",
+      "reason": "Assemble the same alpha-one existence and filtration proof; private stages are not reexported to downstream clients."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.AlphaOne",
+      "provider": "KIP126.Main.Solution.Route.AlphaOne.Filtration",
+      "classification": "component_internal",
+      "component": "alpha_one",
+      "reason": "Assemble the same alpha-one existence and filtration proof; private stages are not reexported to downstream clients."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.AlphaOne",
+      "provider": "KIP126.Main.Solution.Route.AlphaOne.Staircase",
+      "classification": "component_internal",
+      "component": "alpha_one",
+      "reason": "Assemble the same alpha-one existence and filtration proof; private stages are not reexported to downstream clients."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.AlphaOne",
+      "provider": "KIP126.Main.Solution.Route.AlphaOne.Existence",
+      "classification": "component_internal",
+      "component": "alpha_one",
+      "reason": "Assemble the same alpha-one existence and filtration proof; private stages are not reexported to downstream clients."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.AlphaOne.Filtration",
+      "provider": "KIP126.Main.Solution.Route.AlphaOne.FiniteWindow",
+      "classification": "component_internal",
+      "component": "alpha_one",
+      "reason": "Assemble the same alpha-one existence and filtration proof; private stages are not reexported to downstream clients."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.Section7.NuTarget",
+      "provider": "KIP126.Main.Solution.Route.Section7.NuTargetHelpers",
+      "classification": "component_internal",
+      "component": "target_nu",
+      "reason": "M18 uses its own P/Q lifting implementation after consuming the public M16 joint witness; this is not a dependency on M16 private construction."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.Section7.WeakY",
+      "provider": "KIP126.Main.Solution.Route.Section7.AnyYHelpers",
+      "classification": "component_internal",
+      "component": "weak_y",
+      "reason": "M16 alone assembles the same weak representative, its detection and nonzero product. M18 must use weak_y_exists."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.Section7.WeakY",
+      "provider": "KIP126.Main.Solution.Route.Section7.TodaNonempty",
+      "classification": "component_internal",
+      "component": "weak_y",
+      "reason": "M16 alone assembles the same weak representative, its detection and nonzero product. M18 must use weak_y_exists."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.Section7.WeakY",
+      "provider": "KIP126.Main.Solution.Route.Section7.WeakInitialNonzero",
+      "classification": "component_internal",
+      "component": "weak_y",
+      "reason": "M16 alone assembles the same weak representative, its detection and nonzero product. M18 must use weak_y_exists."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.Section7.WeakY",
+      "provider": "KIP126.Main.Solution.Route.Section7.WeakRepresentative",
+      "classification": "component_internal",
+      "component": "weak_y",
+      "reason": "M16 alone assembles the same weak representative, its detection and nonzero product. M18 must use weak_y_exists."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.Section7.WeakY",
+      "provider": "KIP126.Main.Solution.Route.Section7.WeakYDetection",
+      "classification": "component_internal",
+      "component": "weak_y",
+      "reason": "M16 alone assembles the same weak representative, its detection and nonzero product. M18 must use weak_y_exists."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.Selected",
+      "provider": "KIP126.Main.Solution.Route.Selected.Assembly",
+      "classification": "component_internal",
+      "component": "selected_route",
+      "reason": "Assemble the selected-route result from correlated private source/classical/detection/choice stages."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.Selected.Assembly",
+      "provider": "KIP126.Main.Solution.Route.Selected.ThetaData",
+      "classification": "component_internal",
+      "component": "selected_route",
+      "reason": "Assemble the selected-route result from correlated private source/classical/detection/choice stages."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.Selected.Assembly",
+      "provider": "KIP126.Main.Solution.Route.Selected.ClassicalData",
+      "classification": "component_internal",
+      "component": "selected_route",
+      "reason": "Assemble the selected-route result from correlated private source/classical/detection/choice stages."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.Selected.Assembly",
+      "provider": "KIP126.Main.Solution.Route.Selected.ChoiceInvariance",
+      "classification": "component_internal",
+      "component": "selected_route",
+      "reason": "Assemble the selected-route result from correlated private source/classical/detection/choice stages."
+    },
+    {
+      "consumer": "KIP126.Main.Solution.Route.Selected.Assembly",
+      "provider": "KIP126.Main.Solution.Route.Selected.DetectionData",
+      "classification": "component_internal",
+      "component": "selected_route",
+      "reason": "Assemble the selected-route result from correlated private source/classical/detection/choice stages."
+    }
+  ],
+  "remaining_work": [
+    "The website snapshot is a proposal. All 90 contracts and their candidate NL–FL IDs remain subject to independent mathematical review; source extraction and a public name do not approve a mathematical contract.",
+    "M08 retains the original generic statement and namespace, exported from the existing ThetaMassey file. The fixed ActualE2At/actualE2Product signature and a computation-owned source file are not introduced by this mechanical boundary change.",
+    "M16 uses the existing single fixed Challenge2 witness. The website proposal quantifies over arbitrary input : Challenge2; parameterizing all prerequisite public lemmas is separate mathematical/API work.",
+    "The existing M03 shifted_finite_source_exists theorem retains its SyntheticInputs premise. The website proposal asks for only DifferentialRigidity and FiniteQuotientPageVanishing; narrowing this premise is not claimed here.",
+    "Existing standard E2 definitions retain their current exposure. Changing actualE2Product or model definitional equality requires consumer review, not a bulk no_expose rewrite.",
+    "A shared file is a shared compilation unit. Registering one public theorem does not isolate it from edits to other public declarations in that same file.",
+    "Ordinary imports still inherit a provider’s public reexports. Common remains tied to the same standard foundation; its direct-import reduction is not a proof of a small transitive public surface.",
+    "Keep docs/external-inputs.json as the sole source/input provenance manifest. This file records design references and import policy only; the pending PR #3 milestone scheduler is not duplicated.",
+    "Build-isolation evidence must come from same-environment warm-cache proof-only and public-interface edits; source import checks or historical CI timing differences do not measure speedup."
+  ],
+  "implementation_only_modules": [
+    "KIP126.Main.Solution.Computation.Route.SphereDifferentials",
+    "KIP126.Main.Solution.Computation.Route.SphereIncoming",
+    "KIP126.Main.Solution.Computation.Route.SphereSurvival",
+    "KIP126.Main.Solution.Route.AlphaOne.Exhaustion",
+    "KIP126.Main.Solution.Route.AlphaOne.Existence",
+    "KIP126.Main.Solution.Route.AlphaOne.Filtration",
+    "KIP126.Main.Solution.Route.AlphaOne.FiltrationTen",
+    "KIP126.Main.Solution.Route.AlphaOne.FiniteWindow",
+    "KIP126.Main.Solution.Route.AlphaOne.LowFiltration",
+    "KIP126.Main.Solution.Route.AlphaOne.Staircase",
+    "KIP126.Main.Solution.Route.AlphaOne.ThetaFrames",
+    "KIP126.Main.Solution.Route.Section7.AnyYHelpers",
+    "KIP126.Main.Solution.Route.Section7.NuTargetHelpers",
+    "KIP126.Main.Solution.Route.Section7.ProofSupport",
+    "KIP126.Main.Solution.Route.Section7.TodaNonempty",
+    "KIP126.Main.Solution.Route.Section7.WeakInitialNonzero",
+    "KIP126.Main.Solution.Route.Section7.WeakRepresentative",
+    "KIP126.Main.Solution.Route.Section7.WeakYDetection",
+    "KIP126.Main.Solution.Route.Selected.Assembly",
+    "KIP126.Main.Solution.Route.Selected.ChoiceInvariance",
+    "KIP126.Main.Solution.Route.Selected.ClassicalData",
+    "KIP126.Main.Solution.Route.Selected.DetectionData",
+    "KIP126.Main.Solution.Route.Selected.ThetaData"
+  ]
+}

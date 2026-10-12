@@ -1,12 +1,11 @@
 module
 
+import KIP126.Main.Solution.Route.Section7.ProofSupport
+
 public import KIP126.Main.Solution.Computation.LowDegrees
 public import KIP126.Main.Solution.Route.Section7.ThetaMassey
 public import KIP126.Main.Solution.Route.Section7.ThetaNoCrossing
 public import KIP126.Main.Solution.Computation.Lambda
-
--- These proofs use the existing private helpers in these modules.
-import all KIP126.Main.Solution.Route.Section7.ThetaMassey
 
 -- The CSV proofs explicitly unfold these string/list implementations.
 import all Init.Data.String.Legacy
@@ -30,8 +29,6 @@ local notation "L" => routeLabels
 local notation "I" => routeComputation
 local notation "η" => routeEta
 local notation "h₀" => routeLiterature.toda.h0
-
-open private h5_square_times_entire_770_zero from KIP126.Main.Solution.Route.Section7.ThetaMassey
 
 section ThetaBSyntheticProof
 
@@ -1435,10 +1432,12 @@ private theorem theta_b_complete_from_low_degrees
 end
 end ThetaBSyntheticProof
 
-/-- `lem:toda2ext`: a compatible synthetic bracket MEMBER and its actual
-nonzero detector must be produced, not inferred from order two alone.
-The proof uses the local Massey/no-crossing results, the supplied classical
-Moss application, and the realization/secondary-operation comparison. -/
+/-- `lem:near126-theta-b-toda`: one synthetic bracket member with its
+compatible nonzero detector. The proof lifts the detected `B` class,
+constructs the quotient Toda candidate through the May push-pull comparison,
+identifies its `h₆B` label, and removes indeterminacy using the public
+whole-component annihilation theorem. The E∞ comparison supplies nonzero
+detection for the same representatives. -/
 theorem synthetic_theta_b_toda
     (theta : BiHom 62 64 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
     (htheta : ThetaChoice M (D).toModelData theta) :

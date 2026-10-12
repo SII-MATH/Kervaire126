@@ -433,11 +433,33 @@ comparison with older ordinary crossing certificates remain separate.
   complete page-extension target coset to obtain the asserted equivalence.
 \end{proof}
 
+% Public finite-source handoff shared by the reusable rules.
+\begin{lemma}[An infinity representative in a shifted finite quotient]
+  \label{lem:shifted-finite-source-representative}
+  \lean{KIP126.Main.Solution.Tools.shifted_finite_source_exists}
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-map-compatibility}
+  \notready
+  Fix a model with its stated synthetic comparison inputs. For $q>0$,
+  an object $X$, integers $a,s,t$, and a cycle
+  $x\in Z_q^{s,t}(X)$, the prescribed initial label of $x$ in
+  $(\Sigma^{0,a}\nu X)/\lambda^q$, in tridegree $(s,t,t+a)$,
+  has an infinity representative in that same actual sequence.
+  The source cycle, finite exponent, and weight shift are retained;
+  no representative is supplied as an extra model field.
+\end{lemma}
+\begin{proof}
+  Transport the actual finite-quotient representative along the specified
+  coherent weight-shift comparison. The implementation constructs the
+  comparison and its compatibility privately; the public conclusion is
+  consumed by the Mahowald and finite stretching proofs with the same
+  model and source hypotheses.
+\end{proof}
+
 % SOURCE: MainPaper/main.tex:1780-1917, Theorem thm:158d451a.
 \begin{theorem}[Generalized Mahowald trick]
   \label{thm:generalized-mahowald}
   \lean{KIP126.Main.Solution.Tools.generalizedMahowald}
-  \uses{def:mahowald-input-data,def:mahowald-tower-suspension-comparison,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle,lem:mahowald-synchronized-representatives,lem:mahowald-compatible-quotient-lift,lem:mahowald-quotient-lift-survival,lem:mahowald-lambda-division}
+  \uses{lem:shifted-finite-source-representative,def:mahowald-input-data,def:mahowald-tower-suspension-comparison,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle,lem:mahowald-synchronized-representatives,lem:mahowald-compatible-quotient-lift,lem:mahowald-quotient-lift-survival,lem:mahowald-lambda-division}
   \lean{KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw}
   \notready
   Let
@@ -761,7 +783,7 @@ comparison with older ordinary crossing certificates remain separate.
 \begin{corollary}[Page-extension stretching]
   \label{cor:page-extension-stretch}
   \lean{KIP126.Main.Solution.Tools.finitePageExtensionStretching}
-  \uses{def:finite-page-extension-stretching-law,def:finite-page-extension-nonliftable-crossing,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
+  \uses{lem:shifted-finite-source-representative,def:finite-page-extension-stretching-law,def:finite-page-extension-nonliftable-crossing,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
   \notready
   The normalized family of the chosen synthetic model satisfies the finite
   stretching law of

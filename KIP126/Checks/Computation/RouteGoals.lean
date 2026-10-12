@@ -3,6 +3,7 @@ import KIP126.Main.Solution.Computation.Route
 import KIP126.Main.Solution.Computation.Lambda
 import KIP126.Main.Solution.Computation.High125
 import KIP126.Main.Solution.Route.Selected
+import KIP126.Main.Solution.Route.Section7
 import Lean.Elab.Command
 
 /-! The conditional Main route deductions live only in Solution. Check their
@@ -85,6 +86,8 @@ run_cmd do
     ``KIP126.Main.Solution.Route.Section7.ninth_quotient_stem123_weight130_filtration16_zero,
     ``KIP126.Main.Solution.Route.Section7.alpha_one_h0_filtration_seventeen,
     ``KIP126.Main.Solution.Route.Section7.alpha_one_exists,
+    ``KIP126.Main.Solution.Route.Section7.h5_square_times_entire_770_zero,
+    ``KIP126.Main.Solution.Route.Section7.weak_y_exists,
     ``KIP126.Main.Solution.Route.Section7.theta_b_massey_value_and_indeterminacy,
     ``KIP126.Main.Solution.Route.Section7.theta_b_moss_no_crossing,
     ``KIP126.Main.Solution.Route.Section7.synthetic_theta_b_toda,

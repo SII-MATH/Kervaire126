@@ -1,26 +1,16 @@
 module
 
-public import KIP126.Main.Solution.Computation.LowDegrees
-public import KIP126.Main.Solution.Route.Section7.NuNinth
-public import KIP126.Main.Solution.Route.Section7.ThetaToda
-public import KIP126.Main.Solution.Route.Section7.ThetaShuffle
-public import KIP126.Main.Solution.Route.Section7.AnyYHelpers
-public import KIP126.Main.Solution.Route.Section7.TodaNonempty
-public import KIP126.Main.Solution.Route.Section7.WeakInitialNonzero
-public import KIP126.Main.Solution.Route.Section7.WeakRepresentative
-public import KIP126.Main.Solution.Route.Section7.WeakYDetection
-public import KIP126.Main.Solution.Route.Section7.NuTargetHelpers
-public import KIP126.Main.Solution.Route.AlphaOne
+import KIP126.Main.Solution.Route.Section7.ProofSupport
 
--- These proofs use the existing private helpers in these modules.
-import all KIP126.Main.Solution.Route.Section7.AnyYHelpers
-import all KIP126.Main.Solution.Route.Section7.TodaNonempty
-import all KIP126.Main.Solution.Route.Section7.WeakInitialNonzero
-import all KIP126.Main.Solution.Route.Section7.WeakRepresentative
-import all KIP126.Main.Solution.Route.Section7.WeakYDetection
+public import KIP126.Main.Solution.Route.Section7.Common
+import KIP126.Main.Solution.Route.Section7.WeakY
+import KIP126.Main.Solution.Route.Section7.NuNinth
+import Batteries.Tactic.OpenPrivate
+
+-- The P/Q lifting proof belongs to the M18 implementation.
 import all KIP126.Main.Solution.Route.Section7.NuTargetHelpers
 
-@[expose] public section
+public section
 
 namespace KIP126.Main.Solution.Route.Section7
 open CategoryTheory
@@ -40,62 +30,19 @@ local notation "h₀" => routeLiterature.toda.h0
 
 attribute [local irreducible] KIP126.LinE2.homogeneousPart
 
-open private anyy_eta_unique_from_low_degrees anyy_bracket_exact_target
-  from KIP126.Main.Solution.Route.Section7.AnyYHelpers
-open private main_module_toda_nonempty_of_alpha
-  from KIP126.Main.Solution.Route.Section7.TodaNonempty
-open private weak_initial_twice_h0_nonzero
-  from KIP126.Main.Solution.Route.Section7.WeakInitialNonzero
-open private main_weak_high_representative
-  from KIP126.Main.Solution.Route.Section7.WeakRepresentative
-open private weak_y_detected_from_low
-  from KIP126.Main.Solution.Route.Section7.WeakYDetection
 open private nu_target_full_of_nonzero
   from KIP126.Main.Solution.Route.Section7.NuTargetHelpers
 
 set_option backward.isDefEq.respectTransparency false in
 set_option maxRecDepth 10000 in
 set_option maxHeartbeats 2000000 in
-/-- `prop:state5false`: choose a bracket member, remove its AF7 and AF9
-components while preserving its nonzero lambda-squared h0 product, and
+/-- `prop:state5false`: consume the joint weak-representative handoff, then
 apply the actual ninth-quotient nu extension and the P/Q lifting argument. -/
 theorem target_nu_divisible
     (hc3 : C3 L) (hc5 : C5 M (D).toModelData L η) :
     TargetNuDivisible D ((L).target M) h2 := by
   let SF := KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing
-  obtain ⟨a11,ha⟩ := alpha_one_exists
-  obtain ⟨z,hz⟩ := main_module_toda_nonempty_of_alpha D η h₀ ((L).U M) eV
-    routeLiterature.toda.eta_squared a11 ha
-  have unique := anyy_eta_unique_from_low_degrees routeLiterature.synthetic.eInfty
-    sphereVanishing
-    (KIP126.Main.Solution.Computation.sphere_eta_nonzero_unique KIP126.Main.StageInput.witness)
-    (KIP126.Main.Solution.Computation.sphere_e2_two_three_subsingleton KIP126.Main.StageInput.witness)
-  obtain ⟨t,ht,he,_⟩ := anyy_bracket_exact_target I SF
-    routeLiterature.synthetic routeLiterature.realization unique η h₀
-    routeLiterature.toda.eta_squared routeLiterature.toda.low_indeterminacy
-    eV hc3 hc5 a11 ha z hz
-  have hzn := weak_initial_twice_h0_nonzero I SF routeLiterature.synthetic.eInfty
-    literature.bindings.route.algebra literature.bindings.route.quotientBinding
-    literature.bindings.route.algebraBinding hc3 h₀ z t ht he
-  obtain ⟨theta,hcriterion,_,_⟩ := routeLiterature.bx
-  have htheta : ThetaChoice M (D).toModelData theta := hcriterion.2.1
-  obtain ⟨b,zTheta,hb,hzTheta,hToda⟩ := synthetic_theta_b_toda theta htheta
-  have hlabel := (I).products ⟨1,64,8,70⟩
-    (by simp [KIP126.Computation.Route.Raw.products]) KIP126.LinE2.dataH6 KIP126.Computation.Near126.B
-  dsimp only at hlabel
-  rw [(I).labels.h6] at hlabel
-  have hzTheta' : SphereDetected D 9 134 0
-      ((I).realization.sphere 9 134
-        (KIP126.LinE2.mulAt KIP126.LinE2.dataH6 KIP126.Computation.Near126.B)) zTheta := by
-    rw [hlabel]
-    exact hzTheta
-  obtain ⟨y,hf,hn⟩ := main_weak_high_representative I routeLiterature.synthetic
-    routeLiterature.realization SF classical_stem124_af13_generated
-    η routeLiterature.classical.hopf.1 h₀ theta htheta b hb zTheta hzTheta'
-    (theta_b_multiplied_shuffle theta htheta b zTheta hToda) z hzn
-  have hy := weak_y_detected_from_low I routeLiterature.synthetic.eInfty
-    literature.bindings.route.algebra literature.bindings.route.algebraBinding
-    η routeLiterature.toda y hf hn
+  obtain ⟨y, hy, hn⟩ := weak_y_exists hc3 hc5
   exact nu_target_full_of_nonzero I routeLiterature.synthetic SF
     literature.bindings.route.algebra literature.bindings.route.quotientBinding
     literature.bindings.route.algebraBinding h2

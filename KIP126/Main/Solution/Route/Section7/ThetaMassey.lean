@@ -1,5 +1,7 @@
 module
 
+import KIP126.Main.Solution.Route.Section7.ProofSupport
+
 public import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
 public import KIP126.LinProgram.Certificates.Relations.ThetaMassey
 public import KIP126.Main.Solution.Route.Section7.Common
@@ -41,7 +43,10 @@ set_option backward.defeqAttrib.useBackward true
 set_option maxRecDepth 100000
 set_option maxHeartbeats 4000000
 attribute [local irreducible] KIP126.LinE2.homogeneousPart adamsTowerSSData adamsTowerInternalD
-private theorem h5_square_times_entire_770_zero
+/-- M08 public handoff: multiplication by the standard `h₅²` annihilates
+the whole bidegree `(7, 70)`, with the same interpreted computation inputs.
+The basis expansion and finite certificates remain in the hidden proof. -/
+theorem h5_square_times_entire_770_zero
     {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:=C)]
     {Syn : Type w} [SyntheticCategory.{w,v} Syn] [HasFunctorialCofiber (C:=Syn)]
     {H : Mod2EilenbergMacLane (C:=C)} {M' : MilnorCooperations H} {D' : Model H M' Syn}

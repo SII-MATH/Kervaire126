@@ -1,11 +1,11 @@
 module
 
-public import KIP126.Def.Kervaire.Route.Section7.AlphaOne
-public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
-public import KIP126.Main.Solution.Computation.Lambda
+import KIP126.Def.Kervaire.Route.Section7.AlphaOne
+import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
+import KIP126.Main.Solution.Computation.Lambda
 
 
-@[expose] public section
+section
 
 namespace KIP126.Main.Solution.Route
 open KIP126.Core.SpectralSequence.FinitePageCalculus

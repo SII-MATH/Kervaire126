@@ -687,6 +687,52 @@ own proof, with the stated degree bounds and comparison maps.
   $\lambda^9$.
 \end{proof}
 
+% Public M08 handoff; the original basis and product hypotheses are retained.
+\begin{lemma}[The whole $(7,70)$ component is annihilated by $h_5^2$]
+  \label{lem:theta-massey-entire-770-annihilation}
+  \lean{KIP126.Main.Solution.Route.Section7.h5_square_times_entire_770_zero}
+  \uses{def:sphere-adams-coherence,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-products,thm:computation-route-labels-h5-square,lem:lin-e2-finite-source-certificates,prop:internal-sphere-product-linearity}
+  \notready
+  For one model and its interpreted computation inputs, every
+  $b\in E_2^{7,70}(S^0)$ satisfies
+  \[
+    h_5^2 b=0\quad\text{in }E_2^{9,134}(S^0).
+  \]
+  The product and the standard $h_5^2$ are those of that same actual sphere
+  sequence. This quantifies over the entire component, not a selected class
+  in the distinct bidegree $(8,70)$.
+\end{lemma}
+\begin{proof}
+  Expand an arbitrary element in the delivered three-element basis.
+  The same presentation identifies those basis elements with the three
+  finite source words. Apply the three multiplication certificates and
+  linearity of the actual sphere product. The computation interpretation
+  remains an explicit premise.
+\end{proof}
+
+\begin{lemma}[A detected synthetic theta--$B$ Toda representative]
+  \label{lem:near126-theta-b-toda}
+  \lean{KIP126.Main.Solution.Route.Section7.synthetic_theta_b_toda}
+  \uses{def:computation-fixed-bindings,def:synthetic-theta5-choice,lem:theta-massey-entire-770-annihilation,evidence:theta5-order-torsion,thm:literature-route-may,thm:route-may-signed-adapter,thm:toda-product-identities,lem:computation-sphere-low-degrees,thm:computation-route-results,thm:computation-route-products,thm:external-synthetic-einfty-quotient}
+  \notready
+  For every admissible $\theta_5\in\pi_{62,64}S^{0,0}$, there are
+  $b\in\pi_{62,70}S^{0,0}$ and $z\in\pi_{125,134}S^{0,0}$ such that
+  $b$ is detected by $B\in E_2^{8,70}$, $z$ is detected by
+  $h_6B\in E_2^{9,134}$, and
+  $z\in\langle\theta_5,2,b\rangle$.
+  Both detection statements and bracket membership use these same $b,z$.
+\end{lemma}
+\begin{proof}
+  Lift the detected $B$ class using the finite and classical comparisons.
+  Construct a quotient Toda candidate through the May push-pull comparison
+  and identify its $h_6B$ label. The indeterminacy calculation uses
+  Lemma~\ref{lem:theta-massey-entire-770-annihilation} to identify this
+  candidate with the quotient of the same synthetic bracket member.
+  The $E_\infty$ comparison and nonzero computation labels then give both
+  detection statements. The fixed foundations and source comparisons
+  retain their existing proof obligations.
+\end{proof}
+
 % SOURCE: noncircular repair of MainPaper/main.tex:2493-2496 using lines 2427-2429 and 2579.
 \begin{lemma}[Leading-term nonvanishing for the Toda product]
   \label{lem:toda-h0-leading-nonvanishing}
@@ -716,6 +762,31 @@ own proof, with the stated degree bounds and comparison maps.
   cancellation.  Finally apply the stated Toda shuffle and
   $\eta^2$ identities.  This argument uses neither the unresolved $d_5$ nor
   the Toda-detection conclusion below.
+\end{proof}
+
+% Public M16 handoff; constructed before the final contradiction.
+\begin{lemma}[One weak representative with detection and nonzero product]
+  \label{lem:near126-weak-y}
+  \lean{KIP126.Main.Solution.Route.Section7.weak_y_exists}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,lem:near126-theta-b-toda,thm:toda-product-identities,evidence:h_0_sq_mul_x_125_9_2,thm:external-synthetic-einfty-quotient,thm:computation-route-basis,thm:computation-route-products,prop:internal-finite-page-calculus}
+  \notready
+  For the fixed sphere and the sole correlated computation and literature
+  delivery, assume $C_3$ and $C_5$. There is one class
+  \[
+    y\in\pi_{125,132}(S^{0,0}/\lambda^9)
+  \]
+  detected by $\lambda^4Y$, where $Y=h_0^2x_{125,9,2}\in E_2^{11,136}$,
+  such that $\lambda^2([h_0]y)\ne0$.
+  Detection and nonvanishing hold for the same existential witness.
+\end{lemma}
+\begin{proof}
+  Start with an actual bracket member from the alpha relations and its
+  nonzero product. Remove the lower-filtration components using the
+  theta--$B$ representative and its multiplied shuffle relation, preserving
+  the nonzero product. The complete low-degree calculation detects this
+  same remaining class in filtration $11$. This construction precedes
+  the final contradiction and does not use the later universal Toda or
+  arbitrary-representative corollaries.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:2470-2567, Lemma lem:toda2ext; Moss Theorem 1.2 and listed Ext products.
@@ -896,13 +967,34 @@ own proof, with the stated degree bounds and comparison maps.
   shows that every $\lambda[h_2]$-multiple is already an $[h_2]$-multiple.
 \end{proof}
 
+% Public M18 handoff; consumes the joint M16 representative.
+\begin{lemma}[The target is divisible by the normalized Hopf class]
+  \label{lem:near126-target-nu-divisible}
+  \lean{KIP126.Main.Solution.Route.Section7.target_nu_divisible}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-weak-y,lem:near126-nu-extension,evidence:stem122-product-exhaustion,prop:internal-finite-page-calculus}
+  \notready
+  Assume $C_3$ and $C_5$ on the same fixed route. There exist
+  $t\in\pi_{125,139}S^{0,0}$ and $a\in\pi_{122,132}S^{0,0}$ such that
+  $t$ is detected by the target $h_1h_4x_{109,12}\in E_2^{14,139}$ and
+  \[
+    (\lambda[h_2])a=\lambda^4t.
+  \]
+  These are classes in the untruncated synthetic sphere.
+\end{lemma}
+\begin{proof}
+  Consume the single detected, nonzero-product witness from
+  Lemma~\ref{lem:near126-weak-y}. Apply the actual ninth-quotient Hopf
+  extension and the existing $P/Q$ lifting and product-exhaustion argument.
+  No independent choice of a second weak representative is used.
+\end{proof}
+
 % SOURCE: MainPaper/main.tex:2208-2210 and 2698-2778, Proposition prop:state5false.
 \begin{proposition}[$C_3$ excludes $C_5$]
   \label{prop:near126-c3-not-c5}
   \lean{KIP126.Main.Solution.Route.proposition_7_9,KIP126.Main.Solution.Route.Section7.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.ExcludeEta.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.C3NotC5.c3_excludes_c5}
-  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion,lem:computation-sphere-low-degrees,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,lem:near126-target-nu-divisible,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion,lem:computation-sphere-low-degrees,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates}
   \notready
   For the fixed sphere and comparisons above, if $C_3$ holds, then $C_5$ is false.
 \end{proposition}

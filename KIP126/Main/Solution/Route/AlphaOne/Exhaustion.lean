@@ -1,11 +1,11 @@
 module
 
-public import KIP126.Def.Kervaire.Route.Section7.AlphaOne
-public import KIP126.Def.SpectralSequence.Basic.Category.Proofs
-public import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
-public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
-public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
-public import KIP126.Main.Solution.Computation.Route
+import KIP126.Def.Kervaire.Route.Section7.AlphaOne
+import KIP126.Def.SpectralSequence.Basic.Category.Proofs
+import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
+import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
+import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
+import KIP126.Main.Solution.Computation.Route
 
 
 import all Init.Data.String.Search
@@ -13,7 +13,7 @@ import all Init.Data.String.Slice
 
 import all Init.Data.String.Legacy
 
-@[expose] public section
+section
 
 
 /-! Main deductions in Proposition 7.8 and Lemma `lem:x_123_9`.

@@ -663,7 +663,9 @@ private theorem quotient_shift_exists (coh : BiShiftCoherence Syn)
 
 set_option maxHeartbeats 1600000 in
 set_option backward.isDefEq.respectTransparency false in
-private theorem shifted_finite_source_exists (D : Model H M Syn)
+/-- Public finite-quotient representative handoff. The source is a cycle
+in the actual Adams sequence; the weight-shift construction stays private. -/
+theorem shifted_finite_source_exists (D : Model H M Syn)
     (synthetic : SyntheticInputs D) (X : ClassicalObject) (q : ℕ) (hq : 0 < q)
     (a s t : ℤ) (x : E2 H (X.obj D.auxiliary) s t)
     (hx : x ∈ cycles H (X.obj D.auxiliary) q (s,t)) :

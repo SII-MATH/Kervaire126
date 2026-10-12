@@ -1721,7 +1721,7 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
 
 \begin{theorem}[Conditional signed boundary and sign removal]
   \label{thm:route-may-signed-adapter}
-  \uses{thm:literature-route-may}
+  \uses{thm:stable-homotopy-long-exact,thm:literature-route-may}
   \lean{KIP126.Interface.Solution.Literature.Route.may_signed_boundary_of_source,KIP126.Interface.Solution.Literature.Route.may_boundary_projected_of_exponent_two}
   \leanok
   Given the stated source data and a compatible pair $(a,b)$, there is $c$
@@ -1732,7 +1732,8 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
 \begin{proof}
   \leanok
   Lift $(a,b)$ to the source vertex, apply its third map, and compose the
-  signed source identity. Apply additivity and the displayed exponent-two
+  signed source identity. Use the public description of the connecting map
+  as desuspension after the triangle boundary. Apply additivity and the displayed exponent-two
   premise for the unsigned projected statement.
 \end{proof}
 
