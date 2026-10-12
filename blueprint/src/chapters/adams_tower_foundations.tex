@@ -2390,28 +2390,7 @@ express this step as the Milnor cobar differential are still missing.
   \leanok
 \end{proof}
 
-\begin{proposition}[All-page comparison of the two tower presentations]
-  \label{prop:h6-tower-internal-comparison}
-  \lean{KIP126.Classical.Adams.adamsTowerPageComparison,KIP126.Classical.Adams.adamsTowerPageComparison_differential,KIP126.Classical.Adams.adamsTowerPageComparison_passage}
-  \uses{def:h6-tower-internal-sequence,prop:h6-tower-page-passage}
-  \leanok
-  On every page $r\ge2$, the representative-preserving quotient isomorphism
-  identifies the internal tower page with the Mathlib tower page. It commutes
-  with the tower differential. Two internal classes satisfy the specified
-  next-page representative relation if and only if their images correspond
-  under the Mathlib homology-to-next-page map. The comparison is constructed
-  for every unit and object in the stated stable context; it does not use
-  a Lin presentation, Milnor coordinates, or a permanence assumption.
-\end{proposition}
-\begin{proof}
-  Reindex internal stage $n$ as classical page $n+2$ and use the proved
-  differential comparison. A next-cycle representative gives both the
-  current quotient class and the next quotient class. The explicitly
-  constructed homology isomorphism sends its homology class to that same
-  next quotient class. Conversely, surjectivity of the quotient projection
-  and the kernel calculation recover such a representative.
-  \leanok
-\end{proof}
+
 
 \begin{proposition}[A common representative for compatible tower classes]
   \label{prop:h6-tower-common-representative}
@@ -2435,24 +2414,5 @@ express this step as the Milnor cobar differential are still missing.
   These two facts identify nonzero classes at infinity with the stated
   nonzero compatible family. The entire argument is internal to the tower's
   SSData and does not import the Mathlib spectral-sequence type.
-  \leanok
-\end{proof}
-
-\begin{proposition}[Comparison of the two nonzero survival predicates]
-  \label{prop:h6-tower-survival-comparison}
-  \lean{KIP126.Classical.Adams.adamsTower_survival_comparison}
-  \uses{prop:h6-tower-common-representative,prop:h6-tower-internal-comparison,def:h6-pagewise-permanence}
-  \leanok
-  For every E$_2$ class of the constructed tower, internal nonzero survival
-  is equivalent to standard pagewise permanence of its image under the same
-  tower comparison. This is a generic theorem, independent of the Lin table,
-  Milnor coordinates, and any assertion of permanence for a specified class.
-\end{proposition}
-\begin{proof}
-  Reindex the standard trajectory's iterated pages as $n+2$. The actual
-  homology-to-next-page isomorphism identifies its cycle and passage conditions
-  with the next-cycle representative relation. Apply the common-representative
-  result and check that its initial quotient map is exactly the E$_2$ component
-  of the fixed tower comparison.
   \leanok
 \end{proof}

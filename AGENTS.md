@@ -63,8 +63,10 @@ preserving this boundary and the current main CI. Keep existing source attributi
   literature artifacts, acquisition metadata, and the machine-readable source
   artifacts. The canonical source and input manifest is `docs/external-inputs.json`.
   These are provenance records, not project proofs.
-- `KIP126/Mathlib/` is the optional Mathlib adapter layer.
-  `KIP126/Checks/` is the regression and audit layer.
+- Optional Mathlib spectral-sequence adapters are maintained in the legacy
+  `SII-MATH/KIP126` repository. Do not restore `KIP126/Mathlib/` or its adapter
+  exports here. Upstream Mathlib remains a dependency of the mathematical core.
+- `KIP126/Checks/` is the regression and audit layer.
 
 Challenge2 is defined in `KIP126/Interface/Challenge/Challenge2.lean`.
 Its only fields are `literature` and `computation`. Literature has correlated
@@ -132,7 +134,7 @@ The only project `axiom` is the temporary direct witness
 `Main.Axiom.challenge2 : KIP126.Challenge2` in
 `KIP126/Main/Axiom/Challenge2.lean`. It does not use `Nonempty` or a choice step.
 
-Do not add project axioms under `Def/`, `Mathlib/`, `Checks/`, `LinProgram/`,
+Do not add project axioms under `Def/`, `Checks/`, `LinProgram/`,
 Challenge files, or Solution files. Do not convert an unfinished theorem into
 an axiom to hide `sorryAx`.
 

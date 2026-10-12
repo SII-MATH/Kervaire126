@@ -101,7 +101,7 @@ public import all KIP126.Def.Exposed
                 with self.subTest(module=module):
                     forbidden = [m for m in self.dependencies(module)
                                  if m.startswith(("KIP126.Interface", "KIP126.Main",
-                                                  "KIP126.LinProgram"))
+                                                  "KIP126.LinProgram", "KIP126.Mathlib"))
                                  or m == "KIP126.Challenge2"]
                     self.assertEqual(forbidden, [])
 

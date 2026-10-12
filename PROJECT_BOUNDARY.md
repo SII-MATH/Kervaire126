@@ -129,6 +129,13 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
 ## In-scope formalization
 
+The optional SSData/Mathlib spectral-sequence adapter is maintained in the
+legacy `SII-MATH/KIP126` repository. It is no longer a Kervaire126 module or
+delivery obligation. The internal SSData constructions, fixed foundation,
+source and computation comparisons required by Challenge2, and the final
+standard `h_6^2` target retain their existing proof obligations. Upstream
+Mathlib remains the pinned foundation dependency.
+
 ### 1. Algebraic and categorical foundations
 
 The project must formalize the interfaces and required laws for:

@@ -1482,48 +1482,47 @@ belong to the later proof.
 
 \begin{definition}[Pagewise nonzero permanence]
   \label{def:h6-pagewise-permanence}
-  \lean{KIP126.Core.SpectralSequence.nextPageClass}
-  \lean{KIP126.Core.SpectralSequence.PageTrajectory}
-  \lean{KIP126.Core.SpectralSequence.IsPermanent}
-  \uses{def:h6-constructed-sphere-sequence}
+  \lean{KIP126.Core.SpectralSequence.NextPageRelation,KIP126.Core.SpectralSequence.NonzeroSurvival,KIP126.Classical.Adams.adamsTower_nonzeroSurvival_iff_compatible}
+  \uses{def:h6-tower-internal-sequence,prop:h6-tower-common-representative}
   \leanok
-  A class $x\in E_2^{s,t}$ is nonzero permanent if there are classes
-  $x_n\in E_{2+n}^{s,t}$ for every $n\ge0$, with $x_0=x$, such that
-  $d_{2+n}x_n=0$, the page-passage image of $[x_n]$ is $x_{n+1}$, and
-  $x_n\ne0$ for every $n$.  This definition uses the actual differentials
-  and homology quotients and makes no claim of convergence to an abutment.
+  On the internal sphere Adams tower, nonzero survival of an initial class
+  is equivalent to a compatible family of nonzero classes on every finite
+  page. Adjacent classes satisfy the actual quotient representative relation.
+  The common-$Z_\infty$ criterion and this finite-page description agree
+  by Proposition~\ref{prop:h6-tower-common-representative}; no comparison
+  with a Mathlib spectral sequence or convergence to an abutment is required.
 \end{definition}
 
 
 
-\begin{definition}[Fixed standard and computational sphere objects]
+\begin{definition}[Fixed standard and computational classes on the internal sphere page]
   \label{def:h6-fixed-computation}
-  \lean{KIP126.Classical.Adams.sphereAdams,KIP126.Classical.Adams.sphereH6Square,KIP126.Classical.Adams.sphereAdamsModel,KIP126.Classical.Adams.sphereAdamsData,KIP126.Classical.Adams.sphereAdams_towerComparison,KIP126.Classical.Adams.survival_comparison,KIP126.Classical.Adams.computedH6Square,KIP126.Core.SpectralSequence.NonzeroSurvival}
-  \uses{def:h6-constructed-square,def:h6-pagewise-permanence,def:h6-tower-internal-sequence,prop:h6-tower-internal-comparison,prop:h6-tower-survival-comparison}
+  \lean{KIP126.Classical.Adams.sphereAdamsModel,KIP126.Classical.Adams.sphereAdamsData,KIP126.Classical.Adams.standardH6Square,KIP126.Classical.Adams.computedH6Square,KIP126.Core.SpectralSequence.NonzeroSurvival}
+  \uses{def:h6-constructed-square,def:h6-pagewise-permanence,def:h6-tower-internal-sequence}
   \notready
   Fix the stable foundation, $H\mathbb F_2$, and Milnor coordinates.
-  Both sphere sequences are obtained from the Adams tower of the same unit.
-  The standard square is defined by its Milnor cocycle. Given the bounded
+  The sphere sequence is the internal SSData of the Adams tower of this unit.
+  Its standard square is the image of the specified Milnor cocycle under
+  the same tower's internal quotient-page isomorphism. Given the bounded
   Lin algebra presentation, the computational square is the image of
   generator 69 squared in the quotient of version \texttt{v126.3.cw49}
   (Zenodo 14875701), in internal degrees at most 261.
-  The tower comparison identifies the pages and differentials of the two
-  constructions, and its survival comparison identifies their common
-  $Z_\infty$ representatives and nonzero $E_\infty$ classes.
-  Construction of the specified foundation, Milnor coordinates, and Lin
-  presentation remains unfinished. These comparisons give no higher-page
-  survival conclusion for the square.
+  Both classes live on the same internal second page; their identification
+  is the separate internal comparison below. Construction of the specified
+  foundation, Milnor coordinates, and Lin presentation remains unfinished.
+  These definitions assert no higher-page survival of the square.
 \end{definition}
 
-\begin{proposition}[Nonvanishing of the standard square on the second page]
+\begin{proposition}[Nonvanishing of the fixed standard square on the internal second page]
   \label{prop:h6-fixed-standard-square-nonzero}
-  \lean{KIP126.Classical.Adams.sphereH6Square_ne_zero}
+  \lean{KIP126.Classical.Adams.standardH6Square_ne_zero}
   \uses{def:h6-fixed-computation,prop:h6-standard-square-nonzero}
   \notready
-  Under the specified stable foundation and Milnor comparison, the
-  standard square is nonzero on the second page of the constructed sphere
-  Adams sequence. This is the specialization of
-  Proposition~\ref{prop:h6-standard-square-nonzero}; it concerns only $E_2$.
+  Under the specified stable foundation and Milnor comparison, the fixed
+  standard square is nonzero on the internal second page. Transport the
+  generic standard cobar class through the same tower's quotient-page
+  isomorphism. The fixed foundation remains unfinished; this concerns only
+  $E_2$ and does not assert permanent survival.
 \end{proposition}
 
 \begin{definition}[Fixed Lin algebra and additive catalogue]
@@ -1817,21 +1816,7 @@ belong to the later proof.
   Rewrite the class in the nonzero-survival predicate on the same sequence.
 \end{proof}
 
-\begin{proposition}[The specified-class comparison is a theorem]
-  \label{prop:h6-fixed-class-comparison}
-  \lean{KIP126.Classical.Adams.h6Square_comparison}
-  \uses{prop:h6-internal-square-unique,prop:h6-fixed-standard-square-nonzero,prop:h6-tower-internal-comparison}
-  \notready
-  Under the specified foundation, Milnor coordinates, and Lin presentation,
-  the second-page comparison carries the computational square to the
-  standard square.
-\end{proposition}
-\begin{proof}
-  Pull the standard class back through the actual second-page isomorphism.
-  Its preimage is nonzero by standard nonvanishing, hence equals the
-  computational square by the exhaustive internal alternative. Map back.
-  The proof neither presupposes the class comparison nor asserts permanence.
-\end{proof}
+
 
 \begin{definition}[A finite nonzero-square detector]
   \label{def:lin-square-detector}
@@ -2051,8 +2036,8 @@ belong to the later proof.
   Adams tower. It takes every cocycle class to the class constructed from
   that cocycle in this tower. This identifies the actual two quotients,
   and in particular preserves the full specified $h_i$ and $h_i^2$ families,
-  without introducing a derived Ext model or comparing spectral sequences
-  with the optional Mathlib adapter.
+  without introducing a derived Ext model or another spectral-sequence
+  presentation.
 \end{proposition}
 \begin{proof}
   Send cobar cycles through the inverse Milnor coordinates into first-page

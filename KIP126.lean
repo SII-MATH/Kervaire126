@@ -44,7 +44,6 @@ public import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Data
 public import KIP126.Main.Solution.Computation.Tower.Survival
 public import KIP126.Def.Comparison.PageExtension.Solutions.Finiteness.Proofs
 public import KIP126.Def.Comparison.PageExtension.Solutions.Coherence.Proofs
-public import KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs
 public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.LongLayer.Lifting.Proofs
 public import KIP126.Main.Solution.Computation.Vanishing
 public import KIP126.Main.Solution.Computation.Nonvanishing
@@ -69,7 +68,6 @@ public import KIP126.LinProgram.Interpretation.AdamsE2.Classes.Proofs
 public import KIP126.Interface
 public import KIP126.Main
 public import KIP126.Main.Solution
-public import KIP126.Mathlib
 public import KIP126.Checks.Examples.LinProgram.AdamsE2Table
 public import KIP126.Checks.Examples.LinProgram.AdamsE2LowDegrees
 public import KIP126.Checks.SourceMetadata.AppendixTable.Rows.Catalogue.Proofs

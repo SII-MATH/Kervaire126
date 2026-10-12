@@ -14,7 +14,7 @@
 - `KIP126/Interface/`：关联的文献与计算交付，构造唯一 `Challenge2` 见证。
 - `KIP126/Main/`：论文推导及最终目标。
 - `KIP126/LinProgram/`：固定计算输入、翻译、生成数据、解释和局部证书。
-- `KIP126/Mathlib/`：Mathlib 适配；`KIP126/Checks/`：Lean 回归与边界检查。
+- `KIP126/Checks/`：Lean 回归与边界检查。
 - `blueprint/src/`：当前数学计划、声明链接、依赖与证明状态。
 - `MainPaper/`：目标论文；`Source/`：外部来源及获取记录。
 - `docs/external-inputs.json`：唯一来源与输入清单。
@@ -23,6 +23,10 @@
 接口与证明责任见 [docs/STAGE0_INTERFACES.md](docs/STAGE0_INTERFACES.md)，
 输入浏览视图见 [docs/challenge-input-inventory.html](docs/challenge-input-inventory.html)。
 开发约束见 [AGENTS.md](AGENTS.md)。
+
+SSData 与 Mathlib 谱序列之间的可选适配层由旧仓库
+[SII-MATH/KIP126](https://github.com/SII-MATH/KIP126/tree/main/KIP126/Mathlib)
+维护。本仓库保留内部 SSData 构造与主证明，继续使用上游 Mathlib 基础库。
 
 ## 构建与检查
 

@@ -9,6 +9,16 @@ Blueprint 尚未配置远程网站/API 链接。
 以下迁入清单和本地核对结果记录新仓初始快照；`develop` 后续整合见下一节，
 初始文件数量与核对结果不代表合并后的当前状态。
 
+## Mathlib 适配层归属（2026-10-12）
+
+可选的 SSData/Mathlib 谱序列适配层由旧仓库 `SII-MATH/KIP126` 维护，
+兼容更新已提交至[旧仓 PR #158](https://github.com/SII-MATH/KIP126/pull/158)，待合并。
+Kervaire126 不再保留 `KIP126/Mathlib/`、`KIP126/Mathlib.lean`、其专用检查，
+或仅供该适配层使用的 `Def/ClassicalAdams/Permanence/Data.lean` 兼容接口。
+混合检查保留内部 SSData 的回归内容；Blueprint 的适配节点随模块退出当前计划。
+内部 SSData 构造、固定模型、Challenge2、主证明和上游 Mathlib 依赖继续保留。
+最终 Challenge/Solution 陈述及其证明状态未改变。
+
 ## develop 本地进展整合（2026-10-10）
 
 - 合并旧仓本地开发历史与 Kervaire126 更新，保留本地 KIP126 证明进展。

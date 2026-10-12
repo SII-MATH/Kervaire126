@@ -59,9 +59,9 @@ public import KIP126.Def.Algebra.Filtration.Proofs
 public import KIP126.Def.Algebra.Graded.Data
 public import KIP126.Def.Algebra.Graded.Tensor.Proofs
 public import KIP126.Def.ClassicalAdams.PageSlice.Data
-public import KIP126.Def.ClassicalAdams.Permanence.Data
 public import KIP126.Def.ClassicalAdams.Convergence.Proofs
 public import KIP126.Def.ClassicalAdams.SphereSequence.Data
+public import KIP126.Def.ClassicalAdams.Mod2Sphere.Data
 public import KIP126.Def.ClassicalAdams.SphereClasses.Data
 public import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
 public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data

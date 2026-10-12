@@ -23,7 +23,6 @@ import KIP126.Main.Solution.Literature.Near126.Sphere.Conditions.Proofs
 import KIP126.Main.Solution.Literature.Near126.Sphere.Proofs
 import KIP126.Main.Solution.Literature.Route.Applicability
 import KIP126.Main.Solution.Literature.Route.Inputs
-import KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs
 import Lean.Elab.Command
 
 /-! The Main input consequences remain theorem declarations available via Solution.
@@ -136,8 +135,7 @@ run_cmd do
     ``KIP126.Computation.Near126.SphereSurvivalFacts.y_not_hit_on_page,
     ``KIP126.Literature.Route.NuCofiberApplicability.exponent_sum,
     ``KIP126.Literature.Route.Inputs.differentialLift,
-    ``KIP126.Literature.Route.Inputs.nuTriangle,
-    ``KIP126.Classical.Adams.sphereH6Square_ne_zero]
+    ``KIP126.Literature.Route.Inputs.nuTriangle]
   KIP126.Checks.rejectGoalProofs solutions.toArray
   for solution in solutions do
     let some (.thmInfo _) := env.find? solution
@@ -145,11 +143,5 @@ run_cmd do
     let some moduleIdx := env.getModuleIdxFor? solution
       | throwError "missing Solution module: {solution}"
     let owner := env.header.moduleNames[moduleIdx]!
-    -- This compatibility entry re-exports the theorem about Mathlib's sphere
-    -- page; its proof correctly belongs to the optional Mathlib adapter.
-    if solution == ``KIP126.Classical.Adams.sphereH6Square_ne_zero then
-      unless owner == `KIP126.Mathlib.ClassicalAdams.StandardSphere.Proofs do
-        throwError "Mathlib sphere theorem changed its owner: {solution}: {owner}"
-    else
-      unless (`KIP126.Main.Solution).isPrefixOf owner do
-        throwError "Main theorem moved outside Solution: {solution}: {owner}"
+    unless (`KIP126.Main.Solution).isPrefixOf owner do
+      throwError "Main theorem moved outside Solution: {solution}: {owner}"
