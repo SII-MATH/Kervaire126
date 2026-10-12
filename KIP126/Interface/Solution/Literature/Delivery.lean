@@ -4,6 +4,7 @@ public import KIP126.Interface.Challenge.Challenge2
 public import KIP126.Interface.Solution.Literature.Applications
 public import KIP126.Interface.Solution.AdamsOneLine
 public import KIP126.Interface.Solution.Literature.Route.Range
+public import KIP126.Interface.Solution.Literature.Route.BHS
 
 @[expose] public section
 
@@ -80,9 +81,9 @@ theorem source_background_exists :
       synthetic_triangle_lift := by sorry
       synthetic_finite_lift := by sorry
       synthetic_bockstein := by sorry
-      synthetic_permanent_lift := by sorry
+      synthetic_permanent_lift := bhs_permanent_lift_source
       synthetic_differentials := by sorry
-      synthetic_filtration_lambda := by sorry
+      synthetic_filtration_lambda := bhs_filtration_lambda_source
       synthetic_e2_weight_vanishing := by sorry
       synthetic_finite_quotient_page_vanishing := by sorry
       -- Comparisons on the same delivered E-infinity coordinates.
@@ -92,10 +93,18 @@ theorem source_background_exists :
       eInfty_rho_nu := by sorry
       eInfty_labels := by sorry
       -- Completed-source statements, before selected-object transport.
-      realization_lifetime := by sorry
-      realization_detection := by sorry
-      realization_prescribed_lift := by sorry
-      realization_boundary_lift := by sorry
+      realization_lifetime := by
+        intro X products hX convergence
+        exact (bhs_realization_source X products hX convergence).lifetime
+      realization_detection := by
+        intro X products hX convergence
+        exact (bhs_realization_source X products hX convergence).detection
+      realization_prescribed_lift := by
+        intro X products hX convergence
+        exact (bhs_realization_source X products hX convergence).prescribed_lift
+      realization_boundary_lift := by
+        intro X products hX convergence
+        exact (bhs_realization_source X products hX convergence).boundary_lift
       -- Low Toda source facts; secondary-operation applications remain in Main.
       toda_h0_label := by sorry
       toda_lambda_h0 := by sorry

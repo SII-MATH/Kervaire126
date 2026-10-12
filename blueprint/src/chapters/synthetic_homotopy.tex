@@ -390,6 +390,55 @@ coherences remain outside the Project Boundary.
   both conditions; neither is replaced by eventual page stabilization.
 \end{definition}
 
+\begin{proposition}[Transport of actual Adams nilpotent completeness]
+  \label{prop:adams-completeness-transport}
+  \lean{KIP126.Classical.Adams.isENilpotentComplete_iff_of_iso,KIP126.Classical.Adams.IsENilpotentComplete.of_iso,KIP126.Classical.Adams.Suspension.TowerComparison.isENilpotentComplete_iff}
+  \uses{def:actual-adams-strong-convergence,prop:inverse-sequence-acyclic-transport,def:mahowald-tower-suspension-comparison}
+  \leanok
+  An actual spectrum isomorphism preserves and reflects Adams nilpotent
+  completeness. A supplied comparison of the actual tower of $\Sigma X$
+  with the suspended tower of $X$ gives the same equivalence for
+  suspension. These statements use the specified residual tower and
+  countable products; they do not assume identity laws for selected
+  cofiber maps or construct the suspension comparison.
+\end{proposition}
+
+\begin{proposition}[Coefficient criterion for Adams nilpotent completeness]
+  \label{prop:adams-completeness-coefficient-criterion}
+  \lean{KIP126.Classical.Adams.coefficientAdamsSequence_isAcyclic,KIP126.Classical.Adams.isENilpotentComplete_of_coefficient_product_comparison}
+  \uses{def:actual-adams-strong-convergence,prop:inverse-sequence-acyclic-transport,prop:h6-derived-mod2-pages}
+  \leanok
+  Smashing the actual residual sequence with $H\mathbb F_2$ gives an
+  acyclic sequence, since every smashed transition morphism is zero.
+  If coefficient smash reflects isomorphisms and its canonical comparison
+  with the product of these residual stages is invertible, the original
+  residual sequence is acyclic. Establishing those two properties for
+  the selected model is still necessary to apply this criterion.
+\end{proposition}
+
+\begin{proposition}[Strong convergence from actual nilpotent completeness]
+  \label{prop:adams-strong-convergence-of-completeness}
+  \lean{KIP126.StableHomotopy.HoCofiberSequence.finite_homotopy_kernel,KIP126.Classical.Adams.finite_adamsTowerStep_kernel,KIP126.Classical.Adams.finite_adamsTowerMap_kernel,KIP126.Classical.Adams.adamsHomotopyFiltration_complete_of_finite_kernels,KIP126.Classical.Adams.adamsHomotopyFiltration_complete_of_finite_layers}
+  \lean{KIP126.Classical.Adams.IsAdamsTowerStronglyConvergent.of_complete,KIP126.Classical.Adams.IsAdamsTowerStronglyConvergent.of_complete_and_detection,KIP126.Classical.Adams.IsAdamsTowerStronglyConvergent.of_nilpotent_complete_of_finite_layers,KIP126.Classical.Adams.IsAdamsTowerStronglyConvergent.of_nilpotent_complete_of_finiteMod2Type,KIP126.Classical.Adams.sphereAdamsTower_stronglyConvergent_of_nilpotent_complete,KIP126.Classical.Adams.sphereCofiberAdamsTower_stronglyConvergent_of_nilpotent_complete}
+  \uses{def:actual-adams-strong-convergence,prop:adams-tower-homology-finiteness,prop:residual-image-filtration-complete,prop:inverse-sequence-acyclic-transport,def:adams-detection}
+  \leanok
+  For an Adams-nilpotent-complete $X$ with finite mod-two homology
+  bounded below, the actual image filtration on $\pi_*X$ is complete
+  and separated. The existing detection comparison identifies the same
+  associated graded with $E_\infty$, giving strong convergence. For the
+  sphere and actual cofibers $\operatorname{cofib}(S^k\to S)$, including
+  $C\nu$, the required homology hypotheses are already proved.
+\end{proposition}
+\begin{proof}
+  The long exact sequence makes each tower-step kernel finite; kernels
+  of composites remain finite. Represented residual acyclicity gives a
+  bijective difference operator, so the residual image criterion
+  constructs the canonical completion witness. Limit extensionality
+  supplies separatedness, and the detection comparison has the actual
+  associated-graded target definitionally.
+  \leanok
+\end{proof}
+
 % SOURCE: BHS SynRevBigraded.tex:59--62, lemm:ctauE2 (Pstragowski Lemma 4.56);
 % MainPaper/main.tex:813--823, thm:17e90ac0 (1).
 \begin{definition}[Specified first-quotient comparison and Bockstein target]

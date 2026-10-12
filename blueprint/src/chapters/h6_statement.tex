@@ -97,6 +97,7 @@ belong to the later proof.
 \begin{definition}[Full single-slot monomials]
   \label{def:h6-full-milnor-monomials}
   \lean{KIP126.Steenrod.Milnor.MilnorMonomial,KIP126.Steenrod.Milnor.zeroMilnorMonomial,KIP126.Steenrod.Milnor.milnorMonomialEquivPositive,KIP126.Steenrod.Milnor.milnorZeroCoefficientsEquiv}
+  \lean{KIP126.Steenrod.Milnor.boundedSlotWeight_finite,KIP126.Steenrod.Milnor.milnorMonomial_finite}
   \uses{prop:h6-cobar-monomial-basis}
   \leanok
   Let $M_n$ consist of finite exponent vectors $d$ of integer weight $n$,
@@ -106,6 +107,8 @@ belong to the later proof.
   The degree-zero coefficient space is identified with $\mathbb F_2$
   by evaluation at the constant monomial. Negative degrees are retained,
   not replaced with their nonnegative truncation.
+  Each $M_n$ is finite: a weight bound bounds both the support of an
+  exponent vector and each of its entries.
 \end{definition}
 
 \begin{proposition}[Complete cooperation coordinates with the actual unit]

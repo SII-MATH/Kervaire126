@@ -251,6 +251,7 @@ private theorem alpha_all_finite_frames_rep_two {H : Mod2EilenbergMacLane (C:=C)
   exact ⟨by decide,z,by simp only [Subobject.ofLE_refl,Category.id_comp]; rfl,rfl⟩
 
 
+set_option maxHeartbeats 800000 in
 private theorem alpha_all_finite_frames_alpha_finite_frame_14 {D : Model H M Syn} (I : KIP126.Computation.Route.Inputs D L G)
     (hc : (I.realization.basis .sphere 14 138 2)∈cycles H SphereSpectrum 4 (14,138)) :
     ∀ q : CycleQuotient H SphereSpectrum 4 8 (14,138),

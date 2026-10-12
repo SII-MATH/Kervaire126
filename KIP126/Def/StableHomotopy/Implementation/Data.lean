@@ -54,7 +54,7 @@ HF₂ 的对象、零次同伦群与非零次数消失条件在此逐项列出�
 structure FoundationInput where
   Spectrum : Type 1
   stable : StableHomotopyCategory.{1, 0} Spectrum
-  cofiber : @HasFunctorialCofiber Spectrum stable
+  cofiber : letI := stable; HasFunctorialCofiber (C := Spectrum)
   countableProducts : @CategoryTheory.Limits.HasProductsOfShape ℕ Spectrum stable.toCategory
   countableCoproducts : @CategoryTheory.Limits.HasCoproductsOfShape ℕ Spectrum stable.toCategory
   HF2 : Spectrum
@@ -110,7 +110,7 @@ same construction; this abstract type alone does not establish applicability. -/
 structure RouteInput (F : FoundationInput) (M : MilnorInput F) where
   Syn : Type 1
   synthetic : KIP126.Synthetic.Context.SyntheticCategory.{1, 0} Syn
-  cofiber : @HasFunctorialCofiber Syn synthetic.toStableHomotopyCategory
+  cofiber : letI := synthetic.toStableHomotopyCategory; HasFunctorialCofiber (C := Syn)
   model : @KIP126.Kervaire.Route.Model F.Spectrum F.stable F.cofiber
     F.hf2 M.toMilnor Syn synthetic cofiber
 

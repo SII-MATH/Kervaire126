@@ -216,6 +216,7 @@ Results from earlier papers, published computations, Lin's program, and facts
 read from the Appendix tables are outside the proof-development boundary.
 They enter conditional theorems as explicit mathematical hypotheses. They
 must not become untracked global facts or separate Lean `axiom` declarations.
+Main consumes these results as external hypotheses, while Interface attempts to prove them and construct the corresponding Challenge2 delivery.
 
 Lean interfaces contain the mathematical statements, hypotheses and
 conditions of those inputs. Source identities, locators, acquisition status,

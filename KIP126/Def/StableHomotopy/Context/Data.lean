@@ -49,15 +49,21 @@ attribute [instance] StableHomotopyCategory.hasZeroObject
 attribute [instance] StableHomotopyCategory.pretriangulated
 attribute [reducible] StableHomotopyCategory.pretriangulated
 
-variable {C : Type u} [StableHomotopyCategory.{u, v} C]
-
 /-! ### Explicit cofiber and tensor-triangulated witnesses -/
 
-/-- A chosen functorial cofiber construction on a stable category.
+section CofiberChoices
+
+variable {C : Type u} [Category.{v} C] [Preadditive C] [HasZeroObject C]
+  [HasShift C ℤ] [∀ n : ℤ, (shiftFunctor C n).Additive] [Pretriangulated C]
+
+/-- Chosen cofiber triangles and completions of commuting squares in a
+pretriangulated category.
 
 This is data supplied by a concrete model.  Keeping it as a class preserves
 the convenient Mathlib notation without introducing a global postulate that
 would silently choose a cofiber for every map.
+The fields select triangle completions of commuting squares; they do not
+require identity or composition laws for those choices.
 -/
 class HasFunctorialCofiber where
   cofib : {X Y : C} → (X ⟶ Y) → C
@@ -75,6 +81,10 @@ class HasFunctorialCofiber where
     (α : X₁ ⟶ X₂) (β : Y₁ ⟶ Y₂) (h : α ≫ f₂ = f₁ ≫ β),
     cofibMap f₁ f₂ α β h ≫ cofibδ f₂ =
       cofibδ f₁ ≫ (shiftFunctor C (1 : ℤ)).map α
+
+end CofiberChoices
+
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
 
 /-- A functorial cofiber compatible with tensoring on the right. -/
 class TensorTriangulatedCatWithFunctorialCofiber extends HasFunctorialCofiber (C := C) where

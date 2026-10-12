@@ -40,6 +40,20 @@ lemma completionIso_hom_comp_limit_π (W : CompletionWitness F i)
       F.quotientProjection s i :=
   IsLimit.conePointUniqueUpToIso_hom_comp W.isLimit (limit.isLimit _) s
 
+/-- A complete filtration is separated: a subobject contained in every
+filtration level is zero. This uses the canonical quotient projections in
+the completion witness, without an eventual-vanishing assumption. -/
+theorem separated (W : CompletionWitness F i)
+    (S : Subobject (A i)) (hS : ∀ s, S ≤ F.F s i) : S = ⊥ := by
+  rw [← Subobject.mk_arrow S, Subobject.mk_eq_bot_iff_zero]
+  apply W.isLimit.hom_ext
+  intro s
+  change S.arrow ≫ F.quotientProjection s i = 0 ≫ F.quotientProjection s i
+  rw [zero_comp, ← Subobject.ofLE_arrow (hS s), Category.assoc]
+  change Subobject.ofLE S (F.F s i) (hS s) ≫
+    (F.F s i).arrow ≫ cokernel.π (F.F s i).arrow = 0
+  rw [cokernel.condition, comp_zero]
+
 end CompletionWitness
 
 /-- Once a decreasing filtration is zero at level `t`, it is zero at every

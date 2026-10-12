@@ -1020,6 +1020,7 @@ private theorem stem124_af13_exhaustion
     right
     simp only [map_sub,hq,b,add_sub_cancel_right]
 
+set_option maxHeartbeats 800000 in
 private theorem stem124_af10_exhaustion
     {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:=C)]
     {Syn : Type w} [SyntheticCategory.{w,v} Syn] [HasFunctorialCofiber (C:=Syn)]

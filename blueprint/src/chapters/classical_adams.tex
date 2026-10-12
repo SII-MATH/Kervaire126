@@ -507,12 +507,24 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   by the witness's detection relation.
 \end{proof}
 
+% Internal consequence of the fixed HF2 homotopy groups and tensor unit.
+\begin{proposition}[Finite mod-two type of the fixed sphere]
+  \label{prop:fixed-sphere-finite-mod2-type}
+  \lean{KIP126.Def.standardSphereFiniteMod2Type}
+  \uses{prop:finite-mod2-sphere,def:stable-context}
+  \notready
+  The sphere of Def's fixed implementation has degreewise finite mod-two
+  homology. Its proof applies the generic sphere theorem without a new
+  unfinished property proof; the fixed implementation construction remains
+  unfinished.
+\end{proposition}
+
 % SOURCE: BHS SynRevBigraded.tex, dfn:E-complete and dfn:strong-conv;
 % fixed-sphere applicability and filtration separation are project obligations.
 \begin{proposition}[Completeness and strong convergence for the fixed sphere]
   \label{prop:fixed-sphere-adams-applicability}
   \lean{KIP126.Def.standardSphereApplicability}
-  \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:classical-adams-ss}
+  \uses{prop:fixed-sphere-finite-mod2-type,def:hf2-adams-tower,def:adams-tower-filtration,def:classical-adams-ss}
   \notready
   For the fixed $2$-complete sphere $S^0$ and the same unit of
   $H\mathbb F_2$, the residual Adams tower has acyclic homotopy limit.
@@ -522,7 +534,9 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
     E_\infty^{s,t}(S^0)\cong
     F^s\pi_{t-s}S^0/F^{s+1}\pi_{t-s}S^0.
   \]
-  The applicability proof for this fixed object remains unfinished.
+  The assembly proof for this fixed object is present; actual tower
+  connectivity and the Postnikov layers of its Moore objects remain
+  unfinished proof obligations.
 \end{proposition}
 
 \begin{lemma}[Full-stem second-page vanishing and separated homotopy]

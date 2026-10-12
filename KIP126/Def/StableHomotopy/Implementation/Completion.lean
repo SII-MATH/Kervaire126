@@ -1,6 +1,9 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Generators
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.StableHomotopy.Equivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Simplicial.CW.Proofs
 public import Mathlib.Data.ZMod.Basic
 
 @[expose] public section
@@ -150,9 +153,22 @@ structure SourceHF2Model where
       pi0 (Prespectrum.loopClass spectrum 0 (n+1) (n+1) (by omega) q)
   vanishes : ∀ d : ℤ, d ≠ 0 → Subsingleton (Prespectrum.StableHomotopy spectrum d)
 
-theorem sourceHF2Model_exists : Nonempty SourceHF2Model := by sorry
+/-- The fixed source coefficient is the actual Dold--Kan realization with
+its proved geometric bonds and normalized stable coefficient equivalence. -/
+noncomputable def sourceHF2 : SourceHF2Model where
+  spectrum := hf2RealizationPrespectrum
+  good := hf2RealizationLevel_isGood
+  pi0 := HF2Bond.coefficientStableZeroEquiv HF2Bond.bondHomotopyMap_bijective
+  pi0_zero := HF2Bond.coefficientStableZeroEquiv_zero HF2Bond.bondHomotopyMap_bijective
+  pi0_add := HF2Bond.coefficientStableZeroEquiv_add HF2Bond.bondHomotopyMap_bijective
+  vanishes := HF2Bond.coefficientStableHomotopy_subsingleton_of_ne
+    HF2Bond.bondHomotopyMap_bijective
 
-noncomputable def sourceHF2 : SourceHF2Model := Classical.choice sourceHF2Model_exists
+/-- The fixed Dold--Kan realization gives an actual source HF₂ model. Its
+displayed structure maps induce cubical homotopy equivalences, and the stable
+coefficient equivalence preserves the normalized generator, zero, and actual
+first-coordinate cubical concatenation. -/
+theorem sourceHF2Model_exists : Nonempty SourceHF2Model := ⟨sourceHF2⟩
 
 noncomputable def sourceHF2Shift (d : ℤ) : SourceCategory.{0} :=
   sourceLocalization.obj
@@ -216,12 +232,8 @@ noncomputable def completedLocalization : Prespectrum.{0} ⥤ CompletedSpectrum 
       sourceLocalization.map (completionModel.replacement.map g)
     simp
 
-/-- On the ordinary sphere, HF₂ localization is the paper's 2-completion.
-These two exact statements identify the SAME unit by its Moore-local
-reflection property; no such identification is asserted for all spectra. -/
-theorem completedSphere_twoComplete :
-    (completionModel.replacement.obj Prespectrum.sphere).IsTwoComplete := by sorry
-
+/-- The fixed sphere reflection unit has the Moore-local universal property.
+Its target's 2-completeness is proved in `Completion.Sphere.Proofs`. -/
 theorem completedSphere_moore_universal (Y : Prespectrum.{0}) (hY : Y.IsTwoComplete) :
     Function.Bijective (fun f :
       sourceLocalization.obj (completionModel.replacement.obj Prespectrum.sphere) ⟶

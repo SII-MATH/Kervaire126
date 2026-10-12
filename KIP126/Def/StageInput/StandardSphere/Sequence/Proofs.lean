@@ -37,6 +37,8 @@ import Mathlib.Analysis.Normed.Module.Basic
 import Mathlib.Analysis.Normed.Group.Constructions
 import Mathlib.Analysis.Normed.Group.Continuity
 
+public import KIP126.Def.StableHomotopy.FiniteType.Proofs
+
 @[expose] public section
 
 /-! Applicability of BHS to the standard sphere in Def's fixed implementation.
@@ -1650,7 +1652,7 @@ open CategoryTheory Topology
 open scoped unitInterval
 namespace KIP126.StableHomotopy.Implementation.Prespectrum
 universe u
-private theorem stabilizeLoop_homotopic (P : Prespectrum.{u}) (n r : ℕ)
+private theorem applicabilityStabilizeLoopHomotopic (P : Prespectrum.{u}) (n r : ℕ)
     (p q : GenLoop (Fin r) (P.level n) (P.level n).point) (h : GenLoop.Homotopic p q) :
     GenLoop.Homotopic (stabilizeLoop P n r p) (stabilizeLoop P n r q) := by
   obtain ⟨H⟩ := h
@@ -1712,7 +1714,7 @@ private theorem stable_tail_shift :
     cases h with
     | homotopy p hp =>
       exact Quot.sound (StableRelation.homotopy (R X d a)
-        (stabilizeLoop X a.stage a.dimension p) (stabilizeLoop_homotopic X _ _ _ _ hp))
+        (stabilizeLoop X a.stage a.dimension p) (applicabilityStabilizeLoopHomotopic X _ _ _ _ hp))
     | stabilization => exact Quot.sound (StableRelation.stabilization (R X d a))
   let e (X : Prespectrum.{0}) (d : ℤ) : StableHomotopy X.tail d ≃ StableHomotopy X (d-1) :=
     { toFun := Quot.lift (fun a => Quot.mk _ (L X d a)) (hL X d)
@@ -1772,7 +1774,7 @@ private theorem stableEquivalences_tail_iff {X Y : Prespectrum.{0}} (f : X ⟶ Y
     exact (equiv_transport d).mpr (h (d-1))
 
 
-private def desuspensionMap {X Y : Prespectrum.{0}} (f : X ⟶ Y) :
+private def applicabilityDesuspensionMap {X Y : Prespectrum.{0}} (f : X ⟶ Y) :
     X.desuspension ⟶ Y.desuspension where
   level
     | 0 => ContinuousMap.id _
@@ -1832,13 +1834,13 @@ private def suspensionDesuspensionIso (X : Prespectrum.{0}) :
     | succ n => rfl
 
 private theorem desuspensionMap_stable {X Y : Prespectrum.{0}} (f : X ⟶ Y)
-    (hf : stableEquivalences f) : stableEquivalences (desuspensionMap f) := by
+    (hf : stableEquivalences f) : stableEquivalences (applicabilityDesuspensionMap f) := by
   apply (stableEquivalences_tail_iff _).mp
   exact hf
 
-private def desuspensionFunctor : Prespectrum.{0} ⥤ Prespectrum.{0} where
+private def applicabilityDesuspensionFunctor : Prespectrum.{0} ⥤ Prespectrum.{0} where
   obj := desuspension
-  map := desuspensionMap
+  map := applicabilityDesuspensionMap
   map_id X := by
     apply Hom.ext
     funext n
@@ -1849,17 +1851,17 @@ private def desuspensionFunctor : Prespectrum.{0} ⥤ Prespectrum.{0} where
     cases n <;> rfl
 
 private theorem desuspensionFunctor_inverts :
-    stableEquivalences.IsInvertedBy (desuspensionFunctor ⋙ sourceLocalization) := by
+    stableEquivalences.IsInvertedBy (applicabilityDesuspensionFunctor ⋙ sourceLocalization) := by
   intro X Y f hf
   exact stableEquivalences.Q_inverts _ (desuspensionMap_stable f hf)
 
 private noncomputable def sourceDesuspension : SourceCategory.{0} ⥤ SourceCategory.{0} :=
-  Localization.lift (desuspensionFunctor ⋙ sourceLocalization)
+  Localization.lift (applicabilityDesuspensionFunctor ⋙ sourceLocalization)
     desuspensionFunctor_inverts sourceLocalization
 
 private noncomputable def sourceDesuspensionObjIso (X : Prespectrum.{0}) :
     sourceDesuspension.obj (sourceLocalization.obj X) ≅ sourceLocalization.obj X.desuspension :=
-  (Localization.fac (desuspensionFunctor ⋙ sourceLocalization)
+  (Localization.fac (applicabilityDesuspensionFunctor ⋙ sourceLocalization)
     desuspensionFunctor_inverts sourceLocalization).app X
 
 private noncomputable def sourceDesuspensionMapIso {X Y : Prespectrum.{0}}
@@ -2310,7 +2312,7 @@ private theorem stableEquivalence_of_levelwise_loops {X Y : Prespectrum.{0}} (f 
           (⟨(f.level n).comp q.val,fun t ht => (congrArg (f.level n) (q.property t ht)).trans (f.point n)⟩ :
             GenLoop (Fin r) (Y.level n) (Y.level n).point) p) :
     stableEquivalences f := by
-  have stabilizeLoop_homotopic (P : Prespectrum.{0}) (n r : ℕ)
+  have applicabilityStabilizeLoopHomotopic (P : Prespectrum.{0}) (n r : ℕ)
       (p q : GenLoop (Fin r) (P.level n) (P.level n).point) (h : GenLoop.Homotopic p q) :
       GenLoop.Homotopic (stabilizeLoop P n r p) (stabilizeLoop P n r q) := by
     obtain ⟨H⟩ := h
@@ -2372,7 +2374,7 @@ private theorem stableEquivalence_of_levelwise_loops {X Y : Prespectrum.{0}} (f 
         apply hinj
         change GenLoop.Homotopic (F _ _ (stabilizeLoop X _ _ (L _ _ a.loop))) _
         rw [hnext]
-        exact (stabilizeLoop_homotopic Y _ _ _ _ (hL _ _ a.loop)).trans
+        exact (applicabilityStabilizeLoopHomotopic Y _ _ _ _ (hL _ _ a.loop)).trans
           (hL _ _ (stabilizeLoop Y _ _ a.loop)).symm
       exact Quot.sound (StableRelation.homotopy (R a).next _ hh)
   let G : StableHomotopy Y d → StableHomotopy X d := Quot.lift (fun a => Quot.mk _ (R a)) respects
@@ -2869,7 +2871,7 @@ private theorem stable_suspension_natural_map :
       (hp : GenLoop.Homotopic a.loop p) :
       Quot.mk (StableRelation P.suspension d) (E P d a)=Quot.mk _ (E P d {a with loop:=p}) :=
     Quot.sound (StableRelation.homotopy (E P d a) _
-      (stabilizeLoop_homotopic (suspensionSpectrum (P.level a.stage)) 0 a.dimension _ _ hp))
+      (applicabilityStabilizeLoopHomotopic (suspensionSpectrum (P.level a.stage)) 0 a.dimension _ _ hp))
   have hE2 (P : Prespectrum.{0}) (d : ℤ) (a : Representative P (d-1)) :
       Quot.mk (StableRelation P.suspension d) (E P d a.next.next)=Quot.mk _ (E P d a).next.next :=
     Quot.sound (StableRelation.homotopy (E P d a.next.next) _
@@ -2886,7 +2888,7 @@ private theorem stable_suspension_natural_map :
         exact hEhom P d a p hp
       · dsimp only [phi]
         rw [if_neg ha,if_neg ha]
-        exact hEhom P d a.next _ (stabilizeLoop_homotopic P _ _ _ _ hp)
+        exact hEhom P d a.next _ (applicabilityStabilizeLoopHomotopic P _ _ _ _ hp)
     | stabilization =>
       by_cases ha : a.stage%2=0
       · have hn : a.next.stage%2≠0 := by change (a.stage+1)%2≠0; omega
@@ -3060,7 +3062,7 @@ private theorem stable_suspension_equivalence_formula :
         exact hRhom P d a p hp
       · dsimp only [phi]
         rw [if_neg ha,if_neg ha]
-        exact hRhom P d a.next _ (stabilizeLoop_homotopic P.suspension _ _ _ _ hp)
+        exact hRhom P d a.next _ (applicabilityStabilizeLoopHomotopic P.suspension _ _ _ _ hp)
     | stabilization =>
       by_cases ha : a.stage%2=0
       · have hn : a.next.stage%2≠0 := by change (a.stage+1)%2≠0; omega
@@ -3180,7 +3182,7 @@ private theorem stable_tail_shift_formula :
     cases h with
     | homotopy p hp =>
       exact Quot.sound (StableRelation.homotopy (R X d a)
-        (stabilizeLoop X a.stage a.dimension p) (KIP126.StableHomotopy.Implementation.Prespectrum.stabilizeLoop_homotopic X _ _ _ _ hp))
+        (stabilizeLoop X a.stage a.dimension p) (KIP126.StableHomotopy.Implementation.Prespectrum.applicabilityStabilizeLoopHomotopic X _ _ _ _ hp))
     | stabilization => exact Quot.sound (StableRelation.stabilization (R X d a))
   let e (X : Prespectrum.{0}) (d : ℤ) : StableHomotopy X.tail d ≃ StableHomotopy X (d-1) :=
     { toFun := Quot.lift (fun a => Quot.mk _ (L X d a)) (hL X d)
@@ -3832,6 +3834,13 @@ private theorem standardSphereResidualFiber_doubling_isIso :
   exact StandardSphereApplicabilityProof.Milnor.adams_fiber_doubling_of_moore_proZero
     fixedImplementation.sourceComparison StableHomotopy.SphereSpectrum
     standardSphereMooreTower_proZero
+
+/-- Degreewise finiteness uses only the fixed HF₂ groups and tensor unit. -/
+theorem standardSphereFiniteMod2Type : StableHomotopy.FiniteMod2Type
+    fixedImplementation.foundationInput.hf2
+    (StableHomotopy.SphereSpectrum
+      (C := fixedImplementation.foundationInput.Spectrum)) :=
+  StableHomotopy.finiteMod2Type_sphere _
 
 theorem standardSphereApplicability : Classical.Adams.BHSObjectApplicability
     fixedImplementation.foundationInput.countableProducts

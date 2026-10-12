@@ -2032,6 +2032,47 @@ prerequisite for the graded K\"unneth comparison, not that comparison itself.
   \leanok
 \end{proof}
 
+\begin{proposition}[Finiteness and uniform homology bounds in the actual Adams tower]
+  \label{prop:adams-tower-homology-finiteness}
+  \lean{KIP126.Classical.Adams.boundedBelow_sphere_homology,KIP126.Classical.Adams.boundedBelow_double_hf2_tensor,KIP126.Classical.Adams.finiteMod2Type_hf2_tensor,KIP126.Classical.Adams.adamsTower_finiteMod2Type_bounded,KIP126.Classical.Adams.sphereAdamsTower_finiteMod2Type_bounded,KIP126.Classical.Adams.sphereCofiberAdamsTower_finiteMod2Type_bounded}
+  \lean{KIP126.StableHomotopy.Cohomology.reducedCooperations_nonpositive_subsingleton,KIP126.Classical.Adams.adamsNextHomology_subsingleton_of_lt,KIP126.Classical.Adams.adamsTower_homology_bounded_uniform,KIP126.Classical.Adams.adamsTower_homology_exists_uniform_bound}
+  \uses{prop:h6-kunneth-tower-recurrence,prop:hf2-finite-mod2-coordinates,prop:bounded-finite-type-closure,prop:bounded-finite-graded-tensor}
+  \leanok
+  For the supplied actual cooperation K\"unneth and Milnor basis data,
+  finite mod-two homology of $X$, bounded below, implies finite mod-two
+  homology of every residual stage $T_s$. A single lower bound on
+  $H_*X$ works for every $H_*T_s$. The sphere and the actual cofiber of
+  any map $S^k\to S$ satisfy these hypotheses by their coefficient
+  homology and the long exact sequence, including the selected $C\nu$.
+  An initial ordinary homotopy bound additionally gives the uniform
+  ordinary bound below. Commutation of coefficient smash with the
+  residual product remains a separate assertion.
+\end{proposition}
+\begin{proof}
+  Finite homogeneous Cauchy tensors and the fiber triangles prove
+  finiteness inductively. In the reduced-tensor recurrence, reduced
+  cooperations start in degree one, exactly canceling the downward
+  degree shift of the next fiber and preserving the initial bound.
+  \leanok
+\end{proof}
+
+\begin{proposition}[A uniform ordinary homotopy bound for the residual Adams tower]
+  \label{prop:adams-tower-uniform-homotopy-bound}
+  \lean{KIP126.Classical.Adams.adamsTower_homotopy_bounded_uniform_of_layer_bound,KIP126.Classical.Adams.adamsTower_exists_uniform_homotopy_bound}
+  \uses{prop:adams-tower-homology-finiteness,thm:stable-homotopy-long-exact}
+  \leanok
+  With the supplied cooperation and Milnor basis data, if both $X$
+  and $H\mathbb F_2\otimes X$ are bounded below, one integer $N$
+  satisfies $\pi_nT_sX=0$ for every $s$ and $n<N$.
+\end{proposition}
+\begin{proof}
+  If the initial bounds are $N_X,N_H$, use
+  $N=\min(N_X,N_H-1)$. The proved coefficient recurrence preserves
+  $N_H$ at every stage. The fiber long exact sequence then preserves
+  the ordinary bound $N$ inductively, with no cumulative loss.
+  \leanok
+\end{proof}
+
 \begin{proposition}[Actual next-stage coaction from a normalized lift]
   \label{prop:h6-next-stage-coaction}
   \lean{KIP126.Classical.Adams.adamsHomologyBoundary_eq_connecting,KIP126.Classical.Adams.adamsTensorCoaction_boundary,KIP126.Classical.Adams.adamsTensorCoaction_next}

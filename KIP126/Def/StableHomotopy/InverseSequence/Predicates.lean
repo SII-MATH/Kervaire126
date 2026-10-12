@@ -10,8 +10,7 @@ open CategoryTheory CategoryTheory.Limits
 
 universe u v
 
-variable {C : Type u} [StableHomotopyCategory.{u, v} C]
-  [HasProductsOfShape ℕ C]
+variable {C : Type u} [Category.{v} C] [Preadditive C] [HasProductsOfShape ℕ C]
 
 /-- Vanishing of the sequential homotopy limit, expressed without
 choosing its fiber object: the Milnor `1 - shift` map is an isomorphism. -/

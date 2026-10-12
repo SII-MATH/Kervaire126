@@ -219,10 +219,51 @@ the internal constructions retained in Kervaire126.
   \]
   characterized by its composites with every quotient projection.  The
   witness is explicit data: this definition does not prove that arbitrary
-  filtrations are complete, separated, exhaustive, or convergent.  It does
+  filtrations are complete, exhaustive, or convergent.  It does
   prove that a degreewise eventually-zero filtration, and in particular a
   degreewise bounded-above filtration, supplies this completion witness.
 \end{definition}
+
+\begin{proposition}[Completion from compatible quotient representatives]
+  \label{prop:completion-unique-nat-lifts}
+  \uses{def:core-filtration-completion-witness}
+  \lean{KIP126.Core.Algebra.Filtration.CompletionWitness.separated,KIP126.Core.Algebra.Filtration.CompletionWitness.of_unique_nat_lifts,KIP126.Core.Algebra.Filtration.CompletionWitness.of_unique_nat_module_lifts}
+  \leanok
+  For a filtration of abelian groups or modules, suppose every family
+  in the nonnegative quotient levels compatible with adjacent transitions
+  has a unique lift to the original object. Then the canonical cone to
+  all integer quotient levels is limiting. Every completion witness
+  implies separatedness: a subobject contained in every filtration level
+  is zero.
+\end{proposition}
+\begin{proof}
+  Lift the nonnegative levels elementwise and extend to a negative level
+  via its quotient transition from level zero. The forgetful functor
+  reflects the resulting limit. For separatedness, all quotient
+  projections kill the subobject inclusion; limit extensionality makes
+  the inclusion zero.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Completeness of a residual image filtration]
+  \label{prop:residual-image-filtration-complete}
+  \lean{KIP126.Core.InverseSequence.exists_limit_of_surjective_sub_shift,KIP126.Core.InverseSequence.eq_zero_of_mem_ranges_of_injective_sub_shift,KIP126.Core.Algebra.Filtration.CompletionWitness.of_residual_sequence}
+  \uses{prop:completion-unique-nat-lifts,prop:synthetic-ess-coherent-tower-of-finite}
+  \leanok
+  Let $p_k:B_k\to A$ commute with the transition maps of an inverse
+  sequence, and give $A$ the actual image filtration. If $1-\mathrm{shift}$
+  is bijective on $\prod_k B_k$ and each $\ker p_k$ is finite, the
+  canonical filtration quotient cone is limiting.
+\end{proposition}
+\begin{proof}
+  Lift successive differences of quotient representatives to $B_k$ and
+  solve their difference equation to obtain a common representative in
+  $A$. Finite projection fibers provide a compatible lift of an element
+  in every filtration image; injectivity of the difference operator
+  forces this lift, and hence the element, to vanish. Thus the common
+  representative is unique.
+  \leanok
+\end{proof}
 
 % SOURCE: MainPaper/main.tex:253-271 and 827-862; convergence is a concrete
 % witness for the admissible sequences, not a generic Core construction.

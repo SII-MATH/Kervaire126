@@ -485,6 +485,7 @@ private theorem p_survives1000_h296 (I : Inputs D L G) : ReachesPage (sequence D
   rw [←ha] at h
   exact h
 
+set_option maxHeartbeats 800000 in
 private theorem p_survives1000
     {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:=C)]
     {Syn : Type w} [SyntheticCategory.{w,v} Syn] [HasFunctorialCofiber (C:=Syn)]
@@ -1511,7 +1512,7 @@ private theorem correction_source9_d4_zero_h225 (I : Inputs D L G) : ReachesPage
   rw [←hx] at hd
   simpa only [add_assoc] using hd
 
-set_option maxHeartbeats 400000 in
+set_option maxHeartbeats 800000 in
 private theorem correction_source9_d4_zero (I : Inputs D L G) :
     (sequence D .sphere).d 4 (9,134)=0 := by
   classical
@@ -1978,6 +1979,7 @@ private theorem correction_incoming3_h255 (I : Inputs D L G) : HasDifferential (
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
+set_option maxHeartbeats 800000 in
 private theorem correction_incoming3 (I : Inputs D L G) :
     ∃ b : (sequence D .sphere).Page 3 (13,137),
       RepresentsOnPage (sequence D .sphere) 3 (13,137) (I.realization.basis .sphere 13 137 0) b ∧

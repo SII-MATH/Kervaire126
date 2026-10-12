@@ -3,6 +3,8 @@ module
 public import Mathlib.Data.Nat.Init
 public import Mathlib.Data.Finite.Prod
 public import Mathlib.Order.KonigLemma
+public import Mathlib.Algebra.Group.Hom.Defs
+public import Mathlib.Algebra.Group.Basic
 
 @[expose] public section
 
@@ -44,5 +46,23 @@ theorem exists_compatible_of_finite (m₀ : ℕ)
   intro m hm
   have h := congrFun (ha (Nat.le_succ m)) hm
   simpa only [π, Nat.decreasingInduction_succ', step] using h
+
+/-- The `1 - shift` map of an inverse sequence of finite abelian groups is
+surjective, the algebraic vanishing criterion for its first derived limit.
+For each target sequence, apply finite inverse-system compactness to the
+affine restrictions; the original homomorphisms need not be surjective. -/
+theorem surjective_sub_shift_of_finite (A : ℕ → Type u)
+    [∀ n, AddCommGroup (A n)] [∀ n, Finite (A n)]
+    (f : ∀ n, A (n + 1) →+ A n) :
+    Function.Surjective (fun x : ∀ n, A n => fun n => x n - f n (x (n + 1))) := by
+  intro b
+  obtain ⟨x, hx⟩ := exists_compatible_of_finite 0 (fun n _ => A n)
+    (fun n _ a => b n + f n a) (fun n _ => inferInstance)
+    (fun n _ => ⟨0⟩)
+  refine ⟨fun n => x n (Nat.zero_le n), ?_⟩
+  funext n
+  have h := hx n (Nat.zero_le n)
+  dsimp only at h ⊢
+  rw [← h, add_sub_cancel_right]
 
 end KIP126.Core.InverseSequence
