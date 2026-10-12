@@ -38,6 +38,7 @@ lemma Filtration.completionProj'_factor {ω : Type w} {A : ω → C}
   · rfl
   · omega
 
+omit [HasLimitsOfShape ℕᵒᵖ C] in
 private lemma imageSubobject_ofLE_eq_bot_of_eq_bot {B : C} (X Y : Subobject B) (h : X ≤ Y)
     (hX : X = ⊥) : imageSubobject (Subobject.ofLE X Y h) = ⊥ := by
   subst hX
@@ -47,6 +48,8 @@ private lemma imageSubobject_ofLE_eq_bot_of_eq_bot {B : C} (X Y : Subobject B) (
 
 /-! ### Mittag-Leffler condition -/
 
+-- Keep the original instance parameters of this public theorem.
+set_option linter.unusedSectionVars false in
 /-- Bounded-above filtrations satisfy Mittag-Leffler. -/
 theorem Filtration.IsBoundedAbove.toIsMittagLeffler {ω : Type w} {A : ω → C}
     {fil : Filtration A} (hba : fil.IsBoundedAbove) : fil.IsMittagLeffler := by

@@ -304,7 +304,7 @@ private theorem theta_b_complete_from_low_degrees
      intro h
      have he0 : e.symm (Finsupp.single (0:Fin 1) 1)=I'.realization.basis .sphere 3 65 0 := he 0
      have hh := congrArg (fun x => e x 0) (he0.trans h)
-     simpa using hh
+     simp at hh
    intro hz
    have hm:=I'.products ⟨1,1,2,64⟩ (by simp [Raw.products]) dataH0 h5Sq
    rw [I'.labels.h0,I'.labels.h5_square] at hm
@@ -422,8 +422,8 @@ private theorem theta_b_complete_from_low_degrees
     apply (cancel_epi ((biShiftAddIso c a (a+c) (add_comm _ _)).hom.app
       ((SyntheticCategory.biShift b).obj A))).mp
     rw [← Category.assoc,← Category.assoc,← h₃]
-    simp only [Category.assoc,Iso.hom_inv_id_app_assoc,← Functor.map_comp,
-      Iso.hom_inv_id_app,CategoryTheory.Functor.map_id,Category.id_comp]
+    simp only [Category.assoc,
+      Iso.hom_inv_id_app]
     erw [CategoryTheory.Category.id_comp,←Functor.map_comp,Iso.hom_inv_id_app,CategoryTheory.Functor.map_id]
     rfl
   have shiftSwap_add_eq (coh : BiShiftCoherence Syn)
@@ -868,7 +868,7 @@ private theorem theta_b_complete_from_low_degrees
     have hn:I'.realization.basis .sphere 3 65 0≠0 := by
       intro h
       have h0:=congrArg (fun z=>f z 0) ((hf 0).trans h)
-      simpa using h0
+      simp at h0
     obtain ⟨e,he⟩ := I'.basis ⟨.sphere,1,64,["69,1"]⟩ (by
       unfold Raw.degrees
       iterate 85 apply List.mem_cons_of_mem
@@ -1180,7 +1180,7 @@ private theorem theta_b_complete_from_low_degrees
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)
@@ -1241,7 +1241,7 @@ private theorem theta_b_complete_from_low_degrees
         simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
           eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
       dsimp only [lambdaMultiply,lambdaPow]
-      simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+      simp only [eqToHom_refl,Category.id_comp]
       rw [←he]
       change (SyntheticCategory.biShift_comp (70-8,70) (0,0)).inv.app (S_0_0 : Syn) ≫
         (SyntheticCategory.biShift_comp (70-8,70) (0,0)).hom.app (S_0_0 : Syn) ≫ a=a
@@ -1294,7 +1294,7 @@ private theorem theta_b_complete_from_low_degrees
     rw [bLabel,←he1]
     intro hz
     have hh := congrArg (fun z => e z (1:Fin 3)) hz
-    simpa using hh
+    simp at hh
   have synthetic_theta_b_detected_bracket {D' : Model H M' Syn}
       {L' : Labels H} {G : KIP126.Literature.Route.TmfLabels H}
       {etaThetaB : BiHom 1 2 (S_0_0 : Syn)}
@@ -1321,7 +1321,7 @@ private theorem theta_b_complete_from_low_degrees
         simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
           eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
       dsimp only [lambdaMultiply,lambdaPow]
-      simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+      simp only [eqToHom_refl,Category.id_comp]
       rw [←he]
       change (SyntheticCategory.biShift_comp (134-9,134) (0,0)).inv.app (S_0_0 : Syn) ≫
         (SyntheticCategory.biShift_comp (134-9,134) (0,0)).hom.app (S_0_0 : Syn) ≫ a=a
@@ -1379,7 +1379,7 @@ private theorem theta_b_complete_from_low_degrees
     rw [←he2]
     intro hz
     have hh := congrArg (fun z => e z (2:Fin 5)) hz
-    simpa using hh
+    simp at hh
   have theta_b_bracket_label_suffices {D' : Model H M' Syn}
       {L' : Labels H} {G : KIP126.Literature.Route.TmfLabels H}
       (A : SyntheticInputs D') (I' : KIP126.Computation.Route.Inputs D' L' G)

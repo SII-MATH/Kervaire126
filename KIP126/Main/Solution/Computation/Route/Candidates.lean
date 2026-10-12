@@ -272,7 +272,7 @@ private theorem candidates_raw (I : Inputs D L G) :
           rw [hg]
           fin_cases i
           all_goals dsimp only
-          all_goals simp only [dg0,dg1,dg2,dg3,dg4,map_add,map_zero,Finsupp.add_apply,Finsupp.zero_apply,←hk0,←hk1,←hk2,←hk3,←hk4,LinearEquiv.apply_symm_apply]
+          all_goals simp only [dg0,dg1,dg2,dg3,dg4,map_add,map_zero,Finsupp.add_apply,Finsupp.zero_apply,←hk1,←hk2,←hk3,←hk4,LinearEquiv.apply_symm_apply]
           all_goals norm_num [Finsupp.single_apply,Fin.ext_iff]
     simpa only [LinearEquiv.symm_apply_apply] using all (g x)
   obtain ⟨_,b1,t,hb1,ht,hd1⟩ := h226
@@ -355,7 +355,7 @@ private theorem candidates_raw (I : Inputs D L G) :
     have c1 : c 1=0 := by
       by_contra h1
       have hh := congrArg (E.d 3 (9,134)) hform
-      simp only [hy,map_add,apply_ite,map_zero,db1,db2,db3,h1,ite_false,ite_self,zero_add,add_zero] at hh
+      simp only [hy,map_add,apply_ite,map_zero,db1,db2,db3,h1,ite_false,ite_self,add_zero] at hh
       exact tn hh.symm
     simp only [c1,ite_true,zero_add] at hform
     by_cases h2 : c 2=0 <;> by_cases h3 : c 3=0

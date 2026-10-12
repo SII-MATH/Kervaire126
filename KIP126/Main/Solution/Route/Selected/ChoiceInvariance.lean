@@ -445,21 +445,21 @@ private theorem prop78_choice_invariance_choice_theta_choice_late_page_generic
     generalize h1 : e6 x 1=c1 at hx
     fin_cases c0 <;> fin_cases c1
     · change x=e6.symm (Finsupp.single 0 (0:KIP126.Core.Algebra.F2)+Finsupp.single 1 (0:KIP126.Core.Algebra.F2)) at hx
-      simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he60,he61] at hx
+      simp only [Finsupp.single_zero,map_zero,add_zero] at hx
       rw [hx]
-      simp only [map_add,map_zero,hd60,hd61,add_zero]
+      simp only [map_zero]
     · change x=e6.symm (Finsupp.single 0 (0:KIP126.Core.Algebra.F2)+Finsupp.single 1 (1:KIP126.Core.Algebra.F2)) at hx
-      simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he60,he61] at hx
+      simp only [Finsupp.single_zero,zero_add,he61] at hx
       rw [hx]
-      simp only [map_add,map_zero,hd60,hd61,add_zero]
+      simp only [hd61]
     · change x=e6.symm (Finsupp.single 0 (1:KIP126.Core.Algebra.F2)+Finsupp.single 1 (0:KIP126.Core.Algebra.F2)) at hx
-      simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he60,he61] at hx
+      simp only [Finsupp.single_zero,add_zero,he60] at hx
       rw [hx]
-      simp only [map_add,map_zero,hd60,hd61,add_zero]
+      simp only [hd60]
     · change x=e6.symm (Finsupp.single 0 (1:KIP126.Core.Algebra.F2)+Finsupp.single 1 (1:KIP126.Core.Algebra.F2)) at hx
-      simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he60,he61] at hx
+      simp only [map_add,he60,he61] at hx
       rw [hx]
-      simp only [map_add,map_zero,hd60,hd61,add_zero]
+      simp only [map_add,hd60,hd61,add_zero]
   obtain ⟨heq,a3,b3,ha3,hb3,hdb⟩ := h3
   have hne2 : b8 0≠0 := by
     intro hz
@@ -757,7 +757,7 @@ private theorem prop78_choice_invariance_choice_theta_choice_filtration_gap_of_p
       simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
         eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
     dsimp only [lambdaMultiply,lambdaPow]
-    simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+    simp only [eqToHom_refl,Category.id_comp]
     rw [←he]
     change (SyntheticCategory.biShift_comp (62,64) (0,0)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift_comp (62,64) (0,0)).hom.app (S_0_0 : Syn) ≫ a=a

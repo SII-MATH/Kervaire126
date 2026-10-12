@@ -107,7 +107,7 @@ private theorem nu_target_of_finite_nonzero
       {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a)
       (ht : KIP126.Core.SpectralSequence.ReachesPage E t p x) : E.d r p a = 0 := by
     exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_d_zero_of_later hr0 hrt ha ht
-  have represents_before 
+  have represents_before
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r t : ℤ} {p : ℤ × ℤ}
       {x : E.Page 2 p} {xt : E.Page t p}
       (hr : 2 ≤ r) (hrt : r ≤ t) (ht : KIP126.Core.SpectralSequence.RepresentsOnPage E t p x xt) :
@@ -148,7 +148,7 @@ private theorem nu_target_of_finite_nonzero
     · intro j hj hji
       by_cases hf : f j=0
       · simp [hf]
-      · simp [hf,Finsupp.single_apply,hji]
+      · simp [hf,hji]
     · simp
   have nu_target_p_cosets (I' : Inputs D' L' G) :
       ∀ x : Page D' .sphere 11 133,
@@ -332,7 +332,7 @@ private theorem nu_target_of_finite_nonzero
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)
@@ -395,7 +395,7 @@ private theorem nu_target_of_finite_nonzero
     have h := family_infinity_representative_map f (s,t,t-k) _ _ hn
     rw [hl,heq] at h
     refine ⟨c.val,?_,h⟩
-    convert c.property using 1 <;> congr 1 <;> omega
+    convert c.property using 1; congr 1; omega
   have finite_sphere_filtration_has_cycle_label
       (BHS : EInftyInput D') (q k : ℕ) (hq : 0<q) (hkq : k<q) (s t : ℤ)
       (a : BiHom (t-s) (t-k) (XModLambdaN (S_0_0 : Syn) q))
@@ -571,13 +571,13 @@ private theorem nu_target_of_finite_nonzero
         NestedQuotient.projection _ _ z=NestedQuotient.projection _ _ c
       rcases hcoset z.val with hz | hz
       · left
-        exact (NestedQuotient.projection_eq_zero z).mpr (by convert hz using 1 <;> congr 1 <;> omega)
+        exact (NestedQuotient.projection_eq_zero z).mpr (by convert hz using 1; congr 1; omega)
       · right
         apply sub_eq_zero.mp
         rw [←map_sub]
         apply (NestedQuotient.projection_eq_zero (z-c)).mpr
         change z.val-x ∈ boundaries H SphereSpectrum (1+t-(t-k)) (s,t)
-        convert hz using 1 <;> congr 1 <;> omega
+        convert hz using 1; congr 1; omega
     have frame := finite_sphere_frame BHS q k hq hk s t c hframe
     have hc := D'.comparisonCompatible.homotopy_lambda s t k c0
     rw [hc0] at hc
@@ -745,7 +745,7 @@ private theorem nu_target_of_finite_nonzero
     have hc : familyPageMap D'.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
         D'.sphereE2 s t k x := by
-      convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
     calc
       _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
           (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)
@@ -765,7 +765,7 @@ private theorem nu_target_of_finite_nonzero
     let z : permanentCycles H SphereSpectrum (s,t) := ⟨x,boundaries_le_permanentCycles H SphereSpectrum (s,t) (1+k) hx⟩
     have hz : NestedQuotient.projection _ (boundaries H SphereSpectrum (1+t-(t-k)) (s,t)) z=0 := by
       apply (NestedQuotient.projection_eq_zero z).mpr
-      convert hx using 1 <;> congr 1 <;> omega
+      convert hx using 1; congr 1; omega
     have hn : HasInfinityRepresentative (D'.family.nu D'.nu SphereSpectrum) 2 (s,t,t-k)
         (targetNuLabel D' .sphere s t k x) 0 := by
       apply (BHS.labels.2 .sphere (s,t) k z 0).mpr
@@ -1037,7 +1037,7 @@ private theorem nu_target_of_finite_nonzero
       ⟨x,boundaries_le_cycles H SphereSpectrum (s,t) (1+k) _ hx⟩
     have hz : NestedQuotient.projection _ (boundaries H SphereSpectrum (1+t-(t-k)) (s,t)) z=0 := by
       apply (NestedQuotient.projection_eq_zero z).mpr
-      convert hx using 1 <;> congr 1 <;> omega
+      convert hx using 1; congr 1; omega
     have hn : HasInfinityRepresentative (D'.family.nuQuotient D'.nu SphereSpectrum q) 2 (s,t,t-k)
         (finiteTargetLabel D' .sphere q s t k x) 0 := by
       apply (BHS.labels.1 .sphere q hq (s,t) k hk z 0).mpr
@@ -1134,7 +1134,7 @@ private theorem nu_target_of_finite_nonzero
       (125,136) (122,131) (125,135) (by decide) (by decide) (by decide) (by decide) S
     have h₂ := shift_assoc_inv D'.shiftCoherence (3,4) (0,-1) (122,132)
       (3,3) (122,131) (125,135) (by decide) (by decide) (by decide) (by decide) S
-    simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,
+    simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
       eqToHom_refl,Category.id_comp] at h₁ h₂
     have hp :
       (SyntheticCategory.biShift_comp (125,136) (0,-1)).inv.app S ≫
@@ -1150,13 +1150,12 @@ private theorem nu_target_of_finite_nonzero
         lambdaPow 1 ((SyntheticCategory.biShift (122,132)).obj (Smn 3 4)) = _
       rw [lambda_one_shift D'.shiftCoherence (122,132) (Smn 3 4)]
       dsimp only [shiftSwap,KIP126.Synthetic.Context.lambdaDegree]
-      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,
-        NatTrans.comp_app,eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,
+      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,eqToIso.hom,eqToIso.inv,eqToHom_refl,
         Category.comp_id,Category.id_comp]
       simp only [Category.assoc]
       erw [←Category.assoc ((SyntheticCategory.biShift_comp (125,136) (0,-1)).inv.app S)]
       erw [h₁]
-      simp only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one,Iso.inv_hom_id_app_assoc]
+      simp only [Category.assoc,Smn,S,Int.natCast_one,Iso.inv_hom_id_app_assoc]
       simpa only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one] using
         (congrArg (fun z => z ≫ (SyntheticCategory.biShift (122,132)).map (lambdaPow 1 (Smn 3 4))) h₂.symm)
     unfold sphereAction lambdaMultiply
@@ -1167,43 +1166,43 @@ private theorem nu_target_of_finite_nonzero
       lambdaMultiply 4 (lambdaMultiply 1 c)=lambdaMultiply 5 c := by
     have ha := shift_assoc_inv D'.shiftCoherence (125,136) (0,-1) (0,-4)
       (125,135) (0,-5) (125,131) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,eqToHom_refl,Category.id_comp] at ha
+    simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp] at ha
     unfold lambdaMultiply
-    simp only [eqToHom_refl,Category.id_comp,Category.assoc,Nat.cast_ofNat,Int.reduceSub]
+    simp only [eqToHom_refl,Category.id_comp,Nat.cast_ofNat,Int.reduceSub]
     erw [←reassoc_of% (lambdaPow_naturality 4 ((SyntheticCategory.biShift_comp (125,136) (0,-1)).inv.app (S_0_0 : Syn)))]
     erw [←reassoc_of% (lambdaPow_naturality 4 (lambdaPow 1 (Smn 125 136)))]
     erw [←Category.assoc,ha]
     erw [lambdaPow_add D'.shiftCoherence 1 4 5 (by decide) (Smn 125 136)]
     simp only [lambdaShiftAddIso,biShiftAddIso,KIP126.Synthetic.Context.lambdaDegree,
-      Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,eqToHom_refl,Category.id_comp,Category.assoc]
+      Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp,Category.assoc]
     rfl
   have nu_target_five_one (D' : Model H M' Syn) {X : Syn} (c : BiHom 122 133 X) :
       lambdaMultiply 5 (lambdaMultiply 1 c)=lambdaMultiply 6 c := by
     have ha := shift_assoc_inv D'.shiftCoherence (122,133) (0,-1) (0,-5)
       (122,132) (0,-6) (122,127) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,eqToHom_refl,Category.id_comp] at ha
+    simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp] at ha
     unfold lambdaMultiply
-    simp only [eqToHom_refl,Category.id_comp,Category.assoc,Nat.cast_ofNat,Int.reduceSub]
+    simp only [eqToHom_refl,Category.id_comp,Nat.cast_ofNat,Int.reduceSub]
     erw [←reassoc_of% (lambdaPow_naturality 5 ((SyntheticCategory.biShift_comp (122,133) (0,-1)).inv.app (S_0_0 : Syn)))]
     erw [←reassoc_of% (lambdaPow_naturality 5 (lambdaPow 1 (Smn 122 133)))]
     erw [←Category.assoc,ha]
     erw [lambdaPow_add D'.shiftCoherence 1 5 6 (by decide) (Smn 122 133)]
     simp only [lambdaShiftAddIso,biShiftAddIso,KIP126.Synthetic.Context.lambdaDegree,
-      Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,eqToHom_refl,Category.id_comp,Category.assoc]
+      Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp,Category.assoc]
     rfl
   have nu_target_five_two (D' : Model H M' Syn) {X : Syn} (c : BiHom 122 134 X) :
       lambdaMultiply 5 (lambdaMultiply 2 c)=lambdaMultiply 7 c := by
     have ha := shift_assoc_inv D'.shiftCoherence (122,134) (0,-2) (0,-5)
       (122,132) (0,-7) (122,127) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,eqToHom_refl,Category.id_comp] at ha
+    simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp] at ha
     unfold lambdaMultiply
-    simp only [eqToHom_refl,Category.id_comp,Category.assoc,Nat.cast_ofNat,Int.reduceSub]
+    simp only [eqToHom_refl,Category.id_comp,Nat.cast_ofNat,Int.reduceSub]
     erw [←reassoc_of% (lambdaPow_naturality 5 ((SyntheticCategory.biShift_comp (122,134) (0,-2)).inv.app (S_0_0 : Syn)))]
     erw [←reassoc_of% (lambdaPow_naturality 5 (lambdaPow 2 (Smn 122 134)))]
     erw [←Category.assoc,ha]
     erw [lambdaPow_add D'.shiftCoherence 2 5 7 (by decide) (Smn 122 134)]
     simp only [lambdaShiftAddIso,biShiftAddIso,KIP126.Synthetic.Context.lambdaDegree,
-      Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,eqToHom_refl,Category.id_comp,Category.assoc]
+      Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp,Category.assoc]
     rfl
   have nu_target_lambda_right_five (D' : Model H M' Syn)
       (etaAux : BiHom 3 4 (S_0_0 : Syn))
@@ -1211,10 +1210,9 @@ private theorem nu_target_of_finite_nonzero
       sphereAction etaAux (lambdaMultiply 5 c) = lambdaMultiply 5 (sphereAction etaAux c) := by
     have ha := shift_assoc_inv D'.shiftCoherence (3,4) (122,132) (0,-5)
       (125,136) (122,127) (125,131) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-      eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+    simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
     unfold sphereAction lambdaMultiply
-    simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat,
+    simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat,
       Int.reduceSub, Int.reduceAdd]
     erw [← reassoc_of% (lambdaPow_naturality 5
       ((SyntheticCategory.biShift_comp (3,4) (122,132)).inv.app (S_0_0 : Syn)))]
@@ -1235,14 +1233,14 @@ private theorem nu_target_of_finite_nonzero
     let F := SyntheticCategory.biShift (Syn:=Syn) (0,-(n:ℤ))
     let e : F.obj (Smn m w : Syn) ≅ Smn m (w-(n:ℤ)) :=
       (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+        eqToIso (by congr 1; simp [sub_eq_add_neg])
     have he (b : BiHom m w X) : lambdaMultiply n b=e.inv≫F.map b≫lambdaPow n X := by
       have he' : lambdaMultiply n b=e.inv≫lambdaPow n (Smn m w)≫b := by
         unfold lambdaMultiply
-        change eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫
+        change eqToHom (by congr 1; simp) ≫
           (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0 ≫
           lambdaPow n (Smn m w) ≫ b =
-          (eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫
+          (eqToHom (by congr 1; simp) ≫
             (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0) ≫
           lambdaPow n (Smn m w) ≫ b
         exact (Category.assoc _ _ _).symm
@@ -1265,17 +1263,16 @@ private theorem nu_target_of_finite_nonzero
       lambdaMultiply 4 (lambdaMultiply 1 c) = lambdaMultiply 5 c := by
     have ha := shift_assoc_inv D'.shiftCoherence (125,140) (0,-1) (0,-4)
       (125,139) (0,-5) (125,135) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-      eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+    simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
     unfold lambdaMultiply
-    simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat, Int.reduceSub]
+    simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat, Int.reduceSub]
     erw [← reassoc_of% (lambdaPow_naturality 4
       ((SyntheticCategory.biShift_comp (125,140) (0,-1)).inv.app (S_0_0 : Syn)))]
     erw [← reassoc_of% (lambdaPow_naturality 4 (lambdaPow 1 (Smn 125 140)))]
     erw [← Category.assoc, ha]
     erw [lambdaPow_add D'.shiftCoherence 1 4 5 (by decide) (Smn 125 140)]
     simp only [lambdaShiftAddIso, biShiftAddIso, KIP126.Synthetic.Context.lambdaDegree,
-      Iso.trans_inv, NatTrans.comp_app, eqToIso.inv, eqToHom_app, eqToHom_refl,
+      Iso.trans_inv, eqToIso.inv, eqToHom_refl,
       Category.id_comp, Category.assoc]
     rfl
   have nu_target_sphere_four_split
@@ -1563,7 +1560,7 @@ private theorem nu_target_of_finite_nonzero
       have heq : e x = Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) := by
         apply Finsupp.ext
         intro i
-        fin_cases i <;> simp [Finsupp.single_apply]
+        fin_cases i <;> simp
       have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2)) := by
         rw [←heq,LinearEquiv.symm_apply_apply]
       generalize hc0 : e x 0=c0 at hxe
@@ -1571,57 +1568,57 @@ private theorem nu_target_of_finite_nonzero
       generalize hc2 : e x 2=c2 at hxe
       fin_cases c0 <;> fin_cases c1 <;> fin_cases c2
       · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2)) at hxe
-        try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+        try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
         rw [hxe] at hx hxrep
         left
         apply represents_unique hxrep
         exact RepresentsOnPage.zero (by decide)
       · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2)) at hxe
-        try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+        try simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
         rw [hxe] at hx hxrep
         left
         apply represents_unique hxrep
         rw [he2]
         exact hz2
       · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2)) at hxe
-        try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+        try simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
         rw [hxe] at hx hxrep
         right
         apply represents_unique hxrep
         rw [he1]
         exact ha
       · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2)) at hxe
-        try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+        try simp only [Finsupp.single_zero,map_add,zero_add] at hxe
         rw [hxe] at hx hxrep
         right
         apply represents_unique hxrep
         rw [he1,he2]
         simpa only [add_zero] using represents_add_tail ha hz2
       · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2)) at hxe
-        try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+        try simp only [Finsupp.single_zero,add_zero] at hxe
         rw [hxe] at hx hxrep
-        simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+        simp only [he0, hd0] at hx
         have hh := congrArg (fun y=>f y 2) hx
         rw [←hf2,LinearEquiv.apply_symm_apply,f.map_zero] at hh
         norm_num [Finsupp.single_apply] at hh
       · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2)) at hxe
-        try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+        try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
         rw [hxe] at hx hxrep
-        simp only [map_add, he0, he2, hd0, hd2, zero_add, add_zero] at hx
+        simp only [map_add, he0, he2, hd0, hd2, add_zero] at hx
         have hh := congrArg (fun y=>f y 2) hx
         rw [←hf2,LinearEquiv.apply_symm_apply,f.map_zero] at hh
         norm_num [Finsupp.single_apply] at hh
       · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2)) at hxe
-        try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+        try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
         rw [hxe] at hx hxrep
-        simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+        simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
         have hh := congrArg (fun y=>f y 2) hx
         rw [←hf2,LinearEquiv.apply_symm_apply,f.map_zero] at hh
         norm_num [Finsupp.single_apply] at hh
       · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2)) at hxe
-        try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+        try simp only [map_add] at hxe
         rw [hxe] at hx hxrep
-        simp only [map_add, he0, he1, he2, hd0, hd1, hd2, zero_add, add_zero] at hx
+        simp only [map_add, he0, he1, he2, hd0, hd1, hd2, add_zero] at hx
         have hh := congrArg (fun y=>f y 2) hx
         rw [←hf2,LinearEquiv.apply_symm_apply,f.map_zero] at hh
         norm_num [Finsupp.single_apply] at hh
@@ -1653,7 +1650,7 @@ private theorem nu_target_of_finite_nonzero
       simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
         eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
     dsimp only [lambdaMultiply,lambdaPow]
-    simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+    simp only [eqToHom_refl,Category.id_comp]
     rw [←he]
     change (SyntheticCategory.biShift_comp (3,4) (0,0)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift_comp (3,4) (0,0)).hom.app (S_0_0 : Syn) ≫ a=a
@@ -1667,7 +1664,7 @@ private theorem nu_target_of_finite_nonzero
       simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
         eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
     dsimp only [lambdaMultiply,lambdaPow]
-    simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+    simp only [eqToHom_refl,Category.id_comp]
     rw [←he]
     change (SyntheticCategory.biShift_comp (125,139) (0,0)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift_comp (125,139) (0,0)).hom.app (S_0_0 : Syn) ≫ a=a
@@ -1736,8 +1733,8 @@ private theorem nu_target_of_finite_nonzero
   have hvf : FiltrationAtLeast (nuCoefficientUnit H.unit D'.nu) 14 v := by
     cases bp <;> cases bq
     · refine ⟨0,?_⟩
-      simp only [v,a,Bool.false_eq_true,↓reduceIte,add_zero,sphereProduct,sphereAction,Preadditive.comp_add,
-        CategoryTheory.Limits.comp_zero,CategoryTheory.Limits.zero_comp,map_zero]
+      simp only [v,a,Bool.false_eq_true,↓reduceIte,add_zero,sphereProduct,
+        CategoryTheory.Limits.comp_zero,map_zero]
     · simpa only [v,a,Bool.false_eq_true,↓reduceIte,zero_add] using hqf
     · simpa only [v,a,Bool.false_eq_true,↓reduceIte,add_zero] using hpf
     · obtain ⟨zp,hzp⟩ := hpf
@@ -1750,8 +1747,7 @@ private theorem nu_target_of_finite_nonzero
       change zp' ≫ _=sphereProduct (lambdaMultiply 1 nu) (lambdaMultiply 1 p) at hzp
       change zq' ≫ _=sphereProduct (lambdaMultiply 1 nu) (lambdaMultiply 2 q) at hzq
       rw [Preadditive.add_comp,hzp,hzq]
-      simp only [sphereProduct,sphereAction,Preadditive.comp_add,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one,Int.reduceSub]
-      all_goals rfl
+      simp only [sphereProduct,Preadditive.comp_add,Nat.cast_ofNat,Int.natCast_one,Int.reduceSub]
   have hl := (weak_route_expression_labels I').2.2
   have ht : L'.target M'∈permanentCycles H SphereSpectrum (14,139) := by
     rw [←hl]
@@ -1793,7 +1789,7 @@ private theorem nu_target_h0_af13_image_boundary_two
     · intro j hj hji
       by_cases hc : (e a) j=0
       · simp [hc]
-      · simp [hc,Finsupp.single_apply,hji]
+      · simp [hc,hji]
     · simp
   have negself (x : KIP126.LinE2.E2) : -x=x := by
     exact RelationCertificates.pq_neg_eq_self x
@@ -1979,7 +1975,7 @@ private theorem nu_target_h2_af13_product_zero
     · intro j hj hji
       by_cases hc : (e a) j=0
       · simp [hc]
-      · simp [hc,Finsupp.single_apply,hji]
+      · simp [hc,hji]
     · simp
   have negself (x : KIP126.LinE2.E2) : -x=x := by
     exact RelationCertificates.pq_neg_eq_self x
@@ -2181,7 +2177,7 @@ private theorem nu_target_full_of_nonzero
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)
@@ -2244,7 +2240,7 @@ private theorem nu_target_full_of_nonzero
     have h := family_infinity_representative_map f (s,t,t-k) _ _ hn
     rw [hl,heq] at h
     refine ⟨c.val,?_,h⟩
-    convert c.property using 1 <;> congr 1 <;> omega
+    convert c.property using 1; congr 1; omega
   have finite_sphere_filtration_has_cycle_label
       (BHS : EInftyInput D') (q k : ℕ) (hq : 0<q) (hkq : k<q) (s t : ℤ)
       (a : BiHom (t-s) (t-k) (XModLambdaN (S_0_0 : Syn) q))
@@ -2351,7 +2347,7 @@ private theorem nu_target_full_of_nonzero
       ⟨x,boundaries_le_cycles H SphereSpectrum (s,t) (1+k) _ hx⟩
     have hz : NestedQuotient.projection _ (boundaries H SphereSpectrum (1+t-(t-k)) (s,t)) z=0 := by
       apply (NestedQuotient.projection_eq_zero z).mpr
-      convert hx using 1 <;> congr 1 <;> omega
+      convert hx using 1; congr 1; omega
     have hn : HasInfinityRepresentative (D'.family.nuQuotient D'.nu SphereSpectrum q) 2 (s,t,t-k)
         (finiteTargetLabel D' .sphere q s t k x) 0 := by
       apply (BHS.labels.1 .sphere q hq (s,t) k hk z 0).mpr
@@ -2433,17 +2429,16 @@ private theorem nu_target_full_of_nonzero
       lambdaMultiply 1 (lambdaMultiply 1 c) = lambdaMultiply 2 c := by
     have ha := shift_assoc_inv D'.shiftCoherence (125,133) (0,-1) (0,-1)
       (125,132) (0,-2) (125,131) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-      eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+    simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
     unfold lambdaMultiply
-    simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat, Int.reduceSub]
+    simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat, Int.reduceSub]
     erw [← reassoc_of% (lambdaPow_naturality 1
       ((SyntheticCategory.biShift_comp (125,133) (0,-1)).inv.app (S_0_0 : Syn)))]
     erw [← reassoc_of% (lambdaPow_naturality 1 (lambdaPow 1 (Smn 125 133)))]
     erw [← Category.assoc, ha]
     erw [lambdaPow_add D'.shiftCoherence 1 1 2 (by decide) (Smn 125 133)]
     simp only [lambdaShiftAddIso, biShiftAddIso, KIP126.Synthetic.Context.lambdaDegree,
-      Iso.trans_inv, NatTrans.comp_app, eqToIso.inv, eqToHom_app, eqToHom_refl,
+      Iso.trans_inv, eqToIso.inv, eqToHom_refl,
       Category.id_comp, Category.assoc]
     rfl
   have h0_action_right_one (D' : Model H M' Syn)
@@ -2452,11 +2447,9 @@ private theorem nu_target_full_of_nonzero
       sphereAction etaAux (lambdaMultiply 1 c) = lambdaMultiply 1 (sphereAction etaAux c) := by
     have ha := shift_assoc_inv D'.shiftCoherence (0,1) (125,131) (0,-1)
       (125,132) (125,130) (125,131) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-      eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+    simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
     unfold sphereAction lambdaMultiply
-    simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat,
-      Int.reduceSub, Int.reduceAdd]
+    simp only [eqToHom_refl, Category.id_comp, Int.reduceAdd]
     erw [← reassoc_of% (lambdaPow_naturality 1
       ((SyntheticCategory.biShift_comp (0,1) (125,131)).inv.app (S_0_0 : Syn)))]
     erw [← reassoc_of% (lambdaPow_naturality 1
@@ -2467,10 +2460,9 @@ private theorem nu_target_full_of_nonzero
   have lambda_sphere_unit (D' : Model H M' Syn) :
       lambdaMultiply 1 (sphere_unit D') = SyntheticCategory.lam.app (S_0_0 : Syn) := by
     have hu := D'.shiftCoherence.left_unit (0,-1) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
-      eqToHom_app,eqToHom_refl,Category.comp_id] at hu
+    simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,eqToHom_refl,Category.comp_id] at hu
     unfold lambdaMultiply sphere_unit
-    simp only [eqToHom_refl,Category.id_comp,Category.assoc]
+    simp only [eqToHom_refl,Category.id_comp]
     erw [←lambdaPow_naturality 1 (SyntheticCategory.biShift_zero.hom.app (S_0_0 : Syn))]
     erw [←hu,Iso.inv_hom_id_app_assoc]
     exact lambdaPow_one D'.shiftCoherence _
@@ -2479,10 +2471,10 @@ private theorem nu_target_full_of_nonzero
       sphereAction (lambdaMultiply 1 (sphere_unit D')) a = lambdaMultiply 1 a := by
     rw [lambda_sphere_unit D']
     have hc := D'.shiftCoherence.lambda_comm (125,132) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,Iso.trans_inv,NatTrans.comp_app,
-      eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,Category.comp_id,Category.id_comp] at hc
+    simp only [biShiftAddIso,Iso.trans_hom,Iso.trans_inv,
+      eqToIso.hom,eqToIso.inv,eqToHom_refl,Category.comp_id,Category.id_comp] at hc
     unfold sphereAction lambdaMultiply
-    simp only [eqToHom_refl,Category.id_comp,Category.assoc]
+    simp only [eqToHom_refl,Category.id_comp]
     erw [lambdaPow_one D'.shiftCoherence, hc]
     simp only [Category.assoc]
     erw [Iso.inv_hom_id_app_assoc]
@@ -2490,8 +2482,7 @@ private theorem nu_target_full_of_nonzero
   have sphere_unit_action_136 (D' : Model H M' Syn) {A : Syn}
       (a : BiHom 125 136 A) : sphereAction (sphere_unit D') a = a := by
     have hu := D'.shiftCoherence.left_unit (125,136) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
-      eqToHom_app,eqToHom_refl,Category.comp_id] at hu
+    simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,eqToHom_refl,Category.comp_id] at hu
     unfold sphereAction sphere_unit
     erw [←hu,Iso.inv_hom_id_app_assoc]
   have sphere_unit_label_product_136
@@ -2564,11 +2555,9 @@ private theorem nu_target_full_of_nonzero
       -- The same coherence calculation at weight 132.
       have ha := shift_assoc_inv D'.shiftCoherence (0,1) (125,132) (0,-1)
         (125,133) (125,131) (125,132) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-      simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-        eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+      simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
       unfold sphereAction lambdaMultiply
-      simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat,
-        Int.reduceSub, Int.reduceAdd]
+      simp only [eqToHom_refl, Category.id_comp, Int.reduceAdd]
       erw [← reassoc_of% (lambdaPow_naturality 1
         ((SyntheticCategory.biShift_comp (0,1) (125,132)).inv.app (S_0_0 : Syn)))]
       erw [← reassoc_of% (lambdaPow_naturality 1
@@ -2587,12 +2576,12 @@ private theorem nu_target_full_of_nonzero
     let T := XModLambdaN.cofiberTriangle (S_0_0 : Syn) 1
     let e₀ : U ≅ Smn (Syn := Syn) m (wt-1) :=
       (SyntheticCategory.biShift_comp (m,wt) (0,-1)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+        eqToIso (by congr 1)
     let e₁ : U⟦(1 : ℤ)⟧ ≅ Smn (Syn := Syn) (m+1) (wt-1) :=
       (shiftFunctor Syn (1 : ℤ)).mapIso e₀ ≪≫
         (SyntheticCategory.biShift_compat (Syn := Syn) 1).symm.app _ ≪≫
         (SyntheticCategory.biShift_comp (m,wt-1) (1,0)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp)
+        eqToIso (by congr 1)
     have hQ : ∀ q : U⟦(1 : ℤ)⟧ ⟶ T.obj₃, q = 0 := by
       intro q
       haveI : Subsingleton (PageRepresentatives.Ambient H SphereSpectrum (wt-m-2,wt-1)) :=
@@ -2639,7 +2628,7 @@ private theorem nu_target_full_of_nonzero
       (3,5) (3,3) (3,4) (by decide) (by decide) (by decide) (by decide) S
     have h₂ := shift_assoc_inv D'.shiftCoherence (0,1) (0,-1) (3,4)
       (0,0) (3,3) (3,4) (by decide) (by decide) (by decide) (by decide) S
-    simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,
+    simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
       eqToHom_refl,Category.id_comp] at h₁ h₂
     have hp :
       (SyntheticCategory.biShift_comp (3,5) (0,-1)).inv.app S ≫
@@ -2655,13 +2644,12 @@ private theorem nu_target_full_of_nonzero
         lambdaPow 1 ((SyntheticCategory.biShift (3,4)).obj (Smn 0 1)) = _
       rw [lambda_one_shift D'.shiftCoherence (3,4) (Smn 0 1)]
       dsimp only [shiftSwap,KIP126.Synthetic.Context.lambdaDegree]
-      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,
-        NatTrans.comp_app,eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,
+      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,eqToIso.hom,eqToIso.inv,eqToHom_refl,
         Category.comp_id,Category.id_comp]
       simp only [Category.assoc]
       erw [←Category.assoc ((SyntheticCategory.biShift_comp (3,5) (0,-1)).inv.app S)]
       erw [h₁]
-      simp only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one,Iso.inv_hom_id_app_assoc]
+      simp only [Category.assoc,Smn,S,Int.natCast_one,Iso.inv_hom_id_app_assoc]
       simpa only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one] using
         (congrArg (fun z => z ≫ (SyntheticCategory.biShift (3,4)).map (lambdaPow 1 (Smn 0 1))) h₂.symm)
     unfold sphereAction lambdaMultiply
@@ -2674,11 +2662,9 @@ private theorem nu_target_full_of_nonzero
       sphereAction etaAux (lambdaMultiply 1 c) = lambdaMultiply 1 (sphereAction etaAux c) := by
     have ha := shift_assoc_inv D'.shiftCoherence (3,4) (0,1) (0,-1)
       (3,5) (0,0) (3,4) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-      eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+    simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
     unfold sphereAction lambdaMultiply
-    simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat,
-      Int.reduceSub, Int.reduceAdd]
+    simp only [eqToHom_refl, Category.id_comp, Int.reduceAdd]
     erw [← reassoc_of% (lambdaPow_naturality 1
       ((SyntheticCategory.biShift_comp (3,4) (0,1)).inv.app (S_0_0 : Syn)))]
     erw [← reassoc_of% (lambdaPow_naturality 1
@@ -2691,7 +2677,6 @@ private theorem nu_target_full_of_nonzero
       (hh0 : lambdaMultiply 1 h0=syntheticTwo) :
       sphereAction h0 ν=sphereAction ν h0 := by
     apply lambda_injective_three_five D'
-    change lambdaAction 3 5 _ (sphereAction h0 ν)=lambdaAction 3 5 _ (sphereAction ν h0)
     have hm (z : BiHom 3 5 (S_0_0 : Syn)) : lambdaAction 3 5 _ z=lambdaMultiply 1 z := by
       unfold lambdaAction lambdaMultiply
       rw [lambdaPow_one D'.shiftCoherence]
@@ -2702,11 +2687,10 @@ private theorem nu_target_full_of_nonzero
     letI := D'.shiftAdditive (3,4)
     have hl := D'.shiftCoherence.left_unit (3,4) (S_0_0 : Syn)
     have hr := D'.shiftCoherence.right_unit (3,4) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
-      eqToHom_app,eqToHom_refl,Category.comp_id] at hl hr
+    simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,eqToHom_refl,Category.comp_id] at hl hr
     unfold sphereAction syntheticTwo
-    simp only [Functor.map_comp,Functor.map_add,Functor.map_id,Preadditive.comp_add,
-      Preadditive.add_comp,Category.id_comp,Category.comp_id,Category.assoc,two_smul]
+    simp only [Functor.map_add,Preadditive.comp_add,
+      Preadditive.add_comp,Category.comp_id,two_smul]
     rw [←hl]
     erw [SyntheticCategory.biShift_zero.hom.naturality ν]
     erw [←hr]
@@ -2727,7 +2711,7 @@ private theorem nu_target_full_of_nonzero
     have hleft : sphereAction (sphereAction h0 ν) x=sphereAction h0 (sphereAction ν x) := by
       have ha := shift_assoc_inv D'.shiftCoherence (0,1) (3,4) (122,126)
         (3,5) (125,130) (125,131) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-      simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,
+      simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
         eqToHom_refl,Category.id_comp] at ha
       unfold sphereAction
       simp only [Functor.map_comp,Category.assoc]
@@ -2737,7 +2721,7 @@ private theorem nu_target_full_of_nonzero
     have hright : sphereAction (sphereAction ν h0) x=sphereAction ν (sphereAction h0 x) := by
       have ha := shift_assoc_inv D'.shiftCoherence (3,4) (0,1) (122,126)
         (3,5) (122,127) (125,131) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-      simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,
+      simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
         eqToHom_refl,Category.id_comp] at ha
       unfold sphereAction
       simp only [Functor.map_comp,Category.assoc]
@@ -2800,7 +2784,7 @@ private theorem nu_target_full_of_nonzero
       simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
         eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
     dsimp only [lambdaMultiply,lambdaPow]
-    simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+    simp only [eqToHom_refl,Category.id_comp]
     rw [←he]
     change (SyntheticCategory.biShift_comp (0,1) (0,0)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift_comp (0,1) (0,0)).hom.app (S_0_0 : Syn) ≫ a=a

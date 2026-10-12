@@ -13,6 +13,8 @@ variable {R : Type*} [CommRing R] [CharP R 2]
 def tripleValue (x y z : Nat → R) (p : List TripleMonomial) : R :=
   (p.map fun t => monomialValue x t.1 * monomialValue y t.2.1 * monomialValue z t.2.2).sum
 
+-- Keep the original instance parameters of this public theorem.
+set_option linter.unusedSectionVars false in
 theorem sum_flatMap_value (p : List α) (f : α → List R) :
     (p.flatMap f).sum = (p.map fun a => (f a).sum).sum := by
   induction p with
@@ -86,6 +88,8 @@ theorem xiValue_delta (x y : Nat → R) (rank k : Nat) (hk : k ≤ rank) :
     rw [show k-1+1=k by omega,generatorCoproduct_value x y rank k hk]
     rfl
 
+-- Keep the original instance parameters of this public theorem.
+set_option linter.unusedSectionVars false in
 theorem list_range_sum (n : Nat) (f : Nat → R) :
     ((List.range n).map f).sum = ∑ i ∈ Finset.range n, f i := by
   rw [← List.sum_toFinset f (List.nodup_range (n := n))]

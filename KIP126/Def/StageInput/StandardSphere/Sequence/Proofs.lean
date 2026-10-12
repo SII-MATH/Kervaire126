@@ -3345,7 +3345,7 @@ private theorem cube_quarter_turn_homotopy :
     apply Subtype.ext
     change N 1 (c z) i+1/2=(![unitInterval.symm (z 1),z 0] i:ℝ)
     rw [hN1]
-    fin_cases i <;> simp [P,c,unitInterval.coe_symm_eq] <;> ring
+    fin_cases i <;> simp [P,c,unitInterval.coe_symm_eq]; ring
   · intro t z hz
     have hn : ‖c z‖=1/2 := by
       apply le_antisymm (hcn z)

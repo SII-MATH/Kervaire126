@@ -595,7 +595,7 @@ private theorem quotient_shift_exists (coh : BiShiftCoherence Syn)
         SyntheticCategory.biShift (lambdaDegree 1) ⋙ SyntheticCategory.biShift a :=
     biShiftAddIso a (0,-1) (a+(0,-1)) rfl ≪≫
       (biShiftAddIso (0,-1) a (a+(0,-1)) (add_comm _ _)).symm
-  
+
   let powerComm (a : ℤ × ℤ) : (q : ℕ) →
       SyntheticCategory.biShift (Syn := Syn) a ⋙ SyntheticCategory.biShift (lambdaDegree q) ≅
         SyntheticCategory.biShift (lambdaDegree q) ⋙ SyntheticCategory.biShift a := fun q =>
@@ -631,8 +631,7 @@ private theorem quotient_shift_exists (coh : BiShiftCoherence Syn)
       rw [lambdaPow_succ_comparison]
       simp only [powerComm, Iso.trans_hom, Iso.symm_hom, NatTrans.comp_app,
         isoWhiskerLeft_hom, isoWhiskerRight_hom, whiskerLeft_app, whiskerRight_app,
-        Functor.associator_inv_app, Functor.associator_hom_app,
-        Category.comp_id, Category.id_comp, Category.assoc]
+        Functor.associator_inv_app, Functor.associator_hom_app, Category.id_comp, Category.assoc]
       rw [Iso.hom_inv_id_app_assoc]
       rw [← Functor.map_comp, lambdaPow_succ_comparison, Functor.map_comp]
       have hn := (powerComm a q).hom.naturality (SyntheticCategory.lam.app X)
@@ -731,7 +730,7 @@ private theorem shifted_finite_source_exists (D : Model H M Syn)
       (((F.obj X).sequence.ssData (p.1, p.2, w + k)).B_le_Z n)
       (((F.obj A).sequence.ssData (p.1, p.2, w)).B_le_Z n) e hB hZ
     exact ⟨q⟩
-  
+
   have family_map_data (D : Model H M Syn)  {X Y : Syn} (f : X ⟶ Y) (r : ℤ) (i : Tridegree) :
       familyPageMap D.family f r i = (D.family.functor.map f).toSSDataMorphism.pageMap i (↑(r-2).toNat) := by
     let F := (D.family.functor.map f).toSSDataMorphism
@@ -760,14 +759,14 @@ private theorem shifted_finite_source_exists (D : Model H M Syn)
       familyPageMap D.family (𝟙 X) r i = 𝟙 _ := by
     rw [family_map_data, CategoryTheory.Functor.map_id]
     exact SSDataMorphism.pageMap_id _ _ _
-  
+
   let familyPageIso (D : Model H M Syn) {X Y : Syn} (e : X ≅ Y)
       (r : ℤ) (i : Tridegree) : (D.family.obj X).Page r i ≅ (D.family.obj Y).Page r i := {
     hom := familyPageMap D.family e.hom r i
     inv := familyPageMap D.family e.inv r i
     hom_inv_id := by rw [family_page_comp, e.hom_inv_id, family_page_id]
     inv_hom_id := by rw [family_page_comp, e.inv_hom_id, family_page_id] }
-  
+
   have shiftedFinitePageVanishing (D : Model H M Syn)
       (synthetic : SyntheticInputs D) (X : ClassicalObject) (q : ℕ) (hq : 0 < q)
       (a r s t w : ℤ)
@@ -784,7 +783,7 @@ private theorem shifted_finite_source_exists (D : Model H M Syn)
         (D.family.nuQuotient D.nu (X.obj D.auxiliary) q).Page r (s,t,w-a) := by
       simpa only [sub_add_cancel, SyntheticAdamsSS.Page, SyntheticAdamsFamily.nuQuotient, SyntheticAdamsFamily.quotient] using ew
     exact ((familyPageIso D e r (s,t,w)) ≪≫ ew').toLinearEquiv.injective.subsingleton
-  
+
   have syntheticRep_map (D : Model H M Syn) {X Y : Syn}
       (f : X ⟶ Y) (r : ℤ) (i : Tridegree)
       (x : (D.family.obj X).E₂ i) (xr : (D.family.obj X).Page r i)
@@ -807,7 +806,7 @@ private theorem shifted_finite_source_exists (D : Model H M Syn)
       exact (congrArg (fun a => a z) (F.pageπ_pageMap i (↑(r-2).toNat))).symm.trans (by
         change F.pageMap i (↑(r-2).toNat) (((D.family.obj X).sequence.ssData i).pageπ (↑(r-2).toNat) z)=_
         rw [he])
-  
+
   have syntheticRep_infty (A : SyntheticAdamsSS.{v})
       (r : ℤ) (i : Tridegree) (x : A.E₂ i) (xr : A.Page r i)
       (hx : KIP126.Synthetic.SpectralSequence.RepresentsOnPage A r i x xr)
@@ -822,7 +821,7 @@ private theorem shifted_finite_source_exists (D : Model H M Syn)
       ((Subobject.ofLE _ _ hZ.ge) z)=x
     rw [←CategoryTheory.comp_apply,←Category.assoc,Subobject.ofLE_comp_ofLE]
     exact hz
-  
+
   have page_has_initial_rep
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
       {r : ℤ} {p : ℤ × ℤ} (hr : 2 ≤ r) (a : E.Page r p) :
@@ -832,7 +831,7 @@ private theorem shifted_finite_source_exists (D : Model H M Syn)
       infer_instance
     obtain ⟨z,hz⟩ := (ModuleCat.epi_iff_surjective ((E.ssData p).pageπ ↑(r-E.r₀).toNat)).mp inferInstance a
     exact ⟨_,hr,z,rfl,hz⟩
-  
+
   have shiftedFiniteSource_exists (D : Model H M Syn)
       (synthetic : SyntheticInputs D) (X : ClassicalObject) (q : ℕ) (hq : 0 < q)
       (a s t : ℤ)
@@ -850,7 +849,7 @@ private theorem shifted_finite_source_exists (D : Model H M Syn)
     obtain ⟨xr,hxr⟩ := (isCycle_iff_represents H (X.obj D.auxiliary) (q+1:ℕ) (by omega) (s,t) x).mp hx'
     have hd : (s,t) + E.diffDeg (q+1:ℕ) = (s+(q+1:ℕ),t+(q+1:ℕ)-1) := by
       change (s+(q+1:ℕ),t+((q+1:ℕ)-1)) = _
-      congr 1 <;> omega
+      congr 1; omega
     let yr := (E.d (q+1:ℕ) (s,t) ≫ eqToHom (congrArg (E.Page (q+1:ℕ)) hd)) xr
     obtain ⟨y,hy⟩ := page_has_initial_rep (by omega : (2:ℤ)≤(q+1:ℕ)) yr
     have hc : KIP126.Core.SpectralSequence.HasDifferential E (q+1:ℕ)
@@ -866,7 +865,7 @@ private theorem shifted_finite_source_exists (D : Model H M Syn)
           (D.nu.functor.obj (X.obj D.auxiliary))) q)).diffDeg n = (s+n,t+n-1,t+a) := by
       rw [D.family.differentialDegree]
       simp only [syntheticAdamsRawShift, Prod.mk_add_mk, Nat.cast_zero, sub_zero, add_zero]
-      ext <;> dsimp <;> omega
+      ext <;> dsimp; omega
     haveI := shiftedFinitePageVanishing D synthetic X q hq a n (s+n) (t+n-1) (t+a)
       eqs (by omega) (Or.inr (by omega))
     have hp : Subsingleton ((D.family.functor.obj (XModLambdaN ((SyntheticCategory.biShift (0,a)).obj
@@ -881,7 +880,7 @@ private theorem shifted_finite_source_exists (D : Model H M Syn)
     letI := hp
     ext z
     exact @Subsingleton.elim _ hp _ _
-  
+
   letI := D.shiftCommShift (0,a)
   letI := D.shiftExact (0,a)
   obtain ⟨eqs,heqs⟩ := quotient_shift_exists D.shiftCoherence (0,a) q (D.nu.functor.obj (X.obj D.auxiliary))
@@ -1601,7 +1600,7 @@ theorem finitePageExtensionStretching (synthetic : SyntheticInputs D)
       rw [module_map_zero,sub_zero,hdb] at hnext
       have hnext' : g δ ∈ towerFiltrationSubmodule unit Bearly (s+a+(n-a-b)+1) p := by
         simpa only [towerFiltration, OrderIso.apply_symm_apply] using hnext
-      exact hgnext hnext' 
+      exact hgnext hnext'
     refine ⟨hle,a,b,ha,haupper,hab,u,v,hu,?_,hv⟩
     apply (extension_equation_iff_representatives
       (finiteExtensionMap D X Y f (rEarlier-1))
@@ -1665,7 +1664,7 @@ theorem finitePageExtensionStretching (synthetic : SyntheticInputs D)
       change y ≫ (Subobject.ofLE (G.F (s+1) i) (G.F s i) (G.decreasing s i) ≫
         cokernel.π _) = 0
       rw [cokernel.condition, comp_zero]
-  
+
     have next_filtration_mem_of_graded_mono
         {ι : Type} {A B : GradedObject ι (ModuleCat.{v} ℤ)}
         {F : KIP126.Core.Algebra.Filtration A} {G : KIP126.Core.Algebra.Filtration B} (f : KIP126.Core.Algebra.FilteredMorphism F G)
@@ -1688,7 +1687,7 @@ theorem finitePageExtensionStretching (synthetic : SyntheticInputs D)
         (congrArg (fun h => h ≫ (F.F s i).arrow) hx')
       simpa [Category.assoc, Subobject.ofLE_arrow,
         KIP126.Synthetic.PageExtension.elementMap, one_smul] using he
-  
+
     have next_tower_filtration_of_infinity_injective
         (A B : SyntheticObject)
         (f : A.obj D.nu D.auxiliary ⟶ B.obj D.nu D.auxiliary)
@@ -1738,7 +1737,7 @@ theorem finitePageExtensionStretching (synthetic : SyntheticInputs D)
             OrderIso.apply_symm_apply]
           exact hb
       simpa only [towerFiltration,OrderIso.apply_symm_apply] using hm
-  
+
     have next_tower_filtration_of_infinity_injective_regraded
         (A B : SyntheticObject)
         (f : A.obj D.nu D.auxiliary ⟶ B.obj D.nu D.auxiliary)
@@ -1761,7 +1760,7 @@ theorem finitePageExtensionStretching (synthetic : SyntheticInputs D)
         next_tower_filtration_of_infinity_injective A B f (s,m+s,w) hf
       rw [add_sub_cancel_right] at h0
       exact h0 a ha hb
-  
+
     apply next_tower_filtration_of_infinity_injective_regraded (.quotient j (.nu Y))
       (.quotient i (.nu Y)) _ s m w _ a ha hb
     by_cases hlower : 0 ≤ m+s-w
@@ -2031,7 +2030,7 @@ theorem finitePageExtensionStretching (synthetic : SyntheticInputs D)
     (D.convergence (.quotient (rLater-1) (extensionSourceObject D X Y f)))
     (D.convergence (.quotient (rLater-1) (.nu Y))) p s n xx yy).mpr
   refine ⟨hn0,ar',br',?_,?_,?_⟩
-  · change ((towerFiltration unit Alater).F s p).arrow ar' ≫ gl = ((towerFiltration unit Blater).F (s+n) p).arrow br'
+  ·
     rw [har',hbr']
   · rw [←har]
     apply (element_grade_equal_iff (towerFiltration unit Alater).toAlgebra s p ar' ar).mpr

@@ -69,7 +69,7 @@ private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
   have nhb_represents_smul {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a) (c : ℤ) :
       KIP126.Core.SpectralSequence.RepresentsOnPage E r p (c • x) (c • a) := by
     obtain ⟨hr, z, hz, hza⟩ := ha
-    refine ⟨hr, c • z, ?_, ?_⟩ <;> simpa only [map_zsmul, hz, hza]
+    refine ⟨hr, c • z, ?_, ?_⟩ <;> simp only [map_zsmul, hz, hza]
   have nhb_represents_d_zero_of_later {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
       {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a)
       (ht : KIP126.Core.SpectralSequence.ReachesPage E t p x) : E.d r p a = 0 := by
@@ -98,7 +98,7 @@ private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
       ((Subobject.ofLE (D'.Z nt) (D'.Z ns) (D'.Z_anti hst)) z) = D'.pageπ nr zr
     rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
     rfl
-  have nhb_next_projection_zero_iff_incoming 
+  have nhb_next_projection_zero_iff_incoming
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
       (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
       (z : (Subobject.underlying.obj ((E.ssData (p+E.diffDeg r)).Z
@@ -144,7 +144,7 @@ private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
       change (i ≫ (D'.Z ↑n).arrow) z ∈ _ at hh
       dsimp only [i] at hh
       rwa [Subobject.ofLE_arrow] at hh
-  have nhb_zero_successor_has_incoming 
+  have nhb_zero_successor_has_incoming
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
       (r : ℤ) (hr : 2 ≤ r) (hr0 : E.r₀ ≤ r)
       (p : ℤ × ℤ) (x : E.Page 2 p)
@@ -189,7 +189,7 @@ private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
     obtain ⟨v,hv⟩ := (nhb_next_projection_zero_iff_incoming E r hr0 q z).mp hzero
     refine ⟨a,ha,q,rfl,v,?_⟩
     simpa only [eqToHom_refl,Category.comp_id,a,zr,A,nr,ns,CategoryTheory.comp_apply] using hv
-  have nhb_never_hit_representative_nonzero 
+  have nhb_never_hit_representative_nonzero
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)) (hs : E.r₀=2)
       (p : ℤ × ℤ) (x : E.Page 2 p) (hx : x≠0) (hn : KIP126.Core.SpectralSequence.NeverHit E p x) :
       ∀ n : ℕ, ∀ a : E.Page ((n:ℤ)+2) p,
@@ -295,7 +295,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
   have represents_smul {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a) (c : ℤ) :
       KIP126.Core.SpectralSequence.RepresentsOnPage E r p (c • x) (c • a) := by
     obtain ⟨hr, z, hz, hza⟩ := ha
-    refine ⟨hr, c • z, ?_, ?_⟩ <;> simpa only [map_zsmul, hz, hza]
+    refine ⟨hr, c • z, ?_, ?_⟩ <;> simp only [map_zsmul, hz, hza]
   have represents_d_zero_of_later {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
       {a : E.Page r p} (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a)
       (ht : KIP126.Core.SpectralSequence.ReachesPage E t p x) : E.d r p a = 0 := by
@@ -324,7 +324,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
       ((Subobject.ofLE (D'.Z nt) (D'.Z ns) (D'.Z_anti hst)) z) = D'.pageπ nr zr
     rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
     rfl
-  have next_projection_zero_iff_incoming 
+  have next_projection_zero_iff_incoming
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
       (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
       (z : (Subobject.underlying.obj ((E.ssData (p+E.diffDeg r)).Z
@@ -370,7 +370,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
       change (i ≫ (D'.Z ↑n).arrow) z ∈ _ at hh
       dsimp only [i] at hh
       rwa [Subobject.ofLE_arrow] at hh
-  have page_generated_from_representatives 
+  have page_generated_from_representatives
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} (hr : 2 ≤ r)
       {N : ℕ} (e : E.Page 2 p ≃ₗ[ℤ] (Fin N →₀ KIP126.Core.Algebra.F2))
       (v : Fin N → E.Page r p)
@@ -421,12 +421,12 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
       · intro j hj hji
         by_cases hc : c j = 0
         · simp [hc]
-        · simp [hc,Finsupp.single_apply,hji]
+        · simp [hc,hji]
       · simp
     refine ⟨c, represents_unique hxa ?_⟩
     have hh := hsum Finset.univ
     simpa only [hx] using hh
-  have represents_before 
+  have represents_before
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r t : ℤ} {p : ℤ × ℤ}
       {x : E.Page 2 p} {xt : E.Page t p}
       (hr : 2 ≤ r) (hrt : r ≤ t) (ht : KIP126.Core.SpectralSequence.RepresentsOnPage E t p x xt) :
@@ -440,7 +440,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
     dsimp only [zr]
     rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
     exact hz
-  have next_page_two_of_kernel 
+  have next_page_two_of_kernel
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)) (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
       (v : (Subobject.underlying.obj ((E.ssData p).Z ↑((r-E.r₀).toNat+1)) : ModuleCat.{v} ℤ))
       (hcases : ∀ a : E.Page r p, E.d r p a = 0 → a = 0 ∨
@@ -476,7 +476,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
       rw [← map_sub]
       apply hzero
       rw [map_sub,hz,sub_self]
-  have represents_next_nonzero_of_incoming_zero 
+  have represents_next_nonzero_of_incoming_zero
       {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ}
       (hr0 : E.r₀ ≤ r) (hr : 2 ≤ r)
       (hin : E.d r (p-E.diffDeg r) = 0)
@@ -603,7 +603,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
     · intro j hj hji
       by_cases hf : f j=0
       · simp [hf]
-      · simp [hf,Finsupp.single_apply,hji]
+      · simp [hf,hji]
     · simp
   have middle_rep2 {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
       {p : ℤ × ℤ} {r : ℤ} {x : E.Page 2 p} {a : E.Page r p} (hr : 2≤r)
@@ -738,7 +738,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
     have hd := congrArg (E.d 2 (12,137)) hcoef
     rw [dx] at hd
     simp only [map_add,apply_ite,map_zero] at hd
-    simp only [d0,d1,d2,d3,d4,ite_self,zero_add,add_zero] at hd
+    simp only [d0,d1,d2,d3,d4,ite_self,add_zero] at hd
     have c0 : c 0=0 := by
       by_contra h0
       simp only [h0,ite_false] at hd
@@ -1305,7 +1305,7 @@ private theorem nu_ninth_of_fifth_complete
       have hc : familyPageMap D'.family
           (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k) nx =
           D'.sphereE2 s t k x := by
-        convert D'.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+        convert D'.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
       calc
         _ = familyPageMap D'.family D'.nu.unitIso.inv 2 (s,t,t-k)
             (familyPageMap D'.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D'.nu.unitIso.hom) 2 (s,t,t-k)
@@ -1462,10 +1462,9 @@ private theorem nu_ninth_of_fifth_complete
   have lambda_sphere_unit (D' : Model H M' Syn) :
       lambdaMultiply 1 (sphere_unit D') = SyntheticCategory.lam.app (S_0_0 : Syn) := by
     have hu := D'.shiftCoherence.left_unit (0,-1) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
-      eqToHom_app,eqToHom_refl,Category.comp_id] at hu
+    simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,eqToHom_refl,Category.comp_id] at hu
     unfold lambdaMultiply sphere_unit
-    simp only [eqToHom_refl,Category.id_comp,Category.assoc]
+    simp only [eqToHom_refl,Category.id_comp]
     erw [←lambdaPow_naturality 1 (SyntheticCategory.biShift_zero.hom.app (S_0_0 : Syn))]
     erw [←hu,Iso.inv_hom_id_app_assoc]
     exact lambdaPow_one D'.shiftCoherence _
@@ -1474,10 +1473,10 @@ private theorem nu_ninth_of_fifth_complete
       sphereAction (lambdaMultiply 1 (sphere_unit D')) a = lambdaMultiply 1 a := by
     rw [lambda_sphere_unit D']
     have hc := D'.shiftCoherence.lambda_comm (125,131) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,Iso.trans_inv,NatTrans.comp_app,
-      eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,Category.comp_id,Category.id_comp] at hc
+    simp only [biShiftAddIso,Iso.trans_hom,Iso.trans_inv,
+      eqToIso.hom,eqToIso.inv,eqToHom_refl,Category.comp_id,Category.id_comp] at hc
     unfold sphereAction lambdaMultiply
-    simp only [eqToHom_refl,Category.id_comp,Category.assoc]
+    simp only [eqToHom_refl,Category.id_comp]
     erw [lambdaPow_one D'.shiftCoherence, hc]
     simp only [Category.assoc]
     erw [Iso.inv_hom_id_app_assoc]
@@ -1485,8 +1484,7 @@ private theorem nu_ninth_of_fifth_complete
   have sphere_unit_action_136 (D' : Model H M' Syn) {A : Syn}
       (a : BiHom 125 136 A) : sphereAction (sphere_unit D') a = a := by
     have hu := D'.shiftCoherence.left_unit (125,136) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
-      eqToHom_app,eqToHom_refl,Category.comp_id] at hu
+    simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,eqToHom_refl,Category.comp_id] at hu
     unfold sphereAction sphere_unit
     erw [←hu,Iso.inv_hom_id_app_assoc]
   have sphere_unit_label_product_136
@@ -1526,8 +1524,7 @@ private theorem nu_ninth_of_fifth_complete
   have sphere_unit_action_138 (D' : Model H M' Syn) {A : Syn}
       (a : BiHom 125 138 A) : sphereAction (sphere_unit D') a = a := by
     have hu := D'.shiftCoherence.left_unit (125,138) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
-      eqToHom_app,eqToHom_refl,Category.comp_id] at hu
+    simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,eqToHom_refl,Category.comp_id] at hu
     unfold sphereAction sphere_unit
     erw [←hu,Iso.inv_hom_id_app_assoc]
   have sphere_unit_label_product_138
@@ -1777,7 +1774,7 @@ private theorem nu_ninth_of_fifth_complete
   let fourth_push {m w : ℤ} {X Y : Syn}
       (f : (SyntheticCategory.biShift (0,-4)).obj X ⟶ Y) (a : BiHom m w X) :
       BiHom m (w-4) Y :=
-    eqToHom (by congr 1; simp [sub_eq_add_neg]) ≫
+    eqToHom (by congr 1; simp) ≫
       (SyntheticCategory.biShift_comp (m,w) (0,-4)).inv.app (S_0_0 : Syn) ≫
         (SyntheticCategory.biShift (0,-4)).map a ≫ f
   have nu_fourth_push (D' : Model H M' Syn) {X Y : Syn}
@@ -1786,8 +1783,7 @@ private theorem nu_ninth_of_fifth_complete
       sphereAction ν (fourth_push f x) = fourth_push f (sphereAction ν x) := by
     have ha := shift_assoc_inv D'.shiftCoherence (3,4) (122,130) (0,-4)
       (125,134) (122,126) (125,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-      eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+    simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
     simp only [fourth_push, eqToHom_refl, Category.id_comp]
     change
       (SyntheticCategory.biShift_comp (3,4) (122,126)).inv.app (S_0_0 : Syn) ≫
@@ -1867,7 +1863,7 @@ private theorem nu_ninth_of_fifth_complete
       change yp-ly=(if b then lc else 0) at hh
       have hyadd : lambdaMultiply 1 y9=ly+(if b then lc else 0) := by
         cases b <;> simp only [y9,ly,lc,lambdaMultiply,Bool.false_eq_true,↓reduceIte,
-          add_zero,Preadditive.comp_add,CategoryTheory.Limits.comp_zero]
+          add_zero,Preadditive.comp_add]
       rw [hyadd]
       exact sub_eq_iff_eq_add.mp hh |>.trans (add_comm _ _)
     have hc13 : FiltrationAtLeast (nuCoefficientUnit H.unit D'.nu) 13 c :=

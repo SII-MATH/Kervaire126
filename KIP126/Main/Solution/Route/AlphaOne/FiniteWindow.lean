@@ -955,7 +955,7 @@ private theorem stem123_weight130_finite_quotients_cycle_quotient_zero_of_page
     Subsingleton (CycleQuotient H SphereSpectrum c b p) := by
   classical
   have hall (x : cycles H SphereSpectrum c p) : NestedQuotient.projection _ (boundaries H SphereSpectrum b p) x=0 := by
-    obtain ⟨x',hx'⟩ := (isCycle_iff_represents H SphereSpectrum (c+1) (by omega) p x.val).mp ⟨by omega,by simpa using x.property⟩
+    obtain ⟨x',hx'⟩ := (isCycle_iff_represents H SphereSpectrum (c+1) (by omega) p x.val).mp ⟨by omega,by simp⟩
     obtain ⟨xr,hxr⟩ := represents_before hr hc hx'
     rw [hz.elim xr 0] at hxr
     exact (NestedQuotient.projection_eq_zero x).mpr
@@ -1117,7 +1117,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af10_quotient (I : KI
   have hd : E.d 2 (10,133) x=0 := stem123_weight130_finite_quotients_cycle_differential_zero  (r:=2) (c:=8) (p:=(10,133)) (x:=x) (by decide) (by decide) hx (rep2 x)
   have heq : e x=Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1)+Finsupp.single 2 (e x 2) := by
     ext i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x=e.symm (Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1)+Finsupp.single 2 (e x 2)) := by
     rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0=c0 at hxe
@@ -1125,47 +1125,47 @@ private theorem stem123_weight130_finite_quotients_stem123_af10_quotient (I : KI
   generalize hc2 : e x 2=c2 at hxe
   fin_cases c0 <;> fin_cases c1 <;> fin_cases c2
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe]
     exact B.zero_mem
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,he2,add_zero,zero_add] at hxe
     rw [hxe]
     exact b2
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,he1,add_zero,zero_add] at hxe
     rw [hxe]
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,add_zero,zero_add] at hd
+    simp only [hd1] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he1,he2,zero_add] at hxe
     rw [hxe]
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,add_zero,zero_add] at hd
+    simp only [map_add,hd1,hd2,add_zero] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,he0,add_zero] at hxe
     rw [hxe]
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,add_zero,zero_add] at hd
+    simp only [hd0] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he2,add_zero] at hxe
     rw [hxe]
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,add_zero,zero_add] at hd
+    simp only [map_add,hd0,hd2,add_zero] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he1,add_zero] at hxe
     rw [hxe]
     exact b01
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [map_add,he0,he1,he2] at hxe
     rw [hxe]
     exact B.add_mem b01 b2
 
@@ -1203,7 +1203,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af15_quotient (I : KI
   intro x hx
   have heq : e x=Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1)+Finsupp.single 2 (e x 2) := by
     ext i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x=e.symm (Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1)+Finsupp.single 2 (e x 2)) := by
     rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0=c0' at hxe
@@ -1211,44 +1211,44 @@ private theorem stem123_weight130_finite_quotients_stem123_af15_quotient (I : KI
   generalize hc2 : e x 2=c2' at hxe
   fin_cases c0' <;> fin_cases c1' <;> fin_cases c2'
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe]
     exact B.zero_mem
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,he2,add_zero,zero_add] at hxe
     exfalso
     apply bad
     have hh := C.sub_mem hx (C.zero_mem)
     rw [hxe] at hh
     simpa only [add_sub_cancel_left,add_sub_cancel_right,sub_zero] using hh
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,he1,add_zero,zero_add] at hxe
     rw [hxe]
     exact b1
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he1,he2,zero_add] at hxe
     exfalso
     apply bad
     have hh := C.sub_mem hx (c1)
     rw [hxe] at hh
     simpa only [add_sub_cancel_left,add_sub_cancel_right,sub_zero] using hh
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,he0,add_zero] at hxe
     rw [hxe]
     exact b0
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he2,add_zero] at hxe
     exfalso
     apply bad
     have hh := C.sub_mem hx (c0)
     rw [hxe] at hh
     simpa only [add_sub_cancel_left,add_sub_cancel_right,sub_zero] using hh
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he1,add_zero] at hxe
     rw [hxe]
     exact B.add_mem b0 b1
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,add_zero,zero_add] at hxe
+    simp only [map_add,he0,he1,he2] at hxe
     exfalso
     apply bad
     have hh := C.sub_mem hx (C.add_mem c0 c1)
@@ -1356,7 +1356,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     have hw3 := cycles_antitone H SphereSpectrum (11,134) (by decide : (3:ℤ)≤7-1) hw.2
     have hx3 := cycles_antitone H SphereSpectrum (11,134) (by decide : (3:ℤ)≤7) hx
     have hh := (cycles H SphereSpectrum 3 (11,134)).sub_mem hw3 hx3
-    convert hh using 1 <;> first | rfl | abel
+    convert hh using 1; first | rfl | abel
   have hd3 : E.d 2 (11,134) (I.realization.basis .sphere 11 134 3)=I.realization.basis .sphere 13 135 2 := h273.eq_on_page_two.2
   have hdA : E.d 2 (11,134) (I.realization.basis .sphere 11 134 1)+E.d 2 (11,134) (I.realization.basis .sphere 11 134 3)=0 := by
     obtain ⟨_,a3,_,ha3,_,_⟩ := h272
@@ -1382,7 +1382,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
   have hd : E.d 2 (11,134) x=0 := stem123_weight130_finite_quotients_cycle_differential_zero  (r:=2) (c:=7) (p:=(11,134)) (x:=x) (by decide) (by decide) hx (rep2 x)
   have heq : e x=Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1)+Finsupp.single 2 (e x 2)+Finsupp.single 3 (e x 3)+Finsupp.single 4 (e x 4) := by
     ext i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x=e.symm (Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1)+Finsupp.single 2 (e x 2)+Finsupp.single 3 (e x 3)+Finsupp.single 4 (e x 4)) := by
     rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0=v0 at hxe
@@ -1392,59 +1392,59 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
   generalize hc4 : e x 4=v4 at hxe
   fin_cases v0 <;> fin_cases v1 <;> fin_cases v2 <;> fin_cases v3 <;> fin_cases v4
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe]
     exact B.zero_mem
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,he4,add_zero,zero_add] at hxe
     rw [hxe]
     exact b4
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,he3,add_zero,zero_add] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [hd3] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he3,he4,add_zero,zero_add] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd3,hd4,add_zero] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,he2,add_zero,zero_add] at hxe
     rw [hxe]
     exact b2
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he2,he4,add_zero,zero_add] at hxe
     rw [hxe]
     exact B.add_mem b2 b4
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he2,he3,add_zero,zero_add] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd2,hd3,zero_add] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he2,he3,he4,add_zero,zero_add] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd2,hd3,hd4,add_zero,zero_add] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,he1,add_zero,zero_add] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [hd1] at hd
     exact ne (neg_eq_zero.mp hd)
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he1,he4,add_zero,zero_add] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd1,hd4,add_zero] at hd
     exact ne (neg_eq_zero.mp hd)
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he1,he3,add_zero,zero_add] at hxe
     exfalso
     apply badA
     have hh := C.sub_mem hx (C.zero_mem)
@@ -1454,7 +1454,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     rw [cancel] at hh
     exact hh
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he1,he3,he4,add_zero,zero_add] at hxe
     exfalso
     apply badA
     have hh := C.sub_mem hx (c4)
@@ -1464,19 +1464,19 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     rw [cancel] at hh
     exact hh
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he1,he2,add_zero,zero_add] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd1,hd2,add_zero] at hd
     exact ne (neg_eq_zero.mp hd)
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he1,he2,he4,add_zero,zero_add] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd1,hd2,hd4,add_zero] at hd
     exact ne (neg_eq_zero.mp hd)
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he1,he2,he3,add_zero,zero_add] at hxe
     exfalso
     apply badA
     have hh := C.sub_mem hx (c2)
@@ -1486,7 +1486,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     rw [cancel] at hh
     exact hh
   · change x=e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he1,he2,he3,he4,zero_add] at hxe
     exfalso
     apply badA
     have hh := C.sub_mem hx (C.add_mem c2 c4)
@@ -1496,7 +1496,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     rw [cancel] at hh
     exact hh
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [Finsupp.single_zero,he0,add_zero] at hxe
     exfalso
     apply bad0
     have hh := C.sub_mem hx (C.zero_mem)
@@ -1506,7 +1506,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     rw [cancel] at hh
     exact hh
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he4,add_zero] at hxe
     exfalso
     apply bad0
     have hh := C.sub_mem hx (c4)
@@ -1516,19 +1516,19 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     rw [cancel] at hh
     exact hh
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he3,add_zero] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd0,hd3,zero_add] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he3,he4,add_zero] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd0,hd3,hd4,add_zero,zero_add] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he2,add_zero] at hxe
     exfalso
     apply bad0
     have hh := C.sub_mem hx (c2)
@@ -1538,7 +1538,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     rw [cancel] at hh
     exact hh
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he2,he4,add_zero] at hxe
     exfalso
     apply bad0
     have hh := C.sub_mem hx (C.add_mem c2 c4)
@@ -1548,31 +1548,31 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     rw [cancel] at hh
     exact hh
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he2,he3,add_zero] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd0,hd2,hd3,add_zero,zero_add] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he2,he3,he4,add_zero] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd0,hd2,hd3,hd4,add_zero,zero_add] at hd
     exact ne hd
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he1,add_zero] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd0,hd1,zero_add] at hd
     exact ne (neg_eq_zero.mp hd)
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he1,he4,add_zero] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd0,hd1,hd4,add_zero,zero_add] at hd
     exact ne (neg_eq_zero.mp hd)
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he1,he3,add_zero] at hxe
     exfalso
     apply badW
     have hh := C.sub_mem hx (C.zero_mem)
@@ -1582,7 +1582,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     rw [cancel] at hh
     exact hh
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he1,he3,he4,add_zero] at hxe
     exfalso
     apply badW
     have hh := C.sub_mem hx (c4)
@@ -1592,19 +1592,19 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     rw [cancel] at hh
     exact hh
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he1,he2,add_zero] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd0,hd1,hd2,add_zero,zero_add] at hd
     exact ne (neg_eq_zero.mp hd)
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he1,he2,he4,add_zero] at hxe
     exfalso
     rw [hxe] at hd
-    simp only [map_add,hd0,hd1,hd2,hd3,hd4,add_zero,zero_add] at hd
+    simp only [map_add,hd0,hd1,hd2,hd4,add_zero,zero_add] at hd
     exact ne (neg_eq_zero.mp hd)
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,Finsupp.single_zero,he0,he1,he2,he3,add_zero] at hxe
     exfalso
     apply badW
     have hh := C.sub_mem hx (c2)
@@ -1614,7 +1614,7 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
     rw [cancel] at hh
     exact hh
   · change x=e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2)) at hxe
-    simp only [map_add,Finsupp.single_zero,map_zero,he0,he1,he2,he3,he4,add_zero,zero_add] at hxe
+    simp only [map_add,he0,he1,he2,he3,he4] at hxe
     exfalso
     apply badW
     have hh := C.sub_mem hx (C.add_mem c2 c4)

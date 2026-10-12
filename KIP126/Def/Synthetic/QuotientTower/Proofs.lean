@@ -101,7 +101,7 @@ theorem FiniteLambdaQuotientTower.adjacent_lift_boundary_eq_mod
       (QuotientAddGroup.mk (d b : A) : A ⧸ B) := by
   apply QuotientAddGroup.eq.mpr
   have h := Q.adjacent_lift_boundary_difference S i hi d B hfirst a b hab
-  convert B.neg_mem h using 1 <;> abel
+  convert B.neg_mem h using 1; abel
 
 theorem FiniteLambdaQuotientTower.Hom.rho_comm
     {TX : FiniteLambdaQuotientTower X} {TY : FiniteLambdaQuotientTower Y}

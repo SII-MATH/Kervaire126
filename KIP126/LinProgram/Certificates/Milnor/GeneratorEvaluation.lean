@@ -12,6 +12,8 @@ variable {R : Type*} [CommRing R] [CharP R 2]
 /-- xi_0 is the unit; xi_(j+1) is coordinate j. -/
 def xiValue (v : Nat → R) (index : Nat) : R := if index = 0 then 1 else v (index-1)
 
+-- Keep the original instance parameters of this public theorem.
+set_option linter.unusedSectionVars false in
 theorem generatorPower_value (v : Nat → R) (rank index exponent : Nat) (hi : index ≤ rank) :
     monomialValue v (generatorPower rank index exponent) = (xiValue v index)^exponent := by
   unfold monomialValue

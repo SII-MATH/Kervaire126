@@ -66,26 +66,25 @@ private theorem tail_af26 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i; simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(26,151)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af26 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (26,151)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (26,151))
   exact tail_af26 I
 
 private theorem tail_af27_h480 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (27,152) (29,153)
@@ -148,33 +147,33 @@ private theorem tail_af27 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(27,152)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he1, hd1, zero_add, add_zero] at hx
+    simp only [he1, hd1] at hx
     have hval := congrArg (fun y => f y 2) hx
-    simp only [map_add, map_zero, ←hf2, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf2, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, ←hf2, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
@@ -182,7 +181,6 @@ private theorem tail_af27 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af27 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (27,152)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (27,152))
   exact tail_af27 I
 
 private theorem tail_af28_h492 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (28,153) (30,154)
@@ -294,7 +292,7 @@ private theorem tail_af28 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) + Finsupp.single 3 (e x 3)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) + Finsupp.single 3 (e x 3)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
@@ -302,105 +300,105 @@ private theorem tail_af28 (I : Inputs D L G) :
   generalize hc3 : e x 3 = c3 at hxe
   fin_cases c0 <;> fin_cases c1 <;> fin_cases c2 <;> fin_cases c3
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(28,153)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he3, hd3, zero_add, add_zero] at hx
+    simp only [he3, hd3] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
     rw [he2]
     simpa only [zero_add] using (hz2)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he2, he3, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he2, he3, hd2, hd3, zero_add] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he1, he3, hd1, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he1, he3, hd1, hd3, zero_add] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
     rw [he1, he2]
     simpa only [zero_add] using (represents_add_tail (hz1) hz2)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,zero_add] at hxe
     rw [hxe] at hx ⊢
     simp only [map_add, he1, he2, he3, hd1, hd2, hd3, zero_add, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he3, hd0, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he3, hd0, hd3] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he2, hd0, hd2, zero_add, add_zero] at hx
+    simp only [map_add, he0, he2, hd0, hd2, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he2, he3, hd0, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he2, he3, hd0, hd2, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, he3, hd0, hd1, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he3, hd0, hd1, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, he2, hd0, hd1, hd2, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he2, hd0, hd1, hd2, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, he2, he3, hd0, hd1, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he2, he3, hd0, hd1, hd2, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
@@ -408,7 +406,6 @@ private theorem tail_af28 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af28 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (28,153)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (28,153))
   exact tail_af28 I
 
 private theorem stem125_af29_four_h498 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (27,153) (29,154)
@@ -563,7 +560,6 @@ private theorem stem125_af29_four (I : Inputs D L G) :
 private theorem stem125_e5_zero_af29 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (29,154)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (29,154))
   exact adamsTowerInternal_page_subsingleton_of_le H.unit SphereSpectrum 4 5 29 154
     (by decide) (by decide) (stem125_af29_four I)
 
@@ -631,39 +627,38 @@ private theorem tail_af30 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(30,155)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af30 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (30,155)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (30,155))
   exact tail_af30 I
 
 private theorem stem125_af31_five_h501 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (29,155) (31,156)
@@ -767,7 +762,7 @@ private theorem stem125_af31_five_hd3zero
       (fun i : Fin 0 => i.elim0) (fun i => i.elim0) q
     simpa only [Fin.sum_univ_zero] using hc
   ext q
-  simpa only [hp q,map_zero] using (E.d 3 (32,157)).hom.map_zero
+  simp only [hp q,map_zero]
 
 private theorem stem125_af31_target_nonzero (I : Inputs D L G)
     {b : (sequence D .sphere).Page 4 (35,159)}
@@ -871,7 +866,6 @@ private theorem stem125_af31_five (I : Inputs D L G) :
 private theorem stem125_e5_zero_af31 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (31,156)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (31,156))
   exact stem125_af31_five I
 
 private theorem tail_af32 (I : Inputs D L G) :
@@ -889,7 +883,6 @@ private theorem tail_af32 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af32 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (32,157)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (32,157))
   exact tail_af32 I
 
 private theorem tail_af33_h525 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (33,158) (35,159)
@@ -931,26 +924,25 @@ private theorem tail_af33 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i; simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(33,158)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af33 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (33,158)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (33,158))
   exact tail_af33 I
 
 private theorem tail_af34_h531 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 3 (31,157) (34,159)
@@ -1007,7 +999,6 @@ private theorem tail_af34 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af34 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (34,159)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (34,159))
   exact tail_af34 I
 
 private theorem tail_af35 (I : Inputs D L G) :
@@ -1025,7 +1016,6 @@ private theorem tail_af35 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af35 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (35,160)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (35,160))
   exact tail_af35 I
 
 private theorem tail_af36_h541 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (36,161) (38,162)
@@ -1092,39 +1082,38 @@ private theorem tail_af36 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(36,161)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af36 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (36,161)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (36,161))
   exact tail_af36 I
 
 private theorem tail_af37_h547 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (37,162) (39,163)
@@ -1190,39 +1179,38 @@ private theorem tail_af37 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(37,162)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af37 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (37,162)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (37,162))
   exact tail_af37 I
 
 private theorem stem125_e5_zero_26_to_37 (I : Inputs D L G)
@@ -1351,7 +1339,6 @@ private theorem stem125_af38_four (I : Inputs D L G) :
 private theorem stem125_e5_zero_af38 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (38,163)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (38,163))
   exact adamsTowerInternal_page_subsingleton_of_le H.unit SphereSpectrum 4 5 38 163
     (by decide) (by decide) (stem125_af38_four I)
 
@@ -1419,33 +1406,33 @@ private theorem tail_af40_three (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(40,165)) (r:=3) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem tail_af39_h557 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 4 (39,164) (43,167)
@@ -1589,7 +1576,6 @@ private theorem tail_af39 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af39 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (39,164)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (39,164))
   exact tail_af39 I
 
 private theorem tail_af40_h563 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (40,165) (42,166)
@@ -1656,39 +1642,38 @@ private theorem tail_af40 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(40,165)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af40 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (40,165)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (40,165))
   exact tail_af40 I
 
 private theorem tail_af41_four_h567 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 3 (41,166) (44,168)
@@ -1806,7 +1791,7 @@ private theorem tail_af41_four (I : Inputs D L G) :
     rw [hh,←hk1]
     intro hz
     have hz' := congrArg k hz
-    simpa using hz'
+    simp at hz'
   have frame : ∀ q : E.Page 3 (41,166), q=0 ∨ q=a :=
     frame_after_second (by change (2:ℤ)≤2; omega) (by decide) e (he0.symm ▸ ha) hn
   have ker (q : E.Page 3 (41,166)) (hq : E.d 3 (41,166) q=0) : q=0 := by
@@ -1823,7 +1808,6 @@ private theorem tail_af41_four (I : Inputs D L G) :
 private theorem stem125_e5_zero_af41 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (41,166)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (41,166))
   exact adamsTowerInternal_page_subsingleton_of_le H.unit SphereSpectrum 4 5 41 166
     (by decide) (by decide) (tail_af41_four I)
 
@@ -1866,26 +1850,25 @@ private theorem tail_af42 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i; simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(42,167)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af42 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (42,167)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (42,167))
   exact tail_af42 I
 
 private theorem stem125_af43 (I : Inputs D L G) :
@@ -1942,7 +1925,7 @@ private theorem stem125_af43 (I : Inputs D L G) :
       e.symm (Finsupp.single i 1) ≠ 0 := by
     intro hz
     have hh := congrArg (fun z => e z i) hz
-    simpa using hh
+    simp at hh
   have at_two {p : ℤ × ℤ} {r : ℤ} {a : E.Page 2 p} {b : E.Page r p}
       (hr : 2≤r) (hb : RepresentsOnPage E r p a b) : RepresentsOnPage E 2 p a a := by
     obtain ⟨c,hc⟩ := represents_before (by decide : (2:ℤ)≤2) hr hb
@@ -2126,7 +2109,6 @@ private theorem stem125_af43 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af43 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (43,168)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (43,168))
   exact stem125_af43 I
 
 private theorem tail_af44_h589 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (44,169) (46,170)
@@ -2167,26 +2149,25 @@ private theorem tail_af44 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i; simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(44,169)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af44 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (44,169)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (44,169))
   exact tail_af44 I
 
 private theorem tail_af45_h594 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 3 (42,168) (45,170)
@@ -2224,7 +2205,6 @@ private theorem tail_af45 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af45 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (45,170)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (45,170))
   exact tail_af45 I
 
 private theorem tail_af46_h598 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 4 (42,168) (46,171)
@@ -2262,7 +2242,6 @@ private theorem tail_af46 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af46 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (46,171)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (46,171))
   exact tail_af46 I
 
 private theorem stem125_e5_zero_38_to_46 (I : Inputs D L G)
@@ -2296,7 +2275,6 @@ private theorem tail_af47 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af47 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (47,172)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (47,172))
   exact tail_af47 I
 
 private theorem tail_af48 (I : Inputs D L G) :
@@ -2314,7 +2292,6 @@ private theorem tail_af48 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af48 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (48,173)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (48,173))
   exact tail_af48 I
 
 private theorem tail_af49_h609 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 4 (45,171) (49,174)
@@ -2352,7 +2329,6 @@ private theorem tail_af49 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af49 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (49,174)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (49,174))
   exact tail_af49 I
 
 private theorem tail_af50 (I : Inputs D L G) :
@@ -2370,7 +2346,6 @@ private theorem tail_af50 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af50 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (50,175)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (50,175))
   exact tail_af50 I
 
 private theorem tail_af51 (I : Inputs D L G) :
@@ -2388,7 +2363,6 @@ private theorem tail_af51 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af51 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (51,176)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (51,176))
   exact tail_af51 I
 
 private theorem stem125_af52 (I : Inputs D L G) :
@@ -2440,7 +2414,7 @@ private theorem stem125_af52 (I : Inputs D L G) :
     rw [←h0]
     intro hz
     have hc := congrArg (fun z => eT z (0 : Fin 1)) hz
-    simpa using hc
+    simp at hc
   obtain ⟨y3,hy3⟩ := represents_before (by decide : (2:ℤ)≤3) (by decide : (3:ℤ)≤4) hy
   have hy2 : RepresentsOnPage E 2 (56,180)
       (I.realization.basis .sphere 56 180 0) (I.realization.basis .sphere 56 180 0) := by
@@ -2478,7 +2452,6 @@ private theorem stem125_af52 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af52 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (52,177)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (52,177))
   exact stem125_af52 I
 
 private theorem tail_af53 (I : Inputs D L G) :
@@ -2496,7 +2469,6 @@ private theorem tail_af53 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af53 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (53,178)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (53,178))
   exact tail_af53 I
 
 private theorem tail_af54 (I : Inputs D L G) :
@@ -2514,7 +2486,6 @@ private theorem tail_af54 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af54 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (54,179)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (54,179))
   exact tail_af54 I
 
 private theorem tail_af55_h626 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (55,180) (57,181)
@@ -2555,26 +2526,25 @@ private theorem tail_af55 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i; simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(55,180)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af55 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (55,180)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (55,180))
   exact tail_af55 I
 
 private theorem tail_af56_h629 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 2 (56,181) (58,182)
@@ -2615,26 +2585,25 @@ private theorem tail_af56 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i; simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(56,181)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af56 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (56,181)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (56,181))
   exact tail_af56 I
 
 private theorem tail_af57_h633 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 3 (54,180) (57,182)
@@ -2672,7 +2641,6 @@ private theorem tail_af57 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af57 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (57,182)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (57,182))
   exact tail_af57 I
 
 private theorem tail_af58 (I : Inputs D L G) :
@@ -2690,7 +2658,6 @@ private theorem tail_af58 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af58 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (58,183)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (58,183))
   exact tail_af58 I
 
 private theorem tail_af59 (I : Inputs D L G) :
@@ -2708,7 +2675,6 @@ private theorem tail_af59 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af59 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (59,184)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (59,184))
   exact tail_af59 I
 
 private theorem tail_af60 (I : Inputs D L G) :
@@ -2726,7 +2692,6 @@ private theorem tail_af60 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af60 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (60,185)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (60,185))
   exact tail_af60 I
 
 private theorem tail_af61 (I : Inputs D L G) :
@@ -2744,7 +2709,6 @@ private theorem tail_af61 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af61 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (61,186)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (61,186))
   exact tail_af61 I
 
 private theorem tail_af62 (I : Inputs D L G) :
@@ -2762,7 +2726,6 @@ private theorem tail_af62 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af62 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (62,187)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (62,187))
   exact tail_af62 I
 
 private theorem tail_af63 (I : Inputs D L G) :
@@ -2780,7 +2743,6 @@ private theorem tail_af63 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af63 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (63,188)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (63,188))
   exact tail_af63 I
 
 private theorem tail_af64 (I : Inputs D L G) :
@@ -2798,7 +2760,6 @@ private theorem tail_af64 (I : Inputs D L G) :
 private theorem stem125_e5_zero_af64 (I : Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 5 (64,189)) := by
   classical
-  change Subsingleton ((sequence D .sphere).Page 5 (64,189))
   exact tail_af64 I
 
 private theorem stem125_e5_zero_47_to_64 (I : Inputs D L G)

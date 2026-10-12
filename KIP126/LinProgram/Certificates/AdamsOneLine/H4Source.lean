@@ -46,9 +46,7 @@ private theorem h0h3Sq_monomial :
       (Finsupp.single (0 : Generator) 1 + Finsupp.single (3 : Generator) 2) (1 : F2) =
       MvPolynomial.X (0 : Generator) * MvPolynomial.X (3 : Generator) ^ 2 := by
   rw [MvPolynomial.X_pow_eq_monomial]
-  simpa [MvPolynomial.X] using
-    (MvPolynomial.monomial_mul (Finsupp.single (0 : Generator) 1)
-      (Finsupp.single (3 : Generator) 2) (1 : F2) (1 : F2)).symm
+  simp [MvPolynomial.X]
 
 noncomputable def dataH0H3Sq : E2At 3 17 :=
   ⟨projection (MvPolynomial.monomial

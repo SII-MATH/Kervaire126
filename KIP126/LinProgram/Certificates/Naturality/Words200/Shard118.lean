@@ -25,7 +25,7 @@ attribute [local cbv_eval] cetaCode_get KIP126.LinE2.generatorDegree_eq_row
   SquareDetection.splitOn_newline SquareDetection.toNat?_eq_chars
   BasisCatalogue.splitOn_pipe
 theorem relations_zero : ∀ code ∈ relationCodes, nativeImage code = 0 := by
-  simp only [relationCodes, List.forall_mem_cons]
+  simp only [relationCodes]
   simp
 theorem all_checks : entries.all (BatchMapCertificate.check relationCodes) = true := by cbv
 theorem source_ids : entries.map (fun e => e.source.id) = List.range' 15106 128 := by cbv

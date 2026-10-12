@@ -46,8 +46,8 @@ class StableHomotopyCategory (C : Type u) extends
 
 attribute [instance] StableHomotopyCategory.shiftAdditive
 attribute [instance] StableHomotopyCategory.hasZeroObject
-attribute [instance] StableHomotopyCategory.pretriangulated
 attribute [reducible] StableHomotopyCategory.pretriangulated
+attribute [instance] StableHomotopyCategory.pretriangulated
 
 /-! ### Explicit cofiber and tensor-triangulated witnesses -/
 
@@ -120,6 +120,8 @@ class ClosedSymmetricTensorTriangulated where
     ∀ W : C, letI := ihomShift W
       (ihom W).IsTriangulated
 
+attribute [implicit_reducible] ClosedSymmetricTensorTriangulated.symmetricCategory
+attribute [implicit_reducible] ClosedSymmetricTensorTriangulated.monoidalClosed
 attribute [instance] ClosedSymmetricTensorTriangulated.symmetricCategory
 attribute [instance] ClosedSymmetricTensorTriangulated.monoidalClosed
 

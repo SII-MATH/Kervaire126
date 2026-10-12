@@ -22,6 +22,8 @@ local notation "h₀" => routeLiterature.toda.h0
 
 
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- Lemma `lem:toda2ext`, for all members of the stated bracket.
 The independent weak-representative construction proves that C3 and C5
 cannot hold together, so this conclusion follows with its original assumptions. -/

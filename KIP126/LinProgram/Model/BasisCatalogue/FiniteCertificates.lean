@@ -334,7 +334,7 @@ private theorem charCheck_sound (s : String) (r : BasisRow)
       simpa using congrArg String.ofList hchars
     · intro ha hb
       subst a; subst b
-      simpa using hc
+      simp at hc
 private theorem all_rows_good
     (hc : ∀ chunk ∈ RawData.basisChunks.toList,
       (chunk.toList.splitOn '\n').all charCheck = true) :

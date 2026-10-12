@@ -369,7 +369,7 @@ private theorem stem124_finite_pages_low124_af9_four (I : KIP126.Computation.Rou
   rcases stem124_finite_pages_f2_three (e x) with h|h|h|h|h|h|h|h
   all_goals have hh := congrArg e.symm h
   all_goals simp only [LinearEquiv.symm_apply_apply,map_zero,map_add,e0,e1,e2] at hh
-  all_goals simp only [hh,map_zero,map_add,d20,d21,d22,ht2,zero_add,add_zero]; tauto
+  all_goals simp only [hh,map_zero,map_add,d20,d21,d22,ht2,zero_add]; tauto
 
 
 private theorem stem124_finite_pages_s8_d2 (I : KIP126.Computation.Route.Inputs D L G) :
@@ -432,7 +432,7 @@ private theorem stem124_finite_pages_low124_af8_three (I : KIP126.Computation.Ro
     rw [← hf2]
     intro hzero
     have hz := congrArg (fun y => f y 2) hzero
-    simpa using hz
+    simp at hz
   have hde : ∀ z, E.d 2 (8,132) (e.symm z) = 0 → z = 0 := by
     intro z hz
     have hzrepr : z = Finsupp.single 0 (z 0) := by
@@ -456,7 +456,7 @@ private theorem stem124_finite_pages_low124_af8_three (I : KIP126.Computation.Ro
   have hsex : S.Exact := S.moduleCat_exact_iff.mpr (by
     intro z hz
     have hz0 : z = 0 := hs (hz.trans (map_zero _).symm)
-    exact ⟨0, by simpa [hz0]⟩)
+    exact ⟨0, by simp [hz0]⟩)
   have hzero := (S.exact_iff_isZero_homology).mp hsex
   exact ModuleCat.subsingleton_of_isZero ((pageHomologyIso E 2 (8,132)
     (by change (2:ℤ)≤2; omega)).isZero_iff.mpr hzero)

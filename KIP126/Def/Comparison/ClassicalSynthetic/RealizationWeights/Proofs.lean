@@ -54,6 +54,8 @@ theorem RealizationWeightComparison.unique
       cases h
       rfl
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- Existence follows from inversion of the actual lambda maps and the
 specified recovery at weight zero. It requires coherent index transports. -/
 theorem realizationWeightComparison_exists (coherent : BiShiftCoherence Syn) :

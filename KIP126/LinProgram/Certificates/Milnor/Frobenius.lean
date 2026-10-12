@@ -41,6 +41,8 @@ theorem tensorValue_frobenius (left right : Nat → R) (p : List TensorMonomial)
   rw [list_sum_pow_two_power,List.map_map]
   simp only [Function.comp_def,mul_pow]
 
+-- Keep the original instance parameters of this public theorem.
+set_option linter.unusedSectionVars false in
 theorem monomialValue_multiply (v : Nat → R) (a b : Monomial) (h : a.length = b.length) :
     monomialValue v (multiplyMonomial a b) = monomialValue v a * monomialValue v b := by
   unfold monomialValue
@@ -83,6 +85,8 @@ theorem tensorValue_multiply (left right : Nat → R) (p q : List TensorMonomial
     change _ = (monomialValue left x.1 * monomialValue right x.2 + tensorValue left right xs) * tensorValue left right q
     rw [add_mul]
 
+-- Keep the original instance parameters of this public theorem.
+set_option linter.unusedSectionVars false in
 theorem monomialValue_unit (v : Nat → R) (rank : Nat) :
     monomialValue v (unitMonomial rank) = 1 := by
   unfold monomialValue unitMonomial

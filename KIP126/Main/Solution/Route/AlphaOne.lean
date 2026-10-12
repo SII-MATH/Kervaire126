@@ -220,6 +220,8 @@ theorem classical_stem124_af13_generated :
     ClassicalInfinityGenerated 13 137 eCorrection := by
   exact stem124_af13_exhaustion routeComputation sphereVanishing
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- The filtration bound in Proposition 7.8 combines classical vanishing
 with BHS boundary stabilization at weight128. The remaining incoming sources
 vanish, excluding synthetic lambda-torsion in these lower filtrations. -/

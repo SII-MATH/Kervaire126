@@ -40,12 +40,12 @@ theorem finiteLambdaTarget_eq_zero_iff (q k : ℕ) (hkq : k < q) (s t : ℤ)
   let a := S.lowerIso (XModLambdaN (N.functor.obj Y) (q - k)) k (s, t) t
     (P.finiteTarget q k hkq s t z)
   have he := K.lambda_finite Y q k hkq (s, t) t
-    (by constructor <;> simp <;> omega) a
+    (by constructor <;> simp; omega) a
   erw [show R.finiteWindow Y (q - k) (by omega) (s, t) t
-      (by constructor <;> simp <;> omega) a = finiteTopClass H Y (q - k) (s, t) z
+      (by constructor <;> simp; omega) a = finiteTopClass H Y (q - k) (s, t) z
         from J.finite q k hkq s t z] at he
   change R.finiteWindow Y q (by omega) (s, t) (t - k)
-      (by constructor <;> simp <;> omega)
+      (by constructor <;> simp; omega)
       (((F.functor.map ((T Y).lambdaInclusion k q hkq)).eInftyMap (s, t, t - k)).hom
         ((S.lowerIso (XModLambdaN (N.functor.obj Y) (q - k)) k (s, t) t).symm
           ((S.lowerIso (XModLambdaN (N.functor.obj Y) (q - k)) k (s, t) t)
@@ -54,7 +54,7 @@ theorem finiteLambdaTarget_eq_zero_iff (q k : ℕ) (hkq : k < q) (s t : ℤ)
   rw [← J.target_tower] at he
   calc
     _ ↔ R.finiteWindow Y q (by omega) (s, t) (t - k)
-        (by constructor <;> simp <;> omega)
+        (by constructor <;> simp; omega)
         (((F.functor.map (P.targetTower.lambdaInclusion k q hkq)).eInftyMap
           (s, t, t - k)).hom (P.finiteTarget q k hkq s t z)) = 0 :=
       (LinearEquiv.map_eq_zero_iff _).symm

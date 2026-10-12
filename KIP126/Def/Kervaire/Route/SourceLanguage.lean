@@ -1069,6 +1069,8 @@ def ClassicalProductDetection (D : Model H M Syn) : Prop :=
       (eqToHom (congrArg (fun n : ℤ => Sphere (C := C) n)
         (by simp only [Nat.cast_add]; omega : ((t+t' : ℕ) : ℤ)-(s+s') = ((t : ℤ)-s)+((t' : ℤ)-s'))) ≫ classicalSphereProduct a b)
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- This is the CLASSICAL tail obligation used to remove the ambiguity of a
 125-stem representative. It is a consequence of the C(M) E5-exhaustion,
 Ravenel's vanishing line and the same tower's separated filtration. It is
@@ -1226,7 +1228,7 @@ def sourceNormalizedConnecting (S : NuCofiberSourceData D)
     (SyntheticCategory.biShift_comp ((1,1)+(0,-eh)) (0,-eg)).hom.app X ≫
     eqToHom (congrArg (fun p => (SyntheticCategory.biShift p).obj X)
       (show ((1,1)+(0,-eh))+(0,-eg) = (0,(normalizedExponent H T.f : ℤ))+(1,0) from by
-        dsimp [eg, eh, T]; ext <;> simp only [Prod.fst_add, Prod.snd_add, Prod.fst, Prod.snd] <;> omega)) ≫
+        dsimp [eg, eh, T]; ext <;> simp only []; omega)) ≫
     (SyntheticCategory.biShift_comp (0,(normalizedExponent H T.f : ℤ)) (1,0)).inv.app X ≫
     (SyntheticCategory.biShift_compat (Syn := Syn) 1).hom.app _
 
