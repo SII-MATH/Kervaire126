@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Source.Group.Data
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Source.Naturality.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Source.Naturality
 
 @[expose] public section
 

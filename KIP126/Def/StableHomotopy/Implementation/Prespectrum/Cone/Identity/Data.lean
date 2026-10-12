@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Identity.Square.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Identity.Square
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyCategory.Homotopy.Data
 
 @[expose] public section

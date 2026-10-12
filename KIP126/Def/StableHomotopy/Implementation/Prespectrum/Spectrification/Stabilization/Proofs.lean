@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Desuspension.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Desuspension
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Telescope.Proofs
 
 @[expose] public section

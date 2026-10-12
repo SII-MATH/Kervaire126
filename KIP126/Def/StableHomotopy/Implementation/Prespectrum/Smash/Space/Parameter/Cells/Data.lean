@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Colimit.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Colimit
 public import Mathlib.AlgebraicTopology.RelativeCellComplex.AttachCells
 
 @[expose] public section

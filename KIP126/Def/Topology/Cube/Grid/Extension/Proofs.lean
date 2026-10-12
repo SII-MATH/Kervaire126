@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.Topology.Cube.Grid.Layers.Proofs
-public import KIP126.Def.Topology.HomotopyLifting.Cube.Faces.Horn.Proofs
+public import KIP126.Def.Topology.HomotopyLifting.Cube.Faces.Horn
 
 @[expose] public section
 

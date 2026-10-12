@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.Gluing.Disjoint.Proofs
-public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.MappingCylinder.Ends.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.MappingCylinder.Ends
 public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.MappingCone.Proofs
 
 @[expose] public section

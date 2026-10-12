@@ -1,7 +1,7 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Rotation.Equivalence.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Preadditive.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Rotation.Equivalence
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Preadditive
 
 @[expose] public section
 

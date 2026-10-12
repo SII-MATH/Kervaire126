@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.HF2.Unit.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Unit
 public import KIP126.Def.StableHomotopy.Implementation.HF2.Scalar.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Connectivity.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Universal.Proofs

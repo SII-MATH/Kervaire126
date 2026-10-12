@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.Topology.HomotopyFiber.Contraction.Cubical.Proofs
+public import KIP126.Def.Topology.HomotopyFiber.Contraction.Cubical
 public import KIP126.Def.Topology.HomotopyGroup.ContinuousMap.Data
 
 @[expose] public section

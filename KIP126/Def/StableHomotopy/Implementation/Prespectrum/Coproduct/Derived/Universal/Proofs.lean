@@ -1,8 +1,8 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Derived.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Derived
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Representation.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Homotopy.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Homotopy
 
 @[expose] public section
 

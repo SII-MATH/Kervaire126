@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Map.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Map
 public import Mathlib.CategoryTheory.Limits.Shapes.Pullback.IsPullback.Defs
 
 @[expose] public section

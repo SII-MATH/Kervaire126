@@ -2,8 +2,8 @@ module
 
 public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Boundary.Cone.Iteration.Proofs
 public import KIP126.Def.Topology.Simplex.ClosedBall.Proofs
-public import KIP126.Def.Topology.Simplex.Reindex.Proofs
-public import KIP126.Def.Topology.HomotopyLifting.Cube.ClosedBall.Proofs
+public import KIP126.Def.Topology.Simplex.Reindex
+public import KIP126.Def.Topology.HomotopyLifting.Cube.ClosedBall
 public import KIP126.Def.Topology.HomotopyLifting.Cube.Boundary.Data
 
 @[expose] public section

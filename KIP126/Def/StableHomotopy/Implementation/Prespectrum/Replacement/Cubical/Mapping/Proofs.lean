@@ -4,7 +4,7 @@ public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.R
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.Lifting.Equivalence.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Path.Endpoint.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyCategory.Quotient.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyCategory.Quotient
 
 @[expose] public section
 

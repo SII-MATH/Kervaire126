@@ -1,7 +1,7 @@
 module
 
-public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Subdivision.Iteration.LastVertex.Proofs
-public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Subdivision.Iteration.Vertices.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Subdivision.Iteration.LastVertex
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Subdivision.Iteration.Vertices
 public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Carrier.Homotopy.Proofs
 public import KIP126.Def.Topology.Homotopy.Precomposition.Proofs
 

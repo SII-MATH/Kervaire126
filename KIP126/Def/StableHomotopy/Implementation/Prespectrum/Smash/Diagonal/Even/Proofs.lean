@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Map.Data
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Bond.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Bond
 public import KIP126.Def.StableHomotopy.Implementation.Suspension.Comparison.Data
 
 @[expose] public section

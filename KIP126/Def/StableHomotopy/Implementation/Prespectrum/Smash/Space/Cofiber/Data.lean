@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cofiber.Level.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cofiber.Level
 
 @[expose] public section
 namespace KIP126.StableHomotopy.Implementation.Prespectrum

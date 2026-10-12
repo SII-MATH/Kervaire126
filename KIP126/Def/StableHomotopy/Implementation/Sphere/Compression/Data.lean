@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Sphere.Representatives.Proofs
-public import KIP126.Def.Topology.Cube.Compression.Loop.Proofs
+public import KIP126.Def.Topology.Cube.Compression.Loop
 
 @[expose] public section
 

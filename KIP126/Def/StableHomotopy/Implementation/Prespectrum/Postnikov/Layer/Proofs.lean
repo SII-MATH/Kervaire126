@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Layer.Data
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Tower.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Tower
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Source.Chosen.Proofs
 
 @[expose] public section

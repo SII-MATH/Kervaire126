@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.Homotopy.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.Homotopy
 
 @[expose] public section
 

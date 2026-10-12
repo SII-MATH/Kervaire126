@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Composition.Comparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Composition.Comparison
 
 @[expose] public section
 

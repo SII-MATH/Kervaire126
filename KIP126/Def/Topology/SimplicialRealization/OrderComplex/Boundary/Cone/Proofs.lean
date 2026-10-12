@@ -3,7 +3,7 @@ module
 public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Boundary.Cone.Data
 public import Mathlib.Data.Fintype.WithTopBot
 public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Boundary.Simplex.Proofs
-public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Subdivision.Iteration.Vertices.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Subdivision.Iteration.Vertices
 
 @[expose] public section
 

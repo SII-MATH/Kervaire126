@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Source.Triangulated.Data
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Sequence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Sequence
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Functor.Product.Proofs
 public import Mathlib.Algebra.Homology.ShortComplex.Ab
 public import Mathlib.CategoryTheory.Triangulated.HomologicalFunctor

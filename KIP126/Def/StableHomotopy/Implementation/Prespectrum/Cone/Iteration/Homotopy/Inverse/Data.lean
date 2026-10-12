@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Iteration.Homotopy.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Iteration.Homotopy
 
 @[expose] public section
 

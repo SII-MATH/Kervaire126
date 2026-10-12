@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.Topology.HomotopyLifting.Cube.Proofs
+public import KIP126.Def.Topology.HomotopyLifting.Cube
 public import KIP126.Def.Topology.HomotopyLifting.Cube.Boundary.Topology.Proofs
 
 @[expose] public section

@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Source.Exact.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Source.Functor.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Source.Functor
 
 @[expose] public section
 

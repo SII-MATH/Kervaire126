@@ -1,10 +1,10 @@
 module
 
 public import KIP126.Def.Topology.FiberBundle.Attachment.Equivalence.Data
-public import KIP126.Def.Topology.FiberBundle.OpenEmbedding.Proofs
-public import KIP126.Def.Topology.FiberBundle.Pullback.Chart.Proofs
+public import KIP126.Def.Topology.FiberBundle.OpenEmbedding
+public import KIP126.Def.Topology.FiberBundle.Pullback.Chart
 public import KIP126.Def.Topology.FiberBundle.Pullback.Proofs
-public import KIP126.Def.Topology.FiberBundle.Chart.Global.Proofs
+public import KIP126.Def.Topology.FiberBundle.Chart.Global
 
 @[expose] public section
 

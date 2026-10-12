@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Tower.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Tower
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Data
 public import KIP126.Def.StableHomotopy.InverseSequence.Proofs
 

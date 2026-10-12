@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Cubical.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibrant.Representation.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Preadditive.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Preadditive
 
 @[expose] public section
 

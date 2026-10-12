@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.Algebra.DirectSequence.Proofs
+public import KIP126.Def.Algebra.DirectSequence
 public import Mathlib.Algebra.Category.Grp.Kernels
 public import Mathlib.CategoryTheory.Functor.OfSequence
 

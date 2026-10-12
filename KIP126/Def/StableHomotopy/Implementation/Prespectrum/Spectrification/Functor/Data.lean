@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Functor.Map.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Functor.Map
 
 @[expose] public section
 

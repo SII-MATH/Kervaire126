@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.StableHomotopy.Implementation.Suspension.Comparison.Stable.Data
 public import KIP126.Def.StableHomotopy.Implementation.Suspension.Comparison.Rotation.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Suspension.HomotopyMap.Stable.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Suspension.HomotopyMap.Stable
 
 @[expose] public section
 

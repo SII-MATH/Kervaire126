@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Suspension.Cell.Pushout.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.AdjoinPoint.Inclusion.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.AdjoinPoint.Inclusion
 
 @[expose] public section
 

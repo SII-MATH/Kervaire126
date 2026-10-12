@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Singular.Prespectrum.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Prespectrum
 public import KIP126.Def.StableHomotopy.Implementation.Smash
 
 @[expose] public section

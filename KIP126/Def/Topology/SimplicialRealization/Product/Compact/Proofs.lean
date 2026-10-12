@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.Topology.SimplicialRealization.Product.Proofs
-public import KIP126.Def.Topology.Product.CompactFactor.Proofs
+public import KIP126.Def.Topology.Product.CompactFactor
 
 @[expose] public section
 

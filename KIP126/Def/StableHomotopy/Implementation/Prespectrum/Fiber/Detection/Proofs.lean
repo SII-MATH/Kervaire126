@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Sequence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Sequence
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Zero.Detection.Proofs
 
 @[expose] public section

@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.Topology.SmallObject.Cubical.Proofs
+public import KIP126.Def.Topology.SmallObject.Cubical
 public import KIP126.Def.Topology.SmallObject.CompactlyGenerated.Proofs
 public import KIP126.Def.Topology.SmallObject.HomotopyExtension.Proofs
 public import KIP126.Def.Topology.HomotopyLifting.Cube.Boundary.Extension.Proofs

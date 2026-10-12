@@ -1,7 +1,7 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Completion.Shift.Integer.Coherence.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Completion.Preadditive.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Shift.Integer.Coherence
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Preadditive
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SourceShift.Integer.Additive.Proofs
 
 @[expose] public section

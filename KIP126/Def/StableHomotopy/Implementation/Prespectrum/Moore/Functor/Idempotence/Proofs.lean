@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Functor.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Functor
 
 @[expose] public section
 

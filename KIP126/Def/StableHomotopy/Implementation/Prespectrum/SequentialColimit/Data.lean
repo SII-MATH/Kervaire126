@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SequentialColimit.Bond.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SequentialColimit.Bond
 
 @[expose] public section
 

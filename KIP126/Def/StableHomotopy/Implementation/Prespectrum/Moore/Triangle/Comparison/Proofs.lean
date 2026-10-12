@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Triangle.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Shift.CommShift.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Shift.CommShift
 public import Mathlib.Algebra.FiveLemma
 
 @[expose] public section

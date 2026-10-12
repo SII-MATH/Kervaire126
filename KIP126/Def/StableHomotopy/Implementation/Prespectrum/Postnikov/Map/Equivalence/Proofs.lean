@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Functor.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Functor
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Restriction.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyFunctor.Conservativity.Proofs
 

@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Map.Stability.General.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Comparison.Based.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Map.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Map
 
 @[expose] public section
 

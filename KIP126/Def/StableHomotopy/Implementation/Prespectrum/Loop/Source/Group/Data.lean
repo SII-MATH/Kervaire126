@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Group.Operation.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Group.Operation
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Product.Source.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Zero.Instances
 

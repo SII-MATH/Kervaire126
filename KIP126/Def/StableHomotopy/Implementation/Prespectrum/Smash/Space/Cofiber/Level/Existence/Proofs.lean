@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Universal.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Universal
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Smash.Continuity.Proofs
 

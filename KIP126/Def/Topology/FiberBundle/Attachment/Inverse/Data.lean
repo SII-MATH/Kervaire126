@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.Topology.Pushout.Collar.Data
-public import KIP126.Def.Topology.Pushout.Representative.Proofs
+public import KIP126.Def.Topology.Pushout.Representative
 public import KIP126.Def.Topology.FiberBundle.Transport.Proofs
 
 @[expose] public section

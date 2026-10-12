@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Path.Map.Proofs
 
 @[expose] public section

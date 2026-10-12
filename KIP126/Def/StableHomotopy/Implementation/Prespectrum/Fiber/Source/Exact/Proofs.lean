@@ -3,9 +3,9 @@ module
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyCategory.Fractions.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Localization.Roofs.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Lift.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Preadditive.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Equivalence.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Rotation.Equivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Preadditive
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Equivalence
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Rotation.Equivalence
 
 @[expose] public section
 

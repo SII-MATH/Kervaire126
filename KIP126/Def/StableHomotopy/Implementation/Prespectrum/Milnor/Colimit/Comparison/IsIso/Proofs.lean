@@ -1,8 +1,8 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Colimit.Comparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Colimit.Comparison
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Colimit.Homotopy.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SequentialHomotopyColimit.Source.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SequentialHomotopyColimit.Source
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyFunctor.Conservativity.Proofs
 
 @[expose] public section

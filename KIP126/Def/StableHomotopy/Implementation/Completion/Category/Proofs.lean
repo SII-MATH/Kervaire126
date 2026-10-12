@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Completion.Category.Data
-public import KIP126.Def.StableHomotopy.Implementation.Completion.Product.Category.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Product.Category
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Zero.Instances
 
 @[expose] public section

@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Homotopy.Surjective.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Sphere.Proofs
 

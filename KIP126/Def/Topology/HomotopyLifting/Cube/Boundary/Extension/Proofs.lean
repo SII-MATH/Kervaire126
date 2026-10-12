@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.Topology.HomotopyLifting.Cube.Boundary.Topology.Proofs
-public import KIP126.Def.Topology.HomotopyLifting.Cube.ClosedBall.Proofs
+public import KIP126.Def.Topology.HomotopyLifting.Cube.ClosedBall
 public import KIP126.Def.Topology.HomotopyExtension.Proofs
 
 @[expose] public section

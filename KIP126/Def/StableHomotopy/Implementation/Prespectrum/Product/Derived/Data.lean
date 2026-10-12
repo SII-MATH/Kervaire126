@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Stabilized.Product.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Stabilized.Product
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Stabilized.Localizer.Pi.Source.Proofs
 public import Mathlib.CategoryTheory.Localization.Adjunction
 

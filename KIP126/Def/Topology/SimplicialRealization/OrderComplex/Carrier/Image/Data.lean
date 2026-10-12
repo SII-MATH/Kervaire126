@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Carrier.Predicates
-public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.LastVertex.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.LastVertex
 
 @[expose] public section
 

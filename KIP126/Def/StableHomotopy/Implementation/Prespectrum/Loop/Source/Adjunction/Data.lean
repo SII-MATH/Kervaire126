@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Adjunction.Data
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Source.Functor.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Source.Functor
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SourceShift.Equivalence
 public import Mathlib.CategoryTheory.Localization.Adjunction
 public import Mathlib.CategoryTheory.Adjunction.Unique

@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Group.Operation.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Group.Operation
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Path.Data
 public import Mathlib.Topology.Homotopy.HSpaces
 public import Mathlib.AlgebraicTopology.FundamentalGroupoid.Basic

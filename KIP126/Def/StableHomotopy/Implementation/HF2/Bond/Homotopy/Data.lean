@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.CubicalComparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.CubicalComparison
 public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.DegreeZero
 public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.Connected.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Proofs

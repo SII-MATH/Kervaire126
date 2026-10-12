@@ -1,7 +1,7 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyCategory.Localization.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyCategory.Cancellation.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyCategory.Localization
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyCategory.Cancellation
 public import Mathlib.CategoryTheory.Localization.CalculusOfFractions
 
 @[expose] public section

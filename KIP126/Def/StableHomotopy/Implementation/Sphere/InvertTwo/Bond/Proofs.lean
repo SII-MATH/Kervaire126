@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Completion
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.System.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.System
 
 @[expose] public section
 

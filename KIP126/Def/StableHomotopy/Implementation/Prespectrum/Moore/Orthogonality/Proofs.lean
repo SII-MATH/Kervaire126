@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore
 public import KIP126.Def.StableHomotopy.Completion.Moore.Orthogonality.Proofs
 public import KIP126.Def.CategoryTheory.Triangulated.Scalar.Proofs
 public import KIP126.Def.CategoryTheory.Preadditive.Scalar.Proofs

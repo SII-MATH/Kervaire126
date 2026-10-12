@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Comparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Comparison
 public import Mathlib.Algebra.Group.TransferInstance
 
 @[expose] public section

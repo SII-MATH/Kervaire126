@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Sphere.SelfMap.Data
-public import KIP126.Def.StableHomotopy.Implementation.Sphere.Reflection.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Reflection
 public import KIP126.Def.StableHomotopy.Implementation.Sphere.Compression.Proofs
 
 @[expose] public section

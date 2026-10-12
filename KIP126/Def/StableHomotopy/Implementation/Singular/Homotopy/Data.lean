@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Singular.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular
 
 @[expose] public section
 

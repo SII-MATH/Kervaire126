@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.StableHomotopy.Implementation.HF2.Scalar.Addition.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.HF2.Scalar.Product.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Preadditive.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Preadditive
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Product.Source.Proofs
 
 @[expose] public section

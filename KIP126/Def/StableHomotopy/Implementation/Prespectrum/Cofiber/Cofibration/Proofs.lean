@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.HomotopyExtension.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Comparison.Stability.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Universal.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Universal
 
 @[expose] public section
 

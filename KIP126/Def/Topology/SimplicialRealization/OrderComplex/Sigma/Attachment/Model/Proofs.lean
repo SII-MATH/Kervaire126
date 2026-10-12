@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Attachment.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Attachment
 
 @[expose] public section
 

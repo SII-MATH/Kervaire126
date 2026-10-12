@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Approximation.Homotopy.Proofs
-public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Subdivision.Iteration.Vertices.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Subdivision.Iteration.Vertices
 
 @[expose] public section
 

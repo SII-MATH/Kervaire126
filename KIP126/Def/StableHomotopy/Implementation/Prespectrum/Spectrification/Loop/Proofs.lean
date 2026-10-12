@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Loop.Data
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Step.HomotopyGroup.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Step.HomotopyGroup
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Step.AllBasepoints.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Stabilized.Category.Data
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.Lifting.Equivalence.Proofs

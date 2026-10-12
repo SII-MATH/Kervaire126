@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Shift.Map.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Shift.Map
 
 @[expose] public section
 

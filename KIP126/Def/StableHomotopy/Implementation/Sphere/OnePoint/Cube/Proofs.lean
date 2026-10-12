@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.StableHomotopy.Implementation.Sphere.OnePoint.Cube.Data
 public import KIP126.Def.StableHomotopy.Implementation.Sphere.Representatives.Interior.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Sphere.Reflection.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Reflection
 
 @[expose] public section
 

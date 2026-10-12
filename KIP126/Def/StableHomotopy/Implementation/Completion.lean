@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.StableHomotopy.Implementation.Generators
 public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.Stability.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.StableHomotopy.Equivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.StableHomotopy.Equivalence
 public import KIP126.Def.StableHomotopy.Implementation.HF2.Simplicial.CW.Proofs
 public import Mathlib.Data.ZMod.Basic
 

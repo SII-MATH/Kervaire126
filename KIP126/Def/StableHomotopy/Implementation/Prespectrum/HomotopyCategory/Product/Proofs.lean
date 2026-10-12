@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.CategoryTheory.Localization.Pi.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyCategory.Fractions.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Path.Contraction.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Path.Contraction
 public import Mathlib.CategoryTheory.Localization.OfQuotient
 public import Mathlib.CategoryTheory.Localization.Composition
 

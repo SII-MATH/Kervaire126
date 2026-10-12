@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.CategoryTheory.Functor.Iterate.Additive.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SourceShift.Integer.Coherence.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Preadditive.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Preadditive
 
 @[expose] public section
 

@@ -3,7 +3,7 @@ module
 public import KIP126.Def.Algebra.SimplicialModule.Principal.Realization.Proofs
 public import KIP126.Def.Topology.SimplicialRealization.LocalTriviality.Proofs
 public import KIP126.Def.Topology.SimplicialRealization.Lifting.Finite.Proofs
-public import KIP126.Def.Topology.HomotopyLifting.Bundle.Proofs
+public import KIP126.Def.Topology.HomotopyLifting.Bundle
 
 @[expose] public section
 

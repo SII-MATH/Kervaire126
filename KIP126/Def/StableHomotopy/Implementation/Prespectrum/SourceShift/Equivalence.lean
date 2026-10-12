@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SourceShift.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SourceShift
 public import Mathlib.CategoryTheory.Whiskering
 
 @[expose] public section

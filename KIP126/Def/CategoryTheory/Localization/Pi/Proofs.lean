@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.CategoryTheory.Localization.Fractions.Proofs
-public import KIP126.Def.CategoryTheory.Localization.Pi.Fractions.Proofs
+public import KIP126.Def.CategoryTheory.Localization.Pi.Fractions
 
 @[expose] public section
 

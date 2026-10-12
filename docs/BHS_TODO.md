@@ -1,6 +1,6 @@
 # BHS 适用性：暂停点与待办
 
-2026-10-12 按用户要求收尾暂停。固定球面、Cν、tmf 及其整数平移的 BHS 适用性尚未完成；以下缺口允许暂留 `sorry`。已完成的基础证明保留，具体声明与依赖记录在 Blueprint 和 `external-inputs.json`。
+2026-10-12 按用户要求收尾暂停。固定球面、Cν、tmf 及其整数平移的 BHS 适用性尚未完成；以下缺口允许暂留 `sorry`。已完成的基础证明保留，具体声明与依赖记录在 Lean 源码和 Blueprint；外部来源、模型绑定与交付义务记录在 `external-inputs.json`。
 
 ## 已完成到哪里
 
@@ -15,7 +15,7 @@
 
 1. **接通原完备性谓词。** 从 `Prespectrum.IsTwoComplete` 的两组自然数平移出发，用 `source_shiftFunctor_obj` 和已证 doubled-bond/telescope 同构，得到 telescope 所有整数平移的正交性；再接 `sourceIsScalarComplete_iff_scalarSphereTelescope_orthogonal` 与 Moore 单位的普遍性质。入口：[telescope 比较](../KIP126/Def/StableHomotopy/Implementation/Sphere/InvertTwo/Telescope/Equivalence/Proofs.lean)、[scalar 检测](../KIP126/Def/StableHomotopy/Implementation/Prespectrum/ScalarLocalization/Detection/Proofs.lean)。
 
-2. **完成实际球面的模二核。** 为 `independentSpanAffineEquiv` 补 sum-one 重心公式和有限维同胚 API；用实际 full-star 顶点、分片和坐标，比较原局部 complement-collapse 与显式 affine sphere self-map。随后由有限求和证明局部贡献、`ker(π₀S → 𝔽₂) = 2π₀S`，进而证明 `sourceModTwoMooreHeartToHF2` 是同构。已有的 ±generator 公式只适用于显式仿射映射，尚未适用于每个实际 collapse 分支。入口：[仿射 span](../KIP126/Def/Topology/Simplex/AffineSpan/Proofs.lean)、[分片](../KIP126/Def/Topology/SimplicialRealization/OrderComplex/Degree/Sheets/Proofs.lean)、[Moore heart 比较](../KIP126/Def/StableHomotopy/Implementation/HF2/Moore/Postnikov/Proofs.lean)。
+2. **完成实际球面的模二核。** 为 `independentSpanAffineEquiv` 补 sum-one 重心公式和有限维同胚 API；用实际 full-star 顶点、分片和坐标，比较原局部 complement-collapse 与显式 affine sphere self-map。随后由有限求和证明局部贡献、`ker(π₀S → 𝔽₂) = 2π₀S`，进而证明 `sourceModTwoMooreHeartToHF2` 是同构。已有的 ±generator 公式只适用于显式仿射映射，尚未适用于每个实际 collapse 分支。入口：[仿射 span](../KIP126/Def/Topology/Simplex/AffineSpan.lean)、[分片](../KIP126/Def/Topology/SimplicialRealization/OrderComplex/Degree/Sheets/Proofs.lean)、[Moore heart 比较](../KIP126/Def/StableHomotopy/Implementation/HF2/Moore/Postnikov/Proofs.lean)。
 
 3. **完成无限 CW 参数的稳定性。** 任意附胞族已处理，仍缺无限 sequential colimit 对任意原输入谱的比较，以及所需的基点识别。需要实际相对同伦有限子复形支撑或相应同伦余极限论证；raw wedge 的同伦有限支撑本身尚不足以完成这一步。最终填入原 `diagonalSmash_stable_right`。入口：[任意附胞族](../KIP126/Def/StableHomotopy/Implementation/Prespectrum/Smash/Space/Parameter/Cells/General/Proofs.lean)、[Smash](../KIP126/Def/StableHomotopy/Implementation/Smash.lean)。
 
@@ -27,7 +27,7 @@
 
 7. **完成 BHS 特化交付。** 在实际模型及其对应识别完成后，逐条核验源声明与 BHS 原文的对象、假设、次数、量词和结论；然后用恒等比较直接给出固定对象的未截断提升、λ 整除及四项 realization 结论。BHS 源定理本身可保留 `sorry`，适用性与比较的待办仍须独立追踪。入口：[BHS 源声明与运输](../KIP126/Interface/Solution/Literature/Route/BHS.lean)。
 
-继续工作时先从第 1 项接通已有比较；第 2、3、5 项可分别推进。每次改变公共声明或证明依赖，同步 Blueprint、源清单并检查公理依赖。
+继续工作时先从第 1 项接通已有比较；第 2、3、5 项可分别推进。每次改变公共声明或证明依赖，同步 Blueprint 并检查公理依赖；涉及外部输入、模型绑定或交付义务时同步源清单，普通内部辅助证明不重复登记。
 
 ## 收尾验证
 

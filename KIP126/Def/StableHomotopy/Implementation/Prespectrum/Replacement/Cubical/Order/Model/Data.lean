@@ -1,7 +1,7 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Order.Initial.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Order.Sequence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Order.Initial
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Order.Sequence
 public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Attachment.Cubical.Sequence.Data
 public import KIP126.Def.StableHomotopy.Implementation.Realization.Data
 

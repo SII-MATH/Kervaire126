@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.Data
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.Lifting.Parameter.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.Lifting.Parameter
 
 @[expose] public section
 

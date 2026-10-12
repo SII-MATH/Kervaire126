@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.Topology.HomotopyExtension.Proofs
-public import KIP126.Def.Topology.HomotopyLifting.Cube.Proofs
+public import KIP126.Def.Topology.HomotopyLifting.Cube
 
 @[expose] public section
 

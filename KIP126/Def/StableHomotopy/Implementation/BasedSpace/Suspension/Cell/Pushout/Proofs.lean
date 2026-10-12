@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Suspension.Cell.Boundary.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Suspension.Cell.Boundary
 
 @[expose] public section
 

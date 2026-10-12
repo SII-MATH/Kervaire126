@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Sphere.InvertTwo.Telescope.Representatives.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.InvertTwo.Telescope.Representatives
 
 @[expose] public section
 

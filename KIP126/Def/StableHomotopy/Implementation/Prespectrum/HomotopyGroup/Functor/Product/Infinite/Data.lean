@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Product.Derived.Comparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Product.Derived.Comparison
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Functor.Product.Data
 
 @[expose] public section

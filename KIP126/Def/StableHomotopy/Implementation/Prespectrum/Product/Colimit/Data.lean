@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Product.Proofs
-public import KIP126.Def.Algebra.Colimit.FiniteProduct.Proofs
+public import KIP126.Def.Algebra.Colimit.FiniteProduct
 public import KIP126.Def.Algebra.Colimit.Map.Proofs
 
 @[expose] public section

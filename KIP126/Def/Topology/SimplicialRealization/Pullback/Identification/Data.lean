@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.Topology.SimplicialRealization.Pullback.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.Pullback
 public import KIP126.Def.Topology.SimplicialRealization.Equalizer.Identification.Data
 
 @[expose] public section

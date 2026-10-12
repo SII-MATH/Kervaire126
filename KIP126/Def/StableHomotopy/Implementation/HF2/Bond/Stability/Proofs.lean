@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.Algebra.SimplicialModule.Principal.Realization.Fibration.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.Fibration
-public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.CubicalComparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.CubicalComparison
 
 @[expose] public section
 

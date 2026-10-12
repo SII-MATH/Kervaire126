@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Singular.Cylinder.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Singular.Map.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Map
 
 @[expose] public section
 

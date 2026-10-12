@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.CylinderHorn.Geometry.Ends.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.CylinderHorn.Geometry.Ends
 
 @[expose] public section
 

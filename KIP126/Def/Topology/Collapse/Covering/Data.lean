@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.Topology.Collapse.Wedge.Proofs
+public import KIP126.Def.Topology.Collapse.Wedge
 public import Mathlib.Topology.Covering.Basic
 
 @[expose] public section

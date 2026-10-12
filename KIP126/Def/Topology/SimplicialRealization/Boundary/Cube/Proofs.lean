@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.Topology.SimplicialRealization.Boundary.Proofs
 public import KIP126.Def.Topology.Simplex.ClosedBall.Proofs
-public import KIP126.Def.Topology.HomotopyLifting.Cube.ClosedBall.Proofs
+public import KIP126.Def.Topology.HomotopyLifting.Cube.ClosedBall
 public import KIP126.Def.Topology.HomotopyLifting.Cube.Boundary.Data
 
 @[expose] public section

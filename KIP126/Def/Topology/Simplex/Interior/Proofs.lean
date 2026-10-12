@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.Topology.Simplex.ClosedBall.Proofs
-public import KIP126.Def.Topology.Simplex.Reindex.Proofs
+public import KIP126.Def.Topology.Simplex.Reindex
 public import Mathlib.Analysis.Normed.Module.Ball.Homeomorph
 
 @[expose] public section

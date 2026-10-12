@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.Topology.Collapse.Covering.Proofs
-public import KIP126.Def.Topology.Collapse.Map.Proofs
+public import KIP126.Def.Topology.Collapse.Map
 
 @[expose] public section
 

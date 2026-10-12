@@ -1,8 +1,8 @@
 module
 
 public import KIP126.Def.Algebra.SimplicialModule.Principal.Realization.Proofs
-public import KIP126.Def.Topology.HomotopyLifting.Cube.Proofs
-public import KIP126.Def.Topology.HomotopyLifting.Cube.Faces.Horn.Proofs
+public import KIP126.Def.Topology.HomotopyLifting.Cube
+public import KIP126.Def.Topology.HomotopyLifting.Cube.Faces.Horn
 
 @[expose] public section
 

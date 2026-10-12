@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Bond.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Bond
 
 @[expose] public section
 

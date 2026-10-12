@@ -1,7 +1,7 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Map.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Pushout.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Map
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Pushout
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Comparison.Stability.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Colimit.Pushout.Proofs
 public import KIP126.Def.Topology.HomotopyExtension.Pushout.Proofs

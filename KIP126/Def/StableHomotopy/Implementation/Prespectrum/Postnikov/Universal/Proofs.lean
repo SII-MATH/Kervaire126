@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.CellularCover.Upper.Cofiber.Orthogonality.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Colimit.Represented.Proofs
 

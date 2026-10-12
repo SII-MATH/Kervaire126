@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Attachment.Cubical.Sequence.Model.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Attachment.Cubical.Sequence.Model
 public import Mathlib.CategoryTheory.Functor.OfSequence
 
 @[expose] public section

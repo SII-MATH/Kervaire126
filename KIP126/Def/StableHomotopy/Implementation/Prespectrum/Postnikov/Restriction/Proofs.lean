@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Restriction.Data
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Map.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Map
 
 @[expose] public section
 

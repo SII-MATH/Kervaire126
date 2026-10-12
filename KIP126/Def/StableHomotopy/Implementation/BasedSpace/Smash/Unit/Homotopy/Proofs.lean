@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Smash.Unit.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Smash.Unit
 public import Mathlib.Topology.Homotopy.HomotopyGroup
 
 @[expose] public section

@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Comparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Comparison
 
 @[expose] public section
 

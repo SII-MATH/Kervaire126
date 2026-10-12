@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Rotation.NullPath.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Rotation.NullPath
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Naturality.Proofs
 
 @[expose] public section

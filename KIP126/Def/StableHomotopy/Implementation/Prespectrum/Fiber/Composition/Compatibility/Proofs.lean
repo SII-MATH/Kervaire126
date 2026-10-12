@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Composition.Equivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Composition.Equivalence
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Triangle.Map.Data
 
 @[expose] public section

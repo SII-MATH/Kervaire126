@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Source.Triangulated.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Source.Cocone.Proofs
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Contractible.Iso.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Contractible.Iso
 
 @[expose] public section
 

@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Smash.Suspension.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Smash.Suspension
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Proofs
 
 @[expose] public section

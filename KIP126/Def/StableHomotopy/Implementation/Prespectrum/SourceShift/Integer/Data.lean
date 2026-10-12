@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.CategoryTheory.Functor.Iterate.Proofs
+public import KIP126.Def.CategoryTheory.Functor.Iterate
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SourceShift.Equivalence
 
 @[expose] public section

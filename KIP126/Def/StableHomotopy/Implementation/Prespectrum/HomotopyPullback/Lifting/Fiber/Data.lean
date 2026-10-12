@@ -1,8 +1,8 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyPullback.Lifting.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyPullback.Lifting
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Strict.MappingPath.Data
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Strict.Pullback.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Strict.Pullback
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyPullback.Fiber.Data
 
 @[expose] public section

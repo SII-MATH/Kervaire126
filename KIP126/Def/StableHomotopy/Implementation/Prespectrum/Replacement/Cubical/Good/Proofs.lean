@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Order.Model.Comparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Order.Model.Comparison
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.WellBased.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.CompactlyGenerated.Proofs
 public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.HomotopyEquivalence.Proofs

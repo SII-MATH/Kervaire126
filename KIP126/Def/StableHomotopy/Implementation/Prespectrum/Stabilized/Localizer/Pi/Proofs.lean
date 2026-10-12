@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Stabilized.Localizer.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Stabilized.Localizer
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Separation.Localizer.Pi.Proofs
 
 @[expose] public section

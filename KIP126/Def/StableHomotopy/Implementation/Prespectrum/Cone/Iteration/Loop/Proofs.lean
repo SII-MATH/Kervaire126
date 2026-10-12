@@ -1,7 +1,7 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Iteration.Loop.Data
-public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Iteration.Parameter.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Iteration.Parameter
 
 @[expose] public section
 
