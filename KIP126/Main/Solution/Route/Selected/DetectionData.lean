@@ -246,7 +246,7 @@ private theorem prop78_detection_data_bridge_shift_assoc_inv (coh : BiShiftCoher
 private def prop78_detection_data_bridge_push3 {m w : ℤ} {X Y : Syn}
     (f : (SyntheticCategory.biShift (0,-3)).obj X ⟶ Y) (a : BiHom m w X) :
     BiHom m (w-3) Y :=
-  eqToHom (by congr 1; simp [sub_eq_add_neg]) ≫
+  eqToHom (by congr 1; simp) ≫
     (SyntheticCategory.biShift_comp (m,w) (0,-3)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift (0,-3)).map a ≫ f
 
@@ -258,8 +258,7 @@ private theorem prop78_detection_data_bridge_eta_push3 (D : Model H M Syn) {X Y 
   classical
   have ha := prop78_detection_data_bridge_shift_assoc_inv D.shiftCoherence (1,2) (124,134) (0,-3)
     (125,136) (124,131) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-    eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+  simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   simp only [prop78_detection_data_bridge_push3, eqToHom_refl, Category.id_comp]
   change
     (SyntheticCategory.biShift_comp (1,2) (124,131)).inv.app (S_0_0 : Syn) ≫
@@ -281,7 +280,7 @@ private theorem prop78_detection_data_bridge_eta_lambda3_right (D : Model H M Sy
   classical
   have heq {m w : ℤ} (a : BiHom m w (S_0_0 : Syn)) :
       prop78_detection_data_bridge_push3 (lambdaPow 3 (S_0_0 : Syn)) a=lambdaMultiply 3 a := by
-    simp only [prop78_detection_data_bridge_push3,lambdaMultiply,Category.assoc]
+    simp only [prop78_detection_data_bridge_push3,lambdaMultiply]
     erw [lambdaPow_naturality]
     rfl
   have h := prop78_detection_data_bridge_eta_push3 D (lambdaPow 3 (S_0_0 : Syn)) η u
@@ -292,7 +291,7 @@ private theorem prop78_detection_data_bridge_eta_lambda3_right (D : Model H M Sy
 private def prop78_detection_data_bridge_push6 {m w : ℤ} {X Y : Syn}
     (f : (SyntheticCategory.biShift (0,-6)).obj X ⟶ Y) (a : BiHom m w X) :
     BiHom m (w-6) Y :=
-  eqToHom (by congr 1; simp [sub_eq_add_neg]) ≫
+  eqToHom (by congr 1; simp) ≫
     (SyntheticCategory.biShift_comp (m,w) (0,-6)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift (0,-6)).map a ≫ f
 
@@ -304,8 +303,7 @@ private theorem prop78_detection_data_bridge_eta_push6 (D : Model H M Syn) {X Y 
   classical
   have ha := prop78_detection_data_bridge_shift_assoc_inv D.shiftCoherence (1,2) (124,134) (0,-6)
     (125,136) (124,128) (125,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-    eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+  simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   simp only [prop78_detection_data_bridge_push6, eqToHom_refl, Category.id_comp]
   change
     (SyntheticCategory.biShift_comp (1,2) (124,128)).inv.app (S_0_0 : Syn) ≫
@@ -327,7 +325,7 @@ private theorem prop78_detection_data_bridge_eta_lambda6_right (D : Model H M Sy
   classical
   have heq {m w : ℤ} (a : BiHom m w (S_0_0 : Syn)) :
       prop78_detection_data_bridge_push6 (lambdaPow 6 (S_0_0 : Syn)) a=lambdaMultiply 6 a := by
-    simp only [prop78_detection_data_bridge_push6,lambdaMultiply,Category.assoc]
+    simp only [prop78_detection_data_bridge_push6,lambdaMultiply]
     erw [lambdaPow_naturality]
     rfl
   have h := prop78_detection_data_bridge_eta_push6 D (lambdaPow 6 (S_0_0 : Syn)) η u
@@ -341,17 +339,16 @@ private theorem prop78_detection_data_bridge_lambda_three_3_136 (D : Model H M S
   classical
   have ha := prop78_detection_data_bridge_shift_assoc_inv D.shiftCoherence (125,136) (0,-3) (0,-3)
     (125,133) (0,-6) (125,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,
-    eqToHom_app,eqToHom_refl,Category.id_comp] at ha
+  simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp] at ha
   unfold lambdaMultiply
-  simp only [eqToHom_refl,Category.id_comp,Category.assoc,Nat.cast_ofNat,Int.reduceSub]
+  simp only [eqToHom_refl,Category.id_comp,Nat.cast_ofNat,Int.reduceSub]
   erw [←reassoc_of% (lambdaPow_naturality 3
     ((SyntheticCategory.biShift_comp (125,136) (0,-3)).inv.app (S_0_0 : Syn)))]
   erw [←reassoc_of% (lambdaPow_naturality 3 (lambdaPow 3 (Smn 125 136)))]
   erw [←Category.assoc,ha]
   erw [lambdaPow_add D.shiftCoherence 3 3 6 (by decide) (Smn 125 136)]
   simp only [lambdaShiftAddIso,biShiftAddIso,KIP126.Synthetic.Context.lambdaDegree,
-    Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,eqToHom_refl,
+    Iso.trans_inv,eqToIso.inv,eqToHom_refl,
     Category.id_comp,Category.assoc]
   rfl
 
@@ -362,17 +359,16 @@ private theorem prop78_detection_data_bridge_lambda_three_7_140 (D : Model H M S
   classical
   have ha := prop78_detection_data_bridge_shift_assoc_inv D.shiftCoherence (125,140) (0,-7) (0,-3)
     (125,133) (0,-10) (125,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,
-    eqToHom_app,eqToHom_refl,Category.id_comp] at ha
+  simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp] at ha
   unfold lambdaMultiply
-  simp only [eqToHom_refl,Category.id_comp,Category.assoc,Nat.cast_ofNat,Int.reduceSub]
+  simp only [eqToHom_refl,Category.id_comp,Nat.cast_ofNat,Int.reduceSub]
   erw [←reassoc_of% (lambdaPow_naturality 3
     ((SyntheticCategory.biShift_comp (125,140) (0,-7)).inv.app (S_0_0 : Syn)))]
   erw [←reassoc_of% (lambdaPow_naturality 3 (lambdaPow 7 (Smn 125 140)))]
   erw [←Category.assoc,ha]
   erw [lambdaPow_add D.shiftCoherence 7 3 10 (by decide) (Smn 125 140)]
   simp only [lambdaShiftAddIso,biShiftAddIso,KIP126.Synthetic.Context.lambdaDegree,
-    Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,eqToHom_refl,
+    Iso.trans_inv,eqToIso.inv,eqToHom_refl,
     Category.id_comp,Category.assoc]
   rfl
 
@@ -383,17 +379,16 @@ private theorem prop78_detection_data_bridge_lambda_three_6_139 (D : Model H M S
   classical
   have ha := prop78_detection_data_bridge_shift_assoc_inv D.shiftCoherence (125,139) (0,-6) (0,-3)
     (125,133) (0,-9) (125,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,
-    eqToHom_app,eqToHom_refl,Category.id_comp] at ha
+  simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp] at ha
   unfold lambdaMultiply
-  simp only [eqToHom_refl,Category.id_comp,Category.assoc,Nat.cast_ofNat,Int.reduceSub]
+  simp only [eqToHom_refl,Category.id_comp,Nat.cast_ofNat,Int.reduceSub]
   erw [←reassoc_of% (lambdaPow_naturality 3
     ((SyntheticCategory.biShift_comp (125,139) (0,-6)).inv.app (S_0_0 : Syn)))]
   erw [←reassoc_of% (lambdaPow_naturality 3 (lambdaPow 6 (Smn 125 139)))]
   erw [←Category.assoc,ha]
   erw [lambdaPow_add D.shiftCoherence 6 3 9 (by decide) (Smn 125 139)]
   simp only [lambdaShiftAddIso,biShiftAddIso,KIP126.Synthetic.Context.lambdaDegree,
-    Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,eqToHom_refl,
+    Iso.trans_inv,eqToIso.inv,eqToHom_refl,
     Category.id_comp,Category.assoc]
   rfl
 
@@ -409,10 +404,10 @@ private theorem prop78_detection_data_bridge_vanishes_mod_lambda_iff_multiple
   have he (b : BiHom m w X) : lambdaMultiply n b=e.inv≫F.map b≫lambdaPow n X := by
     have he' : lambdaMultiply n b=e.inv≫lambdaPow n (Smn m w)≫b := by
       unfold lambdaMultiply
-      change eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫
+      change eqToHom (by congr 1 <;> simp) ≫
         (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0 ≫
         lambdaPow n (Smn m w) ≫ b =
-        (eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫
+        (eqToHom (by congr 1 <;> simp) ≫
           (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0) ≫
         lambdaPow n (Smn m w) ≫ b
       exact (Category.assoc _ _ _).symm
@@ -779,7 +774,7 @@ private theorem prop78_detection_data_bridge_eta_weight128_branches_filtration_f
       simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
         eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
     dsimp only [lambdaMultiply,lambdaPow]
-    simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+    simp only [eqToHom_refl,Category.id_comp]
     rw [←he]
     change (SyntheticCategory.biShift_comp (1,2) (0,0)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift_comp (1,2) (0,0)).hom.app (S_0_0 : Syn) ≫ η=η
@@ -1095,7 +1090,7 @@ private theorem prop78_detection_data_sphere_zero_weight_nonzero_detection_u {D 
       simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
         eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
     dsimp only [lambdaMultiply,lambdaPow]
-    simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+    simp only [eqToHom_refl,Category.id_comp]
     rw [←he]
     change (SyntheticCategory.biShift_comp (134-10,134) (0,0)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift_comp (134-10,134) (0,0)).hom.app (S_0_0 : Syn) ≫ a=a
@@ -1385,7 +1380,7 @@ private theorem prop78_detection_data_u_choice_eta_lambda_three_filtration_fourt
       simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
         eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
     dsimp only [lambdaMultiply,lambdaPow]
-    simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+    simp only [eqToHom_refl,Category.id_comp]
     rw [←he]
     change (SyntheticCategory.biShift_comp (1,2) (0,0)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift_comp (1,2) (0,0)).hom.app (S_0_0 : Syn) ≫ η=η
@@ -1491,7 +1486,7 @@ private theorem prop78_detection_data_c4_eta_filtration_fourteen {D : Model H M 
       simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
         eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
     dsimp only [lambdaMultiply,lambdaPow]
-    simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+    simp only [eqToHom_refl,Category.id_comp]
     rw [←he]
     change (SyntheticCategory.biShift_comp (1,2) (0,0)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift_comp (1,2) (0,0)).hom.app (S_0_0 : Syn) ≫ η=η

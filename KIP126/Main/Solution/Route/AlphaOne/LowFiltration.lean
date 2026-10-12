@@ -369,7 +369,7 @@ private theorem stem124_finite_pages_low124_af9_four (I : KIP126.Computation.Rou
   rcases stem124_finite_pages_f2_three (e x) with h|h|h|h|h|h|h|h
   all_goals have hh := congrArg e.symm h
   all_goals simp only [LinearEquiv.symm_apply_apply,map_zero,map_add,e0,e1,e2] at hh
-  all_goals simp only [hh,map_zero,map_add,d20,d21,d22,ht2,zero_add,add_zero]; tauto
+  all_goals simp only [hh,map_zero,map_add,d20,d21,d22,ht2,zero_add]; tauto
 
 
 private theorem stem124_finite_pages_s8_d2 (I : KIP126.Computation.Route.Inputs D L G) :

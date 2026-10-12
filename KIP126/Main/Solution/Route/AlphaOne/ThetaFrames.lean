@@ -468,7 +468,7 @@ private theorem finite_last_nonzero_finite_quotient_d_naturality {D : Model H M 
   simp only [Category.assoc,eqToHom_trans_assoc,eqToHom_refl,Category.id_comp]
   erw [←Category.assoc (SpectralSequenceMorphism.pageMap (D.family.functor.map f) r i)
     ((D.family.functor.obj Y).d r i), h]
-  simp only [Category.assoc,eqToHom_trans_assoc]
+  simp only [Category.assoc]
   have hi : i+(D.family.functor.obj X).diffDeg r=syntheticAdamsRawTarget r i := by
     simp only [D.family.differentialDegree,syntheticAdamsRawTarget]
   erw [←eqToHom_naturality_assoc (fun j => (D.family.functor.map f).pageMap r j) hi]

@@ -61,7 +61,7 @@ private theorem target_divisibility_contradiction
     subst k
     rw [← h]
     dsimp only [negativeLift, negativeZeroIso, lambdaToPositivePow, lambdaPow]
-    simp only [Nat.cast_zero, neg_zero, eqToHom_refl, Category.id_comp,
+    simp only [eqToHom_refl, Category.id_comp,
       Iso.app_hom, Category.assoc]
     erw [SyntheticCategory.biShift_zero.hom.naturality]
     rfl

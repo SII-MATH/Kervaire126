@@ -1226,7 +1226,7 @@ def sourceNormalizedConnecting (S : NuCofiberSourceData D)
     (SyntheticCategory.biShift_comp ((1,1)+(0,-eh)) (0,-eg)).hom.app X ≫
     eqToHom (congrArg (fun p => (SyntheticCategory.biShift p).obj X)
       (show ((1,1)+(0,-eh))+(0,-eg) = (0,(normalizedExponent H T.f : ℤ))+(1,0) from by
-        dsimp [eg, eh, T]; ext <;> simp only [Prod.fst_add, Prod.snd_add, Prod.fst, Prod.snd] <;> omega)) ≫
+        dsimp [eg, eh, T]; ext <;> simp only [] <;> omega)) ≫
     (SyntheticCategory.biShift_comp (0,(normalizedExponent H T.f : ℤ)) (1,0)).inv.app X ≫
     (SyntheticCategory.biShift_compat (Syn := Syn) 1).hom.app _
 

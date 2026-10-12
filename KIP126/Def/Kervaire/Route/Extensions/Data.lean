@@ -63,7 +63,7 @@ def finiteTargetForExtension (q : ℕ) (n s t : ℤ)
     (D.family.obj ((SyntheticObject.quotient q (.nu Y)).obj D.nu D.auxiliary)).E₂
       (s + n, (t - s) + (s + n), t + normalizedExponent H f) :=
   regradeE2 (by
-    ext <;> simp only [Prod.fst, Prod.snd, Int.toNat_of_nonneg (sub_nonneg.mpr hn)] <;> omega)
+    ext <;> simp only [Int.toNat_of_nonneg (sub_nonneg.mpr hn)] <;> omega)
     (finiteTargetLabel D Y q (s + n) (t + n) (n - normalizedExponent H f).toNat y)
 
 def infiniteSourceForExtension (s t : ℤ) (x : E2 H (X.obj D.auxiliary) s t) :
@@ -77,7 +77,7 @@ def infiniteTargetForExtension (n s t : ℤ)
     (D.family.obj (D.nu.functor.obj (Y.obj D.auxiliary))).E₂
       (s + n, (t - s) + (s + n), t + normalizedExponent H f) :=
   regradeE2 (by
-    ext <;> simp only [Prod.fst, Prod.snd, Int.toNat_of_nonneg (sub_nonneg.mpr hn)] <;> omega)
+    ext <;> simp only [Int.toNat_of_nonneg (sub_nonneg.mpr hn)] <;> omega)
     (targetNuLabel D Y (s + n) (t + n) (n - normalizedExponent H f).toNat y)
 end
 end KIP126.Kervaire.Route

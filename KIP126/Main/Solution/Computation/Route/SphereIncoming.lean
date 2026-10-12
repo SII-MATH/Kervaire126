@@ -1653,7 +1653,7 @@ private theorem t_incoming_t_d3_targets_independent (I : Inputs D L G)
           fin_cases i
           · change f (E.d 2 (10,136) (I.realization.basis .sphere 10 136 0)) j=0
             rw [hd0,←hf2,LinearEquiv.apply_symm_apply]
-            simp [Finsupp.single_apply,Ne.symm hj]
+            simp [Ne.symm hj]
           · change f (E.d 2 (10,136) (I.realization.basis .sphere 10 136 1)) j=0
             rw [hd1,f.map_zero]
             rfl
@@ -1850,7 +1850,7 @@ private theorem t_incoming_t_d4_targets_independent (I : Inputs D L G)
           fin_cases i
           · change f (E.d 2 (11,137) (I.realization.basis .sphere 11 137 0)) j=0
             rw [hd0,←hf3,LinearEquiv.apply_symm_apply]
-            simp [Finsupp.single_apply,Ne.symm hj.1]
+            simp [Ne.symm hj.1]
           · change f (E.d 2 (11,137) (I.realization.basis .sphere 11 137 1)) j=0
             rw [hd1,f.map_zero]
             rfl
@@ -1859,7 +1859,7 @@ private theorem t_incoming_t_d4_targets_independent (I : Inputs D L G)
             rfl
           · change f (E.d 2 (11,137) (I.realization.basis .sphere 11 137 3)) j=0
             rw [hd3,←hf4,LinearEquiv.apply_symm_apply]
-            simp [Finsupp.single_apply,Ne.symm hj.2]
+            simp [Ne.symm hj.2]
           · change f (E.d 2 (11,137) (I.realization.basis .sphere 11 137 4)) j=0
             rw [hd4,f.map_zero]
             rfl
@@ -2042,72 +2042,72 @@ private theorem t_incoming_t_incoming5_source_five (I : Inputs D L G) :
       simp only [map_sub,LinearEquiv.apply_symm_apply]
       apply Finsupp.ext
       intro i
-      fin_cases i <;> simp [Finsupp.sub_apply,Finsupp.add_apply,Finsupp.single_apply,Fin.ext_iff]
+      fin_cases i <;> simp [Finsupp.sub_apply,Finsupp.add_apply,Fin.ext_iff]
     have hz := represents_sub_tail hx hcb
     rw [hclean,sub_zero] at hz
     generalize e x 0=c0,e x 1=c1,e x 2=c2,e x 3=c3 at hz
     fin_cases c0 <;> fin_cases c1 <;> fin_cases c2 <;> fin_cases c3
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,map_zero] at hz
       exact represents_unique hz (RepresentsOnPage.zero (by decide : (2:ℤ)≤5))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,zero_add,he3] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) ha3 ⟨z,hz⟩
       exact False.elim (ny3 (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,zero_add,he2] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤4; omega) (by decide : (4:ℤ)<5) ha2 ⟨z,hz⟩
       exact False.elim (ny2 (by simpa only [map_add,d1,d2] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he2,he3] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) (represents_add_tail hb2 ha3) ⟨z,hz⟩
       exact False.elim (ny3 (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,zero_add,he1] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤4; omega) (by decide : (4:ℤ)<5) ha1 ⟨z,hz⟩
       exact False.elim (ny1 (by simpa only [map_add,d1,d2] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he1,he3] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) (represents_add_tail hb1 ha3) ⟨z,hz⟩
       exact False.elim (ny3 (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he1,he2] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤4; omega) (by decide : (4:ℤ)<5) (represents_add_tail ha1 ha2) ⟨z,hz⟩
       exact False.elim (nyt (by simpa only [map_add,d1,d2] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,zero_add,map_add,he1,he2,he3] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) (represents_add_tail (represents_add_tail hb1 hb2) ha3) ⟨z,hz⟩
       exact False.elim (ny3 (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,he0] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) ha0 ⟨z,hz⟩
       exact False.elim (ny0 (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,map_add,he0,he3] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) (represents_add_tail ha0 ha3) ⟨z,hz⟩
       exact False.elim (nys (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,map_add,he0,he2] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) (represents_add_tail ha0 hb2) ⟨z,hz⟩
       exact False.elim (ny0 (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,map_add,he0,he2,he3] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) (represents_add_tail (represents_add_tail ha0 hb2) ha3) ⟨z,hz⟩
       exact False.elim (nys (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,map_add,he0,he1] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) (represents_add_tail ha0 hb1) ⟨z,hz⟩
       exact False.elim (ny0 (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,map_add,he0,he1,he3] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) (represents_add_tail (represents_add_tail ha0 hb1) ha3) ⟨z,hz⟩
       exact False.elim (nys (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [Finsupp.single_zero,add_zero,map_add,he0,he1,he2] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) (represents_add_tail (represents_add_tail ha0 hb1) hb2) ⟨z,hz⟩
       exact False.elim (ny0 (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
     · change RepresentsOnPage E 5 (9,135) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 1 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2))) z at hz
-      simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he1,he2,he3,map_zero] at hz
+      simp only [map_add,he0,he1,he2,he3] at hz
       have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<5) (represents_add_tail (represents_add_tail (represents_add_tail ha0 hb1) hb2) ha3) ⟨z,hz⟩
       exact False.elim (nys (by simpa only [map_add,d0,d3,db1,db2,add_zero,zero_add] using hh))
   exact ⟨fun a b=>(hall a).trans (hall b).symm⟩
@@ -2263,7 +2263,7 @@ private theorem t_incoming_t_incoming6_image (I : Inputs D L G) :
     represents_d_zero_of_later (by change (2:ℤ)≤6; omega) (by decide : (6:ℤ)<17) hb6 ⟨b17,hb17⟩
   have heq : (I.realization.basis .sphere 8 134 0+I.realization.basis .sphere 8 134 3)+I.realization.basis .sphere 8 134 3=I.realization.basis .sphere 8 134 0 := by
     apply e.injective
-    simp only [map_add,map_sub,←he0,←he3,LinearEquiv.apply_symm_apply]
+    simp only [map_add,←he0,←he3,LinearEquiv.apply_symm_apply]
     apply Finsupp.ext
     intro i
     fin_cases i <;> norm_num [Finsupp.add_apply,Finsupp.sub_apply,Finsupp.single_apply,Fin.ext_iff] <;> decide
@@ -2341,67 +2341,67 @@ private theorem t_incoming_t_incoming6_image (I : Inputs D L G) :
     simp only [map_sub,LinearEquiv.apply_symm_apply]
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.sub_apply,Finsupp.add_apply,Finsupp.single_apply,Fin.ext_iff,hc1]
+    fin_cases i <;> simp [Finsupp.sub_apply,Finsupp.add_apply,Fin.ext_iff,hc1]
   have hz := represents_sub_tail hx hcb
   rw [hclean,sub_zero] at hz
   generalize e x 0=c0,e x 2=c2,e x 3=c3,e x 4=c4 at hz
   fin_cases c0 <;> fin_cases c2 <;> fin_cases c3 <;> fin_cases c4
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,map_zero] at hz
     left
     have hz0 := represents_unique hz (RepresentsOnPage.zero (by decide : (2:ℤ)≤6))
     rw [hz0,map_zero]
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,zero_add,he4] at hz
     left
     have hz' := represents_unique hz hb6
     rw [hz',hdb6]
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,zero_add,he3] at hz
     have hrep := ha3
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y1)≠0 := by
       apply nonzero3 hy1
       intro hez
       have hez' := congrArg (fun t=>k t 1) hez
-      simp only [map_add,map_zero,←hk1,←hk2,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hez'
+      simp only [map_zero,←hk1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hez'
       norm_num [Finsupp.single_apply,Fin.ext_iff] at hez'
     exact False.elim (hn (by simpa only [map_add,hd0',hd2',hd3a,hdb3] using hh))
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he3,he4] at hz
     have hrep := (represents_add_tail ha3 hb3)
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y1+0)≠0 := by
       apply nonzero3 (represents_add_tail hy1 (RepresentsOnPage.zero (by decide)))
       intro hez
       have hez' := congrArg (fun t=>k t 1) hez
-      simp only [map_add,map_zero,←hk1,←hk2,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hez'
+      simp only [map_add,map_zero,←hk1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hez'
       norm_num [Finsupp.single_apply,Fin.ext_iff] at hez'
     exact False.elim (hn (by simpa only [map_add,hd0',hd2',hd3a,hdb3] using hh))
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,zero_add,he2] at hz
     have hrep := ha2
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y2)≠0 := by
       apply nonzero3 hy2
       intro hez
       have hez' := congrArg (fun t=>k t 2) hez
-      simp only [map_add,map_zero,←hk1,←hk2,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hez'
+      simp only [map_zero,←hk2,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hez'
       norm_num [Finsupp.single_apply,Fin.ext_iff] at hez'
     exact False.elim (hn (by simpa only [map_add,hd0',hd2',hd3a,hdb3] using hh))
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he2,he4] at hz
     have hrep := (represents_add_tail ha2 hb3)
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y2+0)≠0 := by
       apply nonzero3 (represents_add_tail hy2 (RepresentsOnPage.zero (by decide)))
       intro hez
       have hez' := congrArg (fun t=>k t 2) hez
-      simp only [map_add,map_zero,←hk1,←hk2,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hez'
+      simp only [map_add,map_zero,←hk2,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hez'
       norm_num [Finsupp.single_apply,Fin.ext_iff] at hez'
     exact False.elim (hn (by simpa only [map_add,hd0',hd2',hd3a,hdb3] using hh))
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he2,he3] at hz
     have hrep := (represents_add_tail ha2 ha3)
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y2+y1)≠0 := by
@@ -2412,7 +2412,7 @@ private theorem t_incoming_t_incoming6_image (I : Inputs D L G) :
       norm_num [Finsupp.single_apply,Fin.ext_iff] at hez'
     exact False.elim (hn (by simpa only [map_add,hd0',hd2',hd3a,hdb3] using hh))
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (0:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,zero_add,map_add,he2,he3,he4] at hz
     have hrep := (represents_add_tail (represents_add_tail ha2 ha3) hb3)
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y2+y1+0)≠0 := by
@@ -2423,39 +2423,39 @@ private theorem t_incoming_t_incoming6_image (I : Inputs D L G) :
       norm_num [Finsupp.single_apply,Fin.ext_iff] at hez'
     exact False.elim (hn (by simpa only [map_add,hd0',hd2',hd3a,hdb3] using hh))
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,he0] at hz
     have hrep := ha0
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y1)≠0 := by
       apply nonzero3 hy1
       intro hez
       have hez' := congrArg (fun t=>k t 1) hez
-      simp only [map_add,map_zero,←hk1,←hk2,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hez'
+      simp only [map_zero,←hk1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hez'
       norm_num [Finsupp.single_apply,Fin.ext_iff] at hez'
     exact False.elim (hn (by simpa only [map_add,hd0',hd2',hd3a,hdb3] using hh))
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,map_add,he0,he4] at hz
     have hrep := (represents_add_tail ha0 hb3)
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y1+0)≠0 := by
       apply nonzero3 (represents_add_tail hy1 (RepresentsOnPage.zero (by decide)))
       intro hez
       have hez' := congrArg (fun t=>k t 1) hez
-      simp only [map_add,map_zero,←hk1,←hk2,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hez'
+      simp only [map_add,map_zero,←hk1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hez'
       norm_num [Finsupp.single_apply,Fin.ext_iff] at hez'
     exact False.elim (hn (by simpa only [map_add,hd0',hd2',hd3a,hdb3] using hh))
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,map_add,he0,he3] at hz
     right
     have hz' := represents_unique hz hw
     rw [hz']
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 2 (0:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,map_add,he0,he3,he4] at hz
     right
     have hz' := represents_unique hz (represents_add_tail hw hb6)
     rw [hz',map_add,hdb6,add_zero]
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (0:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,map_add,he0,he2] at hz
     have hrep := (represents_add_tail ha0 ha2)
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y1+y2)≠0 := by
@@ -2466,7 +2466,7 @@ private theorem t_incoming_t_incoming6_image (I : Inputs D L G) :
       norm_num [Finsupp.single_apply,Fin.ext_iff] at hez'
     exact False.elim (hn (by simpa only [map_add,hd0',hd2',hd3a,hdb3] using hh))
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (0:F2)+Finsupp.single 4 (1:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,map_add,he0,he2,he4] at hz
     have hrep := (represents_add_tail (represents_add_tail ha0 ha2) hb3)
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y1+y2+0)≠0 := by
@@ -2477,7 +2477,7 @@ private theorem t_incoming_t_incoming6_image (I : Inputs D L G) :
       norm_num [Finsupp.single_apply,Fin.ext_iff] at hez'
     exact False.elim (hn (by simpa only [map_add,hd0',hd2',hd3a,hdb3] using hh))
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (0:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [Finsupp.single_zero,add_zero,map_add,he0,he2,he3] at hz
     have hrep := (represents_add_tail (represents_add_tail ha0 ha2) ha3)
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y1+y2+y1)≠0 := by
@@ -2488,7 +2488,7 @@ private theorem t_incoming_t_incoming6_image (I : Inputs D L G) :
       norm_num [Finsupp.single_apply,Fin.ext_iff] at hez'
     exact False.elim (hn (by simpa only [map_add,hd0',hd2',hd3a,hdb3] using hh))
   · change RepresentsOnPage E 6 (8,134) (e.symm (Finsupp.single 0 (1:F2)+Finsupp.single 2 (1:F2)+Finsupp.single 3 (1:F2)+Finsupp.single 4 (1:F2))) z at hz
-    simp only [Finsupp.single_zero,add_zero,zero_add,map_add,he0,he2,he3,he4,map_zero] at hz
+    simp only [map_add,he0,he2,he3,he4] at hz
     have hrep := (represents_add_tail (represents_add_tail (represents_add_tail ha0 ha2) ha3) hb3)
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<6) hrep ⟨z,hz⟩
     have hn : (y1+y2+y1+0)≠0 := by
@@ -2725,7 +2725,7 @@ private theorem t_incoming_t_incoming8_source_four (I : Inputs D L G) :
     have heq : e x=Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1) := by
       apply Finsupp.ext
       intro i
-      fin_cases i <;> simp [Finsupp.single_apply]
+      fin_cases i <;> simp
     have hxe : x=e.symm (Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
     generalize hc0 : e x 0=c0 at hxe
     generalize hc1 : e x 1=c1 at hxe

@@ -69,9 +69,9 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
     refine ⟨b,?_⟩
     have he : lambdaMultiply 1 b=e.inv≫lambdaPow 1 (Smn m w)≫b := by
       unfold lambdaMultiply
-      change eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
+      change eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
         lambdaPow 1 (Smn m w) ≫ b =
-        (eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
+        (eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
         lambdaPow 1 (Smn m w) ≫ b
       exact (Category.assoc _ _ _).symm
     rw [he]
@@ -181,8 +181,8 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
       simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,
         eqToIso.hom,eqToHom_app,eqToHom_refl,Category.comp_id, Smn] using hu
     dsimp only [syntheticTwo]
-    simp only [Functor.map_comp,two_smul,Functor.map_add,Functor.map_id,Category.assoc,
-      Preadditive.comp_add,Preadditive.add_comp,Category.comp_id]
+    simp only [two_smul,Functor.map_add,
+      Preadditive.comp_add,Category.comp_id]
     rw [←hu']
     simp
   have theta_two_normalized (coh : BiShiftCoherence Syn)
@@ -287,12 +287,12 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
       a.hom≫lambdaMultiply k f=lambdaMultiply k f := by
     let F:=SyntheticCategory.biShift (Syn:=Syn) (0,-(k:ℤ))
     let d:Smn (Syn:=Syn) m (n-k)≅F.obj (Smn m n) :=
-      eqToIso (by congr 1 <;> simp [sub_eq_add_neg]) ≪≫
+      eqToIso (by congr 1 <;> simp) ≪≫
         ((SyntheticCategory.biShift_comp (m,n) (0,-(k:ℤ))).app (S_0_0:Syn)).symm
     have he:lambdaMultiply k f=d.hom≫F.map f≫lambdaPow k X := by
       dsimp only [lambdaMultiply,d,Iso.trans_hom,Iso.symm_hom,Iso.app_inv,eqToIso.hom]
       rw [lambdaPow_naturality]
-      simp only [d,Iso.trans_hom,Iso.symm_hom,Iso.app_inv,eqToIso.hom,Category.assoc]
+      simp only [Category.assoc]
     rw [he]
     exact source_iso_fixed_transport F
       (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (0,-(k:ℤ))) f hf d (lambdaPow k X) a
@@ -391,8 +391,8 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
     apply (cancel_epi ((biShiftAddIso c a (a+c) (add_comm _ _)).hom.app
       ((SyntheticCategory.biShift b).obj A))).mp
     rw [← Category.assoc,← Category.assoc,← h₃]
-    simp only [Category.assoc,Iso.hom_inv_id_app_assoc,← Functor.map_comp,
-      Iso.hom_inv_id_app,CategoryTheory.Functor.map_id,Category.id_comp]
+    simp only [Category.assoc,
+      Iso.hom_inv_id_app]
     erw [CategoryTheory.Category.id_comp,←Functor.map_comp,Iso.hom_inv_id_app,CategoryTheory.Functor.map_id]
     rfl
   have shiftSwap_add_eq (coh : BiShiftCoherence Syn)
@@ -481,7 +481,7 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
       (125,136) (62,68) (125,134) (by decide) (by decide) (by decide) (by decide) S
     have h₂ := shift_assoc_inv D'.shiftCoherence (63,66) (0,-2) (62,70)
       (63,64) (62,68) (125,134) (by decide) (by decide) (by decide) (by decide) S
-    simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,
+    simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
       eqToHom_refl,Category.id_comp] at h₁ h₂
     have hp :
       (SyntheticCategory.biShift_comp (125,136) (0,-2)).inv.app S ≫
@@ -497,13 +497,12 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
         lambdaPow 2 ((SyntheticCategory.biShift (62,70)).obj (Smn 63 66)) = _
       rw [lambda_pow_shift D'.shiftCoherence 2 (62,70) (Smn 63 66)]
       dsimp only [shiftSwap,KIP126.Synthetic.Context.lambdaDegree]
-      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,
-        NatTrans.comp_app,eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,
+      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,eqToIso.hom,eqToIso.inv,eqToHom_refl,
         Category.comp_id,Category.id_comp]
       simp only [Category.assoc]
       erw [←Category.assoc ((SyntheticCategory.biShift_comp (125,136) (0,-2)).inv.app S)]
       erw [h₁]
-      simp only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one,Iso.inv_hom_id_app_assoc]
+      simp only [Category.assoc,Smn,S,Nat.cast_ofNat,Iso.inv_hom_id_app_assoc]
       simpa only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one] using
         (congrArg (fun z => z ≫ (SyntheticCategory.biShift (62,70)).map (lambdaPow 2 (Smn 63 66))) h₂.symm)
     unfold sphereAction lambdaMultiply
@@ -519,7 +518,7 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
       (125,135) (125,133) (125,134) (by decide) (by decide) (by decide) (by decide) S
     have h₂ := shift_assoc_inv D'.shiftCoherence (0,1) (0,-1) (125,134)
       (0,0) (125,133) (125,134) (by decide) (by decide) (by decide) (by decide) S
-    simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,
+    simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
       eqToHom_refl,Category.id_comp] at h₁ h₂
     have hp :
       (SyntheticCategory.biShift_comp (125,135) (0,-1)).inv.app S ≫
@@ -535,13 +534,12 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
         lambdaPow 1 ((SyntheticCategory.biShift (125,134)).obj (Smn 0 1)) = _
       rw [lambda_pow_shift D'.shiftCoherence 1 (125,134) (Smn 0 1)]
       dsimp only [shiftSwap,KIP126.Synthetic.Context.lambdaDegree]
-      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,
-        NatTrans.comp_app,eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,
+      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,eqToIso.hom,eqToIso.inv,eqToHom_refl,
         Category.comp_id,Category.id_comp]
       simp only [Category.assoc]
       erw [←Category.assoc ((SyntheticCategory.biShift_comp (125,135) (0,-1)).inv.app S)]
       erw [h₁]
-      simp only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one,Iso.inv_hom_id_app_assoc]
+      simp only [Category.assoc,Smn,S,Int.natCast_one,Iso.inv_hom_id_app_assoc]
       simpa only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one] using
         (congrArg (fun z => z ≫ (SyntheticCategory.biShift (125,134)).map (lambdaPow 1 (Smn 0 1))) h₂.symm)
     unfold sphereAction lambdaMultiply
@@ -553,17 +551,16 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
       lambdaMultiply 1 (lambdaMultiply 1 c) = lambdaMultiply 2 c := by
     have ha := shift_assoc_inv D'.shiftCoherence (125,135) (0,-1) (0,-1)
       (125,134) (0,-2) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-      eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+    simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
     unfold lambdaMultiply
-    simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat,Nat.cast_one,Int.natCast_one, Int.reduceSub]
+    simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat,Int.natCast_one, Int.reduceSub]
     erw [← reassoc_of% (lambdaPow_naturality 1
       ((SyntheticCategory.biShift_comp (125,135) (0,-1)).inv.app (S_0_0 : Syn)))]
     erw [← reassoc_of% (lambdaPow_naturality 1 (lambdaPow 1 (Smn 125 135)))]
     erw [← Category.assoc, ha]
     erw [lambdaPow_add D'.shiftCoherence 1 1 2 (by decide) (Smn 125 135)]
     simp only [lambdaShiftAddIso, biShiftAddIso, KIP126.Synthetic.Context.lambdaDegree,
-      Iso.trans_inv, NatTrans.comp_app, eqToIso.inv, eqToHom_app, eqToHom_refl,
+      Iso.trans_inv, eqToIso.inv, eqToHom_refl,
       Category.id_comp, Category.assoc]
     rfl
   have shuffle_lambda_one_two (D' : Model H M' Syn)
@@ -571,17 +568,16 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
       lambdaMultiply 1 (lambdaMultiply 2 c) = lambdaMultiply 3 c := by
     have ha := shift_assoc_inv D'.shiftCoherence (125,136) (0,-2) (0,-1)
       (125,134) (0,-3) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-      eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+    simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
     unfold lambdaMultiply
-    simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat,Nat.cast_one,Int.natCast_one, Int.reduceSub]
+    simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat,Int.natCast_one, Int.reduceSub]
     erw [← reassoc_of% (lambdaPow_naturality 1
       ((SyntheticCategory.biShift_comp (125,136) (0,-2)).inv.app (S_0_0 : Syn)))]
     erw [← reassoc_of% (lambdaPow_naturality 1 (lambdaPow 2 (Smn 125 136)))]
     erw [← Category.assoc, ha]
     erw [lambdaPow_add D'.shiftCoherence 2 1 3 (by decide) (Smn 125 136)]
     simp only [lambdaShiftAddIso, biShiftAddIso, KIP126.Synthetic.Context.lambdaDegree,
-      Iso.trans_inv, NatTrans.comp_app, eqToIso.inv, eqToHom_app, eqToHom_refl,
+      Iso.trans_inv, eqToIso.inv, eqToHom_refl,
       Category.id_comp, Category.assoc]
     rfl
   have shuffle_action_associativity (D' : Model H M' Syn)
@@ -590,7 +586,7 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
    sphereAction (sphereAction eta theta) b=sphereAction eta (sphereAction theta b) := by
     have ha := shift_assoc_inv D'.shiftCoherence (1,2) (62,64) (62,70)
       (63,66) (124,134) (125,136) (by decide) (by decide) (by decide) (by decide) (S_0_0:Syn)
-    simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,
+    simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
       eqToHom_refl,Category.id_comp] at ha
     dsimp only [sphereAction]
     simp only [Functor.map_comp,Category.assoc,Int.reduceAdd]
@@ -608,8 +604,8 @@ private theorem theta_b_shuffle_from_low_degrees (D' : Model H M' Syn)
       simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,
         eqToIso.hom,eqToHom_app,eqToHom_refl,Category.comp_id, Smn] using hu
     dsimp only [syntheticTwo]
-    simp only [Functor.map_comp,two_smul,Functor.map_add,Functor.map_id,Category.assoc,
-      Preadditive.comp_add,Preadditive.add_comp,Category.comp_id]
+    simp only [two_smul,Functor.map_add,
+      Preadditive.comp_add,Category.comp_id]
     rw [←hu']
     simp
   letI:=D'.syntheticTriangulated

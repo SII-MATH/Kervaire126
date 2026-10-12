@@ -26,7 +26,7 @@ theorem exponentEncoding_apply (slot : Fin 3) (m : Monomial) (j : Nat) :
 theorem exponentEncoding_other (slot other : Fin 3) (m : Monomial) (j : Nat)
     (h : slot ≠ other) : exponentEncoding slot m (other,j) = 0 := by
   classical
-  simp [exponentEncoding,Finset.sum_apply',Finsupp.single_apply,h]
+  simp [exponentEncoding,Finset.sum_apply',h]
 
 noncomputable def tripleEncoding (t : TripleMonomial) : (Fin 3 × Nat) →₀ Nat :=
   exponentEncoding 0 t.1 + exponentEncoding 1 t.2.1 + exponentEncoding 2 t.2.2

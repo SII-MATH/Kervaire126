@@ -426,8 +426,8 @@ private theorem shiftSwap_add (coh : BiShiftCoherence Syn)
   apply (cancel_epi ((biShiftAddIso c a (a+c) (add_comm _ _)).hom.app
     ((SyntheticCategory.biShift b).obj A))).mp
   rw [← Category.assoc,← Category.assoc,← h₃]
-  simp only [Category.assoc,Iso.hom_inv_id_app_assoc,← Functor.map_comp,
-    Iso.hom_inv_id_app,CategoryTheory.Functor.map_id,Category.id_comp]
+  simp only [Category.assoc,
+    Iso.hom_inv_id_app]
   erw [CategoryTheory.Category.id_comp,←Functor.map_comp,Iso.hom_inv_id_app,CategoryTheory.Functor.map_id]
   rfl
 
@@ -524,7 +524,7 @@ private theorem lambda_left_eight (D : Model H M Syn)
     (125,139) (125,131) (125,131) (by decide) (by decide) (by decide) (by decide) S
   have h₂ := shift_assoc_inv D.shiftCoherence (0,0) (0,-8) (125,139)
     (0,-8) (125,131) (125,131) (by decide) (by decide) (by decide) (by decide) S
-  simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,
+  simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
     eqToHom_refl,Category.id_comp] at h₁ h₂
   have hp :
     (SyntheticCategory.biShift_comp (125,139) (0,-8)).inv.app S ≫
@@ -540,13 +540,12 @@ private theorem lambda_left_eight (D : Model H M Syn)
       lambdaPow 8 ((SyntheticCategory.biShift (125,139)).obj (Smn 0 0)) = _
     rw [lambda_pow_shift D.shiftCoherence 8 (125,139) (Smn 0 0)]
     dsimp only [shiftSwap,KIP126.Synthetic.Context.lambdaDegree]
-    simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,
-      NatTrans.comp_app,eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,
+    simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,eqToIso.hom,eqToIso.inv,eqToHom_refl,
       Category.comp_id,Category.id_comp]
     simp only [Category.assoc]
     erw [←Category.assoc ((SyntheticCategory.biShift_comp (125,139) (0,-8)).inv.app S)]
     erw [h₁]
-    simp only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one,Iso.inv_hom_id_app_assoc]
+    simp only [Category.assoc,Smn,S,Nat.cast_ofNat,Iso.inv_hom_id_app_assoc]
     simpa only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one] using
       (congrArg (fun z => z ≫ (SyntheticCategory.biShift (125,139)).map (lambdaPow 8 (Smn 0 0))) h₂.symm)
   unfold sphereAction lambdaMultiply
@@ -563,8 +562,7 @@ private def sphere_unit_label (D : Model H M Syn) : E2 H SphereSpectrum 0 0 :=
 private theorem sphere_unit_action_139 (D : Model H M Syn) {A : Syn}
     (a : BiHom 125 139 A) : sphereAction (sphere_unit D) a = a := by
   have hu := D.shiftCoherence.left_unit (125,139) (S_0_0 : Syn)
-  simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
-    eqToHom_app,eqToHom_refl,Category.comp_id] at hu
+  simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,eqToHom_refl,Category.comp_id] at hu
   unfold sphereAction sphere_unit
   erw [←hu,Iso.inv_hom_id_app_assoc]
 
@@ -642,17 +640,16 @@ private theorem lambda_two_six_139 (D : Model H M Syn)
     lambdaMultiply 2 (lambdaMultiply 6 c) = lambdaMultiply 8 c := by
   have ha := shift_assoc_inv D.shiftCoherence (125,139) (0,-6) (0,-2)
     (125,133) (0,-8) (125,131) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-    eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+  simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold lambdaMultiply
-  simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat, Int.reduceSub]
+  simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat, Int.reduceSub]
   erw [← reassoc_of% (lambdaPow_naturality 2
     ((SyntheticCategory.biShift_comp (125,139) (0,-6)).inv.app (S_0_0 : Syn)))]
   erw [← reassoc_of% (lambdaPow_naturality 2 (lambdaPow 6 (Smn 125 139)))]
   erw [← Category.assoc, ha]
   erw [lambdaPow_add D.shiftCoherence 6 2 8 (by decide) (Smn 125 139)]
   simp only [lambdaShiftAddIso, biShiftAddIso, KIP126.Synthetic.Context.lambdaDegree,
-    Iso.trans_inv, NatTrans.comp_app, eqToIso.inv, eqToHom_app, eqToHom_refl,
+    Iso.trans_inv, eqToIso.inv, eqToHom_refl,
     Category.id_comp, Category.assoc]
   rfl
 

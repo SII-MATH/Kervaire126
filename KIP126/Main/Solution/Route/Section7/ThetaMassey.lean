@@ -63,7 +63,7 @@ private theorem h5_square_times_entire_770_zero
     · intro j hj hji
       by_cases hc : (e a) j=0
       · simp [hc]
-      · simp [hc,Finsupp.single_apply,hji]
+      · simp [hc,hji]
     · simp
   obtain ⟨e,he⟩ := I'.basis ⟨.sphere,7,70,["85,1","84,1","0,6,69,1"]⟩ (by
     unfold Raw.degrees

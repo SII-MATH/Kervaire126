@@ -205,7 +205,7 @@ private theorem anyexact0_page_generated_from_representatives
     · intro j hj hji
       by_cases hc : c j = 0
       · simp [hc]
-      · simp [hc,Finsupp.single_apply,hji]
+      · simp [hc,hji]
     · simp
   refine ⟨c, anyexact0_represents_unique hxa ?_⟩
   have hh := hsum Finset.univ
@@ -488,54 +488,54 @@ private theorem anyexact0_anyy_af14_source_frame (I : Inputs D L G)
   have heq : e x = Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x=e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0=c0 at hxe
   generalize hc1 : e x 1=c1 at hxe
   generalize hc2 : e x 2=c2 at hxe
   fin_cases c0 <;> fin_cases c1 <;> fin_cases c2
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     exact Or.inl hxe
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     simp only [he2] at hxe
     exact Or.inr (Or.inr (Or.inl hxe))
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     simp only [he1] at hxe
     exact Or.inr (Or.inl hxe)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add] at hxe
     simp only [he1, he2] at hxe
     exact Or.inr (Or.inr (Or.inr hxe))
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 2) hx
-    simp only [map_add,map_zero,←hf2,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf2,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he2, hd0, hd2, zero_add, add_zero] at hx
+    simp only [map_add, he0, he2, hd0, hd2, add_zero] at hx
     have hval := congrArg (fun y => f y 2) hx
-    simp only [map_add,map_zero,←hf2,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf2,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 2) hx
-    simp only [map_add,map_zero,←hf2,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf2,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [map_add] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, he2, hd0, hd1, hd2, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he2, hd0, hd1, hd2, add_zero] at hx
     have hval := congrArg (fun y => f y 2) hx
-    simp only [map_add,map_zero,←hf2,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf2,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
 
 private theorem anyexact0_anyy_af16_source_frame (I : Inputs D L G)
@@ -651,7 +651,7 @@ private theorem anyexact0_anyy_af16_source_frame (I : Inputs D L G)
   have heq : e x = Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) + Finsupp.single 3 (e x 3) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x=e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) + Finsupp.single 3 (e x 3)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0=c0 at hxe
   generalize hc1 : e x 1=c1 at hxe
@@ -659,101 +659,101 @@ private theorem anyexact0_anyy_af16_source_frame (I : Inputs D L G)
   generalize hc3 : e x 3=c3 at hxe
   fin_cases c0 <;> fin_cases c1 <;> fin_cases c2 <;> fin_cases c3
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     exact Or.inl hxe
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he3, hd3, zero_add, add_zero] at hx
+    simp only [he3, hd3] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     simp only [he2] at hxe
     exact Or.inr (Or.inr (Or.inl hxe))
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he2, he3, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he2, he3, hd2, hd3, zero_add] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     simp only [he1] at hxe
     exact Or.inr (Or.inl hxe)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he1, he3, hd1, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he1, he3, hd1, hd3, zero_add] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     simp only [he1, he2] at hxe
     exact Or.inr (Or.inr (Or.inr hxe))
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add] at hxe
     rw [hxe] at hx
     simp only [map_add, he1, he2, he3, hd1, hd2, hd3, zero_add, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he3, hd0, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he3, hd0, hd3] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he2, hd0, hd2, zero_add, add_zero] at hx
+    simp only [map_add, he0, he2, hd0, hd2, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he2, he3, hd0, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he2, he3, hd0, hd2, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, he3, hd0, hd1, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he3, hd0, hd1, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, he2, hd0, hd1, hd2, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he2, hd0, hd1, hd2, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [map_add] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, he2, he3, hd0, hd1, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he2, he3, hd0, hd1, hd2, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
@@ -879,7 +879,7 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
   have heq : e x = Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) + Finsupp.single 3 (e x 3) + Finsupp.single 4 (e x 4) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x=e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) + Finsupp.single 3 (e x 3) + Finsupp.single 4 (e x 4)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0=c0 at hxe
   generalize hc1 : e x 1=c1 at hxe
@@ -888,28 +888,28 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
   generalize hc4 : e x 4=c4 at hxe
   fin_cases c0 <;> fin_cases c1 <;> fin_cases c2 <;> fin_cases c3 <;> fin_cases c4
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     exact Or.inl hxe
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     simp only [he4] at hxe
     exact Or.inr (Or.inr (Or.inl hxe))
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he3, hd3, zero_add, add_zero] at hx
+    simp only [he3, hd3] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he3, he4, hd3, hd4, zero_add, add_zero] at hx
+    simp only [map_add, he3, he4, hd3, hd4, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     exfalso
     apply hn
     have hrep : RepresentsOnPage E 5 (15,140) x u := by
@@ -918,7 +918,7 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
       simpa only [zero_add,add_zero] using hu
     exact hd'.symm.trans (anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     exfalso
     apply hn
     have hrep : RepresentsOnPage E 5 (15,140) x u := by
@@ -927,43 +927,43 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
       simpa only [zero_add,add_zero] using anyexact0_represents_add_tail (hu) hz4
     exact hd'.symm.trans (anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he2, he3, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he2, he3, hd2, hd3, zero_add] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx
     simp only [map_add, he2, he3, he4, hd2, hd3, hd4, zero_add, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     simp only [he1] at hxe
     exact Or.inr (Or.inl hxe)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     simp only [he1, he4] at hxe
     exact Or.inr (Or.inr (Or.inr hxe))
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he1, he3, hd1, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he1, he3, hd1, hd3, zero_add] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx
     simp only [map_add, he1, he3, he4, hd1, hd3, hd4, zero_add, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     exfalso
     apply hn
     have hrep : RepresentsOnPage E 5 (15,140) x u := by
@@ -972,7 +972,7 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
       simpa only [zero_add,add_zero] using anyexact0_represents_add_tail (hz1) hu
     exact hd'.symm.trans (anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     exfalso
     apply hn
     have hrep : RepresentsOnPage E 5 (15,140) x u := by
@@ -981,128 +981,128 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
       simpa only [zero_add,add_zero] using anyexact0_represents_add_tail (anyexact0_represents_add_tail (hz1) hu) hz4
     exact hd'.symm.trans (anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx
     simp only [map_add, he1, he2, he3, hd1, hd2, hd3, zero_add, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add] at hxe
     rw [hxe] at hx
     simp only [map_add, he1, he2, he3, he4, hd1, hd2, hd3, hd4, zero_add, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero,←hf1,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 3) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he4, hd0, hd4, zero_add, add_zero] at hx
+    simp only [map_add, he0, he4, hd0, hd4, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he3, hd0, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he3, hd0, hd3] at hx
     have hval := congrArg (fun y => f y 3) hx
     simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he3, he4, hd0, hd3, hd4, zero_add, add_zero] at hx
+    simp only [map_add, he0, he3, he4, hd0, hd3, hd4, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
     simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he2, hd0, hd2, zero_add, add_zero] at hx
+    simp only [map_add, he0, he2, hd0, hd2, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he2, he4, hd0, hd2, hd4, zero_add, add_zero] at hx
+    simp only [map_add, he0, he2, he4, hd0, hd2, hd4, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he2, he3, hd0, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he2, he3, hd0, hd2, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
     simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he2, he3, he4, hd0, hd2, hd3, hd4, zero_add, add_zero] at hx
+    simp only [map_add, he0, he2, he3, he4, hd0, hd2, hd3, hd4, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
     simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, he4, hd0, hd1, hd4, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he4, hd0, hd1, hd4, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, he3, hd0, hd1, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he3, hd0, hd1, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
     simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, he3, he4, hd0, hd1, hd3, hd4, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he3, he4, hd0, hd1, hd3, hd4, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
     simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, he2, hd0, hd1, hd2, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he2, hd0, hd1, hd2, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, he2, he4, hd0, hd1, hd2, hd4, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he2, he4, hd0, hd1, hd2, hd4, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
-    simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, he2, he3, hd0, hd1, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he2, he3, hd0, hd1, hd2, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
     simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    simp only [map_add] at hxe
     rw [hxe] at hx
-    simp only [map_add, he0, he1, he2, he3, he4, hd0, hd1, hd2, hd3, hd4, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he2, he3, he4, hd0, hd1, hd2, hd3, hd4, add_zero] at hx
     have hval := congrArg (fun y => f y 3) hx
     simp only [map_add,map_zero,←hf1, ←hf3,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
@@ -1234,7 +1234,7 @@ private theorem anyexact0_sphere_boundary_torsion_lift
 private theorem anyexact0_lambda_multiply_zero_mono (D : Model H M Syn) {A : Syn} (a b : ℕ) (hab : a≤b)
     {m w : ℤ} (x : BiHom m w A) (hx : lambdaMultiply a x=0) :
     lambdaMultiply b x=0 := by
-  simp only [lambdaMultiply,Category.assoc,comp_eq_zero_iff_of_epi] at hx ⊢
+  simp only [lambdaMultiply,comp_eq_zero_iff_of_epi] at hx ⊢
   rw [lambdaPow_add D.shiftCoherence (b-a) a b (Nat.sub_add_cancel hab)]
   simp only [Category.assoc,hx,Limits.comp_zero]
 
@@ -1594,7 +1594,7 @@ private theorem anyexact0_anyy_af16_source_boundary (I : Inputs D L G) :
 private theorem anyexact0_lambda_multiply_zero_precomp {A : Syn} {m w m' w' : ℤ}
     (b : ℕ) (f : Smn (Syn:=Syn) m' w' ⟶ Smn m w) (x : BiHom m w A)
     (hx : lambdaMultiply b x=0) : lambdaMultiply b (f≫x)=0 := by
-  simp only [lambdaMultiply,Category.assoc,comp_eq_zero_iff_of_epi] at hx ⊢
+  simp only [lambdaMultiply,comp_eq_zero_iff_of_epi] at hx ⊢
   rw [←Category.assoc,←lambdaPow_naturality b f,Category.assoc,hx,Limits.comp_zero]
 
 private theorem anyexact0_lambda_multiply_zero_iterated {A : Syn} {m w : ℤ}
@@ -1780,7 +1780,7 @@ private theorem anyexact1_module_low_shuffle_raw
     (e.inv≫F.map h0) a at hnorm
   rw [hn] at hnorm
   have hn':=Toda.absorb_first hnorm
-  simp only [Category.assoc,e.hom_inv_id_assoc] at hn'
+  simp only [e.hom_inv_id_assoc] at hn'
   have hi:∀u:(F.obj ((SyntheticCategory.biShift (1,3)).obj (S_0_0:Syn)))⟦(1:ℤ)⟧⟶F.obj (S_0_0:Syn),
       (F.map ((SyntheticCategory.biShift (1,3)).map h0))⟦(1:ℤ)⟧'≫u=0 := by
     intro u
@@ -1799,14 +1799,12 @@ private theorem anyexact1_module_low_source_iso (coh:BiShiftCoherence Syn) :
   dsimp only
   have hh:=coh.associativity (1,2) (0,1) (123,129) (1,3) (123,130) (124,132)
     (by decide) (by decide) (by decide) (by decide) (S_0_0:Syn)
-  simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,Iso.app_hom,
-    eqToHom_app,eqToHom_refl,Category.comp_id] at hh
+  simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,eqToHom_refl,Category.comp_id] at hh
   have he:=congrArg (fun k =>
     (SyntheticCategory.biShift (123,129)).map ((SyntheticCategory.biShift_comp (1,2) (0,1)).inv.app (S_0_0:Syn))≫
       k≫(SyntheticCategory.biShift_comp (1,2) (123,130)).inv.app (S_0_0:Syn)) hh
-  simp only [←Category.assoc,←Functor.map_comp,Iso.inv_hom_id_app,Functor.map_id,
-    Category.id_comp] at he
-  simp only [Category.assoc,Iso.hom_inv_id_app,Category.comp_id] at he
+  simp only [←Category.assoc,←Functor.map_comp,Iso.inv_hom_id_app] at he
+  simp only [Category.assoc,Iso.hom_inv_id_app] at he
   erw [Category.comp_id] at he
   simpa only [Smn,Functor.comp_obj,Prod.mk_add_mk,Int.reduceAdd,CategoryTheory.Functor.map_id,Category.id_comp,Category.comp_id,
     Iso.trans_hom,Functor.mapIso_hom,Iso.symm_hom,Iso.app_inv,Iso.app_hom] using he.symm
@@ -1975,10 +1973,9 @@ private theorem anyexact1_h0_action_lambda_three (D : Model H M Syn)
     sphereAction η (lambdaMultiply 3 c) = lambdaMultiply 3 (sphereAction η c) := by
   have ha := anyexact1_shift_assoc_inv D.shiftCoherence (0,1) (123,132) (0,-3)
     (123,133) (123,129) (123,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-    eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+  simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold sphereAction lambdaMultiply
-  simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat,
+  simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat,
     Int.reduceSub, Int.reduceAdd]
   erw [← reassoc_of% (lambdaPow_naturality 3
     ((SyntheticCategory.biShift_comp (0,1) (123,132)).inv.app (S_0_0 : Syn)))]
@@ -1994,10 +1991,9 @@ private theorem anyexact1_eta_action_right_three (D : Model H M Syn)
     sphereAction η (lambdaMultiply 3 c) = lambdaMultiply 3 (sphereAction η c) := by
   have ha := anyexact1_shift_assoc_inv D.shiftCoherence (1,2) (123,132) (0,-3)
     (124,134) (123,129) (124,131) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-    eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+  simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold sphereAction lambdaMultiply
-  simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat,
+  simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat,
     Int.reduceSub, Int.reduceAdd]
   erw [← reassoc_of% (lambdaPow_naturality 3
     ((SyntheticCategory.biShift_comp (1,2) (123,132)).inv.app (S_0_0 : Syn)))]
@@ -2014,7 +2010,7 @@ private theorem anyexact1_eta_double_action (coh:BiShiftCoherence Syn)
       sphereAction eta (sphereAction eta a) := by
   have ha:=anyexact1_shift_assoc_inv coh (1,2) (1,2) (123,129) (2,4) (124,131) (125,133)
     (by decide) (by decide) (by decide) (by decide) (S_0_0:Syn)
-  simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,
+  simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
     eqToHom_refl,Category.id_comp] at ha
   dsimp only [sphereProduct,sphereAction]
   simp only [Functor.map_comp,Category.assoc,Int.reduceAdd]
@@ -2211,10 +2207,9 @@ private theorem anyexact1_main_eta_right_three (D : Model H M Syn)
     sphereAction η (lambdaMultiply 3 c) = lambdaMultiply 3 (sphereAction η c) := by
   have ha := anyexact1_shift_assoc_inv D.shiftCoherence (1,2) (124,134) (0,-3)
     (125,136) (124,131) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-    eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+  simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold sphereAction lambdaMultiply
-  simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat,
+  simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat,
     Int.reduceSub, Int.reduceAdd]
   erw [← reassoc_of% (lambdaPow_naturality 3
     ((SyntheticCategory.biShift_comp (1,2) (124,134)).inv.app (S_0_0 : Syn)))]
@@ -2231,10 +2226,9 @@ private theorem anyexact1_main_eta_right_six (D : Model H M Syn)
     sphereAction η (lambdaMultiply 6 c) = lambdaMultiply 6 (sphereAction η c) := by
   have ha := anyexact1_shift_assoc_inv D.shiftCoherence (1,2) (124,137) (0,-6)
     (125,139) (124,131) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-    eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+  simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold sphereAction lambdaMultiply
-  simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat,
+  simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat,
     Int.reduceSub, Int.reduceAdd]
   erw [← reassoc_of% (lambdaPow_naturality 6
     ((SyntheticCategory.biShift_comp (1,2) (124,137)).inv.app (S_0_0 : Syn)))]
@@ -2250,17 +2244,16 @@ private theorem anyexact1_main_lambda_six_one (D : Model H M Syn)
     lambdaMultiply 6 (lambdaMultiply 1 c) = lambdaMultiply 7 c := by
   have ha := anyexact1_shift_assoc_inv D.shiftCoherence (125,140) (0,-1) (0,-6)
     (125,139) (0,-7) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-    eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+  simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold lambdaMultiply
-  simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat, Int.reduceSub]
+  simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat, Int.reduceSub]
   erw [← reassoc_of% (lambdaPow_naturality 6
     ((SyntheticCategory.biShift_comp (125,140) (0,-1)).inv.app (S_0_0 : Syn)))]
   erw [← reassoc_of% (lambdaPow_naturality 6 (lambdaPow 1 (Smn 125 140)))]
   erw [← Category.assoc, ha]
   erw [lambdaPow_add D.shiftCoherence 1 6 7 (by decide) (Smn 125 140)]
   simp only [lambdaShiftAddIso, biShiftAddIso, KIP126.Synthetic.Context.lambdaDegree,
-    Iso.trans_inv, NatTrans.comp_app, eqToIso.inv, eqToHom_app, eqToHom_refl,
+    Iso.trans_inv, eqToIso.inv, eqToHom_refl,
     Category.id_comp, Category.assoc]
   rfl
 
@@ -2697,10 +2690,10 @@ private theorem anyexact2_vanishes_mod_lambda_iff_multiple
   have he (b : BiHom m w X) : lambdaMultiply n b=e.inv≫F.map b≫lambdaPow n X := by
     have he' : lambdaMultiply n b=e.inv≫lambdaPow n (Smn m w)≫b := by
       unfold lambdaMultiply
-      change eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫
+      change eqToHom (by congr 1 <;> simp) ≫
         (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0 ≫
         lambdaPow n (Smn m w) ≫ b =
-        (eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫
+        (eqToHom (by congr 1 <;> simp) ≫
           (SyntheticCategory.biShift_comp (m,w) (0,-(n:ℤ))).inv.app S_0_0) ≫
         lambdaPow n (Smn m w) ≫ b
       exact (Category.assoc _ _ _).symm
@@ -2750,17 +2743,16 @@ private theorem anyexact2_lambda_six_one (D : Model H M Syn)
     lambdaMultiply 6 (lambdaMultiply 1 c) = lambdaMultiply 7 c := by
   have ha := anyexact2_shift_assoc_inv D.shiftCoherence (125,140) (0,-1) (0,-6)
     (125,139) (0,-7) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-  simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-    eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+  simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold lambdaMultiply
-  simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat, Int.reduceSub]
+  simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat, Int.reduceSub]
   erw [← reassoc_of% (lambdaPow_naturality 6
     ((SyntheticCategory.biShift_comp (125,140) (0,-1)).inv.app (S_0_0 : Syn)))]
   erw [← reassoc_of% (lambdaPow_naturality 6 (lambdaPow 1 (Smn 125 140)))]
   erw [← Category.assoc, ha]
   erw [lambdaPow_add D.shiftCoherence 1 6 7 (by decide) (Smn 125 140)]
   simp only [lambdaShiftAddIso, biShiftAddIso, KIP126.Synthetic.Context.lambdaDegree,
-    Iso.trans_inv, NatTrans.comp_app, eqToIso.inv, eqToHom_app, eqToHom_refl,
+    Iso.trans_inv, eqToIso.inv, eqToHom_refl,
     Category.id_comp, Category.assoc]
   rfl
 
@@ -2853,7 +2845,7 @@ private theorem anyy_lambda_zero (D : Model H M Syn) {X : Syn}
     simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
       eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
   dsimp only [lambdaMultiply,lambdaPow]
-  simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+  simp only [eqToHom_refl,Category.id_comp]
   rw [←he]
   change (SyntheticCategory.biShift_comp (125,139) (0,0)).inv.app (S_0_0 : Syn) ≫
     (SyntheticCategory.biShift_comp (125,139) (0,0)).hom.app (S_0_0 : Syn) ≫ x = x
@@ -2936,9 +2928,9 @@ private theorem anyy_lambda_one_division_of_quotient_zero
   refine ⟨b,?_⟩
   have he : lambdaMultiply 1 b=e.inv≫lambdaPow 1 (Smn m w)≫b := by
     unfold lambdaMultiply
-    change eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
+    change eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
       lambdaPow 1 (Smn m w) ≫ b =
-      (eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
+      (eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
       lambdaPow 1 (Smn m w) ≫ b
     exact (Category.assoc _ _ _).symm
   rw [he]

@@ -209,7 +209,7 @@ private theorem weaky0_page_generated_from_representatives
     · intro j hj hji
       by_cases hc : c j = 0
       · simp [hc]
-      · simp [hc,Finsupp.single_apply,hji]
+      · simp [hc,hji]
     · simp
   refine ⟨c, weaky0_represents_unique hxa ?_⟩
   have hh := hsum Finset.univ
@@ -438,7 +438,7 @@ private theorem weaky0_middle_expand {N : ℕ} (f : Fin N →₀ F2) :
   · intro j hj hji
     by_cases hf : f j=0
     · simp [hf]
-    · simp [hf,Finsupp.single_apply,hji]
+    · simp [hf,hji]
   · simp
 
 private theorem weaky0_middle_rep2 {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
@@ -575,7 +575,7 @@ private theorem weaky0_nu9_af12_kernel (I : Inputs D L G)
   have hd := congrArg (E.d 2 (12,137)) hcoef
   rw [dx] at hd
   simp only [map_add,apply_ite,map_zero] at hd
-  simp only [d0,d1,d2,d3,d4,ite_self,zero_add,add_zero] at hd
+  simp only [d0,d1,d2,d3,d4,ite_self,add_zero] at hd
   have c0 : c 0=0 := by
     by_contra h0
     simp only [h0,ite_false] at hd
@@ -1293,7 +1293,7 @@ private theorem weaky0_anyy_h0_source_detected (η : BiHom 1 2 (S_0_0 : Syn))
       simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
         eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
     dsimp only [lambdaMultiply,lambdaPow]
-    simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+    simp only [eqToHom_refl,Category.id_comp]
     rw [←he]
     change (SyntheticCategory.biShift_comp (0,1) (0,0)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift_comp (0,1) (0,0)).hom.app (S_0_0 : Syn) ≫ T.h0=T.h0
@@ -1489,7 +1489,7 @@ private theorem weaky1_page_generated_from_representatives
     · intro j hj hji
       by_cases hc : c j = 0
       · simp [hc]
-      · simp [hc,Finsupp.single_apply,hji]
+      · simp [hc,hji]
     · simp
   refine ⟨c, weaky1_represents_unique hxa ?_⟩
   have hh := hsum Finset.univ
@@ -1718,7 +1718,7 @@ private theorem weaky1_middle_expand {N : ℕ} (f : Fin N →₀ F2) :
   · intro j hj hji
     by_cases hf : f j=0
     · simp [hf]
-    · simp [hf,Finsupp.single_apply,hji]
+    · simp [hf,hji]
   · simp
 
 private theorem weaky1_middle_rep2 {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
@@ -1855,7 +1855,7 @@ private theorem weaky1_nu9_af12_kernel (I : Inputs D L G)
   have hd := congrArg (E.d 2 (12,137)) hcoef
   rw [dx] at hd
   simp only [map_add,apply_ite,map_zero] at hd
-  simp only [d0,d1,d2,d3,d4,ite_self,zero_add,add_zero] at hd
+  simp only [d0,d1,d2,d3,d4,ite_self,add_zero] at hd
   have c0 : c 0=0 := by
     by_contra h0
     simp only [h0,ite_false] at hd
@@ -2227,7 +2227,7 @@ private theorem weaky1_main_y_finite_cosets (I:Inputs D L G)
     weaky1_represents_d_zero_of_later (by change (2:ℤ)≤4; omega) (by decide) hrep ⟨a6,ha6⟩
   have c0:c 0=0 := by
     by_contra h0
-    simp only [h0,ite_false,map_add,apply_ite,map_zero,hy_d4,ite_self,add_zero] at hd
+    simp only [h0,ite_false,map_add,apply_ite,hy_d4,ite_self,add_zero] at hd
     exact hbne (hd0.symm.trans hd)
   simp only [c0,ite_true,zero_add] at hrep
   by_cases h3:c 3=0

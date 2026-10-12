@@ -66,20 +66,20 @@ private theorem tail_af26 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(26,151)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af26 (I : Inputs D L G) :
@@ -148,33 +148,33 @@ private theorem tail_af27 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(27,152)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he1, hd1, zero_add, add_zero] at hx
+    simp only [he1, hd1] at hx
     have hval := congrArg (fun y => f y 2) hx
-    simp only [map_add, map_zero, ←hf2, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf2, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, ←hf2, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
@@ -294,7 +294,7 @@ private theorem tail_af28 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) + Finsupp.single 3 (e x 3)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) + Finsupp.single 3 (e x 3)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
@@ -302,105 +302,105 @@ private theorem tail_af28 (I : Inputs D L G) :
   generalize hc3 : e x 3 = c3 at hxe
   fin_cases c0 <;> fin_cases c1 <;> fin_cases c2 <;> fin_cases c3
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(28,153)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he3, hd3, zero_add, add_zero] at hx
+    simp only [he3, hd3] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
     rw [he2]
     simpa only [zero_add] using (hz2)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he2, he3, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he2, he3, hd2, hd3, zero_add] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he1, he3, hd1, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he1, he3, hd1, hd3, zero_add] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
     rw [he1, he2]
     simpa only [zero_add] using (represents_add_tail (hz1) hz2)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,zero_add] at hxe
     rw [hxe] at hx ⊢
     simp only [map_add, he1, he2, he3, hd1, hd2, hd3, zero_add, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he3, hd0, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he3, hd0, hd3] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he2, hd0, hd2, zero_add, add_zero] at hx
+    simp only [map_add, he0, he2, hd0, hd2, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he2, he3, hd0, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he2, he3, hd0, hd2, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, he3, hd0, hd1, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he3, hd0, hd1, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, he2, hd0, hd1, hd2, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he2, hd0, hd1, hd2, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, he2, he3, hd0, hd1, hd2, hd3, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, he2, he3, hd0, hd1, hd2, hd3, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
     simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
@@ -631,33 +631,33 @@ private theorem tail_af30 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(30,155)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af30 (I : Inputs D L G) :
@@ -931,20 +931,20 @@ private theorem tail_af33 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(33,158)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af33 (I : Inputs D L G) :
@@ -1092,33 +1092,33 @@ private theorem tail_af36 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(36,161)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af36 (I : Inputs D L G) :
@@ -1190,33 +1190,33 @@ private theorem tail_af37 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(37,162)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af37 (I : Inputs D L G) :
@@ -1419,33 +1419,33 @@ private theorem tail_af40_three (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(40,165)) (r:=3) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem tail_af39_h557 (I : Inputs D L G) : HasDifferential (sequence D .sphere) 4 (39,164) (43,167)
@@ -1656,33 +1656,33 @@ private theorem tail_af40 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   generalize hc1 : e x 1 = c1 at hxe
   fin_cases c0 <;> fin_cases c1
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(40,165)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,zero_add] at hxe
     rw [hxe] at hx ⊢
     rw [he1]
     simpa only [zero_add] using (hz1)
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
   · change x = e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [map_add] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, he1, hd0, hd1, zero_add, add_zero] at hx
+    simp only [map_add, he0, he1, hd0, hd1, add_zero] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af40 (I : Inputs D L G) :
@@ -1866,20 +1866,20 @@ private theorem tail_af42 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(42,167)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 1) hx
-    simp only [map_add, map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf1, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af42 (I : Inputs D L G) :
@@ -2167,20 +2167,20 @@ private theorem tail_af44 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(44,169)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af44 (I : Inputs D L G) :
@@ -2555,20 +2555,20 @@ private theorem tail_af55 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(55,180)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af55 (I : Inputs D L G) :
@@ -2615,20 +2615,20 @@ private theorem tail_af56 (I : Inputs D L G) :
   have heq : e x = (Finsupp.single 0 (e x 0)) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x = e.symm (Finsupp.single 0 (e x 0)) := by rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0 = c0 at hxe
   fin_cases c0
   · change x = e.symm (Finsupp.single 0 (0:F2)) at hxe
-    try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
+    try simp only [Finsupp.single_zero,map_zero] at hxe
     rw [hxe] at hx ⊢
     exact RepresentsOnPage.zero (E:=E) (p:=(56,181)) (r:=5) (by decide)
   · change x = e.symm (Finsupp.single 0 (1:F2)) at hxe
     try simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero] at hxe
     rw [hxe] at hx ⊢
-    simp only [map_add, he0, hd0, zero_add, add_zero] at hx
+    simp only [he0, hd0] at hx
     have hval := congrArg (fun y => f y 0) hx
-    simp only [map_add, map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.add_apply, Finsupp.zero_apply] at hval
+    simp only [map_zero, ←hf0, LinearEquiv.apply_symm_apply, Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply, Fin.ext_iff] at hval
 
 private theorem stem125_e5_zero_af56 (I : Inputs D L G) :

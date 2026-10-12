@@ -440,7 +440,7 @@ private theorem x_survives (I : Inputs D L G) :
   have hn : (I.realization.basis .sphere 8 130 0)≠0 := by
     intro hh
     have hc := congrArg (fun y => e y 0) hh
-    simp only [map_add,map_zero,←he0,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hc
+    simp only [map_zero,←he0,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hc
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hc
   rw [vx_x_label I]
   obtain ⟨y,hy⟩ := hreach
@@ -1320,7 +1320,7 @@ private theorem stem125_af12_four (I : Inputs D L G) :
   have hd := congrArg (E.d 2 (12,137)) hcoef
   rw [dx] at hd
   simp only [map_add,apply_ite,map_zero] at hd
-  simp only [d0,d1,d2,d3,d4,ite_self,zero_add,add_zero] at hd
+  simp only [d0,d1,d2,d3,d4,ite_self,add_zero] at hd
   have c0 : c 0=0 := by
     by_contra h0
     simp only [h0,ite_false] at hd

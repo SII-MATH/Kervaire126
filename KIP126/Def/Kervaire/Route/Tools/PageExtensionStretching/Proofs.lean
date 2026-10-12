@@ -631,8 +631,7 @@ private theorem quotient_shift_exists (coh : BiShiftCoherence Syn)
       rw [lambdaPow_succ_comparison]
       simp only [powerComm, Iso.trans_hom, Iso.symm_hom, NatTrans.comp_app,
         isoWhiskerLeft_hom, isoWhiskerRight_hom, whiskerLeft_app, whiskerRight_app,
-        Functor.associator_inv_app, Functor.associator_hom_app,
-        Category.comp_id, Category.id_comp, Category.assoc]
+        Functor.associator_inv_app, Functor.associator_hom_app, Category.id_comp, Category.assoc]
       rw [Iso.hom_inv_id_app_assoc]
       rw [← Functor.map_comp, lambdaPow_succ_comparison, Functor.map_comp]
       have hn := (powerComm a q).hom.naturality (SyntheticCategory.lam.app X)

@@ -139,8 +139,8 @@ private theorem secondary_star_product (D' : Model H M' Syn)
     apply (cancel_epi ((biShiftAddIso c a (a+c) (add_comm _ _)).hom.app
       ((SyntheticCategory.biShift b).obj A))).mp
     rw [← Category.assoc,← Category.assoc,← h₃]
-    simp only [Category.assoc,Iso.hom_inv_id_app_assoc,← Functor.map_comp,
-      Iso.hom_inv_id_app,CategoryTheory.Functor.map_id,Category.id_comp]
+    simp only [Category.assoc,
+      Iso.hom_inv_id_app]
     erw [CategoryTheory.Category.id_comp,←Functor.map_comp,Iso.hom_inv_id_app,CategoryTheory.Functor.map_id]
     rfl
   have shiftSwap_add_eq (coh : BiShiftCoherence Syn)
@@ -229,7 +229,7 @@ private theorem secondary_star_product (D' : Model H M' Syn)
       (63,66) (62,62) (63,64) (by decide) (by decide) (by decide) (by decide) S
     have h₂ := shift_assoc_inv D'.shiftCoherence (1,2) (0,-2) (62,64)
       (1,0) (62,62) (63,64) (by decide) (by decide) (by decide) (by decide) S
-    simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,
+    simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
       eqToHom_refl,Category.id_comp] at h₁ h₂
     have hp :
       (SyntheticCategory.biShift_comp (63,66) (0,-2)).inv.app S ≫
@@ -245,13 +245,12 @@ private theorem secondary_star_product (D' : Model H M' Syn)
         lambdaPow 2 ((SyntheticCategory.biShift (62,64)).obj (Smn 1 2)) = _
       rw [lambda_pow_shift D'.shiftCoherence 2 (62,64) (Smn 1 2)]
       dsimp only [shiftSwap,KIP126.Synthetic.Context.lambdaDegree]
-      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,
-        NatTrans.comp_app,eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,
+      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,eqToIso.hom,eqToIso.inv,eqToHom_refl,
         Category.comp_id,Category.id_comp]
       simp only [Category.assoc]
       erw [←Category.assoc ((SyntheticCategory.biShift_comp (63,66) (0,-2)).inv.app S)]
       erw [h₁]
-      simp only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one,Iso.inv_hom_id_app_assoc]
+      simp only [Category.assoc,Smn,S,Nat.cast_ofNat,Iso.inv_hom_id_app_assoc]
       simpa only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one] using
         (congrArg (fun z => z ≫ (SyntheticCategory.biShift (62,64)).map (lambdaPow 2 (Smn 1 2))) h₂.symm)
     unfold sphereAction lambdaMultiply
@@ -440,9 +439,9 @@ private theorem nu_source_from_suspension_square
     refine ⟨b,?_⟩
     have he : lambdaMultiply 1 b=e.inv≫lambdaPow 1 (Smn m w)≫b := by
       unfold lambdaMultiply
-      change eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
+      change eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
         lambdaPow 1 (Smn m w) ≫ b =
-        (eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
+        (eqToHom (by congr 1 <;> simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
         lambdaPow 1 (Smn m w) ≫ b
       exact (Category.assoc _ _ _).symm
     rw [he]
@@ -689,10 +688,10 @@ private theorem nu_source_from_suspension_square
       rfl rfl rfl rfl A
     have hu := coh.left_unit (1,0) A
     have hc := coh.lambda_comm (1,0) ((SyntheticCategory.biShift (0,1)).obj A)
-    simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,eqToHom_app,
+    simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,
       eqToHom_refl,Category.comp_id] at ha hb hu
-    simp only [biShiftAddIso,Iso.trans_hom,Iso.trans_inv,NatTrans.comp_app,
-      eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,Category.comp_id,Category.id_comp] at hc
+    simp only [biShiftAddIso,Iso.trans_hom,Iso.trans_inv,
+      eqToIso.hom,eqToIso.inv,eqToHom_refl,Category.comp_id,Category.id_comp] at hc
     have hL : lambdaToPositivePow 1 A = SyntheticCategory.biShift_zero.inv.app A ≫
         (SyntheticCategory.biShift_comp (0,1) (0,-1)).inv.app A ≫
         SyntheticCategory.lam.app ((SyntheticCategory.biShift (0,1)).obj A) := by
@@ -719,7 +718,7 @@ private theorem nu_source_from_suspension_square
           rw [hu',hL]
           simp only [Functor.map_comp,Category.assoc]
           simp only [←Functor.map_comp_assoc,Iso.hom_inv_id_app,
-            Iso.hom_inv_id_app_assoc,Category.id_comp,Category.comp_id,CategoryTheory.Functor.map_id]
+            Iso.hom_inv_id_app_assoc,Category.id_comp,CategoryTheory.Functor.map_id]
     apply (cancel_epi ((SyntheticCategory.biShift (0,-1)).map
       ((SyntheticCategory.biShift_comp (0,1) (1,0)).hom.app A))).1
     calc
@@ -828,7 +827,7 @@ private theorem nu_source_from_suspension_square
       _ = -(SyntheticCategory.lam.app (N.functor.obj (X⟦(1:ℤ)⟧)) ≫
           S.connecting ≫ (N.boundaryLandingIso Y).hom) := by
         rw [ha]
-        simp only [Preadditive.comp_neg,Category.assoc,Iso.hom_inv_id_assoc]
+        simp only [Preadditive.comp_neg,Iso.hom_inv_id_assoc]
       _ = -(F.map (S.connecting ≫
           SyntheticCategory.lam.app (N.functor.obj (Y⟦(1:ℤ)⟧))) ≫
           (N.boundaryLandingIso Y).hom) := by
@@ -853,7 +852,7 @@ private theorem nu_source_from_suspension_square
     subst k
     rw [←h]
     dsimp only [negativeLift,negativeZeroIso,lambdaToPositivePow,lambdaPow]
-    simp only [Nat.cast_zero,neg_zero,eqToHom_refl,Category.id_comp,
+    simp only [eqToHom_refl,Category.id_comp,
       Iso.app_hom,Category.assoc]
     erw [SyntheticCategory.biShift_zero.hom.naturality]
     rfl
@@ -871,7 +870,7 @@ private theorem nu_source_from_suspension_square
     (SyntheticCategory.biShift_comp ((1,1)+(0,-(nh:ℤ))) (0,-(ng:ℤ))).hom.app X ≫
     eqToHom (congrArg (fun p => (SyntheticCategory.biShift p).obj X)
       (show ((1,1)+(0,-(nh:ℤ)))+(0,-(ng:ℤ))=(0,(nf:ℤ))+(1,0) from by
-        ext <;> simp only [Prod.fst_add,Prod.snd_add,Prod.fst,Prod.snd] <;> omega)) ≫
+        ext <;> simp only [Prod.fst_add,Prod.snd_add] <;> omega)) ≫
     (SyntheticCategory.biShift_comp (0,(nf:ℤ)) (1,0)).inv.app X ≫
     (SyntheticCategory.biShift_compat (Syn:=Syn) 1).hom.app _
   have raw_connecting_zero_normalization
@@ -894,7 +893,7 @@ private theorem nu_source_from_suspension_square
     change (SyntheticCategory.biShift_comp (1,1) (0,0)).hom.app X =
       SyntheticCategory.biShift_zero.hom.app ((SyntheticCategory.biShift (1,1)).obj X) at hu
     dsimp only [rawSourceConnecting,oneSourceIso,negativeZeroIso]
-    simp only [Nat.cast_zero,neg_zero,Nat.cast_one,eqToHom_refl,Iso.refl_hom,
+    simp only [eqToHom_refl,Iso.refl_hom,
       CategoryTheory.Functor.map_id,Category.comp_id,Category.id_comp]
     change (SyntheticCategory.biShift (0,0)).map (negativeLift 0 m) ≫
       (SyntheticCategory.biShift (0,0)).map ((SyntheticCategory.biShift (0,0)).map sx.hom) ≫

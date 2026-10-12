@@ -49,10 +49,9 @@ private theorem main_module_toda_nonempty_of_alpha (D' : Model H M' Syn)
       sphereAction etaAux (lambdaMultiply 3 c) = lambdaMultiply 3 (sphereAction etaAux c) := by
     have ha := shift_assoc_inv D'.shiftCoherence (0,1) (123,132) (0,-3)
       (123,133) (123,129) (123,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-      eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+    simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
     unfold sphereAction lambdaMultiply
-    simp only [eqToHom_refl, Category.id_comp, Category.assoc, Nat.cast_ofNat,
+    simp only [eqToHom_refl, Category.id_comp, Nat.cast_ofNat,
       Int.reduceSub, Int.reduceAdd]
     erw [← reassoc_of% (lambdaPow_naturality 3
       ((SyntheticCategory.biShift_comp (0,1) (123,132)).inv.app (S_0_0 : Syn)))]

@@ -138,7 +138,8 @@ private theorem transcription : LinE2.RawData.basisChunks[{ci}]'chunkBound =
         for ci in cis:imports.append(f'import {BASE}.Shared.'+('RelationsFirst' if ci is None else f'RelationChunk{ci:03d}')+'\n')
         for ci in sorted({i//1024 for i,r in ts}):imports.append(f'import {BASE}.Shared.BasisChunk{ci:03d}\n')
         parts=imports+[HEADER+f'namespace {NS}.{name}\nopen KIP126.LinE2 NativeMapCertificates BatchMapCertificate\nopen NaturalityMapCertificate (BasisRecord generatorImage)\nopen {RAW}.{name}\n'+OPTIONS]
-        parts.append('theorem relations_zero : ∀ code ∈ relationCodes, nativeImage code = 0 := by\n  simp only [relationCodes, List.forall_mem_cons]\n')
+        extra_simp = ', List.forall_mem_cons' if shard['relation_indices'] else ''
+        parts.append('theorem relations_zero : ∀ code ∈ relationCodes, nativeImage code = 0 := by\n  simp only [relationCodes' + extra_simp + ']\n')
         if not cis:parts.append('  simp\n')
         else:
             ls=[]

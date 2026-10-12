@@ -421,7 +421,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
       · intro j hj hji
         by_cases hc : c j = 0
         · simp [hc]
-        · simp [hc,Finsupp.single_apply,hji]
+        · simp [hc,hji]
       · simp
     refine ⟨c, represents_unique hxa ?_⟩
     have hh := hsum Finset.univ
@@ -603,7 +603,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
     · intro j hj hji
       by_cases hf : f j=0
       · simp [hf]
-      · simp [hf,Finsupp.single_apply,hji]
+      · simp [hf,hji]
     · simp
   have middle_rep2 {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
       {p : ℤ × ℤ} {r : ℤ} {x : E.Page 2 p} {a : E.Page r p} (hr : 2≤r)
@@ -738,7 +738,7 @@ private theorem nu9_error_data (I' : KIP126.Computation.Route.Inputs D' L' G) :
     have hd := congrArg (E.d 2 (12,137)) hcoef
     rw [dx] at hd
     simp only [map_add,apply_ite,map_zero] at hd
-    simp only [d0,d1,d2,d3,d4,ite_self,zero_add,add_zero] at hd
+    simp only [d0,d1,d2,d3,d4,ite_self,add_zero] at hd
     have c0 : c 0=0 := by
       by_contra h0
       simp only [h0,ite_false] at hd
@@ -1462,10 +1462,9 @@ private theorem nu_ninth_of_fifth_complete
   have lambda_sphere_unit (D' : Model H M' Syn) :
       lambdaMultiply 1 (sphere_unit D') = SyntheticCategory.lam.app (S_0_0 : Syn) := by
     have hu := D'.shiftCoherence.left_unit (0,-1) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
-      eqToHom_app,eqToHom_refl,Category.comp_id] at hu
+    simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,eqToHom_refl,Category.comp_id] at hu
     unfold lambdaMultiply sphere_unit
-    simp only [eqToHom_refl,Category.id_comp,Category.assoc]
+    simp only [eqToHom_refl,Category.id_comp]
     erw [←lambdaPow_naturality 1 (SyntheticCategory.biShift_zero.hom.app (S_0_0 : Syn))]
     erw [←hu,Iso.inv_hom_id_app_assoc]
     exact lambdaPow_one D'.shiftCoherence _
@@ -1474,10 +1473,10 @@ private theorem nu_ninth_of_fifth_complete
       sphereAction (lambdaMultiply 1 (sphere_unit D')) a = lambdaMultiply 1 a := by
     rw [lambda_sphere_unit D']
     have hc := D'.shiftCoherence.lambda_comm (125,131) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,Iso.trans_inv,NatTrans.comp_app,
-      eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,Category.comp_id,Category.id_comp] at hc
+    simp only [biShiftAddIso,Iso.trans_hom,Iso.trans_inv,
+      eqToIso.hom,eqToIso.inv,eqToHom_refl,Category.comp_id,Category.id_comp] at hc
     unfold sphereAction lambdaMultiply
-    simp only [eqToHom_refl,Category.id_comp,Category.assoc]
+    simp only [eqToHom_refl,Category.id_comp]
     erw [lambdaPow_one D'.shiftCoherence, hc]
     simp only [Category.assoc]
     erw [Iso.inv_hom_id_app_assoc]
@@ -1485,8 +1484,7 @@ private theorem nu_ninth_of_fifth_complete
   have sphere_unit_action_136 (D' : Model H M' Syn) {A : Syn}
       (a : BiHom 125 136 A) : sphereAction (sphere_unit D') a = a := by
     have hu := D'.shiftCoherence.left_unit (125,136) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
-      eqToHom_app,eqToHom_refl,Category.comp_id] at hu
+    simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,eqToHom_refl,Category.comp_id] at hu
     unfold sphereAction sphere_unit
     erw [←hu,Iso.inv_hom_id_app_assoc]
   have sphere_unit_label_product_136
@@ -1526,8 +1524,7 @@ private theorem nu_ninth_of_fifth_complete
   have sphere_unit_action_138 (D' : Model H M' Syn) {A : Syn}
       (a : BiHom 125 138 A) : sphereAction (sphere_unit D') a = a := by
     have hu := D'.shiftCoherence.left_unit (125,138) (S_0_0 : Syn)
-    simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
-      eqToHom_app,eqToHom_refl,Category.comp_id] at hu
+    simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,eqToHom_refl,Category.comp_id] at hu
     unfold sphereAction sphere_unit
     erw [←hu,Iso.inv_hom_id_app_assoc]
   have sphere_unit_label_product_138
@@ -1777,7 +1774,7 @@ private theorem nu_ninth_of_fifth_complete
   let fourth_push {m w : ℤ} {X Y : Syn}
       (f : (SyntheticCategory.biShift (0,-4)).obj X ⟶ Y) (a : BiHom m w X) :
       BiHom m (w-4) Y :=
-    eqToHom (by congr 1; simp [sub_eq_add_neg]) ≫
+    eqToHom (by congr 1; simp) ≫
       (SyntheticCategory.biShift_comp (m,w) (0,-4)).inv.app (S_0_0 : Syn) ≫
         (SyntheticCategory.biShift (0,-4)).map a ≫ f
   have nu_fourth_push (D' : Model H M' Syn) {X Y : Syn}
@@ -1786,8 +1783,7 @@ private theorem nu_ninth_of_fifth_complete
       sphereAction ν (fourth_push f x) = fourth_push f (sphereAction ν x) := by
     have ha := shift_assoc_inv D'.shiftCoherence (3,4) (122,130) (0,-4)
       (125,134) (122,126) (125,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
-    simp only [biShiftAddIso, Iso.trans_inv, NatTrans.comp_app, eqToIso.inv,
-      eqToHom_app, eqToHom_refl, Category.id_comp] at ha
+    simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
     simp only [fourth_push, eqToHom_refl, Category.id_comp]
     change
       (SyntheticCategory.biShift_comp (3,4) (122,126)).inv.app (S_0_0 : Syn) ≫
@@ -1867,7 +1863,7 @@ private theorem nu_ninth_of_fifth_complete
       change yp-ly=(if b then lc else 0) at hh
       have hyadd : lambdaMultiply 1 y9=ly+(if b then lc else 0) := by
         cases b <;> simp only [y9,ly,lc,lambdaMultiply,Bool.false_eq_true,↓reduceIte,
-          add_zero,Preadditive.comp_add,CategoryTheory.Limits.comp_zero]
+          add_zero,Preadditive.comp_add]
       rw [hyadd]
       exact sub_eq_iff_eq_add.mp hh |>.trans (add_comm _ _)
     have hc13 : FiltrationAtLeast (nuCoefficientUnit H.unit D'.nu) 13 c :=

@@ -422,8 +422,8 @@ private theorem theta_b_complete_from_low_degrees
     apply (cancel_epi ((biShiftAddIso c a (a+c) (add_comm _ _)).hom.app
       ((SyntheticCategory.biShift b).obj A))).mp
     rw [← Category.assoc,← Category.assoc,← h₃]
-    simp only [Category.assoc,Iso.hom_inv_id_app_assoc,← Functor.map_comp,
-      Iso.hom_inv_id_app,CategoryTheory.Functor.map_id,Category.id_comp]
+    simp only [Category.assoc,
+      Iso.hom_inv_id_app]
     erw [CategoryTheory.Category.id_comp,←Functor.map_comp,Iso.hom_inv_id_app,CategoryTheory.Functor.map_id]
     rfl
   have shiftSwap_add_eq (coh : BiShiftCoherence Syn)
@@ -1241,7 +1241,7 @@ private theorem theta_b_complete_from_low_degrees
         simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
           eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
       dsimp only [lambdaMultiply,lambdaPow]
-      simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+      simp only [eqToHom_refl,Category.id_comp]
       rw [←he]
       change (SyntheticCategory.biShift_comp (70-8,70) (0,0)).inv.app (S_0_0 : Syn) ≫
         (SyntheticCategory.biShift_comp (70-8,70) (0,0)).hom.app (S_0_0 : Syn) ≫ a=a
@@ -1321,7 +1321,7 @@ private theorem theta_b_complete_from_low_degrees
         simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
           eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
       dsimp only [lambdaMultiply,lambdaPow]
-      simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+      simp only [eqToHom_refl,Category.id_comp]
       rw [←he]
       change (SyntheticCategory.biShift_comp (134-9,134) (0,0)).inv.app (S_0_0 : Syn) ≫
         (SyntheticCategory.biShift_comp (134-9,134) (0,0)).hom.app (S_0_0 : Syn) ≫ a=a

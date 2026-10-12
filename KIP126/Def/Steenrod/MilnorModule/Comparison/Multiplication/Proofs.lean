@@ -631,16 +631,13 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
               (Opposite.op K)).f i = (K.XIsoOfEq (show -(i+n) = -i + -n by omega)).hom.op := rfl
           rw [hc]
           apply Quiver.Hom.unop_inj
-          simp only [g_opCommShift, g_opShiftIso, NatIso.ofComponents_hom_app,
-            HomologicalComplex.Hom.isoOfComponents_hom_f, Iso.op_hom,
-            unop_comp, Quiver.Hom.unop_op]
+          simp only [unop_comp, Quiver.Hom.unop_op]
           rw [Pretriangulated.opShiftFunctorEquivalence_counitIso_inv_app _ n (-n) (by omega),
             Pretriangulated.shiftFunctor_op_map _ n (-n) (by omega)]
           simp only [Pretriangulated.shiftFunctorOpIso, eqToIso_refl, Iso.refl_inv,
-            Iso.refl_hom, Category.comp_id, Category.id_comp,
-            Quiver.Hom.unop_op, HomologicalComplex.comp_f,
-            CochainComplex.shiftFunctor_map_f']
-          simp only [NatTrans.id_app, Category.id_comp, Category.comp_id,
+            Iso.refl_hom,
+            Quiver.Hom.unop_op]
+          simp only [NatTrans.id_app, Category.id_comp,
             unop_comp, Quiver.Hom.unop_op, HomologicalComplex.comp_f,
             CochainComplex.shiftFunctor_map_f']
           erw [unop_id, HomologicalComplex.id_f, Category.id_comp]
@@ -648,7 +645,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           change (K.XIsoOfEq (show -(i+n) = -i + -n by omega)).hom ≫
             f.f (-i + -n) ≫ ((shiftFunctorCompIsoId (CochainComplex C ℤ) n (-n) (by omega)).hom.app L).f (-i) = _
           simp only [shiftFunctorCompIsoId, Iso.trans_hom, NatTrans.comp_app,
-            HomologicalComplex.comp_f, CochainComplex.shiftFunctorAdd'_hom_app_f',
+            HomologicalComplex.comp_f,
             CochainComplex.shiftFunctorZero_hom_app_f, Iso.symm_hom,
             CochainComplex.shiftFunctorAdd'_inv_app_f']
           rw [← HomologicalComplex.XIsoOfEq_hom_naturality_assoc]
@@ -758,7 +755,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
                 rw [R.resolution.cochainComplex_d (-j) (-i) (-j).toNat (-i).toNat (by omega) (by omega)]
                 simp only [op_comp, Functor.map_comp, Category.assoc]
                 rw [← Functor.map_comp_assoc, ← op_comp, Iso.inv_hom_id]
-                simp only [op_id, Functor.map_id, Category.id_comp, Iso.inv_hom_id_assoc]
+                simp only [op_id, Iso.inv_hom_id_assoc]
                 rfl
               · exact (dualToLeftModule.map_isZero
                   (CochainComplex.isZero_of_isStrictlyGE R.resolution.cochainComplex 0 (-j) (by omega)).op).eq_of_tgt _ _
@@ -790,21 +787,17 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
               Iso.op_hom]
             simp only [dualSingleIso, Iso.trans_hom, HomologicalComplex.comp_f,
               Functor.mapIso_hom, Functor.mapHomologicalComplex_map_f,
-              Functor.mapCochainComplexSingleFunctor,
-              HomologicalComplex.singleMapHomologicalComplex_hom_app_self]
+              Functor.mapCochainComplexSingleFunctor]
             simp only [Iso.app_hom, HomologicalComplex.singleMapHomologicalComplex_hom_app_self,
-              g_opMap, Int.neg_zero, Int.toNat_zero, InjectiveResolution.ι'_f_zero,
+              g_opMap, Int.neg_zero, Int.toNat_zero,
               g_opSingleIso, HomologicalComplex.Hom.isoOfComponents_hom_f,
-              dif_pos rfl, Iso.trans_hom, Iso.op_hom, Iso.symm_hom,
               CochainComplex.singleFunctor, CochainComplex.singleFunctors,
               HomologicalComplex.single_map_f_self]
             simp only [Quiver.Hom.unop_op, dif_pos True.intro, InjectiveResolution.ι'_f_zero,
               Iso.trans_hom, Iso.op_hom, Iso.symm_hom, op_comp, Functor.map_comp,
-              Category.assoc, Iso.inv_hom_id_assoc]
-            simp only [HomologicalComplex.singleObjXSelf, ← Functor.map_comp_assoc, ← op_comp,
-              Category.assoc, Iso.inv_hom_id_assoc, Iso.hom_inv_id_assoc, Iso.inv_hom_id,
-              Iso.hom_inv_id, op_id, Functor.map_id, Category.id_comp]
-            simp only [← op_comp_assoc, Iso.inv_hom_id, op_id, Category.id_comp, Category.comp_id]
+              Category.assoc]
+            simp only [HomologicalComplex.singleObjXSelf, ← Functor.map_comp_assoc, Iso.inv_hom_id]
+            simp only [← op_comp_assoc, Category.comp_id]
             erw [Iso.inv_hom_id_assoc]
             simp only [← op_comp, Category.assoc, Iso.inv_hom_id_assoc]
             simp only [Iso.inv_hom_id, Category.comp_id]
@@ -835,8 +828,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
               (g.map (dualToLeftModule.mapHomologicalComplex (ComplexShape.up ℤ))).f i =
                 dualToLeftModule.map (g.f i) := by
             simp only [ShiftedHom.map, HomologicalComplex.comp_f,
-              Functor.mapHomologicalComplex_map_f, Functor.mapHomologicalComplex_commShiftIso_hom_app_f,
-              Category.comp_id]
+              Functor.mapHomologicalComplex_map_f, Functor.mapHomologicalComplex_commShiftIso_hom_app_f]
             erw [Category.comp_id]
           dsimp only
           simp only [ShiftedHom.mk₀_comp, ShiftedHom.comp_mk₀]
@@ -846,15 +838,13 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           · have hi' : i = -(s : ℤ) := by omega
             subst i
             simp only [HomologicalComplex.comp_f, CochainComplex.shiftFunctor_map_f', hmap,
-              g_cochainOpShifted_f, neg_add_cancel, Int.neg_zero]
-            simp only [Int.neg_zero, Cocycle.equivHomShift_symm_apply, Cocycle.homOf_f,
+              g_cochainOpShifted_f]
+            simp only [Cocycle.equivHomShift_symm_apply, Cocycle.homOf_f,
               Cocycle.rightShift_coe, Cochain.rightShift, Cochain.mk_v,
-              Cocycle.fromSingleMk_coe, Cocycle.toSingleMk_coe, zero_add, neg_add_cancel,
-              Cochain.fromSingleMk_v, Cochain.toSingleMk_v]
+              Cocycle.fromSingleMk_coe, Cocycle.toSingleMk_coe]
             simp only [CochainComplex.shiftFunctorObjXIso, HomologicalComplex.XIsoOfEq,
               eqToIso.hom, eqToIso.inv]
-            simp only [hi, Int.neg_zero, zero_add, Cochain.fromSingleMk_v, Cochain.toSingleMk_v,
-              eqToHom_refl, Category.comp_id]
+            simp only [eqToHom_refl, Category.comp_id]
             simp only [Cochain.fromSingleMk, Cochain.toSingleMk, Cochain.single, Cochain.mk_v]
             rw [dif_pos (show (0 : ℤ) = -(-s+s) ∧ (s : ℤ) = -(-s+s)+s by omega),
               dif_pos (show True ∧ (0 : ℤ) = -s+s by exact ⟨True.intro, by omega⟩)]
@@ -870,9 +860,9 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
               rfl
             rw [hmapXI, g_opXIso]
             simp only [Functor.mapIso_hom, Iso.op_hom, Int.neg_zero]
-            simp only [← Functor.map_comp_assoc, ← op_comp_assoc, ← op_comp, Category.assoc,
+            simp only [← Functor.map_comp_assoc, ← op_comp, Category.assoc,
               HomologicalComplex.XIsoOfEq, eqToIso.hom, eqToIso.inv,
-              eqToHom_trans_assoc, eqToHom_refl, Category.id_comp, Category.comp_id]
+              eqToHom_trans_assoc, eqToHom_refl, Category.id_comp]
             have hPi : (dualCochainIso R).hom.f (-s) =
                 ((dualCobarResolution R).cochainComplexXIso (-s) s rfl).hom ≫
                   dualToLeftModule.map (R.resolution.cochainComplexXIso (-(-s)) s (by omega)).hom.op := by
@@ -886,7 +876,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
                 rfl
               exact haux _ _ _ _ (by omega)
             rw [hPi]
-            simp only [eqToHom_trans, Category.comp_id]
+            simp only [eqToHom_trans]
             have hcoh (n : ℤ) (hn : (s : ℤ) = n) :
                 (R.resolution.cochainComplexXIso s s rfl).inv ≫
                   eqToHom (congrArg R.resolution.cochainComplex.X hn) ≫
@@ -906,18 +896,17 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
                 Functor.mapIso_hom, Functor.mapHomologicalComplex_map_f,
                 Functor.mapCochainComplexSingleFunctor, Iso.app_hom,
                 HomologicalComplex.singleMapHomologicalComplex_hom_app_self,
-                g_opSingleIso, HomologicalComplex.Hom.isoOfComponents_hom_f,
-                dif_pos rfl, dif_pos True.intro, Iso.symm_hom, Iso.op_hom, Int.neg_zero]
+                g_opSingleIso, HomologicalComplex.Hom.isoOfComponents_hom_f, dif_pos True.intro, Iso.symm_hom, Iso.op_hom, Int.neg_zero]
               simp only [HomologicalComplex.singleObjXSelf, Functor.map_comp, Category.assoc]
               simp only [← Functor.map_comp_assoc, ← op_comp_assoc, Iso.inv_hom_id,
-                op_id, Functor.map_id, Category.id_comp]
+                op_id, Category.id_comp]
               erw [CategoryTheory.Functor.map_id, Category.id_comp]
               rfl
             rw [op_comp, Functor.map_comp]
             simp only [Category.assoc]
             rw [reassoc_of% (hsingle (Ext.trivialAt t))]
             simp only [CochainComplex.singleFunctor, CochainComplex.singleFunctors,
-              HomologicalComplex.single_map_f_self, Category.assoc, Iso.inv_hom_id_assoc]
+              HomologicalComplex.single_map_f_self, Iso.inv_hom_id_assoc]
             rfl
           · exact (HomologicalComplex.isZero_single_obj_X (ComplexShape.up ℤ) 0 (trivialAt t) (i+s) hi).eq_of_tgt _ _
 
@@ -987,7 +976,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           obtain ⟨g,rfl⟩ := (ShiftedHom.opEquiv n).symm.surjective f
           rw [Equiv.apply_symm_apply]
           apply (ShiftedHom.opEquiv n).symm.injective
-          simp only [Equiv.symm_apply_apply, Equiv.apply_symm_apply,
+          simp only [Equiv.symm_apply_apply,
             ShiftedHom.opEquiv_symm_apply, ShiftedHom.map,
             CategoryTheory.Functor.map_comp, CategoryTheory.Functor.op_map,
             unop_comp, Quiver.Hom.unop_op, Category.assoc,
@@ -1014,16 +1003,15 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
                 (dualDerivedSingle X).hom ≫
                   ((DerivedCategory.singleFunctorIsoCompQ LeftModule 0).app (dualLeftModule X)).hom := by
           simp only [dualDerivedFactors, Iso.trans_hom, Iso.symm_hom, NatTrans.comp_app,
-            Functor.associator_inv_app, Functor.associator_hom_app, Category.id_comp, Category.comp_id,
+            Functor.associator_inv_app, Functor.associator_hom_app, Category.id_comp,
             Functor.isoWhiskerRight_hom, Functor.isoWhiskerLeft_hom, Functor.whiskerRight_app,
             Functor.whiskerLeft_app, dualDerivedSingle, Functor.mapIso_hom, Iso.app_hom,
-            g_derivedOpSingleIso, Functor.comp_map, Functor.map_comp,
+            g_derivedOpSingleIso, Functor.map_comp,
             Iso.app_inv, Iso.symm_hom, Iso.op_hom, Category.assoc]
-          simp only [dualDerived, Functor.comp_map, ← Functor.map_comp_assoc, ← op_comp,
-            Iso.hom_inv_id, Functor.map_id, Category.id_comp]
+          simp only [dualDerived, Functor.comp_map, ← Functor.map_comp_assoc, ← op_comp, Category.id_comp]
           dsimp only [dualSingleIso]
           rw [Iso.trans_hom, Functor.mapIso_hom, Functor.map_comp]
-          simp only [Iso.inv_hom_id_app, op_id, Functor.map_id, Category.id_comp,
+          simp only [Iso.inv_hom_id_app, op_id,
             Functor.map_comp, Category.assoc]
           erw [(g_derivedOp SourceComodule).map_id,
             dualToLeftModule.mapDerivedCategory.map_id, Category.id_comp]
@@ -1036,12 +1024,10 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           simp only [Functor.mapDerivedCategorySingleFunctor, Iso.app_hom, Iso.trans_hom,
             NatTrans.comp_app, Functor.isoWhiskerRight_hom, Functor.isoWhiskerLeft_hom,
             Functor.whiskerRight_app, Functor.whiskerLeft_app, Functor.associator_hom_app,
-            Functor.associator_inv_app, Iso.symm_hom, Category.id_comp, Category.comp_id,
+            Functor.associator_inv_app, Iso.symm_hom, Category.id_comp,
             Category.assoc]
-          simp only [← Functor.map_comp_assoc, Iso.hom_inv_id_app, Functor.map_id,
-            Category.id_comp, Iso.inv_hom_id_app]
-          simp only [Functor.isoWhiskerLeft_inv, Functor.whiskerLeft_app,
-            Iso.inv_hom_id_app, Category.comp_id]
+          simp only [← Functor.map_comp_assoc, Iso.inv_hom_id_app]
+          simp only [Functor.isoWhiskerLeft_inv, Functor.whiskerLeft_app]
           erw [dualToLeftModule.mapDerivedCategory.map_id, Category.id_comp]
           rfl
 
@@ -1114,8 +1100,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
             Pretriangulated.opShiftFunctorEquivalence_zero_unitIso_inv_app]
           simp only [eqToIso_refl, Iso.refl_trans, unop_comp, Quiver.Hom.unop_op,
             CategoryTheory.Functor.map_comp, Category.assoc]
-          simp only [← CategoryTheory.Functor.map_comp_assoc, ← unop_comp, Iso.inv_hom_id_app,
-            unop_id, CategoryTheory.Functor.map_id, Category.id_comp]
+          simp only [← CategoryTheory.Functor.map_comp_assoc, ← unop_comp, Iso.inv_hom_id_app]
           simp only [CategoryTheory.Functor.id_obj, unop_id, CategoryTheory.Functor.map_id, Category.id_comp]
           exact (shiftFunctorZero C ℤ).inv.naturality f
 
@@ -1148,12 +1133,12 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           have hb := congrArg (fun g => ShiftedHom.map g (DerivedCategory.Q (C := LeftModule)))
             (dualCocycle R s t f hf hf')
           simp only [ShiftedHom.map_comp, ShiftedHom.map_mk₀] at hb
-          simp only [ShiftedHom.mk₀_comp, ShiftedHom.comp_mk₀, Functor.map_comp, Category.assoc] at hb
+          simp only [ShiftedHom.mk₀_comp, ShiftedHom.comp_mk₀, Functor.map_comp] at hb
           erw [← hb]
           erw [reassoc_of% (dualRepresentative_prefix R)]
           have hs := congrArg (fun g => (shiftFunctor (DerivedCategory LeftModule) (s : ℤ)).map g)
             (dualRepresentative_suffix t)
-          simp only [Functor.map_comp, Category.assoc] at hs
+          simp only [Functor.map_comp] at hs
           erw [hs]
           have hc := ((shiftFunctor (DerivedCategory LeftModule) (s : ℤ)).mapIso
             (dualDerivedFactors.app (Opposite.op ((CochainComplex.singleFunctor SourceComodule 0).obj (Ext.trivialAt t))))).inv_hom_id
@@ -1192,18 +1177,16 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
             {X Y : C} (f : X ⟶ Y) :
             (g_derivedOp C).map ((DerivedCategory.singleFunctor C 0).map f).op ≫ (g_derivedOpSingleIso C X).hom =
               (g_derivedOpSingleIso C Y).hom ≫ (DerivedCategory.singleFunctor Cᵒᵖ 0).map f.op := by
-          simp only [g_derivedOpSingleIso, Iso.trans_hom, Functor.mapIso_hom, Iso.op_hom,
-            Iso.symm_inv, Iso.app_hom, Iso.symm_hom, Iso.app_inv, Category.assoc]
-          simp only [DerivedCategory.singleFunctorIsoCompQ, Iso.refl_hom, op_id,
-            Functor.map_id, Category.id_comp, Category.comp_id]
-          simp only [Iso.refl_inv, NatTrans.id_app, op_id]
+          simp only [g_derivedOpSingleIso, Iso.trans_hom, Functor.mapIso_hom, Iso.op_hom, Iso.app_hom, Iso.symm_hom, Iso.app_inv, Category.assoc]
+          simp only [DerivedCategory.singleFunctorIsoCompQ]
+          simp only [Iso.refl_inv, NatTrans.id_app]
           erw [(g_derivedOp C).map_id, (g_derivedOp C).map_id]
-          simp only [Category.id_comp, Category.comp_id]
+          simp only [Category.id_comp]
           rw [← Category.assoc]
           erw [((CatCommSq.iso (g_opLocalizer C).functor (DerivedCategory.Q (C := C)).op
               (DerivedCategory.Q (C := Cᵒᵖ)) (g_derivedOp C)).inv).naturality]
           dsimp only [Functor.comp_map, Functor.op_map]
-          simp only [Category.assoc, Category.id_comp, Category.comp_id]
+          simp only [Category.assoc]
           congr 1
           erw [Category.comp_id, Category.id_comp]
           change DerivedCategory.Q.map ((CochainComplex.opEquivalence C).functor.map
@@ -1220,9 +1203,8 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
             Pretriangulated.opShiftFunctorEquivalence_zero_unitIso_inv_app]
           simp only [eqToIso_refl, Iso.refl_trans, unop_comp, Quiver.Hom.unop_op,
             Functor.map_comp, Category.assoc]
-          simp only [← Functor.map_comp_assoc, ← unop_comp, Iso.inv_hom_id_app,
-            unop_id, Functor.map_id, Category.id_comp]
-          simp only [Functor.id_obj, unop_id, Functor.map_id, Category.id_comp]
+          simp only [← Functor.map_comp_assoc, ← unop_comp, Iso.inv_hom_id_app]
+          simp only [Functor.id_obj, unop_id]
           erw [(shiftFunctor C (0:ℤ)).map_id, Category.id_comp]
           exact (shiftFunctorZero C ℤ).inv.naturality f
 
@@ -1260,7 +1242,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           obtain ⟨g,rfl⟩ := (ShiftedHom.opEquiv n).symm.surjective f
           rw [Equiv.apply_symm_apply]
           apply (ShiftedHom.opEquiv n).symm.injective
-          simp only [Equiv.symm_apply_apply, Equiv.apply_symm_apply,
+          simp only [Equiv.symm_apply_apply,
             ShiftedHom.opEquiv_symm_apply, ShiftedHom.map,
             CategoryTheory.Functor.map_comp, CategoryTheory.Functor.op_map,
             unop_comp, Quiver.Hom.unop_op, Category.assoc,
@@ -1328,10 +1310,9 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           simp only [NatIso.ofComponents_hom_app, NatIso.ofComponents_inv_app,
             HomologicalComplex.Hom.isoOfComponents_hom_f, HomologicalComplex.Hom.isoOfComponents_inv_f,
             Iso.refl_hom, Iso.refl_inv, NatTrans.id_app, Functor.map_comp,
-            HomologicalComplex.comp_f, Functor.comp_map, Functor.mapHomologicalComplex_map_f,
+            HomologicalComplex.comp_f, Functor.mapHomologicalComplex_map_f,
             g_opMap, Quiver.Hom.unop_op, unop_id,
-            HomologicalComplex.id_f, Iso.op_hom, op_id, Functor.map_id,
-            Category.id_comp, Category.comp_id]
+            HomologicalComplex.id_f]
           repeat' first
             | erw [F.map_id]
             | erw [D.map_id]
@@ -1375,8 +1356,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           apply NatTrans.ext
           funext X
           simp only [NatTrans.comp_app, Functor.whiskerRight_app, Functor.whiskerLeft_app,
-            Functor.opComp, Iso.refl_hom, NatTrans.id_app, Functor.map_id,
-            Category.id_comp, Category.comp_id, Functor.commShiftIso_comp_hom_app]
+            Functor.opComp, Iso.refl_hom, NatTrans.id_app, Functor.commShiftIso_comp_hom_app]
           simp only [Functor.op_commShiftIso_hom_app _ X n (-n) (by omega),
             Functor.op_commShiftIso_hom_app G (F.op.obj X) n (-n) (by omega),
             Functor.commShiftIso_comp_inv_app, Functor.comp_map, Functor.map_comp,
@@ -1400,8 +1380,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           apply NatTrans.ext
           funext X
           simp only [NatTrans.comp_app, Functor.whiskerRight_app, Functor.whiskerLeft_app,
-            Functor.opComp, Iso.refl_hom, NatTrans.id_app, Functor.map_id,
-            Category.id_comp, Category.comp_id, Functor.commShiftIso_comp_hom_app]
+            Functor.opComp, Iso.refl_hom, NatTrans.id_app, Functor.commShiftIso_comp_hom_app]
           simp only [Functor.op_commShiftIso_hom_app _ X n (-n) (by omega),
             Functor.op_commShiftIso_hom_app G (F.op.obj X) n (-n) (by omega),
             Functor.commShiftIso_comp_inv_app, Functor.comp_map, Functor.map_comp,
@@ -1461,7 +1440,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
 
         letI LshiftFactors_commShift (t : ℤ) : NatTrans.CommShift (LshiftFactors t).hom ℤ := by
           simp only [LshiftFactors, Iso.trans_hom, Iso.symm_hom,
-            Functor.isoWhiskerRight_hom, Functor.isoWhiskerLeft_hom, NatIso.op_inv, NatIso.op_hom]
+            Functor.isoWhiskerRight_hom, Functor.isoWhiskerLeft_hom, NatIso.op_inv]
           infer_instance
 
         letI RshiftFactors_commShift (t : ℤ) : NatTrans.CommShift (RshiftFactors t).hom ℤ := by
@@ -1561,7 +1540,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           simp only [Abelian.Ext.comp_hom, Abelian.Ext.mk₀_hom]
           rw [dualExt_hom, hm]
           rw [g_opEquiv_comp, g_opEquiv_comp] <;> try omega
-          simp only [g_opEquiv_mk₀, opEquiv_map_derived, ShiftedHom.map_comp, ShiftedHom.map_mk₀]
+          simp only [g_opEquiv_mk₀, ShiftedHom.map_comp, ShiftedHom.map_mk₀]
           erw [opEquiv_map_derived]
           rw [Abelian.Ext.mapExactFunctor_hom, dualExt_hom]
           simp only [ShiftedHom.map_comp, ShiftedHom.map_mk₀]
@@ -1592,8 +1571,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           simp only [Abelian.Ext.comp_hom, Abelian.Ext.mk₀_hom,
             ShiftedHom.mk₀_comp, ShiftedHom.comp_mk₀]
           simp only [ShiftedHom.comp, Functor.map_comp, Category.assoc]
-          simp only [← Functor.map_comp_assoc, Iso.hom_inv_id_assoc, Iso.hom_inv_id,
-            Functor.map_id, Category.id_comp]
+          simp only [← Functor.map_comp_assoc, Iso.hom_inv_id]
           rw [← NatTrans.naturality]
           simp only [Functor.comp_map, Functor.map_comp, Category.assoc]
           erw [CategoryTheory.Functor.map_id, CategoryTheory.Functor.map_id, Category.id_comp]
@@ -1647,7 +1625,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           rw [← hraw]
           apply Abelian.Ext.ext
           simp only [Abelian.Ext.comp_hom, Abelian.Ext.mk₀_hom,
-            ShiftedHom.mk₀_comp, ShiftedHom.comp_mk₀, Functor.map_comp, Category.assoc]
+            ShiftedHom.mk₀_comp, ShiftedHom.comp_mk₀, Category.assoc]
           have hhS := congrArg Iso.hom hS
           have hhT := congrArg Iso.inv hT
           simp only [Iso.trans_hom, Iso.symm_hom, Functor.mapIso_inv, Iso.op_inv, Functor.mapIso_hom] at hhS
@@ -1661,7 +1639,7 @@ theorem preservesYoneda_of_preservesDualCobarRepresentatives (R : Ext.CobarResol
           have hp := congrArg (fun f => (DerivedCategory.singleFunctor LeftModule 0).map f) hhT
           have hq := congrArg (fun f => (shiftFunctor (DerivedCategory LeftModule) (s : ℤ)).map
             ((DerivedCategory.singleFunctor LeftModule 0).map f)) hhS
-          simp only [Functor.map_comp, Category.assoc] at hp hq
+          simp only [Functor.map_comp] at hp hq
           erw [reassoc_of% hp, hq]
           rfl
         apply finishYoneda R he
