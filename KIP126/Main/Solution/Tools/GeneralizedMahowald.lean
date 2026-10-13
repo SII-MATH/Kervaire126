@@ -1,14 +1,18 @@
 import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald
 import KIP126.Interface.Solution.Literature.Applications
 
-/-! Independent paper-tool proof target. No computation delivery or selected
-stage witness is a premise. The theorem remains to be proved from the displayed
-source-to-model comparisons on the same model; declaring it does not certify log rows. -/
+/-! Independent proof target for MainPaper Theorem 6.12.
+
+This theorem is the exact formal statement attached to
+`thm:generalized-mahowald` in the Blueprint.  Its proof is intentionally the
+only placeholder in this module. -/
 namespace KIP126.Main.Solution.Tools
 
 open CategoryTheory
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
-open KIP126.Synthetic.Context KIP126.Kervaire.Route KIP126.Classical.Adams
+open KIP126.Synthetic.Context KIP126.Synthetic.SpectralSequence
+open KIP126.Kervaire.Route KIP126.Classical.Adams
+open KIP126.Classical.Adams.PageRepresentatives
 open KIP126.Literature.Route
 
 universe u v w
@@ -19,12 +23,200 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H}
   (D : Model H M Syn)
 
-/-- MainPaper Theorem 6.12. May's signed smash-boundary input supplies
-Lemma 6.11's geometric step; the compatible normalized triangle and both
-no-crossing alternatives remain explicit in the conclusion's predicate. -/
+/-- The complete input package of the generalized Mahowald trick.
+
+This is only a faithful bundling of the Blueprint hypotheses.  In particular,
+it does not choose a quotient representative or a May lift. -/
+structure MahowaldHypotheses (T : TriangleData D.auxiliary)
+    (n m l s t : ℤ) where
+  exponent_sum : (normalizedExponent H T.f : ℤ) + normalizedExponent H T.g +
+    normalizedExponent H T.h = 1
+  triangle : NormalizedTriangleCompatible D.toModelData T exponent_sum
+  n_positive : 1 ≤ n - normalizedExponent H T.f
+  m_nonnegative : 0 ≤ m - normalizedExponent H T.g
+  l_nonnegative : 0 ≤ l - normalizedExponent H T.h
+  x : Ambient H (T.X.obj D.auxiliary) (s + l, t + l - 1)
+  y : Ambient H (T.Y.obj D.auxiliary) (s + l + n, t + l - 1 + n)
+  xBar : Ambient H (T.Z.obj D.auxiliary) (s, t)
+  yBar : Ambient H (T.Z.obj D.auxiliary)
+    (s + l + n + m, t + l - 1 + n + m)
+  suspendedX : Ambient H ((T.X.obj D.auxiliary)⟦(1 : ℤ)⟧) (s + l, t + l)
+  x_cycle : IsCycle H (T.X.obj D.auxiliary) (n - normalizedExponent H T.f)
+    (s + l, t + l - 1) x
+  y_cycle : IsCycle H (T.Y.obj D.auxiliary)
+    (m - normalizedExponent H T.g + 1) (s + l + n, t + l - 1 + n) y
+  xBar_cycle : IsCycle H (T.Z.obj D.auxiliary) (n + m + l - 1) (s, t) xBar
+  yBar_permanent : IsPermanent H (T.Z.obj D.auxiliary)
+    (s + l + n + m, t + l - 1 + n + m) yBar
+  desuspends : (D.classicalSuspension T.X).DesuspendsClass (s + l) (t + l)
+    suspendedX x
+  h_extension : FiniteExtension D T.Z (.shift 1 T.X) T.h
+    (n + m + l - (m - normalizedExponent H T.g)).toNat l s t xBar suspendedX
+  differential : DifferentialAt H (T.Z.obj D.auxiliary) (n + m + l) (s, t)
+    (s + l + n + m, t + l - 1 + n + m) xBar yBar
+  no_crossing : FiniteExtension.NoCrossing D T.Z (.shift 1 T.X) T.h
+      (n + m + l - (m - normalizedExponent H T.g)).toNat l s t ∨
+    NoCrossingOn H (T.Z.obj D.auxiliary) (n + m + l)
+      (n + m + l - (m - normalizedExponent H T.g)) (s, t)
+  g_extension : FiniteExtension D T.Y T.Z T.g
+    (m - normalizedExponent H T.g + 2).toNat m (s + l + n) (t + l - 1 + n) y yBar
+
+/-- Chosen witnesses for the two extension hypotheses.
+
+Unlike a bare homotopy class, each field retains the actual finite quotient,
+its E∞ representatives, and the `ExtensionEquation` for the normalized map.
+The choices are made only from the two corresponding hypotheses in `W`. -/
+structure MahowaldExtensionWitnesses (T : TriangleData D.auxiliary)
+    {n m l s t : ℤ} (W : MahowaldHypotheses D T n m l s t) where
+  hWitness : FiniteExtensionWitness D T.Z (.shift 1 T.X) T.h
+    (n + m + l - (m - normalizedExponent H T.g)).toNat l s t W.xBar W.suspendedX
+  gWitness : FiniteExtensionWitness D T.Y T.Z T.g
+    (m - normalizedExponent H T.g + 2).toNat m (s + l + n) (t + l - 1 + n)
+    W.y W.yBar
+
+/-- Extract the actual extension witnesses supplied existentially by the
+Blueprint hypotheses. -/
+noncomputable def MahowaldExtensionWitnesses.choose
+    {T : TriangleData D.auxiliary} {n m l s t : ℤ}
+    (W : MahowaldHypotheses D T n m l s t) :
+    MahowaldExtensionWitnesses D T W where
+  hWitness := Classical.choice W.h_extension
+  gWitness := Classical.choice W.g_extension
+
+/-- The actual raw-cycle witness for the suspension comparison in the
+Mahowald hypotheses.  This keeps the two page-two representatives and the
+specified layer-level desuspension equality, rather than identifying their
+E₂ labels by fiat. -/
+structure MahowaldDesuspensionWitness (T : TriangleData D.auxiliary)
+    {n m l s t : ℤ} (W : MahowaldHypotheses D T n m l s t) where
+  suspendedCycle : adamsCycles H.unit (T.X.obj D.auxiliary⟦(1 : ℤ)⟧)
+    2 (by decide) (s + l) (t + l)
+  sourceCycle : adamsCycles H.unit (T.X.obj D.auxiliary)
+    2 (by decide) (s + l) (t + l - 1)
+  suspendedClass : KIP126.Classical.Adams.Suspension.classOfSecondCycle H
+    ((T.X.obj D.auxiliary)⟦(1 : ℤ)⟧)
+    (s + l) (t + l) suspendedCycle = W.suspendedX
+  sourceClass : KIP126.Classical.Adams.Suspension.classOfSecondCycle H (T.X.obj D.auxiliary)
+    (s + l) (t + l - 1) sourceCycle = W.x
+  layer_desuspends : (D.classicalSuspension T.X).desuspendFirstPage
+    (s + l) (t + l) suspendedCycle.val = sourceCycle.val
+
+/-- Choose the raw representatives whose existence is asserted by
+`DesuspendsClass`. -/
+noncomputable def MahowaldDesuspensionWitness.choose
+    {T : TriangleData D.auxiliary} {n m l s t : ℤ}
+    (W : MahowaldHypotheses D T n m l s t) :
+    MahowaldDesuspensionWitness D T W := by
+  let a := Classical.choose W.desuspends
+  let ha := Classical.choose_spec W.desuspends
+  let b := Classical.choose ha
+  let hb := Classical.choose_spec ha
+  exact ⟨a, b, hb.1, hb.2.1, hb.2.2⟩
+
+/-- The actual Adams differential datum used in the Mahowald diagram.
+`DifferentialAt` is unpacked here only to retain its page bound and the
+underlying spectral-sequence differential separately. -/
+structure MahowaldDifferentialWitness (T : TriangleData D.auxiliary)
+    {n m l s t : ℤ} (W : MahowaldHypotheses D T n m l s t) where
+  page_ge_two : 2 ≤ n + m + l
+  differential : KIP126.Core.SpectralSequence.HasDifferential
+    (adamsTowerInternalSpectralSequence H.unit (T.Z.obj D.auxiliary))
+    (n + m + l) (s, t)
+    (s + l + n + m, t + l - 1 + n + m) W.xBar W.yBar
+
+/-- Unpack the differential hypothesis without replacing it by a chosen
+operation on E₂ labels. -/
+theorem MahowaldDifferentialWitness.ofHypotheses
+    {T : TriangleData D.auxiliary} {n m l s t : ℤ}
+    (W : MahowaldHypotheses D T n m l s t) :
+    MahowaldDifferentialWitness D T W :=
+  ⟨W.differential.1, W.differential.2⟩
+
+/-- The two distinct no-crossing alternatives allowed by the Mahowald rule.
+The classical branch retains the fact that `r'` is a valid page between two
+and `r`; it is not a condition on the `g`-extension. -/
+inductive MahowaldNoCrossingWitness (D : Model H M Syn) (T : TriangleData D.auxiliary)
+    {n m l s t : ℤ} (W : MahowaldHypotheses D T n m l s t) : Prop where
+  | hExtension : FiniteExtension.NoCrossing D T.Z (.shift 1 T.X) T.h
+      (n + m + l - (m - normalizedExponent H T.g)).toNat l s t →
+      MahowaldNoCrossingWitness D T W
+  | classicalDifferential :
+      2 ≤ n + m + l - (m - normalizedExponent H T.g) →
+      n + m + l - (m - normalizedExponent H T.g) ≤ n + m + l →
+      ¬ PageRepresentatives.HasCrossingOn H (T.Z.obj D.auxiliary)
+        (n + m + l) (n + m + l - (m - normalizedExponent H T.g)) (s, t) →
+      MahowaldNoCrossingWitness D T W
+
+/-- Refine the rule's no-crossing disjunction into its two actual forms. -/
+theorem MahowaldNoCrossingWitness.ofHypotheses
+    {T : TriangleData D.auxiliary} {n m l s t : ℤ}
+    (W : MahowaldHypotheses D T n m l s t) :
+    MahowaldNoCrossingWitness D T W := by
+  rcases W.no_crossing with h | h
+  · exact .hExtension h
+  · exact .classicalDifferential h.1 h.2.1 h.2.2
+
+/-- All existing concrete evidence consumed before the synchronization step.
+No field asserts the existence of a common quotient representative or of a
+May pullback class; those are precisely the next two proof obligations. -/
+structure MahowaldConcreteInput (T : TriangleData D.auxiliary)
+    {n m l s t : ℤ} (W : MahowaldHypotheses D T n m l s t) where
+  extensions : MahowaldExtensionWitnesses D T W
+  desuspension : MahowaldDesuspensionWitness D T W
+  differential : MahowaldDifferentialWitness D T W
+  noCrossing : MahowaldNoCrossingWitness D T W
+
+/-- Produce the concrete evidence already contained in the theorem's
+hypotheses. -/
+noncomputable def MahowaldConcreteInput.ofHypotheses
+    {T : TriangleData D.auxiliary} {n m l s t : ℤ}
+    (W : MahowaldHypotheses D T n m l s t) :
+    MahowaldConcreteInput D T W where
+  extensions := MahowaldExtensionWitnesses.choose D W
+  desuspension := MahowaldDesuspensionWitness.choose D W
+  differential := MahowaldDifferentialWitness.ofHypotheses D W
+  noCrossing := MahowaldNoCrossingWitness.ofHypotheses D W
+
+/-- **Generalized Mahowald trick** (MainPaper Theorem 6.12).
+
+This is exactly the route-level formulation of the Blueprint theorem: the
+normalized distinguished triangle, its four stated hypotheses, source
+survival, and the `f`-extension target modulo the actual `B_{r'}` boundary
+subgroup. -/
 theorem generalizedMahowald (synthetic : SyntheticInputs D) (may : MayInput Syn)
     (T : TriangleData D.auxiliary) :
-    KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw D T := by
+    ∀ he : (normalizedExponent H T.f : ℤ) + normalizedExponent H T.g +
+        normalizedExponent H T.h = 1,
+    NormalizedTriangleCompatible D.toModelData T he →
+    ∀ (n m l s t : ℤ),
+      let r := n + m + l
+      let n₁ := n - normalizedExponent H T.f
+      let m₁ := m - normalizedExponent H T.g
+      let l₁ := l - normalizedExponent H T.h
+      let r' := r - m₁
+      ∀ (x : Ambient H (T.X.obj D.auxiliary) (s + l, t + l - 1))
+        (y : Ambient H (T.Y.obj D.auxiliary) (s + l + n, t + l - 1 + n))
+        (xBar : Ambient H (T.Z.obj D.auxiliary) (s, t))
+        (yBar : Ambient H (T.Z.obj D.auxiliary) (s + l + n + m, t + l - 1 + n + m))
+        (suspendedX : Ambient H ((T.X.obj D.auxiliary)⟦(1 : ℤ)⟧) (s + l, t + l)),
+        1 ≤ n₁ → 0 ≤ m₁ → 0 ≤ l₁ →
+        IsCycle H (T.X.obj D.auxiliary) n₁ (s + l, t + l - 1) x →
+        IsCycle H (T.Y.obj D.auxiliary) (m₁ + 1) (s + l + n, t + l - 1 + n) y →
+        IsCycle H (T.Z.obj D.auxiliary) (r - 1) (s, t) xBar →
+        IsPermanent H (T.Z.obj D.auxiliary) (s + l + n + m, t + l - 1 + n + m) yBar →
+        (D.classicalSuspension T.X).DesuspendsClass (s + l) (t + l) suspendedX x →
+        FiniteExtension D T.Z (.shift 1 T.X) T.h r'.toNat l s t xBar suspendedX →
+        DifferentialAt H (T.Z.obj D.auxiliary) r (s, t)
+          (s + l + n + m, t + l - 1 + n + m) xBar yBar →
+        (FiniteExtension.NoCrossing D T.Z (.shift 1 T.X) T.h r'.toNat l s t ∨
+          NoCrossingOn H (T.Z.obj D.auxiliary) r r' (s, t)) →
+        FiniteExtension D T.Y T.Z T.g (m₁ + 2).toNat m (s + l + n) (t + l - 1 + n) y yBar →
+        IsCycle H (T.X.obj D.auxiliary) (n + m + normalizedExponent H T.h)
+          (s + l, t + l - 1) x ∧
+          ∃ y' : Ambient H (T.Y.obj D.auxiliary) (s + l + n, t + l - 1 + n),
+            FiniteExtension D T.X T.Y T.f (n + m + 1 + normalizedExponent H T.h).toNat
+              n (s + l) (t + l - 1) x y' ∧
+            Congruent H (T.Y.obj D.auxiliary) r' (s + l + n, t + l - 1 + n) y' y := by
   sorry
 
 end KIP126.Main.Solution.Tools

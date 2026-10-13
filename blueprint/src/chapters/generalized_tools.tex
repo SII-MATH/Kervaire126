@@ -115,7 +115,13 @@ foundations established earlier.
 % SOURCE: MainPaper/main.tex:1780-1917, complete hypotheses and degree package for Theorem thm:158d451a.
 \begin{definition}[Hypotheses of the generalized Mahowald rule]
   \label{def:mahowald-input-data}
-  \uses{prop:normalized-synthetic-triangle,def:page-extension,def:classical-differential-crossing}
+  \uses{prop:normalized-synthetic-triangle,def:page-extension,def:classical-differential-crossing,def:mahowald-tower-suspension-comparison}
+  \lean{KIP126.Main.Solution.Tools.MahowaldHypotheses}
+  \lean{KIP126.Main.Solution.Tools.MahowaldExtensionWitnesses}
+  \lean{KIP126.Main.Solution.Tools.MahowaldDesuspensionWitness}
+  \lean{KIP126.Main.Solution.Tools.MahowaldDifferentialWitness}
+  \lean{KIP126.Main.Solution.Tools.MahowaldNoCrossingWitness}
+  \lean{KIP126.Main.Solution.Tools.MahowaldConcreteInput}
   \notready
   The Mahowald hypotheses specify a distinguished triangle
   $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ with
@@ -140,6 +146,9 @@ foundations established earlier.
   $E_{r'}$.
   The target of the $h$-extension is an actual $E_2(\Sigma X)$
   label; the following comparison relates it to the displayed $X$ label.
+  The linked witness packages only expose witnesses already supplied by these
+  hypotheses. They do not establish synchronized representatives, a compatible
+  common lift, stronger survival, or division by $\lambda$.
 \end{definition}
 
 \begin{definition}[Actual tower suspension comparison]
@@ -384,6 +393,7 @@ foundations established earlier.
   \label{thm:generalized-mahowald}
   \uses{def:mahowald-input-data,def:mahowald-tower-suspension-comparison,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle,lem:mahowald-synchronized-representatives,lem:mahowald-compatible-quotient-lift,lem:mahowald-quotient-lift-survival,lem:mahowald-lambda-division}
   \lean{KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw}
+  \lean{KIP126.Main.Solution.Tools.generalizedMahowald}
   \notready
   Let
   $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ be distinguished
@@ -411,7 +421,8 @@ foundations established earlier.
     d_n^{f,E_{n+m+1+e(h)}}(x)
        \equiv y\quad\text{modulo }B_{r'}.
   \]
-  The linked Lean declaration is the parameterized law, using one actual
+  The linked Lean declarations are the parameterized law and its unfinished
+  Solution theorem, using one actual
   distinguished triangle, its three normalized page families, and the
   tower suspension comparison above. A proof of this law remains to be
   supplied; defining the predicate is not a proof of the theorem.

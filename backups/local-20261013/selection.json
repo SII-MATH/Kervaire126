@@ -1,0 +1,1747 @@
+{
+  "format": "Kervaire126 latest implementation selection v1",
+  "branch": "codex/local-backup-20261013",
+  "complete_backup_checkpoint": "c0bad770ae75dde7ca8778040658ee4d381a095d",
+  "policy": "Actual repository source is authoritative. Historical archives are recovery-only, never parallel active implementations. Unique unported work is retained without claiming compilation or semantic absorption.",
+  "decisions": {
+    "mahowald-inputs": {
+      "decision": "Adopt the newer concrete hypothesis/witness packages in actual Main source. Preserve the final theorem type and its existing sorry.",
+      "selected": [
+        "KIP126/Main/Solution/Tools/GeneralizedMahowald.lean"
+      ],
+      "evidence": "The source worktree adds eleven declarations to the earlier root implementation; it compiles against the current interfaces. The theorem conclusion is definitionally the existing GeneralizedMahowaldLaw."
+    },
+    "adams-bockstein-route": {
+      "decision": "Keep current E2 comparison followed by Z_i/B_i quotient induction; do not restore the older relation-criterion-only route.",
+      "selected": [
+        "KIPBase/Synthetic/AdamsBocksteinMorphism.lean"
+      ],
+      "evidence": "Current cf8942d8c (2026-10-13) explicitly specifies the mandatory construction route; the source worktree is the earlier 2026-10-12 route."
+    },
+    "generalized-rules": {
+      "decision": "Keep current synchronized representative and actual common quotient-lift equations. Do not restore arbitrary Prop/True placeholders or an independent May-lift input interface.",
+      "selected": [
+        "KIPBase/Synthetic/GeneralizedRules.lean",
+        "KIPBase/Synthetic/LambdaLiftESS.lean"
+      ],
+      "evidence": "Current db022afd9 refines the integrated f0b4d801e baseline. Independent Mahowald/Extensions prototypes are older conditional routes, not missing proof completions."
+    },
+    "filtered-complex": {
+      "decision": "Keep the integrated filtered-complex interface. Preserve the unique old naturality draft only as unported historical work, not as an active competing implementation.",
+      "selected": [
+        "KIPBase/SpectralSequence/FilteredComplex.lean"
+      ],
+      "evidence": "The older FilteredComplexNaturality draft fails against current imports: pageCycleCondition, PageDifferentialData and pageDifferentialFiltrationLift APIs no longer exist. No semantic claim that every draft theorem is already ported is made."
+    },
+    "commutativity": {
+      "decision": "Keep the maintained bounded/unbounded commutativity modules, not the old CommutativityProof wrapper.",
+      "selected": [
+        "KIPBase/SpectralSequence/Commutativity.lean",
+        "KIPBase/SpectralSequence/UnboundedCommutativity.lean"
+      ],
+      "evidence": "Current integrated implementation supersedes the older wrapper and its corresponding API."
+    },
+    "blueprint-copies": {
+      "decision": "Use the root Blueprint source only; nested copies and generated web/print files are historical recovery artifacts.",
+      "selected": [
+        "blueprint/src/content.tex",
+        "blueprint/src/chapters/generalized_tools.tex"
+      ],
+      "evidence": "All 28 nested source copies match the source repository root Blueprint at capture. Current root source records subsequent development and the adopted Mahowald declarations."
+    }
+  },
+  "branch_audits": [
+    {
+      "repository": "KIP126",
+      "branch": "codex/lambda-quotient-tower-proof",
+      "tip": "d8376233c78dafbb1519aa6afc8ae73e47fc29f0",
+      "scope": "KIPBase Lean files added or modified relative to wang-dev merge-base. This is a content comparison, not a claim of mathematical proof completion or absorption.",
+      "commits_not_reachable_from_origin": 13,
+      "paths": [
+        {
+          "path": "KIPBase/Basic.lean",
+          "source_sha256": "a2cd519aeb9c25921dac67b47a395d7d7e117148f41da4375a87ae9176cea4b6",
+          "selected_sha256": "43bc38abbbebd790e5954f3900f46e43f50f4ac9298fce33122ad8711aa51379",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/SpectralSequence/Blueprint.lean",
+          "source_sha256": "1552378f3e35f0ee646c29c43d2f9d49474667547644f38800fa105a9b892985",
+          "selected_sha256": "12e061fd8d0145c00a3e007be326b0dd53f3643568a9362dcaaaa705b6a54810",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/SpectralSequence/Commutativity.lean",
+          "source_sha256": "35da3a087aeb1ca4d80449073b18520003a352b8deafb51b359bb6e3f438bffa",
+          "selected_sha256": "35da3a087aeb1ca4d80449073b18520003a352b8deafb51b359bb6e3f438bffa",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/SpectralSequence/Elementwise.lean",
+          "source_sha256": "bd3bac10e7338e48d0156e8df0a9dcf882a54fc3c13f05753821b3fbd542d836",
+          "selected_sha256": "bd3bac10e7338e48d0156e8df0a9dcf882a54fc3c13f05753821b3fbd542d836",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/SpectralSequence/ExtensionAbutment.lean",
+          "source_sha256": "dd4d6e263b6b8a5bcf4c301797aa4cbfb66ac10a9db4c0ffc510884f30ef2d85",
+          "selected_sha256": "dd4d6e263b6b8a5bcf4c301797aa4cbfb66ac10a9db4c0ffc510884f30ef2d85",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/SpectralSequence/ShiftedDifferential.lean",
+          "source_sha256": "e646be696c3c04a5ecb6b66f5f6114d4f7c0c057e2f34d701f9a2e0faa2851b0",
+          "selected_sha256": "e646be696c3c04a5ecb6b66f5f6114d4f7c0c057e2f34d701f9a2e0faa2851b0",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/SpectralSequence/ShiftedMorphism.lean",
+          "source_sha256": "cdc72a109842e0527430772bc21a1a2549ba2f73174f7e037e4c141978e3faf8",
+          "selected_sha256": "cdc72a109842e0527430772bc21a1a2549ba2f73174f7e037e4c141978e3faf8",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/SpectralSequence/StablePage.lean",
+          "source_sha256": "e0dabc9885af30379e6303875d36c169a89609b113c45b762a276d8247b9180a",
+          "selected_sha256": "e0dabc9885af30379e6303875d36c169a89609b113c45b762a276d8247b9180a",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/StableHomotopy/Basic.lean",
+          "source_sha256": "8518e50431a1cd0a943ee7bf8de3a2d8f06002bd3a30a961b1002c1743a2d7e1",
+          "selected_sha256": "e99376b71bfb4c01fa2c5dfd848d9b059b04365ddc96decfb9d86ee28ac1c2eb",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/StableHomotopy/TensorTriangulatedCategory.lean",
+          "source_sha256": "83d2c133e6b9b1257a3b5a9466a081f4367e7f828a018d07e21afe65711b358e",
+          "selected_sha256": "83d2c133e6b9b1257a3b5a9466a081f4367e7f828a018d07e21afe65711b358e",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/Adams.lean",
+          "source_sha256": "3a16727bb86ea6c4457722ddac4f6f7aad7f1952489fe946ef06d12cf2f840b4",
+          "selected_sha256": "1e62af8bbd8e44c220b406793178bb7d821819488169e3c91c9b25d0a1bc3afa",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/AdamsConvergentDivisibility.lean",
+          "source_sha256": "a44b3d6de38ae3a24087de7ecbc8108008f135428d97578d4b3ae25d4f23ec7c",
+          "selected_sha256": "a44b3d6de38ae3a24087de7ecbc8108008f135428d97578d4b3ae25d4f23ec7c",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/AdamsVanishing.lean",
+          "source_sha256": "4c75aeef29cb84977eb26af600f52c5824778bab3a1dd80364cb2bd04d268a72",
+          "selected_sha256": "4c75aeef29cb84977eb26af600f52c5824778bab3a1dd80364cb2bd04d268a72",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/Basic.lean",
+          "source_sha256": "d2a1bad50caee5418ad1020d4dd0b51efcf62324ae450f18605a6a3720d5fced",
+          "selected_sha256": "d2a1bad50caee5418ad1020d4dd0b51efcf62324ae450f18605a6a3720d5fced",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/ESSNaturality.lean",
+          "source_sha256": "8cbdd4ba3c3c9a4005085c2159948d2cab3ce2bc0f4d9bd5140c867865f040d8",
+          "selected_sha256": "8cbdd4ba3c3c9a4005085c2159948d2cab3ce2bc0f4d9bd5140c867865f040d8",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/ErPageExtension.lean",
+          "source_sha256": "83b2aea34726209413ff2c05a77c07620653c0dc4dcd2159e50d5ce34c2af0a2",
+          "selected_sha256": "16a25faa614db219bf34756b7a90fd50fa82108ce2d4e1a1959aa642a454073e",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/ExtensionSS.lean",
+          "source_sha256": "5727b65e2f5f9e933e783f1d671564404e56da1229197da7ac649648def39774",
+          "selected_sha256": "ff8d483a5a50ba710cf2b375ce665db590078650c8beb3e21ed3b205386aa0c1",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/FESS.lean",
+          "source_sha256": "8781a518e19cd595ee208f23da2ce6b93339ed696c82d73afc18b6d1ae20ac38",
+          "selected_sha256": "8781a518e19cd595ee208f23da2ce6b93339ed696c82d73afc18b6d1ae20ac38",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/GeneralizedRules.lean",
+          "source_sha256": "b9f4546223b4e8f705d48dffcddbb58fe0bdc865e0a225b74435f285c99dd1d5",
+          "selected_sha256": "6429c21aed677009046e3315a63bde334aae795164e4cf90dad35d596cf286c1",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/GeometricAdams.lean",
+          "source_sha256": "2b9be0197813a69ac524f54710cf1e6c0c0f579fc0d9110fd184b7ca9cad24f2",
+          "selected_sha256": "3406422fea2cea4650aa741ac787ba21f6c21501f97bfe5671057e418b4b815c",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/GeometricAdamsBoundaryComparison.lean",
+          "source_sha256": "b935524de357e78342df8692dc49919bdf1f12660c0aed1fe98d02473a1cce89",
+          "selected_sha256": "b935524de357e78342df8692dc49919bdf1f12660c0aed1fe98d02473a1cce89",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/GeometricAdamsCapPage.lean",
+          "source_sha256": "0147d9a1b8d7be35919596d2e8806289a4659cfe36470c590c922163a5db24d9",
+          "selected_sha256": "5a0da21b7827dfa875c8977bdf1ab76aa9fb46619a23f229c57a1a406724ec6b",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/GeometricAdamsCofiber.lean",
+          "source_sha256": "6ed81c11bd4249c26833f3ba33f0a862fb7767ef7774c97ff4d9f22f1a0f829c",
+          "selected_sha256": "2f882841cf420c655c17bf314f99ade921f29c9f01a1efbb88fe7e72d7b1ff17",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/GeometricAdamsFree.lean",
+          "source_sha256": "5849daf1c159fac607f302b1f85de70887ca5f854e47a337c5c426c87ecaf54c",
+          "selected_sha256": "1b81d6e4106d2c29c87f530ce6b2f21ac417a9e28dc0ae98929d833059abfe7f",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/GeometricAdamsLegacy.lean",
+          "source_sha256": "f04f2ba5ca1aa570465a948bb1940b0a1787e6f49ec7262cb5d6edfba468d47d",
+          "selected_sha256": "a64affb24510e84132a99d8f56a48db36a327d0c55eb7716780e3a799362edef",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/GeometricAdamsPageShift.lean",
+          "source_sha256": "e771687365dab95297c7eef2ece741496663ce9b9ca815297494947a236f95dc",
+          "selected_sha256": "e771687365dab95297c7eef2ece741496663ce9b9ca815297494947a236f95dc",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/GeometricAdamsPending.lean",
+          "source_sha256": "ccf8785f04232e2cbe57e880bf4ee8d10d74f2188fb78bd191da3439f202008d",
+          "selected_sha256": "ccf8785f04232e2cbe57e880bf4ee8d10d74f2188fb78bd191da3439f202008d",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/GeometricAdamsRealization.lean",
+          "source_sha256": "c67a158b73e59ee22304f585fd58572602122ffc57292c21ffee731125ad9640",
+          "selected_sha256": "c67a158b73e59ee22304f585fd58572602122ffc57292c21ffee731125ad9640",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/GeometricAdamsShift.lean",
+          "source_sha256": "133c823671eff90dac384d5b03b1bb4a996bb896d7d46ec917c68cf2d800e451",
+          "selected_sha256": "133c823671eff90dac384d5b03b1bb4a996bb896d7d46ec917c68cf2d800e451",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/LambdaBoundary.lean",
+          "source_sha256": "46fd7731652a0491262bf76baf70846eafe34030b294880cd12b0ea7353d2184",
+          "selected_sha256": "8f27f553713a8b50935d1e74a034bd50925c15fc66a3d6b334e1e2424c94525e",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/LambdaBoundaryESSFormula.lean",
+          "source_sha256": "876ab445224a9583197ae8ed8417f86d38e24fd577ade65eb6706dd0bcfb2eed",
+          "selected_sha256": "04f94b4e271a4a230527a8af7ad26a7b9800b1111a44fe961ed85ea5667aa1d4",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/LambdaBoundaryNaturality.lean",
+          "source_sha256": "4af1ddec27686bcc1f99f89e28dc5aa14592bd2d9af2f1374e3c9c5b513df8df",
+          "selected_sha256": "6ed3ea1ac54d2c6cf4f4a90187221eb3e9fd3581d41d94c17ff9409ca5ae5cee",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/LambdaShiftCounterexample.lean",
+          "source_sha256": "bb9a4b84523b43539abbfc31691d306349c69a7ea9422b800302e5422ae016cf",
+          "selected_sha256": "bb9a4b84523b43539abbfc31691d306349c69a7ea9422b800302e5422ae016cf",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/PageExtension.lean",
+          "source_sha256": "57ffa7de52b0de543dac90466c2af55a8dda80c56736483a4f3b977f036f7d10",
+          "selected_sha256": "57ffa7de52b0de543dac90466c2af55a8dda80c56736483a4f3b977f036f7d10",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/Rigidity.lean",
+          "source_sha256": "4a71fead1e17d7e32065a7a7efd22d3bb6a9cd672e9c494a8bea305a83958ea0",
+          "selected_sha256": "07a315f89e61121d8a65de2d885fb588286d4307e203cc062b286da07efba73a",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/ShiftCofiber.lean",
+          "source_sha256": "c0ed91050b98c7e7a6a6ba2f55a7e1e0a80330082fc6d267ff13de40a90bb7f3",
+          "selected_sha256": "c0ed91050b98c7e7a6a6ba2f55a7e1e0a80330082fc6d267ff13de40a90bb7f3",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/Sphere.lean",
+          "source_sha256": "bf99497d48e0a795a8325b88d67140c9a3daba60b105c5327a51c48ff3df027d",
+          "selected_sha256": "945d80eab6f9b160b60f6ed993409580a8f466b00b2f6d7042f3507864a1daf0",
+          "disposition": "keep-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/StableLambda.lean",
+          "source_sha256": "168cf742af426414e184b685846f76c9aaa9bdbb4c1798daa9e236a5265f7e90",
+          "selected_sha256": "168cf742af426414e184b685846f76c9aaa9bdbb4c1798daa9e236a5265f7e90",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/WeightwiseShift.lean",
+          "source_sha256": "e6b90c406200a4b21faa372d33a857cce232a9abf48aed7ab9e2a631ba4f3025",
+          "selected_sha256": "e6b90c406200a4b21faa372d33a857cce232a9abf48aed7ab9e2a631ba4f3025",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/Synthetic/WeightwiseTransport.lean",
+          "source_sha256": "b73b4a6451094a1ae88e81b04ebd3b1a06809c3e66f8ff29fc4e1087857fbfe4",
+          "selected_sha256": "b73b4a6451094a1ae88e81b04ebd3b1a06809c3e66f8ff29fc4e1087857fbfe4",
+          "disposition": "identical-current-source"
+        },
+        {
+          "path": "KIPBase/multiplicativeSS/TriangulatedTodaBracket.lean",
+          "source_sha256": "d78e86f9bfa3338310aab6823283a473c273e988be214a34aad0a7fc072ea40e",
+          "selected_sha256": "d314178718d2932b560cd8699c05bd3ede82bd4bfd56d5bf73b897b1c155aa43",
+          "disposition": "keep-current-source"
+        }
+      ]
+    }
+  ],
+  "captured_changed_paths": 121,
+  "entries": [
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Def.lean",
+      "source_sha256": "850915475a432784466fea400c1b88c8e7ecc6d42eab26759eaff740899dec37",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Def.lean",
+          "sha256": "850915475a432784466fea400c1b88c8e7ecc6d42eab26759eaff740899dec37"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Def/SpectralSequence/Basic.lean",
+      "source_sha256": "db7dc126e7d5a58a6a7c451f741c1243f46201a23df8f1ec360fdbf485bd5cd7",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Def/SpectralSequence/Basic.lean",
+          "sha256": "db7dc126e7d5a58a6a7c451f741c1243f46201a23df8f1ec360fdbf485bd5cd7"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Def/Synthetic/QuotientTower/Proofs.lean",
+      "source_sha256": "924a72d6708f2d5f68accff04761863956b5051d7e344cc9ea6d8ced68cae702",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Def/Synthetic/QuotientTower/Proofs.lean",
+          "sha256": "924a72d6708f2d5f68accff04761863956b5051d7e344cc9ea6d8ced68cae702"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Main/Solution/Computation/High125.lean",
+      "source_sha256": "77dbeae45313242e1fbd29ebbfac41f9c15aa49b4c15e399edcb5fc3e9eafd26",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Main/Solution/Computation/High125.lean",
+          "sha256": "77dbeae45313242e1fbd29ebbfac41f9c15aa49b4c15e399edcb5fc3e9eafd26"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Main/Solution/Computation/Lambda.lean",
+      "source_sha256": "6452d3f970700cacd933ad0a17a84e675898cd0f91d857731248bc67fd6eab4f",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Main/Solution/Computation/Lambda.lean",
+          "sha256": "b0864fc3e14571ec32704ab47b665a66abd608dbfabde003535e65aed2cbba6c"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Main/Solution/Computation/Route.lean",
+      "source_sha256": "caa59b9e16c7549954cf6eb8bbf6457dab67a95f67077aa91d25bb77ed841f56",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Main/Solution/Computation/Route.lean",
+          "sha256": "0568aec6e2a5807cc2d32075568062dd6b8aba867fb6f4b3a5ee5d7b504cefef"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Main/Solution/Computation/Tmf.lean",
+      "source_sha256": "73c1dedf24e219ef158cd3de28df1326921cfd7afaf87ad1dee6418ab0d4d777",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Main/Solution/Computation/Tmf.lean",
+          "sha256": "73c1dedf24e219ef158cd3de28df1326921cfd7afaf87ad1dee6418ab0d4d777"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Main/Solution/Route/AlphaOne.lean",
+      "source_sha256": "841c66e7243677c87656c57425da9f136d81bb20b6c89bb2bf07334bc49efe28",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Main/Solution/Route/AlphaOne.lean",
+          "sha256": "841c66e7243677c87656c57425da9f136d81bb20b6c89bb2bf07334bc49efe28"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Main/Solution/Route/Selected.lean",
+      "source_sha256": "0a6b2386255ffd2ea74ec4d47d55824926458b3c5ff4575982aeb6467a86119f",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Main/Solution/Route/Selected.lean",
+          "sha256": "0a6b2386255ffd2ea74ec4d47d55824926458b3c5ff4575982aeb6467a86119f"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Main/Solution/StageInput.lean",
+      "source_sha256": "73960d24a905e1a2bac5b04a6ebd93a10f84055e9e26fcc68a3dc79f54f63844",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Main/Solution/StageInput.lean",
+          "sha256": "73960d24a905e1a2bac5b04a6ebd93a10f84055e9e26fcc68a3dc79f54f63844"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Main/Solution/Tools/GeneralizedMahowald.lean",
+      "source_sha256": "c6f9314d92f650d1b4c70391aac40483a5aec72e57d301ff70e59203c7b4fba4",
+      "disposition": "adopted-newer-source",
+      "decision": "mahowald-inputs",
+      "selected": [
+        {
+          "path": "KIP126/Main/Solution/Tools/GeneralizedMahowald.lean",
+          "sha256": "c6f9314d92f650d1b4c70391aac40483a5aec72e57d301ff70e59203c7b4fba4"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/Section7/BjmBxCriterion.lean",
+      "source_sha256": "982f0ee888aea7fc4c3208a2e959b36726ebad7840749294b32e8a6c072e5c1e",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIPBase/Section7/BjmBxCriterion.lean",
+          "sha256": "b8dc9ec6bcf9af1f1d2fa3adad5b4c527e5f77209da72e36f1495c7d061747c4"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/Synthetic/AdamsBocksteinMorphism.lean",
+      "source_sha256": "44c71c02e4889bf94c03d94161a8a655745795ad56cd5106e0abd46b3f185ec6",
+      "disposition": "keep-current-source",
+      "decision": "adams-bockstein-route",
+      "selected": [
+        {
+          "path": "KIPBase/Synthetic/AdamsBocksteinMorphism.lean",
+          "sha256": "c8dc0ca186a3fa25301eb544295a06a3785dc61de9e1ded02f5c8adc54e2a9c2"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/Synthetic/AdamsBocksteinMorphism工作检查.md",
+      "source_sha256": "fc237588c5b8fb2246120dfcb496f05afd4b81ff51120303c8878e4e812b9ce8",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/Synthetic/ExtensionSS.lean",
+      "source_sha256": "9412748dbe1c696b7e64a01dbbf25a40a3be0f8f5fcd06a0117525217501f460",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIPBase/Synthetic/ExtensionSS.lean",
+          "sha256": "ff8d483a5a50ba710cf2b375ce665db590078650c8beb3e21ed3b205386aa0c1"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/Synthetic/GeneralizedRules.lean",
+      "source_sha256": "c3ca4cc1b1c153c65574bcc036f730066e5d0d76f4ac5529fbfe6141f59136db",
+      "disposition": "keep-current-source",
+      "decision": "generalized-rules",
+      "selected": [
+        {
+          "path": "KIPBase/Synthetic/GeneralizedRules.lean",
+          "sha256": "6429c21aed677009046e3315a63bde334aae795164e4cf90dad35d596cf286c1"
+        },
+        {
+          "path": "KIPBase/Synthetic/LambdaLiftESS.lean",
+          "sha256": "8bfaf699d3c54efc358c4cd73e49752b8affe3bbf4d97c717705a783f99badb3"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/Synthetic/LambdaBoundary.lean",
+      "source_sha256": "898b73243ebae445192b111fd1ad3487d4cb9a67c6ebbfa20408235ffda59659",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIPBase/Synthetic/LambdaBoundary.lean",
+          "sha256": "8f27f553713a8b50935d1e74a034bd50925c15fc66a3d6b334e1e2424c94525e"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/Synthetic/LambdaBoundaryESSFormula.lean",
+      "source_sha256": "04f94b4e271a4a230527a8af7ad26a7b9800b1111a44fe961ed85ea5667aa1d4",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIPBase/Synthetic/LambdaBoundaryESSFormula.lean",
+          "sha256": "04f94b4e271a4a230527a8af7ad26a7b9800b1111a44fe961ed85ea5667aa1d4"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Def/ClassicalAdams/SphereClasses/Product/Proofs.lean",
+      "source_sha256": "8b5ae7b370af564b683f78e4a2a7301a180fe1c9bcfa2ff26739724abec33c96",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Def/ClassicalAdams/SphereClasses/Product/Proofs.lean",
+          "sha256": "124e4401b02d7696c1efc491e757ede6fee2674ad7d1b0c11b5f0353f1f71958"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Def/SpectralSequence/Basic/MorphismCriterion.lean",
+      "source_sha256": "878d87b72cbb22338f5407c057f2a85eaef0afe030350100f34258ac3d872027",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Def/SpectralSequence/Basic/MorphismCriterion.lean",
+          "sha256": "878d87b72cbb22338f5407c057f2a85eaef0afe030350100f34258ac3d872027"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Def/SpectralSequence/FinitePageCalculus/Proofs.lean",
+      "source_sha256": "cf35b677c2a4bd95c1582dfce073d6f73006f6086f4d591c933c8ee03184f1c9",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Def/SpectralSequence/FinitePageCalculus/Proofs.lean",
+          "sha256": "cf35b677c2a4bd95c1582dfce073d6f73006f6086f4d591c933c8ee03184f1c9"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Def/Synthetic/Bockstein/Lift/Data.lean",
+      "source_sha256": "e2155360b47edef7cb733bd298d76c045b76ba869f463315ad2fe6c4b5b2e3a6",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Def/Synthetic/Bockstein/Lift/Data.lean",
+          "sha256": "e2155360b47edef7cb733bd298d76c045b76ba869f463315ad2fe6c4b5b2e3a6"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/Def/Synthetic/Bockstein/Lift/Proofs.lean",
+      "source_sha256": "cead372e013941b2ce4718ef0f496c50a4d13bc715bb8f96ff7bf6ed7cf8fa16",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/Def/Synthetic/Bockstein/Lift/Proofs.lean",
+          "sha256": "cead372e013941b2ce4718ef0f496c50a4d13bc715bb8f96ff7bf6ed7cf8fa16"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/LinProgram/Model/BasisTable/FiniteCertificates.lean",
+      "source_sha256": "9ec8ec54d50d25a17b24500dcd17e3a746a98e00b402d202ab058de2c649819f",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/LinProgram/Model/BasisTable/FiniteCertificates.lean",
+          "sha256": "9ec8ec54d50d25a17b24500dcd17e3a746a98e00b402d202ab058de2c649819f"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIP126/LinProgram/Model/RelationCertificates.lean",
+      "source_sha256": "4b1b766533be00d0c4d08cfcca6ad2778022ffd06ba504247710e74a7c8d55de",
+      "disposition": "identical-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIP126/LinProgram/Model/RelationCertificates.lean",
+          "sha256": "4b1b766533be00d0c4d08cfcca6ad2778022ffd06ba504247710e74a7c8d55de"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/AGENT_RETROSPECTIVE.md",
+      "source_sha256": "4d090f958c0ef46e708764c4db57d33e299a6bc66c1181aaa8c0f92a180a6f68",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/blueprint.sty",
+      "source_sha256": "151fc2c2d28f01f43186e3228d3a5d3c72600b872e30a2166a227ab43eba6d04",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/blueprint.sty",
+          "sha256": "151fc2c2d28f01f43186e3228d3a5d3c72600b872e30a2166a227ab43eba6d04"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/adams_tower_foundations.tex",
+      "source_sha256": "682b665edc29c9c6abd0337f5e7e93eba9ccdd7b15eded406e7918ae0c2b6954",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/adams_tower_foundations.tex",
+          "sha256": "682b665edc29c9c6abd0337f5e7e93eba9ccdd7b15eded406e7918ae0c2b6954"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/algebraic_foundations.tex",
+      "source_sha256": "f52412d2de65e4cacc377154529af1112c4d5726b5a781fc124ae6db1128477d",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/algebraic_foundations.tex",
+          "sha256": "f52412d2de65e4cacc377154529af1112c4d5726b5a781fc124ae6db1128477d"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/classical_adams.tex",
+      "source_sha256": "dace66c410f84562bf0873fc9b289d60d65f00ea2fcb932b130328f1434d10f2",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/classical_adams.tex",
+          "sha256": "dace66c410f84562bf0873fc9b289d60d65f00ea2fcb932b130328f1434d10f2"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/comparison_foundations.tex",
+      "source_sha256": "094b38c56af09a399165a60976d72c004d9834da04733da49415b169be806e8a",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/comparison_foundations.tex",
+          "sha256": "094b38c56af09a399165a60976d72c004d9834da04733da49415b169be806e8a"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/computation_schema.tex",
+      "source_sha256": "848b0db89281eb3c286334385d7eeb83199171b3471b602d79385fd294021b23",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/computation_schema.tex",
+          "sha256": "848b0db89281eb3c286334385d7eeb83199171b3471b602d79385fd294021b23"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/computed_inputs.tex",
+      "source_sha256": "7f80981895e9fc60cedad9a42f2804c96e226ef8bcdbc947aa4f6de13c6365fc",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/computed_inputs.tex",
+          "sha256": "7f80981895e9fc60cedad9a42f2804c96e226ef8bcdbc947aa4f6de13c6365fc"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/extension_spectral_sequences.tex",
+      "source_sha256": "14827dfbc352846cc9775421c02d2e5e67a03f12d16bff507810257f602ae148",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/extension_spectral_sequences.tex",
+          "sha256": "14827dfbc352846cc9775421c02d2e5e67a03f12d16bff507810257f602ae148"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/external_results.tex",
+      "source_sha256": "f5ebbdc272aabd9641b830be11e67e0f53e8c8156796979a073fd2becc0db8ae",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/external_results.tex",
+          "sha256": "9f9dd88b4edde5302b982eb75ca0d54d2da62a0e8d260632ec2c3dc969dd963f"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/generalized_tools.tex",
+      "source_sha256": "a2cd3e3e94e4d495e8da4a056da2ddc111855f19d1dfe9742ba62fd6a5840b71",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/generalized_tools.tex",
+          "sha256": "e72c50cad59eeaad9cc02430cf71b6b498b5427e926b23b0460bab1cd22e754c"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/h6_statement.tex",
+      "source_sha256": "a74bc328c3d793cb259635c76296f81d35966f9eac9e2166b7305bcfbbefe02c",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/h6_statement.tex",
+          "sha256": "a74bc328c3d793cb259635c76296f81d35966f9eac9e2166b7305bcfbbefe02c"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/h6_target.tex",
+      "source_sha256": "5fe11fab1149826c62b46e8f68f1b9f8deb89ec30f0b04403ff5d966156f0369",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/h6_target.tex",
+          "sha256": "5fe11fab1149826c62b46e8f68f1b9f8deb89ec30f0b04403ff5d966156f0369"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/kervaire_setup.tex",
+      "source_sha256": "8e9821cafe6cc307bfd1f7136f6827f1d390e45d74435d22c1f07fab457d968c",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/kervaire_setup.tex",
+          "sha256": "8e9821cafe6cc307bfd1f7136f6827f1d390e45d74435d22c1f07fab457d968c"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/near126.tex",
+      "source_sha256": "eec77881a33f961309b136d6128d25d8902ac30d0b1952f20a4e473cb61ff1d6",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/near126.tex",
+          "sha256": "95512c69c5aaaf234673a509075515da63fd52b8029f2ffb915ef21faf2487ad"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/page_extensions.tex",
+      "source_sha256": "8dd4db449a1902082a8313a8729f7000619002a25c16b67978831cfa64fdfdd2",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/page_extensions.tex",
+          "sha256": "8dd4db449a1902082a8313a8729f7000619002a25c16b67978831cfa64fdfdd2"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/spectral_sequences.tex",
+      "source_sha256": "4f852ec58042923b8eeb45413aaab4f25ed98ca4cd62569a4c50545fa8c01ecc",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/spectral_sequences.tex",
+          "sha256": "669308b48950c2bbc63f077580a8e9280f60c3f9d4f46bc9f70fbc8fb7caeddd"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/stable_homotopy.tex",
+      "source_sha256": "d01a32767d4b3a3b18a4546cf0007cc93f451f181e10257ea8de084a2947d350",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/stable_homotopy.tex",
+          "sha256": "d01a32767d4b3a3b18a4546cf0007cc93f451f181e10257ea8de084a2947d350"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/synthetic_extensions.tex",
+      "source_sha256": "ed9575991812b0c53a930c76123c0090e93662dab76df680631172f41dccf4be",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/synthetic_extensions.tex",
+          "sha256": "ed9575991812b0c53a930c76123c0090e93662dab76df680631172f41dccf4be"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/chapters/synthetic_homotopy.tex",
+      "source_sha256": "7792506fce719c09cbbfda812f050c22709cac90ffccf89b447f36a681717801",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/chapters/synthetic_homotopy.tex",
+          "sha256": "5746531d07912fdbc3578b70be31520d01eab1f30440da788cb56dc0c97d97e1"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/content.tex",
+      "source_sha256": "cb1130dc6cfdf73265feed9ee0615c375fa98b056461598e7c4f2e55ea2ae164",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/content.tex",
+          "sha256": "cb1130dc6cfdf73265feed9ee0615c375fa98b056461598e7c4f2e55ea2ae164"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/extra_styles.css",
+      "source_sha256": "21f2670984d45e665914652dddba7fe14a823aed8b1189f774e89ff25e569986",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/extra_styles.css",
+          "sha256": "21f2670984d45e665914652dddba7fe14a823aed8b1189f774e89ff25e569986"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/latexmkrc",
+      "source_sha256": "f772b981ce1ef68304cc1c3a58226bb4590abc0efc403ef37b055e2ec89a4d48",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/latexmkrc",
+          "sha256": "f772b981ce1ef68304cc1c3a58226bb4590abc0efc403ef37b055e2ec89a4d48"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/macros/common.tex",
+      "source_sha256": "340fc7d8ea2793665ab0d8633e94b0763c1e9fc6174e717d2479ee971164f3da",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/macros/common.tex",
+          "sha256": "340fc7d8ea2793665ab0d8633e94b0763c1e9fc6174e717d2479ee971164f3da"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/macros/print.tex",
+      "source_sha256": "e1deedbe22c6f9a997334b0c76b8557905353fe839ec393b358259131dc0223e",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/macros/print.tex",
+          "sha256": "e1deedbe22c6f9a997334b0c76b8557905353fe839ec393b358259131dc0223e"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/macros/web.tex",
+      "source_sha256": "5525b3101eca12a9521f526bc7ae7f228e5206dd41eb52bf0c2c8c1cd640edc9",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/macros/web.tex",
+          "sha256": "5525b3101eca12a9521f526bc7ae7f228e5206dd41eb52bf0c2c8c1cd640edc9"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/plastex.cfg",
+      "source_sha256": "088e4b2f7648a2aac4d4dbdc7fd9be28e587e2f5e15b85d2ed2448ff015c0463",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/plastex.cfg",
+          "sha256": "088e4b2f7648a2aac4d4dbdc7fd9be28e587e2f5e15b85d2ed2448ff015c0463"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/print.tex",
+      "source_sha256": "b89c8cf8efafbf32fff6bb7a07e915b617d7e286efcdb79fd502a88809970994",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/print.tex",
+          "sha256": "d238dd28cd075c98e7a12a3df02bfbf113cacca81db1d14fcd19f26606e91985"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "KIPBase/blueprint/src/web.tex",
+      "source_sha256": "b79aa914a7d3de7a97c9dabac9e744fac99484c60d75487df10b51de72264b09",
+      "disposition": "duplicate-blueprint-copy",
+      "decision": "blueprint-copies",
+      "selected": [
+        {
+          "path": "blueprint/src/web.tex",
+          "sha256": "d59e3afcaee959eeb6d0b5b9da9ceaa4125828f5892921e69d1693332d8176f6"
+        }
+      ],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP126",
+      "path": "crossrefs.json",
+      "source_sha256": "3601a8143cf1e56308014de595205de9b67682ba65b0102f9913ac5e69124fb4",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP126/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": ".gitignore",
+      "source_sha256": "654399ce8dbb1b72ee722e308df7cc05303bc274ae1f0687854cd5fd43bb06e2",
+      "disposition": "keep-current-configuration",
+      "decision": null,
+      "selected": [
+        {
+          "path": ".gitignore",
+          "sha256": "943fd45f0d6060d33c12fe647e5a727ade55aa9845a90c131e2ae5e7daf819e6"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase.lean",
+      "source_sha256": "935c78ceb3237745b70568210a8794a4c832e8391ab02f484388c4bfcb4bb0e7",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIPBase.lean",
+          "sha256": "52f902e32b93412a1de8fb69f1b930a252682615b6e8c4f654283373add5dd4d"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase/SpectralSequence/BoundedExtension.lean",
+      "source_sha256": "85f7ab4500fbee43117f9a007183da42cfd8759b83599f9bebb9f962c7fadb7d",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIPBase/SpectralSequence/BoundedExtension.lean",
+          "sha256": "40d4037e17653846f8e5935eda38d16d1e45f493b21d15224d1f59b0bb1225c5"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase/SpectralSequence/Commutativity.lean",
+      "source_sha256": "25540d10bd9a67e6a1443b02ead3c76201ef29bb4162b2b25085ed5de7037fd4",
+      "disposition": "keep-current-source",
+      "decision": "commutativity",
+      "selected": [
+        {
+          "path": "KIPBase/SpectralSequence/Commutativity.lean",
+          "sha256": "35da3a087aeb1ca4d80449073b18520003a352b8deafb51b359bb6e3f438bffa"
+        },
+        {
+          "path": "KIPBase/SpectralSequence/UnboundedCommutativity.lean",
+          "sha256": "44c41fe024ac103304e35f31797199f4dfa163661c66502e51679a3e52168f38"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase/SpectralSequence/CommutativityProof.lean",
+      "source_sha256": "f85eee499d1bc7de2ff8afc3fba4a6373e1368293be9a18a8cbf8126cdb35a12",
+      "disposition": "superseded-historical-route",
+      "decision": "commutativity",
+      "selected": [
+        {
+          "path": "KIPBase/SpectralSequence/Commutativity.lean",
+          "sha256": "35da3a087aeb1ca4d80449073b18520003a352b8deafb51b359bb6e3f438bffa"
+        },
+        {
+          "path": "KIPBase/SpectralSequence/UnboundedCommutativity.lean",
+          "sha256": "44c41fe024ac103304e35f31797199f4dfa163661c66502e51679a3e52168f38"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase/SpectralSequence/Crossing.lean",
+      "source_sha256": "1a250d564d49ee7d2e736c7fea38107c6f67a5ae0a8f455ad988a624d5e76dab",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIPBase/SpectralSequence/Crossing.lean",
+          "sha256": "71574de11bcb2fca45a6dac62a202ec61a1087eb8fc292bdad5b0d96ec63abee"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase/SpectralSequence/FilteredComplex.lean",
+      "source_sha256": "0518d1ed42d7aefa9d30ab7188f60a5b37b0501e283c22aecc04aa48b17e48ab",
+      "disposition": "keep-current-source",
+      "decision": "filtered-complex",
+      "selected": [
+        {
+          "path": "KIPBase/SpectralSequence/FilteredComplex.lean",
+          "sha256": "133dedfc991a72487803d3428db00b3b63c47ef1ae17e9574f0d2aa9c151d9f1"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase/StableHomotopy/TensorTriangulatedCategory.lean",
+      "source_sha256": "30670d98b701d326b5828e5a22e740cb8add275b68fa90594976a4d72324802d",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIPBase/StableHomotopy/TensorTriangulatedCategory.lean",
+          "sha256": "83d2c133e6b9b1257a3b5a9466a081f4367e7f828a018d07e21afe65711b358e"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase/Synthetic/Basic.lean",
+      "source_sha256": "68cd1252eabbfd89571c0011a6b1ea84e2323b58e872195809f0b38f5e59fb01",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIPBase/Synthetic/Basic.lean",
+          "sha256": "d2a1bad50caee5418ad1020d4dd0b51efcf62324ae450f18605a6a3720d5fced"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase/Synthetic/Lift.lean",
+      "source_sha256": "292fd8913f133b6b149f0b794570402b1cfe74fdf8726ee649f2a6d3972fab39",
+      "disposition": "keep-current-source",
+      "decision": null,
+      "selected": [
+        {
+          "path": "KIPBase/Synthetic/Lift.lean",
+          "sha256": "6757ed0efdc67dabef08c077a40369320606664723fd81bb96c779b642e8af01"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": ".mcp.json",
+      "source_sha256": "deb7b9ed8b8c38dfc1840bbf44aa653c1b7b1c3afc66e886c887d07819dec919",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "AGENT_RETROSPECTIVE.md",
+      "source_sha256": "8d9fdfd7663bee4d791ac047551edee0209a70f0f128a48fc13d7b598c99ce3a",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase/SpectralSequence/FilteredComplexNaturality.lean",
+      "source_sha256": "f220773e7c9b7b2a1da5e244cd80b14a8a97fca12ba111f1693becca17f79ce9",
+      "disposition": "historical-unported-draft",
+      "decision": "filtered-complex",
+      "selected": [
+        {
+          "path": "KIPBase/SpectralSequence/FilteredComplex.lean",
+          "sha256": "133dedfc991a72487803d3428db00b3b63c47ef1ae17e9574f0d2aa9c151d9f1"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase/Synthetic/Extensions.lean",
+      "source_sha256": "372b9664324792742c2a3ad161b8d757641bdfd6c4f502270e6ed33badc77b96",
+      "disposition": "superseded-historical-route",
+      "decision": "generalized-rules",
+      "selected": [
+        {
+          "path": "KIPBase/Synthetic/GeneralizedRules.lean",
+          "sha256": "6429c21aed677009046e3315a63bde334aae795164e4cf90dad35d596cf286c1"
+        },
+        {
+          "path": "KIPBase/Synthetic/LambdaLiftESS.lean",
+          "sha256": "8bfaf699d3c54efc358c4cd73e49752b8affe3bbf4d97c717705a783f99badb3"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "KIPBase/Synthetic/Mahowald.lean",
+      "source_sha256": "035967c3662120ec0633ac143d09dba20335ec57ba1a6e1c5154d2655b67ec3b",
+      "disposition": "superseded-historical-route",
+      "decision": "generalized-rules",
+      "selected": [
+        {
+          "path": "KIPBase/Synthetic/GeneralizedRules.lean",
+          "sha256": "6429c21aed677009046e3315a63bde334aae795164e4cf90dad35d596cf286c1"
+        },
+        {
+          "path": "KIPBase/Synthetic/LambdaLiftESS.lean",
+          "sha256": "8bfaf699d3c54efc358c4cd73e49752b8affe3bbf4d97c717705a783f99badb3"
+        }
+      ],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/lean_decls",
+      "source_sha256": "f40c057b9285e6cf9e5b183b380ea8e507d88aeb0a37bf7492fac359df8c14ca",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/print/print.aux",
+      "source_sha256": "62174bfe163ec2ab57fa8e12ce055b9cd6bb57e7a8ae924f7ac5f8d328473ef1",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/print/print.bbl",
+      "source_sha256": "584fd74d66c4c072e46b250823d71740cfcec1280dbebcfe661fba10f5711b5c",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/print/print.blg",
+      "source_sha256": "46c3d10c8db13f686e8a06647c5dedc2183d3d961cc33e23eb0c20343ecc925c",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/print/print.fdb_latexmk",
+      "source_sha256": "ae3b4f335e21f2d974c193b16a21ddb04f1509f23ce2a736b5d13e6bd5c9e4cd",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/print/print.fls",
+      "source_sha256": "df67cbb4cdf916777e66583558e06f71504d16861132dc145a3922f0c20d4bfe",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/print/print.log",
+      "source_sha256": "10c79765a7a8352913a9c087423fe615d556e16a795004794b7d988ee94588cd",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/print/print.pdf",
+      "source_sha256": "1bea23f2074b84f4ffbb48881b98d60c199c866421f432bfb0a3364bb5989ae9",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/print/print.synctex.gz",
+      "source_sha256": "7e9021d710532ce15b6095510ae340d58edb1c7661cff6057d6cf4ca2ce77815",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/print/print.toc",
+      "source_sha256": "c63e8483b9983c20e579480e02b296e8ca6f2a306d83fe31bac26192b4bfa7fb",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/src/web.paux",
+      "source_sha256": "2889e105e5fdcd64c81cee113d50ee45d33748a701f8e1cca8f124b4b7ec8d35",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/status.yaml",
+      "source_sha256": "f00c7a7a4f22b2a43694fb012813ec7e46e14f9f7c7e7482ac1d77842382f9e3",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/dep_graph_section_1.html",
+      "source_sha256": "e432f7bd1e5b7bac29bb5823aff6c5c7cd3429030cc07bacfdc0e4b200a87d0b",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/index.html",
+      "source_sha256": "239bcb58231f76921d1b08093b0189100859ad74b8b464da2b0e1cd539d3f02d",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/js/d3-graphviz.js",
+      "source_sha256": "e268e178923f808d8af3d3bb1c523a1ba6361e5bae5f80998382ee8bca2f755f",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/js/d3.min.js",
+      "source_sha256": "9b442622c05770e322113466a53dea836210fe2d2a6b3240da68821f33a64b56",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/js/expatlib.wasm",
+      "source_sha256": "3a97493daaa71c38c02f7b67b2d79a93845b0f8824403ae0c15dadb27cef1893",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/js/graphvizlib.wasm",
+      "source_sha256": "d0b94b72100d77383de7e2f2afc344c3f613d1cd453e9cbf264759d7d2c62d86",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/js/hpcc.min.js",
+      "source_sha256": "5b89eaba7e26acaf24e50279dde60ef33a1833e037ea18dd3b465ba49456c369",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/js/jquery.min.js",
+      "source_sha256": "4b940065e2a67c37e3bd02b23c651f4744a3c219aba2d4fb99a631113494d376",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/js/js.cookie.min.js",
+      "source_sha256": "d07dcdbb3ddaba0dda7d56d496cbb5d8fbb1bdadc23f812126d3c4c6ab39e158",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/js/plastex.js",
+      "source_sha256": "50906c5f6f4f2a5a908a8d4d239d0c7ba63efc672227c02a1c7295ae3d112a3e",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/js/showmore.js",
+      "source_sha256": "501931cec2f8a230c505494680a23522b9293459d38cdb806a030e4d058cb17a",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/js/svgxuse.js",
+      "source_sha256": "0babbf27b9a172566e74d8e3e282760dbeb4974240510a501cc7cf29ed720e80",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/sec-prereq.html",
+      "source_sha256": "9d328b51b34c88ac0dc0a60f1943b6f6bde8f800a0b3ddfe7fa77694b2a43595",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/sect0001.html",
+      "source_sha256": "ecf7dccdad7923bf80b66a5382842c8d2fe36c26663a9414092baf0f3759eb18",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/styles/amsthm.css",
+      "source_sha256": "0f673aad2c52db8c76a321b550dbdd24adf6badb1d4822a04a9b6a0257cf6ba1",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/styles/blueprint.css",
+      "source_sha256": "515a7d9e0f37cb3a7ee974f9a003efd172b64144dc1b0c074f68bdd34a79a580",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/styles/dep_graph.css",
+      "source_sha256": "64fd24a2457be2c13f54e104b8fe5c313ad6513cab35e8930f8995273e3c70a7",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/styles/extra_styles.css",
+      "source_sha256": "01f6bf9d23a170c360b5969661ba96a09af3b43cec31ed06b35441235c92eb90",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/styles/showmore.css",
+      "source_sha256": "ceae58e215ee0ddc45c3e062b6700c0c72425ce05d75507070af9e681d88d4d8",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/styles/theme-blue.css",
+      "source_sha256": "0971a0d82a77340b3224577d7a1a436a9823a2ffb55388d15c38df7b17a5ae54",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/styles/theme-green.css",
+      "source_sha256": "8ee1e7f7058175497cab53acf2d3eaf949f8f7627fdd69655c01c8d531368886",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/styles/theme-white.css",
+      "source_sha256": "c6296062b86c41fd8ece73838d319bedba0bacf5c59e0036b90d34c9d8e6592e",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "blueprint/web/symbol-defs.svg",
+      "source_sha256": "4c67d8eee1e29b8faaec6b44685dc89d06a682a5b0107e7aadde087f2c7ebb3a",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/missfont.log",
+      "source_sha256": "c172fc7e73aea1872c9212a6f3af84e10315c16ac1dc83ef653a955a512dc943",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/raw_paper/2412.10879/tex/112.aux",
+      "source_sha256": "038caeebe025402419d0773a958a4fff0091461358798175a9067fdc3528b460",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/raw_paper/2412.10879/tex/main.aux",
+      "source_sha256": "14cfcae4eb633ec15d8307a6eb4a3680bd4de5239fad7b103618a258d0d1e89c",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/raw_paper/2412.10879/tex/main.bbl",
+      "source_sha256": "bab55d90e78aa1910e086c0b811be5113eea2470af20e4eb3bf1e26e9d8f6675",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/raw_paper/2412.10879/tex/main.blg",
+      "source_sha256": "bd62703931b68176a8ee945e662a9fc3ffcbd3560acdcf685ad20e1069237277",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/raw_paper/2412.10879/tex/main.fdb_latexmk",
+      "source_sha256": "ad6052ec27c9dd207001d1de708f68aa155ea7b045916a4f40ddb0268dd31a69",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/raw_paper/2412.10879/tex/main.fls",
+      "source_sha256": "c65a1173dec9b4171616caa83f5e4543a7d6c3dd28eb18dbad891cd9e254e047",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/raw_paper/2412.10879/tex/main.log",
+      "source_sha256": "c5cde5703af367de55f04df09ccb2d21a2994c59f11089b34f77ab6caae164a2",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/raw_paper/2412.10879/tex/main.synctex.gz",
+      "source_sha256": "5aaa60ddd0d41c21a756ee5b8f68639a1f22bfbfce3257adf0ba27a945e2a214",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/template.aux",
+      "source_sha256": "53771d4555782437e0ffc26dfee63278a6af49ef1ffd86805737100e7f01dfd0",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/template.fdb_latexmk",
+      "source_sha256": "12633c696a743ec9a9754511e667446477e18d6fedb17e3f386c153bde0425ee",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/template.fls",
+      "source_sha256": "8be5c58a38f5aa6911654cf9cea9a9393a00eb1d88bc72740a7ecb065b0961b3",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/template.log",
+      "source_sha256": "162c9c97363661d86ad200592f97bb32d37c752747ee14f9a02d586330175bca",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/template.out",
+      "source_sha256": "94df2df244e34583a75acc2479ff017161d3644a3ad5538a1af068b194e41c97",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/template.synctex.gz",
+      "source_sha256": "e3c7892e3a3a787a6b39c054efca1747bdf5d70b18463b456c1873e4c9d97b66",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    },
+    {
+      "repository": "KIP-base",
+      "path": "references/template.toc",
+      "source_sha256": "156a0bd11ccc8802842be3978e5980bbd41a977b7fe48f1d4d1e3d7ecdd18537",
+      "disposition": "historical-notes-or-generated-artifact",
+      "decision": null,
+      "selected": [],
+      "recovery": "history/KIP-base/worktree-changes.tar.gz"
+    }
+  ]
+}
