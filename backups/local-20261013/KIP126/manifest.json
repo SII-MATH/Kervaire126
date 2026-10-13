@@ -1,0 +1,557 @@
+{
+  "format": "Kervaire126 local development backup v1",
+  "captured_at_utc": "2026-10-13T14:19:08.543902+00:00",
+  "source_directory": "/home/wang/KIP126",
+  "source_remote": "https://github.com/SII-MATH/KIP126.git",
+  "current_branch": "wang-dev",
+  "head": "1dc3856dc0cdb12fd72ad756f80e07c3238c9fb1",
+  "local_refs": [
+    {
+      "ref": "refs/heads/codex/lambda-quotient-tower-proof",
+      "commit": "d8376233c78dafbb1519aa6afc8ae73e47fc29f0"
+    },
+    {
+      "ref": "refs/heads/main",
+      "commit": "e7b35cf30f6f36f40000624b8ce196a2c75b68fa"
+    },
+    {
+      "ref": "refs/heads/wang-dev",
+      "commit": "1dc3856dc0cdb12fd72ad756f80e07c3238c9fb1"
+    }
+  ],
+  "remote_refs_at_capture": [
+    "refs/remotes/origin/codex/issue152-proof-replay b75a854d838abb8f9ac332ca775a6f20c5e3453a",
+    "refs/remotes/origin/codex/linprogram-certificate 364aec38fbb0543fc660cf18160b3095a4ce5dcb",
+    "refs/remotes/origin/develop 9d2601af4529ebcdd353ccc01fe09e0a463ed25a",
+    "refs/remotes/origin/main c52974c6982d0f950722dd8c8ad565ce954a0b8b",
+    "refs/remotes/origin/wang-dev 1dc3856dc0cdb12fd72ad756f80e07c3238c9fb1",
+    "refs/remotes/sii-math/agent/euler-initializer/42c9c40e 021e88c1e1e2826c22aecab0557bc2763522aad4",
+    "refs/remotes/sii-math/agent/euler-initializer/aim-138-repair a56aba37197e364149008521da1fdfa9de18e785",
+    "refs/remotes/sii-math/agent/euler-initializer/c1ede451 437aed78be696612af5ed3456e6916fa39f73728",
+    "refs/remotes/sii-math/agent/euler-worker/01a024c8 4dfb3034028ed8c98315b987f7f7f5e23ec3569f",
+    "refs/remotes/sii-math/agent/euler-worker/2c081f0e bc894c2ecff96c1c1c3f5fbda3deafa456867b17",
+    "refs/remotes/sii-math/agent/ginit-codex/01a02369 671dbd9581d6897663378ee4f6dad7a402a2fa54",
+    "refs/remotes/sii-math/gh-readonly-queue/main/pr-66-2350be91f9d2b2cc30d0a21137b62d4f45884b59 369fa61800d1fd36c4010dcd130e4c6e38fa11ec",
+    "refs/remotes/sii-math/main 2350be91f9d2b2cc30d0a21137b62d4f45884b59",
+    "refs/remotes/sii-math/validation/aim-105-activation-smoke 2d6cb675b9f2897630ec11a3030505859b5e8bf3",
+    "refs/remotes/sii-math/validation/aim-138-stage2 86f120260d38db868df0228bc301f7eb3300f498"
+  ],
+  "stashes_at_capture": [],
+  "changed_file_count": 55,
+  "tracked_changed_count": 18,
+  "untracked_count": 37,
+  "files": [
+    {
+      "path": "KIP126/Def.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 11404,
+      "mode": 436,
+      "sha256": "850915475a432784466fea400c1b88c8e7ecc6d42eab26759eaff740899dec37"
+    },
+    {
+      "path": "KIP126/Def/SpectralSequence/Basic.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 314,
+      "mode": 436,
+      "sha256": "db7dc126e7d5a58a6a7c451f741c1243f46201a23df8f1ec360fdbf485bd5cd7"
+    },
+    {
+      "path": "KIP126/Def/Synthetic/QuotientTower/Proofs.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 4550,
+      "mode": 436,
+      "sha256": "924a72d6708f2d5f68accff04761863956b5051d7e344cc9ea6d8ced68cae702"
+    },
+    {
+      "path": "KIP126/Main/Solution/Computation/High125.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 153433,
+      "mode": 436,
+      "sha256": "77dbeae45313242e1fbd29ebbfac41f9c15aa49b4c15e399edcb5fc3e9eafd26"
+    },
+    {
+      "path": "KIP126/Main/Solution/Computation/Lambda.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 88799,
+      "mode": 436,
+      "sha256": "6452d3f970700cacd933ad0a17a84e675898cd0f91d857731248bc67fd6eab4f"
+    },
+    {
+      "path": "KIP126/Main/Solution/Computation/Route.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 976755,
+      "mode": 436,
+      "sha256": "caa59b9e16c7549954cf6eb8bbf6457dab67a95f67077aa91d25bb77ed841f56"
+    },
+    {
+      "path": "KIP126/Main/Solution/Computation/Tmf.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 7506,
+      "mode": 436,
+      "sha256": "73c1dedf24e219ef158cd3de28df1326921cfd7afaf87ad1dee6418ab0d4d777"
+    },
+    {
+      "path": "KIP126/Main/Solution/Route/AlphaOne.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 426990,
+      "mode": 436,
+      "sha256": "841c66e7243677c87656c57425da9f136d81bb20b6c89bb2bf07334bc49efe28"
+    },
+    {
+      "path": "KIP126/Main/Solution/Route/Selected.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 320885,
+      "mode": 436,
+      "sha256": "0a6b2386255ffd2ea74ec4d47d55824926458b3c5ff4575982aeb6467a86119f"
+    },
+    {
+      "path": "KIP126/Main/Solution/StageInput.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 62941,
+      "mode": 436,
+      "sha256": "73960d24a905e1a2bac5b04a6ebd93a10f84055e9e26fcc68a3dc79f54f63844"
+    },
+    {
+      "path": "KIP126/Main/Solution/Tools/GeneralizedMahowald.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 11304,
+      "mode": 436,
+      "sha256": "c6f9314d92f650d1b4c70391aac40483a5aec72e57d301ff70e59203c7b4fba4"
+    },
+    {
+      "path": "KIPBase/Section7/BjmBxCriterion.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 67672,
+      "mode": 436,
+      "sha256": "982f0ee888aea7fc4c3208a2e959b36726ebad7840749294b32e8a6c072e5c1e"
+    },
+    {
+      "path": "KIPBase/Synthetic/AdamsBocksteinMorphism.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 151568,
+      "mode": 436,
+      "sha256": "44c71c02e4889bf94c03d94161a8a655745795ad56cd5106e0abd46b3f185ec6"
+    },
+    {
+      "path": "KIPBase/Synthetic/AdamsBocksteinMorphism工作检查.md",
+      "git_status": " M",
+      "kind": "file",
+      "size": 17096,
+      "mode": 436,
+      "sha256": "fc237588c5b8fb2246120dfcb496f05afd4b81ff51120303c8878e4e812b9ce8"
+    },
+    {
+      "path": "KIPBase/Synthetic/ExtensionSS.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 85393,
+      "mode": 436,
+      "sha256": "9412748dbe1c696b7e64a01dbbf25a40a3be0f8f5fcd06a0117525217501f460"
+    },
+    {
+      "path": "KIPBase/Synthetic/GeneralizedRules.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 29987,
+      "mode": 436,
+      "sha256": "c3ca4cc1b1c153c65574bcc036f730066e5d0d76f4ac5529fbfe6141f59136db"
+    },
+    {
+      "path": "KIPBase/Synthetic/LambdaBoundary.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 47863,
+      "mode": 436,
+      "sha256": "898b73243ebae445192b111fd1ad3487d4cb9a67c6ebbfa20408235ffda59659"
+    },
+    {
+      "path": "KIPBase/Synthetic/LambdaBoundaryESSFormula.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 7917,
+      "mode": 436,
+      "sha256": "04f94b4e271a4a230527a8af7ad26a7b9800b1111a44fe961ed85ea5667aa1d4"
+    },
+    {
+      "path": "KIP126/Def/ClassicalAdams/SphereClasses/Product/Proofs.lean",
+      "git_status": "??",
+      "kind": "file",
+      "size": 1348,
+      "mode": 436,
+      "sha256": "8b5ae7b370af564b683f78e4a2a7301a180fe1c9bcfa2ff26739724abec33c96"
+    },
+    {
+      "path": "KIP126/Def/SpectralSequence/Basic/MorphismCriterion.lean",
+      "git_status": "??",
+      "kind": "file",
+      "size": 6201,
+      "mode": 436,
+      "sha256": "878d87b72cbb22338f5407c057f2a85eaef0afe030350100f34258ac3d872027"
+    },
+    {
+      "path": "KIP126/Def/SpectralSequence/FinitePageCalculus/Proofs.lean",
+      "git_status": "??",
+      "kind": "file",
+      "size": 74708,
+      "mode": 436,
+      "sha256": "cf35b677c2a4bd95c1582dfce073d6f73006f6086f4d591c933c8ee03184f1c9"
+    },
+    {
+      "path": "KIP126/Def/Synthetic/Bockstein/Lift/Data.lean",
+      "git_status": "??",
+      "kind": "file",
+      "size": 1976,
+      "mode": 436,
+      "sha256": "e2155360b47edef7cb733bd298d76c045b76ba869f463315ad2fe6c4b5b2e3a6"
+    },
+    {
+      "path": "KIP126/Def/Synthetic/Bockstein/Lift/Proofs.lean",
+      "git_status": "??",
+      "kind": "file",
+      "size": 1354,
+      "mode": 436,
+      "sha256": "cead372e013941b2ce4718ef0f496c50a4d13bc715bb8f96ff7bf6ed7cf8fa16"
+    },
+    {
+      "path": "KIP126/LinProgram/Model/BasisTable/FiniteCertificates.lean",
+      "git_status": "??",
+      "kind": "file",
+      "size": 1970216,
+      "mode": 436,
+      "sha256": "9ec8ec54d50d25a17b24500dcd17e3a746a98e00b402d202ab058de2c649819f"
+    },
+    {
+      "path": "KIP126/LinProgram/Model/RelationCertificates.lean",
+      "git_status": "??",
+      "kind": "file",
+      "size": 861290,
+      "mode": 436,
+      "sha256": "4b1b766533be00d0c4d08cfcca6ad2778022ffd06ba504247710e74a7c8d55de"
+    },
+    {
+      "path": "KIPBase/AGENT_RETROSPECTIVE.md",
+      "git_status": "??",
+      "kind": "file",
+      "size": 6637,
+      "mode": 436,
+      "sha256": "4d090f958c0ef46e708764c4db57d33e299a6bc66c1181aaa8c0f92a180a6f68"
+    },
+    {
+      "path": "KIPBase/blueprint/src/blueprint.sty",
+      "git_status": "??",
+      "kind": "file",
+      "size": 144,
+      "mode": 436,
+      "sha256": "151fc2c2d28f01f43186e3228d3a5d3c72600b872e30a2166a227ab43eba6d04"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/adams_tower_foundations.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 124607,
+      "mode": 436,
+      "sha256": "682b665edc29c9c6abd0337f5e7e93eba9ccdd7b15eded406e7918ae0c2b6954"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/algebraic_foundations.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 25245,
+      "mode": 436,
+      "sha256": "f52412d2de65e4cacc377154529af1112c4d5726b5a781fc124ae6db1128477d"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/classical_adams.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 28933,
+      "mode": 436,
+      "sha256": "dace66c410f84562bf0873fc9b289d60d65f00ea2fcb932b130328f1434d10f2"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/comparison_foundations.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 59807,
+      "mode": 436,
+      "sha256": "094b38c56af09a399165a60976d72c004d9834da04733da49415b169be806e8a"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/computation_schema.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 28046,
+      "mode": 436,
+      "sha256": "848b0db89281eb3c286334385d7eeb83199171b3471b602d79385fd294021b23"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/computed_inputs.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 33831,
+      "mode": 436,
+      "sha256": "7f80981895e9fc60cedad9a42f2804c96e226ef8bcdbc947aa4f6de13c6365fc"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/extension_spectral_sequences.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 18231,
+      "mode": 436,
+      "sha256": "14827dfbc352846cc9775421c02d2e5e67a03f12d16bff507810257f602ae148"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/external_results.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 100269,
+      "mode": 436,
+      "sha256": "f5ebbdc272aabd9641b830be11e67e0f53e8c8156796979a073fd2becc0db8ae"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/generalized_tools.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 34794,
+      "mode": 436,
+      "sha256": "a2cd3e3e94e4d495e8da4a056da2ddc111855f19d1dfe9742ba62fd6a5840b71"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/h6_statement.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 119962,
+      "mode": 436,
+      "sha256": "a74bc328c3d793cb259635c76296f81d35966f9eac9e2166b7305bcfbbefe02c"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/h6_target.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 696,
+      "mode": 436,
+      "sha256": "5fe11fab1149826c62b46e8f68f1b9f8deb89ec30f0b04403ff5d966156f0369"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/kervaire_setup.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 8053,
+      "mode": 436,
+      "sha256": "8e9821cafe6cc307bfd1f7136f6827f1d390e45d74435d22c1f07fab457d968c"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/near126.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 51051,
+      "mode": 436,
+      "sha256": "eec77881a33f961309b136d6128d25d8902ac30d0b1952f20a4e473cb61ff1d6"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/page_extensions.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 3770,
+      "mode": 436,
+      "sha256": "8dd4db449a1902082a8313a8729f7000619002a25c16b67978831cfa64fdfdd2"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/spectral_sequences.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 78571,
+      "mode": 436,
+      "sha256": "4f852ec58042923b8eeb45413aaab4f25ed98ca4cd62569a4c50545fa8c01ecc"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/stable_homotopy.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 7631,
+      "mode": 436,
+      "sha256": "d01a32767d4b3a3b18a4546cf0007cc93f451f181e10257ea8de084a2947d350"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/synthetic_extensions.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 29201,
+      "mode": 436,
+      "sha256": "ed9575991812b0c53a930c76123c0090e93662dab76df680631172f41dccf4be"
+    },
+    {
+      "path": "KIPBase/blueprint/src/chapters/synthetic_homotopy.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 31437,
+      "mode": 436,
+      "sha256": "7792506fce719c09cbbfda812f050c22709cac90ffccf89b447f36a681717801"
+    },
+    {
+      "path": "KIPBase/blueprint/src/content.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 1770,
+      "mode": 436,
+      "sha256": "cb1130dc6cfdf73265feed9ee0615c375fa98b056461598e7c4f2e55ea2ae164"
+    },
+    {
+      "path": "KIPBase/blueprint/src/extra_styles.css",
+      "git_status": "??",
+      "kind": "file",
+      "size": 391,
+      "mode": 436,
+      "sha256": "21f2670984d45e665914652dddba7fe14a823aed8b1189f774e89ff25e569986"
+    },
+    {
+      "path": "KIPBase/blueprint/src/latexmkrc",
+      "git_status": "??",
+      "kind": "file",
+      "size": 82,
+      "mode": 436,
+      "sha256": "f772b981ce1ef68304cc1c3a58226bb4590abc0efc403ef37b055e2ec89a4d48"
+    },
+    {
+      "path": "KIPBase/blueprint/src/macros/common.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 1041,
+      "mode": 436,
+      "sha256": "340fc7d8ea2793665ab0d8633e94b0763c1e9fc6174e717d2479ee971164f3da"
+    },
+    {
+      "path": "KIPBase/blueprint/src/macros/print.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 410,
+      "mode": 436,
+      "sha256": "e1deedbe22c6f9a997334b0c76b8557905353fe839ec393b358259131dc0223e"
+    },
+    {
+      "path": "KIPBase/blueprint/src/macros/web.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 49,
+      "mode": 436,
+      "sha256": "5525b3101eca12a9521f526bc7ae7f228e5206dd41eb52bf0c2c8c1cd640edc9"
+    },
+    {
+      "path": "KIPBase/blueprint/src/plastex.cfg",
+      "git_status": "??",
+      "kind": "file",
+      "size": 260,
+      "mode": 436,
+      "sha256": "088e4b2f7648a2aac4d4dbdc7fd9be28e587e2f5e15b85d2ed2448ff015c0463"
+    },
+    {
+      "path": "KIPBase/blueprint/src/print.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 372,
+      "mode": 436,
+      "sha256": "b89c8cf8efafbf32fff6bb7a07e915b617d7e286efcdb79fd502a88809970994"
+    },
+    {
+      "path": "KIPBase/blueprint/src/web.tex",
+      "git_status": "??",
+      "kind": "file",
+      "size": 423,
+      "mode": 436,
+      "sha256": "b79aa914a7d3de7a97c9dabac9e744fac99484c60d75487df10b51de72264b09"
+    },
+    {
+      "path": "crossrefs.json",
+      "git_status": "??",
+      "kind": "file",
+      "size": 139175,
+      "mode": 436,
+      "sha256": "3601a8143cf1e56308014de595205de9b67682ba65b0102f9913ac5e69124fb4"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "worktree-changes.tar.gz",
+      "size": 839776,
+      "sha256": "4d02cb4cb6f4bb87a9d9fb134c01858bb1c768bd23bbd5fc475e6877bc5fd93d"
+    },
+    {
+      "path": "tracked-changes.patch",
+      "size": 2204532,
+      "sha256": "46259b12ae4ad782ee600abb95d148d3e1b163de64818f27c3a2638e85533ace"
+    },
+    {
+      "path": "staged-changes.patch",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "history": {
+    "self_contained": true,
+    "sha256": "2987350a5b548c61279b3254118e9bea69a0873f7934fbffb7e8179444394510",
+    "size": 66235936,
+    "parts_in_order": [
+      {
+        "path": "history.bundle.part-000",
+        "size": 8388608,
+        "sha256": "180bb7c80d319b15c793db0184fa501b978ea0719fa9394acbce87f168d3c460"
+      },
+      {
+        "path": "history.bundle.part-001",
+        "size": 8388608,
+        "sha256": "07e2df5f4cbd19e7007b520a7ac86ccc94e37cb9fefbc11781159d462be17528"
+      },
+      {
+        "path": "history.bundle.part-002",
+        "size": 8388608,
+        "sha256": "3b9d75ffc1a45badadfb7cb08fa9d012203b26075d410bb87b7c14bd373209a6"
+      },
+      {
+        "path": "history.bundle.part-003",
+        "size": 8388608,
+        "sha256": "7cf6f4315be0e75f3d5b0262a44f1d5187a5cdc1b3bfde42392ed04a4b4b3552"
+      },
+      {
+        "path": "history.bundle.part-004",
+        "size": 8388608,
+        "sha256": "75a9e90ea02e4359eed7bd39d349ab36976fc8c16568b2ae9804ce148f1a3959"
+      },
+      {
+        "path": "history.bundle.part-005",
+        "size": 8388608,
+        "sha256": "de0d99d3a91298209e04f0484b7b18b988f18c9b4f1f410ddc6f62031a3a58c0"
+      },
+      {
+        "path": "history.bundle.part-006",
+        "size": 8388608,
+        "sha256": "c1a6e68d47a94cda2ee2fc2e651b5ef709606120167e71e2733a3f0b05e0e2a2"
+      },
+      {
+        "path": "history.bundle.part-007",
+        "size": 7515680,
+        "sha256": "47a525cd8f089260626259946942ca01da9b1d480b5187ba496d010fb8745fcd"
+      }
+    ]
+  },
+  "verification": {
+    "archive_inventory_and_sha256": "passed",
+    "history_mirror_clone": "passed",
+    "history_fsck": "passed",
+    "all_local_branch_and_tag_tips": "passed",
+    "source_worktree_unchanged": "passed"
+  },
+  "scope": "All local branch/tag Git history plus every Git-reported changed/untracked file; ignored build caches are excluded. Git LFS external payloads are not embedded in Git bundles."
+}

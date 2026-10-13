@@ -1,0 +1,593 @@
+{
+  "format": "Kervaire126 local development backup v1",
+  "captured_at_utc": "2026-10-13T14:18:44.518034+00:00",
+  "source_directory": "/home/wang/KIP-base",
+  "source_remote": "https://github.com/SII-MATH/KIP-base.git",
+  "current_branch": "recovery/commutativity-proof-work",
+  "head": "7f3a00d9b5635b5230fcd55eee979e76b1c81d96",
+  "local_refs": [
+    {
+      "ref": "refs/heads/master",
+      "commit": "034dcac43c3ccd4c440d720c29b78ea403e6a722"
+    },
+    {
+      "ref": "refs/heads/recovery/commutativity-proof-work",
+      "commit": "7f3a00d9b5635b5230fcd55eee979e76b1c81d96"
+    }
+  ],
+  "remote_refs_at_capture": [
+    "refs/remotes/origin/main 9524599db23a550f58ae51f0e2d9fda2b75fd8a8",
+    "refs/remotes/origin/recovery/commutativity-proof-work 7f3a00d9b5635b5230fcd55eee979e76b1c81d96"
+  ],
+  "stashes_at_capture": [],
+  "changed_file_count": 66,
+  "tracked_changed_count": 10,
+  "untracked_count": 56,
+  "files": [
+    {
+      "path": ".gitignore",
+      "git_status": " M",
+      "kind": "file",
+      "size": 42,
+      "mode": 436,
+      "sha256": "654399ce8dbb1b72ee722e308df7cc05303bc274ae1f0687854cd5fd43bb06e2"
+    },
+    {
+      "path": "KIPBase.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 308,
+      "mode": 436,
+      "sha256": "935c78ceb3237745b70568210a8794a4c832e8391ab02f484388c4bfcb4bb0e7"
+    },
+    {
+      "path": "KIPBase/SpectralSequence/BoundedExtension.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 52999,
+      "mode": 436,
+      "sha256": "85f7ab4500fbee43117f9a007183da42cfd8759b83599f9bebb9f962c7fadb7d"
+    },
+    {
+      "path": "KIPBase/SpectralSequence/Commutativity.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 115737,
+      "mode": 436,
+      "sha256": "25540d10bd9a67e6a1443b02ead3c76201ef29bb4162b2b25085ed5de7037fd4"
+    },
+    {
+      "path": "KIPBase/SpectralSequence/CommutativityProof.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 10472,
+      "mode": 436,
+      "sha256": "f85eee499d1bc7de2ff8afc3fba4a6373e1368293be9a18a8cbf8126cdb35a12"
+    },
+    {
+      "path": "KIPBase/SpectralSequence/Crossing.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 12704,
+      "mode": 436,
+      "sha256": "1a250d564d49ee7d2e736c7fea38107c6f67a5ae0a8f455ad988a624d5e76dab"
+    },
+    {
+      "path": "KIPBase/SpectralSequence/FilteredComplex.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 236199,
+      "mode": 436,
+      "sha256": "0518d1ed42d7aefa9d30ab7188f60a5b37b0501e283c22aecc04aa48b17e48ab"
+    },
+    {
+      "path": "KIPBase/StableHomotopy/TensorTriangulatedCategory.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 8626,
+      "mode": 436,
+      "sha256": "30670d98b701d326b5828e5a22e740cb8add275b68fa90594976a4d72324802d"
+    },
+    {
+      "path": "KIPBase/Synthetic/Basic.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 15438,
+      "mode": 436,
+      "sha256": "68cd1252eabbfd89571c0011a6b1ea84e2323b58e872195809f0b38f5e59fb01"
+    },
+    {
+      "path": "KIPBase/Synthetic/Lift.lean",
+      "git_status": " M",
+      "kind": "file",
+      "size": 10358,
+      "mode": 436,
+      "sha256": "292fd8913f133b6b149f0b794570402b1cfe74fdf8726ee649f2a6d3972fab39"
+    },
+    {
+      "path": ".mcp.json",
+      "git_status": "??",
+      "kind": "file",
+      "size": 322,
+      "mode": 436,
+      "sha256": "deb7b9ed8b8c38dfc1840bbf44aa653c1b7b1c3afc66e886c887d07819dec919"
+    },
+    {
+      "path": "AGENT_RETROSPECTIVE.md",
+      "git_status": "??",
+      "kind": "file",
+      "size": 1494,
+      "mode": 436,
+      "sha256": "8d9fdfd7663bee4d791ac047551edee0209a70f0f128a48fc13d7b598c99ce3a"
+    },
+    {
+      "path": "KIPBase/SpectralSequence/FilteredComplexNaturality.lean",
+      "git_status": "??",
+      "kind": "file",
+      "size": 70006,
+      "mode": 436,
+      "sha256": "f220773e7c9b7b2a1da5e244cd80b14a8a97fca12ba111f1693becca17f79ce9"
+    },
+    {
+      "path": "KIPBase/Synthetic/Extensions.lean",
+      "git_status": "??",
+      "kind": "file",
+      "size": 34462,
+      "mode": 436,
+      "sha256": "372b9664324792742c2a3ad161b8d757641bdfd6c4f502270e6ed33badc77b96"
+    },
+    {
+      "path": "KIPBase/Synthetic/Mahowald.lean",
+      "git_status": "??",
+      "kind": "file",
+      "size": 19124,
+      "mode": 436,
+      "sha256": "035967c3662120ec0633ac143d09dba20335ec57ba1a6e1c5154d2655b67ec3b"
+    },
+    {
+      "path": "blueprint/lean_decls",
+      "git_status": "??",
+      "kind": "file",
+      "size": 4025,
+      "mode": 436,
+      "sha256": "f40c057b9285e6cf9e5b183b380ea8e507d88aeb0a37bf7492fac359df8c14ca"
+    },
+    {
+      "path": "blueprint/print/print.aux",
+      "git_status": "??",
+      "kind": "file",
+      "size": 10736,
+      "mode": 436,
+      "sha256": "62174bfe163ec2ab57fa8e12ce055b9cd6bb57e7a8ae924f7ac5f8d328473ef1"
+    },
+    {
+      "path": "blueprint/print/print.bbl",
+      "git_status": "??",
+      "kind": "file",
+      "size": 387,
+      "mode": 436,
+      "sha256": "584fd74d66c4c072e46b250823d71740cfcec1280dbebcfe661fba10f5711b5c"
+    },
+    {
+      "path": "blueprint/print/print.blg",
+      "git_status": "??",
+      "kind": "file",
+      "size": 990,
+      "mode": 436,
+      "sha256": "46c3d10c8db13f686e8a06647c5dedc2183d3d961cc33e23eb0c20343ecc925c"
+    },
+    {
+      "path": "blueprint/print/print.fdb_latexmk",
+      "git_status": "??",
+      "kind": "file",
+      "size": 22905,
+      "mode": 436,
+      "sha256": "ae3b4f335e21f2d974c193b16a21ddb04f1509f23ce2a736b5d13e6bd5c9e4cd"
+    },
+    {
+      "path": "blueprint/print/print.fls",
+      "git_status": "??",
+      "kind": "file",
+      "size": 49606,
+      "mode": 436,
+      "sha256": "df67cbb4cdf916777e66583558e06f71504d16861132dc145a3922f0c20d4bfe"
+    },
+    {
+      "path": "blueprint/print/print.log",
+      "git_status": "??",
+      "kind": "file",
+      "size": 26461,
+      "mode": 436,
+      "sha256": "10c79765a7a8352913a9c087423fe615d556e16a795004794b7d988ee94588cd"
+    },
+    {
+      "path": "blueprint/print/print.pdf",
+      "git_status": "??",
+      "kind": "file",
+      "size": 148546,
+      "mode": 436,
+      "sha256": "1bea23f2074b84f4ffbb48881b98d60c199c866421f432bfb0a3364bb5989ae9"
+    },
+    {
+      "path": "blueprint/print/print.synctex.gz",
+      "git_status": "??",
+      "kind": "file",
+      "size": 211987,
+      "mode": 436,
+      "sha256": "7e9021d710532ce15b6095510ae340d58edb1c7661cff6057d6cf4ca2ce77815"
+    },
+    {
+      "path": "blueprint/print/print.toc",
+      "git_status": "??",
+      "kind": "file",
+      "size": 2111,
+      "mode": 436,
+      "sha256": "c63e8483b9983c20e579480e02b296e8ca6f2a306d83fe31bac26192b4bfa7fb"
+    },
+    {
+      "path": "blueprint/src/web.paux",
+      "git_status": "??",
+      "kind": "file",
+      "size": 20631,
+      "mode": 436,
+      "sha256": "2889e105e5fdcd64c81cee113d50ee45d33748a701f8e1cca8f124b4b7ec8d35"
+    },
+    {
+      "path": "blueprint/status.yaml",
+      "git_status": "??",
+      "kind": "file",
+      "size": 16217,
+      "mode": 436,
+      "sha256": "f00c7a7a4f22b2a43694fb012813ec7e46e14f9f7c7e7482ac1d77842382f9e3"
+    },
+    {
+      "path": "blueprint/web/dep_graph_section_1.html",
+      "git_status": "??",
+      "kind": "file",
+      "size": 693300,
+      "mode": 436,
+      "sha256": "e432f7bd1e5b7bac29bb5823aff6c5c7cd3429030cc07bacfdc0e4b200a87d0b"
+    },
+    {
+      "path": "blueprint/web/index.html",
+      "git_status": "??",
+      "kind": "file",
+      "size": 8872,
+      "mode": 436,
+      "sha256": "239bcb58231f76921d1b08093b0189100859ad74b8b464da2b0e1cd539d3f02d"
+    },
+    {
+      "path": "blueprint/web/js/d3-graphviz.js",
+      "git_status": "??",
+      "kind": "file",
+      "size": 80111,
+      "mode": 436,
+      "sha256": "e268e178923f808d8af3d3bb1c523a1ba6361e5bae5f80998382ee8bca2f755f"
+    },
+    {
+      "path": "blueprint/web/js/d3.min.js",
+      "git_status": "??",
+      "kind": "file",
+      "size": 247829,
+      "mode": 436,
+      "sha256": "9b442622c05770e322113466a53dea836210fe2d2a6b3240da68821f33a64b56"
+    },
+    {
+      "path": "blueprint/web/js/expatlib.wasm",
+      "git_status": "??",
+      "kind": "file",
+      "size": 100896,
+      "mode": 436,
+      "sha256": "3a97493daaa71c38c02f7b67b2d79a93845b0f8824403ae0c15dadb27cef1893"
+    },
+    {
+      "path": "blueprint/web/js/graphvizlib.wasm",
+      "git_status": "??",
+      "kind": "file",
+      "size": 1099314,
+      "mode": 436,
+      "sha256": "d0b94b72100d77383de7e2f2afc344c3f613d1cd453e9cbf264759d7d2c62d86"
+    },
+    {
+      "path": "blueprint/web/js/hpcc.min.js",
+      "git_status": "??",
+      "kind": "file",
+      "size": 117436,
+      "mode": 436,
+      "sha256": "5b89eaba7e26acaf24e50279dde60ef33a1833e037ea18dd3b465ba49456c369"
+    },
+    {
+      "path": "blueprint/web/js/jquery.min.js",
+      "git_status": "??",
+      "kind": "file",
+      "size": 95821,
+      "mode": 436,
+      "sha256": "4b940065e2a67c37e3bd02b23c651f4744a3c219aba2d4fb99a631113494d376"
+    },
+    {
+      "path": "blueprint/web/js/js.cookie.min.js",
+      "git_status": "??",
+      "kind": "file",
+      "size": 1681,
+      "mode": 436,
+      "sha256": "d07dcdbb3ddaba0dda7d56d496cbb5d8fbb1bdadc23f812126d3c4c6ab39e158"
+    },
+    {
+      "path": "blueprint/web/js/plastex.js",
+      "git_status": "??",
+      "kind": "file",
+      "size": 2179,
+      "mode": 436,
+      "sha256": "50906c5f6f4f2a5a908a8d4d239d0c7ba63efc672227c02a1c7295ae3d112a3e"
+    },
+    {
+      "path": "blueprint/web/js/showmore.js",
+      "git_status": "??",
+      "kind": "file",
+      "size": 2088,
+      "mode": 436,
+      "sha256": "501931cec2f8a230c505494680a23522b9293459d38cdb806a030e4d058cb17a"
+    },
+    {
+      "path": "blueprint/web/js/svgxuse.js",
+      "git_status": "??",
+      "kind": "file",
+      "size": 9062,
+      "mode": 436,
+      "sha256": "0babbf27b9a172566e74d8e3e282760dbeb4974240510a501cc7cf29ed720e80"
+    },
+    {
+      "path": "blueprint/web/sec-prereq.html",
+      "git_status": "??",
+      "kind": "file",
+      "size": 291485,
+      "mode": 436,
+      "sha256": "9d328b51b34c88ac0dc0a60f1943b6f6bde8f800a0b3ddfe7fa77694b2a43595"
+    },
+    {
+      "path": "blueprint/web/sect0001.html",
+      "git_status": "??",
+      "kind": "file",
+      "size": 6025,
+      "mode": 436,
+      "sha256": "ecf7dccdad7923bf80b66a5382842c8d2fe36c26663a9414092baf0f3759eb18"
+    },
+    {
+      "path": "blueprint/web/styles/amsthm.css",
+      "git_status": "??",
+      "kind": "file",
+      "size": 1318,
+      "mode": 436,
+      "sha256": "0f673aad2c52db8c76a321b550dbdd24adf6badb1d4822a04a9b6a0257cf6ba1"
+    },
+    {
+      "path": "blueprint/web/styles/blueprint.css",
+      "git_status": "??",
+      "kind": "file",
+      "size": 103,
+      "mode": 436,
+      "sha256": "515a7d9e0f37cb3a7ee974f9a003efd172b64144dc1b0c074f68bdd34a79a580"
+    },
+    {
+      "path": "blueprint/web/styles/dep_graph.css",
+      "git_status": "??",
+      "kind": "file",
+      "size": 3010,
+      "mode": 436,
+      "sha256": "64fd24a2457be2c13f54e104b8fe5c313ad6513cab35e8930f8995273e3c70a7"
+    },
+    {
+      "path": "blueprint/web/styles/extra_styles.css",
+      "git_status": "??",
+      "kind": "file",
+      "size": 483,
+      "mode": 436,
+      "sha256": "01f6bf9d23a170c360b5969661ba96a09af3b43cec31ed06b35441235c92eb90"
+    },
+    {
+      "path": "blueprint/web/styles/showmore.css",
+      "git_status": "??",
+      "kind": "file",
+      "size": 175,
+      "mode": 436,
+      "sha256": "ceae58e215ee0ddc45c3e062b6700c0c72425ce05d75507070af9e681d88d4d8"
+    },
+    {
+      "path": "blueprint/web/styles/theme-blue.css",
+      "git_status": "??",
+      "kind": "file",
+      "size": 11088,
+      "mode": 436,
+      "sha256": "0971a0d82a77340b3224577d7a1a436a9823a2ffb55388d15c38df7b17a5ae54"
+    },
+    {
+      "path": "blueprint/web/styles/theme-green.css",
+      "git_status": "??",
+      "kind": "file",
+      "size": 11052,
+      "mode": 436,
+      "sha256": "8ee1e7f7058175497cab53acf2d3eaf949f8f7627fdd69655c01c8d531368886"
+    },
+    {
+      "path": "blueprint/web/styles/theme-white.css",
+      "git_status": "??",
+      "kind": "file",
+      "size": 10940,
+      "mode": 436,
+      "sha256": "c6296062b86c41fd8ece73838d319bedba0bacf5c59e0036b90d34c9d8e6592e"
+    },
+    {
+      "path": "blueprint/web/symbol-defs.svg",
+      "git_status": "??",
+      "kind": "file",
+      "size": 11977,
+      "mode": 436,
+      "sha256": "4c67d8eee1e29b8faaec6b44685dc89d06a682a5b0107e7aadde087f2c7ebb3a"
+    },
+    {
+      "path": "references/missfont.log",
+      "git_status": "??",
+      "kind": "file",
+      "size": 67,
+      "mode": 436,
+      "sha256": "c172fc7e73aea1872c9212a6f3af84e10315c16ac1dc83ef653a955a512dc943"
+    },
+    {
+      "path": "references/raw_paper/2412.10879/tex/112.aux",
+      "git_status": "??",
+      "kind": "file",
+      "size": 759,
+      "mode": 436,
+      "sha256": "038caeebe025402419d0773a958a4fff0091461358798175a9067fdc3528b460"
+    },
+    {
+      "path": "references/raw_paper/2412.10879/tex/main.aux",
+      "git_status": "??",
+      "kind": "file",
+      "size": 13092,
+      "mode": 436,
+      "sha256": "14cfcae4eb633ec15d8307a6eb4a3680bd4de5239fad7b103618a258d0d1e89c"
+    },
+    {
+      "path": "references/raw_paper/2412.10879/tex/main.bbl",
+      "git_status": "??",
+      "kind": "file",
+      "size": 10802,
+      "mode": 436,
+      "sha256": "bab55d90e78aa1910e086c0b811be5113eea2470af20e4eb3bf1e26e9d8f6675"
+    },
+    {
+      "path": "references/raw_paper/2412.10879/tex/main.blg",
+      "git_status": "??",
+      "kind": "file",
+      "size": 1155,
+      "mode": 436,
+      "sha256": "bd62703931b68176a8ee945e662a9fc3ffcbd3560acdcf685ad20e1069237277"
+    },
+    {
+      "path": "references/raw_paper/2412.10879/tex/main.fdb_latexmk",
+      "git_status": "??",
+      "kind": "file",
+      "size": 27215,
+      "mode": 436,
+      "sha256": "ad6052ec27c9dd207001d1de708f68aa155ea7b045916a4f40ddb0268dd31a69"
+    },
+    {
+      "path": "references/raw_paper/2412.10879/tex/main.fls",
+      "git_status": "??",
+      "kind": "file",
+      "size": 51526,
+      "mode": 436,
+      "sha256": "c65a1173dec9b4171616caa83f5e4543a7d6c3dd28eb18dbad891cd9e254e047"
+    },
+    {
+      "path": "references/raw_paper/2412.10879/tex/main.log",
+      "git_status": "??",
+      "kind": "file",
+      "size": 35535,
+      "mode": 436,
+      "sha256": "c5cde5703af367de55f04df09ccb2d21a2994c59f11089b34f77ab6caae164a2"
+    },
+    {
+      "path": "references/raw_paper/2412.10879/tex/main.synctex.gz",
+      "git_status": "??",
+      "kind": "file",
+      "size": 718299,
+      "mode": 436,
+      "sha256": "5aaa60ddd0d41c21a756ee5b8f68639a1f22bfbfce3257adf0ba27a945e2a214"
+    },
+    {
+      "path": "references/template.aux",
+      "git_status": "??",
+      "kind": "file",
+      "size": 9575,
+      "mode": 436,
+      "sha256": "53771d4555782437e0ffc26dfee63278a6af49ef1ffd86805737100e7f01dfd0"
+    },
+    {
+      "path": "references/template.fdb_latexmk",
+      "git_status": "??",
+      "kind": "file",
+      "size": 16732,
+      "mode": 436,
+      "sha256": "12633c696a743ec9a9754511e667446477e18d6fedb17e3f386c153bde0425ee"
+    },
+    {
+      "path": "references/template.fls",
+      "git_status": "??",
+      "kind": "file",
+      "size": 57602,
+      "mode": 436,
+      "sha256": "8be5c58a38f5aa6911654cf9cea9a9393a00eb1d88bc72740a7ecb065b0961b3"
+    },
+    {
+      "path": "references/template.log",
+      "git_status": "??",
+      "kind": "file",
+      "size": 34285,
+      "mode": 436,
+      "sha256": "162c9c97363661d86ad200592f97bb32d37c752747ee14f9a02d586330175bca"
+    },
+    {
+      "path": "references/template.out",
+      "git_status": "??",
+      "kind": "file",
+      "size": 2012,
+      "mode": 436,
+      "sha256": "94df2df244e34583a75acc2479ff017161d3644a3ad5538a1af068b194e41c97"
+    },
+    {
+      "path": "references/template.synctex.gz",
+      "git_status": "??",
+      "kind": "file",
+      "size": 27406,
+      "mode": 436,
+      "sha256": "e3c7892e3a3a787a6b39c054efca1747bdf5d70b18463b456c1873e4c9d97b66"
+    },
+    {
+      "path": "references/template.toc",
+      "git_status": "??",
+      "kind": "file",
+      "size": 5705,
+      "mode": 436,
+      "sha256": "156a0bd11ccc8802842be3978e5980bbd41a977b7fe48f1d4d1e3d7ecdd18537"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "worktree-changes.tar.gz",
+      "size": 2023483,
+      "sha256": "b87be9f631c127baf2f09a36fb16717e57fd7daedee8016947a881823237132c"
+    },
+    {
+      "path": "tracked-changes.patch",
+      "size": 79261,
+      "sha256": "cae01436a316533b05756290a087d95f308cf7d256c9f8cb980fa6f4e88c5eae"
+    },
+    {
+      "path": "staged-changes.patch",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "history": {
+    "self_contained": true,
+    "sha256": "227e589fa3529b14c97d261b5d044fd05115b69def85ae440937f17eb49e54bb",
+    "size": 1166491,
+    "parts_in_order": [
+      {
+        "path": "history.bundle",
+        "size": 1166491,
+        "sha256": "227e589fa3529b14c97d261b5d044fd05115b69def85ae440937f17eb49e54bb"
+      }
+    ]
+  },
+  "verification": {
+    "archive_inventory_and_sha256": "passed",
+    "history_mirror_clone": "passed",
+    "history_fsck": "passed",
+    "all_local_branch_and_tag_tips": "passed",
+    "source_worktree_unchanged": "passed"
+  },
+  "scope": "All local branch/tag Git history plus every Git-reported changed/untracked file; ignored build caches are excluded. Git LFS external payloads are not embedded in Git bundles."
+}

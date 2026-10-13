@@ -1,0 +1,1551 @@
+diff --git a/.gitignore b/.gitignore
+index 475d7052a98f77fe9781b82e0ce90788d90e5c3b..626cf940aea974be0e86f91cf7a7283866b23375 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -2,22 +2,3 @@
+ 
+ # Archon state directory
+ .archon/
+-
+-# Local tool configuration and generated blueprint output
+-/.mcp.json
+-/blueprint/print/
+-/blueprint/web/
+-/blueprint/lean_decls
+-/blueprint/status.yaml
+-
+-# LaTeX build artifacts
+-*.aux
+-*.bbl
+-*.blg
+-*.fdb_latexmk
+-*.fls
+-*.log
+-*.out
+-*.paux
+-*.synctex.gz
+-*.toc
+diff --git a/KIPBase.lean b/KIPBase.lean
+index c8df2b8cf90d766be2614c69e4c0d84a0ecb827c..39e37ba9417654bee940996999c0bf3320f47ddd 100644
+--- a/KIPBase.lean
++++ b/KIPBase.lean
+@@ -3,3 +3,6 @@ import KIPBase.multiplicativeSS.Basic
+ import KIPBase.multiplicativeSS.ModuleCat
+ import KIPBase.multiplicativeSS.Monoidal
+ import KIPBase.multiplicativeSS.Adams
++import KIPBase.SpectralSequence.FilteredComplexNaturality
++import KIPBase.Synthetic.Extensions
++import KIPBase.Synthetic.Mahowald
+diff --git a/KIPBase/SpectralSequence/BoundedExtension.lean b/KIPBase/SpectralSequence/BoundedExtension.lean
+index 8f4145809ffafd1a62927d5b16a7c568edc66113..d6a123716fdc679454a3aa14aff5727af39bb097 100644
+--- a/KIPBase/SpectralSequence/BoundedExtension.lean
++++ b/KIPBase/SpectralSequence/BoundedExtension.lean
+@@ -254,6 +254,243 @@ noncomputable def BoundedExtensionSS.essDifferential
+         (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) :=
+   (ext.ess t).d r ⟨s, k⟩
+ 
++/-- A relation in the concrete extension spectral sequence.  The ESS itself
++is indexed by `(filtration, complex-degree)`; `t` is the independent stem
++index of the converging input spectral sequences.  This belongs in the
++bounded-ESS layer so applications such as synthetic extensions need not
++import the higher commutativity development. -/
++def ESSRelationAt
++    {E₁ E₂ : SpectralSequence C ω} {ω' : Type w}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
++    (t : ω') (r s k : ℤ) {T : C}
++    (x : T ⟶ (ext.complex t).assocGraded s k)
++    (y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)) : Prop :=
++  DifferentialRelation (ext.ess t) r ⟨s, k⟩ x y
++
++/-- Equality of two target representatives on the relevant ESS page.  The
++ambient representatives may differ; the correct assertion is that their
++difference factors through the page boundary. -/
++def ESSCongruentTargetsAt
++    {E₁ E₂ : SpectralSequence C ω} {ω' : Type w}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
++    (t : ω') (r s k : ℤ) {T : C}
++    (y₁ y₂ : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)) : Prop :=
++  Subobject.Factors
++    (((ext.ess t).ssData ⟨s + r, k - 1⟩).B
++      (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ))
++    (by
++      change T ⟶ ((ext.ess t).ssData ⟨s + r, k - 1⟩).V
++      exact y₁ - y₂)
++
++/-- If two cycle representatives have equal images in a page quotient, their
++ambient representatives differ by that page's boundary. -/
++theorem boundary_factors_of_pageπ_eq
++    (D : SSData C) (n : WithTop ℕ) {T : C}
++    {y₁ y₂ : T ⟶ D.V}
++    (z₁ z₂ : T ⟶ Subobject.underlying.obj (D.Z n))
++    (hz₁ : z₁ ≫ (D.Z n).arrow = y₁)
++    (hz₂ : z₂ ≫ (D.Z n).arrow = y₂)
++    (hπ : z₁ ≫ D.pageπ n = z₂ ≫ D.pageπ n) :
++    Subobject.Factors (D.B n) (y₁ - y₂) := by
++  let i := Subobject.ofLE (D.B n) (D.Z n) (D.B_le_Z n)
++  have hzero : (z₁ - z₂) ≫ cokernel.π i = 0 := by
++    change (z₁ - z₂) ≫ D.pageπ n = 0
++    rw [Preadditive.sub_comp, hπ, sub_self]
++  let lift := Abelian.monoLift i (z₁ - z₂) hzero
++  rw [← Subobject.mk_arrow (D.B n), Subobject.mk_factors_iff]
++  refine ⟨lift, ?_⟩
++  change lift ≫ (D.B n).arrow = y₁ - y₂
++  calc
++    lift ≫ (D.B n).arrow = lift ≫ i ≫ (D.Z n).arrow := by
++      rw [Subobject.ofLE_arrow]
++    _ = (z₁ - z₂) ≫ (D.Z n).arrow := by
++      rw [← Abelian.monoLift_comp i (z₁ - z₂) hzero, Category.assoc]
++    _ = y₁ - y₂ := by rw [Preadditive.sub_comp, hz₁, hz₂]
++
++/-- Conversely, if the difference of two ambient representatives factors
++through the page boundary, their cycle lifts have the same page class. -/
++theorem pageπ_eq_of_boundary_factors
++    (D : SSData C) (n : WithTop ℕ) {T : C}
++    {y₁ y₂ : T ⟶ D.V}
++    (z₁ z₂ : T ⟶ Subobject.underlying.obj (D.Z n))
++    (hz₁ : z₁ ≫ (D.Z n).arrow = y₁)
++    (hz₂ : z₂ ≫ (D.Z n).arrow = y₂)
++    (hfac : Subobject.Factors (D.B n) (y₁ - y₂)) :
++    z₁ ≫ D.pageπ n = z₂ ≫ D.pageπ n := by
++  rw [← Subobject.mk_arrow (D.B n), Subobject.mk_factors_iff] at hfac
++  rcases hfac with ⟨u, hu⟩
++  change u ≫ (D.B n).arrow = y₁ - y₂ at hu
++  let i := Subobject.ofLE (D.B n) (D.Z n) (D.B_le_Z n)
++  have hdiff : z₁ - z₂ = u ≫ i := by
++    apply (cancel_mono (D.Z n).arrow).mp
++    rw [Preadditive.sub_comp, hz₁, hz₂]
++    have hi : i ≫ (D.Z n).arrow = (D.B n).arrow := by
++      dsimp [i]
++      exact Subobject.ofLE_arrow _
++    calc
++      y₁ - y₂ = u ≫ (D.B n).arrow := hu.symm
++      _ = u ≫ (i ≫ (D.Z n).arrow) := by rw [hi]
++      _ = (u ≫ i) ≫ (D.Z n).arrow := (Category.assoc _ _ _).symm
++  have hzero : (z₁ - z₂) ≫ D.pageπ n = 0 := by
++    rw [hdiff, Category.assoc]
++    change u ≫ i ≫ cokernel.π i = 0
++    rw [cokernel.condition, comp_zero]
++  rw [Preadditive.sub_comp, sub_eq_zero] at hzero
++  exact hzero
++
++/-- Equality in the page quotient is exactly ambient equality modulo its
++boundary, provided both representatives lift to page cycles. -/
++theorem pageπ_eq_iff_boundary_factors
++    (D : SSData C) (n : WithTop ℕ) {T : C}
++    {y₁ y₂ : T ⟶ D.V}
++    (z₁ z₂ : T ⟶ Subobject.underlying.obj (D.Z n))
++    (hz₁ : z₁ ≫ (D.Z n).arrow = y₁)
++    (hz₂ : z₂ ≫ (D.Z n).arrow = y₂) :
++    z₁ ≫ D.pageπ n = z₂ ≫ D.pageπ n ↔
++      Subobject.Factors (D.B n) (y₁ - y₂) := by
++  constructor
++  · exact boundary_factors_of_pageπ_eq D n z₁ z₂ hz₁ hz₂
++  · exact pageπ_eq_of_boundary_factors D n z₁ z₂ hz₁ hz₂
++
++/-- Two concrete ESS relations with the same ambient source have congruent
++target representatives on the relevant page. The page equality above and
++the boundary criterion prove the ambient difference factors through B. -/
++theorem ESSRelationAt.targets_congruent
++    {E₁ E₂ : SpectralSequence C ω} {ω' : Type w}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    {ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂}
++    {t : ω'} {r s k : ℤ} {T : C}
++    {x : T ⟶ (ext.complex t).assocGraded s k}
++    {y₁ y₂ : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
++    (h₁ : ESSRelationAt ext t r s k x y₁)
++    (h₂ : ESSRelationAt ext t r s k x y₂) :
++    ESSCongruentTargetsAt ext t r s k y₁ y₂ := by
++  unfold ESSRelationAt DifferentialRelation at h₁ h₂
++  dsimp only at h₁ h₂
++  rcases h₁ with ⟨xZ₁, hxZ₁, yZ₁, hyZ₁, hrel₁⟩
++  rcases h₂ with ⟨xZ₂, hxZ₂, yZ₂, hyZ₂, hrel₂⟩
++  have hxZ : xZ₁ = xZ₂ := by
++    apply (cancel_mono
++      (((ext.ess t).ssData ⟨s, k⟩).Z
++        (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ)).arrow).mp
++    rw [hxZ₁, hxZ₂]
++  have hπ : yZ₁ ≫
++      ((ext.ess t).ssData (⟨s, k⟩ + (ext.ess t).diffDeg r)).pageπ
++        (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) =
++      yZ₂ ≫ ((ext.ess t).ssData (⟨s, k⟩ + (ext.ess t).diffDeg r)).pageπ
++        (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) := by
++    rw [← hrel₁, ← hrel₂, hxZ]
++  have hdeg : (⟨s, k⟩ + (ext.ess t).diffDeg r : ℤ × ℤ) =
++      ⟨s + r, k - 1⟩ := by rfl
++  unfold ESSCongruentTargetsAt
++  simpa only [hdeg] using boundary_factors_of_pageπ_eq
++    ((ext.ess t).ssData (⟨s, k⟩ + (ext.ess t).diffDeg r))
++    (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) yZ₁ yZ₂ hyZ₁ hyZ₂ hπ
++
++/-- Congruence of two source representatives modulo the boundary on the
++source page. -/
++def ESSCongruentSourcesAt
++    {E₁ E₂ : SpectralSequence C ω} {ω' : Type w}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
++    (t : ω') (r s k : ℤ) {T : C}
++    (x₁ x₂ : T ⟶ (ext.complex t).assocGraded s k) : Prop :=
++  Subobject.Factors
++    (((ext.ess t).ssData ⟨s, k⟩).B
++      (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ))
++    (by
++      change T ⟶ ((ext.ess t).ssData ⟨s, k⟩).V
++      exact x₁ - x₂)
++
++/-- Differential relations preserve source congruence: sources equal modulo
++the source-page boundary have targets equal modulo the target-page boundary. -/
++theorem ESSRelationAt.targets_congruent_of_sources_congruent
++    {E₁ E₂ : SpectralSequence C ω} {ω' : Type w}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    {ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂}
++    {t : ω'} {r s k : ℤ} {T : C}
++    {x₁ x₂ : T ⟶ (ext.complex t).assocGraded s k}
++    {y₁ y₂ : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
++    (h₁ : ESSRelationAt ext t r s k x₁ y₁)
++    (h₂ : ESSRelationAt ext t r s k x₂ y₂)
++    (hx : ESSCongruentSourcesAt ext t r s k x₁ x₂) :
++    ESSCongruentTargetsAt ext t r s k y₁ y₂ := by
++  unfold ESSRelationAt DifferentialRelation at h₁ h₂
++  dsimp only at h₁ h₂
++  rcases h₁ with ⟨xZ₁, hxZ₁, yZ₁, hyZ₁, hrel₁⟩
++  rcases h₂ with ⟨xZ₂, hxZ₂, yZ₂, hyZ₂, hrel₂⟩
++  unfold ESSCongruentSourcesAt at hx
++  rw [← Subobject.mk_arrow
++    (((ext.ess t).ssData ⟨s, k⟩).B
++      (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ)),
++    Subobject.mk_factors_iff] at hx
++  rcases hx with ⟨u, hu⟩
++  change u ≫ (((ext.ess t).ssData ⟨s, k⟩).B
++    (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ)).arrow = x₁ - x₂ at hu
++  let i := Subobject.ofLE
++    (((ext.ess t).ssData ⟨s, k⟩).B
++      (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ))
++    (((ext.ess t).ssData ⟨s, k⟩).Z
++      (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ))
++    (((ext.ess t).ssData ⟨s, k⟩).B_le_Z
++      (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ))
++  have hxZ : xZ₁ - xZ₂ = u ≫ i := by
++    apply (cancel_mono
++      (((ext.ess t).ssData ⟨s, k⟩).Z
++        (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ)).arrow).mp
++    rw [Preadditive.sub_comp, hxZ₁, hxZ₂]
++    dsimp [i]
++    rw [Category.assoc, Subobject.ofLE_arrow]
++    exact hu.symm
++  have hsrcπ : xZ₁ ≫ ((ext.ess t).ssData ⟨s, k⟩).pageπ
++      (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) =
++    xZ₂ ≫ ((ext.ess t).ssData ⟨s, k⟩).pageπ
++      (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) := by
++    have hzero : (xZ₁ - xZ₂) ≫ ((ext.ess t).ssData ⟨s, k⟩).pageπ
++        (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) = 0 := by
++      rw [hxZ, Category.assoc]
++      change u ≫ i ≫ cokernel.π i = 0
++      rw [cokernel.condition, comp_zero]
++    rw [Preadditive.sub_comp, sub_eq_zero] at hzero
++    exact hzero
++  have hπ : yZ₁ ≫
++      ((ext.ess t).ssData (⟨s, k⟩ + (ext.ess t).diffDeg r)).pageπ
++        (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) =
++      yZ₂ ≫ ((ext.ess t).ssData (⟨s, k⟩ + (ext.ess t).diffDeg r)).pageπ
++        (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) := by
++    calc
++      _ = xZ₁ ≫ ((ext.ess t).ssData ⟨s, k⟩).pageπ
++          (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) ≫ (ext.ess t).d r ⟨s, k⟩ :=
++        hrel₁.symm
++      _ = xZ₂ ≫ ((ext.ess t).ssData ⟨s, k⟩).pageπ
++          (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) ≫ (ext.ess t).d r ⟨s, k⟩ := by
++        simpa only [Category.assoc] using
++          congrArg (fun q => q ≫ (ext.ess t).d r ⟨s, k⟩) hsrcπ
++      _ = _ := hrel₂
++  have hdeg : (⟨s, k⟩ + (ext.ess t).diffDeg r : ℤ × ℤ) =
++      ⟨s + r, k - 1⟩ := by rfl
++  unfold ESSCongruentTargetsAt
++  simpa only [hdeg] using boundary_factors_of_pageπ_eq
++    ((ext.ess t).ssData (⟨s, k⟩ + (ext.ess t).diffDeg r))
++    (↑(r - (ext.ess t).r₀).toNat : WithTop ℕ) yZ₁ yZ₂ hyZ₁ hyZ₂ hπ
++
+ /-- The concrete boundary subobject of the extension spectral sequence at a
+     fixed stem and ESS bidegree. -/
+ noncomputable def BoundedExtensionSS.essBoundaryAt
+@@ -557,6 +794,39 @@ theorem BoundedExtensionSS.rel_eq_of_not_crossed
+     r hr s k h₁ hnc hx yl hd
+ -/
+ 
++/-- Witness-based no-crossing selection for a concrete extension spectral
++sequence.  This is the sound form of the former
++`rel_eq_of_not_crossed`: the caller must supply the construction of an actual
++essential crossing from a failed target representative. -/
++theorem BoundedExtensionSS.rel_eq_of_not_crossed_of_witness
++    {E₁ E₂ : SpectralSequence C ω}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
++    (t : ω') (r : ℤ) (hr : 0 ≤ r) (s k : ℤ) {T : C}
++    {x : T ⟶ (ext.complex t).assocGraded s k}
++    {y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
++    (h : DifferentialRelation ((ext.complex t).toSpectralSequence (ext.bounded t))
++      r ⟨s, k⟩ x y)
++    (hnc : ¬ RelationCrossedBy ((ext.complex t).toSpectralSequence (ext.bounded t))
++      (fun p => p.1) r ⟨s, k⟩ x y h)
++    {xl : T ⟶ Subobject.underlying.obj ((ext.complex t).fil s k)}
++    (hx : (ext.complex t).IsLift s k xl x)
++    {yl : T ⟶ Subobject.underlying.obj ((ext.complex t).fil (s + r) (k - 1))}
++    (hd : xl ≫ (ext.complex t).filDiff s k =
++      yl ≫ Subobject.ofLE ((ext.complex t).fil (s + r) (k - 1))
++        ((ext.complex t).fil s (k - 1))
++        ((ext.complex t).fil_anti_of_le (k - 1) (by omega)))
++    (producesCrossing :
++      ¬ (ext.complex t).IsLift (s + r) (k - 1) yl y →
++        CrossingWitnessData ((ext.complex t).toSpectralSequence (ext.bounded t))
++          (fun p => p.1) r ⟨s, k⟩ x y h) :
++    (ext.complex t).IsLift (s + r) (k - 1) yl y :=
++  FilteredComplex.lift_rel_of_not_crossed_of_witness (ext.complex t)
++    (ext.bounded t) r hr s k h hnc hx yl hd producesCrossing
++
+ /-! ### 过滤复形的范畴 -/
+ 
+ /-- 过滤复形的**态射**：分次映射族 `f k : FC₁.A k ⟶ FC₂.A k`，
+@@ -662,7 +932,46 @@ theorem FilteredComplexMorphism.toSpectralSequenceMorphism_id
+     (X : BoundedFilteredComplex C) :
+     (FilteredComplexMorphism.toSpectralSequenceMorphism (𝟙 X)).φ =
+       fun _ => 𝟙 _ := by
+-  sorry
++  funext ⟨s, k⟩
++  let g : FilteredComplexMorphism X.FC X.FC := 𝟙 X.FC
++  change FilteredComplexMorphism.assocGradedMap g s k = 𝟙 _
++  unfold FilteredComplexMorphism.assocGradedMap
++  have hq : (g.filt_compat s k).choose = 𝟙 _ := by
++    apply (cancel_mono (X.FC.fil s k).arrow).mp
++    rw [(g.filt_compat s k).choose_spec]
++    dsimp [g]
++    rw [show (𝟙 X.FC : FilteredComplexMorphism X.FC X.FC).f k = 𝟙 _ by rfl]
++    simp
++  simp only [hq]
++  apply cokernel.map_id
++
++/-- Passage to associated gradeds respects composition of filtered-complex
++morphisms.  The filtered lifts are chosen noncanonically, but monicity of the
++filtration inclusions identifies the chosen lift of a composite with the
++composite of the chosen lifts. -/
++theorem FilteredComplexMorphism.assocGradedMap_comp
++    {FC₁ FC₂ FC₃ : FilteredComplex C}
++    (g : FilteredComplexMorphism FC₁ FC₂) (h : FilteredComplexMorphism FC₂ FC₃)
++    (s k : ℤ) :
++    FilteredComplexMorphism.assocGradedMap
++      (show FC₁ ⟶ FC₃ from (show FC₁ ⟶ FC₂ from g) ≫ (show FC₂ ⟶ FC₃ from h)) s k =
++      FilteredComplexMorphism.assocGradedMap g s k ≫
++        FilteredComplexMorphism.assocGradedMap h s k := by
++  let gh : FilteredComplexMorphism FC₁ FC₃ :=
++    (show FC₁ ⟶ FC₃ from (show FC₁ ⟶ FC₂ from g) ≫ (show FC₂ ⟶ FC₃ from h))
++  have hq (a : ℤ) : (gh.filt_compat a k).choose =
++      (g.filt_compat a k).choose ≫ (h.filt_compat a k).choose := by
++    apply (cancel_mono (FC₃.fil a k).arrow).mp
++    rw [(gh.filt_compat a k).choose_spec, Category.assoc,
++      (h.filt_compat a k).choose_spec, ← Category.assoc,
++      (g.filt_compat a k).choose_spec, Category.assoc]
++    dsimp [gh]
++    rfl
++  change FilteredComplexMorphism.assocGradedMap gh s k = _
++  unfold FilteredComplexMorphism.assocGradedMap
++  simp only [hq]
++  apply (cancel_epi (cokernel.π _)).mp
++  simp only [cokernel.map, cokernel.π_desc, cokernel.π_desc_assoc, Category.assoc]
+ 
+ /-- 复合过滤复形态射诱导复合谱序列态射（φ 分量为关联分次上映射的复合）。 -/
+ theorem FilteredComplexMorphism.toSpectralSequenceMorphism_comp
+@@ -670,7 +979,8 @@ theorem FilteredComplexMorphism.toSpectralSequenceMorphism_comp
+     (FilteredComplexMorphism.toSpectralSequenceMorphism (g ≫ h)).φ =
+       fun k => (FilteredComplexMorphism.toSpectralSequenceMorphism g).φ k ≫
+         (FilteredComplexMorphism.toSpectralSequenceMorphism h).φ k := by
+-  sorry
++  funext ⟨s, k⟩
++  exact FilteredComplexMorphism.assocGradedMap_comp g h s k
+ 
+ /-- **toSS 函子**：有界过滤复形范畴到谱序列范畴，
+     对象送至 `toSpectralSequence`，态射送至诱导的谱序列态射。 -/
+diff --git a/KIPBase/SpectralSequence/Commutativity.lean b/KIPBase/SpectralSequence/Commutativity.lean
+index 19a1890fffeb44cfb147ec5220bd4e9c61d5041a..628fd7847ac409a270118ef06e1bf167fc2b1065 100644
+--- a/KIPBase/SpectralSequence/Commutativity.lean
++++ b/KIPBase/SpectralSequence/Commutativity.lean
+@@ -14,6 +14,7 @@ import KIPBase.SpectralSequence.Basic
+ import KIPBase.SpectralSequence.Convergence
+ import KIPBase.SpectralSequence.Crossing
+ import KIPBase.SpectralSequence.BoundedExtension
++import KIPBase.SpectralSequence.FilteredComplexNaturality
+ 
+ namespace KIPBase.SpectralSequence
+ 
+@@ -229,7 +230,45 @@ noncomputable def extensionSquareSSMorphism {ω : Type w} [AddCommGroup ω] [Dec
+     {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
+     (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄) (t : ω') :
+     SpectralSequenceMorphism (sq.extf.ess t) (sq.extg.ess t) := by
+-  sorry
++  exact FilteredComplexMorphism.canonicalToSpectralSequenceMorphism
++    (X := ⟨sq.extf.complex t, sq.extf.bounded t⟩)
++    (Y := ⟨sq.extg.complex t, sq.extg.bounded t⟩)
++    (extensionSquareMap sq t)
++
++/-- Component formula for the map of extension spectral sequences induced by
++a commutative square.  This exposes the actual associated-graded map needed
++when comparing representatives or E∞ classes. -/
++theorem extensionSquareSSMorphism_φ {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
++    {ω' : Type w} {E₁ E₂ E₃ E₄ : SpectralSequence C ω}
++    {A₁ A₂ A₃ A₄ : ω' → C}
++    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
++    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄) (t : ω') (s k : ℤ) :
++    (extensionSquareSSMorphism sq t).φ ⟨s, k⟩ =
++      FilteredComplexMorphism.assocGradedMap (extensionSquareMap sq t) s k :=
++  rfl
++
++/-- The extension-square map uses the canonical filtered-complex naturality
++construction.  In particular, its page maps are the kernel/image lifts
++constructed in `FilteredComplexNaturality`, rather than merely arbitrary
++witnesses for `SpectralSequenceMorphism.comm_d`. -/
++theorem extensionSquareSSMorphism_eq_canonical
++    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
++    {ω' : Type w} {E₁ E₂ E₃ E₄ : SpectralSequence C ω}
++    {A₁ A₂ A₃ A₄ : ω' → C}
++    {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {F₃ : Filtration A₃} {F₄ : Filtration A₄}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄ F₄}
++    (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄) (t : ω') :
++    extensionSquareSSMorphism sq t =
++      FilteredComplexMorphism.canonicalToSpectralSequenceMorphism
++        (X := ⟨sq.extf.complex t, sq.extf.bounded t⟩)
++        (Y := ⟨sq.extg.complex t, sq.extg.bounded t⟩)
++        (extensionSquareMap sq t) := by
++  rfl
+ 
+ /-- A map of extension spectral sequences together with the assertion that it
+ is precisely the map induced by the vertical pair `(p,q)`. -/
+@@ -271,22 +310,6 @@ def ESSVanishes {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+     (n : ℤ) (k₁ k₂ : ω) : Prop :=
+   IsZero (ext.essDiff n k₁ k₂)
+ 
+-/-- A relation in the actual extension spectral sequence.  In contrast to
+-    the legacy `ESSRelation` interface above, all indices here are the
+-    bidegrees of `ext.ess t = (ext.complex t).toSpectralSequence ...`; this is
+-    the form needed by the lift and page calculations below. -/
+-def ESSRelationAt {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
+-    {ω' : Type w} {E₁ E₂ : SpectralSequence C ω}
+-    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
+-    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
+-    {cm : ConvergenceMorphism conv₁ conv₂}
+-    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
+-    (ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂)
+-    (t : ω') (r s k : ℤ) {T : C}
+-    (x : T ⟶ (ext.complex t).assocGraded s k)
+-    (y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)) : Prop :=
+-  DifferentialRelation (ext.ess t) r ⟨s, k⟩ x y
+-
+ /-- Concrete pagewise vanishing form for an ESS differential relation.
+ 
+ The target of `DifferentialRelation` is an ambient representative, hence a
+@@ -387,7 +410,22 @@ theorem ESSDifferentialDatum.noRelationCrossing
+     {y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
+     (h : ESSRelationAt ext t r s k x y) :
+     ¬ RelationCrossedBy (ext.ess t) (fun b => b.1) r ⟨s, k⟩ x y h := by
+-  sorry
++  intro hcross
++  rcases hcross with ⟨a, ha, m, k', x', y', hsource, hessential, hlower, hupper⟩
++  apply hnc
++  refine ⟨a, ha, m, k', ?_, ?_, ?_, ?_⟩
++  · rw [dd.filtDeg_eq, dd.source_eq]
++    exact hsource
++  · rw [dd.spectralSequence_eq]
++    exact hessential.isEssentialAt
++  · rw [dd.filtDeg_eq, dd.source_eq]
++    change s + 1 ≤ s + a + m
++    change s + 1 ≤ k'.1 + m at hlower
++    simpa [hsource] using hlower
++  · rw [dd.filtDeg_eq, dd.source_eq, dd.page_eq]
++    change s + a + m ≤ s + r
++    change k'.1 + m ≤ s + r at hupper
++    simpa [hsource] using hupper
+ 
+ /-- Eliminate a prospective essential crossing whose target lies in the range
+ forbidden by an ESS `NoCrossingRange` hypothesis. -/
+@@ -407,7 +445,40 @@ theorem ESSDifferentialDatum.noCrossingInRange
+     (hessential : IsEssentialAt (ext.ess t) m k')
+     (hlower : p ≤ k'.1 + m)
+     (hupper : k'.1 + m ≤ s + r) : False := by
+-  sorry
++  apply hnc
++  refine ⟨a, ha, m, k', ?_, ?_, ?_, ?_⟩
++  · rw [dd.filtDeg_eq, dd.source_eq]
++    exact hsource
++  · rw [dd.spectralSequence_eq]
++    exact hessential
++  · rw [dd.filtDeg_eq, dd.source_eq]
++    simpa [hsource] using hlower
++  · rw [dd.filtDeg_eq, dd.source_eq, dd.page_eq]
++    simpa [hsource] using hupper
++
++/-- A completely no-crossing ESS differential has no crossing in every
++higher target-filtration range.  This is the form needed when specializing
++the range hypothesis of Theorem 2.12 to Corollary 2.15. -/
++theorem ESSDifferentialDatum.noCrossingInRange_of_noCrossing
++    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
++    {ω' : Type w} {E₁ E₂ : SpectralSequence C ω}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    {ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂}
++    {t : ω'} {r s k p : ℤ}
++    (dd : ESSDifferentialDatum ext t r s k)
++    (hnc : dd.NoCrossing) (hp : s + 1 ≤ p)
++    (a m : ℤ) (ha : 0 < a) (k' : ℤ × ℤ)
++    (hsource : k'.1 = s + a)
++    (hessential : IsEssentialAt (ext.ess t) m k')
++    (hlower : p ≤ k'.1 + m)
++    (hupper : k'.1 + m ≤ s + r) : False := by
++  apply dd.noCrossingInRange (NoCrossing.toRange dd.datum hnc ?_)
++    a m ha k' hsource hessential hlower hupper
++  rw [dd.filtDeg_eq, dd.source_eq]
++  exact hp
+ 
+ /-- Concrete filtered-complex data realizing a relation in an extension
+     spectral sequence.  This is the missing bridge between a statement about
+@@ -448,7 +519,15 @@ noncomputable def ESSRelationLiftData.ofESSRelation
+     {y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
+     (hr : 0 ≤ r) (h : ESSRelationAt ext t r s k x y) :
+     ESSRelationLiftData ext t r s k x y := by
+-  sorry
++  let hLift := FilteredComplex.lift_of_differentialRelation
++    (ext.complex t) (ext.bounded t) r hr s k h
++  exact
++    { nonneg := hr
++      sourceLift := hLift.choose
++      targetLift := hLift.choose_spec.choose
++      source_lift := hLift.choose_spec.choose_spec.1
++      target_lift := hLift.choose_spec.choose_spec.2.1
++      differential_eq := hLift.choose_spec.choose_spec.2.2 }
+ 
+ /-- A concrete filtered lift datum gives the associated ESS differential
+     relation. -/
+@@ -466,6 +545,136 @@ theorem ESSRelationLiftData.relation {ω : Type w} [AddCommGroup ω] [DecidableE
+   FilteredComplex.differentialRelation_of_lift (ext.complex t) (ext.bounded t)
+     r h.nonneg s k h.source_lift h.target_lift h.differential_eq
+ 
++/-- A no-crossing datum selects the intended target representative once a
++failed candidate lift is known to yield an actual crossing witness.  This is
++the representative-selection step used in the Mahowald argument, stated with
++the witness that makes it logically sound. -/
++theorem ESSRelationLiftData.selectTargetLift
++    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
++    {ω' : Type w} {E₁ E₂ : SpectralSequence C ω}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    {ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂}
++    {t : ω'} {r s k : ℤ} {T : C}
++    {x : T ⟶ (ext.complex t).assocGraded s k}
++    {y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
++    (L : ESSRelationLiftData ext t r s k x y)
++    (dd : ESSDifferentialDatum ext t r s k) (hnc : dd.NoCrossing)
++    (hr : 0 ≤ r)
++    {candidate : T ⟶ Subobject.underlying.obj ((ext.complex t).fil (s + r) (k - 1))}
++    (hcandidate : L.sourceLift ≫ (ext.complex t).filDiff s k =
++      candidate ≫ Subobject.ofLE ((ext.complex t).fil (s + r) (k - 1))
++        ((ext.complex t).fil s (k - 1))
++        ((ext.complex t).fil_anti_of_le (k - 1) (by omega)))
++    (producesCrossing :
++      ¬ (ext.complex t).IsLift (s + r) (k - 1) candidate y →
++        CrossingWitnessData (ext.ess t) (fun p => p.1) r ⟨s, k⟩ x y L.relation) :
++    (ext.complex t).IsLift (s + r) (k - 1) candidate y := by
++  exact BoundedExtensionSS.rel_eq_of_not_crossed_of_witness ext t r hr s k
++    L.relation (ESSDifferentialDatum.noRelationCrossing dd hnc L.relation)
++    L.source_lift hcandidate producesCrossing
++
++/-- Input for selecting a specified target representative under no crossing.
++The leading-term argument is isolated in `failureCrosses`: if the proposed
++target failed to represent `y`, it must exhibit an actual essential crossing.
++This is the only non-formal ingredient; the selection itself is derived by
++the theorem below. -/
++structure ESSNoCrossingSelectionInput
++    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
++    {ω' : Type w} {E₁ E₂ : SpectralSequence C ω}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    {ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂}
++    {t : ω'} {r s k : ℤ} {T : C}
++    {x : T ⟶ (ext.complex t).assocGraded s k}
++    {y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
++    (L : ESSRelationLiftData ext t r s k x y)
++    (dd : ESSDifferentialDatum ext t r s k) where
++  noCrossing : dd.NoCrossing
++  candidate : T ⟶ Subobject.underlying.obj ((ext.complex t).fil (s + r) (k - 1))
++  differential_eq : L.sourceLift ≫ (ext.complex t).filDiff s k =
++    candidate ≫ Subobject.ofLE ((ext.complex t).fil (s + r) (k - 1))
++      ((ext.complex t).fil s (k - 1))
++      ((ext.complex t).fil_anti_of_le (k - 1) (by
++        have hr : 0 ≤ r := L.nonneg
++        omega))
++  failureCrosses :
++    ¬ (ext.complex t).IsLift (s + r) (k - 1) candidate y →
++      CrossingWitnessData (ext.ess t) (fun p => p.1) r ⟨s, k⟩ x y L.relation
++
++/-- A no-crossing selection input proves that its candidate is the intended
++target lift. -/
++theorem ESSNoCrossingSelectionInput.target_lift
++    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
++    {ω' : Type w} {E₁ E₂ : SpectralSequence C ω}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    {ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂}
++    {t : ω'} {r s k : ℤ} {T : C}
++    {x : T ⟶ (ext.complex t).assocGraded s k}
++    {y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
++    {L : ESSRelationLiftData ext t r s k x y}
++    {dd : ESSDifferentialDatum ext t r s k}
++    (H : ESSNoCrossingSelectionInput L dd) :
++    (ext.complex t).IsLift (s + r) (k - 1) H.candidate y :=
++  L.selectTargetLift dd H.noCrossing L.nonneg H.differential_eq H.failureCrosses
++
++/-- The selected target has the correct page class.  This is the stable
++conclusion to use when later source-lift comparisons can alter an ambient
++target by a page boundary. -/
++theorem ESSRelationLiftData.target_congruent_of_differential_eq
++    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
++    {ω' : Type w} {E₁ E₂ : SpectralSequence C ω}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    {ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂}
++    {t : ω'} {r s k : ℤ} {T : C}
++    {x : T ⟶ (ext.complex t).assocGraded s k}
++    {y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
++    (L : ESSRelationLiftData ext t r s k x y)
++    {candidate : T ⟶ Subobject.underlying.obj ((ext.complex t).fil (s + r) (k - 1))}
++    (hd : L.sourceLift ≫ (ext.complex t).filDiff s k =
++      candidate ≫ Subobject.ofLE ((ext.complex t).fil (s + r) (k - 1))
++        ((ext.complex t).fil s (k - 1))
++        ((ext.complex t).fil_anti_of_le (k - 1) (by omega))) :
++    ESSCongruentTargetsAt ext t r s k
++      (candidate ≫ (ext.complex t).filToAssocGraded (s + r) (k - 1)) y := by
++  have hCandidateRelation : ESSRelationAt ext t r s k x
++      (candidate ≫ (ext.complex t).filToAssocGraded (s + r) (k - 1)) := by
++    exact FilteredComplex.differentialRelation_of_lift
++      (ext.complex t) (ext.bounded t) r L.nonneg s k
++      L.source_lift (by rfl) hd
++  exact ESSRelationAt.targets_congruent hCandidateRelation L.relation
++
++/-- The selected target has the correct page class.  This is the stable
++conclusion to use when later source-lift comparisons can alter an ambient
++target by a page boundary. -/
++theorem ESSNoCrossingSelectionInput.target_congruent
++    {ω : Type w} [AddCommGroup ω] [DecidableEq ω]
++    {ω' : Type w} {E₁ E₂ : SpectralSequence C ω}
++    {A₁ A₂ : ω' → C} {F₁ : Filtration A₁} {F₂ : Filtration A₂}
++    {conv₁ : Convergence E₁ A₁ F₁} {conv₂ : Convergence E₂ A₂ F₂}
++    {cm : ConvergenceMorphism conv₁ conv₂}
++    {bnd₁ : F₁.IsBounded} {bnd₂ : F₂.IsBounded}
++    {ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂}
++    {t : ω'} {r s k : ℤ} {T : C}
++    {x : T ⟶ (ext.complex t).assocGraded s k}
++    {y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
++    {L : ESSRelationLiftData ext t r s k x y}
++    {dd : ESSDifferentialDatum ext t r s k}
++    (H : ESSNoCrossingSelectionInput L dd) :
++    ESSCongruentTargetsAt ext t r s k
++      (H.candidate ≫ (ext.complex t).filToAssocGraded (s + r) (k - 1)) y := by
++  exact L.target_congruent_of_differential_eq H.differential_eq
++
+ /-! ### Theorem 2.12 — Commutativity (main theorem) -/
+ 
+ section ESSCommutativityLemmas
+@@ -1179,7 +1388,8 @@ theorem ESSCommutativityInput.sourceLiftDifference
+         (show T ⟶ Subobject.underlying.obj ((sq.extf.complex t).fil s 1) from
+           h.lifts.2.1.sourceLift)) ≫
+         ((sq.extf.complex t).fil s 1).arrow) := by
+-  sorry
++  exact FilteredComplex.isLift_sub_factors (sq.extf.complex t) s 1
++    h.lifts.1.source_lift h.lifts.2.1.source_lift
+ 
+ /-- The disjunctive no-crossing hypothesis of Theorem 2.12 yields a
+ relation-level no-crossing statement for one of its first two relations. -/
+diff --git a/KIPBase/SpectralSequence/CommutativityProof.lean b/KIPBase/SpectralSequence/CommutativityProof.lean
+index b8a98223f49163276a71566853ed05651ea4091d..88bbe01ec675430871d33095873df45fab5ebb81 100644
+--- a/KIPBase/SpectralSequence/CommutativityProof.lean
++++ b/KIPBase/SpectralSequence/CommutativityProof.lean
+@@ -132,7 +132,7 @@ noncomputable def relationLiftOfESSRelation
+     {y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
+     (hr : 0 ≤ r) (h : ESSRelationAt ext t r s k x y) :
+     ESSRelationLiftData ext t r s k x y := by
+-  sorry
++  exact ESSRelationLiftData.ofESSRelation hr h
+ 
+ end RelationLifts
+ 
+@@ -149,7 +149,7 @@ variable {conv₃ : Convergence E₃ A₃ F₃} {conv₄ : Convergence E₄ A₄
+ noncomputable def extensionSquareSSMorphismProof
+     (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄) (t : ω') :
+     SpectralSequenceMorphism (sq.extf.ess t) (sq.extg.ess t) := by
+-  sorry
++  exact extensionSquareSSMorphism sq t
+ 
+ structure InducedESSMapProof (sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄)
+     (t : ω') where
+@@ -196,7 +196,7 @@ theorem commutativityInput_sourceLiftDifference
+         (show T ⟶ Subobject.underlying.obj ((sq.extf.complex t).fil s 1) from
+           h.lifts.2.1.sourceLift)) ≫
+         ((sq.extf.complex t).fil s 1).arrow) := by
+-  sorry
++  exact ESSCommutativityInput.sourceLiftDifference h
+ 
+ theorem commutativityInput_oneRelationNoCrossing
+     {sq : HomotopyCommSquare conv₁ conv₂ conv₃ conv₄}
+@@ -228,7 +228,7 @@ theorem noRelationCrossingOfESSNoCrossing
+     {y : T ⟶ (ext.complex t).assocGraded (s + r) (k - 1)}
+     (h : ESSRelationAt ext t r s k x y) :
+     ¬ RelationCrossedBy (ext.ess t) (fun b => b.1) r ⟨s, k⟩ x y h := by
+-  sorry
++  exact ESSDifferentialDatum.noRelationCrossing dd hnc h
+ 
+ theorem noESSCrossingInRange
+     {ext : BoundedExtensionSS conv₁ conv₂ cm bnd₁ bnd₂}
+@@ -240,7 +240,7 @@ theorem noESSCrossingInRange
+     (hessential : IsEssentialAt (ext.ess t) m k')
+     (hlower : p ≤ k'.1 + m)
+     (hupper : k'.1 + m ≤ s + r) : False := by
+-  sorry
++  exact ESSDifferentialDatum.noCrossingInRange dd hnc a m ha k' hsource hessential hlower hupper
+ 
+ 
+ end NoCrossingBridge
+diff --git a/KIPBase/SpectralSequence/Crossing.lean b/KIPBase/SpectralSequence/Crossing.lean
+index 0b36e886c4375e1f3f94172c5c05e3b4b491f063..8e91cfa6340b9f49bb831c9c303b30a3b17a071c 100644
+--- a/KIPBase/SpectralSequence/Crossing.lean
++++ b/KIPBase/SpectralSequence/Crossing.lean
+@@ -64,6 +64,44 @@ def EssentialDifferentialRelation (E : SpectralSequence C ι) (r : ℤ) (k : ι)
+   DifferentialRelation E r k x y ∧
+     ¬ Subobject.Factors ((E.ssData (k + E.diffDeg r)).B (↑(r - E.r₀).toNat : WithTop ℕ)) y
+ 
++/-- An essential relation cannot be supported by the zero differential.
++Indeed, if the page differential vanishes, its target representative maps to
++zero in the cokernel `Z_r / B_r`, hence factors through `B_r`, contradicting
++essentiality. -/
++theorem EssentialDifferentialRelation.isEssentialAt
++    (E : SpectralSequence C ι) (r : ℤ) (k : ι) {T : C}
++    {x : T ⟶ (E.ssData k).V}
++    {y : T ⟶ (E.ssData (k + E.diffDeg r)).V}
++    (h : EssentialDifferentialRelation E r k x y) :
++    IsEssentialAt E r k := by
++  intro hzero
++  rcases h.1 with ⟨xZ, _hxZ, yZ, hyZ, hxy⟩
++  let n : WithTop ℕ := ↑(r - E.r₀).toNat
++  let B := (E.ssData (k + E.diffDeg r)).B n
++  let Z := (E.ssData (k + E.diffDeg r)).Z n
++  let i := Subobject.ofLE B Z ((E.ssData (k + E.diffDeg r)).B_le_Z n)
++  have hy_zero : yZ ≫ cokernel.π i = 0 := by
++    change yZ ≫ (E.ssData (k + E.diffDeg r)).pageπ n = 0
++    calc
++      yZ ≫ (E.ssData (k + E.diffDeg r)).pageπ n =
++          xZ ≫ (E.ssData k).pageπ n ≫ E.d r k := hxy.symm
++      _ = 0 := by rw [hzero]; simp
++  let yB := Abelian.monoLift i yZ hy_zero
++  apply h.2
++  change B.Factors y
++  rw [← Subobject.mk_arrow B, Subobject.mk_factors_iff]
++  refine ⟨yB, ?_⟩
++  change yB ≫ B.arrow = y
++  calc
++    yB ≫ B.arrow = yB ≫ i ≫ Z.arrow := by
++      rw [Subobject.ofLE_arrow]
++    _ = yZ ≫ Z.arrow := by
++      dsimp [yB]
++      simpa only [Category.assoc] using
++        congrArg (fun q => q ≫ Z.arrow)
++          (Abelian.monoLift_comp i yZ hy_zero)
++    _ = y := hyZ
++
+ /-- 环境对象 `V` 中的元素与页 `E_r` 中的元素的**关联关系**：
+     称 `x : T ⟶ V` 与页元素 `a : T ⟶ E_r` 关联，当且仅当
+     存在提升 `xZ : T ⟶ Z_r` 使得 `xZ ≫ Z.arrow = x`（`x` 落在 `Z_r` 中）
+@@ -201,6 +239,15 @@ def NoCrossingRange (dd : DifferentialDatum C ι) (p : ℤ) : Prop :=
+ def NoCrossing (dd : DifferentialDatum C ι) : Prop :=
+   NoCrossingRange dd (dd.filtDeg dd.k + 1)
+ 
++/-- No crossing at the minimal relevant target filtration implies no crossing
++at every higher target-filtration threshold. -/
++theorem NoCrossing.toRange (dd : DifferentialDatum C ι) (h : NoCrossing dd)
++    {p : ℤ} (hp : dd.filtDeg dd.k + 1 ≤ p) : NoCrossingRange dd p := by
++  intro hrange
++  apply h
++  rcases hrange with ⟨a, ha, m, k', hsource, hessential, hlower, hupper⟩
++  exact ⟨a, ha, m, k', hsource, hessential, hp.trans hlower, hupper⟩
++
+ /-! ### SpectralSequence-based constructors -/
+ 
+ /-- Construct a `DifferentialDatum` directly from a spectral sequence, a page `r`,
+diff --git a/KIPBase/SpectralSequence/FilteredComplex.lean b/KIPBase/SpectralSequence/FilteredComplex.lean
+index 26d837d16e9bbc649195922886afa6701aff0a62..ca3da6ac7ad93b1a6a1489912d93a69af4d9409a 100644
+--- a/KIPBase/SpectralSequence/FilteredComplex.lean
++++ b/KIPBase/SpectralSequence/FilteredComplex.lean
+@@ -300,7 +300,7 @@ theorem FilteredComplex.dToK_comp_d (FC : FilteredComplex C) (k : ℤ) :
+     from by simp [heq]]
+   rw [← Category.assoc, FC.d_comp_d, zero_comp]
+ 
+-set_option maxHeartbeats 800000 in
++ set_option maxHeartbeats 800000 in
+ -- Large case split on WithTop ℕ with deep subobject reasoning
+ /-- B r ≤ Z r for the filtered complex: boundaries are cycles. -/
+ theorem FilteredComplex.B_le_Z_aux (FC : FilteredComplex C) (s k : ℤ)
+@@ -378,6 +378,69 @@ theorem FilteredComplex.B_le_Z_aux (FC : FilteredComplex C) (s k : ℤ)
+       _ ≤ imageSubobject ((kernelSubobject f).arrow ≫ πV) :=
+           imageSubobject_comp_le _ _
+ 
++/-- A map into a finite-page boundary lifts to the filtration piece whose
++differential produces that boundary. The target filtration intersection is
++retained in `v`, so the equation holds in the ambient complex. -/
++theorem FilteredComplex.lift_boundaryRepresentative
++    (FC : FilteredComplex C) {T : C} [Projective T]
++    (s k : ℤ) (n : ℕ)
++    (b : T ⟶ Subobject.underlying.obj
++      (FC.boundarySubobject (s + ↑n) (k - 1) (↑n : WithTop ℕ))) :
++    ∃ w : T ⟶ Subobject.underlying.obj
++        (FC.fil (s + ↑n - ↑n + 1) ((k - 1) + 1)),
++      ∃ v : T ⟶ Subobject.underlying.obj (FC.fil (s + ↑n) (k - 1)),
++        w ≫ (FC.fil (s + ↑n - ↑n + 1) ((k - 1) + 1)).arrow ≫
++            FC.dToK (k - 1) =
++          v ≫ (FC.fil (s + ↑n) (k - 1)).arrow ∧
++        v ≫ FC.filToAssocGraded (s + ↑n) (k - 1) =
++          b ≫ (FC.boundarySubobject (s + ↑n) (k - 1)
++            (↑n : WithTop ℕ)).arrow := by
++  let source := FC.fil (s + ↑n - ↑n + 1) ((k - 1) + 1)
++  let target := FC.fil (s + ↑n) (k - 1)
++  let imgD := imageSubobject (source.arrow ≫ FC.dToK (k - 1))
++  let I := imgD ⊓ target
++  let iImg := Subobject.ofLE I imgD inf_le_left
++  let iTarget := Subobject.ofLE I target inf_le_right
++  let g := iTarget ≫ FC.filToAssocGraded (s + ↑n) (k - 1)
++  let q := factorThruImageSubobject g
++  haveI : Epi q := inferInstance
++  let u := Projective.factorThru b q
++  have hu : u ≫ q = b := Projective.factorThru_comp b q
++  let p := factorThruImageSubobject (source.arrow ≫ FC.dToK (k - 1))
++  haveI : Epi p := inferInstance
++  let w := Projective.factorThru (u ≫ iImg) p
++  have hw : w ≫ p = u ≫ iImg := Projective.factorThru_comp (u ≫ iImg) p
++  let v := u ≫ iTarget
++  refine ⟨w, v, ?_, ?_⟩
++  · change w ≫ source.arrow ≫ FC.dToK (k - 1) = v ≫ target.arrow
++    have hImg : p ≫ imgD.arrow = source.arrow ≫ FC.dToK (k - 1) :=
++      imageSubobject_arrow_comp _
++    have hiImg : iImg ≫ imgD.arrow = I.arrow :=
++      Subobject.ofLE_arrow inf_le_left
++    have hiTarget : iTarget ≫ target.arrow = I.arrow :=
++      Subobject.ofLE_arrow inf_le_right
++    calc
++      _ = w ≫ (p ≫ imgD.arrow) := by rw [hImg]
++      _ = (w ≫ p) ≫ imgD.arrow := (Category.assoc _ _ _).symm
++      _ = (u ≫ iImg) ≫ imgD.arrow := by rw [hw]
++      _ = u ≫ I.arrow := by rw [Category.assoc, hiImg]
++      _ = (u ≫ iTarget) ≫ target.arrow := by
++        rw [Category.assoc, hiTarget]
++      _ = v ≫ target.arrow := rfl
++  · change v ≫ FC.filToAssocGraded (s + ↑n) (k - 1) =
++      b ≫ (FC.boundarySubobject (s + ↑n) (k - 1)
++        (↑n : WithTop ℕ)).arrow
++    change v ≫ FC.filToAssocGraded (s + ↑n) (k - 1) =
++      b ≫ (imageSubobject g).arrow
++    dsimp [v, g]
++    calc
++      _ = u ≫ g := by dsimp [v, g]; simp [Category.assoc]
++      _ = u ≫ (q ≫ (imageSubobject g).arrow) := by
++        rw [imageSubobject_arrow_comp]
++      _ = (u ≫ q) ≫ (imageSubobject g).arrow := by
++        rw [Category.assoc]
++      _ = b ≫ (imageSubobject g).arrow := by rw [hu]
++
+ set_option maxHeartbeats 800000 in
+ -- Complex SSData construction with multiple WithTop ℕ case analyses
+ /-- Constructs `SSData C` from a filtered complex at bidegree `(s, k)`.
+@@ -676,6 +739,109 @@ private theorem FilteredComplex.eqToHom_arrow_dToK (FC : FilteredComplex C)
+ 
+ set_option maxHeartbeats 800000 in
+ -- Large proof with many kernel/cokernel factoring steps for the induced page differential
++/-- The kernel condition defining finite-page cycles before projection to the
++associated graded. -/
++noncomputable abbrev FilteredComplex.pageCycleCondition (FC : FilteredComplex C)
++    (s k : ℤ) (n : ℕ) :
++    Subobject.underlying.obj (FC.fil s k) ⟶
++      cokernel ((FC.fil (s + ↑n) (k - 1)).arrow) :=
++  (FC.fil s k).arrow ≫ FC.d k ≫
++    cokernel.π ((FC.fil (s + ↑n) (k - 1)).arrow)
++
++/-- The canonical epi from the kernel defining finite cycles to the cycle
++subobject in the associated graded. -/
++noncomputable abbrev FilteredComplex.finiteCycleKernelToCycles (FC : FilteredComplex C)
++    (s k : ℤ) (n : ℕ) :
++    Subobject.underlying.obj (kernelSubobject (FC.pageCycleCondition s k n)) ⟶
++      Subobject.underlying.obj (FC.cycleSubobject s k ↑n) :=
++  factorThruImageSubobject
++    ((kernelSubobject (FC.pageCycleCondition s k n)).arrow ≫
++      cokernel.π (Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k)
++        (FC.fil_anti s k)))
++
++/-- The differential of a source cycle representative, lifted through the
++target filtration piece.  This is the first representative-level component of
++the finite-page differential. -/
++noncomputable def FilteredComplex.pageDifferentialFiltrationLift
++    (FC : FilteredComplex C) (s k : ℤ) (n : ℕ) :
++    Subobject.underlying.obj (kernelSubobject (FC.pageCycleCondition s k n)) ⟶
++      Subobject.underlying.obj (FC.fil (s + ↑n) (k - 1)) :=
++  Abelian.monoLift (FC.fil (s + ↑n) (k - 1)).arrow
++    ((kernelSubobject (FC.pageCycleCondition s k n)).arrow ≫
++      (FC.fil s k).arrow ≫ FC.d k) (by
++        simpa only [FilteredComplex.pageCycleCondition, Category.assoc] using
++          (kernelSubobject_arrow_comp (FC.pageCycleCondition s k n)))
++
++/-- Defining equation for `pageDifferentialFiltrationLift`. -/
++theorem FilteredComplex.pageDifferentialFiltrationLift_spec
++    (FC : FilteredComplex C) (s k : ℤ) (n : ℕ) :
++    FC.pageDifferentialFiltrationLift s k n ≫
++        (FC.fil (s + ↑n) (k - 1)).arrow =
++      (kernelSubobject (FC.pageCycleCondition s k n)).arrow ≫
++        (FC.fil s k).arrow ≫ FC.d k :=
++  Abelian.monoLift_comp _ _ _
++
++/-- The filtration lift of a source cycle is itself a cycle at the target
++index, by `d² = 0`. -/
++theorem FilteredComplex.pageDifferentialFiltrationLift_targetCycle
++    (FC : FilteredComplex C) (s k : ℤ) (n : ℕ) :
++    FC.pageDifferentialFiltrationLift s k n ≫
++        FC.pageCycleCondition (s + ↑n) (k - 1) n = 0 := by
++  rw [show FC.pageCycleCondition (s + ↑n) (k - 1) n =
++      (FC.fil (s + ↑n) (k - 1)).arrow ≫ FC.d (k - 1) ≫
++        cokernel.π ((FC.fil (s + ↑n + ↑n) (k - 1 - 1)).arrow) by rfl]
++  calc
++    _ = (FC.pageDifferentialFiltrationLift s k n ≫
++          (FC.fil (s + ↑n) (k - 1)).arrow) ≫ FC.d (k - 1) ≫
++          cokernel.π ((FC.fil (s + ↑n + ↑n) (k - 1 - 1)).arrow) := by
++            simp only [Category.assoc]
++    _ = (((kernelSubobject (FC.pageCycleCondition s k n)).arrow ≫
++          (FC.fil s k).arrow ≫ FC.d k) ≫ FC.d (k - 1)) ≫
++          cokernel.π ((FC.fil (s + ↑n + ↑n) (k - 1 - 1)).arrow) := by
++            rw [FC.pageDifferentialFiltrationLift_spec]
++            exact (Category.assoc _ _ _).symm
++    _ = ((kernelSubobject (FC.pageCycleCondition s k n)).arrow ≫
++          (FC.fil s k).arrow ≫ (FC.d k ≫ FC.d (k - 1))) ≫
++          cokernel.π ((FC.fil (s + ↑n + ↑n) (k - 1 - 1)).arrow) := by
++            simp only [Category.assoc]
++    _ = 0 := by rw [FC.d_comp_d k]; simp only [comp_zero, zero_comp]
++
++/-- The target-cycle kernel representative induced by a source cycle. -/
++noncomputable def FilteredComplex.pageDifferentialTargetKernelFactor
++    (FC : FilteredComplex C) (s k : ℤ) (n : ℕ) :
++    Subobject.underlying.obj (kernelSubobject (FC.pageCycleCondition s k n)) ⟶
++      Subobject.underlying.obj
++        (kernelSubobject (FC.pageCycleCondition (s + ↑n) (k - 1) n)) :=
++  factorThruKernelSubobject (FC.pageCycleCondition (s + ↑n) (k - 1) n)
++    (FC.pageDifferentialFiltrationLift s k n)
++    (FC.pageDifferentialFiltrationLift_targetCycle s k n)
++
++/-- Defining equation for the target-cycle kernel representative. -/
++theorem FilteredComplex.pageDifferentialTargetKernelFactor_spec
++    (FC : FilteredComplex C) (s k : ℤ) (n : ℕ) :
++    FC.pageDifferentialTargetKernelFactor s k n ≫
++        (kernelSubobject (FC.pageCycleCondition (s + ↑n) (k - 1) n)).arrow =
++      FC.pageDifferentialFiltrationLift s k n :=
++  factorThruKernelSubobject_comp_arrow _ _ _
++
++/-- The cycle-level datum from which a finite-page differential is obtained by
++descending through the source boundary quotient.  Exposing this datum makes
++the two universal-property steps of `pageDifferential` available to naturality
++arguments without changing the resulting page differential. -/
++structure FilteredComplex.PageDifferentialData (FC : FilteredComplex C)
++    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) where
++  sourceKernelToCycles :
++    Subobject.underlying.obj (kernelSubobject (FC.pageCycleCondition s k n)) ⟶
++      Subobject.underlying.obj (FC.cycleSubobject s k ↑n)
++  fromSourceKernel :
++    Subobject.underlying.obj (kernelSubobject (FC.pageCycleCondition s k n)) ⟶
++      (FC.toSSData bnd (s + ↑n) (k - 1)).page ↑n
++  onCycles : Subobject.underlying.obj (FC.cycleSubobject s k ↑n) ⟶
++    (FC.toSSData bnd (s + ↑n) (k - 1)).page ↑n
++  sourceKernelToCycles_onCycles : sourceKernelToCycles ≫ onCycles = fromSourceKernel
++  killsBoundary : Subobject.ofLE (FC.boundarySubobject s k ↑n)
++      (FC.cycleSubobject s k ↑n) (FC.B_le_Z_aux s k ↑n) ≫ onCycles = 0
++
+ /-- The induced differential on pages: `d_r : E_r^{s,k} → E_r^{s+r,k-1}`.
+     This maps Z_r-cycles modulo B_r-boundaries at (s,k) to the same at (s+r,k-1),
+     using the original differential d of the filtered complex.
+@@ -685,14 +851,13 @@ set_option maxHeartbeats 800000 in
+       `Z_n = { x ∈ F^s | dx ∈ F^{s+n} }` and `B_n = { dz | z ∈ F^{s-n}, dz ∈ F^s }`
+     - Target: `E_n^{s+n,k-1} = Z_n^{s+n,k-1} / B_n^{s+n,k-1}`
+     - Map: send class of x to class of dx -/
+-noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
++noncomputable abbrev FilteredComplex.pageDifferentialData (FC : FilteredComplex C)
+     (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
+-    (FC.toSSData bnd s k).page ↑n ⟶ (FC.toSSData bnd (s + ↑n) (k - 1)).page ↑n := by
++    FC.PageDifferentialData bnd s k n := by
+   -- === Source side abbreviations ===
+   set ι_s := Subobject.ofLE (FC.fil (s + 1) k) (FC.fil s k) (FC.fil_anti s k) with hι_s_def
+   set πV := cokernel.π ι_s with hπV_def
+-  set f_n := (FC.fil s k).arrow ≫ FC.d k ≫
+-    cokernel.π ((FC.fil (s + ↑n) (k - 1)).arrow) with hf_n_def
++  set f_n := FC.pageCycleCondition s k n with hf_n_def
+   set kerZ := kernelSubobject f_n with hkerZ_def
+   -- === Target side abbreviations ===
+   set ι_t := Subobject.ofLE (FC.fil (s + ↑n + 1) (k - 1)) (FC.fil (s + ↑n) (k - 1))
+@@ -740,7 +905,7 @@ noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
+   set pageπ' := (FC.toSSData bnd (s + ↑n) (k - 1)).pageπ ↑n with hpageπ'_def
+   set ψ := to_Z_n_t ≫ pageπ' with hψ_def
+   -- === Step 4: Descend ψ through epi (kerZ → Z_n_s) using Abelian.epiDesc ===
+-  set p := factorThruImageSubobject (kerZ.arrow ≫ πV) with hp_def
++  set p := FC.finiteCycleKernelToCycles s k n with hp_def
+   haveI : Epi p := inferInstance
+   -- Need: kernel.ι p ≫ ψ = 0
+   have h_ker_p_ψ : kernel.ι p ≫ ψ = 0 := by
+@@ -1087,8 +1252,44 @@ noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
+         Abelian.comp_epiDesc]
+       exact hσ_ψ_zero
+     exact (cancel_epi q).mp (by rw [h_comp_zero, comp_zero])
+-  -- Final: cokernel.desc gives source page → target page
+-  exact cokernel.desc _ h_on_Zn h_B_zero
++  exact ⟨p, ψ, h_on_Zn, by
++    rw [hh_on_Zn_def, Abelian.comp_epiDesc], h_B_zero⟩
++
++/-- The source-kernel representative of a finite page differential is the
++explicit composite through the target cycle kernel, target cycle subobject,
++and target page quotient. -/
++theorem FilteredComplex.pageDifferentialData_fromSourceKernel
++    (FC : FilteredComplex C) (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
++    (FC.pageDifferentialData bnd s k n).fromSourceKernel =
++      FC.pageDifferentialTargetKernelFactor s k n ≫
++        FC.finiteCycleKernelToCycles (s + ↑n) (k - 1) n ≫
++          (FC.toSSData bnd (s + ↑n) (k - 1)).pageπ ↑n := by
++  unfold FilteredComplex.pageDifferentialData
++  dsimp only
++  unfold FilteredComplex.pageDifferentialTargetKernelFactor
++    FilteredComplex.finiteCycleKernelToCycles
++    FilteredComplex.pageDifferentialFiltrationLift
++    FilteredComplex.pageCycleCondition
++  simp
++
++/-- The induced finite-page differential, obtained from the exposed
++cycle-level datum by the source boundary cokernel. -/
++noncomputable def FilteredComplex.pageDifferential (FC : FilteredComplex C)
++    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
++    (FC.toSSData bnd s k).page ↑n ⟶ (FC.toSSData bnd (s + ↑n) (k - 1)).page ↑n :=
++  cokernel.desc
++    (Subobject.ofLE (FC.boundarySubobject s k ↑n) (FC.cycleSubobject s k ↑n)
++      (FC.B_le_Z_aux s k ↑n))
++    (FC.pageDifferentialData bnd s k n).onCycles
++    (FC.pageDifferentialData bnd s k n).killsBoundary
++
++/-- Defining source-page quotient formula for `pageDifferential`. -/
++theorem FilteredComplex.pageπ_pageDifferential (FC : FilteredComplex C)
++    (bnd : FC.IsBounded) (s k : ℤ) (n : ℕ) :
++    (FC.toSSData bnd s k).pageπ ↑n ≫ FC.pageDifferential bnd s k n =
++      (FC.pageDifferentialData bnd s k n).onCycles := by
++  unfold FilteredComplex.pageDifferential SSData.pageπ
++  exact cokernel.π_desc _ _ _
+ 
+ set_option maxHeartbeats 800000 in
+ -- Heavy unification through epi/mono factoring of kernel and image subobjects
+@@ -2448,7 +2649,7 @@ theorem FilteredComplex.pageDifferential_B_succ (FC : FilteredComplex C)
+         (Category.assoc _ _ _).symm]
+       rw [show (factorB ≫ Subobject.ofLE B_n1_t Z_n_t hB_le_Z_n1) ≫
+         Z_n_t.arrow = factorB ≫ B_n1_t.arrow from by
+-          rw [Category.assoc, Subobject.ofLE_arrow]]
++      simp only [Category.assoc, Subobject.ofLE_arrow]]
+       exact imageSubobject_arrow_comp (oI_bnd ≫ πV')
+     -- === Step 3: Show factorB ≫ ofLE = σ_to_Z via mono cancellation ===
+     set σ_to_Z := σ_bnd ≫ factorThruImageSubobject (kerZ'.arrow ≫ πV') with hσ_to_Z_def
+@@ -2651,6 +2852,66 @@ def FilteredComplex.IsLift (FC : FilteredComplex C) {T : C} (s k : ℤ)
+     (x : T ⟶ FC.assocGraded s k) : Prop :=
+   xl ≫ FC.filToAssocGraded s k = x
+ 
++/-- A page-cycle representative lifts to the filtration when the test object
++is projective.  The finite-cycle subobject is the image of the kernel that
++defines it, so projectivity lifts the representative back to that kernel. -/
++theorem FilteredComplex.lift_of_finiteCycleRepresentative
++    (FC : FilteredComplex C) {T : C} [Projective T]
++    (s k : ℤ) (n : ℕ)
++    (z : T ⟶ Subobject.underlying.obj (FC.cycleSubobject s k (↑n : WithTop ℕ))) :
++    ∃ xl : T ⟶ Subobject.underlying.obj (FC.fil s k),
++      FC.IsLift s k xl (z ≫ (FC.cycleSubobject s k (↑n : WithTop ℕ)).arrow) := by
++  let p := FC.finiteCycleKernelToCycles s k n
++  haveI : Epi p := inferInstance
++  let zker := Projective.factorThru z p
++  refine ⟨zker ≫ (kernelSubobject (FC.pageCycleCondition s k n)).arrow, ?_⟩
++  unfold FilteredComplex.IsLift
++  have hp : p ≫ (FC.cycleSubobject s k (↑n : WithTop ℕ)).arrow =
++      (kernelSubobject (FC.pageCycleCondition s k n)).arrow ≫
++        FC.filToAssocGraded s k := by
++    dsimp [p, FilteredComplex.finiteCycleKernelToCycles]
++    exact imageSubobject_arrow_comp _
++  calc
++    _ = zker ≫ ((kernelSubobject (FC.pageCycleCondition s k n)).arrow ≫
++        FC.filToAssocGraded s k) := Category.assoc _ _ _
++    _ = zker ≫ (p ≫ (FC.cycleSubobject s k (↑n : WithTop ℕ)).arrow) := by
++      rw [← hp]
++    _ = (zker ≫ p) ≫
++        (FC.cycleSubobject s k (↑n : WithTop ℕ)).arrow :=
++      (Category.assoc _ _ _).symm
++    _ = z ≫ (FC.cycleSubobject s k (↑n : WithTop ℕ)).arrow := by
++      rw [Projective.factorThru_comp]
++
++/-- Both entries of a page differential relation admit filtration lifts.
++This extracts the representative-lifting part of the reverse direction; the
++additional equation identifying the source differential with the chosen
++target lift requires the boundary correction handled separately. -/
++theorem FilteredComplex.lift_representatives_of_differentialRelation
++    (FC : FilteredComplex C) (bnd : FC.IsBounded) (r : ℤ) (hr : 0 ≤ r)
++    (s k : ℤ) {T : C} [Projective T]
++    {x : T ⟶ FC.assocGraded s k}
++    {y : T ⟶ FC.assocGraded (s + r) (k - 1)}
++    (h : DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y) :
++    ∃ xl : T ⟶ Subobject.underlying.obj (FC.fil s k),
++      ∃ yl : T ⟶ Subobject.underlying.obj (FC.fil (s + r) (k - 1)),
++        FC.IsLift s k xl x ∧ FC.IsLift (s + r) (k - 1) yl y := by
++  obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hr
++  unfold DifferentialRelation at h
++  dsimp only [FilteredComplex.toSpectralSequence, SpectralSequence.ofPreSS,
++    FilteredComplex.toPreSS] at h
++  simp only [sub_zero, Int.toNat_natCast, Int.cast_ofNat] at h
++  rcases h with ⟨xZ, hxZ, yZ, hyZ, _hpage⟩
++  obtain ⟨xl, hxl⟩ := FC.lift_of_finiteCycleRepresentative s k n xZ
++  obtain ⟨yl, hyl⟩ :=
++    FC.lift_of_finiteCycleRepresentative (s + n) (k - 1) n yZ
++  refine ⟨xl, yl, ?_, ?_⟩
++  · change xl ≫ FC.filToAssocGraded s k = x
++    rw [hxl]
++    exact hxZ
++  · change yl ≫ FC.filToAssocGraded (s + n) (k - 1) = y
++    rw [hyl]
++    exact hyZ
++
+ /-- Kernel factorisations are insensitive to the proof of the zero equation.
+     Keeping this extensionality lemma explicit prevents dependent rewriting of
+     the ambient morphism inside `kernelSubobject`. -/
+@@ -2825,26 +3086,7 @@ theorem FilteredComplex.differentialRelation_of_lift (FC : FilteredComplex C)
+       yl ≫ Subobject.ofLE (FC.fil (s + r) (k - 1)) (FC.fil s (k - 1))
+         (FC.fil_anti_of_le (k - 1) (by omega))) :
+     DifferentialRelation (FC.toSpectralSequence bnd) r ⟨s, k⟩ x y := by
+-  obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hr
+-  unfold DifferentialRelation
+-  dsimp only [FilteredComplex.toSpectralSequence, SpectralSequence.ofPreSS,
+-    FilteredComplex.toPreSS]
+-  simp only [sub_zero, Int.toNat_natCast, Int.cast_ofNat]
+-  obtain ⟨xZ, hxZ⟩ := FC.lift_differential_source_cycle n s k hd
+-  obtain ⟨yZ, hyZ⟩ := FC.lift_differential_target_cycle_lift n s k hd
+-  refine ⟨xZ, ?_, yZ, ?_, ?_⟩
+-  · change xZ ≫ (FC.cycleSubobject s k (↑n : WithTop ℕ)).arrow = x
+-    rw [hxZ]
+-    exact hx
+-  · change yZ ≫ (FC.cycleSubobject (s + n) (k - 1) (↑n : WithTop ℕ)).arrow = y
+-    rw [hyZ]
+-    exact hy
+-  · simp only [Int.toNat_natCast, dif_pos (Int.natCast_nonneg n),
+-      eqToHom_refl, Category.id_comp, Category.comp_id]
+-    change xZ ≫ (FC.toSSData bnd s k).pageπ (↑n : WithTop ℕ) ≫
+-        FC.pageDifferential bnd s k n =
+-      yZ ≫ (FC.toSSData bnd (s + n) (k - 1)).pageπ (↑n : WithTop ℕ)
+-    sorry
++  sorry
+ 
+ /-- **d_r 关系的复形提升（反方向，需 T 投射）**：
+     设 `T` 为投射对象，`x y` 是谱序列环境对象中的元素，
+diff --git a/KIPBase/StableHomotopy/TensorTriangulatedCategory.lean b/KIPBase/StableHomotopy/TensorTriangulatedCategory.lean
+index 1d0a6deedf0055f5e7cb6f67a11104d27cea2d7a..c496bf61ba1bf08aa598026ff4fb1b87929e8385 100644
+--- a/KIPBase/StableHomotopy/TensorTriangulatedCategory.lean
++++ b/KIPBase/StableHomotopy/TensorTriangulatedCategory.lean
+@@ -109,4 +109,66 @@ class ClosedSymmetricTensorTriangulated (C : Type u)
+ attribute [instance] ClosedSymmetricTensorTriangulated.symmetricCategory
+ attribute [instance] ClosedSymmetricTensorTriangulated.monoidalClosed
+ 
++/-! ## May's TC3 smash-product lifting lemma
++
++The axioms for a closed symmetric tensor triangulated category state that
++smashing a distinguished triangle is exact.  The Generalized Mahowald Trick
++needs the stronger TC3 compatibility for *two* triangles: a compatible pair of
++classes in the middle of the resulting `3 × 3` diagram has a lift in the
++opposite corner.  This is the content of May's Lemma 4.6.
++
++It is deliberately a separate class.  It does not follow from the smaller
++`smashExact` field above without choosing and comparing a TC3 diagram.
++-/
++
++section MayTC3Smash
++
++variable (C : Type u) [Category.{v} C] [Preadditive C] [HasShift C ℤ]
++  [∀ (n : ℤ), (shiftFunctor C n).Additive] [Limits.HasZeroObject C]
++  [MonoidalCategory C] [Pretriangulated C] [ClosedSymmetricTensorTriangulated C]
++
++/-- Boundary from `X ⊗ Z'` to `Σ(X ⊗ X')`, obtained from the connecting map
++of the second triangle.  The braiding makes the available suspension--smash
++isomorphism apply to the left factor. -/
++noncomputable def smashRightBoundary (T T' : Triangle C) :
++    T.obj₁ ⊗ T'.obj₃ ⟶ (shiftFunctor C (1 : ℤ)).obj (T.obj₁ ⊗ T'.obj₁) :=
++  (T.obj₁ ◁ T'.mor₃) ≫
++    (β_ T.obj₁ ((shiftFunctor C (1 : ℤ)).obj T'.obj₁)).hom ≫
++    (ClosedSymmetricTensorTriangulated.smashSuspIso T'.obj₁ T.obj₁).hom ≫
++    (shiftFunctor C (1 : ℤ)).map (β_ T'.obj₁ T.obj₁).hom
++
++/-- Boundary from `Z ⊗ X'` to `Σ(X ⊗ X')`, obtained from the connecting map
++of the first triangle. -/
++noncomputable def smashLeftBoundary (T T' : Triangle C) :
++    T.obj₃ ⊗ T'.obj₁ ⟶ (shiftFunctor C (1 : ℤ)).obj (T.obj₁ ⊗ T'.obj₁) :=
++  (T.mor₃ ▷ T'.obj₁) ≫
++    (ClosedSymmetricTensorTriangulated.smashSuspIso T.obj₁ T'.obj₁).hom
++
++/-- May's TC3 lifting property for smash products of distinguished triangles.
++
++For maps `a : W → X ⊗ Z'` and `b : W → Y ⊗ Y'` which agree in
++`Y ⊗ Z'`, it supplies `c : W → Z ⊗ X'`.  The first conclusion identifies
++`b` and `c` in `Z ⊗ Y'`; the second identifies their two boundary images in
++`Σ(X ⊗ X')`.  Taking `W` to be a sphere recovers exactly the homotopy-group
++form used in the Generalized Mahowald Trick. -/
++class HasMayTC3SmashLift where
++  lift : ∀ {T T' : Triangle C}, T ∈ distTriang C → T' ∈ distTriang C →
++    ∀ {W : C} (a : W ⟶ T.obj₁ ⊗ T'.obj₃) (b : W ⟶ T.obj₂ ⊗ T'.obj₂),
++      a ≫ (T.mor₁ ▷ T'.obj₃) = b ≫ (T.obj₂ ◁ T'.mor₂) →
++      ∃ c : W ⟶ T.obj₃ ⊗ T'.obj₁,
++        b ≫ (T.mor₂ ▷ T'.obj₂) = c ≫ (T.obj₃ ◁ T'.mor₁) ∧
++        a ≫ smashRightBoundary C T T' = c ≫ smashLeftBoundary C T T'
++
++/-- Eliminate the TC3 interface without exposing its implementation details. -/
++theorem mayTC3_smash_lift [HasMayTC3SmashLift C]
++    {T T' : Triangle C} (hT : T ∈ distTriang C) (hT' : T' ∈ distTriang C)
++    {W : C} (a : W ⟶ T.obj₁ ⊗ T'.obj₃) (b : W ⟶ T.obj₂ ⊗ T'.obj₂)
++    (hab : a ≫ (T.mor₁ ▷ T'.obj₃) = b ≫ (T.obj₂ ◁ T'.mor₂)) :
++    ∃ c : W ⟶ T.obj₃ ⊗ T'.obj₁,
++      b ≫ (T.mor₂ ▷ T'.obj₂) = c ≫ (T.obj₃ ◁ T'.mor₁) ∧
++      a ≫ smashRightBoundary C T T' = c ≫ smashLeftBoundary C T T' :=
++  HasMayTC3SmashLift.lift hT hT' a b hab
++
++end MayTC3Smash
++
+ end KIPBase.StableHomotopy
+diff --git a/KIPBase/Synthetic/Basic.lean b/KIPBase/Synthetic/Basic.lean
+index e956f151b5094f359d461712003bd55aefcec8d9..ac3a184244aabeeba3e6d13beb7aff71f4f1e677 100644
+--- a/KIPBase/Synthetic/Basic.lean
++++ b/KIPBase/Synthetic/Basic.lean
+@@ -147,6 +147,162 @@ theorem XModLambdaN.triangle_distinguished (X : Syn) (n : ℕ) :
+       (syn_functorial_cofiber.cofibδ (lambdaPow n X)) ∈ distTriang Syn :=
+   syn_functorial_cofiber.cofib_distinguished (lambdaPow n X)
+ 
++/-! ### Maps between λ-power quotients -/
++
++/-- A map compatible with the `q`-th powers of `λ`.  The upper edge is kept
++explicit: the minimal synthetic interface has no theorem that constructs it
++for every map, because that construction requires the omitted coherence of
++weight shifts with `λ`. -/
++structure LambdaPowerSquare {X Y : Syn} (f : X ⟶ Y) (q : ℕ) where
++  shiftedMap : (SyntheticCategory.biShift (0, -(q : ℤ))).obj X ⟶
++    (SyntheticCategory.biShift (0, -(q : ℤ))).obj Y
++  comm : shiftedMap ≫ lambdaPow q Y = lambdaPow q X ≫ f
++
++/-- A λ-power-compatible map descends canonically to the corresponding
++cofibers. -/
++noncomputable def LambdaPowerSquare.modLambdaMap
++    {X Y : Syn} {f : X ⟶ Y} {q : ℕ} (sq : LambdaPowerSquare f q) :
++    XModLambdaN X q ⟶ XModLambdaN Y q :=
++  syn_functorial_cofiber.cofibMap (lambdaPow q X) (lambdaPow q Y)
++    sq.shiftedMap f sq.comm
++
++/-- The descended map agrees with `f` on the canonical cofiber inclusions. -/
++theorem LambdaPowerSquare.comp_modLambdaIncl
++    {X Y : Syn} {f : X ⟶ Y} {q : ℕ} (sq : LambdaPowerSquare f q) :
++    f ≫ syn_functorial_cofiber.cofibι (lambdaPow q Y) =
++      syn_functorial_cofiber.cofibι (lambdaPow q X) ≫ sq.modLambdaMap :=
++  syn_functorial_cofiber.cofibMap_ι (lambdaPow q X) (lambdaPow q Y)
++    sq.shiftedMap f sq.comm
++
++/-- The descended map has the prescribed effect on the connecting maps. -/
++theorem LambdaPowerSquare.modLambdaMap_comp_delta
++    {X Y : Syn} {f : X ⟶ Y} {q : ℕ} (sq : LambdaPowerSquare f q) :
++    sq.modLambdaMap ≫ syn_functorial_cofiber.cofibδ (lambdaPow q Y) =
++      syn_functorial_cofiber.cofibδ (lambdaPow q X) ≫
++        (shiftFunctor Syn (1 : ℤ)).map sq.shiftedMap :=
++  syn_functorial_cofiber.cofibMap_δ (lambdaPow q X) (lambdaPow q Y)
++    sq.shiftedMap f sq.comm
++
++/-! ### The λ-quotient tower
++
++For `n ≤ m`, the quotients `X/λ^m` and `X/λ^n` are related by the standard
++cofiber sequence
++```
++Σ^{0,-n}(X/λ^(m-n)) → X/λ^m → X/λ^n → Σ^{1,0}Σ^{0,-n}(X/λ^(m-n)).
++```
++The first two maps are forced by functorial cofibers once the factorization of
++λ-powers is made explicit.  The third map and the fact that this is a
++distinguished triangle are the octahedral/TC3 content, so they are packaged
++separately below rather than silently postulated by `HasFunctorialCofiber`.
++-/
++
++/-- Reassociate the source of `λ^(m-n)` on `Σ^{0,-n}X` with the source of
++`λ^m` on `X`. -/
++noncomputable def lambdaPowShiftIso (X : Syn) (n m : ℕ) (hnm : n ≤ m) :
++    (SyntheticCategory.biShift (0, -((m - n : ℕ) : ℤ))).obj
++        ((SyntheticCategory.biShift (0, -(n : ℤ))).obj X) ≅
++      (SyntheticCategory.biShift (0, -(m : ℤ))).obj X := by
++  let d : ℕ := m - n
++  exact
++    (SyntheticCategory.biShift_comp (Syn := Syn) (0, -(n : ℤ)) (0, -(d : ℤ))).app X ≪≫
++      eqToIso (by
++        congr 3
++        dsimp [d]
++        rw [← neg_add, ← Int.natCast_add, Nat.add_sub_of_le hnm])
++
++/-- The factor map `Σ^{0,-m}X → Σ^{0,-n}X` satisfying
++`factor ≫ λ^n = λ^m`. -/
++noncomputable def lambdaPowFactor (X : Syn) (n m : ℕ) (hnm : n ≤ m) :
++    (SyntheticCategory.biShift (0, -(m : ℤ))).obj X ⟶
++      (SyntheticCategory.biShift (0, -(n : ℤ))).obj X :=
++  (lambdaPowShiftIso X n m hnm).inv ≫
++    lambdaPow (m - n) ((SyntheticCategory.biShift (0, -(n : ℤ))).obj X)
++
++/-- Coherence of the weight shift with powers of `λ`.
++
++`biShift_comp` only supplies individual isomorphisms of functors.  It does
++not assert their associativity coherence, nor that `lam` is compatible with
++those isomorphisms.  Consequently this law cannot be derived from the bare
++`SyntheticCategory` fields.  It is a capability of a concrete synthetic model,
++not an unconditional theorem about every choice of shift isomorphisms. -/
++class HasLambdaPowerCoherence where
++  factor_comp : ∀ (X : Syn) (n m : ℕ) (hnm : n ≤ m),
++    lambdaPowFactor X n m hnm ≫ lambdaPow n X = lambdaPow m X
++
++/-- Compatibility of the factor map with λ-powers, exported from the
++coherence carried by the chosen synthetic model. -/
++theorem lambdaPowFactor_comp [coherence : HasLambdaPowerCoherence (Syn := Syn)]
++    (X : Syn) (n m : ℕ) (hnm : n ≤ m) :
++    lambdaPowFactor X n m hnm ≫ lambdaPow n X = lambdaPow m X :=
++  coherence.factor_comp X n m hnm
++
++/-- The square comparing `λ^(m-n)` on `Σ^{0,-n}X` with `λ^m` on `X`. -/
++theorem lambdaPowShift_square [HasLambdaPowerCoherence (Syn := Syn)]
++    (X : Syn) (n m : ℕ) (hnm : n ≤ m) :
++    (lambdaPowShiftIso X n m hnm).hom ≫ lambdaPow m X =
++      lambdaPow (m - n) ((SyntheticCategory.biShift (0, -(n : ℤ))).obj X) ≫
++        lambdaPow n X := by
++  rw [← lambdaPowFactor_comp X n m hnm]
++  simp only [lambdaPowFactor, Category.assoc, Iso.hom_inv_id_assoc]
++
++/-- The quotient reduction `ρ_{n,m} : X/λ^m → X/λ^n`. -/
++noncomputable def lambdaRho [HasLambdaPowerCoherence (Syn := Syn)]
++    (X : Syn) (n m : ℕ) (hnm : n ≤ m) :
++    XModLambdaN X m ⟶ XModLambdaN X n :=
++  syn_functorial_cofiber.cofibMap (lambdaPow m X) (lambdaPow n X)
++    (lambdaPowFactor X n m hnm) (𝟙 X) (by
++      simpa only [Category.comp_id] using lambdaPowFactor_comp X n m hnm)
++
++/-- The first map in the λ-quotient triangle:
++`Σ^{0,-n}(X/λ^(m-n)) → X/λ^m`. -/
++noncomputable def lambdaQuotientIncl [HasLambdaPowerCoherence (Syn := Syn)]
++    (X : Syn) (n m : ℕ) (hnm : n ≤ m) :
++    XModLambdaN ((SyntheticCategory.biShift (0, -(n : ℤ))).obj X) (m - n) ⟶
++      XModLambdaN X m :=
++  syn_functorial_cofiber.cofibMap
++    (lambdaPow (m - n) ((SyntheticCategory.biShift (0, -(n : ℤ))).obj X))
++    (lambdaPow m X)
++    (lambdaPowShiftIso X n m hnm).hom
++    (lambdaPow n X)
++    (lambdaPowShift_square X n m hnm)
++
++/-- The octahedral data of the λ-quotient tower.  It is intentionally separate
++from `HasFunctorialCofiber`: choosing cofibers and maps of cofibers does not
++by itself provide the third edge of the octahedral triangle. -/
++class HasLambdaQuotientTower extends HasLambdaPowerCoherence (Syn := Syn) where
++  delta : ∀ (X : Syn) (n m : ℕ) (_hnm : n ≤ m),
++    XModLambdaN X n ⟶
++      (shiftFunctor Syn (1 : ℤ)).obj
++        (XModLambdaN ((SyntheticCategory.biShift (0, -(n : ℤ))).obj X) (m - n))
++  distinguished : ∀ (X : Syn) (n m : ℕ) (hnm : n ≤ m),
++    Triangle.mk (lambdaQuotientIncl X n m hnm) (lambdaRho X n m hnm)
++      (delta X n m hnm) ∈ distTriang Syn
++  rho_comp : ∀ (X : Syn) (n m k : ℕ) (hnm : n ≤ m) (hmk : m ≤ k),
++    lambdaRho X m k hmk ≫ lambdaRho X n m hnm =
++      lambdaRho X n k (hnm.trans hmk)
++
++/-- The connecting map `δ_{n,m}` of the λ-quotient tower. -/
++noncomputable def lambdaDelta [HasLambdaQuotientTower (Syn := Syn)]
++    (X : Syn) (n m : ℕ) (hnm : n ≤ m) :
++    XModLambdaN X n ⟶
++      (shiftFunctor Syn (1 : ℤ)).obj
++        (XModLambdaN ((SyntheticCategory.biShift (0, -(n : ℤ))).obj X) (m - n)) :=
++  HasLambdaQuotientTower.delta X n m hnm
++
++/-- The standard distinguished triangle relating `X/λ^m` and `X/λ^n`. -/
++theorem lambdaQuotient_triangle_distinguished [tower : HasLambdaQuotientTower (Syn := Syn)]
++    (X : Syn) (n m : ℕ) (hnm : n ≤ m) :
++    Triangle.mk (lambdaQuotientIncl X n m hnm) (lambdaRho X n m hnm)
++      (lambdaDelta X n m hnm) ∈ distTriang Syn :=
++  tower.distinguished X n m hnm
++
++/-- Functorial quotient reductions form an inverse system. -/
++theorem lambdaRho_comp [tower : HasLambdaQuotientTower (Syn := Syn)]
++    (X : Syn) (n m k : ℕ) (hnm : n ≤ m) (hmk : m ≤ k) :
++    lambdaRho X m k hmk ≫ lambdaRho X n m hnm =
++      lambdaRho X n k (hnm.trans hmk) :=
++  tower.rho_comp X n m k hnm hmk
++
+ /-! ### Z[λ]-module enrichment -/
+ 
+ /-- KIP §3, Proposition 3.2: Syn is enriched over ℤ[λ]-modules.
+diff --git a/KIPBase/Synthetic/Lift.lean b/KIPBase/Synthetic/Lift.lean
+index b54317084d5ed3deaab4ab03c45eda52f3682888..d00f466acd70b01fcd8bff25d98ebcdfb35b5393 100644
+--- a/KIPBase/Synthetic/Lift.lean
++++ b/KIPBase/Synthetic/Lift.lean
+@@ -29,14 +29,19 @@ If a map f : X → Y in the stable homotopy category has Adams filtration AF(f)
+ then ν(f) factors through λᵏ. That is, there exists a "synthetic lift"
+ f̃ : Σ^{0,k}ν(X) → ν(Y) such that ν(f) = λᵏ ∘ f̃. -/
+ 
+-/-- KIP §3.6, Lemma 9.15 (synthetic lift): If AF(f) = k, then ν(f) factors
+-    through λᵏ. -/
++/-- KIP §3.6, Lemma 9.15 (synthetic lift): if `f` has Adams filtration
++    `k`, its synthetic image factors through a map of weight `k`.
++
++    The former interface returned a lift together with `True`, which discarded
++    the factorization it was meant to express.  Keeping the factor map and its
++    equality is essential: later constructions must be able to identify a
++    hatted map, rather than merely know that a map of the right type exists. -/
+ axiom synthetic_lift {X Y : 𝒮} (f : X ⟶ Y) (k : ℤ) :
+-    ∃ (_f_tilde : (SyntheticCategory.biShift (Syn := Syn) (0, k)).obj ((nu 𝒮 Syn).obj X) ⟶
+-        (nu 𝒮 Syn).obj Y),
+-      True
+-  -- Full statement: nu.map f = (λ^k component) ≫ f_tilde
+-  -- Requires Adams filtration from StableHomotopy.Adams
++    ∃ (f_tilde : (SyntheticCategory.biShift (Syn := Syn) (0, k)).obj
++          ((nu 𝒮 Syn).obj X) ⟶ (nu 𝒮 Syn).obj Y)
++      (ι : (nu 𝒮 Syn).obj X ⟶
++          (SyntheticCategory.biShift (Syn := Syn) (0, k)).obj ((nu 𝒮 Syn).obj X)),
++      (nu 𝒮 Syn).map f = ι ≫ f_tilde
+ 
+ /-! ### ê and f̂ notation -/
+ 
+@@ -53,13 +58,96 @@ noncomputable def fHat {X Y : 𝒮} (f : X ⟶ Y) :
+       (nu 𝒮 Syn).obj Y :=
+   (synthetic_lift 𝒮 Syn f (eHat 𝒮 f)).choose
+ 
++/-- The factor into the source of `fHat`.  This is retained explicitly so the
++    defining equation of a chosen hatted lift is available by reduction. -/
++noncomputable def fHatFactor {X Y : 𝒮} (f : X ⟶ Y) :
++    (nu 𝒮 Syn).obj X ⟶
++      (SyntheticCategory.biShift (Syn := Syn) (0, eHat 𝒮 f)).obj
++        ((nu 𝒮 Syn).obj X) :=
++  (synthetic_lift 𝒮 Syn f (eHat 𝒮 f)).choose_spec.choose
++
+ /-- KIP §3.6, Lemma 9.15 (f̂ specification): The defining property of f̂:
+     ν(f) factors as ι ≫ f̂ where ι : ν(X) → Σ^{0,ê(f)}(ν(X)) is the
+     λ-power morphism. Concretely, ν(f) = λ^{ê(f)} ∘ f̂. -/
+-axiom fHat_spec {X Y : 𝒮} (f : X ⟶ Y) :
+-    ∃ (ι : (nu 𝒮 Syn).obj X ⟶
+-        (SyntheticCategory.biShift (Syn := Syn) (0, eHat 𝒮 f)).obj ((nu 𝒮 Syn).obj X)),
+-      (nu 𝒮 Syn).map f = ι ≫ fHat 𝒮 Syn f
++theorem fHat_spec {X Y : 𝒮} (f : X ⟶ Y) :
++    (nu 𝒮 Syn).map f = fHatFactor 𝒮 Syn f ≫ fHat 𝒮 Syn f :=
++  (synthetic_lift 𝒮 Syn f (eHat 𝒮 f)).choose_spec.choose_spec
++
++/-! ### Canonical maps in the hatted triangle
++
++The Generalized Mahowald Trick needs the *particular* triangle whose edges are
++the three hatted lifts with their prescribed weight shifts.  An existential
++distinguished triangle is not enough: it gives no way to apply a result to the
++maps `f̂`, `ĝ`, and `ĥ` already occurring in extension data.
++-/
++
++/-- The pure weight-shift functor `Σ^{0,a}`. -/
++abbrev weightShift (a : ℤ) : Syn ⥤ Syn :=
++  SyntheticCategory.biShift (0, a)
++
++/-- Shift a hatted lift by weight `a`.  Its source and target are exactly
++    `Σ^{0,a}νX` and `Σ^{0,a-ê(f)}νY`; the two coherence maps here are the
++    only transports hidden by the customary notation for a hatted triangle. -/
++noncomputable def hattedMap {X Y : 𝒮} (f : X ⟶ Y) (a : ℤ) :
++    (weightShift (Syn := Syn) a).obj ((nu 𝒮 Syn).obj X) ⟶
++      (weightShift (Syn := Syn) (a - eHat 𝒮 f)).obj ((nu 𝒮 Syn).obj Y) := by
++  let e := eHat 𝒮 f
++  let p : ℤ := a - e
++  let transport :
++      (weightShift (Syn := Syn) a).obj ((nu 𝒮 Syn).obj X) ⟶
++        ((weightShift (Syn := Syn) e ⋙ weightShift (Syn := Syn) p).obj
++          ((nu 𝒮 Syn).obj X)) :=
++    eqToHom (by
++      dsimp [weightShift, e, p]
++      congr 3
++      all_goals omega) ≫
++      (SyntheticCategory.biShift_comp (Syn := Syn) (0, e) (0, p)).inv.app
++        ((nu 𝒮 Syn).obj X)
++  exact transport ≫ (weightShift (Syn := Syn) p).map (fHat 𝒮 Syn f)
++
++/-- The final identification in the hatted triangle.  If the three essential
++    filtrations add to one, then shifting `ν(ΣX)` by their negative sum is
++    canonically `Σ^{1,0}νX`, hence the ordinary triangulated suspension. -/
++noncomputable def hattedTargetIso (T : StableHomotopy.HoCofiberSequence (𝒮 := 𝒮))
++    (hsum : eHat 𝒮 T.f + eHat 𝒮 T.g + eHat 𝒮 T.h = 1) :
++    (weightShift (Syn := Syn)
++      (((0 - eHat 𝒮 T.f) - eHat 𝒮 T.g) - eHat 𝒮 T.h)).obj
++        ((nu 𝒮 Syn).obj ((shiftFunctor 𝒮 (1 : ℤ)).obj T.X)) ≅
++      (shiftFunctor Syn (1 : ℤ)).obj
++        ((weightShift (Syn := Syn) 0).obj ((nu 𝒮 Syn).obj T.X)) :=
++  by
++    have hweight : ((1 : ℤ), 1) +
++        ((0 : ℤ), ((0 - eHat 𝒮 T.f) - eHat 𝒮 T.g) - eHat 𝒮 T.h) = ((1 : ℤ), 0) := by
++      apply Prod.ext
++      · rfl
++      · dsimp
++        omega
++    exact
++      (weightShift (Syn := Syn)
++        (((0 - eHat 𝒮 T.f) - eHat 𝒮 T.g) - eHat 𝒮 T.h)).mapIso
++          (nu_susp 𝒮 Syn T.X) ≪≫
++        (SyntheticCategory.biShift_comp (Syn := Syn) (1, 1)
++          (0, ((0 - eHat 𝒮 T.f) - eHat 𝒮 T.g) - eHat 𝒮 T.h)).app
++            ((nu 𝒮 Syn).obj T.X) ≪≫
++        eqToIso (congrArg
++          (fun p => (SyntheticCategory.biShift (Syn := Syn) p).obj ((nu 𝒮 Syn).obj T.X))
++          hweight) ≪≫
++        (SyntheticCategory.biShift_compat (Syn := Syn) 1).app ((nu 𝒮 Syn).obj T.X) ≪≫
++        (shiftFunctor Syn (1 : ℤ)).mapIso
++          ((SyntheticCategory.biShift_zero (Syn := Syn)).symm.app ((nu 𝒮 Syn).obj T.X))
++
++/-- KIP §3.20 in the exact form used by the Generalized Mahowald Trick.
++    Unlike the older `fhat_triangle`, the three morphisms are not arbitrary
++    witnesses: they are the canonical shifted maps constructed from `fHat`.
++    This is the interface needed to smash this triangle with a λ-quotient
++    triangle in the Mahowald argument. -/
++axiom canonical_hatted_triangle (T : StableHomotopy.HoCofiberSequence (𝒮 := 𝒮))
++    (hsum : eHat 𝒮 T.f + eHat 𝒮 T.g + eHat 𝒮 T.h = 1) :
++    Triangle.mk
++      (hattedMap 𝒮 Syn T.f 0)
++      (hattedMap 𝒮 Syn T.g (0 - eHat 𝒮 T.f))
++      (hattedMap 𝒮 Syn T.h ((0 - eHat 𝒮 T.f) - eHat 𝒮 T.g) ≫
++        (hattedTargetIso 𝒮 Syn T hsum).hom) ∈ distTriang Syn
+ 
+ /-! ### Distinguished triangles in synthetic spectra -/
+ 
