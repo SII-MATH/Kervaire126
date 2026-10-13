@@ -6,6 +6,7 @@
 -/
 import KIPBase.Mathlib
 import KIPBase.Synthetic.Adams
+import KIPBase.Synthetic.AdamsLambdaInversion
 import KIPBase.Synthetic.AdamsVanishing
 import KIPBase.Synthetic.LambdaE2
 import KIPBase.Synthetic.Nu
@@ -56,28 +57,6 @@ transport essential differentials. -/
 axiom rigidity_degeneration (X : 𝒮) (N : ℤ) :
     (StableHomotopy.AdamsSS 𝒮 X).DegeneratesAt N →
     (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).DegeneratesAt N
-
-/-- The synthetic Adams differential with its target written in the
-standard tridegree `(s+r,t+r-1,w)`. -/
-noncomputable def synAdamsDifferentialNormalized (Y : Syn) (r s t w : ℤ) :
-    (SynAdamsSS Syn Y).Page r (s, t, w) ⟶
-      (SynAdamsSS Syn Y).Page r (s + r, t + r - 1, w) :=
-  (SynAdamsSS Syn Y).d r (s, t, w) ≫
-    eqToHom (congrArg (fun k => (SynAdamsSS Syn Y).Page r k) (by
-      rw [synAdamsSS_diffDeg]
-      ext <;> dsimp <;> omega))
-
-/-- The classical Adams differential with its target written in the
-standard bidegree `(s+r,t+r-1)`. -/
-noncomputable def classicalAdamsDifferentialNormalized (X : 𝒮)
-    (r s t : ℤ) :
-    (StableHomotopy.AdamsSS 𝒮 X).Page r (s, t) ⟶
-      (StableHomotopy.AdamsSS 𝒮 X).Page r (s + r, t + r - 1) :=
-  (StableHomotopy.AdamsSS 𝒮 X).d r (s, t) ≫
-    eqToHom (congrArg
-      (fun k => (StableHomotopy.AdamsSS 𝒮 X).Page r k) (by
-        rw [StableHomotopy.adamsSS_diffDeg]
-        ext <;> dsimp [StableHomotopy.adamsDiffDeg] <;> omega))
 
 /-- In the range `r-2 ≤ t-w`, the `r`-page of the synthetic Adams sequence
 of `νX` is still on the free part of its λ-tower.  All weights in this range
@@ -171,20 +150,10 @@ end NuAdamsFreeLambdaPages
 
 /-! ### Lifting classical differentials before inverting λ
 
-The existing comparison on the free λ-tail is the finite-page input of the
-λ-inverted comparison. We construct representatives of classical classes
-in that tail and prove their differential formula using the actual
-iterated λ action. No new comparison assumption is introduced. -/
-
-/-- The existing iterated page λ-map, with its final weight displayed. -/
-noncomputable def synAdamsLambdaPowNormalized (Y : Syn) (n : ℕ)
-    (r s t w : ℤ) :
-    (SynAdamsSS Syn Y).Page r (s, t, w) ⟶
-      (SynAdamsSS Syn Y).Page r (s, t, w - (n : ℤ)) :=
-  (synAdamsSS_zlambda_module Syn Y).lambdaPow n r (s, t, w) ≫
-    eqToHom (congrArg (fun k => (SynAdamsSS Syn Y).Page r k) (by
-      rw [SynAdamsLambdaModule.lambdaIndex_eq]
-      ext <;> simp [sub_eq_add_neg]))
+The legacy free-tail helpers below remain available for existing consumers.
+The public differential translation theorems use the explicitly assumed
+spectral-sequence extension of the existing E₂ comparison. Free-tail
+bijectivity is proved by induction in AdamsLambdaInversion. -/
 
 namespace NuAdamsFreeLambdaPages
 
@@ -307,6 +276,35 @@ theorem classicalLift_differential_iff (X : 𝒮)
 
 end NuAdamsFreeLambdaPages
 
+/-- The existing second-page comparison, restricted to the supported weights.
+Only its E₂ component is used here. -/
+noncomputable def nuAdamsE2ClassicalComparison (X : 𝒮) (s t w : ℤ)
+    (h : w ≤ t) :
+    (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page 2 (s,t,w) ≃+
+      (StableHomotopy.AdamsSS 𝒮 X).Page 2 (s,t) :=
+  (rigidity_free_lambda_pages 𝒮 Syn X).componentClassicalEquiv
+    𝒮 Syn X 2 (by omega) s t w (by omega)
+
+/-- Explicitly assumed extension of the existing E₂ comparison to a
+lambda-compatible spectral-sequence morphism. No later-page bijectivity
+or differential translation formula is postulated. -/
+axiom nuAdamsE2Comparison_extends (X : 𝒮) :
+  { P : NuAdamsLambdaInversionComparison 𝒮 Syn X //
+    ∀ (s t w : ℤ) (h : w ≤ t),
+      P.map 2 s t w = (nuAdamsE2ClassicalComparison 𝒮 Syn X s t w h).toAddMonoidHom }
+
+/-- The spectral-sequence comparison supplied by the explicitly assumed
+extension, with its prescribed E₂ component. -/
+noncomputable def nuAdamsLambdaInversionComparison (X : 𝒮) :
+    NuAdamsLambdaInversionComparison 𝒮 Syn X :=
+  (nuAdamsE2Comparison_extends 𝒮 Syn X).val
+
+@[simp] theorem nuAdamsLambdaInversionComparison_e2 (X : 𝒮)
+    (s t w : ℤ) (h : w ≤ t) :
+    (nuAdamsLambdaInversionComparison 𝒮 Syn X).map 2 s t w =
+      (nuAdamsE2ClassicalComparison 𝒮 Syn X s t w h).toAddMonoidHom :=
+  (nuAdamsE2Comparison_extends 𝒮 Syn X).property s t w h
+
 /-- A classical Adams differential is exactly its synthetic lift multiplied
 by the weight-forced power `lambda^(r-1)`.  The source and target are first
 lifted at the same depth `a` in their free lambda towers; multiplication by
@@ -317,11 +315,11 @@ theorem synAdams_classical_differential_lambda_lift_eq_iff (X : 𝒮)
     (x : (StableHomotopy.AdamsSS 𝒮 X).Page (r : ℤ) (s, t))
     (y : (StableHomotopy.AdamsSS 𝒮 X).Page (r : ℤ)
       (s + r, t + r - 1)) :
+    let P := nuAdamsLambdaInversionComparison 𝒮 Syn X
     let E := SynAdamsSS Syn ((nu 𝒮 Syn).obj X)
-    let R := rigidity_free_lambda_pages 𝒮 Syn X
-    let xLift := R.classicalLift 𝒮 Syn X r (by omega)
+    let xLift := P.classicalLift r hr
       s t (t - a) (by omega) x
-    let yLift := R.classicalLift 𝒮 Syn X r (by omega)
+    let yLift := P.classicalLift r hr
       (s + r) (t + r - 1) (t + r - 1 - a) (by omega) y
     (synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
         r s t (t - a)).hom xLift =
@@ -331,29 +329,11 @@ theorem synAdams_classical_differential_lambda_lift_eq_iff (X : 𝒮)
         ((synAdamsLambdaPowNormalized Syn ((nu 𝒮 Syn).obj X)
           (r - 1) r (s + r) (t + r - 1) (t + r - 1 - a)).hom yLift) ↔
       (classicalAdamsDifferentialNormalized 𝒮 X r s t).hom x = y := by
+  let P := nuAdamsLambdaInversionComparison 𝒮 Syn X
   dsimp only
-  let R := rigidity_free_lambda_pages 𝒮 Syn X
-  let E := SynAdamsSS Syn ((nu 𝒮 Syn).obj X)
-  let transport := eqToHom (congrArg
-    (fun w => E.Page (r : ℤ) (s + r, t + r - 1, w))
-    (show t + r - 1 - a - ((r - 1 : ℕ) : ℤ) = t - a by omega))
-  have htarget : transport.hom
-      ((synAdamsLambdaPowNormalized Syn ((nu 𝒮 Syn).obj X)
-          (r - 1) r (s + r) (t + r - 1) (t + r - 1 - a)).hom
-        (R.classicalLift 𝒮 Syn X r (by omega)
-          (s + r) (t + r - 1) (t + r - 1 - a) (by omega) y)) =
-      R.classicalLift 𝒮 Syn X r (by omega)
-        (s + r) (t + r - 1) (t - a) (by omega) y := by
-    exact (congrArg transport.hom
-      (R.classicalLift_lambdaPow 𝒮 Syn X r (by omega)
-        (s + r) (t + r - 1) (t + r - 1 - a) (by omega)
-        (r - 1) y)).trans
-      (R.classicalLift_transport 𝒮 Syn X r (by omega)
-        (s + r) (t + r - 1) _ (t - a) (by omega)
-        (by omega) (by omega) y)
-  rw [htarget]
-  exact R.classicalLift_differential_iff 𝒮 Syn X r (by omega)
-    s t (t - a) (by omega) x y
+  rw [← ((P.page_comparison r hr (s+r) (t+r-1) (t-a)).2 (by omega)).1.eq_iff]
+  rw [P.comm_d r hr s t (t-a), P.map_classicalLift]
+  rw [P.map_weight_transport, P.lambda r hr, P.map_classicalLift] <;> omega
 
 /-- Clearing λ denominators in the existing classical comparison gives
 both directions of the essential differential formula. With source and
@@ -365,10 +345,10 @@ theorem synAdams_classical_differential_lambda_lift_iff (X : 𝒮)
     (x : (StableHomotopy.AdamsSS 𝒮 X).Page (r : ℤ) (s, t))
     (y : (StableHomotopy.AdamsSS 𝒮 X).Page (r : ℤ)
       (s + r, t + r - 1)) :
+    let P := nuAdamsLambdaInversionComparison 𝒮 Syn X
     let E := SynAdamsSS Syn ((nu 𝒮 Syn).obj X)
-    let R := rigidity_free_lambda_pages 𝒮 Syn X
-    let xLift := R.classicalLift 𝒮 Syn X r (by omega) s t (t - a) (by omega) x
-    let yLift := R.classicalLift 𝒮 Syn X r (by omega)
+    let xLift := P.classicalLift r hr s t (t - a) (by omega) x
+    let yLift := P.classicalLift r hr
       (s + r) (t + r - 1) (t + r - 1 - a) (by omega) y
     let yLambda :=
       (eqToHom (congrArg (fun w => E.Page (r : ℤ) (s + r, t + r - 1, w))
@@ -378,33 +358,13 @@ theorem synAdams_classical_differential_lambda_lift_iff (X : 𝒮)
     ((synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
         r s t (t - a)).hom xLift = yLambda ∧ yLambda ≠ 0) ↔
       ((classicalAdamsDifferentialNormalized 𝒮 X r s t).hom x = y ∧ y ≠ 0) := by
+  let P := nuAdamsLambdaInversionComparison 𝒮 Syn X
   dsimp only
-  let R := rigidity_free_lambda_pages 𝒮 Syn X
-  let E := SynAdamsSS Syn ((nu 𝒮 Syn).obj X)
-  let transport := eqToHom (congrArg
-    (fun w => E.Page (r : ℤ) (s + r, t + r - 1, w))
-    (show t + r - 1 - a - ((r - 1 : ℕ) : ℤ) = t - a by omega))
-  have htarget : transport.hom
-      ((synAdamsLambdaPowNormalized Syn ((nu 𝒮 Syn).obj X)
-          (r - 1) r (s + r) (t + r - 1) (t + r - 1 - a)).hom
-        (R.classicalLift 𝒮 Syn X r (by omega)
-          (s + r) (t + r - 1) (t + r - 1 - a) (by omega) y)) =
-      R.classicalLift 𝒮 Syn X r (by omega) (s + r) (t + r - 1) (t - a)
-        (by omega) y := by
-    exact (congrArg transport.hom
-      (R.classicalLift_lambdaPow 𝒮 Syn X r (by omega)
-        (s + r) (t + r - 1) (t + r - 1 - a) (by omega) (r - 1) y)).trans
-      (R.classicalLift_transport 𝒮 Syn X r (by omega)
-        (s + r) (t + r - 1) _ (t - a) (by omega) (by omega) (by omega) y)
-  change ((_ = transport.hom _) ∧ transport.hom _ ≠ 0) ↔ _
-  rw [htarget]
   apply and_congr
-  · exact R.classicalLift_differential_iff 𝒮 Syn X r (by omega)
-      s t (t - a) (by omega) x y
-  · exact not_congr
-      (R.componentClassicalEquiv 𝒮 Syn X r (by omega)
-        (s + r) (t + r - 1) (t - a) (by omega)).symm.map_eq_zero_iff
-
+  · exact synAdams_classical_differential_lambda_lift_eq_iff 𝒮 Syn X r hr s t a ha x y
+  · apply not_congr
+    rw [← ((P.page_comparison r hr (s+r) (t+r-1) (t-a)).2 (by omega)).1.eq_iff]
+    rw [map_zero, P.map_weight_transport, P.lambda r hr, P.map_classicalLift] <;> omega
 
 /-- Every specified classical differential, including a zero differential,
 gives the corresponding synthetic differential with the weight-forced
@@ -415,10 +375,10 @@ theorem synAdams_classical_differential_lambda_lift (X : 𝒮)
     (y : (StableHomotopy.AdamsSS 𝒮 X).Page (r : ℤ)
       (s + r, t + r - 1))
     (hxy : (classicalAdamsDifferentialNormalized 𝒮 X r s t).hom x = y) :
+    let P := nuAdamsLambdaInversionComparison 𝒮 Syn X
     let E := SynAdamsSS Syn ((nu 𝒮 Syn).obj X)
-    let R := rigidity_free_lambda_pages 𝒮 Syn X
-    let xLift := R.classicalLift 𝒮 Syn X r (by omega) s t (t - a) (by omega) x
-    let yLift := R.classicalLift 𝒮 Syn X r (by omega)
+    let xLift := P.classicalLift r hr s t (t - a) (by omega) x
+    let yLift := P.classicalLift r hr
       (s + r) (t + r - 1) (t + r - 1 - a) (by omega) y
     (synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
         r s t (t - a)).hom xLift =
@@ -426,14 +386,8 @@ theorem synAdams_classical_differential_lambda_lift (X : 𝒮)
         (show t + r - 1 - a - ((r - 1 : ℕ) : ℤ) = t - a by omega))).hom
         ((synAdamsLambdaPowNormalized Syn ((nu 𝒮 Syn).obj X)
           (r - 1) r (s + r) (t + r - 1) (t + r - 1 - a)).hom yLift) := by
-  by_cases hy : y = 0
-  · rcases hy with rfl
-    dsimp only
-    have hd := ((rigidity_free_lambda_pages 𝒮 Syn X).classicalLift_differential_iff
-      𝒮 Syn X r (by omega) s t (t - a) (by omega) x 0).2 hxy
-    simpa only [NuAdamsFreeLambdaPages.classicalLift, map_zero] using hd
-  · exact ((synAdams_classical_differential_lambda_lift_iff
-      𝒮 Syn X r hr s t a ha x y).2 ⟨hxy, hy⟩).1
+  exact (synAdams_classical_differential_lambda_lift_eq_iff
+    𝒮 Syn X r hr s t a ha x y).2 hxy
 
 /-- KIP Theorem A.8 (rigidity — above-diagonal vanishing): For w > t,
     E_r^{s,t,w}(SynAdamsSS(νX)) = 0 for all r ≥ 2. This reflects the

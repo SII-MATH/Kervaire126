@@ -15208,7 +15208,7 @@ private theorem cnu_d2_zero_h4 (I : Inputs D L G) : ((sequence D .nuCofiber)).d 
   subst y
   exact cnu_d2_target (7,134) (9,135) x _ h
 
-private theorem cnu_d2_zero (I : Inputs D L G) : (E).d 2 (9,135) = 0 := by
+theorem cnu_d2_zero (I : Inputs D L G) : (E).d 2 (9,135) = 0 := by
   have h0 : (E).d 2 (9,135) (I.realization.basis .nuCofiber 9 135 0) = 0 := cnu_d2_zero_h0 I
   have h1 : (E).d 2 (9,135) (I.realization.basis .nuCofiber 9 135 1) = 0 := cnu_d2_zero_h1 I
   have h2 : (E).d 2 (9,135) (I.realization.basis .nuCofiber 9 135 2) = 0 := cnu_d2_zero_h2 I

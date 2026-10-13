@@ -226,10 +226,48 @@ foundations established earlier.
   displayed equalities.
 \end{proof}
 
+\begin{proposition}[The common quotient representative and the direct Bockstein]
+  \label{prop:mahowald-direct-bockstein-ess-link}
+  \lean{KIPBase.Synthetic.mahowaldQuotientLift_to_directBockstein_and_ess}
+  \uses{def:lambda-rho-delta-triangle,def:page-extension-coset}
+  \notready
+  Let a coherent finite $\lambda$-quotient tower of a synthetic spectrum
+  $A$ be fixed, and let $u:S^{m,w}\to A/\lambda^{i+1}$ be one actual
+  representative. Write $x=\rho_{1,i+1}u$. If a map
+  $g:A/\lambda^{i+1}\to B$ sends $u$ to $y$, and $u,y$ have Adams
+  filtrations at least $s,s+n$ with $n\ge0$, then $x$ belongs to the
+  direct Bockstein cycle subgroup at index $i$, and their detected
+  $E_\infty$ classes satisfy the length-$n$ relation in the actual $g$-ESS.
+  The same $u$ is used in both conclusions. Taking $g$ to be the connecting
+  map followed by reduction gives the ESS relation for the literal direct
+  Bockstein obstruction; taking $g=\rho_{1,i+1}$ gives the restriction ESS.
+
+  For $i>0$, two cycles represent the same direct Bockstein page class
+  precisely when their difference is an incoming finite $\lambda$-boundary.
+  This identifies the direct Bockstein ambiguity, without identifying it
+  with the entire ambiguity of an arbitrary map ESS, which also records
+  shorter map extensions.
+\end{proposition}
+
+\begin{proof}
+  The reduction of $u$ belongs to the image defining the direct cycle
+  subgroup. Transport the filtered homotopy representatives through the
+  existing convergence equivalences and apply the unbounded ESS
+  representative criterion to $g u=y$. In Lean this is
+  \texttt{homotopy\_map\_to\_ess\_relation}; its restriction and obstruction
+  specializations use the literal maps, not independently chosen classes.
+  The page equality assertion is
+  \texttt{lambdaLiftBockstein\_same\_page\_iff\_incoming\_target}, obtained
+  by applying the proved zero-page-class criterion to the difference.
+  The representative-level bridge is proved; the classical Adams cycle
+  comparison and the Mahowald synchronization and lambda-division stages
+  remain separate unfinished obligations.
+\end{proof}
+
 % SOURCE: MainPaper/main.tex:1900-1910, equation eq:f4848f29 and the ensuing one-way survival deduction.
 \begin{lemma}[A compatible quotient lift gives source survival]
   \label{lem:mahowald-quotient-lift-survival}
-  \uses{def:mahowald-input-data,lem:mahowald-synchronized-representatives,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-map-compatibility}
+  \uses{def:mahowald-input-data,lem:mahowald-synchronized-representatives,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-map-compatibility,prop:mahowald-direct-bockstein-ess-link}
   \notready
   Under the Mahowald hypotheses, suppose
 

@@ -13,7 +13,7 @@ namespace KIPBase.Section7
 open CategoryTheory KIPBase.StableHomotopy
 
 universe u v
-variable (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
+variable (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮]
 
 noncomputable def pageProduct (s t s' t' : ℕ)
     (x : (AdamsSS 𝒮 SphereSpectrum).Page 2 ((s : ℤ), (t : ℤ)))
@@ -334,7 +334,7 @@ open CategoryTheory CategoryTheory.Limits CategoryTheory.Pretriangulated
 
 universe u v u' v'
 
-variable (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
+variable (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮]
   [AdamsE2Data 𝒮]
   (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
   [HasZeroObject Syn] [HasShift Syn ℤ]
@@ -1302,7 +1302,7 @@ theorem h6Permanent_of_not_all_statement7_8_3_4_5
 /-- Explicit classical comparison data needed to interpret the named
 `Near126E2` predicates as statements about Adams permanence. -/
 structure H6SquareClassicalComparison (𝒮 : Type u)
-    [StableHomotopyCategory.{u, v} 𝒮] [AdamsE2Data 𝒮] where
+    [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮] [AdamsE2Data 𝒮] where
   survives_iff_h6Permanent :
     Near126E2.SurvivesToEInfinity Near126E2.h6Sq ↔ h6Permanent 𝒮
   d12_excludes_h6Permanent :
@@ -1424,7 +1424,7 @@ theorem proposition7_8_d12_of_conditions (Syn : Type u') [Category.{v'} Syn]
 /-- The necessary direction of Proposition 7.8 requires the converse
 comparison from a classical `d₁₂` to the synthetic conditions. -/
 theorem proposition7_8_conditions_of_d12 (𝒮 : Type u)
-    [StableHomotopyCategory.{u, v} 𝒮] [AdamsE2Data 𝒮]
+    [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮] [AdamsE2Data 𝒮]
     (Syn : Type u') [Category.{v'} Syn]
     [Preadditive Syn] [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
@@ -1438,7 +1438,7 @@ theorem proposition7_8_conditions_of_d12 (𝒮 : Type u)
   exact C.d12_excludes_h6Permanent h hpermanent
 
 theorem proposition7_8_d12_iff (𝒮 : Type u)
-    [StableHomotopyCategory.{u, v} 𝒮] [AdamsE2Data 𝒮]
+    [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮] [AdamsE2Data 𝒮]
     (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
     [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
@@ -1453,7 +1453,7 @@ theorem proposition7_8_d12_iff (𝒮 : Type u)
 
 /-- Proposition 7.8: exactly one of survival and the specified `d₁₂` occurs. -/
 theorem proposition7_8_dichotomy (𝒮 : Type u)
-    [StableHomotopyCategory.{u, v} 𝒮] [AdamsE2Data 𝒮]
+    [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮] [AdamsE2Data 𝒮]
     (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
     [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
@@ -1493,7 +1493,7 @@ theorem proposition7_9 (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
 
 /-- Theorem 7.1: `h₆²` is a permanent cycle. -/
 theorem h6Sq_permanent_cycle (𝒮 : Type u)
-    [StableHomotopyCategory.{u, v} 𝒮] [AdamsE2Data 𝒮]
+    [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮] [AdamsE2Data 𝒮]
     (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
     [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]

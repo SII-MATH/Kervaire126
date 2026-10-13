@@ -15,7 +15,7 @@ open CategoryTheory CategoryTheory.Limits CategoryTheory.MonoidalCategory
 
 universe u v w
 
-variable {𝒮 : Type u} [StableHomotopyCategory.{u, v} 𝒮]
+variable {𝒮 : Type u} [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮]
 
 /-! ### 映射 Adams 谱序列的收敛数据
 

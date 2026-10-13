@@ -17,7 +17,7 @@ open CategoryTheory CategoryTheory.Pretriangulated KIPBase.SpectralSequence
 
 universe u v
 
-variable {𝒮 : Type u} [StableHomotopyCategory.{u, v} 𝒮]
+variable {𝒮 : Type u} [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮]
 
 /-- Tower-level data needed in addition to the associated-graded
 identification in `Convergence`. The residual injectivity condition is the

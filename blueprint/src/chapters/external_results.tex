@@ -1816,10 +1816,61 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
 \end{theorem}
 
 \begin{proof}
-  Instantiate BHS Theorem A.8, transport it along
-  Definition~\ref{def:bhs-aim-regrading}, and verify the three coordinates of
-  each differential.  The resulting isomorphism and differential
-  correspondence remain an explicit external-result parameter.
+  Use the $E_2$ comparison as a graded $\mathbb F_2[\lambda]$-module and
+  the comparison of spectral sequences induced by actual $\lambda$ inversion.
+  The latter must agree with the localized $E_2$ comparison and with the
+  maps induced on homology. After removing the Laurent monomial of each
+  weight, write its component as
+  \[
+    q_r^{s,t,w}:{}^{\mathrm{syn}}E_r^{s,t,w}(\nu X)
+      \longrightarrow E_r^{s,t}(X).
+  \]
+  Thus $q_r(\lambda z)=q_r(z)$ and
+  $q_r(d_r^{\mathrm{syn}}z)=d_r^{\mathrm{cl}}q_r(z)$.
+
+  Induct simultaneously on $r\ge2$ that the source vanishes for $t-w<0$,
+  that $q_r$ is surjective for $t-w\ge0$, and that it is an isomorphism
+  for $t-w\ge r-2$. The $E_2$ calculation is the base case. If a source
+  has depth $a=t-w\ge0$, its differential target has depth $a+r-1$.
+  Hence the inductive hypothesis makes $q_r$ injective on the target.
+  A synthetic class is consequently a cycle exactly when its classical
+  image is a cycle. Surjectivity on classes therefore gives surjectivity
+  on cycles and on the next page. At depth $a\ge r-1$, $q_r$ is already
+  an isomorphism on the middle term and injective on its outgoing target.
+  The incoming source has depth $a-(r-1)\ge0$, so its comparison is
+  surjective. The middle isomorphism thus identifies both kernels and
+  incoming images. Passing to homology proves that $q_{r+1}$ is an
+  isomorphism for $a\ge r-1$. The zero components stay zero, completing
+  the induction.
+
+  Given $d_r^{\mathrm{cl}}x=y$, choose top-weight lifts $\widetilde x$
+  and $\widetilde y$ by surjectivity. Both
+  $d_r^{\mathrm{syn}}\widetilde x$ and
+  $\lambda^{r-1}\widetilde y$ have weight $t$ and classical image $y$.
+  Their target has depth $r-1$, where $q_r$ is injective, so they are
+  equal. The factor $\lambda^{r-1}$ is forced by the difference between
+  the target generator weight $t+r-1$ and the preserved source weight $t$.
+  For a source of depth $a\ge0$, the same target-injectivity argument
+  gives the formula with $\lambda^{a+r-1}$. It proves independence of
+  the chosen lifts, includes zero differentials, and determines every
+  synthetic differential. In particular, target injectivity is derived
+  from $E_2$ and induction rather than assumed as differential rigidity.
+
+  The Lean theorem
+  \texttt{NuAdamsLambdaInversionComparison.page\_comparison} now proves
+  the surjectivity and free-tail bijectivity induction from explicit
+  comparison inputs. The three classical-to-synthetic differential
+  translation theorems in \texttt{KIPBase.Synthetic.Rigidity} use this
+  induction instead of the legacy rigidity differential field. They
+  currently cover the free-tail lifts. By explicit user instruction,
+  \texttt{nuAdamsE2Comparison\_extends} now assumes that the existing
+  E₂ comparison extends to a lambda-compatible spectral-sequence
+  morphism, including successor-page homology naturality. Its second-page
+  component is required to equal the existing comparison, which is
+  currently extracted from the second-page part of the legacy rigidity
+  data. The public translation theorems consume this assumed extension.
+  This extension is an axiom, not a constructed morphism; this node
+  remains \texttt{notready}.
 \end{proof}
 
 % SOURCE: BHS SynRevBigraded.tex:149--159, thm:synthetic-Adams (1a)--(1c),
@@ -1867,7 +1918,7 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
 % MainPaper line 819's tau denotes the deformation map called lambda here.
 \begin{theorem}[$\lambda$-Bockstein comparison]
   \label{thm:external-lambda-bockstein}
-  \uses{thm:external-synthetic-rigidity,thm:external-finite-lambda-bockstein,def:lambda-normalized-sequence,def:pagewise-sequence-comparison,prop:page-isomorphism-from-initial-page,def:bhs-aim-regrading,def:synthetic-lambda-quotient}
+  \uses{thm:external-synthetic-rigidity,thm:external-finite-lambda-bockstein,prop:finite-quotient-lift-filtration,prop:ss-cycle-zero-differential,rem:ss-cycle-adams-mainline,def:lambda-normalized-sequence,def:pagewise-sequence-comparison,prop:page-isomorphism-from-initial-page,def:bhs-aim-regrading,def:synthetic-lambda-quotient}
   \notready
   Under the preceding source hypotheses, for $q\ge1$ the intrinsic $\lambda$-Bockstein
   page $q$ corresponds to synthetic Adams page $q+1$, compatibly with
@@ -1882,7 +1933,13 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   The Adams-to-Bockstein $E_2$ source comparison is already constructed:
   the diagonal geometric cap map is an isomorphism, and the quotient
   identification supplies the admissible free-$\lambda$ weights. Thus
-  constructing the $E_2$ map is not the remaining bridge. The raw and
+  constructing the $E_2$ map is not the remaining bridge.
+  The cycle test of Proposition~\ref{prop:ss-cycle-zero-differential}
+  identifies the precise zero-differential relation needed to pass from a
+  representative to the next $Z$-level; the finite-quotient lift filtration
+  of Proposition~\ref{prop:finite-quotient-lift-filtration} is the target
+  $Z$-condition. Their compatibility under the specified $E_2$ map is part
+  of the comparison still to be proved. The raw and
   regraded sequences still have pending structural laws, and their comparison
   with the specified synthetic Adams family and finite rigidity model is
   unfinished. This comparison must extend the existing $E_2$ maps and

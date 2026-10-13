@@ -2,6 +2,7 @@ import KIPBase.Synthetic.GeometricAdamsBoundaryComparison
 import KIPBase.Synthetic.GeometricAdamsCapPage
 import KIPBase.Synthetic.Rigidity
 import KIPBase.Synthetic.ExtensionSS
+import KIPBase.StableHomotopy.SyntheticStableModel
 
 /-!
 # Geometric realization of the declared synthetic Adams spectral sequence
@@ -1619,7 +1620,9 @@ structure NuSynAdamsFilteredGeometricOrigin (X : S) where
 induced by a filtered synthetic spectrum, and every `d_r` is represented by a
 relative disk whose source in the first graded piece is the source class and
 whose boundary in the `r`-th graded piece is the target class. -/
-axiom nuSynAdamsFilteredGeometricOrigin (X : S) :
+axiom nuSynAdamsFilteredGeometricOrigin (X : S)
+    [HomotopicalAlgebra.ModelCategory Syn]
+    [StableHomotopy.IsStableModelCategory Syn] :
   NuSynAdamsFilteredGeometricOrigin S Syn X
 
 /-- The filtered model selected by the geometric-origin axiom. -/

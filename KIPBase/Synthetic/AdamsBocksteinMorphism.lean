@@ -745,7 +745,7 @@ boundary filtration data stored in `AdamsDifferentialWitness`.  The two
 displayed equations require that this witness represents the specified source
 and target page classes, rather than merely some differential in the same
 bidegree. -/
-axiom NuSynAdamsGeometricComparison.adamsDifferential_iff_adamsWitness
+theorem NuSynAdamsGeometricComparison.adamsDifferential_iff_adamsWitness
     {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
     {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
     (C : NuSynAdamsGeometricComparison 𝒮 Syn X M)
@@ -770,11 +770,136 @@ axiom NuSynAdamsGeometricComparison.adamsDifferential_iff_adamsWitness
                 (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
                 s (n + 2) (by omega)) =
           C.sourceEquiv s (n + 2) (by omega) t x ∧
-        C.targetEquiv s (n + 2) (by omega) t y =
+          C.targetEquiv s (n + 2) (by omega) t y =
           QuotientAddGroup.mk
             (M.input.target
               (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
-              s (n + 2) W.disk)
+              s (n + 2) W.disk) := by
+  constructor
+  · intro hxy
+    obtain ⟨z, yStage, yDivided, c, qPower, aOne, bOne,
+        hsource, htarget, hyStage, hcap, hqPower, haOne,
+        hboundary, hbOne, hAFa, hAFb⟩ :=
+      C.exists_lambdaCofiber_restriction_boundary_of_differential
+        s n t x y hxy
+    have hcapClass : M.input.capQuotientClass
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (n + 1) c = qPower := by
+      change
+        (c ≫ LambdaCofiberGeometry.toQuotient
+          (M.input.transition s (s + (n + 2)) (Nat.le_add_right s (n + 2)))
+          (n + 1)) ≫
+          XModLambdaN.map (M.input.toBase s) (n + 1) = qPower
+      exact hqPower
+    have htargetW : C.targetEquiv s (n + 2) (by omega) t y =
+        QuotientAddGroup.mk
+          (M.input.target
+            (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+            s (n + 2) z) := by
+      have h := C.differential s (n + 2) (by omega) t x
+      rw [hxy, ← hsource] at h
+      rw [M.input.pageObstruction_mk, M.input.obstruction_source] at h
+      exact h
+    let W : AdamsDifferentialWitness M.input
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) n :=
+      { disk := z
+        cap := c
+        cap_relative := hcap
+        source := aOne
+        source_eq_cap := by
+          rw [hcapClass]
+          exact haOne
+        source_in_filtration := hAFa
+        boundary_in_filtration := by
+          rw [hboundary]
+          exact hAFb }
+    exact ⟨W, hsource, htargetW⟩
+  · rintro ⟨W, hsource, htarget⟩
+    apply (C.targetEquiv s (n + 2) (by omega) t).injective
+    have hrOne : 1 ≤ n + 2 := by omega
+    calc
+      C.targetEquiv s (n + 2) (by omega) t
+          ((synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
+            ((n + 2 : ℕ) : ℤ) (s : ℤ) t t).hom x) =
+        M.input.pageObstruction
+          (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+          s (n + 2) hrOne
+          (C.sourceEquiv s (n + 2) (by omega) t x) :=
+        C.differential s (n + 2) (by omega) t x
+      _ = M.input.pageObstruction
+          (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+          s (n + 2) hrOne
+          (QuotientAddGroup.mk
+            (⟨M.input.source
+                (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+                s (n + 2) (by omega) W.disk,
+              ⟨W.disk, rfl⟩⟩ :
+              M.input.sourceCycles
+                (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+                s (n + 2) (by omega))) := by
+          rw [← hsource]
+      _ = QuotientAddGroup.mk
+          (M.input.target
+            (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+            s (n + 2) W.disk) := by
+          rw [M.input.pageObstruction_mk, M.input.obstruction_source]
+      _ = C.targetEquiv s (n + 2) (by omega) t y := htarget.symm
+
+/-- Extract the Adams witness from a specified Adams differential.  This is
+the forward direction of the geometric-witness principle; keeping it as a
+named step makes the witness chain below explicit. -/
+noncomputable def NuSynAdamsGeometricComparison.adamsWitnessOfDifferential
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
+    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M)
+    (s n : ℕ) (t : ℤ)
+    (x : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ) ((s : ℤ), t, t))
+    (y : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ),
+          t + ((n + 2 : ℕ) : ℤ) - 1, t))
+    (hxy : (synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
+      ((n + 2 : ℕ) : ℤ) (s : ℤ) t t).hom x = y) :
+    AdamsDifferentialWitness M.input
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) n :=
+  Classical.choose
+    ((C.adamsDifferential_iff_adamsWitness s n t x y).mp hxy)
+
+/-- A Bockstein witness immediately gives the corresponding Bockstein
+differential relation, with exactly its stored source and target. -/
+theorem LambdaBocksteinDifferentialWitness.toIsDifferential
+    {Y : Syn} {degree : ℤ × ℤ} {r s : ℤ}
+    (W : LambdaBocksteinDifferentialWitness (Syn := Syn) Y degree r s) :
+    IsLambdaBocksteinDifferential (Syn := Syn) Y degree r s
+      W.source W.target :=
+  (lambdaBocksteinWitness_iff_differential W.source W.target).mp
+    ⟨W, rfl, rfl⟩
+
+/-- The middle link in the prescribed chain: convert one Adams witness to
+the Bockstein witness it determines, then state the differential relation
+using that witness's actual endpoints. -/
+theorem NuSynAdamsGeometricModel.adamsWitnessToBocksteinDifferential
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} (M : NuSynAdamsGeometricModel 𝒮 Syn X)
+    (s n : ℕ) (t : ℤ)
+    (W : AdamsDifferentialWitness M.input
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) n) :
+    ∃ source : Smn (Syn := Syn) (t - (s : ℤ)) t ⟶
+          XModLambdaN ((nu 𝒮 Syn).obj X) 1,
+      ∃ target : Smn (Syn := Syn) (t - (s : ℤ)) t ⟶
+          (shiftFunctor Syn (1 : ℤ)).obj
+            ((SyntheticCategory.biShift (0, (-1 : ℤ))).obj
+              ((nu 𝒮 Syn).obj X)),
+        IsLambdaBocksteinDifferential (Syn := Syn)
+          ((nu 𝒮 Syn).obj X)
+          (lambdaBocksteinGeneratorDegree (s : ℤ) t)
+          ((n + 2 : ℕ) : ℤ) (s : ℤ) source target := by
+  let BW := M.adamsWitnessToBocksteinWitness s n t W
+  exact ⟨BW.source, BW.target, BW.toIsDifferential⟩
 
 /-- A specified Adams differential produces a specified lambda-Bockstein
 differential.  The Adams witness is obtained from the geometric-witness
@@ -802,12 +927,90 @@ theorem NuSynAdamsGeometricComparison.adamsDifferential_implies_bocksteinDiffere
         IsLambdaBocksteinDifferential (Syn := Syn) ((nu 𝒮 Syn).obj X)
           (lambdaBocksteinGeneratorDegree (s : ℤ) t)
           ((n + 2 : ℕ) : ℤ) (s : ℤ) source target := by
-  obtain ⟨W, -, -⟩ :=
-    (C.adamsDifferential_iff_adamsWitness s n t x y).mp hxy
-  let BW := M.adamsWitnessToBocksteinWitness s n t W
-  refine ⟨BW.source, BW.target, ?_⟩
-  exact (lambdaBocksteinWitness_iff_differential BW.source BW.target).mp
-    ⟨BW, rfl, rfl⟩
+  let W := C.adamsWitnessOfDifferential s n t x y hxy
+  exact M.adamsWitnessToBocksteinDifferential s n t W
+
+/-- The assembled relation chain, retaining the page representatives at
+its Bockstein end:
+Adams differential relation → Adams witness → Bockstein witness →
+Bockstein page differential relation. -/
+theorem NuSynAdamsGeometricComparison.adamsDifferential_implies_bocksteinPageRelation
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
+    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M)
+    (s n : ℕ) (t : ℤ)
+    (x : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ) ((s : ℤ), t, t))
+    (y : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ),
+          t + ((n + 2 : ℕ) : ℤ) - 1, t))
+    (hxy : (synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
+      ((n + 2 : ℕ) : ℤ) (s : ℤ) t t).hom x = y) :
+    let degree : ℤ × ℤ := lambdaBocksteinGeneratorDegree (s : ℤ) t
+    let B := canonicalLambdaBocksteinESS ((nu 𝒮 Syn).obj X) degree
+    ∃ (W : LambdaBocksteinDifferentialWitness (Syn := Syn)
+        ((nu 𝒮 Syn).obj X) degree ((n + 2 : ℕ) : ℤ) (s : ℤ))
+      (xB : AddCommGrpCat.of ℤ ⟶ B.Page ((n + 2 : ℕ) : ℤ) ((s : ℤ), 1))
+      (yB : AddCommGrpCat.of ℤ ⟶ B.Page ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ), 0)),
+      xB ≫ B.d ((n + 2 : ℕ) : ℤ) ((s : ℤ), 1) = yB ∧
+      LambdaBocksteinSourcePageRep (Syn := Syn) ((nu 𝒮 Syn).obj X)
+        degree ((n + 2 : ℕ) : ℤ) (s : ℤ) W.source xB ∧
+      LambdaBocksteinTargetPageRep (Syn := Syn) ((nu 𝒮 Syn).obj X)
+        degree ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ)) W.target yB := by
+  dsimp only
+  let Wₐ := C.adamsWitnessOfDifferential s n t x y hxy
+  let Wᵦ := M.adamsWitnessToBocksteinWitness s n t Wₐ
+  have hBocksteinDiff := Wᵦ.toIsDifferential
+  rcases hBocksteinDiff with ⟨_, hoccurs⟩
+  obtain ⟨xB, yB, hpage, hsource, htarget⟩ :=
+    hoccurs.exists_page_differential_reps
+  exact ⟨Wᵦ, xB, yB, hpage, hsource, htarget⟩
+
+/-- Retain the entire concrete witness chain in one result.  Starting from
+the specified Adams relation, this returns its Adams witness, the Bockstein
+witness built from that same cap, and the resulting Bockstein page relation
+with both page representatives tied to the actual witness endpoints. -/
+theorem NuSynAdamsGeometricComparison.adamsRelation_to_bocksteinWitnessChain
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
+    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M)
+    (s n : ℕ) (t : ℤ)
+    (x : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ) ((s : ℤ), t, t))
+    (y : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ),
+          t + ((n + 2 : ℕ) : ℤ) - 1, t))
+    (hxy : (synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
+      ((n + 2 : ℕ) : ℤ) (s : ℤ) t t).hom x = y) :
+    let degree : ℤ × ℤ := lambdaBocksteinGeneratorDegree (s : ℤ) t
+    let B := canonicalLambdaBocksteinESS ((nu 𝒮 Syn).obj X) degree
+    ∃ (Wₐ : AdamsDifferentialWitness M.input
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) n)
+      (Wᵦ : LambdaBocksteinDifferentialWitness (Syn := Syn)
+        ((nu 𝒮 Syn).obj X) degree ((n + 2 : ℕ) : ℤ) (s : ℤ))
+      (xB : AddCommGrpCat.of ℤ ⟶ B.Page ((n + 2 : ℕ) : ℤ) ((s : ℤ), 1))
+      (yB : AddCommGrpCat.of ℤ ⟶ B.Page ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ), 0)),
+      Wₐ = C.adamsWitnessOfDifferential s n t x y hxy ∧
+      Wᵦ = M.adamsWitnessToBocksteinWitness s n t Wₐ ∧
+      xB ≫ B.d ((n + 2 : ℕ) : ℤ) ((s : ℤ), 1) = yB ∧
+      LambdaBocksteinSourcePageRep (Syn := Syn) ((nu 𝒮 Syn).obj X)
+        degree ((n + 2 : ℕ) : ℤ) (s : ℤ) Wᵦ.source xB ∧
+      LambdaBocksteinTargetPageRep (Syn := Syn) ((nu 𝒮 Syn).obj X)
+        degree ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ)) Wᵦ.target yB := by
+  dsimp only
+  let Wₐ := C.adamsWitnessOfDifferential s n t x y hxy
+  let Wᵦ := M.adamsWitnessToBocksteinWitness s n t Wₐ
+  obtain ⟨_, hoccurs⟩ := Wᵦ.toIsDifferential
+  obtain ⟨xB, yB, hpage, hsource, htarget⟩ :=
+    hoccurs.exists_page_differential_reps
+  exact ⟨Wₐ, Wᵦ, xB, yB, rfl, rfl, hpage, hsource, htarget⟩
 
 /-- An Adams differential supplies a specified actual λ-boundary target and
 therefore a target-column Bockstein page class representing it.  This is the
@@ -1159,6 +1362,70 @@ theorem NuSynAdamsGeometricComparison.adamsDifferentialImageToBocksteinImage_app
     gQuot (e.symm ⟨dA x, ⟨x, rfl⟩⟩) =
         gQuot (QuotientAddGroup.mk x) := congrArg gQuot hinv
     _ = gRange x := rfl
+
+/-- The prescribed witness chain supplies the differential-image part of
+the morphism criterion.  The Adams relation determines the Adams witness;
+its finite-λ cap determines the Bockstein witness and page representatives;
+the induced map on differential images then sends the specified Adams
+target to the differential of the already established E₂ source map.
+
+This is the image-level differential condition used when checking the
+criterion's boundary clause.  It does not by itself assert an underlying
+map on every target bidegree. -/
+theorem NuSynAdamsGeometricComparison.adamsRelation_to_bocksteinCriterionImageCondition
+    [SyntheticShiftCofiberCompatibility (Syn := Syn)]
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
+    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M)
+    (s n : ℕ) (t : ℤ)
+    (x : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ) ((s : ℤ), t, t))
+    (y : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ),
+          t + ((n + 2 : ℕ) : ℤ) - 1, t))
+    (hxy : (synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
+      ((n + 2 : ℕ) : ℤ) (s : ℤ) t t).hom x = y) :
+    let B := canonicalLambdaBocksteinESS ((nu 𝒮 Syn).obj X)
+      (lambdaBocksteinGeneratorDegree (s : ℤ) t)
+    let dA := (synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
+      ((n + 2 : ℕ) : ℤ) (s : ℤ) t t).hom
+    let dB := (B.d ((n + 2 : ℕ) : ℤ) ((s : ℤ), 1)).hom
+    ∃ (Wₐ : AdamsDifferentialWitness M.input
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) n)
+      (Wᵦ : LambdaBocksteinDifferentialWitness (Syn := Syn)
+        ((nu 𝒮 Syn).obj X)
+        (lambdaBocksteinGeneratorDegree (s : ℤ) t)
+        ((n + 2 : ℕ) : ℤ) (s : ℤ))
+      (xB : AddCommGrpCat.of ℤ ⟶ B.Page ((n + 2 : ℕ) : ℤ) ((s : ℤ), 1))
+      (yB : AddCommGrpCat.of ℤ ⟶ B.Page ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ), 0)),
+      Wₐ = C.adamsWitnessOfDifferential s n t x y hxy ∧
+      Wᵦ = M.adamsWitnessToBocksteinWitness s n t Wₐ ∧
+      xB ≫ B.d ((n + 2 : ℕ) : ℤ) ((s : ℤ), 1) = yB ∧
+      LambdaBocksteinSourcePageRep (Syn := Syn) ((nu 𝒮 Syn).obj X)
+        (lambdaBocksteinGeneratorDegree (s : ℤ) t)
+        ((n + 2 : ℕ) : ℤ) (s : ℤ) Wᵦ.source xB ∧
+      LambdaBocksteinTargetPageRep (Syn := Syn) ((nu 𝒮 Syn).obj X)
+        (lambdaBocksteinGeneratorDegree (s : ℤ) t)
+        ((n + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((n + 2 : ℕ) : ℤ)) Wᵦ.target yB ∧
+      C.adamsDifferentialImageToBocksteinImage s n t
+        ⟨y, ⟨x, hxy⟩⟩ =
+        ⟨dB (C.synAdamsToLambdaBocksteinPageHom s n t x),
+          ⟨C.synAdamsToLambdaBocksteinPageHom s n t x, rfl⟩⟩ := by
+  dsimp only
+  obtain ⟨Wₐ, Wᵦ, xB, yB, hWₐ, hWᵦ, hpage, hsource, htarget⟩ :=
+    C.adamsRelation_to_bocksteinWitnessChain s n t x y hxy
+  refine ⟨Wₐ, Wᵦ, xB, yB, hWₐ, hWᵦ, hpage, hsource, htarget, ?_⟩
+  let dA := (synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
+    ((n + 2 : ℕ) : ℤ) (s : ℤ) t t).hom
+  have harg : (⟨y, ⟨x, hxy⟩⟩ : dA.range) = ⟨dA x, ⟨x, rfl⟩⟩ := by
+    apply Subtype.ext
+    exact hxy.symm
+  rw [harg]
+  exact C.adamsDifferentialImageToBocksteinImage_apply s n t x
 
 /-- The target descent needed for the Adams--Bockstein comparison.
 
@@ -3039,8 +3306,8 @@ abbrev NuSynAdamsGeometricComparison.BoundaryESSUnderlyingCandidate
   AdamsToBoundaryESSUnderlyingMorphism
     ((nu 𝒮 Syn).obj X) (lambdaBocksteinGeneratorDegree (s : ℤ) t)
 
-/-- The extension must agree with the existing geometric E₂ source map,
-so the zero family cannot satisfy the comparison merely by being zero. -/
+/-- Any extension must agree with the existing geometric E₂ source map on
+the specified generator source component. -/
 def NuSynAdamsGeometricComparison.E2UnderlyingAgreesAtSource
     {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
     {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
@@ -3048,56 +3315,11 @@ def NuSynAdamsGeometricComparison.E2UnderlyingAgreesAtSource
     (s : ℕ) (t : ℤ) (Φ : C.BoundaryESSUnderlyingCandidate s t) : Prop :=
   Φ.φ ((s : ℤ), 1) = C.e2UnderlyingSourceMap s t
 
-/-- A legacy zero extension on the fixed boundary-ESS page-two objects, whose
-generator source component is the geometric Adams-to-Bockstein map.
-The other components are zero maps; the later differential-compatibility
-obligations concern an extension of this specified source component.
-This is not the common-initial-page underlying comparison. -/
-noncomputable def NuSynAdamsGeometricComparison.e2UnderlyingFromSource
-    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
-    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
-    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M)
-    (s : ℕ) (t : ℤ) : C.BoundaryESSUnderlyingCandidate s t := by
-  classical
-  refine AdamsToBoundaryESSUnderlyingMorphism.ofE2PageMaps
-    ((nu 𝒮 Syn).obj X) (lambdaBocksteinGeneratorDegree (s : ℤ) t)
-    (fun sk => ?_)
-  by_cases h : sk = ((s : ℤ), 1)
-  · subst sk
-    exact C.e2UnderlyingSourceMap s t
-  · exact 0
-
-theorem NuSynAdamsGeometricComparison.e2UnderlyingFromSource_agrees
-    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
-    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
-    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M)
-    (s : ℕ) (t : ℤ) :
-    C.E2UnderlyingAgreesAtSource s t (C.e2UnderlyingFromSource s t) := by
-  classical
-  simp [NuSynAdamsGeometricComparison.E2UnderlyingAgreesAtSource,
-    NuSynAdamsGeometricComparison.e2UnderlyingFromSource]
-
-/-- At the first common page, the `V` component is the same geometric
-source comparison used in the pagewise differential theorem. -/
-theorem NuSynAdamsGeometricComparison.e2UnderlyingFromSource_eq_pageMap
-    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
-    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
-    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M)
-    (s : ℕ) (t : ℤ) :
-    (C.e2UnderlyingFromSource s t).φ ((s : ℤ), 1) =
-      C.reindexedSourcePageMap s 0 t := by
-  calc
-    (C.e2UnderlyingFromSource s t).φ ((s : ℤ), 1) =
-        C.e2UnderlyingSourceMap s t :=
-      C.e2UnderlyingFromSource_agrees s t
-    _ = C.reindexedSourcePageMap s 0 t := by
-      rfl
-
 /-- A specified Adams differential gives a class on the actual Bockstein
 `r`-page. Its Bockstein differential is represented by the same cap
 boundary, and the divided geometric target is the specified Adams target.
-For `r = 2`, the source comparison is the component prescribed by
-`e2UnderlyingFromSource`. -/
+Its source is the already constructed geometric Adams-to-Bockstein source
+comparison. -/
 theorem NuSynAdamsGeometricComparison.adamsDifferential_to_bocksteinPage
     {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
     {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
@@ -3380,6 +3602,31 @@ noncomputable def lambdaLiftBocksteinObstruction
     simp only [zero_comp]
   map_add' _ _ := by
     simp only [Preadditive.add_comp]
+
+@[simp] theorem lambdaLiftBocksteinObstruction_apply
+    (Y S : Syn) (n : ℕ) (a : S ⟶ XModLambdaN Y (n + 1)) :
+    lambdaLiftBocksteinObstruction Y S n a =
+      a ≫ syn_functorial_cofiber.cofibδ (lambdaPow (n + 1) Y) ≫
+        (shiftFunctor Syn (1 : ℤ)).map
+          ((SyntheticCategory.biShift (0, -((n + 1 : ℕ) : ℤ))).map
+            (syn_functorial_cofiber.cofibι (lambdaPow 1 Y))) :=
+  rfl
+
+/-- The direct lift obstruction of a geometric cap is its actual
+finite-quotient boundary, followed by reduction to the first quotient. -/
+theorem GeometricAdams.Input.capQuotientClass_directObstruction
+    {Y : Syn} (G : GeometricAdams.Input Y)
+    (S : Syn) (s r n : ℕ)
+    (c : G.CapRepresentatives S s r (n + 1)) :
+    lambdaLiftBocksteinObstruction Y S n
+        (G.capQuotientClass S s r (n + 1) c) =
+      (G.capStageBoundary S s r (n + 1) c ≫
+        (G.boundaryTarget (n + 1)).toBase (s + r)) ≫
+        (shiftFunctor Syn (1 : ℤ)).map
+          ((SyntheticCategory.biShift (0, -((n + 1 : ℕ) : ℤ))).map
+            (syn_functorial_cofiber.cofibι (lambdaPow 1 Y))) := by
+  rw [lambdaLiftBocksteinObstruction_apply]
+  rw [← Category.assoc, G.capQuotientClass_boundary]
 
 /-- The boundary-and-reduction map attached to an arbitrary positive lambda
 power.  The page-indexed obstruction above is this map at power `i+1`. -/
@@ -4898,6 +5145,114 @@ theorem classicalAdamsToLambdaLiftBockstein_index_compat
   · omega
   constructor <;> omega
 
+/-- The finite quotient cap in an Adams differential witness supplies the
+actual lift of the source of its direct lambda-Bockstein witness. -/
+theorem NuSynAdamsGeometricModel.adamsWitnessToBocksteinWitness_source_mem_directLift
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} (M : NuSynAdamsGeometricModel 𝒮 Syn X)
+    (Q : FiniteLambdaQuotientTower ((nu 𝒮 Syn).obj X))
+    (s n : ℕ) (t : ℤ)
+    (hH : (synAdamsConvergence Syn
+      (XModLambdaN ((nu 𝒮 Syn).obj X) 1)).filtration.IsHausdorffAt
+        (t - (s : ℤ), t))
+    (W : AdamsDifferentialWitness M.input
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) n) :
+    (M.adamsWitnessToBocksteinWitness s n t W).source ∈
+      lambdaLiftBocksteinZ Q
+        (Smn (Syn := Syn) (t - (s : ℤ)) t) n := by
+  let q := (NuSynAdamsGeometricModel.sourceSphereIso (Syn := Syn) s t).inv ≫
+    M.input.capQuotientClass
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) (n + 1) W.cap
+  have hfil : q ∈ synAdamsFiltration Syn
+      (XModLambdaN ((nu 𝒮 Syn).obj X) (n + 1))
+      (t - (s : ℤ)) t (s : ℤ) :=
+    M.capQuotientClass_canonical_mem_filtration s (n + 2) (n + 1) t W.cap
+  have heq := nuModLambda_tower_rho_eq_toOne_on_filtered
+    (Syn := Syn) 𝒮 X Q n s t hH ⟨q, hfil⟩
+  change q ≫ XModLambdaN.toOne ((nu 𝒮 Syn).obj X) n ∈
+    lambdaLiftBocksteinZ Q
+      (Smn (Syn := Syn) (t - (s : ℤ)) t) n
+  exact ⟨q, heq⟩
+
+/-- Detection of the cap in an Adams differential witness and direct
+lift-cycle comparison use the same finite-quotient class. -/
+theorem NuSynAdamsGeometricModel.adamsWitness_source_eq_directLift_detection
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} (M : NuSynAdamsGeometricModel 𝒮 Syn X)
+    (Q : FiniteLambdaQuotientTower ((nu 𝒮 Syn).obj X))
+    (s n : ℕ) (t : ℤ)
+    (hH : (synAdamsConvergence Syn
+      (XModLambdaN ((nu 𝒮 Syn).obj X) 1)).filtration.IsHausdorffAt
+        (t - (s : ℤ), t))
+    (W : AdamsDifferentialWitness M.input
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) n) :
+    let q := (NuSynAdamsGeometricModel.sourceSphereIso (Syn := Syn) s t).inv ≫
+      M.input.capQuotientClass
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+        s (n + 2) (n + 1) W.cap
+    let a : synAdamsFiltration Syn
+        (XModLambdaN ((nu 𝒮 Syn).obj X) (n + 1))
+        (t - (s : ℤ)) t (s : ℤ) :=
+      ⟨q, M.capQuotientClass_canonical_mem_filtration
+        s (n + 2) (n + 1) t W.cap⟩
+    (adamsPageToLambdaLiftCycles (Syn := Syn) 𝒮 X Q n s t hH
+      (nuModLambdaPredGeneratorDetection 𝒮 Syn X (n + 2)
+        (by omega) (s : ℤ) t a)).val =
+      (M.adamsWitnessToBocksteinWitness s n t W).source := by
+  dsimp only
+  exact adamsPageToLambdaLiftCycles_detection_toOne
+    (Syn := Syn) 𝒮 X Q n s t hH
+      ⟨_, M.capQuotientClass_canonical_mem_filtration
+        s (n + 2) (n + 1) t W.cap⟩
+
+/-- The same cap computes the direct lift obstruction in the regraded
+source degree; no independent Bockstein representative is chosen. -/
+theorem NuSynAdamsGeometricModel.adamsWitness_directLiftObstruction
+    {𝒮 : Type*} [StableHomotopy.StableHomotopyCategory 𝒮]
+    {X : 𝒮} (M : NuSynAdamsGeometricModel 𝒮 Syn X)
+    (s n : ℕ) (t : ℤ)
+    (W : AdamsDifferentialWitness M.input
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (n + 2) n) :
+    let e := NuSynAdamsGeometricModel.sourceSphereIso (Syn := Syn) s t
+    let sphere := NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t
+    let cap := M.input.capQuotientClass sphere s (n + 2) (n + 1) W.cap
+    lambdaLiftBocksteinObstruction ((nu 𝒮 Syn).obj X)
+        (Smn (Syn := Syn) (t - (s : ℤ)) t) n (e.inv ≫ cap) =
+      (e.inv ≫ M.input.capStageBoundary sphere s (n + 2) (n + 1) W.cap ≫
+        (M.input.boundaryTarget (n + 1)).toBase (s + (n + 2))) ≫
+        (shiftFunctor Syn (1 : ℤ)).map
+          ((SyntheticCategory.biShift (0, -((n + 1 : ℕ) : ℤ))).map
+            (syn_functorial_cofiber.cofibι
+              (lambdaPow 1 ((nu 𝒮 Syn).obj X)))) := by
+  dsimp only
+  let sphere := NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t
+  let e := NuSynAdamsGeometricModel.sourceSphereIso (Syn := Syn) s t
+  let cap := M.input.capQuotientClass sphere s (n + 2) (n + 1) W.cap
+  have hcap := M.input.capQuotientClass_directObstruction
+    sphere s (n + 2) n W.cap
+  calc
+    lambdaLiftBocksteinObstruction ((nu 𝒮 Syn).obj X)
+        (Smn (Syn := Syn) (t - (s : ℤ)) t) n (e.inv ≫ cap) =
+      e.inv ≫ lambdaLiftBocksteinObstruction ((nu 𝒮 Syn).obj X)
+        sphere n cap := by
+          simp only [lambdaLiftBocksteinObstruction_apply, Category.assoc]
+          rfl
+    _ = e.inv ≫ ((M.input.capStageBoundary sphere s (n + 2)
+          (n + 1) W.cap ≫
+          (M.input.boundaryTarget (n + 1)).toBase (s + (n + 2))) ≫
+          (shiftFunctor Syn (1 : ℤ)).map
+            ((SyntheticCategory.biShift (0, -((n + 1 : ℕ) : ℤ))).map
+              (syn_functorial_cofiber.cofibι
+                (lambdaPow 1 ((nu 𝒮 Syn).obj X))))) :=
+      congrArg (fun f => e.inv ≫ f) hcap
+    _ = _ := by
+      simp only [Category.assoc]
+      rfl
+
 /-- An Adams E₂ representative is an incoming differential target on page
 `j+2` when its image on that page equals a differential from the
 preceding bidegree.  The representative relation retains the actual
@@ -4916,6 +5271,411 @@ def ClassicalAdamsHasDifferentialTarget
         (s - r) (t - r + 1)).hom a) = b ∧
     ClassicalAdamsPageRepresentative 𝒮 X j s t x b
 
+/-! The next three elementwise lemmas specialize the existing B_succ law
+through the page quotient and its common-cycle representative. -/
+section AdamsIncomingBoundary
+
+variable {R : Type u} [CommRing R]
+
+private theorem mem_image_iff {A B : ModuleCat R} (f : A ⟶ B) (y : B) :
+    (∃ z : ↑(Subobject.underlying.obj (imageSubobject f)),
+      (imageSubobject f).arrow.hom z = y) ↔
+    ∃ x : A, f.hom x = y := by
+  constructor
+  · rintro ⟨z, hz⟩
+    obtain ⟨x, rfl⟩ :=
+      (ModuleCat.epi_iff_surjective (factorThruImageSubobject f)).mp
+        inferInstance z
+    exact ⟨x, by simpa using hz⟩
+  · rintro ⟨x, rfl⟩
+    exact ⟨(factorThruImageSubobject f).hom x, by
+      have h := imageSubobject_arrow_comp f
+      exact congrArg (fun g : A ⟶ B => g.hom x) h⟩
+
+private theorem cokernel_eq_iff {A B : ModuleCat R} (f : A ⟶ B)
+    (x y : B) :
+    (cokernel.π f).hom x = (cokernel.π f).hom y ↔
+      ∃ z : A, f.hom z = x - y := by
+  have hπ (z : B) :
+      (ModuleCat.cokernelIsoRangeQuotient f).hom.hom
+        ((cokernel.π f).hom z) = ((LinearMap.range f.hom).mkQ) z := by
+    have h := ModuleCat.cokernel_π_cokernelIsoRangeQuotient_hom f
+    exact congrArg (fun g => g.hom z) h
+  have hinj : Function.Injective (ModuleCat.cokernelIsoRangeQuotient f).hom.hom := by
+    intro u v h
+    have h' := congrArg (ModuleCat.cokernelIsoRangeQuotient f).inv.hom h
+    simpa using h'
+  rw [← hinj.eq_iff]
+  rw [hπ, hπ]
+  change (Submodule.Quotient.mk x : B ⧸ f.hom.range) = Submodule.Quotient.mk y ↔ _
+  rw [Submodule.Quotient.eq]
+  change (∃ z : A, f.hom z = x - y) ↔ _
+  rfl
+
+private theorem image_ofLE_eq_of_eq {V W : ModuleCat R}
+    {S S' T : Subobject V} (h : S = S')
+    (hST : S ≤ T) (hS'T : S' ≤ T)
+    (g : Subobject.underlying.obj T ⟶ W) :
+    imageSubobject (Subobject.ofLE S T hST ≫ g) =
+      imageSubobject (Subobject.ofLE S' T hS'T ≫ g) := by
+  have hmor : Subobject.ofLE S T hST =
+      eqToHom (congrArg Subobject.underlying.obj h) ≫
+        Subobject.ofLE S' T hS'T := by
+    apply (cancel_mono T.arrow).mp
+    rw [Subobject.ofLE_arrow, Category.assoc, Subobject.ofLE_arrow]
+    exact (Subobject.arrow_congr _ _ h).symm
+  rw [hmor, Category.assoc, imageSubobject_iso_comp]
+
+
+
+private theorem abstract_boundary_iff3
+    (D : SSData (ModuleCat R)) (m n j : ℕ) (hzm : m ≤ n) {A : ModuleCat R}
+    (f : A ⟶ D.page ↑n)
+    (hzn : (↑n : WithTop ℕ) ≤ (↑m : WithTop ℕ) + ↑(j + 1))
+    (him : imageSubobject f = imageSubobject
+      (Subobject.ofLE (D.B ((↑m : WithTop ℕ) + ↑(j + 1))) (D.Z ↑n)
+        (le_trans (D.B_le_Z _) (D.Z_anti hzn)) ≫ D.pageπ ↑n))
+    (x : D.page ↑m) :
+    (∃ b : ↑(Subobject.underlying.obj (D.pageTailB m ↑(j + 1))),
+        (D.pageTailB m ↑(j + 1)).arrow.hom b = x) ↔
+      ∃ (a : A) (z : ↑(Subobject.underlying.obj (D.Z ↑n))),
+        f.hom a = (D.pageπ ↑n).hom z ∧
+        (D.pageπ ↑m).hom
+          ((Subobject.ofLE (D.Z ↑n) (D.Z ↑m)
+            (D.Z_anti (by exact_mod_cast hzm))).hom z) = x := by
+  let b0 : Subobject.underlying.obj
+      (D.B ((↑m : WithTop ℕ) + ↑(j + 1))) ⟶
+      Subobject.underlying.obj (D.Z ↑m) :=
+    Subobject.ofLE _ _ (le_trans (D.B_le_Z _)
+      (D.Z_anti (le_trans (by exact_mod_cast hzm) hzn)))
+  let bn : Subobject.underlying.obj
+      (D.B ((↑m : WithTop ℕ) + ↑(j + 1))) ⟶
+      Subobject.underlying.obj (D.Z ↑n) :=
+    Subobject.ofLE _ _ (le_trans (D.B_le_Z _) (D.Z_anti hzn))
+  let zn : Subobject.underlying.obj (D.Z ↑n) ⟶
+      Subobject.underlying.obj (D.Z ↑m) :=
+    Subobject.ofLE _ _ (D.Z_anti (by exact_mod_cast hzm))
+  let bb : Subobject.underlying.obj (D.B ↑n) ⟶
+      Subobject.underlying.obj
+        (D.B ((↑m : WithTop ℕ) + ↑(j + 1))) :=
+    Subobject.ofLE _ _ (D.B_mono hzn)
+  let binc : Subobject.underlying.obj (D.B ↑n) ⟶
+      Subobject.underlying.obj (D.Z ↑n) :=
+    Subobject.ofLE _ _ (D.B_le_Z ↑n)
+  have hbcomp : bn ≫ zn = b0 := by
+    dsimp [bn, zn, b0]
+    exact Subobject.ofLE_comp_ofLE _ _ _ _ _
+  have hbncomp : bb ≫ bn = binc := by
+    dsimp [bb, bn, binc]
+    exact Subobject.ofLE_comp_ofLE _ _ _ _ _
+  have htail : D.pageTailB m ↑(j + 1) =
+      imageSubobject (b0 ≫ D.pageπ ↑m) := by
+    rfl
+  constructor
+  · intro hx
+    rw [htail] at hx
+    obtain ⟨y, hy⟩ := (mem_image_iff (b0 ≫ D.pageπ ↑m) x).mp hx
+    have hmem : ∃ z : ↑(Subobject.underlying.obj (imageSubobject f)),
+        (imageSubobject f).arrow.hom z =
+          (D.pageπ ↑n).hom (bn.hom y) := by
+      rw [him]
+      exact (mem_image_iff (bn ≫ D.pageπ ↑n) _).mpr ⟨y, rfl⟩
+    obtain ⟨a, ha⟩ := (mem_image_iff f _).mp hmem
+    refine ⟨a, bn.hom y, ha, ?_⟩
+    have h := congrArg (fun g :
+        Subobject.underlying.obj
+          (D.B ((↑m : WithTop ℕ) + ↑(j + 1))) ⟶
+          Subobject.underlying.obj (D.Z ↑m) => g.hom y) hbcomp
+    change (D.pageπ ↑m).hom (zn.hom (bn.hom y)) = x
+    rw [← hy]
+    exact congrArg (D.pageπ ↑m).hom h
+  · rintro ⟨a, z, hz, hx⟩
+    have hmem : ∃ u : ↑(Subobject.underlying.obj (imageSubobject f)),
+        (imageSubobject f).arrow.hom u = (D.pageπ ↑n).hom z :=
+      (mem_image_iff f _).mpr ⟨a, hz⟩
+    rw [him] at hmem
+    obtain ⟨y, hy⟩ := (mem_image_iff (bn ≫ D.pageπ ↑n) _).mp hmem
+    have hπ : (D.pageπ ↑n).hom z =
+        (D.pageπ ↑n).hom (bn.hom y) := hy.symm
+    change (cokernel.π binc).hom z =
+      (cokernel.π binc).hom (bn.hom y) at hπ
+    obtain ⟨w, hw⟩ :=
+      (cokernel_eq_iff binc z (bn.hom y)).mp hπ
+    have hcomp := congrArg (fun g :
+        Subobject.underlying.obj (D.B ↑n) ⟶
+          Subobject.underlying.obj (D.Z ↑n) => g.hom w) hbncomp
+    change bn.hom (bb.hom w) = binc.hom w at hcomp
+    have hz' : z = bn.hom (y + bb.hom w) := by
+      rw [map_add, hcomp, hw]
+      abel
+    rw [htail]
+    apply (mem_image_iff (b0 ≫ D.pageπ ↑m) x).mpr
+    refine ⟨y + bb.hom w, ?_⟩
+    have h := congrArg (fun g :
+        Subobject.underlying.obj
+          (D.B ((↑m : WithTop ℕ) + ↑(j + 1))) ⟶
+          Subobject.underlying.obj (D.Z ↑m) => g.hom (y + bb.hom w)) hbcomp
+    change zn.hom (bn.hom (y + bb.hom w)) =
+      b0.hom (y + bb.hom w) at h
+    change (D.pageπ ↑m).hom (b0.hom (y + bb.hom w)) = x
+    rw [← h, ← hz']
+    exact hx
+
+private theorem incoming_boundary_iff3
+    {ι : Type*} [AddCommGroup ι] [DecidableEq ι]
+    (E : SpectralSequence (ModuleCat R) ι) (r : ℤ) (k q : ι)
+    (hr : E.r₀ ≤ r) (hq : k + E.diffDeg r = q)
+    (j : ℕ)
+    (hindex : (2 - E.r₀).toNat + j = (r - E.r₀).toNat)
+    (x : E.Page 2 q) :
+    (∃ b : ↑(Subobject.underlying.obj ((E.pageTailData 2 q).B ↑(j+1))),
+      ((E.pageTailData 2 q).B ↑(j+1)).arrow.hom b = x) ↔
+      ∃ (a : E.Page r k) (b : E.Page r q),
+        (eqToHom (congrArg (E.Page r) hq)).hom ((E.d r k).hom a) = b ∧
+        ∃ z : ↑(Subobject.underlying.obj
+            ((E.ssData q).Z ↑(r - E.r₀).toNat)),
+          ((E.ssData q).pageπ ↑(r - E.r₀).toNat).hom z = b ∧
+          ((E.ssData q).pageπ ↑(2 - E.r₀).toNat).hom
+            ((Subobject.ofLE ((E.ssData q).Z ↑(r - E.r₀).toNat)
+              ((E.ssData q).Z ↑(2 - E.r₀).toNat)
+              ((E.ssData q).Z_anti (by
+                exact_mod_cast Nat.le_add_right (2 - E.r₀).toNat j |>.trans_eq hindex))).hom z) = x := by
+  subst q
+  let D := E.ssData (k + E.diffDeg r)
+  let m := (2 - E.r₀).toNat
+  let n := (r - E.r₀).toNat
+  have hzm : m ≤ n := by dsimp [m,n]; omega
+  have hzn : (↑n : WithTop ℕ) ≤ (↑m : WithTop ℕ) + ↑(j+1) := by
+    exact_mod_cast (show n ≤ m + (j+1) by omega)
+  have hB := E.B_succ r k hr
+  have hs : D.B ↑(n+1) = D.B ((↑m : WithTop ℕ) + ↑(j+1)) := by
+    congr 1
+    exact_mod_cast (show n+1 = m+(j+1) by omega)
+  have him : imageSubobject (E.d r k) = imageSubobject
+      (Subobject.ofLE (D.B ((↑m : WithTop ℕ) + ↑(j+1)))
+        (D.Z ↑n) (le_trans (D.B_le_Z _) (D.Z_anti hzn)) ≫
+        D.pageπ ↑n) :=
+    hB.trans (image_ofLE_eq_of_eq hs
+      (le_trans (D.B_le_Z _) (D.Z_anti (by exact_mod_cast Nat.le_succ n)))
+      (le_trans (D.B_le_Z _) (D.Z_anti hzn)) (D.pageπ ↑n))
+  have h := abstract_boundary_iff3 D m n j hzm (E.d r k) hzn him x
+  constructor
+  · intro hx
+    obtain ⟨a, z, ha, hx'⟩ := h.mp hx
+    refine ⟨a, (D.pageπ ↑n).hom z, ?_, z, rfl, hx'⟩
+    simpa using ha
+  · rintro ⟨a, b, hb, z, hz, hx'⟩
+    apply h.mpr
+    refine ⟨a, z, ?_, hx'⟩
+    calc
+      (E.d r k).hom a = b := by simpa using hb
+      _ = (D.pageπ ↑n).hom z := hz.symm
+
+/-! The cycle criterion uses `Z_succ`: a representative survives to the
+next cycle layer exactly when its differential is zero. -/
+private theorem mem_kernel_iff {A B : ModuleCat R} (f : A ⟶ B) (x : A) :
+    (∃ z : ↑(Subobject.underlying.obj (kernelSubobject f)),
+      (kernelSubobject f).arrow.hom z = x) ↔ f.hom x = 0 := by
+  constructor
+  · rintro ⟨z, rfl⟩
+    have h := kernelSubobject_arrow_comp f
+    exact congrArg (fun g : _ ⟶ B => g.hom z) h
+  · intro hx
+    let z : f.hom.ker := ⟨x, hx⟩
+    refine ⟨(kernelSubobjectIso f).inv.hom
+      ((ModuleCat.kernelIsoKer f).inv.hom z), ?_⟩
+    change (((kernelSubobjectIso f).inv ≫ (kernelSubobject f).arrow).hom
+      ((ModuleCat.kernelIsoKer f).inv.hom z)) = x
+    rw [kernelSubobject_arrow']
+    change (((ModuleCat.kernelIsoKer f).inv ≫ kernel.ι f).hom z) = x
+    rw [ModuleCat.kernelIsoKer_inv_kernel_ι]
+    rfl
+
+/-- Membership in a rebased cycle subgroup is equivalent to a zero
+differential relation on a later page with the same initial representative,
+provided the later differential has the `Z_succ` kernel. This is Blueprint
+`prop:ss-cycle-zero-differential`. -/
+theorem pageTail_cycle_iff_exists_zero_differential_relation
+    (D : SSData (ModuleCat R)) (m n j : ℕ) (hzm : m ≤ n)
+    {W : ModuleCat R} (f : D.page ↑n ⟶ W)
+    (hzn : (↑n : WithTop ℕ) ≤ (↑m : WithTop ℕ) + ↑(j+1))
+    (hsucc : kernelSubobject f = imageSubobject
+      (Subobject.ofLE (D.Z ((↑m : WithTop ℕ) + ↑(j+1))) (D.Z ↑n)
+        (D.Z_anti hzn) ≫ D.pageπ ↑n))
+    (x : D.page ↑m) :
+    (∃ b : ↑(Subobject.underlying.obj (D.pageTailZ m ↑(j+1))),
+      (D.pageTailZ m ↑(j+1)).arrow.hom b = x) ↔
+      ∃ z : ↑(Subobject.underlying.obj (D.Z ↑n)),
+        f.hom ((D.pageπ ↑n).hom z) = 0 ∧
+        (D.pageπ ↑m).hom
+          ((Subobject.ofLE (D.Z ↑n) (D.Z ↑m)
+            (D.Z_anti (by exact_mod_cast hzm))).hom z) = x := by
+  let z0 : Subobject.underlying.obj
+      (D.Z ((↑m : WithTop ℕ) + ↑(j+1))) ⟶
+      Subobject.underlying.obj (D.Z ↑m) :=
+    Subobject.ofLE _ _ (D.Z_anti (le_trans (by exact_mod_cast hzm) hzn))
+  let zn : Subobject.underlying.obj
+      (D.Z ((↑m : WithTop ℕ) + ↑(j+1))) ⟶
+      Subobject.underlying.obj (D.Z ↑n) :=
+    Subobject.ofLE _ _ (D.Z_anti hzn)
+  let zm : Subobject.underlying.obj (D.Z ↑n) ⟶
+      Subobject.underlying.obj (D.Z ↑m) :=
+    Subobject.ofLE _ _ (D.Z_anti (by exact_mod_cast hzm))
+  let bz : Subobject.underlying.obj (D.B ↑n) ⟶
+      Subobject.underlying.obj
+        (D.Z ((↑m : WithTop ℕ) + ↑(j+1))) :=
+    Subobject.ofLE _ _ (le_trans (D.B_mono hzn) (D.B_le_Z _))
+  let binc : Subobject.underlying.obj (D.B ↑n) ⟶
+      Subobject.underlying.obj (D.Z ↑n) :=
+    Subobject.ofLE _ _ (D.B_le_Z ↑n)
+  have hzcomp : zn ≫ zm = z0 := by
+    dsimp [zn, zm, z0]
+    exact Subobject.ofLE_comp_ofLE _ _ _ _ _
+  have hbncomp : bz ≫ zn = binc := by
+    dsimp [bz, zn, binc]
+    exact Subobject.ofLE_comp_ofLE _ _ _ _ _
+  have htail : D.pageTailZ m ↑(j+1) =
+      imageSubobject (z0 ≫ D.pageπ ↑m) := by rfl
+  constructor
+  · intro hx
+    rw [htail] at hx
+    obtain ⟨y, hy⟩ := (mem_image_iff (z0 ≫ D.pageπ ↑m) x).mp hx
+    have hmem : ∃ u : ↑(Subobject.underlying.obj (kernelSubobject f)),
+        (kernelSubobject f).arrow.hom u =
+          (D.pageπ ↑n).hom (zn.hom y) := by
+      rw [hsucc]
+      exact (mem_image_iff (zn ≫ D.pageπ ↑n) _).mpr ⟨y, rfl⟩
+    refine ⟨zn.hom y, (mem_kernel_iff f _).mp hmem, ?_⟩
+    have h := congrArg (fun g :
+        Subobject.underlying.obj
+          (D.Z ((↑m : WithTop ℕ) + ↑(j+1))) ⟶
+          Subobject.underlying.obj (D.Z ↑m) => g.hom y) hzcomp
+    change (D.pageπ ↑m).hom (zm.hom (zn.hom y)) = x
+    rw [← hy]
+    exact congrArg (D.pageπ ↑m).hom h
+  · rintro ⟨z, hf, hx⟩
+    have hmem : ∃ u : ↑(Subobject.underlying.obj (kernelSubobject f)),
+        (kernelSubobject f).arrow.hom u = (D.pageπ ↑n).hom z :=
+      (mem_kernel_iff f _).mpr hf
+    rw [hsucc] at hmem
+    obtain ⟨y, hy⟩ := (mem_image_iff (zn ≫ D.pageπ ↑n) _).mp hmem
+    have hπ : (D.pageπ ↑n).hom z =
+        (D.pageπ ↑n).hom (zn.hom y) := hy.symm
+    change (cokernel.π binc).hom z =
+      (cokernel.π binc).hom (zn.hom y) at hπ
+    obtain ⟨w, hw⟩ :=
+      (cokernel_eq_iff binc z (zn.hom y)).mp hπ
+    have hcomp := congrArg (fun g :
+        Subobject.underlying.obj (D.B ↑n) ⟶
+          Subobject.underlying.obj (D.Z ↑n) => g.hom w) hbncomp
+    change zn.hom (bz.hom w) = binc.hom w at hcomp
+    have hz' : z = zn.hom (y + bz.hom w) := by
+      rw [map_add, hcomp, hw]
+      abel
+    rw [htail]
+    apply (mem_image_iff (z0 ≫ D.pageπ ↑m) x).mpr
+    refine ⟨y + bz.hom w, ?_⟩
+    have h := congrArg (fun g :
+        Subobject.underlying.obj
+          (D.Z ((↑m : WithTop ℕ) + ↑(j+1))) ⟶
+          Subobject.underlying.obj (D.Z ↑m) => g.hom (y + bz.hom w)) hzcomp
+    change zm.hom (zn.hom (y + bz.hom w)) =
+      z0.hom (y + bz.hom w) at h
+    change (D.pageπ ↑m).hom (z0.hom (y + bz.hom w)) = x
+    rw [← h, ← hz']
+    exact hx
+
+/-- A page class has a next-cycle representative if and only if its
+page differential vanishes.  The existential witness is the same page class
+represented by a cycle at the next level. This is the direct-page form of
+Blueprint `prop:ss-cycle-zero-differential`. -/
+theorem spectral_cycle_membership_iff_zero_differential
+    {ι : Type*} [AddCommGroup ι] [DecidableEq ι]
+    (E : SpectralSequence (ModuleCat.{0} R) ι) (r : ℤ) (k : ι)
+    (hr : E.r₀ ≤ r) (x : E.Page r k) :
+    (∃ z : ↑(Subobject.underlying.obj
+        ((E.ssData k).Z ↑((r - E.r₀).toNat + 1))),
+      (Subobject.ofLE
+        ((E.ssData k).Z ↑((r - E.r₀).toNat + 1))
+        ((E.ssData k).Z ↑(r - E.r₀).toNat)
+        ((E.ssData k).Z_anti (by
+          exact_mod_cast Nat.le_succ (r - E.r₀).toNat)) ≫
+        (E.ssData k).pageπ ↑(r - E.r₀).toNat).hom z = x) ↔
+      (E.d r k).hom x = 0 := by
+  have hker := mem_kernel_iff (E.d r k) x
+  rw [E.Z_succ r k hr] at hker
+  exact (mem_image_iff _ x).symm.trans hker
+
+
+set_option maxHeartbeats 1000000 in
+/-- A classical Adams E₂ class belongs to the rebased cycle subgroup at
+stage `i` exactly when it has a representative on page `i+2`. This is the
+Adams index conversion in Blueprint `rem:ss-cycle-adams-mainline`. -/
+theorem classicalAdams_cycle_iff_page_representative
+    {Syn : Type*} [Category Syn] [Preadditive Syn]
+    [HasZeroObject Syn] [HasShift Syn ℤ]
+    [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
+    [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
+    (𝒮 : Type*) [StableHomotopy.StableHomotopyCategory 𝒮]
+    (X : 𝒮) (i : ℕ) (s t : ℤ)
+    (x : (StableHomotopy.AdamsSS 𝒮 X).Page 2 (s, t)) :
+    (∃ b : ↑(Subobject.underlying.obj
+        (((StableHomotopy.AdamsSS 𝒮 X).pageTailData 2 (s, t)).Z
+          (↑i : WithTop ℕ))),
+      (((StableHomotopy.AdamsSS 𝒮 X).pageTailData 2 (s, t)).Z
+        (↑i : WithTop ℕ)).arrow.hom b = x) ↔
+      ∃ a : (StableHomotopy.AdamsSS 𝒮 X).Page
+        ((i + 2 : ℕ) : ℤ) (s, t),
+        ClassicalAdamsPageRepresentative 𝒮 X i s t x a := by
+  let E := StableHomotopy.AdamsSS 𝒮 X
+  let D := E.ssData (s,t)
+  have hr0 : E.r₀ = 2 := StableHomotopy.adamsSS_r₀ X
+  have hn : (((i+2:ℕ):ℤ)-E.r₀).toNat = i := by rw [hr0]; omega
+  have hm : (2-E.r₀).toNat = 0 := by rw [hr0]; norm_num
+  let m := (2 - E.r₀).toNat
+  let n := (((i+2:ℕ):ℤ) - E.r₀).toNat
+  have hmn : m ≤ n := by dsimp [m,n]; omega
+  have hindex : m + i = n := by dsimp [m,n]; omega
+  have htail : D.pageTailZ m (↑i : WithTop ℕ) = imageSubobject
+      (Subobject.ofLE (D.Z ↑n) (D.Z ↑m)
+        (D.Z_anti (by exact_mod_cast hmn)) ≫ D.pageπ ↑m) := by
+    unfold SSData.pageTailZ
+    have hsum : (↑m : WithTop ℕ) + ↑i = ↑n := by exact_mod_cast hindex
+    exact image_ofLE_eq_of_eq (congrArg D.Z hsum)
+      (D.Z_anti (by exact_mod_cast Nat.le_add_right m i))
+      (D.Z_anti (by exact_mod_cast hmn)) (D.pageπ ↑m)
+  have hleft :
+      (∃ b : ↑(Subobject.underlying.obj (D.pageTailZ m ↑i)),
+          (D.pageTailZ m ↑i).arrow.hom b = x) ↔
+        ∃ z : ↑(Subobject.underlying.obj (D.Z ↑n)),
+          (Subobject.ofLE (D.Z ↑n) (D.Z ↑m)
+            (D.Z_anti (by exact_mod_cast hmn)) ≫ D.pageπ ↑m).hom z = x := by
+    rw [htail]
+    exact mem_image_iff _ x
+  change (∃ b : ↑(Subobject.underlying.obj (D.pageTailZ m ↑i)),
+      (D.pageTailZ m ↑i).arrow.hom b = x) ↔ _
+  rw [hleft]
+  constructor
+  · rintro ⟨z, hz⟩
+    refine ⟨(D.pageπ ↑n).hom z, ?_⟩
+    change ∃ z' : ↑(Subobject.underlying.obj (D.Z ↑n)),
+      (D.pageπ ↑n).hom z' = (D.pageπ ↑n).hom z ∧
+      (D.pageπ ↑m).hom
+        ((Subobject.ofLE (D.Z ↑n) (D.Z ↑m)
+          (D.Z_anti (by exact_mod_cast hmn))).hom z') = x
+    exact ⟨z, rfl, hz⟩
+  · rintro ⟨a, ha⟩
+    change ∃ z : ↑(Subobject.underlying.obj (D.Z ↑n)),
+      (D.pageπ ↑n).hom z = a ∧
+      (D.pageπ ↑m).hom
+        ((Subobject.ofLE (D.Z ↑n) (D.Z ↑m)
+          (D.Z_anti (by exact_mod_cast hmn))).hom z) = x at ha
+    obtain ⟨z, _, hz⟩ := ha
+    exact ⟨z, hz⟩
+
+
+end AdamsIncomingBoundary
+
 /-- At every positive stage, membership in the rebased Adams boundary
 subobject means precisely that the E₂ class represents the target of the
 preceding Adams differential, modulo that page's earlier indeterminacy.
@@ -4930,7 +5690,47 @@ theorem classicalAdams_boundary_iff_differential_target
       (((StableHomotopy.AdamsSS 𝒮 X).pageTailData 2 (s, t)).B
         (↑(j + 1) : WithTop ℕ)).arrow.hom b = x) ↔
       ClassicalAdamsHasDifferentialTarget 𝒮 X j s t x := by
-  sorry
+  let E := KIPBase.StableHomotopy.AdamsSS 𝒮 X
+  let r : ℤ := ((j+2:ℕ):ℤ)
+  let k : ℤ × ℤ := (s-r,t-r+1)
+  have hr₀ : E.r₀ = 2 := KIPBase.StableHomotopy.adamsSS_r₀ X
+  have hr : E.r₀ ≤ r := by rw[hr₀]; dsimp[r]; omega
+  have hgrade : k + E.diffDeg r = (s,t) := by
+    rw [KIPBase.StableHomotopy.adamsSS_diffDeg]
+    ext <;> dsimp [k, KIPBase.StableHomotopy.adamsDiffDeg] <;> omega
+  have hindex : (2-E.r₀).toNat + j = (r-E.r₀).toNat := by
+    rw [hr₀]
+    dsimp [r]
+    omega
+  have hnorm :
+      (KIPBase.Synthetic.classicalAdamsDifferentialNormalized 𝒮 X r
+          (s-r) (t-r+1) ≫
+        eqToHom (congrArg (E.Page r) (by
+          ext <;> dsimp [r] <;> omega))) =
+      E.d r k ≫ eqToHom (congrArg (E.Page r) hgrade) := by
+    unfold KIPBase.Synthetic.classicalAdamsDifferentialNormalized
+    simp only [Category.assoc, eqToHom_trans]
+    rfl
+  have hmap (a : E.Page r k) :
+      (eqToHom (congrArg (E.Page r) (by
+        ext <;> dsimp [r] <;> omega))).hom
+        ((KIPBase.Synthetic.classicalAdamsDifferentialNormalized 𝒮 X r
+          (s-r) (t-r+1)).hom a) =
+      (eqToHom (congrArg (E.Page r) hgrade)).hom ((E.d r k).hom a) := by
+    have hh := congrArg (fun g : E.Page r k ⟶ E.Page r (s,t) => g.hom a) hnorm
+    simpa only [ModuleCat.hom_comp, LinearMap.comp_apply] using hh
+  have hgen := incoming_boundary_iff3 E r k (s,t) hr hgrade j hindex x
+  apply hgen.trans
+  unfold ClassicalAdamsHasDifferentialTarget
+  constructor
+  · rintro ⟨a, b, hab, z, hzb, hzx⟩
+    refine ⟨a, b, ?_, ?_⟩
+    · exact (hmap a).trans hab
+    · exact ⟨z, hzb, hzx⟩
+  · rintro ⟨a, b, hab, hrep⟩
+    obtain ⟨z, hzb, hzx⟩ := hrep
+    refine ⟨a, b, ?_, z, hzb, hzx⟩
+    exact (hmap a).symm.trans hab
 
 /-- A direct Bockstein class lies in the incoming-boundary subgroup exactly
 when it is the target of a finite-power λ-boundary.  This is the concrete

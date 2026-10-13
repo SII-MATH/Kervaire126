@@ -37,8 +37,11 @@ noncomputable def IntModuleRing : Type v := ULift.{v} ℤ
 instance : CommRing (IntModuleRing.{v}) :=
   inferInstanceAs (CommRing (ULift.{v} ℤ))
 
-axiom HomotopyGroupsModule (X : 𝒮) :
-    ℤ → ModuleCat.{v, v} IntModuleRing.{v}
+noncomputable def HomotopyGroupsModule (X : 𝒮) :
+    ℤ → ModuleCat.{v, v} IntModuleRing.{v} := fun n =>
+  letI : Module IntModuleRing.{v} (HomotopyGroup n X) :=
+    Module.compHom (HomotopyGroup n X) ULift.ringEquiv.toRingHom
+  ModuleCat.of IntModuleRing.{v} (HomotopyGroup n X)
 
 /-! ### Adams spectral sequence
 
@@ -101,12 +104,13 @@ Axiom `prereq:ax:adams-convergence`. -/
 /-- KIP §0.2.3, Definition `prereq:def:einfty-data` applied to the Adams SS:
 The E∞-page data of the Adams spectral sequence for a spectrum `X`.
 Packages the E∞-page together with the underlying spectral sequence. -/
-axiom AdamsEInfty (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
-    (X : 𝒮) : EInftyData (ModuleCat.{v, v} IntModuleRing.{v}) (ℤ × ℤ)
+noncomputable def AdamsEInfty (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
+    (X : 𝒮) : EInftyData (ModuleCat.{v, v} IntModuleRing.{v}) (ℤ × ℤ) :=
+  ⟨AdamsSS 𝒮 X⟩
 
 /-- KIP §0.2.3, Definition `prereq:def:einfty-data`: The E∞ data for `X`
 is associated with the Adams spectral sequence `AdamsSS 𝒮 X`. -/
-axiom adamsEInfty_ss (X : 𝒮) : (AdamsEInfty 𝒮 X).ss = AdamsSS 𝒮 X
+theorem adamsEInfty_ss (X : 𝒮) : (AdamsEInfty 𝒮 X).ss = AdamsSS 𝒮 X := rfl
 
 /-! ### Adams filtration on homotopy groups
 
@@ -184,9 +188,10 @@ axiom adamsConvergence (X : 𝒮) (hX : IsFiniteSpectrum X) :
 
 /-! ### Adams filtration for maps
 
-The Adams filtration of a map `f : X ⟶ Y` measures the complexity of `f`
-in terms of HF₂-acyclic factorizations:
-  `AF(f) = sup { k | f factors as k maps each zero on HF₂-homology }`.
+The intended Adams filtration of a map `f : X ⟶ Y` measures the complexity
+of `f` in terms of HF₂-acyclic factorizations. The lightweight carrier below
+does not yet encode those factorizations; it currently records only a
+nonnegative integer.
 
 Blueprint: `prerequisites.tex`, Definition `prereq:def:adams-filtration-maps`. -/
 
@@ -195,25 +200,95 @@ This means `Mod2Homology.pushforward f n = 0` for all n. -/
 def IsZeroOnMod2Homology {X Y : 𝒮} (f : X ⟶ Y) : Prop :=
   ∀ (n : ℤ) (x : Mod2Homology n X), (Mod2Homology.pushforward f n) x = 0
 
-/-- The Adams filtration of a map `f : X ⟶ Y`.
-`AF(f) ≥ k` means `f` can be written as a composition of `k` maps,
-each of which induces the zero map on mod 2 homology.
-`AF(f)` is the supremum of such `k`. -/
+private theorem mod2Homology_pushforward_comp {X Y Z : 𝒮}
+    (f : X ⟶ Y) (g : Y ⟶ Z) (n : ℤ) :
+    Mod2Homology.pushforward (f ≫ g) n =
+      (Mod2Homology.pushforward g n).comp (Mod2Homology.pushforward f n) := by
+  ext x
+  simp [Mod2Homology.pushforward, inducedMap,
+    MonoidalCategory.whiskerLeft_comp, Category.assoc]
+
+private theorem zeroOnMod2_comp_right {X Y Z : 𝒮}
+    (f : X ⟶ Y) (g : Y ⟶ Z) (hg : IsZeroOnMod2Homology g) :
+    IsZeroOnMod2Homology (f ≫ g) := by
+  intro n x
+  rw [mod2Homology_pushforward_comp]
+  simp [hg n ((Mod2Homology.pushforward f n) x)]
+
+private theorem zeroOnMod2_comp_left {X Y Z : 𝒮}
+    (f : X ⟶ Y) (g : Y ⟶ Z) (hf : IsZeroOnMod2Homology f) :
+    IsZeroOnMod2Homology (f ≫ g) := by
+  intro n x
+  rw [mod2Homology_pushforward_comp]
+  simp [hf n x]
+
+/-! A factorization of length `n` in which every factor acts trivially on
+mod 2 homology. A factorization of length one is exactly a map that is zero
+on mod 2 homology. -/
+
+inductive AdamsMapFactorization : {X Y : 𝒮} → ℕ → (X ⟶ Y) → Prop
+  | single {X Y : 𝒮} (f : X ⟶ Y) :
+      IsZeroOnMod2Homology f → AdamsMapFactorization 1 f
+  | prepend {X Y Z : 𝒮} {n : ℕ} (f : X ⟶ Y) (g : Y ⟶ Z) :
+      IsZeroOnMod2Homology f → AdamsMapFactorization n g →
+      AdamsMapFactorization (n + 1) (f ≫ g)
+
+namespace AdamsMapFactorization
+
+theorem length_one_iff {X Y : 𝒮} {f : X ⟶ Y}
+    (hf : AdamsMapFactorization 1 f) : IsZeroOnMod2Homology f := by
+  cases hf with
+  | single _ hz => exact hz
+  | prepend _ _ hz hrest => cases hrest
+
+theorem precompose {X Y Z : 𝒮} {n : ℕ} {g : Y ⟶ Z}
+    (f : X ⟶ Y) (hg : AdamsMapFactorization n g) :
+    AdamsMapFactorization n (f ≫ g) := by
+  induction hg with
+  | single g hz => exact single (f ≫ g) (zeroOnMod2_comp_right f g hz)
+  | @prepend Y A Z n g h hz hrest _ih =>
+      simpa [Category.assoc] using
+        (prepend (f ≫ g) h (zeroOnMod2_comp_right f g hz) hrest)
+
+theorem postcompose {X Y Z : 𝒮} {n : ℕ} {f : X ⟶ Y}
+    (g : Y ⟶ Z) (hf : AdamsMapFactorization n f) :
+    AdamsMapFactorization n (f ≫ g) := by
+  induction hf with
+  | single f hz => exact single (f ≫ g) (zeroOnMod2_comp_left f g hz)
+  | @prepend X A Y n f h hz hrest ih =>
+      simpa [Category.assoc] using (prepend f (h ≫ g) hz (ih g))
+
+theorem comp {X Y Z : 𝒮} {m n : ℕ} {f : X ⟶ Y} {g : Y ⟶ Z}
+    (hf : AdamsMapFactorization m f) (hg : AdamsMapFactorization n g) :
+    AdamsMapFactorization (m + n) (f ≫ g) := by
+  induction hf with
+  | single f hz =>
+      simpa [Nat.add_comm] using (prepend f g hz hg)
+  | @prepend X A Y m f h hz hrest ih =>
+      simpa [Nat.add_assoc, Nat.add_comm n 1, Category.assoc] using
+        (prepend f (h ≫ g) hz (ih hg))
+
+end AdamsMapFactorization
+
+/-- A map filtration value together with all zero-on-homology factorizations
+below that value. -/
 structure AdamsFiltrationOfMap {X Y : 𝒮} (f : X ⟶ Y) where
   /-- The Adams filtration value -/
   val : ℤ
   /-- Adams filtration is non-negative -/
   property : val ≥ 0
+  /-- Every positive integer below the value is realized by a factorization
+  into maps that are zero on mod 2 homology. -/
+  factorization : ∀ n : ℕ, 0 < n → (n : ℤ) ≤ val → AdamsMapFactorization n f
 
-/-- KIP §0.2.3, Definition `prereq:def:adams-filtration-maps`: Every map
-`f : X ⟶ Y` has a well-defined Adams filtration `AF(f) ≥ 0`. -/
-axiom adamsFiltration_exists {X Y : 𝒮} (f : X ⟶ Y) :
-    AdamsFiltrationOfMap f
+/-- The current map-filtration carrier always admits the zero lower bound.
+This witnesses only the present carrier's nonnegativity field; the carrier
+does not yet relate its value to HF₂-acyclic factorizations. -/
+def adamsFiltration_exists {X Y : 𝒮} (f : X ⟶ Y) :
+    AdamsFiltrationOfMap f := ⟨0, le_rfl, fun n hn hle => by omega⟩
 
-/-- `f` has Adams filtration at least `k`.
-
-The filtration is represented by a proposition rather than by choosing an
-integer-valued function. -/
+/-- `f` has Adams filtration at least `k`, witnessed by a value whose
+factorization data realizes every positive level below it. -/
 def AF_ge {X Y : 𝒮} (f : X ⟶ Y) (k : ℤ) : Prop :=
   ∃ af : AdamsFiltrationOfMap f, af.val ≥ k
 
@@ -228,19 +303,93 @@ abbrev HasAF_ge {X Y : 𝒮} (f : X ⟶ Y) (k : ℤ) : Prop :=
 /-- KIP §0.2.3, Definition `prereq:def:adams-filtration-maps` (characterization):
 `AF(f) ≥ 1` if and only if `f` is zero on mod 2 homology `HF₂_*`.
 More generally, `AF(f) ≥ k` iff `f` factors as `k` HF₂-acyclic maps. -/
-axiom af_ge_one_iff_zero_on_homology {X Y : 𝒮} (f : X ⟶ Y) :
-    HasAF_ge f 1 ↔ IsZeroOnMod2Homology f
+theorem af_ge_one_iff_zero_on_homology {X Y : 𝒮} (f : X ⟶ Y) :
+    HasAF_ge f 1 ↔ IsZeroOnMod2Homology f := by
+  constructor
+  · rintro ⟨af, hval⟩
+    exact AdamsMapFactorization.length_one_iff
+      (af.factorization 1 (by norm_num) (by simpa using hval))
+  · intro hzero
+    refine ⟨⟨1, by norm_num, ?_⟩, le_rfl⟩
+    intro n hn hle
+    have hn1 : n = 1 := by omega
+    subst n
+    exact AdamsMapFactorization.single f hzero
 
-/-- Formalization bridge: The identity map has Adams filtration 0.
-Immediate from the definition of `AF` since `𝟙 X` does not factor through
-any HF₂-acyclic map nontrivially. -/
-axiom af_id (X : 𝒮) : AF_eq (𝟙 X) 0
+/-- The identity map has Adams filtration zero when its action on mod 2
+homology is nonzero. -/
+theorem af_id (X : 𝒮) (hid : ¬ IsZeroOnMod2Homology (𝟙 X)) :
+    AF_eq (𝟙 X) 0 := by
+  constructor
+  · exact ⟨adamsFiltration_exists (𝟙 X), by simp [adamsFiltration_exists]⟩
+  · intro h
+    exact hid ((af_ge_one_iff_zero_on_homology (𝟙 X)).mp h)
 
 /-- KIP §0.2.3, Proposition `prereq:prop:adams-filtration-characterization`
 (subadditivity): Adams filtration is subadditive under composition,
 `AF(g ∘ f) ≥ AF(f) + AF(g)`. -/
-axiom af_comp {X Y Z : 𝒮} (f : X ⟶ Y) (g : Y ⟶ Z) :
-    ∀ k l : ℤ, AF_ge f k → AF_ge g l → AF_ge (f ≫ g) (k + l)
+theorem af_comp {X Y Z : 𝒮} (f : X ⟶ Y) (g : Y ⟶ Z) :
+    ∀ k l : ℤ, AF_ge f k → AF_ge g l → AF_ge (f ≫ g) (k + l) := by
+  intro k l ⟨af, haf⟩ ⟨ag, hag⟩
+  refine ⟨{
+    val := max (k + l) 0
+    property := le_max_right _ _
+    factorization := ?_
+  }, le_max_left _ _⟩
+  intro n hn hle
+  by_cases hsum : k + l ≤ 0
+  · have hnle0 : (n : ℤ) ≤ 0 := by
+      simpa [max_eq_right hsum] using hle
+    omega
+  · have hsum_pos : 0 < k + l := by omega
+    have hnle : (n : ℤ) ≤ k + l := by
+      simpa [max_eq_left (le_of_lt hsum_pos)] using hle
+    by_cases hk : 0 < k
+    · by_cases hl : 0 < l
+      · let K : ℕ := k.toNat
+        let L : ℕ := l.toNat
+        have hK : (K : ℤ) = k := by
+          simp [K, Int.toNat_of_nonneg (le_of_lt hk)]
+        have hL : (L : ℤ) = l := by
+          simp [L, Int.toNat_of_nonneg (le_of_lt hl)]
+        have hKpos : 0 < K := by omega
+        have hLpos : 0 < L := by omega
+        have hnNatInt : (n : ℤ) ≤ ((K + L : ℕ) : ℤ) := by
+          simpa [Nat.cast_add, hK, hL] using hnle
+        have hnNat : n ≤ K + L := by exact_mod_cast hnNatInt
+        by_cases hnK : n ≤ K
+        · have hnleK : (n : ℤ) ≤ af.val := by
+            have hnleKint : (n : ℤ) ≤ k := by
+              rw [← hK]
+              exact_mod_cast hnK
+            exact le_trans hnleKint haf
+          exact AdamsMapFactorization.postcompose g
+            (af.factorization n hn hnleK)
+        · have hKn : K < n := by omega
+          let M : ℕ := n - K
+          have hMpos : 0 < M := by omega
+          have hMleL : M ≤ L := by omega
+          have hMleInt : (M : ℤ) ≤ l := by
+            rw [← hL]
+            exact_mod_cast hMleL
+          have hMle : (M : ℤ) ≤ ag.val := le_trans hMleInt hag
+          have hfactors := af.factorization K hKpos (by rw [hK]; exact haf)
+          have hgfactors := ag.factorization M hMpos hMle
+          have hsumMN : K + M = n := by omega
+          simpa [hsumMN] using AdamsMapFactorization.comp hfactors hgfactors
+      · have hl' : l ≤ 0 := by omega
+        have hnlek : (n : ℤ) ≤ k := by omega
+        have hnleval : (n : ℤ) ≤ af.val := le_trans hnlek haf
+        exact AdamsMapFactorization.postcompose g
+          (af.factorization n hn hnleval)
+    · have hk' : k ≤ 0 := by omega
+      by_cases hl : 0 < l
+      · have hnlel : (n : ℤ) ≤ l := by omega
+        have hnleval : (n : ℤ) ≤ ag.val := le_trans hnlel hag
+        exact AdamsMapFactorization.precompose f
+          (ag.factorization n hn hnleval)
+      · have hl' : l ≤ 0 := by omega
+        omega
 
 /-! ### 2-torsion property of E₂ elements
 
@@ -384,10 +533,12 @@ axiom af_not_odd_order_finite {X Y : 𝒮} (f : X ⟶ Y)
 /-- Extended Adams convergence in the bigraded setting: for `X` and `Y` finite
 spectra, the Adams SS for `[X, Y]` weakly converges.
 Blueprint: `prereq:thm:adams-weak-convergence`. -/
-axiom adamsConvergence_bigraded (X Y : 𝒮)
+theorem adamsConvergence_bigraded (X Y : 𝒮)
     (hX : IsFiniteSpectrum X) (hY : IsFiniteSpectrum Y) :
     ∃ F : Filtration (HomotopyGroupsModule Y),
-      Nonempty (Convergence (AdamsEInfty 𝒮 Y).ss (HomotopyGroupsModule Y) F)
+      Nonempty (Convergence (AdamsEInfty 𝒮 Y).ss (HomotopyGroupsModule Y) F) := by
+  obtain ⟨F, _hbounded, hconverges⟩ := adamsConvergence Y hY
+  exact ⟨F, ⟨by simpa [AdamsEInfty] using hconverges⟩⟩
 
 /-- The Adams filtration is separated modulo odd-order:
 if f has infinite Adams filtration, then f has odd order.
@@ -396,11 +547,11 @@ axiom adams_separated (X Y : 𝒮) (hX : IsFiniteSpectrum X) (hY : IsFiniteSpect
     (f : X ⟶ Y) (haf : ∀ k : ℤ, HasAF_ge f k) :
     ∃ n : ℕ, Odd n ∧ n > 0 ∧ n • f = 0
 
-/-- Adams filtration subquotients are finite groups on rationally acyclic spectra.
-    Blueprint: prereq:thm:adams-subquotient-finite. -/
-axiom adams_subquotient_finite (X : 𝒮) (i s : ℤ)
-    (_hrat : True) : -- rational acyclicity placeholder
-    True -- F^s/F^{s+1} is a finite group
+/-- Placeholder retained for API compatibility. Its current type concludes only
+`True`; it does not yet state finiteness of an Adams-filtration subquotient.
+Blueprint target: prereq:thm:adams-subquotient-finite. -/
+theorem adams_subquotient_finite (X : 𝒮) (i s : ℤ)
+    (_hrat : True) : True := trivial
 
 /-- Boundedness of the Adams filtration for rationally acyclic spectra.
 Blueprint: `prereq:thm:adams-boundedness`. -/

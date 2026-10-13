@@ -640,6 +640,32 @@ the Adams and synthetic arguments.
   future pages.
 \end{definition}
 
+\begin{proposition}[Cycle membership and zero differentials]
+  \label{prop:ss-cycle-zero-differential}
+  \lean{KIPBase.Synthetic.pageTail_cycle_iff_exists_zero_differential_relation,KIPBase.Synthetic.spectral_cycle_membership_iff_zero_differential}
+  \uses{def:ss-elementwise-page-presentation}
+  \leanok
+  A class on the initial page belongs to the next cycle subgroup exactly
+  when it has a representative on the current page whose differential is
+  zero. The representative must project to the same initial-page class;
+  equality only after taking the current page quotient is allowed. This is
+  the elementwise form of the $Z$-successor law.
+\end{proposition}
+
+\begin{proposition}[Adams indexing and the KIP126 main line]
+  \label{rem:ss-cycle-adams-mainline}
+  \lean{KIPBase.Synthetic.classicalAdams_cycle_iff_page_representative,KIP126.Main.Solution.Route.Section7.isPageCycle_of_permanentCycle}
+  \uses{prop:ss-cycle-zero-differential}
+  \notready
+  For the classical Adams sequence, the formalized representative criterion
+  identifies membership in $Z_i$ with the existence of a representative on
+  page $i+2$. The preceding generic criterion identifies membership in
+  $Z_{i+1}$ with a page-$i+2$ representative having zero differential after
+  the Adams reindexing. The KIP126 main-line
+  forward instance sends a permanent $E_2$ representative to a $d_2$ cycle;
+  it uses its own internal spectral-sequence type.
+\end{proposition}
+
 % SOURCE: MainPaper/main.tex:134-151, 827-862, and throughout the appendix.
 \begin{definition}[Algebraic $E_\infty$ presentation]
   \label{def:ss-einfty-presentation}

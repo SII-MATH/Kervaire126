@@ -7,14 +7,14 @@ open CategoryTheory CategoryTheory.MonoidalCategory KIPBase.SpectralSequence
 
 universe u v
 
-variable {𝒮 : Type u} [StableHomotopyCategory.{u, v} 𝒮]
+variable {𝒮 : Type u} [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮]
 
 /-- The category in which the converging mapping Adams spectral sequences take values. -/
 abbrev AdamsConvergingSSCategory :=
   ConvergingSS (ModuleCat.{v, v} IntModuleRing.{v}) (ℤ × ℤ) ℤ
 
 /-- Finite spectra, used as the objects of the Adams-enriched category. -/
-abbrev FiniteSpectra (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] :=
+abbrev FiniteSpectra (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮] :=
   { X : 𝒮 // IsFiniteSpectrum X }
 
 /-- A converging-spectral-sequence enrichment of finite spectra whose enriched
@@ -22,7 +22,7 @@ Hom from `X` to `Y` is their converging mapping Adams spectral sequence.
 The monoidal structure on converging spectral sequences is included because
 it is not yet constructed elsewhere in the library. -/
 structure AdamsSpectralSequenceEnrichment
-    (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] where
+    (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮] where
   monoidal : MonoidalCategory AdamsConvergingSSCategory.{v}
   enriched : @EnrichedCategory
     AdamsConvergingSSCategory.{v} _ monoidal (FiniteSpectra 𝒮)

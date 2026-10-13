@@ -14,6 +14,7 @@ import KIPBase.SpectralSequence.ShiftedDifferential
 import KIPBase.SpectralSequence.Blueprint
 import KIPBase.SpectralSequence.StablePage
 import KIPBase.StableHomotopy.Basic
+import KIPBase.StableHomotopy.SpectrumModel
 import KIPBase.StableHomotopy.Cohomology
 import KIPBase.StableHomotopy.Adams
 import KIPBase.StableHomotopy.TensorTriangulatedCategory
@@ -37,6 +38,7 @@ import KIPBase.Synthetic.SolutionTower
 import KIPBase.Synthetic.QuotientExtensionSS
 import KIPBase.Synthetic.PageExtension
 import KIPBase.Synthetic.GeneralizedRules
+import KIPBase.Synthetic.LambdaLiftESS
 import KIPBase.Synthetic.WeightwiseShift
 import KIPBase.Synthetic.ShiftCofiber
 import KIPBase.Synthetic.StableLambda

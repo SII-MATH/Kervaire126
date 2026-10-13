@@ -823,9 +823,80 @@ own proof, with the stated degree bounds and comparison maps.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:2617-2673, Lemma lem:nuext125; computed cofiber d_3 and no-crossing evidence.
+% INTERNAL PROOF STAGE: the output of Theorem thm:generalized-mahowald before
+% the separate Q3-to-Q5 correction calculation.
+\begin{lemma}[The $C\nu$ Mahowald relation in $Q_3$]
+  \label{lem:near126-nu-extension-q3}
+  \lean{KIP126.Main.Solution.Route.Section7.nu_extension_in_third_quotient}
+  \uses{thm:generalized-mahowald,lem:normalized-hopf-exactness-case,evidence:h_1_mul_x_121_7,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results}
+  \notready
+  For the fixed sphere and comparisons, there are classes
+  \[
+    x\in\pi_{122,130}(S^{0,0}/\lambda^3),\qquad
+    y\in\pi_{125,134}(S^{0,0}/\lambda^3)
+  \]
+  detected by $h_1x_{121,7}$ and $\lambda^2h_0^2x_{125,9,2}$, respectively,
+  such that \([x][h_2]=[y]\).
+\end{lemma}
+
+\begin{proof}
+  Instantiate the generalized Mahowald theorem on the normalized Hopf cofiber
+  triangle with $(n,m,l)=(3,0,0)$. Supply its two edge extensions, the
+  computed $C\nu$ $d_3$, and the $E_3$ no-crossing condition. Translate
+  the resulting $E_4$ extension into the indicated $Q_3$ relation.
+  The representative synchronization and May lift are the remaining proof
+  obligations.
+\end{proof}
+
+% INTERNAL PROOF STAGE: correction of the Q3 relation to Q5.
+\begin{lemma}[The corrected $C\nu$ relation in $Q_5$]
+  \label{lem:near126-nu-extension-q5}
+  \lean{KIP126.Main.Solution.Route.Section7.nu_extension_lifts_to_fifth_quotient}
+  \uses{lem:near126-nu-extension-q3,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,evidence:nu-extension-obstruction-vanishing}
+  \notready
+  Given the $Q_3$ relation of Lemma~\ref{lem:near126-nu-extension-q3}, there
+  are representatives
+  \[
+    x_5\in\pi_{122,130}(S^{0,0}/\lambda^5),\qquad
+    y_5\in\pi_{125,134}(S^{0,0}/\lambda^5)
+  \]
+  detected by $h_1x_{121,7}$ and $\lambda^2h_0^2x_{125,9,2}$, respectively,
+  such that $[x_5][h_2]=[y_5]$. The proof must resolve the full AF10
+  correction space; no vanishing of that space is asserted.
+\end{lemma}
+
+\begin{proof}
+  Start with the actual representatives and equality in $Q_3$. Analyze every
+  possible AF10 correction to lifting them through the quotient restriction
+  $Q_5\to Q_3$, using the complete E2(10,135) space, its differential
+  lifetimes, and the actual restriction maps. The surviving corrected
+  representatives give the stated equality in $Q_5$.
+\end{proof}
+
+% INTERNAL PROOF STAGE: the lambda-four quotient lift with target division.
+\begin{lemma}[The corrected $Q_5$ relation lifts to $Q_9$]
+  \label{lem:near126-nu-extension-q5-q9}
+  \lean{KIP126.Main.Solution.Route.Section7.nu_extension_lifts_from_fifth_to_ninth_quotient}
+  \uses{lem:near126-nu-extension-q5,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility,thm:computation-route-products}
+  \notready
+  Given the corrected relation in $Q_5$, there are representatives in $Q_9$
+  detected by $\lambda^4h_1x_{121,7}$ and $\lambda^5h_0^2x_{125,9,2}$ such
+  that their $h_2$ product is $\lambda$ times the target representative.
+  The target division and the specified detections are part of the claim.
+\end{lemma}
+
+\begin{proof}
+  Use the actual $\lambda^4$ map from the shifted $Q_5$ to $Q_9$ and the
+  obstruction calculation to choose a target representative whose
+  $\lambda$-multiple is the image of the $Q_5$ target. Quotient compatibility
+  preserves the source and target detections and gives the required relation.
+\end{proof}
+
+% SOURCE: MainPaper/main.tex:2617-2673, Lemma lem:nuext125; computed cofiber d_3 and no-crossing evidence.
 \begin{lemma}[The required Hopf extension]
   \label{lem:near126-nu-extension}
-  \uses{def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-basis,thm:computation-route-results,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility,thm:computation-route-bottom,thm:computation-route-top,thm:computation-route-products}
+  \lean{KIP126.Main.Solution.Route.Section7.nu_extension_in_ninth_quotient}
+  \uses{lem:near126-nu-extension-q5-q9,lem:near126-nu-extension-q5,lem:near126-nu-extension-q3,def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-basis,thm:computation-route-results,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility,thm:computation-route-bottom,thm:computation-route-top,thm:computation-route-products}
   \notready
   For the fixed sphere and comparisons above, there is a class
   $[\lambda^4h_1x_{121,7}]\in
@@ -838,16 +909,11 @@ own proof, with the stated degree bounds and comparison maps.
 \end{lemma}
 
 \begin{proof}
-  Instantiate the Hopf cofiber triangle with the zero-tagged exactness datum
-  of Lemma~\ref{lem:normalized-hopf-exactness-case}, so the Mahowald package
-  has $(e(f),e(g),e(h))=(1,0,0)$ and uses that one lifted triangle.  Apply the
-  generalized Mahowald trick to this triangle and the
-  typed $S^0/\nu_{\mathrm{Hopf}}$ differential
-  displayed in \texttt{MainPaper/main.tex:2638--2648}.  Its edge extensions and
-  no-crossing certificate give an $([h_2],E_4)$ extension, hence a relation
-  modulo $\lambda^3$.  Use the independent obstruction-vanishing certificate
-  to lift it modulo $\lambda^5$, then multiply by $\lambda^4$ and apply quotient
-  compatibility to obtain the displayed relation modulo $\lambda^9$.
+  This is the composite of the Q3 relation, its correction to Q5, and the
+  target-divided lift from Q5 to Q9. The Q3 stage instantiates the generalized
+  Mahowald trick on the normalized Hopf cofiber triangle with
+  $(e(f),e(g),e(h))=(1,0,0)$ and $(n,m,l)=(3,0,0)$; the next two lemmas retain
+  the correction and quotient-lifting arguments as separate obligations.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:1398-1405 and 929-961; the erroneous cofiber
@@ -886,9 +952,11 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2208-2210 and 2698-2778, Proposition prop:state5false.
 \begin{proposition}[$C_3$ excludes $C_5$]
   \label{prop:near126-c3-not-c5}
+  \lean{KIP126.Main.Solution.Route.Section7.target_divisibility_forces_cnu_incoming}
+  \lean{KIP126.Main.Solution.Route.Section7.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.ExcludeEta.c3_excludes_c5}
   \lean{KIP126.Solution.Near126.C3NotC5.c3_excludes_c5}
-  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,thm:external-lambda-bockstein,evidence:cnu126-short-incoming-exclusion}
   \notready
   For the fixed sphere and comparisons above, if $C_3$ holds, then $C_5$ is false.
 \end{proposition}
@@ -902,7 +970,8 @@ own proof, with the stated degree bounds and comparison maps.
   evidence in either case makes
   $\lambda^4[h_1h_4x_{109,12}]$ a $\lambda[h_2]$ multiple in the untruncated
   sphere.  It is therefore also an $[h_2]$-multiple and maps to zero in
-  $C([h_2])\simeq\nu(S^0/\nu_{\mathrm{Hopf}})$.  Rigidity would then require an
+  $C([h_2])\simeq\nu(S^0/\nu_{\mathrm{Hopf}})$.  Rigidity together with the
+  Adams--Bockstein comparison would then require an
   incoming differential of length at most five on the corresponding
   bottom-cell class in $S^0/\nu_{\mathrm{Hopf}}$.  The complete Table 1 exclusion
   contradicts this.  Hence $C_5$ cannot hold.

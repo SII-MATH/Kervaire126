@@ -1,7 +1,9 @@
 import KIP126.Def.Synthetic.Sphere.Data
 import KIP126.Def.Synthetic.QuotientMap.Data
 
-/-! Actual operations on bigraded homotopy groups. No arbitrary product,
+/-! Actual operations on bigraded homotopy groups. `sphereProduct` below is
+the composition product (post-composition after the specified bi-shifts), not
+an additional sphere-spectrum multiplication. No arbitrary product,
 quotient-vanishing predicate, or differential is supplied as a field. -/
 namespace KIP126.Synthetic.Context
 
@@ -10,7 +12,8 @@ universe u v
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
 
 /-- Composition product of sphere classes, using the specified suspensions.
-Associativity and comparison with a chosen monoidal product are separate laws. -/
+This is the only product used by the synthetic Toda argument; associativity
+and comparison with any monoidal presentation are separate laws. -/
 noncomputable def sphereProduct {m n k l : ℤ}
     (x : BiHom m n (S_0_0 : Syn)) (y : BiHom k l (S_0_0 : Syn)) :
     BiHom (m + k) (n + l) (S_0_0 : Syn) :=

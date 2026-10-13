@@ -55,53 +55,6 @@ algebra of stable mod 2 cohomology operations. It is graded by ℤ,
 with the n-th graded component being πₙ(F(HF₂, HF₂)).
 -/
 
-/-
-/-- KIP §0.2.3, Definition `prereq:def:mapping-spectra` (applied to HF₂):
-The mod 2 Steenrod algebra A, defined as π_* of the endomorphism
-spectrum F(HF₂, HF₂). This is the algebra of stable cohomology
-operations acting on mod 2 cohomology. -/
-axiom SteenrodAlgebra (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] : Type v
-
-/-- Formalization bridge: The Steenrod algebra carries a ring structure
-arising from composition of cohomology operations. This is
-axiomatized rather than constructed from the mapping spectrum. -/
-axiom instRingSteenrodAlgebra_ax (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] :
-    Ring (SteenrodAlgebra 𝒮)
-
-noncomputable instance instRingSteenrodAlgebra
-    (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] :
-    Ring (SteenrodAlgebra 𝒮) := instRingSteenrodAlgebra_ax 𝒮
-
-/-- Formalization bridge: The Steenrod algebra admits a ℤ-grading
-into homogeneous components, corresponding to the grading on
-π_*(F(HF₂, HF₂)) by homotopy degree. Defined as
-πₙ(F(HF₂, HF₂)). -/
-def SteenrodAlgebra.gradedComponent (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
-    (n : ℤ) : Type v :=
-  HomotopyGroup (𝒮 := 𝒮) n (MappingSpectrum (EilenbergMacLane 𝒮) (EilenbergMacLane 𝒮))
-
-/-! The abstract Steenrod algebra is connected to its homotopy-theoretic
-grading by the following bridge.  Keeping this as an equivalence avoids
-pretending that an arbitrary carrier type is definitionally the mapping
-spectrum's homotopy group. -/
-
-axiom SteenrodAlgebra.gradedComponentIso
-    (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮] (n : ℤ) :
-    SteenrodAlgebra.gradedComponent 𝒮 n ≃
-      HomotopyGroup (𝒮 := 𝒮) n
-        (MappingSpectrum (EilenbergMacLane 𝒮) (EilenbergMacLane 𝒮))
-
-/-- KIP §0.2.3, Definition `prereq:def:mapping-spectra`:
-Each graded component Aₙ of the Steenrod algebra is isomorphic to
-πₙ(F(HF₂, HF₂)), the n-th homotopy group of the endomorphism
-mapping spectrum. This is now definitional. -/
-noncomputable def SteenrodAlgebra.gradedIso (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
-    (n : ℤ) :
-    SteenrodAlgebra.gradedComponent 𝒮 n ≃
-      HomotopyGroup (𝒮 := 𝒮) n (MappingSpectrum (EilenbergMacLane 𝒮) (EilenbergMacLane 𝒮)) :=
-  Equiv.refl _
- -/
-
 /-! ## Mod 2 Cohomology
 
 KIP Blueprint §0.2.3, Definition `prereq:def:mod2-cohomology`:
@@ -124,18 +77,6 @@ noncomputable instance instAddCommGroupMod2Cohomology (n : ℤ) (X : 𝒮) :
 /-- Total mod 2 cohomology H*(X; F₂) as a graded abelian group. -/
 noncomputable def Mod2CohomologyTotal (X : 𝒮) : ℤ → AddCommGrpCat :=
   fun n => AddCommGrpCat.mk (Mod2Cohomology n X)
-
-/-
-/-- KIP §0.2.3: The Steenrod algebra A acts on total cohomology H*(X; F₂),
-making it a left A-module. This action is realized through the
-identification H*(X; F₂) ≅ π₀(F(X, HF₂)) and the composition map
-A ⊗ F(X, HF₂) → F(X, HF₂). Axiomatized because `MappingSpectrum`
-construction is not available in Mathlib. -/
-axiom Mod2Cohomology.steenrodModuleAction
-    (𝒮 : Type u) [StableHomotopyCategory.{u, v} 𝒮]
-    (X : 𝒮) (n : ℤ) :
-    Module (SteenrodAlgebra 𝒮) (Mod2Cohomology n X)
--/
 
 /-! ## Mod 2 Homology
 
@@ -183,7 +124,8 @@ The mapping spectrum F(X, HF₂) satisfies πₙ(F(X, HF₂)) ≅ [Σⁿ X, HF�
 /-- KIP §0.2.3, Definition `prereq:def:mapping-spectra`:
 The relationship between mod 2 cohomology and the mapping spectrum:
 H^n(X; F₂) ≅ πₙ(F(X, HF₂)), proved via `mappingSpectrumHomotopy`. -/
-noncomputable def cohomologyMappingSpectrumIso (n : ℤ) (X : 𝒮) :
+noncomputable def cohomologyMappingSpectrumIso [StableHomotopyCategoryEnhancement.{u, v} 𝒮]
+    (n : ℤ) (X : 𝒮) :
     Mod2Cohomology n X ≃ HomotopyGroup n (MappingSpectrum X (EilenbergMacLane 𝒮)) :=
   (mappingSpectrumHomotopy n X (EilenbergMacLane 𝒮)).symm
 

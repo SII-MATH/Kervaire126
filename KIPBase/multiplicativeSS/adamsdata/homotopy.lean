@@ -7,7 +7,7 @@ open CategoryTheory CategoryTheory.Pretriangulated
 
 universe u v
 
-variable {𝒮 : Type u} [StableHomotopyCategory.{u, v} 𝒮]
+variable {𝒮 : Type u} [StableHomotopyCategory.{u, v} 𝒮] [StableHomotopyCategoryEnhancement.{u, v} 𝒮]
 
 /-- The sphere, regarded as a finite spectrum. -/
 private abbrev S : FiniteSpectra 𝒮 :=

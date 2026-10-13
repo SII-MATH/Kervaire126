@@ -8,7 +8,10 @@
   Mathlib's triangulated category library (coyoneda_exact₂/₃).
 -/
 import KIPBase.Mathlib
+import KIPBase.StableHomotopy.Category
 import KIPBase.StableHomotopy.TensorTriangulatedCategory
+import KIPBase.StableHomotopy.StableModelCategory
+import KIPBase.StableHomotopy.SpectrumModel
 open CategoryTheory MonoidalCategory Pretriangulated
 
 namespace KIPBase.StableHomotopy
@@ -17,46 +20,12 @@ universe u v
 
 /-! ## The Stable Homotopy Category
 
-We axiomatize a stable homotopy category as a pretriangulated category with ℤ-shift,
-equipped with a symmetric monoidal structure (smash product) and a distinguished
-sphere spectrum object.
-
-**Remark.** `StableHomotopyCategory` refers to the homotopy category of spectra.
-We axiomatize it directly as a triangulated category rather than constructing it
-via a stable model category.
--/
-
-/-- The stable homotopy category — the homotopy category of spectra, axiomatized
-as a pretriangulated category with symmetric monoidal structure (smash product)
-and a sphere spectrum. -/
-class StableHomotopyCategory (𝒮 : Type u) extends
-    Category.{v} 𝒮,
-    Preadditive 𝒮,
-    HasShift 𝒮 ℤ,
-    MonoidalCategory 𝒮 where
-  /-- Every shift functor is additive. -/
-  shiftAdditive : ∀ (n : ℤ), (shiftFunctor 𝒮 n).Additive
-  /-- The category has a zero object. -/
-  hasZeroObject : Limits.HasZeroObject 𝒮
-  /-- The category is pretriangulated. -/
-  pretriangulated : Pretriangulated 𝒮
-
-attribute [instance] StableHomotopyCategory.shiftAdditive
-attribute [instance] StableHomotopyCategory.hasZeroObject
-attribute [instance] StableHomotopyCategory.pretriangulated
+The abstract category interface is in `Category`. Its stronger tensor and
+cofiber enhancement is assumed only for `StableHomotopyCat`, the homotopy
+category of the selected spectra model. -/
 
 variable {𝒮 : Type u} [StableHomotopyCategory.{u, v} 𝒮]
-
-/-- The stable homotopy category is a closed symmetric tensor triangulated category
-    (HPS Definition A.2.1). This provides SymmetricCategory and MonoidalClosed instances. -/
-axiom sh_closedSymmetricTT : ClosedSymmetricTensorTriangulated 𝒮
-noncomputable instance : ClosedSymmetricTensorTriangulated 𝒮 := sh_closedSymmetricTT
-
-/-- The stable homotopy category has stable functorial cofiber compatible
-    with the tensor structure, including the pointwise 3×3 property. -/
-axiom sh_tensor_functorial_cofiber : TensorTriangulatedCatWithFunctorialCofiber 𝒮
-noncomputable instance : TensorTriangulatedCatWithFunctorialCofiber 𝒮 :=
-  sh_tensor_functorial_cofiber
+  [StableHomotopyCategoryEnhancement.{u, v} 𝒮]
 
 /-! ## Sphere Spectrum and Spheres -/
 
@@ -64,6 +33,7 @@ noncomputable instance : TensorTriangulatedCatWithFunctorialCofiber 𝒮 :=
 monoidal unit. -/
 abbrev SphereSpectrum : 𝒮 := 𝟙_ 𝒮
 
+omit [StableHomotopyCategoryEnhancement 𝒮] in
 /-- KIP §0.2, Definition 0.30: The sphere spectrum 𝕊 is the unit of the
 symmetric monoidal (smash product) structure on the stable homotopy category. -/
 theorem sphere_is_monoidal_unit :
@@ -141,7 +111,8 @@ noncomputable def smashSpheres (m n : ℤ) :
   smashSpheres_iso m n
 
 /-- Graded commutativity: the twist on spheres satisfies T = (-1)^{rs}.
-Moved from TensorTriangulatedCategory for use in SH/Basic. -/
+This sign is an additional stable-homotopy input; it does not follow from the
+symmetric monoidal axioms alone. -/
 axiom sphereTwistSign (r s : ℤ) :
     (β_ (Sphere r : 𝒮) (Sphere s)).hom ≫ (smashSpheres s r).hom ≫
       eqToHom (by ring_nf) =
@@ -239,16 +210,19 @@ end ConnectingHomomorphism
 
 /-! ## Properties derived from the distinguished triangle -/
 
+omit [StableHomotopyCategoryEnhancement 𝒮] in
 /-- The composition `f ≫ g = 0` in a cofiber sequence. -/
 theorem HoCofiberSequence.fg_zero (T : HoCofiberSequence (𝒮 := 𝒮)) :
     T.f ≫ T.g = 0 :=
   comp_distTriang_mor_zero₁₂ _ T.distinguished
 
+omit [StableHomotopyCategoryEnhancement 𝒮] in
 /-- The composition `g ≫ h = 0` in a cofiber sequence. -/
 theorem HoCofiberSequence.gh_zero (T : HoCofiberSequence (𝒮 := 𝒮)) :
     T.g ≫ T.h = 0 :=
   comp_distTriang_mor_zero₂₃ _ T.distinguished
 
+omit [StableHomotopyCategoryEnhancement 𝒮] in
 /-- The composition `h ≫ f⟦1⟧ = 0` in a cofiber sequence. -/
 theorem HoCofiberSequence.hf_shift_zero (T : HoCofiberSequence (𝒮 := 𝒮)) :
     T.h ≫ (shiftFunctor 𝒮 (1 : ℤ)).map T.f = 0 :=
@@ -256,6 +230,7 @@ theorem HoCofiberSequence.hf_shift_zero (T : HoCofiberSequence (𝒮 := 𝒮)) :
 
 /-! ## Helper lemmas for shift functor manipulation -/
 
+omit [StableHomotopyCategoryEnhancement 𝒮] in
 /-- Shift functors reflect zero morphisms (since they are equivalences). -/
 private theorem shiftFunctor_map_eq_zero {X Y : 𝒮} {f : X ⟶ Y} {n : ℤ}
     (h : (shiftFunctor 𝒮 n).map f = 0) : f = 0 := by
@@ -264,6 +239,7 @@ private theorem shiftFunctor_map_eq_zero {X Y : 𝒮} {f : X ⟶ Y} {n : ℤ}
   change (shiftFunctor 𝒮 n).map f = (shiftFunctor 𝒮 n).map 0
   rw [h, (shiftFunctor 𝒮 n).map_zero]
 
+omit [StableHomotopyCategoryEnhancement 𝒮] in
 /-- If the connecting homomorphism `iso₁ ≫ shift(-1)(z ≫ h) ≫ iso₂ = 0`,
     then `z ≫ h = 0`. The proof cancels the isomorphisms and uses
     faithfulness of the shift functor. -/
@@ -282,6 +258,7 @@ private theorem comp_h_zero_of_connectingHom_zero
     exact h2
   exact shiftFunctor_map_eq_zero hm
 
+omit [StableHomotopyCategoryEnhancement 𝒮] in
 /-- The connecting homomorphism composed with f is zero:
     ∂(z) ≫ f = 0 for all z. Uses naturality of the shift-composition
     iso and the triangle relation h ≫ f⟦1⟧ = 0. -/
@@ -324,6 +301,7 @@ They are proved using Mathlib's `coyoneda_exact₂/₃` from the
 pretriangulated category library.
 -/
 
+omit [StableHomotopyCategoryEnhancement 𝒮] in
 /-- Long exact sequence on homotopy groups: exactness at Y.
 For a distinguished triangle X →f Y →g Z →h X⟦1⟧:
   y ∈ ker(g_*) ↔ y ∈ im(f_*)
@@ -343,6 +321,7 @@ theorem les_homotopy_exact_f (T : HoCofiberSequence (𝒮 := 𝒮)) (n : ℤ) :
   · rintro ⟨x, rfl⟩
     simp [Category.assoc, T.fg_zero]
 
+omit [StableHomotopyCategoryEnhancement 𝒮] in
 /-- Long exact sequence on homotopy groups: exactness at Z.
   z ∈ ker(∂) ↔ z ∈ im(g_*)
 
@@ -366,6 +345,7 @@ theorem les_homotopy_exact_g (T : HoCofiberSequence (𝒮 := 𝒮)) (n : ℤ) :
       Limits.zero_comp]
     erw [Limits.comp_zero]
 
+omit [StableHomotopyCategoryEnhancement 𝒮] in
 /-- Long exact sequence on homotopy groups: exactness at X (shifted).
   x ∈ ker(f_*) ↔ x ∈ im(∂)
 

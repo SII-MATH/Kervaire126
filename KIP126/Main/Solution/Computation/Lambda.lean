@@ -642,7 +642,7 @@ set_option backward.defeqAttrib.useBackward true in
 set_option maxRecDepth 10000 in
 /-- The complete stem-63 bases in filtrations 1 through 6 leave only
 permanent classes after d₂; nonpositive filtrations vanish. -/
-private theorem stem63_no_late_differentials (I : Inputs D L G) (V : SphereVanishingLine H)
+theorem stem63_no_late_differentials (I : Inputs D L G) (V : SphereVanishingLine H)
     (q : ℤ) (hq : q≤6) (r : ℤ) (hr : 3≤r)
     (a : (sequence D .sphere).Page r (q,q+63)) :
     (sequence D .sphere).d r (q,q+63) a=0 := by
