@@ -229,3 +229,93 @@ blueprint 新增 `prop:ss-cycle-zero-differential`，引用已证明的 KIPBase 
 范围必须明确：上述定理消费实际商类、实际映射等式和检测过滤条件，完成代表元层的桥梁；并未填掉 `GeneralizedRules.lean` 中已有的同步、商提升产生、λ 除法占位，也未填掉 `AdamsBocksteinMorphism.lean` 的经典 Adams 与直接 Bockstein 循环/边界/微分比较缺口。不能将其报告为整个 generalized Mahowald 定理或其经典主线实例已完成。一般映射 ESS 的不定性还包括较短映射扩张，不能直接与 λ 塔 Bockstein 的边界群等同。
 
 验证：`LambdaLiftESS.lean` 和 `Basic.lean` 编译通过；审计同伦映射到 ESS、障碍到 ESS、Mahowald 同一提升双输出及边界同余定理，均不依赖 `sorryAx`，也不依赖 `nuAdamsE2Comparison_extends` 或旧 rigidity 输入，仅消费项目已有 synthetic 收敛、函子性、过滤及余纤维基础公理。Blueprint 新增代表元链接节点并接入商提升存活节点，保留 `notready` 和其余阶段状态。Blueprint frontier/DAG、源清单、外部输入检查通过；相关已跟踪文件空白检查通过。文档网页构建仍受此前记录的 leanblueprint 命令缺失限制。
+
+## 2026-10-13：继续补缺口时发现旧 Mahowald 声明类型不成立
+
+执行前已复习执行纪律。本轮未填掉目标 sorry，不能报告缺口已补齐。
+
+具体阻碍不是缺少一般谱序列定理：`SpectralSequence/UnboundedCommutativity.lean` 已有 `unbounded_comm_common_source_lift`，可从两条真实 ESS 关系及至少一条无 crossing 得到共同源提升。不得重复包装它冒充实际 Mahowald 实例化。
+
+旧 `GeneralizedRules.lean` 第 593 行起的 `GeneralizedMahowaldData` 把三角、循环、扩张和结论都存成任意 `Prop`，不包含实际对象、类、映射、关系及证明。第 654、661 行的同步和提升记录又仅包含 `True`。因此第 679 行的存活声明不是一个可证明但尚未证明的数学定理：合法的数据记录可以令所有名义前提字段为 True、两个结论字段为 False。即使补上这些名义前提的证明，也不能从独立存储的任意命题推出结论。
+
+本轮在 `/tmp/MahowaldInterfaceCounterexample.lean` 形式化证明了 `¬ (∀ D : GeneralizedMahowaldData, D.sourceSurvival)`，Lean 编译通过，`#print axioms` 显示不依赖任何公理。这是接口错误的证据，不是目标定理的证明。
+
+第 570 行 `mahowaldSynchronizedRepresentatives` 同样对任意两个边臂无条件断言相容，类型中没有两条 ESS 关系或无 crossing 条件。拉回存在只允许从已经相容的边臂构造共同提升，不能让任意边臂自动相容。
+
+未擅自把结论添加为输入，也未新增公理或删除既有未完成声明。尝试的通用同步包装已撤掉；`LambdaLiftESS.lean` 恢复为上一轮真实代表元链接并重新编译通过。本轮不将代表元链接、编译或反例审计计为填掉上述 sorry。
+
+## 2026-10-13：按指示修正无效 Mahowald 占位
+
+用户明确要求“把无效占位改对”，本轮据此修正无效声明的 API；执行前已复习纪律。已检查 KIPBase 与 KIP126 的 Lean 引用，旧纸面命题记录及伪阶段链在文件外没有调用。
+
+修正 `Synthetic/GeneralizedRules.lean`：
+
+- 删除存储任意 Prop 的 `GeneralizedMahowaldData`，以及仅从该记录/True 见证就声称推出存活、λ 除法与完整 Mahowald 结论的无效声明。删除不等于证明这些数学结论；完整论文定理仍由现有 `KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw` 陈述，保留原未完成状态。
+- `GeneralizedMahowaldSynchronized` 现在相对于实际 May 方块和两条实际边臂保存相容等式。
+- `GeneralizedMahowaldLift` 现在保存一个实际过滤代表元，以及该同一代表元的 rho 像和 filteredMap 像等式，不再保存 True。
+- `mahowaldSynchronizedRepresentatives` 修正为从实际共同提升推出相容等式；不再无条件宣称任意两个边臂相容。
+- `generalizedMahowaldSynchronizedRepresentatives` 现在证明真实相容性当且仅当存在共同提升；`generalizedMahowaldMayCompatibleLift` 使用既有拉回实际构造这个提升。
+- `generalizedMahowaldMayCore` 显式消费真实同步见证，证明同一提升的两个像等式。这个必要条件已公开，不将该局部核心当成由原论文四个假设推出的完整定理。
+- `GeneralizedMahowaldLift.ambient_map` 证明该提升的实际 abutment 映射等式；`ess_relation` 接上无界 ESS 的代表元判定，得到它检测的真实 ESS 关系。
+
+验证：`GeneralizedRules.lean`、`LambdaLiftESS.lean`、`Basic.lean` 均编译通过。修正后的 May 核心、同步存在判据、共同提升构造及 ESS 关系经公理审计仅依赖 `propext`、`Classical.choice`、`Quot.sound`，无 `sorryAx`、无项目公理。没有修改 `SpectralSequence/` 或新增公理。本轮没有宣称完成论文的同步实例化、经典 Adams 存活比较或 λ 除法阶段。Blueprint 已同步本地核心与完整定理的不同范围，保留原节点 notready；frontier/DAG、源清单和外部输入检查通过，相关文件空白检查通过。leanblueprint 网页构建仍缺环境命令。
+
+## 2026-10-13：继续核对真实 ESS 的共同源（本轮未完成实例化）
+
+执行前已重读本文件的执行纪律；沿既有归一化映射与 λ 边界方块，复用 `unbounded_comm_common_source_lift`，没有改走其他证明路线。
+
+新增 `SyntheticCommutativeSquare.top_left_source_eq`：归一化映射 ESS 与左侧边界 ESS 在源列使用同一个实际 Adams E∞ 对象。证明只化简 `unboundedExtensionV` 的源列。相同陈述和证明在 `/tmp/MahowaldSourceComparison.lean` 独立编译通过；其独立审计 `/tmp/MahowaldSourceComparisonAudit.lean` 无 `sorryAx`，依赖既有 SynAdamsSS、synAdamsConvergence、synAdamsFiltration、synAdamsFunctoriality 和 Lean 基础公理。
+
+共同提升实例化尚未完成：具体关系见证与两条 ESS 的依赖类型转换反复触发 Lean 展开超时。不能把源对象识别写成共同提升已经完成，更不能写成完整 Mahowald 定理已经证明。Blueprint 已据此保留 notready。完整入口重建另被既有 `GeometricAdamsLegacy.lean` 的 Category 类型类错误阻断，没有修改该文件来绕过错误。
+
+发现 `GeneralizedRules.lean` 中正在处理的共同提升段，被本轮以外的任务加入 `commonLiftBoundary` 节及选项修改；已向用户确认该文件的编辑归属，保留这些改动，没有擅自覆盖。最终整个模块未通过本轮检查；此前记录的编译通过属于上一轮修正后的版本，不能用于认证当前共同提升段。
+
+## 2026-10-13：共同源提升的具体实例化通过（接续上一轮）
+
+执行前重读本文件第 72–80 行；按用户“继续”指示处理同一文件，保留原有并行修改。仍使用既有 `unbounded_comm_common_source_lift`、`unbounded_lift_ambient_map`、`unbounded_comm_lift_square_ambient`，未修改 SpectralSequence/，未新增公理或 sorry。
+
+已完成：
+
+- `PageExtensionRelation.sourceOnLeft`：把原来的同一个源映射写成左侧 λ 边界 ESS 所需的类型，只对源列作定义化简。避免自动展开整个收敛/余极限数据，也避免 simp 在源代表元中插入等式转运。
+- `PageExtensionRelation.common_lift_on_fHatBoundarySquare`：在实际归一化映射与 λ 边界方块上，给定同源的两条真实关系，只需其中任意一条无 crossing，即得到一个共同过滤源提升和两个目标提升。结论同时包含原端点的检测条件、两条实际 abutment 像等式，以及右下角的相容等式。
+- `FinitePageExtension.common_lift_on_fHatBoundarySquare`：直接代入有限页扩张已有的 `canonicalNoCrossingExtension` 及其无 crossing 证书，完成映射扩张无 crossing 这一分支的实例化。
+- `FinitePageExtension.common_lift_on_fHatBoundarySquare_of_boundary_noCrossing`：代入 `canonicalExtension`，使用 λ 边界关系自己的无 crossing 证书。该分支不要求映射扩张无 crossing，保留论文原来的另一种选择。
+
+检查：整个 `GeneralizedRules.lean` 编译通过；`/tmp/MahowaldCommonLiftCurrentAudit.lean` 对上述四个声明审计通过，没有 sorryAx。依赖既有 Adams/synthetic 谱序列、收敛、函子性、cofiber、normalized lift 等基础公理，没有新公理。Blueprint 已加入两个有限页实例化的 Lean 链接，保留 notready；frontier/DAG、源清单、外部输入检查及本轮相关文件的 diff --check 均通过。环境仍没有 leanblueprint 命令，网页构建未执行。
+
+完成范围：已解决“给定实际 λ 边界关系后，两条 ESS 关系如何使用同一个源代表元”的实例化。仍须从完整 Mahowald 的页面微分/循环假设导出这个实际 λ 边界关系，并把这里产生的实际臂核对到 May 方块，再完成 λ 除法与经典结论。不得把这一步写成完整 Mahowald 定理已完成，也不得把所需 λ 边界关系当成已由页面假设证明。
+
+### 2026-10-13：实际有限商限制及边界相容
+
+已复习执行纪律，继续既定 Adams 见证到 Bockstein 见证的构造。
+在 `LambdaBoundary.lean` 构造了任意正指数之间的实际商限制 `XModLambdaN.restrict`，不是新加一个商塔输入。由现有 λ 幂递推和函子性余纤维构造，证明了商包含相容、自然性和实际余纤维边界相容。`restrict_boundary_of_eq` 将已得到的真实 cap 边界等式传递到较小商，没有假设待证的谱序列关系。
+
+目标模块 Lean 检查通过。同步 Blueprint 保持整体未完成：仍须将受限 cap 的边界识别为 Mahowald 使用的有限 λ–ρ–δ 三角的 δ，继而得到相应过滤及检测关系；本轮结果不能冒充完整 Mahowald 同步或 May λ 除法。
+
+### 2026-10-13：从实际 Adams 微分构造指定指数的受限 cap
+
+执行前已重新阅读本文件的执行纪律。本轮继续原来的 Adams 微分→几何见证→Bockstein 见证构造。
+
+已证明 `GeometricAdams.Input.restrict_preserves_filtration`、`restrict_boundary_formula` 和 `exists_restrictedCap`：商限制保持真实塔过滤；受限边界保留原目标所在的深层阶段。进而证明 `NuSynAdamsGeometricComparison.exists_finitePower_restriction_boundary_of_differential`：输入真实 synthetic Adams 微分，输出同一原始相对圆盘、共同锥 cap、完整商代表元和指定较小指数的商代表元，并保留 Adams 源、目标的检测等式和两端过滤。未添加新公理或缺口输入字段。
+
+`GeometricAdams.lean` 和 `GeometricAdamsLegacy.lean` 模块检查通过；上述四个声明依赖审计均无 `sorryAx`。Blueprint 同步保持整体未完成。
+
+精确未完成处：`QuotientTower.lean` 中有限三角只存储 distinguished 三角的三条边，未把其 δ 与实际余纤维边界再投影到有限商的复合识别。本轮证明的是实际未截断边界的指定指数限制及过滤，不是该有限 δ 的比较。须接上这一识别和有限目标检测，才能把当前受限 cap 作为完整 Mahowald 同步关系输入；May λ 除法仍未完成。
+
+### 2026-10-13：同一 Adams cap 的实际有限目标边界
+
+执行前重新复习执行纪律，未更换构造。`lambdaFiniteBoundary` 是余纤维连接映射后复合移位后的实际商包含，明确给出有限目标；未把任意三角的 δ 假定为它。证明 `lambdaFiniteBoundary_eq_of_boundary_eq` 传递同一代表元的边界等式。
+
+已证明 `GeometricAdams.Input.finiteBoundary_preserves_deep_filtration`，由实际自然变换保持塔过滤推出。已有 `exists_finitePower_restriction_boundary_of_differential` 的结论已加强：同一 cap 对任意有限目标指数给出实际边界投影等式及深层过滤，原 Adams 源、目标检测等式全部保留。另证明 `lambdaLiftObstructionMap_eq_finiteBoundary`，将新版 direct Bockstein 的实际障碍映射识别为目标商指数一的特例。
+
+`LambdaBoundary.lean`、`GeometricAdams.lean`、`GeometricAdamsLegacy.lean` 和 `LambdaLiftESS.lean` 检查通过。尚未证明现有 `LambdaRhoDeltaTriangle` 所记录的 δ 与该实际有限边界相等；也尚未从当前有限目标的塔过滤得到完整 Mahowald 的指定目标检测。因此不能报告有限三角比较、Mahowald 同步或 May λ 除法完成。
+
+本轮有限目标过滤、加强后的 Adams 微分见证定理和 direct Bockstein 特例等式依赖审计均无 `sorryAx`；Blueprint 依赖检查、source inventory、external inputs 检查通过。
+
+### 2026-10-13：实际 Adams 微分到有限边界 ESS 关系
+
+执行前已复习本文件纪律。已证明 `LambdaLiftESS.lean` 中 `adamsDifferential_to_finiteBoundary_ess`。证明按已有构造从真实 Adams 微分取得 cap，将源与深层边界换到标准球上的 canonical Adams 过滤，利用既有 `synAdamsFiltration_postcomp` 将边界投影到有限目标，最后直接调用 `homotopy_map_to_ess_relation` 得到真实 ESS 微分关系，没有重证后续页面。
+
+公开结论保留原 Adams 源检测、原 Adams 目标检测、共同 cap 的源面、ESS 源由该 cap 商限制而来的等式、深层目标见证在相邻层的值，以及有限边界由同一深层见证而来的等式。不是只声称“存在某对满足微分关系的元素”。目标商指数可取 Mahowald 所需指数。
+
+模块 Lean 检查通过；新定理依赖审计无 `sorryAx`。Blueprint 已链接新定理，整体仍标未完成。仍缺有限三角所记录 δ 与实际有限边界的比较，以及把相邻层目标见证识别成 Mahowald 指定的 λ 幂乘永久类；未声称完整 Mahowald 同步与 May λ 除法完成。

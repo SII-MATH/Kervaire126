@@ -301,6 +301,201 @@ noncomputable local instance addCommGrpCat_wellPowered_one :
     WellPowered.{1} AddCommGrpCat.{0} where
   subobject_small := fun _ => by infer_instance
 
+/-- The normalized-map and boundary ESS use the same actual source
+E-infinity object. Reduce only the source column, keeping the converging
+synthetic Adams data intact. -/
+theorem SyntheticCommutativeSquare.top_left_source_eq (S : SyntheticCommutativeSquare (Syn := Syn))
+    (degree : ℤ × ℤ) (s : ℤ) :
+    (((syntheticExtensionCoreDataOfMap S.top).ess degree).ssData (s,1)).V =
+      (unboundedExtensionSSData.{1,0,0,0} S.converging.p degree (s,1)).V := by
+  change unboundedExtensionV
+      (synAdamsConvergence Syn S.X₁).convergence
+      (synAdamsConvergence Syn S.X₂).convergence degree (s,1) =
+    unboundedExtensionV
+      (synAdamsConvergence Syn S.X₁).convergence
+      (synAdamsConvergence Syn S.X₃).convergence degree (s,1)
+  simp only [unboundedExtensionV, ↓reduceIte]
+
+/-- The same source representative, typed in the left ESS. Only the
+source column is reduced to identify the two endpoint objects. -/
+noncomputable def PageExtensionRelation.sourceOnLeft
+    (S : SyntheticCommutativeSquare (Syn := Syn)) (degree : ℤ × ℤ)
+    {k : ℕ} {n s : ℤ}
+    (Q : PageExtensionRelation (syntheticExtensionCoreDataOfMap S.top)
+      degree k n s) :
+    Q.T ⟶ (unboundedExtensionSSData.{1,0,0,0} S.converging.p degree (s,1)).V := by
+  have x := Q.source
+  change Q.T ⟶ unboundedExtensionV
+    (synAdamsConvergence Syn S.X₁).convergence
+    (synAdamsConvergence Syn S.X₂).convergence degree (s,1) at x
+  change Q.T ⟶ unboundedExtensionV
+    (synAdamsConvergence Syn S.X₁).convergence
+    (synAdamsConvergence Syn S.X₃).convergence degree (s,1)
+  dsimp only [unboundedExtensionV] at x ⊢
+  exact x
+
+section commonLiftBoundary
+
+set_option backward.isDefEq.respectTransparency true
+set_option maxHeartbeats 1500000
+/-- Synchronize the actual finite normalized-map relation with the lambda
+boundary relation on the actual `fHat` boundary square. A finite page
+extension supplies `Q` through its canonical extension. No crossing on
+either the map relation or the boundary relation suffices. Both target
+images and lower-right compatibility use one common source lift. -/
+theorem PageExtensionRelation.common_lift_on_fHatBoundarySquare
+    (𝒰 : Type uS)
+    [KIPBase.StableHomotopy.StableHomotopyCategory.{uS, 0} 𝒰]
+    {X Y : 𝒰} {f : X ⟶ Y}
+    {r : ℕ} {n s t : ℤ} {k : ℕ}
+    : let S := fHatLambdaBoundarySquare (Syn := Syn) 𝒰 f (r-1)
+      let degree := (t-s, t + eHat 𝒰 f)
+      ∀ (Q : PageExtensionRelation
+          (syntheticExtensionCoreDataOfMap S.top) degree k n s),
+        letI : Projective Q.T := Q.projective
+        ∀ (m : ℤ), 0 ≤ n → 0 ≤ m →
+    ∀ (z : Q.T ⟶ (unboundedExtensionSSData.{1,0,0,0}
+        S.converging.p degree (s+m,0)).V),
+      ∀ (hz : DifferentialRelation
+        (ExtensionSpectralSequence.{1,0,0,0} S.converging.p degree)
+        m (s,1) (Q.sourceOnLeft S degree) z),
+      Q.NoCrossing ∨ ESSRelationNoCrossing m (s,1) hz →
+      ∃ (xl : Q.T ⟶ Subobject.underlying.obj
+          ((unboundedUnderlyingComplex S.converging.f degree).fil s 1))
+        (yl : Q.T ⟶ Subobject.underlying.obj
+          ((unboundedUnderlyingComplex S.converging.f degree).fil (s+n) 0))
+        (zl : Q.T ⟶ Subobject.underlying.obj
+          ((unboundedUnderlyingComplex S.converging.p degree).fil (s+m) 0)),
+        UnboundedExtensionIsLift S.converging.f degree s 1 xl Q.source ∧
+        UnboundedExtensionIsLift S.converging.f degree (s+n) 0 yl Q.scaledTarget ∧
+        UnboundedExtensionIsLift S.converging.p degree (s+m) 0 zl z ∧
+        xl ≫ ((unboundedUnderlyingComplex S.converging.f degree).fil s 1).arrow ≫
+          S.converging.f.aMap degree =
+          yl ≫ ((unboundedUnderlyingComplex S.converging.f degree).fil (s+n) 0).arrow ∧
+        xl ≫ ((unboundedUnderlyingComplex S.converging.p degree).fil s 1).arrow ≫
+          S.converging.p.aMap degree =
+          zl ≫ ((unboundedUnderlyingComplex S.converging.p degree).fil (s+m) 0).arrow ∧
+        yl ≫ ((unboundedUnderlyingComplex S.converging.f degree).fil (s+n) 0).arrow ≫
+          S.converging.q.aMap degree =
+          zl ≫ ((unboundedUnderlyingComplex S.converging.p degree).fil (s+m) 0).arrow ≫
+            S.converging.g.aMap degree := by
+  intro S degree Q m hn hm z hz hnc
+  letI : Projective Q.T := Q.projective
+  have hf : DifferentialRelation
+      (ExtensionSpectralSequence.{1,0,0,0} S.converging.f degree)
+      n (s,1) Q.source Q.scaledTarget := Q.relation
+  have hp : DifferentialRelation
+      (ExtensionSpectralSequence.{1,0,0,0} S.converging.p degree)
+      m (s,1) Q.source z := by
+    simpa only [PageExtensionRelation.sourceOnLeft, id_eq] using hz
+  have hnc' : ESSRelationNoCrossing n (s,1) hf ∨
+      ESSRelationNoCrossing m (s,1) hp := by
+    rcases hnc with htop | hleft
+    · exact Or.inl htop
+    · right
+      dsimp only [ESSRelationNoCrossing,
+        ExtensionDifferentialRelation.NoCrossing,
+        ExtensionDifferentialRelation.NoCrossingRange] at hleft ⊢
+      exact hleft
+  obtain ⟨xl, yl, zl, hx, hy, hz', htop, hleft⟩ :=
+    unbounded_comm_common_source_lift.{1,0,0,0} S.converging n m s degree hn hm
+      Q.source Q.scaledTarget z hf hp hnc'
+  exact ⟨xl, yl, zl, hx, hy, hz',
+    unbounded_lift_ambient_map.{1,0,0,0} S.converging.f degree s (s+n) (by omega) xl yl htop,
+    unbounded_lift_ambient_map.{1,0,0,0} S.converging.p degree s (s+m) (by omega) xl zl hleft,
+    unbounded_comm_lift_square_ambient.{1,0,0,0} S.converging n m s degree hn hm xl yl zl htop hleft⟩
+
+/-- Instantiate the actual normalized-map--boundary square with the
+finite page extension's canonical relation and its transported no-crossing
+certificate. No compatibility of arbitrary arms is assumed. -/
+theorem FinitePageExtension.common_lift_on_fHatBoundarySquare
+    (𝒰 : Type uS)
+    [KIPBase.StableHomotopy.StableHomotopyCategory.{uS, 0} 𝒰]
+    {X Y : 𝒰} {f : X ⟶ Y}
+    {family : NormalizedPageESSFamily 𝒰 Syn f}
+    {r : ℕ} {n s t : ℤ}
+    (P : FinitePageExtension 𝒰 Syn f family r n s t)
+    (hfamily : family.IsCanonical) (hP : P.NoCrossing)
+    (m : ℤ) (hn : 0 ≤ n) (hm : 0 ≤ m) :
+    let S := fHatLambdaBoundarySquare (Syn := Syn) 𝒰 f (r-1)
+    let degree := (t-s, t + eHat 𝒰 f)
+    let Q := P.canonicalNoCrossingExtension hfamily hP.essRelation
+    ∀ (z : Q.1.T ⟶ (unboundedExtensionSSData.{1,0,0,0}
+        S.converging.p degree (s+m,0)).V),
+      DifferentialRelation (ExtensionSpectralSequence.{1,0,0,0} S.converging.p degree)
+        m (s,1) (Q.1.sourceOnLeft S degree) z →
+      ∃ (xl : Q.1.T ⟶ Subobject.underlying.obj
+          ((unboundedUnderlyingComplex S.converging.f degree).fil s 1))
+        (yl : Q.1.T ⟶ Subobject.underlying.obj
+          ((unboundedUnderlyingComplex S.converging.f degree).fil (s+n) 0))
+        (zl : Q.1.T ⟶ Subobject.underlying.obj
+          ((unboundedUnderlyingComplex S.converging.p degree).fil (s+m) 0)),
+        UnboundedExtensionIsLift S.converging.f degree s 1 xl Q.1.source ∧
+        UnboundedExtensionIsLift S.converging.f degree (s+n) 0 yl Q.1.scaledTarget ∧
+        UnboundedExtensionIsLift S.converging.p degree (s+m) 0 zl z ∧
+        xl ≫ ((unboundedUnderlyingComplex S.converging.f degree).fil s 1).arrow ≫
+          S.converging.f.aMap degree =
+          yl ≫ ((unboundedUnderlyingComplex S.converging.f degree).fil (s+n) 0).arrow ∧
+        xl ≫ ((unboundedUnderlyingComplex S.converging.p degree).fil s 1).arrow ≫
+          S.converging.p.aMap degree =
+          zl ≫ ((unboundedUnderlyingComplex S.converging.p degree).fil (s+m) 0).arrow ∧
+        yl ≫ ((unboundedUnderlyingComplex S.converging.f degree).fil (s+n) 0).arrow ≫
+          S.converging.q.aMap degree =
+          zl ≫ ((unboundedUnderlyingComplex S.converging.p degree).fil (s+m) 0).arrow ≫
+            S.converging.g.aMap degree := by
+  intro S degree Q z hz
+  exact PageExtensionRelation.common_lift_on_fHatBoundarySquare
+    𝒰 (f := f) (r := r) (n := n) (s := s) (t := t) Q.1 m hn hm z hz
+      (Or.inl Q.2)
+
+/-- The second Mahowald no-crossing alternative: the boundary relation
+has no crossing, without imposing no crossing on the finite map extension. -/
+theorem FinitePageExtension.common_lift_on_fHatBoundarySquare_of_boundary_noCrossing
+    (𝒰 : Type uS)
+    [KIPBase.StableHomotopy.StableHomotopyCategory.{uS, 0} 𝒰]
+    {X Y : 𝒰} {f : X ⟶ Y}
+    {family : NormalizedPageESSFamily 𝒰 Syn f}
+    {r : ℕ} {n s t : ℤ}
+    (P : FinitePageExtension 𝒰 Syn f family r n s t)
+    (hfamily : family.IsCanonical)
+    (m : ℤ) (hn : 0 ≤ n) (hm : 0 ≤ m) :
+    let S := fHatLambdaBoundarySquare (Syn := Syn) 𝒰 f (r-1)
+    let degree := (t-s, t + eHat 𝒰 f)
+    let Q := P.canonicalExtension hfamily
+    letI : Projective Q.T := Q.projective
+    ∀ (z : Q.T ⟶ (unboundedExtensionSSData.{1,0,0,0}
+        S.converging.p degree (s+m,0)).V),
+      ∀ (hz : DifferentialRelation
+        (ExtensionSpectralSequence.{1,0,0,0} S.converging.p degree)
+        m (s,1) (Q.sourceOnLeft S degree) z),
+      ESSRelationNoCrossing m (s,1) hz →
+      ∃ (xl : Q.T ⟶ Subobject.underlying.obj
+          ((unboundedUnderlyingComplex S.converging.f degree).fil s 1))
+        (yl : Q.T ⟶ Subobject.underlying.obj
+          ((unboundedUnderlyingComplex S.converging.f degree).fil (s+n) 0))
+        (zl : Q.T ⟶ Subobject.underlying.obj
+          ((unboundedUnderlyingComplex S.converging.p degree).fil (s+m) 0)),
+        UnboundedExtensionIsLift S.converging.f degree s 1 xl Q.source ∧
+        UnboundedExtensionIsLift S.converging.f degree (s+n) 0 yl Q.scaledTarget ∧
+        UnboundedExtensionIsLift S.converging.p degree (s+m) 0 zl z ∧
+        xl ≫ ((unboundedUnderlyingComplex S.converging.f degree).fil s 1).arrow ≫
+          S.converging.f.aMap degree =
+          yl ≫ ((unboundedUnderlyingComplex S.converging.f degree).fil (s+n) 0).arrow ∧
+        xl ≫ ((unboundedUnderlyingComplex S.converging.p degree).fil s 1).arrow ≫
+          S.converging.p.aMap degree =
+          zl ≫ ((unboundedUnderlyingComplex S.converging.p degree).fil (s+m) 0).arrow ∧
+        yl ≫ ((unboundedUnderlyingComplex S.converging.f degree).fil (s+n) 0).arrow ≫
+          S.converging.q.aMap degree =
+          zl ≫ ((unboundedUnderlyingComplex S.converging.p degree).fil (s+m) 0).arrow ≫
+            S.converging.g.aMap degree := by
+  intro S degree Q z hz hnc
+  exact PageExtensionRelation.common_lift_on_fHatBoundarySquare
+    𝒰 (f := f) (r := r) (n := n) (s := s) (t := t) Q m hn hm z hz
+      (Or.inr hnc)
+
+end commonLiftBoundary
+
+
 /-- Purely synthetic generalized Leibniz rule.
 
 The top relation has length `a`, the left relation length `b`, and the bottom
@@ -563,143 +758,103 @@ def GeneralizedMahowaldConclusion
       ((unboundedUnderlyingComplex f degree).fil s 1),
     u ≫ M.rho = R.rhoArm ∧ u ≫ M.filteredMap = R.targetLift
 
-/-- Synchronizing the representatives is the point where the page-extension
-and no-crossing hypotheses of the generalized Mahowald trick are used.  The
-concrete synthetic detection proof remains to be supplied by an application
-of the rule. -/
+/-- A synchronized pair of actual representatives. This is an output
+witness of the synchronization stage, not a substitute for proving that
+stage from the Mahowald page hypotheses. -/
+structure GeneralizedMahowaldSynchronized
+    (M : MaySmashBoundaryInput f degree n s)
+    (R : GeneralizedMahowaldRepresentatives M) : Prop where
+  compatible : R.rhoArm ≫ M.obstruction = R.targetLift ≫ M.boundary
+
+/-- One actual common lift, with both image equations referring to the
+same representative. No unrelated survival or extension proposition is
+stored in this witness. -/
+structure GeneralizedMahowaldLift
+    (M : MaySmashBoundaryInput f degree n s)
+    (R : GeneralizedMahowaldRepresentatives M) where
+  representative : R.T ⟶ Subobject.underlying.obj
+    ((unboundedUnderlyingComplex f degree).fil s 1)
+  rho_eq : representative ≫ M.rho = R.rhoArm
+  filteredMap_eq : representative ≫ M.filteredMap = R.targetLift
+
+/-- Any common lift necessarily gives compatible arms. Previously this
+was incorrectly asserted for arbitrary arms without a lift or the page
+hypotheses that would produce one. -/
 theorem mahowaldSynchronizedRepresentatives
     (M : MaySmashBoundaryInput f degree n s)
-    (R : GeneralizedMahowaldRepresentatives M) :
-    R.rhoArm ≫ M.obstruction = R.targetLift ≫ M.boundary := by
-  sorry
+    (R : GeneralizedMahowaldRepresentatives M)
+    (L : GeneralizedMahowaldLift M R) :
+    GeneralizedMahowaldSynchronized M R := by
+  constructor
+  rw [← L.rho_eq, ← L.filteredMap_eq]
+  simp only [Category.assoc]
+  rw [M.isPullback.w]
 
-/-- **Generalized Mahowald trick, categorical core.** Once synchronized
-representatives are available, May's pullback produces one common lift.  This
-theorem is fully proved from the preceding synchronization lemma and does not
-choose separate lifts for its two conclusions. -/
-theorem generalizedMahowaldMayCore
+/-- May's pullback constructs the actual common lift from synchronized
+arms. Synchronization must be supplied by its real preceding proof. -/
+noncomputable def generalizedMahowaldMayCompatibleLift
+    (M : MaySmashBoundaryInput f degree n s)
+    (R : GeneralizedMahowaldRepresentatives M)
+    (H : GeneralizedMahowaldSynchronized M R) :
+    GeneralizedMahowaldLift M R where
+  representative := M.u R.rhoArm R.targetLift H.compatible
+  rho_eq := M.u_rho R.rhoArm R.targetLift H.compatible
+  filteredMap_eq := M.u_filteredMap R.rhoArm R.targetLift H.compatible
+
+/-- Compatibility is exactly the existence condition for one common lift
+in this pullback. This is a criterion, not an unconditional assertion of
+synchronization for arbitrary input representatives. -/
+theorem generalizedMahowaldSynchronizedRepresentatives
     (M : MaySmashBoundaryInput f degree n s)
     (R : GeneralizedMahowaldRepresentatives M) :
+    GeneralizedMahowaldSynchronized M R ↔ Nonempty (GeneralizedMahowaldLift M R) := by
+  constructor
+  · intro H
+    exact ⟨generalizedMahowaldMayCompatibleLift M R H⟩
+  · rintro ⟨L⟩
+    exact mahowaldSynchronizedRepresentatives M R L
+
+/-- The categorical May core, with its necessary synchronization input
+explicit. This proves the two image equations for one common lift; it does
+not claim the classical generalized Mahowald survival/division theorem. -/
+theorem generalizedMahowaldMayCore
+    (M : MaySmashBoundaryInput f degree n s)
+    (R : GeneralizedMahowaldRepresentatives M)
+    (H : GeneralizedMahowaldSynchronized M R) :
     GeneralizedMahowaldConclusion M R := by
-  let hsync := mahowaldSynchronizedRepresentatives M R
-  refine ⟨M.u R.rhoArm R.targetLift hsync, ?_, ?_⟩
-  · exact M.u_rho R.rhoArm R.targetLift hsync
-  · exact M.u_filteredMap R.rhoArm R.targetLift hsync
+  let L := generalizedMahowaldMayCompatibleLift M R H
+  exact ⟨L.representative,L.rho_eq,L.filteredMap_eq⟩
 
-/-- The paper-level data for the generalized Mahowald trick.  The named
-propositions retain the exact four hypotheses and two conclusions of Blueprint
-`thm:generalized-mahowald`; their concrete Adams-page realizations are supplied
-by the application-specific comparison layer. -/
-structure GeneralizedMahowaldData where
-  /-- A distinguished triangle `X --f--> Y --g--> Z --h--> ΣX`. -/
-  distinguishedTriangle : Prop
-  /-- `e(f)+e(g)+e(h)=1`. -/
-  exponentSum : Prop
-  nIndex : ℤ
-  mIndex : ℤ
-  lIndex : ℤ
-  sIndex : ℤ
-  tIndex : ℤ
-  exponentF : ℤ
-  exponentG : ℤ
-  exponentH : ℤ
-  /-- `n₁=n-e(f)≥1`, `m₁=m-e(g)≥0`, and `l₁=l-e(h)≥0`. -/
-  degreeBounds : Prop
-  /-- The four classes have the Blueprint bidegrees and satisfy
-  `x ∈ Z_n₁`, `y ∈ Z_(m₁+1)`, `xBar ∈ Z_(r-1)`, and `yBar ∈ Z_∞`. -/
-  classCycleData : Prop
-  /-- The actual tower comparison identifies the target label in `ΣX` with
-  the displayed `X` label, including the suspension sign. -/
-  suspensionComparison : Prop
-  /-- `d_l^(h,E_r')(xBar)=x`. -/
-  hExtension : Prop
-  /-- `d_r(xBar)=yBar`. -/
-  classicalDifferential : Prop
-  /-- Either the `h` page extension has no crossing, or the classical
-  differential has no crossing on `E_r'`. -/
-  noCrossing : Prop
-  /-- `d_m^(g,E_(m₁+2))(y)=yBar`. -/
-  gExtension : Prop
-  /-- The exact source conclusion `x ∈ Z_(n+m+e(h))^(s+l,t+l-1)(X)`. -/
-  sourceSurvival : Prop
-  /-- The exact target conclusion: there exists a genuine
-  `d_n^(f,E_(n+m+1+e(h)))(x)` target congruent to `y` modulo
-  `B_r'^(s+n+l,t+n+l-1)(Y)`. -/
-  extensionCongruence : Prop
+/-- The filtered image of the common lift is the actual abutment map.
+This supplies the map equation required by the ESS representative bridge. -/
+@[reassoc] theorem GeneralizedMahowaldLift.ambient_map
+    {M : MaySmashBoundaryInput f degree n s}
+    {R : GeneralizedMahowaldRepresentatives M}
+    (L : GeneralizedMahowaldLift M R) :
+    L.representative ≫ ((unboundedUnderlyingComplex f degree).fil s 1).arrow ≫
+      f.aMap degree =
+      R.targetLift ≫ ((unboundedUnderlyingComplex f degree).fil (s+n) 0).arrow := by
+  have h := congrArg
+    (fun q => q ≫ ((unboundedUnderlyingComplex f degree).fil (s+n) 0).arrow)
+    L.filteredMap_eq
+  have hc := (Category.assoc L.representative M.filteredMap
+    ((unboundedUnderlyingComplex f degree).fil (s+n) 0).arrow).symm.trans h
+  exact (congrArg (fun q => L.representative ≫ q)
+    M.filteredMap_compat.symm).trans hc
 
-namespace GeneralizedMahowaldData
-
-/-- `r=n+m+l`. -/
-abbrev r (D : GeneralizedMahowaldData) : ℤ :=
-  D.nIndex + D.mIndex + D.lIndex
-
-/-- `n₁=n-e(f)`. -/
-abbrev n₁ (D : GeneralizedMahowaldData) : ℤ := D.nIndex - D.exponentF
-
-/-- `m₁=m-e(g)`. -/
-abbrev m₁ (D : GeneralizedMahowaldData) : ℤ := D.mIndex - D.exponentG
-
-/-- `l₁=l-e(h)`. -/
-abbrev l₁ (D : GeneralizedMahowaldData) : ℤ := D.lIndex - D.exponentH
-
-/-- `r'=r-m₁=n₁+l₁+1`, using the exponent-sum hypothesis. -/
-abbrev r' (D : GeneralizedMahowaldData) : ℤ := D.r - D.m₁
-
-end GeneralizedMahowaldData
-
-/-- The common representative from Blueprint
-`lem:mahowald-synchronized-representatives`.  Its fields will be refined to
-the two quotient detections when the concrete Adams-page layer is attached. -/
-structure GeneralizedMahowaldSynchronized
-    (_D : GeneralizedMahowaldData) : Prop where
-  exists_synchronized_representative : True
-
-/-- The common quotient lift from Blueprint
-`lem:mahowald-compatible-quotient-lift`.  It is a separate proposition so the
-two final steps necessarily consume the same lift. -/
-structure GeneralizedMahowaldLift
-    (_D : GeneralizedMahowaldData) : Prop where
-  exists_compatible_lift : True
-
-/-- Blueprint Lemma `lem:mahowald-synchronized-representatives`: select one
-`[xBar]` simultaneously realizing the two required leading terms. -/
-theorem generalizedMahowaldSynchronizedRepresentatives
-    (D : GeneralizedMahowaldData) : GeneralizedMahowaldSynchronized D := by
-  sorry
-
-/-- Blueprint Lemma `lem:mahowald-compatible-quotient-lift`: May's diagram
-produces the common quotient lift from synchronized representatives. -/
-theorem generalizedMahowaldMayCompatibleLift
-    (D : GeneralizedMahowaldData)
-    (_hsync : GeneralizedMahowaldSynchronized D) : GeneralizedMahowaldLift D := by
-  sorry
-
-/-- Blueprint Lemma `lem:mahowald-quotient-lift-survival`: the common lift
-implies the specified source survival. -/
-theorem generalizedMahowaldQuotientLiftSurvival
-    (D : GeneralizedMahowaldData)
-    (_hlift : GeneralizedMahowaldLift D) : D.sourceSurvival := by
-  sorry
-
-/-- Blueprint Lemma `lem:mahowald-lambda-division`: the other image of the
-common lift gives the specified extension modulo exactly `B_r'`. -/
-theorem generalizedMahowaldLambdaDivision
-    (D : GeneralizedMahowaldData)
-    (_hlift : GeneralizedMahowaldLift D) : D.extensionCongruence := by
-  sorry
-
-/-- **Generalized Mahowald trick** (Blueprint `thm:generalized-mahowald`).
-For the data and four hypotheses recorded above, the source class survives to
-`Z_(n+m+e(h))` and has an `f`-extension target congruent to `y` modulo
-`B_r'`. -/
-theorem generalizedMahowaldTrick
-    (D : GeneralizedMahowaldData) :
-    D.sourceSurvival ∧ D.extensionCongruence := by
-  have hsync := generalizedMahowaldSynchronizedRepresentatives D
-  have hlift := generalizedMahowaldMayCompatibleLift D hsync
-  refine ⟨?_, ?_⟩
-  · exact generalizedMahowaldQuotientLiftSurvival D hlift
-  · exact generalizedMahowaldLambdaDivision D hlift
+/-- The common lift yields the actual map ESS relation on its detected
+endpoints. The representative is shared with both May image equations. -/
+theorem GeneralizedMahowaldLift.ess_relation
+    {M : MaySmashBoundaryInput f degree n s}
+    {R : GeneralizedMahowaldRepresentatives M}
+    (L : GeneralizedMahowaldLift M R) (hn : 0 ≤ n)
+    (x : R.T ⟶ (unboundedExtensionSSData f degree (s,1)).V)
+    (y : R.T ⟶ (unboundedExtensionSSData f degree (s+n,0)).V)
+    (hx : UnboundedExtensionIsLift f degree s 1 L.representative x)
+    (hy : UnboundedExtensionIsLift f degree (s+n) 0 R.targetLift y) :
+    DifferentialRelation (ExtensionSpectralSequence f degree) n (s,1) x y := by
+  exact unboundedDifferentialRelation_of_ambient_map f degree n hn s (s+n) rfl
+    L.representative R.targetLift hx hy L.ambient_map
 
 end MaySmashBoundaryInput
 

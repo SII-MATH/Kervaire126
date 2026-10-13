@@ -31,6 +31,7 @@ variable (Syn : Type u') [Category.{v'} Syn] [Preadditive Syn]
     [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
     [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
+    [SyntheticModelRealizationWitness Syn]
 
 /-- The cyclic group is projective in `AddCommGrpCat`.  Keeping the explicit
 cyclic lift here avoids expensive generic module-instance search in the
@@ -1621,8 +1622,7 @@ induced by a filtered synthetic spectrum, and every `d_r` is represented by a
 relative disk whose source in the first graded piece is the source class and
 whose boundary in the `r`-th graded piece is the target class. -/
 axiom nuSynAdamsFilteredGeometricOrigin (X : S)
-    [HomotopicalAlgebra.ModelCategory Syn]
-    [StableHomotopy.IsStableModelCategory Syn] :
+    [SyntheticModelRealizationWitness Syn] :
   NuSynAdamsFilteredGeometricOrigin S Syn X
 
 /-- The filtered model selected by the geometric-origin axiom. -/
@@ -2613,6 +2613,101 @@ theorem exists_lambdaCofiber_restriction_boundary_of_differential
   · exact haOne
   · exact hboundaryOne
   · exact hAFb
+
+/-- A differential supplies one actual cap whose restriction has the prescribed
+positive quotient exponent. Both the original Adams detection equations and
+the deep-stage boundary factorization are retained. No finite-triangle
+comparison is assumed here. -/
+theorem exists_finitePower_restriction_boundary_of_differential
+    (C : NuSynAdamsGeometricComparison S Syn X M)
+    (s k d : ℕ) (t : ℤ)
+    (x : (SynAdamsSS Syn ((nu S Syn).obj X)).Page
+      ((k + d + 2 : ℕ) : ℤ) ((s : ℤ), t, t))
+    (b : (SynAdamsSS Syn ((nu S Syn).obj X)).Page
+      ((k + d + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((k + d + 2 : ℕ) : ℤ),
+          t + ((k + d + 2 : ℕ) : ℤ) - 1, t))
+    (hdb : (synAdamsDifferentialNormalized Syn ((nu S Syn).obj X)
+      ((k + d + 2 : ℕ) : ℤ) (s : ℤ) t t).hom x = b) :
+    ∃ (z : M.input.Representative
+          (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t) s (k + d + 2))
+      (yStage : NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t ⟶
+        (M.input.boundaryTarget (k + d + 1)).stage (s + (k + d + 2)))
+      (y : NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t ⟶
+        (shiftFunctor Syn (1 : ℤ)).obj
+          ((SyntheticCategory.biShift (0, -((k + d + 1 : ℕ) : ℤ))).obj
+            (M.input.layer (s + (k + d + 2)))))
+      (c : NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t ⟶
+        LambdaCofiberGeometry.commonCone
+          (M.input.transition s (s + (k + d + 2)) (Nat.le_add_right s (k + d + 2)))
+          (k + d + 1))
+      (qPower : NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t ⟶
+        XModLambdaN ((nu S Syn).obj X) (k + d + 1))
+      (aRestricted : NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t ⟶
+        XModLambdaN ((nu S Syn).obj X) (k + 1))
+      (bRestricted : NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t ⟶
+        (shiftFunctor Syn (1 : ℤ)).obj
+          ((SyntheticCategory.biShift (0, -((k + 1 : ℕ) : ℤ))).obj
+            ((nu S Syn).obj X))),
+      QuotientAddGroup.mk
+          (⟨M.input.source
+              (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+              s (k + d + 2) (by omega) z,
+            ⟨z, rfl⟩⟩ :
+            M.input.sourceCycles
+              (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+              s (k + d + 2) (by omega)) =
+        C.sourceEquiv s (k + d + 2) (by omega) t x ∧
+      C.targetEquiv s (k + d + 2) (by omega) t b =
+        QuotientAddGroup.mk
+          (y ≫ (shiftFunctor Syn (1 : ℤ)).map
+            (lambdaPow (k + d + 1) (M.input.layer (s + (k + d + 2))))) ∧
+      yStage ≫ M.input.dividedLayerProjection (k + d + 1) (s + (k + d + 2)) = y ∧
+      c ≫ LambdaCofiberGeometry.toRelative
+          (M.input.transition s (s + (k + d + 2)) (Nat.le_add_right s (k + d + 2)))
+          (k + d + 1) = z ∧
+      (c ≫ LambdaCofiberGeometry.toQuotient
+          (M.input.transition s (s + (k + d + 2)) (Nat.le_add_right s (k + d + 2)))
+          (k + d + 1)) ≫
+        XModLambdaN.map (M.input.toBase s) (k + d + 1) = qPower ∧
+      qPower ≫ XModLambdaN.restrict ((nu S Syn).obj X) k d = aRestricted ∧
+      aRestricted ≫ syn_functorial_cofiber.cofibδ (lambdaPow (k + 1) ((nu S Syn).obj X)) = bRestricted ∧
+      bRestricted =
+        (yStage ≫ (shiftFunctor Syn (1 : ℤ)).map
+          (((lambdaPowerRestrictionNatTrans k d).app (M.input.stage (s + (k + d + 2)))))) ≫
+            (M.input.boundaryTarget (k + 1)).toBase (s + (k + d + 2)) ∧
+      (M.input.quotient (k + 1)).AFGe aRestricted s ∧
+      (M.input.boundaryTarget (k + 1)).AFGe bRestricted (s + (k + d + 2)) ∧
+      ∀ n : ℕ,
+        aRestricted ≫ lambdaFiniteBoundary ((nu S Syn).obj X) (k + 1) n =
+          bRestricted ≫ (shiftFunctor Syn (1 : ℤ)).map
+            ((SyntheticCategory.biShift (0, -((k + 1 : ℕ) : ℤ))).map
+              (syn_functorial_cofiber.cofibι (lambdaPow n ((nu S Syn).obj X)))) ∧
+        (M.input.finiteBoundaryTarget (k + 1) n).AFGe
+          (aRestricted ≫ lambdaFiniteBoundary ((nu S Syn).obj X) (k + 1) n)
+          (s + (k + d + 2)) := by
+  obtain ⟨z, yStage, y, hz, htarget, hy, hboundary⟩ :=
+    C.exists_relativeDisk_lambdaPow_boundary_of_differential
+      s (k + d + 2) (by omega) t x b hdb
+  obtain ⟨c, aRestricted, hc, haRestricted, hAFa, hboundaryRestricted, hAFb⟩ :=
+    M.input.exists_restrictedCap
+      (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+      s (k + d + 2) k d z yStage hboundary
+  let qPower :=
+    (c ≫ LambdaCofiberGeometry.toQuotient
+      (M.input.transition s (s + (k + d + 2)) (Nat.le_add_right s (k + d + 2)))
+      (k + d + 1)) ≫
+        XModLambdaN.map (M.input.toBase s) (k + d + 1)
+  let bRestricted := aRestricted ≫ syn_functorial_cofiber.cofibδ (lambdaPow (k + 1) ((nu S Syn).obj X))
+  refine ⟨z, yStage, y, c, qPower, aRestricted, bRestricted,
+    hz, htarget, hy, hc, rfl, ?_, rfl, ?_, hAFa, ?_, ?_⟩
+  · exact haRestricted
+  · exact hboundaryRestricted
+  · exact hAFb
+  · intro n
+    exact ⟨lambdaFiniteBoundary_eq_of_boundary_eq (k + 1) n aRestricted bRestricted rfl,
+      M.input.finiteBoundary_preserves_deep_filtration (k + 1) n _
+        (s + (k + d + 2)) aRestricted hAFb⟩
 
 /-- A synthetic Adams differential of length `n+2` produces the corresponding
 `lambda`-Bockstein differential of length `n+2`.  The first two equalities

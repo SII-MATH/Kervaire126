@@ -92,6 +92,20 @@ theorem filtration_zero (G : Input X) (S : Syn) : G.filtration S 0 = ⊤ := by
 def AFGe (G : Input X) {S : Syn} (f : S ⟶ X) (s : ℕ) : Prop :=
   f ∈ G.filtration S s
 
+set_option backward.isDefEq.respectTransparency false in
+/-- An actual natural transformation of the stage functors preserves the
+factorization filtration. -/
+theorem map_natTrans_preserves_filtration (G : Input X) (F H : Syn ⥤ Syn)
+    (η : F ⟶ H) (S : Syn) (s : ℕ) (z : S ⟶ F.obj X)
+    (hz : (G.map F).AFGe z s) :
+    (G.map H).AFGe (z ≫ η.app X) s := by
+  obtain ⟨a, ha⟩ := hz
+  change a ≫ (G.map F).toBase s = z at ha
+  refine ⟨a ≫ η.app (G.stage s), ?_⟩
+  change (a ≫ η.app (G.stage s)) ≫ (G.map H).toBase s = z ≫ η.app X
+  rw [G.map_toBase, Category.assoc, ← η.naturality, ← Category.assoc,
+    ← G.map_toBase F s, ha]
+
 /-- Exact filtration is defined from the two successive lower bounds. -/
 def AFEq (G : Input X) {S : Syn} (f : S ⟶ X) (s : ℕ) : Prop :=
   G.AFGe f s ∧ ¬ G.AFGe f (s + 1)
@@ -1063,6 +1077,42 @@ noncomputable def boundaryTowerMap (G : Input X) (n : ℕ) :
   app i := syn_functorial_cofiber.cofibδ (lambdaPow n (G.tower.obj i))
   naturality _ _ f := XModLambdaN.proj_naturality (G.tower.map f) n
 
+set_option backward.isDefEq.respectTransparency false in
+/-- Reduce the target of the actual lambda boundary to a finite quotient. -/
+noncomputable def boundaryReductionNatTrans (i n : ℕ) :
+    SyntheticCategory.biShift (Syn := Syn) (0, -(i : ℤ)) ⋙
+        shiftFunctor Syn (1 : ℤ) ⟶
+      XModLambdaN.functor n ⋙ SyntheticCategory.biShift (0, -(i : ℤ)) ⋙
+        shiftFunctor Syn (1 : ℤ) where
+  app X := (shiftFunctor Syn (1 : ℤ)).map
+    ((SyntheticCategory.biShift (0, -(i : ℤ))).map
+      (syn_functorial_cofiber.cofibι (lambdaPow n X)))
+  naturality X Y f := by
+    dsimp only [Functor.comp_map, Functor.id_map]
+    rw [← Functor.map_comp, ← Functor.map_comp,
+      ← Functor.map_comp, ← Functor.map_comp, XModLambdaN.incl_naturality]
+    rfl
+
+/-- The actual finite boundary target tower. -/
+noncomputable def finiteBoundaryTarget (G : Input X) (i n : ℕ) :=
+  G.map (XModLambdaN.functor n ⋙ SyntheticCategory.biShift (0, -(i : ℤ)) ⋙
+    shiftFunctor Syn (1 : ℤ))
+
+set_option backward.isDefEq.respectTransparency false in
+/-- Reducing a deep boundary preserves its deep-stage filtration. -/
+theorem finiteBoundary_preserves_deep_filtration (G : Input X) (i n : ℕ)
+    (S : Syn) (b : ℕ) (a : S ⟶ XModLambdaN X i)
+    (ha : (G.boundaryTarget i).AFGe
+      (a ≫ syn_functorial_cofiber.cofibδ (lambdaPow i X)) b) :
+    (G.finiteBoundaryTarget i n).AFGe (a ≫ lambdaFiniteBoundary X i n) b := by
+  have h := G.map_natTrans_preserves_filtration
+    (SyntheticCategory.biShift (0, -(i : ℤ)) ⋙ shiftFunctor Syn (1 : ℤ))
+    (XModLambdaN.functor n ⋙ SyntheticCategory.biShift (0, -(i : ℤ)) ⋙
+      shiftFunctor Syn (1 : ℤ))
+    (boundaryReductionNatTrans i n) S b
+    (a ≫ syn_functorial_cofiber.cofibδ (lambdaPow i X)) ha
+  simpa only [finiteBoundaryTarget, lambdaFiniteBoundary, boundaryReductionNatTrans, Category.assoc] using h
+
 /-- The actual λ boundary commutes with the relative page differential.
 This uses one morphism of towers for both source and target maps. -/
 theorem pageObstruction_boundary_naturality (G : Input X) (n : ℕ)
@@ -1101,6 +1151,27 @@ theorem boundary_preserves_filtration (G : Input X) (n : ℕ) (S : Syn) (s : ℕ
         ((Category.assoc _ _ _).symm.trans
           (congrArg (fun f => f ≫ syn_functorial_cofiber.cofibδ (lambdaPow n X)) ha'))))
 
+/-- Restricting a finite quotient representative to any positive quotient
+preserves its actual tower filtration. -/
+theorem restrict_preserves_filtration (G : Input X) (k d : ℕ) (S : Syn) (s : ℕ)
+    (z : S ⟶ XModLambdaN X (k + d + 1)) (hz : (G.quotient (k + d + 1)).AFGe z s) :
+    (G.quotient (k + 1)).AFGe (z ≫ XModLambdaN.restrict X k d) s := by
+  obtain ⟨a, ha⟩ := hz
+  change S ⟶ XModLambdaN (G.stage s) (k + d + 1) at a
+  change a ≫ (G.quotient (k + d + 1)).toBase s = z at ha
+  have hq := G.map_toBase (XModLambdaN.functor (k + d + 1)) s
+  have hq1 := G.map_toBase (XModLambdaN.functor (k + 1)) s
+  refine ⟨a ≫ XModLambdaN.restrict (G.stage s) k d, ?_⟩
+  have ha' : a ≫ XModLambdaN.map (G.toBase s) (k + d + 1) = z :=
+    (congrArg (fun f => a ≫ f) hq).symm.trans ha
+  change (a ≫ XModLambdaN.restrict (G.stage s) k d) ≫ (G.quotient (k + 1)).toBase s = _
+  exact (congrArg (fun f => (a ≫ XModLambdaN.restrict (G.stage s) k d) ≫ f) hq1).trans
+    ((Category.assoc _ _ _).trans
+      ((congrArg (fun f => a ≫ f)
+        (XModLambdaN.restrict_naturality (G.toBase s) k d).symm).trans
+        ((Category.assoc _ _ _).symm.trans
+          (congrArg (fun f => f ≫ XModLambdaN.restrict X k d) ha'))))
+
 /-- Reducing a finite quotient representative to the first quotient
 preserves its actual tower filtration. -/
 theorem toOne_preserves_filtration (G : Input X) (n : ℕ) (S : Syn) (s : ℕ)
@@ -1121,6 +1192,42 @@ theorem toOne_preserves_filtration (G : Input X) (n : ℕ) (S : Syn) (s : ℕ)
         (XModLambdaN.toOne_naturality (G.toBase s) n).symm).trans
         ((Category.assoc _ _ _).symm.trans
           (congrArg (fun f => f ≫ XModLambdaN.toOne X n) ha'))))
+
+/-- A computed finite-power boundary determines the actual smaller-power
+boundary after restriction. The remaining lambda power stays at the named
+deep stage, so its filtration factorization is retained. -/
+theorem restrict_boundary_formula (G : Input X) (k d : ℕ) (S : Syn) (b : ℕ)
+    (z : S ⟶ XModLambdaN X (k + d + 1))
+    (y : S ⟶ (G.boundaryTarget (k + d + 1)).stage b)
+    (hz : z ≫ syn_functorial_cofiber.cofibδ (lambdaPow (k + d + 1) X) =
+      y ≫ (G.boundaryTarget (k + d + 1)).toBase b) :
+    (z ≫ XModLambdaN.restrict X k d) ≫ syn_functorial_cofiber.cofibδ (lambdaPow (k + 1) X) =
+      (y ≫ (shiftFunctor Syn (1 : ℤ)).map (((lambdaPowerRestrictionNatTrans k d).app (G.stage b)))) ≫
+        (G.boundaryTarget (k + 1)).toBase b := by
+  have ht := G.map_toBase
+    (SyntheticCategory.biShift (0, -((k + d + 1 : ℕ) : ℤ)) ⋙ shiftFunctor Syn (1 : ℤ)) b
+  have ht1 := G.map_toBase
+    (SyntheticCategory.biShift (0, -((k + 1 : ℕ) : ℤ)) ⋙ shiftFunctor Syn (1 : ℤ)) b
+  have hn : (SyntheticCategory.biShift (0, -((k + d + 1 : ℕ) : ℤ))).map (G.toBase b) ≫
+      ((lambdaPowerRestrictionNatTrans k d).app X) = ((lambdaPowerRestrictionNatTrans k d).app (G.stage b)) ≫
+        (SyntheticCategory.biShift (0, -((k + 1 : ℕ) : ℤ))).map (G.toBase b) :=
+    (lambdaPowerRestrictionNatTrans k d).naturality (G.toBase b)
+  have hstage : (G.boundaryTarget (k + d + 1)).toBase b ≫
+      (shiftFunctor Syn (1 : ℤ)).map (((lambdaPowerRestrictionNatTrans k d).app X)) =
+      (shiftFunctor Syn (1 : ℤ)).map (((lambdaPowerRestrictionNatTrans k d).app (G.stage b))) ≫
+        (G.boundaryTarget (k + 1)).toBase b := by
+    rw [show (G.boundaryTarget (k + d + 1)).toBase b = _ from ht,
+      show (G.boundaryTarget (k + 1)).toBase b = _ from ht1]
+    change (shiftFunctor Syn (1 : ℤ)).map _ ≫ (shiftFunctor Syn (1 : ℤ)).map _ =
+      (shiftFunctor Syn (1 : ℤ)).map _ ≫ (shiftFunctor Syn (1 : ℤ)).map _
+    rw [← Functor.map_comp, ← Functor.map_comp, hn]
+  exact (Category.assoc _ _ _).trans
+    ((congrArg (fun f => z ≫ f) (XModLambdaN.restrict_boundary X k d)).trans
+      ((Category.assoc _ _ _).symm.trans
+        ((congrArg (fun f => f ≫ (shiftFunctor Syn (1 : ℤ)).map
+          (((lambdaPowerRestrictionNatTrans k d).app X))) hz).trans
+          ((Category.assoc _ _ _).trans
+            ((congrArg (fun f => y ≫ f) hstage).trans (Category.assoc _ _ _).symm)))))
 
 /-- A computed finite-power boundary determines the actual single-lambda
 boundary after restriction. The remaining lambda power stays at the named
@@ -1205,6 +1312,36 @@ theorem exists_cap (G : Input X) (S : Syn) (s r n : ℕ)
   · refine ⟨w, ?_⟩
     exact congrArg (fun f => w ≫ f) (G.map_toBase (XModLambdaN.functor n) s)
   · exact ⟨y, hbase.symm⟩
+
+/-- The actual finite-power cap of a specified relative representative.
+Both the source filtration and the deeper target filtration are derived
+from the input tower, and the common cone retains the original source. -/
+theorem exists_restrictedCap (G : Input X) (S : Syn) (s r k d : ℕ)
+    (z : G.Representative S s r)
+    (y : S ⟶ (G.boundaryTarget (k + d + 1)).stage (s + r))
+    (hzy : z ≫ G.boundary s (s + r) (Nat.le_add_right s r) =
+      y ≫ (shiftFunctor Syn (1 : ℤ)).map (lambdaPow (k + d + 1) (G.stage (s + r)))) :
+    ∃ (c : S ⟶ LambdaCofiberGeometry.commonCone
+        (G.transition s (s + r) (Nat.le_add_right s r)) (k + d + 1))
+      (w : S ⟶ XModLambdaN X (k + 1)),
+      c ≫ LambdaCofiberGeometry.toRelative
+        (G.transition s (s + r) (Nat.le_add_right s r)) (k + d + 1) = z ∧
+      (((c ≫ LambdaCofiberGeometry.toQuotient
+        (G.transition s (s + r) (Nat.le_add_right s r)) (k + d + 1)) ≫
+          XModLambdaN.map (G.toBase s) (k + d + 1)) ≫ XModLambdaN.restrict X k d) = w ∧
+      (G.quotient (k + 1)).AFGe w s ∧
+      w ≫ syn_functorial_cofiber.cofibδ (lambdaPow (k + 1) X) =
+        (y ≫ (shiftFunctor Syn (1 : ℤ)).map
+          (((lambdaPowerRestrictionNatTrans k d).app (G.stage (s + r))))) ≫
+            (G.boundaryTarget (k + 1)).toBase (s + r) ∧
+      (G.boundaryTarget (k + 1)).AFGe (w ≫ syn_functorial_cofiber.cofibδ (lambdaPow (k + 1) X)) (s + r) := by
+  obtain ⟨c, w, hc, hcw, hw, hb, _⟩ := G.exists_cap S s r (k + d + 1) z y hzy
+  have hb1 := G.restrict_boundary_formula k d S (s + r) w y hb
+  refine ⟨c, w ≫ XModLambdaN.restrict X k d, hc,
+    congrArg (fun f => f ≫ XModLambdaN.restrict X k d) hcw,
+    G.restrict_preserves_filtration k d S s w hw, hb1, ?_⟩
+  exact ⟨y ≫ (shiftFunctor Syn (1 : ℤ)).map
+    (((lambdaPowerRestrictionNatTrans k d).app (G.stage (s + r)))), hb1.symm⟩
 
 /-- The actual single-lambda cap of a specified relative representative.
 Both the source filtration and the deeper target filtration are derived

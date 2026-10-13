@@ -120,6 +120,11 @@ def lambdaLiftObstructionMap (X : Syn) (i : ℕ) :
       ((SyntheticCategory.biShift (0, -((i+1 : ℕ) : ℤ))).map
         (syn_functorial_cofiber.cofibι (lambdaPow 1 X)))
 
+/-- The direct Bockstein obstruction is the target-exponent-one case of
+    the actual finite boundary used by the Mahowald cap construction. -/
+theorem lambdaLiftObstructionMap_eq_finiteBoundary (X : Syn) (i : ℕ) :
+    lambdaLiftObstructionMap X i = lambdaFiniteBoundary X (i + 1) 1 := rfl
+
 /-- The direct Bockstein obstruction is detected by the ESS of its actual
 boundary-and-reduction map, using exactly the same finite quotient lift. -/
 theorem lambdaLiftBockstein_obstruction_to_ess {X : Syn}
@@ -213,54 +218,125 @@ theorem mahowald_directBockstein_target_congruence
   lambdaLiftBockstein_same_page_iff_incoming_target Q m w i hi x y
 end DirectBocksteinLink
 
-/-! ### Synchronizing two actual map ESS relations -/
-section SynchronizedESS
-universe uC vC wC
-variable {C : Type uC} [Category.{vC} C] [Abelian C]
-    [LocallySmall.{wC} C] [WellPowered.{wC} C]
-    [HasWidePullbacks.{wC} C] [HasCoproducts.{wC} C]
-variable {ω : Type wC} [AddCommGroup ω] [DecidableEq ω] {ω' : Type wC}
-variable {V₀ V₁ V₂ : ConvergingSS C ω ω'}
+section AdamsFiniteBoundary
+universe uS vS
+variable {𝒮 : Type uS} [StableHomotopy.StableHomotopyCategory.{uS,vS} 𝒮]
+    [SyntheticModelRealizationWitness Syn]
 
-/-- The no-crossing alternative in the Mahowald argument synchronizes two
-actual map ESS relations on one source representative. No compatibility
-of two arbitrarily chosen representatives is asserted. -/
-theorem mahowaldSynchronizedESSRepresentatives
-    (f : V₀ ⟶ V₁) (g : V₀ ⟶ V₂) (degree : ω')
-    (a b s : ℤ) (ha : 0 ≤ a) (hb : 0 ≤ b)
-    {T : C} [Projective T]
-    (x : T ⟶ (unboundedExtensionSSData.{uC,vC,wC,wC} f degree (s,1)).V)
-    (y : T ⟶ (unboundedExtensionSSData.{uC,vC,wC,wC} f degree (s+a,0)).V)
-    (z : T ⟶ (unboundedExtensionSSData.{uC,vC,wC,wC} g degree (s+b,0)).V)
-    (hf : DifferentialRelation (ExtensionSpectralSequence.{uC,vC,wC,wC} f degree) a (s,1) x y)
-    (hg : DifferentialRelation (ExtensionSpectralSequence.{uC,vC,wC,wC} g degree) b (s,1) x z)
-    (hnc : ESSRelationNoCrossing a (s,1) hf ∨ ESSRelationNoCrossing b (s,1) hg) :
-    ∃ (u : T ⟶ Subobject.underlying.obj ((unboundedUnderlyingComplex f degree).fil s 1))
-      (v : T ⟶ Subobject.underlying.obj ((unboundedUnderlyingComplex f degree).fil (s+a) 0))
-      (w : T ⟶ Subobject.underlying.obj ((unboundedUnderlyingComplex g degree).fil (s+b) 0)),
-      UnboundedExtensionIsLift.{uC,vC,wC,wC} f degree s 1 u x ∧
-      UnboundedExtensionIsLift.{uC,vC,wC,wC} g degree s 1 u x ∧
-      UnboundedExtensionIsLift.{uC,vC,wC,wC} f degree (s+a) 0 v y ∧
-      UnboundedExtensionIsLift.{uC,vC,wC,wC} g degree (s+b) 0 w z ∧
-      u ≫ (unboundedUnderlyingComplex f degree).filDiff s 1 =
-        v ≫ Subobject.ofLE
-          ((unboundedUnderlyingComplex f degree).fil (s+a) 0)
-          ((unboundedUnderlyingComplex f degree).fil s 0)
-          ((unboundedUnderlyingComplex f degree).fil_anti_of_le 0 (by omega)) ∧
-      u ≫ (unboundedUnderlyingComplex g degree).filDiff s 1 =
-        w ≫ Subobject.ofLE
-          ((unboundedUnderlyingComplex g degree).fil (s+b) 0)
-          ((unboundedUnderlyingComplex g degree).fil s 0)
-          ((unboundedUnderlyingComplex g degree).fil_anti_of_le 0 (by omega)) := by
-  let sq : ConvergingSSSquare (C := C) (ω := ω) (ω' := ω') :=
-    { V₁ := V₀, V₂ := V₁, V₃ := V₂, V₄ := V₁
-      f := f, p := g, q := 0, g := 0
-      comm := by simp }
-  obtain ⟨u,v,w,hu,hv,hw,hdf,hdg⟩ :=
-    unbounded_comm_common_source_lift.{uC,vC,wC,wC} sq a b s degree ha hb x y z hf hg hnc
-  have hug := unboundedExtensionIsLift_source_independent.{uC,vC,wC,wC} f g degree s u x hu
-  exact ⟨u,v,w,hu,hug,hv,hw,hdf,hdg⟩
-end SynchronizedESS
+set_option backward.isDefEq.respectTransparency false in
+/-- The actual Adams differential supplies representatives for the ESS of
+its literal finite boundary. The source is the restricted cap, and the target
+is its actual finite boundary, with canonical Adams filtrations on both. -/
+theorem adamsDifferential_to_finiteBoundary_ess
+    {X : 𝒮} {M : NuSynAdamsGeometricModel 𝒮 Syn X}
+    (C : NuSynAdamsGeometricComparison 𝒮 Syn X M)
+    (s k d n : ℕ) (t : ℤ)
+    (x : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((k + d + 2 : ℕ) : ℤ) ((s : ℤ), t, t))
+    (b : (SynAdamsSS Syn ((nu 𝒮 Syn).obj X)).Page
+      ((k + d + 2 : ℕ) : ℤ)
+        ((s : ℤ) + ((k + d + 2 : ℕ) : ℤ),
+          t + ((k + d + 2 : ℕ) : ℤ) - 1, t))
+    (hdb : (synAdamsDifferentialNormalized Syn ((nu 𝒮 Syn).obj X)
+      ((k + d + 2 : ℕ) : ℤ) (s : ℤ) t t).hom x = b) :
+    ∃ (z : M.input.Representative
+        (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t) s (k + d + 2))
+      (c : NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t ⟶
+        LambdaCofiberGeometry.commonCone
+          (M.input.transition s (s + (k + d + 2)) (Nat.le_add_right s (k + d + 2)))
+          (k + d + 1))
+      (yStage : NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t ⟶
+        (M.input.boundaryTarget (k + d + 1)).stage (s + (k + d + 2)))
+      (y : NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t ⟶
+        (shiftFunctor Syn (1 : ℤ)).obj
+          ((SyntheticCategory.biShift (0, -((k + d + 1 : ℕ) : ℤ))).obj
+            (M.input.layer (s + (k + d + 2)))))
+      (a : Smn (Syn := Syn) (t - (s : ℤ)) t ⟶
+        XModLambdaN ((nu 𝒮 Syn).obj X) (k + 1))
+      (ha : a ∈ synAdamsFiltration Syn
+        (XModLambdaN ((nu 𝒮 Syn).obj X) (k + 1))
+        (t - (s : ℤ)) t (s : ℤ))
+      (hb : a ≫ lambdaFiniteBoundary ((nu 𝒮 Syn).obj X) (k + 1) n ∈
+        synAdamsFiltration Syn _ (t - (s : ℤ)) t
+          ((s : ℤ) + ((k + d + 2 : ℕ) : ℤ))),
+      c ≫ LambdaCofiberGeometry.toRelative
+          (M.input.transition s (s + (k + d + 2)) (Nat.le_add_right s (k + d + 2)))
+          (k + d + 1) = z ∧
+      QuotientAddGroup.mk
+        (⟨M.input.source (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+          s (k + d + 2) (by omega) z, ⟨z, rfl⟩⟩ :
+          M.input.sourceCycles (NuSynAdamsGeometricModel.SourceSphere (Syn := Syn) s t)
+            s (k + d + 2) (by omega)) =
+        C.sourceEquiv s (k + d + 2) (by omega) t x ∧
+      C.targetEquiv s (k + d + 2) (by omega) t b =
+        QuotientAddGroup.mk (y ≫ (shiftFunctor Syn (1 : ℤ)).map
+          (lambdaPow (k + d + 1) (M.input.layer (s + (k + d + 2))))) ∧
+      a = (NuSynAdamsGeometricModel.sourceSphereIso (Syn := Syn) s t).inv ≫
+        (((c ≫ LambdaCofiberGeometry.toQuotient
+          (M.input.transition s (s + (k + d + 2)) (Nat.le_add_right s (k + d + 2)))
+          (k + d + 1)) ≫ XModLambdaN.map (M.input.toBase s) (k + d + 1)) ≫
+            XModLambdaN.restrict ((nu 𝒮 Syn).obj X) k d) ∧
+      yStage ≫ M.input.dividedLayerProjection (k + d + 1) (s + (k + d + 2)) = y ∧
+      a ≫ lambdaFiniteBoundary ((nu 𝒮 Syn).obj X) (k + 1) n =
+        (NuSynAdamsGeometricModel.sourceSphereIso (Syn := Syn) s t).inv ≫
+          ((yStage ≫ (shiftFunctor Syn (1 : ℤ)).map
+            ((lambdaPowerRestrictionNatTrans k d).app
+              (M.input.stage (s + (k + d + 2))))) ≫
+              (M.input.boundaryTarget (k + 1)).toBase (s + (k + d + 2))) ≫
+          (shiftFunctor Syn (1 : ℤ)).map
+            ((SyntheticCategory.biShift (0, -((k + 1 : ℕ) : ℤ))).map
+              (syn_functorial_cofiber.cofibι (lambdaPow n ((nu 𝒮 Syn).obj X)))) ∧
+      DifferentialRelation
+        (ExtensionSpectralSequence.{1,0,0,0}
+          (synAdamsConvergingMap
+            (lambdaFiniteBoundary ((nu 𝒮 Syn).obj X) (k + 1) n))
+          (t - (s : ℤ), t))
+        ((k + d + 2 : ℕ) : ℤ) ((s : ℤ), 1)
+        (homotopyESSSource _ (t - (s : ℤ)) t (s : ℤ) a ha)
+        (homotopyESSTarget _ (t - (s : ℤ)) t
+          ((s : ℤ) + ((k + d + 2 : ℕ) : ℤ))
+          (a ≫ lambdaFiniteBoundary ((nu 𝒮 Syn).obj X) (k + 1) n) hb) := by
+  obtain ⟨z, yStage, y, c, q, a, b0, hz, ht, hy, hc, hq, ha,
+      hab, hstage, hAFa, hAFb, hfinite⟩ :=
+    C.exists_finitePower_restriction_boundary_of_differential s k d t x b hdb
+  let e := NuSynAdamsGeometricModel.sourceSphereIso (Syn := Syn) s t
+  have ha' : (M.input.quotient (k + 1)).AFGe (e.inv ≫ a) s := by
+    obtain ⟨aStage, h⟩ := hAFa
+    refine ⟨e.inv ≫ aStage, ?_⟩
+    change aStage ≫ (M.input.quotient (k + 1)).toBase s = a at h
+    change (e.inv ≫ aStage) ≫ (M.input.quotient (k + 1)).toBase s = e.inv ≫ a
+    rw [Category.assoc, h]
+  have hb' : (M.input.boundaryTarget (k + 1)).AFGe (e.inv ≫ b0)
+      (s + (k + d + 2)) := by
+    obtain ⟨bStage, h⟩ := hAFb
+    refine ⟨e.inv ≫ bStage, ?_⟩
+    change bStage ≫ (M.input.boundaryTarget (k + 1)).toBase (s + (k + d + 2)) = b0 at h
+    change (e.inv ≫ bStage) ≫
+      (M.input.boundaryTarget (k + 1)).toBase (s + (k + d + 2)) = e.inv ≫ b0
+    rw [Category.assoc, h]
+  have haCanonical := (M.quotient_afGe_iff_synAdamsFiltration
+    (k + 1) s (t - (s : ℤ)) t (e.inv ≫ a)).mp ha'
+  have hbCanonical := (M.boundaryTarget_afGe_iff_synAdamsFiltration
+    (k + 1) (s + (k + d + 2)) (t - (s : ℤ)) t (e.inv ≫ b0)).mp hb'
+  have htarget := synAdamsFiltration_postcomp
+    ((shiftFunctor Syn (1 : ℤ)).map
+      ((SyntheticCategory.biShift (0, -((k + 1 : ℕ) : ℤ))).map
+        (syn_functorial_cofiber.cofibι (lambdaPow n ((nu 𝒮 Syn).obj X)))))
+    (t - (s : ℤ)) t ((s + (k + d + 2) : ℕ) : ℤ) (e.inv ≫ b0) hbCanonical
+  have hfiniteEq := (hfinite n).1
+  have hbFinite : (e.inv ≫ a) ≫
+      lambdaFiniteBoundary ((nu 𝒮 Syn).obj X) (k + 1) n ∈
+      synAdamsFiltration Syn _ (t - (s : ℤ)) t
+        ((s : ℤ) + ((k + d + 2 : ℕ) : ℤ)) := by
+    simpa only [Category.assoc, hfiniteEq, Nat.cast_add, XModLambdaN] using htarget
+  refine ⟨z, c, yStage, y, e.inv ≫ a, haCanonical, hbFinite, hc, hz, ht, ?_, hy, ?_, ?_⟩
+  · dsimp only [e]
+    rw [hq, ha]
+  · dsimp only [e]
+    simp only [Category.assoc, hfiniteEq, hstage]
+  · exact homotopy_map_to_ess_relation _ (t - (s : ℤ)) t (s : ℤ)
+      ((k + d + 2 : ℕ) : ℤ) (by positivity) _ _ haCanonical hbFinite rfl
+end AdamsFiniteBoundary
 
 end
 end KIPBase.Synthetic

@@ -101,6 +101,7 @@ theorem lambdaPowerStepNatTrans_comp (n : ℕ) :
   conv_rhs => unfold lambdaPowNatTrans
   rw [← transport]
   simp only [Category.assoc]
+  congr 1
 
 /-- The natural factor `Σ^{0,-(n+1)}X ⟶ Σ^{0,-1}X` in `λ^(n+1)`.
 Its construction follows the existing power recursion, so no additional
@@ -164,6 +165,110 @@ noncomputable def XModLambdaN.toOne (X : Syn) (n : ℕ) :
 @[simp] theorem XModLambdaN.toOne_zero (X : Syn) :
     XModLambdaN.toOne X 0 = 𝟙 (XModLambdaN X 1) := by
   exact syn_functorial_cofiber.cofibMap_id (lambdaPow 1 X)
+
+set_option backward.isDefEq.respectTransparency false in
+/-- The actual factor from a higher positive power to a lower positive power. -/
+noncomputable def lambdaPowerRestrictionNatTrans (k : ℕ) : (d : ℕ) →
+    SyntheticCategory.biShift (Syn := Syn) (0, -((k + d + 1 : ℕ) : ℤ)) ⟶
+      SyntheticCategory.biShift (0, -((k + 1 : ℕ) : ℤ))
+  | 0 => 𝟙 _
+  | d + 1 => lambdaPowerStepNatTrans (k + d) ≫ lambdaPowerRestrictionNatTrans k d
+
+/-- The restriction factor reconstructs the original multiplication by λ. -/
+theorem lambdaPowerRestrictionNatTrans_comp (k d : ℕ) :
+    lambdaPowerRestrictionNatTrans (Syn := Syn) k d ≫ lambdaPowNatTrans (k + 1) =
+      lambdaPowNatTrans (k + d + 1) := by
+  induction d with
+  | zero => simp [lambdaPowerRestrictionNatTrans]
+  | succ d ih =>
+      change (lambdaPowerStepNatTrans (k + d) ≫
+        lambdaPowerRestrictionNatTrans k d) ≫ lambdaPowNatTrans (k + 1) = _
+      rw [Category.assoc, ih]
+      exact lambdaPowerStepNatTrans_comp (Syn := Syn) (k + d)
+
+set_option backward.isDefEq.respectTransparency false in
+/-- Restriction between arbitrary positive finite quotients, constructed from
+    the multiplication factorization rather than supplied as extra data. -/
+noncomputable def XModLambdaN.restrict (X : Syn) (k d : ℕ) :
+    XModLambdaN X (k + d + 1) ⟶ XModLambdaN X (k + 1) :=
+  syn_functorial_cofiber.cofibMap (lambdaPow (k + d + 1) X)
+    (lambdaPow (k + 1) X) ((lambdaPowerRestrictionNatTrans k d).app X) (𝟙 X)
+    (by simpa only [Category.comp_id, NatTrans.comp_app, lambdaPow] using
+      congrArg (fun η => η.app X) (lambdaPowerRestrictionNatTrans_comp (Syn := Syn) k d))
+
+/-- Restriction commutes with the actual cofiber boundary. -/
+@[reassoc] theorem XModLambdaN.restrict_boundary (X : Syn) (k d : ℕ) :
+    XModLambdaN.restrict X k d ≫ syn_functorial_cofiber.cofibδ (lambdaPow (k + 1) X) =
+      syn_functorial_cofiber.cofibδ (lambdaPow (k + d + 1) X) ≫
+        (shiftFunctor Syn (1 : ℤ)).map ((lambdaPowerRestrictionNatTrans k d).app X) :=
+  syn_functorial_cofiber.cofibMap_δ _ _ _ _ _
+
+set_option backward.isDefEq.respectTransparency false in
+/-- Restriction preserves the canonical quotient inclusion. -/
+@[reassoc] theorem XModLambdaN.incl_restrict (X : Syn) (k d : ℕ) :
+    syn_functorial_cofiber.cofibι (lambdaPow (k + d + 1) X) ≫
+      XModLambdaN.restrict X k d = syn_functorial_cofiber.cofibι (lambdaPow (k + 1) X) := by
+  simpa only [XModLambdaN.restrict, Category.id_comp] using
+    (syn_functorial_cofiber.cofibMap_ι (lambdaPow (k + d + 1) X)
+      (lambdaPow (k + 1) X) ((lambdaPowerRestrictionNatTrans k d).app X) (𝟙 X)
+      (by simpa only [Category.comp_id, NatTrans.comp_app, lambdaPow] using
+        (congrArg (fun η => η.app X)
+          (lambdaPowerRestrictionNatTrans_comp (Syn := Syn) k d)))).symm
+
+/-- The constructed restriction is natural in the synthetic spectrum. -/
+@[reassoc] theorem XModLambdaN.restrict_naturality {X Y : Syn} (f : X ⟶ Y)
+    (k d : ℕ) :
+    XModLambdaN.map f (k + d + 1) ≫ XModLambdaN.restrict Y k d =
+      XModLambdaN.restrict X k d ≫ XModLambdaN.map f (k + 1) := by
+  dsimp only [XModLambdaN.map, XModLambdaN.restrict, XModLambdaN]
+  rw [syn_functorial_cofiber.cofibMap_comp,
+    syn_functorial_cofiber.cofibMap_comp]
+  congr 1
+  · exact (lambdaPowerRestrictionNatTrans k d).naturality f
+  · simp
+
+set_option backward.isDefEq.respectTransparency false in
+/-- An actual capped boundary equation remains an actual boundary equation
+    after restricting to the smaller finite quotient. -/
+theorem XModLambdaN.restrict_boundary_of_eq {X S B : Syn} (k d : ℕ)
+    (q : S ⟶ XModLambdaN X (k + d + 1)) (y : S ⟶ B)
+    (b : B ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+      ((SyntheticCategory.biShift (0, -((k + d + 1 : ℕ) : ℤ))).obj X))
+    (hq : q ≫ syn_functorial_cofiber.cofibδ (lambdaPow (k + d + 1) X) = y ≫ b) :
+    (q ≫ XModLambdaN.restrict X k d) ≫
+        syn_functorial_cofiber.cofibδ (lambdaPow (k + 1) X) =
+      y ≫ b ≫ (shiftFunctor Syn (1 : ℤ)).map
+        ((lambdaPowerRestrictionNatTrans k d).app X) := by
+  calc
+    _ = (q ≫ syn_functorial_cofiber.cofibδ (lambdaPow (k + d + 1) X)) ≫
+        (shiftFunctor Syn (1 : ℤ)).map
+          ((lambdaPowerRestrictionNatTrans k d).app X) := by
+      simp only [Category.assoc, XModLambdaN.restrict_boundary]
+    _ = _ := by rw [hq, Category.assoc]
+
+/-- The literal finite boundary: the actual cofiber boundary followed by
+reduction of its target to a finite quotient. -/
+noncomputable def lambdaFiniteBoundary (X : Syn) (i n : ℕ) :
+    XModLambdaN X i ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+      ((SyntheticCategory.biShift (0, -(i : ℤ))).obj (XModLambdaN X n)) :=
+  syn_functorial_cofiber.cofibδ (lambdaPow i X) ≫
+    (shiftFunctor Syn (1 : ℤ)).map
+      ((SyntheticCategory.biShift (0, -(i : ℤ))).map
+        (syn_functorial_cofiber.cofibι (lambdaPow n X)))
+
+set_option backward.isDefEq.respectTransparency false in
+/-- Finite reduction preserves a specified actual boundary equation. -/
+theorem lambdaFiniteBoundary_eq_of_boundary_eq {X S : Syn} (i n : ℕ)
+    (a : S ⟶ XModLambdaN X i)
+    (b : S ⟶ (shiftFunctor Syn (1 : ℤ)).obj
+      ((SyntheticCategory.biShift (0, -(i : ℤ))).obj X))
+    (hab : a ≫ syn_functorial_cofiber.cofibδ (lambdaPow i X) = b) :
+    a ≫ lambdaFiniteBoundary X i n =
+      b ≫ (shiftFunctor Syn (1 : ℤ)).map
+        ((SyntheticCategory.biShift (0, -(i : ℤ))).map
+          (syn_functorial_cofiber.cofibι (lambdaPow n X))) := by
+  dsimp only [lambdaFiniteBoundary]
+  rw [← Category.assoc, hab]
 
 /-- The restriction commutes with maps of the original synthetic spectra. -/
 @[reassoc] theorem XModLambdaN.toOne_naturality {X Y : Syn} (f : X ⟶ Y)

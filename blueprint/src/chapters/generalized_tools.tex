@@ -229,6 +229,11 @@ foundations established earlier.
 \begin{proposition}[The common quotient representative and the direct Bockstein]
   \label{prop:mahowald-direct-bockstein-ess-link}
   \lean{KIPBase.Synthetic.mahowaldQuotientLift_to_directBockstein_and_ess}
+  \lean{KIPBase.Synthetic.adamsDifferential_to_finiteBoundary_ess}
+  \lean{KIPBase.Synthetic.MaySmashBoundaryInput.GeneralizedMahowaldLift.ess_relation}
+  \lean{KIPBase.Synthetic.SyntheticCommutativeSquare.top_left_source_eq}
+  \lean{KIPBase.Synthetic.FinitePageExtension.common_lift_on_fHatBoundarySquare}
+  \lean{KIPBase.Synthetic.FinitePageExtension.common_lift_on_fHatBoundarySquare_of_boundary_noCrossing}
   \uses{def:lambda-rho-delta-triangle,def:page-extension-coset}
   \notready
   Let a coherent finite $\lambda$-quotient tower of a synthetic spectrum
@@ -262,6 +267,61 @@ foundations established earlier.
   The representative-level bridge is proved; the classical Adams cycle
   comparison and the Mahowald synchronization and lambda-division stages
   remain separate unfinished obligations.
+  The invalid legacy \texttt{KIPBase} record of unrelated propositions
+  and truth-only witnesses has been removed. Its corrected categorical
+  API stores actual arms, a synchronization equation, and one lift with
+  both image equations. The May core explicitly consumes synchronization;
+  it does not assert that arbitrary arms synchronize. The lift also gives
+  its actual abutment-map equation and the detected map ESS relation.
+  The normalized-map ESS and lambda-boundary ESS have the same actual
+  source $E_\infty$ object. After canonicalizing the finite map extension,
+  its relation and the lambda-boundary relation admit one common source
+  representative whenever either relation has no crossing. Both actual
+  abutment-map equations and equality of the two images in the lower-right
+  corner are derived from the existing unbounded common-source theorem.
+  The two Lean specializations retain the respective no-crossing
+  alternatives; the boundary alternative does not assume no crossing on
+  the finite map extension. Identifying the boundary relation and these
+  actual arms with the full Mahowald page hypotheses, and the May
+  lambda-division step, remain unfinished.
+  Restriction between arbitrary positive finite quotients is now constructed
+  from the actual multiplication factorization. Its quotient inclusion,
+  naturality, cofiber-boundary compatibility, and preservation of an actual
+  capped boundary equation are proved in
+  \texttt{XModLambdaN.restrict},
+  \texttt{XModLambdaN.incl\_restrict},
+  \texttt{XModLambdaN.restrict\_naturality},
+  \texttt{XModLambdaN.restrict\_boundary}, and
+  \texttt{XModLambdaN.restrict\_boundary\_of\_eq}.
+  The restriction now preserves the actual tower filtration and the
+  deep-stage boundary factorization. In
+  \texttt{NuSynAdamsGeometricComparison.exists\_finitePower\_restriction\_boundary\_of\_differential},
+  an actual Adams differential supplies the original relative disk, its
+  common-cone cap, and its restriction to any smaller positive exponent;
+  the source and target detection equations are retained. The restricted
+  source has filtration at least the source filtration, and its actual
+  cofiber boundary factors through the stage reached by the differential.
+  The actual finite-target boundary is now constructed as
+  \texttt{lambdaFiniteBoundary}: the cofiber connecting map followed by
+  the shifted quotient inclusion. Its deep-stage filtration is proved by
+  \texttt{GeometricAdams.Input.finiteBoundary\_preserves\_deep\_filtration}.
+  The same differential-to-cap theorem now supplies its actual equation
+  and filtration for every finite target exponent, including the Mahowald
+  exponent. The existing direct Bockstein obstruction is its target-exponent-one
+  case, proved by \texttt{lambdaLiftObstructionMap\_eq\_finiteBoundary}.
+  In \texttt{adamsDifferential\_to\_finiteBoundary\_ess}, an actual Adams
+  differential now yields the genuine ESS differential relation of this
+  finite boundary. Canonical source and target Adams filtrations are derived
+  from the geometric model and existing Adams functoriality. The statement
+  retains the original source and target detection equations, the common
+  cap and its source face, the literal restriction formula for the ESS
+  source, and the deep-stage formula for its finite boundary. Thus the ESS
+  representatives remain tied to the input differential.
+  This does not yet identify the resulting boundary with the delta of the
+  finite lambda--rho--delta triangle used above.
+  These are local categorical results, not the full classical Mahowald
+  theorem. The actual \texttt{KIP126} statement and its unfinished status
+  are unchanged.
 \end{proof}
 
 % SOURCE: MainPaper/main.tex:1900-1910, equation eq:f4848f29 and the ensuing one-way survival deduction.

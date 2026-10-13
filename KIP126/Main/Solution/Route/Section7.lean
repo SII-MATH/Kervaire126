@@ -6,6 +6,7 @@ import KIP126.Interface.Solution.AdamsOneLine
 import KIP126.Interface.Solution.Moss
 import KIP126.Def.ClassicalAdams.SphereClasses.Product.Proofs
 import KIP126.Def.Kervaire.Route.Massey.Axioms
+import KIP126.Def.StableHomotopy.Toda.Naturality
 import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Proofs
 
 /-! Internal obligations in the second half of LWX Section 7.
@@ -517,11 +518,11 @@ structure CompositionOnlyMossInterface : Prop where
   bridge : ∀
     (hdef : ∃ z, RepresentsOnPage
       (adamsTowerInternalSpectralSequence standardFoundation.hf2.unit SphereSpectrum)
-      3 (9, 134) eH6B z ∧ z ∈ ThetaBMassey M eB),
+      3 (9, 134) eH6B z ∧ z ∈ ThetaBMassey M eB)
     (hnocross : ¬ SphereMossCrossing (H := standardFoundation.hf2) 3 (3,65) ∧
-      ¬ SphereMossCrossing (H := standardFoundation.hf2) 3 (9,71)),
-    (theta : BiHom 62 64 (S_0_0 : KIP126.Def.standardRouteInput.Syn)),
-    ThetaChoice M (D).toModelData theta →
+      ¬ SphereMossCrossing (H := standardFoundation.hf2) 3 (9,71))
+    (theta : BiHom 62 64 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
+    (htheta : ThetaChoice M (D).toModelData theta),
     ∃ (b : BiHom 62 70 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
       (z : BiHom 125 134 (S_0_0 : KIP126.Def.standardRouteInput.Syn)),
       SphereDetected D 8 70 0 eB b ∧ SphereDetected D 9 134 0 eH6B z ∧
@@ -697,14 +698,48 @@ theorem nu_extension_in_ninth_quotient : NuExtension9 D eX eY h2 :=
 /-- `cor:2ext125`: the h0 extension is independent of the Y representative,
 with a target representative chosen afterwards. C3 and C5 are essential;
 this is not a new unconditional computation of d5(Y). -/
+theorem h0_extension_for_any_y
+    (hc3 : C3 L) (hc5 : C5 M (D).toModelData L η) :
+    ∀ y : BiHom 125 132
+        (XModLambdaN (S_0_0 : KIP126.Def.standardRouteInput.Syn) 9),
+      FiniteDetected D 9 (by decide) 11 136 4 eY y →
+      ∃ t : BiHom 125 139
+          (XModLambdaN (S_0_0 : KIP126.Def.standardRouteInput.Syn) 9),
+        FiniteDetected D 9 (by decide) 14 139 0 ((L).target M) t ∧
+        sphereAction h₀ y = lambdaMultiply 6 t := by
+  sorry
+
+theorem h0_extension_nonzero_for_any_y
+    (hc3 : C3 L) (hc5 : C5 M (D).toModelData L η) :
+    ∀ y : BiHom 125 132
+        (XModLambdaN (S_0_0 : KIP126.Def.standardRouteInput.Syn) 9),
+      ∀ t : BiHom 125 139
+          (XModLambdaN (S_0_0 : KIP126.Def.standardRouteInput.Syn) 9),
+        FiniteDetected D 9 (by decide) 11 136 4 eY y →
+        FiniteDetected D 9 (by decide) 14 139 0 ((L).target M) t →
+        lambdaMultiply 6 t ≠ 0 := by
+  sorry
+
 theorem any_y_h0_extension
     (hc3 : C3 L) (hc5 : C5 M (D).toModelData L η) :
     AnyYH0Extension D eY ((L).target M) h₀ := by
-  sorry
+  intro y hy
+  obtain ⟨t, ht, heq⟩ := h0_extension_for_any_y hc3 hc5 y hy
+  refine ⟨t, ht, heq, ?_⟩
+  exact h0_extension_nonzero_for_any_y hc3 hc5 y t hy ht
 
 /-- Remark `rem:h02x1259`: only under both paper conditions can the
 newly constructed Q9 detection rule out the previously unknown d5(Y).
 The page representative is part of HasDifferential. -/
+theorem conditional_y_d5_zero_assembly
+    (hc3 : C3 L) (hc5 : C5 M (D).toModelData L η)
+    (hext : AnyYH0Extension D eY ((L).target M) h₀)
+    (hdiv : TargetNuDivisible D ((L).target M) h2) :
+    HasDifferential
+      (adamsTowerInternalSpectralSequence standardFoundation.hf2.unit SphereSpectrum)
+      5 (11,136) (16,140) eY 0 := by
+  sorry
+
 theorem conditional_y_d5_zero
     (hc3 : C3 L) (hc5 : C5 M (D).toModelData L η) :
     HasDifferential
@@ -717,10 +752,23 @@ u*h0, the two P/Q filtration arguments, and the precise lifting of the
 equality from Q9 to the untruncated sphere. Existence of permanent P and
 Q representatives by itself does not lift an equality of products.
 No injectivity of eta or unrestricted vanishing of lambda^9 on Q9 is used. -/
+theorem target_nu_divisible_assembly
+    (hc3 : C3 L) (hc5 : C5 M (D).toModelData L η)
+    (hd5 : HasDifferential
+      (adamsTowerInternalSpectralSequence standardFoundation.hf2.unit SphereSpectrum)
+      5 (11,136) (16,140) eY 0)
+    (hext : AnyYH0Extension D eY ((L).target M) h₀)
+    (hnu : NuExtension9 D eX eY h2) :
+    TargetNuDivisible D ((L).target M) h2 := by
+  sorry
+
 theorem target_nu_divisible
     (hc3 : C3 L) (hc5 : C5 M (D).toModelData L η) :
     TargetNuDivisible D ((L).target M) h2 := by
-  sorry
+  apply target_nu_divisible_assembly hc3 hc5
+  · exact conditional_y_d5_zero hc3 hc5
+  · exact any_y_h0_extension hc3 hc5
+  · exact nu_extension_in_ninth_quotient
 
 /-- The last rigidity step of Blueprint
 `prop:near126-c3-not-c5`, which uses `thm:external-lambda-bockstein`.
@@ -740,6 +788,14 @@ theorem target_divisibility_forces_cnu_incoming
       ∃ r : ℤ, 2 ≤ r ∧ r ≤ 5 ∧
         HitOnPage (KIP126.Computation.Route.sequence D .nuCofiber) r (14,139) y := by
   sorry
+
+theorem target_divisibility_forces_cnu_incoming_assembly
+    (hdiv : TargetNuDivisible D ((L).target M) h2) :
+    ∃ y : KIP126.Computation.Route.Page D .nuCofiber 14 139,
+      (I).realization.decode .nuCofiber 14 139 [2] = some y ∧
+      ∃ r : ℤ, 2 ≤ r ∧ r ≤ 5 ∧
+        HitOnPage (KIP126.Computation.Route.sequence D .nuCofiber) r (14,139) y := by
+  exact target_divisibility_forces_cnu_incoming hdiv
 
 /-- The final contradiction uses precisely the decoded target and finite
 incoming window already supplied by the independent Cnu reconstruction. -/
