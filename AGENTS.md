@@ -9,12 +9,16 @@
   stage-boundary statement, source provenance, proof status, or mathematical
   strength.
 
-## Check GitHub Release caches before compiling
+## Check and restore GitHub Release caches after pulling updates
 
-Before running a Lean/Lake compilation command, check this repository's GitHub
-Releases for a compatible project build cache. Reuse an already verified local
-cache when available; do not repeatedly download it during the same build task.
-Run the following from the repository root:
+Every time you pull remote repository updates, also check this repository's
+GitHub Releases for a project build cache matching the updated checkout.
+After a successful `git pull` (or fetch followed by merge/rebase), perform this
+check as part of the same update task, even if no compilation is requested.
+If a compatible cache is available and is not already verified locally,
+download, verify, and restore it using the steps below. Reuse an already
+verified compatible local cache without downloading it again.
+Run the following from the repository root after updating the checkout:
 
 ```bash
 gh release list --repo SII-MATH/Kervaire126 --limit 100 \
@@ -59,12 +63,14 @@ built from commit `d8eb0ee60769457c5d6e6a155fd8c029f4eb53e9` with
   The script's `restore` CLI handles CI artifacts, not Release downloads.
 - This release contains only project `.lake/build/` products. Obtain pinned
   dependencies and their Mathlib cache separately as described in `docs/CI.md`.
-  After restoring, still run the requested build (normally
-  `lake build KIP126 checkdecls`); a downloaded cache is not a successful build
-  or evidence that the mathematical proofs are complete.
+  When a build is subsequently requested, still run the normal build command
+  (normally `lake build KIP126 checkdecls`); a downloaded cache is not a successful
+  build or evidence that the mathematical proofs are complete.
 - If no compatible release exists or GitHub is unavailable, report that briefly
-  and continue with local caches and the normal build. Do not block work on an
-  optional cache download. Plain `git pull` does not download Release assets.
+  and finish the source update using the available local caches. Do not block
+  the update on an optional cache download. Plain `git pull` does not download
+  Release assets; perform the cache check and restoration explicitly as part
+  of each pull/update task.
 
 ## KIP126 Blueprint synchronization
 
