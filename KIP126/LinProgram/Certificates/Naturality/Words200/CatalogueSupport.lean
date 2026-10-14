@@ -1,6 +1,7 @@
 module
 
 public import KIP126.LinProgram.Certificates.Naturality.Words200.Support
+public import KIP126.LinProgram.Certificates.BasisCatalogue.Archive
 
 @[expose] public section
 
@@ -8,6 +9,17 @@ public import KIP126.LinProgram.Certificates.Naturality.Words200.Support
 /-! Batch the strict row decoder while retaining exact archived-line membership. -/
 namespace KIP126.LinModule.NaturalityWords200
 open KIP126.LinE2 NativeMapCertificates
+
+theorem basis_member (i : Nat) (hi : i < LinE2.RawData.basisChunks.size)
+    (rows : List (List Char))
+    (hc : LinE2.RawData.basisChunks[i] = String.ofList (joinRows rows))
+    (row : List Char) (hr : row ∈ rows) (hn : '\n' ∉ row)
+    (r : BasisRow) (hd : decodeBasisRow (String.ofList row) = .ok r) :
+    r ∈ basisRows := by
+  apply BasisCatalogue.row_mem_of_rawLine BasisCatalogue.archivedChunks_valid _ ?_ r hd
+  apply BasisCatalogue.rawLine_mem_of_chars i hi row
+  rw [hc, String.toList_ofList]
+  exact selected_mem_joinRows rows row hr hn
 
 def basisBindingCheck (rows : Array (List Char)) (b : Nat × BasisRow) : Bool :=
   if h : b.1 < rows.size then

@@ -990,6 +990,7 @@ comparison dependencies are discharged, the result remains conditional.
 \begin{lemma}[Complete native Ceta word certificates through internal degree 200]
   \label{lem:lin-naturality-words200}
   \lean{KIP126.LinModule.NaturalityWords200.CertifiedBatch,KIP126.LinModule.NaturalityWords200.entries}
+  \lean{KIP126.LinModule.NaturalityWords200.relation_member,KIP126.LinModule.NaturalityWords200.basis_member}
   \lean{KIP126.LinModule.NaturalityWords200.entry_evaluate,KIP126.LinModule.NaturalityWords200.zero_evaluate,KIP126.LinModule.NaturalityWords200.entry_desc,KIP126.LinModule.NaturalityWords200.target_row_mem,KIP126.LinModule.NaturalityWords200.entry_count,KIP126.LinModule.NaturalityWords200.source_ids}
   \uses{lem:lin-naturality-batch21-words,prop:lin-native-module-map-descent}
   \leanok
@@ -1017,7 +1018,11 @@ comparison dependencies are discharged, the result remains conditional.
   block check polynomial relation combinations and apply the common checker
   soundness theorem. Share original relation and target catalogue membership
   proofs by archived CSV chunk; exact character transcription equalities
-  are checked by the kernel. Within each target catalogue chunk, check at
+  are checked by the kernel. Relation membership uses only the original
+  relation strings and does not require certification of the basis parser.
+  Target catalogue membership separately retains the complete archived
+  basis-parser certificate and the selected row's decoding equality.
+  Within each target catalogue chunk, check at
   most 32 selected row bindings at a time and use that batch certificate
   directly for each row membership. This bounds each reduction without
   changing the original row values or the complete target coverage.

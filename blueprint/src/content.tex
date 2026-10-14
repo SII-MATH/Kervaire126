@@ -164,6 +164,10 @@ computation delivery. The selected one-dimensional degree is consumed
 directly, while remaining literal table queries reuse LinProgram's finite
 certificates. The paper's proof modules do not carry a second copy of the
 raw basis table or its parsing proofs.
+Finite relation membership and target basis-row membership have separate
+certificate support: relation-only modules do not depend on complete basis
+parser certification. Target membership still requires that certification;
+this separation does not alter the actual-page comparison obligations.
 The relation calculations for the theta--B and Hopf-extension arguments
 likewise use shared LinProgram certificates. Their finite-page deductions
 reuse the common representative and boundary lemmas of
