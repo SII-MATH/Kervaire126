@@ -548,6 +548,19 @@ the internal constructions retained in Kervaire126.
   exactly when the representative is not in $B_\infty$.
 \end{definition}
 
+\begin{proposition}[Permanent representatives are second-page cycles]
+  \label{prop:ss-permanent-implies-page-two-cycle}
+  \lean{KIP126.Core.SpectralSequence.FinitePageCalculus.isPageCycle_of_permanentCycle,KIP126.Core.SpectralSequence.FinitePageCalculus.isPageCycle_of_nonzeroSurvival}
+  \uses{def:ss-permanent-einfty-class,prop:internal-finite-page-calculus}
+  \leanok
+  In an internal spectral sequence of integer modules starting no later
+  than page two, a permanent $E_2$ representative has zero $d_2$.
+  The same conclusion follows from nonzero survival at infinity.
+  These deductions use only the quantified spectral sequence and its common
+  representatives, without any fixed route or computation delivery.
+\end{proposition}
+
+
 % SOURCE: MainPaper/main.tex:253-263, PROJECT_BOUNDARY.md external-input boundary.
 \begin{definition}[Convergence and detection witness]
   \label{def:ss-convergence-detection-witness}

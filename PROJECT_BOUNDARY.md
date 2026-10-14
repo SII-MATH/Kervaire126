@@ -91,6 +91,11 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    or proof, and reason for being assumed. Its presence is not evidence that
    the statement or its downstream consequences are proved.
 
+   The restored optional `KIPBase` library is outside this KIP126 proof and
+   acceptance boundary. Its historical axioms and unfinished comparisons are
+   retained as independent research code, not accepted KIP126 inputs. KIP126
+   must not import KIPBase; neither the default build nor CI builds that library.
+
    An unfinished theorem remains in the appropriate proof file with `by sorry`;
    it must not be converted into an axiom merely to avoid `sorryAx`.
    Development CI does not run proof-debt audits or publish debt reports, and

@@ -19,6 +19,30 @@ Kervaire126 不再保留 `KIP126/Mathlib/`、`KIP126/Mathlib.lean`、其专用�
 内部 SSData 构造、固定模型、Challenge2、主证明和上游 Mathlib 依赖继续保留。
 最终 Challenge/Solution 陈述及其证明状态未改变。
 
+## backup 代码补充整合（2026-10-14）
+
+按用户决定，从 `codex/local-backup-20261013` 的 `4977ff53b` 恢复
+`KIPBase/` 和 `KIPBase.lean`，作为可显式构建的独立库。默认目标及 CI
+仍只构建 KIP126；不迁入 KIPBase 专用 CI 检查、审计工具或
+`backups/local-20261013/` 历史归档。KIPBase 内原有的数学检查模块随源码
+保留，但不加入 CI。KIPBase 的历史公理与未完成比较不属于 KIP126 的
+证明输入或验收依据；KIP126 不导入 KIPBase。下文的初始提取与
+2026-10-10 记录描述当时的剥离状态，此次恢复是明确授权的例外。
+
+KIP126 补充沿用 develop 的 `module`、公共名称和分层：球面乘积的
+度数运输、交换性条件及命名乘积比较归入 Def；Mahowald 的假设及具体
+见证构造归入现有 Def 工具目录；Section 7 中间步骤归入拆分后的
+Massey、Q3/Q5 和 Q9 证明模块。已被 develop 的现有证明覆盖的 backup
+占位步骤不回退为 `sorry` 或额外公理，Blueprint 以实际声明与依赖为准。
+
+backup 的 `Massey/Axioms.lean` 与 `compositionOnlyMossInterface` 不迁入：
+固定模型上的 defining system 和 synthetic Toda 结论已有 develop 的
+实际证明，通用 Toda 自然性已有使用真正 triangulated functor 的
+`KIP126.StableHomotopy.Toda.map`，不恢复仅存储任意命题的 `Exact` 类。
+这不声称证明了 backup 的全称页间公理。计算路线的两处修改仅为旧实现
+的类型展开适配；develop 当前实现与拆分后的证明保留。
+`MainPaper/main.tex` 的纯措辞修改不迁入，来源原件及清单哈希保持一致。
+
 ## develop 本地进展整合（2026-10-10）
 
 - 合并旧仓本地开发历史与 Kervaire126 更新，保留本地 KIP126 证明进展。

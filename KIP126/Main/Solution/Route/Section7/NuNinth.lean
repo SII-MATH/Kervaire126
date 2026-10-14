@@ -1938,10 +1938,10 @@ end
 end NuNinthProof
 
 
-/-- `lem:nuext125`: use the actual lambda^4 map from the shifted Q5
-to Q9. X need only survive nontrivially to E6 with no incoming differential;
-neither X nor Y is assumed to be a classical permanent cycle. -/
-theorem nu_extension_in_ninth_quotient : NuExtension9 D eX eY h2 := by
+/-- Lift specified Q5 representatives to the required Q9 relation using the
+actual lambda^4 map and the existing filtration correction argument. -/
+theorem nu_extension_lifts_from_fifth_to_ninth_quotient
+    (h5 : NuExtension5 D eX eY h2) : NuExtension9 D eX eY h2 := by
   have hc : CanonicalWeightShift routeModel.towerPresentation
       routeLiterature.synthetic.eInfty.weightShift := by
     change CanonicalWeightShift
@@ -1956,8 +1956,13 @@ theorem nu_extension_in_ninth_quotient : NuExtension9 D eX eY h2 := by
     literature.bindings.route.quotientBinding
     literature.bindings.route.algebraBinding
     (KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing)
-    h2 nu_extension_lifts_to_fifth_quotient
+    h2 h5
 
+/-- `lem:nuext125`: use the actual lambda^4 map from the shifted Q5
+to Q9. X need only survive nontrivially to E6 with no incoming differential;
+neither X nor Y is assumed to be a classical permanent cycle. -/
+theorem nu_extension_in_ninth_quotient : NuExtension9 D eX eY h2 := by
+  exact nu_extension_lifts_from_fifth_to_ninth_quotient nu_extension_lifts_to_fifth_quotient
 
 end
 end KIP126.Main.Solution.Route.Section7

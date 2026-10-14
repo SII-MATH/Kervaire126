@@ -279,6 +279,41 @@ own proof, with the stated degree bounds and comparison maps.
   incoming source group. Prove that none of their differentials hits this class.
 \end{proof}
 
+% SOURCE: MainPaper/main.tex:2638-2673, the Q3, Q5 and Q9 stages in Lemma lem:nuext125.
+\begin{lemma}[The Hopf relation modulo lambda cubed]
+  \label{lem:near126-nu-extension-q3}
+  \lean{KIP126.Kervaire.Route.Section7.NuExtension3,KIP126.Main.Solution.Route.Section7.nu_extension_in_third_quotient}
+  \uses{def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-results,thm:computation-route-products}
+  \notready
+  There are actual detected representatives $x,y$ in the same sphere
+  quotient modulo $\lambda^3$, of weights $130,134$, satisfying
+  $\nu x=y$. This is the intermediate relation already constructed
+  inside \texttt{Section7/NuFifth}; it does not construct the underlying
+  model or the unfinished generalized Mahowald law.
+\end{lemma}
+
+\begin{lemma}[Lifting the Hopf relation to the fifth quotient]
+  \label{lem:near126-nu-extension-q5}
+  \lean{KIP126.Kervaire.Route.Section7.NuExtension5,KIP126.Main.Solution.Route.Section7.nu_extension_lifts_to_fifth_quotient}
+  \uses{lem:near126-nu-extension-q3,evidence:nu-extension-obstruction-vanishing,thm:computation-route-basis,thm:computation-route-results,prop:synthetic-einfty-map-compatibility}
+  \notready
+  The Q3 relation lifts to exact detected Q5 representatives with the
+  same weights. The proof retains the full filtration correction and
+  the actual quotient restriction map, rather than asserting that every
+  representative lifts or that the correction space vanishes.
+\end{lemma}
+
+\begin{lemma}[The fifth-to-ninth quotient deduction]
+  \label{lem:near126-nu-extension-q5-q9}
+  \lean{KIP126.Kervaire.Route.Section7.NuExtension9,KIP126.Main.Solution.Route.Section7.nu_extension_lifts_from_fifth_to_ninth_quotient}
+  \uses{lem:near126-nu-extension-q5,prop:synthetic-einfty-map-compatibility,thm:computation-route-basis,thm:computation-route-results,thm:computation-route-products,prop:internal-finite-page-calculus}
+  \notready
+  Given the displayed Q5 relation, the actual $\lambda^4$ map and
+  existing filtration correction produce Q9 representatives of weights
+  $126,131$ with $\nu x=\lambda y$. No classical permanence assumption
+  for $X$ or $Y$ is introduced.
+\end{lemma}
+
 % SOURCE: MainPaper/main.tex:2617-2673, missing obstruction check in Lemma lem:nuext125.
 \begin{proposition}[Obstruction vanishing for the mod-$\lambda^5$ lift]
   \label{evidence:nu-extension-obstruction-vanishing}
@@ -721,11 +756,28 @@ own proof, with the stated degree bounds and comparison maps.
   the Toda-detection conclusion below.
 \end{proof}
 
+% SOURCE: MainPaper/main.tex:2534-2545, the E3 Massey calculation in Lemma lem:toda2ext.
+\begin{lemma}[The fixed Massey defining-system inputs]
+  \label{lem:theta-b-massey-defining-inputs}
+  \lean{KIP126.Main.Solution.Route.Section7.ThetaBMasseyCycleInputs,KIP126.Main.Solution.Route.Section7.ThetaBMasseyD2H6,KIP126.Main.Solution.Route.Section7.ThetaBMasseyD2Second,KIP126.Main.Solution.Route.Section7.theta_b_massey_cycle_inputs,KIP126.Main.Solution.Route.Section7.theta_b_massey_eB_cycle,KIP126.Main.Solution.Route.Section7.theta_b_massey_d2_h6,KIP126.Main.Solution.Route.Section7.theta_b_massey_d2_second_nullhomotopy,KIP126.Main.Solution.Route.Section7.theta_b_massey_left_indeterminacy_product,KIP126.Main.Solution.Route.Section7.theta_b_massey_zero_indeterminacy,KIP126.Main.Solution.Route.Section7.theta_b_massey_value_and_indeterminacy}
+  \uses{def:massey-product,def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-route-results,thm:computation-route-products,thm:computation-route-labels-h0-square,prop:internal-finite-page-calculus}
+  \notready
+  On the same fixed sphere and correlated route inputs, $h_5^2,h_0,B$
+  are $d_2$-cycles. The actual $d_2(h_6)=h_5^2h_0$ equation and a
+  second nullhomotopy of $h_0B$ form the defining system for the
+  specified $h_6B$ value on $E_3$. Multiplication by $h_5^2$ kills the
+  entire displayed $E_2^{7,70}$ space, and the full Massey subset has
+  zero indeterminacy. These intermediate deductions are extracted from
+  the existing proof in \texttt{Section7/ThetaMassey}; they do not add
+  a page-passage axiom or another Challenge2 field. Their dependent
+  route inputs still prevent marking this fixed-model node complete.
+\end{lemma}
+
 % SOURCE: MainPaper/main.tex:2470-2567, Lemma lem:toda2ext; Moss Theorem 1.2 and listed Ext products.
 \begin{lemma}[Toda bracket detects the two-extension source]
   \label{lem:toda-two-extension}
   \lean{KIP126.Main.Solution.Route.Section7.main_toda_bracket_detected}
-  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2,lem:computation-sphere-low-degrees,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates}
+  \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,lem:near126-alpha-relations,lem:toda-h0-leading-nonvanishing,thm:moss-convergence-adapter,lem:theta-b-massey-defining-inputs,thm:toda-product-identities,evidence:near126-core,evidence:h_0_sq_mul_x_125_9_2,lem:computation-sphere-low-degrees,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates}
   \notready
   For the fixed sphere and comparisons above, assuming $C_3$ and the universal
   form of $C_5$, the synthetic Toda bracket
@@ -841,7 +893,7 @@ own proof, with the stated degree bounds and comparison maps.
 \begin{lemma}[The required Hopf extension]
   \label{lem:near126-nu-extension}
   \lean{KIP126.Main.Solution.Route.Section7.nu_extension_lifts_to_fifth_quotient,KIP126.Main.Solution.Route.Section7.nu_extension_in_ninth_quotient}
-  \uses{def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-basis,thm:computation-route-results,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility,thm:computation-route-bottom,thm:computation-route-top,thm:computation-route-products,prop:internal-finite-page-calculus}
+  \uses{lem:near126-nu-extension-q5-q9,def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-basis,thm:computation-route-results,evidence:nu-extension-obstruction-vanishing,prop:synthetic-einfty-map-compatibility,thm:computation-route-bottom,thm:computation-route-top,thm:computation-route-products,prop:internal-finite-page-calculus}
   \notready
   For the fixed sphere and comparisons above, there is a class
   $[\lambda^4h_1x_{121,7}]\in

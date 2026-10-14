@@ -3501,12 +3501,9 @@ end
 end NuFiveFromThreeProof
 
 
-/-- `lem:nuext125`, the substantial Q3-to-Q5 step: all AF10 correction
-classes must be checked in the full E2(10,135) space, including linear
-combinations, with BHS lifetime and the actual rho map. The conclusion is
-an exact existential lifting relation, not the false assertion that this
-five-dimensional E2 group vanishes or that all representatives vanish. -/
-theorem nu_extension_lifts_to_fifth_quotient : NuExtension5 D eX eY h2 := by
+/-- The actual Q3 Hopf relation, extracted before the Q3-to-Q5 lifting step.
+Both detected classes and the equation use the same model and quotient. -/
+theorem nu_extension_in_third_quotient : NuExtension3 D eX eY h2 := by
   let SF := KIP126.Computation.Route.sphere_facts I sphereVanishing
   obtain ⟨huq,κ,hκ,x,y,hxn,hx,hy,hxy⟩ := nu_three_actual_relation_and_unique
     routeLiterature.synthetic.eInfty routeLiterature.may.toMayContext I
@@ -3514,13 +3511,21 @@ theorem nu_extension_lifts_to_fifth_quotient : NuExtension5 D eX eY h2 := by
     (KIP126.Main.Solution.Tools.generalizedMahowald D routeLiterature.synthetic routeLiterature.may
       (D).auxiliary.nuRouteTriangle)
     (KIP126.Computation.Route.cnu_d3 I) SF
-  apply nu_five_of_three I routeLiterature.synthetic.eInfty literature.bindings.route.algebra
-    literature.bindings.route.algebraBinding SF h2 routeLiterature.applicability.nuCofiber.normalized_label
   refine ⟨x,y,hx,hy,?_⟩
   rw [q3_sphere_action_actual_map D routeLiterature.synthetic.eInfty literature.bindings.route.algebra
     literature.bindings.route.quotientBinding routeLiterature.may.toMayContext huq κ hκ h2 x hxn]
   exact hxy
 
+/-- `lem:nuext125`, the substantial Q3-to-Q5 step: all AF10 correction
+classes must be checked in the full E2(10,135) space, including linear
+combinations, with BHS lifetime and the actual rho map. The conclusion is
+an exact existential lifting relation, not the false assertion that this
+five-dimensional E2 group vanishes or that all representatives vanish. -/
+theorem nu_extension_lifts_to_fifth_quotient : NuExtension5 D eX eY h2 := by
+  let SF := KIP126.Computation.Route.sphere_facts I sphereVanishing
+  exact nu_five_of_three I routeLiterature.synthetic.eInfty literature.bindings.route.algebra
+    literature.bindings.route.algebraBinding SF h2 routeLiterature.applicability.nuCofiber.normalized_label
+    nu_extension_in_third_quotient
 
 end
 end KIP126.Main.Solution.Route.Section7

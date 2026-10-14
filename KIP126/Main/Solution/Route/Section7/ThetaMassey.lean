@@ -28,6 +28,39 @@ local notation "I" => routeComputation
 local notation "η" => routeEta
 local notation "h₀" => routeLiterature.toda.h0
 
+abbrev ThetaBMasseyCycleInputs : Prop :=
+    IsPageCycle
+        (adamsTowerInternalSpectralSequence
+          standardFoundation.hf2.unit SphereSpectrum)
+        2 (2, 64) (Sphere.Internal.hiSquare standardFoundation.hf2 M 5) ∧
+    IsPageCycle
+        (adamsTowerInternalSpectralSequence
+          standardFoundation.hf2.unit SphereSpectrum)
+        2 (1, 1) (Sphere.Internal.hi standardFoundation.hf2 M 0) ∧
+    IsPageCycle
+        (adamsTowerInternalSpectralSequence
+          standardFoundation.hf2.unit SphereSpectrum)
+        2 (8, 70) eB
+
+abbrev ThetaBMasseyD2H6 : Prop :=
+    (adamsTowerInternalSpectralSequence
+        standardFoundation.hf2.unit SphereSpectrum).d 2 (1, 64)
+        (Sphere.Internal.hi standardFoundation.hf2 M 6) =
+      Sphere.Internal.product standardFoundation.hf2 M
+        (s := 2) (t := 64) (s' := 1) (t' := 1)
+        (Sphere.Internal.hiSquare standardFoundation.hf2 M 5)
+        (Sphere.Internal.hi standardFoundation.hf2 M 0)
+
+abbrev ThetaBMasseyD2Second : Prop :=
+    ∃ b : (adamsTowerInternalSpectralSequence
+      standardFoundation.hf2.unit SphereSpectrum).Page 2 (7, 70),
+      (adamsTowerInternalSpectralSequence
+        standardFoundation.hf2.unit SphereSpectrum).d 2 (7, 70) b =
+        Sphere.Internal.product standardFoundation.hf2 M
+          (s := 1) (t := 1) (s' := 8) (t' := 70)
+          (Sphere.Internal.hi standardFoundation.hf2 M 0) eB
+
+
 section ThetaBMasseyProof
 open CategoryTheory CategoryTheory.Limits
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
@@ -170,15 +203,23 @@ private theorem theta_b_massey_from_inputs
     let eB := I'.realization.sphere 8 70 B
     let eHB := Sphere.Internal.product H M' (s := 1) (t := 64) (s' := 8) (t' := 70)
       (Sphere.Internal.hi H M' 6) eB
-    (∃ z, RepresentsOnPage (sequence D' .sphere) 3 (9,134) eHB z ∧
-      z ∈ ThetaBMassey M' eB) ∧ ThetaBMasseyZeroIndeterminacy M' eB := by
+    ((∃ z, RepresentsOnPage (sequence D' .sphere) 3 (9,134) eHB z ∧
+      z ∈ ThetaBMassey M' eB) ∧ ThetaBMasseyZeroIndeterminacy M' eB) ∧
+    IsPageCycle (sequence D' .sphere) 2 (2,64) (Sphere.Internal.hiSquare H M' 5) ∧
+    IsPageCycle (sequence D' .sphere) 2 (1,1) (Sphere.Internal.hi H M' 0) ∧
+    IsPageCycle (sequence D' .sphere) 2 (8,70) eB ∧
+    (sequence D' .sphere).d 2 (1,64) (Sphere.Internal.hi H M' 6) =
+      Sphere.Internal.product H M' (s := 2) (t := 64) (s' := 1) (t' := 1)
+        (Sphere.Internal.hiSquare H M' 5) (Sphere.Internal.hi H M' 0) ∧
+    ∃ b : E2 H SphereSpectrum 7 70,
+      (sequence D' .sphere).d 2 (7,70) b =
+        Sphere.Internal.product H M' (s := 1) (t := 1) (s' := 8) (t' := 70)
+          (Sphere.Internal.hi H M' 0) eB := by
   classical
   let E := sequence D' .sphere
   let eB := I'.realization.sphere 8 70 B
   let eHB := Sphere.Internal.product H M' (s := 1) (t := 64) (s' := 8) (t' := 70)
     (Sphere.Internal.hi H M' 6) eB
-  change (∃ z, RepresentsOnPage E 3 (9,134) eHB z ∧ z ∈ ThetaBMassey M' eB) ∧
-    ThetaBMasseyZeroIndeterminacy M' eB
   have permanent_reaches {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ×ℤ)}
       {p : ℤ×ℤ} {x : E.Page 2 p} (hx : IsPermanentCycle E p x)
       (r : ℤ) (hr : 2≤r) : ReachesPage E r p x := by
@@ -552,14 +593,15 @@ private theorem theta_b_massey_from_inputs
     change I'.realization.sphere 9 134 (mulAt dataH6 B)=eHB at hprod
     rw [←hprod,hbLabel]
     exact rHB
-  obtain ⟨z,hz⟩ := reachHB
-  refine ⟨⟨z,hz,eHB,hdef,hz⟩,⟨z,eHB,hdef,hz⟩,?_⟩
-  intro x hx y hy
-  obtain ⟨a,ha,hax⟩ := hx
-  obtain ⟨b,hb,hby⟩ := hy
-  rw [uniqueValue a ha] at hax
-  rw [uniqueValue b hb] at hby
-  exact FinitePageCalculus.represents_unique hax hby
+  refine ⟨?_,hcycle5,hcycle0,hcycleB,hdA,⟨I'.realization.sphere 7 70 (mulAt h0Six dataH6),hdB⟩⟩
+  · obtain ⟨z,hz⟩ := reachHB
+    refine ⟨⟨z,hz,eHB,hdef,hz⟩,⟨z,eHB,hdef,hz⟩,?_⟩
+    intro x hx y hy
+    obtain ⟨a,ha,hax⟩ := hx
+    obtain ⟨b,hb,hby⟩ := hy
+    rw [uniqueValue a ha] at hax
+    rw [uniqueValue b hb] at hby
+    exact FinitePageCalculus.represents_unique hax hby
 
 end
 
@@ -574,8 +616,39 @@ theorem theta_b_massey_value_and_indeterminacy :
       (adamsTowerInternalSpectralSequence standardFoundation.hf2.unit SphereSpectrum)
       3 (9,134) eH6B z ∧ z ∈ ThetaBMassey M eB) ∧
     ThetaBMasseyZeroIndeterminacy M eB := by
-  exact theta_b_massey_from_inputs routeComputation routeLiterature.classical
+  exact (theta_b_massey_from_inputs routeComputation routeLiterature.classical).1
 
+
+/-- The three page-two cycles in the same fixed Massey defining system. -/
+theorem theta_b_massey_cycle_inputs : ThetaBMasseyCycleInputs := by
+  have h := (theta_b_massey_from_inputs routeComputation routeLiterature.classical).2
+  exact ⟨h.1,h.2.1,h.2.2.1⟩
+
+/-- The supplied B label is a page-two cycle. -/
+theorem theta_b_massey_eB_cycle :
+    IsPageCycle (adamsTowerInternalSpectralSequence standardFoundation.hf2.unit SphereSpectrum)
+      2 (8,70) eB := theta_b_massey_cycle_inputs.2.2
+
+/-- The first nullhomotopy, with its original order of factors. -/
+theorem theta_b_massey_d2_h6 : ThetaBMasseyD2H6 := by
+  exact (theta_b_massey_from_inputs routeComputation routeLiterature.classical).2.2.2.2.1
+
+/-- The second nullhomotopy uses the same B label and actual Adams differential. -/
+theorem theta_b_massey_d2_second_nullhomotopy : ThetaBMasseyD2Second := by
+  exact (theta_b_massey_from_inputs routeComputation routeLiterature.classical).2.2.2.2.2
+
+/-- The zero indeterminacy is already proved for the entire Massey subset. -/
+theorem theta_b_massey_zero_indeterminacy : ThetaBMasseyZeroIndeterminacy M eB :=
+  theta_b_massey_value_and_indeterminacy.2
+
+/-- The left indeterminacy image vanishes on the entire displayed E2 space. -/
+theorem theta_b_massey_left_indeterminacy_product
+    (c : E2 standardFoundation.hf2 SphereSpectrum 7 70)
+    (_hc : IsPageCycle (adamsTowerInternalSpectralSequence standardFoundation.hf2.unit SphereSpectrum)
+      2 (7,70) c) :
+    Sphere.Internal.product standardFoundation.hf2 M (s := 2) (t := 64) (s' := 7) (t' := 70)
+      (Sphere.Internal.hiSquare standardFoundation.hf2 M 5) c = 0 :=
+  h5_square_times_entire_770_zero routeComputation c
 
 end
 end KIP126.Main.Solution.Route.Section7

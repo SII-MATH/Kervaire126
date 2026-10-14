@@ -1496,4 +1496,44 @@ theorem basis_pair_sum_ne_zero
   exact one_ne_zero hh
 
 end
+/-- Permanent representatives are cycles on page two. This general lemma
+is migrated from the backup's Section 7 proof and uses no selected model. -/
+theorem isPageCycle_of_permanentCycle
+    {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
+    {p : ℤ × ℤ} {x : E.Page 2 p}
+    (hbase : E.r₀ ≤ 2) (h : IsPermanentCycle E p x) : IsPageCycle E 2 p x := by
+  rcases h with ⟨z, hz⟩
+  let SD := E.ssData p
+  let n : WithTop ℕ := ↑(2 - E.r₀).toNat
+  let m : WithTop ℕ := ↑(3 - E.r₀).toNat
+  have hnm : n ≤ m := by
+    dsimp only [n, m]
+    exact_mod_cast (show (2 - E.r₀).toNat ≤ (3 - E.r₀).toNat by omega)
+  let z3 := Subobject.ofLE (SD.Z ⊤) (SD.Z m) (SD.Z_anti le_top) z
+  have hrep : ReachesPage E 3 p x := by
+    refine ⟨SD.pageπ m z3, ?_⟩
+    refine ⟨by omega, z3, ?_, rfl⟩
+    change SD.pageπ n ((Subobject.ofLE (SD.Z m) (SD.Z n) _) z3) = x
+    dsimp only [z3]
+    have hcomp := Subobject.ofLE_comp_ofLE (SD.Z ⊤) (SD.Z m) (SD.Z n)
+      (SD.Z_anti le_top) (SD.Z_anti hnm)
+    have hcomp' :
+        (Subobject.ofLE (SD.Z ⊤) (SD.Z m) (SD.Z_anti le_top) ≫
+          Subobject.ofLE (SD.Z m) (SD.Z n) (SD.Z_anti hnm)) ≫ SD.pageπ n =
+        Subobject.ofLE (SD.Z ⊤) (SD.Z n) (SD.Z_anti le_top) ≫ SD.pageπ n := by
+      exact congrArg (fun f => f ≫ SD.pageπ n) hcomp
+    have hz' := congrArg (fun f => f z) hcomp'
+    exact hz'.trans hz
+  have hself : RepresentsOnPage E 2 p x x :=
+    KIP126.Core.SpectralSequence.FinitePageCalculus.represents_two_self x
+  exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_d_zero_of_later
+    (E := E) (p := p) (x := x) (r := 2) (t := 3) hbase (by omega) hself hrep
+
+theorem isPageCycle_of_nonzeroSurvival
+    {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
+    {p : ℤ × ℤ} {x : E.Page 2 p}
+    (hbase : E.r₀ ≤ 2) (h : NonzeroSurvival E p x) : IsPageCycle E 2 p x := by
+  rcases h with ⟨z, hz, _⟩
+  exact isPageCycle_of_permanentCycle hbase ⟨z, hz⟩
+
 end KIP126.Core.SpectralSequence.FinitePageCalculus

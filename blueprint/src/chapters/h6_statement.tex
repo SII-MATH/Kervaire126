@@ -1985,7 +1985,7 @@ belong to the later proof.
 
 \begin{proposition}[Cobar multiplication descends to cohomology]
   \label{prop:milnor-cobar-cup-descent}
-  \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.cup_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Classical.Adams.Sphere.Internal.hiProduct_eq_product,KIP126.Classical.Adams.Sphere.Internal.hiSquare_eq_product,KIP126.Challenge2.CobarCupCalculus}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.cup_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Classical.Adams.Sphere.Internal.hiProduct_eq_product,KIP126.Classical.Adams.Sphere.Internal.hiSquare_eq_product,KIP126.Classical.Adams.Sphere.Internal.product_hi_zero_hiSquare_five_eq_h0HiSquare,KIP126.Challenge2.CobarCupCalculus}
   \uses{def:milnor-cobar-cohomology,def:milnor-internal-hi-family}
   \leanok
   Cobar concatenation induces an actual $\mathbb F_2$-bilinear product
@@ -2027,6 +2027,20 @@ belong to the later proof.
   fixed canonical comparison transports it to the actual sphere page.
   There is no native presentation or bound on internal degree here.
 \end{proposition}
+
+\begin{proposition}[Koszul symmetry of the internal sphere product]
+  \label{prop:internal-sphere-product-graded-commutativity}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.spherePageDegreeTransport,KIP126.Classical.Adams.Sphere.Internal.SphereProductGradedCommutative,KIP126.Classical.Adams.Sphere.Internal.sphere_product_graded_commutativity}
+  \uses{prop:milnor-cobar-cup-commutator,prop:milnor-cobar-internal-e2}
+  \notready
+  The specified internal sphere $E_2$ product is symmetric after transporting
+  the reversed output bidegree, with Koszul sign
+  $(-1)^{(t-s)(t'-s')}$. Over $\mathbb F_2$ this sign acts trivially.
+  The Lean deduction uses the existing cobar commutator-boundary obligation;
+  it is not an independent proof of that unfinished obligation or a
+  commutativity theorem for every spectrum.
+\end{proposition}
+
 
 \begin{proposition}[Canonical cobar comparison with the internal second page]
   \label{prop:milnor-cobar-internal-e2}

@@ -19,6 +19,43 @@ require checkdecls from git
 lean_lib KIP126 where
   globs := #[.andSubmodules `KIP126]
 
+/-! Optional independent historical library, restored from backup by user request.
+It is outside the KIP126 import graph and is not a default or CI target. -/
+lean_lib KIPBase where
+  -- A nested standalone workspace may contain KIPBase/.lake. Recursive globs
+  -- at KIPBase itself would compile those ignored dependency sources as local
+  -- modules. Cover every owned source area explicitly, without deleting caches.
+  -- scripts.test_kipbase_build_layout guards source coverage as the tree grows.
+  globs := #[
+    .one `KIPBase,
+    .one `KIPBase.Basic,
+    .one `KIPBase.Check,
+    .one `KIPBase.CheckBasic,
+    .one `KIPBase.E2page,
+    .one `KIPBase.E2pageCompute,
+    .one `KIPBase.E2pageData,
+    .one `KIPBase.E2pageExamples,
+    .one `KIPBase.E2pageTactic,
+    .one `KIPBase.E2pageTacticExamples,
+    .one `KIPBase.Mathlib,
+    .one `KIPBase.ModelRealizationChecks,
+    .one `KIPBase.Standalone,
+    .one `KIPBase.chanllege,
+    .submodules `KIPBase.Compatibility,
+    .submodules `KIPBase.Section7,
+    .submodules `KIPBase.Section8,
+    .submodules `KIPBase.SpectralSequence,
+    .submodules `KIPBase.StableHomotopy,
+    .submodules `KIPBase.Synthetic,
+    .submodules `KIPBase.multiplicativeSS]
+  leanOptions := #[
+    ⟨`pp.unicode.fun, true⟩,
+    ⟨`relaxedAutoImplicit, false⟩,
+    ⟨`weak.linter.mathlibStandardSet, true⟩,
+    ⟨`backward.defeqAttrib.useBackward, true⟩,
+    ⟨`backward.isDefEq.respectTransparency, false⟩,
+    ⟨`maxSynthPendingDepth, .ofNat 3⟩]
+
 /-!
 Optional compiled-environment audit for final proof acceptance.
 Development CI checks compilation without treating unfinished proofs as complete.
