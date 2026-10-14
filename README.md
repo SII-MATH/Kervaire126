@@ -45,8 +45,11 @@ lake build KIP126
 bash scripts/check.sh
 ```
 
-默认 `lake build` 和 CI 构建 KIP126。`develop` 遵循 `main` 的剥离范围：
-KIPBase、旧审计与迁移档案、Euler/Multica 配置及旧工作流和工具留在旧仓库，
+默认 `lake build` 和 CI 构建 KIP126。除下面明确恢复的 KIPBase 外，
+`develop` 继续遵循 `main` 的剥离范围。
+KIPBase 已按用户决定恢复为独立可选库，可显式运行 `lake build KIPBase`。
+它不进入 KIP126 的导入图、默认构建或 CI；其历史公理不属于 KIP126 的证明输入。
+旧审计与迁移档案、历史备份、Euler/Multica 配置及旧工作流和工具继续留在旧仓库，
 后续同步不重新引入。已有代码的来源标注继续保留。
 
 原始数据库、CSV 和 `Source/LWXMachine/kervaire_database.rar` 使用 Git LFS。

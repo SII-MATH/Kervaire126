@@ -67,5 +67,18 @@ theorem hMonomial_zero_three_eq_h0HiSquare :
   cases ht
   rfl
 
+/-! The forward order used by the one-line differential is definitionally the
+named `h₀ h₅²` class.  This is a comparison calculation, not an additional
+commutativity assumption. -/
+theorem product_hi_zero_hiSquare_five_eq_h0HiSquare :
+    product H M
+        (hi H M 0)
+        (hiSquare H M 5) =
+      h0HiSquare H M 5 := by
+  unfold product h0HiSquare
+  rw [← MilnorCohomology.comparison_hi H M 0,
+    ← MilnorCohomology.comparison_hiSquare H M 5]
+  simp
+
 end
 end KIP126.Classical.Adams.Sphere.Internal

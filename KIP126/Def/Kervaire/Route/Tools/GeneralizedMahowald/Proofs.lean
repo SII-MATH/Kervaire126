@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Predicates
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Data
 public import KIP126.Def.Kervaire.Route.Tools.Inputs.Data
 import all KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching.Proofs
 import KIP126.Def.Synthetic.QuotientTower.Proofs
@@ -38,6 +38,16 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H}
   (D : Model H M Syn)
+
+/-- Refine the rule's no-crossing disjunction into its two actual forms. -/
+theorem MahowaldNoCrossingWitness.ofHypotheses
+    {T : TriangleData D.auxiliary} {n m l s t : ℤ}
+    (W : MahowaldHypotheses D T n m l s t) :
+    MahowaldNoCrossingWitness D T W := by
+  rcases W.no_crossing with h | h
+  · exact .hExtension h
+  · exact .classicalDifferential h.1 h.2.1 h.2.2
+
 
 open KIP126.Synthetic.SpectralSequence KIP126.Classical.Adams.PageRepresentatives
 open KIP126.Core.SpectralSequence KIP126.Synthetic.PageExtension

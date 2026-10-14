@@ -11,6 +11,7 @@ It is cobar concatenation transported through the fixed Milnor coordinates.
 No CSV multiplication operation or computation certificate is an input here.
 Comparison with the tower pairing is a separate mathematical obligation. -/
 namespace KIP126.Classical.Adams.Sphere.Internal
+open CategoryTheory
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
 universe u v
 noncomputable section
@@ -40,5 +41,17 @@ def product {s t s' t' : ℕ}
     (MilnorCohomology.cup H M
       ((MilnorCohomology.comparison H M s t).symm x)
       ((MilnorCohomology.comparison H M s' t').symm y))
+/-- Canonical transport between the two equal output bidegrees. -/
+def spherePageDegreeTransport (s t s' t' : ℕ)
+    (h : (((s' + s : ℕ) : ℤ), ((t' + t : ℕ) : ℤ)) =
+      (((s + s' : ℕ) : ℤ), ((t + t' : ℕ) : ℤ))) :
+    (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2
+        (s' + s, t' + t) ⟶
+      (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2
+        (s + s', t + t') :=
+  eqToHom (congrArg
+    (fun p : ℤ × ℤ =>
+      (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2 p) h)
+
 end
 end KIP126.Classical.Adams.Sphere.Internal

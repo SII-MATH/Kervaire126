@@ -329,6 +329,41 @@ own proof, with the stated degree bounds and comparison maps.
   incoming source group. Prove that none of their differentials hits this class.
 \end{proof}
 
+% SOURCE: MainPaper/main.tex:2638-2673, the Q3, Q5 and Q9 stages in Lemma lem:nuext125.
+\begin{lemma}[The Hopf relation modulo lambda cubed]
+  \label{lem:near126-nu-extension-q3}
+  \lean{KIP126.Kervaire.Route.Section7.NuExtension3,KIP126.Main.Solution.Route.Section7.nu_extension_in_third_quotient}
+  \uses{def:computation-fixed-bindings,evidence:h_1_mul_x_121_7,thm:generalized-mahowald,lem:normalized-hopf-exactness-case,def:hopf-cofiber-cell-notation,thm:computation-route-results,thm:computation-route-products}
+  \notready
+  There are actual detected representatives $x,y$ in the same sphere
+  quotient modulo $\lambda^3$, of weights $130,134$, satisfying
+  $\nu x=y$. This is the intermediate relation already constructed
+  inside \texttt{Section7/NuFifth}; it does not construct the underlying
+  model or the unfinished generalized Mahowald law.
+\end{lemma}
+
+\begin{lemma}[Lifting the Hopf relation to the fifth quotient]
+  \label{lem:near126-nu-extension-q5}
+  \lean{KIP126.Kervaire.Route.Section7.NuExtension5,KIP126.Main.Solution.Route.Section7.nu_extension_lifts_to_fifth_quotient}
+  \uses{lem:near126-nu-extension-q3,evidence:nu-extension-obstruction-vanishing,thm:computation-route-basis,thm:computation-route-results,prop:synthetic-einfty-map-compatibility}
+  \notready
+  The Q3 relation lifts to exact detected Q5 representatives with the
+  same weights. The proof retains the full filtration correction and
+  the actual quotient restriction map, rather than asserting that every
+  representative lifts or that the correction space vanishes.
+\end{lemma}
+
+\begin{lemma}[The fifth-to-ninth quotient deduction]
+  \label{lem:near126-nu-extension-q5-q9}
+  \lean{KIP126.Kervaire.Route.Section7.NuExtension9,KIP126.Main.Solution.Route.Section7.nu_extension_lifts_from_fifth_to_ninth_quotient}
+  \uses{lem:near126-nu-extension-q5,prop:synthetic-einfty-map-compatibility,thm:computation-route-basis,thm:computation-route-results,thm:computation-route-products,prop:internal-finite-page-calculus}
+  \notready
+  Given the displayed Q5 relation, the actual $\lambda^4$ map and
+  existing filtration correction produce Q9 representatives of weights
+  $126,131$ with $\nu x=\lambda y$. No classical permanence assumption
+  for $X$ or $Y$ is introduced.
+\end{lemma}
+
 % SOURCE: MainPaper/main.tex:2617-2673, missing obstruction check in Lemma lem:nuext125.
 \begin{proposition}[Obstruction vanishing for the mod-$\lambda^5$ lift]
   \label{evidence:nu-extension-obstruction-vanishing}

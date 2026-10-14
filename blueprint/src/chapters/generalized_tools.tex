@@ -128,8 +128,9 @@ comparison with older ordinary crossing certificates remain separate.
 % SOURCE: MainPaper/main.tex:1780-1917, complete hypotheses and degree package for Theorem thm:158d451a.
 \begin{definition}[Hypotheses of the generalized Mahowald rule]
   \label{def:mahowald-input-data}
+  \lean{KIP126.Main.Solution.Tools.MahowaldHypotheses,KIP126.Main.Solution.Tools.MahowaldExtensionWitnesses,KIP126.Main.Solution.Tools.MahowaldDesuspensionWitness,KIP126.Main.Solution.Tools.MahowaldDifferentialWitness,KIP126.Main.Solution.Tools.MahowaldNoCrossingWitness,KIP126.Main.Solution.Tools.MahowaldConcreteInput,KIP126.Main.Solution.Tools.MahowaldConcreteInput.ofHypotheses}
   \lean{KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw,KIP126.Kervaire.Route.NormalizedTriangleCompatible}
-  \uses{prop:normalized-synthetic-triangle,def:page-extension,def:classical-differential-crossing}
+  \uses{prop:normalized-synthetic-triangle,def:page-extension,def:classical-differential-crossing,def:mahowald-tower-suspension-comparison}
   \notready
   The Mahowald hypotheses specify a distinguished triangle
   $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ with
@@ -156,7 +157,11 @@ comparison with older ordinary crossing certificates remain separate.
   label; the following comparison relates it to the displayed $X$ label.
   These hypotheses occur as quantified premises of the Lean law,
   including the explicit distinguished-triangle compatibility predicate;
-  no independent input record proves or constructs those premises.
+  the restored concrete witness packages only extract the witnesses already
+  contained in those premises. They neither synchronize independently chosen
+  representatives nor construct a compatible common lift or lambda division.
+  Their declarations live in Def's generalized Mahowald data and proof modules;
+  the public namespace and the existing law remain unchanged.
 \end{definition}
 
 \begin{definition}[Actual tower suspension comparison]

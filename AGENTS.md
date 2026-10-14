@@ -94,7 +94,10 @@ completed proof.
 ## Repository architecture
 
 The extraction boundary recorded on `main` also applies to `develop`.
-Do not restore the removed `KIPBase/` component, historical `docs/archive/`,
+By explicit user decision, `KIPBase/` and `KIPBase.lean` are restored as an
+independent optional library. Do not import KIPBase into KIP126, add it to the
+default build or CI, or treat its historical assumptions as KIP126 proofs.
+Do not restore historical `backups/`, `docs/archive/`,
 `docs/audits/`, or `docs/migration/` trees, Euler/Multica configuration,
 or the old CI, review, merge, status, cache, performance, and publishing tools.
 When integrating old work, retain concrete KIP126 and Blueprint changes while
@@ -193,9 +196,11 @@ consumer axiom.
 
 ## Trust boundary
 
-The only project `axiom` is the temporary direct witness
+Within the KIP126 proof and acceptance boundary, the only project `axiom` is the temporary direct witness
 `Main.Axiom.challenge2 : KIP126.Challenge2` in
 `KIP126/Main/Axiom/Challenge2.lean`. It does not use `Nonempty` or a choice step.
+Restored KIPBase retains its historical axioms in its independent namespace;
+they must not enter the KIP126 dependency graph or acceptance evidence.
 
 Do not add project axioms under `Def/`, `Checks/`, `LinProgram/`,
 Challenge files, or Solution files. Do not convert an unfinished theorem into
