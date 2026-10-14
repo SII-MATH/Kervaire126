@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Data
+
+@[expose] public section
 
 /-! Isomorphisms of actual Adams towers. The triangle argument is the same
 one used in KIPBase/Synthetic/GeometricAdamsCofiber. It does not assume

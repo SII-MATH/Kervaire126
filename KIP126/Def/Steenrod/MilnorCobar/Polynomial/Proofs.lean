@@ -1,6 +1,10 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Normalization.Proofs
-import Mathlib.Algebra.CharP.Lemmas
-import Mathlib.Algebra.CharP.Two
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Normalization.Proofs
+public import Mathlib.Algebra.CharP.Lemmas
+public import Mathlib.Algebra.CharP.Two
+
+@[expose] public section
 
 /-!
 # Polynomial preservation and membership proofs

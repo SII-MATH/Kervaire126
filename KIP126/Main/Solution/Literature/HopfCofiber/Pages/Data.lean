@@ -1,6 +1,10 @@
-import KIP126.Main.Solution.Literature.HopfCofiber.Predicates
-import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Proofs
-import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+module
+
+public import KIP126.Main.Solution.Literature.HopfCofiber.Predicates
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Proofs
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 open CategoryTheory KIP126.StableHomotopy

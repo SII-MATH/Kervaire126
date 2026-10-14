@@ -1,6 +1,10 @@
-import KIP126.Def.Kervaire.Route.Model.Coherent.Data
-import KIP126.Def.Kervaire.Route.Multiplication.Operations
-import KIP126.Def.Synthetic.Detection.Proofs
+module
+
+public import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+public import KIP126.Def.Kervaire.Route.Multiplication.Operations
+public import KIP126.Def.Synthetic.Detection.Proofs
+
+@[expose] public section
 
 /-! Structural multiplication comparisons on the same finite lambda quotients.
 These predicates specify no local product value, differential, or survivor.

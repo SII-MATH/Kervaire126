@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Tower.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Tower.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 open CategoryTheory MonoidalCategory KIP126.StableHomotopy

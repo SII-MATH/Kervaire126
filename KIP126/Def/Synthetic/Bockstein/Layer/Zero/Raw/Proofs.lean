@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Bockstein.Layer.Zero.Raw.Data
-import KIP126.Def.Synthetic.Completion.Proofs
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Layer.Zero.Raw.Data
+public import KIP126.Def.Synthetic.Completion.Proofs
+
+@[expose] public section
 
 /-! The zeroth residual arrow and the specified first lambda power form
 an isomorphism square. This uses the actual recursive power, with no

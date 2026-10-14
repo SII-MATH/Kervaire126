@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Moss.Convergence.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Convergence.Predicates
+
+@[expose] public section
 
 /-! Detection means equality in the associated graded of the actual tower filtration. -/
 

@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

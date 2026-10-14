@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Context.Coherence.Predicates
-import KIP126.Def.Synthetic.Context.LambdaPowers.Proofs
+module
+
+public import KIP126.Def.Synthetic.Context.Coherence.Predicates
+public import KIP126.Def.Synthetic.Context.LambdaPowers.Proofs
+
+@[expose] public section
 
 /-! Multiplication laws for the existing recursive λ powers. -/
 

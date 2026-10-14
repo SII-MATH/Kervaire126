@@ -1,9 +1,14 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Literature.Applications
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald
-import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching
-import Lean.Elab.Command
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Interface.Solution.Literature.Applications
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Predicates
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Predicates
+public import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching.Predicates
+public import Lean.Elab.Command
+
+@[expose] public section
+
 
 /-! Compilation/audit boundary for the selected complete route language.
 The flat Challenge2 contract uses the implementation already fixed in Def, but
@@ -15,8 +20,8 @@ run_cmd do
     if (`KIP126.Main.Axiom).isPrefixOf m ||
         (`KIPBase).isPrefixOf m || (`KIP126.Mathlib).isPrefixOf m then
       throwError "route language imports a consumer axiom or a second model: {m}"
-  for n in [``KIP126.Kervaire.Route.C3, ``KIP126.Kervaire.Route.C4,
-      ``KIP126.Kervaire.Route.C5, ``KIP126.Kervaire.Route.Model,
+  for n in [``KIP126.Kervaire.Route.Stem126D6Vanishes, ``KIP126.Kervaire.Route.Theta5SquareNonzeroDetection,
+      ``KIP126.Kervaire.Route.EtaExtensionDetection, ``KIP126.Kervaire.Route.Model,
       ``KIP126.Literature.Route.ThetaBMossInput,
       ``KIP126.Literature.Route.DifferentialLiftInput] do
     for a in ← liftCoreM (collectAxioms n) do

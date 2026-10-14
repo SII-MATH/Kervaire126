@@ -1,4 +1,8 @@
-import KIP126.LinProgram.Interpretation.Near126.Names.Data
+module
+
+public import KIP126.LinProgram.Interpretation.Near126.Names.Data
+
+@[expose] public section
 
 namespace KIP126.Computation.Near126
 

@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Route.SourceLanguage
+module
+
+public import KIP126.Def.Kervaire.Route.SourceLanguage
+
+@[expose] public section
 
 /-! Concrete language for the second half of LWX Section 7.
 
@@ -83,6 +87,18 @@ def NuExtension9 (X : E2 H SphereSpectrum 8 130)
     FiniteDetected D 9 (by decide) 8 130 4 X x ∧
     FiniteDetected D 9 (by decide) 11 136 5 Y y ∧
     sphereAction h2 x = lambdaMultiply 1 y
+
+/-- The direct Q₃ relation supplied by the generalized Mahowald argument.
+The target is detected by λ²Y, so both sides of the h₂ action lie in
+π₍₁₂₅,₁₃₄₎(Q₃). This is the E₄ extension output before the separate
+Q₃-to-Q₅ correction analysis. -/
+def NuExtension3 (X : E2 H SphereSpectrum 8 130)
+    (Y : E2 H SphereSpectrum 11 136) (h2 : BiHom 3 4 (S_0_0 : Syn)) : Prop :=
+  ∃ (x : BiHom 122 130 (XModLambdaN (S_0_0 : Syn) 3))
+    (y : BiHom 125 134 (XModLambdaN (S_0_0 : Syn) 3)),
+    FiniteDetected D 3 (by decide) 8 130 0 X x ∧
+    FiniteDetected D 3 (by decide) 11 136 2 Y y ∧
+    sphereAction h2 x = y
 
 /-- The Q3 relation must be lifted to actual Q5 representatives; existence
 of an E4 extension alone does not provide this exact equality. -/

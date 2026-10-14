@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Completion.Data
-import KIP126.Def.StableHomotopy.InverseSequence.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.Completion.Data
+public import KIP126.Def.StableHomotopy.InverseSequence.Predicates
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

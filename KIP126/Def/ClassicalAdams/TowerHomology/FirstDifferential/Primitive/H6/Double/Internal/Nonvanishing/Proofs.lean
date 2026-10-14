@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Image.Polynomial.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Boundary.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Image.Polynomial.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Boundary.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

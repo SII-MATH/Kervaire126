@@ -1,7 +1,15 @@
-import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
+module
 
-/-! M: the actual shorter-extension crossing predicate used by finite stretching.
-This defines a condition, not a stretching theorem or an external input. -/
+public import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
+
+@[expose] public section
+
+/-! Classical smaller-quotient nonliftable crossing candidates.
+This defines a condition, not a stretching theorem or an external input.
+Their absence alone is not used as a finite stretching hypothesis: multiplication
+by λ can kill a lower-filtration image, so a same-quotient extension need not
+descend to the smaller quotient in this definition. The corrected Route tool
+uses actual same-quotient E∞ obstructions instead. -/
 namespace KIP126.Synthetic.PageExtension
 
 open CategoryTheory CategoryTheory.MonoidalCategory

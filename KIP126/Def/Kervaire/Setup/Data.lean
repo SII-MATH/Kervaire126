@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.SphereSequence.Data
-import KIP126.Def.Algebra.Coefficients.Data
-import KIP126.Def.Synthetic.AdamsSequence.Data
-import KIP126.Def.StableHomotopy.Context.Data
+module
+
+public import KIP126.Def.ClassicalAdams.SphereSequence.Data
+public import KIP126.Def.Algebra.Coefficients.Data
+public import KIP126.Def.Synthetic.AdamsSequence.Data
+public import KIP126.Def.StableHomotopy.Context.Data
+
+@[expose] public section
 
 /-!
 # Stable and synthetic data used by the Kervaire endpoint
@@ -79,13 +83,13 @@ variable {C : StableHomotopyContext} {S : SyntheticHomotopyContext C}
   {A : SyntheticAdamsSS}
 
 /-- The three named conditions from the near-126 argument. -/
-def c3 (D : Near126Input S A) : Prop :=
+def stem126_d6_vanishes (D : Near126Input S A) : Prop :=
   D.d6 (D.x_126_8_4 + D.x_126_8) = 0
 
-def c4 (D : Near126Input S A) : Prop :=
+def theta5_square_eq_lambda_six_nonzero (D : Near126Input S A) : Prop :=
   D.theta5Square = D.lambda6 D.h_0_sq_mul_x_124_8 ∧ D.theta5Square ≠ 0
 
-def c5 (D : Near126Input S A) : Prop :=
+def eta_extension_eq_lambda_six_target (D : Near126Input S A) : Prop :=
   D.lambda3 (D.etaAction D.h_0_sq_mul_x_124_8) =
     D.lambda_pow_six_on_h_1_mul_h_4 D.h_1_mul_h_4_mul_x_109_12
 
@@ -95,10 +99,10 @@ end Near126Input
 structure Near126Conditions
     {C : StableHomotopyContext} {S : SyntheticHomotopyContext C}
     {A : SyntheticAdamsSS} (D : Near126Input S A) where
-  C3 : D.d6 (D.x_126_8_4 + D.x_126_8) = 0
-  C4 : D.theta5Square = D.lambda6 D.h_0_sq_mul_x_124_8 ∧
+  stem126_d6_vanishes : D.d6 (D.x_126_8_4 + D.x_126_8) = 0
+  theta5_square_eq_lambda_six_nonzero : D.theta5Square = D.lambda6 D.h_0_sq_mul_x_124_8 ∧
     D.theta5Square ≠ 0
-  C5 : D.lambda3 (D.etaAction D.h_0_sq_mul_x_124_8) =
+  eta_extension_eq_lambda_six_target : D.lambda3 (D.etaAction D.h_0_sq_mul_x_124_8) =
     D.lambda_pow_six_on_h_1_mul_h_4 D.h_1_mul_h_4_mul_x_109_12
 
 /-- Explicit object and grading transports between classical and synthetic

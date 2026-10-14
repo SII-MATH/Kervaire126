@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Data
+
+@[expose] public section
 
 /-! The standard primitive-power representatives for the entire `hᵢ` family. -/
 

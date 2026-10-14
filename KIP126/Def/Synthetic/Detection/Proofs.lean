@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Detection.Predicates
-import KIP126.Def.SpectralSequence.Permanence.Proofs
+module
+
+public import KIP126.Def.Synthetic.Detection.Predicates
+public import KIP126.Def.SpectralSequence.Permanence.Proofs
+
+@[expose] public section
 
 /-! Associated-graded consequences for the same actual tower filtration.
 The quotient-zero criterion keeps all higher-filtration indeterminacy. -/

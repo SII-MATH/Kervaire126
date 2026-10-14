@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Coordinates.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Elementary.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Coordinates.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Elementary.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Mapping.Proofs
-import KIP126.Def.SpectralSequence.Convergence.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Mapping.Proofs
+public import KIP126.Def.SpectralSequence.Convergence.Data
+
+@[expose] public section
 
 /-! Convergence data with the sequence, abutment and filtration already fixed. -/
 

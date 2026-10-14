@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Bockstein.Tower.Data
-import KIP126.Def.Synthetic.AdamsSequence.Data
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Tower.Data
+public import KIP126.Def.Synthetic.AdamsSequence.Data
+
+@[expose] public section
 
 /-!
 # Regrading the actual λ tower into synthetic Adams conventions
@@ -27,18 +31,18 @@ def gradingEquiv : (ℤ × ℤ × ℤ) ≃+ Tridegree where
     rcases p with ⟨k, n, w⟩
     apply Prod.ext
     · dsimp; omega
-    · apply Prod.ext <;> dsimp <;> omega
+    · apply Prod.ext <;> dsimp; omega
   right_inv i := by
     rcases i with ⟨s, t, w⟩
     apply Prod.ext
     · dsimp; omega
-    · apply Prod.ext <;> dsimp <;> omega
+    · apply Prod.ext <;> dsimp; omega
   map_add' p q := by
     rcases p with ⟨k, n, w⟩
     rcases q with ⟨k', n', w'⟩
     apply Prod.ext
     · dsimp; omega
-    · apply Prod.ext <;> dsimp <;> omega
+    · apply Prod.ext <;> dsimp; omega
 
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
   [HasFunctorialCofiber (C := Syn)]

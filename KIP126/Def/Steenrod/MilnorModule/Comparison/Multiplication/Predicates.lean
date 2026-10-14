@@ -1,6 +1,10 @@
-import KIP126.Def.Steenrod.MilnorModule.Comparison.Predicates
-import KIP126.Def.Steenrod.MilnorModule.Multiplication.Data
-import KIP126.Def.Steenrod.MilnorExt.Multiplication.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Comparison.Predicates
+public import KIP126.Def.Steenrod.MilnorModule.Multiplication.Data
+public import KIP126.Def.Steenrod.MilnorExt.Multiplication.Data
+
+@[expose] public section
 
 /-!
 # Multiplicativity of the fixed-degree right-to-left Ext comparison

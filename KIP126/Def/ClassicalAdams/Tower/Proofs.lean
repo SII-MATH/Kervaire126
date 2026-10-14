@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Tower.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Tower.Data
+
+@[expose] public section
 
 /-! # Composition laws for the constructed Adams tower -/
 

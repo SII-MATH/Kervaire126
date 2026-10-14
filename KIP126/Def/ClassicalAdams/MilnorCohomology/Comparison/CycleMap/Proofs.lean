@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Data
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
-import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
-import KIP126.Def.ClassicalAdams.TowerVanishing.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Data
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
+public import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
+public import KIP126.Def.ClassicalAdams.TowerVanishing.Proofs
+
+@[expose] public section
 namespace KIP126.Classical.Adams.Sphere
 noncomputable section
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

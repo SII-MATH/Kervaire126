@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.FirstCycles.Data
-import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.FirstCycles.Data
+public import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.ExtensionSS.Solutions.Data
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Finiteness.Proofs
-import KIP126.Def.Algebra.ModuleCat.FreeRankOne.Proofs
+module
+
+public import KIP126.Def.Synthetic.ExtensionSS.Solutions.Data
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Finiteness.Proofs
+public import KIP126.Def.Algebra.ModuleCat.FreeRankOne.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.SpectralSequence.SyntheticExtensionData
 

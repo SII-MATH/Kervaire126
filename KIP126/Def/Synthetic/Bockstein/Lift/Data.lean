@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.QuotientTower.Proofs
-import KIP126.Def.Synthetic.Bockstein.Maps.Data
+module
+
+public import KIP126.Def.Synthetic.QuotientTower.Proofs
+public import KIP126.Def.Synthetic.Bockstein.Maps.Data
+
+@[expose] public section
 
 /-!
 # Direct finite-quotient Bockstein lift data

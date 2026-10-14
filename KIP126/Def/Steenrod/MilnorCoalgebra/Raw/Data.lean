@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Full.Data
-import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Full.Data
+public import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+
+@[expose] public section
 
 /-!
 Full homogeneous Milnor coefficients, including the constant monomial.

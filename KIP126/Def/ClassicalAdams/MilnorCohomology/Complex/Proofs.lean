@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Complex.Data
-import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Complex.Data
+public import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
+
+@[expose] public section
 
 /-! The boundary inclusion uses the proved first-page Milnor comparison. -/
 

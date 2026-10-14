@@ -1,8 +1,12 @@
-import KIP126.LinProgram.Generated.E2
-import KIP126.Def.Algebra.Coefficients.Data
-import Mathlib.Algebra.MvPolynomial.Basic
-import Mathlib.RingTheory.Ideal.Quotient.Operations
-import Mathlib.LinearAlgebra.Span.Defs
+module
+
+public import KIP126.LinProgram.Generated.E2
+public import KIP126.Def.Algebra.Coefficients.Data
+public import Mathlib.Algebra.MvPolynomial.Basic
+public import Mathlib.RingTheory.Ideal.Quotient.Operations
+public import Mathlib.LinearAlgebra.Span.Defs
+
+@[expose] public section
 
 /-!
 The concrete truncated algebra from PR #110, pinned at

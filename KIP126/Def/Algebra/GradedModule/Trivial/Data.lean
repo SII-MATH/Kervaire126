@@ -1,5 +1,9 @@
-import KIP126.Def.Algebra.GradedModule.Trivial.Raw.Proofs
-import KIP126.Def.Algebra.GradedComodule.Shift.Data
+module
+
+public import KIP126.Def.Algebra.GradedModule.Trivial.Raw.Proofs
+public import KIP126.Def.Algebra.GradedComodule.Shift.Data
+
+@[expose] public section
 
 /-! Actual trivial left modules on the existing integer-degree lines. -/
 

@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.FirstPage.Data
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.FirstPage.Data
+
+@[expose] public section
 
 /-! Representative compatibility for the prescribed first-page maps. -/
 

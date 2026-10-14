@@ -1,6 +1,10 @@
-import KIP126.Main.Solution.Route.Selected
-import KIP126.Def.StageInput.StandardSphere.Classes.Data
-import KIP126.Def.SpectralSequence.Permanence.Predicates
+module
+
+public import KIP126.Main.Solution.Route.Selected
+public import KIP126.Def.StageInput.StandardSphere.Classes.Data
+public import KIP126.Def.SpectralSequence.Permanence.Predicates
+
+@[expose] public section
 
 /-! The single final proof obligation T(M), paired with
 Main/Challenge/h6_sq_permanent.lean.
@@ -17,11 +21,11 @@ open KIP126.Classical.Adams KIP126.Core.SpectralSequence
 whose E∞ image is nonzero, in bidegree (s,t) = (2,128). -/
 theorem h6_sq_permanent :
     NonzeroSurvival sphereAdamsData (2, 128) standardH6Square := by
-  exact KIP126.Main.Solution.permanent_of_propositions
+  exact KIP126.Main.Solution.h6_square_permanent_of_differential_criterion_and_eta_obstruction
     standardMilnorCooperations KIP126.Main.StageInput.routeModel
     KIP126.Main.StageInput.routeLabels KIP126.Main.StageInput.routeEta
     KIP126.Main.StageInput.routeLiterature.classical.hopf.1
-    (KIP126.Main.Solution.Route.proposition_7_8 KIP126.Main.StageInput.witness)
-    KIP126.Main.Solution.Route.proposition_7_9
+    (KIP126.Main.Solution.Route.h6_square_differential_dichotomy_and_criterion KIP126.Main.StageInput.witness)
+    KIP126.Main.Solution.Route.eta_extension_excluded_of_d6_vanishes
 
 end KIP126.Solution.Final.H6SquarePermanent

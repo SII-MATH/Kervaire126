@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
-import KIP126.Def.ClassicalAdams.SphereClasses.Product.Data
+module
+
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+public import KIP126.Def.ClassicalAdams.SphereClasses.Product.Data
+
+@[expose] public section
 
 /-! Names needed by Proposition 7.8. The four nonstandard generators are
 elements of the same actual classical E₂ page. Their CSV identification is

@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Proofs
+
+@[expose] public section
 
 /-! The positive Adams-filtration decomposition follows from the constructed
 tower and its homology-zero successor maps. No literature input is required

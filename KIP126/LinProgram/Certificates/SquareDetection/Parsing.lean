@@ -1,4 +1,10 @@
-import Batteries.Data.String.Lemmas
+module
+
+public import Batteries.Data.String.Lemmas
+import all Init.Data.String.Legacy
+import all Init.Data.List.SplitOn.Basic
+
+@[expose] public section
 
 namespace KIP126.LinE2.SquareDetection
 

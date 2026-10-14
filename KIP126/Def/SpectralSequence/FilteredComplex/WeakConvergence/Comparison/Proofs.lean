@@ -1,6 +1,10 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.HomologyTarget.Data
-import KIP126.Def.SpectralSequence.FilteredComplex.SSDataConstruction.Data
-import KIP126.Def.SpectralSequence.Convergence.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.HomologyTarget.Data
+public import KIP126.Def.SpectralSequence.FilteredComplex.SSDataConstruction.Data
+public import KIP126.Def.SpectralSequence.Convergence.Proofs
+
+@[expose] public section
 
 /-!
 # Infinity-page comparison for weak convergence

@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Data
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Data
+
+@[expose] public section
 
 /-!
 # Standard `hᵢ` classes on the internal tower spectral sequence

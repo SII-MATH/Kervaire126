@@ -1,5 +1,9 @@
-import KIP126.Def.StageInput.StandardSphere.Classes.Data
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Classes.Data
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+
+@[expose] public section
 
 /-! Standard Milnor hᵢ and its square in the fixed actual sphere Adams E₂. -/
 namespace KIP126.Challenge2

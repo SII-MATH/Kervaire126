@@ -1,6 +1,10 @@
-import KIP126.Def.Steenrod.MilnorModule.Resolution.Data
-import Mathlib.CategoryTheory.Abelian.Injective.Ext
-import Mathlib.CategoryTheory.Abelian.Projective.Ext
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Resolution.Data
+public import Mathlib.CategoryTheory.Abelian.Injective.Ext
+public import Mathlib.CategoryTheory.Abelian.Projective.Ext
+
+@[expose] public section
 
 /-!
 The right-comodule/left-module Ext comparison is constrained on every

@@ -1,6 +1,10 @@
-import KIP126.LinProgram.Tactic.LinE2
-import KIP126.LinProgram.Model.Classes.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.LinProgram.Tactic.LinE2
+public import KIP126.LinProgram.Model.Classes.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-!
 前三个具名等式直接使用 CSV 定义关系，因此不依赖计算公理或 sorry。

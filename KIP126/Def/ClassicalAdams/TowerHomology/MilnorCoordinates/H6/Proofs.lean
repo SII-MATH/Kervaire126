@@ -1,11 +1,15 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.H6.Data
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Boundary.First.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Coordinates.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Elementary.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Data
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Primitive.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.H6.Data
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Boundary.First.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Coordinates.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Elementary.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Primitive.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

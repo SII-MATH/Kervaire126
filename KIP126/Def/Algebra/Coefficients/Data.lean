@@ -1,5 +1,9 @@
-import Mathlib.Algebra.Category.ModuleCat.Abelian
-import Mathlib.Algebra.Field.ZMod
+module
+
+public import Mathlib.Algebra.Category.ModuleCat.Abelian
+public import Mathlib.Algebra.Field.ZMod
+
+@[expose] public section
 
 /-!
 # Project coefficient conventions

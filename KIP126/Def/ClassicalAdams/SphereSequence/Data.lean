@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Convergence.StrongData
+module
+
+public import KIP126.Def.ClassicalAdams.Convergence.StrongData
+
+@[expose] public section
 
 /-! Sphere Adams classes, products, and external pairings. -/
 namespace KIP126.Classical.Adams

@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.CoefficientCycles.Layer.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.CoefficientCycles.Layer.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

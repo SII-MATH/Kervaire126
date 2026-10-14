@@ -1,6 +1,10 @@
-import KIP126.Def.Algebra.GradedDual.Augmentation.Data
-import KIP126.Def.Algebra.GradedModule.Ext.Data
-import KIP126.Def.Steenrod.MilnorCoalgebra.Data
+module
+
+public import KIP126.Def.Algebra.GradedDual.Augmentation.Data
+public import KIP126.Def.Algebra.GradedModule.Ext.Data
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Data
+
+@[expose] public section
 
 /-! The left Steenrod-module model is fixed by transposing the existing
 Milnor coproduct, without exchanging its slots. Its actual derived Ext is

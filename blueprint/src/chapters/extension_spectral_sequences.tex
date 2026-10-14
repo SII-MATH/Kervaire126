@@ -9,7 +9,8 @@ This section develops the general extension-spectral-sequence construction and i
 \begin{definition}[Filtered two-term complex]
   \label{def:filtered-two-term-complex}
   \uses{def:admissible-spectrum,def:adams-filtration,def:mathlib-chain-complex}
-  \notready
+  \lean{KIP126.Core.SpectralSequence.BoundedExtension.twoTermComplex,KIP126.Core.SpectralSequence.BoundedExtension.twoTermComplex_d_one,KIP126.Core.SpectralSequence.twoTermFil,KIP126.Core.SpectralSequence.twoTermDiff_sq,KIP126.Core.SpectralSequence.underlyingComplex,KIP126.Core.SpectralSequence.underlyingComplex_d_one}
+  \leanok
   For a filtration-preserving map $f:A_1\to A_2$, let $C(f)$ be the
   two-term chain complex
   \[
@@ -27,6 +28,7 @@ This section develops the general extension-spectral-sequence construction and i
 \begin{definition}[$f$-extension spectral sequence]
   \label{def:f-extension-ss}
   \uses{def:filtered-two-term-complex,def:core-filtered-chain-complex,def:ess-complex-shape,thm:filtered-complex-to-spectral-sequence,def:ss-einfty-presentation,def:ss-convergence-detection-witness}
+  \lean{KIP126.Core.SpectralSequence.BoundedExtensionSS.ess,KIP126.Core.SpectralSequence.BoundedExtensionSS.weakConvergence,KIP126.Core.SpectralSequence.ess_diffDeg,KIP126.Core.SpectralSequence.truncatedESS}
   \notready
   The $f$-extension spectral sequence, or $f$-ESS, is the spectral sequence of
   the filtered two-term complex attached to a morphism of converging spectral
@@ -39,7 +41,7 @@ This section develops the general extension-spectral-sequence construction and i
   package, the $d_0$ map is identified with the map induced by $f$ on
   associated graded objects.  Under the bounded hypotheses the construction has the
   canonical weak-convergence witness; in the unbounded version the available
-  convergence theorem assumes bounded-below and Mittag--Leffler conditions.
+  convergence argument requires bounded-below and Mittag--Leffler conditions.
   In the Adams application the resulting comparison has the form
   \[
     {}^fE_0^{s,t}\cong E_\infty^{s,t}(X)\oplus
@@ -47,9 +49,15 @@ This section develops the general extension-spectral-sequence construction and i
     \Longrightarrow
     \ker(\pi_*f)\oplus\operatorname{coker}(\pi_*f),
   \]
-  where the last line uses the separately proved two-term homology
+  where the last line requires the separate two-term homology
   calculation rather than identifying convergence with that calculation by
   definition.
+
+  The linked Lean constructions supply the bounded internal ESS, its
+  weak-convergence comparison to the homology presentation of its filtered
+  complex, and bounded quotient truncations of a lower-bounded extension
+  problem.  They do not yet supply the unbounded convergence argument or the
+  kernel--cokernel homology comparison in the displayed Adams application.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:253-271; project-specific comparison required by
@@ -58,6 +66,7 @@ This section develops the general extension-spectral-sequence construction and i
 \begin{theorem}[$f$-ESS initial page and abutment comparison]
   \label{thm:fess-e0-abutment-comparison}
   \uses{def:ss-convergence-detection-witness,def:filtered-two-term-complex}
+  \lean{KIP126.Core.SpectralSequence.BoundedExtensionSS.e0PageAtOne_eq,KIP126.Core.SpectralSequence.BoundedExtensionSS.e0PageAtZero_eq,KIP126.Core.SpectralSequence.BoundedExtensionSS.d0_eq_inducedAssocGradedMap}
   \notready
   Let $f:A_1\to A_2$ be a filtration-preserving map presented as a morphism
   of converging spectral sequences.  The two nonzero columns of the zeroth
@@ -75,9 +84,14 @@ This section develops the general extension-spectral-sequence construction and i
   and the kernel and cokernel of $\pi_*f$.  In the bounded package the $d_0$
   map is the induced associated-graded map.  The kernel/cokernel identification
   is an unconditional calculation of the homology of the two-term complex.
-  Combining it with ESS convergence is packaged in the bounded case; no
+  Combining it with ESS convergence in the bounded case requires this
+  homology comparison; no
   general strong-convergence theorem for arbitrary filtered complexes is
   asserted here.
+
+  Lean proves the two $E_0$ associated-graded identifications and the formula
+  for $d_0$.  The complete theorem remains unfinished because these page-zero
+  calculations do not provide its kernel--cokernel abutment isomorphism.
 \end{theorem}
 
 \begin{proof}
@@ -253,6 +267,7 @@ This section develops the general extension-spectral-sequence construction and i
 \begin{definition}[$f$-ESS cycles and boundaries]
   \label{def:fess-cycles-boundaries}
   \uses{def:f-extension-ss}
+  \lean{KIP126.Core.SpectralSequence.SSData,KIP126.Core.SpectralSequence.SSData.page,KIP126.Core.SpectralSequence.BoundedExtensionSS.ess}
   \notready
   Define ${}^fZ_n^{s,t}(X)\subseteq E_\infty^{s,t}(X)$ to consist of classes
   on which $d_0^f,\ldots,d_n^f$ vanish, and let
@@ -264,12 +279,17 @@ This section develops the general extension-spectral-sequence construction and i
   \]
   and $d_n^f(x)=y$ means equality with the coset of $y$ modulo
   ${}^fB_{n-1}$.
+  The bounded internal ESS already has its nested cycle and boundary
+  subobjects and quotient pages.  The displayed source-column and
+  target-column decomposition, with the input $E_\infty$ objects, still
+  requires the corresponding comparison.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:297-304, Definition def:768fba8a and following notation.
 \begin{definition}[$f$-extension and essentiality]
   \label{def:f-extension-essential}
   \uses{def:fess-cycles-boundaries}
+  \lean{KIP126.Core.SpectralSequence.DifferentialRelation,KIP126.Core.SpectralSequence.EssentialDifferentialRelation,KIP126.Core.SpectralSequence.DetectionSet}
   \notready
   An $f$-extension of length $n$ from
   $x\in E_\infty^{s,t}(X)$ to
@@ -279,16 +299,26 @@ This section develops the general extension-spectral-sequence construction and i
   permanent class $x$, the notation $\{x\}$ denotes the set of homotopy
   classes detected by $x$, and $[x]$ denotes an explicitly chosen member of
   that set.
+  Lean supplies the ambient-representative differential relation,
+  nonboundary essentiality, and the detection set for supplied convergence
+  data.  Their identification with the full $f$-ESS notation above remains
+  part of the ESS comparison; no homotopy representative is chosen by these
+  definitions.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:307-325, Proposition prop:8154e6f1(1).
 \begin{proposition}[Extension iff a representative maps to a representative]
   \label{prop:fextension-iff-detected}
   \uses{def:f-extension-essential,def:adams-detection}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.Solutions.differentialRelation_iff_representativeRelation}
   \notready
   There is an $f$-extension $d_n^f(x)=y$ if and only if some
   $[x]\in\{x\}$ satisfies $f[x]\in\{y\}$, where the target filtration is
   $s+n$ and equality is understood modulo ${}^fB_{n-1}$.
+  Lean proves the analogous internal differential criterion for bounded
+  filtered complexes and projective generalized elements.  Transporting that
+  criterion through the $E_\infty$ and abutment comparisons to the displayed
+  homotopy detection sets remains unfinished.
 \end{proposition}
 
 \begin{proof}
@@ -303,6 +333,7 @@ This section develops the general extension-spectral-sequence construction and i
 \begin{proposition}[Inessential extensions and competing targets]
   \label{prop:fextension-inessential-iff-higher}
   \uses{prop:fextension-iff-detected,def:fess-cycles-boundaries}
+  \lean{KIP126.Core.SpectralSequence.DifferentialRelation.targets_sub_factors_boundary,KIP126.Core.SpectralSequence.FilteredComplex.essential_ancestor_of_nonzero_boundary}
   \notready
   Let $d_n^f(x)=y$.  It is inessential if and only if there are
   $0<a\le n$ and $x'\in E_\infty^{s+a,t+a}(X)$ with an essential extension
@@ -312,6 +343,11 @@ This section develops the general extension-spectral-sequence construction and i
   If $y=y'$, only the boundary-membership conclusion is asserted.  If the
   filtration of $y'$ is strictly larger than that of $y$, the extension to
   $y$ is inessential.
+  Lean proves boundary membership of the difference of two targets of the
+  same internal relation, and constructs an essential ancestor of a nonzero
+  boundary in a bounded filtered complex.  These are reusable steps toward
+  the proposition; its full $f$-ESS detection statement and the comparison of
+  targets in distinct filtrations remain unfinished.
 \end{proposition}
 
 \begin{proof}
@@ -327,6 +363,7 @@ This section develops the general extension-spectral-sequence construction and i
 \begin{definition}[Crossing and no-crossing range]
   \label{def:fess-crossing}
   \uses{def:f-extension-essential}
+  \lean{KIP126.Core.SpectralSequence.RelationCrossedBy,KIP126.Core.SpectralSequence.RelationCrossedByAt,KIP126.Core.SpectralSequence.NoCrossingRange,KIP126.Core.SpectralSequence.NoCrossing}
   \notready
   A crossing of $d_n^f(x)=y$, with $x$ in filtration $s$, is an extension
   $d_m^f(x')=y'\ne0$ whose source has filtration $s+a$ for $a>0$ and whose
@@ -334,16 +371,24 @@ This section develops the general extension-spectral-sequence construction and i
   $\operatorname{AF}(y)=s+n$.  The original extension has no crossing in
   filtrations at least $p$ when no such extension exists; it has no crossing
   without qualification when $p=s+1$.
+  Lean has generic crossing predicates for individual differential relations
+  and separate filtration-range predicates for essential differential data.
+  Their specialization to this $f$-ESS class-level definition, with its
+  prescribed lower bound and detection comparisons, remains unfinished.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:403-405, Remark 2.9.
 \begin{lemma}[Every crossing contains an essential crossing]
   \label{lem:crossing-has-essential-crossing}
   \uses{def:fess-crossing,prop:fextension-inessential-iff-higher}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.essential_ancestor_of_nonzero_boundary}
   \notready
   If an extension has a crossing in a fixed filtration interval, then it has
   an essential crossing, possibly of smaller length, whose target remains in
   the same interval.
+  The linked bounded filtered-complex theorem supplies an essential ancestor
+  with the same nonzero target.  The full ESS crossing statement still
+  requires the preceding class-level and detection comparisons.
 \end{lemma}
 
 \begin{proof}
@@ -358,6 +403,7 @@ This section develops the general extension-spectral-sequence construction and i
 \begin{proposition}[No crossing iff uniform detection]
   \label{prop:no-crossing-iff-uniform-detection}
   \uses{def:fess-crossing,prop:fextension-iff-detected,prop:fextension-inessential-iff-higher,lem:crossing-has-essential-crossing}
+  \lean{KIP126.Core.SpectralSequence.FilteredComplex.representativeRelation_target_eq_of_not_crossed}
   \notready
   An extension from $x$ to $y$ has no crossing in filtrations at least $p$ if
   and only if every $[x]\in\{x\}$ satisfying
@@ -369,6 +415,10 @@ This section develops the general extension-spectral-sequence construction and i
       has filtration strictly greater than $\operatorname{AF}(x)+n$;
     \item if $\operatorname{AF}(f)=n$, every $d_n^f$ has no crossing.
   \end{enumerate}
+  Lean proves uniqueness of targets for bounded filtered representative
+  relations in the absence of a crossing.  This does not yet prove the full
+  detection equivalence, its filtration-range form, or the three displayed
+  specializations.
 \end{proposition}
 
 \begin{proof}
@@ -392,6 +442,11 @@ This section develops the general extension-spectral-sequence construction and i
   $d_2^\eta(h_0h_3^2h_5)=h_1h_5d_0$, and the stated crossing of
   $d_4^\eta(h_3^2h_5)=Mh_1$ are reproduced.  The regression also checks that
   the length-one extension from $h_5d_0$ has no crossing.
+  The linked \texttt{etaEss} declaration currently asserts equality with a
+  selected finite row set.  Row-set equality and the conditional finite-row
+  regression lemmas do not certify those rows as the actual homotopy
+  extensions, essentiality, or no-crossing statements; this node therefore
+  remains unfinished.
 \end{proposition}
 
 \begin{proof}

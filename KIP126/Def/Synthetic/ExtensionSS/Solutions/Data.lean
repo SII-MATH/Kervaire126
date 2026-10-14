@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.ExtensionSS.Proofs
+module
+
+public import KIP126.Def.Synthetic.ExtensionSS.Proofs
+
+@[expose] public section
 
 /-! Index transport from an ESS target to the underlying filtered complex.
 Keeping this operation generic avoids unfolding a concrete convergence family

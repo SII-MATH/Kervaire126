@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.PreSS.Data
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.PreSS.Successor.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.PreSS.Data
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.PreSS.Successor.Proofs
+
+@[expose] public section
 
 /-! The exact-couple square-zero and successor laws for the specified
 quotient differential. Their proofs remain separate from the construction. -/

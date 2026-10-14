@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Proofs
-import KIP126.Def.ClassicalAdams.TowerLayer.Connecting.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLayer.Connecting.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

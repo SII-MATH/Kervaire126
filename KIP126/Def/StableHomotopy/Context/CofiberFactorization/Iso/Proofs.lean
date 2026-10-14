@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.CofiberFactorization.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Context.CofiberFactorization.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy
 

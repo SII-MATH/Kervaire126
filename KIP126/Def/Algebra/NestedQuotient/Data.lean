@@ -1,4 +1,8 @@
-import Mathlib.LinearAlgebra.Quotient.Basic
+module
+
+public import Mathlib.LinearAlgebra.Quotient.Basic
+
+@[expose] public section
 
 namespace KIP126.Algebra.NestedQuotient
 

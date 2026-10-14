@@ -1,5 +1,9 @@
-import KIP126.Def.Comparison.Pages.Predicates
-import KIP126.Def.SpectralSequence.Computation.Morphism.Proofs
+module
+
+public import KIP126.Def.Comparison.Pages.Predicates
+public import KIP126.Def.SpectralSequence.Computation.Morphism.Proofs
+
+@[expose] public section
 
 /-! am3：由 canonical 商映射的真实自然性定理组装，不使用 Challenge 占位。 -/
 namespace KIP126.Def.Comparison.StageInterfaces

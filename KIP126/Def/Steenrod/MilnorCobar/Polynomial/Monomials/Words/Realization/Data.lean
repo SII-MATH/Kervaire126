@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Equiv.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Equiv.Data
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor
 

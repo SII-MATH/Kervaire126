@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.CobarStep.Reduced.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.CobarStep.Reduced.Proofs
+
+@[expose] public section
 
 /-! Derive the first differential in genuine reduced-cooperation coordinates.
 The formula is not supplied by Künneth data or by MilnorCooperations. -/

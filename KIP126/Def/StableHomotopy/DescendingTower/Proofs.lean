@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.DescendingTower.Data
+module
+
+public import KIP126.Def.StableHomotopy.DescendingTower.Data
+
+@[expose] public section
 
 /-! Laws of the specified composites and the constant-tail extension.
 These are properties of the defined maps, not further tower inputs. -/

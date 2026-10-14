@@ -1,7 +1,11 @@
-import KIP126.Main.Solution.Computation.Dimension
-import KIP126.Def.ClassicalAdams.SphereVanishing.Representative.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Nonvanishing.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Coordinates.Proofs
+module
+
+public import KIP126.Main.Solution.Computation.Dimension
+public import KIP126.Def.ClassicalAdams.SphereVanishing.Representative.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Nonvanishing.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Coordinates.Proofs
+
+@[expose] public section
 
 /-! Connect the actual double tensor-boundary construction to the fixed
 computational class. All additional below-page structures and coherences

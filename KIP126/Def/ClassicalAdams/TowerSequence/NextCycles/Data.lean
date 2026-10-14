@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerPageComplex.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerPageComplex.Data
+
+@[expose] public section
 
 /-!
 # The next-page cycle map

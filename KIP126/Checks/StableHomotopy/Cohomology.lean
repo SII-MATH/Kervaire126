@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Cohomology.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Proofs
+
+@[expose] public section
 
 /-! Regression checks for the explicit mod-2 cohomology interface. -/
 namespace KIP126.Checks.StableHomotopy

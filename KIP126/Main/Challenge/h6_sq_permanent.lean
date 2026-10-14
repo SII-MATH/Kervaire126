@@ -1,5 +1,9 @@
-import KIP126.Def.StageInput.StandardSphere.Classes.Data
-import KIP126.Def.SpectralSequence.Permanence.Predicates
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Classes.Data
+public import KIP126.Def.SpectralSequence.Permanence.Predicates
+
+@[expose] public section
 
 /-! T(M): the standard h₆² on the fixed sphere Adams tower.
 All objects and predicates in this statement come from Def. No Interface

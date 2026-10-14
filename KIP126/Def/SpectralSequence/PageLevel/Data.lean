@@ -1,4 +1,8 @@
-import Mathlib.Data.Int.Basic
+module
+
+public import Mathlib.Data.Int.Basic
+
+@[expose] public section
 
 namespace KIP126.Core.SpectralSequence
 

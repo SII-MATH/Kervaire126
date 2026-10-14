@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.QuotientTower.Predicates
-import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
+module
+
+public import KIP126.Def.Synthetic.QuotientTower.Predicates
+public import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
+
+@[expose] public section
 
 /-! Normalized maps are explicit lifts of the same classical map. The
 normalizing exponent uses the actual Adams tower, not a freely chosen AF. -/

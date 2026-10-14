@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Cycles.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Cycles.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

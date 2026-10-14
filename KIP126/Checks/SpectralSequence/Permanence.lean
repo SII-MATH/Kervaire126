@@ -1,29 +1,11 @@
-import KIP126.Mathlib.SpectralSequence.Permanence.Data
-import KIP126.Def.SpectralSequence.Permanence.Proofs
+module
 
-/-! Type-level regressions for the elementwise permanence interface. -/
+public import KIP126.Def.SpectralSequence.Permanence.Proofs
 
-namespace KIP126.Checks.SpectralSequence.Permanence
+@[expose] public section
 
-open CategoryTheory
-open KIP126.Core.Algebra
-open KIP126.Core.SpectralSequence
+/-! Internal permanence keeps zero cycles separate from nonzero survival. -/
 
-universe w
-
-variable {κ : Type w} {c : ℤ → ComplexShape κ} {r₀ r : ℤ}
-variable (E : CategoryTheory.SpectralSequence F2ModuleCat c r₀)
-variable (hr : r₀ ≤ r) (p : κ) (x : (E.page r hr).X p)
-
-example (h : IsPermanent E r hr p x) : x ≠ 0 := h.ne_zero
-
-example (trajectory : PageTrajectory E r hr p x) :
-    trajectory.classAt 0 = x := trajectory.classAt_zero
-
-end KIP126.Checks.SpectralSequence.Permanence
-
-/-! The internal paper predicates must keep zero cycles separate from
-nonzero survival, independently of the Mathlib trajectory interface above. -/
 namespace KIP126.Checks.SpectralSequence.InternalPermanence
 
 open CategoryTheory KIP126.Core.SpectralSequence

@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerPageComplex.Data
-import KIP126.Def.StableHomotopy.Cohomology.Data
-import KIP126.Def.Steenrod.MilnorCobar.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerPageComplex.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Data
+
+@[expose] public section
 
 /-!
 # # Milnor cooperations and standard sphere Adams classes

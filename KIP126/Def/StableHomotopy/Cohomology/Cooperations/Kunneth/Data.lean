@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Data
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Data
+
+@[expose] public section
 
 /-! The remaining Künneth input is below the Adams pages. It concerns all
 represented homology groups, their naturality, and the specified multiplication.

@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.SSDataConstruction.Data
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.SSDataConstruction.Data
+
+@[expose] public section
 
 /-!
 # Interface proofs for filtered-complex `PreSS` data

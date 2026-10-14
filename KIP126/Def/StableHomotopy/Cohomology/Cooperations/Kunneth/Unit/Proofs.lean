@@ -1,7 +1,11 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Predicates
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Unit.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.CobarStep.Reduced.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Predicates
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Unit.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.CobarStep.Reduced.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

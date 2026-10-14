@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Data
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Data
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

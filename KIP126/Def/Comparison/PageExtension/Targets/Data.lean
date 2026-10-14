@@ -1,7 +1,11 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Data
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Data
-import KIP126.Def.Synthetic.EInfty.Shift.Predicates
-import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Data
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Data
+public import KIP126.Def.Synthetic.EInfty.Shift.Predicates
+public import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
+
+@[expose] public section
 /-!
 # Canonical page-extension target comparisons
 
@@ -39,7 +43,7 @@ structure PageExtensionTargetComparison
   target_tower : P.targetTower = T Y
   finite : ∀ (q k : ℕ) (hkq : k < q) (s t : ℤ)
     (z : cycles H Y (q - k : ℕ) (s, t)),
-    R.finiteWindow Y (q - k) (by omega) (s, t) t (by constructor <;> simp <;> omega)
+    R.finiteWindow Y (q - k) (by omega) (s, t) t (by constructor <;> simp; omega)
         (S.lowerIso (XModLambdaN (N.functor.obj Y) (q - k)) k (s, t) t
           (P.finiteTarget q k hkq s t z)) =
       finiteTopClass H Y (q - k) (s, t) z
@@ -60,7 +64,7 @@ noncomputable def finiteCanonicalTarget (R : SyntheticEInftyPresentation H N F)
           (p.1, p.2, p.2 - k)).eInfty :=
   ((finiteTopEquiv H Y (q - k) p).trans
     (R.finiteWindow Y (q - k) (by omega) p p.2
-      (by constructor <;> simp <;> omega)).symm).trans
+      (by constructor <;> simp; omega)).symm).trans
         (S.lowerIso (XModLambdaN (N.functor.obj Y) (q - k)) k p p.2).symm
 
 /-- 未截断目标比较使用同一个永久代表元的 top class。 -/

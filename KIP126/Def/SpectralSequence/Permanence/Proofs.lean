@@ -1,6 +1,10 @@
-import KIP126.Def.SpectralSequence.Basic.Proofs
-import KIP126.Def.SpectralSequence.Computation.State.Predicates
-import KIP126.Def.SpectralSequence.ModuleSubobject.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Basic.Proofs
+public import KIP126.Def.SpectralSequence.Computation.State.Predicates
+public import KIP126.Def.SpectralSequence.ModuleSubobject.Proofs
+
+@[expose] public section
 
 /-! Local stabilization and common representatives at infinity. Neither
 permanent-cycle membership nor finite-page reachability asserts nonvanishing. -/

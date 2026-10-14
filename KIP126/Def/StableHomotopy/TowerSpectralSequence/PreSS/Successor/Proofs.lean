@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.PreSS.Data
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.NextPages.Proofs
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.SSData.Page.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.PreSS.Data
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.NextPages.Proofs
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.SSData.Page.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.TowerSpectralSequence
 open CategoryTheory CategoryTheory.Limits KIP126.Core.SpectralSequence

@@ -1,12 +1,16 @@
+module
+
 /-
 Copyright (c) 2026 KIP126 contributors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: KIP126 contributors
 -/
-import Mathlib.Algebra.Homology.ShortComplex.HomologicalComplex
-import Mathlib.CategoryTheory.Abelian.Subobject
-import Mathlib.CategoryTheory.Abelian.Pseudoelements
-import Mathlib.Tactic.Abel
+public import Mathlib.Algebra.Homology.ShortComplex.HomologicalComplex
+public import Mathlib.CategoryTheory.Abelian.Subobject
+public import Mathlib.CategoryTheory.Abelian.Pseudoelements
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # Nested-subobject spectral-sequence data

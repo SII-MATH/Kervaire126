@@ -1,5 +1,9 @@
-import KIP126.Def.StageInput.StandardSphere.Classes.Data
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Proofs
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Classes.Data
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

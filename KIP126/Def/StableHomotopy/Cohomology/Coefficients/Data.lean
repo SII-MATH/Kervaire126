@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Basic.Proofs
-import Mathlib.Algebra.Category.ModuleCat.Basic
-import Mathlib.Algebra.Module.ZMod
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Basic.Proofs
+public import Mathlib.Algebra.Category.ModuleCat.Basic
+public import Mathlib.Algebra.Module.ZMod
+
+@[expose] public section
 
 /-! Mod-two scalar structures derived from the specified H-ring and additive tensor.
 No page, differential, scalar action, or Milnor coordinates are postulated. -/

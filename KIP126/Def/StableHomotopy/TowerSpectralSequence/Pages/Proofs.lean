@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Pages.Data
-import KIP126.Def.StableHomotopy.DescendingTower.Proofs
-import KIP126.Def.StableHomotopy.RepresentedHom.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Pages.Data
+public import KIP126.Def.StableHomotopy.DescendingTower.Proofs
+public import KIP126.Def.StableHomotopy.RepresentedHom.Proofs
+
+@[expose] public section
 
 /-! Properties of the specified kernel/image pages. These proofs do
 not select an exact couple or substitute a new spectral-sequence object.

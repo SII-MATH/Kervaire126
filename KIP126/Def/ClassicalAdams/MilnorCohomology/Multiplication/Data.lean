@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Cycles.Proofs
-import Mathlib.LinearAlgebra.Quotient.Bilinear
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Cycles.Proofs
+public import Mathlib.LinearAlgebra.Quotient.Bilinear
+
+@[expose] public section
 
 /-! Cobar concatenation descended through the actual boundary quotients. -/
 

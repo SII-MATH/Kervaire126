@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Toda.Predicates
+module
+
+public import KIP126.Def.StableHomotopy.Toda.Predicates
+
+@[expose] public section
 
 namespace KIP126.Kervaire.Route
 open CategoryTheory KIP126.StableHomotopy

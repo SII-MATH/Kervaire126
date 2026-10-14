@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Predicates
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Pages.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Pages.Proofs
+
+@[expose] public section
 
 /-! The intrinsic differential value is J(lift(K(x))) in the target
 quotient. Its formula uses only the actual tower and a witnessed lift. -/

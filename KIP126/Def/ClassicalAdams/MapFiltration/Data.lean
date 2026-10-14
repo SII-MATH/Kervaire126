@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Tower.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Tower.Data
+
+@[expose] public section
 
 /-! Finite chains of actual morphisms, including their composite. -/
 

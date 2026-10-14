@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Data
-import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
-import KIP126.Def.StableHomotopy.Context.CofiberFactorization.Proofs
-import KIP126.Def.StableHomotopy.Context.Mapping.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Data
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
+public import KIP126.Def.StableHomotopy.Context.CofiberFactorization.Proofs
+public import KIP126.Def.StableHomotopy.Context.Mapping.Data
+
+@[expose] public section
 
 /-! Restrictions of the actual composition boundary to tower representatives.
 The two factorizations below are consequences of exactness, not additional

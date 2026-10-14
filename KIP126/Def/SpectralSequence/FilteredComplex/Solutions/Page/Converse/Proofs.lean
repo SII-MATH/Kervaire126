@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Page.Proofs
-import Mathlib.CategoryTheory.Preadditive.Projective.Basic
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Page.Proofs
+public import Mathlib.CategoryTheory.Preadditive.Projective.Basic
+
+@[expose] public section
 
 /-! A page relation can be strictified on a projective test object. The
 correction is lifted from the actual boundary image and lies in the next

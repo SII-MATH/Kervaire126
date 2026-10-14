@@ -1,5 +1,10 @@
-import KIP126.Def.StageInput.StandardSphere.Background.Data
-import KIP126.Def.StageInput.StandardSphere.Classes.Family
+module
+
+public import KIP126.Def.Kervaire.Route.Tools.Inputs.Data
+public import KIP126.Def.StageInput.StandardSphere.Background.Data
+public import KIP126.Def.StageInput.StandardSphere.Classes.Family
+
+@[expose] public section
 
 /-! Parameterized literature statements and correlated source bindings.
 These describe prior results on specified objects; model applications and
@@ -16,15 +21,6 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)]
   {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H} (D : Model H M Syn)
-
-/-- BHS A.9/A.11 with the compatible E∞ formulas on the SAME family.
-All label, λ and ρ compatibility is part of the supplied source application.
-No unrelated E∞ equivalences may be inserted as substitutes. -/
-structure EInftyInput where
-  presentation : KIP126.Literature.Route.EInftyFormulaInput D
-  weightShift : EInftyWeightShift D.family
-  maps : KIP126.Literature.Route.EInftyCompatibilityInput D presentation weightShift
-  labels : KIP126.Literature.Route.EInftyLabelAgreement D presentation
 
 /-- External BHS inputs excluding the internal full-to-selected-model kernel transport. -/
 structure SyntheticSourceInputs where
@@ -252,46 +248,6 @@ end
 end KIP126.Literature.Route
 
 namespace KIP126.Literature.Route
-open CategoryTheory
-open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology KIP126.Classical.Adams
-open KIP126.Synthetic.Context KIP126.Kervaire.Route
-open KIP126.Literature.Route
-universe u v w
-variable {C : Type u} [StableHomotopyCategory.{u, v} C]
-  [HasFunctorialCofiber (C := C)]
-  {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
-  {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H} (D : Model H M Syn)
-
-/-- Predicate for Main's local Moss conclusion on the CLASSICAL sphere resolution.
-It has no synthetic-model parameter. Its derivation must identify the
-displayed convergence with the comparison from that actual multiplicative
-Adams resolution; an arbitrary associated-graded isomorphism does not
-establish applicability. All defining-system, crossing and residual
-hypotheses are retained. Main derives it from the general Moss literature
-statement; this definition does not assert it or add a Challenge2 field. -/
-def MossSourceInput (M : MilnorCooperations H)
-    (convergence : TowerDetection.Convergence H.unit SphereSpectrum) : Prop :=
-  ∀ (B : E2 H SphereSpectrum 8 70)
-    (θ β : HomotopyGroup (C := C) 62 SphereSpectrum)
-    (two : HomotopyGroup (C := C) 0 SphereSpectrum),
-    two = (shiftFunctorZero C ℤ).hom.app SphereSpectrum ≫ (2 • 𝟙 _) →
-    TowerDetection.Detects convergence (2,64) (Sphere.Internal.hiSquare H M 5) θ →
-    TowerDetection.Detects convergence (1,1) (Sphere.Internal.hi H M 0) two →
-    TowerDetection.Detects convergence (8,70) B β →
-    θ + θ = 0 → β + β = 0 →
-    (ThetaBMassey M B).Nonempty →
-    ¬ SphereMossCrossing (H := H) 3 (3,65) →
-    ¬ SphereMossCrossing (H := H) 3 (9,71) →
-    TowerDetection.ResidualInjectivity H.unit (SphereSpectrum (C := C)) →
-    ∃ (z : E2 H SphereSpectrum 9 134)
-      (ξ : HomotopyGroup (C := C) 125 SphereSpectrum),
-      ThetaBMasseyDefiningSystem M B z ∧
-      TowerDetection.Detects convergence (9,134) z ξ ∧ ThetaBToda θ β ξ
-
-
-end KIP126.Literature.Route
-
-namespace KIP126.Literature.Route
 open CategoryTheory CategoryTheory.Pretriangulated KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
 open KIP126.Classical.Adams KIP126.Synthetic.Context KIP126.Kervaire.Route
 universe u v w
@@ -361,7 +317,6 @@ structure Bindings (background : Background D) where
     bhsDetectorIso.hom = tmfSource.unit
   nuSource : NuCofiberSourceData D
   nuBinding : NuCofiberLiftBinding D nuSource
-  moss : MossTowerApplicability (H := H)
 
 namespace Bindings
 variable {D η L} {background : Background D}
@@ -386,7 +341,6 @@ structure Statements {background : Background D} (B : Bindings D η L background
   may : MaySourceResults Syn B.may
   toda : TodaSourceResults D η B.todaSource
   tmf : TmfSourceResults B.tmfSource
-  moss : MossSourceInput M B.classicalSource.convergence
 
 
 end KIP126.Literature.Route

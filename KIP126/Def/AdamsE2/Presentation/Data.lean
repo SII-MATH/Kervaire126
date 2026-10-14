@@ -1,5 +1,9 @@
-import KIP126.Def.AdamsE2.Table.Proofs
-import KIP126.Def.AdamsE2.PageAlgebra.Proofs
+module
+
+public import KIP126.Def.AdamsE2.Table.Proofs
+public import KIP126.Def.AdamsE2.PageAlgebra.Proofs
+
+@[expose] public section
 
 /-!
 # A table presents the actual E₂ page

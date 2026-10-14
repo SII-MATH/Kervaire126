@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
-import KIP126.Def.SpectralSequence.Computation.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
+public import KIP126.Def.SpectralSequence.Computation.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.PageRepresentatives
 

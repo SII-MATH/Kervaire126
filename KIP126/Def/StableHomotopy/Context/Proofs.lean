@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.Data
+module
+
+public import KIP126.Def.StableHomotopy.Context.Data
+
+@[expose] public section
 
 /-! Derived facts for the stable-homotopy category interface. -/
 namespace KIP126.StableHomotopy
@@ -38,6 +42,7 @@ the distinguished triangle; no additional global axiom is introduced here.
 
 For `z : Sⁿ ⟶ Z`, this is the composite
 `Sⁿ⁻¹ → Sⁿ⟦-1⟧ → X⟦1⟧⟦-1⟧ → X` applied to `z ≫ h`. -/
+@[no_expose]
 noncomputable def connectingHomomorphism (T : HoCofiberSequence (C := C)) (n : ℤ) :
     HomotopyGroup n T.Z →+ HomotopyGroup (n - 1) T.X where
   toFun z :=

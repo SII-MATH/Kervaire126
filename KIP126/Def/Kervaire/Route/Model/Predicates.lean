@@ -1,7 +1,11 @@
-import KIP126.Def.Kervaire.Route.Model.Data
-import KIP126.Def.Synthetic.AdamsSequence.TowerComparison.Data
-import KIP126.Def.Synthetic.QuotientRestrictions.Data
-import KIP126.Def.Synthetic.ExtensionSS.Data
+module
+
+public import KIP126.Def.Kervaire.Route.Model.Data
+public import KIP126.Def.Synthetic.AdamsSequence.TowerComparison.Data
+public import KIP126.Def.Synthetic.QuotientRestrictions.Data
+public import KIP126.Def.Synthetic.ExtensionSS.Data
+
+@[expose] public section
 
 namespace KIP126.Kervaire.Route
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

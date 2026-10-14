@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorModule.Resolution.Raw.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Resolution.Raw.Proofs
+
+@[expose] public section
 
 /-! The actual dual chain complex and its actual augmentation. All terms
 and all differentials are the previously specified dual objects and maps. -/

@@ -1,6 +1,10 @@
-import KIP126.Def.Algebra.GradedVectorSpace.Data
-import KIP126.Def.Algebra.GradedComodule.LeftTensor.Construction.Data
-import Mathlib.CategoryTheory.GradedObject.Single
+module
+
+public import KIP126.Def.Algebra.GradedVectorSpace.Data
+public import KIP126.Def.Algebra.GradedComodule.LeftTensor.Construction.Data
+public import Mathlib.CategoryTheory.GradedObject.Single
+
+@[expose] public section
 
 /-!
 Internal grading and cohomological grading are distinct. The object `degreeLine K t`

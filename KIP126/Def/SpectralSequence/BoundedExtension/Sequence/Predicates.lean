@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Data
-import KIP126.Def.SpectralSequence.Convergence.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Data
+public import KIP126.Def.SpectralSequence.Convergence.Predicates
+
+@[expose] public section
 
 /-!
 # Predicate selecting bounded extension input data

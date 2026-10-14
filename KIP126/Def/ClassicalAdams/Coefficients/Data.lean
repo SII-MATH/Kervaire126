@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.Coefficients.Basic.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Data
-import KIP126.Def.ClassicalAdams.TowerHomology.Normalized.Data
-import KIP126.Def.ClassicalAdams.TowerHomology.Splitting.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Coefficients.Basic.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Data
+public import KIP126.Def.ClassicalAdams.TowerHomology.Normalized.Data
+public import KIP126.Def.ClassicalAdams.TowerHomology.Splitting.Data
+
+@[expose] public section
 
 /-! Mod-two scalar structures derived from the specified H-ring and additive tensor.
 No page, differential, scalar action, or Milnor coordinates are postulated. -/

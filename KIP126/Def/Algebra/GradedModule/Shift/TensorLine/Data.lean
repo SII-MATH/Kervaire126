@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedModule.Shift.TensorLine.Raw.Proofs
+module
+
+public import KIP126.Def.Algebra.GradedModule.Shift.TensorLine.Raw.Proofs
+
+@[expose] public section
 
 /-! The specified coefficient isomorphism in the actual left-module category. -/
 

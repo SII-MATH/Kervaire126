@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Full.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Data
-import Mathlib.Algebra.Algebra.Bilinear
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Full.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Data
+public import Mathlib.Algebra.Algebra.Bilinear
+
+@[expose] public section
 
 /-! Polynomial coordinates for actual cooperations and their tensor square.
 These maps do not assert the Milnor coproduct formula. -/

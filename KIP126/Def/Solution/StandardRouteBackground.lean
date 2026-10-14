@@ -1,5 +1,9 @@
-import KIP126.Def.StageInput.StandardSphere.Background.Data
-import KIP126.Def.StageInput.StandardSphere.Route.Fixed
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Background.Data
+public import KIP126.Def.StageInput.StandardSphere.Route.Fixed
+
+@[expose] public section
 
 /-! Construction of the structural mathematics of the selected synthetic
 route. The ring detector is the existing route detector, and the algebras,

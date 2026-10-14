@@ -2,8 +2,8 @@
   "schema_version": 1,
   "source": "https://zenodo.org/records/14875701",
   "version": "v126.3.cw49",
-  "storage": "git-lfs",
-  "scope": "Exact extracted DB/CSV inputs already pinned by the translators; no proof replay and no new interpretation.",
+  "storage": "Git LFS for DB/CSV payloads; regular Git for ss.json",
+  "scope": "Exact extracted DB/CSV/configuration inputs already pinned by the translators; no proof replay and no new interpretation.",
   "files": [
     {
       "path": "proofs.db",
@@ -34,6 +34,64 @@
       "size": 7913472,
       "sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
       "role": "SQLite: independent selected-record cross-check"
+    },
+    {
+      "path": "ss.json",
+      "size": 53978,
+      "sha256": "a9a623bf7165e62fcf455e454fdf9195237491bf07bd148902e245aa1dba64d8",
+      "role": "JSON: native spectrum, map, and cofiber configuration"
+    },
+    {
+      "path": "Ceta_AdamsSS_t200.db",
+      "size": 3100672,
+      "sha256": "ca0f379210e07d2908576c6e0ddb8889db9b17c8ef426a68b0831bb3f606b477",
+      "role": "SQLite: same-version Ceta source coordinates and staircase",
+      "extracted_from": {
+        "record": "Source/LWXMachine/zenodo-record.json",
+        "archive": "kervaire_database.rar",
+        "archive_size": 82746451,
+        "archive_checksum": "md5:91ea5d8ef613828b9ef66f6d9f879166",
+        "member": "kervaire-49/Ceta_AdamsSS_t200.db"
+      }
+    },
+    {
+      "path": "map_AdamsSS_Ceta_to_S0_t200.db",
+      "size": 32768,
+      "sha256": "3d4dbed8ede47c8b1b1ed3bcfea9a514c55210b329bd5888c6f07711b90865b8",
+      "role": "SQLite: same-version Ceta top-cell generator images",
+      "extracted_from": {
+        "record": "Source/LWXMachine/zenodo-record.json",
+        "archive": "kervaire_database.rar",
+        "archive_size": 82746451,
+        "archive_checksum": "md5:91ea5d8ef613828b9ef66f6d9f879166",
+        "member": "kervaire-49/map_AdamsSS_Ceta_to_S0_t200.db"
+      }
+    },
+    {
+      "path": "CW_nu_eta_AdamsSS_t200.db",
+      "size": 2727936,
+      "sha256": "8007f076e6bb78f269849758db8ec347625896607dd54d31e9fc0df770aec278",
+      "role": "SQLite: complete same-version CW_nu_eta module presentation and staircase",
+      "extracted_from": {
+        "record": "Source/LWXMachine/zenodo-record.json",
+        "archive": "kervaire_database.rar",
+        "archive_size": 82746451,
+        "archive_checksum": "md5:91ea5d8ef613828b9ef66f6d9f879166",
+        "member": "kervaire-49/CW_nu_eta_AdamsSS_t200.db"
+      }
+    },
+    {
+      "path": "map_AdamsSS_CW_nu_eta_to_Ceta_t200.db",
+      "size": 36864,
+      "sha256": "3ba9ac7841d0e9287b10f8550abd7ce0746a5715bfad1c60a42edb93ba554272",
+      "role": "SQLite: complete same-version CW_nu_eta to Ceta generator images",
+      "extracted_from": {
+        "record": "Source/LWXMachine/zenodo-record.json",
+        "archive": "kervaire_database.rar",
+        "archive_size": 82746451,
+        "archive_checksum": "md5:91ea5d8ef613828b9ef66f6d9f879166",
+        "member": "kervaire-49/map_AdamsSS_CW_nu_eta_to_Ceta_t200.db"
+      }
     }
   ]
 }

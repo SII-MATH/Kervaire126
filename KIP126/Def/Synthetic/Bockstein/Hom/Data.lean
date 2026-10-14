@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.Bockstein.Maps.Data
-import KIP126.Def.Synthetic.QuotientRestrictions.Data
-import KIP126.Def.Synthetic.Sphere.Shift.Data
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Maps.Data
+public import KIP126.Def.Synthetic.QuotientRestrictions.Data
+public import KIP126.Def.Synthetic.Sphere.Shift.Data
+
+@[expose] public section
 
 /-!
 The actual maps on bigraded homotopy induced by quotient inclusions,

@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Iterated.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Iterated.Data
+
+@[expose] public section
 
 /-! All-filtration coordinates derived by iterating the actual tower recurrence.
 The coordinate factors are genuine reduced cooperations, not Milnor polynomials. -/

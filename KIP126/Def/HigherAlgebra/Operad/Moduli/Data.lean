@@ -1,5 +1,9 @@
-import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Category.Data
-import KIP126.Def.HigherAlgebra.ClassifyingSpace.Data
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Category.Data
+public import KIP126.Def.HigherAlgebra.ClassifyingSpace.Data
+
+@[expose] public section
 
 /-!
 # Relative operadic moduli from weak-equivalence nerves

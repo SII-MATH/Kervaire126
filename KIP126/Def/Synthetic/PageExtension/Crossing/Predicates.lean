@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.PageExtension.Predicates
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Predicates
+
+@[expose] public section
 
 /-!
 # Crossings of normalized page extensions

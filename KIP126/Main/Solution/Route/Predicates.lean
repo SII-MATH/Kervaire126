@@ -1,4 +1,8 @@
-import KIP126.Interface.Challenge.Challenge2
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+
+@[expose] public section
 
 /-! Paper-route predicates derived after the Challenge 2 boundary. -/
 namespace KIP126.Main.Solution.Route

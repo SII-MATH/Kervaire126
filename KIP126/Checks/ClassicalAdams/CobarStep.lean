@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.CobarStep.Reduced.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.CobarStep.Reduced.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! The reduced step is constructed before the Adams differential comparison.
 In particular, its definition cannot simply rename the actual page differential. -/

@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.EInfty.Shift.Canonical.Proofs
-import KIP126.Def.StageInput.StandardSphere.Route.Fixed
+module
+
+public import KIP126.Def.Synthetic.EInfty.Shift.Canonical.Proofs
+public import KIP126.Def.StageInput.StandardSphere.Route.Fixed
+
+@[expose] public section
 
 /-! Fix the weight comparison from the one actual standard tower.
 Its unfinished descent/invertibility obligations are named in the generic

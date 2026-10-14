@@ -7,7 +7,7 @@
     "S0_AdamsE2_relations.csv": "8b4b67d6fb3c9a3a264813ea780340e73b1a66290c8616d3308ae1fc19f3add5",
     "S0_AdamsE2_basis.csv": "6a337964ad3ac02b729a46fd839dced7cb6764d14d4cea413163987eba8de871"
   },
-  "trust": "Results only, not proof replay. Six equalities use the existing sphereTable_sound. Nonzero later-page targets and the seventh table-only result are not derived.",
+  "trust": "Five equalities use sphereTable_sound; row 5541 uses the same-witness one-line producer with independently checked coordinates, not machine trace replay. Nonzero later-page targets and the seventh table-only result are not derived.",
   "results": [
     {
       "name": "d2_x_125_8",

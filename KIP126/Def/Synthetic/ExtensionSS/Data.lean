@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.AdamsSequence.Data
-import KIP126.Def.SpectralSequence.BoundedExtension.SpectralSequence.Proofs
+module
+
+public import KIP126.Def.Synthetic.AdamsSequence.Data
+public import KIP126.Def.SpectralSequence.BoundedExtension.SpectralSequence.Proofs
+
+@[expose] public section
 
 /-! The extension sequence of an actual synthetic map. Both abutments are
 actual bigraded homotopy groups; both maps are induced by that same map.

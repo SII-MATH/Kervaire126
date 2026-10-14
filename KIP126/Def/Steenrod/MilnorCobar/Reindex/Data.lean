@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorCobar.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Data
+
+@[expose] public section
 
 /-! # Transport along equal cobar bidegrees -/
 

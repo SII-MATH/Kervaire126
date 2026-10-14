@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedComodule.Shift.Data
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Shift.Data
+
+@[expose] public section
 
 /-!
 The concrete maps between the tensor of two degree lines and the line in

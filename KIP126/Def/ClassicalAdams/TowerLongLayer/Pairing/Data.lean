@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Page.Proofs
-import Mathlib.LinearAlgebra.Quotient.Bilinear
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Page.Proofs
+public import Mathlib.LinearAlgebra.Quotient.Bilinear
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

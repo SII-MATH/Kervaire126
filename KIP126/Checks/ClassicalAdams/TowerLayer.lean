@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.TowerLayer.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Proofs
-import KIP126.Def.StageInput.Foundation
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLayer.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Proofs
+public import KIP126.Def.StageInput.Foundation
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Audit the actual layer comparison and homology-zero tower maps.
 The generic declarations must not depend on fixed foundation, Milnor,

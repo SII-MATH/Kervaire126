@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.PageExtension.Solutions.Data
-import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
-import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Data
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
+public import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
+
+@[expose] public section
 /-!
 # Restriction maps and coherent page-extension solutions
 

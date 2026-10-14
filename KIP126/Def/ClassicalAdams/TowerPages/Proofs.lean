@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerPages.Data
-import KIP126.Def.ClassicalAdams.Tower.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerPages.Data
+public import KIP126.Def.ClassicalAdams.Tower.Proofs
+
+@[expose] public section
 
 /-!
 # Cycle membership and lift properties

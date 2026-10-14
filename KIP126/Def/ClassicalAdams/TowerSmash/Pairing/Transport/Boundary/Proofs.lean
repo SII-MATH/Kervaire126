@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Transport.Successor.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Step.Suspension.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Transport.Successor.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Step.Suspension.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

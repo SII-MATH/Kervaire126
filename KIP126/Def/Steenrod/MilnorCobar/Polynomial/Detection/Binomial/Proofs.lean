@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Parity.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Parity.Proofs
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor
 

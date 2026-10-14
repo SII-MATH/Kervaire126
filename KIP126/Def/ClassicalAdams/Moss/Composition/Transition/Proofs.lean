@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Right.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Right.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

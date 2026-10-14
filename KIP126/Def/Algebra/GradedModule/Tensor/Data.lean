@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedModule.Tensor.Raw.Proofs
+module
+
+public import KIP126.Def.Algebra.GradedModule.Tensor.Raw.Proofs
+
+@[expose] public section
 
 /-!
 The actual left-tensor monad of a monoid and its category of left modules.

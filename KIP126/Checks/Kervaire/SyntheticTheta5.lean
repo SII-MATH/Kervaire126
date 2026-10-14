@@ -1,6 +1,10 @@
-import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
-import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
+public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! No C(M), stage axiom or prototype operation may enter these definitions. -/
 open Lean Elab Command in

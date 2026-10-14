@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Data
+module
+
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.PageRepresentatives
 

@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

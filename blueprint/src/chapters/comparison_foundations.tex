@@ -9,20 +9,25 @@ and Moss convergence used by the later proof tools.
 % SOURCE: MainPaper/main.tex:430-453.
 \begin{proposition}[Concrete eta detection slice]
   \label{prop:classical-eta-extension-iff-detected}
+  \lean{KIP126.Classical.ExtensionSS.EtaESSInput}
   \uses{def:classical-eta-ess-concrete,prop:eta-ess-regression}
   \lean{KIP126.Classical.ExtensionSS.extension_iff_detected}
   \lean{KIP126.Classical.ExtensionSS.FExtension}
   \lean{KIP126.Classical.ExtensionSS.DetectedBy}
   \lean{KIP126.Classical.ExtensionSS.Essential}
   \lean{KIP126.Classical.ExtensionSS.Crossing}
-  \notready
-  For the concrete finite eta rows, extension is equivalent to membership in
+  \leanok
+  Given an \texttt{EtaESSInput} retaining the equality of its differential
+  and detected sets, extension on its finite eta rows is equivalent to membership in
   the set-valued detection predicate.  Essentiality and crossing are defined
   only on this construction, so detection representatives are not forced to
-  be unique.
+  be unique. This conditional equivalence is proved; constructing the
+  eta input and its comparison with actual homotopy detection remains
+  the obligation of Definition~\ref{def:classical-eta-ess-concrete}.
 \end{proposition}
 
 \begin{proof}
+  \leanok
   Expand the two predicates as membership in the detected and differential
   sets and rewrite with the concrete input's equality between those sets.
   Use the specified eta differential equations.
@@ -43,6 +48,10 @@ and Moss convergence used by the later proof tools.
   componentwise abutment $\ker(\pi_*\eta)\oplus\operatorname{coker}(\pi_*\eta)$.
   Its specified finite differential equations are the conditions used
   in Proposition~\ref{prop:classical-eta-extension-iff-detected}.
+  The generic eta input, page assembly and componentwise kernel/cokernel
+  construction are implemented. The adapter still supplies its
+  $E_\infty$ objects and eta map as data; identifying them with the
+  actual classical sequences and homotopy map remains open.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:327-342, unlabelled Corollary 2.6.
@@ -266,13 +275,28 @@ and Moss convergence used by the later proof tools.
   projections then supplies cycle preservation and the bilinear restriction.
 \end{proof}
 
+\begin{definition}[The fixed sphere mapping context]
+  \label{def:fixed-sphere-moss-context}
+  \uses{def:classical-adams-ss,def:massey-product,def:adams-detection,prop:moss-long-layer-composition-obstruction}
+  \lean{KIP126.Challenge2.MossContext,KIP126.Challenge2.StandardSphereMossContext,KIP126.Def.standardSphereMossContext_exists,KIP126.Def.standardSphereMossContext}
+  \notready
+  On the actual mapping Adams towers of the fixed sphere, choose one
+  composition pairing with coherence, convergence, weak convergence,
+  compatible detection, and the stated Massey indeterminacy law.
+  These data and their internal properties are constructed in Def;
+  their existence remains unfinished. The external Moss conclusion is
+  separately required on this exact fixed context in
+  Theorem~\ref{thm:literature-moss}. Existence of some other context
+  carrying that conclusion does not establish it on this choice.
+\end{definition}
+
 % SOURCE: MainPaper/main.tex:2537--2545; Moss Theorem 1.2.
 % The crossing and weak-convergence conventions have also been checked against
 % Belmont--Kong, arXiv:2112.08689v2, Definitions 2.3--2.4.
 \begin{theorem}[Moss convergence for mapping Adams towers]
   \label{thm:moss-convergence-adapter}
-  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,prop:moss-long-layer-composition-obstruction}
-  \lean{KIP126.Classical.Adams.Moss.PageMassey.Relation,KIP126.Classical.Adams.Moss.PageMassey.Indeterminacy,KIP126.Classical.Adams.Moss.StatementAt,KIP126.Challenge2.MossInterface,KIP126.Challenge2.StandardSphereMossInterface,KIP126.Interface.Solution.sphereMossInterface}
+  \uses{def:toda-bracket,def:massey-product,thm:toda-product-identities,def:adams-detection,prop:moss-long-layer-composition-obstruction,def:fixed-sphere-moss-context,thm:literature-moss}
+  \lean{KIP126.Classical.Adams.Moss.PageMassey.Relation,KIP126.Classical.Adams.Moss.PageMassey.Indeterminacy,KIP126.Classical.Adams.Moss.StatementAt,KIP126.Challenge2.MossInterface,KIP126.Challenge2.StandardSphereMossInterface,KIP126.Interface.Solution.sphereMossInterface_of_literature,KIP126.Interface.Solution.sphereMossInterface}
   \notready
   Fix one composition system whose page values are constrained by the actual
   long-layer representatives, with Leibniz, associativity and next-page
@@ -290,11 +314,15 @@ and Moss convergence used by the later proof tools.
   The chosen family controls the convergence range; no convergence of every
   ambient object is asserted.
 
-  The precise interface and its existence obligation for the fixed sphere
-  mapping model are now written. The mapping-sphere comparison with the
-  previously fixed sphere Adams object, the model data, and the convergence
-  proof remain unfinished. This preceding-page definition does not claim to
-  define the separate cobar Massey product on $E_2$.
+  The retained compatibility package is assembled from the context of
+  Definition~\ref{def:fixed-sphere-moss-context} and the literature conclusion
+  on that same context. It makes no further pairing or convergence choice.
+  The unconditional compatibility API uses the same literature producer as
+  the full delivery, so its proof still depends on unfinished source work.
+  The mapping-sphere comparison with the previously fixed sphere Adams
+  object, the model construction, and the source applicability remain
+  unfinished. This preceding-page definition does not claim to define the
+  separate cobar Massey product on $E_2$.
 \end{theorem}
 
 \subsection{Synthetic comparison and normalized lifts}
@@ -370,6 +398,7 @@ and Moss convergence used by the later proof tools.
 % not covered by MainPaper/main.tex:849-855.
 \begin{proposition}[$E_\infty$ at the first $\lambda$-quotient]
   \label{prop:synthetic-einfty-first-quotient}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticEInftyPresentation,KIP126.Comparison.ClassicalSynthetic.detects_unique_of_next_filtration_zero,KIP126.Comparison.ClassicalSynthetic.firstQuotient_next_filtration_zero_of_range,KIP126.Comparison.ClassicalSynthetic.firstQuotient_inverse_eq_of_detection}
   \uses{thm:external-lambda-bockstein,thm:external-synthetic-rigidity,def:synthetic-lambda-quotient,def:synthetic-adams-ss,def:ss-convergence-detection-witness,def:bhs-aim-regrading}
   \notready
   For every admissible $X$, the special-fiber edge map identifies the
@@ -386,6 +415,10 @@ and Moss convergence used by the later proof tools.
   it does not extend the finite $E_\infty$ formula $Z_i/B_j$ of
   Theorem~\ref{thm:external-synthetic-einfty-quotient} outside its stated
   range $r\ge2$.
+  Lean already derives uniqueness from a specified single-filtration
+  range and separated actual tower convergence. Transporting that range
+  and supplying the special-fiber presentation in the chosen model
+  remain open; the conditional uniqueness lemmas do not construct them.
 \end{proposition}
 
 \begin{proof}
@@ -403,6 +436,7 @@ and Moss convergence used by the later proof tools.
 % SOURCE: MainPaper/main.tex:865-875, load-bearing compatibility remark after Propositions 3.11-3.12.
 \begin{proposition}[Compatibility of $E_\infty$ formulas with $\lambda$ and $\rho$]
   \label{prop:synthetic-einfty-map-compatibility}
+  \lean{KIP126.Synthetic.SpectralSequence.SyntheticEInftyMapCompatibility,KIP126.Def.Comparison.StageInterfaces.syntheticEInfty_lambda_nu_surjective,KIP126.Def.Comparison.StageInterfaces.syntheticEInfty_lambda_finite_surjective,KIP126.Def.Comparison.StageInterfaces.syntheticEInfty_rho_finite_injective,KIP126.Def.Comparison.StageInterfaces.syntheticEInfty_rho_nu_injective}
   \uses{thm:external-synthetic-einfty-nu,thm:external-synthetic-einfty-quotient,prop:synthetic-einfty-first-quotient,def:synthetic-lambda-quotient,def:bhs-aim-regrading}
   \notready
   For $r'\ge r\ge2$, multiplication is the degree-zero synthetic map
@@ -473,6 +507,11 @@ and Moss convergence used by the later proof tools.
   into the special-fiber edge group (or zero off its unique weight).  The
   infinite source uses Theorem~\ref{thm:external-synthetic-einfty-nu}; it is
   not obtained by substituting $r=\infty$ into the finite formula.
+  The Lean compatibility predicate fixes these actual maps, and the
+  surjectivity and injectivity consequences in the valid windows are
+  proved from a supplied presentation and map compatibility. Establishing
+  those comparisons for the chosen model, including their boundary
+  cases, remains open.
 \end{proposition}
 
 \begin{proof}
@@ -553,6 +592,7 @@ and Moss convergence used by the later proof tools.
 % SOURCE: MainPaper/main.tex:965-971, unlabelled Proposition 3.20.
 \begin{proposition}[Normalized synthetic triangle]
   \label{prop:normalized-synthetic-triangle}
+  \lean{KIP126.Kervaire.Route.normalizedTriangle,KIP126.Kervaire.Route.NormalizedTriangleCompatible}
   \uses{def:synthetic-hat-map,def:normalized-synthetic-exactness-case,prop:positive-adams-filtration-homology-zero,prop:synthetic-hat-cofiber,thm:external-synthetic-triangle-lift,def:cofiber-triangle,def:hf2-homology}
   \notready
   If $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ is a
@@ -564,6 +604,10 @@ and Moss convergence used by the later proof tools.
     \xrightarrow{\widehat g}\Sigma^{0,-e(f)-e(g)}\nu Z
     \xrightarrow{\widehat h}\Sigma^{0,-1}\nu\Sigma X.
   \]
+  Lean defines a triangle from the selected normalized maps and a
+  predicate asserting that it is distinguished. Factorization of each
+  selected lift alone does not prove that predicate or the simultaneous
+  existence claim displayed here.
 \end{proposition}
 
 \begin{proof}
@@ -830,8 +874,9 @@ and Moss convergence used by the later proof tools.
 % SOURCE: MainPaper/main.tex:1165-1173, Definition def:classicalcrossdiff.
 \begin{definition}[Classical crossing on an $E_{n+1}$ page]
   \label{def:classical-differential-crossing}
+  \lean{KIP126.Classical.Adams.PageRepresentatives.HasCrossingOn,KIP126.Classical.Adams.PageRepresentatives.NoCrossingOn}
   \uses{def:classical-adams-ss,def:ss-permanent-einfty-class}
-  \notready
+  \leanok
   Let $r\ge n+1$ and $d_r(x)=y$, with $x$ in filtration $s$.  A crossing on
   the $E_{n+1}$ page is an essential differential
   $d_{r-a-b}(x')=y'$ where the source filtration is $s+a$, the target
@@ -866,10 +911,13 @@ and Moss convergence used by the later proof tools.
 % SOURCE: MainPaper/main.tex:1236-1238, Remark nocrossE2.
 \begin{corollary}[No classical crossing on $E_2$]
   \label{cor:classical-e2-no-crossing}
+  \lean{KIP126.Classical.Adams.PageRepresentatives.noCrossingOn_two}
   \uses{def:classical-differential-crossing,prop:classical-crossing-iff-delta-crossing}
   \notready
   No classical Adams differential has a crossing on the $E_2$ page, and every
   corresponding $\delta_1$ extension has no crossing.
+  The classical assertion is proved by the linked theorem. The synthetic
+  conclusion still requires the unfinished crossing comparison.
 \end{corollary}
 
 \begin{proof}

@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.AdamsSequence.TowerComparison.Data
-import KIP126.Def.Synthetic.EInfty.Shift.Data
+module
+
+public import KIP126.Def.Synthetic.AdamsSequence.TowerComparison.Data
+public import KIP126.Def.Synthetic.EInfty.Shift.Data
+
+@[expose] public section
 
 /-! Actual weight reindexing maps below the E∞ quotient. No literature
 statement, property witness or freely chosen E∞ isomorphism is used. -/

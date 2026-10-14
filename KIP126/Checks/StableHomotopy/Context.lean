@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Context.Proofs
+
+@[expose] public section
 
 /-! Regression checks for the category-theoretic stable-homotopy interface. -/
 namespace KIP126.Checks.StableHomotopy

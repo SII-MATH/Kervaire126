@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.UnboundedExtension.TruncatedSpectralSequence.Data
+module
+
+public import KIP126.Def.SpectralSequence.UnboundedExtension.TruncatedSpectralSequence.Data
+
+@[expose] public section
 
 /-!
 # Regression checks for truncated unbounded extensions

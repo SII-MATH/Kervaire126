@@ -1,8 +1,12 @@
-import KIP126.Def.StageInput.StandardSphere.Classes.Family
-import KIP126.Def.ClassicalAdams.SphereClasses.Products.Data
-import KIP126.Def.SpectralSequence.Computation.Predicates
-import KIP126.Def.StageInput.Milnor
-import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Classes.Family
+public import KIP126.Def.ClassicalAdams.SphereClasses.Products.Data
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+public import KIP126.Def.StageInput.Milnor
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+
+@[expose] public section
 
 /-! Classical Hopf differentials on the fixed internal Adams tower.
 The j=6 instance is used in MainPaper Lemma 7.16 (classical Massey/Toda

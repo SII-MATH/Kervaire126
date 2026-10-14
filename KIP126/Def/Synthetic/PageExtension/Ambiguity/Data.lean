@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.PageExtension.Predicates
-import Mathlib.LinearAlgebra.Span.Basic
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Predicates
+public import Mathlib.LinearAlgebra.Span.Basic
+
+@[expose] public section
 
 /-!
 # Classical ambiguity of normalized page extensions

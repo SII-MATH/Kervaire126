@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.Graded.Tensor.Basic.Proofs
+module
+
+public import KIP126.Def.Algebra.Graded.Tensor.Basic.Proofs
+
+@[expose] public section
 
 namespace KIP126.Core.Algebra
 

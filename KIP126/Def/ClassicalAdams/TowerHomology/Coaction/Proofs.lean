@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Normalized.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Coaction.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Normalized.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Coaction.Proofs
+
+@[expose] public section
 
 /-! The coaction on the next actual tower stage is determined by the existing
 boundary and the coaction on the free coefficient object. This is derived

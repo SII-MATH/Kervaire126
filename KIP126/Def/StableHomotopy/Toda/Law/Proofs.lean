@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Toda.Juggling.Proofs
-import KIP126.Def.StableHomotopy.Toda.Coset.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Toda.Juggling.Proofs
+public import KIP126.Def.StableHomotopy.Toda.Coset.Proofs
+
+@[expose] public section
 
 /-!
 # Generic Toda naturality, suspension, and product containments

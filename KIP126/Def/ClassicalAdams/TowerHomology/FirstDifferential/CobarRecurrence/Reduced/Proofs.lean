@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Cobar.Reduced.Map.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Cobar.Reduced.Map.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

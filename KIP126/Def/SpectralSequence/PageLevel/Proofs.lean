@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.PageLevel.Data
-import Lean.Elab.Tactic.Omega
+module
+
+public import KIP126.Def.SpectralSequence.PageLevel.Data
+public import Lean.Elab.Tactic.Omega
+
+@[expose] public section
 
 namespace KIP126.Core.SpectralSequence
 

@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerSequence.PagePassage.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSequence.PagePassage.Data
+
+@[expose] public section
 
 /-!
 # Bijectivity of the page-passage quotient map

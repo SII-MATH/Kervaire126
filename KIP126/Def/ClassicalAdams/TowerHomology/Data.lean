@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerResolution.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerResolution.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Data
+
+@[expose] public section
 
 /-! Derived coefficient-homology descriptions of the actual Adams tower.
 Tensor exactness and a multiplication are explicit structural arguments;

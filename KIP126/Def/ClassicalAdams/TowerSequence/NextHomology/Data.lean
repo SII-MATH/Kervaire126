@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSequence.NextCycles.Proofs
-import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSequence.NextCycles.Proofs
+public import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+
+@[expose] public section
 
 /-!
 # The homology class of a next-page representative

@@ -1,6 +1,10 @@
-import KIP126.Def.Kervaire.Route.Model.Coherent.Data
-import KIP126.Def.Synthetic.ExtensionRelation.Predicates
-import KIP126.Def.Synthetic.Detection.Predicates
+module
+
+public import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+public import KIP126.Def.Synthetic.ExtensionRelation.Predicates
+public import KIP126.Def.Synthetic.Detection.Predicates
+
+@[expose] public section
 
 /-! Actual normalized maps used throughout the Section 7 route.
 No NormalizedPageFamily with a globally bounded infinite ESS is required. -/
@@ -59,7 +63,7 @@ def finiteTargetForExtension (q : ℕ) (n s t : ℤ)
     (D.family.obj ((SyntheticObject.quotient q (.nu Y)).obj D.nu D.auxiliary)).E₂
       (s + n, (t - s) + (s + n), t + normalizedExponent H f) :=
   regradeE2 (by
-    ext <;> simp only [Prod.fst, Prod.snd, Int.toNat_of_nonneg (sub_nonneg.mpr hn)] <;> omega)
+    ext <;> simp only [Int.toNat_of_nonneg (sub_nonneg.mpr hn)] <;> omega)
     (finiteTargetLabel D Y q (s + n) (t + n) (n - normalizedExponent H f).toNat y)
 
 def infiniteSourceForExtension (s t : ℤ) (x : E2 H (X.obj D.auxiliary) s t) :
@@ -73,7 +77,7 @@ def infiniteTargetForExtension (n s t : ℤ)
     (D.family.obj (D.nu.functor.obj (Y.obj D.auxiliary))).E₂
       (s + n, (t - s) + (s + n), t + normalizedExponent H f) :=
   regradeE2 (by
-    ext <;> simp only [Prod.fst, Prod.snd, Int.toNat_of_nonneg (sub_nonneg.mpr hn)] <;> omega)
+    ext <;> simp only [Int.toNat_of_nonneg (sub_nonneg.mpr hn)] <;> omega)
     (targetNuLabel D Y (s + n) (t + n) (n - normalizedExponent H f).toNat y)
 end
 end KIP126.Kervaire.Route

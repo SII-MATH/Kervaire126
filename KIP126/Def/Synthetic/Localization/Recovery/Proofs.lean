@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Localization.Recovery.Data
-import KIP126.Def.Synthetic.Localization.Proofs
+module
+
+public import KIP126.Def.Synthetic.Localization.Recovery.Data
+public import KIP126.Def.Synthetic.Localization.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.Context
 

@@ -1,5 +1,9 @@
-import Mathlib.Algebra.Category.ModuleCat.Basic
-import Mathlib.Algebra.Module.ULift
+module
+
+public import Mathlib.Algebra.Category.ModuleCat.Basic
+public import Mathlib.Algebra.Module.ULift
+
+@[expose] public section
 
 namespace KIP126.Core.ModuleCat
 

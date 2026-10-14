@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.BoundedExtension.Morphism.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension.Morphism.Proofs
+
+@[expose] public section
 
 /-!
 # Construction of historical filtered-complex morphisms

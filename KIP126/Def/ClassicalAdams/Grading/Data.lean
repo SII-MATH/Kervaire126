@@ -1,6 +1,10 @@
-import Mathlib.Algebra.Homology.ComplexShape
-import Mathlib.Algebra.Group.Prod
-import Mathlib.Algebra.Group.Int.Defs
+module
+
+public import Mathlib.Algebra.Homology.ComplexShape
+public import Mathlib.Algebra.Group.Prod
+public import Mathlib.Algebra.Group.Int.Defs
+
+@[expose] public section
 
 /-! Adams grading conventions, independent of either spectral-sequence implementation. -/
 namespace KIP126.Classical.Adams

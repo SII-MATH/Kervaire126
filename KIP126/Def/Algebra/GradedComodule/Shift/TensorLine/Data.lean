@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedComodule.Shift.TensorLine.Raw.Proofs
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Shift.TensorLine.Raw.Proofs
+
+@[expose] public section
 
 /-!
 The canonical tensor identification of degree lines and its lift to the

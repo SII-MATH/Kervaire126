@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedComodule.LeftTensor.Proofs
+module
+
+public import KIP126.Def.Algebra.GradedComodule.LeftTensor.Proofs
+
+@[expose] public section
 
 /-! The actual left tensor action on the category of right comodules. -/
 

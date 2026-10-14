@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Sphere.Proofs
-import KIP126.Def.ClassicalAdams.TowerSequence.NextHomology.Proofs
-import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Sphere.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSequence.NextHomology.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
+
+@[expose] public section
 
 /-! Nonzero filtration-one sphere cycles give nonzero second-page classes.
 The representative is retained; no coordinates or page-comparison axiom

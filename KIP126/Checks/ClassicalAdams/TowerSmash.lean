@@ -1,9 +1,13 @@
-import KIP126.Def.ClassicalAdams.UnitFiber.Connectivity.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Right.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Boundary.Right.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Representatives.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Cycles.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.UnitFiber.Connectivity.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Right.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Boundary.Right.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Representatives.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Cycles.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Audit the map-preserving smash comparison independently of all fixed
 foundation, Milnor, Lin, and spectral-sequence adapter assumptions. -/

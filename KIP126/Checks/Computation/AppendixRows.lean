@@ -1,4 +1,8 @@
-import KIP126.Checks.SourceMetadata.AppendixTable.Rows.Catalogue.Proofs
+module
+
+public import KIP126.Checks.SourceMetadata.AppendixTable.Rows.Catalogue.Proofs
+
+@[expose] public section
 
 namespace KIP126.Checks.Computation
 

@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Hi.Data
-import KIP126.Def.Steenrod.MilnorCobar.Multiplication.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Hi.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Multiplication.Proofs
+
+@[expose] public section
 
 /-! Closedness and compatibility with the previously constructed `h₆` representatives. -/
 

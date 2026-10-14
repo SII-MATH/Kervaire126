@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Implementation.Fixed
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Fixed
+
+@[expose] public section
 
 /-! All target objects use the one implementation fixed in Def. This alias
 contains no project-input proof and no consumer axiom. -/

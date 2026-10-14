@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.TensorPairing.Data
+module
+
+public import KIP126.Def.StableHomotopy.Context.TensorPairing.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy
 

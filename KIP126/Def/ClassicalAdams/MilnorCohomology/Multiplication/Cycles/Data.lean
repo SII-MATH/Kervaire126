@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Data
-import KIP126.Def.Steenrod.MilnorCobar.Multiplication.Proofs
-import Mathlib.LinearAlgebra.BilinearMap
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Multiplication.Proofs
+public import Mathlib.LinearAlgebra.BilinearMap
+
+@[expose] public section
 
 /-! The explicit normalized cobar concatenation, restricted to cycles. -/
 

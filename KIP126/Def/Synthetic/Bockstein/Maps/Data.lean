@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.QuotientMap.Data
+module
+
+public import KIP126.Def.Synthetic.QuotientMap.Data
+
+@[expose] public section
 
 /-!
 The finite λ-Bockstein arrow is a composite of the actual λ-power cofiber

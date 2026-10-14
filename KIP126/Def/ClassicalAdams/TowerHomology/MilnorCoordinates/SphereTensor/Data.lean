@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Basic.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Basic.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

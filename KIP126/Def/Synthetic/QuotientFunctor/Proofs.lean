@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.QuotientFunctor.Data
-import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
+module
+
+public import KIP126.Def.Synthetic.QuotientFunctor.Data
+public import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.Context
 

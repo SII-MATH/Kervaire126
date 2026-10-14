@@ -1,6 +1,10 @@
-import KIP126.LinProgram.Route.Selected
-import KIP126.LinProgram.Interpretation.Near126.Classes.Data
-import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+module
+
+public import KIP126.LinProgram.Route.Selected
+public import KIP126.LinProgram.Interpretation.Near126.Classes.Data
+public import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+
+@[expose] public section
 
 namespace KIP126.Computation.Route
 open CategoryTheory

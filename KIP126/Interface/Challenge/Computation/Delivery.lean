@@ -1,18 +1,23 @@
-import KIP126.Def.SpectralSequence.Computation.State.Predicates
-import KIP126.Def.StageInput.StandardSphere.Sequence.Data
-import KIP126.Def.StageInput.StandardSphere.Classes.Data
-import KIP126.LinProgram.Model.Classes.Data
-import KIP126.LinProgram.Certificates.BasisTable.Predicates
-import KIP126.Def.ClassicalAdams.SphereMultiplication.Data
-import KIP126.Def.ClassicalAdams.Suspension.Predicates
-import KIP126.LinProgram.Generated.Differentials.Table
-import KIP126.LinProgram.Generated.Staircase.Table
-import KIP126.LinProgram.Interpretation.State.Data
-import KIP126.LinProgram.Interpretation.Branch.Predicates
-import KIP126.Interface.Challenge.Computation.Presentation
-import KIP126.Def.StageInput.StandardSphere.Tmf.Predicates
-import KIP126.LinProgram.Interpretation.Route.Certification
-import KIP126.Interface.Challenge.Literature.Delivery
+module
+
+public import KIP126.Def.SpectralSequence.Computation.State.Predicates
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+public import KIP126.Def.StageInput.StandardSphere.Classes.Data
+public import KIP126.LinProgram.Model.Classes.Data
+public import KIP126.LinProgram.Certificates.BasisCertification.Predicates
+public import KIP126.Def.ClassicalAdams.SphereMultiplication.Data
+public import KIP126.Def.ClassicalAdams.Suspension.Predicates
+public import KIP126.LinProgram.Generated.Differentials.Table
+public import KIP126.LinProgram.Generated.Staircase.Table
+public import KIP126.LinProgram.Interpretation.State.Data
+public import KIP126.LinProgram.Interpretation.Branch.Predicates
+public import KIP126.Interface.Challenge.Computation.Presentation
+public import KIP126.Def.StageInput.StandardSphere.Tmf.Predicates
+public import KIP126.LinProgram.Interpretation.Route.Certification
+public import KIP126.Interface.Challenge.Literature.Delivery
+
+@[expose] public section
+
 
 namespace KIP126
 
@@ -41,7 +46,8 @@ structure SphereBasisInterface (P : LinE2Presentation) where
 输出 second cycle 的底层严格等于已构造的 first-layer product；存在量词
 只表达该实际乘积闭合于 cycles，不选择另一个运算。对所有输入代表元的
 商类等式同时要求其值与 presentation.product 相符。范围是 t+t′≤261，
-不由此宣称高页 Leibniz、全局乘法或与 cobar cup 的比较已经完成。 -/
+presentation 的乘法现为固定 cobar 乘法；本条件仍要求它与实际塔代表元乘法的比较。
+不由此宣称高页 Leibniz 或范围外的塔乘法比较已经完成。 -/
 def SphereMultiplicativeInterface (P : LinE2Presentation) : Prop :=
   let c := KIP126.Def.StageInput.witness
   letI : Foundation.TensorInput c.foundationInput := c.tensorInput

@@ -1,6 +1,10 @@
-import KIP126.Def.StageInput.StandardSphere.Sequence.Data
-import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
-import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
+
+@[expose] public section
 
 namespace KIP126.Challenge2
 open Classical.Adams

@@ -1,4 +1,8 @@
-import KIP126.LinProgram.Interpretation.Branch.Data
+module
+
+public import KIP126.LinProgram.Interpretation.Branch.Data
+
+@[expose] public section
 
 /-!
 # Conditional meaning and candidate coverage

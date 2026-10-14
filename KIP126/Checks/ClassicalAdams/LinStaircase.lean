@@ -1,5 +1,11 @@
-import KIP126.LinProgram.Generated.Staircase.Table
-import KIP126.LinProgram.Interpretation.State.Data
+module
+
+public import KIP126.LinProgram.Generated.Staircase.Table
+public import KIP126.LinProgram.Interpretation.State.Data
+public meta import KIP126.LinProgram.Generated.Staircase.Table
+public meta import KIP126.LinProgram.Interpretation.State.Data
+
+@[expose] public section
 open KIP126.Computation.LinProofs
 #eval do
   let mut counts : Array Nat := #[0, 0, 0, 0]

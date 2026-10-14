@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Localization.Predicates
+module
+
+public import KIP126.Def.Synthetic.Localization.Predicates
+
+@[expose] public section
 
 /-! Consequences of the explicit adjunction and of the existing natural λ.
 These do not construct the localization or assume a spectral Yoneda model. -/

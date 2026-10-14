@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.Data
-import KIP126.Def.ClassicalAdams.TowerRepresentatives.Proofs
-import KIP126.Def.SpectralSequence.ModuleQuotient.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.Data
+public import KIP126.Def.ClassicalAdams.TowerRepresentatives.Proofs
+public import KIP126.Def.SpectralSequence.ModuleQuotient.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

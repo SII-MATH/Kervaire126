@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.SSData.Proofs
-import KIP126.Def.SpectralSequence.FilteredDifferential.Data
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.SSData.Proofs
+public import KIP126.Def.SpectralSequence.FilteredDifferential.Data
+
+@[expose] public section
 
 /-!
 # Nested-subobject spectral sequence of a filtered complex

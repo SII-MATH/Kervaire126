@@ -1,5 +1,10 @@
-import KIP126.LinProgram.Tactic.Support.Data
-import KIP126.LinProgram.Model.BasisTable.Data
+module
+
+public import KIP126.LinProgram.Tactic.Support.Data
+public import KIP126.LinProgram.Model.BasisCatalogue.Data
+
+@[expose] public section
+
 
 /-! Degree-indexed expressions ported from KIPBase at 639057b.
 Strict decoding returns errors; it makes no claim about reduction soundness.
@@ -44,6 +49,7 @@ private def wordExpression : List Generator → Σ s t, Expression s t
       ⟨(generatorDegree i).1 + s, (generatorDegree i).2 + t, .mul (.gen i) e⟩
 
 /-- 严格解码 CSV 单项式；非法编号、语法或次数返回 error，不解释成零。 -/
+@[no_expose]
 def decodeExpression (s t : ℕ) (code : String) : Compute.Calc (Expression s t) := do
   let m ← Compute.parseMonomial code
   let words ← m.mapM fun (i, a) =>

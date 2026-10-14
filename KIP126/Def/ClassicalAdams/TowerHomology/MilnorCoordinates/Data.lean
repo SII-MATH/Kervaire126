@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Basic.Data
-import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Basic.Data
+public import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Proofs
+
+@[expose] public section
 
 /-! Derive all first-page Milnor vector-space coordinates from a basis on the
 actual reduced cooperations and homology Künneth. No page-coordinate input

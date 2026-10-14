@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Reindex.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Multiplication.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Reindex.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Multiplication.Proofs
+
+@[expose] public section
 
 /-! # Cochain reindexing and polynomial block embeddings -/
 

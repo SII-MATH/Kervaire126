@@ -1,6 +1,10 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Tower.Proofs
-import KIP126.Def.ClassicalAdams.TowerSSData.Differential.Second.Proofs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.Proofs
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Tower.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSSData.Differential.Second.Proofs
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differential.Proofs
+
+@[expose] public section
 
 /-! The second differential of the existing computed square is an actual
 tower obstruction. These formulas do not assume that the obstruction vanishes. -/

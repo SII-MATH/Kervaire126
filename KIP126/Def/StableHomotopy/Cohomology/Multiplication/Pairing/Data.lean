@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Data
-import KIP126.Def.ClassicalAdams.Tower.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Data
+public import KIP126.Def.ClassicalAdams.Tower.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

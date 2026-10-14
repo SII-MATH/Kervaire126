@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorModule.Resolution.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Resolution.Data
+
+@[expose] public section
 
 /-! The terms and differentials of the resolution are definitionally the
 specified duals. The augmentation is the specified transpose followed by

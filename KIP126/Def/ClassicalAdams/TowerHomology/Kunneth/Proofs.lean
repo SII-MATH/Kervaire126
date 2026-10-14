@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Data
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

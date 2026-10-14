@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Data
-import KIP126.Def.Algebra.NestedQuotient.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Data
+public import KIP126.Def.Algebra.NestedQuotient.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.PageRepresentatives
 

@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Data
-import KIP126.Def.ClassicalAdams.Tower.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Data
+public import KIP126.Def.ClassicalAdams.Tower.Data
+
+@[expose] public section
 
 /-! The cooperation coaction before Künneth: insert the specified unit into
 the middle smash factor. No tensor decomposition of homology is assumed. -/

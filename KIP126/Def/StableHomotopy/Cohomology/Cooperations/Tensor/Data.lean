@@ -1,6 +1,10 @@
-import KIP126.Def.Algebra.Graded.Tensor.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Proofs
-import Mathlib.LinearAlgebra.Basis.VectorSpace
+module
+
+public import KIP126.Def.Algebra.Graded.Tensor.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Proofs
+public import Mathlib.LinearAlgebra.Basis.VectorSpace
+
+@[expose] public section
 
 /-! Genuine graded cooperations and their reduced tensor products. These use
 the represented groups and derived F₂ scalars, not Milnor coordinates. -/

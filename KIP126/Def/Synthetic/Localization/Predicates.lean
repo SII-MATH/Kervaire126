@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Localization.Data
+module
+
+public import KIP126.Def.Synthetic.Localization.Data
+
+@[expose] public section
 
 namespace KIP126.Synthetic.Context
 

@@ -1,4 +1,9 @@
-import KIP126.Def.SpectralSequence.Computation.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+
+@[expose] public section
+
 
 namespace KIP126.Core.SpectralSequence
 open CategoryTheory
@@ -13,6 +18,16 @@ theorem RepresentsOnPage.eq_on_page_two {a b : E.Page 2 p}
   obtain ⟨_, z, ha, hb⟩ := h
   simp only [Subobject.ofLE_refl, Category.id_comp] at ha
   exact ha.symm.trans hb
+
+/-- Every E₂ element has a cycle representative on E₂ itself. -/
+theorem RepresentsOnPage.self_two (a : E.Page 2 p) :
+    RepresentsOnPage E 2 p a a := by
+  let D := E.ssData p
+  let n : WithTop ℕ := ↑(2 - E.r₀).toNat
+  letI : Epi (D.pageπ n) := CategoryTheory.Limits.coequalizer.π_epi
+  obtain ⟨z, hz⟩ := (ModuleCat.epi_iff_surjective (D.pageπ n)).mp inferInstance a
+  refine ⟨by omega, z, ?_, hz⟩
+  simpa only [Subobject.ofLE_refl, Category.id_comp] using hz
 
 /-- Zero has a common zero representative on every allowed page. -/
 theorem RepresentsOnPage.zero (hr : 2 ≤ r) :
@@ -40,6 +55,14 @@ theorem HasDifferential.eq_on_page_two {a : E.Page 2 p} {b : E.Page 2 q}
 theorem hasDifferential_zero (hr : 2 ≤ r) (hdeg : p + E.diffDeg r = q) :
     HasDifferential E r p q 0 0 :=
   ⟨hdeg, 0, 0, RepresentsOnPage.zero hr, RepresentsOnPage.zero hr, map_zero _⟩
+
+/-- A zero target group forces every E₂ differential into it to vanish.
+The source element need not be zero. -/
+theorem hasDifferential_two_of_subsingleton_target [Subsingleton (E.Page 2 q)]
+    (hdeg : p + E.diffDeg 2 = q) (a : E.Page 2 p) :
+    HasDifferential E 2 p q a 0 :=
+  ⟨hdeg, a, 0, RepresentsOnPage.self_two a,
+    RepresentsOnPage.zero (by omega), Subsingleton.elim _ _⟩
 
 theorem IsPageBoundary.zero : IsPageBoundary E r p 0 :=
   ⟨0, map_zero (E.d r p).hom⟩

@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Commutativity.Detection.Data
+module
+
+public import KIP126.Def.SpectralSequence.Commutativity.Detection.Data
+
+@[expose] public section
 
 /-!
 # Compatibility of the detection projection

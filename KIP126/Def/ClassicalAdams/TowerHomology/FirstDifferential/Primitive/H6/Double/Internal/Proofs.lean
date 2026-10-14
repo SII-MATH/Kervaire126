@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

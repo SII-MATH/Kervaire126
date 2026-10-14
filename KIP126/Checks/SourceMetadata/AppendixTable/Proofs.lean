@@ -1,4 +1,8 @@
-import KIP126.LinProgram.SourceMetadata.AppendixTable.Data
+module
+
+public import KIP126.LinProgram.SourceMetadata.AppendixTable.Data
+
+@[expose] public section
 
 /-! Enumeration and locator properties of the twelve source tables. -/
 

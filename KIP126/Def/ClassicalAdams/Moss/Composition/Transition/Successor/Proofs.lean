@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Transport.Successor.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Transport.Successor.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

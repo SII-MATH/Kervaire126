@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Reduced.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Square.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Reduced.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Reduced.Square.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

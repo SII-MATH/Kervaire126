@@ -1,7 +1,12 @@
-import KIP126.Main.Solution.Computation.Tower.Survival
-import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.Differential.Second
-import Lean.Elab.Command
+module
+
+public import KIP126.Main.Solution.Computation.Tower.Survival
+public import KIP126.Checks.AxiomInputs
+public import KIP126.Main.Solution.Computation.Differential.Second
+public import Lean.Elab.Command
+public meta import KIP126.Checks.AxiomInputs
+
+@[expose] public section
 
 /-! The actual tower representative is identified without a fixed Milnor
 coordinate axiom or a Mathlib spectral-sequence adapter. The additional

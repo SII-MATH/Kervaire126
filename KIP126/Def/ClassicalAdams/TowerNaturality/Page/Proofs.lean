@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerNaturality.Morphism.Proofs
-import KIP126.Def.SpectralSequence.Computation.Morphism.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Morphism.Proofs
+public import KIP126.Def.SpectralSequence.Computation.Morphism.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 open CategoryTheory MonoidalCategory KIP126.StableHomotopy

@@ -1,4 +1,8 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Proofs
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Proofs
+
+@[expose] public section
 
 /-! A realization map on Adams pages, induced by the ACTUAL exact strong
 monoidal functor. The layer map is a formula in F.map, F's monoidal maps,

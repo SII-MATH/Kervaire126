@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Proofs
-import Mathlib.LinearAlgebra.Dual.Lemmas
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Proofs
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

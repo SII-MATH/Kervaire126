@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Hi.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Hi.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Proofs
+
+@[expose] public section
 
 /-! The Frobenius powers of the primitive generator are normalized cocycles. -/
 

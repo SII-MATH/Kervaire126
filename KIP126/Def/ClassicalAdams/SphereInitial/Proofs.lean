@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Sphere.Proofs
-import KIP126.Def.ClassicalAdams.TowerVanishing.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Sphere.Proofs
+public import KIP126.Def.ClassicalAdams.TowerVanishing.Proofs
+
+@[expose] public section
 
 /-! All cycle stages in sphere filtration zero are the full module.
 Its boundaries vanish because the negative tower is constant. These

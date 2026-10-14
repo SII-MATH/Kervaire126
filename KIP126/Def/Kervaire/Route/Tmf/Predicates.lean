@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Route.SourceLanguage
+module
+
+public import KIP126.Def.Kervaire.Route.SourceLanguage
+
+@[expose] public section
 
 /-! Model-bound tmf conditions used by independent Main deductions.
 These predicates supply neither literature facts nor stage witnesses. -/

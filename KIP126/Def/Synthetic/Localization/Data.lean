@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Localization.Objects.Predicates
-import Mathlib.CategoryTheory.Adjunction.Reflective
+module
+
+public import KIP126.Def.Synthetic.Localization.Objects.Predicates
+public import Mathlib.CategoryTheory.Adjunction.Reflective
+
+@[expose] public section
 
 /-! The full subcategory of actual λ-invertible objects and explicitly
 supplied reflection data. No localization is selected globally.

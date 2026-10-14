@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Massey.Predicates
-import KIP126.Def.ClassicalAdams.Moss.Statement.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Massey.Predicates
+public import KIP126.Def.ClassicalAdams.Moss.Statement.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

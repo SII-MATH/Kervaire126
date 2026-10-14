@@ -1,5 +1,10 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Literature.Applications
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Interface.Solution.Literature.Applications
+public meta import KIP126.LinProgram.Route.Selected
+
+@[expose] public section
 
 /-! Selected C(M) interface regressions. These check interpretation and binding,
 not the mathematical correctness of the archived calculation. -/

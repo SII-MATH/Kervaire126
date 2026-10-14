@@ -1,4 +1,8 @@
-import Mathlib.CategoryTheory.GradedObject
+module
+
+public import Mathlib.CategoryTheory.GradedObject
+
+@[expose] public section
 
 /-!
 # Graded objects

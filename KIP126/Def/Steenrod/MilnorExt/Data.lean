@@ -1,5 +1,9 @@
-import KIP126.Def.Algebra.GradedComodule.Ext.Data
-import KIP126.Def.Steenrod.MilnorCoalgebra.Data
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Ext.Data
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Data
+
+@[expose] public section
 
 /-!
 The theory-side sphere Ext groups for the fixed Milnor coproduct.

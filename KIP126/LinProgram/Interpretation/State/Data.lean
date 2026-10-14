@@ -1,4 +1,8 @@
-import KIP126.LinProgram.Raw.Staircase.Data
+module
+
+public import KIP126.LinProgram.Raw.Staircase.Data
+
+@[expose] public section
 
 /-!
 # Deterministic sphere-staircase decoding

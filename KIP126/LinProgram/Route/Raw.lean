@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-!
 # Section 7 computation slice: syntax
 

@@ -1,4 +1,8 @@
-import KIP126.LinProgram.Model.E2.Data
+module
+
+public import KIP126.LinProgram.Model.E2.Data
+
+@[expose] public section
 
 /-! Zero-based CSV addresses used by the Section 7 computation inputs.
 These are addresses in the pinned sphere algebra, not assumed page facts. -/

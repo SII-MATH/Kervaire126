@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.Differential.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.Differential.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

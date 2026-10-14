@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Data
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Tensor.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Equiv.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Data
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Tensor.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Equiv.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

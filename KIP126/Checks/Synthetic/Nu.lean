@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Context.Proofs
+module
+
+public import KIP126.Def.Synthetic.Context.Proofs
+
+@[expose] public section
 
 /-! Regression check for the explicit ν witness record. -/
 namespace KIP126.Checks.Synthetic

@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.Data
+module
+
+public import KIP126.Def.StableHomotopy.Context.Data
+
+@[expose] public section
 
 /-!
 # The Adams tower of a spectrum

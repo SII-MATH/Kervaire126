@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Sphere.Data
-import KIP126.Def.Synthetic.QuotientMap.Data
+module
+
+public import KIP126.Def.Synthetic.Sphere.Data
+public import KIP126.Def.Synthetic.QuotientMap.Data
+
+@[expose] public section
 
 /-! Actual operations on bigraded homotopy groups. No arbitrary product,
 quotient-vanishing predicate, or differential is supplied as a field. -/

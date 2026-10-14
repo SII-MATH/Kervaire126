@@ -1,5 +1,9 @@
-import KIP126.Checks.Examples.LinProgram.AdamsE2LowDegrees.Data
-import Mathlib.Tactic.Ring
+module
+
+public import KIP126.Checks.Examples.LinProgram.AdamsE2LowDegrees.Data
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # 使用林氏低次数数据表

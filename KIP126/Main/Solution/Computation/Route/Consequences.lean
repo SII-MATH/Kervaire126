@@ -1,6 +1,10 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Def.ClassicalAdams.Detection.Predicates
-import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Def.ClassicalAdams.Detection.Predicates
+public import KIP126.Def.ClassicalAdams.SphereVanishing.Predicates
+
+@[expose] public section
 
 /-!
 # Derived, same-realization computation language
@@ -60,7 +64,7 @@ def OnlyIncomingT : Prop :=
       (r = 12 ∧ Differential R 12 dataH6Sq T)
 
 /-- This bundles consequences for checking coverage; it is not an accepted
-input. Each field must be derived on THIS R from `Inputs`, not obtained from
+input. Each field must be derived on THIS R from the same computation delivery, not obtained from
 the historical global `linToSphereE2` package. -/
 structure SphereFacts : Prop where
   d2_x_125_8 : Differential R 2 (atom .x_125_8) (mulAt dataH1 V + U)
@@ -88,7 +92,10 @@ structure SphereFacts : Prop where
   v_to_e12 : Survival R 12 V
   v_not_hit : NotHit R V
   y_to_e5 : Survival R 5 Y
-  y_not_hit : NotHit R Y
+  /-- The finite incoming range needed for Y's nonzero detection modulo λ⁹.
+  This does not assert the all-page incoming exclusion in Fact 7.15. -/
+  y_not_hit_through_six : NeverHitOnWindow (sequence D .sphere) 2 6 (11,136)
+    (R.sphere 11 136 Y)
   x_to_e6 : Survival R 6 X
   x_not_hit : NotHit R X
   high_e5 : High125Component R

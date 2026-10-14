@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.One.Page.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.One.Page.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Audit the specified coefficient product and the constructed one-step
 pairing. This does not certify higher-page pairings or a concrete model. -/

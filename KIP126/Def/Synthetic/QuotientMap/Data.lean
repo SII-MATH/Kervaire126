@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Context.LambdaPowers.Proofs
+module
+
+public import KIP126.Def.Synthetic.Context.LambdaPowers.Proofs
+
+@[expose] public section
 
 /-! Actual maps on the already chosen finite λ-power cofibers. -/
 

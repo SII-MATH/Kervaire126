@@ -1,5 +1,9 @@
-import KIP126.Def.Algebra.GradedDual.Data
-import KIP126.Def.Algebra.GradedComodule.Tensor.Raw.Data
+module
+
+public import KIP126.Def.Algebra.GradedDual.Data
+public import KIP126.Def.Algebra.GradedComodule.Tensor.Raw.Data
+
+@[expose] public section
 
 /-! Evaluation at a specified coaugmentation gives the actual augmentation
 of the same-degree convolution algebra. No choice of character is made. -/

@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Data
-import Mathlib.Algebra.CharP.Two
-import Mathlib.Algebra.CharP.Algebra
-import Mathlib.Tactic.Ring
+module
+
+public import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Data
+public import Mathlib.Algebra.CharP.Two
+public import Mathlib.Algebra.CharP.Algebra
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-! Homogeneity obligations for the fixed coordinate expressions.
 These elementary proofs are deferred in the statement-only milestone. -/
@@ -9,20 +13,62 @@ namespace KIP126.Classical.Adams.Tmf.CsvE2
 
 /-- The actual quotient-ring unit has bidegree `(0,0)`. -/
 theorem one_mem_homogeneousPart : (1 : E2) ∈ homogeneousPart 0 0 := by
-  sorry
+  apply Submodule.subset_span
+  refine ⟨0, ?_, ?_⟩
+  · simp only [monomialDegree, Finsupp.sum_zero_index]
+    rfl
+  · simp
 
 /-- Multiplication in the fixed polynomial quotient adds bidegrees.
 This is a property of the displayed monomial spans, not an extra product. -/
 theorem mul_mem_homogeneousPart {s t s' t' : ℕ} {x y : E2}
     (hx : x ∈ homogeneousPart s t) (hy : y ∈ homogeneousPart s' t') :
     x * y ∈ homogeneousPart (s + s') (t + t') := by
-  sorry
+  have degree_add (m n : Generator →₀ ℕ) :
+      monomialDegree (m+n) = monomialDegree m + monomialDegree n := by
+    unfold monomialDegree
+    apply Finsupp.sum_add_index'
+    · intro i
+      simp
+    · intro i a b
+      simp [add_mul]
+  induction hx using Submodule.span_induction with
+  | mem x hx =>
+    induction hy using Submodule.span_induction with
+    | mem y hy =>
+      rcases hx with ⟨m, hm, rfl⟩
+      rcases hy with ⟨n, hn, rfl⟩
+      apply Submodule.subset_span
+      refine ⟨m+n, ?_, ?_⟩
+      · rw [degree_add, hm, hn]
+        rfl
+      · simp [← map_mul, MvPolynomial.monomial_mul]
+    | zero => simp
+    | add y z hy hz iy iz =>
+      simpa only [mul_add] using (homogeneousPart (s+s') (t+t')).add_mem iy iz
+    | smul a y hy iy =>
+      simpa only [mul_smul_comm] using (homogeneousPart (s+s') (t+t')).smul_mem a iy
+  | zero => simp
+  | add x z hx hz ix iz =>
+    simpa only [add_mul] using (homogeneousPart (s+s') (t+t')).add_mem ix iz
+  | smul a x hx ix =>
+    simpa only [smul_mul_assoc] using (homogeneousPart (s+s') (t+t')).smul_mem a ix
 
 theorem v2SixteenValue_mem : v2SixteenValue ∈ homogeneousPart 16 112 := by
-  sorry
+  apply Submodule.subset_span
+  refine ⟨Finsupp.single 12 2, ?_, ?_⟩
+  · norm_num [monomialDegree, generatorDegree, Finsupp.sum_single_index]
+    decide
+  · simp [v2SixteenValue, generator, ← map_pow, MvPolynomial.X_pow_eq_monomial]
 
 theorem betaFiveGValue_mem : betaFiveGValue ∈ homogeneousPart 19 114 := by
-  sorry
+  apply Submodule.subset_span
+  refine ⟨Finsupp.single 7 5 + Finsupp.single 9 1, ?_, ?_⟩
+  · norm_num [monomialDegree, Finsupp.sum_add_index', add_mul, generatorDegree]
+    decide
+  · change projection (MvPolynomial.X 7) ^ 5 * projection (MvPolynomial.X 9) = _
+    rw [← map_pow, ← map_mul, MvPolynomial.X_pow_eq_monomial, MvPolynomial.X,
+      MvPolynomial.monomial_mul, one_mul]
 
 private instance polyCharTwo : CharP Poly 2 :=
   CharP.of_ringHom_of_ne_zero

@@ -1,4 +1,8 @@
-import KIP126.Def.AdamsE2.PageAlgebra.Data
+module
+
+public import KIP126.Def.AdamsE2.PageAlgebra.Data
+
+@[expose] public section
 
 namespace KIP126.AdamsE2.PageAlgebra
 

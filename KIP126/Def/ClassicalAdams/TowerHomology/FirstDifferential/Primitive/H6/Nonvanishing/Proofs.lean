@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Nonvanishing.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Sphere.Nonvanishing.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Nonvanishing.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Sphere.Nonvanishing.Proofs
+
+@[expose] public section
 
 /-! A nonzero cycle on the actual first sphere Adams page, constructed from
 the primitive polynomial and a genuine nonzero sphere coefficient. This

@@ -1,6 +1,12 @@
-import KIP126.Def.ClassicalAdams.TowerResolution.Data
-import KIP126.Def.ClassicalAdams.TowerLayer.Proofs
-import KIP126.Def.ClassicalAdams.TowerDifferential.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerResolution.Data
+public import KIP126.Def.ClassicalAdams.TowerLayer.Proofs
+public import KIP126.Def.ClassicalAdams.TowerDifferential.Proofs
+
+import all KIP126.Def.StableHomotopy.Context.Proofs
+
+@[expose] public section
 
 /-! Comparison of the actual first differential with the resolution formula. -/
 

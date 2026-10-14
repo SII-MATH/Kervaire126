@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.CofiberCoherence.Predicates
+module
+
+public import KIP126.Def.StableHomotopy.Context.CofiberCoherence.Predicates
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy
 

@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Implementation.Data
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Data
+
+@[expose] public section
 
 /-! Internal Def construction task. This is not a new stage axiom or a
 second boundary. The candidate includes its concrete point-set source

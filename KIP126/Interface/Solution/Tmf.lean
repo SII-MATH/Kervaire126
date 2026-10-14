@@ -1,11 +1,19 @@
-import KIP126.Def.SpectralSequence.Computation.Predicates
-import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
-import KIP126.Def.StageInput.StandardSphere.Tmf.Predicates
-import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Def.ClassicalAdams.Tmf.Br21.Data
+module
 
-/-! Coordinate-bound tmf comparison contracts and the combined consumer adapter. -/
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
+public import KIP126.Def.StageInput.StandardSphere.Tmf.Predicates
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Def.ClassicalAdams.Tmf.Br21.Data
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Proofs
+public import KIP126.Interface.Solution.Challenge2
+
+@[expose] public section
+
+/-! Coordinate-bound tmf comparison contracts and compatibility views of the
+same Challenge2 delivery. These views make no additional object or coordinate
+choice; their existence still depends on the unfinished Interface producer. -/
 
 namespace KIP126.Challenge2
 open CategoryTheory CategoryTheory.MonoidalCategory
@@ -66,14 +74,31 @@ end KIP126.Challenge2
 
 namespace KIP126.Interface.Solution
 
-/-- Source realization and coordinate comparison for the actual tmf Adams
-sequence, retaining BR21's exact βg⁴ target. The proof must construct the tmf
-witness and identify its generators with the fixed CSV quotient; matching names
-or bidegrees alone do not supply that identification. -/
+/-- The fixed tmf target with the coordinates from this exact delivery. -/
+noncomputable def tmfModelOfDelivery (input : KIP126.Challenge2) :
+    KIP126.Challenge2.TmfModel KIP126.Classical.Adams.standardFoundation.hf2 where
+  target := KIP126.Def.standardTmfTarget
+  coordinates := input.computation.bindings.tmfCoordinates
+
+/-- Transport the source differential along this delivery's actual detector
+comparison and identify both endpoints using its computation bindings. -/
+theorem tmfBookDifferentialInterface_of_delivery (input : KIP126.Challenge2) :
+    (tmfModelOfDelivery input).Br21BookStatement := by
+  have transported := KIP126.Classical.Adams.adamsInternalE2Induced_hasDifferential
+    KIP126.Classical.Adams.standardFoundation.hf2.unit
+    input.literature.bindings.route.tmfBinding.detectorIso.inv
+    input.literature.results.br21
+  rw [← input.computation.bindings.tmf_v2Sixteen,
+    ← input.computation.bindings.tmf_betaGFour] at transported
+  exact transported
+
+/-- Compatibility existence API retaining BR21's exact βg⁴ target. The model,
+source comparison and coordinates all come from the one Interface producer;
+this adapter does not prove that producer's remaining obligations. -/
 theorem tmfBookDifferentialInterface :
     ∃ model : KIP126.Challenge2.TmfModel KIP126.Classical.Adams.standardFoundation.hf2,
       model.Br21BookStatement := by
-  sorry
+  exact ⟨tmfModelOfDelivery challenge2, tmfBookDifferentialInterface_of_delivery challenge2⟩
 
 /-- Pure transport through the proved equality in the SAME CSV quotient. -/
 theorem br21Statement_of_book {C : Type*}
@@ -86,21 +111,39 @@ theorem br21Statement_of_book {C : Type*}
     KIP126.Challenge2.TmfModel.Br21Statement,
     KIP126.Classical.Adams.Tmf.E2Presentation.betaGFour_eq_betaFiveG] using source
 
+/-- Repackage the same target and coordinates with the transported BR21
+equation, using the equality in their fixed CSV quotient. -/
+noncomputable def tmfDifferentialInterfaceOfDelivery (input : KIP126.Challenge2) :
+    KIP126.Challenge2.TmfDifferentialInterface
+      KIP126.Classical.Adams.standardFoundation.hf2 :=
+  (tmfModelOfDelivery input).withDifferential
+    (br21Statement_of_book (tmfModelOfDelivery input)
+      (tmfBookDifferentialInterface_of_delivery input))
+
 /-- am14: one algebra-object realization of the fixed coordinate algebra
 and the BR21 d₃ equation, all on the same internal Adams tower.
-The Hurewicz detection part of am14 is a further obligation. -/
+This is a compatibility view of the producer's delivery. The Hurewicz
+detection part of am14 is a further obligation. -/
 theorem tmfDifferentialInterface :
     Nonempty (KIP126.Challenge2.TmfDifferentialInterface
       KIP126.Classical.Adams.standardFoundation.hf2) := by
-  obtain ⟨model, source⟩ := tmfBookDifferentialInterface
-  exact ⟨model.withDifferential (br21Statement_of_book model source)⟩
+  exact ⟨tmfDifferentialInterfaceOfDelivery challenge2⟩
+
+/-- The multiplicative property uses the same delivered coordinates as the
+BR21 equation, with no independently chosen differential interface. -/
+theorem tmfMultiplicativeInterface_of_delivery (input : KIP126.Challenge2) :
+    KIP126.Challenge2.StandardTmfMultiplicativeInterface
+      (tmfDifferentialInterfaceOfDelivery input) := by
+  exact input.computation.bindings.tmfMultiplicative
 
 /-- The same BR21 realization and comparison preserve the actual
-algebra-object unit and the actual Adams second-cycle product. -/
+algebra-object unit and the actual Adams second-cycle product. This compatibility
+existence API projects that property from the one Interface producer. -/
 theorem tmfMultiplicativeInterface :
     ∃ T : KIP126.Challenge2.TmfDifferentialInterface
       KIP126.Classical.Adams.standardFoundation.hf2,
       KIP126.Challenge2.StandardTmfMultiplicativeInterface T := by
-  sorry
+  exact ⟨tmfDifferentialInterfaceOfDelivery challenge2,
+    tmfMultiplicativeInterface_of_delivery challenge2⟩
 
 end KIP126.Interface.Solution

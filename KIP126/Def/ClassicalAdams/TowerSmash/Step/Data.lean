@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerLayer.Basic.Proofs
-import Mathlib.CategoryTheory.Monoidal.Preadditive
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLayer.Basic.Proofs
+public import Mathlib.CategoryTheory.Monoidal.Preadditive
+
+@[expose] public section
 
 /-! One Adams fiber step compared with smashing by the unit's fiber.
 The comparison is built from exact triangles; it is not an extra chosen

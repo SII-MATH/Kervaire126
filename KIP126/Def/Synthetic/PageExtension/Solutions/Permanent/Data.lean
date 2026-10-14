@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.PageExtension.Solutions.Data
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Order.Proofs
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Data
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Order.Proofs
+
+@[expose] public section
 
 /-! Finite representative fibers for fixed permanent classical labels.
 Every finite label is the inclusion of the same original representative;

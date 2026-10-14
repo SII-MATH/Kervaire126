@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Completion.Predicates
-import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.Completion.Predicates
+public import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
+
+@[expose] public section
 
 /-! Applicability of the untruncated BHS theorem, on the actual classical
 Adams tower. This is a source/application obligation, not part of the

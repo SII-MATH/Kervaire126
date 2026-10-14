@@ -1,10 +1,13 @@
-import KIP126.Interface.Solution.Literature.Route.BHS
-import KIP126.Interface.Solution.Literature.Route.Moss
-import KIP126.Interface.Solution.Literature.Route.RealizationKernel
-import KIP126.Interface.Solution.Literature.Route.Toda
-import KIP126.Interface.Solution.Literature.Route.May
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Literature.Applications
+module
+
+public import KIP126.Interface.Solution.Literature.Route.BHS
+public import KIP126.Interface.Solution.Literature.Route.RealizationKernel
+public import KIP126.Interface.Solution.Literature.Route.Toda
+public import KIP126.Interface.Solution.Literature.Route.May
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Interface.Solution.Literature.Applications
+
+@[expose] public section
 
 namespace KIP126.Interface.Solution.Literature.Route
 open CategoryTheory CategoryTheory.Pretriangulated
@@ -53,15 +56,14 @@ theorem application_of_parts (η : BiHom 1 2 (S_0_0 : Syn)) (G : TmfLabels H)
     may_signed_boundary_of_source B.may A.may,
     todaApplication_of_secondary η B.todaSource secondary,
     realizationKernel_of_source D B.kernelSource A.realizationKernel B.kernelBinding,
-    mossInputOfClassicalSource D η B.classicalSource B.classicalBinding A.moss,
     hnu, nuCofiber_of_source D B.nuSource hnu B.nuBinding⟩
 
 end
 end KIP126.Interface.Solution.Literature.Route
 
-/-! Assemble the same literature fields with explicitly supplied internal
-Moss specialization and weight-shift naturality. Main proves those two
-applications; the Interface producer does not depend on Main. -/
+/-! Assemble the same literature fields with explicitly supplied
+weight-shift naturality. Main supplies Def's weight-shift naturality theorem;
+the Interface producer does not depend on Main. -/
 namespace KIP126.Challenge2.LiteratureResults
 open CategoryTheory Classical.Adams Core.SpectralSequence
 open StableHomotopy StableHomotopy.Cohomology Synthetic.Context Synthetic.SpectralSequence
@@ -69,8 +71,6 @@ open KIP126.Literature.Route
 variable {bindings : KIP126.Challenge2.LiteratureBindings}
 
 noncomputable def route (input : LiteratureResults bindings)
-    (localMoss : MossSourceInput standardMilnorCooperations
-      bindings.route.classicalSource.convergence)
     (shiftNatural : bindings.eInftyWeightShift.Natural) :
     Literature.Route.Statements standardRouteModel Def.standardRouteEta
       bindings.tmfLabels bindings.route where
@@ -139,7 +139,6 @@ noncomputable def route (input : LiteratureResults bindings)
     w_detection := input.tmf_w_detection
     high125_nonzero := input.tmf_high125_nonzero
   }
-  moss := localMoss
 
 
 end KIP126.Challenge2.LiteratureResults

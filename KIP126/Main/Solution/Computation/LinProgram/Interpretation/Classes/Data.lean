@@ -1,4 +1,8 @@
-import KIP126.Main.Solution.Computation.LinProgram.Presentation
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.Presentation
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,6 +1,10 @@
-import Mathlib.Topology.Category.TopCat.Basic
-import Mathlib.Topology.CompactOpen
-import Mathlib.Topology.UnitInterval
+module
+
+public import Mathlib.Topology.Category.TopCat.Basic
+public import Mathlib.Topology.CompactOpen
+public import Mathlib.Topology.UnitInterval
+
+@[expose] public section
 
 /-!
 The path-space model of a homotopy fiber of an actual continuous map.

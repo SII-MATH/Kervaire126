@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Detection.Predicates
-import KIP126.Def.ClassicalAdams.Moss.Convergence.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Detection.Predicates
+public import KIP126.Def.ClassicalAdams.Moss.Convergence.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

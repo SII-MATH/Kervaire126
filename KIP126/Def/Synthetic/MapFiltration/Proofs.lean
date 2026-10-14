@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Data
-import KIP126.Def.Synthetic.ExtensionSS.Data
-import KIP126.Def.ClassicalAdams.TowerNaturality.Proofs
+module
+
+public import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Data
+public import KIP126.Def.Synthetic.ExtensionSS.Data
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.SpectralSequence
 open KIP126.Classical.Adams

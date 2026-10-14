@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Data
-import KIP126.Def.SpectralSequence.Truncation.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Data
+public import KIP126.Def.SpectralSequence.Truncation.Proofs
+
+@[expose] public section
 
 /-!
 # Truncated two-term extension complexes

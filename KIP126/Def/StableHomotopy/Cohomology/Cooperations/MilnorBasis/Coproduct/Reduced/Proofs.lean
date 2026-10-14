@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Faithful.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Faithful.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

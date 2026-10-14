@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.QuotientFunctor.Restricted.Predicates
+module
+
+public import KIP126.Def.Synthetic.QuotientFunctor.Restricted.Predicates
+
+@[expose] public section
 
 /-! Only the λ-power cofibers need a functorial choice. This does not require
 a strictly functorial cone on *all* commuting squares of a triangulated

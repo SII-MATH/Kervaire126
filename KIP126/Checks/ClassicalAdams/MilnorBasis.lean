@@ -1,9 +1,13 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Full.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Equiv.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Elementary.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Full.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Equiv.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Elementary.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! The monomial basis and tensor conversion are proved below Adams pages.
 The reduced-cooperation basis is a parameter, not a named existence axiom. -/

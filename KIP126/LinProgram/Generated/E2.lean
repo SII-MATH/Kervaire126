@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-!
 Generated from https://zenodo.org/records/14875701 (v126.3.cw49),
 kervaire_csv.rar. The three source files are UTF-16 CSV.

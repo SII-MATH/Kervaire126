@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Page.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Page.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

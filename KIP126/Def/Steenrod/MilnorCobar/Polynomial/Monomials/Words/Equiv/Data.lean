@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Proofs
-import Mathlib.LinearAlgebra.DirectSum.Finsupp
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Proofs
+public import Mathlib.LinearAlgebra.DirectSum.Finsupp
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor
 

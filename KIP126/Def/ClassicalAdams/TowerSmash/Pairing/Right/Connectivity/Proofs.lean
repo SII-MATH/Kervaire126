@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Right.Vanishing.Proofs
-import Mathlib.CategoryTheory.Triangulated.TStructure.Basic
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Right.Vanishing.Proofs
+public import Mathlib.CategoryTheory.Triangulated.TStructure.Basic
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.QuotientMap.Data
+module
+
+public import KIP126.Def.Synthetic.QuotientMap.Data
+
+@[expose] public section
 
 /-!
 # Coherent restrictions on the specified finite λ quotients

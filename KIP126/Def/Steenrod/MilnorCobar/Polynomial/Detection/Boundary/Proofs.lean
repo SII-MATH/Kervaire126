@@ -1,6 +1,10 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Binomial.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Projection.Monomials.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Basis.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Binomial.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Projection.Monomials.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Basis.Proofs
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor
 

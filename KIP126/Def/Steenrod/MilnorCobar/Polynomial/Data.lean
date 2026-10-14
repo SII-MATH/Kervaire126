@@ -1,6 +1,10 @@
-import KIP126.Def.Algebra.Coefficients.Data
-import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous
-import Mathlib.Algebra.MvPolynomial.Rename
+module
+
+public import KIP126.Def.Algebra.Coefficients.Data
+public import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous
+public import Mathlib.Algebra.MvPolynomial.Rename
+
+@[expose] public section
 
 /-!
 # The normalized mod-two Milnor cobar construction

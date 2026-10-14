@@ -13,7 +13,7 @@ belong to the later proof.
   \lean{KIP126.Classical.Adams.adamsTowerSpectralSequence}
   \lean{KIP126.Classical.Adams.mod2SphereAdams}
   \uses{prop:h6-tower-page-passage,def:h6-em-object}
-  \notready
+  \leanok
   Specialize the tower to $X=S^0$ and display its quotient-page spectral
   sequence from $E_2$, with differential bidegree $(r,r-1)$.
   Its underlying abelian groups may be regarded as integer modules.
@@ -97,6 +97,7 @@ belong to the later proof.
 \begin{definition}[Full single-slot monomials]
   \label{def:h6-full-milnor-monomials}
   \lean{KIP126.Steenrod.Milnor.MilnorMonomial,KIP126.Steenrod.Milnor.zeroMilnorMonomial,KIP126.Steenrod.Milnor.milnorMonomialEquivPositive,KIP126.Steenrod.Milnor.milnorZeroCoefficientsEquiv}
+  \lean{KIP126.Steenrod.Milnor.boundedSlotWeight_finite,KIP126.Steenrod.Milnor.milnorMonomial_finite}
   \uses{prop:h6-cobar-monomial-basis}
   \leanok
   Let $M_n$ consist of finite exponent vectors $d$ of integer weight $n$,
@@ -106,6 +107,8 @@ belong to the later proof.
   The degree-zero coefficient space is identified with $\mathbb F_2$
   by evaluation at the constant monomial. Negative degrees are retained,
   not replaced with their nonnegative truncation.
+  Each $M_n$ is finite: a weight bound bounds both the support of an
+  exponent vector and each of its entries.
 \end{definition}
 
 \begin{proposition}[Complete cooperation coordinates with the actual unit]
@@ -1295,7 +1298,7 @@ belong to the later proof.
   \lean{KIP126.Classical.Adams.MilnorCooperations}
   \lean{KIP126.Classical.Adams.sphereFirstDifferential}
   \uses{def:h6-tower-differential,def:h6-milnor-cobar}
-  \notready
+  \leanok
   The explicit Milnor cooperation input consists of additive isomorphisms
   $\phi^{s,t}:E_1^{s,t}(S^0)\cong C^{s,t}$ for $s,t\ge0$, satisfying
   $\phi^{s+1,t}d_1=d_{\mathrm{cobar}}\phi^{s,t}$.
@@ -1304,8 +1307,10 @@ belong to the later proof.
   the homotopy groups of $H$.  It contains no later page, named $h$ class,
   selected multiplication, or permanence assertion.
   Proposition~\ref{prop:h6-derived-milnor-coordinates} now constructs its
-  vector-space coordinates from below-page inputs. The coproduct comparison
-  and the fixed instances needed to replace this whole input remain open.
+  vector-space coordinates from below-page inputs. The supplied comparison
+  interface and its tower differential are formalized. The coproduct
+  comparison and the fixed instances needed to construct this input on the
+  selected sphere remain open.
 \end{definition}
 
 \begin{proposition}[The actual initial sphere column survives in internal SSData]
@@ -1418,7 +1423,7 @@ belong to the later proof.
   \lean{KIP126.Classical.Adams.Sphere.h6}
   \lean{KIP126.Classical.Adams.Sphere.h6Square}
   \uses{def:h6-milnor-cooperations,def:h6-constructed-sphere-sequence}
-  \notready
+  \leanok
   Take the cocycle $[\xi_1^{64}]\in C^{1,64}$ and its concatenation square
   $[\xi_1^{64}\mid\xi_1^{64}]\in C^{2,128}$.
   Apply $\phi^{-1}$ to each, take its first-page homology class, and apply
@@ -1463,61 +1468,64 @@ belong to the later proof.
 
 \begin{proposition}[Second-page multiplication and the square identity]
   \label{prop:h6-e2-square-identity}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Classical.Adams.Sphere.Internal.product}
   \uses{def:h6-constructed-square,def:h6-milnor-cobar,prop:h6-tower-page-passage}
   \notready
   The cobar differential satisfies square-zero and the Leibniz identity;
   concatenation descends to homology and corresponds under a multiplicative
   comparison to a second-page product adding both bidegrees. Under this product,
   the class currently named $h_6^2$ equals the product of $h_6$ with itself.
-  Bilinearity and the two individual cocycle calculations above do not
-  establish this descent or this second-page identity. Neither the
-  second-page product nor the asserted identity has a Lean implementation yet.
+  The descended cobar cup product and its specified square identity are
+  formalized in Proposition~\ref{prop:milnor-cobar-cup-descent}; transporting
+  that cup through the canonical cobar comparison also defines the internal
+  second-page product. Its agreement with the actual tower-layer pairing
+  remains a separate multiplicative comparison obligation. Thus the full
+  assertion here is still unfinished.
 \end{proposition}
 
 \begin{definition}[Pagewise nonzero permanence]
   \label{def:h6-pagewise-permanence}
-  \lean{KIP126.Core.SpectralSequence.nextPageClass}
-  \lean{KIP126.Core.SpectralSequence.PageTrajectory}
-  \lean{KIP126.Core.SpectralSequence.IsPermanent}
-  \uses{def:h6-constructed-sphere-sequence}
-  \notready
-  A class $x\in E_2^{s,t}$ is nonzero permanent if there are classes
-  $x_n\in E_{2+n}^{s,t}$ for every $n\ge0$, with $x_0=x$, such that
-  $d_{2+n}x_n=0$, the page-passage image of $[x_n]$ is $x_{n+1}$, and
-  $x_n\ne0$ for every $n$.  This definition uses the actual differentials
-  and homology quotients and makes no claim of convergence to an abutment.
+  \lean{KIP126.Core.SpectralSequence.NextPageRelation,KIP126.Core.SpectralSequence.NonzeroSurvival,KIP126.Classical.Adams.adamsTower_nonzeroSurvival_iff_compatible}
+  \uses{def:h6-tower-internal-sequence,prop:h6-tower-common-representative}
+  \leanok
+  On the internal sphere Adams tower, nonzero survival of an initial class
+  is equivalent to a compatible family of nonzero classes on every finite
+  page. Adjacent classes satisfy the actual quotient representative relation.
+  The common-$Z_\infty$ criterion and this finite-page description agree
+  by Proposition~\ref{prop:h6-tower-common-representative}; no comparison
+  with a Mathlib spectral sequence or convergence to an abutment is required.
 \end{definition}
 
 
 
-\begin{definition}[Fixed standard and computational sphere objects]
+\begin{definition}[Fixed standard and computational classes on the internal sphere page]
   \label{def:h6-fixed-computation}
-  \lean{KIP126.Classical.Adams.sphereAdams,KIP126.Classical.Adams.sphereH6Square,KIP126.Classical.Adams.sphereAdamsModel,KIP126.Classical.Adams.sphereAdamsData,KIP126.Classical.Adams.sphereAdams_towerComparison,KIP126.Classical.Adams.survival_comparison,KIP126.Classical.Adams.computedH6Square,KIP126.Core.SpectralSequence.NonzeroSurvival}
-  \uses{def:h6-constructed-square,def:h6-pagewise-permanence,def:h6-tower-internal-sequence,prop:h6-tower-internal-comparison,prop:h6-tower-survival-comparison}
+  \lean{KIP126.Classical.Adams.sphereAdamsModel,KIP126.Classical.Adams.sphereAdamsData,KIP126.Classical.Adams.standardH6Square,KIP126.Classical.Adams.computedH6Square,KIP126.Core.SpectralSequence.NonzeroSurvival}
+  \uses{def:h6-constructed-square,def:h6-pagewise-permanence,def:h6-tower-internal-sequence}
   \notready
   Fix the stable foundation, $H\mathbb F_2$, and Milnor coordinates.
-  Both sphere sequences are obtained from the Adams tower of the same unit.
-  The standard square is defined by its Milnor cocycle. Given the bounded
+  The sphere sequence is the internal SSData of the Adams tower of this unit.
+  Its standard square is the image of the specified Milnor cocycle under
+  the same tower's internal quotient-page isomorphism. Given the bounded
   Lin algebra presentation, the computational square is the image of
   generator 69 squared in the quotient of version \texttt{v126.3.cw49}
   (Zenodo 14875701), in internal degrees at most 261.
-  The tower comparison identifies the pages and differentials of the two
-  constructions, and its survival comparison identifies their common
-  $Z_\infty$ representatives and nonzero $E_\infty$ classes.
-  Construction of the specified foundation, Milnor coordinates, and Lin
-  presentation remains unfinished. These comparisons give no higher-page
-  survival conclusion for the square.
+  Both classes live on the same internal second page; their identification
+  is the separate internal comparison below. Construction of the specified
+  foundation, Milnor coordinates, and Lin presentation remains unfinished.
+  These definitions assert no higher-page survival of the square.
 \end{definition}
 
-\begin{proposition}[Nonvanishing of the standard square on the second page]
+\begin{proposition}[Nonvanishing of the fixed standard square on the internal second page]
   \label{prop:h6-fixed-standard-square-nonzero}
-  \lean{KIP126.Classical.Adams.sphereH6Square_ne_zero}
+  \lean{KIP126.Classical.Adams.standardH6Square_ne_zero}
   \uses{def:h6-fixed-computation,prop:h6-standard-square-nonzero}
   \notready
-  Under the specified stable foundation and Milnor comparison, the
-  standard square is nonzero on the second page of the constructed sphere
-  Adams sequence. This is the specialization of
-  Proposition~\ref{prop:h6-standard-square-nonzero}; it concerns only $E_2$.
+  Under the specified stable foundation and Milnor comparison, the fixed
+  standard square is nonzero on the internal second page. Transport the
+  generic standard cobar class through the same tower's quotient-page
+  isomorphism. The fixed foundation remains unfinished; this concerns only
+  $E_2$ and does not assert permanent survival.
 \end{proposition}
 
 \begin{definition}[Fixed Lin algebra and additive catalogue]
@@ -1527,11 +1535,14 @@ belong to the later proof.
   \lean{KIP126.LinE2.findBasisIndex?}
   \lean{KIP126.LinE2.mulAt}
   \lean{KIP126.LinE2.Compute.Engine.multiplyBasis}
-  \uses{def:h6-fixed-computation}
-  \notready
+  \uses{def:adams-bidegree,def:mathlib-f2}
+  \leanok
   Use the fixed Zenodo 14875701 dataset, version v126.3.cw49.
-  Its quotient algebra has 2914 algebra
-  generators and 231848 relations and is truncated above internal degree 261.
+  Its legacy quotient $D$ has 2914 algebra generators, the 231848
+  original relations and additional truncation above internal degree 261.
+  The new actual-page comparison instead starts from the quotient $A$
+  by original relations only, defined in
+  Definition~\ref{def:lin-e2-native-algebra}.
   The separate additive catalogue has 23822 monomials, indexed by $(s,t,k)$;
   these indices are not algebra-generator numbers. The catalogue entry
   $(2,128,0)$ is generator 69 squared. Lookup rejects absent coordinates.
@@ -1564,7 +1575,7 @@ belong to the later proof.
 \begin{proposition}[The square-degree component has at most two elements]
   \label{prop:lin-square-component-two-elements}
   \lean{KIP126.LinE2.homogeneousPart_square_eq_span,KIP126.LinE2.E2At_square_eq_zero_or}
-  \uses{prop:lin-square-degree-unique}
+  \uses{prop:lin-square-degree-unique,lem:lin-singleton-exhaustion-transport}
   \leanok
   The actual homogeneous submodule of the archived quotient in bidegree
   $(2,128)$ is the $\mathbb F_2$-span of \texttt{dataH6Sq}. Consequently
@@ -1574,7 +1585,8 @@ belong to the later proof.
 \end{proposition}
 \begin{proof}
   Replace every monomial in the defining spanning set by the unique
-  monomial just proved. The two possible scalar coefficients are zero and one.
+  monomial just proved. The shared singleton-span exhaustion lemma uses the
+  two possible scalar coefficients, zero and one.
   \leanok
 \end{proof}
 
@@ -1807,21 +1819,7 @@ belong to the later proof.
   Rewrite the class in the nonzero-survival predicate on the same sequence.
 \end{proof}
 
-\begin{proposition}[The specified-class comparison is a theorem]
-  \label{prop:h6-fixed-class-comparison}
-  \lean{KIP126.Classical.Adams.h6Square_comparison}
-  \uses{prop:h6-internal-square-unique,prop:h6-fixed-standard-square-nonzero,prop:h6-tower-internal-comparison}
-  \notready
-  Under the specified foundation, Milnor coordinates, and Lin presentation,
-  the second-page comparison carries the computational square to the
-  standard square.
-\end{proposition}
-\begin{proof}
-  Pull the standard class back through the actual second-page isomorphism.
-  Its preimage is nonzero by standard nonvanishing, hence equals the
-  computational square by the exhaustive internal alternative. Map back.
-  The proof neither presupposes the class comparison nor asserts permanence.
-\end{proof}
+
 
 \begin{definition}[A finite nonzero-square detector]
   \label{def:lin-square-detector}
@@ -1971,9 +1969,23 @@ belong to the later proof.
   rather than chosen independently.
 \end{definition}
 
+\begin{definition}[Uniform list notation for nonempty $h_i$ products]
+  \label{def:milnor-h-word-product}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.hWordDegree,KIP126.Classical.Adams.Sphere.Internal.hProduct,KIP126.Classical.Adams.Sphere.Internal.hMonomial,KIP126.Classical.Adams.StandardSphere.standardHProduct}
+  \uses{def:milnor-internal-hi-family}
+  \leanok
+  A nonempty list $[i_1,\ldots,i_n]$ is interpreted as the iterated
+  product $h_{i_1}\cdots h_{i_n}$ on the actual internal second page. Its
+  filtration is $n$ and its internal degree is
+  $\sum_k 2^{i_k}$. Repeated entries are repeated factors, so `[0,3,3]`
+  denotes $h_0h_3^2$ and `[0,0,3,5]` denotes $h_0^2h_3h_5$.
+  The empty list is excluded because this interface describes nonempty
+  monomials and does not silently choose a unit class.
+\end{definition}
+
 \begin{proposition}[Cobar multiplication descends to cohomology]
   \label{prop:milnor-cobar-cup-descent}
-  \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.cup_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Challenge2.CobarCupCalculus}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cup,KIP126.Classical.Adams.MilnorCohomology.cup_ofCocycle,KIP126.Classical.Adams.MilnorCohomology.hiSquare_eq_cup,KIP126.Classical.Adams.Sphere.Internal.hiProduct_eq_product,KIP126.Classical.Adams.Sphere.Internal.hiSquare_eq_product,KIP126.Classical.Adams.Sphere.Internal.product_hi_zero_hiSquare_five_eq_h0HiSquare,KIP126.Challenge2.CobarCupCalculus}
   \uses{def:milnor-cobar-cohomology,def:milnor-internal-hi-family}
   \leanok
   Cobar concatenation induces an actual $\mathbb F_2$-bilinear product
@@ -1981,8 +1993,10 @@ belong to the later proof.
   \to H^{s+s',t+t'}_{\mathrm{cobar}}$.
   Products of cocycle classes are the classes of their concatenations.
   The specified $h_i^2$ is the cup square of $h_i$, transported along
-  $2^i+2^i=2^{i+1}$. This does not yet assert multiplicativity of the
-  comparison with the Adams page pairing.
+  $2^i+2^i=2^{i+1}$. The corresponding named internal sphere classes satisfy
+  the same equation through the cobar-transported product; this does not yet
+  assert multiplicativity of that comparison with an independently constructed
+  tower pairing.
 \end{proposition}
 \begin{proof}
   The actual Leibniz identity makes cycles closed under concatenation and
@@ -1991,6 +2005,42 @@ belong to the later proof.
   quotient maps and evaluate it on the specified cocycles.
   \leanok
 \end{proof}
+
+\begin{proposition}[Cobar commutators are boundaries]
+  \label{prop:milnor-cobar-cup-commutator}
+  \lean{KIP126.Classical.Adams.MilnorCohomology.cup_commutator_mem_boundaries,KIP126.Classical.Adams.MilnorCohomology.cup_comm}
+  \uses{prop:milnor-cobar-cup-descent}
+  \notready
+  For all natural bidegrees and all normalized Milnor cobar cycles
+  $x\in C^{s,t}$ and $y\in C^{s',t'}$, the difference
+  \[
+    x\mathbin{\smile}y-
+      \operatorname{reindex}(y\mathbin{\smile}x)
+       \in B^{s+s',t+t'}
+  \]
+  is a boundary. Reindexing only identifies the two equal sum
+  bidegrees; over $\mathbb F_2$ there is no remaining Koszul sign.
+  In total cochain degree zero the boundary space is zero, and in
+  positive degree it is the image of the preceding actual differential.
+  This is the explicit remaining homotopy obligation. Quotienting
+  gives commutativity of the cobar cohomology cup product, and the
+  fixed canonical comparison transports it to the actual sphere page.
+  There is no native presentation or bound on internal degree here.
+\end{proposition}
+
+\begin{proposition}[Koszul symmetry of the internal sphere product]
+  \label{prop:internal-sphere-product-graded-commutativity}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.spherePageDegreeTransport,KIP126.Classical.Adams.Sphere.Internal.SphereProductGradedCommutative,KIP126.Classical.Adams.Sphere.Internal.sphere_product_graded_commutativity}
+  \uses{prop:milnor-cobar-cup-commutator,prop:milnor-cobar-internal-e2}
+  \notready
+  The specified internal sphere $E_2$ product is symmetric after transporting
+  the reversed output bidegree, with Koszul sign
+  $(-1)^{(t-s)(t'-s')}$. Over $\mathbb F_2$ this sign acts trivially.
+  The Lean deduction uses the existing cobar commutator-boundary obligation;
+  it is not an independent proof of that unfinished obligation or a
+  commutativity theorem for every spectrum.
+\end{proposition}
+
 
 \begin{proposition}[Canonical cobar comparison with the internal second page]
   \label{prop:milnor-cobar-internal-e2}
@@ -2003,8 +2053,8 @@ belong to the later proof.
   Adams tower. It takes every cocycle class to the class constructed from
   that cocycle in this tower. This identifies the actual two quotients,
   and in particular preserves the full specified $h_i$ and $h_i^2$ families,
-  without introducing a derived Ext model or comparing spectral sequences
-  with the optional Mathlib adapter.
+  without introducing a derived Ext model or another spectral-sequence
+  presentation.
 \end{proposition}
 \begin{proof}
   Send cobar cycles through the inverse Milnor coordinates into first-page

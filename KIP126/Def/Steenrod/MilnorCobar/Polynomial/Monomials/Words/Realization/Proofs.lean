@@ -1,6 +1,10 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Realization.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Proofs
-import Mathlib.RingTheory.MvPolynomial.Basic
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Realization.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Proofs
+public import Mathlib.RingTheory.MvPolynomial.Basic
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor
 

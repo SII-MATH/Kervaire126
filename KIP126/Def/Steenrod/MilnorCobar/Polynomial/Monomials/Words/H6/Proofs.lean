@@ -1,6 +1,10 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Equiv.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Equiv.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Data
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor
 

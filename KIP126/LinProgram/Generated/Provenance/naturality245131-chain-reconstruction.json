@@ -1,0 +1,1719 @@
+{
+  "bounded_commands": [
+    {
+      "binary_sha256": "8c396b56b79ff11fab881f2e520c45ed90160f05a9867c6907071c57e67543ee",
+      "command": [
+        "/tmp/kip126-seed5487-build/bin/Adams",
+        "res",
+        "Ceta",
+        "21"
+      ],
+      "maxrss_kb": 14944,
+      "returncode": 0,
+      "system_seconds": 0.01944,
+      "user_seconds": 0.007776,
+      "wall_seconds": 0.03190220333635807
+    },
+    {
+      "binary_sha256": "8c396b56b79ff11fab881f2e520c45ed90160f05a9867c6907071c57e67543ee",
+      "command": [
+        "/tmp/kip126-seed5487-build/bin/Adams",
+        "map_res",
+        "Ceta",
+        "S0",
+        "21"
+      ],
+      "maxrss_kb": 14584,
+      "returncode": 0,
+      "system_seconds": 0.011999,
+      "user_seconds": 0.9918839999999999,
+      "wall_seconds": 1.015404537320137
+    },
+    {
+      "binary_sha256": "8c396b56b79ff11fab881f2e520c45ed90160f05a9867c6907071c57e67543ee",
+      "command": [
+        "/tmp/kip126-seed5487-build/bin/Adams",
+        "verify_map",
+        "Ceta",
+        "S0"
+      ],
+      "maxrss_kb": 14920,
+      "returncode": -6,
+      "system_seconds": 0.00621,
+      "user_seconds": 0.0,
+      "wall_seconds": 0.007615016773343086
+    },
+    {
+      "binary_sha256": "8c396b56b79ff11fab881f2e520c45ed90160f05a9867c6907071c57e67543ee",
+      "command": [
+        "/tmp/kip126-seed5487-build/bin/Adams",
+        "verify_map",
+        "Ceta",
+        "S0"
+      ],
+      "maxrss_kb": 16336,
+      "returncode": 0,
+      "system_seconds": 0.012670999999999998,
+      "user_seconds": 0.004222999999999998,
+      "wall_seconds": 0.031916188076138496
+    }
+  ],
+  "direction": {
+    "chain_map": "R_s(S0) at internal t -> R_s(Ceta) at internal t+2",
+    "cochain_map": "precomposition: Hom_A(R(Ceta),F2) -> Hom_A(R(Sigma^2 S0),F2)",
+    "cohomology_map": "H*(Sigma^2 S0) -> H*(Ceta)",
+    "map_database_id_means": "sphere resolution generator id, not Ceta generator id",
+    "map_h_entries_mean": "Ceta local resolution vid in same cohomological s",
+    "spectrum_map": "Ceta -> Sigma^2 S0"
+  },
+  "full_bounded_map_augmentation_rows": [
+    {
+      "ceta_augmentation_vids": [],
+      "id": 0,
+      "s": 0,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 524288,
+      "s": 1,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [],
+      "id": 524289,
+      "s": 1,
+      "sphere_vid": 1
+    },
+    {
+      "ceta_augmentation_vids": [
+        3
+      ],
+      "id": 524290,
+      "s": 1,
+      "sphere_vid": 2
+    },
+    {
+      "ceta_augmentation_vids": [],
+      "id": 524291,
+      "s": 1,
+      "sphere_vid": 3
+    },
+    {
+      "ceta_augmentation_vids": [],
+      "id": 524292,
+      "s": 1,
+      "sphere_vid": 4
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 1048576,
+      "s": 2,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [],
+      "id": 1048577,
+      "s": 2,
+      "sphere_vid": 1
+    },
+    {
+      "ceta_augmentation_vids": [
+        3
+      ],
+      "id": 1048578,
+      "s": 2,
+      "sphere_vid": 2
+    },
+    {
+      "ceta_augmentation_vids": [
+        6
+      ],
+      "id": 1048579,
+      "s": 2,
+      "sphere_vid": 3
+    },
+    {
+      "ceta_augmentation_vids": [
+        7
+      ],
+      "id": 1048580,
+      "s": 2,
+      "sphere_vid": 4
+    },
+    {
+      "ceta_augmentation_vids": [],
+      "id": 1048581,
+      "s": 2,
+      "sphere_vid": 5
+    },
+    {
+      "ceta_augmentation_vids": [
+        10
+      ],
+      "id": 1048582,
+      "s": 2,
+      "sphere_vid": 6
+    },
+    {
+      "ceta_augmentation_vids": [
+        11
+      ],
+      "id": 1048583,
+      "s": 2,
+      "sphere_vid": 7
+    },
+    {
+      "ceta_augmentation_vids": [],
+      "id": 1048584,
+      "s": 2,
+      "sphere_vid": 8
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 1572864,
+      "s": 3,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        2
+      ],
+      "id": 1572865,
+      "s": 3,
+      "sphere_vid": 1
+    },
+    {
+      "ceta_augmentation_vids": [
+        5
+      ],
+      "id": 1572866,
+      "s": 3,
+      "sphere_vid": 2
+    },
+    {
+      "ceta_augmentation_vids": [],
+      "id": 1572867,
+      "s": 3,
+      "sphere_vid": 3
+    },
+    {
+      "ceta_augmentation_vids": [
+        6
+      ],
+      "id": 1572868,
+      "s": 3,
+      "sphere_vid": 4
+    },
+    {
+      "ceta_augmentation_vids": [
+        9
+      ],
+      "id": 1572869,
+      "s": 3,
+      "sphere_vid": 5
+    },
+    {
+      "ceta_augmentation_vids": [
+        10
+      ],
+      "id": 1572870,
+      "s": 3,
+      "sphere_vid": 6
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 2097152,
+      "s": 4,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        3
+      ],
+      "id": 2097153,
+      "s": 4,
+      "sphere_vid": 1
+    },
+    {
+      "ceta_augmentation_vids": [
+        4
+      ],
+      "id": 2097154,
+      "s": 4,
+      "sphere_vid": 2
+    },
+    {
+      "ceta_augmentation_vids": [],
+      "id": 2097155,
+      "s": 4,
+      "sphere_vid": 3
+    },
+    {
+      "ceta_augmentation_vids": [
+        8
+      ],
+      "id": 2097156,
+      "s": 4,
+      "sphere_vid": 4
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 2621440,
+      "s": 5,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [],
+      "id": 2621441,
+      "s": 5,
+      "sphere_vid": 1
+    },
+    {
+      "ceta_augmentation_vids": [
+        4
+      ],
+      "id": 2621442,
+      "s": 5,
+      "sphere_vid": 2
+    },
+    {
+      "ceta_augmentation_vids": [
+        7
+      ],
+      "id": 2621443,
+      "s": 5,
+      "sphere_vid": 3
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 3145728,
+      "s": 6,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [],
+      "id": 3145729,
+      "s": 6,
+      "sphere_vid": 1
+    },
+    {
+      "ceta_augmentation_vids": [
+        3
+      ],
+      "id": 3145730,
+      "s": 6,
+      "sphere_vid": 2
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 3670016,
+      "s": 7,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        2
+      ],
+      "id": 3670017,
+      "s": 7,
+      "sphere_vid": 1
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 4194304,
+      "s": 8,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 4718592,
+      "s": 9,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 5242880,
+      "s": 10,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 5767168,
+      "s": 11,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 6291456,
+      "s": 12,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 6815744,
+      "s": 13,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 7340032,
+      "s": 14,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 7864320,
+      "s": 15,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 8388608,
+      "s": 16,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 8912896,
+      "s": 17,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 9437184,
+      "s": 18,
+      "sphere_vid": 0
+    },
+    {
+      "ceta_augmentation_vids": [
+        1
+      ],
+      "id": 9961472,
+      "s": 19,
+      "sphere_vid": 0
+    }
+  ],
+  "independent_decoding_checks": {
+    "decode_function_line": 32,
+    "decoder": {
+      "path": "/inspire/hdd/global_user/czxs25250150/linprogram-certificate/KIP126/LinProgram/Translate/extract-secondary-witness.py",
+      "sha256": "7e84ccd4dba6a81362885403f99f9fb558385a5268eb2e71c4feb0bdf0482bdf",
+      "size": 11469
+    },
+    "encoding": "little-endian MMod uint64: 37 exponent bits, 9 weight bits, 18 complemented generator-index bits",
+    "map_h_matches_decoded_scalar_terms_for_all_native_map_rows": true,
+    "map_terms_homogeneous_shift_two_and_all_target_generators_present": true,
+    "minimality_scope": "Every decoded d coefficient in both checked finite native generator ranges has positive Steenrod degree. Augmentation therefore kills those matrices. This checks a finite native minimality property, not resolution exactness, canonical representative identity, or actual Adams identification.",
+    "native_augmentation_locator": "SSeqCpp-master/Adams/AdamsProd.cpp:9 HomToK",
+    "native_map_row_count": 48,
+    "resolution_coverage": {
+      "Ceta": {
+        "all_differential_terms_have_positive_steenrod_degree_python_check": true,
+        "differential_terms_homogeneous_and_all_target_generators_present": true,
+        "generator_count": 84,
+        "internal_degree_bound_used": 21
+      },
+      "S0": {
+        "all_differential_terms_have_positive_steenrod_degree_python_check": true,
+        "differential_terms_homogeneous_and_all_target_generators_present": true,
+        "generator_count": 48,
+        "internal_degree_bound_used": 19
+      }
+    }
+  },
+  "inspected_native_sources": [
+    {
+      "archive_member": "SSeqCpp-master/Adams/main.h",
+      "identical_to_pinned_archive_member": true,
+      "path": "/tmp/lwx-source/SSeqCpp-master/Adams/main.h",
+      "sha256": "1173fdfe188dafdeee0a8bf18d0015694fe5c23cf3c147cfb7a2d907bb0560ee",
+      "size": 1273
+    },
+    {
+      "archive_member": "SSeqCpp-master/Adams/main.cpp",
+      "identical_to_pinned_archive_member": true,
+      "path": "/tmp/lwx-source/SSeqCpp-master/Adams/main.cpp",
+      "sha256": "0bc2627ac4534a064fe7839f4f6f4c60f7a2b06a239e5d0f3a076b1d356051d5",
+      "size": 2893
+    },
+    {
+      "archive_member": "SSeqCpp-master/Adams/AdamsRes.cpp",
+      "identical_to_pinned_archive_member": true,
+      "path": "/tmp/lwx-source/SSeqCpp-master/Adams/AdamsRes.cpp",
+      "sha256": "3d9fbf4646037fd97f4bd550cf0df6ff6b7b9f08b8bbf645f89aef9bcb0e23d8",
+      "size": 1990
+    },
+    {
+      "archive_member": "SSeqCpp-master/Adams/AdamsProd.cpp",
+      "identical_to_pinned_archive_member": true,
+      "path": "/tmp/lwx-source/SSeqCpp-master/Adams/AdamsProd.cpp",
+      "sha256": "ad8a94f5f7a180564870ae5594f70cb68da3501ce2118de8d9f4c5d349989c03",
+      "size": 40339
+    },
+    {
+      "archive_member": "SSeqCpp-master/Adams/AdamsVerify.cpp",
+      "identical_to_pinned_archive_member": true,
+      "path": "/tmp/lwx-source/SSeqCpp-master/Adams/AdamsVerify.cpp",
+      "sha256": "ab081c3a1c23f3846b58ed6813fafffaedcebf4924477918cd27f2ebeb70d939",
+      "size": 6968
+    },
+    {
+      "archive_member": "SSeqCpp-master/Adams/AdamsExport.cpp",
+      "identical_to_pinned_archive_member": true,
+      "path": "/tmp/lwx-source/SSeqCpp-master/Adams/AdamsExport.cpp",
+      "sha256": "9cbe1bac980d92447da66c5014e2d7149501461c9cba3b4e543db51f21f40e8c",
+      "size": 46548
+    },
+    {
+      "archive_member": "SSeqCpp-master/Adams/complexes.cpp",
+      "identical_to_pinned_archive_member": true,
+      "path": "/tmp/lwx-source/SSeqCpp-master/Adams/complexes.cpp",
+      "sha256": "d2ffed5d903153322a6340fdb6700c7ac8a7fe3d0d93e7fd388aeb4f0a8aef74",
+      "size": 49346
+    }
+  ],
+  "minimal_cochain_targets": [
+    {
+      "all_domain_generators_in_degree": [
+        524288
+      ],
+      "candidate_boundary_witness": "zero",
+      "ceta_repr": 524289,
+      "ceta_same_t_preceding_current_following_generator_ids": {
+        "0": [],
+        "1": [
+          524289
+        ],
+        "2": []
+      },
+      "degree_ceta": [
+        1,
+        3
+      ],
+      "degree_sphere": [
+        1,
+        1
+      ],
+      "equation": "epsilon_dual_Ceta_(1,1) composed with Q_1 = epsilon_dual_S0_(1,0)",
+      "native_hom_differential_is_zero_in_checked_range": true,
+      "pullback_value_on_all_domain_generators": [
+        1
+      ],
+      "sphere_repr": 524288,
+      "sphere_same_t_preceding_current_following_generator_ids": {
+        "0": [],
+        "1": [
+          524288
+        ],
+        "2": []
+      }
+    },
+    {
+      "all_domain_generators_in_degree": [
+        1048583
+      ],
+      "candidate_boundary_witness": "zero",
+      "ceta_repr": 1048587,
+      "ceta_same_t_preceding_current_following_generator_ids": {
+        "1": [],
+        "2": [
+          1048587
+        ],
+        "3": [
+          1572873
+        ]
+      },
+      "degree_ceta": [
+        2,
+        19
+      ],
+      "degree_sphere": [
+        2,
+        17
+      ],
+      "equation": "epsilon_dual_Ceta_(2,11) composed with Q_2 = epsilon_dual_S0_(2,7)",
+      "native_hom_differential_is_zero_in_checked_range": true,
+      "pullback_value_on_all_domain_generators": [
+        1
+      ],
+      "sphere_repr": 1048583,
+      "sphere_same_t_preceding_current_following_generator_ids": {
+        "1": [],
+        "2": [
+          1048583
+        ],
+        "3": [
+          1572869
+        ]
+      }
+    },
+    {
+      "all_domain_generators_in_degree": [
+        2621443
+      ],
+      "candidate_boundary_witness": "zero",
+      "ceta_repr": 2621447,
+      "ceta_same_t_preceding_current_following_generator_ids": {
+        "4": [
+          2097159,
+          2097160
+        ],
+        "5": [
+          2621447
+        ],
+        "6": [
+          3145733
+        ]
+      },
+      "degree_ceta": [
+        5,
+        21
+      ],
+      "degree_sphere": [
+        5,
+        19
+      ],
+      "equation": "epsilon_dual_Ceta_(5,7) composed with Q_5 = epsilon_dual_S0_(5,3)",
+      "native_hom_differential_is_zero_in_checked_range": true,
+      "pullback_value_on_all_domain_generators": [
+        1
+      ],
+      "sphere_repr": 2621443,
+      "sphere_same_t_preceding_current_following_generator_ids": {
+        "4": [
+          2097156
+        ],
+        "5": [
+          2621443
+        ],
+        "6": []
+      }
+    }
+  ],
+  "minimality_recheck_sql_scope": {
+    "Ceta": "SELECT * FROM Ceta_Adams_res_generators WHERE t<=21 ORDER BY id",
+    "S0": "SELECT * FROM S0_Adams_res_generators WHERE t<=19 ORDER BY id",
+    "predicate": "For every decoded differential term (Milnor exponent vector e, local vid v), degree(e)>0 and generator(s-1,v) exists with t(dependency)+degree(e)=t(source)."
+  },
+  "native_binary": {
+    "cmake_build_type": "Release",
+    "cmake_home_directory": "/tmp/lwx-source/SSeqCpp-master",
+    "note": "Existing seed5487 binary; matching source files and build cache inspected, binary not rebuilt in this run.",
+    "path": "/tmp/kip126-seed5487-build/bin/Adams",
+    "sha256": "8c396b56b79ff11fab881f2e520c45ed90160f05a9867c6907071c57e67543ee",
+    "size": 3582664
+  },
+  "native_source_archive": {
+    "manifest": "docs/external-inputs.json",
+    "path": "/inspire/hdd/global_user/czxs25250150/linprogram-certificate/Source/LWXMachine/source-code.zip",
+    "sha256": "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15",
+    "size": 5051993,
+    "source_id": "lwx_machine"
+  },
+  "official_config": {
+    "archive_member": "programs/Adams.json",
+    "extraction_command": [
+      "unrar",
+      "p",
+      "-inul",
+      "programs.rar",
+      "programs/Adams.json"
+    ],
+    "path": "/tmp/lin-ceta245131-chain.ExtKY4/Adams.json",
+    "selected_entries": {
+      "CW_complexes.Ceta": {
+        "cells": [
+          0,
+          2
+        ],
+        "cells_gen": [
+          0
+        ],
+        "operations": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "CW_complexes.S0": {
+        "cells": [
+          0
+        ],
+        "cells_gen": [
+          0
+        ],
+        "operations": []
+      },
+      "maps.Ceta__S0": {
+        "from": "Ceta",
+        "images": [
+          2
+        ],
+        "sus": 2,
+        "to": "S0"
+      }
+    },
+    "sha256": "5a4adf1561832a762b7d3a504f8f2603793855733f549d17d5a9668f6c7935bc",
+    "size": 24455
+  },
+  "official_programs_archive": {
+    "md5": "554d12d6dc6aa61b94a7b9fe85c73f04",
+    "path": "/tmp/lin-ceta245131-chain.ExtKY4/programs.rar",
+    "record": "14875701",
+    "registered_metadata": "Source/LWXMachine/zenodo-record.json",
+    "release": "v126.3.cw49",
+    "sha256": "dca24f896dd3eb296e6cbe32e2fcdd5777056a026674454c6a0ac08b9e1fe73e",
+    "size": 4180266,
+    "size_and_md5_verified": true,
+    "url": "https://zenodo.org/api/records/14875701/files/programs.rar/content"
+  },
+  "output_databases": [
+    {
+      "path": "/tmp/lin-ceta245131-chain.ExtKY4/Ceta_Adams_res.db",
+      "sha256": "93bb0c8c162c6407572d36c22cd2f847c413ff051b22d8e4b9cf3737e7da72c6",
+      "size": 53248
+    },
+    {
+      "path": "/tmp/lin-ceta245131-chain.ExtKY4/map_Adams_res_Ceta__S0.db",
+      "sha256": "78f410b0710d186f566e50293f677a8109ac39d4d24a8b938ae4d02d2acbdffc",
+      "size": 20480
+    }
+  ],
+  "pinned_native_targets": {
+    "Ceta": {
+      "basis_rows": [
+        {
+          "d2": "",
+          "id": 69,
+          "mon": "7,1,1",
+          "repr": "1048587",
+          "s": 2,
+          "t": 19
+        },
+        {
+          "d2": "",
+          "id": 80,
+          "mon": "8,1,1",
+          "repr": "2621447",
+          "s": 5,
+          "t": 21
+        }
+      ],
+      "generator_rows": [
+        {
+          "cell": 2,
+          "cell_coeff": "0,1",
+          "id": 1,
+          "name": "(h_0[2])",
+          "repr": 524289,
+          "s": 1,
+          "t": 3
+        }
+      ],
+      "path": "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
+      "proof_of_rebuilt_representative_identity": false,
+      "sha256": "ca0f379210e07d2908576c6e0ddb8889db9b17c8ef426a68b0831bb3f606b477",
+      "size": 3100672
+    },
+    "S0": {
+      "basis_rows": [
+        {
+          "d2": "",
+          "id": 39,
+          "mon": "0,1,7,1",
+          "repr": "1048583",
+          "s": 2,
+          "t": 17
+        },
+        {
+          "d2": "",
+          "id": 46,
+          "mon": "0,1,8,1",
+          "repr": "2621443",
+          "s": 5,
+          "t": 19
+        }
+      ],
+      "generator_rows": [
+        {
+          "id": 0,
+          "name": "h_0",
+          "repr": 524288,
+          "s": 1,
+          "t": 1
+        },
+        {
+          "id": 7,
+          "name": "h_4",
+          "repr": 524292,
+          "s": 1,
+          "t": 16
+        },
+        {
+          "id": 8,
+          "name": "d_0",
+          "repr": 2097155,
+          "s": 4,
+          "t": 18
+        }
+      ],
+      "path": "KIP126/LinProgram/Raw/S0_AdamsSS_t261.db",
+      "proof_of_rebuilt_representative_identity": false,
+      "sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed",
+      "size": 7913472
+    }
+  },
+  "remaining_comparisons": [
+    "Matching rebuilt IDs/degrees with archived repr numbers is observed data, not a proof that their classes are the pinned native-coordinate interpretations.",
+    "Native resolution exactness or comparison to genuine resolutions, and scope coverage, are not proved by dQ=Qd.",
+    "Adams.json Ceta cohomology module and initial map must be identified with the same fixed eta-cofiber and actual topCell.",
+    "Native-cochain to actual Adams E2 comparison must be natural for this chain map and compatible with the same fixed two desuspensions.",
+    "Source actual Ceta differential remains an explicit unproved premise.",
+    "Lean kernel checking of the recovered chain/cochain equations has not been performed in this audit."
+  ],
+  "schema": "lin-naturality-245131-bounded-chain-recovery/v1",
+  "scope": "New local bounded native chain data, not a replacement for the pinned release or a Lean/actual-spectrum certification.",
+  "scratch_directory": "/tmp/lin-ceta245131-chain.ExtKY4",
+  "selected_degrees_all_rows": [
+    {
+      "ceta_all_rows": [
+        {
+          "diff": {
+            "decoded_milnor_terms": [
+              {
+                "exponents": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              }
+            ],
+            "hex": "0000000064c0ffff"
+          },
+          "id": 524289,
+          "s": 1,
+          "t": 3,
+          "vid": 1
+        }
+      ],
+      "ceta_degree": [
+        1,
+        3
+      ],
+      "map_all_rows": [
+        {
+          "id": 524288,
+          "map": {
+            "decoded_milnor_terms": [
+              {
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              },
+              {
+                "exponents": [
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              }
+            ],
+            "hex": "000000000080ffff0000000028c0ffff"
+          },
+          "map_h": "1"
+        }
+      ],
+      "sphere_all_rows": [
+        {
+          "diff": {
+            "decoded_milnor_terms": [
+              {
+                "exponents": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              }
+            ],
+            "hex": "0000000030c0ffff"
+          },
+          "id": 524288,
+          "s": 1,
+          "t": 1,
+          "vid": 0
+        }
+      ],
+      "sphere_degree": [
+        1,
+        1
+      ]
+    },
+    {
+      "ceta_all_rows": [
+        {
+          "diff": {
+            "decoded_milnor_terms": [
+              {
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 5
+              },
+              {
+                "exponents": [
+                  0,
+                  5,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  2,
+                  0,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              },
+              {
+                "exponents": [
+                  2,
+                  2,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  2,
+                  3,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              },
+              {
+                "exponents": [
+                  4,
+                  4,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              },
+              {
+                "exponents": [
+                  8,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  16,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              }
+            ],
+            "hex": "000000006480feff000000c0c040ffff00000020c440ffff00000008e040ffff000000802941ffff000000042080ffff000000208280ffff00000010c880ffff000000808dc1ffff"
+          },
+          "id": 1048587,
+          "s": 2,
+          "t": 19,
+          "vid": 11
+        }
+      ],
+      "ceta_degree": [
+        2,
+        19
+      ],
+      "map_all_rows": [
+        {
+          "id": 1048583,
+          "map": {
+            "decoded_milnor_terms": [
+              {
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 11
+              },
+              {
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              },
+              {
+                "exponents": [
+                  0,
+                  1,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 5
+              },
+              {
+                "exponents": [
+                  0,
+                  4,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 3
+              },
+              {
+                "exponents": [
+                  1,
+                  2,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 9
+              },
+              {
+                "exponents": [
+                  2,
+                  1,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 3
+              },
+              {
+                "exponents": [
+                  2,
+                  2,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              },
+              {
+                "exponents": [
+                  2,
+                  3,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 4
+              },
+              {
+                "exponents": [
+                  4,
+                  1,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  6,
+                  3,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              },
+              {
+                "exponents": [
+                  7,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  8,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  10,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              },
+              {
+                "exponents": [
+                  12,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              }
+            ],
+            "hex": "000000000000fdff000000002880fdff000000800481feff00000000edc0feff000000206000ffff000000802c01ffff000000408140ffff000000801a41ffff000000802641ffff000000803141ffff00000040a680ffff00000008e080ffff000000000f81ffff000000802981ffff000000c0e8c0ffff"
+          },
+          "map_h": "11"
+        }
+      ],
+      "sphere_all_rows": [
+        {
+          "diff": {
+            "decoded_milnor_terms": [
+              {
+                "exponents": [
+                  0,
+                  2,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 4
+              },
+              {
+                "exponents": [
+                  8,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              },
+              {
+                "exponents": [
+                  9,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              },
+              {
+                "exponents": [
+                  10,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              },
+              {
+                "exponents": [
+                  12,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              },
+              {
+                "exponents": [
+                  16,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              }
+            ],
+            "hex": "0000000030c0feff000000800141ffff00000040a680ffff00000040b180ffff000000c0c080ffff0000000420c0ffff00000040a9c0ffff"
+          },
+          "id": 1048583,
+          "s": 2,
+          "t": 17,
+          "vid": 7
+        }
+      ],
+      "sphere_degree": [
+        2,
+        17
+      ]
+    },
+    {
+      "ceta_all_rows": [
+        {
+          "diff": {
+            "decoded_milnor_terms": [
+              {
+                "exponents": [
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 5
+              },
+              {
+                "exponents": [
+                  0,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 4
+              },
+              {
+                "exponents": [
+                  2,
+                  2,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              }
+            ],
+            "hex": "000000006480feff0000000061c0feff000000802981ffff"
+          },
+          "id": 2621447,
+          "s": 5,
+          "t": 21,
+          "vid": 7
+        }
+      ],
+      "ceta_degree": [
+        5,
+        21
+      ],
+      "map_all_rows": [
+        {
+          "id": 2621443,
+          "map": {
+            "decoded_milnor_terms": [
+              {
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 7
+              },
+              {
+                "exponents": [
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  0,
+                  3,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              },
+              {
+                "exponents": [
+                  1,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 5
+              },
+              {
+                "exponents": [
+                  2,
+                  0,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              },
+              {
+                "exponents": [
+                  2,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 3
+              },
+              {
+                "exponents": [
+                  2,
+                  4,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              },
+              {
+                "exponents": [
+                  4,
+                  4,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              },
+              {
+                "exponents": [
+                  6,
+                  1,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              },
+              {
+                "exponents": [
+                  8,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              },
+              {
+                "exponents": [
+                  14,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 1
+              }
+            ],
+            "hex": "000000000000feff000000002880feff000000008c00ffff000000009140ffff00000080a040ffff000000406a80ffff000000408180ffff000000208880ffff0000002082c0ffff00000010c8c0ffff000000804ec1ffff0000008065c1ffff"
+          },
+          "map_h": "7"
+        }
+      ],
+      "sphere_all_rows": [
+        {
+          "diff": {
+            "decoded_milnor_terms": [
+              {
+                "exponents": [
+                  0,
+                  2,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  0,
+                  5,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              },
+              {
+                "exponents": [
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 3
+              },
+              {
+                "exponents": [
+                  6,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 2
+              },
+              {
+                "exponents": [
+                  12,
+                  1,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "resolution_vid": 0
+              }
+            ],
+            "hex": "000000003000ffff000000004a40ffff000000006140ffff00000040a6c0ffff00000020c4c0ffff"
+          },
+          "id": 2621443,
+          "s": 5,
+          "t": 19,
+          "vid": 3
+        }
+      ],
+      "sphere_degree": [
+        5,
+        19
+      ]
+    }
+  ],
+  "sphere_resolution_input": {
+    "copied_from_registered_artifact": "KIP126/LinProgram/Raw/Secondary/Seed5487/S0_Adams_res.db",
+    "copy_requirements": [
+      "Read canonical entry in docs/external-inputs.json for Raw/Secondary/Seed5487/S0_Adams_res.db.",
+      "If working-tree bytes are an LFS pointer, validate its exact oid and size, resolve git --path-format=absolute --git-common-dir then lfs/objects/80/82/808235c2575ca647100975c5bab4a577bd0aa2c718dbbf1521ff60e1ddc3b1ba.",
+      "Read actual payload; require size 225280 and SHA256 808235c2575ca647100975c5bab4a577bd0aa2c718dbbf1521ff60e1ddc3b1ba before writing a copy in scratch.",
+      "Never copy a pointer as if it were a SQLite database. Do not modify the original payload."
+    ],
+    "input_and_output_sha256_equal": true,
+    "original_internal_degree_bound": 45,
+    "path": "/tmp/lin-ceta245131-chain.ExtKY4/S0_Adams_res.db",
+    "registered_lfs_cache_path": "/inspire/hdd/global_user/czxs25250150/KIP126/.git/lfs/objects/80/82/808235c2575ca647100975c5bab4a577bd0aa2c718dbbf1521ff60e1ddc3b1ba",
+    "sha256": "808235c2575ca647100975c5bab4a577bd0aa2c718dbbf1521ff60e1ddc3b1ba",
+    "size": 225280,
+    "used_internal_degree_bound": 19
+  },
+  "status": {
+    "actual_differential_certified": false,
+    "actual_spectrum_map_comparison_certified": false,
+    "independent_python_augmentation_check_passed": true,
+    "lean_chain_certificate_certified": false,
+    "native_program_completed": true,
+    "native_verify_map_passed": true,
+    "new_raw_inputs_installed_in_repository": false,
+    "old_new_representative_identity_certified": false
+  },
+  "verify_compatibility_initialization": {
+    "after_sha256": "a60551c3ab3549ee6b024400cb1d32180643b0d04999f200f914372d1548d8b2",
+    "before_sha256": "45c4c2bade265f8e6f2cd09a7d61137547f8efc5f2a260a2999ff832404aef22",
+    "mathematical_table_modified": false,
+    "reason": "verify_map fresh database abort: missing version id1121750147; original get_db_t_verified intends default -1 but catches different exception class",
+    "scope": "scratch database metadata compatibility initialization only",
+    "sql": "insert into version (id,name,value) values (1121750147,'verified',-1)"
+  },
+  "verify_final": {
+    "log_sha256": "19b0f5fbd0ced2a2013fb860bb03727d8c0f1251a760a4310f16f004736fa70e",
+    "native_chain_check_only": true,
+    "returncode": 0,
+    "version_verified": 21
+  },
+  "verify_first_failure": {
+    "cause": "New map DB had no version id1121750147; get_db_t_verified catches ErrorIdMsg but get_int threw RunTimeError.",
+    "log": "terminate called after throwing an instance of 'RunTimeError'\n  what():  File:\n/tmp/lwx-source/SSeqCpp-master/src/database.cpp(102:27)\nFunction:\n`int myio::Database::get_int(const string&) const`:\nError:\nselect value from version where id=1121750147\n",
+    "recorded_returncode": -6
+  },
+  "workspace": "/inspire/hdd/global_user/czxs25250150/linprogram-certificate"
+}

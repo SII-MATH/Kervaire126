@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Proofs
-import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Proofs
+public import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
+
+@[expose] public section
 
 /-! The internal classes preserve the actual Milnor quotient representatives. -/
 

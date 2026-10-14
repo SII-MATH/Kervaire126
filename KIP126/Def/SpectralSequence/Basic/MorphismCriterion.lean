@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Basic.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Basic.Proofs
+
+@[expose] public section
 
 /-!
 # Representative criterion for spectral-sequence morphisms

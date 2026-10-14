@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Multiplication.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Multiplication.Data
+
+@[expose] public section
 
 /-!
 # Naturality and the Leibniz identity for cobar concatenation

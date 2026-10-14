@@ -1,6 +1,10 @@
-import KIP126.LinProgram.Interpretation.AdamsE2.Classes.Proofs
-import Mathlib.Algebra.Polynomial.Basic
-import Mathlib.Algebra.Polynomial.AlgebraMap
+module
+
+public import KIP126.LinProgram.Interpretation.AdamsE2.Classes.Proofs
+public import Mathlib.Algebra.Polynomial.Basic
+public import Mathlib.Algebra.Polynomial.AlgebraMap
+
+@[expose] public section
 
 /-!
 # 用三个格点演示模型环与真实 E₂ 的分层

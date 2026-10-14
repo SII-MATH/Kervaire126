@@ -1,5 +1,11 @@
-import KIP126.Main.Solution.Computation.LinProgram.E2
-import Lean.Elab.Command
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.E2
+public import Lean.Elab.Command
+public meta import KIP126.LinProgram.Generated.E2
+public meta import KIP126.LinProgram.Model.BasisCatalogue.Data
+
+@[expose] public section
 
 /-! Catalogue checks are executable regressions, not proofs of independence.
 The actual E₂ coordinates and CSV values come from the single Challenge2

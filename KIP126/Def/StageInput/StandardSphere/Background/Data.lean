@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.Moss.Context.Data
-import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
-import KIP126.Def.StageInput.StandardSphere.Sequence.Data
-import KIP126.Def.Kervaire.Route.SourceLanguage
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Context.Data
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+public import KIP126.Def.Kervaire.Route.SourceLanguage
+
+@[expose] public section
 
 /-! The fixed sphere's mathematical comparison context, before any external
 Moss theorem or program-coordinate result is supplied. -/

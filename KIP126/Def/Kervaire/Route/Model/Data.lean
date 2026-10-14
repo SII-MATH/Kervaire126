@@ -1,17 +1,21 @@
-import KIP126.Def.Kervaire.Route.Labels.Data
-import KIP126.Def.Kervaire.Route.Objects.Data
-import KIP126.Def.ClassicalAdams.Detection.Convergence.Data
-import KIP126.Def.Synthetic.Detection.Predicates
-import KIP126.Def.Synthetic.AdamsSequence.Maps.Data
-import KIP126.Def.Synthetic.Sphere.Actions.Data
-import KIP126.Def.Synthetic.Context.Coherence.Predicates
-import KIP126.Def.Synthetic.Localization.Recovery.Data
-import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Data
-import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Restricted.Data
-import KIP126.Def.Synthetic.QuotientTower.Predicates
-import KIP126.Def.Synthetic.NormalizedMap.Data
-import KIP126.Def.ClassicalAdams.Suspension.Predicates
-import Mathlib.CategoryTheory.Triangulated.Triangulated
+module
+
+public import KIP126.Def.Kervaire.Route.Labels.Data
+public import KIP126.Def.Kervaire.Route.Objects.Data
+public import KIP126.Def.ClassicalAdams.Detection.Convergence.Data
+public import KIP126.Def.Synthetic.Detection.Predicates
+public import KIP126.Def.Synthetic.AdamsSequence.Maps.Data
+public import KIP126.Def.Synthetic.Sphere.Actions.Data
+public import KIP126.Def.Synthetic.Context.Coherence.Predicates
+public import KIP126.Def.Synthetic.Localization.Recovery.Data
+public import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Data
+public import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Restricted.Data
+public import KIP126.Def.Synthetic.QuotientTower.Predicates
+public import KIP126.Def.Synthetic.NormalizedMap.Data
+public import KIP126.Def.ClassicalAdams.Suspension.Predicates
+public import Mathlib.CategoryTheory.Triangulated.Triangulated
+
+@[expose] public section
 
 /-! Shared objects for the Section 7 proof route. This is data, not a claim
 that the literature/computation inputs hold. In particular it has no C₃/C₄/C₅,

@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.PageComparison.Raw.Proofs
-import Mathlib.Algebra.Homology.ShortComplex.Homology
+module
+
+public import KIP126.Def.SpectralSequence.PageComparison.Raw.Proofs
+public import Mathlib.Algebra.Homology.ShortComplex.Homology
+
+@[expose] public section
 
 /-!
 # The induced centered-complex and homology isomorphisms

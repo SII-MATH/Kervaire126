@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Data
-import Mathlib.CategoryTheory.Monoidal.Mon
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+public import Mathlib.CategoryTheory.Monoidal.Mon
+
+@[expose] public section
 
 /-!
 # Multiplication on the chosen mod-two Eilenberg--Mac Lane object

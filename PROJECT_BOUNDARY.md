@@ -39,7 +39,9 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    quotient pages, later differentials, page passage, standard `h_6`, its
    concatenation square, and pagewise nonzero permanence must be defined from
    these foundations; they must not be supplied as fields. Proof-route results
-   such as C3, C4, and C5 are not part of the statement's defining data. This
+   such as `Stem126D6Vanishes`, `Theta5SquareNonzeroDetection`, and
+   `EtaExtensionDetection` (Proposition 7.8(3)--(5)) are not part of the
+   statement's defining data. This
    statement-only stage does not establish the conditional final theorem or
    relax the project's proof-completion and axiom-audit acceptance criteria.
 
@@ -89,6 +91,11 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    or proof, and reason for being assumed. Its presence is not evidence that
    the statement or its downstream consequences are proved.
 
+   The restored optional `KIPBase` library is outside this KIP126 proof and
+   acceptance boundary. Its historical axioms and unfinished comparisons are
+   retained as independent research code, not accepted KIP126 inputs. KIP126
+   must not import KIPBase; neither the default build nor CI builds that library.
+
    An unfinished theorem remains in the appropriate proof file with `by sorry`;
    it must not be converted into an axiom merely to avoid `sorryAx`.
    Development CI does not run proof-debt audits or publish debt reports, and
@@ -128,6 +135,13 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    free of `sorryAx`, project axioms, or external computation assumptions.
 
 ## In-scope formalization
+
+The optional SSData/Mathlib spectral-sequence adapter is maintained in the
+legacy `SII-MATH/KIP126` repository. It is no longer a Kervaire126 module or
+delivery obligation. The internal SSData constructions, fixed foundation,
+source and computation comparisons required by Challenge2, and the final
+standard `h_6^2` target retain their existing proof obligations. Upstream
+Mathlib remains the pinned foundation dependency.
 
 ### 1. Algebraic and categorical foundations
 
@@ -209,6 +223,7 @@ Results from earlier papers, published computations, Lin's program, and facts
 read from the Appendix tables are outside the proof-development boundary.
 They enter conditional theorems as explicit mathematical hypotheses. They
 must not become untracked global facts or separate Lean `axiom` declarations.
+Main consumes these results as external hypotheses, while Interface attempts to prove them and construct the corresponding Challenge2 delivery.
 
 Lean interfaces contain the mathematical statements, hypotheses and
 conditions of those inputs. Source identities, locators, acquisition status,
@@ -262,8 +277,7 @@ The project is complete only when all of the following hold:
 - all canonical KIP126 source outside the intentional Challenge statement
   track contains no `sorry` or `admit`, and canonical KIP126 declares no project
   `axiom`; Challenge statements retain their required `by sorry` bodies and
-  are excluded from proof-completion evidence, while the isolated historical
-  KIPBase component remains subject to its separate migration audit;
+  are excluded from proof-completion evidence;
 - the single temporary development axiom has been eliminated;
 - every external input is an explicit Lean mathematical hypothesis with a
   corresponding declaration and locator entry in `docs/external-inputs.json`;

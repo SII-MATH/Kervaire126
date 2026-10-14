@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Extension.Complex.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Extension.Complex.Proofs
+
+@[expose] public section
 
 /-!
 # Regression checks for bounded extensions

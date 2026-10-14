@@ -1,7 +1,11 @@
-import KIP126.Def.Synthetic.PageExtension.Family.Data
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Data
-import KIP126.Def.Synthetic.PageExtension.Relation.Data
-import KIP126.Def.Synthetic.ExtensionSS.Solutions.Data
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Family.Data
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Data
+public import KIP126.Def.Synthetic.PageExtension.Relation.Data
+public import KIP126.Def.Synthetic.ExtensionSS.Solutions.Data
+
+@[expose] public section
 
 /-! Representative fibers for the same actual normalized ESS and its fixed
 classical labels. These are concrete subtypes of pairs of homotopy lifts. -/

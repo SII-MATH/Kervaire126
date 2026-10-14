@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.SSDataConstruction.Proofs
-import KIP126.Def.SpectralSequence.FilteredDifferential.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.SSDataConstruction.Proofs
+public import KIP126.Def.SpectralSequence.FilteredDifferential.Proofs
+
+@[expose] public section
 
 /-!
 # Spectral-sequence assembly for a filtered complex

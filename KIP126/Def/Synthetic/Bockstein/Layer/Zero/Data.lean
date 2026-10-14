@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Bockstein.Layer.Zero.Raw.Proofs
-import KIP126.Def.StableHomotopy.Context.CofiberMap.Iso.Data
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Layer.Zero.Raw.Proofs
+public import KIP126.Def.StableHomotopy.Context.CofiberMap.Iso.Data
+
+@[expose] public section
 
 /-! The zeroth residual layer is identified with the first lambda quotient
 through the actual chosen cofiber map of the specified isomorphism square. -/

@@ -1,8 +1,12 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.H6.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Reduced.Square.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Boundary.First.Polynomial.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.H6.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.SphereTensor.Reduced.Square.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Boundary.First.Polynomial.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! All-filtration coordinates and their representative-level d₁ formula
 come from the actual tower, with explicit below-page inputs. -/

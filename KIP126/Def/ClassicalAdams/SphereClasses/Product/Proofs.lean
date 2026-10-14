@@ -1,12 +1,41 @@
-import KIP126.Def.ClassicalAdams.SphereClasses.Product.Data
+module
 
-/-! Linearity of the fixed sphere product, transported from cobar cohomology. -/
+public import KIP126.Def.ClassicalAdams.SphereClasses.Product.Predicates
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Proofs
+
+@[expose] public section
+
+
+/-! Equality transport, the defining cobar formula, and linearity of the internal E₂ product. -/
 namespace KIP126.Classical.Adams.Sphere.Internal
+open CategoryTheory
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
 universe u v
 noncomputable section
-variable {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C := C)]
-    (H : Mod2EilenbergMacLane (C := C)) (M : MilnorCooperations H)
+variable {C : Type u} [StableHomotopyCategory.{u, v} C]
+  [HasFunctorialCofiber (C := C)]
+  (H : Mod2EilenbergMacLane (C := C)) (M : MilnorCooperations H)
+
+/-- Equality transport commutes with the canonical comparison of the same pages. -/
+theorem reindex_comparison {s t s' t' : ℕ} (hs : s = s') (ht : t = t')
+    (x : MilnorCohomology.Cohomology H M s t) :
+    reindex H hs ht (MilnorCohomology.comparison H M s t x) =
+      MilnorCohomology.comparison H M s' t'
+        (MilnorCohomology.cohomologyReindex H M hs ht x) := by
+  subst s'
+  subst t'
+  rfl
+
+/-- The transported product of two cobar classes is their cobar cup product. -/
+theorem product_comparison {s t s' t' : ℕ}
+    (x : MilnorCohomology.Cohomology H M s t)
+    (y : MilnorCohomology.Cohomology H M s' t') :
+    product H M (MilnorCohomology.comparison H M s t x)
+      (MilnorCohomology.comparison H M s' t' y) =
+      MilnorCohomology.comparison H M (s + s') (t + t')
+        (MilnorCohomology.cup H M x y) := by
+  unfold product
+  rw [LinearEquiv.symm_apply_apply, LinearEquiv.symm_apply_apply]
 
 theorem product_add_right {s t s' t' : ℕ}
     (x : (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2 (s,t))
@@ -21,6 +50,56 @@ theorem product_zsmul_right {s t s' t' : ℕ}
     product H M (s := s) (t := t) (s' := s') (t' := t') x (n • y)=n • product H M (s := s) (t := t) (s' := s') (t' := t') x y := by
   unfold product
   rw [map_zsmul,map_zsmul,map_zsmul]
+
+/-! The backup's sphere-only Koszul symmetry is derived from the existing
+cobar commutator-boundary obligation, rather than introducing another axiom
+or an independent unfinished symmetry proof. -/
+set_option backward.isDefEq.respectTransparency false in
+theorem sphere_product_graded_commutativity :
+    SphereProductGradedCommutative H M := by
+  intro s t s' t' x y
+  have neg_eq (z : MilnorCohomology.Cohomology H M (s + s') (t + t')) : -z = z := by
+    have hz : z + z = 0 := by
+      have htwo : (2 : KIP126.Core.Algebra.F2) = 0 := by decide
+      have h := congrArg (fun a : KIP126.Core.Algebra.F2 => a • z) htwo
+      simpa only [two_smul, zero_smul] using h
+    exact neg_eq_of_add_eq_zero_left hz
+  have transport (z : MilnorCohomology.Cohomology H M (s' + s) (t' + t)) :
+      MilnorCohomology.comparison H M (s + s') (t + t')
+        (MilnorCohomology.cohomologyReindex H M (Nat.add_comm s' s) (Nat.add_comm t' t) z) =
+      (spherePageDegreeTransport H s t s' t' (by apply Prod.ext <;> omega)).hom
+        (MilnorCohomology.comparison H M (s' + s) (t' + t) z) := by
+    have natural_transport {a b c d : ℕ} (hs : a = c) (ht : b = d)
+        (z : MilnorCohomology.Cohomology H M a b) :
+        MilnorCohomology.comparison H M c d
+            (MilnorCohomology.cohomologyReindex H M hs ht z) =
+          (eqToHom (congrArg
+            (fun p : ℤ × ℤ => (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2 p)
+            (Prod.ext (congrArg (fun n : ℕ => (n : ℤ)) hs)
+              (congrArg (fun n : ℕ => (n : ℤ)) ht)))).hom
+            (MilnorCohomology.comparison H M a b z) := by
+      subst c
+      subst d
+      rfl
+    exact natural_transport (Nat.add_comm s' s) (Nat.add_comm t' t) z
+  have symmetry : product H M x y =
+      (spherePageDegreeTransport H s t s' t' (by apply Prod.ext <;> omega)).hom
+        (product H M y x) :=
+    (congrArg (MilnorCohomology.comparison H M (s + s') (t + t'))
+      (MilnorCohomology.cup_comm H M
+        ((MilnorCohomology.comparison H M s t).symm x)
+        ((MilnorCohomology.comparison H M s' t').symm y))).trans (transport _)
+  have neg_page (z : (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2
+      ((s + s' : ℕ), (t + t' : ℕ))) : -z = z := by
+    obtain ⟨z,rfl⟩ := (MilnorCohomology.comparison H M (s + s') (t + t')).surjective z
+    rw [← map_neg, neg_eq]
+  have sign_smul (n : ℕ)
+      (z : (adamsTowerInternalSpectralSequence H.unit SphereSpectrum).Page 2
+        ((s + s' : ℕ), (t + t' : ℕ))) : ((-1 : ℤ) ^ n) • z = z := by
+    induction n with
+    | zero => simp
+    | succ n ih => rw [pow_succ, mul_smul, neg_one_zsmul, neg_page, ih]
+  exact symmetry.trans (sign_smul _ _).symm
 
 end
 end KIP126.Classical.Adams.Sphere.Internal

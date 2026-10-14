@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
-import KIP126.Def.Synthetic.ExtensionSS.Solutions.Finiteness.Proofs
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
+public import KIP126.Def.Synthetic.ExtensionSS.Solutions.Finiteness.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.PageExtension.NormalizedPageFamily
 

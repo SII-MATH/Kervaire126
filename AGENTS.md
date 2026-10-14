@@ -9,6 +9,69 @@
   stage-boundary statement, source provenance, proof status, or mathematical
   strength.
 
+## Check and restore GitHub Release caches after pulling updates
+
+Every time you pull remote repository updates, also check this repository's
+GitHub Releases for a project build cache matching the updated checkout.
+After a successful `git pull` (or fetch followed by merge/rebase), perform this
+check as part of the same update task, even if no compilation is requested.
+If a compatible cache is available and is not already verified locally,
+download, verify, and restore it using the steps below. Reuse an already
+verified compatible local cache without downloading it again.
+Run the following from the repository root after updating the checkout:
+
+```bash
+gh release list --repo SII-MATH/Kervaire126 --limit 100 \
+  --json tagName,isDraft \
+  --jq '.[] | select(.isDraft == false and (.tagName | startswith("build-cache-"))) | .tagName'
+```
+
+The initial Linux x86_64 cache is
+[`build-cache-d8eb0ee60769-linux-x64`](https://github.com/SII-MATH/Kervaire126/releases/tag/build-cache-d8eb0ee60769-linux-x64),
+built from commit `d8eb0ee60769457c5d6e6a155fd8c029f4eb53e9` with
+`leanprover/lean4:v4.32.2`. Before downloading large parts, inspect its `metadata.json` (use
+`gh release download <tag> --repo SII-MATH/Kervaire126 --pattern metadata.json
+--dir <temporary-directory>`). For that cache, download and verify using:
+
+```bash
+(
+  set -euo pipefail
+  cache_dir=$(mktemp -d)
+  gh release download build-cache-d8eb0ee60769-linux-x64 \
+    --repo SII-MATH/Kervaire126 --dir "$cache_dir"
+  (cd "$cache_dir" && sha256sum --check SHA256SUMS)
+  cat "$cache_dir"/project-build.tar.gz.part-* > "$cache_dir/project-build.tar.gz"
+  printf 'Verified parts; inspect metadata and restore from: %s\n' "$cache_dir"
+)
+```
+
+- Select a cache for the checked-out source, not merely the newest release.
+  Inspect `metadata.json`: match repository, OS/architecture, Lean toolchain and
+  `lake-manifest.json` hashes. Compare its `input_fingerprint` with
+  `python3 scripts/ci_build_artifact.py fingerprint` and verify the joined
+  archive's SHA-256 against `archive_sha256` before unpacking.
+- An `AGENTS.md`-only change changes the full-tree fingerprint but does not change
+  Lean build inputs. Confirm that exception with
+  `git diff --exit-code <source_commit> -- . ':(exclude)AGENTS.md'`.
+  Other source changes mean the archive is only an incremental baseline;
+  Lake must rebuild affected modules. Never claim an exact cache match then.
+- Restore only when no build is writing `.lake/build/`. Use the existing
+  `unpack_tar` helper in `scripts/ci_build_artifact.py` to extract into a temporary
+  staging directory; it checks paths and entry types. Preserve any existing
+  local build directory as a backup before installing the staged `.lake/build/`.
+  Do not discard newer local compilation progress to install an older cache.
+  The script's `restore` CLI handles CI artifacts, not Release downloads.
+- This release contains only project `.lake/build/` products. Obtain pinned
+  dependencies and their Mathlib cache separately as described in `docs/CI.md`.
+  When a build is subsequently requested, still run the normal build command
+  (normally `lake build KIP126 checkdecls`); a downloaded cache is not a successful
+  build or evidence that the mathematical proofs are complete.
+- If no compatible release exists or GitHub is unavailable, report that briefly
+  and finish the source update using the available local caches. Do not block
+  the update on an optional cache download. Plain `git pull` does not download
+  Release assets; perform the cache check and restoration explicitly as part
+  of each pull/update task.
+
 ## KIP126 Blueprint synchronization
 
 For a Lean code task under `KIP126/`, read the relevant Blueprint chapter and
@@ -29,6 +92,16 @@ does not turn compilation, generated output, or input certification into a
 completed proof.
 
 ## Repository architecture
+
+The extraction boundary recorded on `main` also applies to `develop`.
+By explicit user decision, `KIPBase/` and `KIPBase.lean` are restored as an
+independent optional library. Do not import KIPBase into KIP126, add it to the
+default build or CI, or treat its historical assumptions as KIP126 proofs.
+Do not restore historical `backups/`, `docs/archive/`,
+`docs/audits/`, or `docs/migration/` trees, Euler/Multica configuration,
+or the old CI, review, merge, status, cache, performance, and publishing tools.
+When integrating old work, retain concrete KIP126 and Blueprint changes while
+preserving this boundary and the current main CI. Keep existing source attribution.
 
 - `KIP126/Def/` owns common mathematical objects, predicates, constructions,
   the fixed implementation, route and mathematical background, its fixed-sphere
@@ -56,8 +129,10 @@ completed proof.
   literature artifacts, acquisition metadata, and the machine-readable source
   artifacts. The canonical source and input manifest is `docs/external-inputs.json`.
   These are provenance records, not project proofs.
-- `KIP126/Mathlib/` is the optional Mathlib adapter layer.
-  `KIP126/Checks/` is the regression and audit layer.
+- Optional Mathlib spectral-sequence adapters are maintained in the legacy
+  `SII-MATH/KIP126` repository. Do not restore `KIP126/Mathlib/` or its adapter
+  exports here. Upstream Mathlib remains a dependency of the mathematical core.
+- `KIP126/Checks/` is the regression and audit layer.
 
 Challenge2 is defined in `KIP126/Interface/Challenge/Challenge2.lean`.
 Its only fields are `literature` and `computation`. Literature has correlated
@@ -121,11 +196,13 @@ consumer axiom.
 
 ## Trust boundary
 
-The only project `axiom` is the temporary direct witness
+Within the KIP126 proof and acceptance boundary, the only project `axiom` is the temporary direct witness
 `Main.Axiom.challenge2 : KIP126.Challenge2` in
 `KIP126/Main/Axiom/Challenge2.lean`. It does not use `Nonempty` or a choice step.
+Restored KIPBase retains its historical axioms in its independent namespace;
+they must not enter the KIP126 dependency graph or acceptance evidence.
 
-Do not add project axioms under `Def/`, `Mathlib/`, `Checks/`, `LinProgram/`,
+Do not add project axioms under `Def/`, `Checks/`, `LinProgram/`,
 Challenge files, or Solution files. Do not convert an unfinished theorem into
 an axiom to hide `sorryAx`.
 

@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerDifferential.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerDifferential.Data
+
+@[expose] public section
 
 /-!
 # The square-zero property of page differentials

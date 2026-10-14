@@ -161,14 +161,27 @@ class ComputationStatementTests(unittest.TestCase):
     def leaf(self, document, field="sphereBasis", relative="csv_values"):
         return self.fields(document)[field]["statements"][relative]
 
-    def test_complete_29_results_and_four_comparisons_are_accepted(self):
+    def test_complete_29_results_and_five_comparisons_are_accepted(self):
         document, labels, nodes = self.fixture()
         self.assertEqual(sum(len(row["statements"]) for row in self.fields(document).values()), 29)
-        self.assertEqual(len(document["computation_binding_statements"]), 4)
+        self.assertEqual(len(document["computation_binding_statements"]), 5)
         declarations = self.validate(document, labels, nodes)
         check = lean_check(document, declarations)
         self.assertIn("getStructureFields env " + chr(96) + "KIP126.Computation.Route.LabelsCorrect", check)
         self.assertIn("computation statement is data rather than a proposition", check)
+
+    def test_global_algebra_map_requires_its_own_provenance(self):
+        document, labels, nodes = self.fixture()
+        document["declaration_sources"] = [row for row in document["declaration_sources"]
+            if row["declaration"] != "KIP126.Classical.Adams.LinE2Presentation.toActual"]
+        with self.assertRaisesRegex(ValueError, "global presentation map provenance"):
+            self.validate(document, labels, nodes)
+
+    def test_global_map_has_exact_source_and_target_check(self):
+        document, labels, nodes = self.fixture()
+        check = lean_check(document, self.validate(document, labels, nodes))
+        self.assertIn("KIP126.LinE2.NativeAlgebra →ₐ[KIP126.Core.Algebra.F2]", check)
+        self.assertIn("KIP126.Classical.Adams.Sphere.Internal.ActualE2Total := P.toActual", check)
 
     def test_missing_computation_leaf_is_rejected(self):
         document, labels, nodes = self.fixture()
@@ -292,7 +305,7 @@ class ComputationStatementTests(unittest.TestCase):
 
     def test_presentation_comparison_needs_its_binding_parent(self):
         document, labels, nodes = self.fixture()
-        leaf = document["computation_binding_statements"]["presentation.comparison_mul"]
+        leaf = document["computation_binding_statements"]["presentation.preservesDegree"]
         nodes[leaf["blueprint_labels"][0]].remove(COMPUTATION_BINDINGS + ".presentation")
         with self.assertRaisesRegex(ValueError, "missing direct Blueprint computation parent link"):
             self.validate(document, labels, nodes)
@@ -423,11 +436,11 @@ class ExternalInputTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "unknown Blueprint label"):
                 validate_document(ROOT, self.document)
 
-    def test_local_moss_application_cannot_cover_general_input(self):
+    def test_moss_adapter_cannot_cover_general_input(self):
         document = self.fixture()
         literature = next(c for c in document["interface_coverage"]
                           if c["structure"].endswith(".LiteratureResults"))
-        literature["fields"]["moss"]["blueprint_labels"] = ["thm:main-local-moss-specialization"]
+        literature["fields"]["moss"]["blueprint_labels"] = ["thm:moss-convergence-adapter"]
         with self.assertRaisesRegex(ValueError, "missing direct Blueprint field link"):
             validate_document(ROOT, document)
 

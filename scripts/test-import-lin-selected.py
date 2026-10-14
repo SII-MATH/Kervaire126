@@ -60,6 +60,27 @@ class ImportBoundaryTests(unittest.TestCase):
             with self.subTest(text=text), self.assertRaises(ValueError):
                 importer.monomial(text, gens)
 
+    def test_one_line_producer_requires_its_complete_native_statement(self):
+        entry = dict(name="d2_h6", origin="proofs.db/log", paper="fixture",
+            record=dict(id=5541, reason="d2", s=1, t=64, r=2, x="0", dx="0"),
+            source_degree=[1, 64], target_degree=[3, 65])
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            directory = root / "KIP126/LinProgram/Generated/Differentials"
+            directory.mkdir(parents=True)
+            shard = directory / "Shard000.lean"
+            shard.write_text('⟨5541, "d2", 1, 64, 2, [0], [0]⟩')
+            output = importer.generate({}, [dict(entry)], root)["Proofs.lean"]
+            self.assertIn("  KIP126.Computation.LinProofs.row5541", output)
+            self.assertNotIn("  differential_of_lookup", output)
+            for change in (dict(dx=""), dict(t=63), dict(reason="D"), dict(r=3)):
+                row = {**entry["record"], **change}
+                shard.write_text(f'⟨5541, "{row["reason"]}", {row["s"]}, '
+                    f'{row["t"]}, {row["r"]}, [0], {importer.indices(row["dx"])}⟩')
+                with self.subTest(change=change), self.assertRaisesRegex(
+                        ValueError, "one-line producer contract mismatch"):
+                    importer.generate({}, [{**entry, "record": row}], root)
+
     def test_bulk_join_rejects_missing_and_mismatched_rows(self):
         entry = dict(name="example", origin="proofs.db/log", paper="fixture",
             record=dict(id=7, reason="D", s=1, t=64, r=2, x="0", dx="0"),

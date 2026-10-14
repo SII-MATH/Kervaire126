@@ -1,7 +1,11 @@
-import KIP126.Def.Algebra.GradedComodule.Ext.Data
-import KIP126.Def.Algebra.GradedComodule.Shift.TensorLine.Data
-import KIP126.Def.Algebra.GradedComodule.Shift.Structure.Proofs
-import Mathlib.Algebra.Homology.DerivedCategory.Ext.Map
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Ext.Data
+public import KIP126.Def.Algebra.GradedComodule.Shift.TensorLine.Data
+public import KIP126.Def.Algebra.GradedComodule.Shift.Structure.Proofs
+public import Mathlib.Algebra.Homology.DerivedCategory.Ext.Map
+
+@[expose] public section
 
 /-!
 Yoneda multiplication in the actual category of graded right comodules.

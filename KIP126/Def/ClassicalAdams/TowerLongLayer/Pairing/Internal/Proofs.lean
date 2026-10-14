@@ -1,4 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Data
+
+import all KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 
@@ -8,7 +14,7 @@ universe u v
 variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)] {H : C} {unit : 𝟙_ C ⟶ H} {X : C}
   {n : ℕ} {p q : ℤ × ℤ}
-  (P : AdamsLongLayerPairing unit X (n + 2) (by omega) p q)
+  (P : AdamsLongLayerPairing unit X (n + 2) (Nat.succ_le_succ (Nat.zero_le (n + 1))) p q)
   (hP : P.ProjectionCompatible) (hB : P.BoundaryCompatible)
 
 theorem AdamsLongLayerPairing.onInternalPage_comparison (x y) :

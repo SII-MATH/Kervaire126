@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorModule.Data
-import KIP126.Def.Algebra.GradedModule.Ext.Multiplication.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Data
+public import KIP126.Def.Algebra.GradedModule.Ext.Multiplication.Proofs
+
+@[expose] public section
 
 /-!
 # Actual Yoneda multiplication in the fixed left Steenrod-module model

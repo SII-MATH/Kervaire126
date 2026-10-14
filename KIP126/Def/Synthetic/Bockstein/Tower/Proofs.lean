@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Bockstein.Tower.Data
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Tower.Data
+
+@[expose] public section
 
 /-! Basic checks on the actual residual tower and its first-page convention. -/
 

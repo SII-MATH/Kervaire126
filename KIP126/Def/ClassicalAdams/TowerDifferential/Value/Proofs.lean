@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerDifferential.Value.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerDifferential.Value.Data
+
+@[expose] public section
 
 /-!
 # Linearity of the differential formula

@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorModule.TrivialDual.Raw.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.TrivialDual.Raw.Proofs
+
+@[expose] public section
 
 /-! The dual of the actual trivial right comodule is the actual trivial
 left module in the same degree, via the explicit evaluation isomorphism. -/

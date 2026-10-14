@@ -1,4 +1,8 @@
-import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Data
+module
+
+public import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Data
+
+@[expose] public section
 
 /-! Appendix catalogue chunks 9–11, transcribed from `MainPaper/main.tex`. -/
 

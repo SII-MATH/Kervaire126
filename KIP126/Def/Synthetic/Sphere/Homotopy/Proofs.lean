@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
-import Mathlib.CategoryTheory.Triangulated.Yoneda
+module
+
+public import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
+public import Mathlib.CategoryTheory.Triangulated.Yoneda
+
+@[expose] public section
 
 namespace KIP126.Synthetic.Context
 open CategoryTheory CategoryTheory.Pretriangulated KIP126.StableHomotopy

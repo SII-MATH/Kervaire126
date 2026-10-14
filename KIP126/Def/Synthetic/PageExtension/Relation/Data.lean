@@ -1,6 +1,10 @@
-import KIP126.Def.SpectralSequence.Crossing.Predicates
-import Mathlib.Algebra.Module.ULift
-import Mathlib.Algebra.Category.ModuleCat.Abelian
+module
+
+public import KIP126.Def.SpectralSequence.Crossing.Predicates
+public import Mathlib.Algebra.Module.ULift
+public import Mathlib.Algebra.Category.ModuleCat.Abelian
+
+@[expose] public section
 
 namespace KIP126.Synthetic.PageExtension
 open CategoryTheory CategoryTheory.Limits KIP126.Core.SpectralSequence

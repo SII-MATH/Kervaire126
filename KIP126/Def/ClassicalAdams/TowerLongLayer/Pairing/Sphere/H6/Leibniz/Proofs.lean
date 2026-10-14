@@ -1,5 +1,11 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Leibniz.Predicates
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Leibniz.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Leibniz.Predicates
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Leibniz.Proofs
+
+import all KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

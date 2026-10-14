@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.QuotientMap.Functoriality.Proofs
-import KIP126.Def.Synthetic.QuotientMap.Proofs
-import KIP126.Def.Synthetic.QuotientRestrictions.Functoriality.Proofs
+module
+
+public import KIP126.Def.Synthetic.QuotientMap.Functoriality.Proofs
+public import KIP126.Def.Synthetic.QuotientMap.Proofs
+public import KIP126.Def.Synthetic.QuotientRestrictions.Functoriality.Proofs
+
+@[expose] public section
 
 /-! The actual λ-power quotient functors and their restriction transformations.
 Every object and component map is the existing chosen cofiber construction.

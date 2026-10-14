@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Data
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Data
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Data
+
+@[expose] public section
 
 /-!
 Composition data on the actual mapping Adams towers. Every long-layer map

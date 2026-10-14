@@ -1,6 +1,11 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.E2
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.Main.Solution.Computation.LinProgram.E2
+public import Lean.Elab.Command
+public meta import KIP126.Checks.AxiomInputs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 open KIP126.LinE2

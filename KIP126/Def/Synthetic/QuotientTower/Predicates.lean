@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.QuotientTower.Data
+module
+
+public import KIP126.Def.Synthetic.QuotientTower.Data
+
+@[expose] public section
 
 /-! Naturality conditions for maps of the same finite λ-quotient towers. -/
 

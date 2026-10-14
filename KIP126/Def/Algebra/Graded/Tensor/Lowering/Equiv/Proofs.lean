@@ -1,5 +1,9 @@
-import KIP126.Def.Algebra.Graded.Tensor.Lowering.Equiv.Data
-import KIP126.Def.Algebra.Graded.Tensor.Lowering.Proofs
+module
+
+public import KIP126.Def.Algebra.Graded.Tensor.Lowering.Equiv.Data
+public import KIP126.Def.Algebra.Graded.Tensor.Lowering.Proofs
+
+@[expose] public section
 
 namespace KIP126.Core.Algebra
 

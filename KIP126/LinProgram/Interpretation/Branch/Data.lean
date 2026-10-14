@@ -1,5 +1,9 @@
-import KIP126.LinProgram.Interpretation.Branch.Decode.Data
-import KIP126.Def.SpectralSequence.Computation.Predicates
+module
+
+public import KIP126.LinProgram.Interpretation.Branch.Decode.Data
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+
+@[expose] public section
 
 /-!
 # Mathematical data for conditional finite-page branches

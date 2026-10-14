@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Context.Coherence.Proofs
+module
+
+public import KIP126.Def.Synthetic.Context.Coherence.Proofs
+
+@[expose] public section
 
 /-! Composition for the actual source maps of λ-power quotient restrictions.
 Only the stated suspension coherence and the already proved power law enter.

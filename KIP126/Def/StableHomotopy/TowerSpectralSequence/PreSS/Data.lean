@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.SSData.Page.Data
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Data
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.SSData.Page.Data
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Data
+
+@[expose] public section
 
 /-! Intrinsic tower differentials in the common nested-subobject model.
 The initial page is one. Synthetic page labels are a later regrading. -/

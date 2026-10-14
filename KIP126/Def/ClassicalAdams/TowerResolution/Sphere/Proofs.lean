@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerResolution.Proofs
-import KIP126.Def.ClassicalAdams.MilnorCooperations.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerResolution.Proofs
+public import KIP126.Def.ClassicalAdams.MilnorCooperations.Data
+
+@[expose] public section
 
 /-! Identify the differential used by the existing Milnor-coordinate interface
 with the independently constructed coefficient-homology resolution formula.

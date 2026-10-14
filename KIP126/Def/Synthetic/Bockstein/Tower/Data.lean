@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.Completion.Data
-import KIP126.Def.Synthetic.Sphere.Data
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Sequence.Data
+module
+
+public import KIP126.Def.Synthetic.Completion.Data
+public import KIP126.Def.Synthetic.Sphere.Data
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Sequence.Data
+
+@[expose] public section
 
 /-!
 # The actual residual λ tower and its represented spectral sequences

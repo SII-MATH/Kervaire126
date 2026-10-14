@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.SSDataModel.Data
-import KIP126.Def.StageInput.Foundation
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+module
+
+public import KIP126.Def.ClassicalAdams.SSDataModel.Data
+public import KIP126.Def.StageInput.Foundation
+public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,12 +1,16 @@
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch0
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch1
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch2
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch3
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch4
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch5
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch6
-import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch7
-import KIP126.LinProgram.Certificates.SquareDetection
+module
+
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch0
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch1
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch2
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch3
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch4
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch5
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch6
+public import KIP126.LinProgram.Certificates.SquareDetection.Archive.Batch7
+public import KIP126.LinProgram.Certificates.SquareDetection
+
+@[expose] public section
 
 namespace KIP126.LinE2.SquareDetection
 

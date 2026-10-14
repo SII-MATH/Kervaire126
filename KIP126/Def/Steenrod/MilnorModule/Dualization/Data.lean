@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorModule.Dualization.Raw.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Dualization.Raw.Proofs
+
+@[expose] public section
 
 /-! The actual contravariant dualization functor. Its internal grading is
 unchanged and its left action uses the fixed recursive antipode. It is not

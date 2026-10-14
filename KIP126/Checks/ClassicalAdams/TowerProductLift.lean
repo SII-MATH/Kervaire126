@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Differential.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Lifting.Construction.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Boundary.FirstDifferential.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Differential.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Lifting.Construction.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Boundary.FirstDifferential.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Audit construction from connecting lifts and its actual differential
 formula. No fixed sphere, Lin or Milnor assumption belongs in this layer. -/

@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Leibniz.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Leibniz.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 
@@ -9,7 +13,7 @@ universe u v
 variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)] {H : C} {unit : 𝟙_ C ⟶ H} {X : C}
   {n : ℕ} {p q : ℤ × ℤ}
-  (P : AdamsLongLayerPairing unit X (n + 2) (by omega) p q)
+  (P : AdamsLongLayerPairing unit X (n + 2) (Nat.succ_le_succ (Nat.zero_le (n + 1))) p q)
   (hP : P.ProjectionCompatible) (hB : P.BoundaryCompatible)
 
 /-- The relative boundary identity computes the existing internal

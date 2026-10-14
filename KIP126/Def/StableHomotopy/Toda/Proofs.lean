@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Toda.Predicates
+module
+
+public import KIP126.Def.StableHomotopy.Toda.Predicates
+
+@[expose] public section
 
 /-!
 # Basic properties of the shifted Toda relation

@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerSequence.NextCycles.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSequence.NextCycles.Data
+
+@[expose] public section
 
 /-!
 # Next-page cycles have zero current differential

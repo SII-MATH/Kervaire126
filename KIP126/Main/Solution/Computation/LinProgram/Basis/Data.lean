@@ -1,5 +1,9 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Basis.Data
-import Mathlib.Algebra.Module.ZMod
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Basis.Data
+public import Mathlib.Algebra.Module.ZMod
+
+@[expose] public section
 
 /-!
 Compatibility coordinates on the fixed CSV quotient, recovered from the

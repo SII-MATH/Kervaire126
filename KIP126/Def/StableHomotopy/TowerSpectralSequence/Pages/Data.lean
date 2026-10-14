@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.ExactCouple.Data
-import Mathlib.LinearAlgebra.Quotient.Basic
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.ExactCouple.Data
+public import Mathlib.LinearAlgebra.Quotient.Basic
+
+@[expose] public section
 
 /-! Kernel/image pages of the actual descending tower. Page one is retained:
 the finite parameter q is the intrinsic differential length, with degree

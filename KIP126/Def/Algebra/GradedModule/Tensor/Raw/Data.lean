@@ -1,5 +1,9 @@
-import Mathlib.CategoryTheory.Monoidal.Mon
-import Mathlib.CategoryTheory.Monad.Algebra
+module
+
+public import Mathlib.CategoryTheory.Monoidal.Mon
+public import Mathlib.CategoryTheory.Monad.Algebra
+
+@[expose] public section
 
 /-! The prescribed unit and multiplication for left tensoring by a monoid. -/
 

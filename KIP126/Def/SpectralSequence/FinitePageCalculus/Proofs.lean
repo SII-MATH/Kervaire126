@@ -1,9 +1,13 @@
-import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
-import KIP126.Def.SpectralSequence.Computation.Proofs
-import KIP126.Def.SpectralSequence.Permanence.Proofs
-import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
-import KIP126.Def.SpectralSequence.ModuleQuotient.Proofs
-import KIP126.Def.Algebra.Coefficients.Data
+module
+
+public import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+public import KIP126.Def.SpectralSequence.Computation.Proofs
+public import KIP126.Def.SpectralSequence.Permanence.Proofs
+public import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
+public import KIP126.Def.SpectralSequence.ModuleQuotient.Proofs
+public import KIP126.Def.Algebra.Coefficients.Data
+
+@[expose] public section
 
 /-! Generic representative and finite-page generation lemmas for internal
 spectral sequences. These use the specified cycle and boundary subobjects;
@@ -170,7 +174,7 @@ theorem page_generated_from_representatives
     · intro j hj hji
       by_cases hc : c j = 0
       · simp [hc]
-      · simp [hc,Finsupp.single_apply,hji]
+      · simp [hc,hji]
     · simp
   refine ⟨c, represents_unique (E:=E) (r:=r) (p:=p) (x:=x) hxa ?_⟩
   have hh := hsum Finset.univ
@@ -434,7 +438,7 @@ theorem frame_after_second
     exact represents_d_zero_of_later hs (by omega) hz ⟨q,hx⟩
   have heq : e x = Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) := by
     ext i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x=e.symm (Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1)) := by
     rw [←heq,LinearEquiv.symm_apply_apply]
   generalize h0 : e x 0 = c0 at hxe
@@ -613,7 +617,7 @@ theorem reaches_from_support
     · intro j hj hji
       by_cases hc : c j = 0
       · simp [hc]
-      · simp [hc,Finsupp.single_apply,hji]
+      · simp [hc,hji]
     · simp
   obtain ⟨a,ha⟩ := hsum Finset.univ
   exact ⟨a,by simpa only [hx] using ha⟩
@@ -692,7 +696,7 @@ theorem choice_frame_of_three_basis
   have heq : e x=Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1)+Finsupp.single 2 (e x 2) := by
     apply Finsupp.ext
     intro i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x=e.symm (Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1)+Finsupp.single 2 (e x 2)) := by
     rw [←heq,LinearEquiv.symm_apply_apply]
   generalize hc0 : e x 0=c0 at hxe
@@ -700,48 +704,48 @@ theorem choice_frame_of_three_basis
   generalize hc2 : e x 2=c2 at hxe
   fin_cases c0 <;> fin_cases c1 <;> fin_cases c2
   · change x=e.symm (Finsupp.single 0 (0:KIP126.Core.Algebra.F2)+Finsupp.single 1 (0:KIP126.Core.Algebra.F2)+Finsupp.single 2 (0:KIP126.Core.Algebra.F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he0,he1,he2] at hxe
+    simp only [Finsupp.single_zero,map_zero,add_zero] at hxe
     rw [hxe] at hx hxrep
     left
     apply represents_unique hxrep
     exact RepresentsOnPage.zero (by omega)
   · change x=e.symm (Finsupp.single 0 (0:KIP126.Core.Algebra.F2)+Finsupp.single 1 (0:KIP126.Core.Algebra.F2)+Finsupp.single 2 (1:KIP126.Core.Algebra.F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he0,he1,he2] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero,he2] at hxe
     rw [hxe] at hx hxrep
     left
     apply represents_unique hxrep
     exact hz
   · change x=e.symm (Finsupp.single 0 (0:KIP126.Core.Algebra.F2)+Finsupp.single 1 (1:KIP126.Core.Algebra.F2)+Finsupp.single 2 (0:KIP126.Core.Algebra.F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he0,he1,he2] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero,he1] at hxe
     rw [hxe] at hx hxrep
     right
     apply represents_unique hxrep
     exact ha
   · change x=e.symm (Finsupp.single 0 (0:KIP126.Core.Algebra.F2)+Finsupp.single 1 (1:KIP126.Core.Algebra.F2)+Finsupp.single 2 (1:KIP126.Core.Algebra.F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he0,he1,he2] at hxe
+    simp only [Finsupp.single_zero,map_add,zero_add,he1,he2] at hxe
     rw [hxe] at hx hxrep
     right
     apply represents_unique hxrep
     exact hadd
   · change x=e.symm (Finsupp.single 0 (1:KIP126.Core.Algebra.F2)+Finsupp.single 1 (0:KIP126.Core.Algebra.F2)+Finsupp.single 2 (0:KIP126.Core.Algebra.F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he0,he1,he2] at hxe
+    simp only [Finsupp.single_zero,add_zero,he0] at hxe
     rw [hxe] at hx hxrep
-    simp only [map_add,hd1,hd2,zero_add,add_zero] at hx
+    simp only [] at hx
     exact (hd0 hx).elim
   · change x=e.symm (Finsupp.single 0 (1:KIP126.Core.Algebra.F2)+Finsupp.single 1 (0:KIP126.Core.Algebra.F2)+Finsupp.single 2 (1:KIP126.Core.Algebra.F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he0,he1,he2] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero,he0,he2] at hxe
     rw [hxe] at hx hxrep
-    simp only [map_add,hd1,hd2,zero_add,add_zero] at hx
+    simp only [map_add,hd2,add_zero] at hx
     exact (hd0 hx).elim
   · change x=e.symm (Finsupp.single 0 (1:KIP126.Core.Algebra.F2)+Finsupp.single 1 (1:KIP126.Core.Algebra.F2)+Finsupp.single 2 (0:KIP126.Core.Algebra.F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he0,he1,he2] at hxe
+    simp only [Finsupp.single_zero,map_add,add_zero,he0,he1] at hxe
     rw [hxe] at hx hxrep
-    simp only [map_add,hd1,hd2,zero_add,add_zero] at hx
+    simp only [map_add,hd1,add_zero] at hx
     exact (hd0 hx).elim
   · change x=e.symm (Finsupp.single 0 (1:KIP126.Core.Algebra.F2)+Finsupp.single 1 (1:KIP126.Core.Algebra.F2)+Finsupp.single 2 (1:KIP126.Core.Algebra.F2)) at hxe
-    simp only [Finsupp.single_zero,map_add,map_zero,zero_add,add_zero,he0,he1,he2] at hxe
+    simp only [map_add,he0,he1,he2] at hxe
     rw [hxe] at hx hxrep
-    simp only [map_add,hd1,hd2,zero_add,add_zero] at hx
+    simp only [map_add,hd1,hd2,add_zero] at hx
     exact (hd0 hx).elim
 
 theorem choice_single_basis_zero_page
@@ -1066,7 +1070,7 @@ theorem f2_expand {N : ℕ} (f : Fin N →₀ F2) :
   · intro j hj hji
     by_cases hf : f j=0
     · simp [hf]
-    · simp [hf,Finsupp.single_apply,hji]
+    · simp [hf,hji]
   · simp
 
 theorem generated_one {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} (hr : 2≤r) {p : ℤ×ℤ}
@@ -1178,7 +1182,7 @@ theorem finite_basis_expansion {A : Type v} [AddCommGroup A] [Module ℤ A] {N :
   · intro j hj hji
     by_cases hc : (e a) j=0
     · simp [hc]
-    · simp [hc,Finsupp.single_apply,hji]
+    · simp [hc,hji]
   · simp
 
 theorem fourth_frame_of_four_basis
@@ -1217,7 +1221,7 @@ theorem fourth_frame_of_four_basis
     represents_d_zero_of_later (by omega) (by decide : (2:ℤ)<4) (represents_two_self x) ⟨z,hx⟩
   have hex : e x=Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1)+Finsupp.single 2 (e x 2)+Finsupp.single 3 (e x 3) := by
     ext i
-    fin_cases i <;> simp [Finsupp.single_apply]
+    fin_cases i <;> simp
   have hxe : x=e.symm (Finsupp.single 0 (e x 0)+Finsupp.single 1 (e x 1)+Finsupp.single 2 (e x 2)+Finsupp.single 3 (e x 3)) := by rw [←hex,LinearEquiv.symm_apply_apply]
   generalize h0 : e x 0=c0 at hxe
   generalize h1 : e x 1=c1 at hxe
@@ -1225,104 +1229,104 @@ theorem fourth_frame_of_four_basis
   generalize h3 : e x 3=c3 at hxe
   fin_cases c0 <;> fin_cases c1 <;> fin_cases c2 <;> fin_cases c3
   · change x=e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,add_zero,map_zero] at hxe
     exact Or.inl (represents_unique (by simpa only [hxe] using hx) (RepresentsOnPage.zero (by decide)))
   · change x=e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     rw [he3] at hxe
     exact Or.inr (Or.inl (represents_unique (by simpa only [hxe] using hx) (hc)))
   · change x=e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     rw [he2] at hxe
     exact Or.inr (Or.inr (Or.inl (represents_unique (by simpa only [hxe] using hx) (hb))))
   · change x=e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero,map_add] at hxe
     rw [he2] at hxe
     rw [he3] at hxe
     exact Or.inr (Or.inr (Or.inr (Or.inl (represents_unique (by simpa only [hxe] using hx) (represents_add_tail (hb) hc)))))
   · change x=e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero] at hxe
     rw [he1] at hxe
     have hh := congrArg (fun y => f y 0) dx
     rw [hxe] at hh
-    simp only [map_add,d0,d1,d2,d3,add_zero,zero_add,←hf0,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
+    simp only [d1,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
     norm_num [Finsupp.single_apply] at hh
   · change x=e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero,map_add] at hxe
     rw [he1] at hxe
     rw [he3] at hxe
     have hh := congrArg (fun y => f y 0) dx
     rw [hxe] at hh
-    simp only [map_add,d0,d1,d2,d3,add_zero,zero_add,←hf0,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
+    simp only [map_add,d1,d3,add_zero,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
     norm_num [Finsupp.single_apply] at hh
   · change x=e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,zero_add,add_zero,map_add] at hxe
     rw [he1] at hxe
     rw [he2] at hxe
     have hh := congrArg (fun y => f y 0) dx
     rw [hxe] at hh
-    simp only [map_add,d0,d1,d2,d3,add_zero,zero_add,←hf0,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
+    simp only [map_add,d1,d2,add_zero,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
     norm_num [Finsupp.single_apply] at hh
   · change x=e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,zero_add,map_add] at hxe
     rw [he1] at hxe
     rw [he2] at hxe
     rw [he3] at hxe
     have hh := congrArg (fun y => f y 0) dx
     rw [hxe] at hh
-    simp only [map_add,d0,d1,d2,d3,add_zero,zero_add,←hf0,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
+    simp only [map_add,d1,d2,d3,add_zero,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
     norm_num [Finsupp.single_apply] at hh
   · change x=e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,add_zero] at hxe
     rw [he0] at hxe
     have hh := congrArg (fun y => f y 0) dx
     rw [hxe] at hh
-    simp only [map_add,d0,d1,d2,d3,add_zero,zero_add,←hf0,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
+    simp only [d0,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
     norm_num [Finsupp.single_apply] at hh
   · change x=e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,add_zero,map_add] at hxe
     rw [he0] at hxe
     rw [he3] at hxe
     have hh := congrArg (fun y => f y 0) dx
     rw [hxe] at hh
-    simp only [map_add,d0,d1,d2,d3,add_zero,zero_add,←hf0,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
+    simp only [map_add,d0,d3,add_zero,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
     norm_num [Finsupp.single_apply] at hh
   · change x=e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,add_zero,map_add] at hxe
     rw [he0] at hxe
     rw [he2] at hxe
     have hh := congrArg (fun y => f y 0) dx
     rw [hxe] at hh
-    simp only [map_add,d0,d1,d2,d3,add_zero,zero_add,←hf0,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
+    simp only [map_add,d0,d2,add_zero,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
     norm_num [Finsupp.single_apply] at hh
   · change x=e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,add_zero,map_add] at hxe
     rw [he0] at hxe
     rw [he2] at hxe
     rw [he3] at hxe
     have hh := congrArg (fun y => f y 0) dx
     rw [hxe] at hh
-    simp only [map_add,d0,d1,d2,d3,add_zero,zero_add,←hf0,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
+    simp only [map_add,d0,d2,d3,add_zero,LinearEquiv.apply_symm_apply,map_zero,Finsupp.zero_apply] at hh
     norm_num [Finsupp.single_apply] at hh
   · change x=e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,add_zero,map_add] at hxe
     rw [he0] at hxe
     rw [he1] at hxe
     exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inl (represents_unique (by simpa only [hxe] using hx) (ha))))))
   · change x=e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (0:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,add_zero,map_add] at hxe
     rw [he0] at hxe
     rw [he1] at hxe
     rw [he3] at hxe
     exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl (represents_unique (by simpa only [hxe] using hx) (represents_add_tail (ha) hc)))))))
   · change x=e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [Finsupp.single_zero,add_zero,map_add] at hxe
     rw [he0] at hxe
     rw [he1] at hxe
     rw [he2] at hxe
     exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl (represents_unique (by simpa only [hxe] using hx) (represents_add_tail (ha) hb))))))))
   · change x=e.symm (Finsupp.single 0 (1:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2)) at hxe
-    simp only [Finsupp.single_zero,zero_add,add_zero,map_zero,map_add] at hxe
+    simp only [map_add] at hxe
     rw [he0] at hxe
     rw [he1] at hxe
     rw [he2] at hxe
@@ -1492,4 +1496,44 @@ theorem basis_pair_sum_ne_zero
   exact one_ne_zero hh
 
 end
+/-- Permanent representatives are cycles on page two. This general lemma
+is migrated from the backup's Section 7 proof and uses no selected model. -/
+theorem isPageCycle_of_permanentCycle
+    {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
+    {p : ℤ × ℤ} {x : E.Page 2 p}
+    (hbase : E.r₀ ≤ 2) (h : IsPermanentCycle E p x) : IsPageCycle E 2 p x := by
+  rcases h with ⟨z, hz⟩
+  let SD := E.ssData p
+  let n : WithTop ℕ := ↑(2 - E.r₀).toNat
+  let m : WithTop ℕ := ↑(3 - E.r₀).toNat
+  have hnm : n ≤ m := by
+    dsimp only [n, m]
+    exact_mod_cast (show (2 - E.r₀).toNat ≤ (3 - E.r₀).toNat by omega)
+  let z3 := Subobject.ofLE (SD.Z ⊤) (SD.Z m) (SD.Z_anti le_top) z
+  have hrep : ReachesPage E 3 p x := by
+    refine ⟨SD.pageπ m z3, ?_⟩
+    refine ⟨by omega, z3, ?_, rfl⟩
+    change SD.pageπ n ((Subobject.ofLE (SD.Z m) (SD.Z n) _) z3) = x
+    dsimp only [z3]
+    have hcomp := Subobject.ofLE_comp_ofLE (SD.Z ⊤) (SD.Z m) (SD.Z n)
+      (SD.Z_anti le_top) (SD.Z_anti hnm)
+    have hcomp' :
+        (Subobject.ofLE (SD.Z ⊤) (SD.Z m) (SD.Z_anti le_top) ≫
+          Subobject.ofLE (SD.Z m) (SD.Z n) (SD.Z_anti hnm)) ≫ SD.pageπ n =
+        Subobject.ofLE (SD.Z ⊤) (SD.Z n) (SD.Z_anti le_top) ≫ SD.pageπ n := by
+      exact congrArg (fun f => f ≫ SD.pageπ n) hcomp
+    have hz' := congrArg (fun f => f z) hcomp'
+    exact hz'.trans hz
+  have hself : RepresentsOnPage E 2 p x x :=
+    KIP126.Core.SpectralSequence.FinitePageCalculus.represents_two_self x
+  exact KIP126.Core.SpectralSequence.FinitePageCalculus.represents_d_zero_of_later
+    (E := E) (p := p) (x := x) (r := 2) (t := 3) hbase (by omega) hself hrep
+
+theorem isPageCycle_of_nonzeroSurvival
+    {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
+    {p : ℤ × ℤ} {x : E.Page 2 p}
+    (hbase : E.r₀ ≤ 2) (h : NonzeroSurvival E p x) : IsPageCycle E 2 p x := by
+  rcases h with ⟨z, hz, _⟩
+  exact isPageCycle_of_permanentCycle hbase ⟨z, hz⟩
+
 end KIP126.Core.SpectralSequence.FinitePageCalculus

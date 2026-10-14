@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Normalized.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Normalized.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Derive normalized coefficient homology from a ring and tensor exactness.
 All structural data remain parameters. No first-page coordinate, fixed

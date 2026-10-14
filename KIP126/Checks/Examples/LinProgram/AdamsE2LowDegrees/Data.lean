@@ -1,5 +1,9 @@
-import KIP126.LinProgram.Interpretation.AdamsE2.Classes.Proofs
-import Mathlib.Data.Int.Interval
+module
+
+public import KIP126.LinProgram.Interpretation.AdamsE2.Classes.Proofs
+public import Mathlib.Data.Int.Interval
+
+@[expose] public section
 
 /-!
 # 带有明确来源和非平凡乘法的 Adams E₂ 数据表

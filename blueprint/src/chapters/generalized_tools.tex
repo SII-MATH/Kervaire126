@@ -2,13 +2,24 @@
 \label{chap:generalized-tools}
 
 This section develops the generalized proof rules that consume the comparison
-foundations established earlier.
+foundations established earlier. The mathematical premise packages, law
+predicates, and proof implementations are owned by
+\texttt{KIP126/Def/Kervaire/Route/Tools/}. Literature bindings and the
+construction of the premise packages remain in Interface; both Interface
+certification and Main consumers import the Def proofs. Public Lean names
+are retained, including the historical Main namespace of the three proof
+declarations. The relocation preserves the latest proof implementations:
+the generalized Leibniz and Mahowald proofs retain their explicit gaps,
+while the finite stretching proof is implemented under the same-quotient
+obstruction exclusion described below. Its model dependencies and the
+comparison with older ordinary crossing certificates remain separate.
 
 \subsection{Generalized Leibniz and Mahowald rules}
 
 % SOURCE: MainPaper/main.tex:1606-1652, Theorem thm:e73f481e.
 \begin{theorem}[Generalized Leibniz rule]
   \label{thm:generalized-leibniz}
+  \lean{KIP126.Main.Solution.Tools.generalizedLeibniz}
   \uses{prop:delta-ess-formula-infinite,thm:delta-classical-equivalence,prop:classical-crossing-iff-delta-crossing,def:page-extension,prop:page-crossing-iff-synthetic-crossing,cor:fess-square-naturality}
   \lean{KIP126.Kervaire.Route.Tools.GeneralizedLeibnizLaw}
   \notready
@@ -33,7 +44,9 @@ foundations established earlier.
   \end{enumerate}
   Then $d_{r+l-m}(y)=y_\infty$.
   The linked Lean declaration specifies this law for a fixed actual
-  normalized page family; its validity remains to be established.
+  normalized page family. Its reusable Def proof theorem
+  retains the model-bound synthetic inputs and still has an unfinished
+  proof; defining the law does not establish its validity.
   It does not assert that arbitrary comparison isomorphisms satisfy the law.
 \end{theorem}
 
@@ -115,7 +128,9 @@ foundations established earlier.
 % SOURCE: MainPaper/main.tex:1780-1917, complete hypotheses and degree package for Theorem thm:158d451a.
 \begin{definition}[Hypotheses of the generalized Mahowald rule]
   \label{def:mahowald-input-data}
-  \uses{prop:normalized-synthetic-triangle,def:page-extension,def:classical-differential-crossing}
+  \lean{KIP126.Main.Solution.Tools.MahowaldHypotheses,KIP126.Main.Solution.Tools.MahowaldExtensionWitnesses,KIP126.Main.Solution.Tools.MahowaldDesuspensionWitness,KIP126.Main.Solution.Tools.MahowaldDifferentialWitness,KIP126.Main.Solution.Tools.MahowaldNoCrossingWitness,KIP126.Main.Solution.Tools.MahowaldConcreteInput,KIP126.Main.Solution.Tools.MahowaldConcreteInput.ofHypotheses}
+  \lean{KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw,KIP126.Kervaire.Route.NormalizedTriangleCompatible}
+  \uses{prop:normalized-synthetic-triangle,def:page-extension,def:classical-differential-crossing,def:mahowald-tower-suspension-comparison}
   \notready
   The Mahowald hypotheses specify a distinguished triangle
   $X\xrightarrow fY\xrightarrow gZ\xrightarrow h\Sigma X$ with
@@ -140,6 +155,13 @@ foundations established earlier.
   $E_{r'}$.
   The target of the $h$-extension is an actual $E_2(\Sigma X)$
   label; the following comparison relates it to the displayed $X$ label.
+  These hypotheses occur as quantified premises of the Lean law,
+  including the explicit distinguished-triangle compatibility predicate;
+  the restored concrete witness packages only extract the witnesses already
+  contained in those premises. They neither synchronize independently chosen
+  representatives nor construct a compatible common lift or lambda division.
+  Their declarations live in Def's generalized Mahowald data and proof modules;
+  the public namespace and the existing law remain unchanged.
 \end{definition}
 
 \begin{definition}[Actual tower suspension comparison]
@@ -147,7 +169,7 @@ foundations established earlier.
   \uses{def:hf2-adams-tower,def:ss-elementwise-page-presentation}
   \lean{KIP126.Classical.Adams.Suspension.TowerComparison}
   \lean{KIP126.Classical.Adams.Suspension.TowerComparison.DesuspendsClass}
-  \notready
+  \leanok
   A suspension comparison identifies every term of the actual Adams tower
   of $\Sigma X$ with the suspension of the corresponding term for $X$,
   is the identity at stage zero, and commutes with all tower maps. Its
@@ -155,10 +177,145 @@ foundations established earlier.
   the connecting maps, including the suspension sign. Two $E_2$ labels
   are related when they have raw second-cycle representatives whose
   actual first-page maps agree after this desuspension and whose quotient
-  classes are the specified labels. Existence and independence of this
-  comparison have not been constructed; an arbitrary $E_2$ equivalence
-  is not a substitute for these diagrams.
+  classes are the specified labels. The construction below supplies a
+  comparison from the specified tensor and unit suspension structures.
+  Independence of triangle-completion choices and native coordinate
+  identifications are not asserted by this definition or construction.
 \end{definition}
+
+\begin{proposition}[Suspension comparison for every object]
+  \label{prop:adams-suspension-construction}
+  \lean{KIP126.Classical.Adams.Suspension.Construction.fiberTriangleIso,KIP126.Classical.Adams.Suspension.Construction.fiberIso,KIP126.Classical.Adams.Suspension.Construction.fiberIso_hom_ι,KIP126.Classical.Adams.Suspension.Construction.towerIso,KIP126.Classical.Adams.Suspension.Construction.towerIso_mapAt,KIP126.Classical.Adams.Suspension.Construction.cofiberTriangleIso,KIP126.Classical.Adams.Suspension.Construction.cofiberIso,KIP126.Classical.Adams.Suspension.Construction.cofiberIso_inclusion,KIP126.Classical.Adams.Suspension.Construction.cofiberIso_connecting,KIP126.Classical.Adams.Suspension.Construction.towerComparisonOfTower,KIP126.Classical.Adams.Suspension.Construction.towerComparison}
+  \uses{def:mahowald-tower-suspension-comparison,def:h6-fiber-tower,prop:shifted-cofiber-extension,def:mathlib-pretriangulated}
+  \leanok
+  In any supplied stable-homotopy context with chosen cofibers, fix $H$
+  and a suspension structure on $H\wedge-$ with which the actual unit
+  natural transformation $\mathrm{id}\to H\wedge-$ commutes.
+  For every object $X$, construct a suspension comparison of its actual
+  Adams tower. All integer stages and every transition $s\le t$ occur;
+  the comparison at stage zero is the identity.
+
+  Write $\tau_s:T_s(\Sigma X)\cong\Sigma T_s(X)$ and
+  $\ell_s:Q_s(\Sigma X)\cong\Sigma Q_s(X)$ for the constructed maps,
+  and use primes for the inclusions and boundaries over $\Sigma X$.
+  For every $s\in\mathbb Z$ they satisfy
+  \[
+    \ell_s\circ\iota'_s=(\Sigma\iota_s)\circ\tau_s,
+    \qquad
+    c_{1,1}\circ(\Sigma\delta_s)\circ\ell_s
+      =-\bigl((\Sigma\tau_{s+1})\circ\delta'_s\bigr),
+  \]
+  where $c_{1,1}$ is the specified shift-commutation isomorphism.
+  The unit and tensor suspension structures are the only extra inputs;
+  tensor exactness, the octahedron axiom, a page equivalence, and native
+  coordinate comparisons are not hypotheses of this constructor.
+\end{proposition}
+\begin{proof}
+  \leanok
+  The unit's shift compatibility gives the square for one fiber step.
+  Complete the rotated fiber triangles to an isomorphism; the negative
+  second component cancels the shift signs, giving a positive fiber
+  inclusion square. Recurse through the chosen fibers, compose the step
+  squares, and use the existing constant extension to negative stages.
+  Complete the layer cofiber triangles against the normalized shifted
+  triangles. Their second and third squares give precisely the displayed
+  inclusion and signed connecting laws.
+\end{proof}
+
+\begin{lemma}[Signed desuspension on the actual Adams exact couple]
+  \label{lem:adams-suspension-exact-couple}
+  \lean{KIP126.Classical.Adams.Suspension.TowerComparison.desuspendTower,KIP126.Classical.Adams.Suspension.TowerComparison.desuspend_adamsI,KIP126.Classical.Adams.Suspension.TowerComparison.desuspend_adamsJ,KIP126.Classical.Adams.Suspension.TowerComparison.desuspend_adamsK}
+  \uses{def:mahowald-tower-suspension-comparison,def:classical-adams-ss}
+  \leanok
+  Given the specified actual tower comparison, desuspension commutes with
+  every tower transition $I$ and cofiber inclusion $J$, and anticommutes
+  with the connecting map $K$. These identities hold in all integer tower
+  stages and homotopy degrees, with their domain-sphere transports explicit.
+  They introduce no pagewise differential compatibility assumption.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Apply homotopy desuspension naturality to the tower and layer squares.
+  The connecting square includes its suspension sign; desuspend it twice
+  and use the connecting-homomorphism formula to obtain the negative sign
+  in the $K$ identity. This proves exact-couple compatibility for a supplied
+  tower comparison, not existence of that comparison or the native data
+  coordinate identifications.
+\end{proof}
+
+\begin{lemma}[Signed desuspension on quotient pages]
+  \label{lem:adams-suspension-pages}
+  \lean{KIP126.Classical.Adams.Suspension.TowerComparison.desuspendCycles,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendPage,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendPage_mkQ,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendPage_differential,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendCycles_mem_cycleSubmodule,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendCycles_mem_boundarySubmodule}
+  \uses{lem:adams-suspension-exact-couple,def:ss-elementwise-page-presentation}
+  \leanok
+  A supplied actual tower comparison induces linear desuspension maps on
+  all raw quotient pages, carrying bidegree $(s,t)$ to $(s,t-1)$. For every
+  natural page $r\geq1$ this map anticommutes with the actual differential,
+  with the target degree transport explicit. On the second-cycle ambient
+  module it preserves every finite and infinite cycle and boundary condition.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Desuspend a cycle lift and negate it using the signed $K$ identity.
+  The $I$ and $J$ squares give cycle and boundary preservation. Quotient
+  descent and independence of the differential lift give the signed
+  differential identity. Intersections and directed sums give the infinite
+  cycle and boundary statements. These constructions use the supplied tower
+  comparison; they do not prove its existence or identify any native basis.
+\end{proof}
+
+\begin{lemma}[Two actual desuspensions preserve differentials]
+  \label{lem:adams-double-suspension-differential}
+  \lean{KIP126.Classical.Adams.Suspension.TowerComparison.desuspendInternalPage,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendTwiceInternalPage,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendInternalPage_d,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendTwiceInternalPage_d,KIP126.Classical.Adams.Suspension.TowerComparison.desuspendTwiceInternalPage_hasDifferential,KIP126.Classical.Adams.Suspension.TowerComparison.hasDifferential_desuspendTwice}
+  \uses{lem:adams-suspension-pages,prop:internal-page-naturality}
+  \leanok
+  Given actual tower comparisons for $X$ and $\Sigma X$, their canonical
+  internal page maps compose to a map from $\Sigma^2X$ to $X$, shifting
+  $(s,t)$ to $(s,t-2)$. This map commutes with the actual differentials.
+  For all integer pages, bidegrees and labels, four successive
+  \texttt{DesuspendsClass} relations therefore carry a supplied differential
+  on $\Sigma^2X$ to the corresponding differential on $X$.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Conjugate the raw quotient maps by the representative-preserving internal
+  page isomorphisms. Cycle and boundary preservation gives a single ambient
+  morphism whose canonical quotient maps are these maps. The two signed
+  differential squares cancel their negatives. Apply reindexed naturality
+  and the actual representative relations. No additional differential
+  compatibility, restricted page range or native coordinate identification
+  is assumed.
+\end{proof}
+
+\begin{lemma}[Four actual desuspensions preserve differentials]
+  \label{lem:adams-four-suspension-differential}
+  \lean{KIP126.Classical.Adams.Suspension.Fourfold.quadShift,KIP126.Classical.Adams.Suspension.Fourfold.quadShiftIso,KIP126.Classical.Adams.Suspension.Fourfold.quadShiftIso_hom,KIP126.Classical.Adams.Suspension.Fourfold.quadShiftIso_inv,KIP126.Classical.Adams.Suspension.Fourfold.desuspendFourInternalPage,KIP126.Classical.Adams.Suspension.Fourfold.desuspendFourInternalPage_hasDifferential,KIP126.Classical.Adams.Suspension.Fourfold.hasDifferential_desuspendFour}
+  \uses{lem:adams-double-suspension-differential,def:stable-sphere-suspension}
+  \leanok
+  For any object $X$ and actual tower comparisons on $X$, $\Sigma X$,
+  $\Sigma\Sigma X$ and $\Sigma\Sigma\Sigma X$, compose the two actual
+  double-desuspension quotient maps. The resulting map is defined at
+  every integer page and sends bidegree $(s,t)$ to $(s,t-4)$.
+  For every integer $r$, every pair of bidegrees $p,q$, and every pair
+  of second-page labels, it transports the complete
+  \texttt{HasDifferential} relation from the four successive suspensions
+  of $X$ to $X$.
+  An alternative representative formulation takes eight
+  \texttt{DesuspendsClass} relations, one at each of four stages for
+  each endpoint. No independent page map or differential-compatibility
+  hypothesis is introduced.
+  The isomorphism $\kappa_4:\Sigma\Sigma\Sigma\Sigma X\cong\Sigma^4X$
+  is the explicit composite of the specified shift-addition isomorphisms
+  and their images under the suspension functor.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Apply the proved double-desuspension transport twice. Each pair of
+  signed suspension laws cancels its two signs. The representative
+  formulation applies the same two transports to the specified
+  intermediate labels. The formulas for $\kappa_4$ and its inverse
+  follow directly from its definition.
+\end{proof}
 
 % SOURCE: MainPaper/main.tex:1780-1917, representative choices in the proof of Theorem thm:158d451a.
 \begin{lemma}[Synchronized Mahowald representatives]
@@ -284,6 +441,7 @@ foundations established earlier.
 % SOURCE: MainPaper/main.tex:1780-1917, Theorem thm:158d451a.
 \begin{theorem}[Generalized Mahowald trick]
   \label{thm:generalized-mahowald}
+  \lean{KIP126.Main.Solution.Tools.generalizedMahowald}
   \uses{def:mahowald-input-data,def:mahowald-tower-suspension-comparison,prop:normalized-synthetic-triangle,def:lambda-rho-delta-triangle,lem:mahowald-synchronized-representatives,lem:mahowald-compatible-quotient-lift,lem:mahowald-quotient-lift-survival,lem:mahowald-lambda-division}
   \lean{KIP126.Kervaire.Route.Tools.GeneralizedMahowaldLaw}
   \notready
@@ -315,8 +473,11 @@ foundations established earlier.
   \]
   The linked Lean declaration is the parameterized law, using one actual
   distinguished triangle, its three normalized page families, and the
-  tower suspension comparison above. A proof of this law remains to be
-  supplied; defining the predicate is not a proof of the theorem.
+  tower suspension comparison above. The implementation includes the
+  adjacent case, the zero-target lift, and a sphere-specific nonadjacent
+  argument. The remaining general nonzero comparison outside the sphere
+  and the final page-extension comparison are explicit unfinished steps;
+  the complete law is therefore still unproved.
 \end{theorem}
 
 \begin{proof}
@@ -434,17 +595,44 @@ foundations established earlier.
   lifting all solutions is equivalent to lifting all displacements.
 \end{proof}
 
+% SOURCE: project sufficient condition for finite stretching, motivated by
+% MainPaper/main.tex:1981-2081. This is not the printed ordinary predicate.
+\begin{definition}[Same-quotient nonliftable extension candidate]
+  \label{def:finite-page-extension-nonliftable-crossing}
+  \uses{def:page-extension,def:page-extension-coset,def:synthetic-ess-solution-tower}
+  \lean{KIP126.Kervaire.Route.FiniteExtensionNonliftableCrossing}
+  \leanok
+  Fix the actual normalized family, finite pages $r'\le r$, and $n,s,t$.
+  A candidate consists of $a,b\in\mathbb N$ satisfying
+  \[
+    0<a\le r'-2,\qquad a+b\le n,
+  \]
+  and a shorter extension of length $n-a-b$ in the actual
+  $\widehat f_{r'-1}$-ESS. Both endpoints lie in the same earlier
+  $\lambda^{r'-1}$ quotient, with synthetic weight $t+e(f)$ and stem
+  $t-s$; their filtrations are $s+a$ and $s+n-b$.
+  The source is not in the image of the actual $E_\infty$ map induced
+  by $\rho$ from the later $\lambda^{r-1}$ quotient to this earlier
+  quotient. The target of the extension equation is nonzero.
+
+  This condition allows $b=0$, length zero, and nonessential nonzero
+  extensions, including when $e(f)=1$. It does not replace the earlier
+  quotient with a smaller one or impose an ordinary Adams boundary
+  exclusion. Excluding all these candidates is stronger than excluding
+  only their essential subset in this same quotient. No implication or
+  equivalence with the ordinary candidate below has been proved.
+\end{definition}
+
 % SOURCE: MainPaper/main.tex:1437-1441,
 % Definition def:41d51149; 1515-1536, Proposition prop:cross-f-Er; and
 % 1981-2081, Proposition prop:dec738d3 and Corollary cor:dfc6043e.
 % This definition includes b=0 and uses the larger ordinary boundary cutoff.
-\begin{definition}[Finite nonliftable crossing candidate]
-  \label{def:finite-page-extension-nonliftable-crossing}
+\begin{definition}[Ordinary crossing candidate in the earlier proof route]
+  \label{def:finite-page-extension-ordinary-crossing-candidate}
   \uses{def:page-extension,def:page-extension-crossing,def:page-extension-coset}
-  \lean{KIP126.Kervaire.Route.FiniteExtensionNonliftableCrossing}
-  \leanok
+  \notready
   Fix a normalized family $P$, finite pages $r',r$, and integers $n,s,t$.
-  A nonliftable crossing candidate consists of natural numbers $a,b$ with
+  The earlier ordinary candidate consists of natural numbers $a,b$ with
   \[
     0<a\le r'-2,\qquad 0\le b\le n-a-e(f),
   \]
@@ -464,6 +652,10 @@ foundations established earlier.
   The source and target cycle conditions are those of the actual shorter
   extension witness.  The bound on $b$ also gives $a\le n-e(f)$.
 
+  This is the intended ordinary candidate of the earlier certificate route,
+  not the current Lean predicate linked in
+  Definition~\ref{def:finite-page-extension-nonliftable-crossing}.
+  Their comparison has not been established.
   This predicate does not relate $y'$ to a chosen original target $y$.
   It enumerates all candidates in these degrees and is used only through
   their exclusion.  It is not an equivalence characterizing loss of
@@ -492,8 +684,10 @@ foundations established earlier.
   imply $d_n^{f,E_r}(x)=y$.
   This is the precise proposition to deliver for the chosen model; defining
   it does not prove that an arbitrary normalized family satisfies it.
-  Its later-page target hypothesis and its exclusion of $b=0$ candidates
-  make the project statement more restrictive than printed Corollary 6.21.
+  Its later-page target hypothesis and same-quotient obstruction exclusion
+  are explicit sufficient conditions for the implemented finite proof.
+  This statement has not been identified with printed Corollary 6.21's
+  ordinary crossing exclusion.
   The conclusion asserts existence of a later relation, without prescribing
   the reduction of every later representative to a specified earlier pair.
 \end{definition}
@@ -503,7 +697,7 @@ foundations established earlier.
 % shorter-page interpretation from Proposition prop:cross-f-Er.
 \begin{proposition}[Certificate for loss of essentiality on an earlier page]
   \label{prop:page-extension-loss-certificate}
-  \uses{prop:page-extension-restrict,def:finite-page-extension-nonliftable-crossing,prop:page-crossing-iff-synthetic-crossing}
+  \uses{prop:page-extension-restrict,def:finite-page-extension-ordinary-crossing-candidate,prop:page-crossing-iff-synthetic-crossing}
   \notready
   For the normalized family of the chosen synthetic model, suppose an
   essential $(f,E_r)$ extension of length $n$, with source degree $(s,t)$,
@@ -512,7 +706,7 @@ foundations established earlier.
     2\le r'<r<\infty,\qquad e(f)\le n\le r'-2+e(f).
   \]
   Then there is a nonliftable crossing candidate from
-  Definition~\ref{def:finite-page-extension-nonliftable-crossing}.
+  Definition~\ref{def:finite-page-extension-ordinary-crossing-candidate}.
   This is only a necessary-candidate conclusion.  An arbitrary candidate
   in those degrees is not asserted to cause loss of essentiality of the
   chosen original extension.
@@ -536,14 +730,15 @@ foundations established earlier.
 % later-typed formulation with the stronger b>=0 crossing exclusion.
 \begin{lemma}[First obstruction to a later page relation]
   \label{lem:page-extension-first-obstruction}
-  \uses{def:finite-page-extension-nonliftable-crossing,def:finite-page-extension-stretching-law,prop:page-extension-loss-certificate,prop:page-crossing-iff-synthetic-crossing}
+  \uses{def:finite-page-extension-ordinary-crossing-candidate,def:finite-page-extension-stretching-law,prop:page-extension-loss-certificate,prop:page-crossing-iff-synthetic-crossing}
   \notready
   For the normalized family of the chosen synthetic model, take the ranges
   and later-page labels of
-  Definition~\ref{def:finite-page-extension-stretching-law}.  If
+  Definition~\ref{def:finite-page-extension-stretching-law}, without its
+  obstruction-exclusion premise. If
   $d_n^{f,E_{r'}}(x)=y$ holds but $d_n^{f,E_r}(x)=y$ does not, then there
   is a candidate from
-  Definition~\ref{def:finite-page-extension-nonliftable-crossing}.
+  Definition~\ref{def:finite-page-extension-ordinary-crossing-candidate}.
   This is a relation-level claim.  It neither asserts that every failure
   to lift a specified strict solution produces such a candidate nor
   identifies the strict-solution cokernel with the candidate list.
@@ -556,7 +751,9 @@ foundations established earlier.
   preserve the larger ordinary boundary exclusion, as in
   Proposition~\ref{prop:page-crossing-iff-synthetic-crossing}.
   The canonical proof of this relation-level implication remains to be
-  supplied.  Proposition 6.20 discusses loss of essentiality of a known
+  supplied for the ordinary candidate. This open statement is not a
+  dependency of the implemented same-quotient finite stretching proof.
+  Proposition 6.20 discusses loss of essentiality of a known
   later relation, and the printed Corollary 6.21 states existence of a
   later relation; their passage must be checked with the stated ranges.
   The generic cokernel criterion does not prove this step, and no
@@ -568,7 +765,8 @@ foundations established earlier.
 % project coherent-tower and untruncated comparison obligations below.
 \begin{corollary}[Page-extension stretching]
   \label{cor:page-extension-stretch}
-  \uses{def:finite-page-extension-stretching-law,lem:page-extension-first-obstruction,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
+  \lean{KIP126.Main.Solution.Tools.finitePageExtensionStretching}
+  \uses{def:finite-page-extension-stretching-law,def:finite-page-extension-nonliftable-crossing,def:synthetic-ess-solution-tower,lem:synthetic-ess-coherent-tower-limit}
   \notready
   The normalized family of the chosen synthetic model satisfies the finite
   stretching law of
@@ -589,17 +787,25 @@ foundations established earlier.
   Exclusion of the finite candidates is not asserted to imply either
   surjectivity or finiteness of those representative sets.
 
-  The two root predicates now fix the finite candidate list and the
-  finite law, but the law's proof and its model comparison witnesses
-  remain outstanding.  The untruncated comparison is a further proof
-  obligation.  The retired free-operations statement expressed none of
-  these conclusions.
+  The linked Def implementation proves the finite law with no direct
+  proof placeholder. Its fixed-model and comparison dependencies remain
+  explicit; this node also retains the open untruncated comparison.
+  A certificate excluding only the ordinary candidates in
+  Definition~\ref{def:finite-page-extension-ordinary-crossing-candidate}
+  cannot yet be used as the same-quotient exclusion. Such a use would
+  require a proved implication from each current candidate to an ordinary
+  candidate, under exactly the certificate's hypotheses, or a direct proof
+  excluding the current candidates. No such comparison is assumed here.
+  The existing LinProgram adapter accepts the current exclusion explicitly;
+  no migrated native certificate supplies the older predicate in its place.
 \end{corollary}
 
 \begin{proof}
-  The finite law is the contrapositive of the first-obstruction lemma,
-  whose model proof remains open.  The resulting finite relations give
-  nonempty strict solution fibers.  To pass to $E_\infty$, construct a
+  The implemented finite proof lifts the earlier representatives and
+  corrects their filtration errors. A first nonzero error outside the
+  later-to-earlier image would give exactly the same-quotient nonzero
+  extension candidate. Its exclusion completes the finite correction.
+  The resulting finite relations give nonempty strict solution fibers.  To pass to $E_\infty$, construct a
   coherent tower using a separately justified compatibility argument and
   then prove that its limit gives an untruncated solution for $\widehat f$.
   Nonemptiness of each finite fiber alone completes neither step.
@@ -624,8 +830,9 @@ foundations established earlier.
   The independent finite Hopf certificate excludes the degree-allowed
   crossing candidates.  It also supplies that $h_0h_4^2$ and $h_0p$ are
   permanent representatives, giving both later-page label types.
-  Once the finite stretching law is proved, these facts give an extension
-  on every finite page.  To obtain the displayed untruncated conclusion,
+  Once the certificate's exclusion has been proved for the current
+  same-quotient candidate predicate, the implemented finite stretching
+  law gives an extension on every finite page.  To obtain the displayed untruncated conclusion,
   a coherent tower must still be constructed and compared to an actual
   untruncated solution, or an independent untruncated lifting argument
   must be supplied.  The finite candidate exclusion alone does not fill
@@ -673,43 +880,57 @@ foundations established earlier.
   second time.  The evidence's component equality becomes the zero tag's
   equality $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$.
 \end{proof}
-\begin{theorem}[Local sphere specialization of the general Moss input]
-  \label{thm:main-local-moss-specialization}
-  \uses{thm:literature-moss,def:adams-hj,def:adams-detection,def:toda-bracket}
-  \lean{KIP126.Main.Solution.Literature.route_moss}
-  \notready
-  The general sphere Moss theorem specializes to the local $E_3$ implication
-  for $\langle h_5^2,h_0,B\rangle$. The actual mapping tower,
-  composition, Milnor labels and
-  source convergence must be compared. All defining-system, detection,
-  null-product, noncrossing and residual-injectivity conditions remain
-  explicit. This is an internal theorem with an unfinished proof.
-\end{theorem}
-
-\begin{theorem}[Naturality of the fixed synthetic weight comparison]
+\begin{theorem}[Naturality of the canonical synthetic weight comparison]
   \label{thm:main-weight-shift-naturality}
   \uses{def:synthetic-adams-ss,def:synthetic-tridegree,def:hf2-adams-tower}
-  \lean{KIP126.Synthetic.SpectralSequence.weightShiftObjectIso,KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient,KIP126.Synthetic.SpectralSequence.CanonicalWeightShift,KIP126.Synthetic.SpectralSequence.canonicalWeightShift_exists,KIP126.Def.standardEInftyWeightShift,KIP126.Main.Solution.Literature.eInfty_shift_natural}
+  \lean{KIP126.Synthetic.SpectralSequence.weightShiftObjectIso,KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient,KIP126.Synthetic.SpectralSequence.CanonicalWeightShift,KIP126.Synthetic.SpectralSequence.canonicalWeightShift_exists,KIP126.Synthetic.SpectralSequence.CanonicalWeightShift.natural,KIP126.Def.standardEInftyWeightShift,KIP126.Def.standardEInftyWeightShift_natural}
   \notready
-  The actual object weight isomorphism and the fixed tower presentation
-  prescribe the map on permanent cycles. The existence theorem
-  must descend this map and its inverse to $E_\infty$. This fixed comparison
-  is natural on all synthetic objects. Neither its
-  construction nor full-category naturality is an independently selected
-  BHS literature input; both property proofs remain unfinished.
+  The actual object weight isomorphism and a specified tower presentation
+  prescribe the map on permanent cycles. The generic existence theorem
+  proves preservation of cycles and boundaries, descends this map and
+  its inverse to $E_\infty$, and verifies their inverse equations.
+  For the fixed standard model, the tower presentation still depends on
+  the unfinished foundational construction.
+
+  The reusable naturality theorem belongs to Def: for a specified tower
+  presentation $P$ and weight comparison $S$, the condition
+  $\operatorname{CanonicalWeightShift}(P,S)$ implies that $S$ is natural.
+  Its proof includes the quotient-descent step: if the two prescribed ambient
+  composites differ by an initial boundary in $B_0$, their canonical
+  permanent-cycle images agree on $E_\infty$. It also derives the forward
+  presentation comparison modulo $B_0$ from its $E_2$ naturality and
+  transports boundaries through the inverse presentation. These private
+  helper proofs are implemented in Def. The remaining local obligation is that
+  the actual Adams maps of the object weight-naturality square agree
+  modulo $B_0$; this requires comparing the chosen tower/cofiber lifts
+  on $E_2$. Def also specializes this theorem to the fixed standard comparison;
+  Main uses that fixed specialization directly, with no literature-delivery
+  premise. The generic
+  naturality theorem, its fixed specialization, and their dependency cones
+  remain unfinished. Neither the construction nor
+  full-category naturality is an independently selected BHS literature input.
 \end{theorem}
 
 \begin{theorem}[BR21 in the chosen tmf coordinates]
   \label{thm:main-tmf-br21-coordinate-differential}
   \uses{thm:literature-br21,def:tmf-csv-coordinate-binding,def:hf2-adams-tower,thm:computation-bindings-tmf-v2Sixteen,thm:computation-bindings-tmf-betaGFour,thm:computation-tmfMultiplicative}
   \lean{KIP126.Main.Solution.Computation.tmf_br21_d3}
+  \lean{KIP126.Interface.Solution.tmfBookDifferentialInterface_of_delivery,KIP126.Interface.Solution.tmfBookDifferentialInterface,KIP126.Interface.Solution.tmfDifferentialInterfaceOfDelivery,KIP126.Interface.Solution.tmfDifferentialInterface,KIP126.Interface.Solution.tmfMultiplicativeInterface_of_delivery,KIP126.Interface.Solution.tmfMultiplicativeInterface}
+  \lean{KIP126.Classical.Adams.adamsInternalE2Induced_hasDifferential}
   \notready
   Transport the BR21 differential
   $d_3(w_2^2)=\beta g^4$ through its actual detector comparison and use
   its computation coordinates and the proved relation
   $\beta g^4=\beta^5g$. The resulting equation is
   $d_3(v_2^{16})=\beta^5g$ in bidegrees
-  $(16,112)\to(19,114)$. The transport proof is implemented and uses the
-  existing unfinished generic Adams tower naturality theorem. It is not
-  an additional computation input or a completed proof claim.
+  $(16,112)\to(19,114)$. The transport proof and the generic Adams
+  differential-naturality theorem are implemented. The fixed standard
+  foundation on which this theorem is stated still carries unfinished
+  construction dependencies, so the complete fixed-model result remains
+  open. It is derived from the same Challenge2 delivery and adds no
+  independent computation input.
+  The retained tmf compatibility interfaces use this same transport and
+  pair its equation with the unit and product comparison already delivered
+  on the same coordinates. Their existence APIs project the one Interface
+  producer; they add no separate tmf choice and do not complete that producer.
 \end{theorem}

@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.Filtration.Proofs
+module
+
+public import KIP126.Def.Algebra.Filtration.Proofs
+
+@[expose] public section
 
 /-!
 # Regression checks for canonical filtration laws

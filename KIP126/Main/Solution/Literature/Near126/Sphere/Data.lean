@@ -1,5 +1,9 @@
-import KIP126.Main.Solution.Literature.Near126.Sphere.Predicates
-import KIP126.Main.Solution.Literature.Near126.Sphere.Boundaries.Data
+module
+
+public import KIP126.Main.Solution.Literature.Near126.Sphere.Predicates
+public import KIP126.Main.Solution.Literature.Near126.Sphere.Boundaries.Data
+
+@[expose] public section
 
 
 /-! First semantic slice of the Section 7 computation package.

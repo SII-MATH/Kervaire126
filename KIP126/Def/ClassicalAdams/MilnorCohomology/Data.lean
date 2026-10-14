@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Complex.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Hi.Proofs
-import Mathlib.LinearAlgebra.Quotient.Basic
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Complex.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Hi.Proofs
+public import Mathlib.LinearAlgebra.Quotient.Basic
+
+@[expose] public section
 
 /-!
 # Normalized Milnor cobar cohomology

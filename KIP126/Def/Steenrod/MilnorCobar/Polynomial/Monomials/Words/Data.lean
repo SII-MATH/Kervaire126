@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Predicates
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Predicates
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor
 

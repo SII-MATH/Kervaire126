@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Cycles.Data
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Cycles.Data
+
+@[expose] public section
 
 /-! Boundary annihilation for the specified linear map on cycles. -/
 

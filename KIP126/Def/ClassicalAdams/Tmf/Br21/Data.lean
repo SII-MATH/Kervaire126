@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
-import KIP126.Def.SpectralSequence.Computation.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Binding.Data
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+
+@[expose] public section
 
 /-! The exact target notation of BR21 Table 5.4 / Theorem 5.18.
 This is a statement on supplied model coordinates, not a theorem about an

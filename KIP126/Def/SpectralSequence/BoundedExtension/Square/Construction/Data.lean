@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.BoundedExtension.Square.Proofs
-import KIP126.Def.SpectralSequence.BoundedExtension.Morphism.Construction.Data
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension.Square.Proofs
+public import KIP126.Def.SpectralSequence.BoundedExtension.Morphism.Construction.Data
+
+@[expose] public section
 
 namespace KIP126.Core.SpectralSequence
 open CategoryTheory
