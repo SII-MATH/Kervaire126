@@ -33,6 +33,9 @@ attribute [local cbv_eval] cetaCode_get KIP126.LinE2.generatorDegree_eq_row
   SquareDetection.splitOn_newline SquareDetection.toNat?_eq_chars
   BasisCatalogue.splitOn_pipe
 '''
+# Relation memberships do not decode basis rows or require the full basis archive.
+RELATION_OPTIONS = OPTIONS.replace("  BasisCatalogue.splitOn_pipe\n", "")
+
 def q(s): return json.dumps(s, ensure_ascii=False)
 def row(r): return '⟨'+', '.join(map(str,[r['s'],r['t'],r['local_index']]))+', '+q(r['code'])+'⟩'
 def main():
@@ -46,7 +49,7 @@ def main():
     for i,r in enumerate(p['relation_records']):relgroups.setdefault(r['chunk_index'],[]).append((i,r))
     for ci,records in relgroups.items():
         name='RelationsFirst' if ci is None else f'RelationChunk{ci:03d}'
-        parts=[f'import {BASE}.Support\n'+HEADER+f'namespace {NS}.Shared.{name}\nopen KIP126.LinE2 NativeMapCertificates BatchMapCertificate\n'+OPTIONS]
+        parts=[f'import {BASE}.Support\n'+HEADER+f'namespace {NS}.Shared.{name}\nopen KIP126.LinE2 NativeMapCertificates BatchMapCertificate\n'+RELATION_OPTIONS]
         if ci is not None:
             # Small shared lists avoid reducing a thousand-row lookup for each
             # selected relation. Their flattening is still the full old chunk.

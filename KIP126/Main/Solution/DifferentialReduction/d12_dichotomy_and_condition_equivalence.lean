@@ -23,7 +23,7 @@ as M, A(M), or C(M). Its proof must use the separately established A/C inputs.
 The historical unrestricted sorry theorem has deliberately been retired. -/
 def d12_dichotomy_and_condition_equivalence (η : BiHom 1 2 (S_0_0 : Syn)) : Prop :=
   EtaChoice M D.toModelData η →
-    (((PermanentH6Square M ∧ ¬ D12 M L) ∨
-        (D12 M L ∧ ¬ PermanentH6Square M)) ∧
-      (D12 M L ↔ C3 L ∧ C4 M D.toModelData L ∧ C5 M D.toModelData L η))
+    (((PermanentH6Square M ∧ ¬ H6SquareSupportsD12 M L) ∨
+        (H6SquareSupportsD12 M L ∧ ¬ PermanentH6Square M)) ∧
+      (H6SquareSupportsD12 M L ↔ Stem126D6Vanishes L ∧ Theta5SquareNonzeroDetection M D.toModelData L ∧ EtaExtensionDetection M D.toModelData L η))
 end KIP126.Solution.Near126.OnlyD12

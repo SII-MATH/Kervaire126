@@ -19,7 +19,6 @@ set_option Elab.async false
 attribute [local cbv_eval] cetaCode_get KIP126.LinE2.generatorDegree_eq_row
   SquareDetection.splitOn_comma SquareDetection.splitOn_semicolon
   SquareDetection.splitOn_newline SquareDetection.toNat?_eq_chars
-  BasisCatalogue.splitOn_pipe
 open Lean Elab Tactic in
 private def block0 : List (List Char) := by
   run_tac

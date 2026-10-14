@@ -74,8 +74,12 @@ classical--synthetic comparisons used in the $h_6^2$ permanent-survival proof.
 \begin{definition}[The three conditions $C_3$, $C_4$, and $C_5$]
   \label{def:near126-conditions}
   \uses{def:synthetic-theta5-choice,def:adams-detection}
-  \lean{KIP126.Kervaire.Route.C3,KIP126.Kervaire.Route.C4,KIP126.Kervaire.Route.C4At,KIP126.Kervaire.Route.C5,KIP126.Kervaire.Route.C5At,KIP126.Kervaire.Route.UChoice}
+  \lean{KIP126.Kervaire.Route.Stem126D6Vanishes,KIP126.Kervaire.Route.Theta5SquareNonzeroDetection,KIP126.Kervaire.Route.Theta5SquareNonzeroDetectionAt,KIP126.Kervaire.Route.EtaExtensionDetection,KIP126.Kervaire.Route.EtaExtensionDetectionAt,KIP126.Kervaire.Route.UChoice}
   \notready
+  The Lean predicates are respectively \texttt{Stem126D6Vanishes},
+  \texttt{Theta5SquareNonzeroDetection} and
+  \texttt{EtaExtensionDetection}. The suffix \texttt{At} fixes the
+  detected representative before existential quantification.
   Define:
   \begin{enumerate}
     \item[$C_3$:] $d_6(x_{126,8,4}+x_{126,8})=0$;

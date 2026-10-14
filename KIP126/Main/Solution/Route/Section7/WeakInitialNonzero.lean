@@ -361,8 +361,8 @@ private theorem weak_route_expression_labels (I : Inputs D L G) :
   · rw [hAssoc, hT, h14, I.labels.h1, I.labels.h4, I.labels.x_109_12]
     rfl
 
-private theorem main_c3_target_survives_twelve
-    (I:Inputs D L G) (SF:Derived.SphereFacts I.realization) (hc3:C3 L) :
+private theorem target_survives_twelve_of_d6_vanishes
+    (I:Inputs D L G) (SF:Derived.SphereFacts I.realization) (hc3:Stem126D6Vanishes L) :
     SurvivesTo (sequence D .sphere) 12 (14,139) (L.target M) := by
   have labels:=weak_route_expression_labels I
   have hp:=SF.t_permanent_cycle
@@ -627,7 +627,7 @@ private theorem nonzero_detection_ne_zero
 private theorem nu_target_lambda_eight_nonzero
     (I : Inputs D L G) (SF : Derived.SphereFacts I.realization) (BHS : EInftyInput D)
     (A : AlgebraData D) (qb : QuotientAlgebraBinding D A) (ab : AlgebraBinding D A)
-    (hc3 : C3 L) (t : BiHom 125 139 (XModLambdaN (S_0_0 : Syn) 9))
+    (hc3 : Stem126D6Vanishes L) (t : BiHom 125 139 (XModLambdaN (S_0_0 : Syn) 9))
     (ht : FiniteDetected D 9 (by decide) 14 139 0 (L.target M) t) :
     lambdaMultiply 8 t ≠ 0 := by
   have hd := lambda_eight_target_detected A qb ab (L.target M) t ht.1
@@ -637,7 +637,7 @@ private theorem nu_target_lambda_eight_nonzero
     (L.target M) (permanentCycles_le_cycles H SphereSpectrum (14,139) _ hp) (by
       intro hb
       exact bridge_survives_twelve_not_boundary_eleven SphereSpectrum (14,139) (L.target M)
-        (main_c3_target_survives_twelve I SF hc3)
+        (target_survives_twelve_of_d6_vanishes I SF hc3)
         (boundaries_monotone H SphereSpectrum (14,139) (by decide) hb)) _ hd
   exact nonzero_detection_ne_zero (D.quotientConvergence 9 (by decide)) (14,139,131) _ _ hn
 
@@ -662,7 +662,7 @@ private theorem lambda_two_six_139 (D : Model H M Syn)
 private theorem weak_initial_twice_h0_nonzero
     (I : Inputs D L G) (SF : Derived.SphereFacts I.realization) (BHS : EInftyInput D)
     (A : AlgebraData D) (qb : QuotientAlgebraBinding D A) (ab : AlgebraBinding D A)
-    (hc3 : C3 L) (h0 : BiHom 0 1 (S_0_0 : Syn))
+    (hc3 : Stem126D6Vanishes L) (h0 : BiHom 0 1 (S_0_0 : Syn))
     (z : BiHom 125 132 (XModLambdaN (S_0_0 : Syn) 9))
     (t : BiHom 125 139 (XModLambdaN (S_0_0 : Syn) 9))
     (ht : FiniteDetected D 9 (by decide) 14 139 0 (L.target M) t)

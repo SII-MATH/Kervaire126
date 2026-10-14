@@ -249,7 +249,7 @@ end ConditionalYDetection
 newly constructed Q9 detection rule out the previously unknown d5(Y).
 The page representative is part of HasDifferential. -/
 theorem conditional_y_d5_zero
-    (hc3 : C3 L) (hc5 : C5 M (D).toModelData L η) :
+    (hc3 : Stem126D6Vanishes L) (hc5 : EtaExtensionDetection M (D).toModelData L η) :
     HasDifferential
       (adamsTowerInternalSpectralSequence standardFoundation.hf2.unit SphereSpectrum)
       5 (11,136) (16,140) eY 0 := by

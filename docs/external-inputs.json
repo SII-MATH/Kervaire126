@@ -3680,7 +3680,7 @@
     "excluded": [
       "C(M) CSV/relations/basis and proofs.db certification",
       "LWX generalized Leibniz/Mahowald/stretching",
-      "LWX Propositions 7.8/7.9 and C3/C4/C5",
+      "LWX Propositions 7.8/7.9 and Stem126D6Vanishes/Theta5SquareNonzeroDetection/EtaExtensionDetection",
       "synthetic detector injectivity derived from tables",
       "geometric corollaries requiring Browder/HHR",
       "full C(M) machine-proof replay inputs"

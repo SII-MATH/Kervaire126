@@ -129,7 +129,7 @@ run_cmd do
     ``KIP126.Computation.Near126.SphereBoundaryFacts.p_h2_is_d2_cycle,
     ``KIP126.Computation.Near126.SphereBoundaryFacts.q_h2_is_d2_cycle,
     ``KIP126.Computation.Near126.Sphere.d12_iff_differential,
-    ``KIP126.Computation.Near126.SphereSurvivalFacts.c3_iff_not_d6,
+    ``KIP126.Computation.Near126.SphereSurvivalFacts.d6_vanishes_iff_not_nonzero_d6,
     ``KIP126.Computation.Near126.SphereSurvivalFacts.hit_t_iff_d12,
     ``KIP126.Computation.Near126.SphereDifferentialFacts.d3_x_126_6_ne_zero,
     ``KIP126.Computation.Near126.SphereSurvivalFacts.y_not_hit_on_page,

@@ -20,8 +20,8 @@ run_cmd do
     ``KIP126.Computation.Route.high125_detector_nonzero,
     ``KIP126.Main.Solution.Route.cnu_d3,
     ``KIP126.Main.Solution.Route.lambda_injective_125_130,
-    ``KIP126.Main.Solution.Route.proposition_7_8,
-    ``KIP126.Main.Solution.Route.proposition_7_9,
+    ``KIP126.Main.Solution.Route.h6_square_differential_dichotomy_and_criterion,
+    ``KIP126.Main.Solution.Route.eta_extension_excluded_of_d6_vanishes,
     ``KIP126.Main.Solution.Route.detector_injective,
     ``KIP126.Computation.Route.classical_sphere_separated_of_strong_convergence,
     ``KIP126.Computation.Route.sphere_page_zero_above_uniform_bound,
@@ -98,7 +98,7 @@ run_cmd do
     ``KIP126.Main.Solution.Route.Section7.conditional_y_d5_zero,
     ``KIP126.Main.Solution.Route.Section7.target_nu_divisible,
     ``KIP126.Main.Solution.Route.Section7.target_divisibility_forces_cnu_incoming,
-    ``KIP126.Main.Solution.Route.Section7.c3_excludes_c5]
+    ``KIP126.Main.Solution.Route.Section7.eta_extension_excluded_of_d6_vanishes]
   KIP126.Checks.rejectGoalProofs solutions.toArray
   for solution in solutions do
     let some (.thmInfo _) := env.find? solution

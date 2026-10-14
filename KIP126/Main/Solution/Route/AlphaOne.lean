@@ -239,7 +239,7 @@ first two. This does not assume which branch actually occurs. -/
 theorem theta5_square_three_cases
     (theta : BiHom 62 64 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
     (htheta : ThetaChoice M (D).toModelData theta) :
-    C4At M (D).toModelData L theta ∨
+    Theta5SquareNonzeroDetectionAt M (D).toModelData L theta ∨
       SphereDetected D 13 137 9 eCorrection (sphereProduct theta theta) ∨
       ∃ a : BiHom 124 138 (S_0_0 : KIP126.Def.standardRouteInput.Syn),
         lambdaMultiply 10 a = sphereProduct theta theta := by

@@ -60,7 +60,7 @@ set_option maxHeartbeats 2000000 in
 components while preserving its nonzero lambda-squared h0 product, and
 apply the actual ninth-quotient nu extension and the P/Q lifting argument. -/
 theorem target_nu_divisible
-    (hc3 : C3 L) (hc5 : C5 M (D).toModelData L η) :
+    (hc3 : Stem126D6Vanishes L) (hc5 : EtaExtensionDetection M (D).toModelData L η) :
     TargetNuDivisible D ((L).target M) h2 := by
   let SF := KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing
   obtain ⟨a11,ha⟩ := alpha_one_exists

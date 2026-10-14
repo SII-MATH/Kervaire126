@@ -13,10 +13,10 @@ import all KIP126.Main.Solution.Route.Selected.DetectionData
 
 namespace KIP126.Main.Solution.Route
 
-open private prop78_choice_invariance from KIP126.Main.Solution.Route.Selected.ChoiceInvariance
-open private prop78_classical_data from KIP126.Main.Solution.Route.Selected.ClassicalData
-open private prop78_detection_data from KIP126.Main.Solution.Route.Selected.DetectionData
-open private prop78_theta_data from KIP126.Main.Solution.Route.Selected.ThetaData
+open private differential_criterion_choice_invariance from KIP126.Main.Solution.Route.Selected.ChoiceInvariance
+open private differential_criterion_classical_data from KIP126.Main.Solution.Route.Selected.ClassicalData
+open private differential_criterion_detection_data from KIP126.Main.Solution.Route.Selected.DetectionData
+open private differential_criterion_theta_data from KIP126.Main.Solution.Route.Selected.ThetaData
 open KIP126.Core.SpectralSequence.FinitePageCalculus
 open CategoryTheory CategoryTheory.Limits KIP126.Core.Algebra
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
@@ -34,14 +34,14 @@ variable {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:
 set_option backward.isDefEq.respectTransparency false
 set_option maxRecDepth 10000
 attribute [local irreducible] KIP126.LinE2.homogeneousPart adamsTowerSSData adamsTowerInternalD
-private theorem prop78_from_inputs_realization_additive {D : Model H M Syn} : D.recovery.realization.Additive := by
+private theorem differential_dichotomy_from_inputs_realization_additive {D : Model H M Syn} : D.recovery.realization.Additive := by
   classical
   letI := D.recovery.adjunction.isLeftAdjoint
   letI := Limits.preservesBinaryBiproducts_of_preservesBinaryCoproducts D.recovery.realization
   exact Functor.additive_of_preservesBinaryBiproducts _
 
 
-private theorem prop78_from_inputs_realize_detector {D : Model H M Syn} {m wt : ℤ} (R : KIP126.Literature.Route.RealizationCoordinates D)
+private theorem differential_dichotomy_from_inputs_realize_detector {D : Model H M Syn} {m wt : ℤ} (R : KIP126.Literature.Route.RealizationCoordinates D)
     (a : BiHom m wt (S_0_0 : Syn)) :
     KIP126.Literature.Route.realizeNu D R .sphere (a ≫ D.nu.unitIso.inv) ≫ D.auxiliary.detectorUnit =
       KIP126.Literature.Route.realizeNu D R .detector (a ≫ KIP126.Literature.Route.detectorMap D) := by
@@ -52,7 +52,7 @@ private theorem prop78_from_inputs_realize_detector {D : Model H M Syn} {m wt : 
   rw [← hn]
 
 
-private theorem prop78_from_inputs_high125_detector_nonzero_parts {D : Model H M Syn}
+private theorem differential_dichotomy_from_inputs_high125_detector_nonzero_parts {D : Model H M Syn}
     (TM : KIP126.Literature.Route.TmfInputs D G) (I : KIP126.Computation.Route.Inputs D L G)
     (V : SphereVanishingLine H) (S : ClassicalSphereSeparated H)
     (a : HomotopyGroup (C := C) 125 SphereSpectrum)
@@ -66,7 +66,7 @@ private theorem prop78_from_inputs_high125_detector_nonzero_parts {D : Model H M
   simpa only [heq] using hnonzero
 
 
-private theorem prop78_from_inputs_theta_detector_zero_parts {D : Model H M Syn}
+private theorem differential_dichotomy_from_inputs_theta_detector_zero_parts {D : Model H M Syn}
     (BHS : KIP126.Literature.Route.SyntheticInputs D)
     (RL : KIP126.Literature.Route.RealizationInput D)
     (CL : KIP126.Literature.Route.ClassicalInputs D η)
@@ -76,7 +76,7 @@ private theorem prop78_from_inputs_theta_detector_zero_parts {D : Model H M Syn}
     theta ≫ KIP126.Literature.Route.detectorMap D = 0 := by
   classical
   set_option backward.isDefEq.respectTransparency false in
-    letI := prop78_from_inputs_realization_additive (D := D)
+    letI := differential_dichotomy_from_inputs_realization_additive (D := D)
     let a : BiHom 62 64 (KIP126.Literature.Route.nuZero D .sphere) :=
       theta ≫ D.nu.unitIso.inv ≫ SyntheticCategory.biShift_zero.inv.app _
     have ha : quotientClass 1 a = KIP126.Literature.Route.firstLabel D .sphere 2 64 (Sphere.Internal.hiSquare H M 5) := by
@@ -100,7 +100,7 @@ private theorem prop78_from_inputs_theta_detector_zero_parts {D : Model H M Syn}
         Functor.id_obj, Category.comp_id]
     rw [he] at hd
     have hz := TM.theta5_vanishes _ hd
-    rw [prop78_from_inputs_realize_detector] at hz
+    rw [differential_dichotomy_from_inputs_realize_detector] at hz
     apply detector_realization_injective_62_64 BHS TM.low_filtration_63
     change D.recovery.realization.map (theta ≫ KIP126.Literature.Route.detectorMap D) = D.recovery.realization.map 0
     rw [Functor.map_zero]
@@ -113,7 +113,7 @@ private theorem prop78_from_inputs_theta_detector_zero_parts {D : Model H M Syn}
 
 
 
-private theorem prop78_from_inputs (BHS : SyntheticInputs D) (RL : RealizationInput D)
+private theorem differential_dichotomy_from_inputs (BHS : SyntheticInputs D) (RL : RealizationInput D)
     (CL : ClassicalInputs D η) (AF : SphereActionFiltrationCompatible D)
     (TM : TmfInputs D G) (BX : BXDistinguishedInput D η)
     (I : KIP126.Computation.Route.Inputs D L G) (V : SphereVanishingLine H)
@@ -132,7 +132,7 @@ private theorem prop78_from_inputs (BHS : SyntheticInputs D) (RL : RealizationIn
       (htheta : ThetaChoice M D.toModelData theta) :
       sphereProduct η (sphereProduct theta theta) ≫
         KIP126.Literature.Route.detectorMap D = 0 := by
-    have h := prop78_from_inputs_theta_detector_zero_parts BHS RL CL TM theta htheta
+    have h := differential_dichotomy_from_inputs_theta_detector_zero_parts BHS RL CL TM theta htheta
     dsimp only [sphereProduct]
     simp only [Smn] at h
     simp only [Smn, Category.assoc]
@@ -148,15 +148,15 @@ private theorem prop78_from_inputs (BHS : SyntheticInputs D) (RL : RealizationIn
         (nuCoefficientUnit H.unit D.nu) 15 a)
       (hz : a ≫ KIP126.Literature.Route.detectorMap D = 0) : a = 0 := by
     set_option backward.isDefEq.respectTransparency false in
-      letI := prop78_from_inputs_realization_additive (D := D)
+      letI := differential_dichotomy_from_inputs_realization_additive (D := D)
       by_contra hne
       have hd := high125_weight130_nonzero_classical_detection I BHS RL V
         TM.high125_detected.1 a ha hne
-      have hn := prop78_from_inputs_high125_detector_nonzero_parts TM I V S
+      have hn := differential_dichotomy_from_inputs_high125_detector_nonzero_parts TM I V S
         (KIP126.Literature.Route.realizeNu D RL.coordinates .sphere
           (a ≫ D.nu.unitIso.inv)) hd
       apply hn
-      rw [prop78_from_inputs_realize_detector, hz]
+      rw [differential_dichotomy_from_inputs_realize_detector, hz]
       simp only [KIP126.Literature.Route.realizeNu, Functor.map_zero,
         Limits.comp_zero, Limits.zero_comp]
   have non_c4_branch_eta_filtration_fifteen {D : Model H M Syn}
@@ -244,10 +244,10 @@ private theorem prop78_from_inputs (BHS : SyntheticInputs D) (RL : RealizationIn
   three branches, retaining an actual lambda preimage in the last branch. -/
   intro hη
   let SF := sphere_facts I V
-  obtain ⟨h13,hcases⟩ := prop78_theta_data I BHS V
-  obtain ⟨hc3,hdnp,hbx,hframe6⟩ := prop78_classical_data I SF
+  obtain ⟨h13,hcases⟩ := differential_criterion_theta_data I BHS V
+  obtain ⟨hc3,hdnp,hbx,hframe6⟩ := differential_criterion_classical_data I SF
   obtain ⟨h9,h10,huex,h4f14,huf14,hframe,herr,hlambda,hdetect,hnonzero⟩ :=
-    prop78_detection_data I BHS SF h13 hframe6
+    differential_criterion_detection_data I BHS SF h13 hframe6
   obtain ⟨theta,htheta,hboundary,hcriterion⟩ := BX
   let a : BiHom 125 130 (S_0_0:Syn) := sphereProduct η (sphereProduct theta theta)
   have permanent_of_f15 (hf : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 a) :
@@ -258,8 +258,8 @@ private theorem prop78_from_inputs (BHS : SyntheticInputs D) (RL : RealizationIn
     change lambdaAction 125 130 S_0_0 a=0
     rw [hz]
     simp only [lambdaAction,CategoryTheory.Limits.comp_zero]
-  have dichotomy : (PermanentH6Square M ∧ ¬D12 M L) ∨
-      (D12 M L ∧ ¬PermanentH6Square M) := by
+  have dichotomy : (PermanentH6Square M ∧ ¬H6SquareSupportsD12 M L) ∨
+      (H6SquareSupportsD12 M L ∧ ¬PermanentH6Square M) := by
     have hf14 : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 14 a := by
       rcases hcases theta with h4|hbranch
       · exact h4f14 η hη theta h4
@@ -275,7 +275,7 @@ private theorem prop78_from_inputs (BHS : SyntheticInputs D) (RL : RealizationIn
   · intro hd
     have impossible (hf : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 a) : False :=
       (hdnp hd).1 (permanent_of_f15 hf)
-    have h4 : C4At M D.toModelData L theta := by
+    have h4 : Theta5SquareNonzeroDetectionAt M D.toModelData L theta := by
       rcases hcases theta with h4|hbranch
       · exact h4
       · exact False.elim (impossible
@@ -298,7 +298,7 @@ private theorem prop78_from_inputs (BHS : SyntheticInputs D) (RL : RealizationIn
         (S_0_0:Syn) 15 (125,130)).add_mem he hl
       simpa only [sub_add_cancel,FiltrationAtLeast,Int.reduceAdd] using hh
   · rintro ⟨hc,⟨theta',htheta',h4'⟩,u,hu,h5⟩
-    have h4 := prop78_choice_invariance I BHS RL CL AF theta theta' htheta.2.1 htheta' h4'
+    have h4 := differential_criterion_choice_invariance I BHS RL CL AF theta theta' htheta.2.1 htheta' h4'
     have hn := hnonzero (hc3.mp hc) _ (hdetect η hη theta h4 u hu h5)
     exact hbx η theta htheta ((h9 a).mpr (h4f14 η hη theta h4))
       (fun h=>hn ((h10 a).mp h))

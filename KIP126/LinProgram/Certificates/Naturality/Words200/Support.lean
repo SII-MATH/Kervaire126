@@ -1,7 +1,7 @@
 module
 
 public import KIP126.LinProgram.Certificates.Naturality.BatchMapCertificate
-public import KIP126.LinProgram.Certificates.BasisCatalogue.Archive
+public import KIP126.LinProgram.Certificates.RelationCatalogue
 
 public meta import KIP126.LinProgram.Generated.E2
 
@@ -40,17 +40,6 @@ theorem relation_member (i : Nat) (hi : i < LinE2.RawData.relationChunks.size)
     (row : List Char) (hr : row ∈ rows) (hn : '\n' ∉ row) :
     String.ofList row ∈ LinE2.RawData.relations := by
   apply RelationCatalogue.rawLine_mem_of_chars i hi row
-  rw [hc, String.toList_ofList]
-  exact selected_mem_joinRows rows row hr hn
-
-theorem basis_member (i : Nat) (hi : i < LinE2.RawData.basisChunks.size)
-    (rows : List (List Char))
-    (hc : LinE2.RawData.basisChunks[i] = String.ofList (joinRows rows))
-    (row : List Char) (hr : row ∈ rows) (hn : '\n' ∉ row)
-    (r : BasisRow) (hd : decodeBasisRow (String.ofList row) = .ok r) :
-    r ∈ basisRows := by
-  apply BasisCatalogue.row_mem_of_rawLine BasisCatalogue.archivedChunks_valid _ ?_ r hd
-  apply BasisCatalogue.rawLine_mem_of_chars i hi row
   rw [hc, String.toList_ofList]
   exact selected_mem_joinRows rows row hr hn
 

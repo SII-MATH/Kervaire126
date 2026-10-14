@@ -39,7 +39,9 @@ relaxation of this boundary must be agreed explicitly and recorded here.
    quotient pages, later differentials, page passage, standard `h_6`, its
    concatenation square, and pagewise nonzero permanence must be defined from
    these foundations; they must not be supplied as fields. Proof-route results
-   such as C3, C4, and C5 are not part of the statement's defining data. This
+   such as `Stem126D6Vanishes`, `Theta5SquareNonzeroDetection`, and
+   `EtaExtensionDetection` (Proposition 7.8(3)--(5)) are not part of the
+   statement's defining data. This
    statement-only stage does not establish the conditional final theorem or
    relax the project's proof-completion and axiom-audit acceptance criteria.
 

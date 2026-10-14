@@ -1951,11 +1951,11 @@ private theorem theta_three_cases_from_frames
   refine ⟨b ≫ D.nu.unitIso.hom,?_⟩
   simpa [lambdaMultiply,Category.assoc] using congrArg (fun q => q ≫ D.nu.unitIso.hom) hb
 
-private theorem prop78_theta_data (I : KIP126.Computation.Route.Inputs D L G)
+private theorem differential_criterion_theta_data (I : KIP126.Computation.Route.Inputs D L G)
     (BHS : SyntheticInputs D) (V : SphereVanishingLine H) :
     ClassicalInfinityGenerated 13 137 (I.realization.sphere 13 137 correction) ∧
       ∀ theta : BiHom 62 64 (S_0_0 : Syn),
-        C4At M D.toModelData L theta ∨
+        Theta5SquareNonzeroDetectionAt M D.toModelData L theta ∨
           SphereDetected D 13 137 9 (I.realization.sphere 13 137 correction)
             (sphereProduct theta theta) ∨
           ∃ a : BiHom 124 138 (S_0_0 : Syn), lambdaMultiply 10 a=sphereProduct theta theta := by
@@ -2002,7 +2002,7 @@ private theorem prop78_theta_data (I : KIP126.Computation.Route.Inputs D L G)
   have theta_three_cases_same_input (I : KIP126.Computation.Route.Inputs D L G)
       (BHS : SyntheticInputs D) (V : SphereVanishingLine H)
       (theta : BiHom 62 64 (S_0_0 : Syn)) :
-      C4At M D.toModelData L theta ∨
+      Theta5SquareNonzeroDetectionAt M D.toModelData L theta ∨
         SphereDetected D 13 137 9 (I.realization.sphere 13 137 KIP126.Computation.Near126.correction)
           (sphereProduct theta theta) ∨
         ∃ a : BiHom 124 138 (S_0_0 : Syn), lambdaMultiply 10 a=sphereProduct theta theta := by

@@ -783,7 +783,7 @@ set_option backward.isDefEq.respectTransparency false
 set_option maxHeartbeats 2000000
 set_option maxRecDepth 10000
 attribute [local irreducible] KIP126.LinE2.homogeneousPart adamsTowerSSData adamsTowerInternalD
-private theorem weaky0_anyy_af13_basis_not_cycle (I : Inputs D L G) :
+private theorem weaky0_af13_basis_not_cycle (I : Inputs D L G) :
     I.realization.basis .sphere 13 138 1 ∉ cycles H SphereSpectrum 3 (13,138) := by
   let E := sequence D .sphere
   have h231 : HasDifferential E 4 (9,135) (13,138)
@@ -974,17 +974,17 @@ private theorem weaky0_anyy_af13_basis_not_cycle (I : Inputs D L G) :
   exact tn (db1'.symm.trans (weaky0_represents_d_zero_of_later
     (by change (2:ℤ)≤3; omega) (by decide : (3:ℤ)<4) hb1 ⟨b4,hb4⟩))
 
-private theorem weaky0_anyy_af13_cycles_boundary (I : Inputs D L G) :
+private theorem weaky0_af13_cycles_boundary (I : Inputs D L G) :
     cycles H SphereSpectrum 3 (13,138) ≤ boundaries H SphereSpectrum 4 (13,138) := by
   intro x hx
   rcases (weaky0_nu9_af13_cosets I).2 x with h|h
   · exact h
   · exfalso
-    apply weaky0_anyy_af13_basis_not_cycle I
+    apply weaky0_af13_basis_not_cycle I
     have hh := (boundaries_le_cycles H SphereSpectrum (13,138) 4 3) h
     simpa only [sub_sub_cancel] using (cycles H SphereSpectrum 3 (13,138)).sub_mem hx hh
 
-private theorem weaky0_anyy_af12_quotient_zero (I : Inputs D L G) :
+private theorem weaky0_af12_quotient_zero (I : Inputs D L G) :
     Subsingleton (CycleQuotient H SphereSpectrum 4 6 (12,137)) := by
   have hz (x : CycleQuotient H SphereSpectrum 4 6 (12,137)) : x=0 := by
     obtain ⟨x⟩ := x
@@ -994,13 +994,13 @@ private theorem weaky0_anyy_af12_quotient_zero (I : Inputs D L G) :
           (cycles_antitone H SphereSpectrum (12,137) (by decide : (2:ℤ)≤4) x.property)))
   exact ⟨fun x y=>(hz x).trans (hz y).symm⟩
 
-private theorem weaky0_anyy_af13_quotient_zero (I : Inputs D L G) :
+private theorem weaky0_af13_quotient_zero (I : Inputs D L G) :
     Subsingleton (CycleQuotient H SphereSpectrum 3 7 (13,138)) := by
   have hz (x : CycleQuotient H SphereSpectrum 3 7 (13,138)) : x=0 := by
     obtain ⟨x⟩ := x
     exact (NestedQuotient.projection_eq_zero x).mpr
       (boundaries_monotone H SphereSpectrum (13,138) (by decide : (4:ℤ)≤7)
-        (weaky0_anyy_af13_cycles_boundary I x.property))
+        (weaky0_af13_cycles_boundary I x.property))
   exact ⟨fun x y=>(hz x).trans (hz y).symm⟩
 private theorem weaky0_finite_sphere_zero_of_classical_quotient
     (BHS : EInftyInput D) (q : ℕ) (hq : 0<q) (s t w : ℤ)
@@ -1023,7 +1023,7 @@ private theorem weaky0_finite_sphere_zero_of_classical_quotient
   apply (CategoryTheory.Limits.IsZero.iff_id_eq_zero _).mpr
   exact hfg.symm.trans (by rw [hn.eq_of_src f 0,CategoryTheory.Limits.comp_zero])
 
-private theorem weaky0_anyy_weight132_filtration_twelve_fourteen
+private theorem weaky0_weight132_filtration_twelve_fourteen
     (I : Inputs D L G) (BHS : EInftyInput D)
     (a : BiHom 125 132 (XModLambdaN (S_0_0 : Syn) 9)) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 12 a ↔
@@ -1034,11 +1034,11 @@ private theorem weaky0_anyy_weight132_filtration_twelve_fourteen
   have hcases : j=12 ∨ j=13 := by omega
   rcases hcases with rfl|rfl
   · exact weaky0_finite_sphere_zero_of_classical_quotient BHS 9 (by decide) 12 137 132
-      (by norm_num) (weaky0_anyy_af12_quotient_zero I)
+      (by norm_num) (weaky0_af12_quotient_zero I)
   · exact weaky0_finite_sphere_zero_of_classical_quotient BHS 9 (by decide) 13 138 132
-      (by norm_num) (weaky0_anyy_af13_quotient_zero I)
+      (by norm_num) (weaky0_af13_quotient_zero I)
 
-private theorem weaky0_anyy_representatives_differ_in_fourteen
+private theorem weaky0_representatives_differ_in_fourteen
     (I : Inputs D L G) (BHS : EInftyInput D)
     (y z : BiHom 125 132 (XModLambdaN (S_0_0 : Syn) 9))
     (hy : FiniteDetected D 9 (by decide) 11 136 4
@@ -1046,7 +1046,7 @@ private theorem weaky0_anyy_representatives_differ_in_fourteen
     (hz : FiniteDetected D 9 (by decide) 11 136 4
       (I.realization.sphere 11 136 KIP126.Computation.Near126.Y) z) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 14 (y-z) := by
-  apply (weaky0_anyy_weight132_filtration_twelve_fourteen I BHS (y-z)).mp
+  apply (weaky0_weight132_filtration_twelve_fourteen I BHS (y-z)).mp
   exact detects_sub_filtration (D.quotientConvergence 9 (by decide))
     (11,136,132) hy.1 hz.1
 end KIP126.Computation.Route
@@ -1207,7 +1207,7 @@ private theorem weaky0_finite_sphere_filtration_has_label
   obtain ⟨x,hx⟩ := weaky0_finite_sphere_infinity_label_exists BHS q k hq hkq s t e
   exact ⟨x,e,hx,a',ha',he⟩
 
-private theorem weaky0_anyy_h0_increases_fourteen
+private theorem weaky0_h0_increases_fourteen
     (BHS : EInftyInput D) (A : AlgebraData D) (ab : AlgebraBinding D A)
     (h0 : BiHom 0 1 (S_0_0 : Syn))
     (hd : Detects D.sphereConvergence (1,1,1)
@@ -1224,7 +1224,7 @@ private theorem weaky0_anyy_h0_increases_fourteen
       ((towerFiltration (nuCoefficientUnit H.unit D.nu) (XModLambdaN (S_0_0 : Syn) 9)).F 15 (125,133)) := ⟨b,hb⟩
   simpa only [towerFiltration,OrderIso.apply_symm_apply,FiltrationAtLeast,Int.reduceAdd] using hm
 
-private theorem weaky0_anyy_h0_representative_difference
+private theorem weaky0_h0_representative_difference
     (I : Inputs D L G) (BHS : EInftyInput D) (A : AlgebraData D) (ab : AlgebraBinding D A)
     (h0 : BiHom 0 1 (S_0_0 : Syn))
     (hd : Detects D.sphereConvergence (1,1,1)
@@ -1237,9 +1237,9 @@ private theorem weaky0_anyy_h0_representative_difference
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15
       (sphereAction h0 y - sphereAction h0 z) := by
   simpa only [sphereAction,Preadditive.comp_sub] using
-    weaky0_anyy_h0_increases_fourteen BHS A ab h0 hd (y-z)
-      (weaky0_anyy_representatives_differ_in_fourteen I BHS y z hy hz)
-private theorem weaky0_anyy_detects_of_difference
+    weaky0_h0_increases_fourteen BHS A ab h0 hd (y-z)
+      (weaky0_representatives_differ_in_fourteen I BHS y z hy hz)
+private theorem weaky0_detects_of_difference
     {H' : Syn} {unit : S_0_0 ⟶ H'} {F : SyntheticAdamsFamily Syn} {X : Syn}
     (c : TowerConvergence unit F X) (i : Tridegree)
     {x : (F.obj X).E₂ i} {a b : BiHom (i.2.1-i.1) i.2.2 X}
@@ -1264,7 +1264,7 @@ private theorem weaky0_anyy_detects_of_difference
     rw [hj,add_zero]
     exact hga
 
-private theorem weaky0_anyy_h0_detection_independent
+private theorem weaky0_h0_detection_independent
     (I : Inputs D L G) (BHS : EInftyInput D) (A : AlgebraData D) (ab : AlgebraBinding D A)
     (h0 : BiHom 0 1 (S_0_0 : Syn))
     (hd : Detects D.sphereConvergence (1,1,1)
@@ -1278,10 +1278,10 @@ private theorem weaky0_anyy_h0_detection_independent
     (ht : FiniteDetected D 9 (by decide) 14 139 6 T (sphereAction h0 z)) :
     FiniteDetected D 9 (by decide) 14 139 6 T (sphereAction h0 y) := by
   refine ⟨?_,ht.2⟩
-  apply weaky0_anyy_detects_of_difference (D.quotientConvergence 9 (by decide)) (14,139,133) ht.1
-  exact weaky0_anyy_h0_representative_difference I BHS A ab h0 hd y z hy hz
+  apply weaky0_detects_of_difference (D.quotientConvergence 9 (by decide)) (14,139,133) ht.1
+  exact weaky0_h0_representative_difference I BHS A ab h0 hd y z hy hz
 
-private theorem weaky0_anyy_h0_source_detected (η : BiHom 1 2 (S_0_0 : Syn))
+private theorem weaky0_h0_source_detected (η : BiHom 1 2 (S_0_0 : Syn))
     (T : TodaInputs D η) :
     Detects D.sphereConvergence (1,1,1)
       (D.sphereE2 1 1 0 (Sphere.Internal.hi H M 0)) T.h0 := by
@@ -1302,7 +1302,7 @@ private theorem weaky0_anyy_h0_source_detected (η : BiHom 1 2 (S_0_0 : Syn))
   rw [T.h0_label,hz] at h
   exact h
 
-private theorem weaky0_anyy_h0_detection_from_one
+private theorem weaky0_h0_detection_from_one
     (I : Inputs D L G) (BHS : EInftyInput D) (A : AlgebraData D) (ab : AlgebraBinding D A)
     (η : BiHom 1 2 (S_0_0 : Syn)) (low : TodaInputs D η)
     (T : E2 H SphereSpectrum 14 139)
@@ -1316,8 +1316,8 @@ private theorem weaky0_anyy_h0_detection_from_one
       FiniteDetected D 9 (by decide) 14 139 6 T (sphereAction low.h0 y) := by
   obtain ⟨z,hz,ht⟩ := hone
   intro y hy
-  exact weaky0_anyy_h0_detection_independent I BHS A ab low.h0
-    (weaky0_anyy_h0_source_detected η low) y z hy hz T ht
+  exact weaky0_h0_detection_independent I BHS A ab low.h0
+    (weaky0_h0_source_detected η low) y z hy hz T ht
 end KIP126.Computation.Route
 
 namespace KIP126.Core.SpectralSequence
@@ -2561,8 +2561,8 @@ private theorem weak_y_detected_of_f11_and_nonzero
       (I.realization.sphere 11 136 KIP126.Computation.Near126.Y) y0 := by
   apply weaky1_main_y_detected_of_filtration_bounds I BHS y0 hf11
   intro hf12
-  have hf14 := (weaky0_anyy_weight132_filtration_twelve_fourteen I BHS y0).mp hf12
-  have hf15 := weaky0_anyy_h0_increases_fourteen BHS A ab h0 hd y0 hf14
+  have hf14 := (weaky0_weight132_filtration_twelve_fourteen I BHS y0).mp hf12
+  have hf15 := weaky0_h0_increases_fourteen BHS A ab h0 hd y0 hf14
   have hf := weaky_lambda_filtration_preserved 2 15 (sphereAction h0 y0) hf15
   exact hne (weaky_sphere_quotient_high_filtration_zero BHS 9 (by decide)
     125 131 15 (by decide) (lambdaMultiply 2 (sphereAction h0 y0)) hf)
@@ -2577,6 +2577,6 @@ private theorem weak_y_detected_from_low
     FiniteDetected D 9 (by decide) 11 136 4
       (I.realization.sphere 11 136 KIP126.Computation.Near126.Y) y0 := by
   exact weak_y_detected_of_f11_and_nonzero I BHS A ab low.h0
-    (weaky0_anyy_h0_source_detected eta low) y0 hf11 hne
+    (weaky0_h0_source_detected eta low) y0 hf11 hne
 
 end KIP126.Computation.Route

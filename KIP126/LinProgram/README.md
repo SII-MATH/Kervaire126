@@ -54,6 +54,40 @@ Source identities, locators, versions and hashes are recorded in the canonical
 `docs/external-inputs.json` manifest; this README introduces no source registry
 or additional assumptions.
 
+## Certificate imports and incremental builds
+
+The seven maintenance modules and twenty delivery groups in the
+[modularization proposal](https://kip126-milestones.surenny233.chatgpt.site/)
+describe mathematical responsibilities. Cache reuse additionally requires
+concrete, one-way Lean imports. Keep fixed data and generic certificate
+contracts below fixed certification; the comparison with the standard sphere
+remains in Interface. A new directory or Lake library alone does not remove
+an existing dependency.
+
+Words200 now separates two concrete dependencies:
+
+| Entry | Required certification |
+| --- | --- |
+| `Naturality/Words200/Support.lean` and `Shared/RelationChunk*.lean`, `Shared/RelationsFirst.lean` | Generic batch soundness and exact membership in the original relation strings. No `BasisCatalogue.Archive` import, even transitively. |
+| `Naturality/Words200/CatalogueSupport.lean` and `Shared/BasisChunk*.lean` | Complete strict basis-parser certification, exact original chunk transcription and selected row decoding. |
+
+`CertifiedBatch`, `relation_member`, `basis_member` and the generated row and
+shard theorems keep their names and complete mathematical types. The generator
+limits basis-parser tactic rules to consumers that actually import the basis
+certification. Regenerate with
+`python3 KIP126/LinProgram/Translate/generate-naturality-word-proofs.py`, then
+run the same command with `--check` to verify the committed output.
+The import regression checks all 57 shared relation modules and keeps the
+basis certification mandatory for target membership.
+
+For local work, build the affected module and its relevant regression, for example
+`lake build +KIP126.LinProgram.Certificates.Naturality.Words200.Shard095 +KIP126.Checks.AdamsE2.LinNaturalityWords200`.
+Full acceptance still uses `lake build KIP126 checkdecls` and the source and
+Blueprint checks. Changes to shared data, checker contracts or genuine upstream
+mathematical dependencies can legitimately invalidate certificates. This split
+removes one unnecessary dependency; it does not establish a whole-build speedup
+or make LinProgram independent of its required mathematical foundations.
+
 ## Independence from the research attempt
 
 The former top-level `Lin-program/` is an independent research project retained

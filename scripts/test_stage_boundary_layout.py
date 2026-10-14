@@ -75,6 +75,22 @@ public import all KIP126.Def.Exposed
         for module in self.graph:
             visit(module)
 
+    def test_words200_relation_support_does_not_wait_for_basis_archive(self):
+        root = "KIP126.LinProgram.Certificates.Naturality.Words200."
+        archive = "KIP126.LinProgram.Certificates.BasisCatalogue.Archive"
+        relations = [m for m in self.graph
+                     if m.startswith(root + "Shared.Relation")]
+        self.assertEqual(len(relations), 57)
+        for module in [root + "Support", *relations]:
+            with self.subTest(module=module):
+                self.assertNotIn(archive, self.dependencies(module))
+        # Target membership still needs strict parsing of the complete archive.
+        self.assertIn(archive, self.dependencies(root + "CatalogueSupport"))
+        for module in self.graph:
+            if module.startswith(root + "Shared.BasisChunk"):
+                with self.subTest(module=module):
+                    self.assertIn(archive, self.dependencies(module))
+
     def test_main_does_not_import_the_independent_lin_program(self):
         # The public namespaces are preserved by adoption; only imports and
         # source roots determine whether the research tree is a dependency.
