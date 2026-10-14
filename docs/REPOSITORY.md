@@ -9,6 +9,16 @@ Blueprint 尚未配置远程网站/API 链接。
 以下迁入清单和本地核对结果记录新仓初始快照；`develop` 后续整合见下一节，
 初始文件数量与核对结果不代表合并后的当前状态。
 
+## Mathlib 适配层归属（2026-10-12）
+
+可选的 SSData/Mathlib 谱序列适配层由旧仓库 `SII-MATH/KIP126` 维护，
+兼容更新已提交至[旧仓 PR #158](https://github.com/SII-MATH/KIP126/pull/158)，待合并。
+Kervaire126 不再保留 `KIP126/Mathlib/`、`KIP126/Mathlib.lean`、其专用检查，
+或仅供该适配层使用的 `Def/ClassicalAdams/Permanence/Data.lean` 兼容接口。
+混合检查保留内部 SSData 的回归内容；Blueprint 的适配节点随模块退出当前计划。
+内部 SSData 构造、固定模型、Challenge2、主证明和上游 Mathlib 依赖继续保留。
+最终 Challenge/Solution 陈述及其证明状态未改变。
+
 ## develop 本地进展整合（2026-10-10）
 
 - 合并旧仓本地开发历史与 Kervaire126 更新，保留本地 KIP126 证明进展。
@@ -22,6 +32,14 @@ Blueprint 尚未配置远程网站/API 链接。
   旧提交仍存在于 Git 历史中；当前文件树遵循下面的迁入边界。
 - 同步最新 `main` 的精简 CI 与编译缓存优化，保留 `develop` 推送触发。
   当前验证入口为来源、接口、Blueprint 检查及完整 KIP126 构建。
+
+## LinProgram 进展整合
+
+当前整合以 Kervaire126 的 `develop` 为基础，保留其 Lean `module` / `public import` 布局、文献关联交付和新增数学证明。无截断原生代数、全局分次 presentation 及局部证书迁入主库；通用 Leibniz、Mahowald 和有限 stretching 规则位于 `Def/Kervaire/Route/Tools/`，供 Interface 与 Main 共同使用。stretching 的实际同商障碍条件及其与旧普通 crossing 条件的比较责任保持明确。
+
+独立 `Lin-program/` 研究树不进入本仓源码或构建依赖。现用原始数据库归档保留在 `Source/LWXMachine/kervaire_database.rar`，原始 DB/CSV 与有限重建快照保留在 `KIP126/LinProgram/Raw/`。当前确定性重放所需的四份提取记录放在 `KIP126/LinProgram/Generated/Provenance/`；它们是有具体消费者的来源制品，不恢复历史 `docs/audits/` 目录。来源、原始哈希、派生产物和声明绑定统一登记于 `docs/external-inputs.json`。
+
+目录整合、局部数据证书和可重放生成不解除实际模型、比较映射及论文证明的未完成义务。下列数量与检查结果继续只描述初始迁入快照。
 
 ## 初始迁入：保留
 

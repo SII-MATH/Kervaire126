@@ -14,15 +14,24 @@
 - `KIP126/Interface/`：关联的文献与计算交付，构造唯一 `Challenge2` 见证。
 - `KIP126/Main/`：论文推导及最终目标。
 - `KIP126/LinProgram/`：固定计算输入、翻译、生成数据、解释和局部证书。
-- `KIP126/Mathlib/`：Mathlib 适配；`KIP126/Checks/`：Lean 回归与边界检查。
+- `KIP126/Checks/`：Lean 回归与边界检查。
 - `blueprint/src/`：当前数学计划、声明链接、依赖与证明状态。
 - `MainPaper/`：目标论文；`Source/`：外部来源及获取记录。
 - `docs/external-inputs.json`：唯一来源与输入清单。
+
+来源清单保留外部输入、带来源的适配器、模型绑定和交付义务；普通内部辅助
+证明不逐条重复登记，其数学声明、依赖和状态由 Lean 源码及 Blueprint 记录。
+小组件的数据没有独立消费者时，可在一个具名模块中按数据、性质、证明的顺序
+组织；需要独立使用这些层时再拆分文件。整理须保留公开声明、证明及来源标注。
 
 范围、信任与最终验收由 [PROJECT_BOUNDARY.md](PROJECT_BOUNDARY.md) 规定。
 接口与证明责任见 [docs/STAGE0_INTERFACES.md](docs/STAGE0_INTERFACES.md)，
 输入浏览视图见 [docs/challenge-input-inventory.html](docs/challenge-input-inventory.html)。
 开发约束见 [AGENTS.md](AGENTS.md)。
+
+SSData 与 Mathlib 谱序列之间的可选适配层由旧仓库
+[SII-MATH/KIP126](https://github.com/SII-MATH/KIP126/tree/main/KIP126/Mathlib)
+维护。本仓库保留内部 SSData 构造与主证明，继续使用上游 Mathlib 基础库。
 
 ## 构建与检查
 
@@ -40,8 +49,11 @@ bash scripts/check.sh
 KIPBase、旧审计与迁移档案、Euler/Multica 配置及旧工作流和工具留在旧仓库，
 后续同步不重新引入。已有代码的来源标注继续保留。
 
-原始数据库和 CSV 使用 Git LFS，约 618 MiB。普通 Git 文件中的指针不能代替原始输入；
+原始数据库、CSV 和 `Source/LWXMachine/kervaire_database.rar` 使用 Git LFS。
+普通 Git 文件中的指针不能代替原始输入；
 生成 Lean 数据保留在仓库中，重新翻译原始输入需要实际 LFS 文件。
+当前重放使用的提取与重建记录位于 `KIP126/LinProgram/Generated/Provenance/`；
+[LinProgram 说明](KIP126/LinProgram/README.md) 列出局部证书与实际比较的职责。
 
 Blueprint 需要 Graphviz、LaTeX、Ghostscript、pdf2svg 和 `requirements-blueprint.txt` 中的固定 Python 依赖：
 

@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.Kervaire.Route.Section7.AlphaOne
 public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
-public import KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 public import KIP126.Main.Solution.Computation.Lambda
 
 
@@ -468,7 +468,7 @@ private theorem finite_last_nonzero_finite_quotient_d_naturality {D : Model H M 
   simp only [Category.assoc,eqToHom_trans_assoc,eqToHom_refl,Category.id_comp]
   erw [←Category.assoc (SpectralSequenceMorphism.pageMap (D.family.functor.map f) r i)
     ((D.family.functor.obj Y).d r i), h]
-  simp only [Category.assoc,eqToHom_trans_assoc]
+  simp only [Category.assoc]
   have hi : i+(D.family.functor.obj X).diffDeg r=syntheticAdamsRawTarget r i := by
     simp only [D.family.differentialDegree,syntheticAdamsRawTarget]
   erw [←eqToHom_naturality_assoc (fun j => (D.family.functor.map f).pageMap r j) hi]
@@ -716,7 +716,7 @@ private theorem finite_last_nonzero_sphere_quotient_label_to_nu {D : Model H M S
     have hc : familyPageMap D.family
         (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k) nx =
         D.sphereE2 s t k x := by
-      convert D.comparisonCompatible.sphere_nu s t k x using 1 <;> simp [nx,ClassicalObject.obj] <;> rfl
+      convert D.comparisonCompatible.sphere_nu s t k x using 1; simp [nx,ClassicalObject.obj]
     calc
       _ = familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k)
           (familyPageMap D.family (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) 2 (s,t,t-k)

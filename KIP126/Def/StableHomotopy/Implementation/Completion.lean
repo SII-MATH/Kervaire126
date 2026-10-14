@@ -1,6 +1,9 @@
 module
 
 public import KIP126.Def.StableHomotopy.Implementation.Generators
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.StableHomotopy.Equivalence
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Simplicial.CW.Proofs
 public import Mathlib.Data.ZMod.Basic
 
 @[expose] public section
@@ -13,7 +16,7 @@ HF₂ localization. The auxiliary S[1/2] construction separately defines the
 Moore(2)-completeness predicate; no comparison between the two notions of
 completion is established here. -/
 namespace KIP126.StableHomotopy.Implementation
-open CategoryTheory Topology
+open CategoryTheory _root_.Topology
 open scoped unitInterval
 
 namespace BasedSpace
@@ -485,8 +488,12 @@ theorem sourceHF2Model_exists : Nonempty SourceHF2Model := by
       have hsum : ∑ i, t.1 (a i) = 1 := by
         calc
           (∑ i, t.1 (a i)) = ∑ j ∈ S, t.1 j := by
-            rw [← Finset.image_orderEmbOfFin_univ S hcard]
-            exact (Finset.sum_image (fun i _ j _ h => a.injective h)).symm
+            calc
+              (∑ i, t.1 (a i)) = ∑ j ∈ Finset.univ.image a, t.1 j :=
+                (Finset.sum_image (fun i _ j _ h => a.injective h)).symm
+              _ = ∑ j ∈ S, t.1 j :=
+                congrArg (fun U : Finset (Fin (q + 1)) => ∑ j ∈ U, t.1 j)
+                  (Finset.image_orderEmbOfFin_univ S hcard)
           _ = ∑ j, t.1 j := by
             apply Finset.sum_subset (Finset.subset_univ _)
             intro j _ hj
@@ -7076,7 +7083,7 @@ theorem sourceHF2Model_exists : Nonempty SourceHF2Model := by
         continuous_pi (fun v => orderedCoordinate_continuous V v)
       exact (hc.isClosedEmbedding Subtype.val_injective).isEmbedding
     letI (V : Type) [PartialOrder V] [Fintype V] : MetricSpace (OrderedRealization V) :=
-      Topology.IsEmbedding.comapMetricSpace (fun w : OrderedRealization V => w.1)
+      _root_.Topology.IsEmbedding.comapMetricSpace (fun w : OrderedRealization V => w.1)
         (orderedCoordinate_embedding V)
     have ordered_dist_eq (V : Type) [PartialOrder V] [Fintype V]
         (w z : OrderedRealization V) : dist w z = dist w.1 z.1 := rfl
@@ -8375,7 +8382,7 @@ theorem sourceHF2Model_exists : Nonempty SourceHF2Model := by
           (∀ x, H (0, x) = f (sdHomeomorph V k x)) ∧ (∀ x, H (1, x) = g x) ∧
           (∀ t x b, 0 < (H (t, x)).1 b → 0 < (f (sdHomeomorph V k x)).1 b) := by
       letI : PseudoMetricSpace (OrderedRealization V) :=
-        (Topology.IsEmbedding.comapMetricSpace (fun w : OrderedRealization V => w.1)
+        (_root_.Topology.IsEmbedding.comapMetricSpace (fun w : OrderedRealization V => w.1)
           (orderedCoordinate_embedding V)).toPseudoMetricSpace
       letI : CompactSpace (OrderedRealization V) := orderedRealization_compact V
       obtain ⟨δ, hδ, hcover⟩ := ordered_star_lebesgue (OrderedRealization V) W f
@@ -9244,7 +9251,16 @@ theorem sourceHF2Model_exists : Nonempty SourceHF2Model := by
   · intro n p q
     exact hadd n p q
 
-noncomputable def sourceHF2 : SourceHF2Model := Classical.choice sourceHF2Model_exists
+/-- The fixed source coefficient is the actual Dold--Kan realization with
+its proved geometric bonds and normalized stable coefficient equivalence. -/
+noncomputable def sourceHF2 : SourceHF2Model where
+  spectrum := hf2RealizationPrespectrum
+  good := hf2RealizationLevel_isGood
+  pi0 := HF2Bond.coefficientStableZeroEquiv HF2Bond.bondHomotopyMap_bijective
+  pi0_zero := HF2Bond.coefficientStableZeroEquiv_zero HF2Bond.bondHomotopyMap_bijective
+  pi0_add := HF2Bond.coefficientStableZeroEquiv_add HF2Bond.bondHomotopyMap_bijective
+  vanishes := HF2Bond.coefficientStableHomotopy_subsingleton_of_ne
+    HF2Bond.bondHomotopyMap_bijective
 
 noncomputable def sourceHF2Shift (d : ℤ) : SourceCategory.{0} :=
   sourceLocalization.obj
@@ -9255,7 +9271,7 @@ noncomputable def sourceHF2Shift (d : ℤ) : SourceCategory.{0} :=
 cohomology detects exactly HF₂-homology equivalences, without a boundedness
 restriction. The target HF₂ here was fixed before choosing any implementation. -/
 def HF2Equivalences : MorphismProperty SourceCategory.{0} :=
-  fun X Y f => ∀ d : ℤ,
+  fun _X Y f => ∀ d : ℤ,
     Function.Bijective (fun a : Y ⟶ sourceHF2Shift d => f ≫ a)
 
 namespace Prespectrum

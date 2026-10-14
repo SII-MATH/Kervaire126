@@ -13,14 +13,39 @@ def code_only(text):
     return re.sub(r"--[^\n]*", "", re.sub(r"/-[\s\S]*?-/", "", text))
 
 
+def lean_imports(text):
+    """Read ordinary/public/meta imports, including import-all and multi-module lines."""
+    return [module
+            for line in re.findall(r"^[ \t]*(?:(?:public|meta)[ \t]+)*import[ \t]+(?:all[ \t]+)?([^\n]+)",
+                                   code_only(text), re.M)
+            for module in line.split()]
+
+
 class StageBoundaryLayoutTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.graph = {
             ".".join(path.relative_to(ROOT).with_suffix("").parts):
-                re.findall(r"^import\s+(KIP126(?:\.[\w.]+)?)", path.read_text(), re.M)
+                [module for module in lean_imports(path.read_text())
+                 if module == "KIP126" or module.startswith("KIP126.")]
             for path in [ROOT / "KIP126.lean", *(ROOT / "KIP126").rglob("*.lean")]
         }
+
+    def test_public_and_ordinary_imports_are_audited(self):
+        text = """module
+public import KIP126.Def.A KIP126.Def.B
+import KIP126.Interface.C
+public meta import KIP126.LinProgram.Meta
+import all KIP126.Def.Internal
+public import all KIP126.Def.Exposed
+-- public import KIP126.Main.Comment
+/- import KIP126.Main.Comment -/
+@[expose] public section
+"""
+        self.assertEqual(lean_imports(text),
+                         ["KIP126.Def.A", "KIP126.Def.B", "KIP126.Interface.C",
+                          "KIP126.LinProgram.Meta", "KIP126.Def.Internal",
+                          "KIP126.Def.Exposed"])
 
     def dependencies(self, module):
         pending, seen = [module], set()
@@ -50,6 +75,19 @@ class StageBoundaryLayoutTests(unittest.TestCase):
         for module in self.graph:
             visit(module)
 
+    def test_main_does_not_import_the_independent_lin_program(self):
+        # The public namespaces are preserved by adoption; only imports and
+        # source roots determine whether the research tree is a dependency.
+        self.assertNotIn("Lin-program/", code_only((ROOT / "lakefile.lean").read_text()))
+        research_roots = {"MilnorCertificates", "LinProgramCertificates",
+                          "NamedElementCertificates"}
+        for path in [ROOT / "KIP126.lean", *(ROOT / "KIP126").rglob("*.lean")]:
+            with self.subTest(path=path.relative_to(ROOT)):
+                # A KIP126-owned path can end with the retained library name;
+                # match complete imported module roots, not dotted suffixes.
+                for module in lean_imports(path.read_text()):
+                    self.assertNotIn(module.split(".", 1)[0], research_roots)
+
     def test_exact_stage_directories(self):
         for stage, directories in (("Interface", {"Challenge", "Solution"}),
                                    ("Main", {"Axiom", "Challenge", "Solution"})):
@@ -63,7 +101,7 @@ class StageBoundaryLayoutTests(unittest.TestCase):
                 with self.subTest(module=module):
                     forbidden = [m for m in self.dependencies(module)
                                  if m.startswith(("KIP126.Interface", "KIP126.Main",
-                                                  "KIP126.LinProgram"))
+                                                  "KIP126.LinProgram", "KIP126.Mathlib"))
                                  or m == "KIP126.Challenge2"]
                     self.assertEqual(forbidden, [])
 
@@ -130,35 +168,42 @@ class StageBoundaryLayoutTests(unittest.TestCase):
                 self.assertEqual(forbidden, [])
 
     def test_certification_does_not_consume_its_own_output(self):
-        # Independent paper-rule proofs may be reused. Selected Main deductions
-        # and the Main witness may not feed back into C's producer.
+        # Reusable paper-rule proofs now live in Def. No Main dependency may
+        # feed back into computation or literature certification.
         for module in self.graph:
             if module.startswith("KIP126.Interface.Solution."):
                 forbidden = [m for m in self.dependencies(module)
-                             if m.startswith(("KIP126.Main.Axiom", "KIP126.Main.Challenge",
-                                              "KIP126.Main.Solution.StageInput",
-                                              "KIP126.Main.Solution.Computation",
-                                              "KIP126.Main.Solution.Route"))]
+                             if m.startswith("KIP126.Main.")]
                 self.assertEqual(forbidden, [], module)
 
     def test_independent_rules_do_not_use_numerical_or_stage_inputs(self):
-        for module in self.graph:
-            if module.startswith("KIP126.Main.Solution.Tools."):
-                forbidden = [m for m in self.dependencies(module)
-                             if m.startswith(("KIP126.Main.Axiom", "KIP126.Main.Challenge",
-                                              "KIP126.Main.Solution.StageInput",
-                                              "KIP126.Main.Solution.Computation",
-                                              "KIP126.Interface.Solution.LinProgram"))]
-                self.assertEqual(forbidden, [], module)
-                code = code_only((ROOT / Path(*module.split('.'))).with_suffix('.lean').read_text())
-                self.assertNotRegex(code, r"\b(KIP126\.Challenge2|routeComputation|routeLiterature)\b")
+        modules = {f"KIP126.Def.Kervaire.Route.Tools.{rule}.Proofs" for rule in
+                   ("GeneralizedLeibniz", "GeneralizedMahowald", "PageExtensionStretching")}
+        self.assertTrue(modules <= self.graph.keys())
+        self.assertFalse(any(m.startswith("KIP126.Main.Solution.Tools.") for m in self.graph))
+        for module in modules:
+            forbidden = [m for m in self.dependencies(module)
+                         if m.startswith(("KIP126.Main.", "KIP126.Interface.",
+                                          "KIP126.LinProgram."))]
+            self.assertEqual(forbidden, [], module)
+            code = code_only((ROOT / Path(*module.split('.'))).with_suffix('.lean').read_text())
+            self.assertNotRegex(code, r"\b(KIP126\.Challenge2|routeComputation|routeLiterature)\b")
 
-    def test_main_computation_does_not_import_certification_proofs(self):
+    def test_main_computation_reuses_only_explicit_row_proof(self):
+        # The migrated 5541 consumer supplies literature and presentation from
+        # its one witness to this parameterized row theorem. Keep the producer
+        # in its owning layer rather than moving actual-model certification
+        # into Def or duplicating it in Main. LinProofs/LinSelected's compiled
+        # proof-value audits additionally reject total-results constants AND
+        # inline projections; all other producer imports remain forbidden.
+        reusable = {"KIP126.Interface.Solution.LinProgram.AdamsOneLine.H6"}
         for module in self.graph:
             if module.startswith("KIP126.Main.Solution.Computation."):
-                self.assertEqual([m for m in self.dependencies(module)
-                                  if m.startswith("KIP126.Interface.Solution.LinProgram.")
-                                  or m == "KIP126.Interface.Solution.Challenge2"], [], module)
+                forbidden = [m for m in self.dependencies(module)
+                             if (m.startswith("KIP126.Interface.Solution.LinProgram.")
+                                 and m not in reusable)
+                             or m == "KIP126.Interface.Solution.Challenge2"]
+                self.assertEqual(forbidden, [], module)
 
     def test_no_redundant_challenge_wrappers(self):
         self.assertFalse((ROOT / "KIP126/Challenge2.lean").exists())

@@ -4,7 +4,7 @@ public import KIP126.Def.Kervaire.Route.Section7.AlphaOne
 public import KIP126.Def.SpectralSequence.Basic.Category.Proofs
 public import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
 public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
-public import KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 public import KIP126.Main.Solution.Computation.Route.Bounds
 
 
@@ -62,7 +62,7 @@ private theorem full_staircase_high_cycles_full_staircase_af14 {literature : Lit
       simp only [State.parseCoordinates, show "2".isEmpty = false from rfl,
         Bool.false_eq_true, ↓reduceIte, hs]
       simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList] <;> first | decide | exact (List.mergeSort_of_pairwise (by decide)).symm
+        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]
     change (State.parseCoordinates "2").bind (fun x => some (State.Claim.reaches 1000 14 138 x)) = _
     rw [hp]
     rfl
@@ -90,7 +90,7 @@ private theorem full_staircase_high_cycles_full_staircase_af15 {literature : Lit
       simp only [State.parseCoordinates, show "1,3".isEmpty = false from rfl,
         Bool.false_eq_true, ↓reduceIte, hs]
       simp +decide [String.toNat?,String.Slice.toNat?,String.Slice.isNat,
-        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList] <;> first | decide | exact (List.mergeSort_of_pairwise (by decide)).symm
+        String.Slice.forIn_eq_forIn_toList,String.Slice.foldl_eq_foldl_toList]; first | decide | exact (List.mergeSort_of_pairwise (by decide)).symm
     change (State.parseCoordinates "1,3").bind (fun x => some (State.Claim.reaches 1000 15 139 x)) = _
     rw [hp]
     rfl

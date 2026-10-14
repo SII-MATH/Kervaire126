@@ -458,7 +458,7 @@ private theorem cnu_page4_target3_nonzero (I : Inputs D L G)
     intro hz
     have hh := e.symm.injective hz
     have hval := congrArg (fun f : Fin 4 →₀ KIP126.Core.Algebra.F2 => f ⟨3,by decide⟩) hh
-    simp [Finsupp.single_apply] at hval
+    simp at hval
   intro hz
   obtain ⟨_,z,hz2,hz4⟩ := hy
   let ar : ((sequence D Raw.Spectrum.nuCofiber)).Page 3 (13,138) := (Subobject.ofLE _ _ ((((sequence D Raw.Spectrum.nuCofiber)).ssData (13,138)).Z_anti
@@ -756,7 +756,7 @@ theorem cnu_target_through5 (I : Inputs D L G) :
       intro hz
       have hh := e.symm.injective hz
       have hval := congrArg (fun f : Fin 4 →₀ KIP126.Core.Algebra.F2 => f ⟨2,by decide⟩) hh
-      simp [Finsupp.single_apply] at hval
+      simp at hval
   have hd4 : (S).d 4 (10,136) = 0 := by
     as_aux_lemma =>
       haveI := (cnu_10_136_data I).2.2

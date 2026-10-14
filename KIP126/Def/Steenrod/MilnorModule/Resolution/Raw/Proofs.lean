@@ -1,6 +1,7 @@
 module
 
 public import KIP126.Def.Steenrod.MilnorModule.Resolution.Raw.Data
+public import KIP126.Def.Steenrod.MilnorModule.Dualization.Proofs
 public import Mathlib.Algebra.Category.ModuleCat.Products
 public import Mathlib.Algebra.Category.ModuleCat.Projective
 public import Mathlib.LinearAlgebra.Contraction
@@ -12,6 +13,7 @@ public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 @[expose] public section
 
+
 /-!
 Properties of the prescribed dual maps. Projectivity is asserted only for
 the terms identified with this fixed normalized Milnor cofree resolution;
@@ -22,56 +24,26 @@ namespace KIP126.Steenrod.Milnor.Module
 
 open CategoryTheory
 
+set_option backward.isDefEq.respectTransparency false
+
 theorem dualCobarDifferential_shape (R : Ext.CobarResolution) (i j : ℕ)
     (h : ¬ (ComplexShape.down ℕ).Rel i j) :
     dualCobarDifferential R i j = 0 := by
-  have hz : R.resolution.cocomplex.d j i = 0 :=
-    R.resolution.cocomplex.shape j i (by simpa using h)
   unfold dualCobarDifferential
-  rw [hz]
-  apply Monad.Algebra.Hom.ext
-  funext n
-  apply ModuleCat.hom_ext
-  change (0 : _ →ₗ[KIP126.Core.Algebra.F2] _).dualMap = 0
-  ext φ x
-  simp
+  rw [R.resolution.cocomplex.shape j i (by simpa using h), dualLeftMap_zero]
 
 theorem dualCobarDifferential_comp (R : Ext.CobarResolution) (i j k : ℕ) :
     dualCobarDifferential R i j ≫ dualCobarDifferential R j k = 0 := by
-  have hd := R.resolution.cocomplex.d_comp_d k j i
-  have hm : dualCobarDifferential R i j ≫ dualCobarDifferential R j k =
-      dualLeftMap (R.resolution.cocomplex.d k j ≫ R.resolution.cocomplex.d j i) := by
-    apply Monad.Algebra.Hom.ext
-    funext n
-    apply ModuleCat.hom_ext
-    rfl
-  rw [hm, hd]
-  apply Monad.Algebra.Hom.ext
-  funext n
-  apply ModuleCat.hom_ext
-  change (0 : _ →ₗ[KIP126.Core.Algebra.F2] _).dualMap = 0
-  ext φ x
-  simp
+  unfold dualCobarDifferential
+  rw [dualLeftMap_comp, R.resolution.cocomplex.d_comp_d, dualLeftMap_zero]
 
 theorem dualCobarDifferential_augmentation (R : Ext.CobarResolution) :
     dualCobarDifferential R 1 0 ≫ dualCobarAugmentationZero R = 0 := by
-  unfold dualCobarAugmentationZero
-  rw [← Category.assoc]
-  have hm : dualCobarDifferential R 1 0 ≫ dualLeftMap (R.resolution.ι.f 0) =
-      dualLeftMap (R.resolution.ι.f 0 ≫ R.resolution.cocomplex.d 0 1) := by
-    apply Monad.Algebra.Hom.ext
-    funext n
-    apply ModuleCat.hom_ext
-    rfl
-  rw [hm, R.resolution.ι_f_zero_comp_complex_d]
-  have hz : dualLeftMap (0 : Ext.trivialAt 0 ⟶ R.resolution.cocomplex.X 1) = 0 := by
-    apply Monad.Algebra.Hom.ext
-    funext n
-    apply ModuleCat.hom_ext
-    change (0 : _ →ₗ[KIP126.Core.Algebra.F2] _).dualMap = 0
-    ext φ x
+  unfold dualCobarDifferential dualCobarAugmentationZero
+  rw [← Category.assoc, dualLeftMap_comp]
+  have h : R.resolution.ι.f 0 ≫ R.resolution.cocomplex.d 0 1 = 0 := by
     simp
-  erw [hz, Limits.zero_comp]
+  rw [h, dualLeftMap_zero, Limits.zero_comp]
 
 open MonoidalCategory CategoryTheory.Limits KIP126.Algebra KIP126.Core.Algebra
 open GradedVectorSpace GradedDual GradedObject.Monoidal
@@ -488,7 +460,6 @@ private theorem dual_cofree_projective (W : GrVect F2)
     letI : CategoryTheory.Limits.PreservesFiniteColimits F := ⟨fun J _ _ => inferInstance⟩
     exact (GradedModule.leftTensorMonad steenrod).adj.map_projective _ (gradedProjective _)
   exact Projective.of_iso (@asIso _ _ _ _ (freeToDualCofree W) hfi) hfree
-
 
 /-- Projectivity of these actual dual normalized-cofree terms, in the full
 category of graded left modules over the fixed convolution algebra. -/

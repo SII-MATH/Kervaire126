@@ -1194,7 +1194,7 @@ private theorem sphere_product_obstructions_hD2H0six
   rw [←hy.eq_on_page_two,←he0]
   intro h
   have hh := congrArg (fun x => e x 0) h
-  simpa using hh
+  simp at hh
 
 private theorem sphere_product_obstructions_hH5B
     (I : Inputs D L G) : I.realization.sphere 10 134 (mulAt h5Sq B)=0  := by
@@ -1551,7 +1551,7 @@ private theorem sphere_product_obstructions_hTnotH0
     as_aux_lemma =>
       rw [show I.realization.basis .sphere 14 139 2=e14_139.symm (Finsupp.single 2 1) from (he14_139 2).symm,
         LinearEquiv.apply_symm_apply]
-      simp [Finsupp.single_apply,show (2 : Fin 3)≠1 by decide]
+      simp
   have basisCoord (i : Fin 5) : (e14_139 (f (e13_138.symm (Finsupp.single i 1)))) 1=0 := by
     as_aux_lemma =>
       rw [he13_138,hprod]

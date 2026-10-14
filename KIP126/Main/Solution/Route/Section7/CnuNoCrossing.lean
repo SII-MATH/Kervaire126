@@ -132,8 +132,8 @@ neither alternative is a new C premise, or a Moss crossing condition. -/
 theorem cnu_d3_no_crossing :
     let F := KIP126.Def.fixedImplementation.foundationInput
     @PageRepresentatives.NoCrossingOn F.Spectrum F.stable F.cofiber F.hf2
-      (@HasFunctorialCofiber.cofib F.Spectrum F.stable F.cofiber
-        _ _ (D).auxiliary.nuMap) 3 3 (8,134) := by
+      (letI := F.stable; letI := F.cofiber;
+        HasFunctorialCofiber.cofib (D).auxiliary.nuMap) 3 3 (8,134) := by
   set_option backward.isDefEq.respectTransparency false in
     change PageRepresentatives.NoCrossingOn standardFoundation.hf2
       (HasFunctorialCofiber.cofib (D).auxiliary.nuMap) 3 3 (8,134)

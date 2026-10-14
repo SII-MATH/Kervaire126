@@ -1,6 +1,6 @@
 module
 
-public import KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 public import KIP126.Def.SpectralSequence.FinitePageCalculus.Proofs
 public import KIP126.Interface.Challenge.Computation.Delivery
 public import Batteries.Data.String.Lemmas
@@ -147,7 +147,6 @@ private theorem sphere_quotient_page_zero (q : ℕ) (hq : 0 < q)
       SyntheticAdamsFamily.nuQuotient, SyntheticAdamsFamily.quotient,
       SyntheticAdamsFamily.obj, SyntheticAdamsSS.Page, ClassicalObject.obj] using hz'
 
-
 /-- In Q9 both preceding targets have exponent10, so this WHOLE component
 vanishes on every finite page. Transport of the BHS nu(S) statement uses
 the same unit isomorphism and actual quotient functor. -/
@@ -221,6 +220,8 @@ theorem classical_stem124_af13_generated :
     ClassicalInfinityGenerated 13 137 eCorrection := by
   exact stem124_af13_exhaustion routeComputation sphereVanishing
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- The filtration bound in Proposition 7.8 combines classical vanishing
 with BHS boundary stabilization at weight128. The remaining incoming sources
 vanish, excluding synthetic lambda-torsion in these lower filtrations. -/

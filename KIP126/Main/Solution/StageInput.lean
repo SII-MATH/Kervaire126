@@ -1,6 +1,6 @@
 module
 
-public import KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 public import KIP126.Main.Axiom.Challenge2
 public import KIP126.Main.Solution.Computation.Tmf
 public import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
@@ -27,6 +27,7 @@ public import KIP126.Interface.Challenge.Computation.Delivery
 public import Batteries.Data.String.Lemmas
 
 @[expose] public section
+
 
 /-! Consumer projections from the sole correlated Challenge2 witness. -/
 namespace KIP126.Main.StageInput
@@ -58,11 +59,11 @@ noncomputable def routeComputation :
   computation.route
 
 /-- Independent infinite-range premises on the same actual standard sphere. -/
-noncomputable def sphereVanishing :
+theorem sphereVanishing :
     KIP126.Classical.Adams.SphereVanishingLine KIP126.Classical.Adams.standardFoundation.hf2 :=
   literature.results.sphereVanishing
 
-noncomputable def sphereSeparated :
+theorem sphereSeparated :
     KIP126.Classical.Adams.ClassicalSphereSeparated KIP126.Classical.Adams.standardFoundation.hf2 :=
   KIP126.Def.standardSphereSeparated
 
@@ -138,8 +139,8 @@ private theorem secondary_star_product (D' : Model H M' Syn)
     apply (cancel_epi ((biShiftAddIso c a (a+c) (add_comm _ _)).hom.app
       ((SyntheticCategory.biShift b).obj A))).mp
     rw [← Category.assoc,← Category.assoc,← h₃]
-    simp only [Category.assoc,Iso.hom_inv_id_app_assoc,← Functor.map_comp,
-      Iso.hom_inv_id_app,CategoryTheory.Functor.map_id,Category.id_comp]
+    simp only [Category.assoc,
+      Iso.hom_inv_id_app]
     erw [CategoryTheory.Category.id_comp,←Functor.map_comp,Iso.hom_inv_id_app,CategoryTheory.Functor.map_id]
     rfl
   have shiftSwap_add_eq (coh : BiShiftCoherence Syn)
@@ -228,7 +229,7 @@ private theorem secondary_star_product (D' : Model H M' Syn)
       (63,66) (62,62) (63,64) (by decide) (by decide) (by decide) (by decide) S
     have h₂ := shift_assoc_inv D'.shiftCoherence (1,2) (0,-2) (62,64)
       (1,0) (62,62) (63,64) (by decide) (by decide) (by decide) (by decide) S
-    simp only [biShiftAddIso,Iso.trans_inv,NatTrans.comp_app,eqToIso.inv,eqToHom_app,
+    simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
       eqToHom_refl,Category.id_comp] at h₁ h₂
     have hp :
       (SyntheticCategory.biShift_comp (63,66) (0,-2)).inv.app S ≫
@@ -244,13 +245,12 @@ private theorem secondary_star_product (D' : Model H M' Syn)
         lambdaPow 2 ((SyntheticCategory.biShift (62,64)).obj (Smn 1 2)) = _
       rw [lambda_pow_shift D'.shiftCoherence 2 (62,64) (Smn 1 2)]
       dsimp only [shiftSwap,KIP126.Synthetic.Context.lambdaDegree]
-      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,
-        NatTrans.comp_app,eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,
+      simp only [Iso.trans_hom,Iso.trans_inv,Iso.symm_hom,Iso.app_hom,Iso.app_inv,biShiftAddIso,eqToIso.hom,eqToIso.inv,eqToHom_refl,
         Category.comp_id,Category.id_comp]
       simp only [Category.assoc]
       erw [←Category.assoc ((SyntheticCategory.biShift_comp (63,66) (0,-2)).inv.app S)]
       erw [h₁]
-      simp only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one,Iso.inv_hom_id_app_assoc]
+      simp only [Category.assoc,Smn,S,Nat.cast_ofNat,Iso.inv_hom_id_app_assoc]
       simpa only [Category.assoc,Smn,S,Nat.cast_ofNat,Nat.cast_one,Int.natCast_one] using
         (congrArg (fun z => z ≫ (SyntheticCategory.biShift (62,64)).map (lambdaPow 2 (Smn 1 2))) h₂.symm)
     unfold sphereAction lambdaMultiply
@@ -263,7 +263,7 @@ end
 end SecondaryComparisonProof
 
 open KIP126.Synthetic.Context KIP126.Kervaire.Route KIP126.Literature.Route in
-set_option maxHeartbeats 6000000 in
+set_option maxHeartbeats 12000000 in
 @[no_expose]
 noncomputable def todaSecondaryComparison :
     KIP126.Literature.Route.TodaSecondaryComparison routeEta
@@ -11324,16 +11324,16 @@ private theorem nu_source_from_suspension_square
     let F := SyntheticCategory.biShift (Syn:=Syn) (0,-1)
     let e : F.obj (Smn m w : Syn) ≅ Smn m (w-1) :=
       (SyntheticCategory.biShift_comp (m,w) (0,-1)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+        eqToIso (by congr 1; simp [sub_eq_add_neg])
     let b := (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (0,-1)).preimage (e.hom≫a)
     have hb : F.map b=e.hom≫a :=
       (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (0,-1)).map_preimage _
     refine ⟨b,?_⟩
     have he : lambdaMultiply 1 b=e.inv≫lambdaPow 1 (Smn m w)≫b := by
       unfold lambdaMultiply
-      change eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
+      change eqToHom (by congr 1; simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0 ≫
         lambdaPow 1 (Smn m w) ≫ b =
-        (eqToHom (by congr 1 <;> simp [sub_eq_add_neg]) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
+        (eqToHom (by congr 1; simp) ≫ (SyntheticCategory.biShift_comp (m,w) (0,-1)).inv.app S_0_0) ≫
         lambdaPow 1 (Smn m w) ≫ b
       exact (Category.assoc _ _ _).symm
     rw [he]
@@ -11412,7 +11412,7 @@ private theorem nu_source_from_suspension_square
     have hin (r : ℤ) (hr : 2 ≤ r) : E.d r ((1,t)-E.diffDeg r)=0 := by
       have hdeg : (1,t)-E.diffDeg r = ((1-r,t-r+1) : ℤ × ℤ) := by
         change (1,t)-(r,r-1)=_
-        ext <;> dsimp <;> omega
+        ext <;> dsimp; omega
       haveI : Subsingleton (E.Page r ((1,t)-E.diffDeg r)) := by
         rw [hdeg]
         exact adamsTowerInternal_page_subsingleton_of_negative H.unit X r
@@ -11470,12 +11470,12 @@ private theorem nu_source_from_suspension_square
       have hs:Finsupp.single i (1:F2)=Finsupp.single j 1 := coord.symm.injective (e.injective hv)
       by_contra hij
       have hh:=congrArg (fun f:BasisIndex 1 4 →₀ F2=>f i) hs
-      simpa [Finsupp.single_apply,hij,Ne.symm hij] using hh⟩
+      simp [hij] at hh⟩
     intro f g hf hg
     have hfn:coord f≠0 := by intro h; exact hf (coord.injective (h.trans (map_zero coord).symm))
     obtain ⟨i,hi⟩ : ∃ i, coord f i ≠ 0 := by
       by_contra h
-      push_neg at h
+      push Not at h
       exact hfn (Finsupp.ext h)
     have hc (a:A) (ha:a≠0) : coord a i=1 := by
       generalize h:coord a i=c
@@ -11580,10 +11580,10 @@ private theorem nu_source_from_suspension_square
       rfl rfl rfl rfl A
     have hu := coh.left_unit (1,0) A
     have hc := coh.lambda_comm (1,0) ((SyntheticCategory.biShift (0,1)).obj A)
-    simp only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,eqToHom_app,
+    simp only [biShiftAddIso,Iso.trans_hom,eqToIso.hom,
       eqToHom_refl,Category.comp_id] at ha hb hu
-    simp only [biShiftAddIso,Iso.trans_hom,Iso.trans_inv,NatTrans.comp_app,
-      eqToIso.hom,eqToIso.inv,eqToHom_app,eqToHom_refl,Category.comp_id,Category.id_comp] at hc
+    simp only [biShiftAddIso,Iso.trans_hom,Iso.trans_inv,
+      eqToIso.hom,eqToIso.inv,eqToHom_refl,Category.comp_id,Category.id_comp] at hc
     have hL : lambdaToPositivePow 1 A = SyntheticCategory.biShift_zero.inv.app A ≫
         (SyntheticCategory.biShift_comp (0,1) (0,-1)).inv.app A ≫
         SyntheticCategory.lam.app ((SyntheticCategory.biShift (0,1)).obj A) := by
@@ -11610,7 +11610,7 @@ private theorem nu_source_from_suspension_square
           rw [hu',hL]
           simp only [Functor.map_comp,Category.assoc]
           simp only [←Functor.map_comp_assoc,Iso.hom_inv_id_app,
-            Iso.hom_inv_id_app_assoc,Category.id_comp,Category.comp_id,CategoryTheory.Functor.map_id]
+            Iso.hom_inv_id_app_assoc,Category.id_comp,CategoryTheory.Functor.map_id]
     apply (cancel_epi ((SyntheticCategory.biShift (0,-1)).map
       ((SyntheticCategory.biShift_comp (0,1) (1,0)).hom.app A))).1
     calc
@@ -11719,7 +11719,7 @@ private theorem nu_source_from_suspension_square
       _ = -(SyntheticCategory.lam.app (N.functor.obj (X⟦(1:ℤ)⟧)) ≫
           S.connecting ≫ (N.boundaryLandingIso Y).hom) := by
         rw [ha]
-        simp only [Preadditive.comp_neg,Category.assoc,Iso.hom_inv_id_assoc]
+        simp only [Preadditive.comp_neg,Iso.hom_inv_id_assoc]
       _ = -(F.map (S.connecting ≫
           SyntheticCategory.lam.app (N.functor.obj (Y⟦(1:ℤ)⟧))) ≫
           (N.boundaryLandingIso Y).hom) := by
@@ -11744,7 +11744,7 @@ private theorem nu_source_from_suspension_square
     subst k
     rw [←h]
     dsimp only [negativeLift,negativeZeroIso,lambdaToPositivePow,lambdaPow]
-    simp only [Nat.cast_zero,neg_zero,eqToHom_refl,Category.id_comp,
+    simp only [eqToHom_refl,Category.id_comp,
       Iso.app_hom,Category.assoc]
     erw [SyntheticCategory.biShift_zero.hom.naturality]
     rfl
@@ -11762,7 +11762,7 @@ private theorem nu_source_from_suspension_square
     (SyntheticCategory.biShift_comp ((1,1)+(0,-(nh:ℤ))) (0,-(ng:ℤ))).hom.app X ≫
     eqToHom (congrArg (fun p => (SyntheticCategory.biShift p).obj X)
       (show ((1,1)+(0,-(nh:ℤ)))+(0,-(ng:ℤ))=(0,(nf:ℤ))+(1,0) from by
-        ext <;> simp only [Prod.fst_add,Prod.snd_add,Prod.fst,Prod.snd] <;> omega)) ≫
+        ext <;> simp only [Prod.fst_add,Prod.snd_add] <;> omega)) ≫
     (SyntheticCategory.biShift_comp (0,(nf:ℤ)) (1,0)).inv.app X ≫
     (SyntheticCategory.biShift_compat (Syn:=Syn) 1).hom.app _
   have raw_connecting_zero_normalization
@@ -11785,7 +11785,7 @@ private theorem nu_source_from_suspension_square
     change (SyntheticCategory.biShift_comp (1,1) (0,0)).hom.app X =
       SyntheticCategory.biShift_zero.hom.app ((SyntheticCategory.biShift (1,1)).obj X) at hu
     dsimp only [rawSourceConnecting,oneSourceIso,negativeZeroIso]
-    simp only [Nat.cast_zero,neg_zero,Nat.cast_one,eqToHom_refl,Iso.refl_hom,
+    simp only [eqToHom_refl,Iso.refl_hom,
       CategoryTheory.Functor.map_id,Category.comp_id,Category.id_comp]
     change (SyntheticCategory.biShift (0,0)).map (negativeLift 0 m) ≫
       (SyntheticCategory.biShift (0,0)).map ((SyntheticCategory.biShift (0,0)).map sx.hom) ≫
@@ -11839,12 +11839,12 @@ private theorem nu_source_from_suspension_square
     let T := XModLambdaN.cofiberTriangle (S_0_0 : Syn) 1
     let e₀ : U ≅ Smn (Syn := Syn) m (wt-1) :=
       (SyntheticCategory.biShift_comp (m,wt) (0,-1)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+        eqToIso (by congr 1; simp [sub_eq_add_neg])
     let e₁ : U⟦(1 : ℤ)⟧ ≅ Smn (Syn := Syn) (m+1) (wt-1) :=
       (shiftFunctor Syn (1 : ℤ)).mapIso e₀ ≪≫
         (SyntheticCategory.biShift_compat (Syn := Syn) 1).symm.app _ ≪≫
         (SyntheticCategory.biShift_comp (m,wt-1) (1,0)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp)
+        eqToIso (by congr 1; simp)
     have hQ : ∀ q : U⟦(1 : ℤ)⟧ ⟶ T.obj₃, q = 0 := by
       intro q
       haveI : Subsingleton (PageRepresentatives.Ambient H SphereSpectrum (wt-m-2,wt-1)) :=
@@ -12165,7 +12165,6 @@ private theorem nu_source_from_suspension_square
   · intro he
     exact source_triangle_of_rotation_and_square D S hf hg hh R hs he
 
-
 set_option backward.defeqAttrib.useBackward true in
 set_option maxHeartbeats 4000000 in
 open KIP126.Steenrod.Milnor in
@@ -12344,12 +12343,12 @@ private theorem selected_nu_suspension_square (D : Model H M Syn)
     let T := XModLambdaN.cofiberTriangle (S_0_0 : Syn) 1
     let e₀ : U ≅ Smn (Syn := Syn) m (wt-1) :=
       (SyntheticCategory.biShift_comp (m,wt) (0,-1)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp [sub_eq_add_neg])
+        eqToIso (by congr 1; simp [sub_eq_add_neg])
     let e₁ : U⟦(1 : ℤ)⟧ ≅ Smn (Syn := Syn) (m+1) (wt-1) :=
       (shiftFunctor Syn (1 : ℤ)).mapIso e₀ ≪≫
         (SyntheticCategory.biShift_compat (Syn := Syn) 1).symm.app _ ≪≫
         (SyntheticCategory.biShift_comp (m,wt-1) (1,0)).app S_0_0 ≪≫
-        eqToIso (by congr 1 <;> simp)
+        eqToIso (by congr 1; simp)
     have hQ : ∀ q : U⟦(1 : ℤ)⟧ ⟶ T.obj₃, q = 0 := by
       intro q
       haveI : Subsingleton (PageRepresentatives.Ambient H SphereSpectrum (wt-m-2,wt-1)) :=
@@ -12975,7 +12974,7 @@ theorem routeApplication :
 
 /-- Main derives the tmf consumer facts from the same source, C(M) and tail
 premises. In particular high125 survival is not a Challenge2 field. -/
-noncomputable def routeTmf :
+theorem routeTmf :
     KIP126.Literature.Route.TmfInputs routeModel tmfLabels :=
   KIP126.Main.Solution.Computation.tmf_inputs_of_computation routeModel
     routeComputation sphereVanishing sphereSeparated

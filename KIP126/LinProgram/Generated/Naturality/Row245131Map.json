@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "kind": "fixed-native-module-word-map-certificate",
+  "scope": "Two word evaluations in the unchanged sphere data quotient; not a certified quotient map or actual Adams differential.",
+  "canonical_registry": "docs/external-inputs.json",
+  "inputs": [
+    {
+      "path": "KIP126/LinProgram/Raw/proofs.db",
+      "size": 623042560,
+      "sha256": "3a460683c023ee2d8f7e8f904ecef9044a474d88bb7184731e54978ba7dac248"
+    },
+    {
+      "path": "KIP126/LinProgram/Raw/S0_AdamsSS_t261.db",
+      "size": 7913472,
+      "sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+    },
+    {
+      "path": "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
+      "size": 3100672,
+      "sha256": "ca0f379210e07d2908576c6e0ddb8889db9b17c8ef426a68b0831bb3f606b477"
+    },
+    {
+      "path": "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
+      "size": 32768,
+      "sha256": "3d4dbed8ede47c8b1b1ed3bcfea9a514c55210b329bd5888c6f07711b90865b8"
+    },
+    {
+      "path": "KIP126/LinProgram/Raw/ss.json",
+      "size": 53978,
+      "sha256": "a9a623bf7165e62fcf455e454fdf9195237491bf07bd148902e245aa1dba64d8"
+    }
+  ],
+  "source_candidate_log": {
+    "id": 245130,
+    "depth": 0,
+    "reason": "D",
+    "name": "Ceta",
+    "stem": 17,
+    "s": 2,
+    "t": 19,
+    "r": 3,
+    "x": "0",
+    "dx": "0",
+    "info": null
+  },
+  "target_log": {
+    "id": 245131,
+    "depth": 0,
+    "reason": "N",
+    "name": "S0",
+    "stem": 15,
+    "s": 2,
+    "t": 17,
+    "r": 3,
+    "x": "0",
+    "dx": "0",
+    "info": "Ceta__S0"
+  },
+  "historical_premise_edge_certified": false,
+  "native_map": {
+    "from": "Ceta",
+    "name": "Ceta__S0",
+    "path": "map_AdamsSS_Ceta_to_S0_t200.db",
+    "sus": 2,
+    "t_max": 200,
+    "to": "S0",
+    "type": "top_cell"
+  },
+  "native_slice": {
+    "scope": "selected native data map only; no actual Adams map comparison or source differential proof",
+    "schema": {
+      "Ceta_AdamsE2_basis": "CREATE TABLE Ceta_AdamsE2_basis (id INTEGER PRIMARY KEY, mon TEXT, repr TEXT, s SMALLINT, t SMALLINT, d2 TEXT)",
+      "Ceta_AdamsE2_generators": "CREATE TABLE Ceta_AdamsE2_generators (id INTEGER PRIMARY KEY, name TEXT UNIQUE, repr SMALLINT, s SMALLINT, t SMALLINT, cell SMALLINT, cell_coeff TEXT)",
+      "Ceta_AdamsE2_ss": "CREATE TABLE Ceta_AdamsE2_ss (id INTEGER PRIMARY KEY, s SMALLINT, t SMALLINT, base TEXT, diff TEXT, level SMALLINT)",
+      "map_AdamsE2_Ceta_to_S0": "CREATE TABLE map_AdamsE2_Ceta_to_S0 (id INTEGER PRIMARY KEY, map TEXT)",
+      "source_version": "CREATE TABLE version (id INTEGER PRIMARY KEY, name TEXT, value)",
+      "map_version": "CREATE TABLE version (id INTEGER PRIMARY KEY, name TEXT, value)"
+    },
+    "source_database_version": [
+      {
+        "id": 0,
+        "name": "version",
+        "value": 3
+      },
+      {
+        "id": 1,
+        "name": "change notes",
+        "value": "Add fil,from,to in version table of maps."
+      },
+      {
+        "id": 817812698,
+        "name": "t_max",
+        "value": 200
+      },
+      {
+        "id": 964058258,
+        "name": "d2_t_max",
+        "value": 170
+      },
+      {
+        "id": 1954841564,
+        "name": "timestamp",
+        "value": 1734870285
+      }
+    ],
+    "map_database_version": [
+      {
+        "id": 0,
+        "name": "version",
+        "value": 3
+      },
+      {
+        "id": 1,
+        "name": "change notes",
+        "value": "Add fil,from,to in version table of maps."
+      },
+      {
+        "id": 446174262,
+        "name": "from",
+        "value": "Ceta"
+      },
+      {
+        "id": 651971502,
+        "name": "filtration",
+        "value": 0
+      },
+      {
+        "id": 817812698,
+        "name": "t_max",
+        "value": 200
+      },
+      {
+        "id": 1585932889,
+        "name": "suspension",
+        "value": 2
+      },
+      {
+        "id": 1713085477,
+        "name": "to",
+        "value": "S0"
+      }
+    ],
+    "module_generators": [
+      {
+        "id": 1,
+        "name": "(h_0[2])",
+        "repr": 524289,
+        "s": 1,
+        "t": 3,
+        "cell": 2,
+        "cell_coeff": "0,1"
+      }
+    ],
+    "generator_images": [
+      {
+        "id": 1,
+        "map": "0,1"
+      }
+    ],
+    "coefficient_generators": [
+      {
+        "id": 0,
+        "name": "h_0",
+        "repr": 524288,
+        "s": 1,
+        "t": 1
+      },
+      {
+        "id": 7,
+        "name": "h_4",
+        "repr": 524292,
+        "s": 1,
+        "t": 16
+      },
+      {
+        "id": 8,
+        "name": "d_0",
+        "repr": 2097155,
+        "s": 4,
+        "t": 18
+      }
+    ],
+    "degree_slices": {
+      "source": {
+        "source_degree": [
+          2,
+          19
+        ],
+        "target_degree": [
+          2,
+          17
+        ],
+        "source_basis": [
+          {
+            "id": 69,
+            "mon": "7,1,1",
+            "repr": "1048587",
+            "s": 2,
+            "t": 19,
+            "d2": "",
+            "local_index": 0
+          }
+        ],
+        "target_basis": [
+          {
+            "id": 39,
+            "mon": "0,1,7,1",
+            "repr": "1048583",
+            "s": 2,
+            "t": 17,
+            "d2": "",
+            "local_index": 0
+          }
+        ],
+        "columns_as_target_coordinates": [
+          [
+            0
+          ]
+        ],
+        "matrix_rows": [
+          [
+            1
+          ]
+        ],
+        "source_log_coordinates": [
+          0
+        ],
+        "mapped_coordinates": [
+          0
+        ]
+      },
+      "target": {
+        "source_degree": [
+          5,
+          21
+        ],
+        "target_degree": [
+          5,
+          19
+        ],
+        "source_basis": [
+          {
+            "id": 80,
+            "mon": "8,1,1",
+            "repr": "2621447",
+            "s": 5,
+            "t": 21,
+            "d2": "",
+            "local_index": 0
+          }
+        ],
+        "target_basis": [
+          {
+            "id": 46,
+            "mon": "0,1,8,1",
+            "repr": "2621443",
+            "s": 5,
+            "t": 19,
+            "d2": "",
+            "local_index": 0
+          }
+        ],
+        "columns_as_target_coordinates": [
+          [
+            0
+          ]
+        ],
+        "matrix_rows": [
+          [
+            1
+          ]
+        ],
+        "source_log_coordinates": [
+          0
+        ],
+        "mapped_coordinates": [
+          0
+        ]
+      }
+    },
+    "source_staircase": {
+      "outgoing": {
+        "id": 69,
+        "s": 2,
+        "t": 19,
+        "base": "0",
+        "diff": "0",
+        "level": 9997
+      },
+      "incoming": {
+        "id": 80,
+        "s": 5,
+        "t": 21,
+        "base": "0",
+        "diff": "0",
+        "level": 3
+      }
+    },
+    "interpretation": "formal S0-linear extension of stored module-generator images; direct target monomial matches only",
+    "proof_status": "unverified-data-extraction"
+  },
+  "certificates": [
+    {
+      "source": {
+        "id": 69,
+        "s": 2,
+        "t": 19,
+        "local_index": 0,
+        "code": "7,1,1"
+      },
+      "target": {
+        "id": 39,
+        "s": 2,
+        "t": 17,
+        "local_index": 0,
+        "code": "0,1,7,1"
+      },
+      "generator_id": 1,
+      "image_code": "0,1",
+      "witness": []
+    },
+    {
+      "source": {
+        "id": 80,
+        "s": 5,
+        "t": 21,
+        "local_index": 0,
+        "code": "8,1,1"
+      },
+      "target": {
+        "id": 46,
+        "s": 5,
+        "t": 19,
+        "local_index": 0,
+        "code": "0,1,8,1"
+      },
+      "generator_id": 1,
+      "image_code": "0,1",
+      "witness": []
+    }
+  ],
+  "remaining_obligations": [
+    "Certify all 76569 original Ceta relations under the full 887-generator native graph before asserting its quotient descent.",
+    "Identify the fixed native Ceta and sphere representatives with actual E2 classes on the same model and presentation.",
+    "Construct and certify the native resolution map lifting the contravariant cohomology map of the actual top-cell projection.",
+    "Prove the native-to-actual comparisons commute with that map, including the two suspension identifications.",
+    "Prove the actual source differential from (2,19)[0] to (5,21)[0]; neither the D tag nor the final staircase is its proof.",
+    "Retain the existing unfinished fixed-model foundations; no total computation delivery is used as input."
+  ],
+  "actual_certification": false
+}

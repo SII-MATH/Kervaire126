@@ -7,7 +7,7 @@ public import KIP126.Def.Synthetic.Detection.Vanishing.Proofs
 public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
 public import KIP126.Interface.Challenge.Computation.Delivery
 public import KIP126.Interface.Solution.Literature.Applications
-public import KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 
 import all KIP126.Main.Solution.Route.AlphaOne.FiniteWindow
 
@@ -63,7 +63,7 @@ private theorem alpha_h0_filtration_from_finite_window (I : KIP126.Computation.R
         simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
           eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
       dsimp only [lambdaMultiply,lambdaPow]
-      simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+      simp only [eqToHom_refl,Category.id_comp]
       rw [←he]
       change (SyntheticCategory.biShift_comp (0,1) (0,0)).inv.app (S_0_0 : Syn) ≫
         (SyntheticCategory.biShift_comp (0,1) (0,0)).hom.app (S_0_0 : Syn) ≫ h0=h0

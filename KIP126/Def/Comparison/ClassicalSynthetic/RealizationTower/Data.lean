@@ -54,6 +54,8 @@ def layerMap (e : TowerIdentifications F unitS unitC Y X) (s : ℤ) :
       layerMapNat F unitS unitC coefficient Y X e s.toNat
   else 0
 
+-- Keep the established public declaration name.
+set_option linter.dupNamespace false in
 /-- A comparison of the actual Adams towers and every triangle arrow.
 The zero-stage map is prescribed. Layers are defined above, not chosen.
 The third equation retains F's exact suspension comparison and hence the

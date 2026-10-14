@@ -41,7 +41,7 @@ variable {stable : StableHomotopyContext}
 
 example (b : Bidegree) :
     classicalAdamsTarget AdamsPage.two b = (b.1 + 2, b.2 + 1) := by
-  simpa using classicalAdamsTarget_two b
+  simp
 
 example (b : Bidegree) :
     (classicalAdamsShape 2).Rel b (classicalAdamsTarget AdamsPage.two b) :=

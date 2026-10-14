@@ -175,7 +175,7 @@ private theorem prop78_from_inputs (BHS : SyntheticInputs D) (RL : RealizationIn
         simpa only [biShiftAddIso,Iso.trans_hom,NatTrans.comp_app,eqToIso.hom,
           eqToHom_app,eqToHom_refl,Category.comp_id,Smn] using hc
       dsimp only [lambdaMultiply,lambdaPow]
-      simp only [Nat.cast_zero,neg_zero,sub_zero,eqToHom_refl,Category.id_comp]
+      simp only [eqToHom_refl,Category.id_comp]
       rw [←he]
       change (SyntheticCategory.biShift_comp (1,2) (0,0)).inv.app (S_0_0 : Syn) ≫
         (SyntheticCategory.biShift_comp (1,2) (0,0)).hom.app (S_0_0 : Syn) ≫ η=η

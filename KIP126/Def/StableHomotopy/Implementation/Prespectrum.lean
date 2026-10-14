@@ -109,6 +109,8 @@ inductive StableRelation (X : Prespectrum.{u}) (d : ℤ) :
       (h : GenLoop.Homotopic a.loop p) : StableRelation X d a { a with loop := p }
   | stabilization (a : Representative X d) : StableRelation X d a a.next
 
+-- Keep the established public declaration name.
+set_option linter.dupNamespace false in
 /-- The set underlying the usual integer-graded stable homotopy group. -/
 def StableHomotopy (X : Prespectrum.{u}) (d : ℤ) := Quot (StableRelation X d)
 

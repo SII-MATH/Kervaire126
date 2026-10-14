@@ -1,10 +1,11 @@
 module
 
-public import KIP126.Main.Solution.Tools.GeneralizedLeibniz
-public import KIP126.Main.Solution.Tools.GeneralizedMahowald
-public import KIP126.Main.Solution.Tools.PageExtensionStretching
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Proofs
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Proofs
+public import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching.Proofs
 
 @[expose] public section
+
 
 /-!
 # Independently proved paper rules available to computation certification
@@ -13,8 +14,10 @@ The original derivation of log 2411720 uses Generalized Leibniz; its equation
 is retained as sphere staircase records 2791/3011. A replay following that
 path must prove the rule's explicit cycle, extension and no-crossing premises.
 These adapters supply only the general rules, not any recorded differential.
-Their Main producers take no computation input, selected stage witness, tmf
-high-class result, or final theorem. The producers currently contain `sorry`.
+Their Def proofs take mathematical comparison premises, with no computation
+input, selected stage witness, tmf high-class result, or final theorem. The
+retained public namespaces do not denote a Main module dependency. These
+proofs currently contain `sorry`.
 
 Direct proofs of the same fixed `Statement` remain possible. No choice of replay
 algorithm, no manual image-J seed and no statement merely present in a log is

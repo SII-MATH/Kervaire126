@@ -224,14 +224,15 @@ assert the permanence of a named class.
 
 \begin{proposition}[The transported pairing preserves the first-input transition]
   \label{prop:h6-existing-tower-pairing-left-transition}
-  \lean{KIP126.Classical.Adams.adamsTowerSpherePairingIso_comparison,KIP126.Classical.Adams.adamsTowerSpherePairingIso_step_left}
+  \lean{KIP126.Classical.Adams.adamsTowerSpherePairingIso_comparison,KIP126.Classical.Adams.adamsTowerSpherePairingIso_step_left,KIP126.Classical.Adams.adamsTowerSpherePairingIso_map_left}
   \uses{def:h6-existing-tower-pairing,prop:h6-smash-pairing-left-transition}
   \leanok
   With monoidal additivity, the pairing satisfies the defining comparison
   square and
   $\mu_{s+1,t}T_{t+s+1,t+s}=(T_{s+1,s}\wedge\mathrm{id})\mu_{s,t}$
-  for the actual sphere tower maps. This does not yet assert a full
-  multiplicative tower: the second-input transition is proved only under the
+  for the actual sphere tower maps. Iteration gives the same square for
+  every composite first-input transition from stage $s$ to $z\le s$.
+  This does not yet assert a full multiplicative tower: the second-input transition is proved only under the
   additional condition below; its fixed witness, the full two-term boundary
   product formula, and comparison with Lin multiplication remain unproved.
   In particular it is not a witness of \texttt{SecondDifferentialLeibniz}.
@@ -675,8 +676,116 @@ nor a t-structure detecting its bounds from homotopy groups.
     \beta_{X,\Sigma B}c_X^R(B)=c_X^L(B)\Sigma\beta_{X,B}.
   \]
   This concerns the ambient structures. It does not assert that the
-  tower pairing is symmetric, and no fixed-foundation witness is provided.
+  tower pairing is symmetric. The following construction supplies this
+  compatibility from the left-shift equality of the same tensor input.
 \end{definition}
+
+\begin{proposition}[Braiding compatibility from the specified tensor input]
+  \label{prop:h6-braiding-from-tensor-input}
+  \lean{KIP126.StableHomotopy.tensorSuspensionBraidingCompatibility_of_leftShift_eq,KIP126.Foundation.TensorInput.tensorSuspensionBraidingCompatibility}
+  \uses{def:h6-tensor-suspension-braiding,def:stage-zero-cooperation-contract}
+  \leanok
+  Suppose the left-tensor shift structure is the transport of the given
+  right-tensor shift structure along the inverse braiding isomorphism.
+  Then, for all objects $X,B$, the existing comparisons satisfy
+  \[
+    \beta_{X,\Sigma B}c_X^R(B)=c_X^L(B)\Sigma\beta_{X,B}.
+  \]
+  The existing \texttt{TensorInput.leftShift\_eq} supplies exactly this
+  hypothesis on the same foundation. No new field, replacement shift
+  structure, symmetry of an Adams pairing, or actual-page comparison is
+  introduced. The separate right-variable naturality and associator
+  conditions in \texttt{RightTensorSuspensionCompatibility} remain open.
+\end{proposition}
+\begin{proof}
+  Mathlib's transport of a shift structure along a functor isomorphism
+  makes that isomorphism commute with shifts. The inverse isomorphism
+  therefore also commutes with shifts. Evaluate its natural transformation
+  equation at $B$ and suspension one. Substitute the supplied equality
+  of the entire left-shift family; the right-shift family is unchanged.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Reconstructing the same complete tensor shift structures]
+  \label{prop:h6-adjoint-tensor-shift-reconstruction}
+  \lean{KIP126.StableHomotopy.TensorShift.leftShift_eq_adjoint,KIP126.StableHomotopy.TensorShift.commShift_ofIso_roundtrip,KIP126.Foundation.TensorInput.leftShift_eq_adjoint,KIP126.Foundation.TensorInput.rightShift_eq_adjoint,KIP126.Foundation.TensorInput.rightShift_eq_rightIhomAdjunction,KIP126.Foundation.TensorInput.rightIhomAdjunction_commShift,KIP126.Foundation.TensorInput.rightEvaluation_shift}
+  \uses{def:mathlib-shift,def:stage-zero-cooperation-contract}
+  \leanok
+  For arbitrary categories with integer shifts and an adjunction
+  $L\dashv R$, fix the same shift structures on both functors.
+  If the actual adjunction unit commutes with those shifts, the entire
+  chosen shift structure on $L$ equals the adjoint construction from the
+  chosen structure on $R$. Transporting a shift structure along the inverse
+  of a functor isomorphism and then along the isomorphism recovers the
+  original structure.
+
+  For every object $X$ of the same \texttt{FoundationInput} and
+  \texttt{TensorInput}, the existing internal-Hom unit condition therefore
+  identifies the chosen left-tensor shift structure with the adjoint
+  construction. Transport through the same braiding recovers the entire
+  original right-tensor shift structure. These equalities retain every
+  integer shift and every object; no new input or replacement model is used.
+  The actual braiding also transports the existing closed adjunction to
+  $(-\wedge X)\dashv\operatorname{ihom}(X)$, preserving both original
+  shift structures. Its unit and right evaluation commute with every
+  integer shift, and its adjoint reconstruction equals the entire original
+  right-tensor shift record.
+
+  The equalities do not prove naturality in the right tensor parameter
+  or compatibility with the associator. Both fields of
+  Definition~\ref{def:h6-right-tensor-suspension-compatibility} remain
+  separate obligations for the given full family.
+\end{proposition}
+\begin{proof}
+  \leanok
+  For each integer shift, uniqueness of the left commutation isomorphism
+  compatible with the actual adjunction unit identifies it with the adjoint
+  construction. Extensionality gives equality of the complete shift records.
+  Expanding transport along an isomorphism twice and cancelling its inverse
+  proves the roundtrip identity. Apply these results to the existing
+  internal-Hom adjunction and the specified left-shift/braiding equality.
+\end{proof}
+
+
+\begin{proposition}[Ordinary tensor mates and the remaining family comparisons]
+  \label{prop:h6-tensor-mates-comparisons}
+  \lean{KIP126.StableHomotopy.TensorShift.conjugate_commShift,KIP126.StableHomotopy.TensorShift.conjugate_symm_commShift,KIP126.StableHomotopy.TensorShift.conjugate_commShift_iff,KIP126.StableHomotopy.TensorShift.ihomTensorIso_hom_app,KIP126.StableHomotopy.TensorShift.rightIhom_parameter_mate,KIP126.StableHomotopy.TensorShift.rightIhomTensorIso_hom,KIP126.Foundation.TensorInput.tensorBraiding_commShift,KIP126.Foundation.TensorInput.ihom_pre_right_commShift_iff,KIP126.Foundation.TensorInput.ihom_curry_commShift_iff,KIP126.Foundation.TensorInput.right_associator_commShift_iff}
+  \uses{prop:h6-adjoint-tensor-shift-reconstruction,prop:h6-braiding-from-tensor-input,def:h6-right-tensor-suspension-compatibility}
+  \leanok
+  For the same adjunctions and chosen integer shifts, the mates bijection
+  preserves and reflects commutation with all shifts. For all objects and
+  maps, the mate of right-tensor parameter change is the original internal-Hom
+  precomposition. The mate of right reassociation is the full natural
+  transformation
+  \[
+    \operatorname{ihom}(X\wedge Y)
+      \xrightarrow{\operatorname{pre}(\beta_{Y,X})}
+    \operatorname{ihom}(Y\wedge X)
+      \xrightarrow{\operatorname{curry}_{Y,X}}
+    \operatorname{ihom}(X,\operatorname{ihom}(Y,-)),
+  \]
+  where curry is the original closed-category currying. This ordinary identity already holds in a
+  braided closed category.
+
+  Consequently, right-parameter shift naturality is equivalent to shift
+  compatibility of internal-Hom precomposition, and all-integer right
+  reassociation compatibility is equivalent to shift compatibility of the
+  displayed composite. These are proved equivalences; neither missing
+  family condition is thereby established. In particular, the two
+  suspension-one conditions of
+  Definition~\ref{def:h6-right-tensor-suspension-compatibility} remain open
+  on the full specified implementation.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Express mates through the same units, counits, whiskering and functor
+  associators, all of which preserve their chosen shift comparisons.
+  For the ordinary right-tensor mate, apply the two actual adjunction
+  hom-set equivalences and then uncurry twice. Naturality and the hexagon
+  identities for the given braiding identify it with the displayed
+  precomposition and ordinary curry, without assuming either family's
+  shift compatibility.
+\end{proof}
 
 \begin{proposition}[Transporting a boundary past a braiding]
   \label{prop:h6-braided-boundary-transport}
@@ -1283,6 +1392,144 @@ the surjectivity statement alone.
   \leanok
 \end{proof}
 
+\begin{proposition}[Actual long-layer multiplication by a tower stage]
+  \label{prop:h6-long-layer-stage-kernel}
+  \lean{KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso,KIP126.Classical.Adams.adamsSphereLongLayerStagePairingIso,KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_ι,KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_δ,KIP126.Classical.Adams.adamsSphereLongLayerStageTriangleIso_connecting_eq_zero,KIP126.Classical.Adams.adamsSphereLongLayerStagePairingIso_connecting_eq_zero,KIP126.Classical.Adams.adamsDifferential_longLayerStagePairing_eq_zero}
+  \uses{def:h6-tower-long-layer,prop:h6-tower-long-layer-differential,prop:h6-tower-smash-comparison}
+  \leanok
+  Tensoring the actual sphere-tower cofiber triangle with a tower stage
+  constructs a one-sided map $Q_s^r\wedge T_t\to Q_{s+t}^r$, with genuine
+  inclusion and connecting squares. For every $r\geq1$, natural stages
+  $s,t$ and integer homotopy degrees, if the first input has zero long
+  connecting homomorphism, the product also has zero connecting
+  homomorphism. Its image on the actual quotient page therefore has
+  zero $d_r$.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Injectivity of homotopy desuspension turns the input condition into
+  zero postcomposition with the cofiber connecting map. Tensor it with
+  the tower-stage representative and use the actual connecting square.
+  Transport the integer stages and apply the established long-layer
+  formula for the actual page differential.
+  This does not construct $Q_s^r\wedge Q_t^r\to Q_{s+t}^r$, prove its
+  projection compatibility, or supply the two-term Leibniz rule.
+\end{proof}
+
+\begin{proposition}[The actual long-stage projection comparison]
+  \label{prop:h6-long-stage-projection-comparison}
+  \lean{KIP126.Classical.Adams.LongLayerStageComparison.projectionNat,KIP126.Classical.Adams.LongLayerStageComparison.projectionNat_eq,KIP126.Classical.Adams.LongLayerStageComparison.stageProjected,KIP126.Classical.Adams.LongLayerStageComparison.coefficientAction,KIP126.Classical.Adams.LongLayerStageComparison.stageProjected_eq_actual,KIP126.Classical.Adams.LongLayerStageComparison.defect_factors,KIP126.Classical.Adams.LongLayerStageComparison.actual_eq_on_representatives}
+  \uses{prop:h6-long-layer-stage-kernel,prop:h6-coefficient-layer-product-unit,prop:h6-tower-long-layer-cycles,def:mathlib-pretriangulated}
+  \leanok
+  Retain the specified coefficient ring, braiding, additive tensor product,
+  and the given exact right-tensor suspension structures. For every
+  $r\ge1$ and natural stages $s,t$, write $Q_s^r=C(T_{s+r}\to T_s)$,
+  $\pi_s:Q_s^r\to L_s$, $\iota_t:T_t\to L_t$, and let
+  $M:Q_s^r\wedge T_t\to Q_{t+s}^r$ be the already constructed
+  long-stage isomorphism. Write $P:L_s\wedge L_t\to L_{t+s}$ for the
+  specified coefficient product. There is a map
+  $k:\Sigma(T_{s+r}\wedge T_t)\to L_{t+s}$ with
+  \[
+    \pi_{t+s}M-P(\pi_s\wedge\iota_t)
+      =k\,c_{T_t}(T_{s+r})\,(\delta_s^r\wedge\mathrm{id}_{T_t}),
+  \]
+  where $c_{T_t}$ is the specified suspension comparison of right tensoring.
+  In particular, for every pair of objects $A,B$, every $a:A\to Q_s^r$
+  and $b:B\to T_t$ with $\delta_s^ra=0$, one has the strict equality
+  \[
+    \pi_{t+s}M(a\wedge b)=P((\pi_sa)\wedge(\iota_tb)).
+  \]
+  All maps are the existing choices, including the genuine associativity
+  transport from $t+(s+r)$ to $(t+s)+r$; no new triangle completion is used.
+  Zero long connecting composite is stronger than being a general
+  finite-page cycle. The obstruction factorization does not assert that
+  $k$ vanishes, construct a product of two long layers, prove
+  \texttt{BoundaryCompatible}, establish Leibniz, or identify Lin products.
+\end{proposition}
+\begin{proof}
+  The long projection takes the actual cofiber inclusion to the one-step
+  inclusion. The chosen stage triangle and the coefficient unit law therefore
+  give the same restriction along $T_s\wedge T_t\to Q_s^r\wedge T_t$.
+  Contravariant exactness of this actual tensored distinguished triangle
+  factors their difference through its third arrow. Precomposing with
+  $a\wedge b$ kills that arrow when $\delta_s^ra=0$.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Boundary action on inputs with zero connecting image]
+  \label{prop:h6-boundary-tower-action}
+  \lean{KIP126.Classical.Adams.BoundaryTowerAction.tower_kernel_left,KIP126.Classical.Adams.BoundaryTowerAction.tower_boundary_kernel_left,KIP126.Classical.Adams.BoundaryTowerAction.coefficient_mem_boundaries,KIP126.Classical.Adams.BoundaryTowerAction.e1Product_mem_boundaries,KIP126.Classical.Adams.BoundaryTowerAction.boundary_mul_kerK,KIP126.Classical.Adams.BoundaryTowerAction.boundary_mul_longLayer_zeroK,KIP126.Classical.Adams.BoundaryTowerAction.boundary_mul_sameK}
+  \uses{prop:h6-existing-tower-pairing-left-transition,prop:h6-coefficient-layer-product-unit,def:h6-specified-sphere-pairing,def:h6-tower-pages,prop:h6-tower-long-layer-cycles,thm:stable-homotopy-long-exact}
+  \leanok
+  Retain the specified coefficient ring, braiding, additive tensor product,
+  and exact right-tensor suspension structures. For every $r\ge1$,
+  natural stages $s,t$ and integer internal degrees $u,v$, the fixed
+  coefficient product satisfies
+  \[
+    P(B_r^{s,u},\ker K^{t,v})\subseteq B_r^{s+t,u+v}.
+  \]
+  For $x\in B_r^{s,u}$ and $K(y)=K(y')$, it follows that
+  $P(x,y)-P(x,y')\in B_r^{s+t,u+v}$.
+  In particular, a long-layer input with zero long connecting image
+  satisfies the first assertion after projection to the one-step layer.
+  All positive pages are included, even when $s-r+1<0$.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Represent the boundary as $Ja$ with $I_{s-r+1,s}a=0$.
+  Exactness gives a tower representative $b$ for an input in $\ker K$.
+  The full first-input tower transition square makes the paired tower
+  class vanish under the required lower transition. When an integer
+  stage is negative, its natural truncation and one further tower
+  transition give the same conclusion. The coefficient unit restriction
+  identifies its $J$ image with the specified product. Bilinearity applied
+  to $y-y'$ gives the second assertion; the long-layer connecting square
+  gives the stated specialization.
+
+  A general finite-page cycle only has $K(y)\in\operatorname{im}I_{t+1,t+r}$,
+  which need not be zero. This result does not shrink or discharge the
+  full \texttt{BoundaryCompatible} or the two remaining
+  \texttt{CrossBoundaryCompatible} conditions. No right-input transition
+  condition, new long-layer pairing, or Lin-product comparison is assumed.
+\end{proof}
+
+\begin{proposition}[The exact residual connecting-image domain]
+  \label{prop:h6-boundary-connecting-action}
+  \lean{KIP126.Classical.Adams.BoundaryConnectingAction.longK_range,KIP126.Classical.Adams.BoundaryConnectingAction.projectedLongK_range,KIP126.Classical.Adams.BoundaryConnectingAction.existsUnique_boundary_action,KIP126.Classical.Adams.BoundaryConnectingAction.boundary_mul_same_projected_longK}
+  \uses{prop:h6-boundary-tower-action,prop:h6-tower-long-layer-cycles,thm:stable-homotopy-long-exact}
+  \leanok
+  For arbitrary positive $r$ and integer bidegrees, exactness of the
+  actual long and one-step triangles gives
+  \[
+    \operatorname{im}K_r=\ker I_{t,t+r},\qquad
+    \operatorname{im}(K\pi_r)=
+      \ker I_{t,t+1}\cap\operatorname{im}I_{t+1,t+r}.
+  \]
+  All maps act in the connecting homotopy degree. For every fixed
+  genuine boundary $x\in B_r^{s,u}$, the specified coefficient product
+  with an arbitrary long-layer representative induces a unique linear map
+  \[
+    \operatorname{im}(K\pi_r)\longrightarrow E_1^{s+t,u+v}/B_r^{s+t,u+v},
+    \qquad K\pi_r(b)\longmapsto [P(x,\pi_r(b))].
+  \]
+  Here $s,t$ range over all nonnegative filtrations, and $u,v$ are
+  arbitrary integers. The codomain is the ambient quotient, not an
+  assumed actual quotient page. Neither cycle closure nor vanishing of
+  this residual map is asserted. The original full boundary condition
+  and the two-long-layer product remain unresolved.
+\end{proposition}
+\begin{proof}
+  Exactness identifies the image of the long connecting map with its
+  tower-map kernel. Its image in the one-step tower lies in the displayed
+  intersection. Conversely lift an element through $I_{t+1,t+r}$; its
+  composite to stage $t$ vanishes, so long-triangle exactness supplies a
+  long-layer representative. The previously proved boundary action kills
+  the kernel of $K\pi_r$. The first isomorphism theorem for modules gives
+  the unique linear factorization; equality of projected connecting
+  images therefore gives equality modulo actual boundaries.
+  \leanok
+\end{proof}
+
 \begin{definition}[Lower lifts for the three square products]
   \label{def:h6-three-boundary-lifts}
   \lean{KIP126.Classical.Adams.SphereH6BoundaryLifts,KIP126.Classical.Adams.SphereH6BoundaryLifts.FitsProducts,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps_boundaries,KIP126.Classical.Adams.SphereH6BoundaryLifts.toLongLayerMaps_compatible}
@@ -1785,6 +2032,47 @@ prerequisite for the graded K\"unneth comparison, not that comparison itself.
   \leanok
 \end{proof}
 
+\begin{proposition}[Finiteness and uniform homology bounds in the actual Adams tower]
+  \label{prop:adams-tower-homology-finiteness}
+  \lean{KIP126.Classical.Adams.boundedBelow_sphere_homology,KIP126.Classical.Adams.boundedBelow_double_hf2_tensor,KIP126.Classical.Adams.finiteMod2Type_hf2_tensor,KIP126.Classical.Adams.adamsTower_finiteMod2Type_bounded,KIP126.Classical.Adams.sphereAdamsTower_finiteMod2Type_bounded,KIP126.Classical.Adams.sphereCofiberAdamsTower_finiteMod2Type_bounded}
+  \lean{KIP126.StableHomotopy.Cohomology.reducedCooperations_nonpositive_subsingleton,KIP126.Classical.Adams.adamsNextHomology_subsingleton_of_lt,KIP126.Classical.Adams.adamsTower_homology_bounded_uniform,KIP126.Classical.Adams.adamsTower_homology_exists_uniform_bound}
+  \uses{prop:h6-kunneth-tower-recurrence,prop:hf2-finite-mod2-coordinates,prop:bounded-finite-type-closure,prop:bounded-finite-graded-tensor}
+  \leanok
+  For the supplied actual cooperation K\"unneth and Milnor basis data,
+  finite mod-two homology of $X$, bounded below, implies finite mod-two
+  homology of every residual stage $T_s$. A single lower bound on
+  $H_*X$ works for every $H_*T_s$. The sphere and the actual cofiber of
+  any map $S^k\to S$ satisfy these hypotheses by their coefficient
+  homology and the long exact sequence, including the selected $C\nu$.
+  An initial ordinary homotopy bound additionally gives the uniform
+  ordinary bound below. Commutation of coefficient smash with the
+  residual product remains a separate assertion.
+\end{proposition}
+\begin{proof}
+  Finite homogeneous Cauchy tensors and the fiber triangles prove
+  finiteness inductively. In the reduced-tensor recurrence, reduced
+  cooperations start in degree one, exactly canceling the downward
+  degree shift of the next fiber and preserving the initial bound.
+  \leanok
+\end{proof}
+
+\begin{proposition}[A uniform ordinary homotopy bound for the residual Adams tower]
+  \label{prop:adams-tower-uniform-homotopy-bound}
+  \lean{KIP126.Classical.Adams.adamsTower_homotopy_bounded_uniform_of_layer_bound,KIP126.Classical.Adams.adamsTower_exists_uniform_homotopy_bound}
+  \uses{prop:adams-tower-homology-finiteness,thm:stable-homotopy-long-exact}
+  \leanok
+  With the supplied cooperation and Milnor basis data, if both $X$
+  and $H\mathbb F_2\otimes X$ are bounded below, one integer $N$
+  satisfies $\pi_nT_sX=0$ for every $s$ and $n<N$.
+\end{proposition}
+\begin{proof}
+  If the initial bounds are $N_X,N_H$, use
+  $N=\min(N_X,N_H-1)$. The proved coefficient recurrence preserves
+  $N_H$ at every stage. The fiber long exact sequence then preserves
+  the ordinary bound $N$ inductively, with no cumulative loss.
+  \leanok
+\end{proof}
+
 \begin{proposition}[Actual next-stage coaction from a normalized lift]
   \label{prop:h6-next-stage-coaction}
   \lean{KIP126.Classical.Adams.adamsHomologyBoundary_eq_connecting,KIP126.Classical.Adams.adamsTensorCoaction_boundary,KIP126.Classical.Adams.adamsTensorCoaction_next}
@@ -2143,28 +2431,7 @@ express this step as the Milnor cobar differential are still missing.
   \leanok
 \end{proof}
 
-\begin{proposition}[All-page comparison of the two tower presentations]
-  \label{prop:h6-tower-internal-comparison}
-  \lean{KIP126.Classical.Adams.adamsTowerPageComparison,KIP126.Classical.Adams.adamsTowerPageComparison_differential,KIP126.Classical.Adams.adamsTowerPageComparison_passage}
-  \uses{def:h6-tower-internal-sequence,prop:h6-tower-page-passage}
-  \leanok
-  On every page $r\ge2$, the representative-preserving quotient isomorphism
-  identifies the internal tower page with the Mathlib tower page. It commutes
-  with the tower differential. Two internal classes satisfy the specified
-  next-page representative relation if and only if their images correspond
-  under the Mathlib homology-to-next-page map. The comparison is constructed
-  for every unit and object in the stated stable context; it does not use
-  a Lin presentation, Milnor coordinates, or a permanence assumption.
-\end{proposition}
-\begin{proof}
-  Reindex internal stage $n$ as classical page $n+2$ and use the proved
-  differential comparison. A next-cycle representative gives both the
-  current quotient class and the next quotient class. The explicitly
-  constructed homology isomorphism sends its homology class to that same
-  next quotient class. Conversely, surjectivity of the quotient projection
-  and the kernel calculation recover such a representative.
-  \leanok
-\end{proof}
+
 
 \begin{proposition}[A common representative for compatible tower classes]
   \label{prop:h6-tower-common-representative}
@@ -2188,24 +2455,5 @@ express this step as the Milnor cobar differential are still missing.
   These two facts identify nonzero classes at infinity with the stated
   nonzero compatible family. The entire argument is internal to the tower's
   SSData and does not import the Mathlib spectral-sequence type.
-  \leanok
-\end{proof}
-
-\begin{proposition}[Comparison of the two nonzero survival predicates]
-  \label{prop:h6-tower-survival-comparison}
-  \lean{KIP126.Classical.Adams.adamsTower_survival_comparison}
-  \uses{prop:h6-tower-common-representative,prop:h6-tower-internal-comparison,def:h6-pagewise-permanence}
-  \leanok
-  For every E$_2$ class of the constructed tower, internal nonzero survival
-  is equivalent to standard pagewise permanence of its image under the same
-  tower comparison. This is a generic theorem, independent of the Lin table,
-  Milnor coordinates, and any assertion of permanence for a specified class.
-\end{proposition}
-\begin{proof}
-  Reindex the standard trajectory's iterated pages as $n+2$. The actual
-  homology-to-next-page isomorphism identifies its cycle and passage conditions
-  with the next-cycle representative relation. Apply the common-representative
-  result and check that its initial quotient map is exactly the E$_2$ component
-  of the fixed tower comparison.
   \leanok
 \end{proof}

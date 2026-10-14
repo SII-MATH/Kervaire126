@@ -31,18 +31,18 @@ def gradingEquiv : (ℤ × ℤ × ℤ) ≃+ Tridegree where
     rcases p with ⟨k, n, w⟩
     apply Prod.ext
     · dsimp; omega
-    · apply Prod.ext <;> dsimp <;> omega
+    · apply Prod.ext <;> dsimp; omega
   right_inv i := by
     rcases i with ⟨s, t, w⟩
     apply Prod.ext
     · dsimp; omega
-    · apply Prod.ext <;> dsimp <;> omega
+    · apply Prod.ext <;> dsimp; omega
   map_add' p q := by
     rcases p with ⟨k, n, w⟩
     rcases q with ⟨k', n', w'⟩
     apply Prod.ext
     · dsimp; omega
-    · apply Prod.ext <;> dsimp <;> omega
+    · apply Prod.ext <;> dsimp; omega
 
 variable {Syn : Type u} [SyntheticCategory.{u, v} Syn]
   [HasFunctorialCofiber (C := Syn)]

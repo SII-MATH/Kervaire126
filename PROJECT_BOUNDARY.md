@@ -129,6 +129,13 @@ relaxation of this boundary must be agreed explicitly and recorded here.
 
 ## In-scope formalization
 
+The optional SSData/Mathlib spectral-sequence adapter is maintained in the
+legacy `SII-MATH/KIP126` repository. It is no longer a Kervaire126 module or
+delivery obligation. The internal SSData constructions, fixed foundation,
+source and computation comparisons required by Challenge2, and the final
+standard `h_6^2` target retain their existing proof obligations. Upstream
+Mathlib remains the pinned foundation dependency.
+
 ### 1. Algebraic and categorical foundations
 
 The project must formalize the interfaces and required laws for:
@@ -209,6 +216,7 @@ Results from earlier papers, published computations, Lin's program, and facts
 read from the Appendix tables are outside the proof-development boundary.
 They enter conditional theorems as explicit mathematical hypotheses. They
 must not become untracked global facts or separate Lean `axiom` declarations.
+Main consumes these results as external hypotheses, while Interface attempts to prove them and construct the corresponding Challenge2 delivery.
 
 Lean interfaces contain the mathematical statements, hypotheses and
 conditions of those inputs. Source identities, locators, acquisition status,

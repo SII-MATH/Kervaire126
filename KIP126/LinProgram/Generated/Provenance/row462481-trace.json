@@ -1,0 +1,3648 @@
+{
+  "schema": "lin-native-row462481-trace-context/v1",
+  "status": "fixed-native-data-and-local-branch-context-only; not-a-differential-proof",
+  "provenance": {
+    "canonical_manifest": "docs/external-inputs.json",
+    "raw_manifest": "KIP126/LinProgram/Raw/manifest.json",
+    "pinned_inputs": [
+      {
+        "path": "KIP126/LinProgram/Raw/proofs.db",
+        "bytes": 623042560,
+        "sha256": "3a460683c023ee2d8f7e8f904ecef9044a474d88bb7184731e54978ba7dac248"
+      },
+      {
+        "path": "KIP126/LinProgram/Raw/S0_AdamsSS_t261.db",
+        "bytes": 7913472,
+        "sha256": "518a2ed86af6d4f7bcdc5db135ab6252bd50df34492ae208663aa1c140a820ed"
+      },
+      {
+        "path": "KIP126/LinProgram/Raw/Ceta_AdamsSS_t200.db",
+        "bytes": 3100672,
+        "sha256": "ca0f379210e07d2908576c6e0ddb8889db9b17c8ef426a68b0831bb3f606b477"
+      },
+      {
+        "path": "KIP126/LinProgram/Raw/map_AdamsSS_Ceta_to_S0_t200.db",
+        "bytes": 32768,
+        "sha256": "3d4dbed8ede47c8b1b1ed3bcfea9a514c55210b329bd5888c6f07711b90865b8"
+      },
+      {
+        "path": "KIP126/LinProgram/Raw/ss.json",
+        "bytes": 53978,
+        "sha256": "a9a623bf7165e62fcf455e454fdf9195237491bf07bd148902e245aa1dba64d8"
+      },
+      {
+        "path": "KIP126/LinProgram/Raw/S0_AdamsE2_relations.csv",
+        "bytes": 11634438,
+        "sha256": "8b4b67d6fb3c9a3a264813ea780340e73b1a66290c8616d3308ae1fc19f3add5"
+      }
+    ],
+    "existing_data_archive": {
+      "path": "Source/LWXMachine/kervaire_database.rar",
+      "size": 82746451,
+      "sha256": "f5b69c6fb0831a338f6e4449dc579070fcb0a8dbc270192a1a24228a54f8b7a1",
+      "checksum": "md5:91ea5d8ef613828b9ef66f6d9f879166",
+      "zenodo_record_sha256": "ee6a6622777d04cce0f268eded8255a108714e4bf4fddc333321309475fa43b3",
+      "zenodo_record": "Source/LWXMachine/zenodo-record.json",
+      "zenodo_id": 14875701,
+      "version": "v126.3.cw49",
+      "filename": "kervaire_database.rar"
+    },
+    "additional_existing_archived_inputs": [
+      {
+        "path": "KIP126/LinProgram/Raw/CW_nu_eta_AdamsSS_t200.db",
+        "bytes": 2727936,
+        "sha256": "8007f076e6bb78f269849758db8ec347625896607dd54d31e9fc0df770aec278",
+        "member": "kervaire-49/CW_nu_eta_AdamsSS_t200.db",
+        "status": "authenticated existing archive member; extracted only into a temporary read-only input"
+      },
+      {
+        "path": "KIP126/LinProgram/Raw/map_AdamsSS_CW_nu_eta_to_Ceta_t200.db",
+        "bytes": 36864,
+        "sha256": "3ba9ac7841d0e9287b10f8550abd7ce0746a5715bfad1c60a42edb93ba554272",
+        "member": "kervaire-49/map_AdamsSS_CW_nu_eta_to_Ceta_t200.db",
+        "status": "authenticated existing archive member; extracted only into a temporary read-only input"
+      }
+    ],
+    "program_source_archive": {
+      "path": "Source/LWXMachine/source-code.zip",
+      "sha256": "dd784541626f4d693c35f3ca84d4a67e83758ac463aabe58ab6c9cc92be22a15",
+      "members": [
+        {
+          "member": "SSeqCpp-master/ss/mylog.h",
+          "sha256": "b34b3c7e5994c58b327407980269ff0afff4df7a41b6334cd3a3db7ab06a569a",
+          "locators": [
+            "EnumReason and REASONS_DB lines 13-40"
+          ]
+        },
+        {
+          "member": "SSeqCpp-master/ss/mylog.cpp",
+          "sha256": "a27e5ea37b00aec85f1ad697c86d232de5b39c6e88703500e87da097461e170f",
+          "locators": [
+            "InsertDiff lines 37-47",
+            "LogDiff lines 150-179"
+          ]
+        },
+        {
+          "member": "SSeqCpp-master/ss/deduce.cpp",
+          "sha256": "f299dbdadf8c8efde296adacb048f679fd927d611e910c615775d42ebced3fec",
+          "locators": [
+            "TryDiff lines 331-386",
+            "DeduceDiff4Nd lines 405-445 and 489-504, including nd.count==0 direct-zero branch"
+          ]
+        },
+        {
+          "member": "SSeqCpp-master/ss/category.cpp",
+          "sha256": "be9e6cd3632ab6ec3905528b0b30a8c4d0d986c13a318d24a48f3e396bc8ae9a",
+          "locators": [
+            "MapMod2Ring::map lines 182-195",
+            "SetModuleDiffGlobal lines 407-451"
+          ]
+        }
+      ]
+    }
+  },
+  "target": {
+    "id": 462481,
+    "depth": 0,
+    "reason": "N",
+    "name": "S0",
+    "stem": 123,
+    "s": 15,
+    "t": 138,
+    "r": 3,
+    "x": "2",
+    "dx": "2",
+    "info": "Ceta__S0"
+  },
+  "adjacent_context": {
+    "previous_branch": [
+      {
+        "id": 462473,
+        "depth": 1,
+        "reason": "T",
+        "name": "CW_nu_eta",
+        "stem": 129,
+        "s": 15,
+        "t": 144,
+        "r": 5,
+        "x": "0",
+        "dx": "3",
+        "info": "Get `CW_nu_eta (129,15) d_5[0]=[3]`. Consider the map `CW_nu_eta__CW_nu_eta_2`.\nGet `CW_nu_eta_2 (129,15) d_5[0]=[1]`. Consider the map `CW_nu_eta_2__S0_by_sigma`.\nGet `S0 (136,16) d_5[0,1,2]=[2]`. Apply the Leibniz rule with `S0 (0,0) d_5[0]=[]` and get `S0 (136,16) d_5[0,1,2]=[2]`.\nHowever, `S0 (135,21) [2]` is not in B_4."
+      },
+      {
+        "id": 462474,
+        "depth": 0,
+        "reason": "D",
+        "name": "CW_nu_eta",
+        "stem": 129,
+        "s": 15,
+        "t": 144,
+        "r": 5,
+        "x": "0",
+        "dx": "",
+        "info": null
+      },
+      {
+        "id": 462475,
+        "depth": 0,
+        "reason": "N",
+        "name": "CW_nu_eta_2",
+        "stem": 129,
+        "s": 15,
+        "t": 144,
+        "r": 5,
+        "x": "0",
+        "dx": "",
+        "info": "CW_nu_eta__CW_nu_eta_2"
+      }
+    ],
+    "branch_rows": [
+      {
+        "id": 462476,
+        "depth": 1,
+        "reason": "T",
+        "name": "CW_nu_eta",
+        "stem": 129,
+        "s": 15,
+        "t": 144,
+        "r": 3,
+        "x": "1",
+        "dx": "",
+        "info": "Get `CW_nu_eta (129,15) d_3[1]=[]`. Apply the Leibniz rule with `S0 (0,1) d_3[0]=[]` and get `CW_nu_eta (129,16) d_3[3]=[]`.\nGet `CW_nu_eta (129,16) d_3[3]=[]` where the element on the left-hand side already supports d_3.\nHowever, `CW_nu_eta (128,19) [1]` is not in B_2."
+      },
+      {
+        "id": 462477,
+        "depth": 1,
+        "reason": "T",
+        "name": "CW_nu_eta",
+        "stem": 129,
+        "s": 15,
+        "t": 144,
+        "r": 3,
+        "x": "1",
+        "dx": "2",
+        "info": "Get `CW_nu_eta (129,15) d_3[1]=[2]`. Apply the Leibniz rule with `S0 (0,1) d_3[0]=[]` and get `CW_nu_eta (129,16) d_3[3]=[]`.\nGet `CW_nu_eta (129,16) d_3[3]=[]` where the element on the left-hand side already supports d_3.\nHowever, `CW_nu_eta (128,19) [1]` is not in B_2."
+      },
+      {
+        "id": 462478,
+        "depth": 1,
+        "reason": "T",
+        "name": "CW_nu_eta",
+        "stem": 129,
+        "s": 15,
+        "t": 144,
+        "r": 3,
+        "x": "1",
+        "dx": "0,2",
+        "info": "Get `CW_nu_eta (129,15) d_3[1]=[0,2]`. Apply the Leibniz rule with `S0 (1,1) d_3[0]=[]` and get `CW_nu_eta (130,16) d_3[]=[5]`.\nHowever, `CW_nu_eta (129,19) [5]` is not in B_2."
+      },
+      {
+        "id": 462479,
+        "depth": 0,
+        "reason": "D",
+        "name": "CW_nu_eta",
+        "stem": 129,
+        "s": 15,
+        "t": 144,
+        "r": 3,
+        "x": "1",
+        "dx": "0",
+        "info": null
+      },
+      {
+        "id": 462480,
+        "depth": 0,
+        "reason": "N",
+        "name": "Ceta",
+        "stem": 125,
+        "s": 15,
+        "t": 140,
+        "r": 3,
+        "x": "1",
+        "dx": "0",
+        "info": "CW_nu_eta__Ceta"
+      },
+      {
+        "id": 462481,
+        "depth": 0,
+        "reason": "N",
+        "name": "S0",
+        "stem": 123,
+        "s": 15,
+        "t": 138,
+        "r": 3,
+        "x": "2",
+        "dx": "2",
+        "info": "Ceta__S0"
+      },
+      {
+        "id": 462482,
+        "depth": 0,
+        "reason": "N",
+        "name": "CW_eta_nu",
+        "stem": 125,
+        "s": 15,
+        "t": 140,
+        "r": 3,
+        "x": "3",
+        "dx": "2",
+        "info": "Ceta__CW_eta_nu"
+      },
+      {
+        "id": 462483,
+        "depth": 0,
+        "reason": "N",
+        "name": "Ceta_Ceta",
+        "stem": 125,
+        "s": 15,
+        "t": 140,
+        "r": 3,
+        "x": "1",
+        "dx": "2",
+        "info": "Ceta__Ceta_Ceta"
+      },
+      {
+        "id": 462484,
+        "depth": 0,
+        "reason": "N",
+        "name": "Joker",
+        "stem": 125,
+        "s": 15,
+        "t": 140,
+        "r": 3,
+        "x": "1",
+        "dx": "1",
+        "info": "Ceta__Joker"
+      },
+      {
+        "id": 462485,
+        "depth": 0,
+        "reason": "N",
+        "name": "CW_2_eta",
+        "stem": 126,
+        "s": 16,
+        "t": 142,
+        "r": 3,
+        "x": "2",
+        "dx": "1",
+        "info": "Ceta__Q_Joker"
+      },
+      {
+        "id": 462486,
+        "depth": 0,
+        "reason": "N",
+        "name": "CW_2_eta_nu",
+        "stem": 126,
+        "s": 16,
+        "t": 142,
+        "r": 3,
+        "x": "2",
+        "dx": "0",
+        "info": "CW_2_eta__CW_2_eta_nu"
+      },
+      {
+        "id": 462487,
+        "depth": 0,
+        "reason": "N",
+        "name": "CW_2_V_eta",
+        "stem": 125,
+        "s": 15,
+        "t": 140,
+        "r": 3,
+        "x": "2",
+        "dx": "2",
+        "info": "Ceta__CW_2_V_eta"
+      }
+    ],
+    "next_branch_start": {
+      "id": 462488,
+      "depth": 1,
+      "reason": "T",
+      "name": "CW_nu_eta",
+      "stem": 127,
+      "s": 17,
+      "t": 144,
+      "r": 4,
+      "x": "2",
+      "dx": "",
+      "info": "Get `CW_nu_eta (127,17) d_13[2]=[]`. Apply the Leibniz rule with `S0 (14,4) d_13[0]=[]` and get `CW_nu_eta (141,21) d_13[0]=[]`.\nGet `CW_nu_eta (141,21) d_13[0]=[]` where the element on the left-hand side already supports d_4.\nHowever, `CW_nu_eta (140,25) [1]` is not in B_3."
+    },
+    "interpretation": "The 3 T rows are failed-trial records with full diagnostics; 462479 is the retained program claim. 462480-462487 record propagation. This database has only the log table and no parent-edge or exclusions table."
+  },
+  "trace_edges": [
+    {
+      "source_id": 462479,
+      "target_id": 462480,
+      "map": "CW_nu_eta__Ceta",
+      "shift": 4,
+      "source_degrees": [
+        [
+          15,
+          144
+        ],
+        [
+          18,
+          146
+        ]
+      ],
+      "target_degrees": [
+        [
+          15,
+          140
+        ],
+        [
+          18,
+          142
+        ]
+      ],
+      "status": "reconstructed from adjacent native payloads, map metadata and selected data images; no explicit parent-id column"
+    },
+    {
+      "source_id": 462480,
+      "target_id": 462481,
+      "map": "Ceta__S0",
+      "shift": 2,
+      "source_degrees": [
+        [
+          15,
+          140
+        ],
+        [
+          18,
+          142
+        ]
+      ],
+      "target_degrees": [
+        [
+          15,
+          138
+        ],
+        [
+          18,
+          140
+        ]
+      ],
+      "status": "reconstructed from adjacent native payloads, map metadata and selected data images; no explicit parent-id column"
+    }
+  ],
+  "maps": {
+    "cw_to_ceta": {
+      "native_map": {
+        "from": "CW_nu_eta",
+        "name": "CW_nu_eta__Ceta",
+        "path": "map_AdamsSS_CW_nu_eta_to_Ceta_t200.db",
+        "sus": 4,
+        "t_max": 200,
+        "to": "Ceta"
+      },
+      "database_version": [
+        {
+          "id": 0,
+          "name": "version",
+          "value": 3
+        },
+        {
+          "id": 1,
+          "name": "change notes",
+          "value": "Add fil,from,to in version table of maps."
+        },
+        {
+          "id": 446174262,
+          "name": "from",
+          "value": "CW_nu_eta"
+        },
+        {
+          "id": 651971502,
+          "name": "filtration",
+          "value": 0
+        },
+        {
+          "id": 817812698,
+          "name": "t_max",
+          "value": 200
+        },
+        {
+          "id": 1585932889,
+          "name": "suspension",
+          "value": 4
+        },
+        {
+          "id": 1713085477,
+          "name": "to",
+          "value": "Ceta"
+        },
+        {
+          "id": 1954841564,
+          "name": "timestamp",
+          "value": 1690291275
+        }
+      ],
+      "used_generators": [
+        {
+          "generator": {
+            "id": 0,
+            "name": "[0]",
+            "repr": 0,
+            "s": 0,
+            "t": 0,
+            "cell": 0,
+            "cell_coeff": ";"
+          },
+          "image": {
+            "id": 0,
+            "map": ""
+          }
+        },
+        {
+          "generator": {
+            "id": 1,
+            "name": "(h_0^3[4])",
+            "repr": 1572865,
+            "s": 3,
+            "t": 7,
+            "cell": 4,
+            "cell_coeff": "0,3"
+          },
+          "image": {
+            "id": 1,
+            "map": "0,3,0"
+          }
+        },
+        {
+          "generator": {
+            "id": 2,
+            "name": null,
+            "repr": 524290,
+            "s": 1,
+            "t": 7,
+            "cell": null,
+            "cell_coeff": null
+          },
+          "image": {
+            "id": 2,
+            "map": "1"
+          }
+        },
+        {
+          "generator": {
+            "id": 12,
+            "name": null,
+            "repr": 1572891,
+            "s": 3,
+            "t": 40,
+            "cell": null,
+            "cell_coeff": null
+          },
+          "image": {
+            "id": 12,
+            "map": "12"
+          }
+        }
+      ],
+      "slices": [
+        {
+          "source": {
+            "spectrum": "CW_nu_eta",
+            "degree": [
+              15,
+              144
+            ],
+            "basis_dimension": 2,
+            "basis": [
+              {
+                "id": 5442,
+                "mon": "195,1,12",
+                "repr": "7864524,7864525",
+                "s": 15,
+                "t": 144,
+                "d2": "",
+                "local_index": 0
+              },
+              {
+                "id": 5443,
+                "mon": "0,1,418,1,2",
+                "repr": "7864525",
+                "s": 15,
+                "t": 144,
+                "d2": "",
+                "local_index": 1
+              }
+            ],
+            "staircase": [
+              {
+                "id": 5442,
+                "s": 15,
+                "t": 144,
+                "base": "0",
+                "diff": null,
+                "level": 9000
+              },
+              {
+                "id": 5443,
+                "s": 15,
+                "t": 144,
+                "base": "1",
+                "diff": "0",
+                "level": 9997
+              }
+            ]
+          },
+          "target": {
+            "spectrum": "Ceta",
+            "degree": [
+              15,
+              140
+            ],
+            "basis_dimension": 5,
+            "basis": [
+              {
+                "id": 5009,
+                "mon": "189,1,15",
+                "repr": "7864505",
+                "s": 15,
+                "t": 140,
+                "d2": "",
+                "local_index": 0
+              },
+              {
+                "id": 5010,
+                "mon": "0,1,418,1,1",
+                "repr": "7864509",
+                "s": 15,
+                "t": 140,
+                "d2": "",
+                "local_index": 1
+              },
+              {
+                "id": 5011,
+                "mon": "456,1,0",
+                "repr": "7864506,7864508,7864509",
+                "s": 15,
+                "t": 140,
+                "d2": "",
+                "local_index": 2
+              },
+              {
+                "id": 5012,
+                "mon": "67,1,107,1,0",
+                "repr": "7864505,7864506,7864507,7864508,7864509",
+                "s": 15,
+                "t": 140,
+                "d2": "",
+                "local_index": 3
+              },
+              {
+                "id": 5013,
+                "mon": "0,1,449,1,0",
+                "repr": "7864508",
+                "s": 15,
+                "t": 140,
+                "d2": "3",
+                "local_index": 4
+              }
+            ],
+            "staircase": [
+              {
+                "id": 5009,
+                "s": 15,
+                "t": 140,
+                "base": "3",
+                "diff": "0",
+                "level": 2
+              },
+              {
+                "id": 5010,
+                "s": 15,
+                "t": 140,
+                "base": "0",
+                "diff": "0,1,3",
+                "level": 5
+              },
+              {
+                "id": 5011,
+                "s": 15,
+                "t": 140,
+                "base": "2",
+                "diff": null,
+                "level": 9992
+              },
+              {
+                "id": 5012,
+                "s": 15,
+                "t": 140,
+                "base": "1",
+                "diff": "0",
+                "level": 9997
+              },
+              {
+                "id": 5013,
+                "s": 15,
+                "t": 140,
+                "base": "4",
+                "diff": "3",
+                "level": 9998
+              }
+            ]
+          },
+          "raw_generator_substitution": [
+            {
+              "local_index": 0,
+              "coefficient": "195,1",
+              "module_generator": 12,
+              "stored_generator_image": "12"
+            },
+            {
+              "local_index": 1,
+              "coefficient": "0,1,418,1",
+              "module_generator": 2,
+              "stored_generator_image": "1"
+            }
+          ],
+          "columns_after_recorded_relation_reductions": [
+            [
+              3
+            ],
+            [
+              1
+            ]
+          ],
+          "matrix_rows": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "source": {
+            "spectrum": "CW_nu_eta",
+            "degree": [
+              18,
+              146
+            ],
+            "basis_dimension": 4,
+            "basis": [
+              {
+                "id": 5720,
+                "mon": "0,1,437,1,2",
+                "repr": "9437365,9437366,9437367",
+                "s": 18,
+                "t": 146,
+                "d2": "",
+                "local_index": 0
+              },
+              {
+                "id": 5721,
+                "mon": "0,1,440,1,1",
+                "repr": "9437366,9437367",
+                "s": 18,
+                "t": 146,
+                "d2": "2",
+                "local_index": 1
+              },
+              {
+                "id": 5722,
+                "mon": "519,1,0",
+                "repr": "9437364",
+                "s": 18,
+                "t": 146,
+                "d2": "",
+                "local_index": 2
+              },
+              {
+                "id": 5723,
+                "mon": "0,4,482,1,0",
+                "repr": "9437367",
+                "s": 18,
+                "t": 146,
+                "d2": "2",
+                "local_index": 3
+              }
+            ],
+            "staircase": [
+              {
+                "id": 5720,
+                "s": 18,
+                "t": 146,
+                "base": "1,3",
+                "diff": "0",
+                "level": 2
+              },
+              {
+                "id": 5721,
+                "s": 18,
+                "t": 146,
+                "base": "0",
+                "diff": "1",
+                "level": 3
+              },
+              {
+                "id": 5722,
+                "s": 18,
+                "t": 146,
+                "base": "2",
+                "diff": null,
+                "level": 9000
+              },
+              {
+                "id": 5723,
+                "s": 18,
+                "t": 146,
+                "base": "3",
+                "diff": "2",
+                "level": 9998
+              }
+            ]
+          },
+          "target": {
+            "spectrum": "Ceta",
+            "degree": [
+              18,
+              142
+            ],
+            "basis_dimension": 2,
+            "basis": [
+              {
+                "id": 5253,
+                "mon": "0,1,437,1,1",
+                "repr": "9437366",
+                "s": 18,
+                "t": 142,
+                "d2": "",
+                "local_index": 0
+              },
+              {
+                "id": 5254,
+                "mon": "0,4,440,1,0",
+                "repr": "9437367",
+                "s": 18,
+                "t": 142,
+                "d2": "",
+                "local_index": 1
+              }
+            ],
+            "staircase": [
+              {
+                "id": 5253,
+                "s": 18,
+                "t": 142,
+                "base": "1",
+                "diff": "4",
+                "level": 2
+              },
+              {
+                "id": 5254,
+                "s": 18,
+                "t": 142,
+                "base": "0",
+                "diff": "1",
+                "level": 3
+              }
+            ]
+          },
+          "raw_generator_substitution": [
+            {
+              "local_index": 0,
+              "coefficient": "0,1,437,1",
+              "module_generator": 2,
+              "stored_generator_image": "1"
+            },
+            {
+              "local_index": 1,
+              "coefficient": "0,1,440,1",
+              "module_generator": 1,
+              "stored_generator_image": "0,3,0"
+            },
+            {
+              "local_index": 2,
+              "coefficient": "519,1",
+              "module_generator": 0,
+              "stored_generator_image": ""
+            },
+            {
+              "local_index": 3,
+              "coefficient": "0,4,482,1",
+              "module_generator": 0,
+              "stored_generator_image": ""
+            }
+          ],
+          "columns_after_recorded_relation_reductions": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [],
+            []
+          ],
+          "matrix_rows": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ]
+          ]
+        }
+      ],
+      "scope": "formal module-linear data substitution plus the explicitly listed quotient relations; no actual spectrum map comparison",
+      "selected_vectors": [
+        {
+          "side": "source",
+          "source_coordinates": [
+            1
+          ],
+          "target_coordinates": [
+            1
+          ],
+          "source_basis_id": 5443,
+          "target_basis_id": 5010,
+          "requires_quotient_reduction": false,
+          "raw_all_preimages": [
+            [
+              1
+            ]
+          ]
+        },
+        {
+          "side": "target",
+          "source_coordinates": [
+            0
+          ],
+          "target_coordinates": [
+            0
+          ],
+          "source_basis_id": 5720,
+          "target_basis_id": 5253,
+          "requires_quotient_reduction": false,
+          "raw_all_preimages": [
+            [
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              2,
+              3
+            ]
+          ]
+        }
+      ],
+      "full_matrix_reduction": {
+        "source_column": 0,
+        "raw_image": "195,1,12",
+        "target_basis_monomial": "67,1,107,1,0",
+        "target_local_index": 3,
+        "relations": [
+          "cw_map_column0_first",
+          "cw_map_column0_second"
+        ],
+        "operation": "XOR of the two displayed module relations",
+        "kernel_certified": false
+      }
+    },
+    "ceta_to_sphere": {
+      "native_map": {
+        "from": "Ceta",
+        "name": "Ceta__S0",
+        "path": "map_AdamsSS_Ceta_to_S0_t200.db",
+        "sus": 2,
+        "t_max": 200,
+        "to": "S0",
+        "type": "top_cell"
+      },
+      "database_version": [
+        {
+          "id": 0,
+          "name": "version",
+          "value": 3
+        },
+        {
+          "id": 1,
+          "name": "change notes",
+          "value": "Add fil,from,to in version table of maps."
+        },
+        {
+          "id": 446174262,
+          "name": "from",
+          "value": "Ceta"
+        },
+        {
+          "id": 651971502,
+          "name": "filtration",
+          "value": 0
+        },
+        {
+          "id": 817812698,
+          "name": "t_max",
+          "value": 200
+        },
+        {
+          "id": 1585932889,
+          "name": "suspension",
+          "value": 2
+        },
+        {
+          "id": 1713085477,
+          "name": "to",
+          "value": "S0"
+        }
+      ],
+      "used_generators": [
+        {
+          "generator": {
+            "id": 0,
+            "name": "[0]",
+            "repr": 0,
+            "s": 0,
+            "t": 0,
+            "cell": 0,
+            "cell_coeff": ";"
+          },
+          "image": {
+            "id": 0,
+            "map": ""
+          }
+        },
+        {
+          "generator": {
+            "id": 1,
+            "name": "(h_0[2])",
+            "repr": 524289,
+            "s": 1,
+            "t": 3,
+            "cell": 2,
+            "cell_coeff": "0,1"
+          },
+          "image": {
+            "id": 1,
+            "map": "0,1"
+          }
+        },
+        {
+          "generator": {
+            "id": 15,
+            "name": "(n[2])",
+            "repr": 2621462,
+            "s": 5,
+            "t": 38,
+            "cell": 2,
+            "cell_coeff": "24,1"
+          },
+          "image": {
+            "id": 15,
+            "map": "24,1"
+          }
+        }
+      ],
+      "slices": [
+        {
+          "source": {
+            "spectrum": "Ceta",
+            "degree": [
+              15,
+              140
+            ],
+            "basis_dimension": 5,
+            "basis": [
+              {
+                "id": 5009,
+                "mon": "189,1,15",
+                "repr": "7864505",
+                "s": 15,
+                "t": 140,
+                "d2": "",
+                "local_index": 0
+              },
+              {
+                "id": 5010,
+                "mon": "0,1,418,1,1",
+                "repr": "7864509",
+                "s": 15,
+                "t": 140,
+                "d2": "",
+                "local_index": 1
+              },
+              {
+                "id": 5011,
+                "mon": "456,1,0",
+                "repr": "7864506,7864508,7864509",
+                "s": 15,
+                "t": 140,
+                "d2": "",
+                "local_index": 2
+              },
+              {
+                "id": 5012,
+                "mon": "67,1,107,1,0",
+                "repr": "7864505,7864506,7864507,7864508,7864509",
+                "s": 15,
+                "t": 140,
+                "d2": "",
+                "local_index": 3
+              },
+              {
+                "id": 5013,
+                "mon": "0,1,449,1,0",
+                "repr": "7864508",
+                "s": 15,
+                "t": 140,
+                "d2": "3",
+                "local_index": 4
+              }
+            ],
+            "staircase": [
+              {
+                "id": 5009,
+                "s": 15,
+                "t": 140,
+                "base": "3",
+                "diff": "0",
+                "level": 2
+              },
+              {
+                "id": 5010,
+                "s": 15,
+                "t": 140,
+                "base": "0",
+                "diff": "0,1,3",
+                "level": 5
+              },
+              {
+                "id": 5011,
+                "s": 15,
+                "t": 140,
+                "base": "2",
+                "diff": null,
+                "level": 9992
+              },
+              {
+                "id": 5012,
+                "s": 15,
+                "t": 140,
+                "base": "1",
+                "diff": "0",
+                "level": 9997
+              },
+              {
+                "id": 5013,
+                "s": 15,
+                "t": 140,
+                "base": "4",
+                "diff": "3",
+                "level": 9998
+              }
+            ]
+          },
+          "target": {
+            "spectrum": "S0",
+            "degree": [
+              15,
+              138
+            ],
+            "basis_dimension": 3,
+            "basis": [
+              {
+                "id": 3000,
+                "mon": "438,1",
+                "repr": "7864430",
+                "s": 15,
+                "t": 138,
+                "d2": "",
+                "local_index": 0
+              },
+              {
+                "id": 3001,
+                "mon": "7,1,279,1",
+                "repr": "7864431",
+                "s": 15,
+                "t": 138,
+                "d2": "",
+                "local_index": 1
+              },
+              {
+                "id": 3002,
+                "mon": "0,2,418,1",
+                "repr": "7864432",
+                "s": 15,
+                "t": 138,
+                "d2": "",
+                "local_index": 2
+              }
+            ],
+            "staircase": [
+              {
+                "id": 3000,
+                "s": 15,
+                "t": 138,
+                "base": "0",
+                "diff": "1,2",
+                "level": 4
+              },
+              {
+                "id": 3001,
+                "s": 15,
+                "t": 138,
+                "base": "1",
+                "diff": "3",
+                "level": 5
+              },
+              {
+                "id": 3002,
+                "s": 15,
+                "t": 138,
+                "base": "2",
+                "diff": "2",
+                "level": 9997
+              }
+            ]
+          },
+          "raw_generator_substitution": [
+            {
+              "local_index": 0,
+              "coefficient": "189,1",
+              "module_generator": 15,
+              "stored_generator_image": "24,1"
+            },
+            {
+              "local_index": 1,
+              "coefficient": "0,1,418,1",
+              "module_generator": 1,
+              "stored_generator_image": "0,1"
+            },
+            {
+              "local_index": 2,
+              "coefficient": "456,1",
+              "module_generator": 0,
+              "stored_generator_image": ""
+            },
+            {
+              "local_index": 3,
+              "coefficient": "67,1,107,1",
+              "module_generator": 0,
+              "stored_generator_image": ""
+            },
+            {
+              "local_index": 4,
+              "coefficient": "0,1,449,1",
+              "module_generator": 0,
+              "stored_generator_image": ""
+            }
+          ],
+          "columns_after_recorded_relation_reductions": [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [],
+            [],
+            []
+          ],
+          "matrix_rows": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "source": {
+            "spectrum": "Ceta",
+            "degree": [
+              18,
+              142
+            ],
+            "basis_dimension": 2,
+            "basis": [
+              {
+                "id": 5253,
+                "mon": "0,1,437,1,1",
+                "repr": "9437366",
+                "s": 18,
+                "t": 142,
+                "d2": "",
+                "local_index": 0
+              },
+              {
+                "id": 5254,
+                "mon": "0,4,440,1,0",
+                "repr": "9437367",
+                "s": 18,
+                "t": 142,
+                "d2": "",
+                "local_index": 1
+              }
+            ],
+            "staircase": [
+              {
+                "id": 5253,
+                "s": 18,
+                "t": 142,
+                "base": "1",
+                "diff": "4",
+                "level": 2
+              },
+              {
+                "id": 5254,
+                "s": 18,
+                "t": 142,
+                "base": "0",
+                "diff": "1",
+                "level": 3
+              }
+            ]
+          },
+          "target": {
+            "spectrum": "S0",
+            "degree": [
+              18,
+              140
+            ],
+            "basis_dimension": 3,
+            "basis": [
+              {
+                "id": 3138,
+                "mon": "8,1,279,1",
+                "repr": "9437292,9437293",
+                "s": 18,
+                "t": 140,
+                "d2": "",
+                "local_index": 0
+              },
+              {
+                "id": 3139,
+                "mon": "1,1,436,1",
+                "repr": "9437292",
+                "s": 18,
+                "t": 140,
+                "d2": "",
+                "local_index": 1
+              },
+              {
+                "id": 3140,
+                "mon": "0,2,437,1",
+                "repr": "9437294",
+                "s": 18,
+                "t": 140,
+                "d2": "",
+                "local_index": 2
+              }
+            ],
+            "staircase": [
+              {
+                "id": 3138,
+                "s": 18,
+                "t": 140,
+                "base": "2",
+                "diff": "2",
+                "level": 3
+              },
+              {
+                "id": 3139,
+                "s": 18,
+                "t": 140,
+                "base": "1",
+                "diff": "0,1,3",
+                "level": 7
+              },
+              {
+                "id": 3140,
+                "s": 18,
+                "t": 140,
+                "base": "0",
+                "diff": "1",
+                "level": 9997
+              }
+            ]
+          },
+          "raw_generator_substitution": [
+            {
+              "local_index": 0,
+              "coefficient": "0,1,437,1",
+              "module_generator": 1,
+              "stored_generator_image": "0,1"
+            },
+            {
+              "local_index": 1,
+              "coefficient": "0,4,440,1",
+              "module_generator": 0,
+              "stored_generator_image": ""
+            }
+          ],
+          "columns_after_recorded_relation_reductions": [
+            [
+              2
+            ],
+            []
+          ],
+          "matrix_rows": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ]
+        }
+      ],
+      "scope": "formal module-linear data substitution plus the explicitly listed quotient relations; no actual spectrum map comparison",
+      "selected_vectors": [
+        {
+          "side": "source",
+          "source_coordinates": [
+            1
+          ],
+          "target_coordinates": [
+            2
+          ],
+          "source_basis_id": 5010,
+          "target_basis_id": 3002,
+          "requires_quotient_reduction": false,
+          "raw_all_preimages": [
+            [
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              2,
+              4
+            ],
+            [
+              1,
+              3,
+              4
+            ],
+            [
+              1,
+              2,
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "side": "target",
+          "source_coordinates": [
+            0
+          ],
+          "target_coordinates": [
+            2
+          ],
+          "source_basis_id": 5253,
+          "target_basis_id": 3140,
+          "requires_quotient_reduction": false,
+          "raw_all_preimages": [
+            [
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        }
+      ],
+      "full_matrix_reduction": {
+        "source_column": 0,
+        "raw_image": "24,1,189,1",
+        "target_basis_monomial": "7,1,279,1",
+        "target_local_index": 1,
+        "relation": "sphere_map_column0",
+        "kernel_certified": true,
+        "scope": "fixed sphere quotient equation only; actual top-cell comparison is unproved"
+      },
+      "native_source_staircase_reciprocal": {
+        "outgoing": {
+          "id": 5012,
+          "s": 15,
+          "t": 140,
+          "base": "1",
+          "diff": "0",
+          "level": 9997
+        },
+        "incoming": {
+          "id": 5254,
+          "s": 18,
+          "t": 142,
+          "base": "0",
+          "diff": "1",
+          "level": 3
+        }
+      }
+    }
+  },
+  "relations": {
+    "sphere_map_column0": {
+      "sqlite_rowid": 10210,
+      "rel": "24,1,189,1;7,1,279,1",
+      "s": 15,
+      "t": 138,
+      "csv_ordinal_zero_based": 10209,
+      "csv_path": "KIP126/LinProgram/Raw/S0_AdamsE2_relations.csv",
+      "kernel_certification": {
+        "declaration": "KIP126.LinE2.NaturalityHighStemProducts.native_map_column0",
+        "module": "KIP126/LinProgram/Certificates/NaturalityHighStemProducts.lean",
+        "scope": "kernel-checked fixed sphere quotient equation only; no actual map, CW module action or differential assertion"
+      }
+    },
+    "cw_map_column0_first": {
+      "sqlite_rowid": 13125,
+      "rel": "195,1,12;385,1,2;456,1,0",
+      "s": 15,
+      "t": 140,
+      "kernel_certification": "not kernel-certified for this trace"
+    },
+    "cw_map_column0_second": {
+      "sqlite_rowid": 13126,
+      "rel": "385,1,2;456,1,0;67,1,107,1,0",
+      "s": 15,
+      "t": 140,
+      "kernel_certification": "not kernel-certified for this trace"
+    },
+    "h0_h1": {
+      "sqlite_rowid": 1,
+      "rel": "0,1,1,1",
+      "s": 2,
+      "t": 3,
+      "csv_ordinal_zero_based": 0,
+      "csv_path": "KIP126/LinProgram/Raw/S0_AdamsE2_relations.csv",
+      "kernel_certification": "existing private relation1 lemma in Certificates/ReplayProducts.lean; no actual CW module comparison"
+    },
+    "h0_x519": {
+      "sqlite_rowid": 13637,
+      "rel": "0,1,519,1",
+      "s": 19,
+      "t": 147,
+      "csv_ordinal_zero_based": 13636,
+      "csv_path": "KIP126/LinProgram/Raw/S0_AdamsE2_relations.csv",
+      "kernel_certification": {
+        "declaration": "KIP126.LinE2.NaturalityHighStemProducts.native_h0_product_zero",
+        "module": "KIP126/LinProgram/Certificates/NaturalityHighStemProducts.lean",
+        "scope": "kernel-checked fixed sphere quotient equation only; no actual map, CW module action or differential assertion"
+      }
+    },
+    "historical_h3_source": {
+      "sqlite_rowid": 13675,
+      "rel": "3,1,240;438,1,2;0,2,418,1,2",
+      "s": 16,
+      "t": 145,
+      "kernel_certification": "not kernel-certified for this trace"
+    },
+    "historical_h3_target": {
+      "sqlite_rowid": 10936,
+      "rel": "3,1,358,1;0,2,437,1",
+      "s": 18,
+      "t": 140,
+      "csv_ordinal_zero_based": 10935,
+      "csv_path": "KIP126/LinProgram/Raw/S0_AdamsE2_relations.csv",
+      "kernel_certification": {
+        "declaration": "KIP126.LinE2.NaturalityHighStemProducts.native_ancestor_product",
+        "module": "KIP126/LinProgram/Certificates/NaturalityHighStemProducts.lean",
+        "scope": "kernel-checked fixed sphere quotient equation only; no actual map, CW module action or differential assertion"
+      }
+    }
+  },
+  "candidate_coverage": {
+    "degree": [
+      18,
+      146
+    ],
+    "source_slice": {
+      "spectrum": "CW_nu_eta",
+      "degree": [
+        15,
+        144
+      ],
+      "basis_dimension": 2,
+      "basis": [
+        {
+          "id": 5442,
+          "mon": "195,1,12",
+          "repr": "7864524,7864525",
+          "s": 15,
+          "t": 144,
+          "d2": "",
+          "local_index": 0
+        },
+        {
+          "id": 5443,
+          "mon": "0,1,418,1,2",
+          "repr": "7864525",
+          "s": 15,
+          "t": 144,
+          "d2": "",
+          "local_index": 1
+        }
+      ],
+      "staircase": [
+        {
+          "id": 5442,
+          "s": 15,
+          "t": 144,
+          "base": "0",
+          "diff": null,
+          "level": 9000
+        },
+        {
+          "id": 5443,
+          "s": 15,
+          "t": 144,
+          "base": "1",
+          "diff": "0",
+          "level": 9997
+        }
+      ]
+    },
+    "source_incoming_d2": {
+      "spectrum": "CW_nu_eta",
+      "degree": [
+        13,
+        143
+      ],
+      "basis_dimension": 6,
+      "basis": [
+        {
+          "id": 5331,
+          "mon": "0,4,367,1,2",
+          "repr": "6815965",
+          "s": 13,
+          "t": 143,
+          "d2": "",
+          "local_index": 0
+        },
+        {
+          "id": 5332,
+          "mon": "0,8,69,2,1",
+          "repr": "6815966",
+          "s": 13,
+          "t": 143,
+          "d2": "",
+          "local_index": 1
+        },
+        {
+          "id": 5333,
+          "mon": "496,1,0",
+          "repr": "6815961",
+          "s": 13,
+          "t": 143,
+          "d2": "",
+          "local_index": 2
+        },
+        {
+          "id": 5334,
+          "mon": "76,1,107,1,0",
+          "repr": "6815961,6815963,6815966",
+          "s": 13,
+          "t": 143,
+          "d2": "",
+          "local_index": 3
+        },
+        {
+          "id": 5335,
+          "mon": "0,1,484,1,0",
+          "repr": "6815962,6815963,6815966",
+          "s": 13,
+          "t": 143,
+          "d2": "",
+          "local_index": 4
+        },
+        {
+          "id": 5336,
+          "mon": "0,1,3,1,386,1,0",
+          "repr": "6815964",
+          "s": 13,
+          "t": 143,
+          "d2": "",
+          "local_index": 5
+        }
+      ],
+      "staircase": [
+        {
+          "id": 5331,
+          "s": 13,
+          "t": 143,
+          "base": "0,5",
+          "diff": "3,6",
+          "level": 2
+        },
+        {
+          "id": 5332,
+          "s": 13,
+          "t": 143,
+          "base": "5",
+          "diff": "0,6",
+          "level": 2
+        },
+        {
+          "id": 5333,
+          "s": 13,
+          "t": 143,
+          "base": "1",
+          "diff": "4",
+          "level": 2
+        },
+        {
+          "id": 5334,
+          "s": 13,
+          "t": 143,
+          "base": "2",
+          "diff": "3",
+          "level": 3
+        },
+        {
+          "id": 5335,
+          "s": 13,
+          "t": 143,
+          "base": "4",
+          "diff": "1,2",
+          "level": 9997
+        },
+        {
+          "id": 5336,
+          "s": 13,
+          "t": 143,
+          "base": "3",
+          "diff": "2",
+          "level": 9997
+        }
+      ]
+    },
+    "incoming": {
+      "spectrum": "CW_nu_eta",
+      "degree": [
+        16,
+        145
+      ],
+      "basis_dimension": 5,
+      "basis": [
+        {
+          "id": 5600,
+          "mon": "308",
+          "repr": "8388806",
+          "s": 16,
+          "t": 145,
+          "d2": "1,3",
+          "local_index": 0
+        },
+        {
+          "id": 5601,
+          "mon": "0,1,195,1,12",
+          "repr": "8388807,8388809",
+          "s": 16,
+          "t": 145,
+          "d2": "",
+          "local_index": 1
+        },
+        {
+          "id": 5602,
+          "mon": "438,1,2",
+          "repr": "8388805,8388808,8388809",
+          "s": 16,
+          "t": 145,
+          "d2": "",
+          "local_index": 2
+        },
+        {
+          "id": 5603,
+          "mon": "0,2,418,1,2",
+          "repr": "8388809",
+          "s": 16,
+          "t": 145,
+          "d2": "",
+          "local_index": 3
+        },
+        {
+          "id": 5604,
+          "mon": "1,1,495,1,0",
+          "repr": "8388808",
+          "s": 16,
+          "t": 145,
+          "d2": "",
+          "local_index": 4
+        }
+      ],
+      "staircase": [
+        {
+          "id": 5600,
+          "s": 16,
+          "t": 145,
+          "base": "4",
+          "diff": "0",
+          "level": 2
+        },
+        {
+          "id": 5601,
+          "s": 16,
+          "t": 145,
+          "base": "1,2",
+          "diff": "4",
+          "level": 3
+        },
+        {
+          "id": 5602,
+          "s": 16,
+          "t": 145,
+          "base": "2",
+          "diff": "3",
+          "level": 3
+        },
+        {
+          "id": 5603,
+          "s": 16,
+          "t": 145,
+          "base": "3",
+          "diff": "1",
+          "level": 9997
+        },
+        {
+          "id": 5604,
+          "s": 16,
+          "t": 145,
+          "base": "0",
+          "diff": "1,3",
+          "level": 9998
+        }
+      ]
+    },
+    "target": {
+      "spectrum": "CW_nu_eta",
+      "degree": [
+        18,
+        146
+      ],
+      "basis_dimension": 4,
+      "basis": [
+        {
+          "id": 5720,
+          "mon": "0,1,437,1,2",
+          "repr": "9437365,9437366,9437367",
+          "s": 18,
+          "t": 146,
+          "d2": "",
+          "local_index": 0
+        },
+        {
+          "id": 5721,
+          "mon": "0,1,440,1,1",
+          "repr": "9437366,9437367",
+          "s": 18,
+          "t": 146,
+          "d2": "2",
+          "local_index": 1
+        },
+        {
+          "id": 5722,
+          "mon": "519,1,0",
+          "repr": "9437364",
+          "s": 18,
+          "t": 146,
+          "d2": "",
+          "local_index": 2
+        },
+        {
+          "id": 5723,
+          "mon": "0,4,482,1,0",
+          "repr": "9437367",
+          "s": 18,
+          "t": 146,
+          "d2": "2",
+          "local_index": 3
+        }
+      ],
+      "staircase": [
+        {
+          "id": 5720,
+          "s": 18,
+          "t": 146,
+          "base": "1,3",
+          "diff": "0",
+          "level": 2
+        },
+        {
+          "id": 5721,
+          "s": 18,
+          "t": 146,
+          "base": "0",
+          "diff": "1",
+          "level": 3
+        },
+        {
+          "id": 5722,
+          "s": 18,
+          "t": 146,
+          "base": "2",
+          "diff": null,
+          "level": 9000
+        },
+        {
+          "id": 5723,
+          "s": 18,
+          "t": 146,
+          "base": "3",
+          "diff": "2",
+          "level": 9998
+        }
+      ]
+    },
+    "outgoing_target": {
+      "spectrum": "CW_nu_eta",
+      "degree": [
+        20,
+        147
+      ],
+      "basis_dimension": 4,
+      "basis": [
+        {
+          "id": 5854,
+          "mon": "326",
+          "repr": "10485925",
+          "s": 20,
+          "t": 147,
+          "d2": "",
+          "local_index": 0
+        },
+        {
+          "id": 5855,
+          "mon": "0,3,422,1,2",
+          "repr": "10485926,10485927",
+          "s": 20,
+          "t": 147,
+          "d2": "2",
+          "local_index": 1
+        },
+        {
+          "id": 5856,
+          "mon": "0,5,481,1,0",
+          "repr": "10485927,10485928",
+          "s": 20,
+          "t": 147,
+          "d2": "",
+          "local_index": 2
+        },
+        {
+          "id": 5857,
+          "mon": "0,19,324,1,0",
+          "repr": "10485928",
+          "s": 20,
+          "t": 147,
+          "d2": "",
+          "local_index": 3
+        }
+      ],
+      "staircase": [
+        {
+          "id": 5854,
+          "s": 20,
+          "t": 147,
+          "base": "2",
+          "diff": "3",
+          "level": 2
+        },
+        {
+          "id": 5855,
+          "s": 20,
+          "t": 147,
+          "base": "3",
+          "diff": "2",
+          "level": 9997
+        },
+        {
+          "id": 5856,
+          "s": 20,
+          "t": 147,
+          "base": "0",
+          "diff": "0,1",
+          "level": 9997
+        },
+        {
+          "id": 5857,
+          "s": 20,
+          "t": 147,
+          "base": "1",
+          "diff": "2",
+          "level": 9998
+        }
+      ]
+    },
+    "dimensions": [
+      5,
+      4,
+      4
+    ],
+    "incoming_d2_columns": [
+      [
+        1,
+        3
+      ],
+      [],
+      [],
+      [],
+      []
+    ],
+    "outgoing_d2_columns": [
+      [],
+      [
+        2
+      ],
+      [],
+      [
+        2
+      ]
+    ],
+    "incoming_matrix_rows": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "outgoing_matrix_rows": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "cycle_vectors": [
+      [],
+      [
+        0
+      ],
+      [
+        2
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        0,
+        1,
+        2,
+        3
+      ]
+    ],
+    "boundary_vectors": [
+      [],
+      [
+        1,
+        3
+      ]
+    ],
+    "quotient_representatives": [
+      [],
+      [
+        0
+      ],
+      [
+        2
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "unique_raw_normal_forms": [
+      {
+        "cycle": [],
+        "representative": [],
+        "boundary": []
+      },
+      {
+        "cycle": [
+          0
+        ],
+        "representative": [
+          0
+        ],
+        "boundary": []
+      },
+      {
+        "cycle": [
+          2
+        ],
+        "representative": [
+          2
+        ],
+        "boundary": []
+      },
+      {
+        "cycle": [
+          0,
+          2
+        ],
+        "representative": [
+          0,
+          2
+        ],
+        "boundary": []
+      },
+      {
+        "cycle": [
+          1,
+          3
+        ],
+        "representative": [],
+        "boundary": [
+          1,
+          3
+        ]
+      },
+      {
+        "cycle": [
+          0,
+          1,
+          3
+        ],
+        "representative": [
+          0
+        ],
+        "boundary": [
+          1,
+          3
+        ]
+      },
+      {
+        "cycle": [
+          1,
+          2,
+          3
+        ],
+        "representative": [
+          2
+        ],
+        "boundary": [
+          1,
+          3
+        ]
+      },
+      {
+        "cycle": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "representative": [
+          0,
+          2
+        ],
+        "boundary": [
+          1,
+          3
+        ]
+      }
+    ],
+    "excluded_trial_vectors": [
+      [],
+      [
+        2
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "retained_vector": [
+      0
+    ],
+    "status": "raw finite quotient enumeration verified in Python; no actual E3 spanning or independence theorem",
+    "necessary_mathematical_statement": "Every actual E3 target at (18,146) is represented by exactly one of [], [0], [2], [0,2] through the same CW_nu_eta interpretation; its d2 kernel and boundary image must agree with the displayed matrices. The D tag does not imply this statement."
+  },
+  "diagnostic_state_dependencies": {
+    "h0": {
+      "spectrum": "S0",
+      "degree": [
+        1,
+        1
+      ],
+      "basis_dimension": 1,
+      "basis": [
+        {
+          "id": 1,
+          "mon": "0,1",
+          "repr": "524288",
+          "s": 1,
+          "t": 1,
+          "d2": "",
+          "local_index": 0
+        }
+      ],
+      "staircase": [
+        {
+          "id": 1,
+          "s": 1,
+          "t": 1,
+          "base": "0",
+          "diff": null,
+          "level": 9000
+        }
+      ]
+    },
+    "h1": {
+      "spectrum": "S0",
+      "degree": [
+        1,
+        2
+      ],
+      "basis_dimension": 1,
+      "basis": [
+        {
+          "id": 3,
+          "mon": "1,1",
+          "repr": "524289",
+          "s": 1,
+          "t": 2,
+          "d2": "",
+          "local_index": 0
+        }
+      ],
+      "staircase": [
+        {
+          "id": 3,
+          "s": 1,
+          "t": 2,
+          "base": "0",
+          "diff": null,
+          "level": 9000
+        }
+      ]
+    },
+    "previously_supported_differential": {
+      "spectrum": "CW_nu_eta",
+      "page": 3,
+      "source": {
+        "degree": [
+          16,
+          145
+        ],
+        "coordinates": [
+          3
+        ]
+      },
+      "target": {
+        "degree": [
+          19,
+          147
+        ],
+        "coordinates": [
+          1
+        ]
+      },
+      "final_native_source_staircase": {
+        "id": 5603,
+        "s": 16,
+        "t": 145,
+        "base": "3",
+        "diff": "1",
+        "level": 9997
+      },
+      "final_native_target_staircase": {
+        "id": 5859,
+        "s": 19,
+        "t": 147,
+        "base": "1",
+        "diff": "3",
+        "level": 3
+      },
+      "prior_root_logs_in_source_degree": [
+        {
+          "id": 43317,
+          "depth": 0,
+          "reason": "N",
+          "name": "CW_nu_eta",
+          "stem": 129,
+          "s": 16,
+          "t": 145,
+          "r": 2,
+          "x": "0",
+          "dx": "1,3",
+          "info": "Cnu__CW_nu_eta"
+        }
+      ],
+      "prior_root_logs_with_exact_source": [],
+      "status": "explicit prerequisite already used by earlier T462354/462355. The independent algebraic reconstruction below identifies sufficient prior native claims, not primitive parent edges or actual proofs. Final staircase rows are not proof inputs.",
+      "earlier_presupposition_context": [
+        {
+          "id": 462353,
+          "depth": 1,
+          "reason": "T",
+          "name": "CW_nu_eta",
+          "stem": 130,
+          "s": 13,
+          "t": 143,
+          "r": 3,
+          "x": "3",
+          "dx": "1",
+          "info": "Get `CW_nu_eta (130,13) d_3[3]=[1]`. Apply the Leibniz rule with `S0 (0,1) d_3[0]=[]` and get `CW_nu_eta (130,14) d_3[]=[3]`.\nHowever, `CW_nu_eta (129,17) [3]` is not in B_2."
+        },
+        {
+          "id": 462354,
+          "depth": 1,
+          "reason": "T",
+          "name": "CW_nu_eta",
+          "stem": 129,
+          "s": 14,
+          "t": 143,
+          "r": 3,
+          "x": "0",
+          "dx": "",
+          "info": "Get `CW_nu_eta (129,14) d_3[0]=[]`. Apply the Leibniz rule with `S0 (0,2) d_3[0]=[]` and get `CW_nu_eta (129,16) d_3[3]=[]`.\nGet `CW_nu_eta (129,16) d_3[3]=[]` where the element on the left-hand side already supports d_3.\nHowever, `CW_nu_eta (128,19) [1]` is not in B_2."
+        },
+        {
+          "id": 462355,
+          "depth": 1,
+          "reason": "T",
+          "name": "CW_nu_eta",
+          "stem": 129,
+          "s": 14,
+          "t": 143,
+          "r": 3,
+          "x": "0",
+          "dx": "2",
+          "info": "Get `CW_nu_eta (129,14) d_3[0]=[2]`. Apply the Leibniz rule with `S0 (0,2) d_3[0]=[]` and get `CW_nu_eta (129,16) d_3[3]=[]`.\nGet `CW_nu_eta (129,16) d_3[3]=[]` where the element on the left-hand side already supports d_3.\nHowever, `CW_nu_eta (128,19) [1]` is not in B_2."
+        },
+        {
+          "id": 462356,
+          "depth": 1,
+          "reason": "T",
+          "name": "CW_nu_eta",
+          "stem": 127,
+          "s": 16,
+          "t": 143,
+          "r": 5,
+          "x": "1",
+          "dx": "2",
+          "info": "Get `CW_nu_eta (127,16) d_5[1]=[2]`. Consider the map `CW_nu_eta__CW_nu_eta_2`.\nHowever, `CW_nu_eta_2 (126,21) [1]` is not in B_4."
+        }
+      ],
+      "independent_algebraic_reconstruction": {
+        "status": "independent algebraic reconstruction from two earlier native claims; not logged parent edges, not actual differentials",
+        "terms": [
+          {
+            "seed_log": {
+              "id": 461961,
+              "depth": 0,
+              "reason": "D",
+              "name": "CW_nu_eta",
+              "stem": 122,
+              "s": 15,
+              "t": 137,
+              "r": 3,
+              "x": "0",
+              "dx": "0",
+              "info": null
+            },
+            "multiplier": {
+              "spectrum": "S0",
+              "degree": [
+                1,
+                8
+              ],
+              "basis_dimension": 1,
+              "basis": [
+                {
+                  "id": 15,
+                  "mon": "3,1",
+                  "repr": "524291",
+                  "s": 1,
+                  "t": 8,
+                  "d2": "",
+                  "local_index": 0
+                }
+              ],
+              "staircase": [
+                {
+                  "id": 15,
+                  "s": 1,
+                  "t": 8,
+                  "base": "0",
+                  "diff": null,
+                  "level": 9000
+                }
+              ]
+            },
+            "multiplier_selected_index": 0,
+            "seed_source": {
+              "spectrum": "CW_nu_eta",
+              "degree": [
+                15,
+                137
+              ],
+              "basis_dimension": 4,
+              "basis": [
+                {
+                  "id": 4544,
+                  "mon": "240",
+                  "repr": "7864488",
+                  "s": 15,
+                  "t": 137,
+                  "d2": "",
+                  "local_index": 0
+                },
+                {
+                  "id": 4545,
+                  "mon": "287,1,4",
+                  "repr": "7864487",
+                  "s": 15,
+                  "t": 137,
+                  "d2": "1",
+                  "local_index": 1
+                },
+                {
+                  "id": 4546,
+                  "mon": "0,3,314,1,1",
+                  "repr": "7864490",
+                  "s": 15,
+                  "t": 137,
+                  "d2": "5",
+                  "local_index": 2
+                },
+                {
+                  "id": 4547,
+                  "mon": "424,1,0",
+                  "repr": "7864489,7864490",
+                  "s": 15,
+                  "t": 137,
+                  "d2": "5",
+                  "local_index": 3
+                }
+              ],
+              "staircase": [
+                {
+                  "id": 4544,
+                  "s": 15,
+                  "t": 137,
+                  "base": "2,3",
+                  "diff": "1",
+                  "level": 3
+                },
+                {
+                  "id": 4545,
+                  "s": 15,
+                  "t": 137,
+                  "base": "0",
+                  "diff": "0",
+                  "level": 9997
+                },
+                {
+                  "id": 4546,
+                  "s": 15,
+                  "t": 137,
+                  "base": "1",
+                  "diff": "1",
+                  "level": 9998
+                },
+                {
+                  "id": 4547,
+                  "s": 15,
+                  "t": 137,
+                  "base": "3",
+                  "diff": "5",
+                  "level": 9998
+                }
+              ]
+            },
+            "seed_target": {
+              "spectrum": "CW_nu_eta",
+              "degree": [
+                18,
+                139
+              ],
+              "basis_dimension": 3,
+              "basis": [
+                {
+                  "id": 4777,
+                  "mon": "358,1,2",
+                  "repr": "9437331,9437332",
+                  "s": 18,
+                  "t": 139,
+                  "d2": "",
+                  "local_index": 0
+                },
+                {
+                  "id": 4778,
+                  "mon": "0,1,23,1,188,1,0",
+                  "repr": "9437332",
+                  "s": 18,
+                  "t": 139,
+                  "d2": "6",
+                  "local_index": 1
+                },
+                {
+                  "id": 4779,
+                  "mon": "0,2,422,1,0",
+                  "repr": "9437332,9437333",
+                  "s": 18,
+                  "t": 139,
+                  "d2": "6",
+                  "local_index": 2
+                }
+              ],
+              "staircase": [
+                {
+                  "id": 4777,
+                  "s": 18,
+                  "t": 139,
+                  "base": "0",
+                  "diff": "0",
+                  "level": 3
+                },
+                {
+                  "id": 4778,
+                  "s": 18,
+                  "t": 139,
+                  "base": "1,2",
+                  "diff": null,
+                  "level": 9000
+                },
+                {
+                  "id": 4779,
+                  "s": 18,
+                  "t": 139,
+                  "base": "2",
+                  "diff": "6",
+                  "level": 9998
+                }
+              ]
+            },
+            "source_product": [
+              2,
+              3
+            ],
+            "target_product": [
+              1
+            ],
+            "source_relation": "historical_h3_source",
+            "target_relation": "historical_h3_target",
+            "sphere_quotient_lemma": "KIP126.LinE2.NaturalityHighStemProducts.native_ancestor_product",
+            "required_actual_cycle": "S0 d3(1,8)[0]=0",
+            "kernel_certified": false
+          },
+          {
+            "seed_log": {
+              "id": 153861,
+              "depth": 0,
+              "reason": "D",
+              "name": "S0",
+              "stem": 123,
+              "s": 15,
+              "t": 138,
+              "r": 3,
+              "x": "0",
+              "dx": "",
+              "info": null
+            },
+            "multiplier": {
+              "spectrum": "CW_nu_eta",
+              "degree": [
+                1,
+                7
+              ],
+              "basis_dimension": 1,
+              "basis": [
+                {
+                  "id": 11,
+                  "mon": "2",
+                  "repr": "524290",
+                  "s": 1,
+                  "t": 7,
+                  "d2": "",
+                  "local_index": 0
+                }
+              ],
+              "staircase": [
+                {
+                  "id": 11,
+                  "s": 1,
+                  "t": 7,
+                  "base": "0",
+                  "diff": null,
+                  "level": 9000
+                }
+              ]
+            },
+            "multiplier_selected_index": 0,
+            "seed_source": {
+              "spectrum": "S0",
+              "degree": [
+                15,
+                138
+              ],
+              "basis_dimension": 3,
+              "basis": [
+                {
+                  "id": 3000,
+                  "mon": "438,1",
+                  "repr": "7864430",
+                  "s": 15,
+                  "t": 138,
+                  "d2": "",
+                  "local_index": 0
+                },
+                {
+                  "id": 3001,
+                  "mon": "7,1,279,1",
+                  "repr": "7864431",
+                  "s": 15,
+                  "t": 138,
+                  "d2": "",
+                  "local_index": 1
+                },
+                {
+                  "id": 3002,
+                  "mon": "0,2,418,1",
+                  "repr": "7864432",
+                  "s": 15,
+                  "t": 138,
+                  "d2": "",
+                  "local_index": 2
+                }
+              ],
+              "staircase": [
+                {
+                  "id": 3000,
+                  "s": 15,
+                  "t": 138,
+                  "base": "0",
+                  "diff": "1,2",
+                  "level": 4
+                },
+                {
+                  "id": 3001,
+                  "s": 15,
+                  "t": 138,
+                  "base": "1",
+                  "diff": "3",
+                  "level": 5
+                },
+                {
+                  "id": 3002,
+                  "s": 15,
+                  "t": 138,
+                  "base": "2",
+                  "diff": "2",
+                  "level": 9997
+                }
+              ]
+            },
+            "seed_target": {
+              "spectrum": "S0",
+              "degree": [
+                18,
+                140
+              ],
+              "basis_dimension": 3,
+              "basis": [
+                {
+                  "id": 3138,
+                  "mon": "8,1,279,1",
+                  "repr": "9437292,9437293",
+                  "s": 18,
+                  "t": 140,
+                  "d2": "",
+                  "local_index": 0
+                },
+                {
+                  "id": 3139,
+                  "mon": "1,1,436,1",
+                  "repr": "9437292",
+                  "s": 18,
+                  "t": 140,
+                  "d2": "",
+                  "local_index": 1
+                },
+                {
+                  "id": 3140,
+                  "mon": "0,2,437,1",
+                  "repr": "9437294",
+                  "s": 18,
+                  "t": 140,
+                  "d2": "",
+                  "local_index": 2
+                }
+              ],
+              "staircase": [
+                {
+                  "id": 3138,
+                  "s": 18,
+                  "t": 140,
+                  "base": "2",
+                  "diff": "2",
+                  "level": 3
+                },
+                {
+                  "id": 3139,
+                  "s": 18,
+                  "t": 140,
+                  "base": "1",
+                  "diff": "0,1,3",
+                  "level": 7
+                },
+                {
+                  "id": 3140,
+                  "s": 18,
+                  "t": 140,
+                  "base": "0",
+                  "diff": "1",
+                  "level": 9997
+                }
+              ]
+            },
+            "source_product": [
+              2
+            ],
+            "target_product": [],
+            "source_relation": null,
+            "target_relation": null,
+            "required_actual_cycle": "CW_nu_eta d3(1,7)[0]=0",
+            "kernel_certified": false
+          }
+        ],
+        "source_sum": {
+          "degree": [
+            16,
+            145
+          ],
+          "summands": [
+            [
+              2,
+              3
+            ],
+            [
+              2
+            ]
+          ],
+          "coordinates": [
+            3
+          ]
+        },
+        "target_sum": {
+          "degree": [
+            19,
+            147
+          ],
+          "summands": [
+            [
+              1
+            ],
+            []
+          ],
+          "coordinates": [
+            1
+          ]
+        },
+        "checked_algebra": "The two source/target polynomial differences equal the displayed native relations; the second source product matches a basis monomial directly. Coordinate addition is XOR. These checks do not supply the actual module comparison.",
+        "ancestor_context": [
+          {
+            "seed_id": 461961,
+            "previous": {
+              "id": 461957,
+              "depth": 1,
+              "reason": "T",
+              "name": "CW_nu_eta",
+              "stem": 123,
+              "s": 14,
+              "t": 137,
+              "r": 3,
+              "x": "3",
+              "dx": "2",
+              "info": "Get `CW_nu_eta (123,14) d_3[3]=[2]`. Apply the Leibniz rule with `S0 (0,2) d_3[0]=[]` and get `CW_nu_eta (123,16) d_3[5]=[3]`.\nHowever, `CW_nu_eta (122,19) [3]` is not in B_2."
+            },
+            "branch": [
+              {
+                "id": 461958,
+                "depth": 1,
+                "reason": "T",
+                "name": "CW_nu_eta",
+                "stem": 122,
+                "s": 15,
+                "t": 137,
+                "r": 3,
+                "x": "0",
+                "dx": "",
+                "info": "Get `CW_nu_eta (122,15) d_40[0]=[]`. Consider the map `CW_nu_eta__Ceta`.\nGet `Ceta (118,15) d_999[1]=[]`. Consider the map `Ceta__Joker`.\nGet `Joker (118,15) d_999[2]=[]`. Apply the Leibniz rule with `S0 (0,0) d_999[0]=[]` and get `Joker (118,15) d_999[2]=[]`.\nGet `Joker (118,15) d_999[2]=[]` where the element on the left-hand side already supports d_3.\nHowever, `Joker (117,18) [2]` is not in B_2."
+              },
+              {
+                "id": 461959,
+                "depth": 1,
+                "reason": "T",
+                "name": "CW_nu_eta",
+                "stem": 122,
+                "s": 15,
+                "t": 137,
+                "r": 3,
+                "x": "0",
+                "dx": "1,2",
+                "info": "Get `CW_nu_eta (122,15) d_3[0]=[1,2]`. Consider the map `CW_nu_eta__Ceta`.\nGet `Ceta (118,15) d_3[1]=[]`. Consider the map `Ceta__Joker`.\nGet `Joker (118,15) d_3[2]=[]`. Apply the Leibniz rule with `S0 (0,0) d_3[0]=[]` and get `Joker (118,15) d_3[2]=[]`.\nGet `Joker (118,15) d_3[2]=[]` where the element on the left-hand side already supports d_3.\nHowever, `Joker (117,18) [2]` is not in B_2."
+              },
+              {
+                "id": 461960,
+                "depth": 1,
+                "reason": "T",
+                "name": "CW_nu_eta",
+                "stem": 122,
+                "s": 15,
+                "t": 137,
+                "r": 3,
+                "x": "0",
+                "dx": "0,1,2",
+                "info": "Get `CW_nu_eta (122,15) d_3[0]=[0,1,2]`. Consider the map `CW_nu_eta__CW_nu_eta_2`.\nGet `CW_nu_eta_2 (122,15) d_3[1]=[0,1]`. Apply the Leibniz rule with `S0 (0,0) d_3[0]=[]` and get `CW_nu_eta_2 (122,15) d_3[1]=[0,1]`.\nHowever, `CW_nu_eta_2 (121,18) [0,1]` is not in B_2."
+              },
+              {
+                "id": 461961,
+                "depth": 0,
+                "reason": "D",
+                "name": "CW_nu_eta",
+                "stem": 122,
+                "s": 15,
+                "t": 137,
+                "r": 3,
+                "x": "0",
+                "dx": "0",
+                "info": null
+              },
+              {
+                "id": 461962,
+                "depth": 0,
+                "reason": "N",
+                "name": "Ceta",
+                "stem": 118,
+                "s": 15,
+                "t": 133,
+                "r": 3,
+                "x": "1",
+                "dx": "0",
+                "info": "CW_nu_eta__Ceta"
+              },
+              {
+                "id": 461963,
+                "depth": 0,
+                "reason": "N",
+                "name": "CW_eta_nu",
+                "stem": 118,
+                "s": 15,
+                "t": 133,
+                "r": 3,
+                "x": "1",
+                "dx": "0",
+                "info": "Ceta__CW_eta_nu"
+              },
+              {
+                "id": 461964,
+                "depth": 0,
+                "reason": "N",
+                "name": "CW_eta_nu_sigma",
+                "stem": 118,
+                "s": 15,
+                "t": 133,
+                "r": 3,
+                "x": "1",
+                "dx": "0",
+                "info": "CW_eta_nu__CW_eta_nu_sigma"
+              },
+              {
+                "id": 461965,
+                "depth": 0,
+                "reason": "N",
+                "name": "Ceta_Ceta",
+                "stem": 118,
+                "s": 15,
+                "t": 133,
+                "r": 3,
+                "x": "1",
+                "dx": "0",
+                "info": "Ceta__Ceta_Ceta"
+              },
+              {
+                "id": 461966,
+                "depth": 0,
+                "reason": "N",
+                "name": "CW_2_eta",
+                "stem": 119,
+                "s": 16,
+                "t": 135,
+                "r": 3,
+                "x": "2",
+                "dx": "4",
+                "info": "Ceta__Q_Joker"
+              },
+              {
+                "id": 461967,
+                "depth": 0,
+                "reason": "N",
+                "name": "CW_2_eta_nu",
+                "stem": 119,
+                "s": 16,
+                "t": 135,
+                "r": 3,
+                "x": "1",
+                "dx": "3",
+                "info": "CW_2_eta__CW_2_eta_nu"
+              },
+              {
+                "id": 461968,
+                "depth": 0,
+                "reason": "N",
+                "name": "CW_2_eta_nu_sigma",
+                "stem": 119,
+                "s": 16,
+                "t": 135,
+                "r": 3,
+                "x": "1",
+                "dx": "1",
+                "info": "CW_2_eta_nu__CW_2_eta_nu_sigma"
+              }
+            ],
+            "next": {
+              "id": 461969,
+              "depth": 1,
+              "reason": "T",
+              "name": "CW_nu_eta",
+              "stem": 121,
+              "s": 16,
+              "t": 137,
+              "r": 3,
+              "x": "1",
+              "dx": "4",
+              "info": "Get `CW_nu_eta (121,16) d_3[1]=[4]`. Apply the Leibniz rule with `S0 (0,1) d_3[0]=[]` and get `CW_nu_eta (121,17) d_3[1]=[4]`.\nHowever, `CW_nu_eta (120,20) [4]` is not in B_2."
+            }
+          },
+          {
+            "seed_id": 153861,
+            "previous": {
+              "id": 153853,
+              "depth": 0,
+              "reason": "D",
+              "name": "S0",
+              "stem": 123,
+              "s": 15,
+              "t": 138,
+              "r": 40,
+              "x": "1",
+              "dx": "",
+              "info": null
+            },
+            "branch": [
+              {
+                "id": 153854,
+                "depth": 1,
+                "reason": "T",
+                "name": "S0",
+                "stem": 123,
+                "s": 15,
+                "t": 138,
+                "r": 3,
+                "x": "0",
+                "dx": "2",
+                "info": "Get `S0 (123,15) d_3[0]=[2]`. Apply the Leibniz rule with `Ceta (2,1) d_3[0]=[]` and get `Ceta (125,16) d_3[0]=[1]`.\nHowever, `Ceta (124,19) [1]` is not in B_2."
+              },
+              {
+                "id": 153855,
+                "depth": 1,
+                "reason": "T",
+                "name": "S0",
+                "stem": 123,
+                "s": 15,
+                "t": 138,
+                "r": 3,
+                "x": "0",
+                "dx": "1",
+                "info": "Get `S0 (123,15) d_3[0]=[1]`. Apply the Leibniz rule with `S0 (1,1) d_3[0]=[]` and get `S0 (124,16) d_3[1]=[1,2,3]`.\nHowever, `S0 (123,19) [1,2]` is not in B_2."
+              },
+              {
+                "id": 153856,
+                "depth": 1,
+                "reason": "T",
+                "name": "S0",
+                "stem": 123,
+                "s": 15,
+                "t": 138,
+                "r": 3,
+                "x": "0",
+                "dx": "1,2",
+                "info": "Get `S0 (123,15) d_3[0]=[1,2]`. Apply the Leibniz rule with `S0 (1,1) d_3[0]=[]` and get `S0 (124,16) d_3[1]=[1,2,3]`.\nHowever, `S0 (123,19) [1,2]` is not in B_2."
+              },
+              {
+                "id": 153857,
+                "depth": 1,
+                "reason": "T",
+                "name": "S0",
+                "stem": 123,
+                "s": 15,
+                "t": 138,
+                "r": 3,
+                "x": "0",
+                "dx": "0",
+                "info": "Get `S0 (123,15) d_3[0]=[0]`. Apply the Leibniz rule with `S0 (1,1) d_3[0]=[]` and get `S0 (124,16) d_3[1]=[1,2]`.\nHowever, `S0 (123,19) [1,2]` is not in B_2."
+              },
+              {
+                "id": 153858,
+                "depth": 1,
+                "reason": "T",
+                "name": "S0",
+                "stem": 123,
+                "s": 15,
+                "t": 138,
+                "r": 3,
+                "x": "0",
+                "dx": "0,2",
+                "info": "Get `S0 (123,15) d_3[0]=[0,2]`. Apply the Leibniz rule with `S0 (1,1) d_3[0]=[]` and get `S0 (124,16) d_3[1]=[1,2]`.\nHowever, `S0 (123,19) [1,2]` is not in B_2."
+              },
+              {
+                "id": 153859,
+                "depth": 1,
+                "reason": "T",
+                "name": "S0",
+                "stem": 123,
+                "s": 15,
+                "t": 138,
+                "r": 3,
+                "x": "0",
+                "dx": "0,1",
+                "info": "Get `S0 (123,15) d_3[0]=[0,1]`. Apply the Leibniz rule with `S0 (14,4) d_3[0]=[]` and get `S0 (137,19) d_3[]=[1]`.\nHowever, `S0 (136,22) [1]` is not in B_2."
+              },
+              {
+                "id": 153860,
+                "depth": 1,
+                "reason": "T",
+                "name": "S0",
+                "stem": 123,
+                "s": 15,
+                "t": 138,
+                "r": 3,
+                "x": "0",
+                "dx": "0,1,2",
+                "info": "Get `S0 (123,15) d_3[0]=[0,1,2]`. Apply the Leibniz rule with `S0 (14,4) d_3[0]=[]` and get `S0 (137,19) d_3[]=[1]`.\nHowever, `S0 (136,22) [1]` is not in B_2."
+              },
+              {
+                "id": 153861,
+                "depth": 0,
+                "reason": "D",
+                "name": "S0",
+                "stem": 123,
+                "s": 15,
+                "t": 138,
+                "r": 3,
+                "x": "0",
+                "dx": "",
+                "info": null
+              }
+            ],
+            "next": {
+              "id": 153862,
+              "depth": 1,
+              "reason": "T",
+              "name": "S0",
+              "stem": 122,
+              "s": 16,
+              "t": 138,
+              "r": 4,
+              "x": "0",
+              "dx": "0",
+              "info": "Get `S0 (122,16) d_4[0]=[0]`. Apply the Leibniz rule with `S0 (14,4) d_4[0]=[]` and get `S0 (136,20) d_4[4]=[1]`.\nHowever, `S0 (135,24) [1]` is not in B_3."
+            }
+          }
+        ],
+        "required_mathematical_inputs": [
+          "Actual interpretations of the two earlier D statements on the same sphere and CW_nu_eta objects; their retained D markers and adjacent failed trials do not prove them.",
+          "Actual d3-cycle statements for both selected low-degree multipliers; native final staircase diff=NULL is not a proved zero differential.",
+          "Actual module Leibniz, bilinearity and the displayed relation-to-coordinate comparisons, all on the same objects.",
+          "Soundness and completeness of each earlier branch if those D statements are themselves replayed; this reconstruction does not recursively certify their trial diagnostics."
+        ]
+      }
+    },
+    "nonboundary_checks": [
+      {
+        "degree": [
+          19,
+          147
+        ],
+        "incoming": {
+          "spectrum": "CW_nu_eta",
+          "degree": [
+            17,
+            146
+          ],
+          "basis_dimension": 4,
+          "basis": [
+            {
+              "id": 5724,
+              "mon": "0,1,438,1,2",
+              "repr": "8913087,8913090",
+              "s": 17,
+              "t": 146,
+              "d2": "",
+              "local_index": 0
+            },
+            {
+              "id": 5725,
+              "mon": "0,3,418,1,2",
+              "repr": "8913090",
+              "s": 17,
+              "t": 146,
+              "d2": "",
+              "local_index": 1
+            },
+            {
+              "id": 5726,
+              "mon": "449,1,1",
+              "repr": "8913088",
+              "s": 17,
+              "t": 146,
+              "d2": "2,3",
+              "local_index": 2
+            },
+            {
+              "id": 5727,
+              "mon": "3,1,437,1,0",
+              "repr": "8913089,8913090",
+              "s": 17,
+              "t": 146,
+              "d2": "",
+              "local_index": 3
+            }
+          ],
+          "staircase": [
+            {
+              "id": 5724,
+              "s": 17,
+              "t": 146,
+              "base": "0,1",
+              "diff": "2",
+              "level": 2
+            },
+            {
+              "id": 5725,
+              "s": 17,
+              "t": 146,
+              "base": "1",
+              "diff": "1,2",
+              "level": 2
+            },
+            {
+              "id": 5726,
+              "s": 17,
+              "t": 146,
+              "base": "3",
+              "diff": "5",
+              "level": 3
+            },
+            {
+              "id": 5727,
+              "s": 17,
+              "t": 146,
+              "base": "2",
+              "diff": "2,3",
+              "level": 9998
+            }
+          ]
+        },
+        "d2_columns": [
+          [],
+          [],
+          [
+            2,
+            3
+          ],
+          []
+        ],
+        "image": [
+          [],
+          [
+            2,
+            3
+          ]
+        ],
+        "claimed_nonboundary": [
+          1
+        ],
+        "target": {
+          "spectrum": "CW_nu_eta",
+          "degree": [
+            19,
+            147
+          ],
+          "basis_dimension": 4,
+          "basis": [
+            {
+              "id": 5858,
+              "mon": "8,1,279,1,2",
+              "repr": "9961647,9961650",
+              "s": 19,
+              "t": 147,
+              "d2": "",
+              "local_index": 0
+            },
+            {
+              "id": 5859,
+              "mon": "0,2,437,1,2",
+              "repr": "9961648,9961649,9961650",
+              "s": 19,
+              "t": 147,
+              "d2": "",
+              "local_index": 1
+            },
+            {
+              "id": 5860,
+              "mon": "0,2,440,1,1",
+              "repr": "9961649,9961650",
+              "s": 19,
+              "t": 147,
+              "d2": "",
+              "local_index": 2
+            },
+            {
+              "id": 5861,
+              "mon": "0,5,482,1,0",
+              "repr": "9961650",
+              "s": 19,
+              "t": 147,
+              "d2": "",
+              "local_index": 3
+            }
+          ],
+          "staircase": [
+            {
+              "id": 5858,
+              "s": 19,
+              "t": 147,
+              "base": "2,3",
+              "diff": "2",
+              "level": 2
+            },
+            {
+              "id": 5859,
+              "s": 19,
+              "t": 147,
+              "base": "1",
+              "diff": "3",
+              "level": 3
+            },
+            {
+              "id": 5860,
+              "s": 19,
+              "t": 147,
+              "base": "3",
+              "diff": "0,1,2",
+              "level": 7
+            },
+            {
+              "id": 5861,
+              "s": 19,
+              "t": 147,
+              "base": "0",
+              "diff": "1",
+              "level": 9997
+            }
+          ]
+        },
+        "status": "finite raw matrix nonmembership checked in Python; actual B2 comparison is unproved"
+      },
+      {
+        "degree": [
+          19,
+          148
+        ],
+        "incoming": {
+          "spectrum": "CW_nu_eta",
+          "degree": [
+            17,
+            147
+          ],
+          "basis_dimension": 5,
+          "basis": [
+            {
+              "id": 5866,
+              "mon": "9,1,261,1,2",
+              "repr": "8913091",
+              "s": 17,
+              "t": 147,
+              "d2": "",
+              "local_index": 0
+            },
+            {
+              "id": 5867,
+              "mon": "0,1,448,1,2",
+              "repr": "8913092,8913095",
+              "s": 17,
+              "t": 147,
+              "d2": "",
+              "local_index": 1
+            },
+            {
+              "id": 5868,
+              "mon": "0,2,440,1,2",
+              "repr": "8913094,8913095",
+              "s": 17,
+              "t": 147,
+              "d2": "3",
+              "local_index": 2
+            },
+            {
+              "id": 5869,
+              "mon": "0,2,439,1,2",
+              "repr": "8913093",
+              "s": 17,
+              "t": 147,
+              "d2": "",
+              "local_index": 3
+            },
+            {
+              "id": 5870,
+              "mon": "0,12,69,2,1",
+              "repr": "8913095",
+              "s": 17,
+              "t": 147,
+              "d2": "",
+              "local_index": 4
+            }
+          ],
+          "staircase": [
+            {
+              "id": 5866,
+              "s": 17,
+              "t": 147,
+              "base": "1",
+              "diff": "0",
+              "level": 2
+            },
+            {
+              "id": 5867,
+              "s": 17,
+              "t": 147,
+              "base": "4",
+              "diff": "2",
+              "level": 2
+            },
+            {
+              "id": 5868,
+              "s": 17,
+              "t": 147,
+              "base": "3",
+              "diff": null,
+              "level": 10
+            },
+            {
+              "id": 5869,
+              "s": 17,
+              "t": 147,
+              "base": "0",
+              "diff": null,
+              "level": 9000
+            },
+            {
+              "id": 5870,
+              "s": 17,
+              "t": 147,
+              "base": "2",
+              "diff": "3",
+              "level": 9998
+            }
+          ]
+        },
+        "d2_columns": [
+          [],
+          [],
+          [
+            3
+          ],
+          [],
+          []
+        ],
+        "image": [
+          [],
+          [
+            3
+          ]
+        ],
+        "claimed_nonboundary": [
+          5
+        ],
+        "target": {
+          "spectrum": "CW_nu_eta",
+          "degree": [
+            19,
+            148
+          ],
+          "basis_dimension": 6,
+          "basis": [
+            {
+              "id": 6010,
+              "mon": "266,1,6",
+              "repr": "9961651,9961654,9961655,9961656",
+              "s": 19,
+              "t": 148,
+              "d2": "3",
+              "local_index": 0
+            },
+            {
+              "id": 6011,
+              "mon": "9,1,267,1,2",
+              "repr": "9961652,9961654,9961656",
+              "s": 19,
+              "t": 148,
+              "d2": "3",
+              "local_index": 1
+            },
+            {
+              "id": 6012,
+              "mon": "0,1,3,1,359,1,2",
+              "repr": "9961654",
+              "s": 19,
+              "t": 148,
+              "d2": "3",
+              "local_index": 2
+            },
+            {
+              "id": 6013,
+              "mon": "0,5,418,1,2",
+              "repr": "9961656",
+              "s": 19,
+              "t": 148,
+              "d2": "",
+              "local_index": 3
+            },
+            {
+              "id": 6014,
+              "mon": "0,2,449,1,1",
+              "repr": "9961655",
+              "s": 19,
+              "t": 148,
+              "d2": "1",
+              "local_index": 4
+            },
+            {
+              "id": 6015,
+              "mon": "1,1,519,1,0",
+              "repr": "9961653",
+              "s": 19,
+              "t": 148,
+              "d2": "",
+              "local_index": 5
+            }
+          ],
+          "staircase": [
+            {
+              "id": 6010,
+              "s": 19,
+              "t": 148,
+              "base": "3",
+              "diff": "2",
+              "level": 2
+            },
+            {
+              "id": 6011,
+              "s": 19,
+              "t": 148,
+              "base": "5",
+              "diff": null,
+              "level": 9000
+            },
+            {
+              "id": 6012,
+              "s": 19,
+              "t": 148,
+              "base": "1,2",
+              "diff": null,
+              "level": 9000
+            },
+            {
+              "id": 6013,
+              "s": 19,
+              "t": 148,
+              "base": "0,2",
+              "diff": "1",
+              "level": 9997
+            },
+            {
+              "id": 6014,
+              "s": 19,
+              "t": 148,
+              "base": "2",
+              "diff": "3",
+              "level": 9998
+            },
+            {
+              "id": 6015,
+              "s": 19,
+              "t": 148,
+              "base": "4",
+              "diff": "1",
+              "level": 9998
+            }
+          ]
+        },
+        "status": "finite raw matrix nonmembership checked in Python; actual B2 comparison is unproved"
+      }
+    ],
+    "product_identities": [
+      {
+        "multiplier": "S0(1,1)[0]",
+        "input": "CW_nu_eta(15,144)[1]",
+        "output": "CW_nu_eta(16,145)[3]",
+        "method": "direct native monomial match"
+      },
+      {
+        "multiplier": "S0(1,1)[0]",
+        "input": "CW_nu_eta(18,146)[2]",
+        "output": "zero",
+        "method": "sphere relation h0_x519 times module generator0",
+        "sphere_quotient_lemma": "KIP126.LinE2.NaturalityHighStemProducts.native_h0_product_zero",
+        "kernel_certified": false
+      },
+      {
+        "multiplier": "S0(1,2)[0]",
+        "input": "CW_nu_eta(15,144)[1]",
+        "output": "zero",
+        "method": "sphere relation h0_h1 times generator418 and module generator2; actual module comparison unproved"
+      },
+      {
+        "multiplier": "S0(1,2)[0]",
+        "input": "CW_nu_eta(18,146)[0,2]",
+        "output": "CW_nu_eta(19,148)[5]",
+        "method": "h0_h1 kills the coordinate0 term; coordinate2 term directly matches basis6015",
+        "kernel_certified": false
+      }
+    ]
+  },
+  "source_semantics": {
+    "T": "EnumReason.try1: a hypothesized target tested in a temporary node; successful trials are rolled back from the log; the retained diagnostic is a program failure, not a Lean contradiction proof",
+    "D": "EnumReason.deduce has a direct zero-target branch when nd.count==0, and an enumerated-candidate branch when exactly one trial survives. For nonzero output462479 the latter explains the marker. Neither case proves actual candidate coverage or trial soundness.",
+    "N": "EnumReason.nat: after native generator substitution and target Groebner reduction, the program logs the claimed image differential. It does not construct a morphism of actual Adams sequences.",
+    "nulls": "JSON null retains SQL NULL. In particular info=NULL at 462479 is absent information, and diff=NULL in the displayed staircase rows is not an empty differential vector.",
+    "zero": "The empty string in x/dx/d2 or a stored generator map encodes the explicit zero vector/polynomial; string \"0\" is coordinate [0], never zero."
+  },
+  "reuse_plan": {
+    "generic_naturality": "KIP126.Classical.Adams.adamsInternalE2Induced_hasDifferential",
+    "same_route_top_cell": "KIP126.Interface.Solution.LinProgram.Naturality.topCell",
+    "generic_double_desuspension": "KIP126.Classical.Adams.Suspension.TowerComparison.hasDifferential_desuspendTwice",
+    "fixed_double_desuspension": "KIP126.Interface.Solution.LinProgram.Naturality.doubleDesuspensionCompatible",
+    "exact_source_premise": "HasDifferential cetaSequence 3 (15,140) (18,142) (coordinates 15 140 1) (coordinates 18 142 0)",
+    "intermediate_degrees": [
+      [
+        15,
+        139
+      ],
+      [
+        18,
+        141
+      ]
+    ],
+    "final_degrees": [
+      [
+        15,
+        138
+      ],
+      [
+        18,
+        140
+      ]
+    ],
+    "coordinate_comparisons": "The same actual topCell and the same two standardRouteModel.classicalSuspension comparisons must send the selected Ceta labels to P.comparison of native S0 basis3002/[2] and basis3140/[2].",
+    "restriction": "The existing row245130_topCell and row245131 wrappers are specialized to their own low-degree labels; reuse the generic laws or add a correctly specialized wrapper. Do not reuse a D-only log parser for the N source462480."
+  },
+  "remaining_propositions": [
+    "Prove the exact actual Ceta source differential at (15,140)[1] -> (18,142)[0], without using the target sphere differential or total computation delivery.",
+    "If replaying the local ancestor branch, construct the actual CW_nu_eta object and shift-four map to the same Ceta; compare the displayed source and target images.",
+    "Prove actual E3 candidate coverage and the three trial exclusions using the same CW_nu_eta model, genuine page/module Leibniz, multiplier cycles and actual earlier-boundary nonmembership.",
+    "For the historical state, prove actual D461961: CW_nu_eta d3(15,137)[0]=(18,139)[0], actual D153861: S0 d3(15,138)[0]=0, and d3-cycles for S0(1,8)[0] and CW_nu_eta(1,7)[0]; then use actual module Leibniz and the historical_h3_source/target coordinate comparisons to add source[2,3]+[2]=[3] and target[1]+0=[1]. These are sufficient reconstructed dependencies, not recorded parent edges.",
+    "Certify the Ceta module reduction at rowids13125+13126 and the historical CW module reduction at rowid13675. Sphere quotient reductions at rowids10210,13637,10936 are kernel-certified separately; actual module and map comparisons remain unproved. Selected map vectors themselves require no quotient reduction.",
+    "Compare both selected Ceta-to-S0 images with the actual topCell and the same two proved tower desuspensions, preserving the existing literature/bindings/model."
+  ],
+  "queries": {
+    "branch": "SELECT * FROM log WHERE id BETWEEN 462476 AND 462487 ORDER BY id",
+    "predecessor": "SELECT * FROM log WHERE id BETWEEN 462473 AND 462475 ORDER BY id",
+    "next_branch_start": "SELECT * FROM log WHERE id=462488",
+    "prior_exact_state": "SELECT * FROM log WHERE id<462476 AND depth=0 AND name='CW_nu_eta' AND s=16 AND t=145 ORDER BY id",
+    "prior_exact_source": "SELECT * FROM log WHERE id<462476 AND depth=0 AND name='CW_nu_eta' AND s=16 AND t=145 AND x='3' ORDER BY id"
+  }
+}

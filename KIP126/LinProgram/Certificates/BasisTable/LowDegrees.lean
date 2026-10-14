@@ -1,9 +1,9 @@
 module
 
-public import KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 public import Batteries.Tactic.OpenPrivate
 
-import all KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+import all KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 
 @[expose] public section
 
@@ -17,57 +17,57 @@ namespace KIP126.LinE2.BasisCertificates
 set_option maxRecDepth 100000
 
 open private charsDecode charsDecode_correct liftRow mapM_good splitOn_char
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private NuLow.hchunks
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows0 chunk0_string rows0_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows1 chunk1_string rows1_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows2 chunk2_string rows2_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows3 chunk3_string rows3_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows4 chunk4_string rows4_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows5 chunk5_string rows5_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows6 chunk6_string rows6_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows7 chunk7_string rows7_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows8 chunk8_string rows8_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows9 chunk9_string rows9_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows10 chunk10_string rows10_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows11 chunk11_string rows11_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows12 chunk12_string rows12_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows13 chunk13_string rows13_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows14 chunk14_string rows14_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows15 chunk15_string rows15_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows16 chunk16_string rows16_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows17 chunk17_string rows17_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows18 chunk18_string rows18_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows19 chunk19_string rows19_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows20 chunk20_string rows20_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows21 chunk21_string rows21_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows22 chunk22_string rows22_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 open private rows23 chunk23_string rows23_no_newline
-  from KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+  from KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 
 private def zeroCheck (l : List Char) : Bool :=
   match charsDecode l with

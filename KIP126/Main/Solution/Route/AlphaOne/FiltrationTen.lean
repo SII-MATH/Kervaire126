@@ -2,7 +2,7 @@ module
 
 public import KIP126.Def.Kervaire.Route.Section7.AlphaOne
 public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
-public import KIP126.LinProgram.Model.BasisTable.FiniteCertificates
+public import KIP126.LinProgram.Model.BasisCatalogue.FiniteCertificates
 public import KIP126.Main.Solution.Computation.Lambda
 
 
@@ -85,7 +85,7 @@ private theorem nu124_low_zero
     have hin (r : ℤ) (hr : s-2 ≤ r) : E.d r ((s,124+s)-E.diffDeg r) = 0 := by
       have hi : (s,124+s)-E.diffDeg r = (s-r,(s-r)+125) := by
         change (s,124+s)-(r,r-1) = _
-        ext <;> dsimp <;> omega
+        ext <;> dsimp; omega
       rw [hi]
       apply ModuleCat.hom_ext
       apply LinearMap.ext
