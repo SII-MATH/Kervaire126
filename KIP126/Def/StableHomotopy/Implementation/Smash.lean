@@ -4,10 +4,13 @@ public import KIP126.Def.StableHomotopy.Implementation.Generators
 
 @[expose] public section
 
-/-! A genuine sequential model of the derived smash. The even level 2n is
+/-! A point-set sequential smash construction. The even level 2n is
 Xₙ∧Yₙ, and the intervening odd level is its suspension. Thus both suspension
 coordinates are accounted for; Xₙ∧Yₙ is never incorrectly put in level n.
-All point-set maps are fixed on quotient representatives. -/
+All point-set maps are fixed on quotient representatives. The double bonds
+follow MMSS, Definition 11.6. Descent to the stable localization would also
+require replacement and flatness results (cf. MMSS, Proposition 11.7);
+those results are not established in this file. -/
 namespace KIP126.StableHomotopy.Implementation
 open CategoryTheory Topology
 open scoped unitInterval
@@ -18,10 +21,6 @@ def IsGood (X : Prespectrum.{0}) : Prop := ∀ n, (X.level n).IsGood
 
 theorem IsGood.wellBased {X : Prespectrum.{0}} (hX : X.IsGood) : X.IsWellBased :=
   fun n => (hX n).2.1
-
-/-- These objects cover the entire ordinary stable localization. -/
-theorem goodReplacement (X : Prespectrum.{0}) :
-    ∃ (Y : Prespectrum.{0}) (_ : Y.IsGood) (q : Y ⟶ X), stableEquivalences q := by sorry
 
 def tail (X : Prespectrum.{0}) : Prespectrum.{0} where
   level n := X.level (n+1)
@@ -237,14 +236,6 @@ noncomputable def diagonalSmashMap {X Y X' Y' : Prespectrum.{0}}
   level n := (diagonalMapLevel f g n).map
   point n := (diagonalMapLevel f g n).point
   bond n := diagonalMapLevel_bond f g n
-
-/-- The flatness statement used by the derived comparison. The proof of
-MMSS, Proposition 11.7, uses exactly CW homotopy type of each fixed level.
-Our stronger based-CW condition makes that hypothesis explicit; the chosen
-point-set double bonds are Definition 11.6 of the same source. -/
-theorem diagonalSmash_stable_right (X : Prespectrum.{0}) (hX : X.IsGood)
-    {Y Y' : Prespectrum.{0}} (f : Y ⟶ Y') (hf : stableEquivalences f) :
-    stableEquivalences (diagonalSmashMap (𝟙 X) f) := by sorry
 
 private theorem stable_even_representative (P : Prespectrum.{0}) (d : ℤ)
     (x : StableHomotopy P d) :
@@ -580,23 +571,6 @@ private theorem diagonalSmash_stable_swap :
     apply GenLoop.ext
     intro t
     exact hnat f g n (p (fun i => t (pairSwap r i)))
-theorem diagonalSmash_stable_left (Y : Prespectrum.{0}) (hY : Y.IsGood)
-    {X X' : Prespectrum.{0}} (f : X ⟶ X') (hf : stableEquivalences f) :
-    stableEquivalences (diagonalSmashMap f (𝟙 Y)) := by
-  obtain ⟨e,he⟩ := diagonalSmash_stable_swap
-  have h := diagonalSmash_stable_right Y hY f hf
-  intro d
-  constructor
-  · intro a b hab
-    apply (e X Y d).injective
-    apply (h d).injective
-    rw [← he f (𝟙 Y) d a,← he f (𝟙 Y) d b,hab]
-  · intro b
-    obtain ⟨a,ha⟩ := (h d).surjective (e X' Y d b)
-    refine ⟨(e X Y d).symm a,?_⟩
-    apply (e X' Y d).injective
-    rw [he,Equiv.apply_symm_apply,ha]
-
 /-- The zeroth-stage inclusion is the free/evaluation counit. -/
 noncomputable def zeroStage (X : Prespectrum.{0}) : suspensionSpectrum (X.level 0) ⟶ X :=
   freeCounit X 0

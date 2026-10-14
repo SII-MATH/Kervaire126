@@ -3751,7 +3751,102 @@ private theorem standardSphereMooreTower_proZero :
   -- unit-fiber smash comparison with connective smash closure.
   have hconnective : ∀ (s : ℕ) (n : ℤ), n < 0 →
       Subsingleton (StableHomotopy.HomotopyGroup n (A s)) := by
-    sorry
+    set_option backward.isDefEq.respectTransparency false in
+    classical
+    -- Proofs.md (9)--(13): a length-s word has degree at least s.
+    have hweight (d : ℕ →₀ ℕ) (hd : d ≠ 0) :
+        1 ≤ Steenrod.Milnor.slotWeight d := by
+      obtain ⟨j, hj⟩ : ∃ j, d j ≠ 0 := by
+        by_contra h
+        apply hd
+        ext j
+        simpa using not_exists.mp h j
+      have hw := Finsupp.le_weight_of_ne_zero'
+        (fun j : ℕ => 2 ^ (j + 1) - 1) hj
+      have hp := Nat.lt_two_pow_self (n := j + 1)
+      change 1 ≤ Finsupp.weight (fun j : ℕ => 2 ^ (j + 1) - 1) d
+      omega
+    have hempty (s : ℕ) (n : ℤ) (hn : n < 0) :
+        IsEmpty (Steenrod.Milnor.MilnorWord s (n + s)) := by
+      refine ⟨fun w => ?_⟩
+      have hsum : (s : ℤ) ≤ Steenrod.Milnor.wordDegree w.val := by
+        calc
+          (s : ℤ) = ∑ _ : Fin s, (1 : ℤ) := by simp
+          _ ≤ ∑ i : Fin s, (Steenrod.Milnor.slotWeight (w.val i) : ℤ) := by
+            apply Finset.sum_le_sum
+            intro i _
+            exact_mod_cast hweight (w.val i) (w.property.2 i)
+      have hdeg := w.property.1
+      omega
+    -- Proofs.md (5), (20): the actual tower's coefficient homology vanishes.
+    have hhomology (s : ℕ) (n : ℤ) (hn : n < 0) :
+        Subsingleton (StableHomotopy.HomotopyGroup n (H.HF2 ⊗ A s)) := by
+      letI := hempty s n hn
+      exact Function.Injective.subsingleton
+        (Classical.Adams.sphereTowerHomologyWordEquiv H R
+          fixedImplementation.cooperationInput.kunneth
+          fixedImplementation.cooperationInput.basis s n).injective
+    -- Proofs.md (6), (21): exactness gives surjective adjacent maps.
+    have hsurj (s : ℕ) (n : ℤ) (hn : n < 0) :
+        Function.Surjective
+          (StableHomotopy.inducedMap (Classical.Adams.adamsTowerStep H.unit X s) n) := by
+      intro x
+      have hx : x ≫ Classical.Adams.adamsUnit H.unit (A s) = 0 :=
+        (hhomology s n hn).elim _ _
+      obtain ⟨y, hy⟩ := CategoryTheory.Pretriangulated.Triangle.coyoneda_exact₂
+        (Classical.Adams.adamsResolutionTriangle H.unit X s)
+        (Classical.Adams.adamsResolutionTriangle_distinguished H.unit X s) x
+        hx
+      exact ⟨y, hy.symm⟩
+    -- Proofs.md (8) is the remaining obligation. Its proposed derivation
+    -- from (A1)--(A4) uses Challenge2, which is not an allowed Def dependency.
+    have hacyclic : (Classical.Adams.adamsResidualSequence H.unit X).IsAcyclic := by
+      sorry
+    -- Proofs.md (14)--(19): extend a chosen element to a compatible family.
+    intro s n hn
+    have hzero (x : StableHomotopy.HomotopyGroup n (A s)) : x = 0 := by
+      let G (k : ℕ) := StableHomotopy.HomotopyGroup n (A k)
+      let step (k : ℕ) : G (k + 1) →+ G k :=
+        StableHomotopy.inducedMap (Classical.Adams.adamsTowerStep H.unit X k) n
+      let next : ∀ {k : ℕ}, s ≤ k → G k → G (k + 1) :=
+        fun {k} _ z => (hsurj k n hn z).choose
+      let u (k : ℕ) (hk : s ≤ k) : G k :=
+        Nat.leRec (motive := fun k _ => G k) x (@next) hk
+      have hu : u s (Nat.le_refl s) = x := Nat.leRec_self x (@next)
+      have hstep (k : ℕ) (hk : s ≤ k) :
+          step k (u (k + 1) (Nat.le_succ_of_le hk)) = u k hk := by
+        dsimp only [u]
+        rw [Nat.leRec_succ x (@next) hk]
+        exact (hsurj k n hn _).choose_spec
+      let z (k : ℕ) : G k := if hk : s ≤ k then u k hk else
+        StableHomotopy.inducedMap (Classical.Adams.adamsTowerMap H.unit X k s (by omega)) n x
+      have hz (k : ℕ) : step k (z (k + 1)) = z k := by
+        by_cases hk : s ≤ k
+        · simpa only [z, dif_pos hk, dif_pos (Nat.le_succ_of_le hk)] using hstep k hk
+        · by_cases hk' : s ≤ k + 1
+          · have hks : k + 1 = s := by omega
+            subst s
+            simp only [z, dif_pos hk', dif_neg hk, hu]
+            change x ≫ Classical.Adams.adamsTowerStep H.unit X k =
+              x ≫ Classical.Adams.adamsTowerMap H.unit X k (k + 1) _
+            rw [Classical.Adams.adamsTowerMap_succ H.unit X k k (Nat.le_refl k),
+              Classical.Adams.adamsTowerMap_self, Category.comp_id]
+          · simp only [z, dif_neg hk, dif_neg hk']
+            change (x ≫ Classical.Adams.adamsTowerMap H.unit X (k + 1) s _) ≫
+                Classical.Adams.adamsTowerStep H.unit X k =
+              x ≫ Classical.Adams.adamsTowerMap H.unit X k s _
+            have he : Classical.Adams.adamsTowerStep H.unit X k =
+                Classical.Adams.adamsTowerMap H.unit X k (k + 1) (Nat.le_succ k) := by
+              simp [Classical.Adams.adamsTowerMap_succ]
+            rw [Category.assoc, he, Classical.Adams.adamsTowerMap_comp]
+      -- Proofs.md (15)--(16): injectivity of 1 - shift kills this family.
+      have hinj := (StandardSphereApplicabilityProof.Algebra.hom_delta_bijective
+        (Classical.Adams.adamsResidualSequence H.unit X) hacyclic
+        (StableHomotopy.Sphere (C := C) n)).injective
+      have hzs := StandardSphereApplicabilityProof.Inverse.compatible_zero_of_difference_injective
+        G step hinj z hz s
+      simpa only [z, dif_pos (Nat.le_refl s), hu] using hzs
+    exact ⟨fun x y => (hzero x).trans (hzero y).symm⟩
   have hmoore : ∀ (s : ℕ) (n : ℤ), n < 0 →
       Subsingleton (StableHomotopy.HomotopyGroup n (M s)) := fun s =>
     StandardSphereApplicabilityProof.Nilpotence.doubling_cofiber_connective (A s) (hconnective s)
@@ -3778,7 +3873,104 @@ private theorem standardSphereMooreTower_proZero :
             Classical.Adams.adamsUnit H.unit U ≫ actU = 𝟙 U ∧
             Classical.Adams.adamsUnit H.unit V ≫ actV = 𝟙 V) ∧
         ∃ p : M s ⟶ P (n+1), Function.Injective (StableHomotopy.inducedMap p (n : ℤ)) := by
-    sorry
+    set_option backward.isDefEq.respectTransparency false in
+    classical
+    intro s n
+    -- Markdown §5, equation (29): this obligation is still unresolved.
+    -- It must not be obtained from standardSphereApplicability or Challenge2.
+    have hvan : StableHomotopy.inducedMap
+        (Classical.Adams.adamsTowerMap H.unit (M s)
+          0 (2 * (n + 1)) (Nat.zero_le _)) (n : ℤ) = 0 := by
+      sorry
+    -- Markdown §6.1: the two-step cofibers form the detector tower.
+    let T : ℕ → C := Classical.Adams.adamsTower H.unit (M s)
+    let d (r : ℕ) : T (r + 1) ⟶ T r :=
+      Classical.Adams.adamsTowerStep H.unit (M s) r
+    let b (r : ℕ) : T r ⟶ M s :=
+      Classical.Adams.adamsTowerMap H.unit (M s) 0 r (Nat.zero_le _)
+    let c (k : ℕ) : T (2 * (k + 1)) ⟶ T (2 * k) := d (2 * k + 1) ≫ d (2 * k)
+    let D (r : ℕ) : C := StableHomotopy.HasFunctorialCofiber.cofib (d r)
+    let P (k : ℕ) : C := StableHomotopy.HasFunctorialCofiber.cofib (b (2 * k))
+    let L (k : ℕ) : C := StableHomotopy.HasFunctorialCofiber.cofib (c k)
+    have hcomp (k : ℕ) : c k ≫ b (2 * k) = b (2 * (k + 1)) := by
+      change
+        (Classical.Adams.adamsTowerStep H.unit (M s) (2 * k + 1) ≫
+          Classical.Adams.adamsTowerStep H.unit (M s) (2 * k)) ≫
+            Classical.Adams.adamsTowerMap H.unit (M s) 0 (2 * k) _ =
+          Classical.Adams.adamsTowerMap H.unit (M s) 0 ((2 * k + 1) + 1) _
+      rw [Classical.Adams.adamsTowerMap_succ H.unit (M s) 0 (2 * k + 1) (by omega),
+        Classical.Adams.adamsTowerMap_succ H.unit (M s) 0 (2 * k) (by omega),
+        Category.assoc]
+    let oct (k : ℕ) := CategoryTheory.Triangulated.someOctahedron (hcomp k)
+      (StableHomotopy.HasFunctorialCofiber.cofib_distinguished (c k))
+      (StableHomotopy.HasFunctorialCofiber.cofib_distinguished (b (2 * k)))
+      (StableHomotopy.HasFunctorialCofiber.cofib_distinguished (b (2 * (k + 1))))
+    refine ⟨P, L, (fun k => (oct k).m₁), (fun k => (oct k).m₃),
+      (fun k => StableHomotopy.HasFunctorialCofiber.cofibδ (b (2 * k)) ≫
+        (StableHomotopy.HasFunctorialCofiber.cofibι (c k))⟦(1 : ℤ)⟧'),
+      (fun k => (oct k).mem), ?_, ?_, ?_⟩
+    · have hb : CategoryTheory.IsIso (b 0) := by
+        dsimp [b]
+        rw [Classical.Adams.adamsTowerMap_self]
+        infer_instance
+      exact CategoryTheory.Pretriangulated.Triangle.isZero₃_of_isIso₁
+        (CategoryTheory.Pretriangulated.Triangle.mk (b 0)
+          (StableHomotopy.HasFunctorialCofiber.cofibι (b 0))
+          (StableHomotopy.HasFunctorialCofiber.cofibδ (b 0)))
+        (StableHomotopy.HasFunctorialCofiber.cofib_distinguished (b 0)) hb
+    -- Markdown §6.2: each layer extends two shifted unital H-modules.
+    · have hact (r : ℕ) : ∃ act : H.HF2 ⊗ D r ⟶ D r,
+          Classical.Adams.adamsUnit H.unit (D r) ≫ act = 𝟙 _ := by
+        let e : D r ≅ H.HF2 ⊗ T r :=
+          Classical.Adams.cofiberFiberIso (Classical.Adams.adamsUnit H.unit (T r))
+        refine ⟨(H.HF2 ◁ e.hom) ≫
+          StableHomotopy.Cohomology.mod2FreeAction H R (T r) ≫ e.inv, ?_⟩
+        rw [← Category.assoc, ← Classical.Adams.adamsUnit_naturality H.unit e.hom,
+          Category.assoc, ← Category.assoc (Classical.Adams.adamsUnit H.unit _),
+          StableHomotopy.Cohomology.mod2FreeAction_outerUnit]
+        simp
+      intro k
+      let oct' := CategoryTheory.Triangulated.someOctahedron
+        (show d (2 * k + 1) ≫ d (2 * k) = c k from rfl)
+        (StableHomotopy.HasFunctorialCofiber.cofib_distinguished (d (2 * k + 1)))
+        (StableHomotopy.HasFunctorialCofiber.cofib_distinguished (d (2 * k)))
+        (StableHomotopy.HasFunctorialCofiber.cofib_distinguished (c k))
+      let U : C := (D (2 * k + 1))⟦(-(k : ℤ))⟧
+      let V : C := (D (2 * k))⟦(-(k : ℤ))⟧
+      let eU : U⟦(k : ℤ)⟧ ≅ D (2 * k + 1) :=
+        (CategoryTheory.shiftFunctorCompIsoId C (-(k : ℤ)) (k : ℤ) (by omega)).app _
+      let eV : V⟦(k : ℤ)⟧ ≅ D (2 * k) :=
+        (CategoryTheory.shiftFunctorCompIsoId C (-(k : ℤ)) (k : ℤ) (by omega)).app _
+      let w : D (2 * k) ⟶ (D (2 * k + 1))⟦(1 : ℤ)⟧ :=
+        StableHomotopy.HasFunctorialCofiber.cofibδ (d (2 * k)) ≫
+          (StableHomotopy.HasFunctorialCofiber.cofibι (d (2 * k + 1)))⟦(1 : ℤ)⟧'
+      refine ⟨U, V, eU.hom ≫ oct'.m₁, oct'.m₃ ≫ eV.inv,
+        eV.hom ≫ w ≫ eU.inv⟦(1 : ℤ)⟧', ?_, ?_⟩
+      · apply CategoryTheory.Pretriangulated.isomorphic_distinguished _ oct'.mem
+        refine CategoryTheory.Pretriangulated.Triangle.isoMk _ _ eU (Iso.refl _) eV ?_ ?_ ?_
+        · simp
+        · simp
+        · simp [Category.assoc, ← Functor.map_comp, w]
+      · obtain ⟨actU, hU⟩ := hact (2 * k + 1)
+        obtain ⟨actV, hV⟩ := hact (2 * k)
+        exact ⟨StandardSphereApplicabilityProof.ShiftModule.shiftedAction H actU (-(k : ℤ)),
+          StandardSphereApplicabilityProof.ShiftModule.shiftedAction H actV (-(k : ℤ)),
+          StandardSphereApplicabilityProof.ShiftModule.shiftedAction_unit H actU hU (-(k : ℤ)),
+          StandardSphereApplicabilityProof.ShiftModule.shiftedAction_unit H actV hV (-(k : ℤ))⟩
+    -- Markdown §6.3: exactness and (29) give injectivity on π_n.
+    · refine ⟨StableHomotopy.HasFunctorialCofiber.cofibι (b (2 * (n + 1))), ?_⟩
+      intro x y hxy
+      have hz : StableHomotopy.inducedMap
+          (StableHomotopy.HasFunctorialCofiber.cofibι (b (2 * (n + 1))))
+          (n : ℤ) (x - y) = 0 := by
+        rw [map_sub, hxy, sub_self]
+      obtain ⟨z, hz'⟩ :=
+        (StableHomotopy.les_homotopy_exact_f
+          (StableHomotopy.HoCofiberSequence.ofMorphism (b (2 * (n + 1)))))
+          (n : ℤ) (x - y) |>.mp hz
+      apply sub_eq_zero.mp
+      rw [← hz']
+      exact congrArg (fun f => f z) hvan
   dsimp only
   intro n
   by_cases hn : 0 ≤ n

@@ -78,9 +78,8 @@ structure TensorComparison (S : SourceComparison H) [SymmetricCategory C]
       ((S.spaceSuspension A hA).hom ▷ S.spaceObj B) ≫
         ((tensorRight (S.spaceObj B)).commShiftIso (1 : ℤ)).hom.app (S.spaceObj A) ≫
         (shiftFunctor C (1 : ℤ)).map (smash A B hA hB).hom
-  /-- Full-range recognition against the actual even-indexed prespectrum
-  smash, followed by the specified completion. Good replacements cover
-  every ordinary spectrum by Prespectrum.goodReplacement. -/
+  /-- Recognition on good prespectra against the actual even-indexed
+  prespectrum smash, followed by the specified completion. -/
   allSmash : ∀ (X Y : Prespectrum.{0}), X.IsGood → Y.IsGood →
     (S.equivalence.functor.obj (completedLocalization.obj X) ⊗
       S.equivalence.functor.obj (completedLocalization.obj Y) ≅
