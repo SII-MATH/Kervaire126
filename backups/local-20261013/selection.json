@@ -12,11 +12,11 @@
       "evidence": "The source worktree adds eleven declarations to the earlier root implementation; it compiles against the current interfaces. The theorem conclusion is definitionally the existing GeneralizedMahowaldLaw."
     },
     "adams-bockstein-route": {
-      "decision": "Keep current E2 comparison followed by Z_i/B_i quotient induction; do not restore the older relation-criterion-only route.",
+      "decision": "Keep the E2 comparison and Z_i/B_i quotient induction. Complete model-witness propagation in model-bound comparisons, while excluding the premise from generic direct-quotient/page algebra. No alternate route, new global model instance, axiom or sorry is introduced.",
       "selected": [
         "KIPBase/Synthetic/AdamsBocksteinMorphism.lean"
       ],
-      "evidence": "Current cf8942d8c (2026-10-13) explicitly specifies the mandatory construction route; the source worktree is the earlier 2026-10-12 route."
+      "evidence": "The cf8942d8c construction route is retained. The 2026-10-14 migration fixes the failure reproduced before selection and adds compiled signature regressions."
     },
     "generalized-rules": {
       "decision": "Keep current synchronized representative and actual common quotient-lift equations. Do not restore arbitrary Prop/True placeholders or an independent May-lift input interface.",
@@ -205,7 +205,7 @@
         {
           "path": "KIPBase/Synthetic/GeometricAdamsLegacy.lean",
           "source_sha256": "f04f2ba5ca1aa570465a948bb1940b0a1787e6f49ec7262cb5d6edfba468d47d",
-          "selected_sha256": "a64affb24510e84132a99d8f56a48db36a327d0c55eb7716780e3a799362edef",
+          "selected_sha256": "18bedebbd9dbe9f96a3516e39a8f5b4bc1a2ae6fff2bfc74dc6ecf041afa58ed",
           "disposition": "keep-current-source"
         },
         {
@@ -486,7 +486,7 @@
       "selected": [
         {
           "path": "KIPBase/Synthetic/AdamsBocksteinMorphism.lean",
-          "sha256": "c8dc0ca186a3fa25301eb544295a06a3785dc61de9e1ded02f5c8adc54e2a9c2"
+          "sha256": "dd10cbf906ca9a791a785c62fda359c88196e05f74e0cb925a3a7fead724767c"
         }
       ],
       "recovery": "history/KIP126/worktree-changes.tar.gz"
@@ -802,7 +802,7 @@
       "selected": [
         {
           "path": "blueprint/src/chapters/generalized_tools.tex",
-          "sha256": "e72c50cad59eeaad9cc02430cf71b6b498b5427e926b23b0460bab1cd22e754c"
+          "sha256": "0cbf70178a37ce1243a0bc1d25bc51fbe86b08a7b9309903e8830dc4b9dede65"
         }
       ],
       "recovery": "history/KIP126/worktree-changes.tar.gz"
@@ -1743,5 +1743,68 @@
       "selected": [],
       "recovery": "history/KIP-base/worktree-changes.tar.gz"
     }
-  ]
+  ],
+  "updated_on_local_date": "2026-10-14",
+  "interface_migration": {
+    "date": "2026-10-14",
+    "parent_checkpoint": "319d47107e30231b0554b4c558fddf45c847ce0e",
+    "model_binding": "Existing SyntheticModelRealizationWitness for the same Syn is propagated to model-bound comparisons, not manufactured for arbitrary categories.",
+    "generic_boundary": "Six generic interfaces are checked to exclude the model witness; the upstream source-boundary proof drops only an unused premise.",
+    "proof_status": "Existing sorries and inherited foundation axioms are unchanged; compilation does not establish proof completion.",
+    "full_build": {
+      "command": "LEAN_NUM_THREADS=4 lake build KIPBase KIP126",
+      "status": "passed",
+      "jobs": 5159
+    },
+    "blueprint_declarations": "passed",
+    "model_signature_regressions": "passed",
+    "unrelated_test_failures": [
+      "test_stage_axioms_only_state_the_delivery",
+      "test_artifact_symlink_loop_returns_diagnostic"
+    ],
+    "source_snapshots": [
+      {
+        "path": "KIPBase/Synthetic/AdamsBocksteinMorphism.lean",
+        "sha256": "dd10cbf906ca9a791a785c62fda359c88196e05f74e0cb925a3a7fead724767c"
+      },
+      {
+        "path": "KIPBase/Synthetic/GeometricAdamsLegacy.lean",
+        "sha256": "18bedebbd9dbe9f96a3516e39a8f5b4bc1a2ae6fff2bfc74dc6ecf041afa58ed"
+      },
+      {
+        "path": "KIPBase/ModelRealizationChecks.lean",
+        "sha256": "794abc957c32d9fbdec8d613c4b2c2359614ec99031ef28d696cbc89987db846"
+      },
+      {
+        "path": "blueprint/src/chapters/generalized_tools.tex",
+        "sha256": "0cbf70178a37ce1243a0bc1d25bc51fbe86b08a7b9309903e8830dc4b9dede65"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "sha256": "74d551a29579c764b33429479a1f225b516ee709cf1ddaa866688b33b6acf870"
+      },
+      {
+        "path": "docs/CI.md",
+        "sha256": "92db77b72648f1950bf39e4127080a5ce3e40835839b9d2af110c6c1cb45c606"
+      },
+      {
+        "path": "backups/local-20261013/verify_selection.py",
+        "sha256": "e8a9069f0438aaeb89187f7c4f0615b753f925034e05e95ad3963eae968d772e"
+      },
+      {
+        "path": "lakefile.lean",
+        "sha256": "3b6d8926dc6ac5a4bf7a13990a36b7e63eb40b61307c6e849fbee28379c84607"
+      },
+      {
+        "path": "scripts/test_kipbase_build_layout.py",
+        "sha256": "f9ac974fafee546e491c81bc58871d989017b86902a8555ace28af4e8aac3648"
+      },
+      {
+        "path": "scripts/check.sh",
+        "sha256": "2f022d45eda73ffd729f39c9200829191446f47739d1bbcd8d62ffb9e51b2bf1"
+      }
+    ],
+    "historical_recovery_archives": "unchanged",
+    "build_scope": "All 117 owned KIPBase modules remain selected; nested .lake dependency/cache sources are excluded without deleting them. Two layout regression tests guard both properties."
+  }
 }

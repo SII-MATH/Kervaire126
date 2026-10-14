@@ -25,7 +25,32 @@ development can be audited without adding it to KIP126's import graph.
 The Kervaire126 proof target remains the default library above.
 -/
 lean_lib KIPBase where
-  globs := #[.andSubmodules `KIPBase]
+  -- A nested standalone workspace may contain KIPBase/.lake. Recursive globs
+  -- at KIPBase itself would compile those ignored dependency sources as local
+  -- modules. Cover every owned source area explicitly, without deleting caches.
+  -- scripts.test_kipbase_build_layout guards source coverage as the tree grows.
+  globs := #[
+    .one `KIPBase,
+    .one `KIPBase.Basic,
+    .one `KIPBase.Check,
+    .one `KIPBase.CheckBasic,
+    .one `KIPBase.E2page,
+    .one `KIPBase.E2pageCompute,
+    .one `KIPBase.E2pageData,
+    .one `KIPBase.E2pageExamples,
+    .one `KIPBase.E2pageTactic,
+    .one `KIPBase.E2pageTacticExamples,
+    .one `KIPBase.Mathlib,
+    .one `KIPBase.ModelRealizationChecks,
+    .one `KIPBase.Standalone,
+    .one `KIPBase.chanllege,
+    .submodules `KIPBase.Compatibility,
+    .submodules `KIPBase.Section7,
+    .submodules `KIPBase.Section8,
+    .submodules `KIPBase.SpectralSequence,
+    .submodules `KIPBase.StableHomotopy,
+    .submodules `KIPBase.Synthetic,
+    .submodules `KIPBase.multiplicativeSS]
   leanOptions := #[
     ⟨`pp.unicode.fun, true⟩,
     ⟨`relaxedAutoImplicit, false⟩,

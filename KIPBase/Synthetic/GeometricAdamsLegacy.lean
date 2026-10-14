@@ -123,6 +123,7 @@ def LambdaBocksteinSourcePageRep
         (xl.hom 1)) = a ∧
     ElementPageRel E r (s, 1) x xPage
 
+omit [SyntheticModelRealizationWitness Syn] in
 /-- In the source degree of a two-term filtered complex there are no
 incoming differentials, so every finite boundary subobject is zero. -/
 private theorem lambdaBocksteinSource_complexBoundary_eq_bot
@@ -162,6 +163,7 @@ private theorem lambdaBocksteinSource_complexBoundary_eq_bot
   have hq : q = 0 := hIZero.eq_of_src _ _
   rw [hq, zero_comp, imageSubobject_zero]
 
+omit [SyntheticModelRealizationWitness Syn] in
 /-- The source boundary object in the actual unbounded extension data is a
 zero object on every finite page. -/
 private theorem lambdaBocksteinSource_boundary_isZero
@@ -187,6 +189,7 @@ private theorem lambdaBocksteinSource_boundary_isZero
     (unboundedExtensionBIso.{1, 0, 0, 0}
       f degree (s, 1) (n : WithTop ℕ))
 
+omit [SyntheticModelRealizationWitness Syn] in
 /-- No boundary enters the source column of the λ-Bockstein sequence, so
 every finite source boundary subobject agrees with the initial one. -/
 theorem lambdaBocksteinSource_boundaries_eq_initial

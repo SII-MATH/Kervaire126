@@ -61,8 +61,19 @@ def main():
             digest = hashlib.sha256(path.read_bytes()).hexdigest()
             check(digest == item['selected_sha256'], f'Branch selection changed: {relative}')
             branch_paths += 1
+    migration_sources = report.get('interface_migration', {}).get('source_snapshots', [])
+    for item in migration_sources:
+        relative = PurePosixPath(item['path'])
+        check(not relative.is_absolute() and '..' not in relative.parts,
+              f'Unsafe migration source path: {relative}')
+        path = root / relative
+        check(path.is_file(), f'Missing migration source: {relative}')
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        check(digest == item['sha256'], f'Migration snapshot changed: {relative}')
     print(f'All {len(keys)} captured paths accounted for; {len(hashes)} selected source hashes match.')
     print(f'Local-only branch audit: {branch_paths} current Lean files verified.')
+    if migration_sources:
+        print(f'Interface migration snapshot: {len(migration_sources)} source hashes match.')
     print(json.dumps(dict(Counter(entry['disposition'] for entry in entries)), sort_keys=True))
     print('Snapshot integrity only: this does not establish proof completion or semantic absorption.')
 

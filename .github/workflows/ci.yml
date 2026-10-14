@@ -133,8 +133,8 @@ jobs:
           if (( ${#mathlib_roots[@]} )); then
             lake exe cache get "${mathlib_roots[@]}"
           fi
-      - name: Build the complete Lean library, regression modules and declaration checker
-        run: lake build KIP126 checkdecls
+      - name: Build the complete Lean library, linked KIPBase entry, regressions and declaration checker
+        run: lake build KIP126 +KIPBase KIPBase.ModelRealizationChecks checkdecls
       - name: Render Blueprint and check linked Lean declarations
         env:
           # The minimal TeX installation has no texlive-base search-path defaults.

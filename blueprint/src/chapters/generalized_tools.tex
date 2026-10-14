@@ -243,7 +243,7 @@ foundations established earlier.
   \lean{KIPBase.Synthetic.SyntheticCommutativeSquare.top_left_source_eq}
   \lean{KIPBase.Synthetic.FinitePageExtension.common_lift_on_fHatBoundarySquare}
   \lean{KIPBase.Synthetic.FinitePageExtension.common_lift_on_fHatBoundarySquare_of_boundary_noCrossing}
-  \uses{def:lambda-rho-delta-triangle,def:page-extension-coset}
+  \uses{def:lambda-rho-delta-triangle,def:page-extension-coset,def:synthetic-context}
   \notready
   Let a coherent finite $\lambda$-quotient tower of a synthetic spectrum
   $A$ be fixed, and let $u:S^{m,w}\to A/\lambda^{i+1}$ be one actual
@@ -261,6 +261,15 @@ foundations established earlier.
   This identifies the direct Bockstein ambiguity, without identifying it
   with the entire ambiguity of an arbitrary map ESS, which also records
   shorter map extensions.
+
+  The Adams-differential specialization uses the realization witness for
+  the same synthetic category as its geometric Adams comparison: this category
+  is identified with the homotopy category of the chosen stable point-set
+  model. The witness is passed through that comparison, not replaced by a
+  model structure on an arbitrary homotopy category or a new lifting premise.
+  The direct finite-quotient and map-ESS statement remains generic and has
+  no additional realization hypothesis. This migration does not construct
+  the underlying model or complete its assumed comparison results.
 \end{proposition}
 
 \begin{proof}

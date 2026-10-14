@@ -33,6 +33,11 @@ corresponding quotient gives the map on page `i + 1`.  This induction on
 Do not introduce an auxiliary comparison problem or replace this induction
 with a separate lifting argument.  Every subsequent declaration in this
 file must serve the construction of this morphism.
+
+Model-bound comparisons use the existing realization witness for the same
+synthetic category as the geometric Adams input. This is not a model structure
+on an arbitrary homotopy category. The model-independent direct-quotient
+sections explicitly omit this premise and retain their generic interfaces.
 -/
 
 namespace KIPBase.Synthetic
@@ -45,6 +50,7 @@ variable {Syn : Type u} [Category.{0} Syn] [Preadditive Syn]
     [HasZeroObject Syn] [HasShift Syn ℤ]
     [∀ n : ℤ, Functor.Additive (shiftFunctor Syn n)]
     [MonoidalCategory Syn] [Pretriangulated Syn] [SyntheticCategory Syn]
+    [SyntheticModelRealizationWitness Syn]
 
 /-- A later page maps to an earlier page when the boundary subobject has
 not changed. This is the cycle inclusion modulo that common boundary. -/
@@ -96,6 +102,7 @@ theorem pageToEarlierOfBoundariesEq_represents
       _ = a ≫ pageToEarlierOfBoundariesEq D m n hmn hB := by
           rw [← Category.assoc, ha]
 
+omit [SyntheticModelRealizationWitness Syn] in
 /-- In the λ-Bockstein source column, every displayed page from page two
 onward has a canonical map back to the second data page. -/
 noncomputable def canonicalLambdaBocksteinSourceToE2Data
@@ -465,7 +472,6 @@ theorem LambdaBocksteinTargetPageRep.eq_zero_of_mem_next
       (↑(r - E.r₀).toNat : WithTop ℕ)).arrow).mp
     rw [hxZ, hxZero, zero_comp]
   rw [← hxClass, hxZZero, zero_comp]
-  rfl
 
 /-- Two target representatives define the same current page class whenever
 their actual λ-boundaries differ by one higher filtration step. -/
@@ -3545,6 +3551,9 @@ following `obstruction` is the literal composite
 the differential specified by the lambda-Bockstein construction.
 -/
 
+section DirectLambdaQuotientAlgebra
+omit [SyntheticModelRealizationWitness Syn]
+
 /-- The initial group of the direct lambda-lift Bockstein construction. -/
 abbrev lambdaLiftBocksteinV (X T : Syn) : Type _ :=
   T ⟶ XModLambdaN X 1
@@ -4016,6 +4025,8 @@ noncomputable def lambdaLiftBocksteinPageZeroEquiv
     (AddSubgroup.topEquiv (G := lambdaLiftBocksteinV X
       (Smn (Syn := Syn) m w)))
 
+end DirectLambdaQuotientAlgebra
+
 /-- Two filtered finite-quotient representatives of one Adams page class
 have the same reduction modulo lambda when the quotient-one Adams
 filtration is separated. This is the representative-independence step for
@@ -4438,6 +4449,9 @@ theorem nuModLambda_tower_rhoEInfty_eq_toOne
     _ = (synAdamsSS_functorial g).eInftyMap (s, t, t) ≫
       e1.hom := hg.symm
 
+section GenericAdamsGradedMaps
+omit [SyntheticModelRealizationWitness Syn]
+
 /-- The associated-graded class of a filtered homotopy element is natural
 under postcomposition by any synthetic-spectrum map. -/
 theorem synAdams_homotopyGradedProjection_postcomp
@@ -4553,6 +4567,8 @@ theorem synAdams_associatedGradedMap_eq_of_eInftyMap_eq
         G.iso_compat k
   rw [hreA] at hnative
   exact hnative
+
+end GenericAdamsGradedMaps
 
 /-- Under separated convergence of the first quotient, the tower
 restriction and canonical reduction agree on every filtered homotopy
@@ -4828,6 +4844,9 @@ theorem adamsE2ToLambdaLiftPageZeroEquiv_apply
       adamsPageToLambdaLiftPage (Syn := Syn) 𝒮 X Q 0 s t hH x := by
   rfl
 
+section DirectLambdaDifferentialAlgebra
+omit [SyntheticModelRealizationWitness Syn]
+
 /-- Suspension and weight regrading of the target of the `i`-th boundary. -/
 noncomputable def lambdaLiftBocksteinTargetReindexEquiv
     (X : Syn) (m w : ℤ) (i : ℕ) :
@@ -5000,6 +5019,8 @@ theorem lambdaLiftBocksteinRawDifferential_mem_next_B
     exact ⟨a, rfl⟩
   exact ⟨lambdaLiftBocksteinObstruction X (Smn m w) i a,
     h, rfl⟩
+
+end DirectLambdaDifferentialAlgebra
 
 /-- The classical Adams E₂ group identifies with the actual initial
 homotopy group of `νX/λ`.  The last two factors are the already constructed
@@ -5240,7 +5261,6 @@ theorem NuSynAdamsGeometricModel.adamsWitness_directLiftObstruction
       e.inv ≫ lambdaLiftBocksteinObstruction ((nu 𝒮 Syn).obj X)
         sphere n cap := by
           simp only [lambdaLiftBocksteinObstruction_apply, Category.assoc]
-          rfl
     _ = e.inv ≫ ((M.input.capStageBoundary sphere s (n + 2)
           (n + 1) W.cap ≫
           (M.input.boundaryTarget (n + 1)).toBase (s + (n + 2))) ≫
@@ -5732,6 +5752,9 @@ theorem classicalAdams_boundary_iff_differential_target
     refine ⟨a, b, ?_, z, hzb, hzx⟩
     exact (hmap a).symm.trans hab
 
+section DirectLambdaIncomingBoundaries
+omit [SyntheticModelRealizationWitness Syn]
+
 /-- A direct Bockstein class lies in the incoming-boundary subgroup exactly
 when it is the target of a finite-power λ-boundary.  This is the concrete
 target-existence test used by the zero condition. -/
@@ -5864,6 +5887,8 @@ theorem lambdaLiftBocksteinPage_eq_zero_iff_exists_differential_target
         X (m + 1) (w - (i : ℤ)) i hi _).mpr ⟨a, rfl⟩
     · rw [← ha]
       exact lambdaLiftBocksteinIncomingTargetValue_eq X m w i a
+
+end DirectLambdaIncomingBoundaries
 
 /-- Obligation 2: every Adams E₂ class represented on page `i+2` has an
 actual lift to `νX/λ^(i+1)` after applying the fixed V-map. -/

@@ -71,14 +71,35 @@ Blueprint 保留 `\notready`，明确见证提取不证明同步代表元、共�
 - 两份历史档案完整性校验、43 个归档文件与原完整备份逐字节一致；
   两个原仓库的工作区、索引与所有本地分支位置未变。
 
-综合测试发现的既有问题另行保留，不通过改弱检查来消除：
+## 接口迁移 — 2026-10-14
 
-- KIPBase 入口的重新编译未通过：未修改的
-  `Synthetic/AdamsBocksteinMorphism.lean` 从第 110 行起缺少
-  `SyntheticModelRealizationWitness Syn`，随后有连锁错误及冗余证明步骤。
-  本次保留最新 Zᵢ/Bᵢ 路线，不通过新增公理、全局实例或修改公共假设绕过错误。
-  完整 Blueprint 编译声明检查也未通过，原缓存中缺少 6 个新版 KIPBase 声明；
-  网页渲染成功不代表该检查成功。此接口迁移需要单独处理。
+上次报告的模型见证接口错误已修复：`AdamsBocksteinMorphism.lean` 的模型相关
+比较显式传递上游已有的 `SyntheticModelRealizationWitness Syn`；
+给定模型的同一见证贯穿比较，没有新增公理、任意类别的全局模型实例或提升假设。
+Zᵢ/Bᵢ 逐页归纳路线、公开名称、原有未完成证明及 Challenge2 均保持不变。
+
+通用的有限商、循环、边界和商页代数放在不携带模型见证的局部作用域中；
+源列无入射边界的三个上游引理也去掉了未使用的见证条件，证明内容不变。
+另删除两条前一步已完成证明的冗余 `rfl`。
+
+新增 `KIPBase/ModelRealizationChecks.lean`：检查六个通用声明不带模型见证条件、
+两个模型相关声明保留该条件，并确认选定 `Syn` 使用已有选定模型的见证。
+KIPBase 入口、该回归模块以及 Blueprint 网页和全部 Lean 声明链接检查均已通过，
+先前缺失的 6 个 KIPBase 声明已能从重新编译的入口解析。
+`LEAN_NUM_THREADS=4 lake build KIPBase KIP126` 的两个库完整构建也已通过，
+共 5159 项构建任务；这仍不表示原有未完成证明已经补齐。
+
+CI 显式构建 `+KIPBase` 和该回归模块，再运行 Blueprint 声明检查；
+这不将历史库加入 KIP126 的数学导入图，也不改变默认库目标。
+另修正完整构建递归扫描 `KIPBase/.lake` 的问题：显式选择真实源码区域，
+覆盖核对确认全部 117 个项目模块仍在完整目标内，缓存中的第三方模块被排除。
+两个新增构建范围测试已接入 `scripts/check.sh`；没有删除任何缓存或旧工作。
+选择清单中的当前源码摘要随本次迁移更新；原始历史档案保持原样。
+更新后的 CI 构建命令和 Blueprint 声明检查再次通过；选择清单校验及
+七项防漏项、重复项、错误摘要与分支位置的反向校验均通过。
+
+两项与此次接口迁移无关的既有 Python 测试失败仍保留，不改弱检查来消除：
+
 - 公理边界测试发现 `Section7.lean` 的 `compositionOnlyMossInterface` 和
   `Def/Kervaire/Route/Massey/Axioms.lean` 的 `e2_massey_page3_representation`；
   两个文件在本次整理前已存在且未修改，仍违反现有单一项目公理规则。

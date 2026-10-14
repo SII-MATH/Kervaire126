@@ -5,12 +5,20 @@
 1. **Checks**：下载并校验固定 LFS 原始输入，检查来源制品摘要与声明对应、接口分层与唯一见证、公理声明位置、
    Blueprint 标签与依赖图、计算导入边界及相应 Python 回归。
 2. **Lean and Blueprint**：获取固定 Mathlib 缓存，完整构建 `KIP126`（包含所有 Lean Checks），
+   编译 Blueprint 使用的隔离 `KIPBase` 入口及模型接口回归，
    渲染当前 Blueprint 并核对每个链接的 Lean 声明。两个步骤使用同一份编译结果。
 
 CI 使用只读权限，不接入外部审查服务，不自动合并、发布网站或写 PR 标签/评论。
 Blueprint 网页和依赖报告作为工作流制品供核对，保留 7 天。API 文档、PDF 和性能分析按需手动执行。
 固定版本的 Lean action 负责安装 Lean 环境，随后显式运行
-`lake build KIP126 checkdecls`。GitHub cache restore/save 步骤管理
+`lake build KIP126 +KIPBase KIPBase.ModelRealizationChecks checkdecls`。
+`+KIPBase` 指定 Blueprint 声明检查器会导入的库入口；这不把 KIPBase 加入
+KIP126 的数学导入图，也不改变默认库目标。模型回归检查确保通用页与有限商
+声明没有新增模型假设，而模型相关比较保留实际的 realization witness。
+本地全量核对两个库可运行 `lake build KIPBase KIP126`。KIPBase 的完整目标
+显式覆盖项目源码区域，避免递归扫描嵌套工作区的 `.lake` 第三方缓存；
+`scripts.test_kipbase_build_layout` 同时检查真实模块无遗漏与缓存模块被排除。
+GitHub cache restore/save 步骤管理
 整个 `.lake/`；完整构建和 Blueprint 声明核对成功后才保存，包含声明检查器的编译结果。
 每次都执行完整构建和声明核对，由 Lake 决定哪些模块需要重编译。
 
@@ -102,7 +110,8 @@ Blueprint 环境安装，以上缓存与环境配置针对这些开销做了调�
 移除旧仓库的自动合并、合并队列协调、外部审查派发、状态标签、旧迁移检查、
 专用性能工作流和上述设施的 Python 测试。保留全部数学 Lean 回归模块。
 
-本地运行 `bash scripts/check.sh`，再运行 `lake build KIP126` 和
+本地运行 `bash scripts/check.sh`，再运行
+`lake build KIP126 +KIPBase KIPBase.ModelRealizationChecks checkdecls` 和
 `bash scripts/check-blueprint-decls.sh`。Blueprint 依赖需先按 README 安装。
 `git lfs fsck` 可检查已提交原始输入的 LFS 对象。
 
