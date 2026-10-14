@@ -31,8 +31,8 @@ local notation "h₀" => routeLiterature.toda.h0
 
 /-- The final contradiction uses precisely the decoded target and finite
 incoming window already supplied by the independent Cnu reconstruction. -/
-theorem c3_excludes_c5
-    (hc3 : C3 L) : ¬ C5 M (D).toModelData L η := by
+theorem eta_extension_excluded_of_d6_vanishes
+    (hc3 : Stem126D6Vanishes L) : ¬ EtaExtensionDetection M (D).toModelData L η := by
   intro hc5
   obtain ⟨y, hy, r, hr, hr', hhit⟩ :=
     target_divisibility_forces_cnu_incoming (target_nu_divisible hc3 hc5)

@@ -6,10 +6,10 @@ public import KIP126.Main.Solution.Computation.Reduction
 public import KIP126.Main.Solution.Computation.Vanishing
 public import KIP126.Main.Solution.h6_sq_permanent
 public import KIP126.Main.Solution.ChoiceIndependence.any_choice_criterion
-public import KIP126.Main.Solution.ChoiceIndependence.c4_c5_choice_equivalence
+public import KIP126.Main.Solution.ChoiceIndependence.square_and_eta_detection_choice_equivalence
 public import KIP126.Main.Solution.DifferentialReduction.d12_dichotomy_and_condition_equivalence
 public import KIP126.Main.Solution.DifferentialReduction.only_d12_differential_reduction
-public import KIP126.Main.Solution.ExtensionObstruction.c3_excludes_c5
+public import KIP126.Main.Solution.ExtensionObstruction.eta_extension_excluded_of_d6_vanishes
 public import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Proofs
 public import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Proofs
 public import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching.Proofs

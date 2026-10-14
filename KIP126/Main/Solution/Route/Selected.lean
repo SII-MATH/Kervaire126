@@ -13,7 +13,7 @@ import all KIP126.Main.Solution.Route.Selected.Assembly
 
 namespace KIP126.Main.Solution.Route
 
-open private prop78_from_inputs from KIP126.Main.Solution.Route.Selected.Assembly
+open private differential_dichotomy_from_inputs from KIP126.Main.Solution.Route.Selected.Assembly
 open KIP126.Core.SpectralSequence.FinitePageCalculus
 open KIP126.Classical.Adams KIP126.Kervaire.Route
 open KIP126.Synthetic.Context
@@ -43,15 +43,15 @@ theorem detector_injective : DetectorInjectiveAt routeModel 125 130 15 := by
 
 /-- The Section 7 contradiction now consumes the selected Cnu target and
 its incoming-page exclusion through the explicit same-witness chain. -/
-theorem proposition_7_9 :
-    KIP126.Solution.Near126.C3NotC5.c3_excludes_c5
+theorem eta_extension_excluded_of_d6_vanishes :
+    KIP126.Solution.Near126.EtaExtensionObstruction.eta_extension_excluded_of_d6_vanishes
       standardMilnorCooperations routeModel routeLabels routeEta := by
   intro _
-  exact Section7.c3_excludes_c5
+  exact Section7.eta_extension_excluded_of_d6_vanishes
 
 /-- Proposition 7.8 from this complete delivered input. The body must use
 its A/C fields and prove the finite-page/tail/filtration steps in Main. -/
-theorem proposition_7_8 (input : KIP126.Challenge2) :
+theorem h6_square_differential_dichotomy_and_criterion (input : KIP126.Challenge2) :
     KIP126.Solution.Near126.OnlyD12.d12_dichotomy_and_condition_equivalence
       standardMilnorCooperations standardRouteModel input.computation.bindings.routeLabels
       KIP126.Def.standardRouteEta := by
@@ -73,7 +73,7 @@ theorem proposition_7_8 (input : KIP126.Challenge2) :
   let TM := KIP126.Main.Solution.Computation.tmf_inputs_of_computation standardRouteModel
     input.computation.route lit.results.sphereVanishing KIP126.Def.standardSphereSeparated
     B.tmfSource st.tmf B.tmfBinding B.algebraBinding.classical_detection
-  exact prop78_from_inputs BHS RL CL B.algebraBinding.action_filtration TM st.bx input.computation.route
+  exact differential_dichotomy_from_inputs BHS RL CL B.algebraBinding.action_filtration TM st.bx input.computation.route
     lit.results.sphereVanishing KIP126.Def.standardSphereSeparated
 
 end KIP126.Main.Solution.Route

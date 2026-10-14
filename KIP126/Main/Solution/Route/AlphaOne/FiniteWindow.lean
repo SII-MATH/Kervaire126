@@ -38,7 +38,7 @@ variable {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:
 set_option backward.isDefEq.respectTransparency false
 set_option maxRecDepth 10000
 attribute [local irreducible] KIP126.LinE2.homogeneousPart adamsTowerSSData adamsTowerInternalD
-private theorem stem123_middle_certificate_h324_0 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (13,137) (16,139) (I.realization.basis .sphere 13 137 2) (I.realization.basis .sphere 16 139 0) := by
+private theorem stem123_middle_certificate_d3_s13_t137_basis2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (13,137) (16,139) (I.realization.basis .sphere 13 137 2) (I.realization.basis .sphere 16 139 0) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 3, 13, 137, [2], 16, 139, [0], "S0_AdamsE2_ss", 2917⟩ (by
     exact List.mem_of_getElem? (i := 324) (by rfl))
@@ -51,7 +51,7 @@ private theorem stem123_middle_certificate_h324_0 (I : KIP126.Computation.Route.
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h366_1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := by
+private theorem stem123_middle_certificate_d2_s14_t138_basis1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 2, 14, 138, [1], 16, 139, [1, 2], "S0_AdamsE2_ss", 3072⟩ (by
     exact List.mem_of_getElem? (i := 366) (by rfl))
@@ -64,7 +64,7 @@ private theorem stem123_middle_certificate_h366_1 (I : KIP126.Computation.Route.
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h367_2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := by
+private theorem stem123_middle_certificate_d2_s14_t138_basis0_add_basis1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 2, 14, 138, [0, 1], 16, 139, [2], "S0_AdamsE2_ss", 3073⟩ (by
     exact List.mem_of_getElem? (i := 367) (by rfl))
@@ -77,7 +77,7 @@ private theorem stem123_middle_certificate_h367_2 (I : KIP126.Computation.Route.
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h654_3 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (15,138) (18,140) (I.realization.basis .sphere 15 138 2) (I.realization.basis .sphere 18 140 2) := by
+private theorem stem123_middle_certificate_d3_s15_t138_basis2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (15,138) (18,140) (I.realization.basis .sphere 15 138 2) (I.realization.basis .sphere 18 140 2) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 3, 15, 138, [2], 18, 140, [2], "proofs.db/log", 462481⟩ (by
     exact List.mem_of_getElem? (i := 654) (by rfl))
@@ -90,7 +90,7 @@ private theorem stem123_middle_certificate_h654_3 (I : KIP126.Computation.Route.
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h656_4 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 7 (11,134) (18,140) (I.realization.basis .sphere 11 134 0 + I.realization.basis .sphere 11 134 1 + I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 18 140 1) := by
+private theorem stem123_middle_certificate_d7_s11_t134_basis0_add_basis1_add_basis3 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 7 (11,134) (18,140) (I.realization.basis .sphere 11 134 0 + I.realization.basis .sphere 11 134 1 + I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 18 140 1) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 7, 11, 134, [0, 1, 3], 18, 140, [1], "proofs.db/log", 2671068⟩ (by
     exact List.mem_of_getElem? (i := 656) (by rfl))
@@ -103,7 +103,7 @@ private theorem stem123_middle_certificate_h656_4 (I : KIP126.Computation.Route.
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h250_5 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 5 (10,134) (15,138) (I.realization.basis .sphere 10 134 3) (I.realization.basis .sphere 15 138 1) := by
+private theorem stem123_middle_certificate_d5_s10_t134_basis3 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 5 (10,134) (15,138) (I.realization.basis .sphere 10 134 3) (I.realization.basis .sphere 15 138 1) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 5, 10, 134, [3], 15, 138, [1], "S0_AdamsE2_ss", 2694⟩ (by
     exact List.mem_of_getElem? (i := 250) (by rfl))
@@ -116,7 +116,7 @@ private theorem stem123_middle_certificate_h250_5 (I : KIP126.Computation.Route.
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h277_6 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 4 (11,135) (15,138) (I.realization.basis .sphere 11 135 1 + I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 15 138 0) := by
+private theorem stem123_middle_certificate_d4_s11_t135_basis1_add_basis2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 4 (11,135) (15,138) (I.realization.basis .sphere 11 135 1 + I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 15 138 0) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 4, 11, 135, [1, 2], 15, 138, [0], "S0_AdamsE2_ss", 2781⟩ (by
     exact List.mem_of_getElem? (i := 277) (by rfl))
@@ -129,7 +129,7 @@ private theorem stem123_middle_certificate_h277_6 (I : KIP126.Computation.Route.
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h339_7 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (14,137) (17,139) (I.realization.basis .sphere 14 137 1) (I.realization.basis .sphere 17 139 1) := by
+private theorem stem123_middle_certificate_d3_s14_t137_basis1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (14,137) (17,139) (I.realization.basis .sphere 14 137 1) (I.realization.basis .sphere 17 139 1) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 3, 14, 137, [1], 17, 139, [1], "S0_AdamsE2_ss", 2912⟩ (by
     exact List.mem_of_getElem? (i := 339) (by rfl))
@@ -142,7 +142,7 @@ private theorem stem123_middle_certificate_h339_7 (I : KIP126.Computation.Route.
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h340_8 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (14,137) (17,139) (I.realization.basis .sphere 14 137 0) (I.realization.basis .sphere 17 139 0) := by
+private theorem stem123_middle_certificate_d3_s14_t137_basis0 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (14,137) (17,139) (I.realization.basis .sphere 14 137 0) (I.realization.basis .sphere 17 139 0) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 3, 14, 137, [0], 17, 139, [0], "S0_AdamsE2_ss", 2913⟩ (by
     exact List.mem_of_getElem? (i := 340) (by rfl))
@@ -155,7 +155,7 @@ private theorem stem123_middle_certificate_h340_8 (I : KIP126.Computation.Route.
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h304_9 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (12,136) (14,137) (I.realization.basis .sphere 12 136 2) (I.realization.basis .sphere 14 137 2) := by
+private theorem stem123_middle_certificate_d2_s12_t136_basis2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (12,136) (14,137) (I.realization.basis .sphere 12 136 2) (I.realization.basis .sphere 14 137 2) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 2, 12, 136, [2], 14, 137, [2], "S0_AdamsE2_ss", 2849⟩ (by
     exact List.mem_of_getElem? (i := 304) (by rfl))
@@ -168,7 +168,7 @@ private theorem stem123_middle_certificate_h304_9 (I : KIP126.Computation.Route.
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h319_10 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (13,136) (16,138) (I.realization.basis .sphere 13 136 1) (I.realization.basis .sphere 16 138 1) := by
+private theorem stem123_middle_certificate_d3_s13_t136_basis1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (13,136) (16,138) (I.realization.basis .sphere 13 136 1) (I.realization.basis .sphere 16 138 1) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 3, 13, 136, [1], 16, 138, [1], "S0_AdamsE2_ss", 2843⟩ (by
     exact List.mem_of_getElem? (i := 319) (by rfl))
@@ -181,7 +181,7 @@ private theorem stem123_middle_certificate_h319_10 (I : KIP126.Computation.Route
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h320_11 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (13,136) (16,138) (I.realization.basis .sphere 13 136 0) (I.realization.basis .sphere 16 138 0 + I.realization.basis .sphere 16 138 2) := by
+private theorem stem123_middle_certificate_d3_s13_t136_basis0 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (13,136) (16,138) (I.realization.basis .sphere 13 136 0) (I.realization.basis .sphere 16 138 0 + I.realization.basis .sphere 16 138 2) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 3, 13, 136, [0], 16, 138, [0, 2], "S0_AdamsE2_ss", 2844⟩ (by
     exact List.mem_of_getElem? (i := 320) (by rfl))
@@ -194,7 +194,7 @@ private theorem stem123_middle_certificate_h320_11 (I : KIP126.Computation.Route
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h278_12 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (11,135) (13,136) (I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 13 136 2) := by
+private theorem stem123_middle_certificate_d2_s11_t135_basis2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (11,135) (13,136) (I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 13 136 2) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 2, 11, 135, [2], 13, 136, [2], "S0_AdamsE2_ss", 2782⟩ (by
     exact List.mem_of_getElem? (i := 278) (by rfl))
@@ -207,7 +207,7 @@ private theorem stem123_middle_certificate_h278_12 (I : KIP126.Computation.Route
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h297_13 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (9,133) (12,135) (I.realization.basis .sphere 9 133 1 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 0) := by
+private theorem stem123_middle_certificate_d3_s9_t133_basis1_add_basis2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (9,133) (12,135) (I.realization.basis .sphere 9 133 1 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 0) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 3, 9, 133, [1, 2], 12, 135, [0], "S0_AdamsE2_ss", 2775⟩ (by
     exact List.mem_of_getElem? (i := 297) (by rfl))
@@ -220,7 +220,7 @@ private theorem stem123_middle_certificate_h297_13 (I : KIP126.Computation.Route
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h298_14 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (9,133) (12,135) (I.realization.basis .sphere 9 133 0 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 1 + I.realization.basis .sphere 12 135 2) := by
+private theorem stem123_middle_certificate_d3_s9_t133_basis0_add_basis2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (9,133) (12,135) (I.realization.basis .sphere 9 133 0 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 1 + I.realization.basis .sphere 12 135 2) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 3, 9, 133, [0, 2], 12, 135, [1, 2], "S0_AdamsE2_ss", 2776⟩ (by
     exact List.mem_of_getElem? (i := 298) (by rfl))
@@ -233,7 +233,7 @@ private theorem stem123_middle_certificate_h298_14 (I : KIP126.Computation.Route
   rw [←ha,←hb] at h
   simpa only [add_assoc] using h
 
-private theorem stem123_middle_certificate_h299_15 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 5 (7,131) (12,135) (I.realization.basis .sphere 7 131 1) (I.realization.basis .sphere 12 135 2) := by
+private theorem stem123_middle_certificate_d5_s7_t131_basis1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 5 (7,131) (12,135) (I.realization.basis .sphere 7 131 1) (I.realization.basis .sphere 12 135 2) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 5, 7, 131, [1], 12, 135, [2], "S0_AdamsE2_ss", 2777⟩ (by
     exact List.mem_of_getElem? (i := 299) (by rfl))
@@ -285,22 +285,22 @@ private theorem stem123_middle_low_pages
     exact List.mem_of_getElem? (i := 229) (by rfl))
   change E.Page 2 (16,138) ≃ₗ[ℤ] (Fin 3 →₀ F2) at e16_138
   change ∀i : Fin 3, e16_138.symm (Finsupp.single i 1) = I.realization.basis .sphere 16 138 i.val at he16_138
-  have h324 : HasDifferential E 3 (13,137) (16,139) (I.realization.basis .sphere 13 137 2) (I.realization.basis .sphere 16 139 0) := stem123_middle_certificate_h324_0 I
-  have h366 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_h366_1 I
-  have h367 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_h367_2 I
-  have h654 : HasDifferential E 3 (15,138) (18,140) (I.realization.basis .sphere 15 138 2) (I.realization.basis .sphere 18 140 2) := stem123_middle_certificate_h654_3 I
-  have h656 : HasDifferential E 7 (11,134) (18,140) (I.realization.basis .sphere 11 134 0 + I.realization.basis .sphere 11 134 1 + I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 18 140 1) := stem123_middle_certificate_h656_4 I
-  have h250 : HasDifferential E 5 (10,134) (15,138) (I.realization.basis .sphere 10 134 3) (I.realization.basis .sphere 15 138 1) := stem123_middle_certificate_h250_5 I
-  have h277 : HasDifferential E 4 (11,135) (15,138) (I.realization.basis .sphere 11 135 1 + I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 15 138 0) := stem123_middle_certificate_h277_6 I
-  have h339 : HasDifferential E 3 (14,137) (17,139) (I.realization.basis .sphere 14 137 1) (I.realization.basis .sphere 17 139 1) := stem123_middle_certificate_h339_7 I
-  have h340 : HasDifferential E 3 (14,137) (17,139) (I.realization.basis .sphere 14 137 0) (I.realization.basis .sphere 17 139 0) := stem123_middle_certificate_h340_8 I
-  have h304 : HasDifferential E 2 (12,136) (14,137) (I.realization.basis .sphere 12 136 2) (I.realization.basis .sphere 14 137 2) := stem123_middle_certificate_h304_9 I
-  have h319 : HasDifferential E 3 (13,136) (16,138) (I.realization.basis .sphere 13 136 1) (I.realization.basis .sphere 16 138 1) := stem123_middle_certificate_h319_10 I
-  have h320 : HasDifferential E 3 (13,136) (16,138) (I.realization.basis .sphere 13 136 0) (I.realization.basis .sphere 16 138 0 + I.realization.basis .sphere 16 138 2) := stem123_middle_certificate_h320_11 I
-  have h278 : HasDifferential E 2 (11,135) (13,136) (I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 13 136 2) := stem123_middle_certificate_h278_12 I
-  have h297 : HasDifferential E 3 (9,133) (12,135) (I.realization.basis .sphere 9 133 1 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 0) := stem123_middle_certificate_h297_13 I
-  have h298 : HasDifferential E 3 (9,133) (12,135) (I.realization.basis .sphere 9 133 0 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 1 + I.realization.basis .sphere 12 135 2) := stem123_middle_certificate_h298_14 I
-  have h299 : HasDifferential E 5 (7,131) (12,135) (I.realization.basis .sphere 7 131 1) (I.realization.basis .sphere 12 135 2) := stem123_middle_certificate_h299_15 I
+  have h324 : HasDifferential E 3 (13,137) (16,139) (I.realization.basis .sphere 13 137 2) (I.realization.basis .sphere 16 139 0) := stem123_middle_certificate_d3_s13_t137_basis2 I
+  have h366 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_d2_s14_t138_basis1 I
+  have h367 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_d2_s14_t138_basis0_add_basis1 I
+  have h654 : HasDifferential E 3 (15,138) (18,140) (I.realization.basis .sphere 15 138 2) (I.realization.basis .sphere 18 140 2) := stem123_middle_certificate_d3_s15_t138_basis2 I
+  have h656 : HasDifferential E 7 (11,134) (18,140) (I.realization.basis .sphere 11 134 0 + I.realization.basis .sphere 11 134 1 + I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 18 140 1) := stem123_middle_certificate_d7_s11_t134_basis0_add_basis1_add_basis3 I
+  have h250 : HasDifferential E 5 (10,134) (15,138) (I.realization.basis .sphere 10 134 3) (I.realization.basis .sphere 15 138 1) := stem123_middle_certificate_d5_s10_t134_basis3 I
+  have h277 : HasDifferential E 4 (11,135) (15,138) (I.realization.basis .sphere 11 135 1 + I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 15 138 0) := stem123_middle_certificate_d4_s11_t135_basis1_add_basis2 I
+  have h339 : HasDifferential E 3 (14,137) (17,139) (I.realization.basis .sphere 14 137 1) (I.realization.basis .sphere 17 139 1) := stem123_middle_certificate_d3_s14_t137_basis1 I
+  have h340 : HasDifferential E 3 (14,137) (17,139) (I.realization.basis .sphere 14 137 0) (I.realization.basis .sphere 17 139 0) := stem123_middle_certificate_d3_s14_t137_basis0 I
+  have h304 : HasDifferential E 2 (12,136) (14,137) (I.realization.basis .sphere 12 136 2) (I.realization.basis .sphere 14 137 2) := stem123_middle_certificate_d2_s12_t136_basis2 I
+  have h319 : HasDifferential E 3 (13,136) (16,138) (I.realization.basis .sphere 13 136 1) (I.realization.basis .sphere 16 138 1) := stem123_middle_certificate_d3_s13_t136_basis1 I
+  have h320 : HasDifferential E 3 (13,136) (16,138) (I.realization.basis .sphere 13 136 0) (I.realization.basis .sphere 16 138 0 + I.realization.basis .sphere 16 138 2) := stem123_middle_certificate_d3_s13_t136_basis0 I
+  have h278 : HasDifferential E 2 (11,135) (13,136) (I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 13 136 2) := stem123_middle_certificate_d2_s11_t135_basis2 I
+  have h297 : HasDifferential E 3 (9,133) (12,135) (I.realization.basis .sphere 9 133 1 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 0) := stem123_middle_certificate_d3_s9_t133_basis1_add_basis2 I
+  have h298 : HasDifferential E 3 (9,133) (12,135) (I.realization.basis .sphere 9 133 0 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 1 + I.realization.basis .sphere 12 135 2) := stem123_middle_certificate_d3_s9_t133_basis0_add_basis2 I
+  have h299 : HasDifferential E 5 (7,131) (12,135) (I.realization.basis .sphere 7 131 1) (I.realization.basis .sphere 12 135 2) := stem123_middle_certificate_d5_s7_t131_basis1 I
   have hrep2 {p : ℤ × ℤ} (x : E.Page 2 p) : RepresentsOnPage E 2 p x x := by
     exact represents_two_self _
   have d2_16 : E.d 2 (16,139)=0 := by
@@ -445,9 +445,9 @@ private theorem stem123_middle_nonzero7_target_page_four_nonzero_d2_16
     exact List.mem_of_getElem? (i := 230) (by rfl))
   change E.Page 2 (16,139) ≃ₗ[ℤ] (Fin 3 →₀ F2) at e16_139
   change ∀i : Fin 3, e16_139.symm (Finsupp.single i 1) = I.realization.basis .sphere 16 139 i.val at he16_139
-  have h324 : HasDifferential E 3 (13,137) (16,139) (I.realization.basis .sphere 13 137 2) (I.realization.basis .sphere 16 139 0) := stem123_middle_certificate_h324_0 I
-  have h366 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_h366_1 I
-  have h367 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_h367_2 I
+  have h324 : HasDifferential E 3 (13,137) (16,139) (I.realization.basis .sphere 13 137 2) (I.realization.basis .sphere 16 139 0) := stem123_middle_certificate_d3_s13_t137_basis2 I
+  have h366 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_d2_s14_t138_basis1 I
+  have h367 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_d2_s14_t138_basis0_add_basis1 I
   have hrep2 {p : ℤ × ℤ} (x : E.Page 2 p) : RepresentsOnPage E 2 p x x := by
     exact represents_two_self _
 
@@ -522,9 +522,9 @@ private theorem stem123_middle_nonzero7_target_page_four_nonzero_third_image (I 
     exact List.mem_of_getElem? (i := 222) (by rfl))
   change E.Page 2 (15,138) ≃ₗ[ℤ] (Fin 3 →₀ F2) at e15_138
   change ∀i : Fin 3, e15_138.symm (Finsupp.single i 1) = I.realization.basis .sphere 15 138 i.val at he15_138
-  have h654 : HasDifferential E 3 (15,138) (18,140) (I.realization.basis .sphere 15 138 2) (I.realization.basis .sphere 18 140 2) := stem123_middle_certificate_h654_3 I
-  have h250 : HasDifferential E 5 (10,134) (15,138) (I.realization.basis .sphere 10 134 3) (I.realization.basis .sphere 15 138 1) := stem123_middle_certificate_h250_5 I
-  have h277 : HasDifferential E 4 (11,135) (15,138) (I.realization.basis .sphere 11 135 1 + I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 15 138 0) := stem123_middle_certificate_h277_6 I
+  have h654 : HasDifferential E 3 (15,138) (18,140) (I.realization.basis .sphere 15 138 2) (I.realization.basis .sphere 18 140 2) := stem123_middle_certificate_d3_s15_t138_basis2 I
+  have h250 : HasDifferential E 5 (10,134) (15,138) (I.realization.basis .sphere 10 134 3) (I.realization.basis .sphere 15 138 1) := stem123_middle_certificate_d5_s10_t134_basis3 I
+  have h277 : HasDifferential E 4 (11,135) (15,138) (I.realization.basis .sphere 11 135 1 + I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 15 138 0) := stem123_middle_certificate_d4_s11_t135_basis1_add_basis2 I
   obtain ⟨_,s0,t0,hs0,ht0,_⟩ := h277
   obtain ⟨_,s1,t1,hs1,ht1,_⟩ := h250
   obtain ⟨_,a2,b2,ha2,hb2,hd2⟩ := h654
@@ -588,7 +588,7 @@ private theorem stem123_middle_nonzero7
       (I.realization.basis .sphere 11 134 0 + I.realization.basis .sphere 11 134 1 + I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 18 140 1) := by
   classical
   let E := sequence D' .sphere
-  have h656 : HasDifferential E 7 (11,134) (18,140) (I.realization.basis .sphere 11 134 0 + I.realization.basis .sphere 11 134 1 + I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 18 140 1) := stem123_middle_certificate_h656_4 I
+  have h656 : HasDifferential E 7 (11,134) (18,140) (I.realization.basis .sphere 11 134 0 + I.realization.basis .sphere 11 134 1 + I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 18 140 1) := stem123_middle_certificate_d7_s11_t134_basis0_add_basis1_add_basis3 I
   obtain ⟨source12,source13,source14⟩ := stem123_middle_low_pages I
   obtain ⟨hdeg,x7,y7,hx7,hy7,hd7⟩ := h656
   obtain ⟨y4,hy4⟩ := represents_before (E := E) (by decide : (2:ℤ)≤4) (by decide : (4:ℤ)≤7) hy7
@@ -628,10 +628,10 @@ private theorem stem123_middle_nonzero3
     exact List.mem_of_getElem? (i := 244) (by rfl))
   change E.Page 2 (18,140) ≃ₗ[ℤ] (Fin 3 →₀ F2) at e18_140
   change ∀i : Fin 3, e18_140.symm (Finsupp.single i 1) = I.realization.basis .sphere 18 140 i.val at he18_140
-  have h324 : HasDifferential E 3 (13,137) (16,139) (I.realization.basis .sphere 13 137 2) (I.realization.basis .sphere 16 139 0) := stem123_middle_certificate_h324_0 I
-  have h366 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_h366_1 I
-  have h367 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_h367_2 I
-  have h654 : HasDifferential E 3 (15,138) (18,140) (I.realization.basis .sphere 15 138 2) (I.realization.basis .sphere 18 140 2) := stem123_middle_certificate_h654_3 I
+  have h324 : HasDifferential E 3 (13,137) (16,139) (I.realization.basis .sphere 13 137 2) (I.realization.basis .sphere 16 139 0) := stem123_middle_certificate_d3_s13_t137_basis2 I
+  have h366 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_d2_s14_t138_basis1 I
+  have h367 : HasDifferential E 2 (14,138) (16,139) (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := stem123_middle_certificate_d2_s14_t138_basis0_add_basis1 I
+  have h654 : HasDifferential E 3 (15,138) (18,140) (I.realization.basis .sphere 15 138 2) (I.realization.basis .sphere 18 140 2) := stem123_middle_certificate_d3_s15_t138_basis2 I
   have hrep2 {p : ℤ × ℤ} (x : E.Page 2 p) : RepresentsOnPage E 2 p x x := by
     exact represents_two_self _
   have d2_16 : E.d 2 (16,139)=0 := by
@@ -684,7 +684,7 @@ private theorem stem123_middle_certificate
   exact ⟨source12,source13,source14,stem123_middle_nonzero7 I,stem123_middle_nonzero3 I⟩
 
 
-private theorem stem123_weight130_finite_quotients_h368_0 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (13,137) (16,139)
+private theorem stem123_weight130_finite_quotients_d3_s13_t137_basis2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (13,137) (16,139)
     (I.realization.basis .sphere 13 137 2) (I.realization.basis .sphere 16 139 0) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,3,13,137,[2],16,139,[0],"S0_AdamsE2_ss",3074⟩ (by
@@ -699,7 +699,7 @@ private theorem stem123_weight130_finite_quotients_h368_0 (I : KIP126.Computatio
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h366_1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (14,138) (16,139)
+private theorem stem123_weight130_finite_quotients_d2_s14_t138_basis1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (14,138) (16,139)
     (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,14,138,[1],16,139,[1, 2],"S0_AdamsE2_ss",3072⟩ (by
@@ -714,7 +714,7 @@ private theorem stem123_weight130_finite_quotients_h366_1 (I : KIP126.Computatio
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h367_2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (14,138) (16,139)
+private theorem stem123_weight130_finite_quotients_d2_s14_t138_basis0_add_basis1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (14,138) (16,139)
     (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,14,138,[0, 1],16,139,[2],"S0_AdamsE2_ss",3073⟩ (by
@@ -729,7 +729,7 @@ private theorem stem123_weight130_finite_quotients_h367_2 (I : KIP126.Computatio
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h245_3 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (10,133) (12,134)
+private theorem stem123_weight130_finite_quotients_d2_s10_t133_basis1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (10,133) (12,134)
     (I.realization.basis .sphere 10 133 1) (I.realization.basis .sphere 12 134 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,10,133,[1],12,134,[2],"S0_AdamsE2_ss",2625⟩ (by
@@ -744,7 +744,7 @@ private theorem stem123_weight130_finite_quotients_h245_3 (I : KIP126.Computatio
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h294_4 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (10,133) (12,134)
+private theorem stem123_weight130_finite_quotients_d2_s10_t133_basis0 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (10,133) (12,134)
     (I.realization.basis .sphere 10 133 0) (I.realization.basis .sphere 12 134 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,10,133,[0],12,134,[2],"S0_AdamsE2_ss",2682⟩ (by
@@ -759,7 +759,7 @@ private theorem stem123_weight130_finite_quotients_h294_4 (I : KIP126.Computatio
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h244_5 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (7,131) (10,133)
+private theorem stem123_weight130_finite_quotients_d3_s7_t131_basis0 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (7,131) (10,133)
     (I.realization.basis .sphere 7 131 0) (I.realization.basis .sphere 10 133 0 + I.realization.basis .sphere 10 133 1) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,3,7,131,[0],10,133,[0, 1],"S0_AdamsE2_ss",2624⟩ (by
@@ -774,7 +774,7 @@ private theorem stem123_weight130_finite_quotients_h244_5 (I : KIP126.Computatio
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h243_6 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (8,132) (10,133)
+private theorem stem123_weight130_finite_quotients_d2_s8_t132_basis0 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (8,132) (10,133)
     (I.realization.basis .sphere 8 132 0) (I.realization.basis .sphere 10 133 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,8,132,[0],10,133,[2],"S0_AdamsE2_ss",2623⟩ (by
@@ -789,7 +789,7 @@ private theorem stem123_weight130_finite_quotients_h243_6 (I : KIP126.Computatio
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h351_7 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 4 (11,135) (15,138)
+private theorem stem123_weight130_finite_quotients_d4_s11_t135_basis1_add_basis2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 4 (11,135) (15,138)
     (I.realization.basis .sphere 11 135 1 + I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 15 138 0) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,4,11,135,[1, 2],15,138,[0],"S0_AdamsE2_ss",3000⟩ (by
@@ -804,7 +804,7 @@ private theorem stem123_weight130_finite_quotients_h351_7 (I : KIP126.Computatio
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h352_8 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 5 (10,134) (15,138)
+private theorem stem123_weight130_finite_quotients_d5_s10_t134_basis3 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 5 (10,134) (15,138)
     (I.realization.basis .sphere 10 134 3) (I.realization.basis .sphere 15 138 1) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,5,10,134,[3],15,138,[1],"S0_AdamsE2_ss",3001⟩ (by
@@ -819,7 +819,7 @@ private theorem stem123_weight130_finite_quotients_h352_8 (I : KIP126.Computatio
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h272_9 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (11,134) (14,136)
+private theorem stem123_weight130_finite_quotients_d3_s11_t134_basis1_add_basis3 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (11,134) (14,136)
     (I.realization.basis .sphere 11 134 1 + I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 14 136 0) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,3,11,134,[1, 3],14,136,[0],"S0_AdamsE2_ss",2688⟩ (by
@@ -834,7 +834,7 @@ private theorem stem123_weight130_finite_quotients_h272_9 (I : KIP126.Computatio
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h273_10 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (11,134) (13,135)
+private theorem stem123_weight130_finite_quotients_d2_s11_t134_basis3 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (11,134) (13,135)
     (I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 13 135 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,11,134,[3],13,135,[2],"S0_AdamsE2_ss",2689⟩ (by
@@ -849,7 +849,7 @@ private theorem stem123_weight130_finite_quotients_h273_10 (I : KIP126.Computati
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h270_11 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 5 (6,130) (11,134)
+private theorem stem123_weight130_finite_quotients_d5_s6_t130_basis0 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 5 (6,130) (11,134)
     (I.realization.basis .sphere 6 130 0) (I.realization.basis .sphere 11 134 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,5,6,130,[0],11,134,[2],"S0_AdamsE2_ss",2686⟩ (by
@@ -864,7 +864,7 @@ private theorem stem123_weight130_finite_quotients_h270_11 (I : KIP126.Computati
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h269_12 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (9,133) (11,134)
+private theorem stem123_weight130_finite_quotients_d2_s9_t133_basis1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 2 (9,133) (11,134)
     (I.realization.basis .sphere 9 133 1) (I.realization.basis .sphere 11 134 4) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,9,133,[1],11,134,[4],"S0_AdamsE2_ss",2685⟩ (by
@@ -879,7 +879,7 @@ private theorem stem123_weight130_finite_quotients_h269_12 (I : KIP126.Computati
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h297_13 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (9,133) (12,135)
+private theorem stem123_weight130_finite_quotients_d3_s9_t133_basis1_add_basis2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (9,133) (12,135)
     (I.realization.basis .sphere 9 133 1 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 0) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,3,9,133,[1, 2],12,135,[0],"S0_AdamsE2_ss",2775⟩ (by
@@ -894,7 +894,7 @@ private theorem stem123_weight130_finite_quotients_h297_13 (I : KIP126.Computati
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h298_14 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (9,133) (12,135)
+private theorem stem123_weight130_finite_quotients_d3_s9_t133_basis0_add_basis2 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 3 (9,133) (12,135)
     (I.realization.basis .sphere 9 133 0 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 1 + I.realization.basis .sphere 12 135 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,3,9,133,[0, 2],12,135,[1, 2],"S0_AdamsE2_ss",2776⟩ (by
@@ -909,7 +909,7 @@ private theorem stem123_weight130_finite_quotients_h298_14 (I : KIP126.Computati
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem stem123_weight130_finite_quotients_h299_15 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 5 (7,131) (12,135)
+private theorem stem123_weight130_finite_quotients_d5_s7_t131_basis1 (I : KIP126.Computation.Route.Inputs D' L' G) : HasDifferential (sequence D' .sphere) 5 (7,131) (12,135)
     (I.realization.basis .sphere 7 131 1) (I.realization.basis .sphere 12 135 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,5,7,131,[1],12,135,[2],"S0_AdamsE2_ss",2777⟩ (by
@@ -1031,11 +1031,11 @@ private theorem stem123_weight130_finite_quotients_stem123_af16_quotient (I : KI
   classical
   let E := sequence D' .sphere
   have h368 : HasDifferential E 3 (13,137) (16,139)
-      (I.realization.basis .sphere 13 137 2) (I.realization.basis .sphere 16 139 0) := stem123_weight130_finite_quotients_h368_0 I
+      (I.realization.basis .sphere 13 137 2) (I.realization.basis .sphere 16 139 0) := stem123_weight130_finite_quotients_d3_s13_t137_basis2 I
   have h366 : HasDifferential E 2 (14,138) (16,139)
-      (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := stem123_weight130_finite_quotients_h366_1 I
+      (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := stem123_weight130_finite_quotients_d2_s14_t138_basis1 I
   have h367 : HasDifferential E 2 (14,138) (16,139)
-      (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := stem123_weight130_finite_quotients_h367_2 I
+      (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := stem123_weight130_finite_quotients_d2_s14_t138_basis0_add_basis1 I
   obtain ⟨e,he⟩ := I.basis ⟨.sphere,16,139,["1,1,424,1", "0,1,438,1", "0,3,418,1"]⟩ (by
     exact List.mem_of_getElem? (i := 230) (by rfl))
   change E.Page 2 (16,139) ≃ₗ[ℤ] (Fin 3 →₀ F2) at e
@@ -1071,13 +1071,13 @@ private theorem stem123_weight130_finite_quotients_stem123_af10_quotient (I : KI
   classical
   let E := sequence D' .sphere
   have h245 : HasDifferential E 2 (10,133) (12,134)
-      (I.realization.basis .sphere 10 133 1) (I.realization.basis .sphere 12 134 2) := stem123_weight130_finite_quotients_h245_3 I
+      (I.realization.basis .sphere 10 133 1) (I.realization.basis .sphere 12 134 2) := stem123_weight130_finite_quotients_d2_s10_t133_basis1 I
   have h294 : HasDifferential E 2 (10,133) (12,134)
-      (I.realization.basis .sphere 10 133 0) (I.realization.basis .sphere 12 134 2) := stem123_weight130_finite_quotients_h294_4 I
+      (I.realization.basis .sphere 10 133 0) (I.realization.basis .sphere 12 134 2) := stem123_weight130_finite_quotients_d2_s10_t133_basis0 I
   have h244 : HasDifferential E 3 (7,131) (10,133)
-      (I.realization.basis .sphere 7 131 0) (I.realization.basis .sphere 10 133 0 + I.realization.basis .sphere 10 133 1) := stem123_weight130_finite_quotients_h244_5 I
+      (I.realization.basis .sphere 7 131 0) (I.realization.basis .sphere 10 133 0 + I.realization.basis .sphere 10 133 1) := stem123_weight130_finite_quotients_d3_s7_t131_basis0 I
   have h243 : HasDifferential E 2 (8,132) (10,133)
-      (I.realization.basis .sphere 8 132 0) (I.realization.basis .sphere 10 133 2) := stem123_weight130_finite_quotients_h243_6 I
+      (I.realization.basis .sphere 8 132 0) (I.realization.basis .sphere 10 133 2) := stem123_weight130_finite_quotients_d2_s8_t132_basis0 I
   obtain ⟨e,he⟩ := I.basis ⟨.sphere,10,133,["372,1", "69,1,80,1", "0,1,366,1"]⟩ (by
     exact List.mem_of_getElem? (i := 180) (by rfl))
   change E.Page 2 (10,133) ≃ₗ[ℤ] (Fin 3 →₀ F2) at e
@@ -1178,9 +1178,9 @@ private theorem stem123_weight130_finite_quotients_stem123_af15_quotient (I : KI
   classical
   let E := sequence D' .sphere
   have h351 : HasDifferential E 4 (11,135) (15,138)
-      (I.realization.basis .sphere 11 135 1 + I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 15 138 0) := stem123_weight130_finite_quotients_h351_7 I
+      (I.realization.basis .sphere 11 135 1 + I.realization.basis .sphere 11 135 2) (I.realization.basis .sphere 15 138 0) := stem123_weight130_finite_quotients_d4_s11_t135_basis1_add_basis2 I
   have h352 : HasDifferential E 5 (10,134) (15,138)
-      (I.realization.basis .sphere 10 134 3) (I.realization.basis .sphere 15 138 1) := stem123_weight130_finite_quotients_h352_8 I
+      (I.realization.basis .sphere 10 134 3) (I.realization.basis .sphere 15 138 1) := stem123_weight130_finite_quotients_d5_s10_t134_basis3 I
   obtain ⟨e,he⟩ := I.basis ⟨.sphere,15,138,["438,1", "7,1,279,1", "0,2,418,1"]⟩ (by
     exact List.mem_of_getElem? (i := 222) (by rfl))
   change E.Page 2 (15,138) ≃ₗ[ℤ] (Fin 3 →₀ F2) at e
@@ -1265,19 +1265,19 @@ private theorem stem123_weight130_finite_quotients_stem123_af11_quotient (I : KI
   classical
   let E := sequence D' .sphere
   have h272 : HasDifferential E 3 (11,134) (14,136)
-      (I.realization.basis .sphere 11 134 1 + I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 14 136 0) := stem123_weight130_finite_quotients_h272_9 I
+      (I.realization.basis .sphere 11 134 1 + I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 14 136 0) := stem123_weight130_finite_quotients_d3_s11_t134_basis1_add_basis3 I
   have h273 : HasDifferential E 2 (11,134) (13,135)
-      (I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 13 135 2) := stem123_weight130_finite_quotients_h273_10 I
+      (I.realization.basis .sphere 11 134 3) (I.realization.basis .sphere 13 135 2) := stem123_weight130_finite_quotients_d2_s11_t134_basis3 I
   have h270 : HasDifferential E 5 (6,130) (11,134)
-      (I.realization.basis .sphere 6 130 0) (I.realization.basis .sphere 11 134 2) := stem123_weight130_finite_quotients_h270_11 I
+      (I.realization.basis .sphere 6 130 0) (I.realization.basis .sphere 11 134 2) := stem123_weight130_finite_quotients_d5_s6_t130_basis0 I
   have h269 : HasDifferential E 2 (9,133) (11,134)
-      (I.realization.basis .sphere 9 133 1) (I.realization.basis .sphere 11 134 4) := stem123_weight130_finite_quotients_h269_12 I
+      (I.realization.basis .sphere 9 133 1) (I.realization.basis .sphere 11 134 4) := stem123_weight130_finite_quotients_d2_s9_t133_basis1 I
   have h297 : HasDifferential E 3 (9,133) (12,135)
-      (I.realization.basis .sphere 9 133 1 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 0) := stem123_weight130_finite_quotients_h297_13 I
+      (I.realization.basis .sphere 9 133 1 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 0) := stem123_weight130_finite_quotients_d3_s9_t133_basis1_add_basis2 I
   have h298 : HasDifferential E 3 (9,133) (12,135)
-      (I.realization.basis .sphere 9 133 0 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 1 + I.realization.basis .sphere 12 135 2) := stem123_weight130_finite_quotients_h298_14 I
+      (I.realization.basis .sphere 9 133 0 + I.realization.basis .sphere 9 133 2) (I.realization.basis .sphere 12 135 1 + I.realization.basis .sphere 12 135 2) := stem123_weight130_finite_quotients_d3_s9_t133_basis0_add_basis2 I
   have h299 : HasDifferential E 5 (7,131) (12,135)
-      (I.realization.basis .sphere 7 131 1) (I.realization.basis .sphere 12 135 2) := stem123_weight130_finite_quotients_h299_15 I
+      (I.realization.basis .sphere 7 131 1) (I.realization.basis .sphere 12 135 2) := stem123_weight130_finite_quotients_d5_s7_t131_basis1 I
   obtain ⟨e,he⟩ := I.basis ⟨.sphere,11,134,["387,1", "386,1", "18,1,189,1", "0,1,69,1,80,1", "0,2,366,1"]⟩ (by
     exact List.mem_of_getElem? (i := 190) (by rfl))
   change E.Page 2 (11,134) ≃ₗ[ℤ] (Fin 5 →₀ F2) at e

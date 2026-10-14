@@ -24,7 +24,7 @@ variable {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:
 set_option backward.isDefEq.respectTransparency false
 set_option maxRecDepth 10000
 attribute [local irreducible] KIP126.LinE2.homogeneousPart adamsTowerSSData adamsTowerInternalD
-private theorem prop78_choice_invariance_h365_0 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (1,64) (3,65) (I.realization.basis .sphere 1 64 0) (I.realization.basis .sphere 3 65 0) := by
+private theorem differential_criterion_choice_invariance_d2_s1_t64_basis0 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (1,64) (3,65) (I.realization.basis .sphere 1 64 0) (I.realization.basis .sphere 3 65 0) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 2, 1, 64, [0], 3, 65, [0], "S0_AdamsE2_ss", 401⟩ (by
     exact List.mem_of_getElem? (i := 142) (by rfl))
@@ -38,7 +38,7 @@ private theorem prop78_choice_invariance_h365_0 (I : KIP126.Computation.Route.In
   rw [←hx,←hy] at hd
   exact hd
 
-private theorem prop78_choice_invariance_h466_1 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (2,65) (4,66) (I.realization.basis .sphere 2 65 0) (I.realization.basis .sphere 4 66 0) := by
+private theorem differential_criterion_choice_invariance_d2_s2_t65_basis0 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (2,65) (4,66) (I.realization.basis .sphere 2 65 0) (I.realization.basis .sphere 4 66 0) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 2, 2, 65, [0], 4, 66, [0], "S0_AdamsE2_ss", 417⟩ (by
     exact List.mem_of_getElem? (i := 145) (by rfl))
@@ -52,7 +52,7 @@ private theorem prop78_choice_invariance_h466_1 (I : KIP126.Computation.Route.In
   rw [←hx,←hy] at hd
   exact hd
 
-private theorem prop78_choice_invariance_h567_2 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (3,66) (5,67) (I.realization.basis .sphere 3 66 1) (I.realization.basis .sphere 5 67 2) := by
+private theorem differential_criterion_choice_invariance_d2_s3_t66_basis1 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (3,66) (5,67) (I.realization.basis .sphere 3 66 1) (I.realization.basis .sphere 5 67 2) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 2, 3, 66, [1], 5, 67, [2], "S0_AdamsE2_ss", 437⟩ (by
     exact List.mem_of_getElem? (i := 150) (by rfl))
@@ -66,7 +66,7 @@ private theorem prop78_choice_invariance_h567_2 (I : KIP126.Computation.Route.In
   rw [←hx,←hy] at hd
   exact hd
 
-private theorem prop78_choice_invariance_h3_3 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 3 (5,67) (8,69) (I.realization.basis .sphere 5 67 1) (I.realization.basis .sphere 8 69 0) := by
+private theorem differential_criterion_choice_invariance_d3_s5_t67_basis1 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 3 (5,67) (8,69) (I.realization.basis .sphere 5 67 1) (I.realization.basis .sphere 8 69 0) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 3, 5, 67, [1], 8, 69, [0], "S0_AdamsE2_ss", 453⟩ (by
     exact List.mem_of_getElem? (i := 160) (by rfl))
@@ -80,7 +80,7 @@ private theorem prop78_choice_invariance_h3_3 (I : KIP126.Computation.Route.Inpu
   rw [←hx,←hy] at hd
   exact hd
 
-private theorem prop78_choice_invariance_h668_4 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (4,67) (6,68) (I.realization.basis .sphere 4 67 0) (I.realization.basis .sphere 6 68 1) := by
+private theorem differential_criterion_choice_invariance_d2_s4_t67_basis0 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (4,67) (6,68) (I.realization.basis .sphere 4 67 0) (I.realization.basis .sphere 6 68 1) := by
   classical
   have hrow := I.results ⟨.sphere, .equation, 2, 4, 67, [0], 6, 68, [1], "S0_AdamsE2_ss", 455⟩ (by
     exact List.mem_of_getElem? (i := 155) (by rfl))
@@ -94,7 +94,7 @@ private theorem prop78_choice_invariance_h668_4 (I : KIP126.Computation.Route.In
   rw [←hx,←hy] at hd
   exact hd
 
-private theorem prop78_choice_invariance_choice_differential_target_later_zero {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
+private theorem differential_criterion_choice_invariance_choice_differential_target_later_zero {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
     (hr0 : E.r₀ ≤ r) (hrt : r < t)
     (h : HasDifferential E r p q x y) : RepresentsOnPage E t q y 0 := by
   classical
@@ -145,7 +145,7 @@ private theorem prop78_choice_invariance_choice_differential_target_later_zero {
     exact (ModuleCat.subobjectModule A.V).monotone (A.B_mono hnm) ⟨b',rfl⟩
 
 
-private theorem prop78_choice_invariance_choice_nonzero_differential_not_permanent {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q} (hr0 : E.r₀ ≤ r)
+private theorem differential_criterion_choice_invariance_choice_nonzero_differential_not_permanent {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q} (hr0 : E.r₀ ≤ r)
     (h : HasNonzeroDifferential E r p q x y) : ¬ NonzeroSurvival E p x := by
   classical
   rintro ⟨z, hz, _⟩
@@ -164,7 +164,7 @@ private theorem prop78_choice_invariance_choice_nonzero_differential_not_permane
   exact hne hd.symm
 
 
-private theorem prop78_choice_invariance_choice_earlier_zero_of_target_survives {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
+private theorem differential_criterion_choice_invariance_choice_earlier_zero_of_target_survives {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
     (hr0 : E.r₀ ≤ r) (hrt : r < t)
     {y : E.Page 2 (p + E.diffDeg r)}
     (hsource : SurvivesTo E r p x)
@@ -178,14 +178,14 @@ private theorem prop78_choice_invariance_choice_earlier_zero_of_target_survives 
     · exact hz
     · have hd : HasDifferential E r p (p + E.diffDeg r) x y :=
         ⟨rfl, xr, yr, hxr, hyr, by simpa only [eqToHom_refl, Category.comp_id] using hdr⟩
-      have hlater := prop78_choice_invariance_choice_differential_target_later_zero hr0 hrt hd
+      have hlater := differential_criterion_choice_invariance_choice_differential_target_later_zero hr0 hrt hd
       obtain ⟨yt, hyt, hne⟩ := htarget
       exact False.elim (hne (represents_unique hyt hlater))
   exact ⟨rfl, xr, 0, hxr, RepresentsOnPage.zero hxr.1,
     by simpa only [eqToHom_refl, Category.comp_id] using hd0⟩
 
 
-private theorem prop78_choice_invariance_choice_next_projection_zero_iff_incoming
+private theorem differential_criterion_choice_invariance_choice_next_projection_zero_iff_incoming
     (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
     (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
     (z : (Subobject.underlying.obj ((E.ssData (p+E.diffDeg r)).Z
@@ -234,7 +234,7 @@ private theorem prop78_choice_invariance_choice_next_projection_zero_iff_incomin
     rwa [Subobject.ofLE_arrow] at hh
 
 
-private theorem prop78_choice_invariance_choice_next_nonzero_of_not_hit {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
+private theorem differential_criterion_choice_invariance_choice_next_nonzero_of_not_hit {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
     (hr0 : E.r₀ ≤ r) (hr : 2 ≤ r)
     {a : E.Page (r+1) p} {b : E.Page r p}
     (ha : RepresentsOnPage E (r+1) p x a) (hb : RepresentsOnPage E r p x b)
@@ -255,7 +255,7 @@ private theorem prop78_choice_invariance_choice_next_nonzero_of_not_hit {E : KIP
     exact hz
   have heb : br=b := represents_unique hbr hb
   intro ha0
-  have hv := prop78_choice_invariance_choice_next_projection_zero_iff_incoming E r hr0 q
+  have hv := differential_criterion_choice_invariance_choice_next_projection_zero_iff_incoming E r hr0 q
   have hv' : ∀ zz : (Subobject.underlying.obj (A.Z ↑(r+1-E.r₀).toNat) : ModuleCat ℤ),
       A.pageπ ↑(r+1-E.r₀).toNat zz=0 ↔
         (Subobject.ofLE _ _ (A.Z_anti hnm) ≫ A.pageπ ↑(r-E.r₀).toNat) zz∈
@@ -277,7 +277,7 @@ private theorem prop78_choice_invariance_choice_next_nonzero_of_not_hit {E : KIP
   simpa only [eqToHom_refl, Category.comp_id] using hc.trans heb
 
 
-private theorem prop78_choice_invariance_choice_permanent_survives_of_no_early_hit {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {p : ℤ × ℤ} {x : E.Page 2 p}
+private theorem differential_criterion_choice_invariance_choice_permanent_survives_of_no_early_hit {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {p : ℤ × ℤ} {x : E.Page 2 p}
     (hstart : E.r₀≤2) (N : ℕ) (hN : 2≤N)
     (hperm : IsPermanentCycle E p x) (hne : x≠0)
     (hnot : ∀ r : ℤ, 2≤r → r<N → ¬HitOnPage E r p x) :
@@ -302,7 +302,7 @@ private theorem prop78_choice_invariance_choice_permanent_survives_of_no_early_h
       intro hn
       obtain ⟨b,hb,hbn⟩ := ih (by omega)
       obtain ⟨a,ha⟩ := hrep ((n:ℤ)+2+1) (by omega)
-      have han := prop78_choice_invariance_choice_next_nonzero_of_not_hit (by omega) (by omega) ha hb hbn
+      have han := differential_criterion_choice_invariance_choice_next_nonzero_of_not_hit (by omega) (by omega) ha hb hbn
         (hnot _ (by omega) (by omega))
       have he : ((n+1:ℕ):ℤ)+2=(n:ℤ)+2+1 := by omega
       rw [he]
@@ -312,7 +312,7 @@ private theorem prop78_choice_invariance_choice_permanent_survives_of_no_early_h
   rwa [he] at h
 
 
-private theorem prop78_choice_invariance_choice_nonzero_differential_not_zero {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
+private theorem differential_criterion_choice_invariance_choice_nonzero_differential_not_zero {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
     (h : HasNonzeroDifferential E r p q x y)
     (hzero : HasDifferential E r p q x 0) : False := by
   classical
@@ -326,7 +326,7 @@ private theorem prop78_choice_invariance_choice_nonzero_differential_not_zero {E
        _ = 0 := hbb
 
 
-private theorem prop78_choice_invariance_choice_cycle_successor_lift
+private theorem differential_criterion_choice_invariance_choice_cycle_successor_lift
     (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
     (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
     (z : (Subobject.underlying.obj ((E.ssData p).Z ↑(r-E.r₀).toNat) : ModuleCat.{v} ℤ))
@@ -360,7 +360,7 @@ private theorem prop78_choice_invariance_choice_cycle_successor_lift
   exact ⟨zn,hnz⟩
 
 
-private theorem prop78_choice_invariance_choice_later_page_frame_of_earlier {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
+private theorem differential_criterion_choice_invariance_choice_later_page_frame_of_earlier {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
     (hr : 2≤r) (hrt : r≤t)
     (hframe : ∃ a : E.Page r p, RepresentsOnPage E r p x a ∧ ∀ y:E.Page r p,y=0∨y=a)
     (ht : ReachesPage E t p x) :
@@ -406,7 +406,7 @@ private theorem prop78_choice_invariance_choice_later_page_frame_of_earlier {E :
     exact hh'
 
 
-private theorem prop78_choice_invariance_choice_theta_choice_late_page_generic
+private theorem differential_criterion_choice_invariance_choice_theta_choice_late_page_generic
     (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ×ℤ))
     (hr0 : E.r₀≤2) (hdeg2 : E.diffDeg 2=(2,1))
     (b5 : Fin 3 → E.Page 2 (5,67)) (b6 : Fin 2 → E.Page 2 (6,68))
@@ -482,7 +482,7 @@ private theorem prop78_choice_invariance_choice_theta_choice_late_page_generic
     rw [hd6,map_zero] at hcd
     exact hdne hcd.symm
   obtain ⟨b2,hb2⟩ := reaches_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤3) ⟨b3,hb3⟩
-  have hbn : b3≠0 := prop78_choice_invariance_choice_next_nonzero_of_not_hit hr0
+  have hbn : b3≠0 := differential_criterion_choice_invariance_choice_next_nonzero_of_not_hit hr0
     (by decide : (2:ℤ)≤2) hb3 hb2 (by rw [←hb2.eq_on_page_two]; exact hne2) hnot
   have hd0 : E.d 2 (5,67) (b5 0)≠0 := by
     intro h0
@@ -505,7 +505,7 @@ private theorem prop78_choice_invariance_choice_theta_choice_late_page_generic
     (by omega : E.r₀≤3) a3 hdn hall
 
 
-private theorem prop78_choice_invariance_choice_theta_choice_raw_relations (I : KIP126.Computation.Route.Inputs D L G) :
+private theorem differential_criterion_choice_invariance_choice_theta_choice_raw_relations (I : KIP126.Computation.Route.Inputs D L G) :
     HasDifferential (sequence D .sphere) 2 (1,64) (3,65) (I.realization.basis .sphere 1 64 0) (I.realization.basis .sphere 3 65 0) ∧
     HasDifferential (sequence D .sphere) 2 (2,65) (4,66) (I.realization.basis .sphere 2 65 0) (I.realization.basis .sphere 4 66 0) ∧
     HasDifferential (sequence D .sphere) 2 (3,66) (5,67) (I.realization.basis .sphere 3 66 1) (I.realization.basis .sphere 5 67 2) ∧
@@ -516,10 +516,10 @@ private theorem prop78_choice_invariance_choice_theta_choice_raw_relations (I : 
   classical
   classical
   let E := sequence D .sphere
-  have h365 : HasDifferential E 2 (1,64) (3,65) (I.realization.basis .sphere 1 64 0) (I.realization.basis .sphere 3 65 0) := prop78_choice_invariance_h365_0 I
-  have h466 : HasDifferential E 2 (2,65) (4,66) (I.realization.basis .sphere 2 65 0) (I.realization.basis .sphere 4 66 0) := prop78_choice_invariance_h466_1 I
-  have h567 : HasDifferential E 2 (3,66) (5,67) (I.realization.basis .sphere 3 66 1) (I.realization.basis .sphere 5 67 2) := prop78_choice_invariance_h567_2 I
-  have h3 : HasDifferential E 3 (5,67) (8,69) (I.realization.basis .sphere 5 67 1) (I.realization.basis .sphere 8 69 0) := prop78_choice_invariance_h3_3 I
+  have h365 : HasDifferential E 2 (1,64) (3,65) (I.realization.basis .sphere 1 64 0) (I.realization.basis .sphere 3 65 0) := differential_criterion_choice_invariance_d2_s1_t64_basis0 I
+  have h466 : HasDifferential E 2 (2,65) (4,66) (I.realization.basis .sphere 2 65 0) (I.realization.basis .sphere 4 66 0) := differential_criterion_choice_invariance_d2_s2_t65_basis0 I
+  have h567 : HasDifferential E 2 (3,66) (5,67) (I.realization.basis .sphere 3 66 1) (I.realization.basis .sphere 5 67 2) := differential_criterion_choice_invariance_d2_s3_t66_basis1 I
+  have h3 : HasDifferential E 3 (5,67) (8,69) (I.realization.basis .sphere 5 67 1) (I.realization.basis .sphere 8 69 0) := differential_criterion_choice_invariance_d3_s5_t67_basis1 I
   have h2out : HasDifferential E 2 (5,67) (7,68) (I.realization.basis .sphere 5 67 0) (I.realization.basis .sphere 7 68 0+I.realization.basis .sphere 7 68 1) := by
     have hrow := I.results ⟨.sphere, .equation, 2, 5, 67, [0], 7, 68, [0, 1], "S0_AdamsE2_ss", 454⟩ (by
       exact List.mem_of_getElem? (i := 161) (by rfl))
@@ -532,7 +532,7 @@ private theorem prop78_choice_invariance_choice_theta_choice_raw_relations (I : 
       List.sum_cons,List.sum_nil,add_zero,Option.some.injEq] at hx hy
     rw [←hx,←hy] at hd
     exact hd
-  have h668 : HasDifferential E 2 (4,67) (6,68) (I.realization.basis .sphere 4 67 0) (I.realization.basis .sphere 6 68 1) := prop78_choice_invariance_h668_4 I
+  have h668 : HasDifferential E 2 (4,67) (6,68) (I.realization.basis .sphere 4 67 0) (I.realization.basis .sphere 6 68 1) := differential_criterion_choice_invariance_d2_s4_t67_basis0 I
   have hcycle : ReachesPage E 1000 (6,68) (I.realization.basis .sphere 6 68 0) := by
     have hrow := I.results ⟨.sphere, .reaches, 1000, 6, 68, [0], 6, 68, [], "S0_AdamsE2_ss", 470⟩ (by
       exact List.mem_of_getElem? (i := 167) (by rfl))
@@ -547,7 +547,7 @@ private theorem prop78_choice_invariance_choice_theta_choice_raw_relations (I : 
   exact ⟨h365,h466,h567,h3,h2out,h668,hcycle⟩
 
 
-private theorem prop78_choice_invariance_choice_theta_choice_late_page (I : KIP126.Computation.Route.Inputs D L G)
+private theorem differential_criterion_choice_invariance_choice_theta_choice_late_page (I : KIP126.Computation.Route.Inputs D L G)
     (e5 : (sequence D .sphere).Page 2 (5,67) ≃ₗ[ℤ] (Fin 3 →₀ F2))
     (he5 : ∀i:Fin 3, e5.symm (Finsupp.single i 1)=I.realization.basis .sphere 5 67 i.val)
     (e6 : (sequence D .sphere).Page 2 (6,68) ≃ₗ[ℤ] (Fin 2 →₀ F2))
@@ -563,7 +563,7 @@ private theorem prop78_choice_invariance_choice_theta_choice_late_page (I : KIP1
     (hd61 : (sequence D .sphere).d 2 (6,68) (I.realization.basis .sphere 6 68 1)=0) :
     Subsingleton ((sequence D .sphere).Page 4 (5,67)) := by
   classical
-  exact prop78_choice_invariance_choice_theta_choice_late_page_generic (sequence D .sphere) (by change (2:ℤ)≤2; omega) rfl
+  exact differential_criterion_choice_invariance_choice_theta_choice_late_page_generic (sequence D .sphere) (by change (2:ℤ)≤2; omega) rfl
     (fun i=>I.realization.basis .sphere 5 67 i.val)
     (fun i=>I.realization.basis .sphere 6 68 i.val)
     (fun i=>I.realization.basis .sphere 7 68 i.val)
@@ -571,14 +571,14 @@ private theorem prop78_choice_invariance_choice_theta_choice_late_page (I : KIP1
     e5 he5 e6 he6 e7 he7 e8 he8 h3 h2out hz567 hd60 hd61
 
 
-private theorem prop78_choice_invariance_choice_theta_choice_finite_pages (I : KIP126.Computation.Route.Inputs D L G) :
+private theorem differential_criterion_choice_invariance_choice_theta_choice_finite_pages (I : KIP126.Computation.Route.Inputs D L G) :
     Subsingleton ((sequence D .sphere).Page 3 (3,65)) ∧
     Subsingleton ((sequence D .sphere).Page 3 (4,66)) ∧
     Subsingleton ((sequence D .sphere).Page 4 (5,67)) := by
   classical
   classical
   let E := sequence D .sphere
-  obtain ⟨h365,h466,h567,h3,h2out,h668,hcycle⟩ := prop78_choice_invariance_choice_theta_choice_raw_relations I
+  obtain ⟨h365,h466,h567,h3,h2out,h668,hcycle⟩ := differential_criterion_choice_invariance_choice_theta_choice_raw_relations I
   obtain ⟨e3,he3⟩ := I.basis ⟨.sphere, 3, 65, ["0,1,18,2"]⟩ (by
     exact List.mem_of_getElem? (i := 102) (by rfl))
   change E.Page 2 (3,65) ≃ₗ[ℤ] (Fin 1 →₀ F2) at e3
@@ -613,22 +613,22 @@ private theorem prop78_choice_invariance_choice_theta_choice_finite_pages (I : K
     obtain ⟨x2,hx2⟩ := reaches_before (by decide : (2:ℤ)≤2) (by omega : (2:ℤ)≤r) hx
     have hh := represents_d_zero_of_later (by change (2:ℤ)≤2; omega) hr hx2 hx
     simpa only [hx2.eq_on_page_two] using hh
-  have hz365 := prop78_choice_invariance_choice_differential_target_later_zero (by change (2:ℤ)≤2; omega)
+  have hz365 := differential_criterion_choice_invariance_choice_differential_target_later_zero (by change (2:ℤ)≤2; omega)
     (by decide : (2:ℤ)<3) h365
-  have hz466 := prop78_choice_invariance_choice_differential_target_later_zero (by change (2:ℤ)≤2; omega)
+  have hz466 := differential_criterion_choice_invariance_choice_differential_target_later_zero (by change (2:ℤ)≤2; omega)
     (by decide : (2:ℤ)<3) h466
-  have hz567 := prop78_choice_invariance_choice_differential_target_later_zero (by change (2:ℤ)≤2; omega)
+  have hz567 := differential_criterion_choice_invariance_choice_differential_target_later_zero (by change (2:ℤ)≤2; omega)
     (by decide : (2:ℤ)<3) h567
-  have hz668 := prop78_choice_invariance_choice_differential_target_later_zero (by change (2:ℤ)≤2; omega)
+  have hz668 := differential_criterion_choice_invariance_choice_differential_target_later_zero (by change (2:ℤ)≤2; omega)
     (by decide : (2:ℤ)<3) h668
   refine ⟨choice_single_basis_zero_page (by decide : (2:ℤ)≤3) e3 _ (he3 0) hz365,
     choice_single_basis_zero_page (by decide : (2:ℤ)≤3) e4 _ (he4 0) hz466,?_⟩
   have hd60 := dz 1000 (by decide) (6,68) _ hcycle
   have hd61 := dz 3 (by decide) (6,68) _ ⟨0,hz668⟩
-  exact prop78_choice_invariance_choice_theta_choice_late_page I e5 he5 e6 he6 e7 he7 e8 he8 h3 h2out hz567 hd60 hd61
+  exact differential_criterion_choice_invariance_choice_theta_choice_late_page I e5 he5 e6 he6 e7 he7 e8 he8 h3 h2out hz567 hd60 hd61
 
 
-private theorem prop78_choice_invariance_choice_theta_square_difference (D : Model H M Syn)
+private theorem differential_criterion_choice_invariance_choice_theta_square_difference (D : Model H M Syn)
     (θ θ' : BiHom 62 64 (S_0_0 : Syn)) (h2 : θ'+θ'=0) :
     sphereProduct θ θ-sphereProduct θ' θ'=sphereProduct (θ-θ') (θ-θ') := by
   classical
@@ -656,7 +656,7 @@ private theorem prop78_choice_invariance_choice_theta_square_difference (D : Mod
   rw [ht,hs,add_sub_cancel_left]
 
 
-private theorem prop78_choice_invariance_choice_detects_of_difference_in_next_filtration
+private theorem differential_criterion_choice_invariance_choice_detects_of_difference_in_next_filtration
     {H' : Syn} {unit : S_0_0 ⟶ H'} {F : SyntheticAdamsFamily Syn} {X : Syn}
     (c : TowerConvergence unit F X) (i : Tridegree)
     {x : (F.obj X).E₂ i} {a b : BiHom (i.2.1-i.1) i.2.2 X}
@@ -683,20 +683,20 @@ private theorem prop78_choice_invariance_choice_detects_of_difference_in_next_fi
     exact hga
 
 
-private theorem prop78_choice_invariance_choice_realization_additive {D : Model H M Syn} : D.recovery.realization.Additive := by
+private theorem differential_criterion_choice_invariance_choice_realization_additive {D : Model H M Syn} : D.recovery.realization.Additive := by
   classical
   letI := D.recovery.adjunction.isLeftAdjoint
   letI := Limits.preservesBinaryBiproducts_of_preservesBinaryCoproducts D.recovery.realization
   exact Functor.additive_of_preservesBinaryBiproducts _
 
 
-private theorem prop78_choice_invariance_choice_realization_injective_of_lambda_powers
+private theorem differential_criterion_choice_invariance_choice_realization_injective_of_lambda_powers
     (kernel : KIP126.Literature.Route.RealizationKernel D) (X : SyntheticObject) (m wt : ℤ)
     (h : LambdaPowersInjectiveAt m wt (X.obj D.nu D.auxiliary)) :
     Function.Injective (fun a : BiHom m wt (X.obj D.nu D.auxiliary) =>
       D.recovery.realization.map a) := by
   classical
-  letI := prop78_choice_invariance_choice_realization_additive (D := D)
+  letI := differential_criterion_choice_invariance_choice_realization_additive (D := D)
   intro a b hab
   apply sub_eq_zero.mp
   obtain ⟨k, hk⟩ := (kernel X m wt (a-b)).mp (by simp only [Functor.map_sub, hab, sub_self])
@@ -704,7 +704,7 @@ private theorem prop78_choice_invariance_choice_realization_injective_of_lambda_
   simpa only [lambdaMultiply, Category.comp_id, Category.assoc, Limits.comp_zero] using hk
 
 
-private theorem prop78_choice_invariance_choice_theta_degree_order_two (BHS : SyntheticInputs D)
+private theorem differential_criterion_choice_invariance_choice_theta_degree_order_two (BHS : SyntheticInputs D)
     (RL : RealizationInput D) {η : BiHom 1 2 (S_0_0 : Syn)}
     (CL : ClassicalInputs D η) (theta : BiHom 62 64 (S_0_0 : Syn)) :
     theta+theta=0 := by
@@ -720,7 +720,7 @@ private theorem prop78_choice_invariance_choice_theta_degree_order_two (BHS : Sy
     apply hnu n
     simpa only [lambdaMultiply,Category.assoc] using
       congrArg (fun z=>z ≫ D.nu.unitIso.inv) hab
-  have hinj := prop78_choice_invariance_choice_realization_injective_of_lambda_powers BHS.realization_kernel
+  have hinj := differential_criterion_choice_invariance_choice_realization_injective_of_lambda_powers BHS.realization_kernel
     .sphere 62 64 hsphere
   letI := D.recovery.adjunction.isLeftAdjoint
   letI := Limits.preservesBinaryBiproducts_of_preservesBinaryCoproducts D.recovery.realization
@@ -740,7 +740,7 @@ private theorem prop78_choice_invariance_choice_theta_degree_order_two (BHS : Sy
   exact h
 
 
-private theorem prop78_choice_invariance_choice_theta_choice_filtration_gap_of_pages
+private theorem differential_criterion_choice_invariance_choice_theta_choice_filtration_gap_of_pages
     (BHS : SyntheticInputs D)
     (hpages : Subsingleton ((sequence D .sphere).Page 3 (3,65)) ∧
       Subsingleton ((sequence D .sphere).Page 3 (4,66)) ∧
@@ -853,7 +853,7 @@ private theorem prop78_choice_invariance_choice_theta_choice_filtration_gap_of_p
   exact hfg.symm.trans (by rw [hnu.eq_of_src f 0,CategoryTheory.Limits.comp_zero])
 
 
-private theorem prop78_choice_invariance_choice_theta_choice_c4_invariance_of_pages
+private theorem differential_criterion_choice_invariance_choice_theta_choice_square_detection_invariance_of_pages
     (BHS : SyntheticInputs D) (RL : RealizationInput D)
     {η : BiHom 1 2 (S_0_0 : Syn)} (CL : ClassicalInputs D η)
     (AF : SphereActionFiltrationCompatible D)
@@ -862,37 +862,37 @@ private theorem prop78_choice_invariance_choice_theta_choice_c4_invariance_of_pa
       Subsingleton ((sequence D .sphere).Page 4 (5,67)))
     (θ θ' : BiHom 62 64 (S_0_0 : Syn))
     (hθ : ThetaChoice M D.toModelData θ) (hθ' : ThetaChoice M D.toModelData θ')
-    (hc : C4At M D.toModelData L θ') : C4At M D.toModelData L θ := by
+    (hc : Theta5SquareNonzeroDetectionAt M D.toModelData L θ') : Theta5SquareNonzeroDetectionAt M D.toModelData L θ := by
   classical
-  have hd := prop78_choice_invariance_choice_theta_choice_filtration_gap_of_pages BHS hpages θ θ' hθ hθ'
+  have hd := differential_criterion_choice_invariance_choice_theta_choice_filtration_gap_of_pages BHS hpages θ θ' hθ hθ'
   have hsq : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 12
       (sphereProduct θ θ-sphereProduct θ' θ') := by
-    rw [prop78_choice_invariance_choice_theta_square_difference D θ θ' (prop78_choice_invariance_choice_theta_degree_order_two BHS RL CL θ')]
+    rw [differential_criterion_choice_invariance_choice_theta_square_difference D θ θ' (differential_criterion_choice_invariance_choice_theta_degree_order_two BHS RL CL θ')]
     exact AF .sphere 62 64 62 64 6 6 (θ-θ') (θ-θ') hd hd
   refine ⟨?_,hc.2⟩
-  apply prop78_choice_invariance_choice_detects_of_difference_in_next_filtration D.sphereConvergence (10,134,128) hc.1
+  apply differential_criterion_choice_invariance_choice_detects_of_difference_in_next_filtration D.sphereConvergence (10,134,128) hc.1
   exact towerFiltrationSubmodule_antitone (nuCoefficientUnit H.unit D.nu)
     (S_0_0 : Syn) (124,128) (by decide : (11:ℤ)≤12) hsq
 
 
-private theorem prop78_choice_invariance_choice_theta_choice_c4_invariance (I : KIP126.Computation.Route.Inputs D L G)
+private theorem differential_criterion_choice_invariance_choice_theta_choice_square_detection_invariance (I : KIP126.Computation.Route.Inputs D L G)
     (BHS : SyntheticInputs D) (RL : RealizationInput D)
     {η : BiHom 1 2 (S_0_0 : Syn)} (CL : ClassicalInputs D η)
     (AF : SphereActionFiltrationCompatible D)
     (θ θ' : BiHom 62 64 (S_0_0 : Syn))
     (hθ : ThetaChoice M D.toModelData θ) (hθ' : ThetaChoice M D.toModelData θ')
-    (hc : C4At M D.toModelData L θ') : C4At M D.toModelData L θ := by
+    (hc : Theta5SquareNonzeroDetectionAt M D.toModelData L θ') : Theta5SquareNonzeroDetectionAt M D.toModelData L θ := by
   classical
-  exact prop78_choice_invariance_choice_theta_choice_c4_invariance_of_pages BHS RL CL AF (prop78_choice_invariance_choice_theta_choice_finite_pages I) θ θ' hθ hθ' hc
+  exact differential_criterion_choice_invariance_choice_theta_choice_square_detection_invariance_of_pages BHS RL CL AF (differential_criterion_choice_invariance_choice_theta_choice_finite_pages I) θ θ' hθ hθ' hc
 
 
-private theorem prop78_choice_invariance (I : KIP126.Computation.Route.Inputs D L G)
+private theorem differential_criterion_choice_invariance (I : KIP126.Computation.Route.Inputs D L G)
     (BHS : SyntheticInputs D) (RL : RealizationInput D) (CL : ClassicalInputs D η)
     (AF : SphereActionFiltrationCompatible D)
     (theta theta' : BiHom 62 64 (S_0_0 : Syn))
     (h : ThetaChoice M D.toModelData theta) (h' : ThetaChoice M D.toModelData theta')
-    (hc : C4At M D.toModelData L theta') : C4At M D.toModelData L theta := by
+    (hc : Theta5SquareNonzeroDetectionAt M D.toModelData L theta') : Theta5SquareNonzeroDetectionAt M D.toModelData L theta := by
   classical
-  exact prop78_choice_invariance_choice_theta_choice_c4_invariance I BHS RL CL AF theta theta' h h' hc
+  exact differential_criterion_choice_invariance_choice_theta_choice_square_detection_invariance I BHS RL CL AF theta theta' h h' hc
 end
 end KIP126.Main.Solution.Route

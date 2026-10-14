@@ -12,9 +12,12 @@ filtration arguments leading to nonzero permanent survival of $h_6^2$.
 % SOURCE: MainPaper/main.tex:2156--2167, 2181--2204, 2357--2360.
 \begin{definition}[Fixed-sphere $C_3$ and the $d_{12}$ alternative]
   \label{def:near126-fixed-page-conditions}
-  \lean{KIP126.Computation.Near126.Sphere.C3,KIP126.Computation.Near126.Sphere.D12}
+  \lean{KIP126.Computation.Near126.Sphere.Stem126D6Vanishes,KIP126.Computation.Near126.Sphere.H6SquareSupportsD12}
   \uses{def:near126-fixed-sphere-facts,def:h6-fixed-computation}
   \notready
+  These public names describe the vanishing condition and the specified
+  nonzero differential. The subscripts in $C_3$ and $D_{12}$ retain the
+  paper's local notation and the differential length, respectively.
   In the fixed tower-derived internal sphere sequence, let
   $W=x_{126,8,4}+x_{126,8}$ and $T=h_1h_4x_{109,12}$ be the images of the
   specified Lin classes.  The condition $C_3$ requires nonzero survival of
@@ -29,7 +32,7 @@ filtration arguments leading to nonzero permanent survival of $h_6^2$.
 
 \begin{lemma}[Incoming alternatives on the fixed sphere under $C_3$]
   \label{lem:near126-fixed-c3-incoming}
-  \lean{KIP126.Computation.Near126.SphereSurvivalFacts.c3_iff_not_d6,KIP126.Computation.Near126.SphereSurvivalFacts.hit_t_iff_d12}
+  \lean{KIP126.Computation.Near126.SphereSurvivalFacts.d6_vanishes_iff_not_nonzero_d6,KIP126.Computation.Near126.SphereSurvivalFacts.hit_t_iff_d12}
   \uses{def:near126-fixed-page-conditions,def:near126-fixed-sphere-facts}
   \notready
   Given the explicit sphere survival and exhaustion evidence,
@@ -583,8 +586,8 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2221-2241, Lemma lem:equistate4.
 \begin{lemma}[Existential and universal forms of $C_4$]
   \label{lem:near126-equiv-c4}
-  \lean{KIP126.Kervaire.Route.C4}
-  \lean{KIP126.Solution.Near126.Conditions.c4_c5_choice_equivalence}
+  \lean{KIP126.Kervaire.Route.Theta5SquareNonzeroDetection}
+  \lean{KIP126.Solution.Near126.Conditions.square_and_eta_detection_choice_equivalence}
   \uses{def:computation-fixed-bindings,def:near126-conditions,evidence:theta5-order-torsion}
   \notready
   For the fixed sphere and comparisons above, condition $C_4$ is equivalent to the
@@ -601,7 +604,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2244-2258, Lemma lem:equistate5.
 \begin{lemma}[Existential and universal forms of $C_5$]
   \label{lem:near126-equiv-c5}
-  \lean{KIP126.Solution.Near126.Conditions.c4_c5_choice_equivalence}
+  \lean{KIP126.Solution.Near126.Conditions.square_and_eta_detection_choice_equivalence}
   \uses{def:computation-fixed-bindings,def:near126-conditions,evidence:near126-indeterminacy}
   \notready
   For the fixed sphere and comparisons above, condition $C_5$ is equivalent to the
@@ -619,7 +622,7 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2181-2204 and 2300-2354, Proposition prop:possible_h_6_sq.
 \begin{proposition}[Only possible differential on $h_6^2$]
   \label{prop:possible-h-6-sq}
-  \lean{KIP126.Main.Solution.Route.proposition_7_8}
+  \lean{KIP126.Main.Solution.Route.h6_square_differential_dichotomy_and_criterion}
   \lean{KIP126.Kervaire.Route.Model}
   \lean{KIP126.Solution.Near126.CandidateReduction.only_d12_differential_reduction}
   \lean{KIP126.Kervaire.Route.Model}
@@ -899,9 +902,9 @@ own proof, with the stated degree bounds and comparison maps.
 % SOURCE: MainPaper/main.tex:2208-2210 and 2698-2778, Proposition prop:state5false.
 \begin{proposition}[$C_3$ excludes $C_5$]
   \label{prop:near126-c3-not-c5}
-  \lean{KIP126.Main.Solution.Route.proposition_7_9,KIP126.Main.Solution.Route.Section7.c3_excludes_c5}
-  \lean{KIP126.Solution.Near126.ExcludeEta.c3_excludes_c5}
-  \lean{KIP126.Solution.Near126.C3NotC5.c3_excludes_c5}
+  \lean{KIP126.Main.Solution.Route.eta_extension_excluded_of_d6_vanishes,KIP126.Main.Solution.Route.Section7.eta_extension_excluded_of_d6_vanishes}
+  \lean{KIP126.Solution.Near126.ExcludeEta.eta_extension_excluded_of_d6_vanishes}
+  \lean{KIP126.Solution.Near126.EtaExtensionObstruction.eta_extension_excluded_of_d6_vanishes}
   \uses{def:computation-fixed-bindings,def:near126-conditions,lem:near126-equiv-c5,cor:near126-two-extension,lem:near126-nu-extension,evidence:near126-core,evidence:stem122-product-exhaustion,prop:synthetic-hopf-cofiber-equivalence,thm:external-synthetic-rigidity,evidence:cnu126-short-incoming-exclusion,lem:computation-sphere-low-degrees,prop:internal-finite-page-calculus,lem:lin-e2-finite-source-certificates}
   \notready
   For the fixed sphere and comparisons above, if $C_3$ holds, then $C_5$ is false.

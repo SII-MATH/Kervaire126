@@ -43,7 +43,7 @@ variable {R : Type u} [Ring R]
   {E : SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ)}
   {r : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
 
-private theorem anyexact0_represents_unique {a b : E.Page r p}
+private theorem y_detection_page_represents_unique {a b : E.Page r p}
     (ha : RepresentsOnPage E r p x a) (hb : RepresentsOnPage E r p x b) : a = b := by
   obtain ⟨hr, z, hz, hza⟩ := ha
   obtain ⟨_, z', hz', hzb⟩ := hb
@@ -65,12 +65,12 @@ private theorem anyexact0_represents_unique {a b : E.Page r p}
   rw [he] at hh
   exact (ModuleCat.subobjectModule D.V).monotone (D.B_mono hnm) hh
 
-private theorem anyexact0_represents_smul {a : E.Page r p} (ha : RepresentsOnPage E r p x a) (c : R) :
+private theorem y_detection_page_represents_smul {a : E.Page r p} (ha : RepresentsOnPage E r p x a) (c : R) :
     RepresentsOnPage E r p (c • x) (c • a) := by
   obtain ⟨hr, z, hz, hza⟩ := ha
   refine ⟨hr, c • z, ?_, ?_⟩ <;> simp only [map_smul, hz, hza]
 
-private theorem anyexact0_represents_d_zero_of_later {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
+private theorem y_detection_page_represents_d_zero_of_later {t : ℤ} (hr0 : E.r₀ ≤ r) (hrt : r < t)
     {a : E.Page r p} (ha : RepresentsOnPage E r p x a)
     (ht : ReachesPage E t p x) : E.d r p a = 0 := by
   obtain ⟨b, ht2, z, hz, _⟩ := ht
@@ -90,7 +90,7 @@ private theorem anyexact0_represents_d_zero_of_later {t : ℤ} (hr0 : E.r₀ ≤
     dsimp only [zr]
     rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
     exact hz
-  rw [anyexact0_represents_unique ha hrep]
+  rw [y_detection_page_represents_unique ha hrep]
   change D.pageπ nr zr ∈ LinearMap.ker (E.d r p).hom
   rw [← subobjectModule_kernel, E.Z_succ r p hr0, subobjectModule_image]
   refine ⟨(Subobject.ofLE (D.Z nt) (D.Z ns) (D.Z_anti hst)) z, ?_⟩
@@ -104,7 +104,7 @@ namespace KIP126.Core.SpectralSequence
 open CategoryTheory CategoryTheory.Limits
 universe u v
 variable {R : Type u} [Ring R]
-private theorem anyexact0_next_projection_zero_iff_incoming
+private theorem y_detection_page_next_projection_zero_iff_incoming
     (E : SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ))
     (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
     (z : (Subobject.underlying.obj ((E.ssData (p+E.diffDeg r)).Z
@@ -154,7 +154,7 @@ end KIP126.Core.SpectralSequence
 
 namespace KIP126.Core.SpectralSequence
 open CategoryTheory CategoryTheory.Limits
-private theorem anyexact0_page_generated_from_representatives
+private theorem y_detection_page_page_generated_from_representatives
     {E : SpectralSequence (ModuleCat ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} (hr : 2 ≤ r)
     {N : ℕ} (e : E.Page 2 p ≃ₗ[ℤ] (Fin N →₀ KIP126.Core.Algebra.F2))
     (v : Fin N → E.Page r p)
@@ -207,7 +207,7 @@ private theorem anyexact0_page_generated_from_representatives
       · simp [hc]
       · simp [hc,hji]
     · simp
-  refine ⟨c, anyexact0_represents_unique hxa ?_⟩
+  refine ⟨c, y_detection_page_represents_unique hxa ?_⟩
   have hh := hsum Finset.univ
   simpa only [hx] using hh
 end KIP126.Core.SpectralSequence
@@ -215,7 +215,7 @@ namespace KIP126.Core.SpectralSequence
 open CategoryTheory CategoryTheory.Limits
 universe u v
 variable {R : Type u} [Ring R]
-private theorem anyexact0_represents_before
+private theorem y_detection_page_represents_before
     {E : SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ)} {r t : ℤ} {p : ℤ × ℤ}
     {x : E.Page 2 p} {xt : E.Page t p}
     (hr : 2 ≤ r) (hrt : r ≤ t) (ht : RepresentsOnPage E t p x xt) :
@@ -234,7 +234,7 @@ namespace KIP126.Core.SpectralSequence
 open CategoryTheory CategoryTheory.Limits
 universe u v
 variable {R : Type u} [Ring R]
-private theorem anyexact0_next_page_two_of_kernel
+private theorem y_detection_page_next_page_two_of_kernel
     (E : SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ)) (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
     (v : (Subobject.underlying.obj ((E.ssData p).Z ↑((r-E.r₀).toNat+1)) : ModuleCat R))
     (hcases : ∀ a : E.Page r p, E.d r p a = 0 → a = 0 ∨
@@ -275,7 +275,7 @@ namespace KIP126.Core.SpectralSequence
 open CategoryTheory CategoryTheory.Limits
 universe u v
 variable {R : Type u} [Ring R]
-private theorem anyexact0_represents_next_nonzero_of_incoming_zero
+private theorem y_detection_page_represents_next_nonzero_of_incoming_zero
     {E : SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ}
     (hr0 : E.r₀ ≤ r) (hr : 2 ≤ r)
     (hin : E.d r (p-E.diffDeg r) = 0)
@@ -304,7 +304,7 @@ private theorem anyexact0_represents_next_nonzero_of_incoming_zero
     exact hz
   intro ha0
   apply hne
-  rw [anyexact0_represents_unique hb hb']
+  rw [y_detection_page_represents_unique hb hb']
   apply (subobject_cokernel_π_eq_zero_iff (D.B n) (D.Z n) (D.B_le_Z n) _).mpr
   have hm := (subobject_cokernel_π_eq_zero_iff (D.B m) (D.Z m) (D.B_le_Z m) z).mp (hza.trans ha0)
   rw [hB] at hm
@@ -321,7 +321,7 @@ variable {R : Type u} [Ring R]
   {E : SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ)}
   {r t : ℤ} {p q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
 
-private theorem anyexact0_differential_target_later_zero
+private theorem y_detection_page_differential_target_later_zero
     (hr0 : E.r₀ ≤ r) (hrt : r < t)
     (h : HasDifferential E r p q x y) : RepresentsOnPage E t q y 0 := by
   obtain ⟨rfl, xr, yr, hx, hy, hd⟩ := h
@@ -387,7 +387,7 @@ set_option maxHeartbeats 2000000
 set_option maxRecDepth 10000
 attribute [local irreducible] KIP126.LinE2.homogeneousPart adamsTowerSSData adamsTowerInternalD
 
-private theorem anyexact0_represents_add_tail
+private theorem y_detection_page_represents_add_tail
     {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)}
     {r : ℤ} {p : ℤ × ℤ} {x y : E.Page 2 p} {a b : E.Page r p}
     (hx : RepresentsOnPage E r p x a) (hy : RepresentsOnPage E r p y b) :
@@ -399,7 +399,7 @@ private theorem anyexact0_represents_add_tail
 
 open PageRepresentatives
 
-private theorem anyexact0_anyy_af14_source_frame (I : Inputs D L G)
+private theorem y_detection_page_af14_source_frame (I : Inputs D L G)
     (x : (sequence D .sphere).Page 2 (14,139))
     (hc : x ∈ cycles H SphereSpectrum 9 (14,139)) :
     x=0 ∨ x=I.realization.basis .sphere 14 139 1 ∨ x=I.realization.basis .sphere 14 139 2 ∨ x=I.realization.basis .sphere 14 139 1+I.realization.basis .sphere 14 139 2 := by
@@ -468,13 +468,13 @@ private theorem anyexact0_anyy_af14_source_frame (I : Inputs D L G)
   have hf3 : f.symm (Finsupp.single (3:Fin 5) 1) = I.realization.basis .sphere 16 140 3 := hf 3
   have hf4 : f.symm (Finsupp.single (4:Fin 5) 1) = I.realization.basis .sphere 16 140 4 := hf 4
   obtain ⟨a1000,ha1000⟩ := h342
-  obtain ⟨a,ha⟩ := anyexact0_represents_before (by decide : (2:ℤ)≤6) (by decide : (6:ℤ)≤1000) ha1000
+  obtain ⟨a,ha⟩ := y_detection_page_represents_before (by decide : (2:ℤ)≤6) (by decide : (6:ℤ)≤1000) ha1000
   have hz2 : RepresentsOnPage E 6 (14,139) (I.realization.basis .sphere 14 139 2) 0 :=
-    anyexact0_differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide) h341
+    y_detection_page_differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide) h341
   have dz {x : E.Page 2 (14,139)} {b : E.Page 6 (14,139)}
       (hb : RepresentsOnPage E 6 (14,139) x b) : E.d 2 (14,139) x=0 := by
-    obtain ⟨b2,hb2⟩ := anyexact0_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤6) hb
-    have hh := anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<6) hb2 ⟨b,hb⟩
+    obtain ⟨b2,hb2⟩ := y_detection_page_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤6) hb
+    have hh := y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<6) hb2 ⟨b,hb⟩
     simpa only [hb2.eq_on_page_two] using hh
   have hd0 : E.d 2 (14,139) (I.realization.basis .sphere 14 139 0)=I.realization.basis .sphere 16 140 2 := h343.eq_on_page_two.2
   have hd1 : E.d 2 (14,139) (I.realization.basis .sphere 14 139 1)=0 := dz ha
@@ -482,8 +482,8 @@ private theorem anyexact0_anyy_af14_source_frame (I : Inputs D L G)
   obtain ⟨xc,hxc⟩ := (isCycle_iff_represents H SphereSpectrum 10 (by decide) (14,139) x).mp ⟨by decide,hc⟩
   change RepresentsOnPage E 10 (14,139) x xc at hxc
   have hx : E.d 2 (14,139) x=0 := by
-    obtain ⟨x2,hx2⟩ := anyexact0_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤10) hxc
-    have h := anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<10) hx2 ⟨xc,hxc⟩
+    obtain ⟨x2,hx2⟩ := y_detection_page_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤10) hxc
+    have h := y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<10) hx2 ⟨xc,hxc⟩
     simpa only [hx2.eq_on_page_two] using h
   have heq : e x = Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) := by
     apply Finsupp.ext
@@ -538,7 +538,7 @@ private theorem anyexact0_anyy_af14_source_frame (I : Inputs D L G)
     simp only [map_zero,←hf2,LinearEquiv.apply_symm_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
 
-private theorem anyexact0_anyy_af16_source_frame (I : Inputs D L G)
+private theorem y_detection_page_af16_source_frame (I : Inputs D L G)
     (x : (sequence D .sphere).Page 2 (16,141))
     (hc : x ∈ cycles H SphereSpectrum 7 (16,141)) :
     x=0 ∨ x=I.realization.basis .sphere 16 141 1 ∨ x=I.realization.basis .sphere 16 141 2 ∨ x=I.realization.basis .sphere 16 141 1+I.realization.basis .sphere 16 141 2 := by
@@ -627,17 +627,17 @@ private theorem anyexact0_anyy_af16_source_frame (I : Inputs D L G)
     IsPageBoundary.d_eq_zero (E:=E) (r:=4) (p:=(12,138)) ⟨u,hd'⟩
   have hv2 : RepresentsOnPage E 2 (16,141) (I.realization.basis .sphere 16 141 1)
       (I.realization.basis .sphere 16 141 1) := by
-    obtain ⟨b,hb⟩ := anyexact0_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤4) hv
+    obtain ⟨b,hb⟩ := y_detection_page_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤4) hv
     rw [←hb.eq_on_page_two] at hb
     exact hb
   have hd1 : E.d 2 (16,141) (I.realization.basis .sphere 16 141 1)=0 :=
-    anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide) hv2 ⟨v,hv⟩
+    y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide) hv2 ⟨v,hv⟩
   have hz2 : RepresentsOnPage E 4 (16,141) (I.realization.basis .sphere 16 141 2) 0 :=
-    anyexact0_differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide) h369
+    y_detection_page_differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide) h369
   have hd2 : E.d 2 (16,141) (I.realization.basis .sphere 16 141 2)=0 := by
-    obtain ⟨b,hb⟩ := anyexact0_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤4) hz2
+    obtain ⟨b,hb⟩ := y_detection_page_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤4) hz2
     rw [←hb.eq_on_page_two] at hb
-    exact anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide) hb ⟨0,hz2⟩
+    exact y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide) hb ⟨0,hz2⟩
   have hd0 : E.d 2 (16,141) (I.realization.basis .sphere 16 141 0) =
       I.realization.basis .sphere 18 142 0 + I.realization.basis .sphere 18 142 1 := h371.eq_on_page_two.2
   have hd3 : E.d 2 (16,141) (I.realization.basis .sphere 16 141 3) =
@@ -645,8 +645,8 @@ private theorem anyexact0_anyy_af16_source_frame (I : Inputs D L G)
   obtain ⟨xc,hxc⟩ := (isCycle_iff_represents H SphereSpectrum 8 (by decide) (16,141) x).mp ⟨by decide,hc⟩
   change RepresentsOnPage E 8 (16,141) x xc at hxc
   have hx : E.d 2 (16,141) x=0 := by
-    obtain ⟨x2,hx2⟩ := anyexact0_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤8) hxc
-    have h := anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<8) hx2 ⟨xc,hxc⟩
+    obtain ⟨x2,hx2⟩ := y_detection_page_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤8) hxc
+    have h := y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<8) hx2 ⟨xc,hxc⟩
     simpa only [hx2.eq_on_page_two] using h
   have heq : e x = Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) + Finsupp.single 3 (e x 3) := by
     apply Finsupp.ext
@@ -758,7 +758,7 @@ private theorem anyexact0_anyy_af16_source_frame (I : Inputs D L G)
     simp only [map_add,map_zero,←hf0, ←hf1,LinearEquiv.apply_symm_apply,Finsupp.add_apply,Finsupp.zero_apply] at hval
     norm_num [Finsupp.single_apply,Fin.ext_iff] at hval
 
-private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
+private theorem y_detection_page_af15_source_frame (I : Inputs D L G)
     (x : (sequence D .sphere).Page 2 (15,140))
     (hc : x ∈ cycles H SphereSpectrum 8 (15,140)) :
     x=0 ∨ x=I.realization.basis .sphere 15 140 1 ∨ x=I.realization.basis .sphere 15 140 4 ∨ x=I.realization.basis .sphere 15 140 1+I.realization.basis .sphere 15 140 4 := by
@@ -853,28 +853,28 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
   obtain ⟨_,u,v,hu,hv,hd,hn⟩ := hd
   have hd' : E.d 5 (15,140) u=v := hd
   have hz1 : RepresentsOnPage E 5 (15,140) (I.realization.basis .sphere 15 140 1) 0 :=
-    anyexact0_differential_target_later_zero (by change (2:ℤ)≤4; omega) (by decide) h355
+    y_detection_page_differential_target_later_zero (by change (2:ℤ)≤4; omega) (by decide) h355
   have hz4 : RepresentsOnPage E 5 (15,140) (I.realization.basis .sphere 15 140 4) 0 :=
-    anyexact0_differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide) h354
+    y_detection_page_differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide) h354
   have hd1 : E.d 2 (15,140) (I.realization.basis .sphere 15 140 1)=0 := by
-    obtain ⟨b,hb⟩ := anyexact0_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤5) hz1
+    obtain ⟨b,hb⟩ := y_detection_page_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤5) hz1
     rw [←hb.eq_on_page_two] at hb
-    exact anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide) hb ⟨0,hz1⟩
+    exact y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide) hb ⟨0,hz1⟩
   have hd2 : E.d 2 (15,140) (I.realization.basis .sphere 15 140 2)=0 := by
-    obtain ⟨b,hb⟩ := anyexact0_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤5) hu
+    obtain ⟨b,hb⟩ := y_detection_page_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤5) hu
     rw [←hb.eq_on_page_two] at hb
-    exact anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide) hb ⟨u,hu⟩
+    exact y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide) hb ⟨u,hu⟩
   have hd4 : E.d 2 (15,140) (I.realization.basis .sphere 15 140 4)=0 := by
-    obtain ⟨b,hb⟩ := anyexact0_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤5) hz4
+    obtain ⟨b,hb⟩ := y_detection_page_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤5) hz4
     rw [←hb.eq_on_page_two] at hb
-    exact anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide) hb ⟨0,hz4⟩
+    exact y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide) hb ⟨0,hz4⟩
   have hd0 : E.d 2 (15,140) (I.realization.basis .sphere 15 140 0)=I.realization.basis .sphere 17 141 3 := h357.eq_on_page_two.2
   have hd3 : E.d 2 (15,140) (I.realization.basis .sphere 15 140 3)=I.realization.basis .sphere 17 141 1 := h358.eq_on_page_two.2
   obtain ⟨xc,hxc⟩ := (isCycle_iff_represents H SphereSpectrum 9 (by decide) (15,140) x).mp ⟨by decide,hc⟩
   change RepresentsOnPage E 9 (15,140) x xc at hxc
   have hx : E.d 2 (15,140) x=0 := by
-    obtain ⟨x2,hx2⟩ := anyexact0_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤9) hxc
-    have h := anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<9) hx2 ⟨xc,hxc⟩
+    obtain ⟨x2,hx2⟩ := y_detection_page_represents_before (by decide : (2:ℤ)≤2) (by decide : (2:ℤ)≤9) hxc
+    have h := y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<9) hx2 ⟨xc,hxc⟩
     simpa only [hx2.eq_on_page_two] using h
   have heq : e x = Finsupp.single 0 (e x 0) + Finsupp.single 1 (e x 1) + Finsupp.single 2 (e x 2) + Finsupp.single 3 (e x 3) + Finsupp.single 4 (e x 4) := by
     apply Finsupp.ext
@@ -916,7 +916,7 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
       rw [hxe]
       rw [he2]
       simpa only [zero_add,add_zero] using hu
-    exact hd'.symm.trans (anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
+    exact hd'.symm.trans (y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (1:F2)) at hxe
     simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     exfalso
@@ -924,8 +924,8 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
     have hrep : RepresentsOnPage E 5 (15,140) x u := by
       rw [hxe]
       rw [he2, he4]
-      simpa only [zero_add,add_zero] using anyexact0_represents_add_tail (hu) hz4
-    exact hd'.symm.trans (anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
+      simpa only [zero_add,add_zero] using y_detection_page_represents_add_tail (hu) hz4
+    exact hd'.symm.trans (y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (0:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (0:F2)) at hxe
     simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx
@@ -969,8 +969,8 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
     have hrep : RepresentsOnPage E 5 (15,140) x u := by
       rw [hxe]
       rw [he1, he2]
-      simpa only [zero_add,add_zero] using anyexact0_represents_add_tail (hz1) hu
-    exact hd'.symm.trans (anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
+      simpa only [zero_add,add_zero] using y_detection_page_represents_add_tail (hz1) hu
+    exact hd'.symm.trans (y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (0:F2) + Finsupp.single 4 (1:F2)) at hxe
     simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     exfalso
@@ -978,8 +978,8 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
     have hrep : RepresentsOnPage E 5 (15,140) x u := by
       rw [hxe]
       rw [he1, he2, he4]
-      simpa only [zero_add,add_zero] using anyexact0_represents_add_tail (anyexact0_represents_add_tail (hz1) hu) hz4
-    exact hd'.symm.trans (anyexact0_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
+      simpa only [zero_add,add_zero] using y_detection_page_represents_add_tail (y_detection_page_represents_add_tail (hz1) hu) hz4
+    exact hd'.symm.trans (y_detection_page_represents_d_zero_of_later (by change (2:ℤ)≤5; omega) (by decide : (5:ℤ)<9) hrep ⟨xc,hxc⟩)
   · change x = e.symm (Finsupp.single 0 (0:F2) + Finsupp.single 1 (1:F2) + Finsupp.single 2 (1:F2) + Finsupp.single 3 (1:F2) + Finsupp.single 4 (0:F2)) at hxe
     simp only [Finsupp.single_zero,map_add,zero_add,add_zero] at hxe
     rw [hxe] at hx
@@ -1109,7 +1109,7 @@ private theorem anyexact0_anyy_af15_source_frame (I : Inputs D L G)
 
 
 open KIP126.Synthetic.SpectralSequence KIP126.Literature.Route KIP126.Kervaire.Route.Section7 KIP126.Algebra
-private theorem anyexact0_represents_zero_iff_boundary (X : C) (r : ℤ) (hr : 2≤r)
+private theorem y_detection_page_represents_zero_iff_boundary (X : C) (r : ℤ) (hr : 2≤r)
     (p : ℤ×ℤ) (x : PageRepresentatives.Ambient H X p) :
     RepresentsOnPage (adamsTowerInternalSpectralSequence H.unit X) r p x 0 ↔
       x ∈ PageRepresentatives.boundaries H X (r-1) p := by
@@ -1145,7 +1145,7 @@ private theorem anyexact0_represents_zero_iff_boundary (X : C) (r : ℤ) (hr : 2
       rw [cokernel.condition]
       rfl
 
-private theorem anyexact0_boundary_hit_or_previous (X : C) (r : ℤ) (hr : 2≤r)
+private theorem y_detection_page_boundary_hit_or_previous (X : C) (r : ℤ) (hr : 2≤r)
     (p : ℤ×ℤ) (x : PageRepresentatives.Ambient H X p)
     (hx : x∈PageRepresentatives.boundaries H X r p) :
     x∈PageRepresentatives.boundaries H X (r-1) p ∨
@@ -1167,7 +1167,7 @@ private theorem anyexact0_boundary_hit_or_previous (X : C) (r : ℤ) (hr : 2≤r
   have hnm : (↑n:WithTop ℕ)≤↑(n+1) := by exact_mod_cast Nat.le_succ n
   let y := (Subobject.ofLE (A.Z ↑(n+1)) (A.Z ↑n) (A.Z_anti hnm) ≫ A.pageπ ↑n) z
   have hym : y∈LinearMap.range (E.d r q).hom :=
-    (anyexact0_next_projection_zero_iff_incoming E r (by change (2:ℤ)≤r; exact hr) q z).mp hz
+    (y_detection_page_next_projection_zero_iff_incoming E r (by change (2:ℤ)≤r; exact hr) q z).mp hz
   have hy : RepresentsOnPage E r (q+E.diffDeg r) x y := by
     refine ⟨hr,(Subobject.ofLE (A.Z ↑(n+1)) (A.Z ↑n) (A.Z_anti hnm)) z,?_,rfl⟩
     change (Subobject.ofLE (A.Z ↑n) (A.Z 0) _ ≫ A.pageπ 0)
@@ -1180,12 +1180,12 @@ private theorem anyexact0_boundary_hit_or_previous (X : C) (r : ℤ) (hr : 2≤r
   by_cases hy0 : y=0
   · left
     rw [hy0] at hy
-    exact (anyexact0_represents_zero_iff_boundary X r hr (q+E.diffDeg r) x).mp hy
+    exact (y_detection_page_represents_zero_iff_boundary X r hr (q+E.diffDeg r) x).mp hy
   · right
     obtain ⟨a,ha⟩ := hym
     exact ⟨q,rfl,a,y,hy,hy0,by simpa using ha⟩
 
-private theorem anyexact0_sphere_first_label_transport (s t : ℤ)
+private theorem y_detection_page_sphere_first_label_transport (s t : ℤ)
     (x : E2 H SphereSpectrum s t) :
     D.sphereFirstQuotient s t
       (firstLabel D .sphere s t x ≫ XModLambdaN.map
@@ -1212,7 +1212,7 @@ private theorem anyexact0_sphere_first_label_transport (s t : ℤ)
     exact cast_symm (t+0) t (Int.add_zero t) (D.firstQuotient SphereSpectrum 0 s t) x
   rw [hx,c.apply_symm_apply]
 
-private theorem anyexact0_sphere_boundary_torsion_lift
+private theorem y_detection_page_sphere_boundary_torsion_lift
     (R : RealizationInput D) (s t : ℤ) (r : ℕ) (hr : 2≤r)
     (x : E2 H SphereSpectrum s t)
     (hp : x∈PageRepresentatives.permanentCycles H SphereSpectrum (s,t))
@@ -1227,18 +1227,18 @@ private theorem anyexact0_sphere_boundary_torsion_lift
       simp only [Category.assoc]
       exact congrArg (fun h => a≫h) (XModLambdaN.incl_naturality e 1)
     rw [hc,ha]
-    exact anyexact0_sphere_first_label_transport s t x
+    exact y_detection_page_sphere_first_label_transport s t x
   · simpa only [lambdaMultiply,Category.assoc,Limits.zero_comp] using
       congrArg (fun f=>f≫e) hat
 
-private theorem anyexact0_lambda_multiply_zero_mono (D : Model H M Syn) {A : Syn} (a b : ℕ) (hab : a≤b)
+private theorem y_detection_page_lambda_multiply_zero_mono (D : Model H M Syn) {A : Syn} (a b : ℕ) (hab : a≤b)
     {m w : ℤ} (x : BiHom m w A) (hx : lambdaMultiply a x=0) :
     lambdaMultiply b x=0 := by
   simp only [lambdaMultiply,comp_eq_zero_iff_of_epi] at hx ⊢
   rw [lambdaPow_add D.shiftCoherence (b-a) a b (Nat.sub_add_cancel hab)]
   simp only [Category.assoc,hx,Limits.comp_zero]
 
-private theorem anyexact0_sphere_boundary_submodule_torsion_lift
+private theorem y_detection_page_sphere_boundary_submodule_torsion_lift
     (R : RealizationInput D) (s t : ℤ) (r : ℕ) (hr : 1≤r)
     (x : E2 H SphereSpectrum s t)
     (hx : x∈PageRepresentatives.boundaries H SphereSpectrum r (s,t)) :
@@ -1252,15 +1252,15 @@ private theorem anyexact0_sphere_boundary_submodule_torsion_lift
       subst x
       refine ⟨0,?_,?_⟩ <;> simp only [quotientClass,lambdaMultiply,Limits.zero_comp,Limits.comp_zero,map_zero]
     · have hr2 : 2≤r := by omega
-      rcases anyexact0_boundary_hit_or_previous SphereSpectrum r (by omega) (s,t) x hx with hp|hh
+      rcases y_detection_page_boundary_hit_or_previous SphereSpectrum r (by omega) (s,t) x hx with hp|hh
       · have hprev : x∈PageRepresentatives.boundaries H SphereSpectrum ((r-1:ℕ):ℤ) (s,t) := by
           simpa only [Nat.cast_sub hr,Nat.cast_one] using hp
         obtain ⟨a,ha,hat⟩ := ih (r-1) (by omega) (by omega) hprev
-        exact ⟨a,ha,anyexact0_lambda_multiply_zero_mono (D:=D) (r-1-1) (r-1) (by omega) a hat⟩
-      · exact anyexact0_sphere_boundary_torsion_lift R s t r hr2 x
+        exact ⟨a,ha,y_detection_page_lambda_multiply_zero_mono (D:=D) (r-1-1) (r-1) (by omega) a hat⟩
+      · exact y_detection_page_sphere_boundary_torsion_lift R s t r hr2 x
           (PageRepresentatives.boundaries_le_permanentCycles H SphereSpectrum (s,t) r hx) hh
 
-private theorem anyexact0_family_map_data {X Y : Syn} (f : X ⟶ Y) (r : ℤ) (i : Tridegree) :
+private theorem y_detection_page_family_map_data {X Y : Syn} (f : X ⟶ Y) (r : ℤ) (i : Tridegree) :
     familyPageMap D.family f r i = (D.family.functor.map f).toSSDataMorphism.pageMap i (↑(r-2).toNat) := by
   let F := (D.family.functor.map f).toSSDataMorphism
   let PX := (D.family.functor.obj X).ssData i
@@ -1280,11 +1280,11 @@ private theorem anyexact0_family_map_data {X Y : Syn} (f : X ⟶ Y) (r : ℤ) (i
     subst m
     simp only [eqToHom_refl,Category.id_comp,Category.comp_id]
   exact normalize PX.page PY.page (fun n => F.pageMap i n) nX nY (↑(r-2).toNat) hX hY _ _ _
-private theorem anyexact0_family_page_comp {X Y Z : Syn} (f : X ⟶ Y) (g : Y ⟶ Z) (r : ℤ) (i : Tridegree) :
+private theorem y_detection_page_family_page_comp {X Y Z : Syn} (f : X ⟶ Y) (g : Y ⟶ Z) (r : ℤ) (i : Tridegree) :
     familyPageMap D.family f r i ≫ familyPageMap D.family g r i = familyPageMap D.family (f ≫ g) r i := by
-  rw [anyexact0_family_map_data,anyexact0_family_map_data,anyexact0_family_map_data,Functor.map_comp]
+  rw [y_detection_page_family_map_data,y_detection_page_family_map_data,y_detection_page_family_map_data,Functor.map_comp]
   exact (SSDataMorphism.pageMap_comp _ _ _ _).symm
-private theorem anyexact0_family_infinity_representative_map
+private theorem y_detection_page_family_infinity_representative_map
     {X Y : Syn} (f : X ⟶ Y) (i : Tridegree)
     (y : (D.family.obj X).E₂ i) (e : ((D.family.obj X).sequence.ssData i).eInfty)
     (hy : HasInfinityRepresentative (D.family.obj X) 2 i y e) :
@@ -1295,7 +1295,7 @@ private theorem anyexact0_family_infinity_representative_map
     (((D.family.functor.obj X).ssData i).Z 0) _ ≫ ((D.family.functor.obj X).ssData i).pageπ 0) z=y at hz
   let F := (D.family.functor.map f).toSSDataMorphism
   refine ⟨hr,F.cycleMap i ⊤ z,?_,?_⟩
-  · rw [anyexact0_family_map_data]
+  · rw [y_detection_page_family_map_data]
     have h := F.cycleMap_ofLE_assoc i (show (0:WithTop ℕ)≤⊤ from le_top)
       (((D.family.obj Y).sequence.ssData i).pageπ 0)
     dsimp only [SyntheticAdamsFamily.obj] at h
@@ -1305,7 +1305,7 @@ private theorem anyexact0_family_infinity_representative_map
   · exact (congrArg (fun a => a z) (F.pageπ_pageMap i ⊤)).symm.trans (by
       change F.pageMap i ⊤ (((D.family.obj X).sequence.ssData i).pageπ ⊤ z)=_
       rw [he])
-private theorem anyexact0_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
+private theorem y_detection_page_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
     (x : E2 H SphereSpectrum s t) :
     familyPageMap D.family (XModLambdaN.map D.nu.unitIso.inv q) 2 (s,t,t-k)
       (D.quotientLabel q s t k x) = finiteTargetLabel D .sphere q s t k x := by
@@ -1325,7 +1325,7 @@ private theorem anyexact0_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
             nx) := congrArg (fun y => familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k) y) hc.symm
       _ = familyPageMap D.family ((SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) ≫ D.nu.unitIso.inv)
           2 (s,t,t-k) nx :=
-        ConcreteCategory.congr_hom (anyexact0_family_page_comp (D:=D) (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) D.nu.unitIso.inv 2 (s,t,t-k)) nx
+        ConcreteCategory.congr_hom (y_detection_page_family_page_comp (D:=D) (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) D.nu.unitIso.inv 2 (s,t,t-k)) nx
       _ = targetNuLabel D .sphere s t k x := by
         simp only [Category.assoc,Iso.hom_inv_id,Category.comp_id]
         dsimp only [targetNuLabel]
@@ -1335,17 +1335,17 @@ private theorem anyexact0_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
     calc
       _ = familyPageMap D.family (XModLambdaN.incl (S_0_0 : Syn) q ≫ XModLambdaN.map D.nu.unitIso.inv q)
           2 (s,t,t-k) (D.sphereE2 s t k x) :=
-        ConcreteCategory.congr_hom (anyexact0_family_page_comp (D:=D) (XModLambdaN.incl (S_0_0 : Syn) q) (XModLambdaN.map D.nu.unitIso.inv q) 2 (s,t,t-k)) (D.sphereE2 s t k x)
+        ConcreteCategory.congr_hom (y_detection_page_family_page_comp (D:=D) (XModLambdaN.incl (S_0_0 : Syn) q) (XModLambdaN.map D.nu.unitIso.inv q) 2 (s,t,t-k)) (D.sphereE2 s t k x)
       _ = familyPageMap D.family (D.nu.unitIso.inv ≫ XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q)
           2 (s,t,t-k) (D.sphereE2 s t k x) := by rw [XModLambdaN.incl_naturality]; rfl
       _ = familyPageMap D.family (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k)
           (familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k) (D.sphereE2 s t k x)) :=
-        (ConcreteCategory.congr_hom (anyexact0_family_page_comp (D:=D) D.nu.unitIso.inv (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k)) (D.sphereE2 s t k x)).symm
+        (ConcreteCategory.congr_hom (y_detection_page_family_page_comp (D:=D) D.nu.unitIso.inv (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k)) (D.sphereE2 s t k x)).symm
       _ = finiteTargetLabel D .sphere q s t k x := congrArg
         (fun y => familyPageMap D.family (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k) y) hbase
   exact hlabel
 
-private theorem anyexact0_finite_sphere_infinity_cycle_label_exists
+private theorem y_detection_page_finite_sphere_infinity_cycle_label_exists
     (BHS : EInftyInput D) (q k : ℕ) (hq : 0<q) (hkq : k<q) (s t : ℤ)
     (e : ((D.family.quotient (S_0_0 : Syn) q).sequence.ssData (s,t,t-k)).eInfty) :
     ∃ x : E2 H SphereSpectrum s t,
@@ -1370,21 +1370,21 @@ private theorem anyexact0_finite_sphere_infinity_cycle_label_exists
   have hn := (BHS.labels.1 .sphere q hq (s,t) k hkq c _).mpr hc.symm
   have hl : familyPageMap D.family f 2 (s,t,t-k)
       (finiteTargetLabel D .sphere q s t k c.val)=D.quotientLabel q s t k c.val := by
-    rw [←anyexact0_sphere_quotient_label_to_nu (D:=D) q k s t c.val]
+    rw [←y_detection_page_sphere_quotient_label_to_nu (D:=D) q k s t c.val]
     calc
       _ = familyPageMap D.family (g≫f) 2 (s,t,t-k) (D.quotientLabel q s t k c.val) :=
-        ConcreteCategory.congr_hom (anyexact0_family_page_comp (D:=D) g f 2 (s,t,t-k)) _
+        ConcreteCategory.congr_hom (y_detection_page_family_page_comp (D:=D) g f 2 (s,t,t-k)) _
       _ = D.quotientLabel q s t k c.val := by
-        rw [hgf,anyexact0_family_map_data,CategoryTheory.Functor.map_id]
+        rw [hgf,y_detection_page_family_map_data,CategoryTheory.Functor.map_id]
         exact ConcreteCategory.congr_hom (SSDataMorphism.pageMap_id
           (D.family.functor.obj (XModLambdaN (S_0_0 : Syn) q)).ssData
           (s,t,t-k) ↑(2-2:ℤ).toNat) _
-  have h := anyexact0_family_infinity_representative_map f (s,t,t-k) _ _ hn
+  have h := y_detection_page_family_infinity_representative_map f (s,t,t-k) _ _ hn
   rw [hl,heq] at h
   refine ⟨c.val,?_,h⟩
   convert c.property using 1; congr 1; omega
 
-private theorem anyexact0_finite_sphere_filtration_has_cycle_label
+private theorem y_detection_page_finite_sphere_filtration_has_cycle_label
     (BHS : EInftyInput D) (q k : ℕ) (hq : 0<q) (hkq : k<q) (s t : ℤ)
     (a : BiHom (t-s) (t-k) (XModLambdaN (S_0_0 : Syn) q))
     (ha : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s a) :
@@ -1401,11 +1401,11 @@ private theorem anyexact0_finite_sphere_filtration_has_cycle_label
   let e := ((D.quotientConvergence q hq).identification (s,t,t-k)).inv gr
   have he : ((D.quotientConvergence q hq).identification (s,t,t-k)).hom e=gr :=
     ConcreteCategory.congr_hom ((D.quotientConvergence q hq).identification (s,t,t-k)).inv_hom_id gr
-  obtain ⟨x,hc,hx⟩ := anyexact0_finite_sphere_infinity_cycle_label_exists BHS q k hq hkq s t e
+  obtain ⟨x,hc,hx⟩ := y_detection_page_finite_sphere_infinity_cycle_label_exists BHS q k hq hkq s t e
   exact ⟨x,hc,e,hx,a',ha',he⟩
 
 
-private theorem anyexact0_detected_map
+private theorem y_detection_page_detected_map
     (X Y : SyntheticObject) (f : X.obj D.nu D.auxiliary ⟶ Y.obj D.nu D.auxiliary)
     (i : Tridegree) (x : (D.family.obj (X.obj D.nu D.auxiliary)).E₂ i)
     (a : BiHom (i.2.1-i.1) i.2.2 (X.obj D.nu D.auxiliary))
@@ -1430,7 +1430,7 @@ private theorem anyexact0_detected_map
       Filtration.inducedAssocGradedMap c.aMap c.filtration_compat i.1 m =
       k≫G.toAssociatedGraded i.1 m := by
     exact cokernel.π_desc _ _ _
-  refine ⟨(D.family.functor.map f).eInftyMap i e,anyexact0_family_infinity_representative_map f i x e he,k a',?_,?_⟩
+  refine ⟨(D.family.functor.map f).eInftyMap i e,y_detection_page_family_infinity_representative_map f i x e he,k a',?_,?_⟩
   · have hh := ConcreteCategory.congr_hom hk a'
     change (G.F i.1 m).arrow (k a')=((F.F i.1 m).arrow a')≫f at hh
     change (F.F i.1 m).arrow a'=a at ha'
@@ -1446,7 +1446,7 @@ private theorem anyexact0_detected_map
           (F.toAssociatedGraded i.1 m a') := by rw [hgr]
       _ = G.toAssociatedGraded i.1 m (k a') := ConcreteCategory.congr_hom hq a'
 
-private theorem anyexact0_sphere_quotient_high_filtration_zero (BHS : EInftyInput D)
+private theorem y_detection_page_sphere_quotient_high_filtration_zero (BHS : EInftyInput D)
     (q : ℕ) (hq : 0<q) (m w : ℤ) (N : ℕ) (hN : (q:ℤ)≤m+N-w)
     (z : BiHom m w (XModLambdaN (S_0_0 : Syn) q))
     (hz : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) N z) : z=0 := by
@@ -1479,7 +1479,7 @@ private theorem anyexact0_sphere_quotient_high_filtration_zero (BHS : EInftyInpu
     CategoryTheory.Functor.map_id,SpectralSequenceMorphism.eInftyMap_id] at h
   simpa only [ConcreteCategory.id_apply,map_zero] using h
 
-private theorem anyexact0_boundary_of_zero_representative
+private theorem y_detection_page_boundary_of_zero_representative
     {r : ℤ} {p : ℤ×ℤ} {x : E2 H SphereSpectrum p.1 p.2}
     (hx : RepresentsOnPage (adamsTowerInternalSpectralSequence H.unit SphereSpectrum) r p x 0) :
     x ∈ boundaries H SphereSpectrum (r-1) p := by
@@ -1501,7 +1501,7 @@ private theorem anyexact0_boundary_of_zero_representative
   rw [←hf,CategoryTheory.comp_apply,hy]
   exact hz
 
-private theorem anyexact0_anyy_af15_source_boundary (I : Inputs D L G) :
+private theorem y_detection_page_af15_source_boundary (I : Inputs D L G) :
     cycles H SphereSpectrum 8 (15,140) ≤ boundaries H SphereSpectrum 4 (15,140) := by
   intro x hx
   let E := sequence D .sphere
@@ -1536,17 +1536,17 @@ private theorem anyexact0_anyy_af15_source_boundary (I : Inputs D L G) :
     rw [←hx,←hy] at hd
     simpa only [add_assoc] using hd
   have hb1 : I.realization.basis .sphere 15 140 1 ∈ boundaries H SphereSpectrum 4 (15,140) :=
-    anyexact0_boundary_of_zero_representative (r:=5) (p:=(15,140))
-      (anyexact0_differential_target_later_zero (by change (2:ℤ)≤4; omega) (by decide : (4:ℤ)<5) h355)
+    y_detection_page_boundary_of_zero_representative (r:=5) (p:=(15,140))
+      (y_detection_page_differential_target_later_zero (by change (2:ℤ)≤4; omega) (by decide : (4:ℤ)<5) h355)
   have hb4 : I.realization.basis .sphere 15 140 4 ∈ boundaries H SphereSpectrum 4 (15,140) :=
-    anyexact0_boundary_of_zero_representative (r:=5) (p:=(15,140))
-      (anyexact0_differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<5) h354)
-  rcases anyexact0_anyy_af15_source_frame I x hx with rfl|rfl|rfl|rfl
+    y_detection_page_boundary_of_zero_representative (r:=5) (p:=(15,140))
+      (y_detection_page_differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<5) h354)
+  rcases y_detection_page_af15_source_frame I x hx with rfl|rfl|rfl|rfl
   · exact Submodule.zero_mem _
   · exact hb1
   · exact hb4
   · exact Submodule.add_mem _ hb1 hb4
-private theorem anyexact0_anyy_af16_source_boundary (I : Inputs D L G) :
+private theorem y_detection_page_af16_source_boundary (I : Inputs D L G) :
     cycles H SphereSpectrum 7 (16,141) ≤ boundaries H SphereSpectrum 4 (16,141) := by
   intro x hx
   let E := sequence D .sphere
@@ -1581,25 +1581,25 @@ private theorem anyexact0_anyy_af16_source_boundary (I : Inputs D L G) :
     rw [←hx,←hy] at hd
     simpa only [add_assoc] using hd
   have hb1 : I.realization.basis .sphere 16 141 1 ∈ boundaries H SphereSpectrum 4 (16,141) :=
-    anyexact0_boundary_of_zero_representative (r:=5) (p:=(16,141))
-      (anyexact0_differential_target_later_zero (by change (2:ℤ)≤4; omega) (by decide : (4:ℤ)<5) h370)
+    y_detection_page_boundary_of_zero_representative (r:=5) (p:=(16,141))
+      (y_detection_page_differential_target_later_zero (by change (2:ℤ)≤4; omega) (by decide : (4:ℤ)<5) h370)
   have hb2 : I.realization.basis .sphere 16 141 2 ∈ boundaries H SphereSpectrum 4 (16,141) :=
-    anyexact0_boundary_of_zero_representative (r:=5) (p:=(16,141))
-      (anyexact0_differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<5) h369)
-  rcases anyexact0_anyy_af16_source_frame I x hx with rfl|rfl|rfl|rfl
+    y_detection_page_boundary_of_zero_representative (r:=5) (p:=(16,141))
+      (y_detection_page_differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide : (2:ℤ)<5) h369)
+  rcases y_detection_page_af16_source_frame I x hx with rfl|rfl|rfl|rfl
   · exact Submodule.zero_mem _
   · exact hb1
   · exact hb2
   · exact Submodule.add_mem _ hb1 hb2
 omit [HasFunctorialCofiber (C := Syn)] in
-private theorem anyexact0_lambda_multiply_zero_precomp {A : Syn} {m w m' w' : ℤ}
+private theorem y_detection_page_lambda_multiply_zero_precomp {A : Syn} {m w m' w' : ℤ}
     (b : ℕ) (f : Smn (Syn:=Syn) m' w' ⟶ Smn m w) (x : BiHom m w A)
     (hx : lambdaMultiply b x=0) : lambdaMultiply b (f≫x)=0 := by
   simp only [lambdaMultiply,comp_eq_zero_iff_of_epi] at hx ⊢
   rw [←Category.assoc,←lambdaPow_naturality b f,Category.assoc,hx,Limits.comp_zero]
 
 omit [HasFunctorialCofiber (C := Syn)] in
-private theorem anyexact0_lambda_multiply_zero_iterated {A : Syn} {m w : ℤ}
+private theorem y_detection_page_lambda_multiply_zero_iterated {A : Syn} {m w : ℤ}
     (a b : ℕ) (x : BiHom m w A) (hx : lambdaMultiply b x=0) :
     lambdaMultiply b (lambdaMultiply a x)=0 := by
   let f : Smn (Syn:=Syn) m (w-a) ⟶ Smn m w :=
@@ -1607,9 +1607,9 @@ private theorem anyexact0_lambda_multiply_zero_iterated {A : Syn} {m w : ℤ}
       (SyntheticCategory.biShift_comp (m,w) (0,-(a:ℤ))).inv.app S_0_0 ≫ lambdaPow a (Smn m w)
   have he : lambdaMultiply a x=f≫x := by simp only [f,lambdaMultiply,Category.assoc]
   rw [he]
-  exact anyexact0_lambda_multiply_zero_precomp b f x hx
+  exact y_detection_page_lambda_multiply_zero_precomp b f x hx
 
-private theorem anyexact0_boundary_filtration_peel
+private theorem y_detection_page_boundary_filtration_peel
     (BHS : EInftyInput D) (R : RealizationInput D)
     (s t : ℤ) (k : ℕ) (hk : k<9)
     (hb : cycles H SphereSpectrum (9-k) (s,t) ≤ boundaries H SphereSpectrum 4 (s,t))
@@ -1618,16 +1618,16 @@ private theorem anyexact0_boundary_filtration_peel
     ∃ a' : BiHom (t-s) (t-k) (XModLambdaN (S_0_0 : Syn) 9),
       FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) (s+1) a' ∧
       lambdaMultiply 6 a'=lambdaMultiply 6 a := by
-  obtain ⟨x,hxc,hxa⟩ := anyexact0_finite_sphere_filtration_has_cycle_label BHS 9 k (by decide) hk s t a ha
-  obtain ⟨b,hbq,hbt⟩ := anyexact0_sphere_boundary_submodule_torsion_lift R s t 4 (by decide) x (hb hxc)
+  obtain ⟨x,hxc,hxa⟩ := y_detection_page_finite_sphere_filtration_has_cycle_label BHS 9 k (by decide) hk s t a ha
+  obtain ⟨b,hbq,hbt⟩ := y_detection_page_sphere_boundary_submodule_torsion_lift R s t 4 (by decide) x (hb hxc)
   let a0 : BiHom (t-s) (t-k) (XModLambdaN (S_0_0 : Syn) 9) := quotientClass 9 (lambdaMultiply k b)
   have ha0 : Detects (D.quotientConvergence 9 (by decide)) (s,t,t-k) (D.quotientLabel 9 s t k x) a0 := by
     have h := D.comparisonCompatible.homotopy_lambda s t k b
     rw [hbq] at h
-    exact anyexact0_detected_map .sphere (.quotient 9 .sphere) (XModLambdaN.incl _ 9) (s,t,t-k) _ _ h
+    exact y_detection_page_detected_map .sphere (.quotient 9 .sphere) (XModLambdaN.incl _ 9) (s,t,t-k) _ _ h
   have ha0zero : lambdaMultiply 6 a0=0 := by
-    have hb6 := anyexact0_lambda_multiply_zero_mono D 3 6 (by decide) b hbt
-    have hb6k := anyexact0_lambda_multiply_zero_iterated k 6 b hb6
+    have hb6 := y_detection_page_lambda_multiply_zero_mono D 3 6 (by decide) b hbt
+    have hb6k := y_detection_page_lambda_multiply_zero_iterated k 6 b hb6
     simpa only [a0,quotientClass,lambdaMultiply,Category.assoc,Limits.zero_comp] using
       congrArg (fun f=>f≫XModLambdaN.incl (S_0_0 : Syn) 9) hb6k
   refine ⟨a-a0,detects_sub_filtration (D.quotientConvergence 9 (by decide)) (s,t,t-k) hxa ha0,?_⟩
@@ -1635,7 +1635,7 @@ private theorem anyexact0_boundary_filtration_peel
     simp only [lambdaMultiply,Preadditive.comp_sub]
   rw [hdist,ha0zero,sub_zero]
 
-private theorem anyexact0_lambda_filtration_preserved {A : Syn} {m w : ℤ}
+private theorem y_detection_page_lambda_filtration_preserved {A : Syn} {m w : ℤ}
     (k : ℕ) (s : ℤ) (a : BiHom m w A)
     (ha : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s a) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s (lambdaMultiply k a) := by
@@ -1646,17 +1646,17 @@ private theorem anyexact0_lambda_filtration_preserved {A : Syn} {m w : ℤ}
   dsimp only [lambdaMultiply]
   simp only [Category.assoc,hz]
 
-private theorem anyexact0_anyy_lambda_six_filtration_fifteen_zero
+private theorem y_detection_page_lambda_six_filtration_fifteen_zero
     (I : Inputs D L G) (BHS : EInftyInput D) (R : RealizationInput D)
     (a : BiHom 125 139 (XModLambdaN (S_0_0 : Syn) 9))
     (ha : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 a) :
     lambdaMultiply 6 a=0 := by
-  obtain ⟨b,hb,hab⟩ := anyexact0_boundary_filtration_peel BHS R 15 140 1 (by decide)
-    (anyexact0_anyy_af15_source_boundary I) a ha
-  obtain ⟨c,hc,hbc⟩ := anyexact0_boundary_filtration_peel BHS R 16 141 2 (by decide)
-    (anyexact0_anyy_af16_source_boundary I) b hb
-  have hc17 := anyexact0_lambda_filtration_preserved 6 17 c hc
-  have hz := anyexact0_sphere_quotient_high_filtration_zero BHS 9 (by decide) 125 133 17 (by decide)
+  obtain ⟨b,hb,hab⟩ := y_detection_page_boundary_filtration_peel BHS R 15 140 1 (by decide)
+    (y_detection_page_af15_source_boundary I) a ha
+  obtain ⟨c,hc,hbc⟩ := y_detection_page_boundary_filtration_peel BHS R 16 141 2 (by decide)
+    (y_detection_page_af16_source_boundary I) b hb
+  have hc17 := y_detection_page_lambda_filtration_preserved 6 17 c hc
+  have hz := y_detection_page_sphere_quotient_high_filtration_zero BHS 9 (by decide) 125 133 17 (by decide)
     (lambdaMultiply 6 c) hc17
   exact hab.symm.trans (hbc.symm.trans hz)
 
@@ -1672,7 +1672,7 @@ variable {C : Type u} [Category.{v} C] [Preadditive C]
   [IsTriangulated C]
 set_option backward.isDefEq.respectTransparency false
 
-private theorem anyexact1_juggling_every_member
+private theorem y_detection_toda_juggling_every_member
     {X Y Z W V:C} {f:X⟶Y} {g:Y⟶Z} {h:Z⟶W} {d:W⟶V}
     {x:X⟦(1:ℤ)⟧⟶W} (hx:Relation x f g h)
     (hhd:h≫d=0)
@@ -1698,7 +1698,7 @@ variable {Syn:Type u} [SyntheticCategory.{u,v} Syn]
 set_option backward.isDefEq.respectTransparency false
 set_option maxHeartbeats 1000000
 
-private theorem anyexact1_shifted_h0_low_indeterminacy
+private theorem y_detection_toda_shifted_h0_low_indeterminacy
     (h0:BiHom 0 1 (S_0_0:Syn))
     (hind:∀a:BiHom 2 3 (S_0_0:Syn),sphereProduct h0 a=0)
     (u:((SyntheticCategory.biShift (1,3)).obj (S_0_0:Syn))⟦(1:ℤ)⟧⟶(S_0_0:Syn)) :
@@ -1721,7 +1721,7 @@ private theorem anyexact1_shifted_h0_low_indeterminacy
   rw [Category.assoc,hu,Category.assoc,hz,comp_zero] at hh
   exact hh
 
-private theorem anyexact1_map_left_indeterminacy
+private theorem y_detection_toda_map_left_indeterminacy
     (F:Syn⥤Syn) [F.CommShift ℤ] [F.Additive] (ff:F.FullyFaithful)
     {A B W:Syn} (f:A⟶B)
     (hind:∀u:B⟦(1:ℤ)⟧⟶W,f⟦(1:ℤ)⟧'≫u=0)
@@ -1739,7 +1739,7 @@ private theorem anyexact1_map_left_indeterminacy
   rw [hh,comp_zero] at hnu
   exact hnu
 
-private theorem anyexact1_module_low_shuffle_raw
+private theorem y_detection_toda_module_low_shuffle_raw
     [IsTriangulated Syn]
     [(SyntheticCategory.biShift (Syn:=Syn) (123,129)).CommShift ℤ]
     [(SyntheticCategory.biShift (Syn:=Syn) (123,129)).IsTriangulated]
@@ -1785,12 +1785,12 @@ private theorem anyexact1_module_low_shuffle_raw
   have hi:∀u:(F.obj ((SyntheticCategory.biShift (1,3)).obj (S_0_0:Syn)))⟦(1:ℤ)⟧⟶F.obj (S_0_0:Syn),
       (F.map ((SyntheticCategory.biShift (1,3)).map h0))⟦(1:ℤ)⟧'≫u=0 := by
     intro u
-    exact anyexact1_map_left_indeterminacy F (SyntheticCategory.biShift_fullyFaithful (123,129))
-      _ (anyexact1_shifted_h0_low_indeterminacy h0 hind) u
-  have hresult:=Toda.anyexact1_juggling_every_member hmap hh hi hn'
+    exact y_detection_toda_map_left_indeterminacy F (SyntheticCategory.biShift_fullyFaithful (123,129))
+      _ (y_detection_toda_shifted_h0_low_indeterminacy h0 hind) u
+  have hresult:=Toda.y_detection_toda_juggling_every_member hmap hh hi hn'
   simpa only [F,d,Category.assoc,homotopyRegrade,Int.reduceAdd,eqToHom_refl,Category.id_comp] using hresult
 
-private theorem anyexact1_module_low_source_iso (coh:BiShiftCoherence Syn) :
+private theorem y_detection_toda_module_low_source_iso (coh:BiShiftCoherence Syn) :
     let F:=SyntheticCategory.biShift (Syn:=Syn) (123,129)
     let d:F.obj (Smn (Syn:=Syn) 1 3)≅(SyntheticCategory.biShift (123,130)).obj (Smn 1 2):=
       F.mapIso ((SyntheticCategory.biShift_comp (1,2) (0,1)).app (S_0_0:Syn)).symm ≪≫
@@ -1810,7 +1810,7 @@ private theorem anyexact1_module_low_source_iso (coh:BiShiftCoherence Syn) :
   simpa only [Smn,Functor.comp_obj,Prod.mk_add_mk,Int.reduceAdd,CategoryTheory.Functor.map_id,Category.id_comp,Category.comp_id,
     Iso.trans_hom,Functor.mapIso_hom,Iso.symm_hom,Iso.app_inv,Iso.app_hom] using he.symm
 
-private theorem anyexact1_module_low_normalized_source (coh:BiShiftCoherence Syn) :
+private theorem y_detection_toda_module_low_normalized_source (coh:BiShiftCoherence Syn) :
     let F:=SyntheticCategory.biShift (Syn:=Syn) (123,129)
     let G:=SyntheticCategory.biShift (Syn:=Syn) (1,3)
     let d:F.obj (Smn (Syn:=Syn) 1 3)≅(SyntheticCategory.biShift (123,130)).obj (Smn 1 2):=
@@ -1823,7 +1823,7 @@ private theorem anyexact1_module_low_normalized_source (coh:BiShiftCoherence Syn
             SyntheticCategory.biShift_comp (124,132) (1,0)
     d.hom⟦(1:ℤ)⟧'≫(tripleTodaSource (Syn:=Syn) 1 2 0 1 123 129).inv=J.hom.app (S_0_0:Syn) := by
   dsimp only
-  rw [anyexact1_module_low_source_iso coh]
+  rw [y_detection_toda_module_low_source_iso coh]
   simp only [Functor.map_comp,Category.assoc]
   have hsrc : tripleTodaSource (Syn:=Syn) 1 2 0 1 123 129 =
       ((SyntheticCategory.biShift_comp (124,132) (1,0)).app (S_0_0:Syn)).symm ≪≫
@@ -1842,7 +1842,7 @@ private theorem anyexact1_module_low_normalized_source (coh:BiShiftCoherence Syn
   erw [reassoc_of% ((SyntheticCategory.biShift_compat (Syn:=Syn) 1).inv.naturality
     ((SyntheticCategory.biShift_comp (1,3) (123,129)).hom.app (S_0_0:Syn)))]
 
-private theorem anyexact1_source_iso_fixed_transport
+private theorem y_detection_toda_source_iso_fixed_transport
     {A B U X:Syn} (F:Syn⥤Syn) (ff:F.FullyFaithful)
     (f:A⟶B) (hf:∀a:A≅A,a.hom≫f=f) (d:U≅F.obj A) (x:F.obj B⟶X)
     (a:U≅U) : a.hom≫d.hom≫F.map f≫x=d.hom≫F.map f≫x := by
@@ -1853,16 +1853,16 @@ private theorem anyexact1_source_iso_fixed_transport
   have hh':=congrArg (fun z => d.hom≫z≫x) hh
   simpa only [Category.assoc,d.hom_inv_id_assoc] using hh'
 
-private theorem anyexact1_source_iso_fixed_action
+private theorem y_detection_toda_source_iso_fixed_action
     {m n k l:ℤ} {X:Syn} (f:BiHom m n (S_0_0:Syn))
     (hf:∀a:Smn (Syn:=Syn) m n≅Smn m n,a.hom≫f=f)
     (x:BiHom k l X) (a:Smn (Syn:=Syn) (m+k) (n+l)≅Smn (m+k) (n+l)) :
     a.hom≫sphereAction f x=sphereAction f x := by
-  exact anyexact1_source_iso_fixed_transport (SyntheticCategory.biShift (k,l))
+  exact y_detection_toda_source_iso_fixed_transport (SyntheticCategory.biShift (k,l))
     (SyntheticCategory.biShift_fullyFaithful (Syn:=Syn) (k,l)) f hf
     ((SyntheticCategory.biShift_comp (m,n) (k,l)).app (S_0_0:Syn)).symm x a
 
-private theorem anyexact1_eta_source_iso_fixed
+private theorem y_detection_toda_eta_source_iso_fixed
     (unique : ∀ x y : BiHom 1 2 (S_0_0:Syn), x≠0 → y≠0 → x=y)
     (eta:BiHom 1 2 (S_0_0:Syn)) (a:Smn (Syn:=Syn) 1 2≅Smn 1 2) :
     a.hom≫eta=eta := by
@@ -1874,7 +1874,7 @@ private theorem anyexact1_eta_source_iso_fixed
   have h:=congrArg (fun z => a.inv≫z) hh
   simpa only [←Category.assoc,a.inv_hom_id,Category.id_comp,comp_zero] using h
 
-private theorem anyexact1_module_low_shuffle_exact
+private theorem y_detection_toda_module_low_shuffle_exact
     (coh:BiShiftCoherence Syn)
     [IsTriangulated Syn]
     [(SyntheticCategory.biShift (Syn:=Syn) (123,129)).CommShift ℤ]
@@ -1899,10 +1899,10 @@ private theorem anyexact1_module_low_shuffle_exact
   let src: ((F.obj (G.obj (Smn (Syn:=Syn) 0 1)))⟦(1:ℤ)⟧)≅Smn 125 133 :=
     J.app (Smn 0 1) ≪≫ (SyntheticCategory.biShift_comp (0,1) (125,132)).app (S_0_0:Syn)
   let v:BiHom 2 4 (S_0_0:Syn):=sphereProduct (m:=1) (n:=2) (k:=1) (l:=2) eta eta
-  have hs:=anyexact1_module_low_shuffle_raw eta h0 hlow hind a ha z hz
+  have hs:=y_detection_toda_module_low_shuffle_raw eta h0 hlow hind a ha z hz
   have hn:(F.map (G.map h0))⟦(1:ℤ)⟧'≫d.hom⟦(1:ℤ)⟧'≫
       (tripleTodaSource (Syn:=Syn) 1 2 0 1 123 129).inv≫z=src.hom≫sphereAction h0 z := by
-    have he:=anyexact1_module_low_normalized_source coh
+    have he:=y_detection_toda_module_low_normalized_source coh
     change d.hom⟦(1:ℤ)⟧'≫(tripleTodaSource (Syn:=Syn) 1 2 0 1 123 129).inv=J.hom.app (S_0_0:Syn) at he
     erw [reassoc_of% he]
     have hh:=J.hom.naturality h0
@@ -1934,11 +1934,11 @@ private theorem anyexact1_module_low_shuffle_exact
     exact hh
   have hv:∀aa:Smn (Syn:=Syn) 2 4≅Smn 2 4,aa.hom≫v=v := by
     intro aa
-    exact anyexact1_source_iso_fixed_action eta (anyexact1_eta_source_iso_fixed unique eta) eta aa
+    exact y_detection_toda_source_iso_fixed_action eta (y_detection_toda_eta_source_iso_fixed unique eta) eta aa
   have hp:∀aa:Smn (Syn:=Syn) 125 133≅Smn 125 133,
       aa.hom≫sphereAction v a=sphereAction v a := by
     intro aa
-    exact anyexact1_source_iso_fixed_action v hv a aa
+    exact y_detection_toda_source_iso_fixed_action v hv a aa
   rw [hp au] at he
   let negIso:Smn (Syn:=Syn) 125 133≅Smn 125 133 :=
     ⟨-𝟙 _, -𝟙 _,by simp,by simp⟩
@@ -1954,7 +1954,7 @@ universe uc
 variable {C:Type uc} [StableHomotopyCategory.{uc,v} C] [HasFunctorialCofiber (C:=C)]
   [HasFunctorialCofiber (C:=Syn)] {H:Mod2EilenbergMacLane (C:=C)} {M:MilnorCooperations H}
 omit [HasFunctorialCofiber (C := Syn)] in
-private theorem anyexact1_shift_assoc_inv (coh : BiShiftCoherence Syn)
+private theorem y_detection_toda_shift_assoc_inv (coh : BiShiftCoherence Syn)
     (a b c ab bc total : ℤ × ℤ) (hab : a+b=ab) (hbc : b+c=bc)
     (habc : ab+c=total) (habc' : a+bc=total) (A : Syn) :
     (biShiftAddIso ab c total habc).inv.app A ≫
@@ -1969,11 +1969,11 @@ private theorem anyexact1_shift_assoc_inv (coh : BiShiftCoherence Syn)
   have hi := congrArg Iso.inv he
   exact hi
 
-private theorem anyexact1_h0_action_lambda_three (D : Model H M Syn)
+private theorem y_detection_toda_h0_action_lambda_three (D : Model H M Syn)
     (η : BiHom 0 1 (S_0_0 : Syn))
     {X : Syn} (c : BiHom 123 132 X) :
     sphereAction η (lambdaMultiply 3 c) = lambdaMultiply 3 (sphereAction η c) := by
-  have ha := anyexact1_shift_assoc_inv D.shiftCoherence (0,1) (123,132) (0,-3)
+  have ha := y_detection_toda_shift_assoc_inv D.shiftCoherence (0,1) (123,132) (0,-3)
     (123,133) (123,129) (123,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
   simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold sphereAction lambdaMultiply
@@ -1987,11 +1987,11 @@ private theorem anyexact1_h0_action_lambda_three (D : Model H M Syn)
   erw [← reassoc_of% ((SyntheticCategory.biShift_comp (123,132) (0,-3)).inv.naturality η)]
   rfl
 
-private theorem anyexact1_eta_action_right_three (D : Model H M Syn)
+private theorem y_detection_toda_eta_action_right_three (D : Model H M Syn)
     (η : BiHom 1 2 (S_0_0 : Syn))
     {X : Syn} (c : BiHom 123 132 X) :
     sphereAction η (lambdaMultiply 3 c) = lambdaMultiply 3 (sphereAction η c) := by
-  have ha := anyexact1_shift_assoc_inv D.shiftCoherence (1,2) (123,132) (0,-3)
+  have ha := y_detection_toda_shift_assoc_inv D.shiftCoherence (1,2) (123,132) (0,-3)
     (124,134) (123,129) (124,131) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
   simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold sphereAction lambdaMultiply
@@ -2007,11 +2007,11 @@ private theorem anyexact1_eta_action_right_three (D : Model H M Syn)
 
 
 omit [HasFunctorialCofiber (C := Syn)] in
-private theorem anyexact1_eta_double_action (coh:BiShiftCoherence Syn)
+private theorem y_detection_toda_eta_double_action (coh:BiShiftCoherence Syn)
     (eta:BiHom 1 2 (S_0_0:Syn)) {X:Syn} (a:BiHom 123 129 X) :
     sphereAction (sphereProduct (m:=1) (n:=2) (k:=1) (l:=2) eta eta) a =
       sphereAction eta (sphereAction eta a) := by
-  have ha:=anyexact1_shift_assoc_inv coh (1,2) (1,2) (123,129) (2,4) (124,131) (125,133)
+  have ha:=y_detection_toda_shift_assoc_inv coh (1,2) (1,2) (123,129) (2,4) (124,131) (125,133)
     (by decide) (by decide) (by decide) (by decide) (S_0_0:Syn)
   simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,
     eqToHom_refl,Category.id_comp] at ha
@@ -2021,7 +2021,7 @@ private theorem anyexact1_eta_double_action (coh:BiShiftCoherence Syn)
   erw [←reassoc_of% ((SyntheticCategory.biShift_comp (1,2) (123,129)).inv.naturality eta)]
   rfl
 
-private theorem anyexact1_main_toda_h0_relation (D:Model H M Syn)
+private theorem y_detection_toda_main_toda_h0_relation (D:Model H M Syn)
     (unique:∀x y:BiHom 1 2 (S_0_0:Syn),x≠0→y≠0→x=y)
     (eta:BiHom 1 2 (S_0_0:Syn)) (h0:BiHom 0 1 (S_0_0:Syn))
     (hlow:TripleToda h0 eta h0 (sphereProduct (m:=1) (n:=2) (k:=1) (l:=2) eta eta))
@@ -2032,15 +2032,15 @@ private theorem anyexact1_main_toda_h0_relation (D:Model H M Syn)
   letI:=D.syntheticTriangulated
   letI:=D.shiftCommShift (123,129)
   letI:=D.shiftExact (123,129)
-  have hh:sphereAction h0 (lambdaMultiply 3 a)=0 := (anyexact1_h0_action_lambda_three D h0 a).trans ha
-  have he:=anyexact1_module_low_shuffle_exact D.shiftCoherence unique eta h0 hlow hind (lambdaMultiply 3 a) hh z hz
-  rw [anyexact1_eta_double_action D.shiftCoherence,anyexact1_eta_action_right_three D] at he
+  have hh:sphereAction h0 (lambdaMultiply 3 a)=0 := (y_detection_toda_h0_action_lambda_three D h0 a).trans ha
+  have he:=y_detection_toda_module_low_shuffle_exact D.shiftCoherence unique eta h0 hlow hind (lambdaMultiply 3 a) hh z hz
+  rw [y_detection_toda_eta_double_action D.shiftCoherence,y_detection_toda_eta_action_right_three D] at he
   exact he
 
 
 open KIP126.Algebra PageRepresentatives KIP126.Core.SpectralSequence
 variable {D:Model H M Syn}
-private theorem anyexact1_finite_sphere_outside_window_zero (BHS:EInftyInput D)
+private theorem y_detection_toda_finite_sphere_outside_window_zero (BHS:EInftyInput D)
     (q:ℕ) (hq:0<q) (s t w:ℤ) (hw:¬(0≤t-w ∧ t-w<q)) :
     IsZero (((D.family.quotient (S_0_0:Syn) q).sequence.ssData (s,t,w)).eInfty) := by
   let P:=BHS.presentation.finite SphereSpectrum q hq (s,t) w
@@ -2062,7 +2062,7 @@ private theorem anyexact1_finite_sphere_outside_window_zero (BHS:EInftyInput D)
   apply (CategoryTheory.Limits.IsZero.iff_id_eq_zero _).mpr
   exact hfg.symm.trans (by rw [hn.eq_of_src f 0,CategoryTheory.Limits.comp_zero])
 
-private theorem anyexact1_finite_sphere_filtration_floor (BHS:EInftyInput D)
+private theorem y_detection_toda_finite_sphere_filtration_floor (BHS:EInftyInput D)
     (q:ℕ) (hq:0<q) (m w:ℤ) (N:ℕ) (hN:m+N≤w)
     (a:BiHom m w (XModLambdaN (S_0_0:Syn) q)) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) N a := by
@@ -2074,9 +2074,9 @@ private theorem anyexact1_finite_sphere_filtration_floor (BHS:EInftyInput D)
   apply ((D.quotientConvergence q hq).filtrationAtLeast_iff_of_eInfty_isZero 0 N m w
     (by omega) ?_ a).mp hfloor
   intro j hj hj'
-  exact anyexact1_finite_sphere_outside_window_zero BHS q hq j (m+j) w (by omega)
+  exact y_detection_toda_finite_sphere_outside_window_zero BHS q hq j (m+j) w (by omega)
 
-private theorem anyexact1_lambda_filtration_preserved {A : Syn} {m w : ℤ}
+private theorem y_detection_toda_lambda_filtration_preserved {A : Syn} {m w : ℤ}
     (k : ℕ) (s : ℤ) (a : BiHom m w A)
     (ha : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s a) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s (lambdaMultiply k a) := by
@@ -2087,13 +2087,13 @@ private theorem anyexact1_lambda_filtration_preserved {A : Syn} {m w : ℤ}
   dsimp only [lambdaMultiply]
   simp only [Category.assoc,hz]
 
-private theorem anyexact1_main_toda_seventh_error_filtration (BHS:EInftyInput D)
+private theorem y_detection_toda_main_toda_seventh_error_filtration (BHS:EInftyInput D)
     (a3:BiHom 125 140 (XModLambdaN (S_0_0:Syn) 9)) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 (lambdaMultiply 7 a3) := by
-  exact anyexact1_lambda_filtration_preserved 7 15 a3
-    (anyexact1_finite_sphere_filtration_floor BHS 9 (by decide) 125 140 15 (by decide) a3)
+  exact y_detection_toda_lambda_filtration_preserved 7 15 a3
+    (y_detection_toda_finite_sphere_filtration_floor BHS 9 (by decide) 125 140 15 (by decide) a3)
 
-private theorem anyexact1_family_map_data {X Y : Syn} (f : X ⟶ Y) (r : ℤ) (i : Tridegree) :
+private theorem y_detection_toda_family_map_data {X Y : Syn} (f : X ⟶ Y) (r : ℤ) (i : Tridegree) :
     familyPageMap D.family f r i = (D.family.functor.map f).toSSDataMorphism.pageMap i (↑(r-2).toNat) := by
   let F := (D.family.functor.map f).toSSDataMorphism
   let PX := (D.family.functor.obj X).ssData i
@@ -2113,11 +2113,11 @@ private theorem anyexact1_family_map_data {X Y : Syn} (f : X ⟶ Y) (r : ℤ) (i
     subst m
     simp only [eqToHom_refl,Category.id_comp,Category.comp_id]
   exact normalize PX.page PY.page (fun n => F.pageMap i n) nX nY (↑(r-2).toNat) hX hY _ _ _
-private theorem anyexact1_family_page_comp {X Y Z : Syn} (f : X ⟶ Y) (g : Y ⟶ Z) (r : ℤ) (i : Tridegree) :
+private theorem y_detection_toda_family_page_comp {X Y Z : Syn} (f : X ⟶ Y) (g : Y ⟶ Z) (r : ℤ) (i : Tridegree) :
     familyPageMap D.family f r i ≫ familyPageMap D.family g r i = familyPageMap D.family (f ≫ g) r i := by
-  rw [anyexact1_family_map_data,anyexact1_family_map_data,anyexact1_family_map_data,Functor.map_comp]
+  rw [y_detection_toda_family_map_data,y_detection_toda_family_map_data,y_detection_toda_family_map_data,Functor.map_comp]
   exact (SSDataMorphism.pageMap_comp _ _ _ _).symm
-private theorem anyexact1_family_infinity_representative_map
+private theorem y_detection_toda_family_infinity_representative_map
     {X Y : Syn} (f : X ⟶ Y) (i : Tridegree)
     (y : (D.family.obj X).E₂ i) (e : ((D.family.obj X).sequence.ssData i).eInfty)
     (hy : HasInfinityRepresentative (D.family.obj X) 2 i y e) :
@@ -2128,7 +2128,7 @@ private theorem anyexact1_family_infinity_representative_map
     (((D.family.functor.obj X).ssData i).Z 0) _ ≫ ((D.family.functor.obj X).ssData i).pageπ 0) z=y at hz
   let F := (D.family.functor.map f).toSSDataMorphism
   refine ⟨hr,F.cycleMap i ⊤ z,?_,?_⟩
-  · rw [anyexact1_family_map_data]
+  · rw [y_detection_toda_family_map_data]
     have h := F.cycleMap_ofLE_assoc i (show (0:WithTop ℕ)≤⊤ from le_top)
       (((D.family.obj Y).sequence.ssData i).pageπ 0)
     dsimp only [SyntheticAdamsFamily.obj] at h
@@ -2139,7 +2139,7 @@ private theorem anyexact1_family_infinity_representative_map
       change F.pageMap i ⊤ (((D.family.obj X).sequence.ssData i).pageπ ⊤ z)=_
       rw [he])
 
-private theorem anyexact1_detected_map
+private theorem y_detection_toda_detected_map
     (X Y : SyntheticObject) (f : X.obj D.nu D.auxiliary ⟶ Y.obj D.nu D.auxiliary)
     (i : Tridegree) (x : (D.family.obj (X.obj D.nu D.auxiliary)).E₂ i)
     (a : BiHom (i.2.1-i.1) i.2.2 (X.obj D.nu D.auxiliary))
@@ -2164,7 +2164,7 @@ private theorem anyexact1_detected_map
       Filtration.inducedAssocGradedMap c.aMap c.filtration_compat i.1 m =
       k≫G.toAssociatedGraded i.1 m := by
     exact cokernel.π_desc _ _ _
-  refine ⟨(D.family.functor.map f).eInftyMap i e,anyexact1_family_infinity_representative_map f i x e he,k a',?_,?_⟩
+  refine ⟨(D.family.functor.map f).eInftyMap i e,y_detection_toda_family_infinity_representative_map f i x e he,k a',?_,?_⟩
   · have hh := ConcreteCategory.congr_hom hk a'
     change (G.F i.1 m).arrow (k a')=((F.F i.1 m).arrow a')≫f at hh
     change (F.F i.1 m).arrow a'=a at ha'
@@ -2179,7 +2179,7 @@ private theorem anyexact1_detected_map
       _ = (Filtration.inducedAssocGradedMap c.aMap c.filtration_compat i.1 m)
           (F.toAssociatedGraded i.1 m a') := by rw [hgr]
       _ = G.toAssociatedGraded i.1 m (k a') := ConcreteCategory.congr_hom hq a'
-private theorem anyexact1_main_detects_of_difference
+private theorem y_detection_toda_main_detects_of_difference
     {H' : Syn} {unit : S_0_0 ⟶ H'} {F : SyntheticAdamsFamily Syn} {X : Syn}
     (c : TowerConvergence unit F X) (i : Tridegree)
     {x : (F.obj X).E₂ i} {a b : BiHom (i.2.1-i.1) i.2.2 X}
@@ -2204,11 +2204,11 @@ private theorem anyexact1_main_detects_of_difference
     rw [hj,add_zero]
     exact hga
 
-private theorem anyexact1_main_eta_right_three (D : Model H M Syn)
+private theorem y_detection_toda_main_eta_right_three (D : Model H M Syn)
     (η : BiHom 1 2 (S_0_0 : Syn))
     {X : Syn} (c : BiHom 124 134 X) :
     sphereAction η (lambdaMultiply 3 c) = lambdaMultiply 3 (sphereAction η c) := by
-  have ha := anyexact1_shift_assoc_inv D.shiftCoherence (1,2) (124,134) (0,-3)
+  have ha := y_detection_toda_shift_assoc_inv D.shiftCoherence (1,2) (124,134) (0,-3)
     (125,136) (124,131) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
   simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold sphereAction lambdaMultiply
@@ -2223,11 +2223,11 @@ private theorem anyexact1_main_eta_right_three (D : Model H M Syn)
   rfl
 
 
-private theorem anyexact1_main_eta_right_six (D : Model H M Syn)
+private theorem y_detection_toda_main_eta_right_six (D : Model H M Syn)
     (η : BiHom 1 2 (S_0_0 : Syn))
     {X : Syn} (c : BiHom 124 137 X) :
     sphereAction η (lambdaMultiply 6 c) = lambdaMultiply 6 (sphereAction η c) := by
-  have ha := anyexact1_shift_assoc_inv D.shiftCoherence (1,2) (124,137) (0,-6)
+  have ha := y_detection_toda_shift_assoc_inv D.shiftCoherence (1,2) (124,137) (0,-6)
     (125,139) (124,131) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
   simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold sphereAction lambdaMultiply
@@ -2242,10 +2242,10 @@ private theorem anyexact1_main_eta_right_six (D : Model H M Syn)
   rfl
 
 
-private theorem anyexact1_main_lambda_six_one (D : Model H M Syn)
+private theorem y_detection_toda_main_lambda_six_one (D : Model H M Syn)
     {X:Syn} (c : BiHom 125 140 X) :
     lambdaMultiply 6 (lambdaMultiply 1 c) = lambdaMultiply 7 c := by
-  have ha := anyexact1_shift_assoc_inv D.shiftCoherence (125,140) (0,-1) (0,-6)
+  have ha := y_detection_toda_shift_assoc_inv D.shiftCoherence (125,140) (0,-1) (0,-6)
     (125,139) (0,-7) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
   simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold lambdaMultiply
@@ -2261,7 +2261,7 @@ private theorem anyexact1_main_lambda_six_one (D : Model H M Syn)
   rfl
 
 
-private theorem anyexact1_main_toda_h0_error_formula (D:Model H M Syn)
+private theorem y_detection_toda_main_toda_h0_error_formula (D:Model H M Syn)
     (unique:∀x y:BiHom 1 2 (S_0_0:Syn),x≠0→y≠0→x=y)
     (eta:BiHom 1 2 (S_0_0:Syn)) (h0:BiHom 0 1 (S_0_0:Syn))
     (hlow:TripleToda h0 eta h0 (sphereProduct (m:=1) (n:=2) (k:=1) (l:=2) eta eta))
@@ -2278,15 +2278,15 @@ private theorem anyexact1_main_toda_h0_error_formula (D:Model H M Syn)
         (show BiHom 125 133 (XModLambdaN (S_0_0:Syn) 9) from lambdaMultiply 7 a3) := by
   obtain ⟨a2,a3,hr,he⟩:=ha.2.2.1 u hu
   refine ⟨a3,?_⟩
-  rw [anyexact1_main_toda_h0_relation D unique eta h0 hlow hind _ ha.2.2.2 z hz,hr]
+  rw [y_detection_toda_main_toda_h0_relation D unique eta h0 hlow hind _ ha.2.2.2 z hz,hr]
   have hadd (v w:BiHom 124 131 (XModLambdaN (S_0_0:Syn) 9)):
       sphereAction eta (v+w)=sphereAction eta v+sphereAction eta w := by
     simp only [sphereAction,Preadditive.comp_add]
-  rw [hadd,anyexact1_main_eta_right_three D,anyexact1_main_eta_right_six D,he,anyexact1_main_lambda_six_one D]
+  rw [hadd,y_detection_toda_main_eta_right_three D,y_detection_toda_main_eta_right_six D,he,y_detection_toda_main_lambda_six_one D]
   congr 1
   simp only [quotientClass,sphereProduct,sphereAction,lambdaMultiply,Category.assoc]
 
-private theorem anyexact1_main_toda_h0_detected_weak (D:Model H M Syn)
+private theorem y_detection_toda_main_toda_h0_detected_weak (D:Model H M Syn)
     (BHS:EInftyInput D)
     (unique:∀x y:BiHom 1 2 (S_0_0:Syn),x≠0→y≠0→x=y)
     (eta:BiHom 1 2 (S_0_0:Syn)) (h0:BiHom 0 1 (S_0_0:Syn))
@@ -2302,17 +2302,17 @@ private theorem anyexact1_main_toda_h0_detected_weak (D:Model H M Syn)
     (hz:ModuleTripleToda (lambdaMultiply 3 (a11≫(D.quotientTower S_0_0).rho 9 11 (by decide))) h0 eta z) :
     Detects (D.quotientConvergence 9 (by decide)) (14,139,133) (D.quotientLabel 9 14 139 6 T)
       (sphereAction h0 z) := by
-  have hd:=anyexact1_detected_map (D:=D) .sphere (.quotient 9 .sphere) (XModLambdaN.incl (S_0_0:Syn) 9)
+  have hd:=y_detection_toda_detected_map (D:=D) .sphere (.quotient 9 .sphere) (XModLambdaN.incl (S_0_0:Syn) 9)
     (14,139,133) (D.sphereE2 14 139 6 T) _ hc5
-  obtain ⟨a3,he⟩:=anyexact1_main_toda_h0_error_formula D unique eta h0 hlow hind U V a11 ha u hu z hz
-  apply anyexact1_main_detects_of_difference (D.quotientConvergence 9 (by decide)) (14,139,133) hd
+  obtain ⟨a3,he⟩:=y_detection_toda_main_toda_h0_error_formula D unique eta h0 hlow hind U V a11 ha u hu z hz
+  apply y_detection_toda_main_detects_of_difference (D.quotientConvergence 9 (by decide)) (14,139,133) hd
   change FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15
     ((show BiHom 125 133 (XModLambdaN (S_0_0:Syn) 9) from sphereAction h0 z)-
       (show BiHom 125 133 (XModLambdaN (S_0_0:Syn) 9) from quotientClass 9 (lambdaMultiply 3 (sphereProduct eta u))))
   rw [he,add_sub_cancel_left]
-  exact anyexact1_main_toda_seventh_error_filtration BHS a3
+  exact y_detection_toda_main_toda_seventh_error_filtration BHS a3
 
-private theorem anyexact1_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
+private theorem y_detection_toda_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
     (x : E2 H SphereSpectrum s t) :
     familyPageMap D.family (XModLambdaN.map D.nu.unitIso.inv q) 2 (s,t,t-k)
       (D.quotientLabel q s t k x) = finiteTargetLabel D .sphere q s t k x := by
@@ -2332,7 +2332,7 @@ private theorem anyexact1_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
             nx) := congrArg (fun y => familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k) y) hc.symm
       _ = familyPageMap D.family ((SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) ≫ D.nu.unitIso.inv)
           2 (s,t,t-k) nx :=
-        ConcreteCategory.congr_hom (anyexact1_family_page_comp (D:=D) (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) D.nu.unitIso.inv 2 (s,t,t-k)) nx
+        ConcreteCategory.congr_hom (y_detection_toda_family_page_comp (D:=D) (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) D.nu.unitIso.inv 2 (s,t,t-k)) nx
       _ = targetNuLabel D .sphere s t k x := by
         simp only [Category.assoc,Iso.hom_inv_id,Category.comp_id]
         dsimp only [targetNuLabel]
@@ -2342,17 +2342,17 @@ private theorem anyexact1_sphere_quotient_label_to_nu (q k : ℕ) (s t : ℤ)
     calc
       _ = familyPageMap D.family (XModLambdaN.incl (S_0_0 : Syn) q ≫ XModLambdaN.map D.nu.unitIso.inv q)
           2 (s,t,t-k) (D.sphereE2 s t k x) :=
-        ConcreteCategory.congr_hom (anyexact1_family_page_comp (D:=D) (XModLambdaN.incl (S_0_0 : Syn) q) (XModLambdaN.map D.nu.unitIso.inv q) 2 (s,t,t-k)) (D.sphereE2 s t k x)
+        ConcreteCategory.congr_hom (y_detection_toda_family_page_comp (D:=D) (XModLambdaN.incl (S_0_0 : Syn) q) (XModLambdaN.map D.nu.unitIso.inv q) 2 (s,t,t-k)) (D.sphereE2 s t k x)
       _ = familyPageMap D.family (D.nu.unitIso.inv ≫ XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q)
           2 (s,t,t-k) (D.sphereE2 s t k x) := by rw [XModLambdaN.incl_naturality]; rfl
       _ = familyPageMap D.family (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k)
           (familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k) (D.sphereE2 s t k x)) :=
-        (ConcreteCategory.congr_hom (anyexact1_family_page_comp (D:=D) D.nu.unitIso.inv (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k)) (D.sphereE2 s t k x)).symm
+        (ConcreteCategory.congr_hom (y_detection_toda_family_page_comp (D:=D) D.nu.unitIso.inv (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k)) (D.sphereE2 s t k x)).symm
       _ = finiteTargetLabel D .sphere q s t k x := congrArg
         (fun y => familyPageMap D.family (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k) y) hbase
   exact hlabel
 
-private theorem anyexact1_sphere_finite_detection_nonzero
+private theorem y_detection_toda_sphere_finite_detection_nonzero
     (BHS : EInftyInput D) (q k : ℕ) (hq : 0<q) (hk : k<q) (s t : ℤ)
     (x : E2 H SphereSpectrum s t)
     (hx : x∈cycles H SphereSpectrum ((q:ℤ)-t+(t-k)) (s,t))
@@ -2365,16 +2365,16 @@ private theorem anyexact1_sphere_finite_detection_nonzero
   refine ⟨e,he,?_⟩
   intro he0
   let g := XModLambdaN.map D.nu.unitIso.inv q
-  have henu := anyexact1_family_infinity_representative_map (D:=D) g (s,t,t-k) _ _ he
+  have henu := y_detection_toda_family_infinity_representative_map (D:=D) g (s,t,t-k) _ _ he
   change HasInfinityRepresentative (D.family.nuQuotient D.nu SphereSpectrum q) 2 (s,t,t-k)
     (familyPageMap D.family (XModLambdaN.map D.nu.unitIso.inv q) 2 (s,t,t-k)
       (D.quotientLabel q s t k x)) ((D.family.functor.map g).eInftyMap (s,t,t-k) e) at henu
-  rw [anyexact1_sphere_quotient_label_to_nu (D:=D) q k s t x,he0,map_zero] at henu
+  rw [y_detection_toda_sphere_quotient_label_to_nu (D:=D) q k s t x,he0,map_zero] at henu
   have hh := (BHS.labels.1 .sphere q hq (s,t) k hk ⟨x,hx⟩ 0).mp henu
   rw [map_zero] at hh
   exact hn ((NestedQuotient.projection_eq_zero ⟨x,hx⟩).mp hh.symm)
 
-private theorem anyexact1_bridge_survives_twelve_not_boundary_eleven (X : C) (p : ℤ × ℤ)
+private theorem y_detection_toda_bridge_survives_twelve_not_boundary_eleven (X : C) (p : ℤ × ℤ)
     (x : E2 H X p.1 p.2)
     (hx : SurvivesTo (adamsTowerInternalSpectralSequence H.unit X) 12 p x) :
     x∉PageRepresentatives.boundaries H X 11 p := by
@@ -2412,7 +2412,7 @@ private theorem anyexact1_bridge_survives_twelve_not_boundary_eleven (X : C) (p 
 namespace MainTodaCycles
 variable {R:Type u} [Ring R] {E:KIP126.Core.SpectralSequence (ModuleCat.{v} R) (ℤ×ℤ)}
   {r:ℤ} {p q:ℤ×ℤ} {x:E.Page 2 p} {y:E.Page 2 q}
-private theorem anyexact1_choice_represents_unique {a b : E.Page r p}
+private theorem y_detection_toda_choice_represents_unique {a b : E.Page r p}
     (ha : RepresentsOnPage E r p x a) (hb : RepresentsOnPage E r p x b) : a = b := by
   obtain ⟨hr, z, hz, hza⟩ := ha
   obtain ⟨_, z', hz', hzb⟩ := hb
@@ -2434,7 +2434,7 @@ private theorem anyexact1_choice_represents_unique {a b : E.Page r p}
   rw [he] at hh
   exact (ModuleCat.subobjectModule D.V).monotone (D.B_mono hnm) hh
 
-private theorem anyexact1_choice_next_projection_zero_iff_incoming
+private theorem y_detection_toda_choice_next_projection_zero_iff_incoming
     (E : KIP126.Core.SpectralSequence (ModuleCat.{v} R) (ℤ × ℤ))
     (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
     (z : (Subobject.underlying.obj ((E.ssData (p+E.diffDeg r)).Z
@@ -2481,7 +2481,7 @@ private theorem anyexact1_choice_next_projection_zero_iff_incoming
     dsimp only [i] at hh
     rwa [Subobject.ofLE_arrow] at hh
 
-private theorem anyexact1_choice_next_nonzero_of_not_hit
+private theorem y_detection_toda_choice_next_nonzero_of_not_hit
     (hr0 : E.r₀ ≤ r) (hr : 2 ≤ r)
     {a : E.Page (r+1) p} {b : E.Page r p}
     (ha : RepresentsOnPage E (r+1) p x a) (hb : RepresentsOnPage E r p x b)
@@ -2499,9 +2499,9 @@ private theorem anyexact1_choice_next_nonzero_of_not_hit
     refine ⟨hr, (Subobject.ofLE _ _ (A.Z_anti hnm)) z, ?_, rfl⟩
     rw [← CategoryTheory.comp_apply, ← Category.assoc, Subobject.ofLE_comp_ofLE]
     exact hz
-  have heb : br=b := anyexact1_choice_represents_unique hbr hb
+  have heb : br=b := y_detection_toda_choice_represents_unique hbr hb
   intro ha0
-  have hv := anyexact1_choice_next_projection_zero_iff_incoming E r hr0 q
+  have hv := y_detection_toda_choice_next_projection_zero_iff_incoming E r hr0 q
   have hv' : ∀ zz : (Subobject.underlying.obj (A.Z ↑(r+1-E.r₀).toNat) : ModuleCat R),
       A.pageπ ↑(r+1-E.r₀).toNat zz=0 ↔
         (Subobject.ofLE _ _ (A.Z_anti hnm) ≫ A.pageπ ↑(r-E.r₀).toNat) zz∈
@@ -2522,7 +2522,7 @@ private theorem anyexact1_choice_next_nonzero_of_not_hit
   refine ⟨q, rfl, c,b,hb,hne,?_⟩
   simpa only [eqToHom_refl, Category.comp_id] using hc.trans heb
 
-private theorem anyexact1_choice_permanent_survives_of_no_early_hit
+private theorem y_detection_toda_choice_permanent_survives_of_no_early_hit
     (hstart : E.r₀≤2) (N : ℕ) (hN : 2≤N)
     (hperm : IsPermanentCycle E p x) (hne : x≠0)
     (hnot : ∀ r : ℤ, 2≤r → r<N → ¬HitOnPage E r p x) :
@@ -2546,7 +2546,7 @@ private theorem anyexact1_choice_permanent_survives_of_no_early_hit
       intro hn
       obtain ⟨b,hb,hbn⟩ := ih (by omega)
       obtain ⟨a,ha⟩ := hrep ((n:ℤ)+2+1) (by omega)
-      have han := anyexact1_choice_next_nonzero_of_not_hit (by omega) (by omega) ha hb hbn
+      have han := y_detection_toda_choice_next_nonzero_of_not_hit (by omega) (by omega) ha hb hbn
         (hnot _ (by omega) (by omega))
       have he : ((n+1:ℕ):ℤ)+2=(n:ℤ)+2+1 := by omega
       rw [he]
@@ -2555,13 +2555,13 @@ private theorem anyexact1_choice_permanent_survives_of_no_early_hit
   have he : ((N-2:ℕ):ℤ)+2=N := by omega
   rwa [he] at h
 
-private theorem anyexact1_choice_nonzero_differential_not_zero
+private theorem y_detection_toda_choice_nonzero_differential_not_zero
     (h : HasNonzeroDifferential E r p q x y)
     (hzero : HasDifferential E r p q x 0) : False := by
   obtain ⟨he,a,b,ha,hb,hd,hbn⟩ := h
   obtain ⟨he',a',b',ha',hb',hd'⟩ := hzero
-  have haa : a=a' := anyexact1_choice_represents_unique ha ha'
-  have hbb : b'=0 := anyexact1_choice_represents_unique hb' (RepresentsOnPage.zero hb'.1)
+  have haa : a=a' := y_detection_toda_choice_represents_unique ha ha'
+  have hbb : b'=0 := y_detection_toda_choice_represents_unique hb' (RepresentsOnPage.zero hb'.1)
   apply hbn
   calc b = (E.d r p ≫ eqToHom (congrArg (E.Page r) he)) a := hd.symm
        _ = b' := by simpa only [haa] using hd'
@@ -2570,8 +2570,8 @@ private theorem anyexact1_choice_nonzero_differential_not_zero
 end MainTodaCycles
 open KIP126.Computation.Route MainTodaCycles
 variable {L:Labels H} {G:TmfLabels H}
-private theorem anyexact1_main_c3_target_survives_twelve
-    (I:Inputs D L G) (SF:Derived.SphereFacts I.realization) (hc3:C3 L) :
+private theorem y_detection_toda_target_survives_twelve_of_d6_vanishes
+    (I:Inputs D L G) (SF:Derived.SphereFacts I.realization) (hc3:Stem126D6Vanishes L) :
     SurvivesTo (sequence D .sphere) 12 (14,139) (L.target M) := by
   have labels:=route_expression_labels I
   have hp:=SF.t_permanent_cycle
@@ -2582,7 +2582,7 @@ private theorem anyexact1_main_c3_target_survives_twelve
     refine ⟨0,?_⟩
     rw [labels.2.2,hz]
     simp only [Sphere.Internal.product,map_zero]
-  apply anyexact1_choice_permanent_survives_of_no_early_hit (by change (2:ℤ)≤2; decide) 12 (by decide) hp hn
+  apply y_detection_toda_choice_permanent_survives_of_no_early_hit (by change (2:ℤ)≤2; decide) 12 (by decide) hp hn
   intro r hr hr12 hit
   rw [←labels.2.2] at hit
   rcases SF.t_only_incoming r hit with ⟨he,hd⟩|⟨he,_⟩
@@ -2591,32 +2591,32 @@ private theorem anyexact1_main_c3_target_survives_twelve
       (I.realization.sphere 8 134 KIP126.Computation.Near126.W)
       (I.realization.sphere 14 139 KIP126.Computation.Near126.T) at hd
     rw [labels.1,labels.2.2] at hd
-    exact anyexact1_choice_nonzero_differential_not_zero hd hc3
+    exact y_detection_toda_choice_nonzero_differential_not_zero hd hc3
   · omega
 
-private theorem anyexact1_main_toda_h0_detected_nonzero (D:Model H M Syn)
+private theorem y_detection_toda_main_toda_h0_detected_nonzero (D:Model H M Syn)
     (I:Inputs D L G) (SF:Derived.SphereFacts I.realization) (BHS:EInftyInput D)
     (unique:∀x y:BiHom 1 2 (S_0_0:Syn),x≠0→y≠0→x=y)
     (eta:BiHom 1 2 (S_0_0:Syn)) (h0:BiHom 0 1 (S_0_0:Syn))
     (hlow:TripleToda h0 eta h0 (sphereProduct (m:=1) (n:=2) (k:=1) (l:=2) eta eta))
     (hind:∀a:BiHom 2 3 (S_0_0:Syn),sphereProduct h0 a=0)
     (V:E2 H SphereSpectrum 9 132)
-    (hc3:C3 L) (hc5:C5 M D.toModelData L eta)
+    (hc3:Stem126D6Vanishes L) (hc5:EtaExtensionDetection M D.toModelData L eta)
     (a11:BiHom 123 132 (XModLambdaN (S_0_0:Syn) 11))
     (ha:AlphaOneProperties D eta h0 (L.U M) V a11)
     (z:BiHom 125 132 (XModLambdaN (S_0_0:Syn) 9))
     (hz:ModuleTripleToda (lambdaMultiply 3 (a11≫(D.quotientTower S_0_0).rho 9 11 (by decide))) h0 eta z) :
     FiniteDetected D 9 (by decide) 14 139 6 (L.target M) (sphereAction h0 z) := by
   obtain ⟨u,hu,hc5⟩:=hc5
-  have hd:=anyexact1_main_toda_h0_detected_weak D BHS unique eta h0 hlow hind (L.U M) V (L.target M)
+  have hd:=y_detection_toda_main_toda_h0_detected_weak D BHS unique eta h0 hlow hind (L.U M) V (L.target M)
     a11 ha u hu hc5 z hz
   have hp:=SF.t_permanent_cycle
   rw [(route_expression_labels I).2.2] at hp
-  apply anyexact1_sphere_finite_detection_nonzero BHS 9 6 (by decide) (by decide) 14 139 (L.target M) ?_ ?_ _ hd
+  apply y_detection_toda_sphere_finite_detection_nonzero BHS 9 6 (by decide) (by decide) 14 139 (L.target M) ?_ ?_ _ hd
   · exact permanentCycles_le_cycles H SphereSpectrum (14,139) _ hp
   · intro hb
-    apply anyexact1_bridge_survives_twelve_not_boundary_eleven SphereSpectrum (14,139) (L.target M)
-      (anyexact1_main_c3_target_survives_twelve I SF hc3)
+    apply y_detection_toda_bridge_survives_twelve_not_boundary_eleven SphereSpectrum (14,139) (L.target M)
+      (y_detection_toda_target_survives_twelve_of_d6_vanishes I SF hc3)
     exact boundaries_monotone H SphereSpectrum (14,139) (by decide) hb
 
 end KIP126.Main.Solution.Route.Section7
@@ -2640,7 +2640,7 @@ variable {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:
 
 open KIP126.Literature.Route
 
-private theorem anyexact2_sphere_first_label_transport (s t : ℤ)
+private theorem y_detection_exact_target_sphere_first_label_transport (s t : ℤ)
     (x : E2 H SphereSpectrum s t) :
     D.sphereFirstQuotient s t
       (firstLabel D .sphere s t x ≫ XModLambdaN.map
@@ -2667,7 +2667,7 @@ private theorem anyexact2_sphere_first_label_transport (s t : ℤ)
     exact cast_symm (t+0) t (Int.add_zero t) (D.firstQuotient SphereSpectrum 0 s t) x
   rw [hx,c.apply_symm_apply]
 
-private theorem anyexact2_sphere_permanent_first_quotient_lift
+private theorem y_detection_exact_target_sphere_permanent_first_quotient_lift
     (synthetic : SyntheticInputs D) (s t : ℤ) (x : E2 H SphereSpectrum s t)
     (hx : IsPermanentCycle (adamsTowerInternalSpectralSequence H.unit SphereSpectrum) (s,t) x) :
     ∃ a : BiHom (t-s) t (S_0_0 : Syn), D.sphereFirstQuotient s t (quotientClass 1 a)=x := by
@@ -2681,9 +2681,9 @@ private theorem anyexact2_sphere_permanent_first_quotient_lift
     simp only [Category.assoc]
     exact congrArg (fun h => a≫h) (XModLambdaN.incl_naturality e 1)
   rw [hc,ha]
-  exact anyexact2_sphere_first_label_transport s t x
+  exact y_detection_exact_target_sphere_first_label_transport s t x
 
-private theorem anyexact2_vanishes_mod_lambda_iff_multiple
+private theorem y_detection_exact_target_vanishes_mod_lambda_iff_multiple
     (n : ℕ) {X : Syn} (m w : ℤ) (z : BiHom m (w-(n:ℤ)) X) :
     VanishesModLambda n z ↔ ∃ b : BiHom m w X, lambdaMultiply n b=z := by
   let F := SyntheticCategory.biShift (Syn:=Syn) (0,-(n:ℤ))
@@ -2715,7 +2715,7 @@ private theorem anyexact2_vanishes_mod_lambda_iff_multiple
     apply (vanishesModLambda_iff_factors n (lambdaMultiply n b)).mpr
     exact ⟨e.inv≫F.map b,by rw [Category.assoc,←he]⟩
 
-private theorem anyexact2_map_filtration {X Y : Syn} (f : X ⟶ Y) {m w s : ℤ} (x : BiHom m w X)
+private theorem y_detection_exact_target_map_filtration {X Y : Syn} (f : X ⟶ Y) {m w s : ℤ} (x : BiHom m w X)
     (hx : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s x) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s (x ≫ f) := by
   obtain ⟨z,hz⟩ := hx
@@ -2727,7 +2727,7 @@ private theorem anyexact2_map_filtration {X Y : Syn} (f : X ⟶ Y) {m w s : ℤ}
   rfl
 
 omit [HasFunctorialCofiber (C := Syn)] in
-private theorem anyexact2_shift_assoc_inv (coh : BiShiftCoherence Syn)
+private theorem y_detection_exact_target_shift_assoc_inv (coh : BiShiftCoherence Syn)
     (a b c ab bc total : ℤ × ℤ) (hab : a+b=ab) (hbc : b+c=bc)
     (habc : ab+c=total) (habc' : a+bc=total) (A : Syn) :
     (biShiftAddIso ab c total habc).inv.app A ≫
@@ -2742,10 +2742,10 @@ private theorem anyexact2_shift_assoc_inv (coh : BiShiftCoherence Syn)
   have hi := congrArg Iso.inv he
   exact hi
 
-private theorem anyexact2_lambda_six_one (D : Model H M Syn)
+private theorem y_detection_exact_target_lambda_six_one (D : Model H M Syn)
     (c : BiHom 125 140 (S_0_0 : Syn)) :
     lambdaMultiply 6 (lambdaMultiply 1 c) = lambdaMultiply 7 c := by
-  have ha := anyexact2_shift_assoc_inv D.shiftCoherence (125,140) (0,-1) (0,-6)
+  have ha := y_detection_exact_target_shift_assoc_inv D.shiftCoherence (125,140) (0,-1) (0,-6)
     (125,139) (0,-7) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
   simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
   unfold lambdaMultiply
@@ -2761,14 +2761,14 @@ private theorem anyexact2_lambda_six_one (D : Model H M Syn)
   rfl
 
 
-private theorem anyexact2_anyy_sphere_exact_target_split
+private theorem y_detection_exact_target_sphere_exact_target_split
     (BHS : SyntheticInputs D) (T : E2 H SphereSpectrum 14 139)
     (hT : IsPermanentCycle (adamsTowerInternalSpectralSequence H.unit SphereSpectrum) (14,139) T)
     (a : BiHom 125 133 (S_0_0 : Syn))
     (ha : Detects D.sphereConvergence (14,139,133) (D.sphereE2 14 139 6 T) a) :
     ∃ t : BiHom 125 139 (S_0_0 : Syn),
       D.sphereFirstQuotient 14 139 (quotientClass 1 t)=T ∧ lambdaMultiply 6 t=a := by
-  obtain ⟨t00,ht0⟩ := anyexact2_sphere_permanent_first_quotient_lift BHS 14 139 T hT
+  obtain ⟨t00,ht0⟩ := y_detection_exact_target_sphere_permanent_first_quotient_lift BHS 14 139 T hT
   let t0 : BiHom 125 139 (S_0_0 : Syn) := t00
   change D.sphereFirstQuotient 14 139 (quotientClass 1 t0)=T at ht0
   let a0 : BiHom 125 133 (S_0_0 : Syn) := lambdaMultiply 6 t0
@@ -2778,7 +2778,7 @@ private theorem anyexact2_anyy_sphere_exact_target_split
     exact h
   have hdiff : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 (a-a0) :=
     detects_sub_filtration D.sphereConvergence (14,139,133) ha ha0
-  have hnu := anyexact2_map_filtration (D:=D) D.nu.unitIso.inv (a-a0) hdiff
+  have hnu := y_detection_exact_target_map_filtration (D:=D) D.nu.unitIso.inv (a-a0) hdiff
   have hlam := BHS.filtration_lambda .sphere 125 133 15 (by omega) ((a-a0)≫D.nu.unitIso.inv)
   change FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 ((a-a0)≫D.nu.unitIso.inv) ↔
     ∃ b : BiHom 125 140 (D.nu.functor.obj SphereSpectrum), lambdaMultiply 7 b=(a-a0)≫D.nu.unitIso.inv at hlam
@@ -2789,7 +2789,7 @@ private theorem anyexact2_anyy_sphere_exact_target_split
       congrArg (fun x=>x≫D.nu.unitIso.hom) hb
   let lc : BiHom 125 139 (S_0_0 : Syn) := lambdaMultiply 1 c
   have hq : quotientClass 1 lc=0 := by
-    exact (anyexact2_vanishes_mod_lambda_iff_multiple 1 125 140 lc).mpr ⟨c,rfl⟩
+    exact (y_detection_exact_target_vanishes_mod_lambda_iff_multiple 1 125 140 lc).mpr ⟨c,rfl⟩
   refine ⟨t0+lc,?_,?_⟩
   · change D.sphereFirstQuotient 14 139 ((t0+lc)≫XModLambdaN.incl _ 1)=T
     rw [Preadditive.add_comp,map_add]
@@ -2798,7 +2798,7 @@ private theorem anyexact2_anyy_sphere_exact_target_split
     rw [ht0,hq,map_zero,add_zero]
   · let c7 : BiHom 125 133 (S_0_0 : Syn) := lambdaMultiply 7 c
     have he1 : (show BiHom 125 133 (S_0_0 : Syn) from lambdaMultiply 6 lc)=c7 :=
-      anyexact2_lambda_six_one D c
+      y_detection_exact_target_lambda_six_one D c
     have he : (show BiHom 125 133 (S_0_0 : Syn) from lambdaMultiply 6 (t0+lc))=a0+c7 := by
       calc
         _ = a0+(show BiHom 125 133 (S_0_0 : Syn) from lambdaMultiply 6 lc) := by
@@ -2832,12 +2832,12 @@ private theorem anyy_seventh_error_zero
     (I : Inputs D L G) (BHS : SyntheticInputs D) (R : RealizationInput D)
     (a : BiHom 125 140 (XModLambdaN (S_0_0 : Syn) 9)) :
     lambdaMultiply 7 a = 0 := by
-  have hf := anyexact1_finite_sphere_filtration_floor BHS.eInfty 9
+  have hf := y_detection_toda_finite_sphere_filtration_floor BHS.eInfty 9
     (by decide) 125 140 15 (by decide) a
-  have hf' := anyexact1_lambda_filtration_preserved 1 15 a hf
-  have hz := anyexact0_anyy_lambda_six_filtration_fifteen_zero I BHS.eInfty
+  have hf' := y_detection_toda_lambda_filtration_preserved 1 15 a hf
+  have hz := y_detection_page_lambda_six_filtration_fifteen_zero I BHS.eInfty
     R (lambdaMultiply 1 a) hf'
-  rw [anyexact1_main_lambda_six_one D] at hz
+  rw [y_detection_toda_main_lambda_six_one D] at hz
   exact hz
 
 private theorem anyy_lambda_zero (D : Model H M Syn) {X : Syn}
@@ -2879,7 +2879,7 @@ private theorem anyy_bracket_exact_target
     (hlow : TripleToda h0 eta h0 (sphereProduct (m:=1) (n:=2) (k:=1) (l:=2) eta eta))
     (hind : ∀ a : BiHom 2 3 (S_0_0 : Syn), sphereProduct h0 a=0)
     (V : E2 H SphereSpectrum 9 132)
-    (hc3 : C3 L) (hc5 : C5 M D.toModelData L eta)
+    (hc3 : Stem126D6Vanishes L) (hc5 : EtaExtensionDetection M D.toModelData L eta)
     (a11 : BiHom 123 132 (XModLambdaN (S_0_0 : Syn) 11))
     (ha : AlphaOneProperties D eta h0 (L.U M) V a11)
     (z : BiHom 125 132 (XModLambdaN (S_0_0 : Syn) 9))
@@ -2888,26 +2888,26 @@ private theorem anyy_bracket_exact_target
     ∃ t : BiHom 125 139 (XModLambdaN (S_0_0 : Syn) 9),
       FiniteDetected D 9 (by decide) 14 139 0 (L.target M) t ∧
       sphereAction h0 z=lambdaMultiply 6 t ∧ lambdaMultiply 6 t≠0 := by
-  have hzdet := anyexact1_main_toda_h0_detected_nonzero D I SF BHS.eInfty
+  have hzdet := y_detection_toda_main_toda_h0_detected_nonzero D I SF BHS.eInfty
     unique eta h0 hlow hind V hc3 hc5 a11 ha z hz
   obtain ⟨u,hu,hcu⟩ := hc5
   have hp := SF.t_permanent_cycle
   rw [(route_expression_labels I).2.2] at hp
-  obtain ⟨t,ht,he⟩ := anyexact2_anyy_sphere_exact_target_split BHS (L.target M) hp
+  obtain ⟨t,ht,he⟩ := y_detection_exact_target_sphere_exact_target_split BHS (L.target M) hp
     (lambdaMultiply 3 (sphereProduct eta u)) hcu
   have htd := D.comparisonCompatible.homotopy_lambda 14 139 0 t
   rw [ht,anyy_lambda_zero D] at htd
-  have htq := anyexact1_detected_map (D:=D) .sphere (.quotient 9 .sphere)
+  have htq := y_detection_toda_detected_map (D:=D) .sphere (.quotient 9 .sphere)
     (XModLambdaN.incl (S_0_0 : Syn) 9) (14,139,139) _ _ htd
   have htn : FiniteDetected D 9 (by decide) 14 139 0 (L.target M) (quotientClass 9 t) := by
-    apply anyexact1_sphere_finite_detection_nonzero BHS.eInfty 9 0 (by decide)
+    apply y_detection_toda_sphere_finite_detection_nonzero BHS.eInfty 9 0 (by decide)
       (by decide) 14 139 (L.target M) ?_ ?_ _ htq
     · exact permanentCycles_le_cycles H SphereSpectrum (14,139) _ hp
     · intro hb
-      apply anyexact1_bridge_survives_twelve_not_boundary_eleven SphereSpectrum (14,139)
-        (L.target M) (anyexact1_main_c3_target_survives_twelve I SF hc3)
+      apply y_detection_toda_bridge_survives_twelve_not_boundary_eleven SphereSpectrum (14,139)
+        (L.target M) (y_detection_toda_target_survives_twelve_of_d6_vanishes I SF hc3)
       exact boundaries_monotone H SphereSpectrum (14,139) (by decide) hb
-  obtain ⟨a3,hformula⟩ := anyexact1_main_toda_h0_error_formula D unique eta h0 hlow hind
+  obtain ⟨a3,hformula⟩ := y_detection_toda_main_toda_h0_error_formula D unique eta h0 hlow hind
     (L.U M) V a11 ha u hu z hz
   have heq : sphereAction h0 z=lambdaMultiply 6 (quotientClass 9 t) := by
     rw [anyy_seventh_error_zero I BHS R a3,add_zero,←he] at hformula
@@ -3045,7 +3045,7 @@ set_option maxHeartbeats 1000000
 variable {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:=C)]
     {Syn : Type w} [SyntheticCategory.{w,v} Syn] [HasFunctorialCofiber (C:=Syn)]
     {H : Mod2EilenbergMacLane (C:=C)} {M : MilnorCooperations H} {D : Model H M Syn}
-private theorem anykernel_anyy_detects_of_difference
+private theorem anykernel_detects_of_difference
     {H' : Syn} {unit : S_0_0 ⟶ H'} {F : SyntheticAdamsFamily Syn} {X : Syn}
     (c : TowerConvergence unit F X) (i : Tridegree)
     {x : (F.obj X).E₂ i} {a b : BiHom (i.2.1-i.1) i.2.2 X}
@@ -3071,7 +3071,7 @@ private theorem anykernel_anyy_detects_of_difference
     exact hga
 
 
-private theorem anykernel_anyy_high_correction_has_high_lambda_preimage
+private theorem anykernel_high_correction_has_high_lambda_preimage
     (Y : E2 H SphereSpectrum 11 136) (T : E2 H SphereSpectrum 14 139)
     (h0 : BiHom 0 1 (S_0_0 : Syn))
     (hall : AnyYH0Extension D Y T h0)
@@ -3083,7 +3083,7 @@ private theorem anykernel_anyy_high_correction_has_high_lambda_preimage
       sphereAction h0 a = lambdaMultiply 6 b := by
   have hya : FiniteDetected D 9 (by decide) 11 136 4 Y (y+a) := by
     refine ⟨?_,hy.2⟩
-    apply anykernel_anyy_detects_of_difference (D.quotientConvergence 9 (by decide)) (11,136,132) hy.1
+    apply anykernel_detects_of_difference (D.quotientConvergence 9 (by decide)) (11,136,132) hy.1
     change FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 12 ((y+a)-y)
     simpa only [add_sub_cancel_left] using ha
   obtain ⟨t,ht,het,hnt⟩ := hall y hy
@@ -3099,7 +3099,7 @@ private theorem anykernel_anyy_high_correction_has_high_lambda_preimage
     _ = lambdaMultiply 6 t' - lambdaMultiply 6 t := congrArg₂ (· - ·) het' het
     _ = lambdaMultiply 6 (t'-t) := hsub.symm
 
-private theorem anykernel_anyy_high_correction_zero_of_high_lambda_zero
+private theorem anykernel_high_correction_zero_of_high_lambda_zero
     (Y : E2 H SphereSpectrum 11 136) (T : E2 H SphereSpectrum 14 139)
     (h0 : BiHom 0 1 (S_0_0 : Syn))
     (hall : AnyYH0Extension D Y T h0)
@@ -3109,7 +3109,7 @@ private theorem anykernel_anyy_high_correction_zero_of_high_lambda_zero
     (hy : FiniteDetected D 9 (by decide) 11 136 4 Y y)
     (ha : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 12 a) :
     sphereAction h0 a=0 := by
-  obtain ⟨b,hb,he⟩ := anykernel_anyy_high_correction_has_high_lambda_preimage Y T h0 hall y a hy ha
+  obtain ⟨b,hb,he⟩ := anykernel_high_correction_has_high_lambda_preimage Y T h0 hall y a hy ha
   exact he.trans (hkernel b hb)
 
 end
@@ -3141,7 +3141,7 @@ private theorem anyy_iff_exact_high_kernel
         FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 12 a → sphereAction h0 a=0 := by
   constructor
   · intro hall a ha
-    exact anykernel_anyy_high_correction_zero_of_high_lambda_zero Y T h0 hall
-      (anyexact0_anyy_lambda_six_filtration_fifteen_zero I BHS.eInfty R) z a hz ha
+    exact anykernel_high_correction_zero_of_high_lambda_zero Y T h0 hall
+      (y_detection_page_lambda_six_filtration_fifteen_zero I BHS.eInfty R) z a hz ha
   · exact anyy_from_exact_one_and_kernel Y T h0 z hz hone
 end KIP126.Main.Solution.Route.Section7

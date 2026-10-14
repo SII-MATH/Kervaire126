@@ -55,7 +55,7 @@ open KIP126.Literature.Route
 open CategoryTheory.Pretriangulated KIP126.LinE2 KIP126.Core.Algebra
 open KIP126.Computation.Route KIP126.Computation.Near126
 open PageRepresentatives
-private theorem alpha_all_finite_frames_h366_0 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (14,138) (16,139)
+private theorem alpha_all_finite_frames_d2_s14_t138_basis1 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (14,138) (16,139)
     (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,14,138,[1],16,139,[1, 2],"S0_AdamsE2_ss",3072⟩ (by
@@ -70,7 +70,7 @@ private theorem alpha_all_finite_frames_h366_0 (I : KIP126.Computation.Route.Inp
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem alpha_all_finite_frames_h367_1 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (14,138) (16,139)
+private theorem alpha_all_finite_frames_d2_s14_t138_basis0_add_basis1 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (14,138) (16,139)
     (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,14,138,[0, 1],16,139,[2],"S0_AdamsE2_ss",3073⟩ (by
@@ -85,7 +85,7 @@ private theorem alpha_all_finite_frames_h367_1 (I : KIP126.Computation.Route.Inp
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem alpha_all_finite_frames_h308_2 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (12,137) (14,138)
+private theorem alpha_all_finite_frames_d2_s12_t137_basis1 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (12,137) (14,138)
     (I.realization.basis .sphere 12 137 1) (I.realization.basis .sphere 14 138 4) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,12,137,[1],14,138,[4],"S0_AdamsE2_ss",2921⟩ (by
@@ -100,7 +100,7 @@ private theorem alpha_all_finite_frames_h308_2 (I : KIP126.Computation.Route.Inp
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem alpha_all_finite_frames_h309_3 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (12,137) (14,138)
+private theorem alpha_all_finite_frames_d2_s12_t137_basis0 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (12,137) (14,138)
     (I.realization.basis .sphere 12 137 0) (I.realization.basis .sphere 14 138 3) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,12,137,[0],14,138,[3],"S0_AdamsE2_ss",2922⟩ (by
@@ -115,7 +115,7 @@ private theorem alpha_all_finite_frames_h309_3 (I : KIP126.Computation.Route.Inp
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem alpha_all_finite_frames_h382_4 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (15,139) (17,140)
+private theorem alpha_all_finite_frames_d2_s15_t139_basis3 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (15,139) (17,140)
     (I.realization.basis .sphere 15 139 3) (I.realization.basis .sphere 17 140 2 + I.realization.basis .sphere 17 140 3) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,15,139,[3],17,140,[2, 3],"S0_AdamsE2_ss",3141⟩ (by
@@ -130,7 +130,7 @@ private theorem alpha_all_finite_frames_h382_4 (I : KIP126.Computation.Route.Inp
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem alpha_all_finite_frames_h383_5 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (15,139) (17,140)
+private theorem alpha_all_finite_frames_d2_s15_t139_basis2_add_basis3 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (15,139) (17,140)
     (I.realization.basis .sphere 15 139 2 + I.realization.basis .sphere 15 139 3) (I.realization.basis .sphere 17 140 3) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,15,139,[2, 3],17,140,[3],"S0_AdamsE2_ss",3142⟩ (by
@@ -145,7 +145,7 @@ private theorem alpha_all_finite_frames_h383_5 (I : KIP126.Computation.Route.Inp
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem alpha_all_finite_frames_h282_6 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 4 (11,136) (15,139)
+private theorem alpha_all_finite_frames_d4_s11_t136_basis0 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 4 (11,136) (15,139)
     (I.realization.basis .sphere 11 136 0) (I.realization.basis .sphere 15 139 0) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,4,11,136,[0],15,139,[0],"S0_AdamsE2_ss",2853⟩ (by
@@ -160,7 +160,7 @@ private theorem alpha_all_finite_frames_h282_6 (I : KIP126.Computation.Route.Inp
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem alpha_all_finite_frames_h321_7 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (11,136) (13,137)
+private theorem alpha_all_finite_frames_d2_s11_t136_basis4 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (11,136) (13,137)
     (I.realization.basis .sphere 11 136 4) (I.realization.basis .sphere 13 137 3) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,11,136,[4],13,137,[3],"S0_AdamsE2_ss",2914⟩ (by
@@ -174,7 +174,7 @@ private theorem alpha_all_finite_frames_h321_7 (I : KIP126.Computation.Route.Inp
   rw [←ha,←hb] at h
   exact h
 
-private theorem alpha_all_finite_frames_h322_8 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 3 (10,135) (13,137)
+private theorem alpha_all_finite_frames_d3_s10_t135_basis0 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 3 (10,135) (13,137)
     (I.realization.basis .sphere 10 135 0) (I.realization.basis .sphere 13 137 0) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,3,10,135,[0],13,137,[0],"S0_AdamsE2_ss",2915⟩ (by
@@ -259,13 +259,13 @@ private theorem alpha_all_finite_frames_alpha_finite_frame_14 {D : Model H M Syn
   classical
   let E := sequence D .sphere
   have h366 : HasDifferential E 2 (14,138) (16,139)
-      (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := alpha_all_finite_frames_h366_0 I
+      (I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 1 + I.realization.basis .sphere 16 139 2) := alpha_all_finite_frames_d2_s14_t138_basis1 I
   have h367 : HasDifferential E 2 (14,138) (16,139)
-      (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := alpha_all_finite_frames_h367_1 I
+      (I.realization.basis .sphere 14 138 0 + I.realization.basis .sphere 14 138 1) (I.realization.basis .sphere 16 139 2) := alpha_all_finite_frames_d2_s14_t138_basis0_add_basis1 I
   have h308 : HasDifferential E 2 (12,137) (14,138)
-      (I.realization.basis .sphere 12 137 1) (I.realization.basis .sphere 14 138 4) := alpha_all_finite_frames_h308_2 I
+      (I.realization.basis .sphere 12 137 1) (I.realization.basis .sphere 14 138 4) := alpha_all_finite_frames_d2_s12_t137_basis1 I
   have h309 : HasDifferential E 2 (12,137) (14,138)
-      (I.realization.basis .sphere 12 137 0) (I.realization.basis .sphere 14 138 3) := alpha_all_finite_frames_h309_3 I
+      (I.realization.basis .sphere 12 137 0) (I.realization.basis .sphere 14 138 3) := alpha_all_finite_frames_d2_s12_t137_basis0 I
   obtain ⟨e,he⟩ := I.basis ⟨.sphere,14,138,["440,1", "439,1", "23,1,190,1", "1,1,418,1", "1,1,417,1"]⟩ (by
     exact List.mem_of_getElem? (i := 216) (by rfl))
   change E.Page 2 (14,138) ≃ₗ[ℤ] (Fin 5 →₀ F2) at e
@@ -543,11 +543,11 @@ private theorem alpha_all_finite_frames_alpha_finite_frame_15 {D : Model H M Syn
   classical
   let E := sequence D .sphere
   have h382 : HasDifferential E 2 (15,139) (17,140)
-      (I.realization.basis .sphere 15 139 3) (I.realization.basis .sphere 17 140 2 + I.realization.basis .sphere 17 140 3) := alpha_all_finite_frames_h382_4 I
+      (I.realization.basis .sphere 15 139 3) (I.realization.basis .sphere 17 140 2 + I.realization.basis .sphere 17 140 3) := alpha_all_finite_frames_d2_s15_t139_basis3 I
   have h383 : HasDifferential E 2 (15,139) (17,140)
-      (I.realization.basis .sphere 15 139 2 + I.realization.basis .sphere 15 139 3) (I.realization.basis .sphere 17 140 3) := alpha_all_finite_frames_h383_5 I
+      (I.realization.basis .sphere 15 139 2 + I.realization.basis .sphere 15 139 3) (I.realization.basis .sphere 17 140 3) := alpha_all_finite_frames_d2_s15_t139_basis2_add_basis3 I
   have h282 : HasDifferential E 4 (11,136) (15,139)
-      (I.realization.basis .sphere 11 136 0) (I.realization.basis .sphere 15 139 0) := alpha_all_finite_frames_h282_6 I
+      (I.realization.basis .sphere 11 136 0) (I.realization.basis .sphere 15 139 0) := alpha_all_finite_frames_d4_s11_t136_basis0 I
   obtain ⟨e,he⟩ := I.basis ⟨.sphere,15,139,["448,1", "3,2,287,1", "0,1,440,1", "0,1,439,1"]⟩ (by
     exact List.mem_of_getElem? (i := 223) (by rfl))
   change E.Page 2 (15,139) ≃ₗ[ℤ] (Fin 4 →₀ F2) at e
@@ -757,9 +757,9 @@ private theorem alpha_all_finite_frames_alpha_finite_frame_13 {D : Model H M Syn
   change (Subobject.ofLE (A.Z ⊤) (A.Z 0) (A.Z_anti le_top) ≫ A.pageπ 0) z = _ at hz
   change A.pageπ ⊤ z ≠ 0 at hzn
   have h321 : HasDifferential E 2 (11,136) (13,137)
-      (I.realization.basis .sphere 11 136 4) (I.realization.basis .sphere 13 137 3) := alpha_all_finite_frames_h321_7 I
+      (I.realization.basis .sphere 11 136 4) (I.realization.basis .sphere 13 137 3) := alpha_all_finite_frames_d2_s11_t136_basis4 I
   have h322 : HasDifferential E 3 (10,135) (13,137)
-      (I.realization.basis .sphere 10 135 0) (I.realization.basis .sphere 13 137 0) := alpha_all_finite_frames_h322_8 I
+      (I.realization.basis .sphere 10 135 0) (I.realization.basis .sphere 13 137 0) := alpha_all_finite_frames_d3_s10_t135_basis0 I
   obtain ⟨_,incoming,a,hincoming,ha,hda⟩ := h322
   have hd2 := facts.d3_h4_x_109_12
   change HasNonzeroDifferential E 3 (13,137) (16,139)

@@ -25,7 +25,7 @@ variable {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:
 set_option backward.isDefEq.respectTransparency false
 set_option maxRecDepth 10000
 attribute [local irreducible] KIP126.LinE2.homogeneousPart adamsTowerSSData adamsTowerInternalD
-private theorem prop78_detection_data_bridge_family_map_data {D : Model H M Syn} {X Y : Syn} (f : X ⟶ Y) (r : ℤ) (i : Tridegree) :
+private theorem differential_criterion_detection_data_bridge_family_map_data {D : Model H M Syn} {X Y : Syn} (f : X ⟶ Y) (r : ℤ) (i : Tridegree) :
     familyPageMap D.family f r i = (D.family.functor.map f).toSSDataMorphism.pageMap i (↑(r-2).toNat) := by
   classical
   let F := (D.family.functor.map f).toSSDataMorphism
@@ -48,14 +48,14 @@ private theorem prop78_detection_data_bridge_family_map_data {D : Model H M Syn}
   exact normalize PX.page PY.page (fun n => F.pageMap i n) nX nY (↑(r-2).toNat) hX hY _ _ _
 
 
-private theorem prop78_detection_data_bridge_family_page_comp {D : Model H M Syn} {X Y Z : Syn} (f : X ⟶ Y) (g : Y ⟶ Z) (r : ℤ) (i : Tridegree) :
+private theorem differential_criterion_detection_data_bridge_family_page_comp {D : Model H M Syn} {X Y Z : Syn} (f : X ⟶ Y) (g : Y ⟶ Z) (r : ℤ) (i : Tridegree) :
     familyPageMap D.family f r i ≫ familyPageMap D.family g r i = familyPageMap D.family (f ≫ g) r i := by
   classical
-  rw [prop78_detection_data_bridge_family_map_data,prop78_detection_data_bridge_family_map_data,prop78_detection_data_bridge_family_map_data,Functor.map_comp]
+  rw [differential_criterion_detection_data_bridge_family_map_data,differential_criterion_detection_data_bridge_family_map_data,differential_criterion_detection_data_bridge_family_map_data,Functor.map_comp]
   exact (SSDataMorphism.pageMap_comp _ _ _ _).symm
 
 
-private theorem prop78_detection_data_bridge_family_infinity_representative_map {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_family_infinity_representative_map {D : Model H M Syn}
     {X Y : Syn} (f : X ⟶ Y) (i : Tridegree)
     (y : (D.family.obj X).E₂ i) (e : ((D.family.obj X).sequence.ssData i).eInfty)
     (hy : HasInfinityRepresentative (D.family.obj X) 2 i y e) :
@@ -67,7 +67,7 @@ private theorem prop78_detection_data_bridge_family_infinity_representative_map 
     (((D.family.functor.obj X).ssData i).Z 0) _ ≫ ((D.family.functor.obj X).ssData i).pageπ 0) z=y at hz
   let F := (D.family.functor.map f).toSSDataMorphism
   refine ⟨hr,F.cycleMap i ⊤ z,?_,?_⟩
-  · rw [prop78_detection_data_bridge_family_map_data]
+  · rw [differential_criterion_detection_data_bridge_family_map_data]
     have h := F.cycleMap_ofLE_assoc i (show (0:WithTop ℕ)≤⊤ from le_top)
       (((D.family.obj Y).sequence.ssData i).pageπ 0)
     dsimp only [SyntheticAdamsFamily.obj] at h
@@ -79,7 +79,7 @@ private theorem prop78_detection_data_bridge_family_infinity_representative_map 
       rw [he])
 
 
-private theorem prop78_detection_data_bridge_sphere_quotient_label_to_nu {D : Model H M Syn} (q k : ℕ) (s t : ℤ)
+private theorem differential_criterion_detection_data_bridge_sphere_quotient_label_to_nu {D : Model H M Syn} (q k : ℕ) (s t : ℤ)
     (x : E2 H SphereSpectrum s t) :
     familyPageMap D.family (XModLambdaN.map D.nu.unitIso.inv q) 2 (s,t,t-k)
       (D.quotientLabel q s t k x) = finiteTargetLabel D .sphere q s t k x := by
@@ -100,7 +100,7 @@ private theorem prop78_detection_data_bridge_sphere_quotient_label_to_nu {D : Mo
             nx) := congrArg (fun y => familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k) y) hc.symm
       _ = familyPageMap D.family ((SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) ≫ D.nu.unitIso.inv)
           2 (s,t,t-k) nx :=
-        ConcreteCategory.congr_hom (prop78_detection_data_bridge_family_page_comp (D:=D) (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) D.nu.unitIso.inv 2 (s,t,t-k)) nx
+        ConcreteCategory.congr_hom (differential_criterion_detection_data_bridge_family_page_comp (D:=D) (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) D.nu.unitIso.inv 2 (s,t,t-k)) nx
       _ = targetNuLabel D .sphere s t k x := by
         simp only [Category.assoc,Iso.hom_inv_id,Category.comp_id]
         dsimp only [targetNuLabel]
@@ -110,18 +110,18 @@ private theorem prop78_detection_data_bridge_sphere_quotient_label_to_nu {D : Mo
     calc
       _ = familyPageMap D.family (XModLambdaN.incl (S_0_0 : Syn) q ≫ XModLambdaN.map D.nu.unitIso.inv q)
           2 (s,t,t-k) (D.sphereE2 s t k x) :=
-        ConcreteCategory.congr_hom (prop78_detection_data_bridge_family_page_comp (D:=D) (XModLambdaN.incl (S_0_0 : Syn) q) (XModLambdaN.map D.nu.unitIso.inv q) 2 (s,t,t-k)) (D.sphereE2 s t k x)
+        ConcreteCategory.congr_hom (differential_criterion_detection_data_bridge_family_page_comp (D:=D) (XModLambdaN.incl (S_0_0 : Syn) q) (XModLambdaN.map D.nu.unitIso.inv q) 2 (s,t,t-k)) (D.sphereE2 s t k x)
       _ = familyPageMap D.family (D.nu.unitIso.inv ≫ XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q)
           2 (s,t,t-k) (D.sphereE2 s t k x) := by rw [XModLambdaN.incl_naturality]; rfl
       _ = familyPageMap D.family (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k)
           (familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k) (D.sphereE2 s t k x)) :=
-        (ConcreteCategory.congr_hom (prop78_detection_data_bridge_family_page_comp (D:=D) D.nu.unitIso.inv (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k)) (D.sphereE2 s t k x)).symm
+        (ConcreteCategory.congr_hom (differential_criterion_detection_data_bridge_family_page_comp (D:=D) D.nu.unitIso.inv (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k)) (D.sphereE2 s t k x)).symm
       _ = finiteTargetLabel D .sphere q s t k x := congrArg
         (fun y => familyPageMap D.family (XModLambdaN.incl (D.nu.functor.obj SphereSpectrum) q) 2 (s,t,t-k) y) hbase
   exact hlabel
 
 
-private theorem prop78_detection_data_bridge_detected_map {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_detected_map {D : Model H M Syn}
     (X Y : SyntheticObject) (f : X.obj D.nu D.auxiliary ⟶ Y.obj D.nu D.auxiliary)
     (i : Tridegree) (x : (D.family.obj (X.obj D.nu D.auxiliary)).E₂ i)
     (a : BiHom (i.2.1-i.1) i.2.2 (X.obj D.nu D.auxiliary))
@@ -147,7 +147,7 @@ private theorem prop78_detection_data_bridge_detected_map {D : Model H M Syn}
       Filtration.inducedAssocGradedMap c.aMap c.filtration_compat i.1 m =
       k≫G.toAssociatedGraded i.1 m := by
     exact cokernel.π_desc _ _ _
-  refine ⟨(D.family.functor.map f).eInftyMap i e,prop78_detection_data_bridge_family_infinity_representative_map f i x e he,k a',?_,?_⟩
+  refine ⟨(D.family.functor.map f).eInftyMap i e,differential_criterion_detection_data_bridge_family_infinity_representative_map f i x e he,k a',?_,?_⟩
   · have hh := ConcreteCategory.congr_hom hk a'
     change (G.F i.1 m).arrow (k a')=((F.F i.1 m).arrow a')≫f at hh
     change (F.F i.1 m).arrow a'=a at ha'
@@ -164,7 +164,7 @@ private theorem prop78_detection_data_bridge_detected_map {D : Model H M Syn}
       _ = G.toAssociatedGraded i.1 m (k a') := ConcreteCategory.congr_hom hq a'
 
 
-private theorem prop78_detection_data_bridge_detects_infinity_equal {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_detects_infinity_equal {D : Model H M Syn}
     (X : SyntheticObject) (i : Tridegree)
     (a : BiHom (i.2.1-i.1) i.2.2 (X.obj D.nu D.auxiliary))
     (x y : (D.family.obj (X.obj D.nu D.auxiliary)).E₂ i)
@@ -180,30 +180,30 @@ private theorem prop78_detection_data_bridge_detects_infinity_equal {D : Model H
   exact ⟨e,he,hef.symm ▸ hf⟩
 
 
-private theorem prop78_detection_data_bridge_sphere_zero_weight_label_10_134 {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_sphere_zero_weight_label_10_134 {D : Model H M Syn}
     (BHS : EInftyInput D) (x : E2 H SphereSpectrum 10 134)
     (a : BiHom (134-10) (134-0) (S_0_0 : Syn))
     (ha : Detects D.sphereConvergence (10,134,134-0) (D.sphereE2 10 134 0 x) a) :
     D.sphereFirstQuotient 10 134 (quotientClass 1 a)=x := by
   classical
   let y := D.sphereFirstQuotient 10 134 (quotientClass 1 a)
-  have hd := prop78_detection_data_bridge_detected_map (D:=D) .sphere (.quotient 1 .sphere)
+  have hd := differential_criterion_detection_data_bridge_detected_map (D:=D) .sphere (.quotient 1 .sphere)
     (XModLambdaN.incl (S_0_0 : Syn) 1) (10,134,134-0) _ a ha
   have hd' := D.comparisonCompatible.first_quotient 10 134 y
   have hy : (D.sphereFirstQuotient 10 134).symm y=quotientClass 1 a := by
     exact (D.sphereFirstQuotient 10 134).symm_apply_apply _
   rw [hy] at hd'
-  obtain ⟨e,he,hf⟩ := prop78_detection_data_bridge_detects_infinity_equal (.quotient 1 .sphere) (10,134,134-0)
+  obtain ⟨e,he,hf⟩ := differential_criterion_detection_data_bridge_detects_infinity_equal (.quotient 1 .sphere) (10,134,134-0)
     (quotientClass 1 a) _ _ hd hd'
   change HasInfinityRepresentative (D.family.quotient (S_0_0 : Syn) 1) 2 (10,134,134-0)
     (D.quotientLabel 1 10 134 0 x) e at he
   change HasInfinityRepresentative (D.family.quotient (S_0_0 : Syn) 1) 2 (10,134,134-0)
     (D.quotientLabel 1 10 134 0 y) e at hf
   let g := XModLambdaN.map D.nu.unitIso.inv 1
-  have he' := prop78_detection_data_bridge_family_infinity_representative_map g (10,134,134-0) _ _ he
-  have hf' := prop78_detection_data_bridge_family_infinity_representative_map g (10,134,134-0) _ _ hf
-  have hlx := prop78_detection_data_bridge_sphere_quotient_label_to_nu (D:=D) 1 0 10 134 x
-  have hly := prop78_detection_data_bridge_sphere_quotient_label_to_nu (D:=D) 1 0 10 134 y
+  have he' := differential_criterion_detection_data_bridge_family_infinity_representative_map g (10,134,134-0) _ _ he
+  have hf' := differential_criterion_detection_data_bridge_family_infinity_representative_map g (10,134,134-0) _ _ hf
+  have hlx := differential_criterion_detection_data_bridge_sphere_quotient_label_to_nu (D:=D) 1 0 10 134 x
+  have hly := differential_criterion_detection_data_bridge_sphere_quotient_label_to_nu (D:=D) 1 0 10 134 y
   change familyPageMap D.family g 2 (10,134,134-0) (D.quotientLabel 1 10 134 0 x)=_ at hlx
   change familyPageMap D.family g 2 (10,134,134-0) (D.quotientLabel 1 10 134 0 y)=_ at hly
   rw [hlx] at he'
@@ -227,7 +227,7 @@ private theorem prop78_detection_data_bridge_sphere_zero_weight_label_10_134 {D 
 
 
 omit [HasFunctorialCofiber (C := Syn)] in
-private theorem prop78_detection_data_bridge_shift_assoc_inv (coh : BiShiftCoherence Syn)
+private theorem differential_criterion_detection_data_bridge_shift_assoc_inv (coh : BiShiftCoherence Syn)
     (a b c ab bc total : ℤ × ℤ) (hab : a+b=ab) (hbc : b+c=bc)
     (habc : ab+c=total) (habc' : a+bc=total) (A : Syn) :
     (biShiftAddIso ab c total habc).inv.app A ≫
@@ -244,7 +244,7 @@ private theorem prop78_detection_data_bridge_shift_assoc_inv (coh : BiShiftCoher
   exact hi
 
 
-private def prop78_detection_data_bridge_push3 {m w : ℤ} {X Y : Syn}
+private def differential_criterion_detection_data_bridge_push3 {m w : ℤ} {X Y : Syn}
     (f : (SyntheticCategory.biShift (0,-3)).obj X ⟶ Y) (a : BiHom m w X) :
     BiHom m (w-3) Y :=
   eqToHom (by congr 1; simp) ≫
@@ -252,15 +252,15 @@ private def prop78_detection_data_bridge_push3 {m w : ℤ} {X Y : Syn}
       (SyntheticCategory.biShift (0,-3)).map a ≫ f
 
 
-private theorem prop78_detection_data_bridge_eta_push3 (D : Model H M Syn) {X Y : Syn}
+private theorem differential_criterion_detection_data_bridge_eta_push3 (D : Model H M Syn) {X Y : Syn}
     (f : (SyntheticCategory.biShift (0,-3)).obj X ⟶ Y)
     (ν : BiHom 1 2 (S_0_0 : Syn)) (x : BiHom 124 134 X) :
-    sphereAction ν (prop78_detection_data_bridge_push3 f x) = prop78_detection_data_bridge_push3 f (sphereAction ν x) := by
+    sphereAction ν (differential_criterion_detection_data_bridge_push3 f x) = differential_criterion_detection_data_bridge_push3 f (sphereAction ν x) := by
   classical
-  have ha := prop78_detection_data_bridge_shift_assoc_inv D.shiftCoherence (1,2) (124,134) (0,-3)
+  have ha := differential_criterion_detection_data_bridge_shift_assoc_inv D.shiftCoherence (1,2) (124,134) (0,-3)
     (125,136) (124,131) (125,133) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
   simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
-  simp only [prop78_detection_data_bridge_push3, eqToHom_refl, Category.id_comp]
+  simp only [differential_criterion_detection_data_bridge_push3, eqToHom_refl, Category.id_comp]
   change
     (SyntheticCategory.biShift_comp (1,2) (124,131)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift (124,131)).map ν ≫
@@ -275,21 +275,21 @@ private theorem prop78_detection_data_bridge_eta_push3 (D : Model H M Syn) {X Y 
   erw [← reassoc_of% ha]
 
 
-private theorem prop78_detection_data_bridge_eta_lambda3_right (D : Model H M Syn)
+private theorem differential_criterion_detection_data_bridge_eta_lambda3_right (D : Model H M Syn)
     (η : BiHom 1 2 (S_0_0 : Syn)) (u : BiHom 124 134 (S_0_0 : Syn)) :
     sphereProduct η (lambdaMultiply 3 u)=lambdaMultiply 3 (sphereProduct η u) := by
   classical
   have heq {m w : ℤ} (a : BiHom m w (S_0_0 : Syn)) :
-      prop78_detection_data_bridge_push3 (lambdaPow 3 (S_0_0 : Syn)) a=lambdaMultiply 3 a := by
-    simp only [prop78_detection_data_bridge_push3,lambdaMultiply]
+      differential_criterion_detection_data_bridge_push3 (lambdaPow 3 (S_0_0 : Syn)) a=lambdaMultiply 3 a := by
+    simp only [differential_criterion_detection_data_bridge_push3,lambdaMultiply]
     erw [lambdaPow_naturality]
     rfl
-  have h := prop78_detection_data_bridge_eta_push3 D (lambdaPow 3 (S_0_0 : Syn)) η u
+  have h := differential_criterion_detection_data_bridge_eta_push3 D (lambdaPow 3 (S_0_0 : Syn)) η u
   rw [heq,heq] at h
   exact h
 
 
-private def prop78_detection_data_bridge_push6 {m w : ℤ} {X Y : Syn}
+private def differential_criterion_detection_data_bridge_push6 {m w : ℤ} {X Y : Syn}
     (f : (SyntheticCategory.biShift (0,-6)).obj X ⟶ Y) (a : BiHom m w X) :
     BiHom m (w-6) Y :=
   eqToHom (by congr 1; simp) ≫
@@ -297,15 +297,15 @@ private def prop78_detection_data_bridge_push6 {m w : ℤ} {X Y : Syn}
       (SyntheticCategory.biShift (0,-6)).map a ≫ f
 
 
-private theorem prop78_detection_data_bridge_eta_push6 (D : Model H M Syn) {X Y : Syn}
+private theorem differential_criterion_detection_data_bridge_eta_push6 (D : Model H M Syn) {X Y : Syn}
     (f : (SyntheticCategory.biShift (0,-6)).obj X ⟶ Y)
     (ν : BiHom 1 2 (S_0_0 : Syn)) (x : BiHom 124 134 X) :
-    sphereAction ν (prop78_detection_data_bridge_push6 f x) = prop78_detection_data_bridge_push6 f (sphereAction ν x) := by
+    sphereAction ν (differential_criterion_detection_data_bridge_push6 f x) = differential_criterion_detection_data_bridge_push6 f (sphereAction ν x) := by
   classical
-  have ha := prop78_detection_data_bridge_shift_assoc_inv D.shiftCoherence (1,2) (124,134) (0,-6)
+  have ha := differential_criterion_detection_data_bridge_shift_assoc_inv D.shiftCoherence (1,2) (124,134) (0,-6)
     (125,136) (124,128) (125,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
   simp only [biShiftAddIso, Iso.trans_inv, eqToIso.inv, eqToHom_refl, Category.id_comp] at ha
-  simp only [prop78_detection_data_bridge_push6, eqToHom_refl, Category.id_comp]
+  simp only [differential_criterion_detection_data_bridge_push6, eqToHom_refl, Category.id_comp]
   change
     (SyntheticCategory.biShift_comp (1,2) (124,128)).inv.app (S_0_0 : Syn) ≫
       (SyntheticCategory.biShift (124,128)).map ν ≫
@@ -320,25 +320,25 @@ private theorem prop78_detection_data_bridge_eta_push6 (D : Model H M Syn) {X Y 
   erw [← reassoc_of% ha]
 
 
-private theorem prop78_detection_data_bridge_eta_lambda6_right (D : Model H M Syn)
+private theorem differential_criterion_detection_data_bridge_eta_lambda6_right (D : Model H M Syn)
     (η : BiHom 1 2 (S_0_0 : Syn)) (u : BiHom 124 134 (S_0_0 : Syn)) :
     sphereProduct η (lambdaMultiply 6 u)=lambdaMultiply 6 (sphereProduct η u) := by
   classical
   have heq {m w : ℤ} (a : BiHom m w (S_0_0 : Syn)) :
-      prop78_detection_data_bridge_push6 (lambdaPow 6 (S_0_0 : Syn)) a=lambdaMultiply 6 a := by
-    simp only [prop78_detection_data_bridge_push6,lambdaMultiply]
+      differential_criterion_detection_data_bridge_push6 (lambdaPow 6 (S_0_0 : Syn)) a=lambdaMultiply 6 a := by
+    simp only [differential_criterion_detection_data_bridge_push6,lambdaMultiply]
     erw [lambdaPow_naturality]
     rfl
-  have h := prop78_detection_data_bridge_eta_push6 D (lambdaPow 6 (S_0_0 : Syn)) η u
+  have h := differential_criterion_detection_data_bridge_eta_push6 D (lambdaPow 6 (S_0_0 : Syn)) η u
   rw [heq,heq] at h
   exact h
 
 
-private theorem prop78_detection_data_bridge_lambda_three_3_136 (D : Model H M Syn)
+private theorem differential_criterion_detection_data_bridge_lambda_three_3_136 (D : Model H M Syn)
     (c : BiHom 125 136 (S_0_0 : Syn)) :
     lambdaMultiply 3 (lambdaMultiply 3 c)=lambdaMultiply 6 c := by
   classical
-  have ha := prop78_detection_data_bridge_shift_assoc_inv D.shiftCoherence (125,136) (0,-3) (0,-3)
+  have ha := differential_criterion_detection_data_bridge_shift_assoc_inv D.shiftCoherence (125,136) (0,-3) (0,-3)
     (125,133) (0,-6) (125,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
   simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp] at ha
   unfold lambdaMultiply
@@ -354,11 +354,11 @@ private theorem prop78_detection_data_bridge_lambda_three_3_136 (D : Model H M S
   rfl
 
 
-private theorem prop78_detection_data_bridge_lambda_three_7_140 (D : Model H M Syn)
+private theorem differential_criterion_detection_data_bridge_lambda_three_7_140 (D : Model H M Syn)
     (c : BiHom 125 140 (S_0_0 : Syn)) :
     lambdaMultiply 3 (lambdaMultiply 7 c)=lambdaMultiply 10 c := by
   classical
-  have ha := prop78_detection_data_bridge_shift_assoc_inv D.shiftCoherence (125,140) (0,-7) (0,-3)
+  have ha := differential_criterion_detection_data_bridge_shift_assoc_inv D.shiftCoherence (125,140) (0,-7) (0,-3)
     (125,133) (0,-10) (125,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
   simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp] at ha
   unfold lambdaMultiply
@@ -374,11 +374,11 @@ private theorem prop78_detection_data_bridge_lambda_three_7_140 (D : Model H M S
   rfl
 
 
-private theorem prop78_detection_data_bridge_lambda_three_6_139 (D : Model H M Syn)
+private theorem differential_criterion_detection_data_bridge_lambda_three_6_139 (D : Model H M Syn)
     (c : BiHom 125 139 (S_0_0 : Syn)) :
     lambdaMultiply 3 (lambdaMultiply 6 c)=lambdaMultiply 9 c := by
   classical
-  have ha := prop78_detection_data_bridge_shift_assoc_inv D.shiftCoherence (125,139) (0,-6) (0,-3)
+  have ha := differential_criterion_detection_data_bridge_shift_assoc_inv D.shiftCoherence (125,139) (0,-6) (0,-3)
     (125,133) (0,-9) (125,130) (by decide) (by decide) (by decide) (by decide) (S_0_0 : Syn)
   simp only [biShiftAddIso,Iso.trans_inv,eqToIso.inv,eqToHom_refl,Category.id_comp] at ha
   unfold lambdaMultiply
@@ -394,7 +394,7 @@ private theorem prop78_detection_data_bridge_lambda_three_6_139 (D : Model H M S
   rfl
 
 
-private theorem prop78_detection_data_bridge_vanishes_mod_lambda_iff_multiple
+private theorem differential_criterion_detection_data_bridge_vanishes_mod_lambda_iff_multiple
     (n : ℕ) {X : Syn} (m w : ℤ) (z : BiHom m (w-(n:ℤ)) X) :
     VanishesModLambda n z ↔ ∃ b : BiHom m w X, lambdaMultiply n b=z := by
   classical
@@ -428,7 +428,7 @@ private theorem prop78_detection_data_bridge_vanishes_mod_lambda_iff_multiple
     exact ⟨e.inv≫F.map b,by rw [Category.assoc,←he]⟩
 
 
-private theorem prop78_detection_data_bridge_map_filtration {D : Model H M Syn} {X Y : Syn} (f : X ⟶ Y) {m w s : ℤ} (x : BiHom m w X)
+private theorem differential_criterion_detection_data_bridge_map_filtration {D : Model H M Syn} {X Y : Syn} (f : X ⟶ Y) {m w s : ℤ} (x : BiHom m w X)
     (hx : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s x) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) s (x ≫ f) := by
   classical
@@ -441,7 +441,7 @@ private theorem prop78_detection_data_bridge_map_filtration {D : Model H M Syn} 
   rfl
 
 
-private theorem prop78_detection_data_bridge_lambda_9_iff_filtration_14 {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_lambda_9_iff_filtration_14 {D : Model H M Syn}
     (BHS : SyntheticInputs D) (a : BiHom 125 130 (S_0_0 : Syn)) :
     VanishesModLambda 9 a ↔ FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 14 a := by
   classical
@@ -450,21 +450,21 @@ private theorem prop78_detection_data_bridge_lambda_9_iff_filtration_14 {D : Mod
     ∃ b : BiHom 125 139 (D.nu.functor.obj SphereSpectrum), lambdaMultiply 9 b=a ≫ D.nu.unitIso.inv at h
   constructor
   · intro hz
-    obtain ⟨b,hb⟩ := (prop78_detection_data_bridge_vanishes_mod_lambda_iff_multiple 9 125 139 a).mp hz
+    obtain ⟨b,hb⟩ := (differential_criterion_detection_data_bridge_vanishes_mod_lambda_iff_multiple 9 125 139 a).mp hz
     have haν := h.mpr ⟨b ≫ D.nu.unitIso.inv,by
       simpa only [lambdaMultiply,Category.assoc] using
         (congrArg (fun z=>z ≫ D.nu.unitIso.inv) hb)⟩
-    have hm := prop78_detection_data_bridge_map_filtration (D:=D) D.nu.unitIso.hom (a ≫ D.nu.unitIso.inv) haν
+    have hm := differential_criterion_detection_data_bridge_map_filtration (D:=D) D.nu.unitIso.hom (a ≫ D.nu.unitIso.inv) haν
     simpa only [Category.assoc,Iso.inv_hom_id,Category.comp_id] using hm
   · intro ha
-    obtain ⟨b,hb⟩ := h.mp (prop78_detection_data_bridge_map_filtration (D:=D) D.nu.unitIso.inv a ha)
-    apply (prop78_detection_data_bridge_vanishes_mod_lambda_iff_multiple 9 125 139 a).mpr
+    obtain ⟨b,hb⟩ := h.mp (differential_criterion_detection_data_bridge_map_filtration (D:=D) D.nu.unitIso.inv a ha)
+    apply (differential_criterion_detection_data_bridge_vanishes_mod_lambda_iff_multiple 9 125 139 a).mpr
     refine ⟨b ≫ D.nu.unitIso.hom,?_⟩
     simpa only [lambdaMultiply,Category.assoc,Iso.inv_hom_id,Category.comp_id] using
       congrArg (fun z=>z ≫ D.nu.unitIso.hom) hb
 
 
-private theorem prop78_detection_data_bridge_lambda_10_iff_filtration_15 {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_lambda_10_iff_filtration_15 {D : Model H M Syn}
     (BHS : SyntheticInputs D) (a : BiHom 125 130 (S_0_0 : Syn)) :
     VanishesModLambda 10 a ↔ FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 a := by
   classical
@@ -473,21 +473,21 @@ private theorem prop78_detection_data_bridge_lambda_10_iff_filtration_15 {D : Mo
     ∃ b : BiHom 125 140 (D.nu.functor.obj SphereSpectrum), lambdaMultiply 10 b=a ≫ D.nu.unitIso.inv at h
   constructor
   · intro hz
-    obtain ⟨b,hb⟩ := (prop78_detection_data_bridge_vanishes_mod_lambda_iff_multiple 10 125 140 a).mp hz
+    obtain ⟨b,hb⟩ := (differential_criterion_detection_data_bridge_vanishes_mod_lambda_iff_multiple 10 125 140 a).mp hz
     have haν := h.mpr ⟨b ≫ D.nu.unitIso.inv,by
       simpa only [lambdaMultiply,Category.assoc] using
         (congrArg (fun z=>z ≫ D.nu.unitIso.inv) hb)⟩
-    have hm := prop78_detection_data_bridge_map_filtration (D:=D) D.nu.unitIso.hom (a ≫ D.nu.unitIso.inv) haν
+    have hm := differential_criterion_detection_data_bridge_map_filtration (D:=D) D.nu.unitIso.hom (a ≫ D.nu.unitIso.inv) haν
     simpa only [Category.assoc,Iso.inv_hom_id,Category.comp_id] using hm
   · intro ha
-    obtain ⟨b,hb⟩ := h.mp (prop78_detection_data_bridge_map_filtration (D:=D) D.nu.unitIso.inv a ha)
-    apply (prop78_detection_data_bridge_vanishes_mod_lambda_iff_multiple 10 125 140 a).mpr
+    obtain ⟨b,hb⟩ := h.mp (differential_criterion_detection_data_bridge_map_filtration (D:=D) D.nu.unitIso.inv a ha)
+    apply (differential_criterion_detection_data_bridge_vanishes_mod_lambda_iff_multiple 10 125 140 a).mpr
     refine ⟨b ≫ D.nu.unitIso.hom,?_⟩
     simpa only [lambdaMultiply,Category.assoc,Iso.inv_hom_id,Category.comp_id] using
       congrArg (fun z=>z ≫ D.nu.unitIso.hom) hb
 
 
-private theorem prop78_detection_data_bridge_theta_quotient_frame {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_theta_quotient_frame {D : Model H M Syn}
     (I : KIP126.Computation.Route.Inputs D L G) (s t : ℤ) (k : ℕ) (hst : t=s+124) (hsk : s-(k+2)≤4)
     (x : E2 H SphereSpectrum s t) (hx : ClassicalInfinityGenerated s t x) :
     ∃ x' : PageRepresentatives.permanentCycles H SphereSpectrum (s,t), x'.val=x ∧
@@ -545,13 +545,13 @@ private theorem prop78_detection_data_bridge_theta_quotient_frame {D : Model H M
 
 
 
-private theorem prop78_detection_data_bridge_theta_sphere_frame {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_theta_sphere_frame {D : Model H M Syn}
     (I : KIP126.Computation.Route.Inputs D L G) (BHS : SyntheticInputs D)
     (s t : ℤ) (k : ℕ) (hst : t=s+124) (hsk : s-(k+2)≤4)
     (x : E2 H SphereSpectrum s t) (hx : ClassicalInfinityGenerated s t x) :
     ∀ e : ((D.family.sphere).sequence.ssData (s,t,t-k)).eInfty,
       e=0 ∨ HasInfinityRepresentative D.family.sphere 2 (s,t,t-k) (D.sphereE2 s t k x) e := by
-  have prop78_detection_data_bridge_family_map_data {X Y : Syn} (f : X ⟶ Y) (i : Tridegree) :
+  have differential_criterion_detection_data_bridge_family_map_data {X Y : Syn} (f : X ⟶ Y) (i : Tridegree) :
       familyPageMap D.family f 2 i = (D.family.functor.map f).toSSDataMorphism.pageMap i 0 := by
     let F := (D.family.functor.map f).toSSDataMorphism
     let PX := (D.family.functor.obj X).ssData i
@@ -581,7 +581,7 @@ private theorem prop78_detection_data_bridge_theta_sphere_frame {D : Model H M S
       (((D.family.functor.obj X).ssData i).Z 0) _ ≫ ((D.family.functor.obj X).ssData i).pageπ 0) z=y at hz
     let F := (D.family.functor.map f).toSSDataMorphism
     refine ⟨hr,F.cycleMap i ⊤ z,?_,?_⟩
-    · rw [prop78_detection_data_bridge_family_map_data]
+    · rw [differential_criterion_detection_data_bridge_family_map_data]
       have h := F.cycleMap_ofLE_assoc i (show (0:WithTop ℕ)≤⊤ from le_top)
         (((D.family.obj Y).sequence.ssData i).pageπ 0)
       dsimp only [SyntheticAdamsFamily.obj] at h
@@ -591,7 +591,7 @@ private theorem prop78_detection_data_bridge_theta_sphere_frame {D : Model H M S
     · exact (congrArg (fun a => a z) (F.pageπ_pageMap i ⊤)).symm.trans (by
         change F.pageMap i ⊤ (((D.family.obj X).sequence.ssData i).pageπ ⊤ z)=_
         rw [he])
-  obtain ⟨x',hx',hframe⟩ := prop78_detection_data_bridge_theta_quotient_frame I s t k hst hsk x hx
+  obtain ⟨x',hx',hframe⟩ := differential_criterion_detection_data_bridge_theta_quotient_frame I s t k hst hsk x hx
   intro e
   let i : Tridegree := (s,t,t-k)
   let f := (D.family.functor.map D.nu.unitIso.hom).eInftyMap i
@@ -620,13 +620,13 @@ private theorem prop78_detection_data_bridge_theta_sphere_frame {D : Model H M S
         (targetNuLabel D .sphere s t k x'.val) = D.sphereE2 s t k x := by
       rw [hx']
       dsimp only [targetNuLabel]
-      rw [prop78_detection_data_bridge_family_map_data,prop78_detection_data_bridge_family_map_data]
+      rw [differential_criterion_detection_data_bridge_family_map_data,differential_criterion_detection_data_bridge_family_map_data]
       dsimp only [i] at *
       change ((D.family.functor.map (SyntheticCategory.biShift_zero.hom.app (D.nu.functor.obj SphereSpectrum))).toSSDataMorphism.pageMap (s,t,t-k) 0 ≫
         (D.family.functor.map D.nu.unitIso.hom).toSSDataMorphism.pageMap (s,t,t-k) 0) _ = _
       rw [←SSDataMorphism.pageMap_comp]
       have hp := D.comparisonCompatible.sphere_nu s t k x
-      rw [prop78_detection_data_bridge_family_map_data] at hp
+      rw [differential_criterion_detection_data_bridge_family_map_data] at hp
       have hm : ((D.family.functor.map (SyntheticCategory.biShift_zero.hom.app (D.nu.functor.obj SphereSpectrum))).toSSDataMorphism.comp
           (D.family.functor.map D.nu.unitIso.hom).toSSDataMorphism) =
           (D.family.functor.map (SyntheticCategory.biShift_zero.hom.app (D.nu.functor.obj SphereSpectrum) ≫ D.nu.unitIso.hom)).toSSDataMorphism := by
@@ -639,7 +639,7 @@ private theorem prop78_detection_data_bridge_theta_sphere_frame {D : Model H M S
     exact hh
 
 
-private theorem prop78_detection_data_bridge_theta_detection_step {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_theta_detection_step {D : Model H M Syn}
     (i : Tridegree) (x : (D.family.sphere).E₂ i)
     (hframe : ∀ e : ((D.family.sphere).sequence.ssData i).eInfty,
       e=0 ∨ HasInfinityRepresentative D.family.sphere 2 i x e)
@@ -670,7 +670,7 @@ private theorem prop78_detection_data_bridge_theta_detection_step {D : Model H M
     have hr := (hframe e).resolve_left he0
     exact ⟨⟨e,hr,a',ha',he⟩,e,hr,he0⟩
 
-private theorem prop78_detection_data_bridge_stem124_weight128_filtration11_branches {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_stem124_weight128_filtration11_branches {D : Model H M Syn}
     (I : KIP126.Computation.Route.Inputs D L G) (BHS : SyntheticInputs D)
     (x13 : E2 H SphereSpectrum 13 137)
     (h13 : ClassicalInfinityGenerated 13 137 x13)
@@ -738,8 +738,8 @@ private theorem prop78_detection_data_bridge_stem124_weight128_filtration11_bran
     apply (CategoryTheory.Limits.IsZero.iff_id_eq_zero _).mpr
     exact hfg.symm.trans (by rw [hnu.eq_of_src f 0,CategoryTheory.Limits.comp_zero])
   have ha13 := hgap ha11
-  have hf13 := prop78_detection_data_bridge_theta_sphere_frame I BHS 13 137 9 (by omega) (by omega) x13 h13
-  rcases prop78_detection_data_bridge_theta_detection_step (13,137,128) (D.sphereE2 13 137 9 x13) hf13 a ha13 with hdet|ha14
+  have hf13 := differential_criterion_detection_data_bridge_theta_sphere_frame I BHS 13 137 9 (by omega) (by omega) x13 h13
+  rcases differential_criterion_detection_data_bridge_theta_detection_step (13,137,128) (D.sphereE2 13 137 9 x13) hf13 a ha13 with hdet|ha14
   · exact Or.inl hdet
   right
   have hmap {X Y : Syn} (f : X ⟶ Y) {m w s : ℤ} (x : BiHom m w X)
@@ -759,7 +759,7 @@ private theorem prop78_detection_data_bridge_stem124_weight128_filtration11_bran
   refine ⟨b ≫ D.nu.unitIso.hom,?_⟩
   simpa [lambdaMultiply,Category.assoc] using congrArg (fun q => q ≫ D.nu.unitIso.hom) hb
 
-private theorem prop78_detection_data_bridge_eta_weight128_branches_filtration_fifteen {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_eta_weight128_branches_filtration_fifteen {D : Model H M Syn}
     (I : KIP126.Computation.Route.Inputs D L G) (SF : Derived.SphereFacts I.realization)
     (η : BiHom 1 2 (S_0_0 : Syn)) (hη : EtaChoice M D.toModelData η)
     (b : BiHom 124 128 (S_0_0 : Syn))
@@ -811,54 +811,54 @@ private theorem prop78_detection_data_bridge_eta_weight128_branches_filtration_f
           ((towerFiltration (nuCoefficientUnit H.unit D.nu) (S_0_0 : Syn)).F 15 (125,130)) := ⟨a',rfl⟩
     simpa only [FiltrationAtLeast,towerFiltration,OrderIso.apply_symm_apply,SyntheticObject.obj,Int.reduceAdd,Int.reduceSub] using hm
 
-private theorem prop78_detection_data_bridge_eta_weight128_filtration_eleven {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_eta_weight128_filtration_eleven {D : Model H M Syn}
     (I : KIP126.Computation.Route.Inputs D L G) (BHS : SyntheticInputs D) (SF : Derived.SphereFacts I.realization)
     (h13 : ClassicalInfinityGenerated 13 137 (I.realization.sphere 13 137 correction))
     (η : BiHom 1 2 (S_0_0 : Syn)) (hη : EtaChoice M D.toModelData η)
     (a : BiHom 124 128 (S_0_0 : Syn))
     (ha : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 11 a) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 (sphereProduct η a) := by
-  exact prop78_detection_data_bridge_eta_weight128_branches_filtration_fifteen I SF η hη a
-    (prop78_detection_data_bridge_stem124_weight128_filtration11_branches I BHS _ h13
+  exact differential_criterion_detection_data_bridge_eta_weight128_branches_filtration_fifteen I SF η hη a
+    (differential_criterion_detection_data_bridge_stem124_weight128_filtration11_branches I BHS _ h13
       SF.e5_stem124_af11 SF.e4_stem124_af12 a ha)
 
-private theorem prop78_detection_data_bridge_theta_u_eta_filtration_error {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_theta_u_eta_filtration_error {D : Model H M Syn}
     (I : KIP126.Computation.Route.Inputs D L G) (BHS : SyntheticInputs D) (SF : Derived.SphereFacts I.realization)
     (h13 : ClassicalInfinityGenerated 13 137 (I.realization.sphere 13 137 correction))
     (η : BiHom 1 2 (S_0_0 : Syn)) (hη : EtaChoice M D.toModelData η)
-    (θ : BiHom 62 64 (S_0_0 : Syn)) (hc4 : C4At M D.toModelData L θ)
+    (θ : BiHom 62 64 (S_0_0 : Syn)) (hc4 : Theta5SquareNonzeroDetectionAt M D.toModelData L θ)
     (u : BiHom 124 134 (S_0_0 : Syn)) (hu : UChoice M D.toModelData L u) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15
       ((show BiHom 125 130 (S_0_0 : Syn) from sphereProduct η (sphereProduct θ θ)) -
         (show BiHom 125 130 (S_0_0 : Syn) from lambdaMultiply 3 (lambdaMultiply 3 (sphereProduct η u)))) := by
-  have hfirst := prop78_detection_data_bridge_sphere_zero_weight_label_10_134 BHS.eInfty (L.U M) u hu.1
+  have hfirst := differential_criterion_detection_data_bridge_sphere_zero_weight_label_10_134 BHS.eInfty (L.U M) u hu.1
   have hu6 := D.comparisonCompatible.homotopy_lambda 10 134 6 u
   rw [hfirst] at hu6
   have hdelta := detects_sub_filtration D.sphereConvergence (10,134,128) hc4.1 hu6
-  have heta := prop78_detection_data_bridge_eta_weight128_filtration_eleven I BHS SF h13 η hη _ hdelta
+  have heta := differential_criterion_detection_data_bridge_eta_weight128_filtration_eleven I BHS SF h13 η hη _ hdelta
   have he : sphereProduct η ((show BiHom 124 128 (S_0_0 : Syn) from sphereProduct θ θ)-(show BiHom 124 128 (S_0_0 : Syn) from lambdaMultiply 6 u))=
       (show BiHom 125 130 (S_0_0 : Syn) from sphereProduct η (sphereProduct θ θ))-(show BiHom 125 130 (S_0_0 : Syn) from sphereProduct η (lambdaMultiply 6 u)) := by
     simp only [sphereProduct,Preadditive.comp_sub,Int.reduceAdd,Int.reduceSub,Nat.cast_ofNat]
-  rw [he,prop78_detection_data_bridge_eta_lambda6_right D η u,←prop78_detection_data_bridge_lambda_three_3_136 D (sphereProduct η u)] at heta
+  rw [he,differential_criterion_detection_data_bridge_eta_lambda6_right D η u,←differential_criterion_detection_data_bridge_lambda_three_3_136 D (sphereProduct η u)] at heta
   exact heta
 
-private theorem prop78_detection_data_bridge_lambda_three_preserves_filtration_fifteen {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_lambda_three_preserves_filtration_fifteen {D : Model H M Syn}
     (BHS : SyntheticInputs D) (a : BiHom 125 133 (S_0_0 : Syn))
     (ha : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 a) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 (lambdaMultiply 3 a) := by
   have h := BHS.filtration_lambda .sphere 125 133 15 (by omega) (a≫D.nu.unitIso.inv)
   change FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 (a≫D.nu.unitIso.inv) ↔
     ∃ b : BiHom 125 140 (D.nu.functor.obj SphereSpectrum),lambdaMultiply 7 b=a≫D.nu.unitIso.inv at h
-  obtain ⟨b,hb⟩ := h.mp (prop78_detection_data_bridge_map_filtration (D:=D) D.nu.unitIso.inv a ha)
+  obtain ⟨b,hb⟩ := h.mp (differential_criterion_detection_data_bridge_map_filtration (D:=D) D.nu.unitIso.inv a ha)
   let c : BiHom 125 140 (S_0_0 : Syn) := b≫D.nu.unitIso.hom
   have hc : lambdaMultiply 7 c=a := by
     simpa only [c,lambdaMultiply,Category.assoc,Iso.inv_hom_id,Category.comp_id] using
       congrArg (fun z=>z≫D.nu.unitIso.hom) hb
-  apply (prop78_detection_data_bridge_lambda_10_iff_filtration_15 BHS _).mp
-  apply (prop78_detection_data_bridge_vanishes_mod_lambda_iff_multiple 10 125 140 _).mpr
-  exact ⟨c,by rw [←hc,prop78_detection_data_bridge_lambda_three_7_140 D c]⟩
+  apply (differential_criterion_detection_data_bridge_lambda_10_iff_filtration_15 BHS _).mp
+  apply (differential_criterion_detection_data_bridge_vanishes_mod_lambda_iff_multiple 10 125 140 _).mpr
+  exact ⟨c,by rw [←hc,differential_criterion_detection_data_bridge_lambda_three_7_140 D c]⟩
 
-private theorem prop78_detection_data_bridge_sphere_first_label_transport {D : Model H M Syn} (s t : ℤ)
+private theorem differential_criterion_detection_data_bridge_sphere_first_label_transport {D : Model H M Syn} (s t : ℤ)
     (x : E2 H SphereSpectrum s t) :
     D.sphereFirstQuotient s t
       (firstLabel D .sphere s t x ≫ XModLambdaN.map
@@ -885,7 +885,7 @@ private theorem prop78_detection_data_bridge_sphere_first_label_transport {D : M
     exact cast_symm (t+0) t (Int.add_zero t) (D.firstQuotient SphereSpectrum 0 s t) x
   rw [hx,c.apply_symm_apply]
 
-private theorem prop78_detection_data_bridge_sphere_permanent_first_quotient_lift {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_sphere_permanent_first_quotient_lift {D : Model H M Syn}
     (synthetic : SyntheticInputs D) (s t : ℤ) (x : E2 H SphereSpectrum s t)
     (hx : IsPermanentCycle (adamsTowerInternalSpectralSequence H.unit SphereSpectrum) (s,t) x) :
     ∃ a : BiHom (t-s) t (S_0_0 : Syn), D.sphereFirstQuotient s t (quotientClass 1 a)=x := by
@@ -899,9 +899,9 @@ private theorem prop78_detection_data_bridge_sphere_permanent_first_quotient_lif
     simp only [Category.assoc]
     exact congrArg (fun h => a≫h) (XModLambdaN.incl_naturality e 1)
   rw [hc,ha]
-  exact prop78_detection_data_bridge_sphere_first_label_transport s t x
+  exact differential_criterion_detection_data_bridge_sphere_first_label_transport s t x
 
-private theorem prop78_detection_data_bridge_detects_of_difference_in_next_filtration
+private theorem differential_criterion_detection_data_bridge_detects_of_difference_in_next_filtration
     {H' : Syn} {unit : S_0_0 ⟶ H'} {F : SyntheticAdamsFamily Syn} {X : Syn}
     (c : TowerConvergence unit F X) (i : Tridegree)
     {x : (F.obj X).E₂ i} {a b : BiHom (i.2.1-i.1) i.2.2 X}
@@ -926,42 +926,42 @@ private theorem prop78_detection_data_bridge_detects_of_difference_in_next_filtr
     rw [hj,add_zero]
     exact hga
 
-private theorem prop78_detection_data_bridge_target_detection_lambda_three {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_target_detection_lambda_three {D : Model H M Syn}
     (BHS : SyntheticInputs D) (x : E2 H SphereSpectrum 14 139)
     (hx : IsPermanentCycle (sequence D .sphere) (14,139) x)
     (c : BiHom 125 133 (S_0_0 : Syn))
     (hc : Detects D.sphereConvergence (14,139,133) (D.sphereE2 14 139 6 x) c) :
     Detects D.sphereConvergence (14,139,130) (D.sphereE2 14 139 9 x) (lambdaMultiply 3 c) := by
-  obtain ⟨t,ht⟩ := prop78_detection_data_bridge_sphere_permanent_first_quotient_lift BHS 14 139 x hx
+  obtain ⟨t,ht⟩ := differential_criterion_detection_data_bridge_sphere_permanent_first_quotient_lift BHS 14 139 x hx
   have ht6 := D.comparisonCompatible.homotopy_lambda 14 139 6 t
   rw [ht] at ht6
   have hdiff := detects_sub_filtration D.sphereConvergence (14,139,133) hc ht6
-  have hdiff3 := prop78_detection_data_bridge_lambda_three_preserves_filtration_fifteen BHS _ hdiff
+  have hdiff3 := differential_criterion_detection_data_bridge_lambda_three_preserves_filtration_fifteen BHS _ hdiff
   have hlin : lambdaMultiply 3 (c-(show BiHom 125 133 (S_0_0 : Syn) from lambdaMultiply 6 t))=
       (show BiHom 125 130 (S_0_0 : Syn) from lambdaMultiply 3 c)-
       (show BiHom 125 130 (S_0_0 : Syn) from lambdaMultiply 3 (lambdaMultiply 6 t)) := by
     simp only [lambdaMultiply,Preadditive.comp_sub,Nat.cast_ofNat,Int.reduceSub]
-  rw [hlin,prop78_detection_data_bridge_lambda_three_6_139 D t] at hdiff3
+  rw [hlin,differential_criterion_detection_data_bridge_lambda_three_6_139 D t] at hdiff3
   have ht9 := D.comparisonCompatible.homotopy_lambda 14 139 9 t
   rw [ht] at ht9
-  exact prop78_detection_data_bridge_detects_of_difference_in_next_filtration D.sphereConvergence (14,139,130) ht9 hdiff3
+  exact differential_criterion_detection_data_bridge_detects_of_difference_in_next_filtration D.sphereConvergence (14,139,130) ht9 hdiff3
 
-private theorem prop78_detection_data_bridge_c4_c5_eta_target_detected {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_square_detection_eta_detection_eta_target_detected {D : Model H M Syn}
     (I : KIP126.Computation.Route.Inputs D L G) (BHS : SyntheticInputs D) (SF : Derived.SphereFacts I.realization)
     (h13 : ClassicalInfinityGenerated 13 137 (I.realization.sphere 13 137 correction))
     (η : BiHom 1 2 (S_0_0 : Syn)) (hη : EtaChoice M D.toModelData η)
-    (θ : BiHom 62 64 (S_0_0 : Syn)) (hc4 : C4At M D.toModelData L θ)
+    (θ : BiHom 62 64 (S_0_0 : Syn)) (hc4 : Theta5SquareNonzeroDetectionAt M D.toModelData L θ)
     (u : BiHom 124 134 (S_0_0 : Syn)) (hu : UChoice M D.toModelData L u)
-    (hc5 : C5At M D.toModelData L η u) :
+    (hc5 : EtaExtensionDetectionAt M D.toModelData L η u) :
     Detects D.sphereConvergence (14,139,130) (D.sphereE2 14 139 9 (L.target M))
       (sphereProduct η (sphereProduct θ θ)) := by
   have hp := SF.t_permanent_cycle
   rw [(route_expression_labels I).2.2] at hp
-  have hlow := prop78_detection_data_bridge_target_detection_lambda_three BHS (L.target M) hp _ hc5
-  exact prop78_detection_data_bridge_detects_of_difference_in_next_filtration D.sphereConvergence (14,139,130) hlow
-    (prop78_detection_data_bridge_theta_u_eta_filtration_error I BHS SF h13 η hη θ hc4 u hu)
+  have hlow := differential_criterion_detection_data_bridge_target_detection_lambda_three BHS (L.target M) hp _ hc5
+  exact differential_criterion_detection_data_bridge_detects_of_difference_in_next_filtration D.sphereConvergence (14,139,130) hlow
+    (differential_criterion_detection_data_bridge_theta_u_eta_filtration_error I BHS SF h13 η hη θ hc4 u hu)
 
-private theorem prop78_detection_data_bridge_survives_twelve_not_boundary_eleven (X : C) (p : ℤ × ℤ)
+private theorem differential_criterion_detection_data_bridge_survives_twelve_not_boundary_eleven (X : C) (p : ℤ × ℤ)
     (x : E2 H X p.1 p.2)
     (hx : SurvivesTo (adamsTowerInternalSpectralSequence H.unit X) 12 p x) :
     x∉PageRepresentatives.boundaries H X 11 p := by
@@ -995,7 +995,7 @@ private theorem prop78_detection_data_bridge_survives_twelve_not_boundary_eleven
   rw [← hzr]
   exact (subobject_cokernel_π_eq_zero_iff (P.B 10) (P.Z 10) (P.B_le_Z 10) z).mpr hz'
 
-private theorem prop78_detection_data_bridge_sphere_label_to_nu {D : Model H M Syn} (s t : ℤ) (k : ℕ) (x : E2 H SphereSpectrum s t) :
+private theorem differential_criterion_detection_data_bridge_sphere_label_to_nu {D : Model H M Syn} (s t : ℤ) (k : ℕ) (x : E2 H SphereSpectrum s t) :
     familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k) (D.sphereE2 s t k x)=
       targetNuLabel D .sphere s t k x := by
   let nx : (D.family.obj ((SyntheticCategory.biShift (0,0)).obj
@@ -1013,32 +1013,32 @@ private theorem prop78_detection_data_bridge_sphere_label_to_nu {D : Model H M S
             nx) := congrArg (fun y => familyPageMap D.family D.nu.unitIso.inv 2 (s,t,t-k) y) hc.symm
       _ = familyPageMap D.family ((SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) ≫ D.nu.unitIso.inv)
           2 (s,t,t-k) nx :=
-        ConcreteCategory.congr_hom (prop78_detection_data_bridge_family_page_comp (D:=D) (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) D.nu.unitIso.inv 2 (s,t,t-k)) nx
+        ConcreteCategory.congr_hom (differential_criterion_detection_data_bridge_family_page_comp (D:=D) (SyntheticCategory.biShift_zero.hom.app _ ≫ D.nu.unitIso.hom) D.nu.unitIso.inv 2 (s,t,t-k)) nx
       _ = targetNuLabel D .sphere s t k x := by
         simp only [Category.assoc,Iso.hom_inv_id,Category.comp_id]
         dsimp only [targetNuLabel]
         congr 1
   exact hbase
 
-private theorem prop78_detection_data_bridge_sphere_target_nine_nonzero_of_survives_twelve {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_sphere_target_nine_nonzero_of_survives_twelve {D : Model H M Syn}
     (BHS : EInftyInput D) (x : E2 H SphereSpectrum 14 139)
     (hp : IsPermanentCycle (sequence D .sphere) (14,139) x)
     (hs : SurvivesTo (sequence D .sphere) 12 (14,139) x)
     (e : ((D.family.sphere).sequence.ssData (14,139,130)).eInfty)
     (he : HasInfinityRepresentative D.family.sphere 2 (14,139,130)
       (D.sphereE2 14 139 9 x) e) : e≠0 := by
-  have hn := prop78_detection_data_bridge_family_infinity_representative_map D.nu.unitIso.inv (14,139,130) _ _ he
-  have hl := prop78_detection_data_bridge_sphere_label_to_nu (D:=D) 14 139 9 x
+  have hn := differential_criterion_detection_data_bridge_family_infinity_representative_map D.nu.unitIso.inv (14,139,130) _ _ he
+  have hl := differential_criterion_detection_data_bridge_sphere_label_to_nu (D:=D) 14 139 9 x
   change familyPageMap D.family D.nu.unitIso.inv 2 (14,139,130) (D.sphereE2 14 139 9 x)=_ at hl
   rw [hl] at hn
   have hf := (BHS.labels.2 .sphere (14,139) 9 ⟨x,hp⟩ _).mp hn
   intro hz
   rw [hz,map_zero,map_zero] at hf
   have hb := (NestedQuotient.projection_eq_zero ⟨x,hp⟩).mp hf.symm
-  exact prop78_detection_data_bridge_survives_twelve_not_boundary_eleven SphereSpectrum (14,139) x hs
+  exact differential_criterion_detection_data_bridge_survives_twelve_not_boundary_eleven SphereSpectrum (14,139) x hs
     (PageRepresentatives.boundaries_monotone H SphereSpectrum (14,139) (by decide : (10:ℤ)≤11) hb)
 
-private theorem prop78_detection_data_bridge_target_detected_not_filtration_fifteen {D : Model H M Syn}
+private theorem differential_criterion_detection_data_bridge_target_detected_not_filtration_fifteen {D : Model H M Syn}
     (BHS : EInftyInput D) (x : E2 H SphereSpectrum 14 139)
     (hp : IsPermanentCycle (sequence D .sphere) (14,139) x)
     (hs : SurvivesTo (sequence D .sphere) 12 (14,139) x)
@@ -1049,13 +1049,13 @@ private theorem prop78_detection_data_bridge_target_detected_not_filtration_fift
   have hz : Detects D.sphereConvergence (14,139,130) 0 0 :=
     ⟨0,HasInfinityRepresentative.zero _ 2 (by decide) _,0,map_zero _,by simp only [map_zero]⟩
   have hza : Detects D.sphereConvergence (14,139,130) 0 a :=
-    prop78_detection_data_bridge_detects_of_difference_in_next_filtration D.sphereConvergence (14,139,130) hz
+    differential_criterion_detection_data_bridge_detects_of_difference_in_next_filtration D.sphereConvergence (14,139,130) hz
       (by simpa only [sub_zero,SyntheticObject.obj,Int.reduceAdd,Int.reduceSub] using hf)
-  obtain ⟨e,he,he0⟩ := prop78_detection_data_bridge_detects_infinity_equal .sphere (14,139,130) a _ 0 ha hza
-  exact prop78_detection_data_bridge_sphere_target_nine_nonzero_of_survives_twelve BHS x hp hs e he
+  obtain ⟨e,he,he0⟩ := differential_criterion_detection_data_bridge_detects_infinity_equal .sphere (14,139,130) a _ 0 ha hza
+  exact differential_criterion_detection_data_bridge_sphere_target_nine_nonzero_of_survives_twelve BHS x hp hs e he
     (he0.unique (HasInfinityRepresentative.zero _ 2 (by decide) _))
 
-private theorem prop78_detection_data_finite_sphere_infinity_nonzero {D : Model H M Syn}
+private theorem differential_criterion_detection_data_finite_sphere_infinity_nonzero {D : Model H M Syn}
     (BHS : EInftyInput D) (q : ℕ) (hq : 0<q) (s t : ℤ)
     (x : E2 H SphereSpectrum s t)
     (hx : x∈PageRepresentatives.cycles H SphereSpectrum q (s,t)) (hne : x≠0)
@@ -1063,8 +1063,8 @@ private theorem prop78_detection_data_finite_sphere_infinity_nonzero {D : Model 
     (he : HasInfinityRepresentative (D.family.quotient (S_0_0 : Syn) q) 2 (s,t,t-0)
       (D.quotientLabel q s t 0 x) e) : e≠0 := by
   let g := XModLambdaN.map D.nu.unitIso.inv q
-  have hh := prop78_detection_data_bridge_family_infinity_representative_map g (s,t,t-0) _ _ he
-  have hl := prop78_detection_data_bridge_sphere_quotient_label_to_nu (D:=D) q 0 s t x
+  have hh := differential_criterion_detection_data_bridge_family_infinity_representative_map g (s,t,t-0) _ _ he
+  have hl := differential_criterion_detection_data_bridge_sphere_quotient_label_to_nu (D:=D) q 0 s t x
   change familyPageMap D.family g 2 (s,t,t-0) (D.quotientLabel q s t 0 x)=_ at hl
   rw [hl] at hh
   let y : PageRepresentatives.cycles H SphereSpectrum ((q:ℤ)-t+(t-0)) (s,t) :=
@@ -1078,7 +1078,7 @@ private theorem prop78_detection_data_finite_sphere_infinity_nonzero {D : Model 
   rw [hb,PageRepresentatives.boundaries_one,Submodule.mem_bot] at hm
   exact hne hm
 
-private theorem prop78_detection_data_sphere_zero_weight_nonzero_detection_u {D : Model H M Syn}
+private theorem differential_criterion_detection_data_sphere_zero_weight_nonzero_detection_u {D : Model H M Syn}
     (BHS : EInftyInput D) (x : E2 H SphereSpectrum 10 134)
     (a : BiHom (134-10) 134 (S_0_0 : Syn))
     (ha : D.sphereFirstQuotient 10 134 (quotientClass 1 a)=x) (hne : x≠0) :
@@ -1102,16 +1102,16 @@ private theorem prop78_detection_data_sphere_zero_weight_nonzero_detection_u {D 
   obtain ⟨e,he,_⟩ := hd
   refine ⟨e,he,?_⟩
   let f := XModLambdaN.incl (S_0_0 : Syn) 1
-  have hf := prop78_detection_data_bridge_family_infinity_representative_map f (10,134,134-0) _ _ he
+  have hf := differential_criterion_detection_data_bridge_family_infinity_representative_map f (10,134,134-0) _ _ he
   have hcycle : x∈PageRepresentatives.cycles H SphereSpectrum 1 (10,134) := by
     rw [PageRepresentatives.cycles_one]
     exact Submodule.mem_top
-  have hfn := prop78_detection_data_finite_sphere_infinity_nonzero BHS 1 (by decide) 10 134 x hcycle hne _ hf
+  have hfn := differential_criterion_detection_data_finite_sphere_infinity_nonzero BHS 1 (by decide) 10 134 x hcycle hne _ hf
   intro hz
   apply hfn
   rw [hz,map_zero]
 
-private theorem prop78_detection_data_u_choice_exists {D : Model H M Syn} (I : KIP126.Computation.Route.Inputs D L G) (BHS : SyntheticInputs D)
+private theorem differential_criterion_detection_data_u_choice_exists {D : Model H M Syn} (I : KIP126.Computation.Route.Inputs D L G) (BHS : SyntheticInputs D)
     (SF : Derived.SphereFacts I.realization) : ∃u,UChoice M D.toModelData L u := by
   have hp := SF.u_permanent
   change NonzeroSurvival (sequence D .sphere) (10,134) (I.realization.sphere 10 134 U) at hp
@@ -1125,10 +1125,10 @@ private theorem prop78_detection_data_u_choice_exists {D : Model H M Syn} (I : K
     have hh := P.infinity_projection_eq_of_page_projection_eq 0 z 0
       (by simpa only [map_zero] using hz0.trans h0)
     exact hzn (by simpa only [map_zero] using hh)
-  obtain ⟨u,hu⟩ := prop78_detection_data_bridge_sphere_permanent_first_quotient_lift BHS 10 134 (L.U M) hcycle
-  exact ⟨u,prop78_detection_data_sphere_zero_weight_nonzero_detection_u BHS.eInfty (L.U M) u hu hn⟩
+  obtain ⟨u,hu⟩ := differential_criterion_detection_data_bridge_sphere_permanent_first_quotient_lift BHS 10 134 (L.U M) hcycle
+  exact ⟨u,differential_criterion_detection_data_sphere_zero_weight_nonzero_detection_u BHS.eInfty (L.U M) u hu hn⟩
 
-private theorem prop78_detection_data_permanent_quotient_frame_of_page_six {D : Model H M Syn}
+private theorem differential_criterion_detection_data_permanent_quotient_frame_of_page_six {D : Model H M Syn}
     (s t : ℤ) (k : ℕ) (hk : 4≤k) (x : E2 H SphereSpectrum s t)
     (hx : IsPermanentCycle (sequence D .sphere) (s,t) x)
     (a : (sequence D .sphere).Page 6 (s,t))
@@ -1192,7 +1192,7 @@ private theorem prop78_detection_data_permanent_quotient_frame_of_page_six {D : 
       change val z'-val z=0
       rw [h1,hvz,sub_self])
 
-private theorem prop78_detection_data_sphere_frame_of_permanent_quotient {D : Model H M Syn}
+private theorem differential_criterion_detection_data_sphere_frame_of_permanent_quotient {D : Model H M Syn}
     (BHS : SyntheticInputs D)
     (s t : ℤ) (k : ℕ)
     (x : E2 H SphereSpectrum s t)
@@ -1288,7 +1288,7 @@ private theorem prop78_detection_data_sphere_frame_of_permanent_quotient {D : Mo
     rw [hback,hlabel] at hh
     exact hh
 
-private theorem prop78_detection_data_target_infinity_frame
+private theorem differential_criterion_detection_data_target_infinity_frame
     {I : KIP126.Computation.Route.Inputs D L G} (BHS : SyntheticInputs D)
     (SF : Derived.SphereFacts I.realization)
     (hframe6 : (∃ a : (sequence D .sphere).Page 6 (14,139),
@@ -1301,10 +1301,10 @@ private theorem prop78_detection_data_target_infinity_frame
   obtain ⟨⟨a,ha,hall⟩,_⟩ := hframe6
   have hp := SF.t_permanent_cycle
   rw [(route_expression_labels I).2.2] at hp
-  exact prop78_detection_data_sphere_frame_of_permanent_quotient BHS 14 139 k (L.target M)
-    (prop78_detection_data_permanent_quotient_frame_of_page_six 14 139 k hk (L.target M) hp a ha hall)
+  exact differential_criterion_detection_data_sphere_frame_of_permanent_quotient BHS 14 139 k (L.target M)
+    (differential_criterion_detection_data_permanent_quotient_frame_of_page_six 14 139 k hk (L.target M) hp a ha hall)
 
-private theorem prop78_detection_data_stem125_weight133_filtration_twelve_to_fourteen {D : Model H M Syn}
+private theorem differential_criterion_detection_data_stem125_weight133_filtration_twelve_to_fourteen {D : Model H M Syn}
     (BHS : SyntheticInputs D) (I : KIP126.Computation.Route.Inputs D L G) (SF : Derived.SphereFacts I.realization)
     (a : BiHom 125 133 (S_0_0 : Syn))
     (ha : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 12 a) :
@@ -1368,7 +1368,7 @@ private theorem prop78_detection_data_stem125_weight133_filtration_twelve_to_fou
     exact hfg.symm.trans (by rw [hnu.eq_of_src f 0,CategoryTheory.Limits.comp_zero])
   exact hgap ha
 
-private theorem prop78_detection_data_u_choice_eta_lambda_three_filtration_fourteen {D : Model H M Syn}
+private theorem differential_criterion_detection_data_u_choice_eta_lambda_three_filtration_fourteen {D : Model H M Syn}
     (BHS : SyntheticInputs D) (I : KIP126.Computation.Route.Inputs D L G) (SF : Derived.SphereFacts I.realization)
     (η : BiHom 1 2 (S_0_0 : Syn)) (hη : EtaChoice M D.toModelData η)
     (u : BiHom 124 134 (S_0_0 : Syn)) (hu : UChoice M D.toModelData L u) :
@@ -1398,7 +1398,7 @@ private theorem prop78_detection_data_u_choice_eta_lambda_three_filtration_fourt
       change h1*((h0*h0)*(atom .x_124_8).val)=0
       rw [←mul_assoc,←mul_assoc,mul_comm h1 h0,h0_mul_h1_eq_zero,zero_mul,zero_mul]
     exact h.symm.trans (by rw [hraw,map_zero])
-  have hfirst := prop78_detection_data_bridge_sphere_zero_weight_label_10_134 BHS.eInfty (L.U M) u hu.1
+  have hfirst := differential_criterion_detection_data_bridge_sphere_zero_weight_label_10_134 BHS.eInfty (L.U M) u hu.1
   have hdu := D.comparisonCompatible.homotopy_lambda 10 134 3 u
   rw [hfirst] at hdu
   have hd := D.multiplicationCompatible 1 2 10 134 0 3
@@ -1406,11 +1406,11 @@ private theorem prop78_detection_data_u_choice_eta_lambda_three_filtration_fourt
   change Detects D.sphereConvergence (11,136,133)
     (D.sphereE2 11 136 3 (Sphere.Internal.product H M (s:=1) (t:=2) (s':=10) (t':=134)
       (Sphere.Internal.hi H M 1) (L.U M))) (sphereProduct η (lambdaMultiply 3 u)) at hd
-  rw [hp,map_zero,prop78_detection_data_bridge_eta_lambda3_right D η u] at hd
-  exact prop78_detection_data_stem125_weight133_filtration_twelve_to_fourteen BHS I SF _
+  rw [hp,map_zero,differential_criterion_detection_data_bridge_eta_lambda3_right D η u] at hd
+  exact differential_criterion_detection_data_stem125_weight133_filtration_twelve_to_fourteen BHS I SF _
     (detects_zero_filtration D.sphereConvergence (11,136,133) hd)
 
-private theorem prop78_detection_data_stem125_filtration_twelve_to_fourteen {D : Model H M Syn}
+private theorem differential_criterion_detection_data_stem125_filtration_twelve_to_fourteen {D : Model H M Syn}
     (BHS : SyntheticInputs D) (I : KIP126.Computation.Route.Inputs D L G) (SF : Derived.SphereFacts I.realization)
     (a : BiHom 125 130 (S_0_0 : Syn))
     (ha : FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 12 a) :
@@ -1474,10 +1474,10 @@ private theorem prop78_detection_data_stem125_filtration_twelve_to_fourteen {D :
     exact hfg.symm.trans (by rw [hnu.eq_of_src f 0,CategoryTheory.Limits.comp_zero])
   exact hgap ha
 
-private theorem prop78_detection_data_c4_eta_filtration_fourteen {D : Model H M Syn}
+private theorem differential_criterion_detection_data_square_detection_eta_filtration_fourteen {D : Model H M Syn}
     (BHS : SyntheticInputs D) (I : KIP126.Computation.Route.Inputs D L G) (SF : Derived.SphereFacts I.realization)
     (η : BiHom 1 2 (S_0_0 : Syn)) (hη : EtaChoice M D.toModelData η)
-    (θ : BiHom 62 64 (S_0_0 : Syn)) (hc4 : C4At M D.toModelData L θ) :
+    (θ : BiHom 62 64 (S_0_0 : Syn)) (hc4 : Theta5SquareNonzeroDetectionAt M D.toModelData L θ) :
     FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 14 (sphereProduct η (sphereProduct θ θ)) := by
   have hη0 : lambdaMultiply 0 η=η := by
     have hc := D.shiftCoherence.right_unit (1,2) (S_0_0 : Syn)
@@ -1510,10 +1510,10 @@ private theorem prop78_detection_data_c4_eta_filtration_fourteen {D : Model H M 
     (D.sphereE2 11 136 6 (Sphere.Internal.product H M (s:=1) (t:=2) (s':=10) (t':=134)
       (Sphere.Internal.hi H M 1) (L.U M))) (sphereProduct η (sphereProduct θ θ)) at hd
   rw [hp,map_zero] at hd
-  exact prop78_detection_data_stem125_filtration_twelve_to_fourteen BHS I SF _
+  exact differential_criterion_detection_data_stem125_filtration_twelve_to_fourteen BHS I SF _
     (detects_zero_filtration D.sphereConvergence (11,136,130) hd)
 
-private theorem prop78_detection_data (I : KIP126.Computation.Route.Inputs D L G)
+private theorem differential_criterion_detection_data (I : KIP126.Computation.Route.Inputs D L G)
     (BHS : SyntheticInputs D) (SF : Derived.SphereFacts I.realization)
     (h13 : ClassicalInfinityGenerated 13 137 (I.realization.sphere 13 137 correction))
     (hframe6 : (∃ a : (sequence D .sphere).Page 6 (14,139),
@@ -1526,7 +1526,7 @@ private theorem prop78_detection_data (I : KIP126.Computation.Route.Inputs D L G
       FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 a) ∧
     (∃u,UChoice M D.toModelData L u) ∧
     (∀ (eta : BiHom 1 2 (S_0_0:Syn)),EtaChoice M D.toModelData eta →
-      ∀theta : BiHom 62 64 (S_0_0:Syn),C4At M D.toModelData L theta →
+      ∀theta : BiHom 62 64 (S_0_0:Syn),Theta5SquareNonzeroDetectionAt M D.toModelData L theta →
       FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 14 (sphereProduct eta (sphereProduct theta theta))) ∧
     (∀ (eta : BiHom 1 2 (S_0_0:Syn)),EtaChoice M D.toModelData eta →
       ∀u : BiHom 124 134 (S_0_0:Syn),UChoice M D.toModelData L u →
@@ -1535,7 +1535,7 @@ private theorem prop78_detection_data (I : KIP126.Computation.Route.Inputs D L G
       e=0 ∨ HasInfinityRepresentative D.family.sphere 2 (14,139,133)
         (D.sphereE2 14 139 6 (L.target M)) e) ∧
     (∀ (eta : BiHom 1 2 (S_0_0:Syn)),EtaChoice M D.toModelData eta →
-      ∀theta : BiHom 62 64 (S_0_0:Syn),C4At M D.toModelData L theta →
+      ∀theta : BiHom 62 64 (S_0_0:Syn),Theta5SquareNonzeroDetectionAt M D.toModelData L theta →
       ∀u : BiHom 124 134 (S_0_0:Syn),UChoice M D.toModelData L u →
       FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15
         ((show BiHom 125 130 (S_0_0:Syn) from sphereProduct eta (sphereProduct theta theta))-
@@ -1543,9 +1543,9 @@ private theorem prop78_detection_data (I : KIP126.Computation.Route.Inputs D L G
     (∀ a : BiHom 125 133 (S_0_0:Syn),FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 a →
       FiltrationAtLeast (nuCoefficientUnit H.unit D.nu) 15 (lambdaMultiply 3 a)) ∧
     (∀ (eta : BiHom 1 2 (S_0_0:Syn)),EtaChoice M D.toModelData eta →
-      ∀theta : BiHom 62 64 (S_0_0:Syn),C4At M D.toModelData L theta →
+      ∀theta : BiHom 62 64 (S_0_0:Syn),Theta5SquareNonzeroDetectionAt M D.toModelData L theta →
       ∀u : BiHom 124 134 (S_0_0:Syn),UChoice M D.toModelData L u →
-      C5At M D.toModelData L eta u →
+      EtaExtensionDetectionAt M D.toModelData L eta u →
       Detects D.sphereConvergence (14,139,130) (D.sphereE2 14 139 9 (L.target M))
         (sphereProduct eta (sphereProduct theta theta))) ∧
     (SurvivesTo (sequence D .sphere) 12 (14,139) (L.target M) →
@@ -1561,12 +1561,12 @@ private theorem prop78_detection_data (I : KIP126.Computation.Route.Inputs D L G
   three branches, retaining an actual lambda preimage in the last branch. -/
   have hp := SF.t_permanent_cycle
   rw [(route_expression_labels I).2.2] at hp
-  exact ⟨prop78_detection_data_bridge_lambda_9_iff_filtration_14 BHS,prop78_detection_data_bridge_lambda_10_iff_filtration_15 BHS,
-    prop78_detection_data_u_choice_exists I BHS SF,prop78_detection_data_c4_eta_filtration_fourteen BHS I SF,
-    prop78_detection_data_u_choice_eta_lambda_three_filtration_fourteen BHS I SF,prop78_detection_data_target_infinity_frame BHS SF hframe6 6 (by decide),
-    prop78_detection_data_bridge_theta_u_eta_filtration_error I BHS SF h13,
-    prop78_detection_data_bridge_lambda_three_preserves_filtration_fifteen BHS,
-    prop78_detection_data_bridge_c4_c5_eta_target_detected I BHS SF h13,
-    fun hs a ha=>prop78_detection_data_bridge_target_detected_not_filtration_fifteen BHS.eInfty (L.target M) hp hs a ha⟩
+  exact ⟨differential_criterion_detection_data_bridge_lambda_9_iff_filtration_14 BHS,differential_criterion_detection_data_bridge_lambda_10_iff_filtration_15 BHS,
+    differential_criterion_detection_data_u_choice_exists I BHS SF,differential_criterion_detection_data_square_detection_eta_filtration_fourteen BHS I SF,
+    differential_criterion_detection_data_u_choice_eta_lambda_three_filtration_fourteen BHS I SF,differential_criterion_detection_data_target_infinity_frame BHS SF hframe6 6 (by decide),
+    differential_criterion_detection_data_bridge_theta_u_eta_filtration_error I BHS SF h13,
+    differential_criterion_detection_data_bridge_lambda_three_preserves_filtration_fifteen BHS,
+    differential_criterion_detection_data_bridge_square_detection_eta_detection_eta_target_detected I BHS SF h13,
+    fun hs a ha=>differential_criterion_detection_data_bridge_target_detected_not_filtration_fifteen BHS.eInfty (L.target M) hp hs a ha⟩
 end
 end KIP126.Main.Solution.Route

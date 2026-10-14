@@ -29,6 +29,6 @@ def only_d12_differential_reduction : Prop :=
         (Sphere.Internal.hiSquare H M 6) y) ∧
     ((∃ y : E.Page 2 (14, 139),
       HasNonzeroDifferential E 12 (2, 128) (14, 139)
-        (Sphere.Internal.hiSquare H M 6) y) ↔ D12 M L) ∧
-    (¬ D12 M L ↔ PermanentH6Square M)
+        (Sphere.Internal.hiSquare H M 6) y) ↔ H6SquareSupportsD12 M L) ∧
+    (¬ H6SquareSupportsD12 M L ↔ PermanentH6Square M)
 end KIP126.Solution.Near126.CandidateReduction

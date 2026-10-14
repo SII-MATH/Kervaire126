@@ -30,7 +30,7 @@ variable {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:
 set_option backward.isDefEq.respectTransparency false
 set_option maxRecDepth 10000
 attribute [local irreducible] KIP126.LinE2.homogeneousPart adamsTowerSSData adamsTowerInternalD
-private theorem prop78_classical_data_h342_0 (I : KIP126.Computation.Route.Inputs D L G) : ReachesPage (sequence D .sphere) 1000 (14,139) (I.realization.basis .sphere 14 139 1) := by
+private theorem differential_criterion_classical_data_target_basis1_reaches_page1000_for_page_six (I : KIP126.Computation.Route.Inputs D L G) : ReachesPage (sequence D .sphere) 1000 (14,139) (I.realization.basis .sphere 14 139 1) := by
   classical
   have hrow := I.results ⟨.sphere,.reaches,1000,14,139,[1],14,139,[],"S0_AdamsE2_ss",3080⟩ (by
     exact List.mem_of_getElem? (i := 342) (by rfl))
@@ -43,7 +43,7 @@ private theorem prop78_classical_data_h342_0 (I : KIP126.Computation.Route.Input
   rw [←hx] at hd
   simpa only [add_assoc] using hd
 
-private theorem prop78_classical_data_h341_1 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (12,138) (14,139)
+private theorem differential_criterion_classical_data_d2_s12_t138_basis1 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (12,138) (14,139)
     (I.realization.basis .sphere 12 138 1) (I.realization.basis .sphere 14 139 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,12,138,[1],14,139,[2],"S0_AdamsE2_ss",3079⟩ (by
@@ -58,7 +58,7 @@ private theorem prop78_classical_data_h341_1 (I : KIP126.Computation.Route.Input
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem prop78_classical_data_h343_2 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (14,139) (16,140)
+private theorem differential_criterion_classical_data_d2_s14_t139_basis0 (I : KIP126.Computation.Route.Inputs D L G) : HasDifferential (sequence D .sphere) 2 (14,139) (16,140)
     (I.realization.basis .sphere 14 139 0) (I.realization.basis .sphere 16 140 2) := by
   classical
   have hrow := I.results ⟨.sphere,.equation,2,14,139,[0],16,140,[2],"S0_AdamsE2_ss",3081⟩ (by
@@ -73,7 +73,7 @@ private theorem prop78_classical_data_h343_2 (I : KIP126.Computation.Route.Input
   rw [←hx,←hy] at hd
   simpa only [add_assoc] using hd
 
-private theorem prop78_classical_data_h342_3 (I : KIP126.Computation.Route.Inputs D L G) : ReachesPage (sequence D .sphere) 1000 (14,139) (I.realization.basis .sphere 14 139 1) := by
+private theorem differential_criterion_classical_data_target_basis1_reaches_page1000_for_target_survival (I : KIP126.Computation.Route.Inputs D L G) : ReachesPage (sequence D .sphere) 1000 (14,139) (I.realization.basis .sphere 14 139 1) := by
   classical
   have hrow := I.results ⟨.sphere,.reaches,1000,14,139,[1],14,139,[],"S0_AdamsE2_ss",3080⟩ (by
     exact List.mem_of_getElem? (i := 342) (by rfl))
@@ -86,7 +86,7 @@ private theorem prop78_classical_data_h342_3 (I : KIP126.Computation.Route.Input
   rw [←hx] at hd
   simpa only [add_assoc] using hd
 
-private theorem prop78_classical_data_nonzero_differential_not_permanent {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q} (hr0 : E.r₀ ≤ r)
+private theorem differential_criterion_classical_data_nonzero_differential_not_permanent {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q} (hr0 : E.r₀ ≤ r)
     (h : HasNonzeroDifferential E r p q x y) : ¬ NonzeroSurvival E p x := by
   classical
   rintro ⟨z, hz, _⟩
@@ -105,7 +105,7 @@ private theorem prop78_classical_data_nonzero_differential_not_permanent {E : KI
   exact hne hd.symm
 
 
-private theorem prop78_classical_data_earlier_zero_of_target_survives {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
+private theorem differential_criterion_classical_data_earlier_zero_of_target_survives {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
     (hr0 : E.r₀ ≤ r) (hrt : r < t)
     {y : E.Page 2 (p + E.diffDeg r)}
     (hsource : SurvivesTo E r p x)
@@ -126,7 +126,7 @@ private theorem prop78_classical_data_earlier_zero_of_target_survives {E : KIP12
     by simpa only [eqToHom_refl, Category.comp_id] using hd0⟩
 
 
-private theorem prop78_classical_data_next_nonzero_of_not_hit {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
+private theorem differential_criterion_classical_data_next_nonzero_of_not_hit {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
     (hr0 : E.r₀ ≤ r) (hr : 2 ≤ r)
     {a : E.Page (r+1) p} {b : E.Page r p}
     (ha : RepresentsOnPage E (r+1) p x a) (hb : RepresentsOnPage E r p x b)
@@ -169,7 +169,7 @@ private theorem prop78_classical_data_next_nonzero_of_not_hit {E : KIP126.Core.S
   simpa only [eqToHom_refl, Category.comp_id] using hc.trans heb
 
 
-private theorem prop78_classical_data_permanent_survives_of_no_early_hit {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {p : ℤ × ℤ} {x : E.Page 2 p}
+private theorem differential_criterion_classical_data_permanent_survives_of_no_early_hit {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {p : ℤ × ℤ} {x : E.Page 2 p}
     (hstart : E.r₀≤2) (N : ℕ) (hN : 2≤N)
     (hperm : IsPermanentCycle E p x) (hne : x≠0)
     (hnot : ∀ r : ℤ, 2≤r → r<N → ¬HitOnPage E r p x) :
@@ -194,7 +194,7 @@ private theorem prop78_classical_data_permanent_survives_of_no_early_hit {E : KI
       intro hn
       obtain ⟨b,hb,hbn⟩ := ih (by omega)
       obtain ⟨a,ha⟩ := hrep ((n:ℤ)+2+1) (by omega)
-      have han := prop78_classical_data_next_nonzero_of_not_hit (by omega) (by omega) ha hb hbn
+      have han := differential_criterion_classical_data_next_nonzero_of_not_hit (by omega) (by omega) ha hb hbn
         (hnot _ (by omega) (by omega))
       have he : ((n+1:ℕ):ℤ)+2=(n:ℤ)+2+1 := by omega
       rw [he]
@@ -204,7 +204,7 @@ private theorem prop78_classical_data_permanent_survives_of_no_early_hit {E : KI
   rwa [he] at h
 
 
-private theorem prop78_classical_data_nonzero_differential_not_zero {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
+private theorem differential_criterion_classical_data_nonzero_differential_not_zero {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ × ℤ} {q : ℤ × ℤ} {x : E.Page 2 p} {y : E.Page 2 q}
     (h : HasNonzeroDifferential E r p q x y)
     (hzero : HasDifferential E r p q x 0) : False := by
   classical
@@ -218,7 +218,7 @@ private theorem prop78_classical_data_nonzero_differential_not_zero {E : KIP126.
        _ = 0 := hbb
 
 
-private theorem prop78_classical_data_cycle_successor_lift
+private theorem differential_criterion_classical_data_cycle_successor_lift
     (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ))
     (r : ℤ) (hr : E.r₀ ≤ r) (p : ℤ × ℤ)
     (z : (Subobject.underlying.obj ((E.ssData p).Z ↑(r-E.r₀).toNat) : ModuleCat.{v} ℤ))
@@ -252,7 +252,7 @@ private theorem prop78_classical_data_cycle_successor_lift
   exact ⟨zn,hnz⟩
 
 
-private theorem prop78_classical_data_reaches_before {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
+private theorem differential_criterion_classical_data_reaches_before {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
     (hr : 2≤r) (hrt : r≤t) (ht : ReachesPage E t p x) : ReachesPage E r p x := by
   classical
   obtain ⟨a,_,z,hz,_⟩ := ht
@@ -266,7 +266,7 @@ private theorem prop78_classical_data_reaches_before {E : KIP126.Core.SpectralSe
   exact hz
 
 
-private theorem prop78_classical_data_later_page_frame_of_earlier {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
+private theorem differential_criterion_classical_data_later_page_frame_of_earlier {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {t : ℤ} {p : ℤ × ℤ} {x : E.Page 2 p}
     (hr : 2≤r) (hrt : r≤t)
     (hframe : ∃ a : E.Page r p, RepresentsOnPage E r p x a ∧ ∀ y:E.Page r p,y=0∨y=a)
     (ht : ReachesPage E t p x) :
@@ -312,7 +312,7 @@ private theorem prop78_classical_data_later_page_frame_of_earlier {E : KIP126.Co
     exact hh'
 
 
-private theorem prop78_classical_data_target_page_six_frame (I : KIP126.Computation.Route.Inputs D L G) :
+private theorem differential_criterion_classical_data_target_page_six_frame (I : KIP126.Computation.Route.Inputs D L G) :
     (∃ a : (sequence D .sphere).Page 6 (14,139),
       RepresentsOnPage (sequence D .sphere) 6 (14,139) (L.target M) a ∧
       ∀ y : (sequence D .sphere).Page 6 (14,139), y=0 ∨ y=a) ∧
@@ -347,11 +347,11 @@ private theorem prop78_classical_data_target_page_six_frame (I : KIP126.Computat
         RepresentsOnPage (sequence D .sphere) 6 (14,139) (I.realization.basis .sphere 14 139 1) a ∧
         ∀ y : (sequence D .sphere).Page 6 (14,139), y=0 ∨ y=a := by
     let E := sequence D .sphere
-    have h342 : ReachesPage E 1000 (14,139) (I.realization.basis .sphere 14 139 1) := prop78_classical_data_h342_0 I
+    have h342 : ReachesPage E 1000 (14,139) (I.realization.basis .sphere 14 139 1) := differential_criterion_classical_data_target_basis1_reaches_page1000_for_page_six I
     have h341 : HasDifferential E 2 (12,138) (14,139)
-        (I.realization.basis .sphere 12 138 1) (I.realization.basis .sphere 14 139 2) := prop78_classical_data_h341_1 I
+        (I.realization.basis .sphere 12 138 1) (I.realization.basis .sphere 14 139 2) := differential_criterion_classical_data_d2_s12_t138_basis1 I
     have h343 : HasDifferential E 2 (14,139) (16,140)
-        (I.realization.basis .sphere 14 139 0) (I.realization.basis .sphere 16 140 2) := prop78_classical_data_h343_2 I
+        (I.realization.basis .sphere 14 139 0) (I.realization.basis .sphere 16 140 2) := differential_criterion_classical_data_d2_s14_t139_basis0 I
     obtain ⟨e,he⟩ := I.basis ⟨.sphere,14,139,["449,1", "1,1,7,1,275,1", "0,2,425,1"]⟩ (by
       exact List.mem_of_getElem? (i := 217) (by rfl))
     change E.Page 2 (14,139) ≃ₗ[ℤ] (Fin 3 →₀ F2) at e
@@ -459,12 +459,12 @@ private theorem prop78_classical_data_target_page_six_frame (I : KIP126.Computat
   constructor
   · exact ⟨a,by rw [hl]; exact ha,hall⟩
   let E := sequence D .sphere
-  have h342 : ReachesPage E 1000 (14,139) (I.realization.basis .sphere 14 139 1) := prop78_classical_data_h342_3 I
+  have h342 : ReachesPage E 1000 (14,139) (I.realization.basis .sphere 14 139 1) := differential_criterion_classical_data_target_basis1_reaches_page1000_for_target_survival I
   rw [hl]
   exact h342
 
 
-private theorem prop78_classical_data_h6_twelve_outgoing_nonzero
+private theorem differential_criterion_classical_data_h6_twelve_outgoing_nonzero
     (h12 : SurvivesTo (adamsTowerInternalSpectralSequence H.unit SphereSpectrum)
       12 (2,128) (Sphere.Internal.hiSquare H M 6))
     (h13 : ¬SurvivesTo (adamsTowerInternalSpectralSequence H.unit SphereSpectrum)
@@ -483,7 +483,7 @@ private theorem prop78_classical_data_h6_twelve_outgoing_nonzero
     change E.d 12 (2,128) ((E.ssData (2,128)).pageπ ↑(12-E.r₀).toNat z)=0
     rw [hza]
     exact hzero
-  obtain ⟨zn,hnz⟩ := prop78_classical_data_cycle_successor_lift E 12 (by change (2:ℤ)≤12; omega) (2,128) z hz
+  obtain ⟨zn,hnz⟩ := differential_criterion_classical_data_cycle_successor_lift E 12 (by change (2:ℤ)≤12; omega) (2,128) z hz
   let A := E.ssData (2,128)
   change (Subobject.ofLE (A.Z 11) (A.Z 10) (A.Z_anti (by decide : (10:WithTop ℕ)≤11))) zn=z at hnz
   let b := A.pageπ 11 zn
@@ -503,29 +503,29 @@ private theorem prop78_classical_data_h6_twelve_outgoing_nonzero
         12 q.1 q.2 (by omega)
     rw [Subsingleton.elim c 0,map_zero] at hcd
     exact hdne hcd.symm
-  have hbn : b≠0 := prop78_classical_data_next_nonzero_of_not_hit (by change (2:ℤ)≤12; omega : E.r₀≤12)
+  have hbn : b≠0 := differential_criterion_classical_data_next_nonzero_of_not_hit (by change (2:ℤ)≤12; omega : E.r₀≤12)
     (by decide : (2:ℤ)≤12) hb ha hane hnot
   exact h13 ⟨b,hb,hbn⟩
 
 
-private theorem prop78_classical_data_target_page_twelve_frame (I : KIP126.Computation.Route.Inputs D L G) :
+private theorem differential_criterion_classical_data_target_page_twelve_frame (I : KIP126.Computation.Route.Inputs D L G) :
     ∃ a : (sequence D .sphere).Page 12 (14,139),
       RepresentsOnPage (sequence D .sphere) 12 (14,139) (L.target M) a ∧
       ∀ y : (sequence D .sphere).Page 12 (14,139), y=0 ∨ y=a := by
   classical
-  obtain ⟨hframe,hreach⟩ := prop78_classical_data_target_page_six_frame I
-  exact prop78_classical_data_later_page_frame_of_earlier (by decide : (2:ℤ)≤6) (by decide : (6:ℤ)≤12)
-    hframe (prop78_classical_data_reaches_before (by decide : (2:ℤ)≤12) (by decide : (12:ℤ)≤1000) hreach)
+  obtain ⟨hframe,hreach⟩ := differential_criterion_classical_data_target_page_six_frame I
+  exact differential_criterion_classical_data_later_page_frame_of_earlier (by decide : (2:ℤ)≤6) (by decide : (6:ℤ)≤12)
+    hframe (differential_criterion_classical_data_reaches_before (by decide : (2:ℤ)≤12) (by decide : (12:ℤ)≤1000) hreach)
 
 
-private theorem prop78_classical_data_survives_twelve_not_thirteen_d12 (I : KIP126.Computation.Route.Inputs D L G)
+private theorem differential_criterion_classical_data_survives_twelve_not_thirteen_d12 (I : KIP126.Computation.Route.Inputs D L G)
     (h12 : SurvivesTo (sequence D .sphere)
       12 (2,128) (Sphere.Internal.hiSquare H M 6))
     (h13 : ¬SurvivesTo (sequence D .sphere)
-      13 (2,128) (Sphere.Internal.hiSquare H M 6)) : D12 M L := by
+      13 (2,128) (Sphere.Internal.hiSquare H M 6)) : H6SquareSupportsD12 M L := by
   classical
-  obtain ⟨a,ha,hdne⟩ := prop78_classical_data_h6_twelve_outgoing_nonzero h12 h13
-  obtain ⟨b,hb,hall⟩ := prop78_classical_data_target_page_twelve_frame I
+  obtain ⟨a,ha,hdne⟩ := differential_criterion_classical_data_h6_twelve_outgoing_nonzero h12 h13
+  obtain ⟨b,hb,hall⟩ := differential_criterion_classical_data_target_page_twelve_frame I
   have hdb : (sequence D .sphere).d 12 (2,128) a=b :=
     (hall ((sequence D .sphere).d 12 (2,128) a)).resolve_left hdne
   refine ⟨rfl,a,b,ha,hb,?_,?_⟩
@@ -544,7 +544,7 @@ private theorem bx_lambda_nine_not_ten_d12
     (h9 : KIP126.Synthetic.Context.VanishesModLambda 9
       (KIP126.Kervaire.SyntheticTheta5.etaThetaSquare η θ))
     (h10 : ¬KIP126.Synthetic.Context.VanishesModLambda 10
-      (KIP126.Kervaire.SyntheticTheta5.etaThetaSquare η θ)) : D12 M L := by
+      (KIP126.Kervaire.SyntheticTheta5.etaThetaSquare η θ)) : H6SquareSupportsD12 M L := by
   classical
   have h12 := (hBX.2.2.2 9 (by omega)).mpr h9
 
@@ -554,11 +554,11 @@ private theorem bx_lambda_nine_not_ten_d12
     exact h10 ((hBX.2.2.2 10 (by omega)).mp hh)
 
   classical
-  exact prop78_classical_data_survives_twelve_not_thirteen_d12 I h12 h13
+  exact differential_criterion_classical_data_survives_twelve_not_thirteen_d12 I h12 h13
 
-private theorem c3_iff_target_survives_twelve
+private theorem d6_vanishes_iff_target_survives_twelve
     (I : KIP126.Computation.Route.Inputs D L G) (SF : Derived.SphereFacts I.realization) :
-    C3 L ↔ SurvivesTo (sequence D .sphere) 12 (14,139) (L.target M) := by
+    Stem126D6Vanishes L ↔ SurvivesTo (sequence D .sphere) 12 (14,139) (L.target M) := by
   classical
   have labels := route_expression_labels I
 
@@ -583,7 +583,7 @@ private theorem c3_iff_target_survives_twelve
       refine ⟨0,?_⟩
       rw [labels.2.2,hz]
       simp only [Sphere.Internal.product,map_zero]
-    apply prop78_classical_data_permanent_survives_of_no_early_hit (by change (2:ℤ)≤2; decide) 12 (by decide) hp hn
+    apply differential_criterion_classical_data_permanent_survives_of_no_early_hit (by change (2:ℤ)≤2; decide) 12 (by decide) hp hn
     intro r hr hr12 hit
     rw [←labels.2.2] at hit
     rcases SF.t_only_incoming r hit with ⟨he,hd⟩ | ⟨he,_⟩
@@ -591,47 +591,47 @@ private theorem c3_iff_target_survives_twelve
       change HasNonzeroDifferential (sequence D .sphere) 6 (8,134) (14,139)
         (I.realization.sphere 8 134 W) (I.realization.sphere 14 139 T) at hd
       rw [labels.1,labels.2.2] at hd
-      exact prop78_classical_data_nonzero_differential_not_zero hd hc3
+      exact differential_criterion_classical_data_nonzero_differential_not_zero hd hc3
     · omega
   · intro hs
-    exact prop78_classical_data_earlier_zero_of_target_survives
+    exact differential_criterion_classical_data_earlier_zero_of_target_survives
       (E:=sequence D .sphere) (r:=6) (t:=12)
       (by change (2:ℤ)≤6; decide) (by decide) hW htargets hs
 
 private theorem d12_necessary_from_sphere_facts
     (I : KIP126.Computation.Route.Inputs D L G) (SF : Derived.SphereFacts I.realization)
-    (hd : D12 M L) : ¬ PermanentH6Square M ∧ C3 L := by
+    (hd : H6SquareSupportsD12 M L) : ¬ PermanentH6Square M ∧ Stem126D6Vanishes L := by
   classical
   have labels := route_expression_labels I
 
   classical
   refine ⟨?_, ?_⟩
-  · exact prop78_classical_data_nonzero_differential_not_permanent (by change (2 : ℤ) ≤ 12; decide) hd
+  · exact differential_criterion_classical_data_nonzero_differential_not_permanent (by change (2 : ℤ) ≤ 12; decide) hd
   · have hW : SurvivesTo (sequence D .sphere) 6 (8,134) L.W := by
       have hw := SF.w_to_e6
       change SurvivesTo (sequence D .sphere) 6 (8,134) (I.realization.sphere 8 134 W) at hw
       rwa [labels.1] at hw
     have htargets : DifferentialTargets (sequence D .sphere) 6 (8,134) L.W (L.target M) := by
       simpa only [labels.1, labels.2.2] using SF.w_d6_targets
-    exact prop78_classical_data_earlier_zero_of_target_survives
+    exact differential_criterion_classical_data_earlier_zero_of_target_survives
       (E := sequence D .sphere) (r := 6) (t := 12)
       (by change (2 : ℤ) ≤ 6; decide) (by decide) hW htargets hd.target_survives
 
-private theorem prop78_classical_data (I : KIP126.Computation.Route.Inputs D L G)
+private theorem differential_criterion_classical_data (I : KIP126.Computation.Route.Inputs D L G)
     (SF : Derived.SphereFacts I.realization) :
-    (C3 L ↔ SurvivesTo (sequence D .sphere) 12 (14,139) (L.target M)) ∧
-    (D12 M L → ¬PermanentH6Square M ∧ C3 L) ∧
+    (Stem126D6Vanishes L ↔ SurvivesTo (sequence D .sphere) 12 (14,139) (L.target M)) ∧
+    (H6SquareSupportsD12 M L → ¬PermanentH6Square M ∧ Stem126D6Vanishes L) ∧
     (∀ (eta : BiHom 1 2 (S_0_0 : Syn)) (theta : BiHom 62 64 (S_0_0 : Syn)),
       BJMOriginalCriterion H M D.sphereFirstQuotient eta theta →
       VanishesModLambda 9 (sphereProduct eta (sphereProduct theta theta)) →
-      ¬VanishesModLambda 10 (sphereProduct eta (sphereProduct theta theta)) → D12 M L) ∧
+      ¬VanishesModLambda 10 (sphereProduct eta (sphereProduct theta theta)) → H6SquareSupportsD12 M L) ∧
     ((∃ a : (sequence D .sphere).Page 6 (14,139),
       RepresentsOnPage (sequence D .sphere) 6 (14,139) (L.target M) a ∧
       ∀ y : (sequence D .sphere).Page 6 (14,139),y=0∨y=a) ∧
       ReachesPage (sequence D .sphere) 1000 (14,139) (L.target M)) := by
   classical
-  exact ⟨c3_iff_target_survives_twelve I SF,d12_necessary_from_sphere_facts I SF,
+  exact ⟨d6_vanishes_iff_target_survives_twelve I SF,d12_necessary_from_sphere_facts I SF,
     fun eta theta h h9 h10=>bx_lambda_nine_not_ten_d12 I D.sphereFirstQuotient eta theta h h9 h10,
-    prop78_classical_data_target_page_six_frame I⟩
+    differential_criterion_classical_data_target_page_six_frame I⟩
 end
 end KIP126.Main.Solution.Route
