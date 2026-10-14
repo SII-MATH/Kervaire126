@@ -9,6 +9,63 @@
   stage-boundary statement, source provenance, proof status, or mathematical
   strength.
 
+## Check GitHub Release caches before compiling
+
+Before running a Lean/Lake compilation command, check this repository's GitHub
+Releases for a compatible project build cache. Reuse an already verified local
+cache when available; do not repeatedly download it during the same build task.
+Run the following from the repository root:
+
+```bash
+gh release list --repo SII-MATH/Kervaire126 --limit 100 \
+  --json tagName,isDraft \
+  --jq '.[] | select(.isDraft == false and (.tagName | startswith("build-cache-"))) | .tagName'
+```
+
+The initial Linux x86_64 cache is
+[`build-cache-d8eb0ee60769-linux-x64`](https://github.com/SII-MATH/Kervaire126/releases/tag/build-cache-d8eb0ee60769-linux-x64),
+built from commit `d8eb0ee60769457c5d6e6a155fd8c029f4eb53e9` with
+`leanprover/lean4:v4.32.2`. Before downloading large parts, inspect its `metadata.json` (use
+`gh release download <tag> --repo SII-MATH/Kervaire126 --pattern metadata.json
+--dir <temporary-directory>`). For that cache, download and verify using:
+
+```bash
+(
+  set -euo pipefail
+  cache_dir=$(mktemp -d)
+  gh release download build-cache-d8eb0ee60769-linux-x64 \
+    --repo SII-MATH/Kervaire126 --dir "$cache_dir"
+  (cd "$cache_dir" && sha256sum --check SHA256SUMS)
+  cat "$cache_dir"/project-build.tar.gz.part-* > "$cache_dir/project-build.tar.gz"
+  printf 'Verified parts; inspect metadata and restore from: %s\n' "$cache_dir"
+)
+```
+
+- Select a cache for the checked-out source, not merely the newest release.
+  Inspect `metadata.json`: match repository, OS/architecture, Lean toolchain and
+  `lake-manifest.json` hashes. Compare its `input_fingerprint` with
+  `python3 scripts/ci_build_artifact.py fingerprint` and verify the joined
+  archive's SHA-256 against `archive_sha256` before unpacking.
+- An `AGENTS.md`-only change changes the full-tree fingerprint but does not change
+  Lean build inputs. Confirm that exception with
+  `git diff --exit-code <source_commit> -- . ':(exclude)AGENTS.md'`.
+  Other source changes mean the archive is only an incremental baseline;
+  Lake must rebuild affected modules. Never claim an exact cache match then.
+- Restore only when no build is writing `.lake/build/`. Use the existing
+  `unpack_tar` helper in `scripts/ci_build_artifact.py` to extract into a temporary
+  staging directory; it checks paths and entry types. Preserve any existing
+  local build directory as a backup before installing the staged `.lake/build/`.
+  Do not discard newer local compilation progress to install an older cache.
+  The script's `restore` CLI handles CI artifacts, not Release downloads.
+- This release contains only project `.lake/build/` products. Obtain pinned
+  dependencies and their Mathlib cache separately as described in `docs/CI.md`.
+  After restoring, still run the requested build (normally
+  `lake build KIP126 checkdecls`); a downloaded cache is not a successful build
+  or evidence that the mathematical proofs are complete.
+- If no compatible release exists or GitHub is unavailable, report that briefly
+  and continue with local caches and the normal build. Do not block work on an
+  optional cache download. Plain `git pull` does not download Release assets.
+
 ## KIP126 Blueprint synchronization
 
 For a Lean code task under `KIP126/`, read the relevant Blueprint chapter and
