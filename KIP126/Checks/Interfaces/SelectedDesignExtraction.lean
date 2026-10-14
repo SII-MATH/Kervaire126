@@ -26,7 +26,6 @@ run_cmd do
       ``KIP126.Interface.Solution.Literature.Route.todaApplication_of_secondary,
       ``KIP126.Interface.Solution.Literature.Route.toda_of_source,
       ``KIP126.Interface.Solution.Literature.Route.realizationKernel_of_source,
-      ``KIP126.Interface.Solution.Literature.Route.mossInputOfClassicalSource,
       ``KIP126.Interface.Solution.Literature.Route.nuCofiber_of_source,
       ``KIP126.Interface.Solution.Literature.Route.application_of_parts,
       ``KIP126.Interface.Solution.LinProgram.Route.certify_of_parts,
@@ -54,8 +53,6 @@ example (I : KIP126.Challenge2) :
 
 open KIP126 KIP126.Classical.Adams in
 example (I : KIP126.Challenge2)
-    (localMoss : Literature.Route.MossSourceInput standardMilnorCooperations
-      I.literature.bindings.route.classicalSource.convergence)
     (shiftNatural : I.literature.bindings.eInftyWeightShift.Natural)
     (application : Literature.Route.Application standardRouteModel Def.standardRouteEta
       I.literature.bindings.tmfLabels I.literature.bindings.route)
@@ -63,4 +60,4 @@ example (I : KIP126.Challenge2)
     Literature.Route.Inputs standardRouteModel Def.standardRouteEta I.literature.bindings.tmfLabels :=
   Literature.Route.Statements.toInputs standardRouteModel Def.standardRouteEta
     I.literature.bindings.tmfLabels
-    (I.literature.results.route localMoss shiftNatural) application tmf
+    (I.literature.results.route shiftNatural) application tmf

@@ -3047,7 +3047,7 @@
         ],
         "proof_status": "external-statement-unproved",
         "role": "source-result",
-        "notes": "BHS input scope is νX and its finite λ-quotients, including their λ/ρ formulas and common-label agreement. Full synthetic weight-shift naturality is an internal Main theorem on the fixed tower construction, not a BHS input.",
+        "notes": "BHS input scope is νX and its finite λ-quotients, including their λ/ρ formulas and common-label agreement. Full synthetic weight-shift naturality is an internal Def theorem on the canonical tower construction, specialized to the fixed model and used directly by Main, not a BHS input.",
         "declaration_modules": {
           "KIP126.Literature.Route.EInftyInput": "KIP126/Def/Kervaire/Route/Tools/Inputs/Data.lean"
         }
@@ -3343,31 +3343,6 @@
         "proof_status": "external-statement-unproved",
         "role": "source-result",
         "notes": "Boundary equality retains the negative sign. The conditional Interface proof derives SignedBoundary; sign removal in a projected additive target requires an explicit exponent-two premise."
-      },
-      {
-        "id": "AM20",
-        "input_field": "moss",
-        "module": "KIP126/Main/Solution/Literature/Route/SourceConsequences.lean",
-        "declarations": [
-          "KIP126.Literature.Route.MossSourceInput",
-          "KIP126.Main.Solution.Literature.route_moss"
-        ],
-        "kind": "internal-specialization-of-general-moss",
-        "sources": [
-          "moss",
-          "belmont_kong",
-          "iwx"
-        ],
-        "locator": "Moss 1.2; BK 1.1/4.11, 2.10; IWX defn:crossing-diff and thm:Moss",
-        "lwx_consumers": [
-          "lem:toda2ext"
-        ],
-        "proof_status": "internal-application-obligation",
-        "role": "internal-application",
-        "notes": "The local source-convergence Moss statement is derived in Main from the same LiteratureResults.moss, using the actual sphere mapping / Milnor and convergence comparisons. It is no longer a separate Challenge2 premise. Its internal proof remains unfinished; no crossing, indeterminacy or residual-injectivity hypothesis is dropped.",
-        "declaration_modules": {
-          "KIP126.Literature.Route.MossSourceInput": "KIP126/Interface/Challenge/Literature/Source.lean"
-        }
       },
       {
         "id": "AM21-part-1",
@@ -3836,7 +3811,7 @@
           "KIP126.Challenge2.LiteratureBindings.eInfty_quotient",
           "KIP126.Challenge2.LiteratureBindings.eInfty_specialFiber"
         ],
-        "notes": "Source labels, route bindings, BR21 source endpoint classes, and the three νX / finite-quotient E∞ comparison choices share Def’s fixed model. The full synthetic weight-shift comparison is constructed from the fixed tower, with its naturality proved internally in Main; it is not an independently chosen literature input."
+        "notes": "Source labels, route bindings, BR21 source endpoint classes, and the three νX / finite-quotient E∞ comparison choices share Def’s fixed model. The full synthetic weight-shift comparison is constructed from the fixed tower, with its unfinished naturality proof owned by Def and used directly by Main; it is not an independently chosen literature input."
       },
       {
         "id": "MB13-computation-delivery",
@@ -3888,16 +3863,6 @@
           "KIP126.Interface.Solution.Literature.Route.realizationKernel_of_source"
         ],
         "notes": "Transport finite-power kernel along the completion/selected-target comparison."
-      },
-      {
-        "id": "IA04",
-        "role": "internal-adapter",
-        "proof_status": "implemented-adapter",
-        "module": "KIP126/Interface/Solution/Literature/Route/Moss.lean",
-        "declarations": [
-          "KIP126.Interface.Solution.Literature.Route.mossInputOfClassicalSource"
-        ],
-        "notes": "Pure equality transport along the fixed classical convergence."
       },
       {
         "id": "IA05",
@@ -3997,24 +3962,34 @@
           "KIP126.Main.StageInput.routeApplication",
           "KIP126.Main.StageInput.routeStatements"
         ],
-        "notes": "Main derives the local Moss implication from the one general LiteratureResults.moss and derives full synthetic weight-shift naturality from Def’s actual canonical tower construction. Those applications join the same source fields in routeStatements. Completion certificates remain source projections; TodaSecondaryComparison and NuCofiberSourceResults remain internal proof placeholders.",
+        "declaration_modules": {
+          "KIP126.Main.StageInput.completionApplicability": "KIP126/Main/Solution/StageInput/Bindings.lean",
+          "KIP126.Main.StageInput.completionComparison": "KIP126/Main/Solution/StageInput/Bindings.lean",
+          "KIP126.Main.StageInput.realizationComparison": "KIP126/Main/Solution/StageInput/Bindings.lean",
+          "KIP126.Main.StageInput.todaSecondaryComparison": "KIP126/Main/Solution/StageInput/Toda.lean",
+          "KIP126.Main.StageInput.nuSourceResults": "KIP126/Main/Solution/StageInput/NuSource.lean"
+        },
+        "notes": "Main directly uses Def’s fixed synthetic weight-shift naturality theorem when assembling routeStatements. The generic naturality proof remains unfinished in Def. Completion certificates remain projections of the sole correlated witness. TodaSecondaryComparison is assembled from separate low and symmetric Toda proofs; NuCofiberSourceResults is assembled from separate suspension and source proofs. The Section 7 theta/B bracket is constructed from synthetic cofibers, May/Toda relations and first-quotient uniqueness. This module separation preserves the statements and inherited fixed-model and source obligations; it does not certify those upstream obligations.",
         "sources": [
           "bhs",
           "pst",
           "may01",
-          "toda",
-          "moss"
+          "toda"
         ]
       },
       {
         "id": "IA-MAIN-WEIGHT-NATURAL",
         "role": "internal-adapter",
         "proof_status": "proof-placeholder",
-        "module": "KIP126/Main/Solution/Literature/Route/SourceConsequences.lean",
+        "module": "KIP126/Def/Synthetic/EInfty/Shift/Canonical/Proofs.lean",
         "declarations": [
-          "KIP126.Main.Solution.Literature.eInfty_shift_natural"
+          "KIP126.Synthetic.SpectralSequence.CanonicalWeightShift.natural",
+          "KIP126.Def.standardEInftyWeightShift_natural"
         ],
-        "notes": "Full synthetic naturality is an internal consequence of the actual fixed weight-tower construction. BHS only supplies νX / finite-quotient comparison formulas; no arbitrary all-object E-infinity isomorphism is a literature choice."
+        "declaration_modules": {
+          "KIP126.Def.standardEInftyWeightShift_natural": "KIP126/Def/StageInput/StandardSphere/EInfty/Proofs.lean"
+        },
+        "notes": "Def owns generic naturality for a specified TowerPresentation and CanonicalWeightShift, including the implemented quotient-descent and presentation helpers. Its remaining explicit proof placeholder compares the actual Adams maps of the object weight-naturality square modulo initial boundaries. Def specializes the theorem to standardEInftyWeightShift; Main uses this fixed specialization directly, with no new literature premise. BHS only supplies νX / finite-quotient comparison formulas; no arbitrary all-object E-infinity isomorphism is a literature choice."
       },
       {
         "id": "IA-MAIN-BR21-COORDINATES",
@@ -4065,7 +4040,7 @@
           "thm:literature-moss",
           "thm:moss-convergence-adapter"
         ],
-        "notes": "Compatibility assembly from Def.standardSphereMossContext and LiteratureResults.moss on that exact context. The existence API uses sourceLiterature, the same literature choice as Challenge2. It does not prove the context construction, source applicability, or Main's concrete Moss application, and retains those unfinished dependencies."
+        "notes": "Compatibility assembly from Def.standardSphereMossContext and LiteratureResults.moss on that exact context. The existence API uses sourceLiterature, the same literature choice as Challenge2. It retains the unfinished context construction and source applicability obligations. Main constructs its Section 7 theta/B bracket from synthetic cofibers and May/Toda relations without a local Moss specialization."
       }
     ],
     "delivery_packages": [

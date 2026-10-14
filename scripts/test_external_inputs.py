@@ -436,11 +436,11 @@ class ExternalInputTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "unknown Blueprint label"):
                 validate_document(ROOT, self.document)
 
-    def test_local_moss_application_cannot_cover_general_input(self):
+    def test_moss_adapter_cannot_cover_general_input(self):
         document = self.fixture()
         literature = next(c for c in document["interface_coverage"]
                           if c["structure"].endswith(".LiteratureResults"))
-        literature["fields"]["moss"]["blueprint_labels"] = ["thm:main-local-moss-specialization"]
+        literature["fields"]["moss"]["blueprint_labels"] = ["thm:moss-convergence-adapter"]
         with self.assertRaisesRegex(ValueError, "missing direct Blueprint field link"):
             validate_document(ROOT, document)
 

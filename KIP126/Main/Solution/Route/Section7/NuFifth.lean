@@ -3507,7 +3507,7 @@ combinations, with BHS lifetime and the actual rho map. The conclusion is
 an exact existential lifting relation, not the false assertion that this
 five-dimensional E2 group vanishes or that all representatives vanish. -/
 theorem nu_extension_lifts_to_fifth_quotient : NuExtension5 D eX eY h2 := by
-  let SF := KIP126.Computation.Route.sphere_facts I sphereVanishing
+  let SF := KIP126.Computation.Route.sphere_facts computation sphereVanishing
   obtain ⟨huq,κ,hκ,x,y,hxn,hx,hy,hxy⟩ := nu_three_actual_relation_and_unique
     routeLiterature.synthetic.eInfty routeLiterature.may.toMayContext I
     routeLiterature.applicability.nuCofiber

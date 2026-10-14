@@ -33,7 +33,7 @@ theorem lambda_injective_125_130 :
 line on this same model, rather than an unowned tail assumption. -/
 theorem sphere_facts :
     KIP126.Computation.Route.Derived.SphereFacts routeComputation.realization := by
-  exact KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing
+  exact KIP126.Computation.Route.sphere_facts computation sphereVanishing
 
 /-- The precise F15 detector injectivity used at all three occurrences
 of the tmf argument in Proposition 7.8. -/
@@ -58,8 +58,7 @@ theorem h6_square_differential_dichotomy_and_criterion (input : KIP126.Challenge
   let lit := input.literature
   let B := lit.bindings.route
   let st := lit.results.route
-    (KIP126.Main.Solution.Literature.route_moss lit)
-    (KIP126.Main.Solution.Literature.eInfty_shift_natural lit)
+    KIP126.Def.standardEInftyWeightShift_natural
   let BHS : KIP126.Literature.Route.SyntheticInputs standardRouteModel := st.synthetic.toInputs _ B.bhsCompletion
     B.completionApplicability B.completionComparison
     (KIP126.Interface.Solution.Literature.Route.realizationKernel_of_source _
@@ -74,6 +73,7 @@ theorem h6_square_differential_dichotomy_and_criterion (input : KIP126.Challenge
     input.computation.route lit.results.sphereVanishing KIP126.Def.standardSphereSeparated
     B.tmfSource st.tmf B.tmfBinding B.algebraBinding.classical_detection
   exact differential_dichotomy_from_inputs BHS RL CL B.algebraBinding.action_filtration TM st.bx input.computation.route
+    (KIP126.Computation.Route.sphere_facts input.computation lit.results.sphereVanishing)
     lit.results.sphereVanishing KIP126.Def.standardSphereSeparated
 
 end KIP126.Main.Solution.Route

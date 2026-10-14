@@ -233,11 +233,9 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H} (D : Model H M Syn)
 
-/-- These are model applicability obligations, recorded separately from
-the source statements. They neither assert no-crossing computations nor
-the ν-extension constructed in LWX Lemma 7.19. -/
+/-- Model applicability obligations, recorded separately from the source
+statements. They do not assert the ν-extension constructed in LWX Lemma 7.19. -/
 structure Applicability : Prop where
-  moss : MossTowerApplicability (H := H)
   nuCofiber : NuCofiberApplicability D
 
 
@@ -269,12 +267,11 @@ structure Inputs where
   may : MayInput Syn
   toda : TodaInputs D η
   tmf : TmfInputs D L
-  moss : MossInput D
   applicability : Applicability D
 
 /-- Internal source-application target, separate from A(M).
 May retains its sign; Toda uses actual secondary-operation evidence; the
-kernel and Moss statements use the fixed source/model comparisons. The
+kernel statement uses the fixed source/model comparison. The
 compatible normalized triple likewise requires
 internal construction and multiplicative comparison. These fields are not
 new independent external theorems or separately chosen stage witnesses. -/
@@ -285,7 +282,6 @@ structure Application {background : Background D} (B : Bindings D η L backgroun
   may : B.may.SignedBoundary
   toda : TodaApplication η B.todaSource
   realizationKernel : RealizationKernel D
-  moss : MossInput D
   nuSource : NuCofiberSourceResults D B.nuSource
   nuCofiber : NuCofiberApplicability D
 
@@ -304,8 +300,7 @@ def Statements.toInputs {background : Background D} {B : Bindings D η L backgro
   may := { B.may with boundary := P.may }
   toda := todaInputsOfSource D η B.todaSource A.toda P.toda
   tmf := tmf
-  moss := P.moss
-  applicability := ⟨B.moss, P.nuCofiber⟩
+  applicability := ⟨P.nuCofiber⟩
 
 
 end KIP126.Literature.Route

@@ -498,8 +498,10 @@ by projecting one fixed source package.
   its multiplicative-setting restriction, together with IWX's
   Theorem~2.16. Matching all historical hypotheses and the chosen
   fixed mapping model remains an unfinished comparison.
-  Its local $E_3$ specialization for $\langle h_5^2,h_0,B\rangle$
-  remains unfinished; see Theorem~\ref{thm:main-local-moss-specialization}.
+  This general source input is retained. The current proof of
+  Lemma~\ref{lem:toda-two-extension} constructs the required synthetic
+  bracket using cofibers and May/Toda relations, with its first-quotient
+  label fixed by quotient uniqueness.
 \end{theorem}
 
 \subsection{Synthetic lifts, quotient towers and Adams differentials}
@@ -1757,6 +1759,26 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   IWX Corollary 6.2 is C-motivic; its application here requires this
   secondary-operation comparison in addition to the low ring equations.
 \end{definition}
+\begin{proposition}[The Main secondary-operation comparison]
+  \label{prop:main-toda-secondary-comparison}
+  \lean{KIP126.Main.StageInput.Toda.low_bracket,KIP126.Main.StageInput.Toda.symmetric_bracket,KIP126.Main.StageInput.todaSecondaryComparison}
+  \uses{def:route-toda-source-application,thm:toda-product-identities,thm:literature-toda-h0-eta,thm:literature-classical-two-detection,thm:literature-classical-eta-detection,thm:route-kernel-adapter,thm:literature-synthetic-e2-weight-vanishing,thm:literature-toda-h0-label,thm:literature-toda-lambda-h0,def:stage-zero-cooperation-contract}
+  \notready
+  On the fixed model and the sole correlated Challenge2 witness, the
+  specified $h_0$ and $\eta$ satisfy the low and symmetric memberships of
+  Definition~\ref{def:route-toda-source-application}. Take
+  $\epsilon=\lambda^2\eta$ for the secondary comparison.
+\end{proposition}
+\begin{proof}
+  The low and symmetric memberships are established separately using the
+  fixed source bindings and their realization comparisons. Both retain the
+  same $\eta$, its first-quotient and realization bindings, and the fixed
+  cooperation and tensor data. Compatibility
+  of multiplication with $\lambda^2$ assembles them into the stated
+  comparison. The independent proof modules preserve the same mathematical
+  inputs; they do not discharge the inherited fixed-model or source obligations.
+\end{proof}
+
 \begin{theorem}[Consequences of the secondary-operation comparison]
   \label{thm:route-toda-adapter}
   \uses{def:route-toda-source-application}

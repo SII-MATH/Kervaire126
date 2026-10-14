@@ -875,23 +875,10 @@ comparison with older ordinary crossing certificates remain separate.
   second time.  The evidence's component equality becomes the zero tag's
   equality $\widehat{\nu_{\mathrm{Hopf}}}=[h_2]$.
 \end{proof}
-\begin{theorem}[Local sphere specialization of the general Moss input]
-  \label{thm:main-local-moss-specialization}
-  \uses{thm:literature-moss,def:adams-hj,def:adams-detection,def:toda-bracket}
-  \lean{KIP126.Main.Solution.Literature.route_moss}
-  \notready
-  The general sphere Moss theorem specializes to the local $E_3$ implication
-  for $\langle h_5^2,h_0,B\rangle$. The actual mapping tower,
-  composition, Milnor labels and
-  source convergence must be compared. All defining-system, detection,
-  null-product, noncrossing and residual-injectivity conditions remain
-  explicit. This is an internal theorem with an unfinished proof.
-\end{theorem}
-
-\begin{theorem}[Naturality of the fixed synthetic weight comparison]
+\begin{theorem}[Naturality of the canonical synthetic weight comparison]
   \label{thm:main-weight-shift-naturality}
   \uses{def:synthetic-adams-ss,def:synthetic-tridegree,def:hf2-adams-tower}
-  \lean{KIP126.Synthetic.SpectralSequence.weightShiftObjectIso,KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient,KIP126.Synthetic.SpectralSequence.CanonicalWeightShift,KIP126.Synthetic.SpectralSequence.canonicalWeightShift_exists,KIP126.Def.standardEInftyWeightShift,KIP126.Main.Solution.Literature.eInfty_shift_natural}
+  \lean{KIP126.Synthetic.SpectralSequence.weightShiftObjectIso,KIP126.Synthetic.SpectralSequence.canonicalWeightShiftAmbient,KIP126.Synthetic.SpectralSequence.CanonicalWeightShift,KIP126.Synthetic.SpectralSequence.canonicalWeightShift_exists,KIP126.Synthetic.SpectralSequence.CanonicalWeightShift.natural,KIP126.Def.standardEInftyWeightShift,KIP126.Def.standardEInftyWeightShift_natural}
   \notready
   The actual object weight isomorphism and a specified tower presentation
   prescribe the map on permanent cycles. The generic existence theorem
@@ -900,16 +887,22 @@ comparison with older ordinary crossing certificates remain separate.
   For the fixed standard model, the tower presentation still depends on
   the unfinished foundational construction.
 
-  Main proves the quotient-descent step: if the two prescribed ambient
+  The reusable naturality theorem belongs to Def: for a specified tower
+  presentation $P$ and weight comparison $S$, the condition
+  $\operatorname{CanonicalWeightShift}(P,S)$ implies that $S$ is natural.
+  Its proof includes the quotient-descent step: if the two prescribed ambient
   composites differ by an initial boundary in $B_0$, their canonical
   permanent-cycle images agree on $E_\infty$. It also derives the forward
   presentation comparison modulo $B_0$ from its $E_2$ naturality and
   transports boundaries through the inverse presentation. These private
-  helper proofs are implemented. The remaining local obligation is that
+  helper proofs are implemented in Def. The remaining local obligation is that
   the actual Adams maps of the object weight-naturality square agree
   modulo $B_0$; this requires comparing the chosen tower/cofiber lifts
-  on $E_2$. Full-category naturality of the fixed comparison and its
-  dependency cone remain unfinished. Neither the construction nor
+  on $E_2$. Def also specializes this theorem to the fixed standard comparison;
+  Main uses that fixed specialization directly, with no literature-delivery
+  premise. The generic
+  naturality theorem, its fixed specialization, and their dependency cones
+  remain unfinished. Neither the construction nor
   full-category naturality is an independently selected BHS literature input.
 \end{theorem}
 

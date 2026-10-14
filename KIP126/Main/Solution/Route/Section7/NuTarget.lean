@@ -62,7 +62,7 @@ apply the actual ninth-quotient nu extension and the P/Q lifting argument. -/
 theorem target_nu_divisible
     (hc3 : Stem126D6Vanishes L) (hc5 : EtaExtensionDetection M (D).toModelData L η) :
     TargetNuDivisible D ((L).target M) h2 := by
-  let SF := KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing
+  let SF := KIP126.Computation.Route.sphere_facts computation sphereVanishing
   obtain ⟨a11,ha⟩ := alpha_one_exists
   obtain ⟨z,hz⟩ := main_module_toda_nonempty_of_alpha D η h₀ ((L).U M) eV
     routeLiterature.toda.eta_squared a11 ha

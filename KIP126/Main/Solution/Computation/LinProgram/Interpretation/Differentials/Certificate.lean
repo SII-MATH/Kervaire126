@@ -1,6 +1,6 @@
 module
 
-public import KIP126.Main.Solution.StageInput
+public import KIP126.Main.Solution.StageInput.Bindings
 public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Predicates
 
 @[expose] public section

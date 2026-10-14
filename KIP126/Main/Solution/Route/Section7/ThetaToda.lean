@@ -1437,8 +1437,9 @@ end ThetaBSyntheticProof
 
 /-- `lem:toda2ext`: a compatible synthetic bracket MEMBER and its actual
 nonzero detector must be produced, not inferred from order two alone.
-The proof uses the local Massey/no-crossing results, the supplied classical
-Moss application, and the realization/secondary-operation comparison. -/
+The proof constructs a bracket member using the synthetic λ cofiber,
+May's multiplicative comparison and quotient Toda uniqueness, then proves
+its detection from the low-degree sphere computations. -/
 theorem synthetic_theta_b_toda
     (theta : BiHom 62 64 (S_0_0 : KIP126.Def.standardRouteInput.Syn))
     (htheta : ThetaChoice M (D).toModelData theta) :

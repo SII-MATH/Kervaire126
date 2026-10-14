@@ -183,6 +183,26 @@ public import all KIP126.Def.Exposed
                                               "KIP126.Interface.Solution.", "KIP126.Checks."))]
                 self.assertEqual(forbidden, [])
 
+    def test_stage_input_proofs_do_not_depend_on_route_assembly(self):
+        stage = "KIP126.Main.Solution.StageInput"
+        separate = [stage + suffix for suffix in
+                    (".Toda.Low", ".Toda.Symmetric", ".NuSource.FromSuspension",
+                     ".NuSource.Suspension")]
+        assembly = {stage, "KIP126.Main.Solution.Computation.Tmf",
+                    "KIP126.Main.Solution.Computation.Tmf.Br21",
+                    "KIP126.Def.StageInput.StandardSphere.EInfty.Proofs"}
+        for module in separate:
+            with self.subTest(module=module):
+                deps = self.dependencies(module)
+                self.assertFalse(deps & assembly, deps & assembly)
+                self.assertFalse(deps & (set(separate) - {module}))
+        # Computation projections must not wait for the secondary comparisons.
+        for module in (stage + ".Bindings",
+                       "KIP126.Main.Solution.Computation.LinProgram.Presentation",
+                       "KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Certificate"):
+            with self.subTest(module=module):
+                self.assertFalse(self.dependencies(module) & ({stage} | set(separate)))
+
     def test_certification_does_not_consume_its_own_output(self):
         # Reusable paper-rule proofs now live in Def. No Main dependency may
         # feed back into computation or literature certification.

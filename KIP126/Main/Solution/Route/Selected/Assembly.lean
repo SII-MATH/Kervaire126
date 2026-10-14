@@ -116,8 +116,8 @@ private theorem differential_dichotomy_from_inputs_theta_detector_zero_parts {D 
 private theorem differential_dichotomy_from_inputs (BHS : SyntheticInputs D) (RL : RealizationInput D)
     (CL : ClassicalInputs D η) (AF : SphereActionFiltrationCompatible D)
     (TM : TmfInputs D G) (BX : BXDistinguishedInput D η)
-    (I : KIP126.Computation.Route.Inputs D L G) (V : SphereVanishingLine H)
-    (S : ClassicalSphereSeparated H) :
+    (I : KIP126.Computation.Route.Inputs D L G) (SF : Derived.SphereFacts I.realization)
+    (V : SphereVanishingLine H) (S : ClassicalSphereSeparated H) :
     KIP126.Solution.Near126.OnlyD12.d12_dichotomy_and_condition_equivalence M D L η := by
   classical
   /- The synthetic tmf image used in the high-filtration contradiction.
@@ -243,8 +243,7 @@ private theorem differential_dichotomy_from_inputs (BHS : SyntheticInputs D) (RL
   /- The two complete frames and the intervening finite-page gap yield the
   three branches, retaining an actual lambda preimage in the last branch. -/
   intro hη
-  let SF := sphere_facts I V
-  obtain ⟨h13,hcases⟩ := differential_criterion_theta_data I BHS V
+  obtain ⟨h13,hcases⟩ := differential_criterion_theta_data I BHS V SF
   obtain ⟨hc3,hdnp,hbx,hframe6⟩ := differential_criterion_classical_data I SF
   obtain ⟨h9,h10,huex,h4f14,huf14,hframe,herr,hlambda,hdetect,hnonzero⟩ :=
     differential_criterion_detection_data I BHS SF h13 hframe6

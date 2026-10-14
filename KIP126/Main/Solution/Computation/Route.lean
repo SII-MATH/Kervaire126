@@ -1,6 +1,7 @@
 module
 
 public import KIP126.Main.Solution.Computation.Route.Bounds
+public import KIP126.Main.Solution.Computation.Route.Staircase
 public import KIP126.Main.Solution.Computation.Route.NamedSurvival
 public import KIP126.Main.Solution.Computation.Route.Candidates
 public import KIP126.Main.Solution.Computation.Route.High125
@@ -327,9 +328,11 @@ private theorem h4_d3_nonzero_of_remaining_column (I : Inputs D L G)
   rw [hcol]
   exact Submodule.zero_mem _
 
-/-- The complete local sphere interface now has an explicit derivation goal
-on the same interpretation.  No historical global comparison is substituted. -/
-theorem sphere_facts (I : Inputs D L G) (V : SphereVanishingLine H) :
+/-- Assemble the remaining selected-record consequences with the nonzero d3
+proved from the full, correlated staircase delivery below. -/
+private theorem sphere_facts_of_d3 (I : Inputs D L G) (V : SphereVanishingLine H)
+    (hd3 : Derived.Differential I.realization 3 (mulAt (atom .h4) (atom .x_109_12))
+      (mulAt dataH1 (atom .x_122_15_2))) :
     Derived.SphereFacts I.realization := by
   classical
   obtain ⟨hd2h6, hd2x, hVX, hY⟩ := sphere_basic_survival I
@@ -342,20 +345,7 @@ theorem sphere_facts (I : Inputs D L G) (V : SphereVanishingLine H) :
     d2_x_125_8 := hd2x
     d2_h6 := hd2h6
     d2_h0Six_h6 := hD2H0six
-    d3_h4_x_109_12 := by
-      have remaining_column : (sequence D .sphere).d 2 (14,138)
-          (I.realization.basis .sphere 14 138 2) ∈
-          Submodule.span ℤ {I.realization.basis .sphere 16 139 1,
-            I.realization.basis .sphere 16 139 2} := by
-        -- Remaining subgoal of sphere_facts.d3_h4_x_109_12: the last
-        -- unconstrained d2 column has zero coordinate along target basis 0.
-        -- The other four columns already lie in this span; the helper then
-        -- excludes every incoming boundary of the named d3 target on E3.
-        -- The full delivery's staircase row 3005 would make this column zero,
-        -- but these generic Inputs retain only selected claims. Continue by
-        -- deriving this weaker span condition from the same interpretation.
-        sorry
-      exact h4_d3_nonzero_of_remaining_span I remaining_column
+    d3_h4_x_109_12 := hd3
     d3_h0Sq_x_123_13_2 := hD3sq
     d3_x_126_4 := hD3x1264
     d7_source := hD7source
@@ -371,7 +361,7 @@ theorem sphere_facts (I : Inputs D L G) (V : SphereVanishingLine H) :
     v_to_e12 := hVX.1
     v_not_hit := hVX.2.1
     y_to_e5 := hY.1
-    y_not_hit := by
+    y_not_hit_through_six := by
       have source_six_zero (I : Inputs D L G) :
           Subsingleton ((sequence D .sphere).Page 6 (5,131)) := by
         classical
@@ -394,80 +384,33 @@ theorem sphere_facts (I : Inputs D L G) (V : SphereVanishingLine H) :
           simpa using hc
         exact ⟨fun a b => (hall a).trans (hall b).symm⟩
 
-      have source_eight_zero (I : Inputs D L G) :
-          Subsingleton ((sequence D .sphere).Page 8 (3,129)) := by
-        classical
-        let E := sequence D .sphere
-        obtain ⟨e, he⟩ := I.basis ⟨.sphere,3,129,["0,1,69,2"]⟩ (by
-          exact List.mem_of_getElem? (i := 108) (by rfl))
-        change E.Page 2 (3,129) ≃ₗ[ℤ] (Fin 1 →₀ F2) at e
-        change ∀ i : Fin 1, e.symm (Finsupp.single i 1) =
-          I.realization.basis .sphere 3 129 i.val at he
-        have hz : RepresentsOnPage E 8 (3,129) (I.realization.basis .sphere 3 129 0) 0 :=
-          differential_target_later_zero (by change (2:ℤ)≤2; omega) (by decide)
-            (t_incoming_t_incoming11_zero_h151 I)
-        have hall (a : E.Page 8 (3,129)) : a = 0 := by
-          obtain ⟨c,hc⟩ := page_generated_from_representatives (by decide : (2:ℤ)≤8)
-            e (fun _ => 0) (by
-              intro i
-              rw [he i]
-              fin_cases i
-              exact hz) a
-          simpa using hc
-        exact ⟨fun a b => (hall a).trans (hall b).symm⟩
-
-      have y_incoming_source_zero_except_nine (I : Inputs D L G) (r : ℤ)
-          (hr : 5 ≤ r) (hr9 : r ≠ 9) :
+      have y_incoming_source_zero_through_six (I : Inputs D L G) (r : ℤ)
+          (hr : 5 ≤ r) (hr6 : r ≤ 6) :
           Subsingleton ((sequence D .sphere).Page r
             ((11,136) - (sequence D .sphere).diffDeg r)) := by
-        by_cases hlate : 12 ≤ r
-        · change Subsingleton ((sequence D .sphere).Page r (11-r,136-(r-1)))
-          exact adamsTowerInternal_page_subsingleton_of_negative H.unit SphereSpectrum
-            r (11-r) (136-(r-1)) (by omega)
-        have hrhi : r ≤ 11 := by omega
         interval_cases r
         · exact adamsTowerInternal_page_subsingleton_of_le H.unit SphereSpectrum
             4 5 6 132 (by decide) (by decide) (t_incoming_t_incoming8_source_four I)
         · exact source_six_zero I
-        · exact adamsTowerInternal_page_subsingleton_of_le H.unit SphereSpectrum
-            4 7 4 130 (by decide) (by decide) (t_incoming_t_incoming10_source_four I)
-        · exact source_eight_zero I
-        · exact (hr9 rfl).elim
-        · exact vx_empty_page I 1 127 (by
-            exact List.mem_of_getElem? (i := 90) (by rfl)) 10 (by decide)
-        · exact vx_empty_page I 0 126 (by
-            exact List.mem_of_getElem? (i := 77) (by rfl)) 11 (by decide)
 
-      have y_not_hit_except_nine (I : Inputs D L G) (r : ℤ) (hr : 2 ≤ r)
-          (hr9 : r ≠ 9) :
-          ¬ HitOnPage (sequence D .sphere) r (11,136)
-            (I.realization.sphere 11 136 Y) := by
-        let E := sequence D .sphere
-        rintro ⟨q,h,z,y,hy,hyn,hd⟩
-        by_cases hlow : r < 5
-        · obtain ⟨x,hx⟩ := page_has_representative hr z
-          have hdiff : HasDifferential E r q (11,136) x
-              (I.realization.sphere 11 136 Y) := ⟨h,z,y,hx,hy,hd⟩
-          have hzero := differential_target_later_zero
-            (by change (2:ℤ)≤r; exact hr) hlow hdiff
-          obtain ⟨y5,hy5,hyn5⟩ := y_survives_five I
-          exact hyn5 (represents_unique hy5 hzero)
-        · have hq : q = (11,136) - E.diffDeg r := eq_sub_iff_add_eq.mpr h
-          subst q
-          haveI := y_incoming_source_zero_except_nine I r (by omega) hr9
-          have hz : z = 0 := Subsingleton.elim _ _
-          rw [hz, map_zero] at hd
-          exact hyn hd.symm
-      intro r hr q h y hy hyn z hd
-      by_cases hr9 : r = 9
-      · subst r
-        have hq : q = (2,128) := eq_sub_iff_add_eq.mpr h
+      refine ⟨by decide, by decide, ?_⟩
+      intro r hr hr6
+      let E := sequence D .sphere
+      rintro ⟨q,h,z,y,hy,hyn,hd⟩
+      by_cases hlow : r < 5
+      · obtain ⟨x,hx⟩ := page_has_representative hr z
+        have hdiff : HasDifferential E r q (11,136) x
+            (I.realization.sphere 11 136 Y) := ⟨h,z,y,hx,hy,hd⟩
+        have hzero := differential_target_later_zero
+          (by change (2:ℤ)≤r; exact hr) hlow hdiff
+        obtain ⟨y5,hy5,hyn5⟩ := y_survives_five I
+        exact hyn5 (represents_unique hy5 hzero)
+      · have hq : q = (11,136) - E.diffDeg r := eq_sub_iff_add_eq.mpr h
         subst q
-        change (sequence D .sphere).d 9 (2,128) z = y at hd
-        -- The original unresolved case: the actual d9 cannot hit this
-        -- nonzero E9 representative of Y. All other lengths are excluded.
-        sorry
-      · exact y_not_hit_except_nine I r hr hr9 ⟨q,h,z,y,hy,hyn,hd⟩
+        haveI := y_incoming_source_zero_through_six I r (by omega) hr6
+        have hz : z = 0 := Subsingleton.elim _ _
+        rw [hz, map_zero] at hd
+        exact hyn hd.symm
     x_to_e6 := hVX.2.2.1
     x_not_hit := hVX.2.2.2
     high_e5 := high125_component I
@@ -485,6 +428,26 @@ theorem sphere_facts (I : Inputs D L G) (V : SphereVanishingLine H) :
     e4_stem125_af12 := hMiddle125.1
     e5_stem125_af13 := hMiddle125.2
   }
+
+
+/-- The delivered d3 equation is nonzero on E3: staircase row 3005 makes
+its last possible incoming d2 column zero, and the other four columns have
+zero coordinate along the target. This uses the full computation delivery,
+not a new field of its selected route inputs. -/
+theorem d3_h4_x_109_12 {literature : KIP126.Challenge2.LiteratureInterface}
+    (c : KIP126.Challenge2.ComputationInterface literature) :
+    Derived.Differential c.route.realization 3 (mulAt (atom .h4) (atom .x_109_12))
+      (mulAt dataH1 (atom .x_122_15_2)) := by
+  exact h4_d3_nonzero_of_remaining_column c.route (staircase_af14_d2_eq_zero c)
+
+/-- The complete local sphere consequences on the same interpretation.
+The full delivery supplies the staircase row needed to certify the nonzero
+h4 differential; selected route inputs alone omit that row. -/
+theorem sphere_facts {literature : KIP126.Challenge2.LiteratureInterface}
+    (c : KIP126.Challenge2.ComputationInterface literature)
+    (V : SphereVanishingLine standardFoundation.hf2) :
+    Derived.SphereFacts c.route.realization := by
+  exact sphere_facts_of_d3 c.route V (d3_h4_x_109_12 c)
 
 
 end SphereFactsProof

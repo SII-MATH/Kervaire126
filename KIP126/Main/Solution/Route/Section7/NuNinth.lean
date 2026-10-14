@@ -43,8 +43,9 @@ section
 attribute [local irreducible] adamsTowerSSData
 private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
     (x : Ambient H X p) (hx : x≠0)
-    (hn : KIP126.Core.SpectralSequence.NeverHit (adamsTowerInternalSpectralSequence H.unit X) p x)
-    (b : ℤ) (hb : 1≤b) : x ∉ boundaries H X b p := by
+    (b : ℤ) (hb : 1≤b)
+    (hn : NeverHitOnWindow (adamsTowerInternalSpectralSequence H.unit X) 2 b p x) :
+    x ∉ boundaries H X b p := by
   have nhb_represents_unique {E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)} {r : ℤ} {p : ℤ×ℤ} {x : E.Page 2 p} {a b : E.Page r p}
       (ha : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x a) (hb : KIP126.Core.SpectralSequence.RepresentsOnPage E r p x b) : a = b := by
     obtain ⟨hr, z, hz, hza⟩ := ha
@@ -191,23 +192,25 @@ private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
     simpa only [eqToHom_refl,Category.comp_id,a,zr,A,nr,ns,CategoryTheory.comp_apply] using hv
   have nhb_never_hit_representative_nonzero
       (E : KIP126.Core.SpectralSequence (ModuleCat.{v} ℤ) (ℤ × ℤ)) (hs : E.r₀=2)
-      (p : ℤ × ℤ) (x : E.Page 2 p) (hx : x≠0) (hn : KIP126.Core.SpectralSequence.NeverHit E p x) :
-      ∀ n : ℕ, ∀ a : E.Page ((n:ℤ)+2) p,
+      (p : ℤ × ℤ) (x : E.Page 2 p) (hx : x≠0) (last : ℤ)
+      (hn : NeverHitOnWindow E 2 last p x) :
+      ∀ n : ℕ, (n:ℤ)+1 ≤ last → ∀ a : E.Page ((n:ℤ)+2) p,
         KIP126.Core.SpectralSequence.RepresentsOnPage E ((n:ℤ)+2) p x a → a≠0 := by
     intro n
     induction n with
     | zero =>
-      intro a ha hz
+      intro _ a ha hz
       have hh := ha.eq_on_page_two
       exact hx (hh.trans hz)
     | succ n ih =>
-      intro a ha hz
+      intro hlast a ha hz
       rw [hz] at ha
       have he : ((n+1:ℕ):ℤ)+2=((n:ℤ)+2)+1 := by omega
       rw [he] at ha
       obtain ⟨b,hb,q,hq,z,hd⟩ := nhb_zero_successor_has_incoming E ((n:ℤ)+2)
         (by omega) (by rw [hs]; omega) p x ha
-      exact hn ((n:ℤ)+2) (by omega) q hq b hb (ih b hb) z hd
+      exact hn.2.2 ((n:ℤ)+2) (by omega) (by omega)
+        ⟨q,hq,z,b,hb,ih (by omega) b hb,hd⟩
   have nhb_represents_zero_iff_boundary (X : C) (r : ℤ) (hr : 2≤r)
       (p : ℤ×ℤ) (x : PageRepresentatives.Ambient H X p) :
       KIP126.Core.SpectralSequence.RepresentsOnPage (adamsTowerInternalSpectralSequence H.unit X) r p x 0 ↔
@@ -244,8 +247,9 @@ private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
         rw [cokernel.condition]
         rfl
   have nhb_never_hit_not_boundary_nat (X : C) (p : ℤ×ℤ)
-      (x : Ambient H X p) (hx : x≠0)
-      (hn : KIP126.Core.SpectralSequence.NeverHit (adamsTowerInternalSpectralSequence H.unit X) p x) (b : ℕ) :
+      (x : Ambient H X p) (hx : x≠0) (b : ℕ)
+      (hn : NeverHitOnWindow (adamsTowerInternalSpectralSequence H.unit X)
+        2 ((b:ℤ)+1) p x) :
       x ∉ boundaries H X ((b:ℤ)+1) p := by
     intro hb
     have hr : 2≤(b:ℤ)+2 := by omega
@@ -254,14 +258,18 @@ private theorem nu9_not_boundary (X : C) (p : ℤ×ℤ)
       apply (nhb_represents_zero_iff_boundary X ((b:ℤ)+2) hr p x).mpr
       simpa only [show (b:ℤ)+2-1=(b:ℤ)+1 by omega] using hb
     exact nhb_never_hit_representative_nonzero
-      (adamsTowerInternalSpectralSequence H.unit X) rfl p x hx hn b 0 rep rfl
+      (adamsTowerInternalSpectralSequence H.unit X) rfl p x hx ((b:ℤ)+1)
+      hn b (by omega) 0 rep rfl
   have nhb_never_hit_not_boundary (X : C) (p : ℤ×ℤ)
-      (x : Ambient H X p) (hx : x≠0)
-      (hn : KIP126.Core.SpectralSequence.NeverHit (adamsTowerInternalSpectralSequence H.unit X) p x)
-      (b : ℤ) (hb : 1≤b) : x ∉ boundaries H X b p := by
+      (x : Ambient H X p) (hx : x≠0) (b : ℤ) (hb : 1≤b)
+      (hn : NeverHitOnWindow (adamsTowerInternalSpectralSequence H.unit X) 2 b p x) :
+      x ∉ boundaries H X b p := by
     have he : ((b-1).toNat:ℤ)+1=b := by omega
-    simpa only [he] using nhb_never_hit_not_boundary_nat X p x hx hn (b-1).toNat
-  exact nhb_never_hit_not_boundary X p x hx hn b hb
+    have hn' : NeverHitOnWindow (adamsTowerInternalSpectralSequence H.unit X)
+        2 (((b-1).toNat:ℤ)+1) p x := by
+      simpa only [he] using hn
+    simpa only [he] using nhb_never_hit_not_boundary_nat X p x hx (b-1).toNat hn'
+  exact nhb_never_hit_not_boundary X p x hx b hb hn
 end
 section
 attribute [local irreducible] adamsTowerSSData KIP126.LinE2.homogeneousPart
@@ -1927,9 +1935,11 @@ private theorem nu_ninth_of_fifth_complete
     rw [hh] at hy5
     exact hy5n (represents_unique hy5 (RepresentsOnPage.zero (by decide)))
   have hXb : X∉boundaries H SphereSpectrum 5 (8,130) :=
-    nu9_not_boundary SphereSpectrum (8,130) X hXn SF.x_not_hit 5 (by decide)
+    nu9_not_boundary SphereSpectrum (8,130) X hXn 5 (by decide)
+      ⟨by decide, by decide, fun r hr _ => SF.x_not_hit.not_hit hr⟩
   have hYb : Y∉boundaries H SphereSpectrum 6 (11,136) :=
-    nu9_not_boundary SphereSpectrum (11,136) Y hYn SF.y_not_hit 6 (by decide)
+    nu9_not_boundary SphereSpectrum (11,136) Y hYn 6 (by decide)
+      SF.y_not_hit_through_six
   refine ⟨x,y,?_,?_,hxy⟩
   · exact sphere_finite_detection_nonzero BHS 9 4 (by decide) (by decide) 8 130 X hX hXb x hx
   · exact sphere_finite_detection_nonzero BHS 9 5 (by decide) (by decide) 11 136 Y hY hYb y hy
@@ -1955,7 +1965,7 @@ theorem nu_extension_in_ninth_quotient : NuExtension9 D eX eY h2 := by
     literature.bindings.route.algebra
     literature.bindings.route.quotientBinding
     literature.bindings.route.algebraBinding
-    (KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing)
+    (KIP126.Computation.Route.sphere_facts computation sphereVanishing)
     h2 nu_extension_lifts_to_fifth_quotient
 
 

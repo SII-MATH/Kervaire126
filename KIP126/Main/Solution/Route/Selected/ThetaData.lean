@@ -885,7 +885,8 @@ private theorem stem124_af13_exhaustion
     {C : Type u} [StableHomotopyCategory.{u,v} C] [HasFunctorialCofiber (C:=C)]
     {Syn : Type w} [SyntheticCategory.{w,v} Syn] [HasFunctorialCofiber (C:=Syn)]
     {H : Mod2EilenbergMacLane (C:=C)} {M : MilnorCooperations H} {D : Model H M Syn}
-    {L : Labels H} {G : KIP126.Literature.Route.TmfLabels H} (I : KIP126.Computation.Route.Inputs D L G) (V : SphereVanishingLine H) :
+    {L : Labels H} {G : KIP126.Literature.Route.TmfLabels H} (I : KIP126.Computation.Route.Inputs D L G)
+    (facts : Derived.SphereFacts I.realization) :
     KIP126.Kervaire.Route.Section7.ClassicalInfinityGenerated 13 137
       (I.realization.sphere 13 137 correction) := by
   classical
@@ -893,7 +894,6 @@ private theorem stem124_af13_exhaustion
   let E := sequence D .sphere
   let A := E.ssData (13,137)
   obtain ⟨hl1,hl2⟩ := stem124_af13_exhaustion_af13_labels I
-  have facts := sphere_facts I V
   obtain ⟨z,hz,hzn⟩ := facts.correction_permanent
   change (Subobject.ofLE (A.Z ⊤) (A.Z 0) (A.Z_anti le_top) ≫ A.pageπ 0) z = _ at hz
   change A.pageπ ⊤ z ≠ 0 at hzn
@@ -1952,7 +1952,8 @@ private theorem theta_three_cases_from_frames
   simpa [lambdaMultiply,Category.assoc] using congrArg (fun q => q ≫ D.nu.unitIso.hom) hb
 
 private theorem differential_criterion_theta_data (I : KIP126.Computation.Route.Inputs D L G)
-    (BHS : SyntheticInputs D) (V : SphereVanishingLine H) :
+    (BHS : SyntheticInputs D) (V : SphereVanishingLine H)
+    (SF : Derived.SphereFacts I.realization) :
     ClassicalInfinityGenerated 13 137 (I.realization.sphere 13 137 correction) ∧
       ∀ theta : BiHom 62 64 (S_0_0 : Syn),
         Theta5SquareNonzeroDetectionAt M D.toModelData L theta ∨
@@ -2001,6 +2002,7 @@ private theorem differential_criterion_theta_data (I : KIP126.Computation.Route.
       · exact collapse 4 hfinite.2.2.2
   have theta_three_cases_same_input (I : KIP126.Computation.Route.Inputs D L G)
       (BHS : SyntheticInputs D) (V : SphereVanishingLine H)
+      (SF : Derived.SphereFacts I.realization)
       (theta : BiHom 62 64 (S_0_0 : Syn)) :
       Theta5SquareNonzeroDetectionAt M D.toModelData L theta ∨
         SphereDetected D 13 137 9 (I.realization.sphere 13 137 KIP126.Computation.Near126.correction)
@@ -2010,12 +2012,12 @@ private theorem differential_criterion_theta_data (I : KIP126.Computation.Route.
     rw [(KIP126.Computation.Route.route_expression_labels I).2.1] at h10
     exact theta_three_cases_from_frames I BHS (L.U M)
       (I.realization.sphere 13 137 KIP126.Computation.Near126.correction)
-      h10 (stem124_af13_exhaustion I V)
-      (KIP126.Computation.Route.sphere_facts I V).e5_stem124_af11
-      (KIP126.Computation.Route.sphere_facts I V).e4_stem124_af12
+      h10 (stem124_af13_exhaustion I SF)
+      SF.e5_stem124_af11
+      SF.e4_stem124_af12
       (sphereProduct theta theta)
       (stem124_weight128_filtration_ten BHS I (classical_low_same_input I) (sphereProduct theta theta))
-  exact ⟨stem124_af13_exhaustion I V,theta_three_cases_same_input I BHS V⟩
+  exact ⟨stem124_af13_exhaustion I SF,theta_three_cases_same_input I BHS V SF⟩
 
 end
 end KIP126.Main.Solution.Route

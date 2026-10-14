@@ -78,7 +78,7 @@ theorem ninth_quotient_error_d3 :
       ((I).realization.sphere 16 139 (mulAt dataH1 (atom .x_122_15_2))) := by
   exact finite_last_nonzero routeLiterature.synthetic 9 3 6 (by decide) (by decide)
     13 137 _ _
-    (KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing).d3_h4_x_109_12
+    (KIP126.Computation.Route.d3_h4_x_109_12 computation)
 
 open KIP126.LinE2 KIP126.Computation.Near126 in
 /-- Q11, weight130: both common E7 representatives and target nonzero
@@ -89,7 +89,7 @@ theorem eleventh_quotient_candidate_d7 :
       ((I).realization.sphere 18 140 (mulAt dataH1 (atom .x_121_17))) := by
   exact finite_last_nonzero routeLiterature.synthetic 11 7 4 (by decide) (by decide)
     11 134 _ _
-    (KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing).d7_source
+    (KIP126.Computation.Route.sphere_facts computation sphereVanishing).d7_source
 
 open KIP126.LinE2 KIP126.Computation.Near126 in
 /-- The other Q11 weight130 candidate supports a nonzero E3 differential.
@@ -100,7 +100,7 @@ theorem eleventh_quotient_candidate_d3 :
       ((I).realization.sphere 18 140 (mulAt h0Sq (atom .x_122_16))) := by
   exact finite_last_nonzero routeLiterature.synthetic 11 3 8 (by decide) (by decide)
     15 138 _ _
-    (KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing).d3_h0Sq_x_123_13_2
+    (KIP126.Computation.Route.sphere_facts computation sphereVanishing).d3_h0Sq_x_123_13_2
 
 set_option backward.isDefEq.respectTransparency false in
 private theorem sphere_quotient_page_zero (q : ℕ) (hq : 0 < q)
@@ -218,7 +218,8 @@ permanent correction remains at infinity. Finite Reaches1000 uses V's
 independent tail before it may supply the infinite representative. -/
 theorem classical_stem124_af13_generated :
     ClassicalInfinityGenerated 13 137 eCorrection := by
-  exact stem124_af13_exhaustion routeComputation sphereVanishing
+  exact stem124_af13_exhaustion routeComputation
+    (KIP126.Computation.Route.sphere_facts computation sphereVanishing)
 
 -- Keep the existing named arguments for public API compatibility.
 set_option linter.unusedVariables false in
@@ -245,8 +246,8 @@ theorem theta5_square_three_cases
         lambdaMultiply 10 a = sphereProduct theta theta := by
   have h := theta_three_cases_from_frames routeComputation routeLiterature.synthetic
     ((L).U M) eCorrection classical_stem124_af10_generated classical_stem124_af13_generated
-    (KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing).e5_stem124_af11
-    (KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing).e4_stem124_af12
+    (KIP126.Computation.Route.sphere_facts computation sphereVanishing).e5_stem124_af11
+    (KIP126.Computation.Route.sphere_facts computation sphereVanishing).e4_stem124_af12
     (sphereProduct theta theta) (theta5_square_filtration_ten theta htheta)
   exact h
 
@@ -295,7 +296,7 @@ theorem alpha_one_exists :
       AlphaOneProperties D η h₀ ((L).U M) eV a11 := by
   obtain ⟨hp14,hp15⟩ := full_staircase_high_cycles computation sphereVanishing
   have h := alpha_exists_from_finite_frames routeComputation routeLiterature.synthetic
-    (KIP126.Computation.Route.sphere_facts routeComputation sphereVanishing)
+    (KIP126.Computation.Route.sphere_facts computation sphereVanishing)
     literature.bindings.route.algebra literature.bindings.route.algebraBinding
     routeEta routeLiterature.classical.hopf.1 routeLiterature.toda.h0
     alpha_one_h0_filtration_seventeen
