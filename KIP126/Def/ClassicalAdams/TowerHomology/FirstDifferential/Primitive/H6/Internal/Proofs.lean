@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.PageTwo.Proofs
-import KIP126.Def.ClassicalAdams.TowerSSData.FirstCycles.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.PageTwo.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSSData.FirstCycles.Proofs
+
+@[expose] public section
 
 /-! The polynomial construction reaches the existing internal SSData page,
 with the actual tower representative retained. No fixed comparison input

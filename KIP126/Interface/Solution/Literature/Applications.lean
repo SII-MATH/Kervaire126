@@ -1,5 +1,10 @@
-import KIP126.Interface.Challenge.Literature.Source
-import KIP126.Def.Kervaire.Route.Tmf.Predicates
+module
+
+public import KIP126.Def.Kervaire.Route.Tools.Inputs.Data
+public import KIP126.Interface.Challenge.Literature.Source
+public import KIP126.Def.Kervaire.Route.Tmf.Predicates
+
+@[expose] public section
 
 /-! Application obligations and consumer views of the literature sources.
 These are internal construction/transport goals, not additional source inputs. -/
@@ -37,18 +42,6 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)]
   {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H} (D : Model H M Syn)
-
-structure SyntheticInputs where
-  lifts : KIP126.Literature.Route.SyntheticLiftInput D
-  finite_lift : FiniteLiftCriterion D
-  bockstein : BocksteinDifferential D
-  permanent_lift : PermanentLiftCriterion D
-  differentials : DifferentialRigidity D
-  eInfty : EInftyInput D
-  realization_kernel : RealizationKernel D
-  filtration_lambda : FiltrationLambda D
-  e2_weight_vanishing : E2WeightVanishing D
-  finite_quotient_page_vanishing : FiniteQuotientPageVanishing D
 
 /-- Pure assembly; source-to-model localization is supplied separately. -/
 def SyntheticSourceInputs.toInputs (S : SyntheticSourceInputs D)
@@ -94,7 +87,7 @@ variable {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C 
 /-- Ordinary transport along the displayed source equalities. The sole
 synthetic premise is supplied separately, so the classical source theorem
 does not assert it or normalized-map compatibility. -/
-def classicalInputsOfSource (D : Model H M Syn) (η : BiHom 1 2 (S_0_0 : Syn))
+theorem classicalInputsOfSource (D : Model H M Syn) (η : BiHom 1 2 (S_0_0 : Syn))
     (S : ClassicalSourceData H) (hS : ClassicalSourceResults M S)
     (B : ClassicalSourceBinding D η S) (hη : EtaChoice M D.toModelData η) :
     ClassicalInputs D η where
@@ -117,21 +110,6 @@ def classicalInputsOfSource (D : Model H M Syn) (η : BiHom 1 2 (S_0_0 : Syn))
 
 end KIP126.Literature.Route
 
-namespace KIP126.Literature.Route
-open CategoryTheory CategoryTheory.MonoidalCategory KIP126.StableHomotopy
-open KIP126.Synthetic.Context
-universe u v
-variable (Syn : Type u) [SyntheticCategory.{u, v} Syn]
-
-/-- Applied May input, retaining the source sign and the fixed conventions.
-Consumers may remove the sign only after proving the required exponent-two
-condition. Mod-two E₂ coordinates alone do not prove such a condition on
-homotopy groups. -/
-structure MayInput extends MayContext Syn where
-  boundary : toMayContext.SignedBoundary
-
-
-end KIP126.Literature.Route
 
 namespace KIP126.Literature.Route
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
@@ -255,11 +233,9 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H} (D : Model H M Syn)
 
-/-- These are model applicability obligations, recorded separately from
-the source statements. They neither assert no-crossing computations nor
-the ν-extension constructed in LWX Lemma 7.19. -/
+/-- Model applicability obligations, recorded separately from the source
+statements. They do not assert the ν-extension constructed in LWX Lemma 7.19. -/
 structure Applicability : Prop where
-  moss : MossTowerApplicability (H := H)
   nuCofiber : NuCofiberApplicability D
 
 
@@ -291,12 +267,11 @@ structure Inputs where
   may : MayInput Syn
   toda : TodaInputs D η
   tmf : TmfInputs D L
-  moss : MossInput D
   applicability : Applicability D
 
 /-- Internal source-application target, separate from A(M).
 May retains its sign; Toda uses actual secondary-operation evidence; the
-kernel and Moss statements use the fixed source/model comparisons. The
+kernel statement uses the fixed source/model comparison. The
 compatible normalized triple likewise requires
 internal construction and multiplicative comparison. These fields are not
 new independent external theorems or separately chosen stage witnesses. -/
@@ -307,7 +282,6 @@ structure Application {background : Background D} (B : Bindings D η L backgroun
   may : B.may.SignedBoundary
   toda : TodaApplication η B.todaSource
   realizationKernel : RealizationKernel D
-  moss : MossInput D
   nuSource : NuCofiberSourceResults D B.nuSource
   nuCofiber : NuCofiberApplicability D
 
@@ -326,8 +300,7 @@ def Statements.toInputs {background : Background D} {B : Bindings D η L backgro
   may := { B.may with boundary := P.may }
   toda := todaInputsOfSource D η B.todaSource A.toda P.toda
   tmf := tmf
-  moss := P.moss
-  applicability := ⟨B.moss, P.nuCofiber⟩
+  applicability := ⟨P.nuCofiber⟩
 
 
 end KIP126.Literature.Route

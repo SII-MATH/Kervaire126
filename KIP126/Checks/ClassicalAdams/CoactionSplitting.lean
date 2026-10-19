@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Splitting.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Splitting.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! The coface identities and normalized splitting must come from the actual
 unit, multiplication, and exact triangle, without page-coordinate assumptions. -/

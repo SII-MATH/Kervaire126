@@ -1,5 +1,9 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Data
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Proofs
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.EInfty.Data
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Proofs
+
+@[expose] public section
 
 namespace KIP126.Def.Comparison.StageInterfaces
 

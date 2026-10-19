@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Bockstein.Regrading.Data
-import KIP126.Def.Synthetic.Bockstein.Tower.Proofs
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Regrading.Data
+public import KIP126.Def.Synthetic.Bockstein.Tower.Proofs
+
+@[expose] public section
 
 /-!
 # Laws and page checkpoints for the actual λ regrading

@@ -1,4 +1,8 @@
-import Mathlib.Algebra.Group.Hom.Defs
+module
+
+public import Mathlib.Algebra.Group.Hom.Defs
+
+@[expose] public section
 
 /-!
 # The order-two `theta_5` interface

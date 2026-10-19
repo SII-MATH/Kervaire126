@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSequence.Data
-import KIP126.Def.StableHomotopy.Cohomology.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSequence.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+
+@[expose] public section
 
 /-!
 # The Adams spectral sequence of the sphere

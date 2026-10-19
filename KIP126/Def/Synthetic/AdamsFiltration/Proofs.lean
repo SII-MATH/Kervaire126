@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.AdamsFiltration.Data
+module
+
+public import KIP126.Def.Synthetic.AdamsFiltration.Data
+
+@[expose] public section
 namespace KIP126.Synthetic.SpectralSequence
 open CategoryTheory KIP126.StableHomotopy KIP126.Synthetic.Context KIP126.Classical.Adams
 universe u v

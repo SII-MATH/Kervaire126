@@ -1,6 +1,10 @@
-import KIP126.LinProgram.Interpretation.Near126.Names.Proofs
-import KIP126.LinProgram.Model.Classes.Data
-import KIP126.LinProgram.Model.Product.Data
+module
+
+public import KIP126.LinProgram.Interpretation.Near126.Names.Proofs
+public import KIP126.LinProgram.Model.Classes.Data
+public import KIP126.LinProgram.Model.Product.Data
+
+@[expose] public section
 
 namespace KIP126.Computation.Near126
 open KIP126.LinE2

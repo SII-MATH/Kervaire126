@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerResolution.Sphere.Proofs
-import KIP126.Def.StageInput.Foundation
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerResolution.Sphere.Proofs
+public import KIP126.Def.StageInput.Foundation
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! The first differential must be proved from the tower, not assumed through
 Milnor coordinates, Lin data, a fixed foundation, or an SS adapter. -/

@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Context.Data
+module
+
+public import KIP126.Def.Synthetic.Context.Data
+
+@[expose] public section
 
 /-! Natural-transformation presentation of the existing pointwise λ powers. -/
 

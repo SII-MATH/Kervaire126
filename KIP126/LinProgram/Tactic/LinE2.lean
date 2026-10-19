@@ -1,5 +1,10 @@
-import KIP126.LinProgram.Tactic.Support.Proofs
-import Lean
+module
+
+public import KIP126.LinProgram.Tactic.Support.Proofs
+public import Lean
+public meta import KIP126.LinProgram.Tactic.Support.Data
+
+@[expose] public section
 
 /-! PR #110 concrete E₂ tactic. Successful proofs still use the explicitly
 unfinished `coordinateCheck_sound`; this is not certified normalization.
@@ -11,20 +16,20 @@ open Compute
 
 open Lean Meta Elab Tactic
 
-private def codeExpr : Code → Expr
+private meta def codeExpr : Code → Expr
   | .scalar n => mkApp (mkConst ``Code.scalar) (mkNatLit n)
   | .gen n => mkApp (mkConst ``Code.gen) (mkNatLit n)
   | .add a b => mkApp2 (mkConst ``Code.add) (codeExpr a) (codeExpr b)
   | .mul a b => mkApp2 (mkConst ``Code.mul) (codeExpr a) (codeExpr b)
   | .pow a n => mkApp2 (mkConst ``Code.pow) (codeExpr a) (mkNatLit n)
 
-private def concreteNat (e : Expr) : MetaM Nat := do
+private meta def concreteNat (e : Expr) : MetaM Nat := do
   let e ← whnf e
   let some n ← (evalNat e).run | throwError "e2_mul: expected a concrete natural number, got {e}"
   return n
 
 /-- 不把未知变量当作生成元；仅展开闭合的命名常量和局部 let。 -/
-private def reify : Nat → Expr → MetaM Code
+private meta def reify : Nat → Expr → MetaM Code
   | 0, e => throwError "e2_mul: expression unfolding limit reached at {e}"
   | n + 1, original => do
     let e ← instantiateMVars original
@@ -51,9 +56,9 @@ private def reify : Nat → Expr → MetaM Code
       return ← reify n unfolded
     throwError "e2_mul: unsupported concrete E2 expression: {e}"
 
-initialize engineCache : IO.Ref (Option Engine) ← IO.mkRef none
+meta initialize engineCache : IO.Ref (Option Engine) ← IO.mkRef none
 
-private def getEngine : TacticM Engine := do
+private meta def getEngine : TacticM Engine := do
   if let some e ← engineCache.get then return e
   logInfo "e2_mul: initializing the complete CSV relation and basis indices…"
   match loadEngine with

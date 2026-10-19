@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Boundary.Predicates
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Boundary.Proofs
-import KIP126.Def.ClassicalAdams.SphereInitial.FiltrationOne.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Boundary.Predicates
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Boundary.Proofs
+public import KIP126.Def.ClassicalAdams.SphereInitial.FiltrationOne.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

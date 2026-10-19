@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Grading.Proofs
-import Mathlib.Algebra.CharP.Two
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Grading.Proofs
+public import Mathlib.Algebra.CharP.Two
+
+@[expose] public section
 
 /-!
 # Augmentation identities for the Milnor coproduct

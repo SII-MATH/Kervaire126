@@ -1,5 +1,9 @@
-import KIP126.Def.Kervaire.Route.Conditions.Predicates
-import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+module
+
+public import KIP126.Def.Kervaire.Route.Conditions.Predicates
+public import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+
+@[expose] public section
 
 /-! Compatibility import. The unbound Near126Adams and ChoiceConditions
 records were removed: their free predicates did not state the paper.

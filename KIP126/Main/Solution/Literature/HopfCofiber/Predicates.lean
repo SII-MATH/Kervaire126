@@ -1,5 +1,9 @@
-import KIP126.Main.Solution.Literature.HopfCofiber.Data
-import KIP126.Def.SpectralSequence.Computation.Predicates
+module
+
+public import KIP126.Main.Solution.Literature.HopfCofiber.Data
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+
+@[expose] public section
 
 
 namespace KIP126.Computation.Near126

@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.QuotientRestrictions.Data
+module
+
+public import KIP126.Def.Synthetic.QuotientRestrictions.Data
+
+@[expose] public section
 
 /-! The inclusion and boundary squares for the specified quotient
 restrictions. No inverse-limit or completeness conclusion is asserted. -/

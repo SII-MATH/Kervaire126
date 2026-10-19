@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSmash.Step.Proofs
-import KIP126.Def.StableHomotopy.Context.TensorSuspension.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSmash.Step.Proofs
+public import KIP126.Def.StableHomotopy.Context.TensorSuspension.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

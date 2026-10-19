@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Implementation.Fixed
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Fixed
+
+@[expose] public section
 
 /-! The route model type on the fixed classical foundation. The selected
 synthetic construction is supplied by `Route/Fixed`; this module only defines

@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Right.Transport.Proofs
-import KIP126.Def.ClassicalAdams.TowerLayer.Mapping.Proofs
-import Mathlib.CategoryTheory.Monoidal.CoherenceLemmas
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Right.Transport.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLayer.Mapping.Proofs
+public import Mathlib.CategoryTheory.Monoidal.CoherenceLemmas
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

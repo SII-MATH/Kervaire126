@@ -1,8 +1,16 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Literature.Applications
-import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
+module
 
-/-! BHS source specialization and selected-to-completed comparison.
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Interface.Solution.Literature.Applications
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Proofs
+
+@[expose] public section
+
+/-! BHS source theorems, specialization and selected-to-completed comparison.
+
+The source theorems are explicit unfinished proofs on Def's fixed synthetic
+construction and its fixed realization coordinates. Their source-object
+nilpotent-completeness and strong-convergence hypotheses remain explicit.
 
 The source adapters below consume the delivered source statements and retain
 the hypotheses of BHS A.1(2) and cor:tau-surj (Source/BHS/source/SynRevBigraded.tex
@@ -11,16 +19,64 @@ and SynRevAdams.tex). Finite Cλ lifting is intentionally separate.
 The construction theorem uses bounded-below mod-two completion and the
 finite-type sphere, its actual ν cofiber, the identified connective tmf,
 and their shifts. The image and divisibility comparisons are internal
-proof obligations. The standard classical sphere is already derived 2-complete. The generic
+proof obligations. The standard classical sphere is specified as the derived
+2-completion; its construction and applicability proofs remain unfinished. The generic
 comparison language retains actual completion maps without identifying an
 arbitrary selected object with its completion by definition.
 No theorem in this file invokes the aggregate Challenge2 production target.
 -/
 namespace KIP126.Interface.Solution.Literature.Route
-open CategoryTheory CategoryTheory.Limits
+open CategoryTheory CategoryTheory.Limits CategoryTheory.MonoidalCategory
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
 open KIP126.Classical.Adams KIP126.Synthetic.Context KIP126.Kervaire.Route
 open KIP126.Literature.Route
+
+/-- The actual selected ν cofiber has finite mod-two homology, by exact
+tensoring of its sphere triangle. No Hopf detection or literature input is used. -/
+theorem standard_nu_cofiber_finite_mod2_type :
+    FiniteMod2Type standardFoundation.hf2
+      (ClassicalObject.obj (C := standardFoundation.Spectrum)
+        standardRouteModel.auxiliary .nuCofiber) := by
+  let c := KIP126.Def.StageInput.witness
+  letI : KIP126.Foundation.TensorInput c.foundationInput := c.tensorInput
+  letI : (tensorLeft standardFoundation.hf2.HF2).CommShift ℤ :=
+    KIP126.Foundation.TensorInput.leftShift (F := c.foundationInput) _
+  letI : (tensorLeft standardFoundation.hf2.HF2).IsTriangulated :=
+    KIP126.Foundation.TensorInput.leftExact (F := c.foundationInput) _
+  have hs : FiniteMod2Type standardFoundation.hf2 SphereSpectrum :=
+    KIP126.Def.standardSphereFiniteMod2Type
+  exact FiniteMod2Type.of_cofiber
+    (HoCofiberSequence.ofMorphism (C := standardFoundation.Spectrum)
+      standardRouteModel.auxiliary.nuMap) (hs.shift 3) hs
+
+/-- BHS A.1(1),(2), on Def's fixed synthetic construction. Clause (2)
+gives a lift; restriction to every finite quotient and clause (1) give the
+converse. Permanent cycles here may be boundaries or zero. -/
+theorem bhs_permanent_lift_source
+    (X : standardFoundation.Spectrum)
+    (products : HasProductsOfShape ℕ standardFoundation.Spectrum)
+    (hX : BHSObjectApplicability products standardFoundation.hf2.unit X) :
+    BHSPermanentLiftAt standardRouteModel X := by
+  sorry
+
+/-- BHS cor:tau-surj, on the same fixed construction. -/
+theorem bhs_filtration_lambda_source
+    (X : standardFoundation.Spectrum)
+    (products : HasProductsOfShape ℕ standardFoundation.Spectrum)
+    (hX : BHSObjectApplicability products standardFoundation.hf2.unit X) :
+    BHSFiltrationLambdaAt standardRouteModel X := by
+  sorry
+
+/-- BHS A.1(2a),(2b),(3a),(3b), using Def's fixed realization coordinates
+and the canonical convergence identification of this same applicable X. -/
+theorem bhs_realization_source
+    (X : standardFoundation.Spectrum)
+    (products : HasProductsOfShape ℕ standardFoundation.Spectrum)
+    (hX : BHSObjectApplicability products standardFoundation.hf2.unit X)
+    (convergence : TowerDetection.Convergence standardFoundation.hf2.unit X) :
+    BHSRealizationDetectionAt standardRouteModel
+      KIP126.Def.standardRouteBackground.realization X convergence := by
+  sorry
 
 /-- Apply BHS `cor:synth-ctau-ASS` (1),(3) on the same supplied synthetic
 family and positive finite lambda quotient. This projection retains all
@@ -98,7 +154,43 @@ theorem realization_detection_of_completed_sources
     (applicable : BHSCompletionApplicability D Q)
     (comparison : BHSCompletionComparison D Q)
     (realization : BHSRealizationComparison D R Q) : RealizationDetection D R := by
-  sorry
+  constructor
+  · intro X s t r hr x a hx hs ha
+    have h := (source (Q.completed X) Q.products (applicable.source X)
+      (Q.convergence X)).lifetime s t r hr
+      (adamsInternalE2Induced H.unit (Q.map X) (s,t) x)
+      (a ≫ (SyntheticCategory.biShift (0,0)).map (D.nu.functor.map (Q.map X)))
+      ((comparison.permanent_cycles X s t x).mp hx)
+      ((realization.survives_to X s t r x).mp hs)
+      (realization.first_quotient_natural X s t x a ha)
+    intro hz
+    apply h
+    simpa only [lambdaMultiply, Category.assoc, zero_comp] using
+      congrArg (fun z => z ≫ (SyntheticCategory.biShift (0,0)).map
+        (D.nu.functor.map (Q.map X))) hz
+  · intro X s t x a hx ha
+    apply (realization.detection X s t x (realizeNuZero D R X a)).mpr
+    rw [realization.realization_natural]
+    exact (source (Q.completed X) Q.products (applicable.source X)
+      (Q.convergence X)).detection s t
+      (adamsInternalE2Induced H.unit (Q.map X) (s,t) x)
+      (a ≫ (SyntheticCategory.biShift (0,0)).map (D.nu.functor.map (Q.map X)))
+      ((realization.nonzero_survival X s t x).mp hx)
+      (realization.first_quotient_natural X s t x a ha)
+  · intro X s t x α hx hα
+    apply realization.prescribed_lift_reflection X s t x α
+    exact (source (Q.completed X) Q.products (applicable.source X)
+      (Q.convergence X)).prescribed_lift s t
+      (adamsInternalE2Induced H.unit (Q.map X) (s,t) x) (α ≫ Q.map X)
+      ((realization.nonzero_survival X s t x).mp hx)
+      ((realization.detection X s t x α).mp hα)
+  · intro X s t r hr y hy hh
+    apply realization.torsion_lift_reflection X s t (r-1) y
+    exact (source (Q.completed X) Q.products (applicable.source X)
+      (Q.convergence X)).boundary_lift s t r hr
+      (adamsInternalE2Induced H.unit (Q.map X) (s,t) y)
+      ((comparison.permanent_cycles X s t y).mp hy)
+      ((realization.hit_on_page X s t r y).mp hh)
 end Transport
 
 /-- Choose actual completed sources and prove the comparisons needed to return
@@ -111,7 +203,11 @@ This internal producer constructs Q and its comparisons. In the selected
 HF₂-local classical category the chosen sphere, finite Hopf cofiber and
 connective finite-type detector are already local; the identity comparison
 is available after their nilpotent-completeness and convergence are proved.
-No source theorem is inferred for an arbitrary synthetic category here. -/
+No source theorem is inferred for an arbitrary synthetic category here.
+This parameterized construction is broader than the fixed literature delivery;
+it is retained as an internal helper, not a second fixed-model acceptance goal.
+Projecting the fixed delivery's completion fields cannot prove this statement
+for arbitrary `route` and `R`. -/
 theorem bhs_completed_sources
     (route : StandardRouteInput)
     (R : RealizationCoordinates route.model)

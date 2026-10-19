@@ -1,5 +1,10 @@
-import KIP126.Def.SpectralSequence.Truncation.Predicates
-import KIP126.Def.Algebra.Truncation.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Truncation.Predicates
+public import KIP126.Def.Algebra.Truncation.Proofs
+import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # Proofs for nested-subobject filtration truncations

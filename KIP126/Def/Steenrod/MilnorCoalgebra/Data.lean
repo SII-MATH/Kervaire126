@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorCoalgebra.Operations.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Operations.Proofs
+
+@[expose] public section
 
 /-!
 The fixed, coaugmented Milnor coalgebra in integer-graded F₂ vector spaces.

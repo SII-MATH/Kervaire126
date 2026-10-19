@@ -1,4 +1,8 @@
-import KIP126.Interface.Challenge.Challenge2
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+
+@[expose] public section
 
 /-!
 # Development input for Challenge 2

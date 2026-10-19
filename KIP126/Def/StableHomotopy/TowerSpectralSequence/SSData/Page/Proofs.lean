@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.SSData.Page.Data
-import KIP126.Def.SpectralSequence.ModuleQuotient.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.SSData.Page.Data
+public import KIP126.Def.SpectralSequence.ModuleQuotient.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.TowerSpectralSequence
 open CategoryTheory CategoryTheory.Limits KIP126.Core.SpectralSequence

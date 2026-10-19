@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
+
+@[expose] public section
 /-!
 # Page-extension ambiguity conditions
 

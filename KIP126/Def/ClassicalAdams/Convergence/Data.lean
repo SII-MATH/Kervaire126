@@ -1,8 +1,12 @@
-import KIP126.Def.ClassicalAdams.Page.Data
-import KIP126.Def.StableHomotopy.Context.Data
-import KIP126.Def.Algebra.Completion.Data
-import KIP126.Def.Algebra.Filtration.Predicates
-import Mathlib.Algebra.Category.Grp.Abelian
+module
+
+public import KIP126.Def.ClassicalAdams.Page.Data
+public import KIP126.Def.StableHomotopy.Context.Data
+public import KIP126.Def.Algebra.Completion.Data
+public import KIP126.Def.Algebra.Filtration.Predicates
+public import Mathlib.Algebra.Category.Grp.Abelian
+
+@[expose] public section
 
 /-! Chosen classical Adams sequence and convergence data. -/
 namespace KIP126.Classical.Adams

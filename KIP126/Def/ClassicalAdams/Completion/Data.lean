@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Tower.Data
-import KIP126.Def.StableHomotopy.InverseSequence.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Tower.Data
+public import KIP126.Def.StableHomotopy.InverseSequence.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

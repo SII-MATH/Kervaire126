@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.ExtensionSS.Square.Predicates
-import KIP126.Def.SpectralSequence.BoundedExtension.Square.Construction.Data
+module
+
+public import KIP126.Def.Synthetic.ExtensionSS.Square.Predicates
+public import KIP126.Def.SpectralSequence.BoundedExtension.Square.Construction.Data
+
+@[expose] public section
 
 namespace KIP126.Synthetic.SpectralSequence
 

@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Predicates
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Predicates
+
+@[expose] public section
 
 /-!
 # Internal grading of the Milnor coproduct

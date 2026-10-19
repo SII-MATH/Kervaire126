@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Pairing.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Basic.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Pairing.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Basic.Proofs
+
+@[expose] public section
 
 /-!
 The kernel of the first Adams boundary is the equalizer of the two actual unit insertions.

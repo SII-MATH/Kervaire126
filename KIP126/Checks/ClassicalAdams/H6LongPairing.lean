@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Leibniz.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Leibniz.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.H6.Leibniz.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Leibniz.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Generic geometric data and conditional internal Leibniz transport must
 not depend on the fixed sphere foundation or any Lin/Milnor assumption. -/

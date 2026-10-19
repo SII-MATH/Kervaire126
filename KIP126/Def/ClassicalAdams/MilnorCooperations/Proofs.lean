@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.MilnorCooperations.Data
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCooperations.Data
+
+@[expose] public section
 
 /-!
 # Transport of Milnor cocycles to the first Adams page

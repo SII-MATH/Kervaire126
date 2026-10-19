@@ -1,7 +1,11 @@
-import KIP126.Def.Steenrod.MilnorCoalgebra.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Realization.Data
-import KIP126.Def.Algebra.GradedComodule.Tensor.Data
-import Mathlib.LinearAlgebra.TensorProduct.Basic
+module
+
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Realization.Data
+public import KIP126.Def.Algebra.GradedComodule.Tensor.Data
+public import Mathlib.LinearAlgebra.TensorProduct.Basic
+
+@[expose] public section
 
 /-!
 The prescribed terms of the normalized cofree right-comodule resolution.

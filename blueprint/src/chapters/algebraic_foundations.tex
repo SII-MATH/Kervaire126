@@ -6,6 +6,17 @@ the subsequent spectral-sequence constructions.
 
 \subsection{Exact, graded, and derived algebra}
 
+\begin{proposition}[Bounded finite graded tensor products]
+  \label{prop:bounded-finite-graded-tensor}
+  \lean{KIP126.Core.Algebra.gradedTensor_subsingleton_of_lt,KIP126.Core.Algebra.gradedTensor_finite}
+  \uses{def:core-f2}
+  \leanok
+  If integer-graded modules vanish below $a$ and $b$, their Cauchy
+  tensor vanishes below $a+b$. Over a finite commutative ring, if both
+  factors are degreewise finite, so is their Cauchy tensor: in degree $n$
+  only indices $a\le i\le n-b$ can contribute.
+\end{proposition}
+
 \begin{definition}[Graded object]
   \label{def:mathlib-graded-object}
   \lean{CategoryTheory.GradedObject}
@@ -204,6 +215,18 @@ the subsequent spectral-sequence constructions.
   of a monoidal product with distinguished triangles.
 \end{definition}
 
+% SOURCE: Mathlib/CategoryTheory/Triangulated/Triangulated.lean, declarations CategoryTheory.IsTriangulated and CategoryTheory.Triangulated.Octahedron.
+\begin{definition}[Mathlib octahedron axiom]
+  \label{def:mathlib-octahedron}
+  \lean{CategoryTheory.IsTriangulated,CategoryTheory.Triangulated.Octahedron}
+  \mathlibok
+  \uses{def:mathlib-pretriangulated}
+  A triangulated category supplies an octahedron for each composable pair
+  and the three specified distinguished cofiber triangles. Its two new
+  maps satisfy four compatibility squares and form a distinguished triangle.
+  This is additional structure beyond a pretriangulated category.
+\end{definition}
+
 % SOURCE: Mathlib/CategoryTheory/Triangulated/HomologicalFunctor.lean:82, declaration CategoryTheory.Functor.IsHomological.
 \begin{definition}[Mathlib homological functor]
   \label{def:mathlib-homological-functor}
@@ -322,6 +345,183 @@ the subsequent spectral-sequence constructions.
   A symmetric category extends a monoidal category with a symmetric braiding.
   Exactness of tensoring a triangle remains extra project data.
 \end{definition}
+
+\begin{proposition}[Vanishing of the first derived limit for finite groups]
+  \label{prop:finite-inverse-sequence-sub-shift}
+  \lean{KIP126.Core.InverseSequence.surjective_sub_shift_of_finite}
+  \uses{prop:synthetic-ess-coherent-tower-of-finite}
+  \leanok
+  For finite abelian groups $A_n$ and homomorphisms
+  $f_n:A_{n+1}\to A_n$, the homomorphism
+  \[
+    \prod_n A_n\longrightarrow\prod_n A_n,\qquad
+    (x_n)\longmapsto(x_n-f_n(x_{n+1}))
+  \]
+  is surjective. The transition homomorphisms need not be surjective.
+\end{proposition}
+\begin{proof}
+  For any target $(b_n)$ apply finite inverse-system compactness to the
+  affine transition maps $a\mapsto b_n+f_n(a)$. A compatible sequence
+  solves all the required equations.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Derived limits with a uniform constant image]
+  \label{prop:uniform-image-derived-limit}
+  \lean{KIP126.Core.InverseSequence.sub_map_sum_iterate,KIP126.Core.InverseSequence.surjective_sub_of_eventual_range,KIP126.Core.InverseSequence.surjective_sub_shift_of_uniform_constant_image}
+  \leanok
+  For an inverse sequence of abelian groups $G_k$ with compatible maps
+  $i_k:A\to G_k$, assume one fixed iterate of the product shift sends
+  every component into $\operatorname{im}i_k$. Then $1-\mathrm{shift}$
+  on $\prod_kG_k$ is surjective. Neither finiteness nor a splitting of
+  $i_k$ is required.
+\end{proposition}
+\begin{proof}
+  The constant sequence on $A$ has a surjective difference operator.
+  Lift the fixed iterate there and add the finite geometric sum of the
+  original element. Telescoping solves the difference equation.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Explicit Kan fillers for simplicial modules]
+  \label{prop:simplicial-module-kan-fillers}
+  \lean{KIP126.Core.SimplicialModule.lowerCorrection,KIP126.Core.SimplicialModule.upperCorrection,KIP126.Core.SimplicialModule.HornFacesCompatible}
+  \lean{KIP126.Core.SimplicialModule.lowerCorrection_face,KIP126.Core.SimplicialModule.upperCorrection_face,KIP126.Core.SimplicialModule.lowerCorrection_preserves_lower}
+  \lean{KIP126.Core.SimplicialModule.upperCorrection_preserves_lower,KIP126.Core.SimplicialModule.upperCorrection_preserves_upper,KIP126.Core.SimplicialModule.horn_residual_lower}
+  \lean{KIP126.Core.SimplicialModule.horn_residual_upper,KIP126.Core.SimplicialModule.horn_lower_prefix,KIP126.Core.SimplicialModule.horn_faces_fill}
+  \lean{KIP126.Core.SimplicialModule.underlying_isKanComplex}
+  \leanok
+  The underlying simplicial set of every simplicial module over a ring is a Kan complex. In positive dimension, every actual compatible horn admits a simplex with exactly its prescribed faces.
+\end{proposition}
+\begin{proof}
+  Correct faces below the missing face in ascending order by degeneracies, then faces above it in descending order. The simplicial identities and compatibility show that each correction preserves the faces already fixed. A single degeneracy fills a one-dimensional horn. Yoneda identifies this explicit construction with the actual horn-lifting predicate.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Degreewise surjections are actual Kan fibrations]
+  \label{prop:simplicial-module-kan-fibrations}
+  \lean{KIP126.Core.SimplicialModule.kernel_exists_element,KIP126.Core.SimplicialModule.kernel_inclusion_injective,KIP126.Core.SimplicialModule.face_naturality_apply}
+  \lean{KIP126.Core.SimplicialModule.horn_lift_of_degreewise_surjective,KIP126.Core.SimplicialModule.underlying_fibration_of_degreewise_surjective}
+  \uses{prop:simplicial-module-kan-fillers}
+  \leanok
+  Every degreewise surjective simplicial module map has the actual horn lifting property after forgetting the module structure.
+\end{proposition}
+\begin{proof}
+  Lift the prescribed target simplex degreewise. The differences between its faces and the prescribed horn lie in the actual categorical kernel. Fill this compatible kernel horn by the proved Kan construction and add the filler to the chosen lift.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Explicit simplicial principal trivialization]
+  \label{prop:principal-simplex-trivialization}
+  \lean{KIP126.Core.SimplicialModule.principalSimplexMap,KIP126.Core.SimplicialModule.principalSimplexMap_comp,KIP126.Core.SimplicialModule.principalSimplex_isPullback}
+  \lean{KIP126.Core.SimplicialModule.principalSimplexMap_natural_simplex,KIP126.Core.SimplicialModule.principalSimplexIso,KIP126.Core.SimplicialModule.principalSimplexIso_inv_kernel}
+  \lean{KIP126.Core.SimplicialModule.principalSimplexIso_exists_of_degreewise_surjective}
+  \uses{prop:simplicial-module-kan-fibrations}
+  \leanok
+  For a simplicial module map and a chosen lift of a target simplex, its pullback over that simplex is isomorphic to the product of its kernel with the standard simplex. A degreewise surjection supplies such a lift for every simplex.
+\end{proposition}
+\begin{proof}
+  Translate the kernel by the chosen lifted simplex and use subtraction for the inverse. Check the actual pullback projections and restriction along every simplex map.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Finite products and isomorphisms of actual sequential colimits]
+  \label{prop:sequential-colimit-finite-products}
+  \lean{KIP126.Core.DirectLimit.piTransition,KIP126.Core.DirectLimit.piDirectedSystem,KIP126.Core.DirectLimit.piComponent}
+  \lean{KIP126.Core.DirectLimit.piComparison,KIP126.Core.DirectLimit.piComparison_injective,KIP126.Core.DirectLimit.piComparison_surjective}
+  \lean{KIP126.Core.DirectLimit.piComparison_bijective,KIP126.Core.DirectLimit.map_bijective}
+  \leanok
+  The canonical map from a sequential colimit of finite products of monoid systems to the product of their sequential colimits is bijective. A compatible family of levelwise bijections induces a bijection on the sequential colimit.
+\end{proposition}
+\begin{proof}
+  Choose representatives in each factor. Finiteness supplies a common stage for all representatives and for all equalities of representatives. Compatibility then gives both inverse conditions on the actual quotient.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Bilinear hom groups are abelian]
+  \label{prop:bilinear-hom-groups}
+  \lean{KIP126.Foundation.hom_add_comm_of_bilinear,KIP126.Foundation.preadditiveOfBilinearHomGroups}
+  \leanok
+  Group operations on the hom sets of a category that distribute through composition in both variables are necessarily commutative, hence give a preadditive category.
+\end{proposition}
+\begin{proof}
+  Expand $(1+1)\circ(f+g)$ in both orders. Cancel the outer summands of $f+g+f+g=f+f+g+g$ to obtain commutativity.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Scalar invertibility in a sequential direct limit]
+  \label{prop:scalar-invertible-direct-limit}
+  \lean{KIP126.Core.DirectLimit.pow_bijective_of_successor_eq_pow}
+  \leanok
+  For a sequential system of abelian groups, suppose every successive transition factors as a homomorphism followed by multiplication by a fixed natural number $p$. Then multiplication by $p$ is bijective on the actual direct limit.
+\end{proposition}
+\begin{proof}
+  A representative acquires a $p$th root at the next stage by the factor homomorphism. If its $p$-multiple vanishes in the limit, it vanishes at a finite stage; the next transition then kills the original representative. The proof is given multiplicatively for the exact direct-limit quotient.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Scalar orthogonality in an additive category]
+  \label{prop:scalar-orthogonality}
+  \lean{KIP126.Foundation.hom_subsingleton_of_nsmul_id_isIso}
+  \leanok
+  In a preadditive category, if multiplication by a natural number $n$ on $A$ is invertible and multiplication by $n$ on $B$ is zero, then every actual morphism $A\to B$ is zero.
+\end{proposition}
+\begin{proof}
+  Move the scalar through composition and cancel the invertible scalar endomorphism of the source.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Arbitrary products of localizations with right fractions]
+  \label{prop:arbitrary-product-fraction-localization}
+  \lean{KIP126.Foundation.localizationLift_map_rightFraction,KIP126.Foundation.isLocalization_of_rightFractions,KIP126.Foundation.piRightFraction}
+  \lean{KIP126.Foundation.rightFractionComponent,KIP126.Foundation.pi_hasRightCalculusOfFractions,KIP126.Foundation.pi_rightFractionRel_iff}
+  \lean{KIP126.Foundation.rightFractionComponent_map,KIP126.Foundation.pi_isLocalization_of_hasRightCalculus,KIP126.Foundation.discrete_isLocalization_of_hasRightCalculus}
+  \leanok
+  An essentially surjective functor with right-fraction normal forms and the exact common-refinement equality criterion is the localization at its denominators. An arbitrary family of classes with right calculus of fractions has that calculus in the product category. Consequently an arbitrary product of their localization functors is a localization at the pointwise classes. Postcomposition on arbitrary discrete diagrams has the corresponding localization property.
+\end{proposition}
+\begin{proof}
+  Evaluate fractions under the actual localization lift. Their existence and exact equality criterion make that lift full and faithful, and essential surjectivity makes it an equivalence. Assemble coordinate denominators, Ore squares and common refinements to prove the product statements. Transport the product localization across the actual equivalence with discrete diagrams.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Finite support and additive coproduct preservation]
+  \label{prop:additive-coproduct-finite-support-criterion}
+  \lean{KIP126.Foundation.additiveDirectSumCofan,KIP126.Foundation.additiveDirectSumCofan_isColimit,KIP126.Foundation.finiteCofan_exists_sum}
+  \lean{KIP126.Foundation.preservesCoproduct_of_finite_support}
+  \leanok
+  The actual algebraic direct sum is the categorical coproduct of its abelian groups. An additive functor from a preadditive category to abelian groups preserves a given small coproduct if every element in its image comes from an actual finite subcoproduct via the specified inclusions.
+\end{proposition}
+\begin{proof}
+  Coordinate projections prove injectivity of the direct-sum comparison. Additivity preserves finite coproducts; the finite biproduct identity and the assumed finite factorization prove surjectivity. The resulting actual comparison isomorphism transfers the coproduct universal property.
+  \leanok
+\end{proof}
+
+\begin{proposition}[Actual direct-sum differences and sequential colimits]
+  \label{prop:actual-direct-sequence-difference-colimit}
+  \lean{KIP126.Foundation.directSequenceSum,KIP126.Foundation.directSequenceSumInclusion,KIP126.Foundation.directSequenceDifference}
+  \lean{KIP126.Foundation.directSequenceCokernelCocone,KIP126.Foundation.directSequenceDifference_mono,KIP126.Foundation.directSequenceCokernelCocone_isColimit}
+  \lean{KIP126.Foundation.directSequenceSumCofan,KIP126.Foundation.sequenceCokernelCocone,KIP126.Foundation.directSequenceSumCofan_isColimit}
+  \lean{KIP126.Foundation.directSequenceSumInclusion_difference,KIP126.Foundation.sequenceDifference_mono_of_isColimit,KIP126.Foundation.sequenceCokernelCocone_isColimit}
+  \lean{KIP126.Foundation.directSequenceShift,KIP126.Foundation.directSequenceOneSubShift,KIP126.Foundation.directSequenceShift_zero}
+  \lean{KIP126.Foundation.directSequenceShift_succ,KIP126.Foundation.directSequenceOneSubShift_injective}
+  \leanok
+  For any sequence of abelian groups, one minus the forward shift on its actual direct sum is injective, and its actual cokernel is the colimit of the original sequence. The coordinate description transports injectivity to any specified coproduct cofan. In every preadditive category, an actual cokernel of the coordinate difference on an actual sequence coproduct has the original sequence colimit universal property.
+\end{proposition}
+\begin{proof}
+  Solve the vanishing difference equation coordinate by coordinate. The direct-sum universal property identifies maps killing the adjacent differences with compatible stage maps. The actual cokernel universal property then gives precisely the sequence colimit, and the unique coproduct comparison transports these results to the specified cocone.
+  \leanok
+\end{proof}
+
+\begin{proposition}[The additive coproduct specified by a module basis]
+  \label{prop:basis-additive-coproduct}
+  \lean{KIP126.Foundation.basisAdditiveCofan,KIP126.Foundation.basisAdditiveCofan_isColimit}
+  \leanok
+  A specified module basis over the prime field gives an actual coproduct cocone of its additive coefficient groups with the original basis-vector maps.
+\end{proposition}
+\begin{proof}
+  Use finite basis coordinates to construct the universal additive map, and prove uniqueness from the same basis expansion.
+  \leanok
+\end{proof}
 
 \subsection{Filtered objects and complexes}
 

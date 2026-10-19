@@ -1,8 +1,13 @@
-import KIP126.Def.StableHomotopy.Implementation.Data
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz
-import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald
-import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Data
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedLeibniz.Predicates
+public import KIP126.Def.Kervaire.Route.Tools.GeneralizedMahowald.Predicates
+public import KIP126.Def.Kervaire.Route.Tools.PageExtensionStretching.Predicates
+public import Lean.Elab.Command
+
+@[expose] public section
+
 
 /-! Foundation and paper-tool statements must not consume computed facts or
 stage axioms. Defining a law is not a proof that the chosen model satisfies it. -/

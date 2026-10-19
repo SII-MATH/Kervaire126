@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Data
-import KIP126.Def.ClassicalAdams.Tower.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Data
+public import KIP126.Def.ClassicalAdams.Tower.Data
+
+@[expose] public section
 
 /-! The free-action unit law does not require Adams pages or tower exactness. -/
 

@@ -1,8 +1,12 @@
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Data
-import KIP126.Def.ClassicalAdams.TowerLayer.Data
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Pairing.Data
-import KIP126.Def.StableHomotopy.Context.TensorPairing.Data
-import Mathlib.CategoryTheory.Monoidal.Mon
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Data
+public import KIP126.Def.ClassicalAdams.TowerLayer.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Pairing.Data
+public import KIP126.Def.StableHomotopy.Context.TensorPairing.Data
+public import Mathlib.CategoryTheory.Monoidal.Mon
+
+@[expose] public section
 
 /-!
 # Multiplication on the actual Adams stages and first groups

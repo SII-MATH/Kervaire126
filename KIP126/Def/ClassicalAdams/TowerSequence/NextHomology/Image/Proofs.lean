@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerSequence.NextHomology.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSequence.NextHomology.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

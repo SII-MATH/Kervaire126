@@ -1,5 +1,7 @@
 \section{Finite Adams presentations and coordinate conditions}
 \label{chap:computation-schema}
+% Certificate support now lives in KIP126/LinProgram/Certificates and Tactic.
+% The native comparison now uses an untruncated source and one global map.
 
 Finite generator, relation, and basis tables describe graded algebras and
 coordinate expressions. To obtain conclusions about Adams spectral sequences,
@@ -13,6 +15,7 @@ mathematical objects and conditions.
 \begin{definition}[Finite basis multiplication table]
   \label{def:adams-e2-basis-table}
   \lean{KIP126.AdamsE2.Table}
+  \leanok
   \uses{def:classical-adams-e2-e3-shape-slice}
   A table specifies a finite set $D$ of bidegrees containing $(0,0)$,
   dimensions $n(p)$ for $p\in D$, coordinates for the unit, and coefficients
@@ -24,6 +27,7 @@ mathematical objects and conditions.
 \begin{definition}[Algebra presented by a multiplication table]
   \label{def:adams-e2-table-model}
   \lean{KIP126.AdamsE2.Table.Model,KIP126.AdamsE2.Table.piece}
+  \leanok
   \uses{def:adams-e2-basis-table}
   Introduce a generator $X_{p,i}$ of degree $p$ for each recorded basis
   index.  Let $A_T$ be the polynomial algebra over $\mathbb F_2$ modulo
@@ -39,6 +43,7 @@ mathematical objects and conditions.
 \begin{definition}[Presentation of the actual $E_2$ page]
   \label{def:adams-e2-table-presentation}
   \lean{KIP126.AdamsE2.PageAlgebra,KIP126.AdamsE2.Presentation,KIP126.AdamsE2.Input}
+  \leanok
   \uses{def:adams-e2-table-model,def:classical-adams-e2-e3-shape-slice}
   Fix an existing mod--$2$ Adams-shaped spectral sequence $E$ and a
   degree-preserving commutative algebra structure on the direct sum of its
@@ -53,11 +58,13 @@ mathematical objects and conditions.
 \begin{lemma}[Transporting a table product to the page]
   \label{lem:adams-e2-table-product}
   \lean{KIP126.AdamsE2.Table.generator_mul,KIP126.AdamsE2.Presentation.basis_mul}
+  \leanok
   \uses{def:adams-e2-table-presentation}
   Under a supplied presentation, every covered table relation is an
   equality for the actual $E_2$ multiplication on the specified basis.
 \end{lemma}
 \begin{proof}
+  \leanok
   The polynomial relation is zero in the quotient model.  Apply the
   presentation's algebra homomorphism and use injectivity of the inclusion
   of the target component into the direct sum.
@@ -66,6 +73,7 @@ mathematical objects and conditions.
 \begin{definition}[Classes represented by a table]
   \label{def:adams-e2-imported-h6}
   \lean{KIP126.AdamsE2.Input.h6,KIP126.AdamsE2.Input.h6Square}
+  \leanok
   \uses{def:adams-e2-table-presentation}
   If the table contains $(1,64)$ with dimension one, define $h_6$ as the
   image of its sole basis vector.  Define $h_6^2$ using the actual page
@@ -77,6 +85,7 @@ mathematical objects and conditions.
 \begin{lemma}[Three-cell illustration]
   \label{lem:adams-e2-three-cell-example}
   \lean{KIP126.Examples.AdamsE2Table.x_mul_x,KIP126.Examples.AdamsE2Table.y_ne_zero,KIP126.Examples.AdamsE2Table.x_mul_y_ne_zero,KIP126.Examples.AdamsE2Table.imported_h6_square_ne_zero}
+  \leanok
   \uses{def:adams-e2-imported-h6,lem:adams-e2-table-product}
   Consider the illustrative table with one-dimensional cells at $(0,0)$,
   $(1,64)$ and $(2,128)$, with unit and $x^2=y$.  In its model, $y\ne0$
@@ -85,6 +94,7 @@ mathematical objects and conditions.
   This is not a claim that the illustration is actual sphere Adams data.
 \end{lemma}
 \begin{proof}
+  \leanok
   Map the model to $\mathbb F_2[X]$ by $x\mapsto X$, $y\mapsto X^2$
   and the unit generator to $1$.  All table relations vanish, whereas
   $X^2$ and $X^3$ are nonzero.  On the actual page, the table product is
@@ -94,13 +104,23 @@ mathematical objects and conditions.
 
 \begin{lemma}[Finite source-table certificates]
   \label{lem:lin-e2-finite-source-certificates}
+  \lean{KIP126.LinE2.BasisCertificates.zero_unique}
+  \lean{KIP126.LinE2.RelationCertificates.theta_massey_h5_mul_85_zero,KIP126.LinE2.RelationCertificates.theta_massey_h5_mul_84_zero,KIP126.LinE2.RelationCertificates.theta_massey_h5_mul_69_zero}
   \lean{KIP126.LinE2.BasisCertificates.NuLow.nu_low,KIP126.LinE2.BasisCertificates.ThreeCoordinates.three_coordinates,KIP126.LinE2.RelationCertificates.relation_member0,KIP126.LinE2.RelationCertificates.relation_member1,KIP126.LinE2.RelationCertificates.relation_member2,KIP126.LinE2.RelationCertificates.relation_member3,KIP126.LinE2.RelationCertificates.relation_member4,KIP126.LinE2.RelationCertificates.relation_member5,KIP126.LinE2.RelationCertificates.relation_member6,KIP126.LinE2.RelationCertificates.relation_member7,KIP126.LinE2.RelationCertificates.relation_member8,KIP126.LinE2.RelationCertificates.relation_member9,KIP126.LinE2.RelationCertificates.relation_member10,KIP126.LinE2.RelationCertificates.relation_member11,KIP126.LinE2.RelationCertificates.relation_member12,KIP126.LinE2.RelationCertificates.relation_member13,KIP126.LinE2.RelationCertificates.pq_neg_eq_self,KIP126.LinE2.RelationCertificates.pq_relation0,KIP126.LinE2.RelationCertificates.pq_relation1,KIP126.LinE2.RelationCertificates.pq_relation2,KIP126.LinE2.RelationCertificates.pq_relation3,KIP126.LinE2.RelationCertificates.h0_obstruction_rel0,KIP126.LinE2.RelationCertificates.h0_obstruction_rel1,KIP126.LinE2.RelationCertificates.h0_obstruction_rel2,KIP126.LinE2.RelationCertificates.h0_obstruction_rel3,KIP126.LinE2.RelationCertificates.h0_obstruction_mon0,KIP126.LinE2.RelationCertificates.h0_obstruction_mon1,KIP126.LinE2.RelationCertificates.h0_obstruction_mon2,KIP126.LinE2.RelationCertificates.h0_obstruction_mon3,KIP126.LinE2.RelationCertificates.h0_obstruction_mon4,KIP126.LinE2.RelationCertificates.h0_obstruction_monT,KIP126.LinE2.RelationCertificates.h0_obstruction_monTarget2,KIP126.LinE2.RelationCertificates.h2_obstruction_rel0,KIP126.LinE2.RelationCertificates.h2_obstruction_rel1,KIP126.LinE2.RelationCertificates.h2_obstruction_rel2,KIP126.LinE2.RelationCertificates.h2_obstruction_mon0,KIP126.LinE2.RelationCertificates.h2_obstruction_mon1,KIP126.LinE2.RelationCertificates.h2_obstruction_mon2,KIP126.LinE2.RelationCertificates.h2_obstruction_monT}
   \uses{def:lin-e2-catalogue}
   \leanok
   The pinned basis tables have the recorded low-filtration and selected
-  three-coordinate entries. The specified relation rows belong to the
+  three-coordinate entries. Every basis row in degree $(0,0)$ has the
+  empty monomial code, representing the unit, and there is no row in
+  degree $(2,3)$. The latter uses the existing low-degree certificate.
+  These checks share the original character rows and parsing proofs;
+  no duplicate basis table is introduced for Section~7.
+  The specified relation rows belong to the
   pinned relation table and yield the stated equations in its presented
-  algebra. These assertions concern the source artifacts and their own
+  algebra. In particular, the products of generator $18$ with generators
+  $85$, $84$, and $69$ vanish there. These certificates share one checked
+  transcription of the source chunk with the existing relation certificates.
+  These assertions concern the source artifacts and their own
   algebraic interpretation. They do not identify this presentation with an
   actual Adams page or certify a differential on that page.
 \end{lemma}
@@ -111,12 +131,95 @@ mathematical objects and conditions.
   \leanok
 \end{proof}
 
+\subsection{Untruncated native algebra and the fixed global target}
+
+\begin{definition}[The quotient by original native relations only]
+  \label{def:lin-e2-native-algebra}
+  \lean{KIP126.LinE2.NativeAlgebra,KIP126.LinE2.nativeProjection,KIP126.LinE2.NativeAt}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  Let $A=\mathbb F_2[x_0,\ldots,x_{2913}]/I$, where $I$ is generated
+  by all 231848 original relation polynomials. No additional relation
+  sets monomials of internal degree above $261$ to zero. Its degree
+  $(s,t)$ part is the image of the weighted homogeneous polynomials.
+  It is a data algebra and does not assert a sphere comparison.
+\end{definition}
+
+\begin{theorem}[Native grading and low-degree truncation equivalence]
+  \label{thm:lin-e2-truncation-comparison}
+  \lean{KIP126.LinE2.csv_relation_isWeightedHomogeneous,KIP126.LinE2.nativeIdeal_isHomogeneous,KIP126.LinE2.nativeGradedAlgebra,KIP126.LinE2.nativeProjectionGraded,KIP126.LinE2.truncate,KIP126.LinE2.truncateAtEquiv,KIP126.LinE2.nativeHomogeneousPart_eq_span,KIP126.LinE2.truncate_basisRowAt}
+  \uses{def:lin-e2-native-algebra}
+  \leanok
+  All original relations are homogeneous for the recorded generator
+  bidegrees. Their quotient $A$ is genuinely bigraded. The natural
+  quotient $q:A\to D$ induces linear equivalences
+  $A^{s,t}\simeq_{\mathbb F_2}D^{s,t}$ for every $s,t\in\mathbb N$
+  with $t\le261$, compatible with the native monomials and with every
+  product whose total internal degree is at most $261$.
+\end{theorem}
+\begin{proof}
+  Check the original relation list in the Lean kernel. Homogeneous
+  components descend through the homogeneous relation ideal. By
+  nonnegative grading, the high-degree ideal has zero homogeneous
+  components through $261$; thus it introduces no new low-degree
+  relations. This proof uses neither a basis-table correctness input
+  nor a comparison with actual Adams pages.
+  \leanok
+\end{proof}
+
+\begin{lemma}[The square remains nonzero without the artificial cutoff]
+  \label{lem:lin-native-square-nonzero}
+  \lean{KIP126.LinE2.SquareDetection.nativeDetector,KIP126.LinE2.SquareDetection.native_h6_square_ne_zero,KIP126.LinE2.SquareDetection.truncate_h6_square}
+  \uses{def:lin-e2-native-algebra,def:lin-square-detector,prop:lin-square-detector-sound,thm:lin-square-certified}
+  \leanok
+  In $A$, the square of native generator 69 is nonzero. The original
+  detector kills every original CSV relation and hence descends to $A$;
+  it sends that square to the same nonzero detector element. Under
+  $q:A\to D$, this is the existing value \texttt{dataH6Sq}.
+  No actual-page nonvanishing or permanent survival follows yet.
+\end{lemma}
+
+\begin{lemma}[All selected native word certificates in the untruncated algebra]
+  \label{lem:lin-naturality-words200-native}
+  \lean{KIP126.LinModule.NativeWordCertificate.check_sound_evaluate,KIP126.LinModule.NaturalityWords200.entry_native_evaluate,KIP126.LinModule.NaturalityWords200.zero_native_evaluate,KIP126.LinModule.NaturalityWords200.entry_truncate_compatible,KIP126.LinModule.NaturalityWords200.native_source_ids,KIP126.LinModule.NaturalityWords200.native_entry_count}
+  \uses{def:lin-e2-native-algebra,lem:lin-naturality-words200}
+  \leanok
+  The same 15951 selected Ceta-to-sphere free-word evaluations, with
+  native IDs $2,\ldots,15952$ and internal degrees through 200, equal
+  the same fixed target-coordinate expressions in $A$. The proof
+  reinterprets the original relation-combination witnesses, using their
+  membership in the original relation list. It does not infer an
+  $A$-equality from an equality in $D$. Applying $q$ to both sides
+  recovers exactly the old evaluations and catalogue values.
+  Full Ceta quotient descent and actual-map comparison remain separate;
+  this does not make $A$ into a module over the old truncated $D$.
+\end{lemma}
+
+\begin{definition}[The fixed global sphere second-page algebra]
+  \label{def:sphere-global-e2-algebra}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.ActualE2Total,KIP126.Classical.Adams.Sphere.Internal.embed,KIP126.Classical.Adams.Sphere.Internal.actualE2Product}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.actualE2_one_mul,KIP126.Classical.Adams.Sphere.Internal.actualE2_mul_assoc,KIP126.Classical.Adams.Sphere.Internal.actualE2_mul_comm}
+  \uses{prop:milnor-cobar-internal-e2,prop:milnor-cobar-cup-descent,prop:milnor-cobar-cup-commutator,def:hf2-adams-tower}
+  \notready
+  Form $T=\bigoplus_{(s,t)\in\mathbb N^2}E_2^{s,t}(S^0)$ on the
+  same fixed actual page groups. Transport the $\mathbb F_2$ action
+  and cobar cup product through the fixed Milnor comparison, independently
+  of all Lin data. The unit is the class of the sphere identity.
+  Unit and associativity laws are named mathematical obligations.
+  Commutativity is derived from the explicit cobar commutator-boundary
+  obligation in Proposition~\ref{prop:milnor-cobar-cup-commutator};
+  cochain concatenation is not itself assumed commutative. Until those dependencies are closed, the packaged
+  algebra and its consumers remain conditional. The fixed foundation
+  and Milnor cooperations also retain their existing unfinished
+  fixed-implementation dependencies.
+\end{definition}
+
 \subsection{Coordinates on the fixed Adams pages}
 
 \begin{definition}[Shared sphere, cofiber, and tmf coordinates]
   \label{def:computation-fixed-bindings}
   \lean{KIP126.Classical.Adams.LinE2Presentation,KIP126.Computation.Route.Realization,KIP126.Classical.Adams.Tmf.E2Presentation,KIP126.Challenge2.ComputationBindings.routeLabels}
-  \uses{def:classical-adams-ss,def:h6-milnor-cooperations,def:hf2-adams-tower,def:adams-hj,def:lin-e2-catalogue}
+  \uses{def:classical-adams-ss,def:h6-milnor-cooperations,def:hf2-adams-tower,def:adams-hj,def:lin-e2-catalogue,thm:lin-e2-truncation-comparison,def:sphere-global-e2-algebra}
   \notready
   Fix the mod--$2$ object $H$ and Milnor cooperations $M$ of
   Definition~\ref{def:h6-milnor-cooperations}, the sphere Adams tower
@@ -125,21 +228,30 @@ mathematical objects and conditions.
   $C\nu=\operatorname{cofib}(\nu)$. All pages below are the actual
   $H$-unit Adams pages of these objects.
 
-  Write $A^{s,t}=\mathrm{LinE2.E2At}(s,t)$ for the homogeneous part of
-  the fixed sphere generator--relation quotient, and $|x|$ for its
-  underlying quotient value. A bounded presentation $P$ gives
-  integer-linear equivalences
+  Write $A=\mathrm{LinE2.NativeAlgebra}$ for the quotient by all original
+  CSV relations only, and $D=\mathrm{LinE2.E2}$ for its legacy truncation.
+  Put $D^{s,t}=\mathrm{LinE2.E2At}(s,t)$. A presentation $P$ supplies
+  one global graded $\mathbb F_2$-algebra homomorphism
   \[
-    P_{s,t}:A^{s,t}\simeq_{\mathbb Z}E_2^{s,t}(S^0),
-       \qquad s,t\in\mathbb N,\quad t\le261,
+    F:A\longrightarrow T=\bigoplus_{(s,t)\in\mathbb N^2}E_2^{s,t}(S^0),
   \]
-  and a bilinear operation $P.\operatorname{product}$ in sum degrees
-  satisfying the same bound. Also fix coordinate equivalences
+  bijective on each component with $t\le261$. All $s\in\mathbb N$
+  are quantified, including degrees with empty native tables.
+  The canonical quotient $q:A\to D$ has proved component equivalences
+  $q_{s,t}$ in that range. The compatibility API is the derived map
+  \[
+    P_{s,t}=F_{s,t}\circ q_{s,t}^{-1}:
+      D^{s,t}\simeq_{\mathbb Z}E_2^{s,t}(S^0).
+  \]
+  The operation $P.\operatorname{product}$ is the fixed actual product
+  defining $T$, independent of $P$. Its data compatibility follows from
+  the global map; it is no longer an independent presentation field.
+  Also fix coordinate equivalences
   $\chi_{s,t}:E_2^{s,t}(S^0)\cong
   (\mathrm{BasisIndex}(s,t)\to_0\mathbb F_2)$ over this range;
   their compatibility with the specified monomial values is a separate
   assertion. Fix linear maps
-  $R_{s,t}:A^{s,t}\to E_2^{s,t}(S^0)$ and vectors
+  $R_{s,t}:D^{s,t}\to E_2^{s,t}(S^0)$ and vectors
   $R_{o,s,t,i}\in E_2^{s,t}(o)$ for $o=S^0,C\nu$, indexed by the
   selected degree and monomial lists. Equality of $R$ with $P$, and the
   basis and multiplication properties of these vectors, are separate
@@ -163,11 +275,31 @@ mathematical objects and conditions.
 
   Write $C_X^{s,t}$ for the actual second-cycle group of the $H$-Adams
   tower of $X$, and $[a]$ for its image in $E_2^{s,t}(X)$.
-  The prescribed sphere first-layer product, the Milnor/cobar product,
-  and $P.\operatorname{product}$ are distinct operations until their
-  displayed comparisons are proved. Write $\mathcal R_H$ for the
+  The operation $P.\operatorname{product}$ is the fixed transported
+  Milnor/cobar product. Its comparison with the prescribed sphere
+  first-layer product remains a separate mathematical obligation. Write $\mathcal R_H$ for the
   specified mod--$2$ ring structure on $H$.
 \end{definition}
+
+\begin{lemma}[Low-degree sphere consequences of the common computation delivery]
+  \label{lem:computation-sphere-low-degrees}
+  \lean{KIP126.Main.Solution.Computation.sphere_eta_nonzero_unique,KIP126.Main.Solution.Computation.sphere_e2_two_three_subsingleton,KIP126.Main.Solution.Computation.sphere_zero_nonzero_unique}
+  \uses{def:computation-fixed-bindings,thm:computation-route-basis,thm:computation-sphereBasis-csv-values,lem:lin-e2-finite-source-certificates}
+  \notready
+  On the fixed sphere, the nonzero elements of each of
+  $E_2^{1,2}(S^0)$ and $E_2^{0,0}(S^0)$ are unique: if $x,y$ are
+  nonzero in either of these groups, then $x=y$. Also
+  $E_2^{2,3}(S^0)=0$.
+
+  For $(1,2)$ the selected-degree basis already identifies the actual
+  page with $\mathbb F_2$, so no full-table query is needed. For $(2,3)$
+  use the existing empty-degree certificate and the delivered full-range
+  coordinates. For $(0,0)$ the unit-monomial certificate and the same
+  coordinate/value comparison show uniqueness. All three arguments take
+  one common delivery as a parameter; they introduce no axiom or additional
+  delivery field. Their deductions are implemented, while the fixed model
+  and the assumed computation delivery retain their unfinished obligations.
+\end{lemma}
 
 \begin{theorem}[Bounded actual sphere multiplication comparison]
   \label{thm:bounded-sphere-multiplication}
@@ -176,7 +308,8 @@ mathematical objects and conditions.
   \lean{KIP126.Interface.Solution.sphereMultiplicativeInterface}
   \uses{def:hf2-adams-tower,def:lin-e2-catalogue}
   \notready
-  There is a bounded presentation $P$ on the fixed sphere Adams
+  There is a global graded presentation $P$, bijective through internal
+  degree $261$, on the fixed sphere Adams
   sequence whose coordinate unit maps to the second-cycle class of the
   sphere identity. For all $s,t,s',t'\in\mathbb N$ with
   $t+t'\le261$ and all actual second-cycle representatives $a,b$ in
@@ -192,9 +325,190 @@ mathematical objects and conditions.
   It quantifies over all representatives. The condition for a specified
   $P$ is Theorem~\ref{thm:computation-sphereMultiplicative}.
   This existence theorem remains unproved. It supplies neither a
-  higher-page Leibniz rule, a product outside the bound, nor a comparison
-  with the cobar cup product.
+  higher-page Leibniz rule nor a tower-pairing comparison outside the
+  bound. The global target product itself is fixed from cobar cup.
 \end{theorem}
+
+\begin{proof}
+  \uses{prop:lin-native-quotient-comparison,prop:lin-native-actual-product}
+  \notready
+  Construction plan: use the component equivalences of
+  Proposition~\ref{prop:lin-native-quotient-comparison} followed by the
+  comparison with the same fixed sphere. Supply the product in every
+  nonnegative bidegree from the cobar product transported to the actual
+  page, and prove the bounded comparison using
+  Proposition~\ref{prop:lin-native-actual-product}. The latter must also
+  identify the unit and the prescribed first-layer product on all actual
+  representatives. This plan has not yet constructed the presentation.
+\end{proof}
+
+\subsection{Constructing the fixed native sphere presentation}
+\label{sec:lin-native-presentation-construction}
+
+The following nodes refine the construction of $P$ in
+Definition~\ref{def:computation-fixed-bindings}. They are open proof
+obligations, not additional inputs to Challenge2. In particular, recovering
+all native representatives is still to be established. The data algebra,
+truncation compatibility and global presentation contract are implemented
+separately; they do not close these actual comparison obligations. All comparisons use the existing
+literature bindings, Milnor cooperations, and fixed sphere tower; the
+construction must not read $P$ back from the delivery it is meant to produce.
+
+\begin{definition}[Native resolution and representative specification]
+  \label{def:lin-native-representative-specification}
+  \uses{def:lin-e2-catalogue,def:steenrod-ext}
+  \notready
+  Write $\mathcal A$ for the Steenrod algebra and $k=\mathbb F_2$.
+  The native data to recover specify graded free $\mathcal A$-modules
+  $R^{\mathrm{nat}}_s$, their differential $\partial$, and an augmentation
+  to $k$. Define the cochain spaces
+  $C^{s,t}=\operatorname{Hom}_{\mathcal A}
+    (R^{\mathrm{nat}}_s,k[t])$, with coboundary $d$ induced by $\partial$.
+  For every one of the $2914$ fixed algebra-generator records $x_i$ of
+  degree $(s_i,t_i)$, specify a deterministically decoded cochain
+  $c_i\in C^{s_i,t_i}$ and its exact native record correspondence.
+  Resolution-basis identifiers, algebra-generator identifiers, and local
+  additive-basis indices must remain distinct.
+
+  This specification does not assert that the required records have all
+  been recovered, that $\partial^2=0$, or that $dc_i=0$. Identify the actual
+  native resolution and encoding before instantiating it; missing records
+  require explicit reconstruction witnesses. Record provenance in the
+  existing external-input manifest and replay details in the existing
+  certificate audit, rather than introducing another source registry.
+\end{definition}
+
+\begin{proposition}[Correctness of the native resolution]
+  \label{prop:lin-native-resolution-correct}
+  \uses{def:lin-native-representative-specification}
+  \notready
+  The specified native differentials are homogeneous $\mathcal A$-linear
+  maps, satisfy $\partial^2=0$ and the augmentation equation, and give an
+  augmented projective resolution of $k$ in every degree needed below.
+  In particular, at each required term the kernel equals the image of the
+  preceding incoming differential, including exactness at the augmentation.
+  Consequently $H^{s,t}(C)$ computes
+  $\operatorname{Ext}_{\mathcal A}^s(k,k[t])$ for every $s,t\in\mathbb N$
+  with $t\le261$.
+
+  Certify projectivity from the specified free terms and exactness by
+  checked algebraic witnesses. A finite computation must include the
+  incoming and outgoing terms needed to compute each claimed cohomology
+  group; an archive cutoff cannot be treated as a zero differential.
+  If only a bounded fragment is recovered, prove a comparison with a
+  genuine resolution, with explicit degree coverage. All $s\in\mathbb N$
+  remain in the target: degrees outside the finite records need a proved
+  vanishing or coverage argument. Square-zero alone is insufficient.
+\end{proposition}
+
+\begin{proposition}[Uniform native generator classes and products]
+  \label{prop:lin-native-generator-classes}
+  \uses{prop:lin-native-resolution-correct}
+  \notready
+  For every fixed generator index $i$, the decoded representative obeys
+  $dc_i=0$ in its recorded bidegree. Construct graded unital,
+  associative, commutative products on the covered groups $H^{s,t}(C)$,
+  agreeing with the Ext product whenever the sum internal degree is at
+  most $261$. Supply cycle representatives for evaluations of all covered
+  generator monomials, with unit and generator cases fixed by $1$ and $c_i$.
+
+  The proof should use a uniform checker for the native cochain equations
+  and, where products require resolution lifts or comparison maps,
+  certify those maps and their cochain equations as well. Multiplying
+  strings or coefficients is not by itself a cochain product. This step
+  determines classes from native representatives, without first assigning
+  paper names to the generators.
+\end{proposition}
+
+\begin{proposition}[Native cohomology comparison with the fixed sphere]
+  \label{prop:lin-native-actual-comparison}
+  \uses{prop:lin-native-generator-classes,thm:cobar-derived-comodule-ext-comparison,thm:milnor-coefficient-module-comparison,prop:milnor-cobar-internal-e2}
+  \notready
+  For every $s,t\in\mathbb N$ with $t\le261$, construct integer-linear
+  equivalences
+  \[
+    \Phi_{s,t}:H^{s,t}(C)\simeq_{\mathbb Z}E_2^{s,t}(S^0)
+  \]
+  on the fixed sphere, with formulas on all cocycle representatives.
+  Compare the native resolution with the prescribed coefficient resolution,
+  then use the module/comodule and cobar comparisons above. The comparison
+  between these two resolutions must itself be constructed and checked;
+  the generic existence statements are not a native coordinate certificate.
+  For every generator set $\alpha_i=\Phi_{s_i,t_i}([c_i])$.
+  This is a single uniform assignment, preserving the recorded bidegrees.
+
+  The representative formula must be independent of boundary choices and
+  apply to every cocycle in the covered degrees, not just the selected
+  generators. The generic comparison obligations and fixed-model
+  foundations remain dependencies. Multiplicativity with the actual tower
+  pairing is a separate obligation below.
+\end{proposition}
+
+\begin{proposition}[Descent and bijectivity of the native quotient comparison]
+  \label{prop:lin-native-quotient-comparison}
+  \uses{prop:lin-native-generator-classes,prop:lin-native-actual-comparison,thm:lin-e2-basis-certification,def:lin-e2-native-algebra,def:sphere-global-e2-algebra,thm:lin-e2-truncation-comparison}
+  \notready
+  Put $A=\mathrm{LinE2.NativeAlgebra}$, with only the original CSV
+  relations, and use the fixed untruncated target algebra
+  $T=\bigoplus_{(s,t)\in\mathbb N^2}E_2^{s,t}(S^0)$.
+  Evaluation $x_i\mapsto\alpha_i$ descends to a global graded
+  $\mathbb F_2$-algebra homomorphism $F:A\to T$, with
+  \[
+    F_{s,t}:A^{s,t}\simeq_{\mathbb F_2}E_2^{s,t}(S^0)
+      \qquad(s,t\in\mathbb N,\ t\le261).
+  \]
+  For each original CSV relation, give a cochain witness that its
+  evaluated cycle is a boundary, or derive one using a proved general
+  rule. No high-degree monomial is forced to vanish merely by the
+  archive cutoff. The universal property then supplies the global map;
+  it does not require enumerating an infinite high-degree basis.
+
+  Prove that the images of the specified basis monomials span and are
+  linearly independent in the actual groups throughout $t\le261$,
+  including empty-table degrees and all filtrations. Neither matching
+  dimensions nor the data-side basis theorem proves these assertions.
+  Bijectivity is not required above $261$. The same $F$, together with
+  the proved low-degree equivalences of $q:A\to D$, gives the legacy
+  coordinate comparison $P_{s,t}=F_{s,t}\circ q_{s,t}^{-1}$.
+\end{proposition}
+
+\begin{proposition}[Native product comparison on actual representatives]
+  \label{prop:lin-native-actual-product}
+  \uses{prop:lin-native-actual-comparison,prop:milnor-cobar-cup-descent,def:hf2-adams-tower}
+  \notready
+  The native-to-cobar comparison preserves the unit and every product of
+  sum internal degree at most $261$. Let $\star$ on the actual internal
+  second page be the transported cobar product, defined in all nonnegative
+  input bidegrees. For every $s,t,s',t'\in\mathbb N$ with $t+t'\le261$
+  and all actual second-cycle representatives $a,b$, the prescribed
+  first-layer product $\mu_1(a,b)$ is a second cycle $z$ and
+  \[
+    [z]=[a]\star[b].
+  \]
+  The transported cobar unit equals the actual second-cycle class of the
+  sphere identity. Prove these comparisons on the specified chain and
+  tower maps before passing to quotient classes; additive equivalences
+  alone do not establish them.
+
+  The compatibility definition $P.\operatorname{product}=\star$ is
+  fixed independently of $P$. Global multiplicativity of $F$ does not
+  discharge the stated comparison with actual tower representatives.
+  No higher-page product or differential follows from this step.
+\end{proposition}
+
+The construction is owned by the existing layers: native decoding and local
+certificates in LinProgram, reusable resolution and comparison mathematics
+in Def, and the assembly on the fixed sphere in Interface/Solution.
+The existing presentation type and the acceptance statements in
+Section~\ref{chap:computed-inputs} remain the targets; these nodes do not
+introduce new delivery fields or parallel witnesses. After constructing the
+same $P$, the data-basis theorem can supply its coordinate interface via
+Theorem~\ref{thm:lin-sphere-basis-interface}; that conditional transport must
+not be used to construct $P$ circularly. Paper-name identifications are
+subsequent internal Lean proofs. Every milestone must record its exact
+native inputs, theorem and remaining premises, together with a replay command
+and check result in the existing certificate audit. Until the actual
+comparison dependencies are discharged, the result remains conditional.
 
 \subsection{Class expressions and page conditions}
 
@@ -224,6 +538,10 @@ mathematical objects and conditions.
   $(s,t)$, with stem $n=t-s$. Sums have equal degrees; multiplication
   adds degrees. A finite set of candidate expressions represents an
   ambiguity in a differential target without choosing a target.
+  Lean currently implements the expression syntax and its nonempty-name
+  and nonempty-list validation. This syntactic validation does not verify
+  the displayed bidegree rules or interpret the expression on an actual
+  page; those mathematical conditions remain unfinished.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:2738--3290, differential/status columns.
@@ -270,6 +588,7 @@ mathematical objects and conditions.
   \label{def:lin-staircase-states}
   \lean{KIP126.Computation.LinProofs.Raw.StaircaseRow,KIP126.Computation.LinProofs.State.decode,KIP126.Core.SpectralSequence.ReachesPage,KIP126.Core.SpectralSequence.IsBoundaryBy,KIP126.Challenge2.StaircaseClaimStatement}
   \uses{def:computation-fixed-bindings}
+  \notready
   A known outgoing or incoming staircase entry specifies an equation
   for the actual differential. An unknown outgoing value at level
   $10000-r$ asks for a common representative on $E_r$, possibly zero;
@@ -306,6 +625,7 @@ mathematical objects and conditions.
 \begin{definition}[Conditional differential assumptions and candidate coverage]
   \label{def:lin-conditional-branches}
   \lean{KIP126.Computation.LinProofs.Branch.scopeRows,KIP126.Computation.LinProofs.Branch.FiniteEquation,KIP126.Computation.LinProofs.Branch.CandidateWindow.equations,KIP126.Computation.LinProofs.Branch.CandidateCoverage,KIP126.Computation.LinProofs.Branch.CandidateExhaustion,KIP126.Challenge2.LinBranchInterface}
+  \notready
   A trial differential equation is considered under its complete chain
   of ancestor assumptions. A refutation proves that these actual
   differential assumptions imply the negation of the trial equation;
@@ -319,6 +639,26 @@ mathematical objects and conditions.
   The finite candidate windows and their actual coordinate interpretation
   remain to be specified.
 \end{definition}
+
+\begin{lemma}[Zero-source differential refutation in the complete context]
+  \label{lem:lin-zero-source-refutation}
+  \lean{KIP126.Core.SpectralSequence.HasDifferential.isBoundaryBy_of_source_zero,KIP126.Core.SpectralSequence.not_hasDifferential_zero_of_not_isBoundaryBy,KIP126.Computation.LinProofs.Branch.TrialRefuted.of_zero_source}
+  \uses{prop:internal-page-calculus,def:lin-conditional-branches}
+  \leanok
+  For every internal module spectral sequence, page $r\ge3$, degrees
+  $p,q$, and $E_2$ label $y$, an actual equation $d_r(0)=y$ implies
+  $y\in B_{r-1}$. Thus a proved earlier-boundary exclusion refutes this
+  equation under the same complete ancestor context.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Uniqueness of common representatives makes the source page class zero.
+  Linearity makes its differential zero, and the actual quotient-page
+  zero criterion gives the earlier boundary. For the diagnostic in trial
+  152097 the degrees are $(5,44)$ and $(9,47)$ and $r=4$. The rule does not
+  supply the diagnostic's Leibniz premise or its assertion that the target
+  is outside $B_3$; these remain mathematical obligations.
+\end{proof}
 
 % SOURCE: LWXMachine, Section 2.1, Notations 2.1--2.5.
 \begin{definition}[Finite Adams $E_2$ presentations]
@@ -443,6 +783,7 @@ mathematical objects and conditions.
   \label{def:lin-proofs-sphere-meaning}
   \lean{KIP126.Challenge2.HasCoordinates,KIP126.Challenge2.DifferentialStatement}
   \uses{def:lin-proofs-sphere-table,def:computation-fixed-bindings}
+  \notready
   Interpret each coordinate list as the sum of its specified monomials
   in the fixed quotient. Transport the homogeneous classes through $P$
   to the sphere $E_2$ page and require common-cycle representatives on
@@ -451,11 +792,1119 @@ mathematical objects and conditions.
   on $E_r$.
 \end{definition}
 
+\subsection{Fixed native certificates and conditional replay}
+
+\begin{proposition}[Two closed products in the archived quotient]
+  \label{prop:lin-native-products-152097}
+  \lean{KIP126.LinE2.ReplayProducts.native_source_product_zero,KIP126.LinE2.ReplayProducts.native_target_product,KIP126.LinE2.ReplayProducts.relation26_mem,KIP126.LinE2.ReplayProducts.relation188_mem,KIP126.LinE2.ReplayProducts.relation190_mem}
+  \lean{KIP126.LinE2.ReplayCoordinates.source_mul_multiplier,KIP126.LinE2.ReplayCoordinates.multiplier_mul_trialTarget,KIP126.LinE2.ReplayCoordinates.source_value,KIP126.LinE2.ReplayCoordinates.multiplier_value,KIP126.LinE2.ReplayCoordinates.trialTarget_value,KIP126.LinE2.ReplayCoordinates.productTarget_value}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  Write $x_i$ for the image of native generator $i$ in the fixed
+  2914-generator truncated CSV quotient. The products appearing in the
+  diagnostic of trial 152097 satisfy
+  \[
+    x_0^2x_1x_3x_{18}=0,\qquad
+    x_1x_9x_{13}=x_0^3x_{36}.
+  \]
+  The Lean statements retain the native monomial strings. They assert
+  equalities in this fixed data algebra. The typed versions use the exact
+  archived coordinates $(4,42)[1]$, $(1,2)[0]$, $(8,45)[0]$ and $(9,47)[0]$;
+  raw catalogue membership, monomial values and homogeneous degrees are
+  checked separately. They make no basis-independence assertion or actual
+  sphere differential conclusion.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Kernel-checked newline decompositions prove membership of the exact
+  native relations numbered 26, 188 and 190 (one-based, excluding the CSV
+  header). Together with relation 1 these vanish in the defining ideal.
+  The auxiliary polynomial identities then prove the products in the
+  quotient. Transitive axiom checks reject admitted proofs and project
+  axioms. This does not certify the retained differential record 152098:
+  its actual page representatives, Leibniz calculation, earlier-boundary
+  exclusion and candidate coverage remain separate obligations.
+\end{proof}
+
+\begin{proposition}[Product identities through the same presentation]
+  \label{prop:lin-native-products-presentation}
+  \lean{KIP126.Interface.Solution.LinProgram.ReplayProducts.source_mul_multiplier,KIP126.Interface.Solution.LinProgram.ReplayProducts.multiplier_mul_trialTarget}
+  \uses{prop:lin-native-products-152097,def:computation-fixed-bindings}
+  \notready
+  Through one supplied Lin presentation $P$, the two typed native product
+  identities hold for $P$'s product and the images under its comparison.
+  The proofs use that same $P$'s multiplication comparison. They do not
+  construct $P$, compare its product with an actual higher-page tower
+  pairing, or prove the retained differential. The fixed model's existing
+  foundational dependencies remain explicit.
+\end{proposition}
+
+\begin{lemma}[Fixed native sphere coordinates for naturality]
+  \label{lem:lin-naturality-native-coordinates}
+  \lean{KIP126.LinE2.NaturalityCoordinates.sourceRow_mem,KIP126.LinE2.NaturalityCoordinates.targetRow_mem,KIP126.LinE2.NaturalityCoordinates.source_value,KIP126.LinE2.NaturalityCoordinates.target_value,KIP126.Interface.Solution.LinProgram.NaturalityCoordinates.source_hasCoordinates,KIP126.Interface.Solution.LinProgram.NaturalityCoordinates.target_hasCoordinates}
+  \uses{def:lin-e2-catalogue,def:lin-proofs-sphere-meaning}
+  \leanok
+  The fixed data classes $x_0x_7$ in $(2,17)$ and $x_0x_8$ in $(5,19)$
+  have the native coordinate list $[0]$. Exact archived rows, homogeneous
+  degrees and monomial values give singleton coordinate witnesses, without
+  a basis theorem, actual map comparison or differential premise.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Check membership of raw basis rows 39 and 46 and their literal monomial
+  values, then supply these singleton lists in the coordinate predicate.
+  The proofs have only standard logical axioms.
+\end{proof}
+
+\begin{lemma}[Checked native map words for record 245131]
+  \label{lem:lin-naturality-native-map-words}
+  \lean{KIP126.LinModule.NaturalityMapCertificate.check,KIP126.LinModule.NaturalityMapCertificate.check_sound,KIP126.LinModule.NaturalityMapCertificate.check_sound_desc}
+  \lean{KIP126.LinModule.Naturality245131.generator_one_image}
+  \lean{KIP126.LinModule.Naturality245131.source_check,KIP126.LinModule.Naturality245131.target_check,KIP126.LinModule.Naturality245131.source_evaluate,KIP126.LinModule.Naturality245131.target_evaluate,KIP126.LinModule.Naturality245131.source_desc,KIP126.LinModule.Naturality245131.target_desc}
+  \lean{KIP126.LinModule.Naturality245131.source_module_row,KIP126.LinModule.Naturality245131.target_module_row,KIP126.LinModule.Naturality245131.source_sphere_row_mem,KIP126.LinModule.Naturality245131.target_sphere_row_mem}
+  \uses{lem:lin-naturality-native-coordinates,def:lin-native-complete-map-graphs,prop:lin-native-module-map-descent,prop:lin-native-ceta-map-grading}
+  \leanok
+  Let $g$ be the formal generator assignment from the complete fixed
+  Ceta-to-sphere graph. The graph records $g(v_1)=x_0$.
+  The two certificate inputs specify Ceta basis records 69 and 80,
+  with words $x_7v_1$ in $(2,19)$ and $x_8v_1$ in $(5,21)$.
+  Their evaluations under $g$ equal the fixed sphere classes
+  $x_0x_7$ in $(2,17)$ and $x_0x_8$ in $(5,19)$, respectively.
+  Both target classes have the original coordinate $[0]$.
+
+  These are unconditional equalities of free-word evaluations in the
+  unchanged sphere quotient. If evaluation of every one of the original
+  76569 Ceta relations vanishes, the same equations hold for the unique
+  map out of the complete Ceta quotient. That premise has not been
+  discharged. No map from a smaller replacement quotient is asserted.
+  The exporter checks the source row IDs and local indices against the
+  authenticated database; the kernel checks the evaluation and the target
+  sphere catalogue membership. No Ceta basis completeness or actual
+  spectrum-map identification follows from the transcription.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Substitute the complete graph's generator images in each native word.
+  The finite checker verifies degrees and polynomial equality with an
+  empty relation witness, so the result holds already before imposing
+  sphere relations. Its proved soundness transports the equality into
+  the existing sphere quotient. Use the complete module descent theorem
+  only with its full original relation premise explicitly present.
+\end{proof}
+
+\begin{definition}[Fixed finite data for the low-degree native batch]
+  \label{def:lin-naturality-batch21-data}
+  \lean{KIP126.LinModule.BatchMapCertificate.Entry,KIP126.LinModule.RawData.NaturalityBatch21.entries,KIP126.LinModule.RawData.NaturalityBatch21.relationCodes}
+  \lean{KIP126.LinModule.CochainMapCertificate.GeneratorRecord,KIP126.LinModule.CochainMapCertificate.Term,KIP126.LinModule.CochainMapCertificate.Entry,KIP126.LinModule.RawData.NaturalityCochainBatch21.sphereGenerators,KIP126.LinModule.RawData.NaturalityCochainBatch21.cetaGenerators,KIP126.LinModule.RawData.NaturalityCochainBatch21.mapColumns}
+  \uses{def:lin-native-complete-map-graphs}
+  \leanok
+  Fix the original word records in the selected internal-degree window,
+  a list of polynomial relation witnesses, and a separately reconstructed
+  finite family of decoded Milnor terms. Source and target identifiers,
+  local basis indices and resolution-family indices retain distinct roles;
+  resolution-family indices have explicit finite bounds. An empty target list represents zero, while a missing
+  input row or an unknown image is rejected by translation.
+  These definitions specify finite data and do not assert that either
+  family is an actual resolution or mathematical basis. The canonical
+  source manifest pins the original input index, official configuration
+  and the new reconstructed database snapshots separately.
+\end{definition}
+
+\begin{lemma}[Batch word certificates in the fixed low-degree window]
+  \label{lem:lin-naturality-batch21-words}
+  \lean{KIP126.LinModule.BatchMapCertificate.check,KIP126.LinModule.BatchMapCertificate.check_sound,KIP126.LinModule.BatchMapCertificate.check_sound_desc}
+  \lean{KIP126.LinModule.NaturalityBatch21.relation_mem,KIP126.LinModule.NaturalityBatch21.relations_zero,KIP126.LinModule.NaturalityBatch21.all_checks,KIP126.LinModule.NaturalityBatch21.entry_evaluate,KIP126.LinModule.NaturalityBatch21.zero_evaluate,KIP126.LinModule.NaturalityBatch21.entry_desc,KIP126.LinModule.NaturalityBatch21.target_row_mem}
+  \lean{KIP126.LinModule.NaturalityBatch21.entry_count,KIP126.LinModule.NaturalityBatch21.zero_count,KIP126.LinModule.NaturalityBatch21.singleton_count,KIP126.LinModule.NaturalityBatch21.relation_witness_count}
+  \uses{def:lin-naturality-batch21-data,lem:lin-naturality-native-map-words,prop:lin-native-module-map-descent}
+  \leanok
+  Fix the list of all 82 archived Ceta basis records with $2\le t\le21$,
+  retaining every recorded filtration and local coordinate. Evaluation of
+  each native word under the same complete generator graph equals its
+  certified sum of original sphere catalogue values in degree $(s,t-2)$.
+  There are 45 empty target lists, whose evaluations are zero, and 37
+  singleton target lists. A singleton list alone does not prove that its
+  value in the sphere quotient is nonzero.
+
+  Of the singleton targets, 36 follow by direct substitution. The remaining
+  record, number 43 in degree $(3,14)$, uses the original sphere relation
+  $x_2^3+x_1^2x_3=0$. Its target is sphere record 25 in degree $(3,12)$.
+  Each target row belongs to the unchanged complete sphere catalogue.
+  The exporter verifies complete coverage of the selected original Ceta
+  table window; this is not a mathematical basis theorem for Ceta.
+  The same equations descend to the complete Ceta quotient only with
+  vanishing of all 76569 original relation evaluations explicitly supplied.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Use one checker for zero targets, sums of basis monomials and polynomial
+  relation witnesses. Prove the one used relation is a member of the original
+  archived sphere relation list and hence vanishes in its defining quotient.
+  Apply the shared soundness theorem to every entry; original catalogue
+  membership certificates bind the target coordinates independently.
+\end{proof}
+
+\begin{lemma}[A shared finite dual map for the native batch]
+  \label{lem:lin-naturality-batch21-cochains}
+  \lean{KIP126.LinModule.NaturalityCochainBatch21.sphere_differentials_graded,KIP126.LinModule.NaturalityCochainBatch21.ceta_differentials_graded,KIP126.LinModule.NaturalityCochainBatch21.map_columns_graded}
+  \lean{KIP126.LinModule.CochainMapCertificate.pullback,KIP126.LinModule.CochainMapCertificate.augmentedMap,KIP126.LinModule.CochainMapCertificate.functional_pullback,KIP126.LinModule.CochainMapCertificate.check_sound_precomposition,KIP126.LinModule.CochainMapCertificate.pullback_eq_zero_of_minimalCheck}
+  \lean{KIP126.LinModule.NaturalityCochainBatch21.batch_checked,KIP126.LinModule.NaturalityCochainBatch21.entry_pullback,KIP126.LinModule.NaturalityCochainBatch21.entry_precomposition,KIP126.LinModule.NaturalityCochainBatch21.sphere_cochain_differential_zero,KIP126.LinModule.NaturalityCochainBatch21.ceta_cochain_differential_zero,KIP126.LinModule.NaturalityCochainBatch21.entries_cover}
+  \uses{def:lin-naturality-batch21-data}
+  \leanok
+  The separately pinned local reconstruction supplies 48 sphere generator
+  records with $t\le19$, 84 Ceta generator records with $t\le21$, their
+  decoded differential terms, and all 48 map columns. Let
+  $Q_\epsilon:k^{48}\to k^{84}$, for $k=\mathbb F_2$, be the linear map
+  obtained by retaining precisely the constant Milnor coefficient terms
+  in those columns. Every differential term has its specified bidegree,
+  and every map term preserves filtration and raises internal degree by two.
+  For each of the 82 selected Ceta dual basis vectors,
+  the checked output equals precomposition with this same $Q_\epsilon$,
+  as a linear functional on the entire finite sphere space.
+  In this finite model 45 outputs are zero and 37 are single basis vectors.
+  Positive-degree checks for every recorded differential coefficient
+  imply that both corresponding dual differential operators are zero on
+  every cochain of their respective specified finite families.
+
+  These are theorems about the explicitly decoded finite data and their
+  linear interpretation. They do not certify a Steenrod chain map, the
+  exactness of either resolution, or coverage outside the supplied families.
+  Binary decoding and matching the old \texttt{repr} integers with the
+  reconstructed records are checked by deterministic translation; no
+  mathematical identification of their representatives follows merely
+  from matching those integers. The original word interpretation and
+  this finite cochain interpretation still need their comparison.
+  In particular these results do not identify $Q_\epsilon$ with the map
+  induced by the actual top-cell projection through the same $P$.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Form a linear map from the complete augmented columns, and prove that
+  its coordinate action on functionals is actual precomposition. Check
+  each selected dual vector on all 48 columns, then use extensionality.
+  Separately prove that every positive-degree coefficient has zero
+  augmentation and apply this to both full recorded differential families.
+  Full Steenrod equations independently checked during extraction remain
+  separate Lean proof obligations.
+\end{proof}
+
+\begin{lemma}[Complete native Ceta word certificates through internal degree 200]
+  \label{lem:lin-naturality-words200}
+  \lean{KIP126.LinModule.NaturalityWords200.CertifiedBatch,KIP126.LinModule.NaturalityWords200.entries}
+  \lean{KIP126.LinModule.NaturalityWords200.relation_member,KIP126.LinModule.NaturalityWords200.basis_member}
+  \lean{KIP126.LinModule.NaturalityWords200.entry_evaluate,KIP126.LinModule.NaturalityWords200.zero_evaluate,KIP126.LinModule.NaturalityWords200.entry_desc,KIP126.LinModule.NaturalityWords200.target_row_mem,KIP126.LinModule.NaturalityWords200.entry_count,KIP126.LinModule.NaturalityWords200.source_ids}
+  \uses{lem:lin-naturality-batch21-words,prop:lin-native-module-map-descent}
+  \leanok
+  Fix all 15951 original Ceta basis-table records with $2\le t\le200$,
+  preserving every recorded filtration and local coordinate. Their images
+  under the same complete native generator graph are specified sums of
+  original sphere catalogue values in degree $(s,t-2)$, equal in the
+  unchanged sphere data quotient. Every output row belongs to the original
+  complete sphere catalogue. These are native word equalities, not a basis
+  theorem, nonvanishing theorem, or actual Adams differential assertion.
+
+  The checked certificates have 8126 empty, 7281 singleton and 544
+  multiple-coordinate target lists. There are 13967 direct substitutions,
+  823 one-relation reductions and 1161 reductions with multiple original
+  relation witnesses. All witnesses use the same original sphere ideal;
+  no extra polynomial relation is an assumption. Full Ceta quotient descent
+  still requires vanishing of all 76569 original Ceta relation evaluations.
+  The deterministic translator checks original SQLite provenance and exact
+  source-table coverage; this does not turn source-table labels into a
+  mathematical basis theorem.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Divide the finite list into 125 blocks of at most 128 records. For each
+  block check polynomial relation combinations and apply the common checker
+  soundness theorem. Share original relation and target catalogue membership
+  proofs by archived CSV chunk; exact character transcription equalities
+  are checked by the kernel. Relation membership uses only the original
+  relation strings and does not require certification of the basis parser.
+  Target catalogue membership separately retains the complete archived
+  basis-parser certificate and the selected row's decoding equality.
+  Within each target catalogue chunk, check at
+  most 32 selected row bindings at a time and use that batch certificate
+  directly for each row membership. This bounds each reduction without
+  changing the original row values or the complete target coverage.
+  Concatenate the certified blocks and apply their equations to arbitrary
+  members of the resulting list.
+\end{proof}
+
+The separate fixed target inventory contains all 408 exported finite-page
+sphere naturality records for \texttt{Ceta\_\_S0}. It finds 324 targets
+with one earlier logged Ceta candidate whose two images agree in native
+$E_2$ coordinates, 11 with candidates requiring page-representative or
+boundary comparison, and 73 without a supported earlier candidate.
+These counts are deterministic input audits, not Lean proofs of the
+candidate differentials. Six formal Ceta target degrees exceed 200, but their logged targets
+are explicitly zero; zero is mapped to zero without reading a basis table
+outside its range. Their full source differential propositions retain those
+formal degrees. Native nonzero-coordinate requirements are reported separately
+from formal endpoint degrees. The log has no source-ID premise edge;
+coordinate agreement alone does not reconstruct one. Each candidate keeps
+its actual source differential, page representatives and the same actual
+top-cell/presentation comparison as explicit remaining obligations.
+
+\begin{lemma}[Finite combinations under the enlarged native dual map]
+  \label{lem:lin-naturality-batch40-cochains}
+  \lean{KIP126.LinModule.CochainMapCertificate.CombinationEntry,KIP126.LinModule.CochainMapCertificate.checkCombination,KIP126.LinModule.CochainMapCertificate.checkCombination_sound,KIP126.LinModule.CochainMapCertificate.checkCombination_sound_precomposition,KIP126.LinModule.CochainMapCertificate.augmentationSupport,KIP126.LinModule.CochainMapCertificate.checkCombination_of_support}
+  \lean{KIP126.LinModule.NaturalityCochainBatch40.augmentation_columns_match,KIP126.LinModule.NaturalityCochainBatch40.batch_checked,KIP126.LinModule.NaturalityCochainBatch40.entry_pullback,KIP126.LinModule.NaturalityCochainBatch40.entry_precomposition,KIP126.LinModule.NaturalityCochainBatch40.native_record_coverage,KIP126.LinModule.NaturalityCochainBatch40.requests_in_range,KIP126.LinModule.NaturalityCochainBatch40.family_bounds}
+  \lean{KIP126.LinModule.NaturalityCochainBatch40.sphere_differentials_graded,KIP126.LinModule.NaturalityCochainBatch40.ceta_differentials_graded,KIP126.LinModule.NaturalityCochainBatch40.map_columns_graded,KIP126.LinModule.NaturalityCochainBatch40.sphere_cochain_differential_zero,KIP126.LinModule.NaturalityCochainBatch40.ceta_cochain_differential_zero}
+  \uses{def:lin-naturality-batch21-data,lem:lin-naturality-batch21-cochains}
+  \leanok
+  The separately pinned reconstruction supplies 261 Ceta generator records
+  through $t=40$, 155 sphere records through $t=38$, every recorded
+  differential term and all 155 map columns. Let
+  $Q_\epsilon:\mathbb F_2^{155}\to\mathbb F_2^{261}$ be their augmented
+  map. Each of the 259 selected native basis-table requests is a specified
+  finite combination of dual generator vectors. Its certified target is
+  equal to precomposition with this same $Q_\epsilon$ on the entire finite
+  sphere space. Both source and target combinations are allowed: twelve
+  requests have multiple source terms, one has two target terms, 137 have
+  zero target, and the remaining 122 have nonempty target.
+
+  Every recorded differential coefficient has positive internal degree,
+  so the two full dual differential operators on these specified finite
+  families vanish. Termwise bidegrees are checked. Exact request-ID coverage
+  and degree bounds refer to the supplied finite data, not to a proof that
+  its representatives form a basis of actual Ext. Matching original
+  \texttt{repr} fields is still a deterministic data comparison. Complete
+  Steenrod chain equations, exactness, representative identification and
+  actual top-cell comparison remain separate obligations.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Extend the existing finite checker to sums on both sides, prove its
+  soundness on every column, and use the same functional-precomposition
+  theorem. First certify the constant-term support of each complete
+  original column, then reuse that checked support across requests.
+  Apply it to all 259 requests without imposing a singleton restriction. Independently apply the existing positive-degree
+  augmentation theorem to the entire supplied differential families.
+\end{proof}
+
+\begin{proposition}[Actual comparison for the two native top-cell images]
+  \label{prop:lin-naturality-map-comparison-245131}
+  \uses{lem:lin-naturality-native-map-words,lem:lin-naturality-batch21-cochains,prop:lin-native-resolution-correct,prop:lin-native-actual-comparison,prop:internal-page-naturality,lem:adams-double-suspension-differential}
+  \notready
+  For the fixed $C\eta=\operatorname{cofib}(\eta)$ and the actual
+  top-cell map $q:C\eta\to\Sigma^2S^0$, identify the native
+  representatives of records 69 and 80 with actual second-page classes.
+  After the same two tower desuspensions used below, their images under
+  $q_{E_2}$ must equal the same $P$-images of sphere records 39 and 46.
+  These are construction obligations, not new inputs to Challenge2.
+
+  A direct cochain route avoids first constructing the complete native
+  quotient map. Recover the Ceta resolution and a chain map
+  $Q:R(\Sigma^2S^0)\to R(C\eta)$ lifting the contravariant
+  cohomology map $q^*$. With $c_j$ denoting the native cochain decoded
+  from representation ID $j$, check
+  \[
+    c^{C\eta}_{1048587}\circ Q_2-\Sigma^2c^{S^0}_{1048583}=dh_1,
+    \qquad
+    c^{C\eta}_{2621447}\circ Q_5-\Sigma^2c^{S^0}_{2621443}=dh_2.
+  \]
+  Supply all chain terms needed for these equations and for the comparison
+  to genuine resolutions; a finite cutoff is not a zero differential.
+  The cohomology comparison must commute with $Q$ and the actual $q$,
+  and with the specified suspensions. Prove that the native Ceta
+  cohomology module and its initial map are those of this same actual
+  cofiber, including the Steenrod action. The selected sphere classes
+  must agree with the existing $P$, not with a newly chosen identification.
+
+  The released E2 map database contains generator images, not $Q$.
+  Recomputed representation numbers alone do not identify old and new
+  cochains. If instead using $v_1\mapsto x_0$ and module products,
+  additionally prove that the native products agree with the actual
+  module action and that $q_{E_2}$ respects it. The data lemma above
+  proves neither route's actual comparison. The supplied source
+  differential in the following proposition already includes the needed
+  third-page representatives, so no independent survival hypothesis
+  should be added just for this transport.
+\end{proposition}
+
+\begin{proposition}[Conditional replay of native naturality record 245131]
+  \label{prop:lin-native-naturality-245131}
+  \lean{KIP126.Interface.Solution.LinProgram.Naturality.row245130_topCell,KIP126.Interface.Solution.LinProgram.Naturality.row245131,KIP126.Interface.Solution.LinProgram.Naturality.row245131_native,KIP126.Interface.Solution.LinProgram.Naturality.doubleDesuspensionCompatible,KIP126.Interface.Solution.LinProgram.Naturality.topCell_hasDifferential_desuspendTwice,KIP126.Interface.Solution.LinProgram.Naturality.statement_of_hasDifferential}
+  \uses{def:lin-map-catalogue,def:lin-proofs-sphere-meaning,lem:lin-naturality-native-coordinates,lem:adams-double-suspension-differential,prop:internal-page-naturality}
+  \notready
+  The adjacent native source candidate 245130 is the $C\eta$ equation
+  $d_3[0]=[0]$ from $(2,19)$ to $(5,21)$. The native $N$ record 245131 is
+  the sphere equation from $(2,17)$ to $(5,19)$ with the same page and
+  coordinate lists. Its map is \texttt{Ceta\_\_S0}, of suspension shift two.
+  Use the actual cofiber of the fixed route's $\eta$ map and its actual
+  connecting morphism to $\Sigma S^1$. The native endpoint fixes the two
+  proved sphere coordinate witnesses while retaining the general conditional
+  interface. Naturality transports a supplied
+  source equation to that target. Two specified tower desuspensions then
+  yield the native sphere statement, conditional on four coordinate
+  comparisons. The universal differential compatibility of these same two
+  desuspensions is now derived from their actual tower squares.
+  The shared transfer retains every integer page and bidegree; both old
+  public replay types remain unchanged.
+
+  The source-coordinate identification, source differential and coordinate
+  comparisons are not supplied by adjacency or by the $D$ and $N$ tags.
+  A single suspension has a sign in its connecting square, and the two
+  signs cancel by the proved double-desuspension rule. The conditional theorem
+  does not certify either log entry and retains the fixed model's existing
+  foundational obligations. It reads no total computation delivery.
+\end{proposition}
+
+\begin{lemma}[Fixed high-stem native sphere coordinates]
+  \label{lem:lin-high-stem-native-coordinates}
+  \lean{KIP126.LinE2.NaturalityHighStemCoordinates.sourceRow_mem,KIP126.LinE2.NaturalityHighStemCoordinates.targetRow_mem,KIP126.LinE2.NaturalityHighStemCoordinates.source_value,KIP126.LinE2.NaturalityHighStemCoordinates.target_value,KIP126.Interface.Solution.LinProgram.NaturalityHighStem.source_hasCoordinates,KIP126.Interface.Solution.LinProgram.NaturalityHighStem.target_hasCoordinates}
+  \uses{def:lin-e2-catalogue,def:lin-proofs-sphere-meaning}
+  \leanok
+  In the original sphere quotient, $x_0^2x_{418}$ in $(15,138)$
+  and $x_0^2x_{437}$ in $(18,140)$ have native coordinate list $[2]$.
+  These are archived basis rows 3002 and 3140. Homogeneity, exact
+  catalogue membership and literal values supply the coordinate witnesses.
+  No actual-page basis theorem, map comparison or differential is assumed.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Check both complete archived rows and their monomial values, then use
+  singleton coordinate witnesses. Only standard logical axioms occur.
+\end{proof}
+
+\begin{proposition}[Constructed suspension comparisons on the same eta cofiber]
+  \label{prop:lin-ceta-tower-suspension}
+  \lean{KIP126.Interface.Solution.LinProgram.Naturality.cetaTowerComparison,KIP126.Interface.Solution.LinProgram.Naturality.cetaShiftTowerComparison}
+  \uses{prop:adams-suspension-construction,def:stage-zero-cooperation-contract,def:computation-fixed-bindings}
+  \notready
+  For the same fixed $C\eta$ already used in naturality replay, construct
+  an actual tower suspension comparison, and one for $\Sigma^nC\eta$
+  for every integer $n$. Both tensor and unit suspension instances come
+  from the same fixed foundation's existing tensor input. The original
+  sphere comparisons used by the route are retained.
+  These wrappers inherit the unfinished fixed foundation. They establish
+  the specified tower and layer diagrams but no native-coordinate
+  identification, source differential, composite-zero premise, or
+  independence from other choices of triangle completion.
+\end{proposition}
+
+\begin{proposition}[Conditional replay of native naturality record 462481]
+  \label{prop:lin-native-naturality-462481}
+  \lean{KIP126.Interface.Solution.LinProgram.NaturalityHighStem.SourceEquation,KIP126.Interface.Solution.LinProgram.NaturalityHighStem.row462481,KIP126.Computation.LinProofs.Raw.NaturalityHighStem.output462481_in_export}
+  \uses{def:lin-map-catalogue,def:lin-proofs-sphere-meaning,lem:lin-high-stem-native-coordinates,lem:adams-double-suspension-differential,prop:internal-page-naturality}
+  \notready
+  Source record 462480 is itself an $N$ record: the $C\eta$ equation
+  $d_3[1]=[0]$ from $(15,140)$ to $(18,142)$.
+  Record 462481 is the sphere equation $d_3[2]=[2]$ from $(15,138)$
+  to $(18,140)$. Use the same fixed $\eta$ cofiber, actual top-cell map,
+  two tower comparisons and one presentation $P$ as in the existing replay.
+  The common transfer proves the native output from the supplied actual
+  source differential and four successive desuspension-coordinate comparisons.
+
+  The sphere coordinate witnesses are proved. The actual source equation
+  and four comparisons remain explicit obligations; neither adjacency,
+  native matrices nor the $N$ tags discharge them. The theorem reads no
+  total computation delivery, makes no nonzero later-page claim, and
+  retains the fixed model's foundational obligations.
+\end{proposition}
+
+\begin{lemma}[The complete native low-filtration stem-four component vanishes]
+  \label{lem:lin-stem-four-low}
+  \lean{KIP126.LinE2.StemFour.generator_internal_le_seven,KIP126.LinE2.StemFour.monomial_support,KIP126.LinE2.StemFour.monomial_classification,KIP126.LinE2.StemFour.monomial_projection_zero,KIP126.LinE2.StemFour.homogeneousPart_eq_bot,KIP126.LinE2.StemFour.component_subsingleton}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  In the original sphere quotient on all 2914 generators, for every
+  natural $s<4$, the entire legacy homogeneous component $D^{s,s+4}$ is zero.
+  This is the span of all homogeneous monomials, not the archived basis span.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Exhausting all generator degrees shows that only IDs $0,1,2$ can
+  occur when internal degree is at most seven. The two degree equations
+  force $s\ge2$ and the monomial $x_0^{s-2}x_1x_2$.
+  The original relation string \texttt{1,1,2,1} kills it. Thus every
+  generator of the homogeneous submodule is zero. Neither basis
+  independence nor the high-degree cutoff is used to force this vanishing.
+\end{proof}
+
+\begin{proposition}[The CW null-composite from the same presentation and literature]
+  \label{prop:lin-eta-nu-from-stem-four}
+  \lean{KIP126.Interface.Solution.LinProgram.EtaNu.pageTwo_stemFour_subsingleton,KIP126.Interface.Solution.LinProgram.EtaNu.homotopy_four_zero,KIP126.Interface.Solution.LinProgram.EtaNu.eta_nu_zero}
+  \uses{lem:lin-stem-four-low,lem:adams-e2-vanishing-separated,def:computation-fixed-bindings,thm:external-sphere-vanishing,prop:fixed-sphere-adams-separated}
+  \notready
+  Retain one sphere presentation $P$ and the same literature bindings
+  and dependent results. For $s<4$, transport the entire native zero
+  component to the actual sphere $E_2$ using $P$; here $t=s+4\le7$.
+  For every $s\ge4$, the supplied unbounded positive-stem vanishing line
+  applies because $0<4<2s-3$. All nonnegative filtration pieces in stem
+  four therefore vanish. The fixed-sphere separation statement yields
+  $\pi_4S^0=0$. Precomposition by the standard shift-add isomorphism
+  then proves the actual fixed-route equation $\nu\circ\Sigma^3\eta=0$.
+
+  The presentation, the same literature vanishing result, and the fixed
+  foundation remain dependencies. In particular the public proof of
+  fixed-sphere separation is still unfinished and is used explicitly;
+  this is not an unconditional actual certification. No multiplication
+  or Hopf detection comparison, new source premise, or total computation
+  delivery is read to obtain the zero composite.
+\end{proposition}
+
+\begin{proposition}[One conditional CW cofiber on the fixed model]
+  \label{prop:lin-cw-fixed-cofiber}
+  \lean{KIP126.Interface.Solution.LinProgram.NaturalityCW.ExtensionPackage,KIP126.Interface.Solution.LinProgram.NaturalityCW.exists_extensionPackage,KIP126.Interface.Solution.LinProgram.NaturalityCW.extension,KIP126.Interface.Solution.LinProgram.NaturalityCW.extension_spec,KIP126.Interface.Solution.LinProgram.NaturalityCW.CW,KIP126.Interface.Solution.LinProgram.NaturalityCW.q,KIP126.Interface.Solution.LinProgram.NaturalityCW.fixed_triangles}
+  \uses{prop:cofiber-extension-octahedron,def:stage-zero-cooperation-contract,def:computation-fixed-bindings}
+  \notready
+  Use the fixed route's same maps $\eta:S^1\to S^0$ and
+  $\nu:S^3\to S^0$, and the same $C\eta$ as in naturality replay.
+  The explicit premise $\nu\circ\Sigma^3\eta=0$ supplies an extension
+  $g:\Sigma^3C\eta\to S^0$ restricting to $\nu$.
+  Choose this extension once and define $W=C(g)$ using the selected
+  cofiber construction of that foundation. The map
+  $q:W\to\Sigma^4C\eta$ is precisely $\delta_g$ followed by the specified
+  shift-composition isomorphism.
+  For this same $g$ and $W$, one octahedron provides the distinguished
+  triangles $S^0\to W\xrightarrow q\Sigma^4C\eta$ and
+  $C\nu\to W\to S^6$, together with all four comparison squares.
+  Their connecting arrows retain the proved suspension signs.
+
+  The fixed foundation's existing tensor input supplies its octahedron
+  instance. Its foundational proof remains unfinished. This construction
+  takes the composite-zero premise explicitly. Proposition~\ref{prop:lin-eta-nu-from-stem-four}
+  now derives it from the same presentation and literature, retaining the
+  unfinished separation dependency. Neither construction identifies the
+  selected $W$ with the pinned native \texttt{CW\_nu\_eta} module.
+\end{proposition}
+
+\begin{proposition}[Conditional replay from the CW record to the sphere]
+  \label{prop:lin-native-naturality-cw-462481}
+  \lean{KIP126.Computation.LinProofs.Raw.NaturalityHighStem.source462479Full,KIP126.Computation.LinProofs.Raw.NaturalityHighStem.cwMapSuspension,KIP126.Computation.LinProofs.Raw.NaturalityHighStem.native_cw_degree_shift}
+  \lean{KIP126.Interface.Solution.LinProgram.NaturalityCW.toQuadCeta,KIP126.Interface.Solution.LinProgram.NaturalityCW.cetaDesuspendFour,KIP126.Interface.Solution.LinProgram.NaturalityCW.cetaDesuspendFour_hasDifferential,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwSequence,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwToCetaE2,KIP126.Interface.Solution.LinProgram.NaturalityCW.cwToCetaE2_hasDifferential,KIP126.Interface.Solution.LinProgram.NaturalityCW.CWCoordinates,KIP126.Interface.Solution.LinProgram.NaturalityCW.SourceEquation,KIP126.Interface.Solution.LinProgram.NaturalityCW.row462480,KIP126.Interface.Solution.LinProgram.NaturalityCW.row462481_from_cw,KIP126.Interface.Solution.LinProgram.NaturalityCW.row462481_from_literature}
+  \uses{prop:lin-cw-fixed-cofiber,prop:lin-eta-nu-from-stem-four,prop:lin-ceta-tower-suspension,lem:adams-four-suspension-differential,prop:internal-page-naturality,prop:lin-native-naturality-462481,def:lin-map-catalogue}
+  \notready
+  Reassociate the target of the same actual $q$ by
+  $\widetilde q=\kappa_4^{-1}\circ q$. Its induced second-page map,
+  followed by the four constructed quotient desuspensions, defines an
+  actual linear map $F:E_2(W)\to E_2(C\eta)$ lowering the internal
+  degree by four. Naturality and fourfold desuspension transport the
+  complete differential relation along $F$ for all integer pages and
+  bidegrees.
+
+  The source premise is exactly the actual equation recorded by
+  $D462479$: $d_3[1]=[0]$ from $(15,144)$ to $(18,146)$ on this same $W$.
+  Here $[0]$ denotes the native basis index zero, not the zero vector.
+  Two endpoint equations identify the images under the actual $F$ with
+  the interpreted $C\eta$ coordinates $[1]$ at $(15,140)$ and $[0]$ at
+  $(18,142)$. They give precisely the source equation of $N462480$.
+  These are equalities for the defined composite map; no intermediate
+  representative relation is silently assumed or decided.
+
+  Compose with the existing $C\eta$-to-sphere replay, retaining its four
+  sphere desuspension-coordinate comparisons, its fixed sphere tower
+  choices, and one presentation $P$. This yields the exact native
+  $N462481$ statement $d_3[2]=[2]$ from $(15,138)$ to $(18,140)$.
+  The original entry retains the explicit zero-composite parameter.
+  The new literature entry supplies it using
+  Proposition~\ref{prop:lin-eta-nu-from-stem-four} with this same $P$ and
+  dependent literature results, preserving the unfinished separation
+  dependency. Both entries retain the actual CW source differential,
+  the two CW endpoint comparisons, and the four sphere comparisons. Identification of both interpreted
+  coordinate families with their full pinned native modules, and the
+  fixed foundation's proof obligations, remain separate.
+  No native $D$ or $N$ tag, trial record, total computation result, or
+  auxiliary-spectrum declaration discharges these obligations.
+\end{proposition}
+
+\begin{lemma}[Sphere quotient reductions in the high-stem naturality context]
+  \label{lem:lin-high-stem-native-products}
+  \lean{KIP126.LinE2.NaturalityHighStemProducts.map_relation_mem,KIP126.LinE2.NaturalityHighStemProducts.h0_relation_mem,KIP126.LinE2.NaturalityHighStemProducts.ancestor_relation_mem,KIP126.LinE2.NaturalityHighStemProducts.native_map_column0,KIP126.LinE2.NaturalityHighStemProducts.native_h0_product_zero,KIP126.LinE2.NaturalityHighStemProducts.native_ancestor_product}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  In the complete fixed sphere quotient, the native monomials satisfy
+  \[
+    x_{24}x_{189}=x_7x_{279},\qquad
+    x_0x_{519}=0,\qquad
+    x_3x_{358}=x_0^2x_{437}.
+  \]
+  The first is used in a full matrix column for the Ceta-to-S0 step of
+  log 462481. The latter two occur in an ancestor trial and an independent
+  algebraic reconstruction of one of its prior differential inputs.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Certify exact membership of original sphere relation rows 10210,
+  13637 and 10936, then use the quotient relations and characteristic two.
+  No actual cofiber map, module multiplication, historical log edge,
+  boundary exclusion or differential follows from these equalities alone.
+\end{proof}
+
+\begin{definition}[Complete native eta-cofiber and CW module presentations]
+  \label{def:lin-native-module-presentations}
+  \lean{KIP126.LinModule.RawData.Ceta.generatorCount,KIP126.LinModule.RawData.Ceta.relationCount,KIP126.LinModule.RawData.Ceta.relations,KIP126.LinModule.RawData.CWNuEta.generatorCount,KIP126.LinModule.RawData.CWNuEta.relationCount,KIP126.LinModule.RawData.CWNuEta.relations}
+  \lean{KIP126.LinModule.Presentation.Free,KIP126.LinModule.Presentation.definingSubmodule,KIP126.LinModule.Presentation.Model,KIP126.LinModule.Presentation.projection}
+  \lean{KIP126.LinModule.Ceta.Model,KIP126.LinModule.Ceta.generator,KIP126.LinModule.Ceta.monomial,KIP126.LinModule.CWNuEta.Model,KIP126.LinModule.CWNuEta.generator,KIP126.LinModule.CWNuEta.monomial}
+  \uses{def:lin-e2-catalogue}
+  \leanok
+  Let $D=\mathrm{LinE2.E2}$ be the same fixed sphere quotient as in
+  Definition~\ref{def:lin-e2-catalogue}, with all 2914 sphere generators
+  and 231848 sphere relations. For a finite native module generator set
+  of size $n$ and its complete ordered relation list $\mathcal R$, put
+  \[
+    F_n=\bigoplus_{j\in\operatorname{Fin}(n)}D e_j,
+    \qquad
+    M_{\mathcal R}=F_n/
+      \langle\operatorname{relationVector}(r):r\in\mathcal R\rangle_D.
+  \]
+  A native term $i_1,a_1,\ldots,i_k,a_k,j$ denotes
+  $x_{i_1}^{a_1}\cdots x_{i_k}^{a_k}e_j$; semicolons separate the
+  summands of a relation. The module monomial is its quotient image.
+
+  Use all 887 generators, with native IDs $0,\ldots,886$, and all
+  76569 relations of the fixed \texttt{Ceta} database. Use all 844
+  generators, with IDs $0,\ldots,843$, and all 69263 relations of the
+  fixed \texttt{CW\_nu\_eta} database. These are the same
+  v126.3.cw49 archive and coefficient ring as the sphere data.
+  Original IDs, degrees, representation fields and nullable generator
+  metadata are retained. Relation rowids are one-based and relation
+  lists preserve their complete original order.
+
+  Both module databases record internal-degree limit 200; their
+  recorded $d_2$ limits are 170 and 150 respectively. These bounds
+  are metadata only: no additional high-degree zero relation is imposed
+  on either module. The sphere coefficient algebra's existing degree-261
+  truncation is retained for this compatibility layer; these complete
+  modules are not claimed to be globally equivalent to modules over the
+  new untruncated $A$. Neither module definition asserts an
+  identification with actual Ext or with an actual Adams page.
+\end{definition}
+
+\begin{definition}[Complete fixed native module-map graphs]
+  \label{def:lin-native-complete-map-graphs}
+  \lean{KIP126.LinModule.RawData.Maps.ImageRow,KIP126.LinModule.RawData.Maps.CetaToSphere.rows,KIP126.LinModule.RawData.Maps.CetaToSphere.imageCodes_size,KIP126.LinModule.RawData.Maps.CetaToSphere.imageCode,KIP126.LinModule.RawData.Maps.CWToCeta.rows,KIP126.LinModule.RawData.Maps.CWToCeta.imageCodes_size,KIP126.LinModule.RawData.Maps.CWToCeta.imageCode}
+  \uses{def:lin-native-module-presentations,def:lin-map-catalogue}
+  \leanok
+  The same authenticated release gives all 887 Ceta-to-sphere generator
+  images and all 844 CW-to-Ceta images, in original source ID order.
+  Their filtrations are zero and suspensions are two and four, respectively.
+  Preserve the original map strings, complete database schema and version
+  metadata, including the CW timestamp and absence of a map-type field.
+  A typed index into the full source family always has an image; no missing
+  row defaults to zero. The actual empty image strings remain recorded zeros,
+  while missing, SQL NULL or unknown images are rejected during transcription.
+
+  These finite graphs are data. The exporter verifies native shifted degrees
+  against all original source, target and sphere generators. Independent Lean
+  grading of both entire graphs is supplied by
+  Propositions~\ref{prop:lin-native-ceta-map-grading} and
+  \ref{prop:lin-native-cw-map-grading}; full relation certificates
+  must still be supplied to Proposition~\ref{prop:lin-native-module-map-descent}.
+  Neither the graphs nor these degree checks identify an actual spectrum map.
+\end{definition}
+
+\begin{proposition}[Maps out of the complete native module quotient]
+  \label{prop:lin-native-module-map-descent}
+  \lean{KIP126.LinModule.Presentation.evaluateRelation,KIP126.LinModule.Presentation.linearCombination_ofPowers,KIP126.LinModule.Presentation.linearCombination_monomialVector,KIP126.LinModule.Presentation.linearCombination_relationVector,KIP126.LinModule.Presentation.definingSubmodule_le_ker,KIP126.LinModule.Presentation.desc,KIP126.LinModule.Presentation.desc_projection,KIP126.LinModule.Presentation.desc_generator,KIP126.LinModule.Presentation.desc_ofPowers,KIP126.LinModule.Presentation.desc_monomialVector,KIP126.LinModule.Presentation.desc_relationVector,KIP126.LinModule.Presentation.hom_ext,KIP126.LinModule.Presentation.desc_unique,KIP126.LinModule.Presentation.existsUnique_desc}
+  \uses{def:lin-native-module-presentations}
+  \leanok
+  Let $A$ be the same sphere quotient, $M$ any $A$-module, and
+  $g:\operatorname{Fin}(n)\to M$ a proposed image for every generator.
+  If evaluation of every original relation is zero, there is a unique
+  $A$-linear map from the full presented module to $M$ sending $e_i$ to $g(i)$.
+  Its value on every native word and relation is the existing parser's
+  linear evaluation; no degree cutoff or subset of relations is substituted.
+\end{proposition}
+\begin{proof}
+  \leanok
+  The standard free-module linear combination evaluates every word.
+  Vanishing of all relation evaluations puts their entire span in its kernel.
+  Apply the usual quotient lift and compute it on the quotient generators.
+  Any two such maps agree on every free generator, hence on the whole quotient.
+  The full Ceta-to-sphere and CW-to-Ceta types instantiate this theorem,
+  but their native generator images and all relation certificates must still
+  be supplied. This universal property alone is not a certified native map,
+  a grading comparison, or a comparison with the actual spectrum map.
+\end{proof}
+
+\begin{definition}[Integer homogeneous spans of the native quotients]
+  \label{def:lin-native-homogeneous-spans}
+  \lean{KIP126.LinModule.Presentation.coefficientDegree,KIP126.LinModule.Presentation.homogeneousSpan,KIP126.LinModule.Presentation.homogeneousPart}
+  \lean{KIP126.LinModule.Ceta.generatorRow_present,KIP126.LinModule.Ceta.generatorData,KIP126.LinModule.Ceta.generatorDegree,KIP126.LinModule.NativeMapCertificates.coefficientPart}
+  \lean{KIP126.LinModule.CWNuEta.generatorRow_present,KIP126.LinModule.CWNuEta.generatorData,KIP126.LinModule.CWNuEta.generatorDegree}
+  \uses{def:lin-native-module-presentations}
+  \leanok
+  In the same full module quotient, span over $\mathbb F_2$ all elements
+  $q(x^m)e_i$ with $\deg(m)+\deg(e_i)=d\in\mathbb Z^2$.
+  All coefficient monomials and all native module generators are allowed;
+  no extra truncation or zero relation is imposed. The full Ceta and CW
+  row-presence proofs supply each generator's recorded degree without a default row.
+  Taking one generator of degree zero and value one in the original sphere
+  quotient gives its integer-indexed coefficient spans.
+  These spans do not assert direct-sum independence or an actual Ext comparison.
+\end{definition}
+
+\begin{proposition}[Homogeneous spans under complete quotient descent]
+  \label{prop:lin-native-homogeneous-descent}
+  \lean{KIP126.LinModule.Presentation.coefficientDegree_add,KIP126.LinModule.Presentation.coefficientDegree_zero,KIP126.LinModule.Presentation.generator_mem_homogeneousSpan,KIP126.LinModule.Presentation.monomial_smul_mem_homogeneousSpan,KIP126.LinModule.Presentation.smul_mem_homogeneousSpan,KIP126.LinModule.Presentation.map_mem_homogeneousSpan,KIP126.LinModule.Presentation.desc_mem_homogeneousSpan,KIP126.LinModule.NativeMapCertificates.coefficientPart_nat}
+  \uses{def:lin-native-homogeneous-spans,prop:lin-native-module-map-descent}
+  \leanok
+  Multiplication by a coefficient of bidegree $(s,t)$ shifts every module
+  span by $(s,t)$. An $A$-linear map whose complete generator family has
+  degree shift $\delta$ sends every span of degree $d$ into degree $d+\delta$.
+  This applies to the original quotient descent, conditional on vanishing
+  of all original relations. At nonnegative degrees the coefficient span
+  is exactly the previously defined sphere homogeneous submodule, not a
+  replacement graded model.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Induct on the original homogeneous spans. Products of coefficient
+  monomials add their degrees; linearity handles sums and scalar multiples.
+  Apply the complete quotient's generator computation law to the descent.
+\end{proof}
+
+\begin{proposition}[Degrees of the complete native Ceta-to-sphere graph]
+  \label{prop:lin-native-ceta-map-grading}
+  \lean{KIP126.LinModule.NativeMapCertificates.nativeImage,KIP126.LinModule.NativeMapCertificates.parseNativeCode,KIP126.LinModule.NativeMapCertificates.evaluate_parseNativeCode,KIP126.LinModule.NativeMapCertificates.homogeneousPolynomialCheck,KIP126.LinModule.NativeMapCertificates.homogeneousPolynomialCheck_sound}
+  \lean{KIP126.LinModule.NativeMapCertificates.ceta_degree_all,KIP126.LinModule.NativeMapCertificates.ceta_nativeImage_mem,KIP126.LinModule.NativeMapCertificates.ceta_desc_mem,KIP126.LinModule.NativeMapCertificates.cetaDescAt,KIP126.LinModule.NativeMapCertificates.cetaDescAt_val}
+  \uses{def:lin-native-complete-map-graphs,prop:lin-native-homogeneous-descent}
+  \leanok
+  Every one of the 887 original generator images belongs to the sphere
+  coefficient span of its original degree plus $(0,-2)$. Parse the official
+  graph entry itself; its empty string evaluates to zero, including the
+  generator whose shifted degree is $(0,-2)$. Integer subtraction is retained.
+  If every one of the 76569 original source relations vanishes under these
+  same images, the resulting full quotient map restricts for every
+  $s,t\in\mathbb N$ to an $\mathbb F_2$-linear map from the source span
+  of degree $(s,t+2)$ to the existing $\mathrm{E2At}(s,t)$.
+  The full relation hypothesis and actual spectrum-map comparison are still
+  separate obligations; no bounded replacement map is substituted.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Prove parsing and evaluation agree for every string, with the native zero
+  convention explicit. Bounded batches let the kernel check every monomial
+  in all 887 original images against the original generator degrees without
+  retaining one whole-graph reduction. The batch proofs combine to the same
+  complete-graph statement. Polynomial evaluation lies
+  in the corresponding span. Apply homogeneous descent and the equality
+  with the original nonnegative sphere submodules.
+\end{proof}
+
+\begin{proposition}[Native module strings and complete-target evaluation]
+  \label{prop:lin-native-module-terms-evaluation}
+  \lean{KIP126.LinE2.NativeModuleCertificates.Support.ModuleTerms,KIP126.LinE2.NativeModuleCertificates.Support.termsExpression,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_substituteModuleWord,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_substituteModuleRelation,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_moduleRelationTerms,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_nativeModuleTerms,KIP126.LinE2.NativeModuleCertificates.Support.check_terms_projection_zero}
+  \uses{prop:lin-native-module-support-compression,prop:lin-native-module-map-descent}
+  \leanok
+  Finite native module terms evaluate to the existing full-target parser
+  value for every source and target rank and every string. The recorded
+  empty map image evaluates to zero, separately from the relation parser.
+  Substitution commutes with evaluation. Restricting the checker to a support
+  requires a checked support condition for the input and every relation;
+  its conclusion remains in the original full target.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Induct on native words and lists of terms, using the existing scalar
+  projection, module evaluation and checker soundness. The parser theorem
+  does not assert that an arbitrary string is a valid original input.
+\end{proof}
+
+\begin{proposition}[Degrees of the complete native CW-to-eta-cofiber graph]
+  \label{prop:lin-native-cw-map-grading}
+  \lean{KIP126.LinModule.CWToCeta.generatorImage,KIP126.LinModule.CWToCeta.imageTerms_evaluate}
+  \lean{KIP126.LinModule.NativeMapCertificates.nativeMonomial_smul_mem,KIP126.LinModule.NativeMapCertificates.homogeneousModuleTermsCheck,KIP126.LinModule.NativeMapCertificates.homogeneousModuleTermsCheck_sound}
+  \lean{KIP126.LinModule.NativeMapCertificates.cw_degree_all,KIP126.LinModule.NativeMapCertificates.cw_nativeImage_mem,KIP126.LinModule.NativeMapCertificates.cw_desc_mem,KIP126.LinModule.NativeMapCertificates.cwDescAt,KIP126.LinModule.NativeMapCertificates.cwDescAt_val}
+  \uses{def:lin-native-complete-map-graphs,prop:lin-native-homogeneous-descent,prop:lin-native-module-terms-evaluation}
+  \leanok
+  Every one of the 844 original CW generator images belongs to the
+  eta-cofiber homogeneous span of its original degree plus $(0,-4)$.
+  Parse every official graph string with the native module parser, including
+  the recorded empty zero image at shifted degree $(0,-4)$. The coefficient
+  algebra still has all 2914 original generators, and the target quotient
+  still uses all 887 generators and all 76569 original relations.
+  Source and target degrees use their actual rows with proved presence,
+  without a default generator row.
+
+  Conditional on vanishing of all 69263 original source relations under
+  these same images, the complete quotient map sends every integer span
+  of degree $d$ into degree $d+(0,-4)$. For every $s,t\in\mathbb N$ it
+  restricts to an $\mathbb F_2$-linear map from the source span of degree
+  $(s,t+4)$ to the target span of degree $(s,t)$.
+  Actual spectrum-map comparison remains a separate obligation.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Prove that each native coefficient monomial shifts a full module span by
+  its recorded degree. Summation gives soundness of the module-term degree
+  checker. Bounded kernel computations cover every term in all 844 original
+  graph entries, and their proofs combine to the same complete-graph statement.
+  The all-string parser evaluation theorem identifies those terms with the
+  full target quotient images. Apply homogeneous descent to the original
+  source relation list and restrict at nonnegative target indices.
+\end{proof}
+
+\begin{lemma}[Native module quotient reductions for the naturality chain]
+  \label{lem:lin-native-module-products}
+  \lean{KIP126.LinModule.Presentation.native_relation_zero,KIP126.LinModule.Presentation.projection_ofPowers,KIP126.LinModule.Presentation.relation_mem_of_chunk}
+  \lean{KIP126.LinModule.NaturalityModuleProducts.ceta13125_mem,KIP126.LinModule.NaturalityModuleProducts.ceta13126_mem,KIP126.LinModule.NaturalityModuleProducts.cw13675_mem}
+  \lean{KIP126.LinE2.NativeModuleCertificates.ceta_check,KIP126.LinE2.NativeModuleCertificates.cw_check,KIP126.LinE2.NativeModuleCertificates.check_sound_projection}
+  \lean{KIP126.LinModule.NaturalityModuleProducts.native_ceta_map_column0,KIP126.LinModule.NaturalityModuleProducts.native_cw_ancestor_product,KIP126.LinModule.NaturalityModuleProducts.native_ceta_strings,KIP126.LinModule.NaturalityModuleProducts.native_cw_strings}
+  \uses{def:lin-native-module-presentations}
+  \leanok
+  In the complete fixed native modules, one has
+  \[
+    x_{195}e_{12}=x_{67}x_{107}e_0
+       \quad\text{in }M_{C\eta},
+    \qquad
+    x_3e_{240}=x_{438}e_2+x_0^2x_{418}e_2
+       \quad\text{in }M_{\mathrm{CW}_{\nu,\eta}}.
+  \]
+  The original string targets are
+  \texttt{195,1,12 = 67,1,107,1,0} and
+  \texttt{3,1,240 = 438,1,2 + 0,2,418,1,2}.
+  Their bidegrees are $(15,140)$ and $(16,145)$.
+  These equalities have no assumed relation-vanishing or actual-page
+  premise. The first reduces the additional zero-indexed source column
+  of the recorded CW-to-Ceta map; the second is a module product in an
+  independent reconstruction of a prior differential input.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Certify exact membership of Ceta SQLite relation rows 13125 and
+  13126, and CW relation row 13675, in the full relation lists.
+  In zero-based indexing these are 13124, 13125 and 13674.
+  Their original three-term relations are
+  \[
+    x_{195}e_{12}+x_{385}e_2+x_{456}e_0=0,
+    \qquad
+    x_{385}e_2+x_{456}e_0+x_{67}x_{107}e_0=0,
+  \]
+  and $x_3e_{240}+x_{438}e_2+x_0^2x_{418}e_2=0$.
+  Submodule membership proves that these relations vanish in the
+  defined quotients. Apply the existing characteristic-two module
+  certificate checker to the sum of the first two relations and to
+  the third relation, checking all 887 and 844 module coordinates.
+  The generic checker is used through the original sphere quotient
+  projection; it introduces no new mathematical axiom or nontriviality
+  premise. Parsing and projection then give the native string statements.
+
+  No actual module presentation comparison, spectrum-map equation,
+  $d_3$ statement, multiplier-cycle assertion, module Leibniz rule,
+  boundary exclusion, candidate coverage or historical log-parent edge
+  follows from these fixed quotient identities alone.
+\end{proof}
+
+\begin{proposition}[Support compression preserves the complete native module target]
+  \label{prop:lin-native-module-support-compression}
+  \lean{KIP126.LinE2.NativeModuleCertificates.Support.restrict,KIP126.LinE2.NativeModuleCertificates.Support.embed,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_restrict,KIP126.LinE2.NativeModuleCertificates.Support.evaluate_embed,KIP126.LinE2.NativeModuleCertificates.Support.check_sound_embed_projection,KIP126.LinE2.NativeModuleCertificates.Support.check_sound_restrict_projection}
+  \uses{def:lin-native-module-presentations,lem:lin-native-module-products}
+  \leanok
+  For arbitrary finite ranks $k,n$, an injection
+  $e:\operatorname{Fin}(k)\hookrightarrow\operatorname{Fin}(n)$ transports
+  expressions supported on its image without changing their evaluation in
+  any module over the original sphere algebra. Restriction requires that
+  every omitted coordinate of both expressions and every certificate
+  relation be empty. Extension assigns empty polynomials outside the image.
+  The existing module-expression checker may therefore run on $k$ coordinates
+  and conclude equality in the original target module on all $n$ generators.
+  No smaller quotient presentation is substituted for the target.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Reindex the finite sum along the injection and show the complementary
+  terms vanish. Apply the existing checker soundness theorem through the
+  same sphere quotient projection. This introduces neither a new checker
+  nor a characteristic or nontriviality assumption on the quotient.
+\end{proof}
+
+\begin{lemma}[A fixed CW map relation in the complete Ceta quotient]
+  \label{lem:lin-cw-map-maximal-support-relation}
+  \lean{KIP126.LinModule.CWMaxSupport.checker,KIP126.LinModule.CWMaxSupport.full_887_equality,KIP126.LinModule.CWMaxSupport.source_relation_mem,KIP126.LinModule.CWMaxSupport.row67028_image_zero}
+  \uses{prop:lin-native-module-support-compression,def:lin-native-complete-map-graphs}
+  \leanok
+  The original CW relation at SQLite row 67028 is
+  \texttt{2,1,766;79,1,196;90,1,187}, of bidegree $(29,199)$.
+  Evaluation under the complete recorded CW-to-Ceta generator graph
+  is zero in the full 887-generator Ceta quotient. Its certificate uses
+  29 target coordinates, 24 occurrences of original Ceta relations, and
+  five original sphere relations.
+  Native empty image strings are explicitly interpreted as zero.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Check the unchanged finite-expression verifier on the 29-coordinate
+  support, prove each target relation from original-table membership,
+  and embed the result in the full Ceta module. The three source-generator
+  images are checked against the complete graph literals, and the source
+  relation is checked against the complete CW relation table. This certifies
+  this one relation image. It does not certify every source relation,
+  quotient descent of the whole graph, grading, or an actual spectrum map.
+\end{proof}
+
+\begin{lemma}[All native target representatives for the CW branch]
+  \label{lem:lin-cw-native-d2-quotient}
+  \lean{KIP126.LinProgram.BranchD2Coordinates.incoming_decoded,KIP126.LinProgram.BranchD2Coordinates.outgoing_decoded,KIP126.LinProgram.BranchD2Coordinates.kernel_iff,KIP126.LinProgram.BranchD2Coordinates.image_iff,KIP126.LinProgram.BranchD2Coordinates.image_le_kernel,KIP126.LinProgram.BranchD2Coordinates.representatives_decoded,KIP126.LinProgram.BranchD2Coordinates.kernel_mod_image_representatives}
+  \uses{def:core-f2}
+  \leanok
+  In the complete native $5\to4\to4$ coordinate complex at
+  $\mathrm{CW}_{\nu,\eta}$ degree $(18,146)$, the incoming columns are
+  $[1,3],[],[],[],[]$ and the outgoing columns are $[],[2],[],[2]$.
+  For every vector in the full four-dimensional space, membership in the
+  outgoing kernel is equivalent to having exactly one representative
+  among $[],[0],[2],[0,2]$ modulo the full incoming image.
+  Missing, unknown, duplicate, unsorted and out-of-range coordinates
+  are rejected before forming the matrices.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Check the complete matrices over $\mathbb F_2$, retaining all five
+  incoming coordinates. Their image is contained in the kernel, and
+  exhaustive finite verification checks uniqueness over every vector.
+  These are fixed native linear-algebra statements. The actual Adams
+  page comparisons and actual candidate coverage for log 462479 remain
+  separate obligations; the final stored staircase is not their proof.
+\end{proof}
+
+\begin{lemma}[Transport of the native four-representative certificate]
+  \label{lem:lin-cw-page-three-transport}
+  \lean{KIP126.LinProgram.BranchPageThree.representatives}
+  \uses{prop:internal-page-three-representatives,lem:lin-cw-native-d2-quotient}
+  \leanok
+  Let $E$ be any internal spectral sequence of abelian groups with
+  starting page at most two. Supply complete integer-linear coordinate
+  isomorphisms from the native spaces of dimensions $5,4,4$ to
+  $E_2(p)$, $E_2(p+\delta_2)$ and $E_2(p+2\delta_2)$, respectively.
+  If both actual $d_2$ squares commute on every vector, every element
+  of $E_3(p+\delta_2)$ has exactly one representative among the four
+  fixed native representatives under the middle comparison.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Lift an arbitrary third-page class to an $E_2$ label. Its coordinate
+  vector is a cycle by the outgoing square. The incoming isomorphism
+  and square identify the complete incoming image. The unique native
+  coset representative then gives the unique actual page representative.
+  This conditional theorem supplies neither an actual CW sequence nor
+  its three coordinate comparisons and two squares. For log 462479,
+  the source label's extension to $E_3$ is also a separate obligation;
+  actual candidate coverage has not been asserted.
+\end{proof}
+
+
+\begin{lemma}[Singleton-span exhaustion and its comparison transport]
+  \label{lem:lin-singleton-exhaustion-transport}
+  \lean{KIP126.Core.Algebra.eq_zero_or_of_span_singleton,KIP126.Core.Algebra.LinearEquiv.zero_or_of_exhaustion,KIP126.Core.Algebra.LinearEquiv.image_eq_of_exhaustion,KIP126.LinE2.E2At_eq_zero_or_of_span}
+  \uses{def:core-f2,def:lin-e2-catalogue}
+  \leanok
+  Every vector in the span of one specified vector over $\mathbb F_2$ is
+  zero or that vector. Over any semiring, a linear equivalence transports
+  exhaustion by zero and one specified vector and identifies every
+  independently specified nonzero target vector with its image.
+  The homogeneous-data specialization requires the entire component to
+  equal the singleton span; it does not assume catalogue completeness.
+\end{lemma}
+\begin{proof}
+  \leanok
+  A scalar in $\mathbb F_2$ is zero or one. Surjectivity transports the two
+  alternatives; independent nonvanishing excludes the zero alternative.
+  The same lemmas are reused by the original $h_1$, $h_4$, $h_0h_3^2$,
+  $h_6$, $h_0h_5^2$ and $h_6^2$ certificates, preserving all original statements.
+  They supply neither a fixed presentation nor its actual product comparison.
+\end{proof}
+
+\begin{lemma}[Independent coordinates for native row 5541]
+  \label{lem:lin-h6-one-line-coordinate-certificate}
+  \lean{KIP126.LinE2.OneLineH6.source_monomial_unique,KIP126.LinE2.OneLineH6.target_monomial_unique,KIP126.LinE2.OneLineH6.source_span,KIP126.LinE2.OneLineH6.target_span,KIP126.LinE2.OneLineH6.source_eq_zero_or,KIP126.LinE2.OneLineH6.target_eq_zero_or,KIP126.LinE2.OneLineH6.source_value,KIP126.LinE2.OneLineH6.target_value}
+  \uses{def:lin-e2-catalogue,lem:lin-singleton-exhaustion-transport}
+  \leanok
+  In the fixed 2914-generator quotient, every homogeneous element of
+  degree $(1,64)$ is zero or the native class $x_{69}$, and every element
+  of degree $(3,65)$ is zero or $x_0x_{18}^2$. Their exact archived
+  coordinate lists are both $[0]$. These statements do not assume the
+  certified CSV basis table or any actual-model delivery.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Exhaust the possible generating degrees using the complete fixed
+  generator array. This leaves one monomial in each of the two degrees.
+  Homogeneous spanning and the two elements of $\mathbb F_2$ give the
+  element alternatives. Exact catalogue membership and literal monomial
+  parsing give the native coordinates.
+\end{proof}
+
+\begin{proposition}[The one-line source supplies native row 5541]
+  \label{prop:lin-h6-one-line-producer}
+  \lean{KIP126.Interface.Solution.LinProgram.row5541_hasNonzeroDifferential,KIP126.Interface.Solution.LinProgram.row5541_rejects_zero,KIP126.Interface.Solution.LinProgram.row5541,KIP126.Computation.LinProofs.row5541,KIP126.Computation.LinProofs.Selected.d2_h6}
+  \uses{lem:lin-singleton-exhaustion-transport,lem:lin-h6-one-line-coordinate-certificate,thm:external-adams-one-line,def:computation-fixed-bindings,def:lin-proofs-sphere-meaning}
+  \notready
+  The original record is $d_2:(1,64)[0]\to(3,65)[0]$, with reason
+  \texttt{d2}. Instantiate the retained one-line literature theorem at
+  $j=6$, preserving its nonzero differential conclusion. On the same fixed
+  sphere sequence, the independently exhausted degrees identify the
+  canonical nonzero classes with the images under the supplied presentation.
+  No general comparison of presentation multiplication with the canonical
+  cobar product is assumed.
+
+  The two concrete Main consumers retain their original types and use
+  the literature and presentation projected from the same direct witness.
+  They no longer read its total differential result. The arbitrary-row
+  table interface and the other five selected consumers retain their full
+  original scope. This is a conditional use of the existing literature
+  delivery, not replay of the machine's secondary algorithm; the fixed
+  model's foundational obligations remain.
+\end{proposition}
+
+\begin{definition}[Native finite secondary-resolution composition]
+  \label{def:lin-secondary-native-composition}
+  \lean{KIP126.Computation.Secondary.NativeRow,KIP126.Computation.Secondary.resolvePaths,KIP126.Computation.Secondary.compose,KIP126.Computation.Secondary.expressionCoefficient}
+  A selected row retains its native generator identifier, degrees,
+  differential and secondary lift, together with auxiliary correction
+  expressions computed by the extractor.
+  Composition first resolves every intermediate generator image; absent
+  images return failure. Its coefficient function uses the dual of the
+  explicit Milnor coproduct and ranges over all target generators and every
+  monomial of the original arity. There is no degree cutoff in this semantics.
+  Auxiliary correction fields are input expressions, not assertions that
+  the secondary-associator formula or an Adams differential has been proved.
+\end{definition}
+
+\begin{lemma}[Exact-degree acceleration preserves the original Milnor coefficients]
+  \label{lem:lin-secondary-fast-milnor-checker}
+  \lean{KIP126.Computation.Secondary.degreeBasis_mem,MilnorCertificates.fastCoproduct_value,KIP126.Computation.Secondary.pairTensor_singletons_of_universal_eq,KIP126.Computation.Secondary.pairTensor_fastCoproduct_singletons,KIP126.Computation.Secondary.fastSingletonProductCheck_sound,KIP126.Computation.Secondary.fastSingletonProductCheckWithTable_sound}
+  \uses{def:lin-secondary-native-composition}
+  \leanok
+  For every rank and pair of monomials of that rank, the accelerated
+  singleton-product checker proves the original Milnor product predicate
+  on all monomials of the same rank. It checks the entire exact sum degree;
+  it does not restrict the conclusion to that degree or to a finite window.
+  Wrong arities and terms of a wrong degree are rejected.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Weighted partitions enumerate exactly all monomials of a given degree.
+  Binary powers use the characteristic-two Frobenius identity, with equality
+  proved in the original tensor-polynomial interpretation. Coefficient
+  extraction in its universal polynomial ring reflects this equality back
+  to the original executable singleton-pair coefficients. The existing
+  homogeneous support theorem supplies every other degree. No executable
+  evaluator is trusted as an additional axiom. A shared coproduct table carries
+  a proof that it is exactly the whole ordered degree basis with its original
+  fast coproducts; each product also checks its actual input-degree sum.
+\end{proof}
+
+\begin{lemma}[Certified expansion retains the full native composition]
+  \label{lem:lin-secondary-certified-expansion}
+  \lean{KIP126.Computation.Secondary.expressionEqCheck_sound,KIP126.Computation.Secondary.normalizationCheck_sound,KIP126.Computation.Secondary.expandPaths_sound,KIP126.Computation.Secondary.compose_of_checked_expansion,KIP126.Computation.Secondary.compositionCheck_sound,KIP126.Computation.Secondary.expandCompose_none_of_missing_image,KIP126.Computation.Secondary.expandCompose_none_of_missing_product,KIP126.Computation.Secondary.indexedCompositionCheck_sound,KIP126.Computation.Secondary.normalizeExpression_sound}
+  \uses{def:lin-secondary-native-composition,lem:lin-secondary-fast-milnor-checker}
+  \leanok
+  Given sound product witnesses for the resolved paths, a checked finite
+  expansion proves equality with the original composition at every target
+  generator and every monomial of the original rank. Parity comparison on
+  the union of the complete supports implies equality on all coefficients.
+  A missing intermediate image or product remains failure, even when other
+  terms cancel. An explicitly supplied zero product still needs its product
+  proof. These are generic checking theorems; certification of the entire
+  fixed 96-row input and comparison with the actual sphere remain separate.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Resolve the original paths, expand each by its original all-monomial
+  product theorem, and sum coefficients in $\mathbb F_2$. Outside both
+  finite supports the coefficients vanish. Induction retains failure of
+  any required lookup, before parity normalization. Indexed plans must match
+  the entire original resolved path list. Sorting is proved to be a permutation
+  and adjacent pair cancellation preserves coefficients, so normalization
+  introduces no sorting-correctness assumption.
+\end{proof}
+
+\begin{lemma}[Augmentation of the original native coefficient semantics]
+  \label{lem:lin-secondary-augmentation}
+  \lean{KIP126.Computation.Secondary.coproduct_unit,KIP126.Computation.Secondary.product_augmentation,KIP126.Computation.Secondary.augmentationTerms,KIP126.Computation.Secondary.augmentationTerms_coefficient,KIP126.Computation.Secondary.compose_augmentation,KIP126.Computation.Secondary.augmentation_eq_of_terms}
+  \uses{def:lin-secondary-native-composition,lem:lin-secondary-certified-expansion}
+  \leanok
+  For every original rank, taking the coefficient of the all-zero Milnor
+  monomial is multiplicative for the original all-monomial product predicate.
+  For a module expression, filtering its unit terms and retaining their
+  generator indices gives exactly this augmented coefficient at every target;
+  repeated indices retain their parity. Augmentation of the original partial
+  composition is the parity sum of paths whose two factors are units.
+  Every original path must still resolve before this sum is formed, even
+  when a missing nonunit term would have zero augmentation.
+\end{lemma}
+\begin{proof}
+  \leanok
+  The original coproduct sends the unit to its single pair of unit factors.
+  Evaluation proves multiplicativity. Commuting the two finite filters
+  identifies module coefficients, and induction on the complete resolved
+  path list proves compatibility with composition. Thus an independently
+  checked equality with a recorded generator list identifies its augmented
+  coefficients. This does not prove a secondary associator formula,
+  exactness or minimality of a resolution, or the actual sphere differential.
+\end{proof}
+
+\begin{lemma}[Native contraction is dual to the original monomial multiplication]
+  \label{lem:lin-secondary-contraction}
+  \lean{KIP126.Computation.Secondary.contractMonomial_eq_some,KIP126.Computation.Secondary.contractMonomial_eq_none_iff,KIP126.Computation.Secondary.contractPolynomial_coefficient,KIP126.Computation.Secondary.contractPolynomial_twice_coefficient,KIP126.Computation.Secondary.contractPolynomial_xi_zero_coefficient,KIP126.Computation.Secondary.contractModuleExpression_coefficient,KIP126.Computation.Secondary.contractMonomial_weight,KIP126.Computation.Secondary.outerContraction_eq_none_of_weight_lt}
+  \uses{def:lin-secondary-native-composition,lem:lin-secondary-certified-expansion}
+  \leanok
+  At every original rank, coordinate subtraction by a dual monomial $a$
+  succeeds with output $b$ exactly when the original monomial product
+  $ab$ is the input; a rank mismatch or impossible subtraction is rejected.
+  Its linear extension satisfies
+  \[
+    [b]C(a,p)=[ab]p
+  \]
+  at every monomial $b$ of that rank. The same identity holds at every
+  target generator of a module expression. Two contractions compose by
+  multiplying their dual factors, and contraction by $\xi_0^e=1$ is the
+  identity. Successful contraction removes exactly the factor's weight.
+  In the native second associator sum, its first factor
+  $\xi_{m-k}^{2^k}$ has weight at least $2^{m-1}$ for $k<m\le r$;
+  a smaller-weight input therefore contributes zero.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Induction on the original coordinate lists proves the subtraction
+  characterization. Parity of the filtered complete polynomial or module
+  expression gives the coefficient identities, including cancellation of
+  repeated terms. Additivity of the original Milnor weight proves the
+  degree obstruction and the stated exponential lower bound. These are
+  components of the independent associator formula; the mod-four lift,
+  division by two and complete formula still require separate proofs.
+\end{proof}
+
+\begin{proposition}[Three closed coefficient identities in the seed 5487 input]
+  \label{prop:lin-secondary-5487-selected-equalities}
+  \lean{KIP126.Computation.Secondary.Seed5487.row1048577_d_squared,KIP126.Computation.Secondary.Seed5487.row1572866_d_f,KIP126.Computation.Secondary.Seed5487.row3145729_d_f}
+  \uses{def:lin-secondary-native-composition,lem:lin-secondary-fast-milnor-checker}
+  \leanok
+  In the selected native eight-coordinate data, row 1048577 at
+  $(s,v,t)=(2,1,4)$ has square-zero differential. For row 1572866 at
+  $(3,2,10)$, composing its supplied secondary lift with the supplied first
+  differential gives exactly the three-term auxiliary \texttt{d\_f} expression
+  computed by the extractor; that expression is not a native database column.
+  Row 3145729 at $(6,1,16)$ has a one-path secondary-lift composition
+  through the native differential of row 2097152, equal to its two-term
+  auxiliary \texttt{d\_f} expression. This row occurs in the supplied
+  secondary lifts of both selected seed endpoints.
+  All three equalities quantify over every target generator and every
+  eight-coordinate monomial, with no degree restriction.
+\end{proposition}
+\begin{proof}
+  \leanok
+  Resolve all paths: two for each original expression and one for the
+  additional lift. The proved exact-degree Milnor checker verifies the
+  five products in small rank, with the checks elaborated sequentially.
+  Its soundness theorem retains all monomials in that rank; rank stability
+  then extends the same identities to all monomials at rank eight.
+  The two paths of the first expression cancel coefficientwise in
+  $\mathbb F_2$; the second and third yield their three and two specified
+  terms, respectively.
+  These are actual fixed algebra-input equalities, not a proof for the
+  entire 96-generator closure, the independent associator construction,
+  resolution exactness, or the sphere $d_2$ in log 5487.
+\end{proof}
+
 \subsection{Low-degree data illustration}
 
 \begin{definition}[Low-degree table extracted from Lin's data]
   \label{def:lin-low-degree-table}
   \lean{KIP126.Examples.AdamsE2LowDegrees.table}
+  \leanok
   \uses{def:adams-e2-basis-table}
   Extract the region $0\le s\le8$, $0\le t-s\le8$, together with
   $(1,64),(2,128),(1,16),(4,18),(5,20)$, from Lin's version
@@ -473,6 +1922,7 @@ mathematical objects and conditions.
 \begin{lemma}[Low-degree table relations and a two-dimensional component]
   \label{lem:lin-low-degree-table-relations}
   \lean{KIP126.Examples.AdamsE2LowDegrees.h0_h1_zero,KIP126.Examples.AdamsE2LowDegrees.h1_h2_zero,KIP126.Examples.AdamsE2LowDegrees.h0_c0_zero,KIP126.Examples.AdamsE2LowDegrees.h1_cube,KIP126.Examples.AdamsE2LowDegrees.h6_square,KIP126.Examples.AdamsE2LowDegrees.page_two_products_sum_ne_zero}
+  \leanok
   \uses{def:lin-low-degree-table,def:adams-e2-table-presentation}
   In the model algebra, the table implies
   $h_0h_1=h_1h_2=h_0c_0=0$, $h_1^3=h_0^2h_2$, and the specified
@@ -482,6 +1932,7 @@ mathematical objects and conditions.
   Their sum has coordinates $(1,1)$ and is nonzero.
 \end{lemma}
 \begin{proof}
+  \leanok
   \uses{lem:adams-e2-table-product}
   Evaluate the imported coefficients and impose the corresponding relations
   in the quotient algebra.  Under a presentation, transport these equalities

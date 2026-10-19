@@ -1,5 +1,9 @@
-import KIP126.Def.StageInput.StandardSphere.Sequence.Data
-import KIP126.Def.ClassicalAdams.TowerNaturality.Proofs
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Proofs
+
+@[expose] public section
 
 /-! Cofibers of maps S³ → S⁰ in the *same* foundation as sphereAdamsData.
 The map is explicit until a detected Hopf-map input is supplied. -/

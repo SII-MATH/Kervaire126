@@ -9,7 +9,8 @@ python3 -m unittest \
   scripts.test_stage_boundary_layout \
   scripts.test_external_inputs \
   scripts.test_check_source_inventory \
-  scripts.test_blueprint_frontier
+  scripts.test_blueprint_frontier \
+  scripts.test_ci_build_artifact
 python3 scripts/test-import-lin-selected.py
 python3 KIP126/LinProgram/Translate/import-proofs.py --self-test
 python3 scripts/blueprint_frontier.py --output-dir metrics/frontier

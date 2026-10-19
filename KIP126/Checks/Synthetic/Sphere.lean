@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Sphere.Data
+module
+
+public import KIP126.Def.Synthetic.Sphere.Data
+
+@[expose] public section
 
 /-! Regression checks for synthetic spheres and λ-action. -/
 namespace KIP126.Checks.Synthetic

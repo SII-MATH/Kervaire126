@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
-import KIP126.Def.Synthetic.PageExtension.Proofs
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Ambiguity.Predicates
+public import KIP126.Def.Synthetic.PageExtension.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.PageExtension
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

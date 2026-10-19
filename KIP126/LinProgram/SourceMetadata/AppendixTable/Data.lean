@@ -1,5 +1,9 @@
-import Mathlib.Data.Nat.Basic
-import Mathlib.Data.Fintype.Card
+module
+
+public import Mathlib.Data.Nat.Basic
+public import Mathlib.Data.Fintype.Card
+
+@[expose] public section
 
 /-!
 # The twelve tables in the Kervaire computation catalogue

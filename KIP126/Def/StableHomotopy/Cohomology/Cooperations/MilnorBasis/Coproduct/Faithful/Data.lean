@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Proofs
-import Mathlib.LinearAlgebra.TensorProduct.Basis
-import Mathlib.RingTheory.MvPolynomial.Basic
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Proofs
+public import Mathlib.LinearAlgebra.TensorProduct.Basis
+public import Mathlib.RingTheory.MvPolynomial.Basic
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

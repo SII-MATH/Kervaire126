@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Convergence.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.Convergence.Predicates
+
+@[expose] public section
 
 /-!
 # Detection sets

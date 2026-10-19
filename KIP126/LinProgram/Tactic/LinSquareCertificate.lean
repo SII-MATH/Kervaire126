@@ -1,5 +1,10 @@
-import KIP126.LinProgram.Certificates.SquareDetection.Certificate
-import Lean
+module
+
+public import KIP126.LinProgram.Certificates.SquareDetection.Certificate
+public import Lean
+public meta import KIP126.LinProgram.Generated.E2
+
+@[expose] public section
 
 /-! Kernel-checked certificates for the archived nonzero-square detector.
 
@@ -14,7 +19,7 @@ namespace KIP126.LinE2.SquareDetection.Automation
 
 open Lean Meta Elab Tactic
 
-private def saveCertificate (cs proof : Expr) : TermElabM Expr := do
+private meta def saveCertificate (cs proof : Expr) : TermElabM Expr := do
   Term.synthesizeSyntheticMVarsNoPostponing
   let value ← instantiateMVars proof
   let type ← mkEq (mkApp (mkConst ``charsChunkCheck) cs) (mkConst ``Bool.true)
@@ -23,7 +28,7 @@ private def saveCertificate (cs proof : Expr) : TermElabM Expr := do
     addDecl (.thmDecl { name, levelParams := [], type, value })
   return mkConst name
 
-private partial def certifyRows (rows : List String) : TermElabM (Expr × Expr) := do
+private meta partial def certifyRows (rows : List String) : TermElabM (Expr × Expr) := do
   let cs := toExpr (String.intercalate "\n" rows).toList
   let proof ← if rows.length > 8 then do
     let (a, pa) ← certifyRows (rows.take (rows.length / 2))

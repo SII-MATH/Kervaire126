@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.FilteredComplex
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex
+
+@[expose] public section
 
 namespace KIP126.Checks.SpectralSequence.FilteredComplexSSDataConstruction
 

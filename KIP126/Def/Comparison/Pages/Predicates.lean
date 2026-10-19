@@ -1,6 +1,10 @@
-import KIP126.Def.SpectralSequence.Basic.Category.Data
-import KIP126.Def.SpectralSequence.Computation.Predicates
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.Basic.Category.Data
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Predicates
+
+@[expose] public section
 /-!
 # Spectral-sequence page and morphism calculus
 

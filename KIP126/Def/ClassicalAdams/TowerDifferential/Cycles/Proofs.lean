@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerDifferential.Cycles.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerDifferential.Cycles.Data
+
+@[expose] public section
 
 /-!
 # Vanishing on cycle boundaries

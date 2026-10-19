@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Suspension.Predicates
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Lowering.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Connecting.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Suspension.Predicates
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Lowering.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Connecting.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

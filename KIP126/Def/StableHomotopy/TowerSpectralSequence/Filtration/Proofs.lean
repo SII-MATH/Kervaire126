@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Filtration.Data
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Pages.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Filtration.Data
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Pages.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.TowerSpectralSequence
 

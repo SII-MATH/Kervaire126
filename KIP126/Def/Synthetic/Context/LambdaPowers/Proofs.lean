@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Context.LambdaPowers.Data
+module
+
+public import KIP126.Def.Synthetic.Context.LambdaPowers.Data
+
+@[expose] public section
 
 /-! Naturality of the existing powers, without replacing their components. -/
 

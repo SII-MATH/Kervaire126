@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.SSData.Data
-import KIP126.Def.SpectralSequence.ModuleQuotient.Data
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.SSData.Data
+public import KIP126.Def.SpectralSequence.ModuleQuotient.Data
+
+@[expose] public section
 
 /-! Canonical identification with the quotient of the very same cycle and
 boundary submodules. No additional comparison is chosen. -/

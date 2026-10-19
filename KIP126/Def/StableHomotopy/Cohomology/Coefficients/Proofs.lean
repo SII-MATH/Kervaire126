@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Data
+
+@[expose] public section
 
 /-! Derived F₂ scalars preserve the represented groups and their original maps. -/
 

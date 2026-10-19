@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.Page.Data
-import KIP126.Def.ClassicalAdams.TowerDifferential.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.Page.Data
+public import KIP126.Def.ClassicalAdams.TowerDifferential.Proofs
+
+@[expose] public section
 
 /-!
 # Internal page maps induced by the actual tower differential

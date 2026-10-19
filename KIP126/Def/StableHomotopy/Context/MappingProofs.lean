@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Context.Proofs
+
+@[expose] public section
 
 /-! Mapping-spectrum and sphere-smash consequences of a closed stable context. -/
 namespace KIP126.StableHomotopy
@@ -23,6 +27,7 @@ private noncomputable def smashDesuspIso (A B : C) :
       eqToIso (by simp [Functor.id_obj, tensorRight]))
 
 /-- Tensoring with a sphere implements the shift. -/
+@[no_expose]
 noncomputable def sphere_tensor_shift (n : ℤ) (X : C) :
     (Sphere n : C) ⊗ X ≅ (shiftFunctor C n).obj X :=
   Int.inductionOn' n 0

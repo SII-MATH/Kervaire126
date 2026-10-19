@@ -1,3 +1,7 @@
+module
+
+@[expose] public section
+
 /-!
 Typed records exported from the pinned Lin `proofs.db`. Coordinates are local
 additive-basis indices, NOT algebra-generator IDs. `s,t` always denote the

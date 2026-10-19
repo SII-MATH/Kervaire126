@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Route.Section7.Predicates
+module
+
+public import KIP126.Def.Kervaire.Route.Section7.Predicates
+
+@[expose] public section
 
 /-! Pure statement language for the compatible alpha1 used in Section 7.
 No existence or local calculation is a field of the underlying model. -/

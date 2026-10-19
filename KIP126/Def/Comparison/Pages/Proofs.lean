@@ -1,7 +1,11 @@
-import KIP126.Def.Comparison.Pages.Predicates
-import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
-import KIP126.Def.SpectralSequence.Computation.Proofs
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Proofs
+module
+
+public import KIP126.Def.Comparison.Pages.Predicates
+public import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
+public import KIP126.Def.SpectralSequence.Computation.Proofs
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Proofs
+
+@[expose] public section
 
 namespace KIP126.Def.Comparison.StageInterfaces
 

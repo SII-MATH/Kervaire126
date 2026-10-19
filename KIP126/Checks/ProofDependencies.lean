@@ -1,4 +1,8 @@
-import Lean.Elab.Command
+module
+
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Contract types may be imported from Interface/Challenge. Main's intentional
 final-goal placeholder may never establish a Solution theorem. -/

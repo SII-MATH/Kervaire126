@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
-import KIP126.Def.ClassicalAdams.TowerSequence.NextCycles.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+public import KIP126.Def.ClassicalAdams.TowerSequence.NextCycles.Proofs
+
+@[expose] public section
 
 /-! Send actual first-page cycles to the existing internal second page.
 This uses the proved tower representative lift, not a coordinate input. -/

@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Data
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Lifting.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Data
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Lifting.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

@@ -1,7 +1,11 @@
-import KIP126.Def.Synthetic.ExtensionSS.Proofs
-import KIP126.Def.Synthetic.NormalizedMap.Data
-import KIP126.Def.Synthetic.PageExtension.Lambda.Data
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Data
+module
+
+public import KIP126.Def.Synthetic.ExtensionSS.Proofs
+public import KIP126.Def.Synthetic.NormalizedMap.Data
+public import KIP126.Def.Synthetic.PageExtension.Lambda.Data
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Data
+
+@[expose] public section
 
 /-!
 # A fixed comparison family for normalized page extensions

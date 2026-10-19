@@ -1,5 +1,11 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Certificate
-import KIP126.Def.SpectralSequence.Computation.Proofs
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Differentials.Certificate
+public import KIP126.Def.SpectralSequence.Computation.Proofs
+public import KIP126.Interface.Solution.LinProgram.AdamsOneLine.H6
+
+@[expose] public section
+
 
 namespace KIP126.Computation.LinProofs
 
@@ -26,10 +32,12 @@ theorem DifferentialStatement.hasDifferential {row : DifferentialRow}
   exact ⟨hx, hy, x, y, hcx, hcy, hd, xr, yr, hrx, hry, heq⟩
 
 set_option maxRecDepth 2048 in
-/-- Regression example, not another axiom: database row 5541 records the
-d₂ from the sole CSV vector at (1,64) to the sole CSV vector at (3,65).
-Identification with named monomials is a separate E₂ algebra calculation. -/
+/-- Native row 5541 follows from the same witness's one-line literature
+result and presentation, using independently checked coordinates. It does
+not read the computation delivery's total differential certification. -/
 theorem row5541 : DifferentialStatement ⟨5541, "d2", 1, 64, 2, [0], [0]⟩ :=
-  differential_of_lookup 0 69 _ (by rfl)
+  KIP126.Interface.Solution.LinProgram.row5541
+    KIP126.Main.StageInput.literature
+    KIP126.Main.StageInput.computation.bindings.presentation
 
 end KIP126.Computation.LinProofs

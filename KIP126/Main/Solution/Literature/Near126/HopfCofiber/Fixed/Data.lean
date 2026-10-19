@@ -1,7 +1,11 @@
-import KIP126.LinProgram.Interpretation.Near126.Classes.Data
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
-import KIP126.Main.Solution.Literature.HopfCofiber.Predicates
-import KIP126.Main.Solution.Literature.HopfCofiber.Pages.Data
+module
+
+public import KIP126.LinProgram.Interpretation.Near126.Classes.Data
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
+public import KIP126.Main.Solution.Literature.HopfCofiber.Predicates
+public import KIP126.Main.Solution.Literature.HopfCofiber.Pages.Data
+
+@[expose] public section
 
 namespace KIP126.Computation.Near126
 open KIP126.Classical.Adams

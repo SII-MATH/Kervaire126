@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Completion.Comparison.Data
+module
+
+public import KIP126.Def.SpectralSequence.Completion.Comparison.Data
+
+@[expose] public section
 
 /-!
 # Comparison proofs for the completed filtration

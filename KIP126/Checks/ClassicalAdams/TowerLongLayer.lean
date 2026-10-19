@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Audit all-page long-cofiber representatives without fixed foundations,
 Milnor/Lin assumptions, tensor compatibility, or spectral-sequence adapters. -/

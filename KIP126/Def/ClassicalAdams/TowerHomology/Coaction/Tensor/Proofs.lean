@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

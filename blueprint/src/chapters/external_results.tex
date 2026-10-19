@@ -60,6 +60,15 @@ Each later theorem uses these
 same choices. Their existence and the necessary model comparisons are not
 established by this notation.
 
+The literature delivery construction treats these choices, their model
+comparisons and all their results as one dependent package. Its proof displays
+the individual result obligations,
+reusing the fixed-sphere Hopf differential and vanishing-line producers.
+This decomposition supplies no new literature proof. BHS completion and
+realization transport retain their internal construction obligations and
+their stated hypotheses; a general completion construction is not obtained
+by projecting one fixed source package.
+
 \subsection{Classical Adams differentials, detection and the $62$-stem}
 
 % SOURCE: MainPaper/main.tex:1667--1680, 1697--1705, 2538--2543;
@@ -67,7 +76,7 @@ established by this notation.
 \begin{theorem}[Classical Hopf $d_2$ differential]
   \label{thm:external-adams-one-line}
   \uses{def:classical-adams-ss,def:adams-hj}
-  \lean{KIP126.Challenge2.LiteratureResults.adamsOneLine_d2,KIP126.Interface.Solution.adamsOneLine_d2}
+  \lean{KIP126.Challenge2.LiteratureResults.adamsOneLine_d2,KIP126.Interface.Solution.adamsOneLine_d2,KIP126.Interface.Solution.Literature.h4_d2_standard_list}
   \notready
   On the fixed sphere Adams tower, for every $j\in\mathbb N$ with $j\ge4$,
   \[
@@ -377,10 +386,12 @@ established by this notation.
 \begin{theorem}[Moss convergence on the fixed sphere mapping model]
   \label{thm:literature-moss}
   \lean{KIP126.Challenge2.LiteratureResults.moss}
-  \uses{def:classical-adams-ss,def:massey-product,def:toda-bracket,def:adams-detection}
+  \uses{def:classical-adams-ss,def:massey-product,def:toda-bracket,def:adams-detection,def:fixed-sphere-moss-context}
   \notready
   Use the specified sphere mapping Adams towers, their composition
-  pairing $P$ and their convergence identifications $c$.
+  pairing $P$ and their convergence identifications $c$, fixed together
+  in Definition~\ref{def:fixed-sphere-moss-context} before the literature
+  conclusion is supplied.
   The object family is $\mathrm{Unit}\to C$, constant at the fixed
   $S^0$; it does not range over arbitrary spectra. Write
   $\mathcal E$ for the actual \emph{mapping} Adams sequence of
@@ -487,8 +498,10 @@ established by this notation.
   its multiplicative-setting restriction, together with IWX's
   Theorem~2.16. Matching all historical hypotheses and the chosen
   fixed mapping model remains an unfinished comparison.
-  Its local $E_3$ specialization for $\langle h_5^2,h_0,B\rangle$
-  remains unfinished; see Theorem~\ref{thm:main-local-moss-specialization}.
+  This general source input is retained. The current proof of
+  Lemma~\ref{lem:toda-two-extension} constructs the required synthetic
+  bracket using cofibers and May/Toda relations, with its first-quotient
+  label fixed by quotient uniqueness.
 \end{theorem}
 
 \subsection{Synthetic lifts, quotient towers and Adams differentials}
@@ -700,13 +713,42 @@ this inequality.
   Source: BHS Theorem~A.1(1c).
 \end{theorem}
 
-% SOURCE: bhs. Canonical locator: Theorem A.1 clause (2),
+% Internal consequence of exact tensoring and the selected sphere cofiber triangle.
+\begin{proposition}[Finite mod-two type of the selected nu cofiber]
+  \label{prop:fixed-nu-cofiber-finite-mod2-type}
+  \lean{KIP126.Interface.Solution.Literature.Route.standard_nu_cofiber_finite_mod2_type}
+  \uses{prop:fixed-sphere-finite-mod2-type,prop:bounded-finite-type-closure,def:cofiber-triangle}
+  \notready
+  The actual cofiber of Def's selected map $\nu:\Sigma^3S\to S$ has
+  degreewise finite mod-two homology. The proof applies exact tensoring
+  to this triangle and the sphere's finite-type proof, without using
+  a Hopf detection or other literature input. The fixed model construction
+  remains unfinished.
+\end{proposition}
+
+% SOURCE: BHS Theorem A.1(1),(2).
+\begin{theorem}[BHS permanent-lift source theorem on the fixed construction]
+  \label{thm:bhs-permanent-lift-source}
+  \lean{KIP126.Interface.Solution.Literature.Route.bhs_permanent_lift_source}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:actual-adams-strong-convergence}
+  On Def's fixed synthetic construction, for every classical $X$ and
+  countable-product choice $P_\Pi$ satisfying $\mathcal A_H(X;P_\Pi)$,
+  an $E_2^{s,t}(X)$ label is a permanent cycle if and only if it lifts
+  to $\pi_{t-s,t}\nu_0X$ with its specified first-quotient label.
+  Clause (2) gives the lift; restricting it to every finite quotient and
+  applying clause (1) gives the converse.
+  The proof and the identification of Def's unfinished synthetic
+  construction with the source construction remain obligations.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Theorem A.1 clauses (1),(2),
 % with actual source applicability.
 \begin{theorem}[Untruncated lifts of permanent cycle labels]
   \label{thm:literature-synthetic-permanent-lift}
   \lean{KIP126.Challenge2.LiteratureResults.synthetic_permanent_lift}
   \notready
-  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  \uses{thm:bhs-permanent-lift-source,def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
   For every classical $X$, every choice $P_\Pi$ of countable products
   satisfying $\mathcal A_H(X;P_\Pi)$, every $s,t\in\mathbb Z$ and
   every $x\in E_2^{s,t}(X)$,
@@ -717,7 +759,7 @@ this inequality.
   \]
   Both sides allow zero or boundary labels. The hypothesis is the actual
   nilpotent-completeness and strong convergence of this $X$, as specified
-  above. Source: BHS Theorem~A.1(2), with its source applicability.
+  above. Source: BHS Theorem~A.1(1),(2), with its source applicability.
 \end{theorem}
 
 % SOURCE: bhs. Canonical locator: Theorem A.8 thm:synth-ASS.
@@ -756,12 +798,25 @@ this inequality.
   Theorem~A.8, \texttt{thm:synth-ASS}.
 \end{theorem}
 
+% SOURCE: BHS cor:tau-surj.
+\begin{theorem}[BHS filtration source theorem on the fixed construction]
+  \label{thm:bhs-filtration-lambda-source}
+  \lean{KIP126.Interface.Solution.Literature.Route.bhs_filtration_lambda_source}
+  \notready
+  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:actual-adams-strong-convergence,def:adams-filtration}
+  On the same fixed construction, for every $X$ and $P_\Pi$ satisfying
+  $\mathcal A_H(X;P_\Pi)$, the synthetic Adams filtration bound $s$
+  on $a\in\pi_{m,w}\nu X$ is equivalent to divisibility by
+  $\lambda^{m+s-w}$ whenever $w-m\le s$, with the stated weight regrading.
+  The proof of this source theorem remains unfinished.
+\end{theorem}
+
 % SOURCE: bhs. Canonical locator: cor:tau-surj with source applicability.
 \begin{theorem}[Adams filtration equals the specified finite lambda-divisibility bound]
   \label{thm:literature-synthetic-filtration-lambda}
   \lean{KIP126.Challenge2.LiteratureResults.synthetic_filtration_lambda}
   \notready
-  \uses{def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
+  \uses{thm:bhs-filtration-lambda-source,def:synthetic-adams-ss,def:synthetic-lambda-quotient,def:adams-filtration}
   For every classical $X$ and choice $P_\Pi$ of countable products
   satisfying $\mathcal A_H(X;P_\Pi)$, every $m,w,s\in\mathbb Z$
   with $w-m\le s$, and every $a\in\pi_{m,w}\nu X$,
@@ -994,12 +1049,49 @@ where $R_{m,w}:S^m\cong\operatorname{realization}(S^{m,w})$ and
 $\epsilon_X:\operatorname{realization}(\nu X)\cong X$ are the same
 specified sphere-coordinate and $\nu$-realization isomorphisms.
 
+% SOURCE: BHS Theorem A.1(2a),(2b),(3a),(3b).
+\begin{theorem}[BHS realization source theorem on the fixed construction]
+  \label{thm:bhs-realization-source}
+  \lean{KIP126.Interface.Solution.Literature.Route.bhs_realization_source}
+  \notready
+  \uses{def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
+  Use Def's fixed synthetic construction and its fixed realization
+  coordinates. For every classical $X$, every $P_\Pi$ satisfying
+  $\mathcal A_H(X;P_\Pi)$ and every canonical convergence identification
+  $c$ of the same tower, the four BHS conclusions hold: the lifetime
+  bound for every lift of a nonzero surviving permanent label;
+  detection of its realized class; existence of a lift realizing a
+  prescribed detected class; and existence of a torsion lift of an
+  incoming differential target. A survival to $E_{r+1}$ gives the
+  exponent $r-1$ in the lifetime bound, and a $d_r$ target admits a
+  lift killed by $\lambda^{r-1}$.
+  The proof of this source theorem remains unfinished.
+\end{theorem}
+
+% SOURCE: bhs. Canonical locator: Theorem A.1(2a), exponent r-1.
+\begin{proposition}[Realization transport from applicable completed sources]
+  \label{prop:bhs-realization-transport}
+  \lean{KIP126.Interface.Solution.Literature.Route.realization_detection_of_completed_sources}
+  \uses{def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
+  \leanok
+  Given the conditional BHS source conclusions, actual completion maps,
+  source applicability and the specified comparison and image-reflection
+  properties, all four realization conclusions hold on the selected objects.
+\end{proposition}
+\begin{proof}
+  Apply each source clause on its completed object and transport it through
+  the corresponding comparison. Lambda naturality reflects the lifetime
+  inequality; the prescribed and torsion lifts use their precise image
+  reflections.
+  \leanok
+\end{proof}
+
 % SOURCE: bhs. Canonical locator: Theorem A.1(2a), exponent r-1.
 \begin{theorem}[Every lift of a nonzero surviving permanent label has the stated lifetime]
   \label{thm:literature-realization-lifetime}
   \lean{KIP126.Challenge2.LiteratureResults.realization_lifetime}
   \notready
-  \uses{def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
+  \uses{thm:bhs-realization-source,def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
   For every classical $X$, every countable-product choice $P_\Pi$
   satisfying $\mathcal A_H(X;P_\Pi)$, every convergence identification
   $c$ for its actual $H$-Adams tower, all $s,t\in\mathbb Z$ and
@@ -1022,7 +1114,7 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   \label{thm:literature-realization-detection}
   \lean{KIP126.Challenge2.LiteratureResults.realization_detection}
   \notready
-  \uses{def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
+  \uses{thm:bhs-realization-source,def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
   For every classical $X$, every countable-product choice $P_\Pi$
   satisfying $\mathcal A_H(X;P_\Pi)$, every convergence identification
   $c$ for the actual $H$-Adams tower, all $s,t\in\mathbb Z$,
@@ -1043,7 +1135,7 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   \label{thm:literature-realization-prescribed-lift}
   \lean{KIP126.Challenge2.LiteratureResults.realization_prescribed_lift}
   \notready
-  \uses{def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
+  \uses{thm:bhs-realization-source,def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
   For every classical $X$, every countable-product choice $P_\Pi$
   satisfying $\mathcal A_H(X;P_\Pi)$, every convergence identification
   $c$ for the actual $H$-Adams tower, all $s,t\in\mathbb Z$,
@@ -1066,7 +1158,7 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   \label{thm:literature-realization-boundary-lift}
   \lean{KIP126.Challenge2.LiteratureResults.realization_boundary_lift}
   \notready
-  \uses{def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
+  \uses{thm:bhs-realization-source,def:lambda-quotient-realization,def:actual-adams-strong-convergence,def:adams-detection}
   For every classical $X$, every countable-product choice $P_\Pi$
   satisfying $\mathcal A_H(X;P_\Pi)$, every convergence identification
   $c$ for the actual $H$-Adams tower, all $s,t\in\mathbb Z$,
@@ -1217,6 +1309,19 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
 \end{theorem}
 
 \subsection{tmf homotopy, Hurewicz images and the BR21 differential}
+
+\begin{proposition}[Finiteness of the tmf homology polynomial model]
+  \label{prop:tmf-homology-polynomial-finite}
+  \lean{KIP126.Classical.Adams.Tmf.Homology.Monomial,KIP126.Classical.Adams.Tmf.Homology.Coefficients,KIP126.Classical.Adams.Tmf.Homology.coefficients_finite,KIP126.Classical.Adams.Tmf.Homology.coefficients_negative_subsingleton}
+  \uses{def:h6-full-milnor-monomials,def:core-f2}
+  \leanok
+  The integer-graded polynomial coefficient space
+  $\mathbb F_2[\bar\xi_1^8,\bar\xi_2^4,\bar\xi_3^2,\bar\xi_4,\ldots]$
+  is finite in each degree and vanishes in negative degrees. Its
+  monomials are the Milnor exponent vectors whose first three entries
+  are divisible by $8$, $4$, and $2$. Identification with the actual
+  selected spectrum's homology remains a separate comparison.
+\end{proposition}
 
 % SOURCE: tmf (BMQ), Section 2; connective convention in Section 1,
 % tmfhi9.tex:197--201 / paper.pdf p.2.
@@ -1460,8 +1565,9 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   151 / PDF pp.166 and 168. These coordinate comparisons and the resulting
   fixed-tmf equation $d_3(v_2^{16})=\beta^5g$ are the internal consequence
   in Theorem~\ref{thm:main-tmf-br21-coordinate-differential}, not additional
-  external results. That transport still depends on the unfinished
-  generic Adams tower naturality theorem.
+  external results. The transport uses the implemented generic Adams
+  tower naturality theorem; the source realization, fixed-model
+  construction and coordinate comparisons remain unfinished.
 \end{theorem}
 
 \subsection{Stable operations and comparison lemmas}
@@ -1495,7 +1601,7 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   \label{thm:toda-product-identities}
   \uses{def:toda-bracket,prop:generic-toda-coset-juggling}
   \lean{KIP126.Foundation.TodaNaturalityInterface,KIP126.Foundation.TodaFunctorInterface,KIP126.Foundation.TodaTensorInterface,KIP126.Def.Solution.todaNaturalityInterface,KIP126.Def.Solution.todaFunctorInterface,KIP126.Def.Solution.todaTensorInterface}
-  \notready
+  \leanok
   The same cone-defined Toda relation satisfies pre- and postcomposition
   containments, both intermediate-factor absorption containments, suspension
   with the sign $(-1)^n$ and the specified shift comparison, and transport
@@ -1506,10 +1612,21 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
       \quad\Longleftrightarrow\quad
     z\in-(\Sigma f)\langle g,h,d\rangle.
   \]
-  The image sets retain their complete indeterminacy. These nine precise
-  statements remain unfinished. Specific Section~7 bracket values and
-  the vanishing of their indeterminacy require further proofs.
+  The image sets retain their complete indeterminacy. These nine generic
+  statements are proved with the specified shift, exact-functor, and
+  triangulated hypotheses. Specific Section~7 bracket values and the
+  vanishing of their indeterminacy require further proofs.
 \end{theorem}
+\begin{proof}
+  \leanok
+  Complete morphisms between distinguished triangles for precomposition
+  and first-factor absorption, and compose the chosen extension for the
+  other containments. Shift the whole triangle with the prescribed sign
+  and use the shift equivalence for the reverse suspension implication.
+  Exact functors transport the triangle and its representative equations;
+  apply this to the two tensor functors. The full shuffle equivalence
+  follows from juggling and the two indeterminacy actions.
+\end{proof}
 
 % SOURCE: MainPaper/main.tex:2791, citing Bruner--Rognes (BR21).
 % COORDINATES: Zenodo record 14875701, v126.3.cw49, kervaire_csv.rar;
@@ -1517,9 +1634,9 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
 \begin{definition}[A multiplicative presentation of the tmf Adams $E_2$ page]
   \label{def:tmf-csv-coordinate-binding}
   \uses{def:classical-adams-ss,def:synthetic-adams-ss,def:adams-hj,def:hf2-adams-tower,def:unital-multiplication-data}
-  \lean{KIP126.Classical.Adams.Tmf.CsvE2.v2Sixteen,KIP126.Classical.Adams.Tmf.CsvE2.betaFiveG,KIP126.Challenge2.TmfDifferentialInterface,KIP126.Interface.Solution.tmfDifferentialInterface}
+  \lean{KIP126.Classical.Adams.Tmf.CsvE2.v2Sixteen,KIP126.Classical.Adams.Tmf.CsvE2.betaFiveG,KIP126.Challenge2.TmfDifferentialInterface,KIP126.Interface.Solution.tmfModelOfDelivery}
   \lean{KIP126.Classical.Adams.Tmf.CsvE2.one,KIP126.Classical.Adams.Tmf.CsvE2.mul,KIP126.Classical.Adams.Tmf.firstMultiplication,KIP126.Classical.Adams.Tmf.unitSecondCycle}
-  \lean{KIP126.Classical.Adams.Tmf.E2Presentation.RespectsMultiplication,KIP126.Classical.Adams.Tmf.E2Presentation.RespectsUnit,KIP126.Challenge2.StandardTmfMultiplicativeInterface,KIP126.Interface.Solution.tmfMultiplicativeInterface}
+  \lean{KIP126.Classical.Adams.Tmf.E2Presentation.RespectsMultiplication,KIP126.Classical.Adams.Tmf.E2Presentation.RespectsUnit,KIP126.Challenge2.StandardTmfMultiplicativeInterface}
   \notready
   The fixed computation coordinate algebra is the polynomial quotient over
   $\mathbb F_2$ with its 13 CSV generators and 72 relations. Its graded
@@ -1541,8 +1658,10 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   coordinate comparison gives
   $d_3(v_2^{16})=\beta^5g$ in
   Theorem~\ref{thm:main-tmf-br21-coordinate-differential} using the
-  relation $\beta g^4=\beta^5g$. No completion of the detector
-  comparison or differential transport is claimed by this definition.
+  relation $\beta g^4=\beta^5g$. The older differential and multiplicative
+  compatibility APIs are derived there from this same delivered target
+  and coordinates, rather than from independently chosen realizations.
+  No completion of the detector comparison is claimed by this definition.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:253-263; bibliography key Adams58.  The local
@@ -1640,6 +1759,26 @@ specified sphere-coordinate and $\nu$-realization isomorphisms.
   IWX Corollary 6.2 is C-motivic; its application here requires this
   secondary-operation comparison in addition to the low ring equations.
 \end{definition}
+\begin{proposition}[The Main secondary-operation comparison]
+  \label{prop:main-toda-secondary-comparison}
+  \lean{KIP126.Main.StageInput.Toda.low_bracket,KIP126.Main.StageInput.Toda.symmetric_bracket,KIP126.Main.StageInput.todaSecondaryComparison}
+  \uses{def:route-toda-source-application,thm:toda-product-identities,thm:literature-toda-h0-eta,thm:literature-classical-two-detection,thm:literature-classical-eta-detection,thm:route-kernel-adapter,thm:literature-synthetic-e2-weight-vanishing,thm:literature-toda-h0-label,thm:literature-toda-lambda-h0,def:stage-zero-cooperation-contract}
+  \notready
+  On the fixed model and the sole correlated Challenge2 witness, the
+  specified $h_0$ and $\eta$ satisfy the low and symmetric memberships of
+  Definition~\ref{def:route-toda-source-application}. Take
+  $\epsilon=\lambda^2\eta$ for the secondary comparison.
+\end{proposition}
+\begin{proof}
+  The low and symmetric memberships are established separately using the
+  fixed source bindings and their realization comparisons. Both retain the
+  same $\eta$, its first-quotient and realization bindings, and the fixed
+  cooperation and tensor data. Compatibility
+  of multiplication with $\lambda^2$ assembles them into the stated
+  comparison. The independent proof modules preserve the same mathematical
+  inputs; they do not discharge the inherited fixed-model or source obligations.
+\end{proof}
+
 \begin{theorem}[Consequences of the secondary-operation comparison]
   \label{thm:route-toda-adapter}
   \uses{def:route-toda-source-application}

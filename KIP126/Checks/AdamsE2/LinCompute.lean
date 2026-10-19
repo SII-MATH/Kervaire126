@@ -1,4 +1,9 @@
-import KIP126.LinProgram.Compute.E2.Data
+module
+
+public import KIP126.LinProgram.Compute.E2.Data
+public meta import KIP126.LinProgram.Compute.E2.Data
+
+@[expose] public section
 
 /-!
 可执行示例及回归检查。只初始化一次完整数据索引。
@@ -20,6 +25,7 @@ private def expectProduct (e : Engine) (a b expected : String) : Calc Unit := do
   require (r.normalForm == p) s!"unexpected product: {a} times {b}"
 
 /-- 初始化后执行基础代数、输入边界和两条约化路径的回归检查。 -/
+@[no_expose]
 def regression (e : Engine) : Calc Unit := do
   expectProduct e "0,1" "1,1" "0"
   expectProduct e "1,1" "2,1" "0"

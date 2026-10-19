@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Proofs
+
+@[expose] public section
 
 /-! A strict solution is determined by its source representative. The target
 representative is fixed by the differential and its subobject inclusion. -/

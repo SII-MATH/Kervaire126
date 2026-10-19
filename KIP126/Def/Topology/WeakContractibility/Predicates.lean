@@ -1,4 +1,8 @@
-import Mathlib.Topology.Homotopy.HomotopyGroup
+module
+
+public import Mathlib.Topology.Homotopy.HomotopyGroup
+
+@[expose] public section
 
 /-!
 Weak contractibility of an actual topological space, stated using its homotopy

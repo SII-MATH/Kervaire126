@@ -1,7 +1,11 @@
-import KIP126.Def.Algebra.GradedVectorSpace.Data
-import Mathlib.LinearAlgebra.Dual.Lemmas
-import Mathlib.CategoryTheory.Monoidal.Comon_
-import Mathlib.CategoryTheory.Monoidal.Mon
+module
+
+public import KIP126.Def.Algebra.GradedVectorSpace.Data
+public import Mathlib.LinearAlgebra.Dual.Lemmas
+public import Mathlib.CategoryTheory.Monoidal.Comon_
+public import Mathlib.CategoryTheory.Monoidal.Mon
+
+@[expose] public section
 
 /-!
 The same-degree dual of an integer-graded vector space and the actual

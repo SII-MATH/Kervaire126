@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Completion.Predicates
+module
+
+public import KIP126.Def.Synthetic.Completion.Predicates
+
+@[expose] public section
 
 namespace KIP126.Synthetic.Context
 

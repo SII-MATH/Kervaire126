@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Basic.Proofs
-import KIP126.Def.ClassicalAdams.TowerLayer.Basic.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Basic.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLayer.Basic.Proofs
+
+@[expose] public section
 
 /-! Adams tower transitions are `H`-homology-zero. The structural inputs are
 an actual multiplication with the specified unit and preservation of zero

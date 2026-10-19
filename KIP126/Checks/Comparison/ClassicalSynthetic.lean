@@ -1,4 +1,8 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.Proofs
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.Proofs
+
+@[expose] public section
 
 /-!
 # Internal classical--synthetic regression

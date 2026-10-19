@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCoalgebra.Antipode.Raw.Proofs
-import KIP126.Def.Steenrod.MilnorCoalgebra.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Antipode.Raw.Proofs
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Data
+
+@[expose] public section
 
 /-!
 Restrict the actual polynomial antipode to every integer-graded component.

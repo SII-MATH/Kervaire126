@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Bockstein.Regrading.Proofs
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Regrading.Proofs
+
+@[expose] public section
 
 /-!
 # The λ-tower construction with synthetic Adams conventions

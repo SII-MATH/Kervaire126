@@ -1,6 +1,10 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.SpectralSequenceConstruction.Data
-import KIP126.Def.SpectralSequence.Crossing.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.SpectralSequenceConstruction.Data
+public import KIP126.Def.SpectralSequence.Crossing.Predicates
+
+@[expose] public section
 
 namespace KIP126.Core.SpectralSequence.FilteredComplex.Solutions
 

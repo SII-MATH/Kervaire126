@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Convergence.Tower.Raw.Data
-import KIP126.Def.ClassicalAdams.Detection.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Convergence.Tower.Raw.Data
+public import KIP126.Def.ClassicalAdams.Detection.Proofs
+
+@[expose] public section
 
 /-! The actual images decrease because the tower maps factor through the
 preceding level. This property introduces no alternative filtration. -/

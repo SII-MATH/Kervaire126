@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 
@@ -70,6 +74,8 @@ theorem adamsTowerInternal_page_subsingleton_of_negative (r s t : ℤ) (hs : s <
   haveI := adamsPage_subsingleton_of_negative unit X ((r - 2).toNat + 2) (by omega) s t hs
   exact (adamsTowerSSDataPageIso unit X s t (r - 2).toNat).toLinearEquiv.injective.subsingleton
 
+-- Keep the existing named arguments for public API compatibility.
+set_option linter.unusedVariables false in
 /-- Transport the existing quotient-page vanishing theorem to the internal
 sequence, retaining the starting-page and page-order hypotheses. -/
 theorem adamsTowerInternal_page_subsingleton_of_le (r q s t : ℤ)

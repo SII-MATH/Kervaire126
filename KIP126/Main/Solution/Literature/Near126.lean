@@ -1,4 +1,8 @@
-import KIP126.Main.Solution.Literature.Near126.Sphere.Proofs
-import KIP126.Main.Solution.Literature.Near126.Sphere.Boundaries.Proofs
-import KIP126.Main.Solution.Literature.Near126.Sphere.Conditions.Proofs
-import KIP126.Main.Solution.Literature.Near126.HopfCofiber.Fixed.Data
+module
+
+public import KIP126.Main.Solution.Literature.Near126.Sphere.Proofs
+public import KIP126.Main.Solution.Literature.Near126.Sphere.Boundaries.Proofs
+public import KIP126.Main.Solution.Literature.Near126.Sphere.Conditions.Proofs
+public import KIP126.Main.Solution.Literature.Near126.HopfCofiber.Fixed.Data
+
+@[expose] public section

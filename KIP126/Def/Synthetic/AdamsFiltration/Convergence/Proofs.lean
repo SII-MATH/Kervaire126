@@ -1,7 +1,11 @@
-import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Canonical.Data
-import KIP126.Def.Synthetic.AdamsSequence.TowerComparison.Data
-import KIP126.Def.ClassicalAdams.Detection.Convergence.Proofs
-import KIP126.Def.SpectralSequence.Basic.Proofs
+module
+
+public import KIP126.Def.Synthetic.AdamsFiltration.Convergence.Canonical.Data
+public import KIP126.Def.Synthetic.AdamsSequence.TowerComparison.Data
+public import KIP126.Def.ClassicalAdams.Detection.Convergence.Proofs
+public import KIP126.Def.SpectralSequence.Basic.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.SpectralSequence
 open CategoryTheory KIP126.Core.SpectralSequence

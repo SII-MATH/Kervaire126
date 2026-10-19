@@ -1,5 +1,9 @@
-import KIP126.LinProgram.Interpretation.Route.Predicates
-import KIP126.Def.Kervaire.Route.Labels.Tmf.Data
+module
+
+public import KIP126.LinProgram.Interpretation.Route.Predicates
+public import KIP126.Def.Kervaire.Route.Labels.Tmf.Data
+
+@[expose] public section
 
 /-! Parameterized computation certificates on one interpretation and shared labels. -/
 
@@ -79,7 +83,7 @@ def CertifiedRealization.toInputs {D : Model H M Syn} {R : Realization D}
   top := h.top
 
 /-- Recover the same seven conditions without reinterpreting the data. -/
-def Inputs.toCertifiedRealization {D : Model H M Syn} {L : Labels H}
+theorem Inputs.toCertifiedRealization {D : Model H M Syn} {L : Labels H}
     {G : KIP126.Literature.Route.TmfLabels H} (I : Inputs D L G) :
     CertifiedRealization I.realization L G where
   basis := I.basis

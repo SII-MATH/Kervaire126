@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.Interface.Data
-import KIP126.Def.SpectralSequence.Permanence.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Interface.Data
+public import KIP126.Def.SpectralSequence.Permanence.Predicates
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss.PageMassey
 
@@ -39,7 +43,7 @@ def precedingDifferential (X Y : C) (r : ℤ) (i j : ℤ × ℤ)
       (i + j - (r - 1, r - 2))) :
     (mappingSequence unit X Y).Page (r - 1) (i + j) :=
   definingDifferential unit X Y (r - 1) i j
-    (pageCast unit X Y rfl (by congr 2 <;> omega) y)
+    (pageCast unit X Y rfl (by congr 2; omega) y)
 
 variable [BraidedCategory C]
   (H : Mod2EilenbergMacLane (C := C)) (R : Mod2RingStructure H)

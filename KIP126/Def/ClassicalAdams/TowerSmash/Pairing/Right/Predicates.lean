@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Right.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Right.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

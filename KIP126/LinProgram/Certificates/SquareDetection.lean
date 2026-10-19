@@ -1,5 +1,9 @@
-import KIP126.LinProgram.Certificates.SquareDetection.Data
-import Mathlib.Algebra.Polynomial.Degree.Domain
+module
+
+public import KIP126.LinProgram.Certificates.SquareDetection.Data
+public import Mathlib.Algebra.Polynomial.Degree.Domain
+
+@[expose] public section
 
 namespace KIP126.LinE2.SquareDetection
 

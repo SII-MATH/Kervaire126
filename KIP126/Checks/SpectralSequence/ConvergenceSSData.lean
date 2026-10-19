@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.Convergence.Category.Data
-import KIP126.Def.SpectralSequence.ModuleSubobject.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Convergence.Category.Data
+public import KIP126.Def.SpectralSequence.ModuleSubobject.Proofs
+
+@[expose] public section
 
 /-! API regression checks for the migrated nested-subobject convergence layer. -/
 

@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorModule.Data
-import KIP126.Def.Steenrod.MilnorCoalgebra.Antipode.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Data
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Antipode.Proofs
+
+@[expose] public section
 
 /-! Same-degree dualization of a right comodule first gives a right module.
 The specified Milnor antipode converts this into the left action below.

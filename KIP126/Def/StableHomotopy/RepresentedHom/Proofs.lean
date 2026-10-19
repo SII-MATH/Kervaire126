@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.RepresentedHom.Data
+module
+
+public import KIP126.Def.StableHomotopy.RepresentedHom.Data
+
+@[expose] public section
 
 /-!
 # Exactness of represented shifted morphism groups

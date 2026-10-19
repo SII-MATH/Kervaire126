@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorCobar.Predicates
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Predicates
+
+@[expose] public section
 
 /-!
 # Milnor cochain multiplication and the specified cocycles

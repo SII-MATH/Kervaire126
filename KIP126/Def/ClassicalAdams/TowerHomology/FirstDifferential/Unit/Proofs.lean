@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Tensor.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Tensor.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

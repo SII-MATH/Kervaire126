@@ -1,7 +1,11 @@
-import KIP126.Def.Synthetic.Localization.Recovery.Data
-import KIP126.Def.Synthetic.Context.Coherence.Predicates
-import KIP126.Def.Synthetic.AdamsFiltration.Data
-import KIP126.Def.StableHomotopy.Cohomology.Data
+module
+
+public import KIP126.Def.Synthetic.Localization.Recovery.Data
+public import KIP126.Def.Synthetic.Context.Coherence.Predicates
+public import KIP126.Def.Synthetic.AdamsFiltration.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+
+@[expose] public section
 
 /-! Weight comparisons for the SAME lambda-inversion realization.
 Their zero value and every successive weight map are fixed, so this is

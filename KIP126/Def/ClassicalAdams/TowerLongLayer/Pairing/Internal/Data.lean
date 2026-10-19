@@ -1,17 +1,25 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Page.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Page.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 
 noncomputable section
 open CategoryTheory MonoidalCategory KIP126.StableHomotopy
 universe u v
+-- Keep the arithmetic proof in section parameters visible in exported types.
+set_option backward.proofsInPublic true
+
 variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   [HasFunctorialCofiber (C := C)] {H : C} {unit : 𝟙_ C ⟶ H} {X : C}
   {n : ℕ} {p q : ℤ × ℤ}
   (P : AdamsLongLayerPairing unit X (n + 2) (by omega) p q)
 
 /-- The same descended pairing on existing internal SSData pages. -/
+@[no_expose]
 def AdamsLongLayerPairing.onInternalPage (hP : P.ProjectionCompatible)
     (hB : P.BoundaryCompatible) :
     (adamsTowerSSData unit X p.1 p.2).page (n : WithTop ℕ) →ₗ[ℤ]

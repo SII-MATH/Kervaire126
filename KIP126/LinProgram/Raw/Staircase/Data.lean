@@ -1,4 +1,8 @@
-import KIP126.LinProgram.Raw.Data
+module
+
+public import KIP126.LinProgram.Raw.Data
+
+@[expose] public section
 
 /-!
 # Lossless rows of the fixed sphere staircase

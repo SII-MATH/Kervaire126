@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Data
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Boundary.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Data
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Boundary.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

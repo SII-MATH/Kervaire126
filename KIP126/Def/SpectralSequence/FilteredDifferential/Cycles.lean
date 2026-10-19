@@ -1,5 +1,11 @@
-import KIP126.Def.SpectralSequence.FilteredDifferential.Helpers
-import KIP126.Def.SpectralSequence.FilteredPage.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.FilteredDifferential.Helpers
+public import KIP126.Def.SpectralSequence.FilteredPage.Proofs
+
+import all KIP126.Def.SpectralSequence.FilteredDifferential.Data
+
+@[expose] public section
 
 /-! The next cycle subobject gives the kernel of the finite-page differential. -/
 

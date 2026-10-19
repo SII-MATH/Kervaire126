@@ -1,181 +1,683 @@
-import KIP126.Def.Algebra.GradedComodule.Ext.Data
-import KIP126.Def.Algebra.GradedComodule.Ext.Multiplication.Proofs
-import KIP126.Def.Algebra.GradedDual.Data
-import KIP126.Def.Algebra.GradedDual.Augmentation.Data
-import KIP126.Def.Algebra.GradedModule.Ext.Data
-import KIP126.Def.Steenrod.MilnorCoalgebra.Antipode.Proofs
-import KIP126.Def.Steenrod.MilnorModule.Resolution.Proofs
-import KIP126.Def.Steenrod.MilnorModule.Comparison.Proofs
-import KIP126.Def.Steenrod.MilnorExt.Multiplication.Data
-import KIP126.Def.Steenrod.MilnorExt.Cofree.Proofs
-import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
-import KIP126.Def.HigherAlgebra.Operad.Topological.Predicates
-import KIP126.Def.HigherAlgebra.Operad.Algebra.Data
-import KIP126.Def.HigherAlgebra.EnrichedTensor.Predicates
-import KIP126.Def.HigherAlgebra.Operad.Endomorphism.Data
-import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Category.Data
-import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.StructureSpace.Data
-import KIP126.Def.HigherAlgebra.Operad.Model.Data
-import KIP126.Def.HigherAlgebra.Operad.Moduli.Data
-import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Predicates
-import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Proofs
-import KIP126.Def.Topology.HomotopyFiber.Proofs
-import KIP126.Def.Topology.WeakContractibility.Predicates
-import KIP126.Def.ClassicalAdams.SphereMultiplication.Data
-import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
-import KIP126.Def.SpectralSequence.Computation.State.Predicates
-import KIP126.Def.StableHomotopy.InverseSequence.Proofs
-import KIP126.Def.ClassicalAdams.Completion.Predicates
-import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
-import KIP126.Def.Synthetic.Bockstein.Hom.Proofs
-import KIP126.Def.Synthetic.Bockstein.Lift.Proofs
-import KIP126.Def.StableHomotopy.DescendingTower.Layer.Proofs
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Proofs
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.FirstPage.Proofs
-import KIP126.Def.SpectralSequence.PageComparison.Predicates
-import KIP126.Def.Synthetic.Bockstein.Regrading.Sequence.Data
-import KIP126.Def.Synthetic.Completion.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
-import KIP126.Def.ClassicalAdams.SphereClasses.Products.Data
-import KIP126.Def.StableHomotopy.Toda.Law.Proofs
-import KIP126.Def.Algebra.InverseSequence.Finite.Proofs
-import KIP126.Def.Algebra.ModuleCat.FreeRankOne.Proofs
-import KIP126.Def.StableHomotopy.Context.Finiteness.Proofs
-import KIP126.Def.Synthetic.QuotientTower.Finiteness.Proofs
-import KIP126.Def.Synthetic.PageExtension.Solutions.Finiteness.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Cycles.Data
-import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Boundary.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Vanishing.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
-import KIP126.Def.Algebra.InverseSequence.Proofs
-import KIP126.Def.Algebra.Coefficients.Data
-import KIP126.Def.Algebra.Completion.Proofs
-import KIP126.Def.Algebra.Truncation.Proofs
-import KIP126.Def.Algebra.Filtration.Proofs
-import KIP126.Def.Algebra.Graded.Data
-import KIP126.Def.Algebra.Graded.Tensor.Proofs
-import KIP126.Def.ClassicalAdams.PageSlice.Data
-import KIP126.Def.ClassicalAdams.Permanence.Data
-import KIP126.Def.ClassicalAdams.Convergence.Proofs
-import KIP126.Def.ClassicalAdams.SphereSequence.Data
-import KIP126.Def.ClassicalAdams.SphereClasses.Data
-import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
-import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
-import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
-import KIP126.Def.ClassicalAdams.TowerLayer.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Leibniz.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.One.Page.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Differential.Proofs
-import KIP126.Def.ClassicalAdams.UnitFiber.Connectivity.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Right.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Boundary.Right.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Representatives.Proofs
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Cycles.Proofs
-import KIP126.Def.ClassicalAdams.TowerResolution.Sphere.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Normalized.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Splitting.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Iterated.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Unit.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Image.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Reduced.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Reduced.Comparison.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Internal.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Coordinates.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Image.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Image.Cooperation.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Image.Polynomial.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Nonvanishing.Proofs
-import KIP126.Def.ClassicalAdams.SphereInitial.Permanence.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Sphere.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Boundary.First.Polynomial.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Full.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Primitive.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Cobar.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Cobar.Reduced.Map.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Proofs
-import KIP126.Def.ClassicalAdams.Coefficients.Proofs
-import KIP126.Def.ClassicalESS.Eta.Proofs
-import KIP126.Def.Comparison.ClassicalSynthetic.Proofs
-import KIP126.Def.SpectralSequence.Basic
-import KIP126.Def.SpectralSequence.Convergence.Category.Data
-import KIP126.Def.SpectralSequence.Crossing.Proofs
-import KIP126.Def.SpectralSequence.Truncation
-import KIP126.Def.SpectralSequence.Completion.UniversalProperty.Proofs
-import KIP126.Def.SpectralSequence.Extension.Complex.Proofs
-import KIP126.Def.SpectralSequence.BoundedExtension
-import KIP126.Def.SpectralSequence.UnboundedExtension.TruncatedSpectralSequence.Data
-import KIP126.Def.SpectralSequence.Commutativity
-import KIP126.Def.SpectralSequence.FilteredComplex
-import KIP126.Def.SpectralSequence.FilteredPage.Proofs
-import KIP126.Def.SpectralSequence.FilteredDifferential.Proofs
-import KIP126.Def.SpectralSequence.PageLevel.Proofs
-import KIP126.Def.SpectralSequence.Representatives.Proofs
-import KIP126.Def.Synthetic.AdamsSequence.Data
-import KIP126.Def.Synthetic.Context.Proofs
-import KIP126.Def.Synthetic.Sphere.Data
-import KIP126.Def.StableHomotopy.Context.Data
-import KIP126.Def.StableHomotopy.Context.Proofs
-import KIP126.Def.StableHomotopy.Context.MappingProofs
-import KIP126.Def.StableHomotopy.Toda.Proofs
-import KIP126.Def.StableHomotopy.Toda.Coset.Proofs
-import KIP126.Def.StableHomotopy.Toda.Juggling.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Data
-import KIP126.Def.StableHomotopy.Cohomology.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Coaction.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Vanishing.Proofs
-import KIP126.Def.Kervaire.Setup.Data
-import KIP126.Def.Kervaire.SphereAdams
-import KIP126.Def.Kervaire.Theta5.Proofs
-import KIP126.Def.ClassicalAdams.MapFiltration.Proofs
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Proofs
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Proofs
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Proofs
-import KIP126.Def.Synthetic.AdamsSequence.Proofs
-import KIP126.Def.Synthetic.QuotientTower.Proofs
-import KIP126.Def.SpectralSequence.Computation.Morphism.Proofs
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Mapping.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Convergence.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Detection.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Crossing.Proofs
-import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
-import KIP126.Def.Synthetic.PageExtension.Proofs
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
-import KIP126.Def.ClassicalAdams.Moss.Composition.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Internal.Proofs
-import KIP126.Def.Synthetic.Localization.Recovery.Proofs
-import KIP126.Def.Synthetic.EInfty.Shift.Predicates
-import KIP126.Def.Synthetic.PageExtension.Crossing.Proofs
-import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Proofs
-import KIP126.Def.ClassicalAdams.Suspension.Predicates
-import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.One.Proofs
-import KIP126.Def.Synthetic.QuotientFunctor.Proofs
-import KIP126.Def.Synthetic.PageExtension.Target.Proofs
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Proofs
-import KIP126.Def.SpectralSequence.BoundedExtension.Square.Construction.Data
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Obstruction.Proofs
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Page.Converse.Proofs
-import KIP126.Def.Synthetic.ExtensionSS.Square.FilteredMaps.Data
-import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
-import KIP126.Def.Synthetic.ExtensionSS.Solutions.Proofs
-import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
-import KIP126.Def.Synthetic.PageExtension.Solutions.Coset.Proofs
-import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
-import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
-import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
-import KIP126.Def.Kervaire.Route.Massey.Predicates
-import KIP126.Def.Kervaire.Route.Toda.Predicates
+module
+
+public import KIP126.Def.Algebra.TwoElement.Proofs
+public import KIP126.Def.Algebra.GradedComodule.Ext.Data
+public import KIP126.Def.Algebra.GradedComodule.Ext.Multiplication.Proofs
+public import KIP126.Def.Algebra.GradedDual.Data
+public import KIP126.Def.Algebra.GradedDual.Augmentation.Data
+public import KIP126.Def.Algebra.GradedModule.Ext.Data
+public import KIP126.Def.Steenrod.MilnorCoalgebra.Antipode.Proofs
+public import KIP126.Def.Steenrod.MilnorModule.Resolution.Proofs
+public import KIP126.Def.Steenrod.MilnorModule.Comparison.Proofs
+public import KIP126.Def.Steenrod.MilnorExt.Multiplication.Data
+public import KIP126.Def.Steenrod.MilnorExt.Cofree.Proofs
+public import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
+public import KIP126.Def.HigherAlgebra.Operad.Topological.Predicates
+public import KIP126.Def.HigherAlgebra.Operad.Algebra.Data
+public import KIP126.Def.HigherAlgebra.EnrichedTensor.Predicates
+public import KIP126.Def.HigherAlgebra.Operad.Endomorphism.Data
+public import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Category.Data
+public import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.StructureSpace.Data
+public import KIP126.Def.HigherAlgebra.Operad.Model.Data
+public import KIP126.Def.HigherAlgebra.Operad.Moduli.Data
+public import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Predicates
+public import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Proofs
+public import KIP126.Def.Topology.HomotopyFiber.Proofs
+public import KIP126.Def.Topology.WeakContractibility.Predicates
+public import KIP126.Def.ClassicalAdams.SphereMultiplication.Data
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Predicates
+public import KIP126.Def.SpectralSequence.Computation.State.Predicates
+public import KIP126.Def.StableHomotopy.InverseSequence.Proofs
+public import KIP126.Def.ClassicalAdams.Completion.Predicates
+public import KIP126.Def.ClassicalAdams.Convergence.Tower.Predicates
+public import KIP126.Def.Synthetic.Bockstein.Hom.Proofs
+public import KIP126.Def.Synthetic.Bockstein.Lift.Proofs
+public import KIP126.Def.StableHomotopy.DescendingTower.Layer.Proofs
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Proofs
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.FirstPage.Proofs
+public import KIP126.Def.SpectralSequence.PageComparison.Predicates
+public import KIP126.Def.Synthetic.Bockstein.Regrading.Sequence.Data
+public import KIP126.Def.Synthetic.Completion.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
+public import KIP126.Def.ClassicalAdams.SphereClasses.Products.Proofs
+public import KIP126.Def.StableHomotopy.Toda.Law.Proofs
+public import KIP126.Def.Algebra.InverseSequence.Finite.Proofs
+public import KIP126.Def.Algebra.ModuleCat.FreeRankOne.Proofs
+public import KIP126.Def.StableHomotopy.Context.Finiteness.Proofs
+public import KIP126.Def.Synthetic.QuotientTower.Finiteness.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Finiteness.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Cycles.Data
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Boundary.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Successor.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Vanishing.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.AffineRestriction.Proofs
+public import KIP126.Def.Algebra.InverseSequence.Proofs
+public import KIP126.Def.Algebra.Coefficients.Data
+public import KIP126.Def.Algebra.Completion.Proofs
+public import KIP126.Def.Algebra.Truncation.Proofs
+public import KIP126.Def.Algebra.Filtration.Proofs
+public import KIP126.Def.Algebra.Graded.Data
+public import KIP126.Def.Algebra.Graded.Tensor.Proofs
+public import KIP126.Def.ClassicalAdams.PageSlice.Data
+public import KIP126.Def.ClassicalAdams.Convergence.Proofs
+public import KIP126.Def.ClassicalAdams.SphereSequence.Data
+public import KIP126.Def.ClassicalAdams.Mod2Sphere.Data
+public import KIP126.Def.ClassicalAdams.SphereClasses.Data
+public import KIP126.Def.ClassicalAdams.SphereClasses.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+public import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
+public import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLayer.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Internal.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Leibniz.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.One.Page.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Differential.Proofs
+public import KIP126.Def.ClassicalAdams.UnitFiber.Connectivity.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Right.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Boundary.Right.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Representatives.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Layer.Multiplication.Cycles.Proofs
+public import KIP126.Def.ClassicalAdams.TowerResolution.Sphere.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Normalized.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Splitting.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Iterated.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Unit.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Image.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Reduced.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.CobarRecurrence.Reduced.Comparison.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Internal.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Coordinates.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Image.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Image.Cooperation.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Image.Polynomial.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Internal.Nonvanishing.Proofs
+public import KIP126.Def.ClassicalAdams.SphereInitial.Permanence.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Sphere.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Boundary.First.Polynomial.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Full.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Primitive.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Cobar.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Cobar.Reduced.Map.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Proofs
+public import KIP126.Def.ClassicalAdams.Coefficients.Proofs
+public import KIP126.Def.ClassicalESS.Eta.Proofs
+public import KIP126.Def.Comparison.ClassicalSynthetic.Proofs
+public import KIP126.Def.SpectralSequence.Basic
+public import KIP126.Def.SpectralSequence.Convergence.Category.Data
+public import KIP126.Def.SpectralSequence.Crossing.Proofs
+public import KIP126.Def.SpectralSequence.Truncation
+public import KIP126.Def.SpectralSequence.Completion.UniversalProperty.Proofs
+public import KIP126.Def.SpectralSequence.Extension.Complex.Proofs
+public import KIP126.Def.SpectralSequence.BoundedExtension
+public import KIP126.Def.SpectralSequence.UnboundedExtension.TruncatedSpectralSequence.Data
+public import KIP126.Def.SpectralSequence.Commutativity
+public import KIP126.Def.SpectralSequence.FilteredComplex
+public import KIP126.Def.SpectralSequence.FilteredPage.Proofs
+public import KIP126.Def.SpectralSequence.FilteredDifferential.Proofs
+public import KIP126.Def.SpectralSequence.PageLevel.Proofs
+public import KIP126.Def.SpectralSequence.Representatives.Proofs
+public import KIP126.Def.Synthetic.AdamsSequence.Data
+public import KIP126.Def.Synthetic.Context.Proofs
+public import KIP126.Def.Synthetic.Sphere.Data
+public import KIP126.Def.StableHomotopy.Context.Data
+public import KIP126.Def.StableHomotopy.Context.Proofs
+public import KIP126.Def.StableHomotopy.Context.MappingProofs
+public import KIP126.Def.StableHomotopy.Toda.Proofs
+public import KIP126.Def.StableHomotopy.Toda.Coset.Proofs
+public import KIP126.Def.StableHomotopy.Toda.Juggling.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Multiplication.Action.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Coaction.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Vanishing.Proofs
+public import KIP126.Def.Kervaire.Setup.Data
+public import KIP126.Def.Kervaire.SphereAdams
+public import KIP126.Def.Kervaire.Theta5.Proofs
+public import KIP126.Def.ClassicalAdams.MapFiltration.Proofs
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Proofs
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Proofs
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Proofs
+public import KIP126.Def.Synthetic.AdamsSequence.Proofs
+public import KIP126.Def.Synthetic.QuotientTower.Proofs
+public import KIP126.Def.SpectralSequence.Computation.Morphism.Proofs
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Mapping.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Convergence.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Detection.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Crossing.Proofs
+public import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Proofs
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Internal.Proofs
+public import KIP126.Def.Synthetic.Localization.Recovery.Proofs
+public import KIP126.Def.Synthetic.EInfty.Shift.Predicates
+public import KIP126.Def.Synthetic.PageExtension.Crossing.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Proofs
+public import KIP126.Def.ClassicalAdams.Suspension.Predicates
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Layer.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.Transition.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.One.Proofs
+public import KIP126.Def.Synthetic.QuotientFunctor.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Target.Proofs
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Proofs
+public import KIP126.Def.SpectralSequence.BoundedExtension.Square.Construction.Data
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Restriction.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Obstruction.Proofs
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Page.Converse.Proofs
+public import KIP126.Def.Synthetic.ExtensionSS.Square.FilteredMaps.Data
+public import KIP126.Def.Synthetic.ExtensionSS.Square.Construction.Data
+public import KIP126.Def.Synthetic.ExtensionSS.Solutions.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Coset.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Permanent.Data
+public import KIP126.Def.Synthetic.Sphere.Homotopy.Proofs
+public import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
+public import KIP126.Def.Kervaire.Route.Massey.Predicates
+public import KIP126.Def.Kervaire.Route.Toda.Predicates
+
+public import KIP126.Def.ClassicalAdams.Tmf.Homology
+public import KIP126.Def.StableHomotopy.Completion.Moore.Proofs
+public import KIP126.Def.StableHomotopy.Completion.Moore.ProductTriangle
+public import KIP126.Def.StableHomotopy.Completion.Moore.ScalarInverse.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Fixed.MooreCompletion.Proofs
+public import KIP126.Def.ClassicalAdams.Completion.Connectivity.Proofs
+public import KIP126.Def.StableHomotopy.InverseSequence.HomotopyLimit.Constant.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Unit
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Finiteness.Product.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Map.Equivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Detection.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Finiteness.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.Subdivision.Barycentric.Equivalence.Proofs
+public import KIP126.Def.Topology.Simplex.BarycentricSubdivisionMesh.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.Equivalence.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Strict.MappingPath.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyPullback.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyPullback.Fiber.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Subdivision.Equivalence.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.Subdivision.Barycentric.Relative.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Mesh.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Subdivision.Linear.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Source.Exact.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyFunctor.Conservativity.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Carrier.Homotopy.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Approximation.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Stars.Contraction.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Source.Existence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Map.Homotopy.Equivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Rotation.Sign.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Iteration.Naturality.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Boundary.Simplex.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.MappingCylinder.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.OrderComplex.Based.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Source.Triangle.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.Gluing.Proofs
+public import KIP126.Def.Topology.Pushout.Homotopy.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.MappingCone.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Source.Triangulated.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Composition.Triangle.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Composition.Roofs.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Cone.Extension.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Boundary.Cone.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.Gluing.MappingCone.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Composition.Octahedron.Instances
+public import KIP126.Def.Topology.SequentialColimit.Compact.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Boundary.Cone.Iteration.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Triangulated.Instances
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Functor.Homological.Proofs
+public import KIP126.Def.Topology.SequentialColimit.BasedHomotopy.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Step.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.FiniteSkeleton.Induction.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Approximation.Order.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.Relative.Attachment.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.MappingCone.ContinuousAttachment.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.InvertTwo.Shift.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SequentialColimit.Homotopy.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Sphere.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Homotopy.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Closed.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Limit.Instances
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Telescope.Proofs
+public import KIP126.Def.Topology.SmallObject.Cubical.Properties.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Stabilization.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Colimit.Evaluation.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Colimit.Connected.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Colimit.Cells.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Sphere.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Homotopy
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Functor.Data
+public import KIP126.Def.CategoryTheory.Localization.Discrete.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Product.Stabilized.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cone.Iso.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Universal.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyCategory.Product.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Product.Telescope
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Comparison.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Identity.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Functor.Product.Infinite.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Pushout
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cofiber.Iso.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cofiber.Cone.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Data
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Milnor.Data
+public import KIP126.Def.StableHomotopy.InverseSequence.HomotopyLimit.Represented.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.Extension.Coherent.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.OrderComplex.Canonical.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Pushout.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Homotopy.Connectivity.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Homotopy.Surjective.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Locality.Milnor.Proofs
+public import KIP126.Def.StableHomotopy.InverseSequence.HomotopyLimit.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.OrderComplex.Canonical.Comparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Iteration.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Iteration.Naturality.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Orthogonality.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Connectivity.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Universal.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.Concatenation.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Locality.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Functor
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Functor.Idempotence.Data
+public import KIP126.Def.Topology.Path.Translation.HomotopyGroup.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Shift.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Triangle.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Shift.CommShift
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.Lifting.Cubical.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.Extension.FiniteOrder.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.Prism.Naturality.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Triangle.Functor.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.Extension.FiniteOrder.Coherence.Proofs
+public import KIP126.Def.Topology.HomotopyLifting.Cube.Boundary.Comparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.Extension.FiniteOrder.Coherence.Factored.Top.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyCategory.Coproduct
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Lifting.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Replacement.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingPath.Lifting.Equivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Path.Endpoint.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Derived
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Spectrification.Loop.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Representation.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Derived.Universal.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SequentialHomotopyColimit.Homotopy.Proofs
+public import KIP126.Def.Algebra.Colimit.Coproduct.Data
+public import KIP126.Def.Algebra.Colimit.Coproduct.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Coproduct.Data
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Coproduct.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Coproduct.Subfamily.Data
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Coproduct.Subfamily.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Compact.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Compact.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.FiniteSupport.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.SourceFiniteSupport.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Subfamily.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Subfamily.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Functor.Coproduct.Proofs
+public import KIP126.Def.Topology.Coproduct.Wedge.Compact.Proofs
+public import KIP126.Def.Topology.Coproduct.Wedge.Data
+public import KIP126.Def.Topology.Coproduct.Wedge.Proofs
+public import KIP126.Def.Topology.Coproduct.Wedge.Subfamily.Data
+public import KIP126.Def.Topology.Coproduct.Wedge.Subfamily.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibrant.Predicates
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibrant.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibrant.Representation.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Cubical.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Source.Exact.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Map.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibrant.Shift.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Desuspension.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Desuspension.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Desuspension.Iso.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Source.Boundary.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Map.Detection.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Detection.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Pushout.Excision.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Cofibration.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.Predicates
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.Excision.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Colimit.Comparison
+public import KIP126.Def.Algebra.DirectSequence.Coproduct.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Approximation.ArbitraryTarget.Proofs
+public import KIP126.Def.Topology.Pushout.Equivalence.General.Proofs
+public import KIP126.Def.Topology.Pushout.Equivalence.OrderMappingCylinder.Proofs
+public import KIP126.Def.Topology.Pushout.Equivalence.HomotopySquare.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Colimit.Comparison.IsIso.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Colimit.Homotopy.Convergence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Colimit.Homotopy.Inclusion.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.CellularCover.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.CellularCover.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.CellularCover.Upper.Cofiber.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.CellularCover.Upper.Cofiber.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.CellularCover.Upper.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.CellularCover.Upper.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Functor.Coproduct.Vanishing.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Source.Connectivity.Proofs
+public import KIP126.Def.Topology.HomotopyLifting.Path.Loop.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Lifting.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.Suspension.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.CompactlyGenerated.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibrant.Topology.Proofs
+public import KIP126.Def.Topology.HomotopyExtension.Retraction.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.HomotopyExtension.AdjoinPoint.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.HomotopyExtension.Suspension.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cells.HomotopyExtension.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.HomotopyExtension.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.WellBased.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibrant.WellBased.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Attachment.Equivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.CellularCover.Upper.Cofiber.Orthogonality.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Milnor.Colimit.Represented.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Functor
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Tower
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Orthogonality.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Limit.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Relative.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.HomotopyExtension.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Relative.Topology.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.ClosedEmbedding.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.Topology.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Excision.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.StableExcision.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Unit.Inverse.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Unit.Inverse.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Unit.Iso.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibrant.Iso.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cofibrant.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Universal.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Universal.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Cofibration.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Interval.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Interval.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Interval.Iso.Data
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Proofs
+public import KIP126.Def.Topology.Coproduct.Homotopy.Small.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Approximation.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Functor.Shift.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Functor.Shift.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Source.Chosen.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Fiber.Source.Chosen.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Layer.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Layer.Homotopy.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Layer.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Locality.Postnikov.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Map.Detection.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Cofibration.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Cofibration.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.Iso.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Map.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Interval.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Interval.Cofibrant.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Smash.Associativity.Data
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Smash.Associativity.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Smash.CompactlyGenerated.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.CompactlyGenerated.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Product.Level.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Product.Level.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Product.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Product.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Product.Iso.Data
+public import KIP126.Def.Topology.HomotopyLifting.Path.Map.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Path.Lifting.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Attachment
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Attachment.Model.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Functor.Idempotence
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Moore.Postnikov.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Postnikov.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Degree.RegularFiber.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.AdjoinPoint.Iso.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Iso.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Iso.Proofs
+public import KIP126.Def.Topology.HomotopyLifting.Cube.Product.Data
+public import KIP126.Def.Topology.HomotopyLifting.Cube.Product.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.AdjoinPoint.Cube.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Adjunction.Hom.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Adjunction.Hom.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Adjunction.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Endpoint.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Endpoint.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Cofibration.Functor.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Endpoint.Naturality.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Relative.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Relative.Proofs
+public import KIP126.Def.Topology.HomotopyLifting.Cube.Boundary.Product.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Interval.Boundary.Iso.Data
+public import KIP126.Def.Topology.SequentialColimit.Telescope.Map.Proofs
+public import KIP126.Def.Topology.SequentialColimit.Telescope.Homotopy.Proofs
+public import KIP126.Def.Topology.SequentialColimit.Telescope.Rectification.Proofs
+public import KIP126.Def.Topology.HomotopyExtension.NDR.Proofs
+public import KIP126.Def.Topology.HomotopyExtension.CylinderCorner.Proofs
+public import KIP126.Def.Topology.SequentialColimit.Telescope.Comparison.Proofs
+public import KIP126.Def.Topology.SequentialColimit.Telescope.Comparison.Equivalence.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Degree.RegularStar.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Degree.Covering.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibrant.Coproduct.Binary.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Interval.Boundary.Cofibrant.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Product.Naturality.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Boundary.Pushout.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.Gluing.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibration.Coproduct.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cells.Geometry.Attachment.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.AdjoinPoint.Functor.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Cofibrant.Zero.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.MappingCylinder.Relative.Pushout.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Empty.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Product.Naturality.Inverse.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Cylinder.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Cylinder.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Boundary.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Boundary.Coordinates.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Boundary.Cylinder.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Boundary.Cofibration.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Boundary.Stability.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Boundary.Cone.Cube.Proofs
+public import KIP126.Def.Topology.Collapse.Wedge
+public import KIP126.Def.Topology.SequentialColimit.Telescope.Map.HomotopyEquivalence.ClosedHEP.Proofs
+public import KIP126.Def.CategoryTheory.CellAttachment.Refinement.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Order.Initial
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Order.Sequence
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Attachment.Cubical.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Degree.Collapse.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Degree.RegularStar.Euclidean.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Attachment.Cubical.Sequence.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Sigma.Attachment.Cubical.Sequence.Embedding.Proofs
+public import KIP126.Def.Topology.SequentialColimit.Telescope.Map.HomotopyEquivalence.Proofs
+public import KIP126.Def.Topology.SequentialColimit.Telescope.Comparison.Invariance.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Replacement.Cubical.Order.Model.Comparison
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Degree.Collapse.Ball.Map.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Compression.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Iso.Cofibration.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Interval.Cofibration.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Sphere.Cofibration.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Cofibration.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.HomotopyEquivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Smash
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Colimit.CompactlyGenerated.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.FiberComparison.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.FiberComparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.FiberComparison.Source.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Source.Adjunction.Equivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Map.Stability.General.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.HomotopyExtension.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Pushout.Gluing.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Source.Exact.General.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Detection.General.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Cell.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.Smash.Colimit.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Colimit
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Cells.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SequentialColimit.Cofibration.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Sequential.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Representatives.Interior.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Compression.Support.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Compression.FiniteSheets.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Compression.Window.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Compression.FiniteSheets.Homeomorph.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Moore.Postnikov.Relations.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Locality.Scalar.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Postnikov.Layer.Scalar.Cofiber.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.HomotopyExtension.Based.Predicates
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.HomotopyExtension.Based.Smash.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Boundary.HomotopyExtension.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.HomotopyExtension.Based.HomotopyPath.Data
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.HomotopyExtension.Based.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.Comparison.Based.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cofiber.HomotopyExtension.Based.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Cone.Pushout.Based.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Good.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Map.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Row.Map.Data
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.OrderModel.Covering.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.OrderModel.Collapse.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Binary.Stability.General.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Unit.Smash.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Unit.Smash.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Interval.Boundary.Stability.General.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Boundary.HomotopyExtension.Product.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Cube.Boundary.Stability.General.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Cell.General.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Source.Finite.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.SelfMap.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.SelfMap.FiniteSum.Data
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.SelfMap.FiniteSum.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.SelfMap.FiniteSum.Collapse.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Even.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Class.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Class.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Stable.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Stable.Equivalence.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Stable.Proofs
+public import KIP126.Def.Algebra.Module.Basis.Coproduct.Data
+public import KIP126.Def.Algebra.Module.Basis.Coproduct.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Moore.Postnikov.Fullness.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Functor.Product.Vanishing.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Heart.Product.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Heart.Coproduct.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Locality.Shift.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Heart.Locality.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Moore.Locality.BoundedBelow.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Stability.T1.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Finite.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.HomotopyExtension.Based.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Cells.Finite.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.FiniteSequence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Cofinal.Even.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Cofinal.Even.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Cofinal.Even.Equivalence.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyGroup.Cofinal.Even.Equivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Row.Colimit.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Row.Colimit.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Row.Colimit.Representative.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Row.Colimit.Representative.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Row.Colimit.Universal.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Map.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Map.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Stable.Map.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Grid.Stable.Map.Proofs
+public import KIP126.Def.Topology.LinearIsotopy.Compactification.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Cofiber.Connectivity.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Moore.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Even.Loop.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Even.Loop.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Even.Loop.Naturality.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Even.Grid.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Even.Grid.Equivalence.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Even.Grid.Equivalence.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Even.Grid.Inverse.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Diagonal.Even.Grid.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Affine.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Subdivision.AffineIndependent.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.OrderComplex.Degree.Sheets.Proofs
+public import KIP126.Def.Topology.Simplex.AffineSpan
+public import KIP126.Def.StableHomotopy.Implementation.BasedSpace.AdjoinPoint.Functor.Data
+public import KIP126.Def.Topology.SimplicialRealization.Boundary.Cube.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Realization.Cellular.AdjoinPoint.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Simplicial.Finite.Proofs
+public import KIP126.Def.Topology.Coproduct.Wedge.HomotopySupport.Homotopy.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.ScalarLocalization.Detection.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.InvertTwo.Telescope.Equivalence.Proofs
+public import KIP126.Def.Topology.Homotopy.Specialization.Data
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.FiniteSupport.Homotopy.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Stability.General.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Coproduct.Stability.General.Cofan.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Smash.Space.Parameter.Cells.General.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Loop.Source.Adjunction.Data
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.Kan.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Zero
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Shift.Integer.Additive.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Prespectrum.Stability.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Prespectrum.Good.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Comparison.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Zero.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Singular.Homotopy.Approximation.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.LocalTriviality.Proofs
+public import KIP126.Def.Topology.FiberBundle.Fiberwise
+public import KIP126.Def.Topology.HomotopyLifting.Bundle
+public import KIP126.Def.Topology.HomotopyLifting.Coproduct.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.Lifting.Finite.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.FiniteSkeleton.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.SimplexTrivialization
+public import KIP126.Def.Topology.Cube.Grid.Extension.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.Product.LocallyCompact.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.FiniteSupport.Proofs
+public import KIP126.Def.Algebra.SimplicialModule.Principal.Realization.Lifting
+public import KIP126.Def.Algebra.SimplicialModule.Principal.Realization.Naturality
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.CubicalComparison
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.Connected.Proofs
+public import KIP126.Def.Algebra.SimplicialModule.Kan.Fibration
+public import KIP126.Def.Topology.SimplicialRealization.Classical.Charts.Proofs
+public import KIP126.Def.Topology.HomotopyFiber.Contraction.Cubical
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.SourceShift.Equivalence
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.DegreeZero
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.LoopCubical
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.Fibration
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.FiberIdentification
+public import KIP126.Def.Algebra.SimplicialModule.Kan.Filling
+public import KIP126.Def.Topology.Pushout.Cells.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Representation.Additive.Data
+public import KIP126.Def.StableHomotopy.Implementation.FiniteSupport.Representation.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Source.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.PathComparison
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.Comparison
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Simplicial.CW.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Free.Proofs
+public import KIP126.Def.Topology.Ball.HomotopyExtension.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.CWComplex.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Topology.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Bond.ShiftProofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Path.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Tail.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.Representatives.Proofs
+public import KIP126.Def.Topology.Simplex.ClosedBall.Proofs
+public import KIP126.Def.Topology.SimplicialRealization.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Prespectrum.HomotopyFunctor.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Completion.Homotopy.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.HF2.Simplicial.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.FiniteSupport.Proofs
+public import KIP126.Def.StableHomotopy.Products.Tensor.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Sphere.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Full.Finiteness.Proofs
+public import KIP126.Def.StableHomotopy.Implementation.Comparison.Conservativity.Proofs
+public import KIP126.Def.ClassicalAdams.Completion.Suspension.Proofs
+public import KIP126.Def.ClassicalAdams.Completion.Coefficient.Proofs
+public import KIP126.Def.ClassicalAdams.Convergence.Tower.FiniteType.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Finiteness.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.Connectivity.Proofs
+public import KIP126.Def.Topology.Collapse.Proofs
+public import KIP126.Def.Topology.Cube.Rotation.Proofs
+public import KIP126.Def.Algebra.Completion.Sequential.Proofs
+
+@[expose] public section

@@ -1,5 +1,9 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Proofs
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Proofs
+
+@[expose] public section
 
 /-! BR21's source differential on the same tmf coordinates consumed by Main.
 The equation is derived from one Challenge2 delivery rather than added as a

@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.Data
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.Data
+
+@[expose] public section
 
 /-!
 # Regression checks for filtered-complex pages

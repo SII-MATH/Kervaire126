@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Route.Extensions.Predicates
+module
+
+public import KIP126.Def.Kervaire.Route.Extensions.Predicates
+
+@[expose] public section
 
 namespace KIP126.Kervaire.Route
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
@@ -12,22 +16,34 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   (D : Model H M Syn) (X Y : ClassicalObject)
   (f : X.obj D.auxiliary ⟶ Y.obj D.auxiliary)
 
-/-- 论文有限 stretching：有限 stretching 的较短 extension 障碍候选。
-所有标签、essential 性及较大的普通 Adams 边界来自同一个 D。
-额外要求较短源不能存活到后页所需的 cycle 层；这不是给定严格代表元
-无法提升的充要条件。这里 b 允许为零，故排除这些候选比论文
-Corollary `cor:dfc6043e` 印出的 b>0 条件更强。 -/
+/-- 有限 stretching 的障碍候选，直接在同一个早期 λ 商的实际 ESS 中定义。
+源和靶的 synthetic weight 固定为原 extension 的 `t + e(f)`，而源的
+filtration 提高 `a`。源必须不在后期商到早期商的实际 `ρ` 所诱导的
+`E∞` 映射像中；这与某个普通 Adams 代表元不属于后页 cycle 层不同。
+允许 `b = 0` 及长度 `n - a - b = 0` 的 synthetic extension，包括
+`e(f) = 1` 的情形。要求同商中实际 extension equation 的靶非零，不要求
+essential 性，不换成较小 λ 商的 extension，也不额外施加普通 Adams
+boundary 排除条件。排除这些候选强于仅排除 essential crossings；这是
+修复后的充分条件，不声称与原普通 Adams 代表元谓词等价。 -/
 def FiniteExtensionNonliftableCrossing
     (rEarlier rLater : ℕ) (n s t : ℤ) : Prop :=
-  ∃ a b : ℕ, 0 < a ∧ a ≤ rEarlier - 2 ∧
-    (b : ℤ) ≤ n - a - normalizedExponent H f ∧
-    ∃ (x' : PageRepresentatives.Ambient H (X.obj D.auxiliary) (s + a, t + a))
-      (y' : PageRepresentatives.Ambient H (Y.obj D.auxiliary) (s + a + (n - a - b), t + a + (n - a - b))),
-      x' ∉ PageRepresentatives.cycles H (X.obj D.auxiliary) ((rLater : ℤ) - 1 - a) (s + a, t + a) ∧
-      ∃ W' : FiniteExtensionWitness D X Y f (rEarlier - a) (n - a - b)
-          (s + a) (t + a) x' y',
-        W'.Essential ∧ y' ∉ PageRepresentatives.boundaries H (Y.obj D.auxiliary)
-          (1 + n - b - normalizedExponent H f)
-          (s + a + (n - a - b), t + a + (n - a - b))
+  ∃ hle : rEarlier ≤ rLater, ∃ a b : ℕ,
+    0 < a ∧ a ≤ rEarlier - 2 ∧ (a : ℤ) + b ≤ n ∧
+    ∃ (source : ((D.family.obj ((SyntheticObject.quotient (rEarlier - 1)
+          (extensionSourceObject D X Y f)).obj D.nu D.auxiliary)).sequence.ssData
+          (s + a, (t - s) + (s + a), t + normalizedExponent H f)).eInfty)
+      (target : ((D.family.obj ((SyntheticObject.quotient (rEarlier - 1)
+          (.nu Y)).obj D.nu D.auxiliary)).sequence.ssData
+          (s + a + (n - a - b), (t - s) + (s + a + (n - a - b)),
+            t + normalizedExponent H f)).eInfty),
+      source ∉ Set.range (((D.family.functor.map
+        ((D.quotientTower ((extensionSourceObject D X Y f).obj D.nu D.auxiliary)).rho
+          (rEarlier - 1) (rLater - 1) (Nat.sub_le_sub_right hle 1))).eInftyMap
+            (s + a, (t - s) + (s + a), t + normalizedExponent H f)).hom) ∧
+      ExtensionEquation (finiteExtensionMap D X Y f (rEarlier - 1))
+        (D.convergence (.quotient (rEarlier - 1) (extensionSourceObject D X Y f)))
+        (D.convergence (.quotient (rEarlier - 1) (.nu Y)))
+        (t - s, t + normalizedExponent H f) (s + a) (n - a - b) source target ∧
+      target ≠ 0
 
 end KIP126.Kervaire.Route

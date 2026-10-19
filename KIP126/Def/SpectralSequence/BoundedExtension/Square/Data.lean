@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension.UnderlyingComplex.Proofs
+
+@[expose] public section
 
 namespace KIP126.Core.SpectralSequence.BoundedExtension
 open CategoryTheory

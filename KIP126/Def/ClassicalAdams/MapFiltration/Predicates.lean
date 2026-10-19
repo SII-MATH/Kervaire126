@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.MapFiltration.Data
-import KIP126.Def.StableHomotopy.Cohomology.Data
+module
+
+public import KIP126.Def.ClassicalAdams.MapFiltration.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+
+@[expose] public section
 
 /-!
 # Adams filtration of a map

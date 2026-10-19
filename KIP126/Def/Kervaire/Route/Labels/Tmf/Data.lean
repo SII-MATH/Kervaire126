@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Route.Labels.Data
+module
+
+public import KIP126.Def.Kervaire.Route.Labels.Data
+
+@[expose] public section
 
 namespace KIP126.Literature.Route
 open KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology KIP126.Classical.Adams

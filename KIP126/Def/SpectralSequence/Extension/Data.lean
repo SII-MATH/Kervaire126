@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.Data
-import KIP126.Def.Algebra.Completion.Data
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.Data
+public import KIP126.Def.Algebra.Completion.Data
+
+@[expose] public section
 
 /-!
 # Bounded extension spectral sequences

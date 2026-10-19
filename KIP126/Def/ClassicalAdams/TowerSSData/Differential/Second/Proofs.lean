@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+
+@[expose] public section
 
 /-! The internal differential at the square's bidegree is the actual
 exact-couple obstruction, with all numerical reindexing checked. -/

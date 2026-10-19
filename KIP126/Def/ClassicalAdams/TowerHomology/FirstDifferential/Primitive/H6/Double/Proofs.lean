@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Data
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Nonvanishing.Proofs
-import KIP126.Def.ClassicalAdams.TowerSSData.FirstCycles.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Double.Data
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Primitive.H6.Nonvanishing.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSSData.FirstCycles.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

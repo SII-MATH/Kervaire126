@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Bijective.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Bijective.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.PageRepresentatives
 

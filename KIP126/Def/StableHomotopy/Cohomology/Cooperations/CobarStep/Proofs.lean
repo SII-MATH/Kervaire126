@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.CobarStep.Data
-import KIP126.Def.StableHomotopy.Cohomology.Coaction.Unit.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.CobarStep.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Coaction.Unit.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

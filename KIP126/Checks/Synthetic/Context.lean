@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.Context.Proofs
+module
+
+public import KIP126.Def.Synthetic.Context.Proofs
+
+@[expose] public section
 
 /-! Regression checks for the explicit synthetic context interfaces. -/
 namespace KIP126.Checks.Synthetic

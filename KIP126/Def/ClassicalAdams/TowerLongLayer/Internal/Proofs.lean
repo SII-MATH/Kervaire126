@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Internal.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Data
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
-import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.Data
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Data
+public import KIP126.Def.Steenrod.MilnorExt.Resolution.Data
+
+@[expose] public section
 /-!
 # Cobar, derived Ext and cup-product comparison
 

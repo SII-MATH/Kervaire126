@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerNaturality.Layer.Proofs
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Layer.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 open CategoryTheory MonoidalCategory KIP126.StableHomotopy

@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Context.Coherence.Proofs
-import KIP126.Def.Synthetic.QuotientMap.Data
+module
+
+public import KIP126.Def.Synthetic.Context.Coherence.Proofs
+public import KIP126.Def.Synthetic.QuotientMap.Data
+
+@[expose] public section
 
 /-! Restriction maps between the actual chosen λ-power cofibers. -/
 

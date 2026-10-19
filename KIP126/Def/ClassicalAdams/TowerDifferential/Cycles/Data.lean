@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerDifferential.Value.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerDifferential.Value.Proofs
+
+@[expose] public section
 
 /-!
 # The differential as a linear map on cycles

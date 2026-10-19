@@ -1,5 +1,9 @@
-import KIP126.Main.Solution.Literature.Near126.Sphere.Boundaries.Data
-import KIP126.Def.SpectralSequence.Computation.Proofs
+module
+
+public import KIP126.Main.Solution.Literature.Near126.Sphere.Boundaries.Data
+public import KIP126.Def.SpectralSequence.Computation.Proofs
+
+@[expose] public section
 
 namespace KIP126.Computation.Near126
 open KIP126.LinE2 KIP126.Classical.Adams KIP126.Core.SpectralSequence

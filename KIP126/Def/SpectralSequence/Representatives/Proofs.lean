@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.Data
-import Mathlib.CategoryTheory.Preadditive.Projective.Basic
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.Data
+public import Mathlib.CategoryTheory.Preadditive.Projective.Basic
+
+@[expose] public section
 
 /-!
 # Representatives for filtered-complex differentials

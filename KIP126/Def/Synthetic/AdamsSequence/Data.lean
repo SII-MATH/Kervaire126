@@ -1,10 +1,14 @@
-import KIP126.Def.ClassicalAdams.Grading.Data
-import KIP126.Def.SpectralSequence.PageLevel.Data
-import KIP126.Def.SpectralSequence.Basic.Category.Data
-import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
-import KIP126.Def.SpectralSequence.Convergence.Data
-import KIP126.Def.Synthetic.Sphere.Data
-import Mathlib.Algebra.Category.ModuleCat.Abelian
+module
+
+public import KIP126.Def.ClassicalAdams.Grading.Data
+public import KIP126.Def.SpectralSequence.PageLevel.Data
+public import KIP126.Def.SpectralSequence.Basic.Category.Data
+public import KIP126.Def.SpectralSequence.Basic.PageHomology.Data
+public import KIP126.Def.SpectralSequence.Convergence.Data
+public import KIP126.Def.Synthetic.Sphere.Data
+public import Mathlib.Algebra.Category.ModuleCat.Abelian
+
+@[expose] public section
 
 /-!
 # Internal synthetic Adams objects

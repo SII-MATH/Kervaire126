@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Cycles.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Cycles.Proofs
+
+@[expose] public section
 
 /-! The intrinsic page differential descends the actual cycle formula to
 the quotient by its actual boundary submodule. -/

@@ -1,5 +1,9 @@
-import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Predicates
-import KIP126.Def.Topology.HomotopyFiber.Proofs
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Predicates
+public import KIP126.Def.Topology.HomotopyFiber.Proofs
+
+@[expose] public section
 
 namespace KIP126.HigherAlgebra.Operad.TopologicalOperad
 

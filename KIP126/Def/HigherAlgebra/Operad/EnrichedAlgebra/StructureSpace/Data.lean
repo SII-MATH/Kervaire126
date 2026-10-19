@@ -1,5 +1,9 @@
-import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Data
-import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Data
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Data
+public import KIP126.Def.HigherAlgebra.Operad.StructureSpace.Data
+
+@[expose] public section
 
 /-! Strict operadic actions with a path to the specified actual unit arrow.
 This is a point-set mapping-space construction, not an assertion that strict

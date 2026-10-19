@@ -1,6 +1,10 @@
-import KIP126.Def.SpectralSequence.FilteredPage.Data
-import KIP126.Def.SpectralSequence.Basic.Data
-import Mathlib.CategoryTheory.Preadditive.Projective.Basic
+module
+
+public import KIP126.Def.SpectralSequence.FilteredPage.Data
+public import KIP126.Def.SpectralSequence.Basic.Data
+public import Mathlib.CategoryTheory.Preadditive.Projective.Basic
+
+@[expose] public section
 
 /-!
 # Order laws for filtered-complex pages

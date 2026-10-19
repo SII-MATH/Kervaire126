@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.BoundedExtension.SpectralSequence.Data
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension.SpectralSequence.Data
+
+@[expose] public section
 
 /-!
 # Definitional facts about extension spectral sequences

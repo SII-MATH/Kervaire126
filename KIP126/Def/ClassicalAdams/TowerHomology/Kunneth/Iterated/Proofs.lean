@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Iterated.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Kunneth.Iterated.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

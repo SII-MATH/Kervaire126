@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Context.Data
-import Mathlib.GroupTheory.QuotientGroup.Finite
+module
+
+public import KIP126.Def.StableHomotopy.Context.Data
+public import Mathlib.GroupTheory.QuotientGroup.Finite
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy
 

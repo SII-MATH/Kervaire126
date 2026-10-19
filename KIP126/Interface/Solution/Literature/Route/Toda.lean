@@ -1,5 +1,9 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Literature.Applications
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Interface.Solution.Literature.Applications
+
+@[expose] public section
 
 namespace KIP126.Interface.Solution.Literature.Route
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology
@@ -12,6 +16,8 @@ variable {C : Type u} [StableHomotopyCategory.{u, v} C]
   {Syn : Type w} [SyntheticCategory.{w, v} Syn] [HasFunctorialCofiber (C := Syn)]
   {H : Mod2EilenbergMacLane (C := C)} {M : MilnorCooperations H} (D : Model H M Syn)
 
+-- Keep the original instance parameters of this public theorem.
+set_option linter.unusedSectionVars false in
 /-- Transport the actual secondary-operation calculation, retaining its
 star/product identification. BHS ring facts alone are not sufficient. -/
 theorem todaApplication_of_secondary (η : BiHom 1 2 (S_0_0 : Syn))

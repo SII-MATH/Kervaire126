@@ -1,6 +1,10 @@
-import KIP126.Def.Kervaire.Route.Labels.Data
-import KIP126.Def.ClassicalAdams.Detection.Predicates
-import KIP126.Def.StableHomotopy.Toda.Predicates
+module
+
+public import KIP126.Def.Kervaire.Route.Labels.Data
+public import KIP126.Def.ClassicalAdams.Detection.Predicates
+public import KIP126.Def.StableHomotopy.Toda.Predicates
+
+@[expose] public section
 
 /-! The sphere E₃ Massey product actually used in LWX Lemma 7.16.
 The defining differential is d₂ on the current tower, and the multiplication

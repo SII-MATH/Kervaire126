@@ -1,6 +1,10 @@
-import KIP126.Def.Algebra.GradedModule.Shift.Data
-import KIP126.Def.Algebra.GradedModule.Trivial.Data
-import KIP126.Def.Algebra.GradedComodule.Shift.TensorLine.Data
+module
+
+public import KIP126.Def.Algebra.GradedModule.Shift.Data
+public import KIP126.Def.Algebra.GradedModule.Trivial.Data
+public import KIP126.Def.Algebra.GradedComodule.Shift.TensorLine.Data
+
+@[expose] public section
 
 /-!
 The coefficient-line identification for a left-module shift.  The tensor

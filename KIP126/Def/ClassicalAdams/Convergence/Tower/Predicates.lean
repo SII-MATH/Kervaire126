@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.Convergence.Tower.Data
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
-import KIP126.Def.Algebra.Completion.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Convergence.Tower.Data
+public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+public import KIP126.Def.Algebra.Completion.Data
+
+@[expose] public section
 
 /-! Strong convergence for the actual tower and actual homotopy groups,
 following BHS `SynRevBigraded.tex`, Definition `dfn:strong-conv`.

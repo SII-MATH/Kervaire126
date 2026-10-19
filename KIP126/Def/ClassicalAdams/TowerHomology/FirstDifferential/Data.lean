@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Data
-import KIP126.Def.StableHomotopy.Cohomology.Coaction.Unit.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Coaction.Unit.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

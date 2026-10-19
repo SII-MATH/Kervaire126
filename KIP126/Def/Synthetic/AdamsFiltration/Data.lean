@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.AdamsSequence.Data
-import KIP126.Def.ClassicalAdams.Tower.Proofs
-import Mathlib.Algebra.Category.ModuleCat.Subobject
+module
+
+public import KIP126.Def.Synthetic.AdamsSequence.Data
+public import KIP126.Def.ClassicalAdams.Tower.Proofs
+public import Mathlib.Algebra.Category.ModuleCat.Subobject
+
+@[expose] public section
 
 /-! The actual νHF₂ tower filtration on synthetic homotopy.
 The definition works in every bidegree; it assumes neither boundedness nor

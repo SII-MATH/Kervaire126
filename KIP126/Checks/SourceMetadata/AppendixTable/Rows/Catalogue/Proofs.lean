@@ -1,6 +1,10 @@
-import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Data
-import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Predicates
-import KIP126.Checks.SourceMetadata.AppendixTable.Proofs
+module
+
+public import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Catalogue.Data
+public import KIP126.LinProgram.SourceMetadata.AppendixTable.Rows.Predicates
+public import KIP126.Checks.SourceMetadata.AppendixTable.Proofs
+
+@[expose] public section
 
 /-!
 # Checks of the transcribed Appendix catalogue

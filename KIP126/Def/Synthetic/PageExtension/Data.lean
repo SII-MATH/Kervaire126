@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.PageExtension.Family.Data
-import KIP126.Def.Synthetic.PageExtension.Relation.Data
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Family.Data
+public import KIP126.Def.Synthetic.PageExtension.Relation.Data
+
+@[expose] public section
 
 namespace KIP126.Synthetic.PageExtension
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

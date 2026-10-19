@@ -1,6 +1,12 @@
-import KIP126.Def.SpectralSequence.FilteredDifferential.SquareZero
-import KIP126.Def.SpectralSequence.FilteredDifferential.Cycles
-import KIP126.Def.SpectralSequence.FilteredDifferential.Boundaries
+module
+
+public import KIP126.Def.SpectralSequence.FilteredDifferential.SquareZero
+public import KIP126.Def.SpectralSequence.FilteredDifferential.Cycles
+public import KIP126.Def.SpectralSequence.FilteredDifferential.Boundaries
+
+import all KIP126.Def.SpectralSequence.FilteredDifferential.Data
+
+@[expose] public section
 
 /-! Proofs for the canonical filtered-complex page differential. -/
 

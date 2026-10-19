@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.PageExtension.Relation.Data
-import KIP126.Def.SpectralSequence.Crossing.Proofs
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Relation.Data
+public import KIP126.Def.SpectralSequence.Crossing.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.PageExtension
 open CategoryTheory CategoryTheory.Limits KIP126.Core.SpectralSequence

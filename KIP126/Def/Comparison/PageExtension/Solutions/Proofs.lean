@@ -1,5 +1,9 @@
-import KIP126.Def.Comparison.PageExtension.Solutions.Data
-import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
+module
+
+public import KIP126.Def.Comparison.PageExtension.Solutions.Data
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Proofs
+
+@[expose] public section
 
 /-! am6/am7：从实际代表元方程推出 page extension 的解语义与有限商限制。
 使用同一经典标签和实际 ρ 方块；不假设限制的满射性。 -/

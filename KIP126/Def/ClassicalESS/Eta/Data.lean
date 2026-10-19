@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.SphereSequence.Data
-import KIP126.Def.SpectralSequence.PageLevel.Data
+module
 
-import Mathlib.Algebra.Homology.SpectralSequence.Basic
+public import KIP126.Def.ClassicalAdams.SphereSequence.Data
+public import KIP126.Def.SpectralSequence.PageLevel.Data
+
+public import Mathlib.Algebra.Homology.SpectralSequence.Basic
+
+@[expose] public section
 
 /-!
 # The concrete classical eta extension spectral sequence

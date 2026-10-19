@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Proofs
-import Mathlib.LinearAlgebra.Isomorphisms
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Comparison.CycleMap.Proofs
+public import Mathlib.LinearAlgebra.Isomorphisms
+
+@[expose] public section
 
 /-!
 # Actual cobar cohomology and the internal Adams E₂ page

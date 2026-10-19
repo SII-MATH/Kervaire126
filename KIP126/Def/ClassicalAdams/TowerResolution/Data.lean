@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerLayer.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLayer.Data
+
+@[expose] public section
 
 /-! Coefficient-homology resolution maps constructed directly from the Adams
 unit and its chosen cofiber. No first-page coordinates are assumed. -/

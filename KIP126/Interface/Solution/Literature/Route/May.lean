@@ -1,5 +1,11 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.Interface.Solution.Literature.Applications
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.Interface.Solution.Literature.Applications
+
+import all KIP126.Def.StableHomotopy.Context.Proofs
+
+@[expose] public section
 
 namespace KIP126.Interface.Solution.Literature.Route
 open CategoryTheory CategoryTheory.MonoidalCategory

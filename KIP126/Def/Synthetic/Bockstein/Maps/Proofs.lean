@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Bockstein.Maps.Data
-import KIP126.Def.Synthetic.QuotientMap.Proofs
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Maps.Data
+public import KIP126.Def.Synthetic.QuotientMap.Proofs
+
+@[expose] public section
 
 /-! Local triangle and naturality properties of the prescribed Bockstein
 arrow. No page-differential or lift-independence claim is made here. -/

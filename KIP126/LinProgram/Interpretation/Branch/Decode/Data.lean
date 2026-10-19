@@ -1,4 +1,8 @@
-import KIP126.LinProgram.Raw.Data
+module
+
+public import KIP126.LinProgram.Raw.Data
+
+@[expose] public section
 
 /-!
 # Retained branch syntax in the pinned Lin log

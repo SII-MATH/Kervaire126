@@ -1,4 +1,8 @@
-import KIP126.LinProgram.SourceMetadata.AppendixTable.Data
+module
+
+public import KIP126.LinProgram.SourceMetadata.AppendixTable.Data
+
+@[expose] public section
 
 /-!
 # Typed Appendix rows

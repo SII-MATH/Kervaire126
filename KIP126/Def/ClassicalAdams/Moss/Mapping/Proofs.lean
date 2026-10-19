@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Moss.Mapping.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Mapping.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

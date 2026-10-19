@@ -1,5 +1,9 @@
-import KIP126.Def.Algebra.Graded.Tensor.Data
-import Mathlib.LinearAlgebra.DirectSum.TensorProduct
+module
+
+public import KIP126.Def.Algebra.Graded.Tensor.Data
+public import Mathlib.LinearAlgebra.DirectSum.TensorProduct
+
+@[expose] public section
 
 namespace KIP126.Core.Algebra
 

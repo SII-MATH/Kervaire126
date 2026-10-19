@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorModule.Dualization.Data
-import KIP126.Def.Steenrod.MilnorExt.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorModule.Dualization.Data
+public import KIP126.Def.Steenrod.MilnorExt.Data
+
+@[expose] public section
 
 /-! Actual evaluation and its inverse on the dual of each trivial degree
 line. These maps keep the integer degree; the inverse uses scalar multiples

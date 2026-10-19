@@ -1,7 +1,11 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Cochains.Data
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Single.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Cochains.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Single.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.H6.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

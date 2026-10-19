@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.PageExtension.Lambda.Data
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Lambda.Data
+
+@[expose] public section
 
 namespace KIP126.Synthetic.Context
 open CategoryTheory KIP126.StableHomotopy

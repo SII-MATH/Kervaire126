@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Localization.Data
-import Mathlib.CategoryTheory.Monoidal.Braided.Basic
+module
+
+public import KIP126.Def.Synthetic.Localization.Data
+public import Mathlib.CategoryTheory.Monoidal.Braided.Basic
+
+@[expose] public section
 
 /-!
 # Explicit recovery of spectra after λ inversion

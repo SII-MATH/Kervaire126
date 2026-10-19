@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Context.Suspension.Data
+module
+
+public import KIP126.Def.StableHomotopy.Context.Suspension.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy
 open CategoryTheory

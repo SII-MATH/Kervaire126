@@ -1,5 +1,9 @@
-import KIP126.Interface.Challenge.Challenge2
-import KIP126.LinProgram.Model.Product.Data
+module
+
+public import KIP126.Interface.Challenge.Challenge2
+public import KIP126.LinProgram.Model.Product.Data
+
+@[expose] public section
 
 /-! Coordinates for the existing internal tower differential. No differential
 is inferred from the table or supplied as new data. -/

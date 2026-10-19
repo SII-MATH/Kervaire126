@@ -1,7 +1,11 @@
-import KIP126.Interface.Challenge.Literature.Source
-import KIP126.Def.StageInput.StandardSphere.Background.Fixed
-import KIP126.Def.StageInput.StandardSphere.EInfty.Data
-import KIP126.Def.ClassicalAdams.Tmf.Br21.Data
+module
+
+public import KIP126.Interface.Challenge.Literature.Source
+public import KIP126.Def.StageInput.StandardSphere.Background.Fixed
+public import KIP126.Def.StageInput.StandardSphere.EInfty.Data
+public import KIP126.Def.ClassicalAdams.Tmf.Br21.Data
+
+@[expose] public section
 
 /-! Literature delivery: source choices and truthful comparisons, followed by
 the exact source results. The mathematical route is fixed independently in Def. -/

@@ -1,6 +1,10 @@
-import KIP126.Def.Synthetic.Sphere.Homotopy.Data
-import KIP126.Def.Synthetic.QuotientFunctor.Data
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Data
+module
+
+public import KIP126.Def.Synthetic.Sphere.Homotopy.Data
+public import KIP126.Def.Synthetic.QuotientFunctor.Data
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Data
+
+@[expose] public section
 
 /-! The first-quotient comparison is mathematical data in Def, not a Challenge
 object. The sphere specialization below uses the same supplied comparison,

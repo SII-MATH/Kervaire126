@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorExt.Data
-import KIP126.Def.Algebra.GradedComodule.Ext.Multiplication.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorExt.Data
+public import KIP126.Def.Algebra.GradedComodule.Ext.Multiplication.Data
+
+@[expose] public section
 
 /-!
 Yoneda multiplication on the derived Ext of the fixed Milnor coalgebra.

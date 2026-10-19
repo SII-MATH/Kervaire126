@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Context.Mapping.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Data
+module
+
+public import KIP126.Def.StableHomotopy.Context.Mapping.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

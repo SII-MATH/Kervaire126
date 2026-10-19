@@ -1,5 +1,9 @@
-import KIP126.Def.HigherAlgebra.Operad.Topological.Data
-import KIP126.Def.Topology.HomotopyFiber.Data
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.Topological.Data
+public import KIP126.Def.Topology.HomotopyFiber.Data
+
+@[expose] public section
 
 /-!
 The space of strict maps between two fixed topological operads. Its topology

@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Basic.Category.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.Basic.Category.Predicates
+
+@[expose] public section
 
 /-!
 # Proofs about the spectral-sequence category

@@ -8,6 +8,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
 % SOURCE: MainPaper/main.tex:126-150; PROJECT_BOUNDARY.md, Steenrod algebra and Ext.
 \begin{definition}[Dual Steenrod algebra]
   \label{def:dual-steenrod-algebra}
+  \lean{KIP126.StableHomotopy.Cohomology.SteenrodAlgebraData,KIP126.StableHomotopy.Cohomology.Mod2Cooperations,KIP126.Steenrod.Milnor.Module.steenrod}
   \uses{def:mathlib-f2}
   \notready
   The project provides the graded connected Hopf algebra
@@ -23,17 +24,22 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
 % SOURCE: MainPaper/main.tex:126-150 and every Adams E_2-page computation.
 \begin{definition}[Graded Steenrod-comodule category]
   \label{def:steenrod-comodule-category}
+  \lean{KIP126.Algebra.GradedComodule.RightComodule,KIP126.Algebra.GradedComodule.forget,KIP126.Algebra.GradedComodule.internalShift,KIP126.Algebra.GradedComodule.trivialAt}
   \uses{def:dual-steenrod-algebra,def:mathlib-abelian,def:hf2-homology}
   \notready
   Graded right $\mathcal A_*$-comodules form the abelian category used to model
   mod--$2$ Adams input.  The interface includes degree-preserving comodule
   maps, shifts, kernels, cokernels, tensor products, the trivial comodule
   $\mathbb F_2$, and the homology comodule $H_*(X;\mathbb F_2)$.
+  The actual Eilenberg--Moore comodule category and internal-shift
+  constructions are linked below. Their structural property proofs and
+  the general spectrum-homology coaction comparison remain unfinished.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:126-150; internal and cohomological Ext gradings.
 \begin{definition}[Bigraded Adams Ext]
   \label{def:adams-bigraded-ext}
+  \lean{KIP126.Algebra.GradedComodule.BigradedExt,KIP126.Algebra.GradedComodule.CoefficientExt,KIP126.Algebra.GradedModule.CoefficientExt}
   \uses{def:steenrod-comodule-category,def:mathlib-derived-ext}
   \notready
   The Adams group $\operatorname{Ext}_{\mathcal A}^{s,t}(M,\mathbb F_2)$ has
@@ -69,6 +75,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   \label{def:fixed-milnor-graded-coalgebra}
   \lean{KIP126.Steenrod.Milnor.Coalgebra.dualSteenrodGraded,KIP126.Steenrod.Milnor.Coalgebra.comultiplication,KIP126.Steenrod.Milnor.Coalgebra.counit,KIP126.Steenrod.Milnor.Coalgebra.dualSteenrod,KIP126.Steenrod.Milnor.Coalgebra.coaugmentation}
   \uses{def:graded-vector-space-cauchy}
+  \notready
   The degree-$n$ carrier has the full Milnor monomials of weight $n$ as
   its basis, including the constant monomial in degree zero; negative
   degrees have empty monomial bases. In polynomial coordinates its maps are
@@ -89,6 +96,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   \lean{KIP126.Algebra.GradedComodule.rightTensorComonad,KIP126.Algebra.GradedComodule.RightComodule,KIP126.Algebra.GradedComodule.forget}
   \lean{KIP126.Algebra.GradedComodule.linear,KIP126.Algebra.GradedComodule.abelian,KIP126.Algebra.GradedComodule.internalShift,KIP126.Algebra.GradedComodule.trivialAt}
   \uses{def:graded-vector-space-cauchy,def:fixed-milnor-graded-coalgebra}
+  \notready
   For a graded coalgebra $C$, right comodules are the Eilenberg--Moore
   coalgebras of the actual comonad $V\mapsto V\otimes C$.
   Addition is the existing coalgebra-morphism addition and scalar
@@ -111,6 +119,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   \lean{KIP126.Algebra.GradedComodule.BigradedExt,KIP126.Algebra.GradedComodule.CoefficientExt}
   \lean{KIP126.Steenrod.Milnor.Ext.RightComodule,KIP126.Steenrod.Milnor.Ext.trivialAt,KIP126.Steenrod.Milnor.Ext.SphereExt,KIP126.Steenrod.Milnor.Ext.unit}
   \uses{def:actual-graded-right-comodules,def:mathlib-derived-ext}
+  \notready
   In the actual graded-comodule category define
   $\operatorname{Ext}^{s,t}(M,N)=\operatorname{Ext}^s(M[t],N)$ using
   Mathlib's derived category, localized at quasi-isomorphisms.
@@ -128,6 +137,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   \lean{KIP126.Algebra.GradedModule.leftTensorMonad,KIP126.Algebra.GradedModule.LeftModule,KIP126.Algebra.GradedModule.abelian,KIP126.Algebra.GradedModule.CoefficientExt}
   \lean{KIP126.Steenrod.Milnor.Module.steenrod,KIP126.Steenrod.Milnor.Module.augmentation,KIP126.Steenrod.Milnor.Module.trivialAt,KIP126.Steenrod.Milnor.Module.SphereExt}
   \uses{def:fixed-milnor-graded-coalgebra,def:graded-vector-space-cauchy,def:mathlib-derived-ext}
+  \notready
   Let $A_n=\operatorname{Hom}_{\mathbb F_2}(C_n,\mathbb F_2)$ for the
   fixed Milnor coalgebra $C$. The convolution product transposes the
   ordered component $C_{i+j}\to C_i\otimes C_j$; its unit transposes the
@@ -148,6 +158,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   \lean{KIP126.Steenrod.Milnor.Coalgebra.Antipode.generatorImage,KIP126.Steenrod.Milnor.Coalgebra.Antipode.polynomialMap,KIP126.Steenrod.Milnor.Coalgebra.Antipode.map}
   \lean{KIP126.Steenrod.Milnor.Module.conjugation,KIP126.Steenrod.Milnor.Module.dualToLeftModule,KIP126.Steenrod.Milnor.Module.trivialDualIso}
   \uses{def:milnor-left-module-ext,def:actual-graded-right-comodules}
+  \notready
   For the fixed coproduct convention, construct the polynomial antipode by
   \[
     S_0=1,\qquad
@@ -172,13 +183,14 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   \lean{KIP126.Steenrod.Milnor.Ext.Cofree.termPolynomial_injective}
   \lean{KIP126.Steenrod.Milnor.Ext.CobarResolution,KIP126.Steenrod.Milnor.Ext.CobarResolution.representativePolynomial}
   \uses{def:actual-graded-right-comodules,def:milnor-derived-ext}
+  \notready
   Write $W_s$ for the graded vector space on normalized Milnor words of
   length $s$. The prescribed term is the actual cofree right comodule
   $W_s\otimes C$, with the last, full coalgebra factor retaining constants.
   Polynomial coordinates concatenate the normalized word with this final
   factor, degree by degree across the Cauchy direct sum.
-  Injectivity of these polynomial coordinates is a separate, currently
-  unproved statement.
+  Injectivity of these polynomial coordinates is proved by the supplied
+  coordinate construction; this does not construct the injective resolution.
   A cobar resolution is an injective resolution of $\mathbb F_2[0]$ with
   comodule isomorphisms from its terms to these specified cofree terms.
   In these coordinates its differential is
@@ -199,6 +211,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   \lean{KIP126.Challenge2.CobarDerivedExtComparison,KIP126.Challenge2.CobarDerivedExtComparison.internalEquiv}
   \lean{KIP126.Def.Comparison.StageInterfaces.cobarDerivedExtComparison}
   \uses{def:milnor-cofree-resolution,def:milnor-derived-ext,def:milnor-cobar-cohomology}
+  \notready
   For the fixed $H\mathbb F_2$ input and Milnor cooperation comparison,
   there exist one prescribed cobar resolution $R$ and $\mathbb F_2$-linear
   equivalences
@@ -228,12 +241,19 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
 \begin{theorem}[Coefficient Ext comparison with prescribed representatives]
   \label{thm:milnor-coefficient-module-comparison}
   \lean{KIP126.Steenrod.Milnor.Module.dualCobarResolution}
+  \lean{KIP126.Steenrod.Milnor.Module.dualLeftMap_comp,KIP126.Steenrod.Milnor.Module.dualLeftMap_zero,KIP126.Steenrod.Milnor.Module.dualCobarDifferential_shape,KIP126.Steenrod.Milnor.Module.dualCobarDifferential_comp,KIP126.Steenrod.Milnor.Module.dualCobarDifferential_augmentation}
   \lean{KIP126.Steenrod.Milnor.Module.PreservesDualCobarRepresentatives,KIP126.Steenrod.Milnor.Module.exists_dualCobarComparison}
   \uses{def:milnor-cofree-resolution,def:milnor-derived-ext,def:milnor-contravariant-dualization}
+  \notready
   Given a prescribed cofree resolution $R$, form the actual chain complex
   $P_s=D(R^s)$ with differential $D(d_R)$ and augmentation $D(\iota_R)$
-  followed by $D(k[0])\cong k[0]$. Its projectivity and resolution
-  properties remain proof obligations for these specified terms and maps.
+  followed by $D(k[0])\cong k[0]$. Reversal of composition and preservation
+  of zero by the specified transpose now prove the chain-shape, square-zero
+  and augmentation identities for these exact maps. The merged foundation
+  supplies proofs of projectivity, the augmentation quasi-isomorphism, and
+  the representative-preserving coefficient comparison for a supplied $R$.
+  This parameterized construction does not construct the prescribed cofree
+  resolution $R$ or discharge the fixed-model comparison obligations.
   There exists a family of linear equivalences
   \[
     e_{s,t}:\operatorname{Ext}_C^s(k[t],k)
@@ -246,8 +266,10 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
       =P.\operatorname{extMk}\bigl(D(f)\,;\,(D(k[t])\cong k[t])\bigr).
   \]
   The target map must be a cocycle for this actual dual differential.
-  The all-representatives condition determines the comparison; its
-  existence is stated but not proved. This coefficient comparison does not
+  The all-representatives condition determines the comparison. Its Lean
+  construction takes the prescribed resolution $R$ as input; the complete
+  route retains the existence obligation for that same $R$.
+  This coefficient comparison does not
   supply the general-spectrum coaction bridge or
   multiplication compatibility.
 \end{theorem}
@@ -282,6 +304,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
 % SOURCE: MainPaper/main.tex:134-150; PROJECT_BOUNDARY.md, Steenrod algebra and Ext.
 \begin{definition}[Mod--2 Steenrod algebra and Ext]
   \label{def:steenrod-ext}
+  \lean{KIP126.Steenrod.Milnor.Ext.SphereExt,KIP126.Steenrod.Milnor.Module.SphereExt}
   \uses{def:adams-bigraded-ext,prop:adams-module-comodule-ext-comparison,def:hf2-homology,def:unital-multiplication-data}
   \notready
   Let $\mathcal A$ be the mod--$2$ Steenrod algebra and let
@@ -293,11 +316,16 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   suspension/regrading maps, and functoriality in $X$.  An internal product is
   present only after supplying multiplication data on $X$; in particular it
   is canonical for $X=S^0$.
+  The linked sphere coefficient groups are defined in the actual derived
+  comodule and module categories. The general-spectrum comparison,
+  pairings, and multiplication compatibilities in this node are still
+  unfinished.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:126-150 and 253-275; standard mod-2 Adams resolution used implicitly.
 \begin{definition}[$H\mathbb F_2$-Adams resolution and tower]
   \label{def:hf2-adams-tower}
+  \lean{KIP126.Classical.Adams.adamsUnit,KIP126.Classical.Adams.adamsTower,KIP126.Classical.Adams.adamsTowerStep,KIP126.Classical.Adams.adamsTowerMap,KIP126.Classical.Adams.adamsTowerSmashIso}
   \uses{def:admissible-spectrum,def:hf2-homology,def:cofiber-triangle,def:stable-sphere-suspension}
   \notready
   For an admissible spectrum $X$, iterate the unit
@@ -311,11 +339,16 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   $X_s\wedge Y_{s'}\to (X\wedge Y)_{s+s'}$, and the fact that every successive
   cofiber is an $H\mathbb F_2$-module spectrum.  The pairings do not give an
   internal multiplication on the tower of an arbitrary $X$.
+  Iterated unit fibers, tower maps, and their comparison with iterated
+  smash powers are constructed for supplied categorical inputs. The
+  fixed $H\mathbb F_2$ model and the full package of module and pairing
+  comparisons required here remain unfinished.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:253-343, Adams filtration on classes and maps.
 \begin{definition}[Filtration induced by the Adams tower]
   \label{def:adams-tower-filtration}
+  \lean{KIP126.Classical.Adams.adamsHomotopyFiltration,KIP126.Classical.Adams.TowerDetection.filtrationSubmodule,KIP126.Classical.Adams.AdamsFiltrationAtLeast}
   \uses{def:hf2-adams-tower,def:stable-homotopy-group,def:core-filtration}
   \notready
   The Adams filtration on $\pi_nX$ is
@@ -327,12 +360,16 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   pairings give filtration inequalities for external smash products and for
   composition.  They give internal-product inequalities only after a
   multiplication on the spectrum has been supplied.
+  The image filtration and the tower-factorization predicate are
+  implemented. The full product and composition laws and their fixed-model
+  realization remain separate proof obligations.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:929-971, especially the homology consequence in
 % Proposition prop:41561db2; standard first-stage Adams-tower argument.
 \begin{proposition}[Positive Adams filtration is homologically trivial]
   \label{prop:positive-adams-filtration-homology-zero}
+  \lean{KIP126.StableHomotopy.Cohomology.mod2_homology_eq_zero_of_tower_lift}
   \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:adams-filtration,def:hf2-homology}
   \notready
   For an admissible stable map $u:X\to Y$, if
@@ -363,6 +400,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
 % SOURCE: MainPaper/main.tex:126-150 and standing convergence assumption at 253-263; classical Adams construction.
 \begin{theorem}[Adams tower, Ext, and convergence comparison]
   \label{thm:adams-tower-ext-comparison}
+  \lean{KIP126.Classical.Adams.adamsTowerInternalSpectralSequence,KIP126.Challenge2.CobarDerivedExtComparison.internalEquiv}
   \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:steenrod-ext,thm:filtered-complex-to-spectral-sequence,def:ss-convergence-detection-witness,thm:external-classical-adams-convergence}
   \notready
   The exact couple or filtered cobar complex of the
@@ -373,6 +411,9 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   Definition~\ref{def:adams-tower-filtration}.  A located classical
   convergence-and-detection witness is an additional input for the admissible
   spectra used in the paper; this theorem does not prove it.
+  The internal spectral sequence of a supplied unit-fiber tower is
+  constructed. Its identification with derived Steenrod Ext and the
+  prescribed convergence comparison remain unfinished.
 \end{theorem}
 
 \begin{proof}
@@ -388,6 +429,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
 % internal specialization only for the sphere Adams spectral sequence.
 \begin{theorem}[Adams external pairings and multiplicative specializations]
   \label{thm:adams-external-pairing}
+  \lean{KIP126.Classical.Adams.ExternalAdamsPairing,KIP126.Classical.Adams.ExternalAdamsPairingLaws,KIP126.Classical.Adams.SphereAdamsModule,KIP126.Classical.Adams.SphereAdamsModuleLaws}
   \uses{thm:adams-tower-ext-comparison,def:hf2-adams-tower,def:unital-multiplication-data,def:multiplicative-ss}
   \notready
   Whenever $X$, $Y$, and $X\wedge Y$ are in the Adams construction, the tower
@@ -403,6 +445,9 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   composing the external pairing with $R\wedge R\to R$ gives an internal
   multiplicative Adams spectral sequence for $R$.  No internal multiplication
   is asserted for an arbitrary admissible spectrum.
+  The abstract external-pairing and module interfaces are present in Lean.
+  Their construction on the prescribed fixed Adams sequences remains
+  unfinished.
 \end{theorem}
 
 \begin{proof}
@@ -418,6 +463,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
 % SOURCE: MainPaper/main.tex:134-150 and 253-263.
 \begin{definition}[Classical Adams spectral sequence]
   \label{def:classical-adams-ss}
+  \lean{KIP126.Classical.Adams.ClassicalAdamsSpectralSequence,KIP126.Classical.Adams.adamsTowerInternalSpectralSequence,KIP126.Classical.Adams.ClassicalAdamsSS}
   \uses{thm:adams-tower-ext-comparison,thm:adams-external-pairing,def:steenrod-ext,def:adams-bidegree,def:adams-complex-shape,def:ss-elementwise-page-presentation,def:ss-einfty-presentation,def:admissible-spectrum,def:stable-homotopy-group,def:ss-convergence-detection-witness}
   \notready
   For every admissible spectrum $X$, the classical mod--$2$ Adams spectral
@@ -436,11 +482,15 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   sequence.  The sphere sequence, and more generally the sequence of an
   admissible spectrum with chosen unital multiplication data, is internally
   multiplicative; no internal product is included for general $X$.
+  The Adams-shaped interface and the internal tower sequence are
+  implemented. The full fixed Steenrod, product, and convergence
+  identifications in this node remain unfinished.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:253-263 and 841-864.
 \begin{proposition}[Classical Adams convergence and detection]
   \label{prop:classical-adams-convergence}
+  \lean{KIP126.Classical.Adams.TowerDetection.Convergence,KIP126.Classical.Adams.TowerDetection.Detects}
   \uses{def:classical-adams-ss,def:ss-convergence-detection-witness,def:adams-detection}
   \notready
   Given a convergence-and-detection witness for the classical sequence, its
@@ -457,12 +507,24 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   by the witness's detection relation.
 \end{proof}
 
+% Internal consequence of the fixed HF2 homotopy groups and tensor unit.
+\begin{proposition}[Finite mod-two type of the fixed sphere]
+  \label{prop:fixed-sphere-finite-mod2-type}
+  \lean{KIP126.Def.standardSphereFiniteMod2Type}
+  \uses{prop:finite-mod2-sphere,def:stable-context}
+  \notready
+  The sphere of Def's fixed implementation has degreewise finite mod-two
+  homology. Its proof applies the generic sphere theorem without a new
+  unfinished property proof; the fixed implementation construction remains
+  unfinished.
+\end{proposition}
+
 % SOURCE: BHS SynRevBigraded.tex, dfn:E-complete and dfn:strong-conv;
 % fixed-sphere applicability and filtration separation are project obligations.
 \begin{proposition}[Completeness and strong convergence for the fixed sphere]
   \label{prop:fixed-sphere-adams-applicability}
   \lean{KIP126.Def.standardSphereApplicability}
-  \uses{def:hf2-adams-tower,def:adams-tower-filtration,def:classical-adams-ss}
+  \uses{prop:fixed-sphere-finite-mod2-type,def:hf2-adams-tower,def:adams-tower-filtration,def:classical-adams-ss}
   \notready
   For the fixed $2$-complete sphere $S^0$ and the same unit of
   $H\mathbb F_2$, the residual Adams tower has acyclic homotopy limit.
@@ -472,8 +534,34 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
     E_\infty^{s,t}(S^0)\cong
     F^s\pi_{t-s}S^0/F^{s+1}\pi_{t-s}S^0.
   \]
-  The applicability proof for this fixed object remains unfinished.
+  The assembly proof for this fixed object is present; actual tower
+  connectivity and the Postnikov layers of its Moore objects remain
+  unfinished proof obligations.
 \end{proposition}
+
+\begin{lemma}[Full-stem second-page vanishing and separated homotopy]
+  \label{lem:adams-e2-vanishing-separated}
+  \lean{KIP126.Classical.Adams.TowerDetection.filtration_raise_of_pageTwo_subsingleton,KIP126.Classical.Adams.TowerDetection.mem_all_filtrations_of_pageTwo_zero,KIP126.Classical.Adams.TowerDetection.homotopy_eq_zero_of_pageTwo_zero_of_separated}
+  \uses{def:adams-tower-filtration,def:h6-tower-internal-data,def:h6-tower-internal-sequence,prop:h6-tower-differential-laws}
+  \leanok
+  For any object $X$ and unit in the stated stable context, vanishing of
+  the entire $E_2^{s,t}(X)$ with $s\ge0$ implies
+  $F^s\pi_{t-s}X\subseteq F^{s+1}\pi_{t-s}X$.
+  Fix any integer $n$. If $E_2^{s,s+n}(X)=0$ for every $s\in\mathbb N$,
+  then every $x\in\pi_nX$ lies in every nonnegative filtration stage.
+  If this filtration is separated in degree $n$, then every such $x$ is zero.
+  Separation is an explicit premise; no finite window or additional
+  associated-graded convergence comparison replaces it.
+\end{lemma}
+\begin{proof}
+  \leanok
+  Apply the actual quotient-page zero criterion to the image of a tower
+  lift. It supplies a next-stage lift with equal image at stage $s-1$.
+  Compose down to stage $-1$, which is the same constant tower object
+  as stage zero, to retain the image in $X$, including when $s=0$.
+  Starting from $F^0\pi_nX=\pi_nX$, induction reaches every natural stage;
+  the supplied separation property then gives zero.
+\end{proof}
 
 \begin{proposition}[Separation of the fixed sphere Adams filtration]
   \label{prop:fixed-sphere-adams-separated}
@@ -490,6 +578,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
 % SOURCE: MainPaper/main.tex:136-162.
 \begin{definition}[The classes $h_j$]
   \label{def:adams-hj}
+  \lean{KIP126.Classical.Adams.Sphere.Internal.hi,KIP126.Classical.Adams.Sphere.Internal.hiSquare,KIP126.Challenge2.standardHi,KIP126.Challenge2.standardHiSquare}
   \uses{def:classical-adams-ss,thm:adams-external-pairing}
   \notready
   For $j\ge0$, $h_j$ denotes the standard generator in
@@ -498,6 +587,10 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   $h_6^2$ lies in bidegree $(2,128)$ and stem $126$.  All products here use
   the canonical internal multiplication on the sphere Adams spectral sequence
   supplied by Theorem~\ref{thm:adams-external-pairing}.
+  The Milnor-cocycle classes and their concatenation squares are defined
+  on a supplied sphere tower and in the selected fixed coordinates. The
+  fixed-input construction and comparison with the prescribed actual
+  sphere-layer multiplication remain unfinished.
 \end{definition}
 
 \subsection{Adams filtration and detection}
@@ -505,6 +598,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
 % SOURCE: MainPaper/main.tex:253-263, 283-306, and 912-997.
 \begin{definition}[Adams filtration of elements and maps]
   \label{def:adams-filtration}
+  \lean{KIP126.Classical.Adams.AdamsFiltrationAtLeast,KIP126.Classical.Adams.adamsHomotopyFiltration,KIP126.Classical.Adams.TowerDetection.filtrationSubmodule}
   \uses{def:admissible-spectrum,def:hf2-homology,def:stable-homotopy-group,def:adams-tower-filtration}
   \notready
   The primitive notions are predicates $\operatorname{AF}(\alpha)\ge s$ and
@@ -516,11 +610,15 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   $\operatorname{AF}(-)=k$ abbreviates that the finite supremum is attained
   and equal to $k$.  The interface records monotonicity under sums,
   composition, and the shift induced on detected classes.
+  Lean implements the lower-bound factorization predicate and the image
+  filtration. The numerical supremum interface and all the displayed laws
+  are not supplied merely by these predicates.
 \end{definition}
 
 % SOURCE: MainPaper/main.tex:307-343, 408-459, and 461-648.
 \begin{definition}[Detection relation]
   \label{def:adams-detection}
+  \lean{KIP126.Classical.Adams.TowerDetection.Detects,KIP126.Classical.Adams.TowerDetection.Convergence}
   \uses{def:ss-convergence-detection-witness,def:adams-filtration}
   \notready
   For a permanent Adams class $x\in E_\infty^{s,t}(X)$ and a homotopy class
@@ -528,4 +626,7 @@ This section defines the Steenrod, Ext, tower, convergence, product, and named-c
   graded image of $\alpha$ in filtration $s$.  Detection is a relation rather
   than a function: a homotopy element can have several representatives after
   adding higher-filtration terms.
+  The relation is implemented for a supplied convergence identification
+  of the same actual tower. Constructing that identification for the
+  selected fixed objects remains unfinished.
 \end{definition}

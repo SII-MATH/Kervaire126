@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedComodule.Structure.Basic.Proofs
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Structure.Basic.Proofs
+
+@[expose] public section
 
 /-! The abelian structure on the fixed graded-comodule category is assembled
 from its existing addition, created finite limits/colimits, and the stated

@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Data
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Lifting.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Sphere.Lifting.Data
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Lifting.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

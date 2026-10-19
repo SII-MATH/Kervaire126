@@ -1,7 +1,11 @@
-import KIP126.Def.HigherAlgebra.Operad.Topological.Data
-import Mathlib.CategoryTheory.Enriched.HomCongr
-import Mathlib.Topology.Category.TopCat.Monoidal
-import Mathlib.Logic.Equiv.Bool
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.Topological.Data
+public import Mathlib.CategoryTheory.Enriched.HomCongr
+public import Mathlib.Topology.Category.TopCat.Monoidal
+public import Mathlib.Logic.Equiv.Bool
+
+@[expose] public section
 
 /-!
 Finite tensor presentations on a point-set category with its actual topological

@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerSequence.NextHomology.Data
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSequence.NextHomology.Data
+
+@[expose] public section
 
 /-!
 # Next-page boundaries vanish in current homology

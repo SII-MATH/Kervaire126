@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.FilteredComplex.SSData.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.FilteredComplex.SSData.Proofs
+
+@[expose] public section
 
 /-!
 # Historical homology target of a filtered complex

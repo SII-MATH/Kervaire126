@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Implementation.Data
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Data
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Check the tower-based filtration and consume the exact synthetic
 interfaces from explicit located inputs, without a historical or stage axiom. -/

@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Moss.Massey.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Massey.Data
+
+@[expose] public section
 
 /-!
 The preceding-page defining-system relation used at MainPaper, lines

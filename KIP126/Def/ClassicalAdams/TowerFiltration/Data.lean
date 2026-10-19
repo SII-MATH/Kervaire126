@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerPages.Data
-import Mathlib.Order.WithBot
+module
+
+public import KIP126.Def.ClassicalAdams.TowerPages.Data
+public import Mathlib.Order.WithBot
+
+@[expose] public section
 
 /-!
 # The actual Adams cycle and boundary towers, based at page two

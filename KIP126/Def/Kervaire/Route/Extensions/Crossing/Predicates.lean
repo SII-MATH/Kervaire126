@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Route.Extensions.Predicates
+module
+
+public import KIP126.Def.Kervaire.Route.Extensions.Predicates
+
+@[expose] public section
 
 namespace KIP126.Kervaire.Route
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

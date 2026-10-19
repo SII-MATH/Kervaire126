@@ -1,9 +1,13 @@
-import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
-import KIP126.Def.ClassicalAdams.TowerSSData.PagePassage.Proofs
-import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
-import KIP126.Def.ClassicalAdams.TowerSSData.FirstCycles.Proofs
-import KIP126.Def.ClassicalAdams.TowerSSData.FirstCycles.Image.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSSData.Sequence.Data
+public import KIP126.Def.ClassicalAdams.TowerSSData.PagePassage.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSSData.Permanence.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSSData.FirstCycles.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSSData.FirstCycles.Image.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Reject both trust debt and reverse imports in the actual tower construction.
 This audits the generic construction independently of the chosen sphere foundation. -/

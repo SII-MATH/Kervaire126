@@ -1,6 +1,10 @@
-import KIP126.Def.StageInput.StandardSphere.Sequence.Data
-import KIP126.Def.StageInput.Milnor
-import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+module
+
+public import KIP126.Def.StageInput.StandardSphere.Sequence.Data
+public import KIP126.Def.StageInput.Milnor
+public import KIP126.Def.ClassicalAdams.SphereClasses.Hi.Internal.Data
+
+@[expose] public section
 
 /-! Standard labels on M's internal Adams sequence, independent of C(M).
 The generic constructions live in Def and take the foundation and its Milnor

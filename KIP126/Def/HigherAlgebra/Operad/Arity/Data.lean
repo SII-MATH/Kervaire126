@@ -1,6 +1,10 @@
-import Mathlib.CategoryTheory.FintypeCat
-import Mathlib.Data.Finite.Sigma
-import Mathlib.Logic.Equiv.Prod
+module
+
+public import Mathlib.CategoryTheory.FintypeCat
+public import Mathlib.Data.Finite.Sigma
+public import Mathlib.Logic.Equiv.Prod
+
+@[expose] public section
 
 /-!
 Finite input labels for symmetric operads. Substitution uses the actual

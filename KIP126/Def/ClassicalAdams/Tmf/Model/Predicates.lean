@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.Tmf.Model.Data
-import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Multiplication.Data
-import KIP126.Def.ClassicalAdams.Tmf.Multiplication.SecondCycles.Data
-import KIP126.Def.ClassicalAdams.Suspension.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Tmf.Model.Data
+public import KIP126.Def.ClassicalAdams.Tmf.CsvE2.Multiplication.Data
+public import KIP126.Def.ClassicalAdams.Tmf.Multiplication.SecondCycles.Data
+public import KIP126.Def.ClassicalAdams.Suspension.Data
+
+@[expose] public section
 
 /-!
 # Multiplicative conditions on the fixed tmf coordinate comparison

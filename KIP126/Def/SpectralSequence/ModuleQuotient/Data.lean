@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.ModuleSubobject.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.ModuleSubobject.Proofs
+
+@[expose] public section
 
 namespace KIP126.Core.SpectralSequence
 

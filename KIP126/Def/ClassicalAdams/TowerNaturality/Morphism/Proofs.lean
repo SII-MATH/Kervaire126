@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerNaturality.Differential.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Differential.Proofs
+
+@[expose] public section
 
 /-! Construction of a morphism in the existing spectral-sequence interface
 from the specified tower maps; no naturality laws are supplied as inputs. -/

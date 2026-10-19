@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, develop]
   workflow_dispatch:
 
 permissions:
@@ -38,7 +38,11 @@ jobs:
   lean:
     name: Lean and Blueprint
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
+    # The build is capped separately; allow cache transfers and checks to finish.
+    timeout-minutes: 135
+    permissions:
+      contents: read
+      actions: read
     env:
       LEAN_NUM_THREADS: '2'
       MATHLIB_NO_CACHE_ON_UPDATE: '1'
@@ -69,8 +73,8 @@ jobs:
       - name: Identify Lean build inputs
         id: lean-inputs
         run: |
-          # Include tracked paths and blob hashes, so renames and deletions invalidate too.
-          source_hash=$(git ls-files --stage -z -- '*.lean' lakefile.toml scripts/mathlib-cache-roots.py | sha256sum | cut -d ' ' -f 1)
+          # The complete tracked tree also binds artifact handoffs to CI/config inputs.
+          source_hash=$(python3 scripts/ci_build_artifact.py fingerprint)
           echo "hash=$source_hash" >> "$GITHUB_OUTPUT"
       - name: Start Blueprint environment setup
         run: |
@@ -93,8 +97,19 @@ jobs:
         with:
           # Keep the path and fallback prefix compatible with lean-action's cache.
           path: ./.lake
-          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-sources-v2-${{ steps.lean-inputs.outputs.hash }}
-          restore-keys: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-build-v3-${{ steps.lean-inputs.outputs.hash }}-complete
+          restore-keys: |
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-build-v3-${{ steps.lean-inputs.outputs.hash }}-
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-build-v3-
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-sources-v2-
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-
+      - name: Reuse the successful PR build after merging
+        timeout-minutes: 5
+        continue-on-error: true
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && steps.lake-cache.outputs.cache-hit != 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/ci_build_artifact.py restore --os '${{ runner.os }}' --arch '${{ runner.arch }}'
       - name: Finish Blueprint environment setup
         run: |
           for attempt in {1..300}; do
@@ -120,7 +135,7 @@ jobs:
           use-mathlib-cache: false
           use-github-cache: false
       - name: Replace legacy full-Mathlib build artifacts
-        if: steps.lake-cache.outputs.cache-matched-key != '' && !contains(steps.lake-cache.outputs.cache-matched-key, '-sources-v2-')
+        if: steps.lake-cache.outputs.cache-matched-key != '' && !contains(steps.lake-cache.outputs.cache-matched-key, '-sources-v2-') && !contains(steps.lake-cache.outputs.cache-matched-key, '-build-v3-')
         run: |
           # Keep project artifacts and the cache tool; fetch the required Mathlib closure below.
           rm -rf .lake/packages/mathlib/.lake/build/lib/lean/Mathlib \
@@ -134,18 +149,50 @@ jobs:
             lake exe cache get "${mathlib_roots[@]}"
           fi
       - name: Build the complete Lean library, regression modules and declaration checker
+        id: lean-build
+        # Leave time to preserve completed modules before the job's hard limit.
+        timeout-minutes: 105
         run: lake build KIP126 checkdecls
+      - name: Save the complete Lean build before Blueprint checks
+        timeout-minutes: 8
+        if: steps.lake-cache.outputs.cache-hit != 'true'
+        continue-on-error: true
+        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5
+        with:
+          path: ./.lake
+          key: ${{ steps.lake-cache.outputs.cache-primary-key }}
+      - name: Preserve completed modules after a failed build
+        timeout-minutes: 8
+        if: always() && (steps.lean-build.outcome == 'failure' || steps.lean-build.outcome == 'cancelled') && steps.lean-inputs.outputs.hash != '' && hashFiles('.lake/build/**/*.trace') != ''
+        continue-on-error: true
+        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5
+        with:
+          path: ./.lake
+          # A new attempt must be able to save more progress than the previous one.
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-build-v3-${{ steps.lean-inputs.outputs.hash }}-progress-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Render Blueprint and check linked Lean declarations
         env:
           # The minimal TeX installation has no texlive-base search-path defaults.
           TEXINPUTS: '.:'
         run: bash scripts/check-blueprint-decls.sh
-      - name: Save successful Lean build when its sources changed
-        if: steps.lake-cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5
+      - name: Package the successful PR build for its eventual merge
+        id: build-handoff
+        timeout-minutes: 10
+        continue-on-error: true
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: python3 scripts/ci_build_artifact.py pack --output "$RUNNER_TEMP/lean-build-handoff" --os '${{ runner.os }}' --arch '${{ runner.arch }}'
+      - name: Publish the PR build for reuse after merging
+        timeout-minutes: 5
+        continue-on-error: true
+        if: steps.build-handoff.outcome == 'success'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          path: ./.lake
-          key: ${{ steps.lake-cache.outputs.cache-primary-key }}
+          name: lean-build-v1-${{ steps.lean-inputs.outputs.hash }}-${{ runner.os }}-${{ runner.arch }}
+          path: ${{ runner.temp }}/lean-build-handoff/
+          compression-level: 0
+          retention-days: 3
+          overwrite: true
+          if-no-files-found: error
       - name: Upload Blueprint for review
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:

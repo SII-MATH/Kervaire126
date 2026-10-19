@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Data
-import Mathlib.Algebra.MvPolynomial.Coeff
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Data
+public import Mathlib.Algebra.MvPolynomial.Coeff
+
+@[expose] public section
 
 namespace KIP126.Steenrod.Milnor
 

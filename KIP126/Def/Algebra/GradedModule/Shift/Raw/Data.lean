@@ -1,5 +1,9 @@
-import KIP126.Def.Algebra.GradedModule.Tensor.Data
-import KIP126.Def.Algebra.GradedComodule.Shift.Data
+module
+
+public import KIP126.Def.Algebra.GradedModule.Tensor.Data
+public import KIP126.Def.Algebra.GradedComodule.Shift.Data
+
+@[expose] public section
 
 /-!
 # The actual left action on a right-tensored degree line

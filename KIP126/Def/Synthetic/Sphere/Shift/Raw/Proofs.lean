@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.Sphere.Shift.Raw.Data
-import Mathlib.CategoryTheory.Preadditive.AdditiveFunctor
+module
+
+public import KIP126.Def.Synthetic.Sphere.Shift.Raw.Data
+public import Mathlib.CategoryTheory.Preadditive.AdditiveFunctor
+
+@[expose] public section
 
 /-!
 Additivity is a consequence of the existing synthetic background, not a new

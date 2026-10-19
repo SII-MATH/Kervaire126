@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Nonvanishing.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerHomology.Coaction.Tensor.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Tensor.Nonvanishing.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

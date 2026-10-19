@@ -1,5 +1,9 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Basis.Data
-import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Basis.Data
+public import KIP126.Main.Solution.Computation.LinProgram.Basis.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 open KIP126.LinE2

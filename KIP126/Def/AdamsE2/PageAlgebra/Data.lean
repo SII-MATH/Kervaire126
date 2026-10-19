@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Page.Data
-import Mathlib.Algebra.DirectSum.Module
+module
+
+public import KIP126.Def.ClassicalAdams.Page.Data
+public import Mathlib.Algebra.DirectSum.Module
+
+@[expose] public section
 
 /-!
 # Multiplication on the E₂ page of an existing spectral sequence

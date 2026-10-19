@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Full.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Full.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

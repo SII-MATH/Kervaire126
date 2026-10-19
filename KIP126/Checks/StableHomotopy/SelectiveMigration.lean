@@ -1,11 +1,15 @@
-import KIP126.Def.Comparison.ClassicalSynthetic.RealizationWeights.Proofs
-import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Detection.Proofs
-import KIP126.Def.Solution.Toda
-import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Proofs
-import KIP126.Def.ClassicalAdams.Convergence.Tower.Raw.Proofs
-import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Proofs
-import KIP126.Def.StableHomotopy.Toda.Law.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.Comparison.ClassicalSynthetic.RealizationWeights.Proofs
+public import KIP126.Def.Comparison.ClassicalSynthetic.FirstQuotient.Detection.Proofs
+public import KIP126.Def.Solution.Toda
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Page.Proofs
+public import KIP126.Def.ClassicalAdams.Convergence.Tower.Raw.Proofs
+public import KIP126.Def.Comparison.ClassicalSynthetic.RealizationTower.Proofs
+public import KIP126.Def.StableHomotopy.Toda.Law.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Full dependency audit for the remaining selective proof transfers.
 All targets use existing mathematical objects. Any nonstandard axiom,

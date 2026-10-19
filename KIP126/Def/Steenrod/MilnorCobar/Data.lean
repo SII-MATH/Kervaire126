@@ -1,4 +1,8 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Proofs
+
+@[expose] public section
 
 /-!
 # Normalized Milnor cobar data

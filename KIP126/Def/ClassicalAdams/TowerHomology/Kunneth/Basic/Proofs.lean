@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Data
-import KIP126.Def.ClassicalAdams.Coefficients.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Data
+public import KIP126.Def.ClassicalAdams.Coefficients.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

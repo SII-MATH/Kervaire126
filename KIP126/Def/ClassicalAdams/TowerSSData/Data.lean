@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.TowerFiltration.Proofs
-import KIP126.Def.SpectralSequence.Basic.Data
-import Mathlib.Algebra.Category.ModuleCat.Subobject
+module
+
+public import KIP126.Def.ClassicalAdams.TowerFiltration.Proofs
+public import KIP126.Def.SpectralSequence.Basic.Data
+public import Mathlib.Algebra.Category.ModuleCat.Subobject
+
+@[expose] public section
 
 /-!
 # SSData constructed from the Adams tower

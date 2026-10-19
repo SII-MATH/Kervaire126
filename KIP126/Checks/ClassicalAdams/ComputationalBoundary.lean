@@ -1,6 +1,11 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
+public import Lean.Elab.Command
+public meta import KIP126.Checks.AxiomInputs
+
+@[expose] public section
 
 /-! The internal calculation must not obtain its sequence from a Mathlib adapter
 or import the historical KIPBase component. -/

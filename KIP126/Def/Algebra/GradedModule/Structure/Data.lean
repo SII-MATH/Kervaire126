@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedModule.Structure.Basic.Proofs
+module
+
+public import KIP126.Def.Algebra.GradedModule.Structure.Basic.Proofs
+
+@[expose] public section
 
 /-!
 The abelian structure uses the existing module category, linear operations,

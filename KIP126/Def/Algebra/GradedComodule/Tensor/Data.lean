@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedComodule.Tensor.Raw.Proofs
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Tensor.Raw.Proofs
+
+@[expose] public section
 
 /-!
 The right-tensor comonad and its actual category of right comodules. The

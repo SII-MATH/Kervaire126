@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.EInfty.Presentation.Predicates
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
+module
+
+public import KIP126.Def.Synthetic.EInfty.Presentation.Predicates
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Window.Data
+
+@[expose] public section
 /-!
 # Classical/synthetic E-infinity comparison
 

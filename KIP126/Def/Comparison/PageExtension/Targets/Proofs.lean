@@ -1,6 +1,10 @@
-import KIP126.Def.Comparison.PageExtension.Kernel.Proofs
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Proofs
-import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
+module
+
+public import KIP126.Def.Comparison.PageExtension.Kernel.Proofs
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Equivalence.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
+
+@[expose] public section
 
 namespace KIP126.Def.Comparison.StageInterfaces
 

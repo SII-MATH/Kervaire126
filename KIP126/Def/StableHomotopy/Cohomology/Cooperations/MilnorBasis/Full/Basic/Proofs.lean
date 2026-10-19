@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Data
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Unit.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Full.Equiv.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Unit.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Full.Equiv.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Hi.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Reindex.Data
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Hi.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Reindex.Data
+
+@[expose] public section
 
 /-! Actual normalized cobar representatives of `hᵢ` and their squares. -/
 

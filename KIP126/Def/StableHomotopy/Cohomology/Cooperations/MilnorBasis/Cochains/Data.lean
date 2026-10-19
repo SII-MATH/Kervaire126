@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Single.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Monomials.Words.Single.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy.Cohomology
 

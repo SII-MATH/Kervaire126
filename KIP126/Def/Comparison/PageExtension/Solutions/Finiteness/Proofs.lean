@@ -1,8 +1,12 @@
-import KIP126.Def.Comparison.PageExtension.Solutions.Data
-import KIP126.Def.Comparison.ClassicalSynthetic.FiniteBockstein.Data
-import KIP126.Def.Algebra.InverseSequence.Finite.Proofs
-import KIP126.Def.Synthetic.PageExtension.Solutions.Finiteness.Proofs
-import KIP126.Def.Synthetic.QuotientTower.Finiteness.Proofs
+module
+
+public import KIP126.Def.Comparison.PageExtension.Solutions.Data
+public import KIP126.Def.Comparison.ClassicalSynthetic.FiniteBockstein.Data
+public import KIP126.Def.Algebra.InverseSequence.Finite.Proofs
+public import KIP126.Def.Synthetic.PageExtension.Solutions.Finiteness.Proofs
+public import KIP126.Def.Synthetic.QuotientTower.Finiteness.Proofs
+
+@[expose] public section
 
 /-! A compatible tower from finite nonempty actual solution fibers.
 Finiteness is required for the strict representative fibers themselves.

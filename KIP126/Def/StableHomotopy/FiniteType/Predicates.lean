@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.Cohomology.Data
+module
+
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy
 open Cohomology

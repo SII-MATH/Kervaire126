@@ -1,6 +1,10 @@
-import KIP126.LinProgram.Model.Classes.Data
-import Mathlib.Data.Finsupp.Order
-import Mathlib.Data.ZMod.Basic
+module
+
+public import KIP126.LinProgram.Model.Classes.Data
+public import Mathlib.Data.Finsupp.Order
+public import Mathlib.Data.ZMod.Basic
+
+@[expose] public section
 
 /-! The degree-(2,128) component is spanned by the specified square.
 This is proved from the actual generator degrees, without assuming the

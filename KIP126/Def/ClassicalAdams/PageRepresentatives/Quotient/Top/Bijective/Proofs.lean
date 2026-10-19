@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Data
+module
+
+public import KIP126.Def.ClassicalAdams.PageRepresentatives.Quotient.Top.Data
+
+@[expose] public section
 
 /-! At top weight the boundary cutoff is one, whose actual E₂ boundary
 submodule is zero. The existing top-class maps therefore lose no labels. -/

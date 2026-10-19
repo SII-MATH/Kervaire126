@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Transport.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Transport.Proofs
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

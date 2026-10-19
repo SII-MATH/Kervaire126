@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.SphereClasses.Data
-import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Boundary.Proofs
-import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+module
+
+public import KIP126.Def.ClassicalAdams.SphereClasses.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Polynomial.Detection.Boundary.Proofs
+public import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
+
+@[expose] public section
 
 /-! Zero detection for the specified standard classes uses the actual
 first-page homology quotient, not the Lin comparison. -/

@@ -1,5 +1,9 @@
-import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Category.Data
-import Mathlib.AlgebraicTopology.ModelCategory.Basic
+module
+
+public import KIP126.Def.HigherAlgebra.Operad.EnrichedAlgebra.Category.Data
+public import Mathlib.AlgebraicTopology.ModelCategory.Basic
+
+@[expose] public section
 
 /-!
 A model structure on the actual category of enriched operadic algebras whose

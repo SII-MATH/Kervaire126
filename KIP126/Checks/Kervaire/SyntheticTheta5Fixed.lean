@@ -1,6 +1,10 @@
-import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
-import KIP126.Def.StageInput.StandardSphere.Classes.Data
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.Kervaire.Theta5.Synthetic.Predicates
+public import KIP126.Def.StageInput.StandardSphere.Classes.Data
+public import Lean.Elab.Command
+
+@[expose] public section
 
 open KIP126.StableHomotopy KIP126.Synthetic.Context
 open KIP126.Kervaire KIP126.Kervaire.SyntheticTheta5 KIP126.Classical.Adams

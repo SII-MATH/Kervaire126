@@ -1,6 +1,10 @@
-import KIP126.Main.Solution.Computation.Route
-import KIP126.Def.Kervaire.Route.Tmf.Predicates
-import KIP126.Def.ClassicalAdams.TowerNaturality.Isomorphism.Proofs
+module
+
+public import KIP126.Main.Solution.Computation.Route.CofiberAndFiltration
+public import KIP126.Def.Kervaire.Route.Tmf.Predicates
+public import KIP126.Def.ClassicalAdams.TowerNaturality.Isomorphism.Proofs
+
+@[expose] public section
 
 /-! The high125 tmf consequences are Main deductions. The source supplies
 one actual product with nonzero tmf image. Its nonzero associated grade at

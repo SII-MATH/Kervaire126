@@ -1,4 +1,8 @@
-import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
+module
+
+public import KIP126.Def.Synthetic.PageExtension.Crossing.Predicates
+
+@[expose] public section
 
 /-! Degree and length consequences of the actual crossing predicates. -/
 

@@ -1,6 +1,11 @@
-import KIP126.Checks.AxiomInputs
-import KIP126.Main.Solution.Literature.Near126
-import Lean.Elab.Command
+module
+
+public import KIP126.Checks.AxiomInputs
+public import KIP126.Main.Solution.Literature.Near126
+public import Lean.Elab.Command
+public meta import KIP126.Checks.AxiomInputs
+
+@[expose] public section
 
 open Lean Elab Command in
 run_cmd do
@@ -29,7 +34,7 @@ run_cmd do
       ``KIP126.Computation.Near126.SphereBoundaryFacts.p_h2_is_d2_cycle,
       ``KIP126.Computation.Near126.SphereBoundaryFacts.q_h2_is_d2_cycle,
       ``KIP126.Computation.Near126.Sphere.d12_iff_differential,
-      ``KIP126.Computation.Near126.SphereSurvivalFacts.c3_iff_not_d6,
+      ``KIP126.Computation.Near126.SphereSurvivalFacts.d6_vanishes_iff_not_nonzero_d6,
       ``KIP126.Computation.Near126.SphereSurvivalFacts.hit_t_iff_d12] do
     discard <| KIP126.Checks.AxiomInputs.checkStageConsumer
       (logical ++ [``KIP126.Classical.Adams.standardFoundation,

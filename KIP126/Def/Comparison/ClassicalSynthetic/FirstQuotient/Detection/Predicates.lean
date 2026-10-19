@@ -1,4 +1,8 @@
-import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+module
+
+public import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+
+@[expose] public section
 
 /-! Detection determines a homotopy representative only when the next
 actual Adams filtration vanishes. For the first lambda quotient, BHS

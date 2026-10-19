@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedComodule.Tensor.Data
+module
+
+public import KIP126.Def.Algebra.GradedComodule.Tensor.Data
+
+@[expose] public section
 
 /-!
 The left action of the ambient monoidal category on right comodules.

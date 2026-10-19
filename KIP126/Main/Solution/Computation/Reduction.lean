@@ -1,5 +1,9 @@
-import KIP126.Main.Solution.Computation.Nonvanishing
-import KIP126.Main.Solution.Computation.Vanishing
+module
+
+public import KIP126.Main.Solution.Computation.Nonvanishing
+public import KIP126.Main.Solution.Computation.Vanishing
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 

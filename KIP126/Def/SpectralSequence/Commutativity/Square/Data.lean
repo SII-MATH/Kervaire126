@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.BoundedExtension.Sequence.Proofs
-import KIP126.Def.SpectralSequence.Convergence.Category.Data
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension.Sequence.Proofs
+public import KIP126.Def.SpectralSequence.Convergence.Category.Data
+
+@[expose] public section
 
 /-!
 # Commutative squares of convergent spectral sequences

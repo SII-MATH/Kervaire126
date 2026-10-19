@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.Context.Mapping.Data
-import KIP126.Def.StableHomotopy.Context.Connecting.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Context.Mapping.Data
+public import KIP126.Def.StableHomotopy.Context.Connecting.Proofs
+
+@[expose] public section
 
 namespace KIP126.StableHomotopy
 

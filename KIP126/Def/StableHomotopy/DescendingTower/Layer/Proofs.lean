@@ -1,5 +1,9 @@
-import KIP126.Def.StableHomotopy.DescendingTower.Layer.Data
-import KIP126.Def.StableHomotopy.DescendingTower.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.DescendingTower.Layer.Data
+public import KIP126.Def.StableHomotopy.DescendingTower.Proofs
+
+@[expose] public section
 
 /-! The chosen layer triangle is distinguished. Its negative-filtration
 layers in a constant-tail extension are zero, as a property of those

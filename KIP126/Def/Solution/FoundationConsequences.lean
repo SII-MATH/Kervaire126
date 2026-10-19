@@ -1,6 +1,10 @@
-import KIP126.Def.StableHomotopy.Implementation.Data
-import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
-import KIP126.Def.ClassicalAdams.MapFiltration.Proofs
+module
+
+public import KIP126.Def.StableHomotopy.Implementation.Data
+public import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
+public import KIP126.Def.ClassicalAdams.MapFiltration.Proofs
+
+@[expose] public section
 
 namespace KIP126.Def.Solution
 

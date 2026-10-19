@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.Coefficients.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.Coefficients.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Coefficients.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! Scalar structures and their linear maps must be derived from the explicit
 ring and additive tensor, not selected by a fixed or computational axiom. -/

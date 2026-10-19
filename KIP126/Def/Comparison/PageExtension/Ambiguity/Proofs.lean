@@ -1,5 +1,9 @@
-import KIP126.Def.Comparison.PageExtension.Ambiguity.Predicates
-import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
+module
+
+public import KIP126.Def.Comparison.PageExtension.Ambiguity.Predicates
+public import KIP126.Def.Synthetic.PageExtension.Ambiguity.Proofs
+
+@[expose] public section
 
 namespace KIP126.Def.Comparison.StageInterfaces
 open CategoryTheory KIP126.StableHomotopy KIP126.StableHomotopy.Cohomology

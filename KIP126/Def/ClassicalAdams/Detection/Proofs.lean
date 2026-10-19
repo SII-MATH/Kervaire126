@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Detection.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Detection.Data
+
+@[expose] public section
 namespace KIP126.Classical.Adams.TowerDetection
 open CategoryTheory CategoryTheory.MonoidalCategory KIP126.StableHomotopy
 universe u v

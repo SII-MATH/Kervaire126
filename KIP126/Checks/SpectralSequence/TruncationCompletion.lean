@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Completion.UniversalProperty.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Completion.UniversalProperty.Proofs
+
+@[expose] public section
 
 /-!
 # Legacy truncation and completion API checks

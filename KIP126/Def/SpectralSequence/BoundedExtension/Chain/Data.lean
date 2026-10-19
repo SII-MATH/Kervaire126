@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.BoundedExtension.Sequence.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.BoundedExtension.Sequence.Predicates
+
+@[expose] public section
 
 /-!
 # Composable convergence morphisms

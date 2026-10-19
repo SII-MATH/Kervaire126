@@ -1,6 +1,10 @@
-import KIP126.Def.Algebra.Filtration.Proofs
-import Mathlib.Algebra.Homology.HomologicalComplex
-import Mathlib.Algebra.Homology.CochainComplexOpposite
+module
+
+public import KIP126.Def.Algebra.Filtration.Proofs
+public import Mathlib.Algebra.Homology.HomologicalComplex
+public import Mathlib.Algebra.Homology.CochainComplexOpposite
+
+@[expose] public section
 
 /-!
 # Filtered chain complexes

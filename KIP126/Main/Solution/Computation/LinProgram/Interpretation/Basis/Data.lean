@@ -1,4 +1,8 @@
-import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
+module
+
+public import KIP126.Main.Solution.Computation.LinProgram.Interpretation.Classes.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams
 open KIP126.LinE2 KIP126.Core.Algebra

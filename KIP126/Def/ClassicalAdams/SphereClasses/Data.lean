@@ -1,7 +1,11 @@
-import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
-import KIP126.Def.ClassicalAdams.TowerSequence.PageHomology.Data
-import KIP126.Def.Steenrod.MilnorCobar.Proofs
-import Mathlib.Algebra.Homology.ConcreteCategory
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCooperations.Proofs
+public import KIP126.Def.ClassicalAdams.TowerSequence.PageHomology.Data
+public import KIP126.Def.Steenrod.MilnorCobar.Proofs
+public import Mathlib.Algebra.Homology.ConcreteCategory
+
+@[expose] public section
 
 /-!
 # Standard sphere Adams classes from specified Milnor cocycles

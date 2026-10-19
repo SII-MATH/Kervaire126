@@ -1,29 +1,33 @@
-import KIP126.Def.Kervaire.Route.Model.Coherent.Data
-import KIP126.Def.StableHomotopy.Implementation.Tensor
-import KIP126.Def.StableHomotopy.Cohomology.Data
-import KIP126.Def.ClassicalAdams.MilnorCooperations.Data
-import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
-import KIP126.Def.Synthetic.Context.Data
-import KIP126.Def.Synthetic.Localization.Recovery.Data
-import KIP126.Def.Synthetic.QuotientTower.Predicates
-import KIP126.Def.Synthetic.Completion.Predicates
-import KIP126.Def.ClassicalAdams.Completion.Predicates
-import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Data
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Suspension.Predicates
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Predicates
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Predicates
-import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Predicates
-import KIP126.Def.StableHomotopy.Context.Mapping.Data
-import KIP126.Def.StableHomotopy.Context.Proofs
-import KIP126.Def.StableHomotopy.Toda.Predicates
-import KIP126.Def.HigherAlgebra.Operad.Moduli.Data
-import KIP126.Def.HigherAlgebra.Operad.Model.Data
-import KIP126.Def.HigherAlgebra.Operad.Topological.Predicates
-import KIP126.Def.Topology.WeakContractibility.Predicates
-import Mathlib.AlgebraicTopology.ModelCategory.Instances
-import Mathlib.AlgebraicTopology.ModelCategory.IsCofibrant
-import Mathlib.CategoryTheory.Localization.Predicate
-import Mathlib.Algebra.Exact.Basic
+module
+
+public import KIP126.Def.Kervaire.Route.Model.Coherent.Data
+public import KIP126.Def.StableHomotopy.Implementation.Tensor
+public import KIP126.Def.StableHomotopy.Cohomology.Data
+public import KIP126.Def.ClassicalAdams.MilnorCooperations.Data
+public import KIP126.Def.ClassicalAdams.MapFiltration.Predicates
+public import KIP126.Def.Synthetic.Context.Data
+public import KIP126.Def.Synthetic.Localization.Recovery.Data
+public import KIP126.Def.Synthetic.QuotientTower.Predicates
+public import KIP126.Def.Synthetic.Completion.Predicates
+public import KIP126.Def.ClassicalAdams.Completion.Predicates
+public import KIP126.Def.ClassicalAdams.TowerHomology.MilnorCoordinates.Data
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Suspension.Predicates
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Diagonal.Predicates
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.Kunneth.Unit.Predicates
+public import KIP126.Def.StableHomotopy.Cohomology.Cooperations.MilnorBasis.Coproduct.Predicates
+public import KIP126.Def.StableHomotopy.Context.Mapping.Data
+public import KIP126.Def.StableHomotopy.Context.Proofs
+public import KIP126.Def.StableHomotopy.Toda.Predicates
+public import KIP126.Def.HigherAlgebra.Operad.Moduli.Data
+public import KIP126.Def.HigherAlgebra.Operad.Model.Data
+public import KIP126.Def.HigherAlgebra.Operad.Topological.Predicates
+public import KIP126.Def.Topology.WeakContractibility.Predicates
+public import Mathlib.AlgebraicTopology.ModelCategory.Instances
+public import Mathlib.AlgebraicTopology.ModelCategory.IsCofibrant
+public import Mathlib.CategoryTheory.Localization.Predicate
+public import Mathlib.Algebra.Exact.Basic
+
+@[expose] public section
 
 /-! Mathematical data of one fixed implementation. FoundationInput supplies
 the selected stable category, HF₂ object and operations; the following
@@ -50,7 +54,7 @@ HF₂ 的对象、零次同伦群与非零次数消失条件在此逐项列出�
 structure FoundationInput where
   Spectrum : Type 1
   stable : StableHomotopyCategory.{1, 0} Spectrum
-  cofiber : @HasFunctorialCofiber Spectrum stable
+  cofiber : letI := stable; HasFunctorialCofiber (C := Spectrum)
   countableProducts : @CategoryTheory.Limits.HasProductsOfShape ℕ Spectrum stable.toCategory
   countableCoproducts : @CategoryTheory.Limits.HasCoproductsOfShape ℕ Spectrum stable.toCategory
   HF2 : Spectrum
@@ -106,7 +110,7 @@ same construction; this abstract type alone does not establish applicability. -/
 structure RouteInput (F : FoundationInput) (M : MilnorInput F) where
   Syn : Type 1
   synthetic : KIP126.Synthetic.Context.SyntheticCategory.{1, 0} Syn
-  cofiber : @HasFunctorialCofiber Syn synthetic.toStableHomotopyCategory
+  cofiber : letI := synthetic.toStableHomotopyCategory; HasFunctorialCofiber (C := Syn)
   model : @KIP126.Kervaire.Route.Model F.Spectrum F.stable F.cofiber
     F.hf2 M.toMilnor Syn synthetic cofiber
 

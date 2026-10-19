@@ -1,5 +1,9 @@
-import Std
-import KIP126.LinProgram.Generated.E2
+module
+
+public import Std
+public import KIP126.LinProgram.Generated.E2
+
+@[expose] public section
 
 /-!
 Ported from PR #110 commit ff39e95147712fc00cd3f700e0dd1f490d16b863,
@@ -34,6 +38,7 @@ private def insertPower (i a : Nat) : Monomial → Monomial
     else if i == j then (j, a + b) :: rest
     else (j, b) :: insertPower i a rest
 
+@[no_expose]
 def mulMon (a b : Monomial) : Monomial :=
   b.foldl (fun m (i, e) => insertPower i e m) a
 
@@ -72,6 +77,7 @@ private def parsePowers : List String → Calc Monomial
     if i ≥ RawData.generatorCount then throw s!"unknown generator id: {i}"
     return insertPower i a (← parsePowers rest)
 
+@[no_expose]
 def parseMonomial (s : String) : Calc Monomial :=
   if s == "" then .ok [] else parsePowers (s.splitOn ",")
 
@@ -123,6 +129,7 @@ private def findRule (e : Engine) (m : Monomial) : Option (Nat × Monomial) := I
   return none
 
 /-- 消耗一个 fuel 处理一个首项（约化或移入余式）。不会返回未完成的余式。 -/
+@[no_expose]
 def reduce (e : Engine) (p : PolynomialF2) (fuel : Nat := 1000000) : Calc PolynomialF2 :=
   go fuel (normalize p) []
 where
@@ -135,6 +142,7 @@ where
       | some (r, q) => go n (add rest (e.rules[r]!.tail.map (mulMon q))) remainder
 
 /-- 解析、检查全部关系，建立首项整除索引及 CSV 基索引。 -/
+@[no_expose]
 def loadEngine : Calc Engine := do
   let mut e : Engine := {
     rules := #[]
@@ -184,6 +192,7 @@ private def toResult (e : Engine) (p : PolynomialF2) : Calc Result := do
   return ⟨p, cs⟩
 
 /-- 默认严格范围接口；任意输入项或乘积项超出 t ≤ 261 时报告错误。 -/
+@[no_expose]
 def Engine.multiplyStrings (e : Engine) (a b : String)
     (fuel : Nat := 1000000) : Calc Result := do
   let a ← parsePolynomial a
@@ -195,6 +204,7 @@ def Engine.multiplyStrings (e : Engine) (a b : String)
   toResult e (← reduce e p fuel)
 
 /-- 明确选择截断代数语义：删除乘积中 t > 261 的项。 -/
+@[no_expose]
 def Engine.multiplyTruncated (e : Engine) (a b : String)
     (fuel : Nat := 1000000) : Calc Result := do
   let a ← parsePolynomial a
@@ -203,6 +213,7 @@ def Engine.multiplyTruncated (e : Engine) (a b : String)
   toResult e (← reduce e p fuel)
 
 /-- 基坐标输入；数组表示各基向量之和，重复向量相消。 -/
+@[no_expose]
 def Engine.multiplyBasis (e : Engine)
     (a b : Array (Nat × Nat × Nat)) (fuel : Nat := 1000000) : Calc Result := do
   let decode := fun (coords : Array (Nat × Nat × Nat)) => coords.toList.mapM fun key =>

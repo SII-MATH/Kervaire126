@@ -1,5 +1,9 @@
-import KIP126.Def.SpectralSequence.Commutativity.Square.Data
-import KIP126.Def.SpectralSequence.Convergence.Proofs
+module
+
+public import KIP126.Def.SpectralSequence.Commutativity.Square.Data
+public import KIP126.Def.SpectralSequence.Convergence.Proofs
+
+@[expose] public section
 
 /-!
 # Compatibility properties of commutative convergence squares

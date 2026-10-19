@@ -1,4 +1,8 @@
-import KIP126.Def.Algebra.GradedDual.Augmentation.Raw.Proofs
+module
+
+public import KIP126.Def.Algebra.GradedDual.Augmentation.Raw.Proofs
+
+@[expose] public section
 
 /-! The convolution augmentation is the actual evaluation map, bundled
 with its separately stated algebra-morphism properties. -/

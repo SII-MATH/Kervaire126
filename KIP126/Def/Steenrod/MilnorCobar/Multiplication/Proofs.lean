@@ -1,5 +1,9 @@
-import KIP126.Def.Steenrod.MilnorCobar.Reindex.Proofs
-import KIP126.Def.Steenrod.MilnorCobar.Proofs
+module
+
+public import KIP126.Def.Steenrod.MilnorCobar.Reindex.Proofs
+public import KIP126.Def.Steenrod.MilnorCobar.Proofs
+
+@[expose] public section
 
 /-! # The cobar Leibniz formula -/
 

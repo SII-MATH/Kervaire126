@@ -1,6 +1,10 @@
-import KIP126.Def.Kervaire.Theta5.Synthetic.Data
-import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
-import KIP126.Def.SpectralSequence.Computation.Predicates
+module
+
+public import KIP126.Def.Kervaire.Theta5.Synthetic.Data
+public import KIP126.Def.Synthetic.Sphere.Homotopy.Predicates
+public import KIP126.Def.SpectralSequence.Computation.Predicates
+
+@[expose] public section
 
 /-! Precise source and paper-normalized conditions on actual objects.
 Defining these predicates does not prove the literature inputs or the paper's

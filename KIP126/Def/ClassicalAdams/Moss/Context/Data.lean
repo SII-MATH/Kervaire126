@@ -1,4 +1,8 @@
-import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Statement.Predicates
+
+@[expose] public section
 /-!
 # Moss pairing and convergence context
 

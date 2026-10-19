@@ -1,7 +1,11 @@
-import KIP126.Def.Synthetic.Bockstein.Hom.Data
-import KIP126.Def.Synthetic.Bockstein.Maps.Proofs
-import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
-import KIP126.Def.Synthetic.QuotientRestrictions.Functoriality.Proofs
+module
+
+public import KIP126.Def.Synthetic.Bockstein.Hom.Data
+public import KIP126.Def.Synthetic.Bockstein.Maps.Proofs
+public import KIP126.Def.Synthetic.QuotientRestrictions.Proofs
+public import KIP126.Def.Synthetic.QuotientRestrictions.Functoriality.Proofs
+
+@[expose] public section
 
 /-! Evaluation and local compatibility for the actual homotopy maps.
 Identity and composition of restrictions retain the required coherence

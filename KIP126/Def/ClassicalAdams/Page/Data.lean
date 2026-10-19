@@ -1,7 +1,11 @@
-import KIP126.Def.SpectralSequence.PageLevel.Data
-import KIP126.Def.ClassicalAdams.Grading.Data
-import KIP126.Def.Algebra.Coefficients.Data
-import Mathlib.Algebra.Homology.SpectralSequence.Basic
+module
+
+public import KIP126.Def.SpectralSequence.PageLevel.Data
+public import KIP126.Def.ClassicalAdams.Grading.Data
+public import KIP126.Def.Algebra.Coefficients.Data
+public import Mathlib.Algebra.Homology.SpectralSequence.Basic
+
+@[expose] public section
 
 /-! Classical Adams page grading, differential shape, and Mathlib sequence type. -/
 namespace KIP126.Classical.Adams

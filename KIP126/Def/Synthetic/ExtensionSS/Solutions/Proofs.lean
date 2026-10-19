@@ -1,5 +1,9 @@
-import KIP126.Def.Synthetic.ExtensionSS.Data
-import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Page.Converse.Proofs
+module
+
+public import KIP126.Def.Synthetic.ExtensionSS.Data
+public import KIP126.Def.SpectralSequence.FilteredComplex.Solutions.Page.Converse.Proofs
+
+@[expose] public section
 
 namespace KIP126.Synthetic.SpectralSequence.SyntheticExtensionData
 open CategoryTheory KIP126.Synthetic.Context KIP126.Core.SpectralSequence

@@ -1,4 +1,8 @@
-import KIP126.Def.SpectralSequence.Basic.Predicates
+module
+
+public import KIP126.Def.SpectralSequence.Basic.Predicates
+
+@[expose] public section
 
 /-!
 # Elementary proofs for nested-subobject spectral sequences

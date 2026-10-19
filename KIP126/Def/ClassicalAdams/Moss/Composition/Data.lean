@@ -1,6 +1,10 @@
-import KIP126.Def.ClassicalAdams.Moss.Mapping.Data
-import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Data
-import KIP126.Def.StableHomotopy.Context.Mapping.Composition.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Mapping.Data
+public import KIP126.Def.ClassicalAdams.TowerSmash.Pairing.Data
+public import KIP126.Def.StableHomotopy.Context.Mapping.Composition.Data
+
+@[expose] public section
 
 /-!
 Actual maps between the stages of the three mapping-object Adams towers.

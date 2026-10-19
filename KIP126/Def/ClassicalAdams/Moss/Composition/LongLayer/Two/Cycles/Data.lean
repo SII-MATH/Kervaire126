@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Pairing.Proofs
-import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Cycles.Data
+module
+
+public import KIP126.Def.ClassicalAdams.Moss.Composition.LongLayer.Two.Pairing.Proofs
+public import KIP126.Def.ClassicalAdams.TowerLongLayer.Pairing.Mixed.Cycles.Data
+
+@[expose] public section
 
 namespace KIP126.Classical.Adams.Moss
 

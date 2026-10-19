@@ -1,4 +1,8 @@
-import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Data
+module
+
+public import KIP126.Def.StableHomotopy.TowerSpectralSequence.Differential.Data
+
+@[expose] public section
 
 /-! Representative formula and square-zero for the actual quotient map. -/
 

@@ -1,8 +1,12 @@
-import KIP126.Def.ClassicalAdams.SphereInitial.Permanence.Proofs
-import KIP126.Def.ClassicalAdams.SphereInitial.FiltrationOne.Proofs
-import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Sphere.PageTwo.Proofs
-import KIP126.Def.StableHomotopy.Cohomology.Sphere.Nonvanishing.Proofs
-import Lean.Elab.Command
+module
+
+public import KIP126.Def.ClassicalAdams.SphereInitial.Permanence.Proofs
+public import KIP126.Def.ClassicalAdams.SphereInitial.FiltrationOne.Proofs
+public import KIP126.Def.ClassicalAdams.TowerHomology.FirstDifferential.Sphere.PageTwo.Proofs
+public import KIP126.Def.StableHomotopy.Cohomology.Sphere.Nonvanishing.Proofs
+public import Lean.Elab.Command
+
+@[expose] public section
 
 /-! The actual sphere initial column and its internal survival statement
 need no ring, Künneth, Milnor, Lin, or fixed-foundation input. -/

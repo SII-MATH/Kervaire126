@@ -1,4 +1,8 @@
-import KIP126.LinProgram.Interpretation.Expression.Proofs
+module
+
+public import KIP126.LinProgram.Interpretation.Expression.Proofs
+
+@[expose] public section
 
 namespace KIP126.LinE2
 

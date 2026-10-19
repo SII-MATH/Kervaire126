@@ -1,4 +1,8 @@
-import KIP126.Def.Solution.Implementation
+module
+
+public import KIP126.Def.Solution.Implementation
+
+@[expose] public section
 
 /-! Def selects one implementation from its own construction obligation.
 No Interface or Main axiom occurs in this definition or its import closure. -/

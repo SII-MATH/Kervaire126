@@ -1,5 +1,9 @@
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Cycles.Data
-import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
+module
+
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Multiplication.Cycles.Data
+public import KIP126.Def.ClassicalAdams.MilnorCohomology.Proofs
+
+@[expose] public section
 
 /-! Concatenation with a cycle preserves the actual incoming boundaries. -/
 
